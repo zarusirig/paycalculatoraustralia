@@ -39,11 +39,11 @@ export const ASSETS_TEST_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Is my home counted in the assets test?",
-    a: "No. Your principal home, and generally up to 2 hectares of the land it is on, is exempt. That is why homeowners have a lower limit than non-homeowners — the gap between them is the same at every level. Everything else counts at market value less any debt secured against it: bank accounts, shares, super once you are Age Pension age, investment property, cars, caravans, boats and home contents.",
+    a: "No. Your principal home, and generally up to 2 hectares of the land it is on, is exempt. That is why homeowners have a lower limit than non-homeowners, and the gap between them is the same at every level. Everything else counts at market value less any debt secured against it: bank accounts, shares, super once you are Age Pension age, investment property, cars, caravans, boats and home contents.",
   },
   {
     q: "Does working reduce the Age Pension under the assets test?",
-    a: `No. Wages are income, not assets, so they only go through the income test — where the Work Bonus disregards the first ${formatAUD(WORK_BONUS.fortnightlyCredit)} a fortnight. Money you save out of your wages does become an asset once it sits in the bank, and it is also deemed to earn income.`,
+    a: `No. Wages are income, not assets, so they only go through the income test, where the Work Bonus disregards the first ${formatAUD(WORK_BONUS.fortnightlyCredit)} a fortnight. Money you save out of your wages does become an asset once it sits in the bank, and it is also deemed to earn income.`,
   },
   {
     q: "When do the assets test limits change?",
@@ -81,11 +81,11 @@ export const DEEMING_FAQS: readonly W3Faq[] = [
 export const DSP_FAQS: readonly W3Faq[] = [
   {
     q: "How much is the Disability Support Pension per fortnight?",
-    a: `From ${DSP.ratesFrom}, if you are 21 or older the maximum DSP is ${formatAUD(R.single.total, 2)} a fortnight single and ${formatAUD(R.coupleEach.total, 2)} each for a couple (${formatAUD(R.coupleCombined.total, 2)} combined), including the Pension Supplement and Energy Supplement — the same as the Age Pension. Under 21 with no children, the maximum is ${formatAUD(DSP.under21.under18Dependent, 2)} (under 18, dependent) to ${formatAUD(DSP.under21.age18to20Independent, 2)} (independent).`,
+    a: `From ${DSP.ratesFrom}, if you are 21 or older the maximum DSP is ${formatAUD(R.single.total, 2)} a fortnight single and ${formatAUD(R.coupleEach.total, 2)} each for a couple (${formatAUD(R.coupleCombined.total, 2)} combined), including the Pension Supplement and Energy Supplement, the same as the Age Pension. Under 21 with no children, the maximum is ${formatAUD(DSP.under21.under18Dependent, 2)} (under 18, dependent) to ${formatAUD(DSP.under21.age18to20Independent, 2)} (independent).`,
   },
   {
     q: "How many hours can I work on the Disability Support Pension?",
-    a: `Up to ${DSP.maxWorkHoursPerWeek} hours a week of paid work without losing DSP, as long as you meet the income test. If you work ${DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis, DSP is suspended — not cancelled — for up to ${DSP.suspensionYears} years, and you keep your Pensioner Concession Card. Work in an Australian Disability Enterprise, under the Supported Wage System or with ongoing Inclusive Employment Australia support does not trigger the suspension.`,
+    a: `Up to ${DSP.maxWorkHoursPerWeek} hours a week of paid work without losing DSP, as long as you meet the income test. If you work ${DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis, DSP is suspended (not cancelled) for up to ${DSP.suspensionYears} years, and you keep your Pensioner Concession Card. Work in an Australian Disability Enterprise, under the Supported Wage System or with ongoing Inclusive Employment Australia support does not trigger the suspension.`,
   },
   {
     q: "How much can I earn on DSP?",
@@ -93,7 +93,7 @@ export const DSP_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What happens if my wages go over the DSP cut-off?",
-    a: `Your DSP is paid at $0 for that fortnight — a nil rate period. If income stays over the cut-off for more than ${DSP.nilRateFortnights} fortnights in a row, DSP is suspended for up to ${DSP.suspensionYears} years, so you can ask for it to be restored if your hours or pay drop, without a new claim. Keep reporting your income every fortnight during a nil rate period.`,
+    a: `Your DSP is paid at $0 for that fortnight: a nil rate period. If income stays over the cut-off for more than ${DSP.nilRateFortnights} fortnights in a row, DSP is suspended for up to ${DSP.suspensionYears} years, so you can ask for it to be restored if your hours or pay drop, without a new claim. Keep reporting your income every fortnight during a nil rate period.`,
   },
   {
     q: "Is DSP taxable?",
@@ -113,7 +113,7 @@ export const CCS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the 3 Day Guarantee?",
-    a: `From ${CCS.hours.guaranteeFrom} the CCS activity test was replaced. Every eligible family gets at least ${CCS.hours.guaranteed} hours of subsidised care per child each fortnight — about three days a week — whatever their work hours. You get ${CCS.hours.higher} hours if you and your partner each do more than ${CCS.hours.participationThreshold} hours of recognised participation a fortnight (paid work, looking for work, volunteering and the other recognised types), have an exemption, or for an Aboriginal or Torres Strait Islander child.`,
+    a: `From ${CCS.hours.guaranteeFrom} the CCS activity test was replaced. Every eligible family gets at least ${CCS.hours.guaranteed} hours of subsidised care per child each fortnight (about three days a week), whatever their work hours. You get ${CCS.hours.higher} hours if you and your partner each do more than ${CCS.hours.participationThreshold} hours of recognised participation a fortnight (paid work, looking for work, volunteering and the other recognised types), have an exemption, or for an Aboriginal or Torres Strait Islander child.`,
   },
   {
     q: "What are the CCS hourly rate caps for 2026-27?",
@@ -125,7 +125,7 @@ export const CCS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What family income does Centrelink use for CCS?",
-    a: "Your family income estimate for the financial year: combined adjusted taxable income of you and your partner — taxable income (wages, overtime, bonuses, business and investment income) plus reportable fringe benefits, reportable super contributions, net investment losses and some tax-free pensions. At the end of the year Services Australia balances your CCS against your actual income.",
+    a: "Your family income estimate for the financial year: combined adjusted taxable income of you and your partner: taxable income (wages, overtime, bonuses, business and investment income) plus reportable fringe benefits, reportable super contributions, net investment losses and some tax-free pensions. At the end of the year Services Australia balances your CCS against your actual income.",
   },
   {
     q: "Why is 5% of my CCS withheld?",
@@ -140,11 +140,11 @@ export const CSHC_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Is there an assets test for the Commonwealth Seniors Health Card?",
-    a: "No. Only income is tested. Your savings, shares and property do not count as assets — but an account-based income stream (such as an account-based pension) is deemed to earn income, and that deemed amount is added to your adjusted taxable income.",
+    a: "No. Only income is tested. Your savings, shares and property do not count as assets, but an account-based income stream (such as an account-based pension) is deemed to earn income, and that deemed amount is added to your adjusted taxable income.",
   },
   {
     q: "Can I get the Commonwealth Seniors Health Card if I still work?",
-    a: `Yes. There is no work test — you need to be Age Pension age, not getting an income support payment, and under the income limit. Your wages count in full as taxable income, so a single person with taxable income under ${formatAUD(CSHC.incomeLimit.single)} and no other assessed income is under the limit. Employer fringe benefits count only above ${formatAUD(CSHC.fringeBenefitsThreshold)}.`,
+    a: `Yes. There is no work test. You need to be Age Pension age, not getting an income support payment, and under the income limit. Your wages count in full as taxable income, so a single person with taxable income under ${formatAUD(CSHC.incomeLimit.single)} and no other assessed income is under the limit. Employer fringe benefits count only above ${formatAUD(CSHC.fringeBenefitsThreshold)}.`,
   },
   {
     q: "How is the account-based pension deemed for the CSHC?",
@@ -152,7 +152,7 @@ export const CSHC_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the difference between the CSHC and the Pensioner Concession Card?",
-    a: `The Pensioner Concession Card comes automatically with a pension (${PCC.automaticWith.join(", ")}) and some long-term payments; it has no income test of its own. The Commonwealth Seniors Health Card is for people of Age Pension age who do not get a pension — usually because their income or assets are too high — and it has its own income test. Both give cheaper PBS medicines; the PCC also helps with hearing services.`,
+    a: `The Pensioner Concession Card comes automatically with a pension (${PCC.automaticWith.join(", ")}) and some long-term payments; it has no income test of its own. The Commonwealth Seniors Health Card is for people of Age Pension age who do not get a pension (usually because their income or assets are too high), and it has its own income test. Both give cheaper PBS medicines; the PCC also helps with hearing services.`,
   },
   {
     q: "When are the CSHC income limits indexed?",

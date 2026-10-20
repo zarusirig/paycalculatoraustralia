@@ -127,7 +127,7 @@ export default function AuthorBox({
               <>
                 Fact-checked by{" "}
                 <strong className="font-semibold text-navy">{reviewer.name}</strong>
-                <span className="text-warmgray-light"> — {reviewer.credentials}</span>
+                <span className="text-warmgray-light">, {reviewer.credentials}</span>
               </>
             ) : (
               <>

@@ -8,7 +8,7 @@ import { TECH_SALARY_FAQS } from "@/modules/guide/tech-salary-guide-australia-fa
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/tech-salary-guide-australia/`;
-const TITLE = "Tech Salary Guide Australia — Developer & Engineer Pay";
+const TITLE = "Tech Salary Guide Australia - Developer & Engineer Pay";
 const DESCRIPTION = "Tech salaries in Australia from 2023–24 ATO tax returns: software, cyber security, data, business analyst and IT project manager medians, plus contractor day rates.";
 export const metadata: Metadata = withFeaturedImage({ title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } });
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "IT & Tech Salary Guide", item: URL }] };

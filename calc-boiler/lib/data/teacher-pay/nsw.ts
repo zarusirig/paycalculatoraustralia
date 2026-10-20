@@ -28,7 +28,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   name: "New South Wales",
   nameInSentence: "New South Wales",
   topClassroomStep: "Step 7",
-  h1: "NSW Teacher Salary 2026 — Classroom Teacher Pay Scale, Step 1 to Step 7",
+  h1: "NSW Teacher Salary 2026: Classroom Teacher Pay Scale, Step 1 to Step 7",
   classificationNote:
     "NSW writes the classroom teacher scale as Step 1 to Step 7 (Schedule 1A of the award). Steps 1 and 2 carry Graduate accreditation and Steps 3 to 7 Proficient accreditation; Highly Accomplished and Lead Teacher certification is paid above Step 7.",
   principalScaleIds: ["principals"],
@@ -46,7 +46,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Classroom teachers (Schedule 1A)",
       intro:
-        "The standards-based salary scale that covers every classroom teacher in a NSW public school, primary and secondary alike. There is one scale — a primary teacher and a secondary teacher on the same step are paid the same.",
+        "The standards-based salary scale that covers every classroom teacher in a NSW public school, primary and secondary alike. There is one scale: a primary teacher and a secondary teacher on the same step are paid the same.",
       stepHeading: "Step",
       steps: [
         { label: "Step 1", salary: 92_882, note: "Graduate accreditation" },
@@ -55,7 +55,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
         { label: "Step 4", salary: 108_421, note: "Proficient accreditation" },
         { label: "Step 5", salary: 115_972, note: "Proficient accreditation" },
         { label: "Step 6", salary: 124_696, note: "Proficient accreditation" },
-        { label: "Step 7", salary: 133_422, note: "Proficient accreditation — top of scale" },
+        { label: "Step 7", salary: 133_422, note: "Proficient accreditation, top of scale" },
         {
           label: "Highly Accomplished / Lead Teacher",
           salary: 141_997,
@@ -138,7 +138,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
       ],
     },
     {
-      heading: "Step 2 to Step 3 — the accreditation gate",
+      heading: "Step 2 to Step 3: the accreditation gate",
       body: [
         "This is the one step that is not just time served. It takes effect from the first full pay period after the Teacher Accreditation Authority confirms your Proficient accreditation, provided you have been employed for at least one year full-time at Step 2.",
         "If your Proficient accreditation is confirmed before you have a full year at Step 2, you move up from the first full pay period after you complete that year of full-time service instead.",
@@ -153,7 +153,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Step 7 to Highly Accomplished / Lead",
       body: [
-        "Not automatic and not time-served — you have to gain the higher accreditation. It takes effect from the first full pay period after the Teacher Accreditation Authority confirms your Highly Accomplished or Lead accreditation, provided you have been paid at Step 7 for at least one year full-time.",
+        "Not automatic and not time-served. You have to gain the higher accreditation. It takes effect from the first full pay period after the Teacher Accreditation Authority confirms your Highly Accomplished or Lead accreditation, provided you have been paid at Step 7 for at least one year full-time.",
       ],
     },
     {
@@ -166,11 +166,11 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "The rates below are the award's 9 October 2026 column, the last 3% rise it schedules, paid from the first full pay period on or after 9 October 2026 — so the first pay with the new rate can fall a little after that date. The award remains in force until 8 October 2027.",
+    "The rates below are the award's 9 October 2026 column, the last 3% rise it schedules, paid from the first full pay period on or after 9 October 2026, so the first pay with the new rate can fall a little after that date. The award remains in force until 8 October 2027.",
   ],
 
   unverified: [
-    "Locality allowances for rural and remote schools (Schedule 8) — these vary by school and are not a salary rate, so they are not tabled here.",
+    "Locality allowances for rural and remote schools (Schedule 8). These vary by school and are not a salary rate, so they are not tabled here.",
     "Non-school-based teaching service classifications (education officers, senior education officers) beyond those shown.",
   ],
 

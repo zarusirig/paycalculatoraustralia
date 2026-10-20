@@ -36,7 +36,7 @@ export default function Division293TaxPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Division 293 Tax — The Extra Super Tax for High Income Earners
+            Division 293 Tax: The Extra Super Tax for High Income Earners
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             If your income plus super contributions exceed $250,000, you may owe an additional 15% tax on your super. Here&apos;s how Division 293 works, how to calculate it, and what strategies can help you manage it.

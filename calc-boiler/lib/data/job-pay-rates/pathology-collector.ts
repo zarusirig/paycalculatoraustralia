@@ -56,7 +56,7 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
   },
   coverage: [
     "Pathology collectors employed by private pathology companies, private hospitals and other national-system health employers are covered by the Health Professionals and Support Services Award 2020 [MA000027], in the Support Services stream.",
-    "Since 1 April 2026 the award classifies pathology collectors by qualification and experience: Level 5 (entry — unqualified, under 12 months' experience); Level 6 (qualified — Certificate III in pathology collection with under 12 months' experience, or unqualified with 12 months to 2 years); and Level 7 (experienced — Certificate III with 12 months or more, or unqualified with 2 years or more).",
+    "Since 1 April 2026 the award classifies pathology collectors by qualification and experience: Level 5 (entry: unqualified, under 12 months' experience); Level 6 (qualified: Certificate III in pathology collection with under 12 months' experience, or unqualified with 12 months to 2 years); and Level 7 (experienced: Certificate III with 12 months or more, or unqualified with 2 years or more).",
     "Until 31 December 2026 pathology collectors are paid from their own table in clause 16.2(c). An unqualified Level 7 collector is paid less than a qualified one unless they were already Support Services Level 6 on 31 March 2026.",
     "Collectors employed by state public health pathology services are paid under state agreements, not this award.",
   ],
@@ -90,7 +90,7 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a pathology collector in 2026?",
-      a: "A qualified pathology collector with a Certificate III and less than 12 months' experience (Level 6) must be paid at least $30.63 an hour, or $1,163.90 a week, from the first full pay period on or after 1 July 2026 — $60,523 a year full-time before tax. An unqualified new starter (Level 5) gets $30.45 an hour, and an experienced qualified collector (Level 7) $32.67.",
+      a: "A qualified pathology collector with a Certificate III and less than 12 months' experience (Level 6) must be paid at least $30.63 an hour, or $1,163.90 a week, from the first full pay period on or after 1 July 2026. That is $60,523 a year full-time before tax. An unqualified new starter (Level 5) gets $30.45 an hour, and an experienced qualified collector (Level 7) $32.67.",
     },
     {
       q: "What is the casual rate for a pathology collector?",
@@ -98,11 +98,11 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
     },
     {
       q: "Does a Certificate III in pathology collection increase your pay?",
-      a: "Yes, once you have 12 months' experience. A collector with a Certificate III and 12 months' or more experience is Level 7 (qualified) at $32.67 an hour, while an unqualified collector with 2 years' experience is Level 7 (unqualified) at $31.67 — unless they were already Support Services Level 6 on 31 March 2026.",
+      a: "Yes, once you have 12 months' experience. A collector with a Certificate III and 12 months' or more experience is Level 7 (qualified) at $32.67 an hour, while an unqualified collector with 2 years' experience is Level 7 (unqualified) at $31.67, unless they were already Support Services Level 6 on 31 March 2026.",
     },
     {
       q: "Do pathology collectors get weekend penalty rates?",
-      a: "Yes. Full-time and part-time collectors get 150% for ordinary hours between midnight Friday and midnight Sunday — $45.95 an hour at Level 6 — and 250% on public holidays.",
+      a: "Yes. Full-time and part-time collectors get 150% for ordinary hours between midnight Friday and midnight Sunday ($45.95 an hour at Level 6) and 250% on public holidays.",
     },
     {
       q: "What do pathology collectors actually earn?",

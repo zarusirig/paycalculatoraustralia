@@ -22,8 +22,8 @@ const AUSTUDY_SITS: Sit[] = [
   { key: "a-single-kids", label: "Single, with children", rate: AUSTUDY.maxFortnightly.singleWithChildren, cutOff: AUSTUDY.publishedCutOff.singleWithChildren },
   { key: "a-couple", label: "Partnered, no children", rate: AUSTUDY.maxFortnightly.coupleNoChildren, cutOff: AUSTUDY.publishedCutOff.singleOrCoupleNoChildren },
   { key: "a-couple-kids", label: "Partnered, with children", rate: AUSTUDY.maxFortnightly.coupleWithChildren, cutOff: AUSTUDY.publishedCutOff.coupleWithChildren },
-  { key: "a-lt-single", label: "Single, no children — long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermSingleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermSingleNoChildren },
-  { key: "a-lt-couple", label: "Partnered, no children — long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermCoupleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermCoupleNoChildren },
+  { key: "a-lt-single", label: "Single, no children (long-term income support rate)", rate: AUSTUDY.maxFortnightly.longTermSingleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermSingleNoChildren },
+  { key: "a-lt-couple", label: "Partnered, no children (long-term income support rate)", rate: AUSTUDY.maxFortnightly.longTermCoupleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermCoupleNoChildren },
 ];
 const YA = YOUTH_ALLOWANCE_STUDENT;
 const YA_SITS: Sit[] = [
@@ -69,7 +69,7 @@ export default function AustudyYouthAllowanceCalculatorPage({ children, afterCal
               <li><span className="font-medium text-navy" aria-current="page">Austudy &amp; Youth Allowance Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Youth Allowance and Austudy Calculator — Rates, Eligibility and Income Test</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Youth Allowance and Austudy Calculator: Rates, Eligibility and Income Test</h1>
           <p className="text-lg text-warmgray">
             A youth allowance calculation applies the student personal income test to the maximum fortnightly rate: income up to {formatAUD(T.freeArea)} is free, the payment falls {Math.round(T.taper1 * 100)} cents per dollar from {formatAUD(T.freeArea)} to {formatAUD(T.band1End)}, then by {formatAUD(T.band1Reduction, 2)} plus {Math.round(T.taper2 * 100)} cents per dollar above {formatAUD(T.band1End)}. On the <a href={CENTRELINK_SOURCES.youthAllowanceRates} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{YA.ratesFrom} rates</a>, a student living away from home starts at <strong>{formatAUD(YA.maxFortnightly.awayFromHome, 2)} a fortnight</strong> and reaches $0 at {formatAUD(YA.publishedCutOff.awayFromHome, 2)}; living at home from 18 the maximum is {formatAUD(YA.maxFortnightly.over18AtHome, 2)}, and Austudy (25 and over) pays up to {formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)}. Enter your wages to see what you keep.
           </p>
@@ -121,7 +121,7 @@ export default function AustudyYouthAllowanceCalculatorPage({ children, afterCal
                       <Row label="Published cut-off for this situation" value={formatAUD(sit.cutOff, 2)} />
                     </div>
                   </div>
-                  <NotIncluded items={["Income Bank credits", "the parental means test (dependent students)", "the partner income test and assets test", "Youth Allowance for job seekers (a different income test — rates and cut-offs are in the table below)", "Rent Assistance and Energy Supplement (the published cut-off sits a little above where this payment reaches $0 for that reason)"]} />
+                  <NotIncluded items={["Income Bank credits", "the parental means test (dependent students)", "the partner income test and assets test", "Youth Allowance for job seekers (a different income test: rates and cut-offs are in the table below)", "Rent Assistance and Energy Supplement (the published cut-off sits a little above where this payment reaches $0 for that reason)"]} />
                 </div>
               </div>
             </CardContent>

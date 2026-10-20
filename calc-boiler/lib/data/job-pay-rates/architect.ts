@@ -47,7 +47,7 @@ export const ARCHITECT: Occupation = {
   slug: "architect",
   name: "Architect",
   plural: "architects",
-  metaTitle: "Architect Salary Australia 2026 — $39.77/hr Award Minimum",
+  metaTitle: "Architect Salary Australia 2026 - $39.77/hr Award Minimum",
   award: {
     name: "Architects Award 2020",
     code: "MA000079",
@@ -123,7 +123,7 @@ export const ARCHITECT: Occupation = {
     },
   ],
   sources: [
-    { title: "Architects Award 2020 [MA000079] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000079") },
+    { title: "Architects Award 2020 [MA000079], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000079") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

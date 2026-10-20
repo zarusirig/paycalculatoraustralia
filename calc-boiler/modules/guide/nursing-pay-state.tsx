@@ -116,7 +116,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
 
   const sources: SourceLink[] = [
     ...state.instruments.map((i) => ({
-      title: `${i.name} — rates effective ${i.effectiveFrom}`,
+      title: `${i.name}, rates effective ${i.effectiveFrom}`,
       url: i.source.url,
       publisher: i.source.publisher,
     })),
@@ -198,8 +198,8 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
                     : `${employer} publishes those annual figures directly.`}
                 </p>
                 <div className="not-prose my-6 grid gap-4 sm:grid-cols-2">
-                  <TakeHomeCard heading={`Entry step — ${range.entryLabel}`} annual={range.entry} />
-                  <TakeHomeCard heading={`Top step — ${range.topLabel}`} annual={range.top} />
+                  <TakeHomeCard heading={`Entry step: ${range.entryLabel}`} annual={range.entry} />
+                  <TakeHomeCard heading={`Top step: ${range.topLabel}`} annual={range.top} />
                 </div>
               </section>
             ) : null}
@@ -504,7 +504,7 @@ function AtAGlance({ state }: { state: NursingStateData }) {
 
 /** Accessible name for a salary that links to its nearest take-home page. */
 function takeHomeLabel(annual: number): string {
-  return `${formatAUD(annual)} — see take-home pay on ${formatAUD(nearestTakeHomeSalary(annual))}`;
+  return `${formatAUD(annual)}, see take-home pay on ${formatAUD(nearestTakeHomeSalary(annual))}`;
 }
 
 function GlanceSalary({ annual }: { annual: number }) {
@@ -553,7 +553,7 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
       </h4>
       {inst ? (
         <p className="mb-2 text-xs text-warmgray-light">
-          {inst.name} — rates effective {inst.effectiveFrom}
+          {inst.name}, rates effective {inst.effectiveFrom}
         </p>
       ) : null}
       <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">

@@ -46,7 +46,7 @@ export const PENSION_FAQS: readonly PensionFaq[] = [
   },
   {
     q: "How much pension do I get on $1,000 a fortnight of other income?",
-    a: `Single, to 19 September 2026: ${formatAUD(agePensionFortnightly(1_000, "single", MAR), 2)} a fortnight — the ${formatAUD(1_000 - IT.single.freeArea)} over the free area reduces the ${formatAUD(MAR.maxFortnightly.single.total)} maximum by ${formatAUD((1_000 - IT.single.freeArea) * 0.5, 2)}. From 20 September 2026 the same income leaves ${formatAUD(agePensionFortnightly(1_000, "single", SEP), 2)}. For a couple with ${formatAUD(1_000)} combined, each partner gets ${formatAUD(agePensionFortnightly(1_000, "couple", MAR), 2)}, or ${formatAUD(agePensionFortnightly(1_000, "couple", SEP), 2)} from 20 September.`,
+    a: `Single, to 19 September 2026: ${formatAUD(agePensionFortnightly(1_000, "single", MAR), 2)} a fortnight: the ${formatAUD(1_000 - IT.single.freeArea)} over the free area reduces the ${formatAUD(MAR.maxFortnightly.single.total)} maximum by ${formatAUD((1_000 - IT.single.freeArea) * 0.5, 2)}. From 20 September 2026 the same income leaves ${formatAUD(agePensionFortnightly(1_000, "single", SEP), 2)}. For a couple with ${formatAUD(1_000)} combined, each partner gets ${formatAUD(agePensionFortnightly(1_000, "couple", MAR), 2)}, or ${formatAUD(agePensionFortnightly(1_000, "couple", SEP), 2)} from 20 September.`,
   },
   {
     q: "Does the calculator include the assets test and deeming?",

@@ -32,7 +32,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I cash out annual leave instead of taking it?",
-    a: `Some Awards and enterprise agreements permit cashing out, but only if the employee retains a minimum balance of ${WEEKS} weeks after the cash-out. The arrangement must be a genuine written agreement, and each cash-out requires a separate agreement. Not all Awards allow cashing out — check your specific Award or agreement.`,
+    a: `Some Awards and enterprise agreements permit cashing out, but only if the employee retains a minimum balance of ${WEEKS} weeks after the cash-out. The arrangement must be a genuine written agreement, and each cash-out requires a separate agreement. Not all Awards allow cashing out, so check your specific Award or agreement.`,
   },
   {
     q: "Does annual leave accrue during unpaid leave?",

@@ -84,9 +84,9 @@ export const WO1_SALARIES: RankSalaryTable = {
 
 export const TRAINEE_SALARIES: { label: string; salary: number }[] = [
   { label: "Normal entry recruit during basic recruit training", salary: 60_517 },
-  { label: "Initial category, trade or employment training — first 6 months", salary: 69_162 },
-  { label: "Initial category, trade or employment training — 6 to 12 months", salary: 72_621 },
-  { label: "Initial category, trade or employment training — 12 months or more", salary: 76_079 },
+  { label: "Initial category, trade or employment training, first 6 months", salary: 69_162 },
+  { label: "Initial category, trade or employment training, 6 to 12 months", salary: 72_621 },
+  { label: "Initial category, trade or employment training, 12 months or more", salary: 76_079 },
 ];
 
 // ---------------------------------------------------------------------------

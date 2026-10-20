@@ -33,7 +33,7 @@ export const PILOT_PAY: AviationPayPage = {
   scales: [
     {
       id: "ga-captain",
-      title: "Captain — airline and general aviation minimum salaries (clause A.1.1)",
+      title: "Captain: airline and general aviation minimum salaries (clause A.1.1)",
       intro:
         "Minimum annual salaries for full-time captains employed by an airline operation or a general aviation employer (charter, aerial work, private, business and instructional flying), by aircraft type and weight. UTBNI means up to but not including.",
       stepHeading: "Aircraft classification",
@@ -56,7 +56,7 @@ export const PILOT_PAY: AviationPayPage = {
     },
     {
       id: "ga-first-officer",
-      title: "First Officer / Second Pilot — airline and general aviation minimum salaries (clause A.1.1)",
+      title: "First Officer / Second Pilot: airline and general aviation minimum salaries (clause A.1.1)",
       intro:
         "Minimum annual salaries for full-time first officers and second pilots on the same aircraft classifications.",
       stepHeading: "Aircraft classification",
@@ -107,7 +107,7 @@ export const PILOT_PAY: AviationPayPage = {
     },
     {
       id: "regional-captain",
-      title: "Regional airlines — Captain minimum salaries (clause B.1.1)",
+      title: "Regional airlines: Captain minimum salaries (clause B.1.1)",
       intro:
         "Minimum annual salaries for full-time captains employed by regional airlines, by the aircraft groups listed in Schedule B.",
       stepHeading: "Aircraft group",
@@ -134,7 +134,7 @@ export const PILOT_PAY: AviationPayPage = {
     },
     {
       id: "regional-co-pilot",
-      title: "Regional airlines — Co-pilot minimum salaries (clause B.1.1)",
+      title: "Regional airlines: Co-pilot minimum salaries (clause B.1.1)",
       intro:
         "Minimum annual salaries for full-time co-pilots at regional airlines. Schedule B prints no co-pilot rate for Groups 1 to 4.",
       stepHeading: "Aircraft group",
@@ -151,7 +151,7 @@ export const PILOT_PAY: AviationPayPage = {
     },
     {
       id: "helicopter-onshore-single",
-      title: "Helicopter pilots — on-shore, single engine (clause D.5.1)",
+      title: "Helicopter pilots: on-shore, single engine (clause D.5.1)",
       intro:
         "Minimum annual salaries for full-time pilots on on-shore helicopter operations flying single-engine helicopters, by year of service.",
       stepHeading: "Year of service",
@@ -186,7 +186,7 @@ export const PILOT_PAY: AviationPayPage = {
 
   traineePay: [
     "The award has no separate cadet or student-pilot rate for general aviation. A pilot covered by the award must hold a commercial pilot's licence or airline transport pilot's licence, and the lowest minimum salary is First Officer/Second Pilot on a single engine aircraft UTBNI 1360 kg at $52,257 a year.",
-    "Second Officer under Training — defined as \"a pilot under initial training for a second officer position\" — has a minimum of $75,738 a year on wide-body aircraft from the first full pay period on or after 14 July 2026.",
+    "Second Officer under Training (defined as \"a pilot under initial training for a second officer position\") has a minimum of $75,738 a year on wide-body aircraft from the first full pay period on or after 14 July 2026.",
     "Flight instructors (clause A.1.7) are paid on appointment as follows: Grade III at the single engine (or multi engine) charter salary; Grade II at that charter salary plus $4669.27 per annum; Grade I plus $9338.55 per annum. A Grade I single-engine instructor gets increments of $1186.91 per annum in the sixth, seventh and eighth year of service with the same employer.",
     "An aerial application pilot with more than 6 months' industry experience must be paid at least the 1001–2000 flying hours rate ($1004.90 a week) (clause C.9.2).",
   ],
@@ -216,7 +216,7 @@ export const PILOT_PAY: AviationPayPage = {
   ],
   sources: [
     {
-      title: "Air Pilots Award 2020 [MA000046] — consolidated award incorporating amendments up to and including 14 July 2026",
+      title: "Air Pilots Award 2020 [MA000046], consolidated award incorporating amendments up to and including 14 July 2026",
       publisher: "Fair Work Commission",
       url: "https://awards.fairwork.gov.au/MA000046.html",
     },

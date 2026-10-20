@@ -27,7 +27,7 @@ export const EMPLOYMENT_TYPE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do casual employees get superannuation?",
-    a: `Yes. Since 1 July 2022, all employees — including casuals — receive the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee (FY${SITE_CONFIG.financialYear}) regardless of how much they earn per month. The previous $450/month minimum earnings threshold was removed.`,
+    a: `Yes. Since 1 July 2022, all employees, including casuals, receive the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee (FY${SITE_CONFIG.financialYear}) regardless of how much they earn per month. The previous $450/month minimum earnings threshold was removed.`,
   },
   {
     q: "Is casual or part-time better financially?",

@@ -68,7 +68,7 @@ export default function ParentingPaymentCalculatorPage({ children: content, afte
               <li><span className="font-medium text-navy" aria-current="page">Parenting Payment Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Parenting Payment Calculator — Single and Partnered</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Parenting Payment Calculator: Single and Partnered</h1>
           <p className="text-lg text-warmgray">
             Parenting Payment Single is <strong>{formatAUD(S.maxFortnightly, 2)} a fortnight</strong> ({formatAUD(S.basic, 2)} plus a {formatAUD(S.pensionSupplement, 2)} Pension Supplement) and Parenting Payment Partnered is <strong>{formatAUD(PT.maxFortnightly, 2)}</strong>, from {PP.ratesFrom}. Enter what you earn to see how much you keep: single parents lose 40 cents per dollar over {formatAUD(ppsFreeArea(1), 2)} a fortnight.
           </p>
@@ -93,7 +93,7 @@ export default function ParentingPaymentCalculatorPage({ children: content, afte
                     <div>
                       <label htmlFor="children" className={LABEL}>Children in your care</label>
                       <select id="children" value={children} onChange={(e) => setChildren(Number(e.target.value))} className={INPUT}>
-                        {[1, 2, 3, 4, 5, 6].map((n) => <option key={n} value={n}>{n} — free area {formatAUD(ppsFreeArea(n), 2)}</option>)}
+                        {[1, 2, 3, 4, 5, 6].map((n) => <option key={n} value={n}>{n}: free area {formatAUD(ppsFreeArea(n), 2)}</option>)}
                       </select>
                     </div>
                   )}

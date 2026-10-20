@@ -36,8 +36,8 @@ const PROFILE = STATE_PROFILES.NT;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13g, Northern Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — Northern Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}, Table 13g, Northern Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Northern Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1981)", url: PROFILE.longServiceLeave.agencyUrl, publisher: "NT Government" },
   { title: "NT payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.nt.ratesUrl, publisher: PAYROLL_TAX_STATES.nt.revenueOffice },
 ];
@@ -91,7 +91,7 @@ export default function PayCalculatorNTPage() {
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              Add the zone offset on top of this result at tax time — it reduces the tax you owe, not
+              Add the zone offset on top of this result at tax time: it reduces the tax you owe, not
               your taxable income, so it comes back as a refund rather than a bigger fortnightly pay.
             </p>
           </section>
@@ -110,7 +110,7 @@ export default function PayCalculatorNTPage() {
               Work out yours with the{" "}
               <Link href="/zone-tax-offset/" className="text-eucalyptus-dark hover:underline">zone tax offset guide and calculator</Link>,
               then add it to the take-home figure above. Remote-area housing and district allowances
-              paid by your employer are a separate matter again — some are fringe benefits rather than
+              paid by your employer are a separate matter again: some are fringe benefits rather than
               salary, so check how yours is treated on your payslip.
             </p>
           </section>
@@ -119,7 +119,7 @@ export default function PayCalculatorNTPage() {
             <H2>Is your NT salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               The Territory has an unusual earnings shape. Full-time ordinary time earnings of{" "}
-              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week sit below the national average — but
+              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week sit below the national average, but
               the all-employees figure of {formatAUD(PROFILE.awote.allEmployees, 2)} is the second
               highest in the country, because the NT has proportionally far less part-time work than
               anywhere else.
@@ -127,7 +127,7 @@ export default function PayCalculatorNTPage() {
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               Overtime adds more than {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
-              a week to the full-time figure — the second largest overtime gap of any jurisdiction. If
+              a week to the full-time figure, the second largest overtime gap of any jurisdiction. If
               you work a roster, the{" "}
               <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime calculator</Link> and the{" "}
               <Link href="/mining-fifo-pay-guide/" className="text-eucalyptus-dark hover:underline">mining and FIFO pay guide</Link> will get
@@ -151,7 +151,7 @@ export default function PayCalculatorNTPage() {
           <section>
             <H2>Long service leave in the Northern Territory</H2>
             <p className="mb-4 text-warmgray">
-              The NT matches South Australia on quantity — 13 weeks at 10 years — but is stricter about
+              The NT matches South Australia on quantity (13 weeks at 10 years), but is stricter about
               how you get there. Part years do not count at all, workers compensation absences do not
               accrue, and you cannot cash the leave out instead of taking it.
             </p>
@@ -159,7 +159,7 @@ export default function PayCalculatorNTPage() {
             <ForwardLslLinks profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               While on long service leave you are paid at your usual rate, which does <em>not</em>{" "}
-              include overtime, penalties, or district and site allowances — a meaningful difference in
+              include overtime, penalties, or district and site allowances, a meaningful difference in
               the Territory, where those can be a large share of take-home pay. NT Government and
               Australian Government employees, and construction workers under NT Build, are covered by
               separate arrangements.
@@ -171,7 +171,7 @@ export default function PayCalculatorNTPage() {
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               The Territory has the highest payroll tax threshold in the country, so most NT employers
-              never pay it. Either way, it is not a payslip line — see the{" "}
+              never pay it. Either way, it is not a payslip line: see the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
           </section>

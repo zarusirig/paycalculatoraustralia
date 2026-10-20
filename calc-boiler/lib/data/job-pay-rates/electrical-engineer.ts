@@ -79,8 +79,8 @@ export const ELECTRICAL_ENGINEER: Occupation = {
     label: PEA.grad45,
     why: "a graduate electrical engineer with a 4 or 5-year degree recognised by Engineers Australia",
   },
-  heading: "Electrical Engineer Salary Australia 2026 — Median Pay, Award Minimum & Take-Home",
-  metaTitle: `Electrical Engineer Salary 2026 — ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Min`,
+  heading: "Electrical Engineer Salary Australia 2026 - Median Pay, Award Minimum & Take-Home",
+  metaTitle: `Electrical Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Min`,
   metaDescription: `Electrical engineers' median salary was ${aud(ATO_MEDIAN)} on 2023–24 tax returns and $2,553 a week full-time (JSA). Graduate award minimum ${aud(GRAD.annual!)}; take-home on each.`,
   lede: `Electrical engineers had a median salary of ${aud(ATO_MEDIAN)} on 2023–24 tax returns, higher than civil ($120,000) or mechanical engineers ($115,872), according to the ATO; Jobs and Skills Australia puts their median full-time pay at $2,553 a week (May 2025). The award floor for a graduate is ${aud(GRAD.annual!)} a year, ${aud2(GRAD.hourly)} an hour. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year after tax.`,
   parent: {
@@ -106,7 +106,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
   penalties: PEA_PENALTIES,
   penaltiesNote: PEA_PENALTIES_NOTE,
   overtime: [
-    `Overtime beyond 38 hours a week is paid at the minimum hourly rate (cl 18.2(a)), including call-backs and work done remotely — ${aud2(L2.hourly)} an hour at Level 2.`,
+    `Overtime beyond 38 hours a week is paid at the minimum hourly rate (cl 18.2(a)), including call-backs and work done remotely: ${aud2(L2.hourly)} an hour at Level 2.`,
     `None of the overtime, penalty or record-keeping clauses apply if your contract salary is at least 25% above your level's minimum (cl 18.6): ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate at pay point 1.1, ${aud(exemptionThreshold(L2.annual!))} at Level 2, ${aud2(exemptionThreshold(L3.annual!))} at Level 3.`,
   ],
   allowances: PEA_ALLOWANCES,
@@ -116,7 +116,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
     "Electrical engineers covered by the Electrical Power Industry Award 2020 are outside the Professional Employees Award, so the rates below are not their minimums (cl 4.2(c)).",
   ],
   payslipNotes: [
-    `Night and weekend hours: below the cl 18.6 salary line, hours you are directed to work before 6 am or after 10 pm Monday to Saturday are paid at 125%, and Sunday and public holiday hours at 150% (cl 18.4) — $43.21 and $51.86 an hour for a pay point 1.1 graduate (Schedule C.1). Penalty pay must be shown as its own amount on the payslip (Fair Work Ombudsman, pay slips).`,
+    `Night and weekend hours: below the cl 18.6 salary line, hours you are directed to work before 6 am or after 10 pm Monday to Saturday are paid at 125%, and Sunday and public holiday hours at 150% (cl 18.4): $43.21 and $51.86 an hour for a pay point 1.1 graduate (Schedule C.1). Penalty pay must be shown as its own amount on the payslip (Fair Work Ombudsman, pay slips).`,
     "Your pay point should rise on each anniversary as a graduate, from 1.1 to 1.4, unless your employer defers it in writing (Schedule A.1.3–A.1.4).",
     "Vehicle allowance: agreed use of your own car on the employer's business is paid at least $1.00 a kilometre (cl 16.3), shown separately from salary.",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
@@ -153,7 +153,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
     },
   ],
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     FWO_PAY_SLIPS,

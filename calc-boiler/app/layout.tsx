@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     // ~600px title budget and was truncated on every page. Google appends
     // the site name itself when it wants to.
     template: "%s",
-    default: "Pay Calculator Australia — Free Tax & Take-Home Pay Calculator",
+    default: "Pay Calculator Australia - Free Tax & Take-Home Pay Calculator",
   },
   description:
-    "Free Australian pay & income tax calculator. Calculate your take-home pay instantly with current tax brackets, super, Medicare levy & HECS — official ATO rates.",
+    "Free Australian pay & income tax calculator. Calculate your take-home pay instantly with current tax brackets, super, Medicare levy & HECS, using official ATO rates.",
   metadataBase: new URL("https://pay-calculator-australia.com"),
   applicationName: "Pay Calculator Australia",
   authors: [{ name: "Pay Calculator Australia" }],

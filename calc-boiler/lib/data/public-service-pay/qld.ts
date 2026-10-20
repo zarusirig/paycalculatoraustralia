@@ -41,24 +41,24 @@ export const QLD: Jurisdiction = {
     compare: [
       {
         scheduleId: "doe-2026",
-        label: "One agency's agreement rate — Department of Education Certified Agreement 2025, from 1 September 2026 (the award applies wherever it is higher)",
+        label: "One agency's agreement rate: Department of Education Certified Agreement 2025, from 1 September 2026 (the award applies wherever it is higher)",
       },
     ],
     year: "2026",
     title: "Queensland AO salary by level",
     intro:
-      "The administrative stream is the one most Queensland Government jobs are advertised against, so each AO level has its own section. The main figures are the award rates from 1 September 2026, after the 4.75% State Wage Case increase; the Department of Education Certified Agreement 2025 pay points from the same date are shown beside them as one agency's agreement rates, not as the whole-of-government rate — and where an agreement rate is below the award, the award rate is what is paid. Every salary links to the nearest take-home pay page.",
+      "The administrative stream is the one most Queensland Government jobs are advertised against, so each AO level has its own section. The main figures are the award rates from 1 September 2026, after the 4.75% State Wage Case increase; the Department of Education Certified Agreement 2025 pay points from the same date are shown beside them as one agency's agreement rates, not as the whole-of-government rate. Where an agreement rate is below the award, the award rate is what is paid. Every salary links to the nearest take-home pay page.",
   },
 
   headline:
     "From 1 September 2026 a Queensland public servant at AO3 is paid at least $81,032 to $89,903, an AO5 $109,704 to $119,018 and a PO4 $124,627 to $134,019 under the Queensland Public Service Officers and Other Employees Award – State 2015, after the 4.75% State Wage Case increase. The award is the floor: an agency certified agreement pays its own rate or the award rate, whichever is higher.",
 
-  metaTitle: "QLD Government Pay Rates 2026 — AO, PO, TO and OO Salary Scales",
+  metaTitle: "QLD Government Pay Rates 2026 - AO, PO, TO and OO Salary Scales",
   metaDescription:
     "Queensland public service pay points: AO1–AO8, PO1–PO6, TO1–TO6 and OO1–OO7 from the state award and agreement, plus Queensland Health nurses and pay after tax.",
 
   instrument:
-    "The Queensland Public Service Officers and Other Employees Award – State 2015 sets the classification structure — administrative (AO), professional (PO), technical (TO) and operational (OO) streams, each with numbered pay points — and the award rate for each point. Certified agreements set rates for the entities they cover, and an employee is always paid at least the award rate.",
+    "The Queensland Public Service Officers and Other Employees Award – State 2015 sets the classification structure (administrative (AO), professional (PO), technical (TO) and operational (OO) streams, each with numbered pay points) and the award rate for each point. Certified agreements set rates for the entities they cover, and an employee is always paid at least the award rate.",
 
   payRise:
     "Award rates rose 4.75% from 1 September 2026. The Queensland Industrial Relations Commission's 2026 State Wage Case ([2026] QIRC 280, delivered 4 September 2026) ordered that \"the wages or salaries for full-time adult employees in all state awards shall be increased by 4.75%\", operative on and from 1 September 2026, and set the Queensland minimum wage at $1,004.90 a week. Separately, the State Government Entities Certified Agreement 2023 nominally expired on 30 June 2026 and continues to apply until it is replaced; the government's offer of at least 8.5% over the life of a replacement agreement lapsed when the unions did not accept it by 31 July 2026, so the backdating of a first increase to 1 July 2026 is no longer on the table.",
@@ -101,7 +101,7 @@ export const QLD: Jurisdiction = {
               code: "AO2",
               name: "Administrative Officer 2",
               aliases: ["ao2", "ao2 salary"],
-              summary: "Eight pay points — the longest increment ladder in the stream.",
+              summary: "Eight pay points, the longest increment ladder in the stream.",
               min: 63_814,
               max: 75_997,
               payPoints: [
@@ -189,7 +189,7 @@ export const QLD: Jurisdiction = {
               code: "AO8",
               name: "Administrative Officer 8",
               aliases: ["ao8", "ao8 salary"],
-              summary: "Four pay points — the top of the administrative stream.",
+              summary: "Four pay points, the top of the administrative stream.",
               min: 154_786,
               max: 163_552,
               payPoints: [
@@ -206,7 +206,7 @@ export const QLD: Jurisdiction = {
           name: "Professional stream (PO)",
           code: "PO",
           description:
-            "Roles requiring a professional qualification — engineers, scientists, planners, psychologists and similar. Six levels.",
+            "Roles requiring a professional qualification: engineers, scientists, planners, psychologists and similar. Six levels.",
           bands: [
             {
               code: "PO1",
@@ -384,7 +384,7 @@ export const QLD: Jurisdiction = {
               code: "TO6",
               name: "Technical Officer 6",
               aliases: ["to6"],
-              summary: "Three pay points — the top of the technical stream.",
+              summary: "Three pay points, the top of the technical stream.",
               min: 133_393,
               max: 139_941,
               payPoints: [
@@ -400,7 +400,7 @@ export const QLD: Jurisdiction = {
           name: "Operational stream (OO)",
           code: "OO",
           description:
-            "Operational roles — trades, facilities, school and support work. Seven levels. Clause 12.3(d) of the award.",
+            "Operational roles: trades, facilities, school and support work. Seven levels. Clause 12.3(d) of the award.",
           bands: [
             {
               code: "OO1",
@@ -508,7 +508,7 @@ export const QLD: Jurisdiction = {
       id: "doe-2026",
       title: "One agency's agreement: Department of Education Certified Agreement 2025, from 1 September 2026",
       coverage:
-        "Queensland Department of Education public servants only. Shown because it is a complete AO, PO, TO and OO schedule with a published effective date — other Queensland entities have their own certified agreements and their rates differ.",
+        "Queensland Department of Education public servants only. Shown because it is a complete AO, PO, TO and OO schedule with a published effective date. Other Queensland entities have their own certified agreements and their rates differ.",
       basis: "agreement",
       effectiveFrom: "1 September 2026",
       rangeMeaning:
@@ -837,7 +837,7 @@ export const QLD: Jurisdiction = {
           name: "Operational stream (OO)",
           code: "OO",
           description:
-            "Operational roles — the stream that covers school and facilities operations, trades and support work. Seven levels.",
+            "Operational roles, the stream that covers school and facilities operations, trades and support work. Seven levels.",
           bands: [
             {
               code: "OO1",
@@ -930,7 +930,7 @@ export const QLD: Jurisdiction = {
               code: "OO7",
               name: "Operational Officer 7",
               aliases: [],
-              summary: "Three pay points — the top of the operational stream.",
+              summary: "Three pay points, the top of the operational stream.",
               min: 108_504,
               max: 113_623,
               payPoints: [
@@ -947,7 +947,7 @@ export const QLD: Jurisdiction = {
       id: "qld-nursing-2026",
       title: "Queensland Health nursing classifications, from 1 April 2026",
       coverage:
-        "The nursing classifications published in the schedule to the Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025 that appear in the Department of Education's own wage schedule. It is not the full Queensland Health nursing scale — the registered nurse grades below Clinical Nurse are not reproduced here.",
+        "The nursing classifications published in the schedule to the Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025 that appear in the Department of Education's own wage schedule. It is not the full Queensland Health nursing scale: the registered nurse grades below Clinical Nurse are not reproduced here.",
       basis: "agreement",
       effectiveFrom: "1 April 2026",
       rangeMeaning: "Bottom and top pay point of the classification, annualised.",
@@ -1021,16 +1021,16 @@ export const QLD: Jurisdiction = {
   ],
 
   progression: [
-    "Queensland classifications are written as level and pay point — AO3/2, PO4/1, OO5/3. Each level contains several incremental pay points, and the Department of Education states plainly that each classification level contains incremental progression points; the certified agreement and the directives issued for the public sector set when you move up one, not the salary schedule itself.",
-    "The width of a level matters more in Queensland than in most services because the levels overlap. AO6/4 and PO4/4 both pay $134,019 under the award from 1 September 2026, and AO7 and PO5 are identical at every pay point, so a move between streams at the equivalent level is not a pay rise. AO2 is the longest ladder, with eight pay points spanning $63,814 to $75,997 — more than $12,000 without a promotion.",
-    "An employee is never paid below the award. Where an agreement rate has fallen behind an award increase, the award rate applies instead — and after the 4.75% award increase from 1 September 2026 that now happens at many pay points. The Department of Education's AO3 agreement rates from 1 September 2026, for example, run from $80,505 to $89,326, below the award's $81,032 to $89,903, so the award rate is what an AO3 there is paid.",
+    "Queensland classifications are written as level and pay point: AO3/2, PO4/1, OO5/3. Each level contains several incremental pay points, and the Department of Education states plainly that each classification level contains incremental progression points; the certified agreement and the directives issued for the public sector set when you move up one, not the salary schedule itself.",
+    "The width of a level matters more in Queensland than in most services because the levels overlap. AO6/4 and PO4/4 both pay $134,019 under the award from 1 September 2026, and AO7 and PO5 are identical at every pay point, so a move between streams at the equivalent level is not a pay rise. AO2 is the longest ladder, with eight pay points spanning $63,814 to $75,997, more than $12,000 without a promotion.",
+    "An employee is never paid below the award. Where an agreement rate has fallen behind an award increase, the award rate applies instead, and after the 4.75% award increase from 1 September 2026 that now happens at many pay points. The Department of Education's AO3 agreement rates from 1 September 2026, for example, run from $80,505 to $89,326, below the award's $81,032 to $89,903, so the award rate is what an AO3 there is paid.",
     "Senior officer (SO) roles sit above AO8 and are award-free, with conditions set by directive rather than by the award schedule, so they are not included in the tables above.",
   ],
 
   superannuation: {
     rate: 12.75,
     text:
-      "The Queensland Government's employer superannuation contribution is 12.75% for employees under 75 — above the Superannuation Guarantee rate. It is paid on ordinary time earnings including paid leave and ordinary-time allowances such as shift allowances and weekend penalties. On an AO5/1 award salary of $109,704 that is $13,987 a year of employer super, and the 0.75 percentage points above the guarantee rate is worth about $823 a year.",
+      "The Queensland Government's employer superannuation contribution is 12.75% for employees under 75, above the Superannuation Guarantee rate. It is paid on ordinary time earnings including paid leave and ordinary-time allowances such as shift allowances and weekend penalties. On an AO5/1 award salary of $109,704 that is $13,987 a year of employer super, and the 0.75 percentage points above the guarantee rate is worth about $823 a year.",
     sourceId: "qld-super",
   },
 
@@ -1087,7 +1087,7 @@ export const QLD: Jurisdiction = {
     },
     {
       id: "qld-core-status",
-      title: "State Government Entities Certified Agreement — negotiation updates",
+      title: "State Government Entities Certified Agreement, negotiation updates",
       publisher: "Queensland Government (For government)",
       url: "https://www.forgov.qld.gov.au/pay-benefits-and-policy/benefits/state-government-entities-certified-agreement",
       verifiedOn: "28 August 2026",
@@ -1096,7 +1096,7 @@ export const QLD: Jurisdiction = {
     },
     {
       id: "qirc-wage-case",
-      title: "State wage cases — 2026 State Wage Case",
+      title: "State wage cases, 2026 State Wage Case",
       publisher: "Queensland Industrial Relations Commission",
       url: "https://www.qirc.qld.gov.au/state-wage-cases",
       verifiedOn: "23 September 2026",
@@ -1105,7 +1105,7 @@ export const QLD: Jurisdiction = {
     },
     {
       id: "qld-super",
-      title: "Human resources — superannuation",
+      title: "Human resources, superannuation",
       publisher: "Queensland Department of Education",
       url: "https://alt-qed.qed.qld.gov.au/working-with-us/induction/central-and-regional-offices/human-resources",
       verifiedOn: "28 August 2026",
@@ -1124,7 +1124,7 @@ export const QLD: Jurisdiction = {
   ],
 
   unverified: [
-    "Queensland Health's own wage rate schedules. health.qld.gov.au did not load on the verification date, so nothing on this page is sourced from it. The nursing figures shown come from the certified agreement schedule published by the Department of Education, and only for the classifications that appear there — check the Queensland Health wage rates pages for the registered nurse grades, medical officers, dental officers and the health practitioner (HP) stream.",
+    "Queensland Health's own wage rate schedules. health.qld.gov.au did not load on the verification date, so nothing on this page is sourced from it. The nursing figures shown come from the certified agreement schedule published by the Department of Education, and only for the classifications that appear there. Check the Queensland Health wage rates pages for the registered nurse grades, medical officers, dental officers and the health practitioner (HP) stream.",
     "The State Government Entities Certified Agreement 2023 (Core Agreement) wage schedule, which covers most Queensland departments. The published agreement is a large PDF we could not read in full, so its rates are not reproduced. It continues to apply until a replacement is certified.",
     "Senior officer (SO) salary rates, which are award-free and set by directive.",
     "Health practitioner (HP) stream rates. They appear in the departmental schedule but without a named agreement in that document, so they are not published here.",
@@ -1145,7 +1145,7 @@ export const QLD: Jurisdiction = {
     },
     {
       q: "What are Queensland Health pay rates?",
-      a: "Queensland Health's corporate and clinical workforces are covered by several separate certified agreements and Queensland Health publishes a wage rates page for each stream. From the nursing agreement that covers both Queensland Health and the Department of Education, a Clinical Nurse is paid $114,532 to $122,643 and a Clinical Nurse Consultant $140,632 to $152,685 from 1 April 2026. For the registered nurse grades, medical officers and the health practitioner stream, go to the Queensland Health wage rates pages — we could not load them on the date this page was verified and have not estimated them.",
+      a: "Queensland Health's corporate and clinical workforces are covered by several separate certified agreements and Queensland Health publishes a wage rates page for each stream. From the nursing agreement that covers both Queensland Health and the Department of Education, a Clinical Nurse is paid $114,532 to $122,643 and a Clinical Nurse Consultant $140,632 to $152,685 from 1 April 2026. For the registered nurse grades, medical officers and the health practitioner stream, go to the Queensland Health wage rates pages; we could not load them on the date this page was verified and have not estimated them.",
     },
     {
       q: "When is the next Queensland public service pay rise?",

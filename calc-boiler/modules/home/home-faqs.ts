@@ -61,11 +61,11 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "What is the take-home pay on $80,000 in Australia?",
-    a: `On an $80,000 salary in FY${FY}, take-home pay is ${formatAUD(BD80.takeHomePay)} a year — ${formatAUD(BD80.weekly, 2)} a week, ${formatAUD(BD80.fortnightly, 2)} a fortnight or ${formatAUD(BD80.monthly, 2)} a month. That is after ${formatAUD(BD80.netIncomeTax)} income tax and ${formatAUD(BD80.medicareLevy)} Medicare levy. Your employer also pays ${formatAUD(BD80.superContribution)} into your super fund on top of your salary.`,
+    a: `On an $80,000 salary in FY${FY}, take-home pay is ${formatAUD(BD80.takeHomePay)} a year: ${formatAUD(BD80.weekly, 2)} a week, ${formatAUD(BD80.fortnightly, 2)} a fortnight or ${formatAUD(BD80.monthly, 2)} a month. That is after ${formatAUD(BD80.netIncomeTax)} income tax and ${formatAUD(BD80.medicareLevy)} Medicare levy. Your employer also pays ${formatAUD(BD80.superContribution)} into your super fund on top of your salary.`,
   },
   {
     q: "What is the take-home pay on $100,000 in Australia?",
-    a: `On a $100,000 salary in FY${FY}, take-home pay is ${formatAUD(BD100.takeHomePay)} a year, or ${formatAUD(BD100.weekly, 2)} a week — after ${formatAUD(BD100.netIncomeTax)} income tax and ${formatAUD(BD100.medicareLevy)} Medicare levy. Your effective rate on the whole salary is ${formatPercent(BD100.effectiveTaxRate)}, and your employer pays ${formatAUD(BD100.superContribution)} in super on top.`,
+    a: `On a $100,000 salary in FY${FY}, take-home pay is ${formatAUD(BD100.takeHomePay)} a year, or ${formatAUD(BD100.weekly, 2)} a week, after ${formatAUD(BD100.netIncomeTax)} income tax and ${formatAUD(BD100.medicareLevy)} Medicare levy. Your effective rate on the whole salary is ${formatPercent(BD100.effectiveTaxRate)}, and your employer pays ${formatAUD(BD100.superContribution)} in super on top.`,
   },
   {
     q: `Will I get a tax cut in ${FY}?`,
@@ -77,7 +77,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "When do penalty rates apply?",
-    a: `Penalty rates apply when your award or agreement says so — typically weekends, public holidays, overtime and late nights. Under most awards Saturday work pays around ${pct(EMPLOYMENT.penaltyRates.saturdayMin)}–${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)}–${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)}–${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so always check the award that covers your job.`,
+    a: `Penalty rates apply when your award or agreement says so, typically weekends, public holidays, overtime and late nights. Under most awards Saturday work pays around ${pct(EMPLOYMENT.penaltyRates.saturdayMin)}–${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)}–${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)}–${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so always check the award that covers your job.`,
   },
   {
     q: "Is super included in my salary, or paid on top?",
@@ -85,19 +85,19 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "How much super does my employer pay?",
-    a: `Employers must pay ${formatPercent(SUPER_GUARANTEE.rate, 0)} of your ordinary earnings into your super fund — on an $80,000 salary that is ${formatAUD(BD80.superContribution)} a year, paid on top of your salary rather than deducted from it. Since Payday Super began on ${SUPER_GUARANTEE.paydaySuperStart}, the contribution must be paid each payday instead of quarterly.`,
+    a: `Employers must pay ${formatPercent(SUPER_GUARANTEE.rate, 0)} of your ordinary earnings into your super fund. On an $80,000 salary that is ${formatAUD(BD80.superContribution)} a year, paid on top of your salary rather than deducted from it. Since Payday Super began on ${SUPER_GUARANTEE.paydaySuperStart}, the contribution must be paid each payday instead of quarterly.`,
   },
   {
     q: "Is it better to be paid weekly, fortnightly or monthly?",
-    a: `Your annual take-home pay is the same regardless of pay frequency — only the timing changes. An $80,000 salary pays ${formatAUD(BD80.weekly, 2)} weekly, ${formatAUD(BD80.fortnightly, 2)} fortnightly or ${formatAUD(BD80.monthly, 2)} monthly after tax in FY${FY}. Some people prefer weekly pay for budgeting; the tax you owe for the year does not change.`,
+    a: `Your annual take-home pay is the same regardless of pay frequency; only the timing changes. An $80,000 salary pays ${formatAUD(BD80.weekly, 2)} weekly, ${formatAUD(BD80.fortnightly, 2)} fortnightly or ${formatAUD(BD80.monthly, 2)} monthly after tax in FY${FY}. Some people prefer weekly pay for budgeting; the tax you owe for the year does not change.`,
   },
   {
     q: "How do I convert an hourly rate to an annual salary?",
-    a: `Multiply your hourly rate by your weekly hours, then by ${EMPLOYMENT.weeksPerYear} weeks. A standard ${EMPLOYMENT.standardWeeklyHours}-hour week is ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year, so the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} minimum wage equals about ${formatAUD(MIN_WAGE_ANNUAL)} a year full-time. Going the other way, divide an annual salary by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} — $80,000 is about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour.`,
+    a: `Multiply your hourly rate by your weekly hours, then by ${EMPLOYMENT.weeksPerYear} weeks. A standard ${EMPLOYMENT.standardWeeklyHours}-hour week is ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year, so the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} minimum wage equals about ${formatAUD(MIN_WAGE_ANNUAL)} a year full-time. Going the other way, divide an annual salary by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}: $80,000 is about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour.`,
   },
   {
     q: "What is the difference between gross pay and net pay?",
-    a: `Gross pay is your salary before any deductions. Net pay — take-home pay — is what actually lands in your bank account after income tax, the Medicare levy and any HECS repayments come out. In FY${FY}, $80,000 gross becomes ${formatAUD(BD80.takeHomePay)} net for a resident with no HECS debt.`,
+    a: `Gross pay is your salary before any deductions. Net pay (take-home pay) is what actually lands in your bank account after income tax, the Medicare levy and any HECS repayments come out. In FY${FY}, $80,000 gross becomes ${formatAUD(BD80.takeHomePay)} net for a resident with no HECS debt.`,
   },
   {
     q: "How is pro-rata pay calculated?",
@@ -105,34 +105,34 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "Why does my employer withhold more tax than this calculator shows?",
-    a: `Employers withhold using the ATO's per-pay-period tables, which round conservatively and can't see your whole year — so the amount held back usually runs slightly above your true annual liability, refunded when you lodge. For the full explanation of PAYG withholding versus annual tax, see the Income Tax Calculator.`,
+    a: `Employers withhold using the ATO's per-pay-period tables, which round conservatively and can't see your whole year, so the amount held back usually runs slightly above your true annual liability, refunded when you lodge. For the full explanation of PAYG withholding versus annual tax, see the Income Tax Calculator.`,
   },
   {
     q: "What happens to my take-home pay if my income changes during the year?",
-    a: `Your employer adjusts withholding each pay based on that period's earnings, but income tax is assessed on your total income for the full financial year. If your pay rose or fell part-way through, the amount withheld across the year may not match your final liability — the difference is settled as a refund or bill when you lodge your return.`,
+    a: `Your employer adjusts withholding each pay based on that period's earnings, but income tax is assessed on your total income for the full financial year. If your pay rose or fell part-way through, the amount withheld across the year may not match your final liability. The difference is settled as a refund or bill when you lodge your return.`,
   },
   {
     q: "How is a second job taxed?",
-    a: `You can only claim the tax-free threshold with one employer, so your second employer withholds tax from the first dollar — which is why second-job payslips look heavily taxed, even though your actual annual tax doesn't change. See the Income Tax Calculator for the full two-jobs breakdown.`,
+    a: `You can only claim the tax-free threshold with one employer, so your second employer withholds tax from the first dollar, which is why second-job payslips look heavily taxed, even though your actual annual tax doesn't change. See the Income Tax Calculator for the full two-jobs breakdown.`,
   },
   {
     q: "Can new migrants and visa holders use this pay calculator?",
-    a: `Yes — the calculator uses Australian resident tax rates, which apply to most migrants who live and work in Australia and are residents for tax purposes. Working holiday makers (417 and 462 visas) and non-residents are taxed under different rate schedules with no tax-free threshold, so their take-home pay is lower at the same salary.`,
+    a: `Yes. The calculator uses Australian resident tax rates, which apply to most migrants who live and work in Australia and are residents for tax purposes. Working holiday makers (417 and 462 visas) and non-residents are taxed under different rate schedules with no tax-free threshold, so their take-home pay is lower at the same salary.`,
   },
   {
     q: "How often should my employer pay super?",
-    a: `On every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines — your employer's contribution must now reach your fund within 7 business days of each payday. Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
+    a: `On every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines. Your employer's contribution must now reach your fund within 7 business days of each payday. Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
   },
   {
     q: "Do I pay tax differently in different states?",
-    a: `No. Income tax is federal — the same rates and thresholds apply in NSW, Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT, so take-home pay on a given salary is identical nationwide. State differences (payroll tax) affect employers, not the tax that comes out of your pay.`,
+    a: `No. Income tax is federal: the same rates and thresholds apply in NSW, Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT, so take-home pay on a given salary is identical nationwide. State differences (payroll tax) affect employers, not the tax that comes out of your pay.`,
   },
   {
     q: "How do I calculate my daily rate from an annual salary?",
-    a: `Divide your annual salary by 260 working days (${EMPLOYMENT.weeksPerYear} weeks × 5 days). On $80,000, the daily rate is ${formatAUD(80_000 / 260, 2)}. For an hourly rate, divide by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours instead — about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour on the same salary.`,
+    a: `Divide your annual salary by 260 working days (${EMPLOYMENT.weeksPerYear} weeks × 5 days). On $80,000, the daily rate is ${formatAUD(80_000 / 260, 2)}. For an hourly rate, divide by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours instead, about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour on the same salary.`,
   },
   {
     q: "What deductions come out of my pay before it reaches my bank account?",
-    a: `Three compulsory deductions: income tax, the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments once your income passes ${formatAUD(HECS_HELP.minimumThreshold)}. Voluntary arrangements such as salary sacrifice or a novated lease also come out pre-tax if you have set them up. Superannuation is not a deduction — your employer pays it on top of your salary.`,
+    a: `Three compulsory deductions: income tax, the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments once your income passes ${formatAUD(HECS_HELP.minimumThreshold)}. Voluntary arrangements such as salary sacrifice or a novated lease also come out pre-tax if you have set them up. Superannuation is not a deduction: your employer pays it on top of your salary.`,
   },
 ] as const;

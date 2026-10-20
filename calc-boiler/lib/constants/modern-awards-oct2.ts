@@ -188,11 +188,11 @@ export const PLUMBING_AWARD: ModernAwardData = {
   ],
   // cl 23.1(a), 23.2, 23.3 and Schedule C.1.3 / C.1.6 / D.1.3 / D.1.6.
   penalties: [
-    { label: "Saturday ordinary hours — first 2 hours", fullTime: 1.5, casual: 1.75, note: "Where directed to work ordinary hours between midnight Friday and midnight Saturday (cl 23.2). Minimum 3 hours' work on a Saturday (cl 22.1(b))." },
-    { label: "Saturday ordinary hours — after 2 hours", fullTime: 2.0, casual: 2.25 },
+    { label: "Saturday ordinary hours, first 2 hours", fullTime: 1.5, casual: 1.75, note: "Where directed to work ordinary hours between midnight Friday and midnight Saturday (cl 23.2). Minimum 3 hours' work on a Saturday (cl 22.1(b))." },
+    { label: "Saturday ordinary hours, after 2 hours", fullTime: 2.0, casual: 2.25 },
     { label: "Sunday ordinary hours", fullTime: 2.0, casual: 2.25, note: "Minimum 4 hours' work on a Sunday (cl 22.1(c))." },
     { label: "Public holiday (minimum 4 hours)", fullTime: 2.5, casual: 2.75, note: "Casuals are paid 275% (Schedule C.1.6). A plumbing and mechanical services employee required on a public holiday gets at least 4 hours' work or pay (cl 23.3(b))." },
-    { label: "Shiftwork — 5 or more consecutive shifts and at least 48 hours' notice (Monday to Friday)", fullTime: 1.33, casual: 1.58, note: "With less than 48 hours' notice or fewer than 5 shifts the overtime rates of 150% then 200% apply instead (cl 23.1(b))." },
+    { label: "Shiftwork, 5 or more consecutive shifts and at least 48 hours' notice (Monday to Friday)", fullTime: 1.33, casual: 1.58, note: "With less than 48 hours' notice or fewer than 5 shifts the overtime rates of 150% then 200% apply instead (cl 23.1(b))." },
   ],
   penaltiesClause: "cl 23 and Schedules C.1.3–C.1.7, D.1.3–D.1.7",
   penaltyNotes: [
@@ -205,8 +205,8 @@ export const PLUMBING_AWARD: ModernAwardData = {
   overtime: [
     { label: "Monday to Friday — first 2 hours", fullTime: 1.5, casual: 1.75 },
     { label: "Monday to Friday — after 2 hours", fullTime: 2.0, casual: 2.25 },
-    { label: "Saturday — first 2 hours (plumbing and mechanical services)", fullTime: 1.5, casual: 1.75 },
-    { label: "Saturday — after 2 hours or after 12 noon; all Saturday for sprinkler fitters", fullTime: 2.0, casual: 2.25 },
+    { label: "Saturday, first 2 hours (plumbing and mechanical services)", fullTime: 1.5, casual: 1.75 },
+    { label: "Saturday, after 2 hours or after 12 noon; all Saturday for sprinkler fitters", fullTime: 2.0, casual: 2.25 },
     { label: "Sunday — all day", fullTime: 2.0, casual: 2.25 },
     { label: "Public holiday — all day", fullTime: 2.5, casual: 2.75 },
     { label: "Work commenced after midnight and before the start of ordinary hours", fullTime: 2.0, casual: 2.25 },
@@ -224,15 +224,15 @@ export const PLUMBING_AWARD: ModernAwardData = {
   juniorPhaseIn: null,
   // cl 17.2, 17.4, 21.3, 21.4, 21.8, 21.9, 21.10.
   allowances: [
-    { name: "Industry allowance — plumbing and mechanical services", amount: 41.41, unit: "per week", clause: "cl 21.3(a)", note: "Paid for all purposes. Already in the plumbing rows above." },
+    { name: "Industry allowance, plumbing and mechanical services", amount: 41.41, unit: "per week", clause: "cl 21.3(a)", note: "Paid for all purposes. Already in the plumbing rows above." },
     { name: "Plumbing trade allowance (worker Level 2 and tradespeople)", amount: 33.57, unit: "per week", clause: "cl 21.3(b)", note: "Paid for all purposes. Already in the plumbing rows above for those grades." },
-    { name: "Registration allowance — registered tradespeople", amount: 44.76, unit: "per week", clause: "cl 21.3(c)", note: "Paid for all purposes. Already in the registered rows above." },
+    { name: "Registration allowance, registered tradespeople", amount: 44.76, unit: "per week", clause: "cl 21.3(c)", note: "Paid for all purposes. Already in the registered rows above." },
     { name: "Special fixed allowance (not apprentices)", amount: 7.7, unit: "per week", clause: "cl 21.3(d)", note: "Paid for all purposes and not adjusted. Already in the plumbing rows above." },
     { name: "Sprinkler fitting trade allowance (tradesperson and above)", amount: 8.39, unit: "per week", clause: "cl 21.3(e)(ii)", note: "Paid for all purposes. Already in the sprinkler rows above." },
-    { name: "Fire sprinkler fitter — industry disability allowance", amount: 42.53, unit: "per week", clause: "cl 21.3(f)", note: "Paid for all purposes to adult fire sprinkler fitters. Already in the sprinkler rows above." },
-    { name: "Fire sprinkler fitter — space, height and dirt money", amount: 39.17, unit: "per week", clause: "cl 21.3(f)", note: "Paid for all purposes. Already in the sprinkler rows above." },
-    { name: "Sprinkler fitters adjustment — worker Level 2, tradesperson Level 1 and above", amount: 36.93, unit: "per week", clause: "cl 21.3(g)", note: "Paid for all purposes ($31.33 for sprinkler fitting worker Level 1). Already in the sprinkler rows above." },
-    { name: "Leading hand — in charge of not more than 1 employee", amount: 26.86, unit: "per week", clause: "cl 21.3(h)", note: "Paid for all purposes. NOT in the rows above." },
+    { name: "Fire sprinkler fitter, industry disability allowance", amount: 42.53, unit: "per week", clause: "cl 21.3(f)", note: "Paid for all purposes to adult fire sprinkler fitters. Already in the sprinkler rows above." },
+    { name: "Fire sprinkler fitter, space, height and dirt money", amount: 39.17, unit: "per week", clause: "cl 21.3(f)", note: "Paid for all purposes. Already in the sprinkler rows above." },
+    { name: "Sprinkler fitters adjustment, worker Level 2, tradesperson Level 1 and above", amount: 36.93, unit: "per week", clause: "cl 21.3(g)", note: "Paid for all purposes ($31.33 for sprinkler fitting worker Level 1). Already in the sprinkler rows above." },
+    { name: "Leading hand, in charge of not more than 1 employee", amount: 26.86, unit: "per week", clause: "cl 21.3(h)", note: "Paid for all purposes. NOT in the rows above." },
     { name: "Leading hand — in charge of 2 to 5 employees", amount: 59.31, unit: "per week", clause: "cl 21.3(h)" },
     { name: "Leading hand — in charge of 6 to 10 employees", amount: 76.1, unit: "per week", clause: "cl 21.3(h)" },
     { name: "Leading hand — in charge of more than 10 employees", amount: 100.72, unit: "per week", clause: "cl 21.3(h)" },
@@ -240,10 +240,10 @@ export const PLUMBING_AWARD: ModernAwardData = {
     { name: "Tool allowance (where the employer requires you to supply tools)", amount: 22.96, unit: "per week", clause: "cl 21.8(a)" },
     { name: "Meal allowance (overtime of 1.5 hours or more after ordinary hours)", amount: 17.69, unit: "per occasion", clause: "cl 21.8(b)", note: "Plus $17.69 for each further 4 hours." },
     { name: "Fares allowance", amount: 16.24, unit: "per day", clause: "cl 21.9(b)" },
-    { name: "Transfer between job sites — own vehicle", amount: 1.0, unit: "per km", clause: "cl 21.9(e)(ii)" },
-    { name: "Mileage beyond the defined radius (50 km) — own vehicle", amount: 0.55, unit: "per km", clause: "cl 21.9(f)", note: "Varied on 16 September 2026 (PR814392, corrected by PR814410): the clause now cross-refers to the travelling time allowance in cl 21.9(d). The rate stayed $0.55." },
-    { name: "Fire sprinkler fitter on-call — permanent stand-by on roster", amount: 76.1, unit: "per week", clause: "cl 17.2(a)" },
-    { name: "Living away from home — in lieu of board and lodging", amount: 628.93, unit: "per week", clause: "cl 21.10(c)(i)", note: "$89.91 a day for broken parts of a week." },
+    { name: "Transfer between job sites, own vehicle", amount: 1.0, unit: "per km", clause: "cl 21.9(e)(ii)" },
+    { name: "Mileage beyond the defined radius (50 km), own vehicle", amount: 0.55, unit: "per km", clause: "cl 21.9(f)", note: "Varied on 16 September 2026 (PR814392, corrected by PR814410): the clause now cross-refers to the travelling time allowance in cl 21.9(d). The rate stayed $0.55." },
+    { name: "Fire sprinkler fitter on-call, permanent stand-by on roster", amount: 76.1, unit: "per week", clause: "cl 17.2(a)" },
+    { name: "Living away from home, in lieu of board and lodging", amount: 628.93, unit: "per week", clause: "cl 21.10(c)(i)", note: "$89.91 a day for broken parts of a week." },
   ],
   allowancesClause: "cl 17 and cl 21",
   hoursNotes: [
@@ -330,8 +330,8 @@ FLH8|1202.50|31.64
   // cl 35.2.
   overtime: [
     { label: "Monday to Saturday", fullTime: 1.5, casual: 1.75 },
-    { label: "Sunday — feeding and watering stock", fullTime: 1.5, casual: 1.75 },
-    { label: "Sunday — other than feeding and watering stock", fullTime: 2.0, casual: 2.25 },
+    { label: "Sunday, feeding and watering stock", fullTime: 1.5, casual: 1.75 },
+    { label: "Sunday, other than feeding and watering stock", fullTime: 2.0, casual: 2.25 },
   ],
   overtimeClause: "cl 35.2 and Schedule B.2.2",
   overtimeNotes: [
@@ -430,7 +430,7 @@ Level 5|1119.10|29.45
   ],
   // cl 13.2, 27.3, 27.4.
   penalties: [
-    { label: "Casual — ordinary hours between 8.31 pm and 4.59 am", fullTime: 1.0, casual: 1.4, employment: "casual", note: "A further 15% of the ordinary hourly rate on top of the 25% loading (cl 13.2(d))." },
+    { label: "Casual, ordinary hours between 8.31 pm and 4.59 am", fullTime: 1.0, casual: 1.4, employment: "casual", note: "A further 15% of the ordinary hourly rate on top of the 25% loading (cl 13.2(d))." },
     { label: "Public holiday (all time worked)", fullTime: 2.0, casual: 2.25, note: "Casuals get 225% inclusive of the loading, for both ordinary hours and overtime (cl 27.4). A pieceworker is paid 200% of the piece rate (cl 27.3)." },
     { label: "Afternoon or night shift (shiftworkers)", fullTime: 1.15, casual: 1.15, employment: "permanent", note: "115% of the ordinary hourly rate (cl 13.3(d)). The award sets no separate casual shift rate." },
   ],
@@ -443,9 +443,9 @@ Level 5|1119.10|29.45
   // cl 21.3–21.4.
   overtime: [
     { label: "Monday to Saturday", fullTime: 1.5, casual: null },
-    { label: "Sunday — outside the harvest period", fullTime: 2.0, casual: null },
-    { label: "Sunday — harvest period, first 5 hours within the first 8 overtime hours of the week", fullTime: 1.5, casual: null },
-    { label: "Sunday — harvest period, beyond 8 overtime hours in the week or 5 hours on the Sunday", fullTime: 2.0, casual: null },
+    { label: "Sunday, outside the harvest period", fullTime: 2.0, casual: null },
+    { label: "Sunday, harvest period, first 5 hours within the first 8 overtime hours of the week", fullTime: 1.5, casual: null },
+    { label: "Sunday, harvest period, beyond 8 overtime hours in the week or 5 hours on the Sunday", fullTime: 2.0, casual: null },
   ],
   overtimeClause: "cl 21.3–21.4 and Schedule B.2.3 / B.3.2",
   overtimeNotes: [
@@ -472,8 +472,8 @@ Level 5|1119.10|29.45
   juniorPhaseIn: null,
   // cl 18.
   allowances: [
-    { name: "Leading hand — in charge of 2 to 6 employees", amount: 30.41, unit: "per week", clause: "cl 18.2(b)", note: "Paid for all purposes. NOT in the rates above." },
-    { name: "Leading hand — in charge of 7 to 10 employees", amount: 35.43, unit: "per week", clause: "cl 18.2(b)" },
+    { name: "Leading hand, in charge of 2 to 6 employees", amount: 30.41, unit: "per week", clause: "cl 18.2(b)", note: "Paid for all purposes. NOT in the rates above." },
+    { name: "Leading hand, in charge of 7 to 10 employees", amount: 35.43, unit: "per week", clause: "cl 18.2(b)" },
     { name: "Leading hand — in charge of 11 to 20 employees", amount: 50.5, unit: "per week", clause: "cl 18.2(b)" },
     { name: "Leading hand — in charge of more than 20 employees", amount: 63.46, unit: "per week", clause: "cl 18.2(b)" },
     { name: "Wet work allowance (unless adequately protected)", amount: 2.64, unit: "per hour", clause: "cl 18.2(c)", note: "Paid for all purposes." },
@@ -581,7 +581,7 @@ Health Professional Level 4|2499.10|65.77
   penalties: [
     { label: "Saturday or Sunday ordinary hours", fullTime: 1.5, casual: 1.75, casualBasis: "additive", note: "Casuals get 175% for all time worked on a Saturday or Sunday and are NOT also paid the 25% loading (cl 26.1(b))." },
     { label: "Public holiday (all time worked)", fullTime: 2.5, casual: 2.75, casualBasis: "additive", note: "Casuals are paid 275% (Schedule C.2.3, C.1.7)." },
-    { label: "Shiftwork — afternoon or night (finishing 6 pm to 8 am or starting 6 pm to 6 am)", fullTime: 1.15, casual: 1.4, casualBasis: "additive", note: "Casuals get 140% and not the 25% loading (cl 26.3(b)). The shift loading does not apply on a Saturday, Sunday or public holiday (cl 26.3(c))." },
+    { label: "Shiftwork, afternoon or night (finishing 6 pm to 8 am or starting 6 pm to 6 am)", fullTime: 1.15, casual: 1.4, casualBasis: "additive", note: "Casuals get 140% and not the 25% loading (cl 26.3(b)). The shift loading does not apply on a Saturday, Sunday or public holiday (cl 26.3(c))." },
   ],
   penaltiesClause: "cl 26, cl 33.2 and Schedule C",
   penaltyNotes: [
@@ -608,9 +608,9 @@ Health Professional Level 4|2499.10|65.77
   juniorPhaseIn: null,
   // cl 23.
   allowances: [
-    { name: "On-call — Monday to Saturday", amount: 26.34, unit: "per 24 hours", clause: "cl 23.2(d)(i)" },
-    { name: "On-call — Sunday or public holiday", amount: 52.56, unit: "per 24 hours", clause: "cl 23.2(d)(ii)" },
-    { name: "Heat allowance — over 40°C up to 46°C", amount: 0.61, unit: "per hour", clause: "cl 23.2(a)", note: "Over 46°C it is $0.73 an hour." },
+    { name: "On-call, Monday to Saturday", amount: 26.34, unit: "per 24 hours", clause: "cl 23.2(d)(i)" },
+    { name: "On-call, Sunday or public holiday", amount: 52.56, unit: "per 24 hours", clause: "cl 23.2(d)(ii)" },
+    { name: "Heat allowance, over 40°C up to 46°C", amount: 0.61, unit: "per hour", clause: "cl 23.2(a)", note: "Over 46°C it is $0.73 an hour." },
     { name: "Nauseous or offensive work", amount: 0.61, unit: "per hour", clause: "cl 23.2(b)", note: "At least $3.29 a week for any week in which such work is done." },
     { name: "Occasional interpreting", amount: 1.34, unit: "per occasion", clause: "cl 23.2(c)", note: "Capped at $15.49 a week." },
     { name: "Meal allowance (overtime of more than 1 hour after the usual finishing time)", amount: 17.3, unit: "per occasion", clause: "cl 23.3(e)(i)", note: "A further $15.60 where the overtime exceeds 4 hours." },
@@ -740,12 +740,12 @@ Level 9|1256.20|33.06
     "A casual's ordinary rate is the minimum plus 25% (cl 12.2). Casual overtime is then a percentage of that casual rate, so 150% becomes 187.5% and 200% becomes 250% of the minimum rate (Schedule D.3.3). The casual public holiday rate of 275% (the 250% plus the 25% loading) is tabulated for the General Timber stream only (cl 27.1(d)); for the other streams no casual public holiday dollar rate is printed.",
   // cl 27.1, 27.3(c)–(d) and Schedule D.2.1 / D.3.1.
   penalties: [
-    { label: "Day worker — Saturday, first 2 hours", fullTime: 1.5, casual: 1.5, employment: "permanent", note: "All Saturday work for weekly employees on the employer's instructions: minimum 3 hours (cl 27.1(a)). The casual overtime rates apply to a casual who works Saturday (see Overtime)." },
-    { label: "Day worker — Saturday, after 2 hours", fullTime: 2.0, casual: 2.0, employment: "permanent" },
+    { label: "Day worker, Saturday, first 2 hours", fullTime: 1.5, casual: 1.5, employment: "permanent", note: "All Saturday work for weekly employees on the employer's instructions: minimum 3 hours (cl 27.1(a)). The casual overtime rates apply to a casual who works Saturday (see Overtime)." },
+    { label: "Day worker, Saturday, after 2 hours", fullTime: 2.0, casual: 2.0, employment: "permanent" },
     { label: "Day worker — Sunday", fullTime: 2.0, casual: 2.0, employment: "permanent", note: "Minimum 3 hours (cl 27.1(b)). Pulp and Paper: 200% for a minimum of 4 hours (cl 27.3(c)(ii))." },
     { label: "Day worker — public holiday (minimum 3 hours)", fullTime: 2.5, casual: 2.75, casualBasis: "additive", note: "Casual 275% applies in the General Timber stream only (cl 27.1(d))." },
     { label: "Afternoon shift or rotating night shift", fullTime: 1.15, casual: 1.4, casualBasis: "additive", note: "Casual 140% (Schedule D.3.2)." },
-    { label: "Night shift — non-rotating", fullTime: 1.3, casual: 1.55, casualBasis: "additive", note: "Casual 155% (Schedule D.3.2)." },
+    { label: "Night shift, non-rotating", fullTime: 1.3, casual: 1.55, casualBasis: "additive", note: "Casual 155% (Schedule D.3.2)." },
   ],
   penaltiesClause: "cl 27 and Schedule D",
   penaltyNotes: [
@@ -755,8 +755,8 @@ Level 9|1256.20|33.06
   ],
   // cl 26.2 and Schedule D.2.3 / D.3.3.
   overtime: [
-    { label: "Day work — first 2 hours", fullTime: 1.5, casual: 1.5 },
-    { label: "Day work — after 2 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Day work, first 2 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Day work, after 2 hours", fullTime: 2.0, casual: 2.0 },
     { label: "Sunday", fullTime: 2.0, casual: 2.0 },
     { label: "Public holiday", fullTime: 2.5, casual: null },
   ],
@@ -774,8 +774,8 @@ Level 9|1256.20|33.06
   allowances: [
     { name: "Forest work allowance (not pieceworkers)", amount: 35.81, unit: "per week", clause: "cl 22.3", note: "Paid for all purposes. NOT in the rates above." },
     { name: "Low loader allowance", amount: 1.9, unit: "per extra tonne over 43 tonnes GCM", clause: "cl 22.4", note: "Paid for all purposes." },
-    { name: "Leading hand — supervising 2 to 6 employees", amount: 36.93, unit: "per week", clause: "cl 22.5(a)" },
-    { name: "Leading hand — supervising more than 6 employees", amount: 57.07, unit: "per week", clause: "cl 22.5(b)" },
+    { name: "Leading hand, supervising 2 to 6 employees", amount: 36.93, unit: "per week", clause: "cl 22.5(a)" },
+    { name: "Leading hand, supervising more than 6 employees", amount: 57.07, unit: "per week", clause: "cl 22.5(b)" },
     { name: "First aid allowance", amount: 22.38, unit: "per week", clause: "cl 22.9" },
     { name: "Dirty work allowance", amount: 3.69, unit: "per day", clause: "cl 22.11" },
     { name: "Height money", amount: 2.24, unit: "per day or shift", clause: "cl 22.16" },
@@ -844,18 +844,18 @@ MI 8|1160.20|30.53
   ],
   matrix: [
     { label: "Mon–Fri ordinary hours", fullTime: 1, casual: 1.25 },
-    { label: "Saturday — processing (if agreed)", fullTime: 1.5, casual: 1.5, casualTabulated: true, appliesTo: MEAT_PROCESSING },
-    { label: "Sunday — processing (if agreed)", fullTime: 2.0, casual: 2.0, casualTabulated: true, appliesTo: MEAT_PROCESSING },
-    { label: "Saturday — manufacturing / retail", fullTime: 1.25, casual: 1.25, casualTabulated: true },
-    { label: "Sunday — retail", fullTime: 1.5, casual: 1.5, casualTabulated: true },
+    { label: "Saturday, processing (if agreed)", fullTime: 1.5, casual: 1.5, casualTabulated: true, appliesTo: MEAT_PROCESSING },
+    { label: "Sunday, processing (if agreed)", fullTime: 2.0, casual: 2.0, casualTabulated: true, appliesTo: MEAT_PROCESSING },
+    { label: "Saturday, manufacturing / retail", fullTime: 1.25, casual: 1.25, casualTabulated: true },
+    { label: "Sunday, retail", fullTime: 1.5, casual: 1.5, casualTabulated: true },
   ],
   // cl 24 and Schedule B.
   penalties: [
-    { label: "Processing — Saturday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the same 150%, not 150% plus a loading (Schedule B.1.3)." },
-    { label: "Processing — Sunday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 2.0, casual: 2.0, casualTabulated: true, note: "Casuals are paid the same 200%, with no loading on top (Schedule B.1.3)." },
-    { label: "Manufacturing — Saturday, up to 4 ordinary hours between 6 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.2(a)(ii))." },
-    { label: "Retail — Saturday ordinary hours between 4 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.3(c))." },
-    { label: "Retail — Sunday ordinary hours between 8 am and 6 pm", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the weekend penalty instead of the casual loading (cl 24.3(c))." },
+    { label: "Processing, Saturday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the same 150%, not 150% plus a loading (Schedule B.1.3)." },
+    { label: "Processing, Sunday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 2.0, casual: 2.0, casualTabulated: true, note: "Casuals are paid the same 200%, with no loading on top (Schedule B.1.3)." },
+    { label: "Manufacturing, Saturday, up to 4 ordinary hours between 6 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.2(a)(ii))." },
+    { label: "Retail, Saturday ordinary hours between 4 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.3(c))." },
+    { label: "Retail, Sunday ordinary hours between 8 am and 6 pm", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the weekend penalty instead of the casual loading (cl 24.3(c))." },
   ],
   penaltiesClause: "cl 24 and Schedule B.1–B.3",
   penaltyNotes: [
@@ -892,11 +892,11 @@ MI 8|1160.20|30.53
   juniorPhaseIn: null,
   // Schedule C.
   allowances: [
-    { name: "Leading hand — supervising 3 to 9 employees", amount: 17.91, unit: "per week", clause: "cl 20.2(c)(i)" },
-    { name: "Leading hand — supervising 10 or more employees", amount: 25.74, unit: "per week", clause: "cl 20.2(c)(ii)" },
-    { name: "Cold temperature — below zero but not below −16°C", amount: 0.77, unit: "per hour", clause: "cl 20.2(a)", note: "Higher bands: $1.33, $1.88 and $2.56 an hour as it gets colder (cl 20.2(a))." },
+    { name: "Leading hand, supervising 3 to 9 employees", amount: 17.91, unit: "per week", clause: "cl 20.2(c)(i)" },
+    { name: "Leading hand, supervising 10 or more employees", amount: 25.74, unit: "per week", clause: "cl 20.2(c)(ii)" },
+    { name: "Cold temperature, below zero but not below −16°C", amount: 0.77, unit: "per hour", clause: "cl 20.2(a)", note: "Higher bands: $1.33, $1.88 and $2.56 an hour as it gets colder (cl 20.2(a))." },
     { name: "First aid allowance", amount: 4.18, unit: "per day", clause: "cl 20.2(b)" },
-    { name: "Clothing — meat processing establishments", amount: 3.7, unit: "per week", clause: "cl 20.3(a)(i)", note: "Or $0.74 a day." },
+    { name: "Clothing, meat processing establishments", amount: 3.7, unit: "per week", clause: "cl 20.3(a)(i)", note: "Or $0.74 a day." },
     { name: "Meal allowance (overtime of 1.5 hours or more)", amount: 19.14, unit: "per occasion", clause: "cl 20.3(b)" },
   ],
   allowancesClause: "cl 20 and Schedule C",
@@ -972,7 +972,7 @@ Commercial Traveller / Advertising Sales Representative|1122.80|29.55
   ],
   // cl 19.1–19.2.
   overtime: [
-    { label: "Monday to Friday — after 6.00 pm or beyond ordinary hours", fullTime: 1.5, casual: 1.75 },
+    { label: "Monday to Friday, after 6.00 pm or beyond ordinary hours", fullTime: 1.5, casual: 1.75 },
     { label: "Saturday", fullTime: 1.5, casual: 1.75 },
     { label: "Sunday", fullTime: 2.0, casual: 2.25 },
     { label: "Public holiday", fullTime: 2.5, casual: 2.75 },
@@ -1078,8 +1078,8 @@ export const MINING_AWARD: ModernAwardData = {
     { label: "Day work", fullTime: 1, casual: 1 },
     { label: "Afternoon / night shift", fullTime: 1.15, casual: 1.15 },
     { label: "Permanent night shift", fullTime: 1.3, casual: 1.3 },
-    { label: "Saturday before noon — first 3 hrs", fullTime: 1.5, casual: 1.5 },
-    { label: "Saturday before noon — after 3 hrs", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday before noon, first 3 hrs", fullTime: 1.5, casual: 1.5 },
+    { label: "Saturday before noon, after 3 hrs", fullTime: 2.0, casual: 2.0 },
     { label: "Saturday after noon and Sunday", fullTime: 2.0, casual: 2.0 },
     { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
   ],
@@ -1088,8 +1088,8 @@ export const MINING_AWARD: ModernAwardData = {
   penalties: [
     { label: "Afternoon or night shift", fullTime: 1.15, casual: 1.15, note: "Afternoon shift finishes after 7 pm and up to midnight; night shift finishes after midnight and up to 8 am (cl 21.1)." },
     { label: "Permanent night shift", fullTime: 1.3, casual: 1.3 },
-    { label: "Saturday before 12 noon — first 3 hours", fullTime: 1.5, casual: 1.5, note: "Ordinary hours on a Saturday (cl 21.3)." },
-    { label: "Saturday before 12 noon — after 3 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday before 12 noon, first 3 hours", fullTime: 1.5, casual: 1.5, note: "Ordinary hours on a Saturday (cl 21.3)." },
+    { label: "Saturday before 12 noon, after 3 hours", fullTime: 2.0, casual: 2.0 },
     { label: "Saturday after 12 noon, and all Sunday hours", fullTime: 2.0, casual: 2.0 },
     { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
   ],
@@ -1101,11 +1101,11 @@ export const MINING_AWARD: ModernAwardData = {
   ],
   // cl 20.1–20.2.
   overtime: [
-    { label: "Monday to 12 noon Saturday — first 3 hours", fullTime: 1.5, casual: 1.5 },
-    { label: "Monday to 12 noon Saturday — after 3 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Monday to 12 noon Saturday, first 3 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Monday to 12 noon Saturday, after 3 hours", fullTime: 2.0, casual: 2.0 },
     { label: "After 12 noon Saturday and all Sunday", fullTime: 2.0, casual: 2.0 },
     { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
-    { label: "Continuous shiftworkers — all overtime, Monday to Sunday", fullTime: 2.0, casual: 2.0 },
+    { label: "Continuous shiftworkers, all overtime, Monday to Sunday", fullTime: 2.0, casual: 2.0 },
   ],
   overtimeClause: "cl 20.1–20.2 and Schedule B.1.4–B.1.5, B.2.4–B.2.5",
   overtimeNotes: [
@@ -1119,9 +1119,9 @@ export const MINING_AWARD: ModernAwardData = {
   // cl 18; Schedule C.
   allowances: [
     { name: "Industry allowance", amount: 41.41, unit: "per week", clause: "cl 18.2(b)", note: "Paid for all purposes. Already in the rates above." },
-    { name: "Licence allowance — electricians required to hold an Electrical Technician licence", amount: 50.92, unit: "per week", clause: "cl 18.2(c)", note: "Paid for all purposes. NOT in the rates above." },
+    { name: "Licence allowance, electricians required to hold an Electrical Technician licence", amount: 50.92, unit: "per week", clause: "cl 18.2(c)", note: "Paid for all purposes. NOT in the rates above." },
     { name: "Cooks and cooks' assistants on broken shifts (drilling and prospecting)", amount: 11.97, unit: "per week", clause: "cl 18.2(d)(iii)", note: "Paid for all purposes." },
-    { name: "Drilling and exploration camp allowance — no meals provided", amount: 37.94, unit: "per day", clause: "cl 18.2(d)(i)", note: "$20.93 a day where the employer provides meals." },
+    { name: "Drilling and exploration camp allowance, no meals provided", amount: 37.94, unit: "per day", clause: "cl 18.2(d)(i)", note: "$20.93 a day where the employer provides meals." },
     { name: "First aid allowance (appointed first aider)", amount: 22.38, unit: "per week", clause: "cl 18.2(e)" },
     { name: "Leading hand — in charge of 3 to 10 employees", amount: 49.24, unit: "per week", clause: "cl 18.2(f)" },
     { name: "Leading hand — in charge of 11 to 20 employees", amount: 62.67, unit: "per week", clause: "cl 18.2(f)" },

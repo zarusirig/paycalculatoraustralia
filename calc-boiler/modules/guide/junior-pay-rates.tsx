@@ -77,7 +77,7 @@ export default function JuniorPayRatesPage() {
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> If no award covers you, junior rates run from <strong>{formatAUD(U16.hourly, 2)}</strong> an hour under 16 to <strong>{formatAUD(byAge("20").hourly, 2)}</strong> at 20, reaching the full {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} National Minimum Wage at {ADULT_AGE}. A 16-year-old gets <strong>{formatAUD(A16.hourly, 2)}</strong> an hour, or {formatAUD(A16.casualHourly, 2)} as a casual. <strong>If an award covers you &mdash; and in retail or fast food it almost certainly does &mdash; a different percentage applies</strong> to a different base rate.
+              <strong>Direct answer:</strong> If no award covers you, junior rates run from <strong>{formatAUD(U16.hourly, 2)}</strong> an hour under 16 to <strong>{formatAUD(byAge("20").hourly, 2)}</strong> at 20, reaching the full {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} National Minimum Wage at {ADULT_AGE}. A 16-year-old gets <strong>{formatAUD(A16.hourly, 2)}</strong> an hour, or {formatAUD(A16.casualHourly, 2)} as a casual. <strong>If an award covers you (and in retail or fast food it almost certainly does), a different percentage applies</strong> to a different base rate.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -186,7 +186,7 @@ export default function JuniorPayRatesPage() {
                 </div>
               </div>
               <p className="text-sm text-warmgray">
-                Hourly and casual hourly figures match those published by the Fair Work Ombudsman. <strong>Fair Work publishes no weekly junior column</strong> &mdash; the weekly amounts above are our calculation, being the percentage applied to the {formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} weekly National Minimum Wage.
+                Hourly and casual hourly figures match those published by the Fair Work Ombudsman. <strong>Fair Work publishes no weekly junior column</strong>: the weekly amounts above are our calculation, being the percentage applied to the {formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} weekly National Minimum Wage.
               </p>
               <p>
                 The percentages come from {JUNIOR_BANDS_SOURCE.juniorClause}. The final row is not part of that table: at {ADULT_AGE} an employee simply stops being a junior and moves onto {JUNIOR_BANDS_SOURCE.adultClause}.
@@ -196,7 +196,7 @@ export default function JuniorPayRatesPage() {
             <section id="which-rate-applies">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Junior Rate Actually Applies to You?</h2>
               <p>
-                This is the question that matters, and the table above answers it for only a minority of young workers. Most people under {ADULT_AGE} in paid work are in retail, fast food or hospitality &mdash; all award-covered. <strong>An award sets its own junior percentage, and applies it to the award classification rate, not to the National Minimum Wage.</strong> Both numbers change.
+                This is the question that matters, and the table above answers it for only a minority of young workers. Most people under {ADULT_AGE} in paid work are in retail, fast food or hospitality, all award-covered. <strong>An award sets its own junior percentage, and applies it to the award classification rate, not to the National Minimum Wage.</strong> Both numbers change.
               </p>
               <p>
                 So there are three questions, in order: does an award cover your job; what classification level are you; and what percentage does that award set for your age. Getting the first one wrong is the expensive mistake.
@@ -247,7 +247,7 @@ export default function JuniorPayRatesPage() {
               {AWARD_JUNIOR_SCALES.map((award) => (
                 <div key={award.code}>
                   <h3>{award.award} ({award.code})</h3>
-                  <p className="text-sm text-warmgray">{award.clause} &mdash; {award.note}</p>
+                  <p className="text-sm text-warmgray">{award.clause}: {award.note}</p>
                   <div className="not-prose my-6">
                     <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                       <table className="w-full min-w-[24rem] text-left text-sm text-navy">
@@ -272,7 +272,7 @@ export default function JuniorPayRatesPage() {
                 </div>
               ))}
               <p>
-                <strong>Three differences worth knowing.</strong> Retail and fast food pay differently at under-16 &mdash; 45% against 40% &mdash; while matching exactly at 16 through 19. Retail&rsquo;s 20-year-old band splits on service, reaching the adult rate only after more than six months with the same employer, where fast food currently holds 20-year-olds at 90% until they turn 21 (that changes from 1 December 2026 for those with more than six months&rsquo; service; <a href="#pending-change">see below</a>). And Hair and Beauty reaches the full adult rate at 18, the earliest of any common award.
+                <strong>Three differences worth knowing.</strong> Retail and fast food pay differently at under-16 (45% against 40%) while matching exactly at 16 through 19. Retail&rsquo;s 20-year-old band splits on service, reaching the adult rate only after more than six months with the same employer, where fast food currently holds 20-year-olds at 90% until they turn 21 (that changes from 1 December 2026 for those with more than six months&rsquo; service; <a href="#pending-change">see below</a>). And Hair and Beauty reaches the full adult rate at 18, the earliest of any common award.
               </p>
               <p>
                 Full classification tables are on our <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages. Hospitality is a fourth scale again, paying 85% at 19 where retail pays 80%, and it has a separate table for office employees. The dated steps of the retail, fast food and pharmacy 18 to 20 phase-in are on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
@@ -282,7 +282,7 @@ export default function JuniorPayRatesPage() {
             <section id="awards-without-junior-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Some Awards Have No Junior Rates At All</h2>
               <p>
-                A junior rate only exists where the instrument covering you actually contains one, and several major awards do not. The <Link href="/schads-award-pay-rates/">SCHADS award</Link> &mdash; social, community, home care and disability services &mdash; has <strong>no junior rates clause</strong>. An 18-year-old disability support worker is entitled to the full adult rate for their classification.
+                A junior rate only exists where the instrument covering you actually contains one, and several major awards do not. The <Link href="/schads-award-pay-rates/">SCHADS award</Link> (social, community, home care and disability services) has <strong>no junior rates clause</strong>. An 18-year-old disability support worker is entitled to the full adult rate for their classification.
               </p>
               <p>
                 Two further limits are easy to miss. Under the retail award, junior percentages apply <strong>only to employee levels 1 to 3</strong>; a junior doing level 4 work is entitled to the full level 4 rate. And in hospitality, juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the adult rate whatever their age.
@@ -394,7 +394,7 @@ export default function JuniorPayRatesPage() {
               </p>
               <div className="not-prose mt-6">
                 <a href="https://www.fairwork.gov.au/find-help-for/young-workers-and-students/minimum-working-age" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md border border-transparent bg-eucalyptus-dark px-5 py-3 text-base font-medium text-white shadow-sm hover:bg-navy">
-                  Fair Work &mdash; minimum working age
+                  Fair Work: minimum working age
                   <ExternalLink className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
                 </a>
               </div>
@@ -403,27 +403,27 @@ export default function JuniorPayRatesPage() {
             <section id="how-calculated">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Junior Rates Are Calculated</h2>
               <p>
-                The percentage is applied to the <strong>weekly</strong> rate, and the hourly figure is that weekly amount divided by {EMPLOYMENT.standardWeeklyHours} ordinary hours. The order is not cosmetic. Applying the percentage to the hourly minimum instead gives a figure one cent lower at ages 17, 19 and 20 &mdash; for a 19-year-old working 20 hours a week that is about {formatAUD(0.01 * 20 * 52, 0)} a year, and it is the difference between matching Fair Work&rsquo;s published figure and not.
+                The percentage is applied to the <strong>weekly</strong> rate, and the hourly figure is that weekly amount divided by {EMPLOYMENT.standardWeeklyHours} ordinary hours. The order is not cosmetic. Applying the percentage to the hourly minimum instead gives a figure one cent lower at ages 17, 19 and 20. For a 19-year-old working 20 hours a week that is about {formatAUD(0.01 * 20 * 52, 0)} a year, and it is the difference between matching Fair Work&rsquo;s published figure and not.
               </p>
               <p>
                 The casual rate is then the <strong>rounded</strong> junior hourly rate plus the {(CASUAL_LOADING * 100).toFixed(0)}% loading. At 19 that gives {formatAUD(byAge("19").casualHourly, 2)}; deriving it from the unrounded figure would give a cent less. Every hourly and casual figure in the first table matches Fair Work&rsquo;s published dollars exactly, and automated tests hold them there.
               </p>
               <p>
-                To see what a junior rate leaves after tax, use our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> &mdash; most junior earnings fall under the {formatAUD(18_200)} tax-free threshold, so the answer is often that no income tax is withheld at all. Our <Link href="/first-job-pay-guide/">first job guide</Link> covers tax file numbers, super and reading your first payslip.
+                To see what a junior rate leaves after tax, use our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>: most junior earnings fall under the {formatAUD(18_200)} tax-free threshold, so the answer is often that no income tax is withheld at all. Our <Link href="/first-job-pay-guide/">first job guide</Link> covers tax file numbers, super and reading your first payslip.
               </p>
             </section>
 
             <section id="related">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
-                <li><Link href="/retail-award-rates/">Retail Award Rates</Link> &mdash; full classification table and junior percentages</li>
-                <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link> &mdash; a fourth junior scale, plus office employees</li>
-                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> &mdash; the award with no junior rates</li>
-                <li><Link href="/first-job-pay-guide/">First Job Pay Guide</Link> &mdash; TFN, super and your first payslip</li>
-                <li><Link href="/award-rates/">Award Rates Australia</Link> &mdash; how modern awards work</li>
-                <li><Link href="/minimum-wage-australia/">Minimum Wage Australia</Link> &mdash; the adult rate from {ADULT_AGE}, weekly, annual and after tax</li>
-                <li><Link href="/casual-loading-calculator/">Casual Loading Calculator</Link> &mdash; what the 25% loading is worth against paid leave</li>
-                <li><Link href="/minimum-wage-history-australia/">Minimum Wage History</Link> &mdash; how the National Minimum Wage has moved</li>
+                <li><Link href="/retail-award-rates/">Retail Award Rates</Link>: full classification table and junior percentages</li>
+                <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link>: a fourth junior scale, plus office employees</li>
+                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link>: the award with no junior rates</li>
+                <li><Link href="/first-job-pay-guide/">First Job Pay Guide</Link>: TFN, super and your first payslip</li>
+                <li><Link href="/award-rates/">Award Rates Australia</Link>: how modern awards work</li>
+                <li><Link href="/minimum-wage-australia/">Minimum Wage Australia</Link>: the adult rate from {ADULT_AGE}, weekly, annual and after tax</li>
+                <li><Link href="/casual-loading-calculator/">Casual Loading Calculator</Link>: what the 25% loading is worth against paid leave</li>
+                <li><Link href="/minimum-wage-history-australia/">Minimum Wage History</Link>: how the National Minimum Wage has moved</li>
               </ul>
             </section>
 

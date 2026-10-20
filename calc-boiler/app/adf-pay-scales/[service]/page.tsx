@@ -33,9 +33,9 @@ function canonicalFor(slug: string) {
 
 function titleFor(s: AdfService) {
   return fitTitle(
-    `${s.name} Pay Scales 2026 — ${s.fullName} Salary by Rank & Pay Grade`,
-    `${s.name} Pay Scales 2026 — ${s.fullName} Salary by Rank`,
-    `${s.name} Pay Scales 2026 — ${s.fullName} Salary`,
+    `${s.name} Pay Scales 2026 - ${s.fullName} Salary by Rank & Pay Grade`,
+    `${s.name} Pay Scales 2026 - ${s.fullName} Salary by Rank`,
+    `${s.name} Pay Scales 2026 - ${s.fullName} Salary`,
   );
 }
 

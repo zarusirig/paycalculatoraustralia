@@ -98,7 +98,7 @@ export default function StateTakeHomeCalculator({
                 ))}
               </select>
               <p className="mt-1 text-xs text-warmgray-light">
-                Income tax is federal, so the result is the same in every state — changing this
+                Income tax is federal, so the result is the same in every state, so changing this
                 takes you to that state&apos;s holidays, long service leave and payroll tax page.
               </p>
             </div>
@@ -226,7 +226,7 @@ export default function StateTakeHomeCalculator({
 
             <p className="text-xs text-warmgray">
               Checking a payslip? Compare the fortnightly figure above with the net pay on your
-              slip — see{" "}
+              slip; see{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">
                 how to read an Australian payslip
               </Link>

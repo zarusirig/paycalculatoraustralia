@@ -103,7 +103,7 @@ export const NMW_ORDER_2026: OccupationSource = {
 
 /** The payslip line every professional page shares, from the FWO pay slips page. */
 export const PAYSLIP_SUPER_AND_DEDUCTIONS =
-  "Super and deductions: each payslip must show the super your employer paid, or will pay, for the period and the fund it goes to, and every deduction — salary sacrifice included — with the fund or account it was paid into (Fair Work Ombudsman, pay slips).";
+  "Super and deductions: each payslip must show the super your employer paid, or will pay, for the period and the fund it goes to, and every deduction (salary sacrifice included) with the fund or account it was paid into (Fair Work Ombudsman, pay slips).";
 
 /** Professional Employees Award cl 16.2 and 16.3, 1 July 2026. */
 export const PEA_ALLOWANCES: Allowance[] = [

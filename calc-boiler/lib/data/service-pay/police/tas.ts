@@ -45,7 +45,7 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable",
       title: "Constable (clause 8.1.1, Column A)",
       intro:
-        "The single Constable salary range, from the first full pay period on or after 1 December 2025. Senior Constable is not a separate scale in Tasmania — gazettal as a Senior Constable advances an officer one level within this range.",
+        "The single Constable salary range, from the first full pay period on or after 1 December 2025. Senior Constable is not a separate scale in Tasmania: gazettal as a Senior Constable advances an officer one level within this range.",
       stepHeading: "Constable level",
       steps: [
         { label: "Constable Level 1", salary: 73_518, note: "Starting point after graduating from the Trainee Course" },
@@ -123,17 +123,17 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Police Award — Latest Consolidation, Order No 2 of 2026 (T15311 of 2026), clause 8.1 Salaries and clause 19 Shift and Penalty Allowance",
+      title: "Police Award, Latest Consolidation, Order No 2 of 2026 (T15311 of 2026), clause 8.1 Salaries and clause 19 Shift and Penalty Allowance",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0006/854988/T15311-No-2-of-2026-Police-S109.pdf",
     },
     {
-      title: "Police Award — award history",
+      title: "Police Award, award history",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/award_history/police",
     },
     {
-      title: "Benefits — Salary",
+      title: "Benefits, Salary",
       publisher: "Tasmania Police Recruitment",
       url: "https://recruitment.police.tas.gov.au/about-us/benefits/",
     },

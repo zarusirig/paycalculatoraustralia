@@ -29,7 +29,7 @@ export const metadata: Metadata = withFeaturedImage({
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: `Monthly take-home pay after tax — ${FY} rates.` },
+  twitter: { card: "summary_large_image", title: TITLE, description: `Monthly take-home pay after tax, ${FY} rates.` },
 });
 
 const breadcrumb: WithContext<BreadcrumbList> = {

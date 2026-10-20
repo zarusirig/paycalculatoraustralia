@@ -71,14 +71,14 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
   },
   coverage: [
     "Apprentice electricians employed by electrical contractors are covered by the Electrical, Electronic and Communications Contracting Award 2020 [MA000025]. Their pay is a percentage of the qualified electrician (grade 5) minimum that rises each year of the 4-year apprenticeship.",
-    "For apprentices who started on or after 1 January 2014 the percentages are 50%, 60%, 70% and 82% of the grade 5 rate — or 55% and 65% in the first two years for an apprentice who completed Year 12 (cl 16.4(a)(ii)).",
+    "For apprentices who started on or after 1 January 2014 the percentages are 50%, 60%, 70% and 82% of the grade 5 rate, or 55% and 65% in the first two years for an apprentice who completed Year 12 (cl 16.4(a)(ii)).",
     "On top of that percentage the award adds the full $22.31 weekly tool allowance and the same percentage of the industry allowance ($41.41) and the electrician's licence allowance ($40.29). The total is an all-purpose rate, so overtime, penalties and leave are paid on it. Quoting 50% of the grade 5 wage alone ($14.73 an hour) understates a first-year apprentice without Year 12 by $1.66 an hour.",
     "An adult apprentice (as defined in the award) who started on or after 1 January 2014 gets 80% of the grade 5 rate in first year and at least the grade 1 rate from second year (cl 16.4(b)(v)). An existing employee who becomes an adult apprentice cannot have their pay cut (cl 16.4(b)(i)).",
   ],
   tables: [
     {
       id: "junior-year-12",
-      title: "Apprentice electrician pay rates — completed Year 12 (started on or after 1 January 2014)",
+      title: "Apprentice electrician pay rates: completed Year 12 (started on or after 1 January 2014)",
       intro:
         "Weekly = percentage of the $1,119.10 grade 5 wage + $22.31 tool allowance + the same percentage of the industry and licence allowances. Hourly rates are exactly as published in Schedule B.4.5. The award sets no casual apprentice rate.",
       belowMinimumWage: NOT_NMW,
@@ -91,7 +91,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
     },
     {
       id: "junior-no-year-12",
-      title: "Apprentice electrician pay rates — did not complete Year 12",
+      title: "Apprentice electrician pay rates: did not complete Year 12",
       intro: "Same formula at 50%, 60%, 70% and 82% of grade 5. Hourly rates are Schedule B.4.5 exactly.",
       belowMinimumWage: NOT_NMW,
       rows: [
@@ -132,7 +132,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
   ],
   median: null,
   notices: [
-    "Started your apprenticeship before 1 January 2014? Different percentages apply (40%, 52%, 70%, 82% for juniors — cl 16.4(a)(i)); see Schedule B.4.9 of the award.",
+    "Started your apprenticeship before 1 January 2014? Different percentages apply (40%, 52%, 70%, 82% for juniors, cl 16.4(a)(i)); see Schedule B.4.9 of the award.",
   ],
   notShown: [
     "Rates for apprentices who began before 1 January 2014, school-based apprentices (Schedule D) and apprentice shiftworkers.",
@@ -161,7 +161,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
     },
   ],
   sources: [
-    { title: "Electrical, Electronic and Communications Contracting Award 2020 [MA000025] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000025") },
+    { title: "Electrical, Electronic and Communications Contracting Award 2020 [MA000025], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000025") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
   ],

@@ -18,7 +18,7 @@ const A = formatAUD(ZONE_AREA_RATES.zoneA.fixedAmount);
 const B = formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount);
 const SPECIAL = formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount);
 
-const TITLE = `Zone Tax Offset Calculator — ${A} Zone A, ${SPECIAL} Special Area`;
+const TITLE = `Zone Tax Offset Calculator - ${A} Zone A, ${SPECIAL} Special Area`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -62,7 +62,7 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
               <li><span className="font-medium text-navy" aria-current="page">Paid Parental Leave</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Paid Parental Leave Calculator 2026 — 26 Weeks, Pay and Super</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Paid Parental Leave Calculator 2026 - 26 Weeks, Pay and Super</h1>
           <p className="text-lg text-warmgray">
             Paid Parental Leave in Australia is <strong>{formatAUD(RATE.daily, 2)} a day, or {formatAUD(RATE.weekly, 2)} a week</strong>, for {PPL_CURRENT_FY}, paid for up to <strong>{NOW.days} days ({NOW.weeks} weeks)</strong> for a child born or adopted on or after {NOW.label}. The rate is based on the National Minimum Wage and is taxed as income, with {NOW.reservedForPartner} of the days reserved for a partner and a {Math.round(PPL_RULES.superRate * 100)}% superannuation contribution paid by the ATO. Work out your days, your pay and whether you meet the income test.
           </p>
@@ -92,14 +92,14 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
                     <div>
                       <label htmlFor="pdays" className={LABEL}>Days your partner will take</label>
                       <input id="pdays" type="number" min={0} max={r.ent.days} value={partnerDays} onChange={(e) => setPartnerDays(Math.max(0, Math.min(r.ent.days, Number(e.target.value || 0))))} className={INPUT} />
-                      <p className="text-xs text-warmgray-light mt-1">{r.ent.reservedForPartner} days are reserved for them — unused reserved days are lost.</p>
+                      <p className="text-xs text-warmgray-light mt-1">{r.ent.reservedForPartner} days are reserved for them. Unused reserved days are lost.</p>
                     </div>
                   )}
                   <div>
                     <label htmlFor="fy" className={LABEL}>Income test year</label>
                     <select id="fy" value={incomeFy} onChange={(e) => setIncomeFy(e.target.value as FyKey)} className={INPUT}>
-                      <option value="2025-26">2025-26 — birth or claim (whichever is earlier) from 1 July 2026</option>
-                      <option value="2024-25">2024-25 — birth or claim (whichever is earlier) in 2025-26</option>
+                      <option value="2025-26">2025-26: birth or claim (whichever is earlier) from 1 July 2026</option>
+                      <option value="2024-25">2024-25: birth or claim (whichever is earlier) in 2025-26</option>
                     </select>
                   </div>
                   <MoneyInput id="own" label="Your adjusted taxable income that year" value={ownAti} onChange={setOwnAti} max={2_000_000} step={1_000} />
@@ -130,7 +130,7 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
                     <Row label={`Tax withheld if Services Australia pays you (${Math.round(PPL_RULES.defaultWithholding * 100)}% default)`} value={formatNegAUD(r.withheld, 2)} />
                     <Row label={`Super from the ATO (${Math.round(PPL_RULES.superRate * 100)}%, paid after 30 June)`} value={formatAUD(r.superEst, 2)} />
                   </div>
-                  {r.block.unpublishedDays > 0 && <Note tone="warn">* {r.block.unpublishedDays} of your days fall after 30 June 2027. The rate for those days isn&apos;t published yet — it usually rises on 1 July with the national minimum wage — so they are priced at today&apos;s {formatAUD(RATE.daily, 2)}.</Note>}
+                  {r.block.unpublishedDays > 0 && <Note tone="warn">* {r.block.unpublishedDays} of your days fall after 30 June 2027. The rate for those days isn&apos;t published yet (it usually rises on 1 July with the national minimum wage), so they are priced at today&apos;s {formatAUD(RATE.daily, 2)}.</Note>}
                   <p className="text-xs text-warmgray-light">Weekdays only, one continuous block. Doesn&apos;t check the work test or residence rules. The super estimate excludes the ATO&apos;s interest component.</p>
                 </div>
               </div>

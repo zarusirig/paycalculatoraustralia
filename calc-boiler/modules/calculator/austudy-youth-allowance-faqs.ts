@@ -20,11 +20,11 @@ export const STUDENT_FAQS: readonly StudentFaq[] = [
   },
   {
     q: "How much can I earn on Youth Allowance as a job seeker?",
-    a: `Your payment starts reducing once your income passes ${formatAUD(YJ.freeArea)} a fortnight. It reaches $0 at ${formatAUD(YJ.publishedCutOff.under18AtHome, 2)} a fortnight if you're under 18 at home, ${formatAUD(YJ.publishedCutOff.over18AtHome, 2)} if you're 18 or older at home, and ${formatAUD(YJ.publishedCutOff.awayFromHome, 2)} if you live away from home. Students have a much bigger free area — ${formatAUD(T.freeArea)} a fortnight.`,
+    a: `Your payment starts reducing once your income passes ${formatAUD(YJ.freeArea)} a fortnight. It reaches $0 at ${formatAUD(YJ.publishedCutOff.under18AtHome, 2)} a fortnight if you're under 18 at home, ${formatAUD(YJ.publishedCutOff.over18AtHome, 2)} if you're 18 or older at home, and ${formatAUD(YJ.publishedCutOff.awayFromHome, 2)} if you live away from home. Students have a much bigger free area: ${formatAUD(T.freeArea)} a fortnight.`,
   },
   {
     q: "Do my parents' incomes affect my Youth Allowance?",
-    a: "Yes, if Services Australia assesses you as dependent — a parental means test then applies alongside your own income test, and your parents' taxable income is reassessed each year. If you're independent, your parents' income doesn't count — for example, Services Australia treats a job seeker as independent once they have lived with a partner for 12 months. This calculator covers your own income only.",
+    a: "Yes, if Services Australia assesses you as dependent. A parental means test then applies alongside your own income test, and your parents' taxable income is reassessed each year. If you're independent, your parents' income doesn't count. For example, Services Australia treats a job seeker as independent once they have lived with a partner for 12 months. This calculator covers your own income only.",
   },
   {
     q: "How much can I earn on Austudy or Youth Allowance before it reduces?",

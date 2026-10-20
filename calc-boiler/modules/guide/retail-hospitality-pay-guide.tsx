@@ -52,7 +52,7 @@ export default function RetailHospitalityPayGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Retail &amp; Hospitality Pay Guide — Award Rates, Penalties &amp; Your Rights
+            Retail &amp; Hospitality Pay Guide: Award Rates, Penalties &amp; Your Rights
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             The hospitality award rate is the same in Queensland as in every other state, because the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code})</a> is federal: its adult level 1 rate is {formatAUD(HOSP_L1.hourly, 2)} an hour from {HOSPITALITY_AWARD.operativeFrom}, or {formatAUD(HOSP_L1.hourly * (1 + HOSPITALITY_AWARD.casualLoading), 2)} for a casual. Retail workers are covered by the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}), where level 1 is {formatAUD(RETAIL_L1.hourly, 2)} an hour. Both add weekend penalties, and this guide covers the two awards in detail.
@@ -69,7 +69,7 @@ export default function RetailHospitalityPayGuidePage() {
             {/*
               The full rate tables that used to sit here have moved to
               /retail-award-rates/ and /hospitality-award-rates/, which own
-              those terms. The tables here had drifted badly — the hospitality
+              those terms. The tables here had drifted badly. The hospitality
               one listed Level 1 above Level 2 and disagreed with the Fair Work
               pay guide at every level. This page now covers what it is
               actually good at: what the job is like and what your rights are.
@@ -110,7 +110,7 @@ export default function RetailHospitalityPayGuidePage() {
                 <p className="text-xs text-warmgray-light mt-2">Adult rates from {HOSPITALITY_AWARD.operativeFrom}. Casual employees add a {(HOSPITALITY_AWARD.casualLoading * 100).toFixed(0)}% loading.</p>
               </div>
               <p>
-                <strong>The two awards are not interchangeable</strong>, and if you work across both — a bistro attached to a bottle shop, say — the differences matter. Hospitality pays evening and night work as a flat cash amount per hour; retail uses a percentage. Retail casuals receive the casual loading on overtime; hospitality casuals do not. And juniors aged 19 get 85% in hospitality against 80% in retail.
+                <strong>The two awards are not interchangeable</strong>, and if you work across both (a bistro attached to a bottle shop, say), the differences matter. Hospitality pays evening and night work as a flat cash amount per hour; retail uses a percentage. Retail casuals receive the casual loading on overtime; hospitality casuals do not. And juniors aged 19 get 85% in hospitality against 80% in retail.
               </p>
               <p>
                 Full classification tables, penalty rates, overtime and junior scales for each are on the dedicated pages: <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link>. For junior rates across all awards, see <Link href="/junior-pay-rates/">junior pay rates</Link>.

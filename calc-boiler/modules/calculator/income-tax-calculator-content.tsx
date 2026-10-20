@@ -110,7 +110,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
               </p>
               <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
                 <p className="text-base leading-relaxed">
-                  <strong className="text-navy">Australian income tax for FY{FY} uses 5 brackets:</strong> 0% up to {formatAUD(TAX_FREE_THRESHOLD)}, {NEW_RATE} to {formatAUD(TAX_BRACKETS[1].max)}, {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, and {formatPercent(TAX_BRACKETS[4].rate, 0)} above. Most workers also pay the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Lodging your {PREV_FY} return? The old {OLD_RATE} rate applied — see the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link>.
+                  <strong className="text-navy">Australian income tax for FY{FY} uses 5 brackets:</strong> 0% up to {formatAUD(TAX_FREE_THRESHOLD)}, {NEW_RATE} to {formatAUD(TAX_BRACKETS[1].max)}, {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, and {formatPercent(TAX_BRACKETS[4].rate, 0)} above. Most workers also pay the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Lodging your {PREV_FY} return? The old {OLD_RATE} rate applied. See the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link>.
                 </p>
               </div>
           </div>
@@ -149,7 +149,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-warmgray">The {NEW_RATE} second rate is new: it dropped from {OLD_RATE} on <strong>1 July 2026</strong> under the legislated cost-of-living tax cuts, saving up to <strong>{formatAUD(RATE_CUT_SAVING)} a year</strong> for anyone earning over {formatAUD(TAX_BRACKETS[1].max)}. It is the only bracket change from {PREV_FY} — see the <Link href="/tax-bracket-history/" className="text-eucalyptus-dark hover:underline font-medium">tax bracket history</Link> for every year since 2018.</p>
+              <p className="mt-3 text-warmgray">The {NEW_RATE} second rate is new: it dropped from {OLD_RATE} on <strong>1 July 2026</strong> under the legislated cost-of-living tax cuts, saving up to <strong>{formatAUD(RATE_CUT_SAVING)} a year</strong> for anyone earning over {formatAUD(TAX_BRACKETS[1].max)}. It is the only bracket change from {PREV_FY}. See the <Link href="/tax-bracket-history/" className="text-eucalyptus-dark hover:underline font-medium">tax bracket history</Link> for every year since 2018.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2 mt-6">Non-Resident and Working Holiday Maker Rates</h3>
               <p className="mb-3 text-warmgray">Different scales apply if you are not an Australian resident for tax purposes. Neither group receives the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold or LITO, and neither pays the Medicare levy.</p>
@@ -182,14 +182,14 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* How Is Income Tax Calculated in Australia? */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Income Tax Calculated in Australia?</h2>
-              <p className="mb-4 text-warmgray">Income tax is calculated with a progressive marginal system: your income is sliced across the brackets and each slice is taxed at that bracket&apos;s rate — your whole salary is never taxed at one rate. Here is the exact calculation for a gross salary of <strong>{formatAUD(EX.salary)}</strong> in FY{FY}:</p>
+              <p className="mb-4 text-warmgray">Income tax is calculated with a progressive marginal system: your income is sliced across the brackets and each slice is taxed at that bracket&apos;s rate, and your whole salary is never taxed at one rate. Here is the exact calculation for a gross salary of <strong>{formatAUD(EX.salary)}</strong> in FY{FY}:</p>
               <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-                <li><strong>Apply the tax-free threshold.</strong> The first {formatAUD(TAX_FREE_THRESHOLD)} is taxed at <strong>0%</strong> — tax on this slice is <strong>$0</strong>.</li>
+                <li><strong>Apply the tax-free threshold.</strong> The first {formatAUD(TAX_FREE_THRESHOLD)} is taxed at <strong>0%</strong>, so tax on this slice is <strong>$0</strong>.</li>
                 <li><strong>Tax each remaining slice at its bracket rate.</strong> {formatAUD(EX.b2.min)}–{formatAUD(EX.b2.max)} at {formatPercent(EX.b2.rate, 0)} = <strong>{formatAUD(EX.taxInB2)}</strong>. {formatAUD(EX.b3.min)}–{formatAUD(EX.salary)} at {formatPercent(EX.b3.rate, 0)} = <strong>{formatAUD(EX.taxInB3)}</strong>. Gross income tax totals <strong>{formatAUD(EX.gross)}</strong>.</li>
                 <li><strong>Subtract tax offsets.</strong> At {formatAUD(EX.salary)}, LITO has fully phased out (it ends at {formatAUD(LITO.nilOffsetIncome)}), so the offset is <strong>{formatAUD(EX.lito)}</strong> and net income tax stays at <strong>{formatAUD(EX.net)}</strong>.</li>
                 <li><strong>Add the Medicare levy.</strong> {formatPercent(MEDICARE_LEVY.rate, 0)} of {formatAUD(EX.salary)} = <strong>{formatAUD(EX.medicare)}</strong>. Total tax is <strong>{formatAUD(EX.total)}</strong>.</li>
               </ol>
-              <p className="text-warmgray">Take-home pay on {formatAUD(EX.salary)} is <strong>{formatAUD(EX.takeHome)} per year</strong>, or <strong>{formatAUD(EX.weekly, 2)} per week</strong>. The effective rate is <strong>{formatPercent(EX.effective)}</strong> — well below the {formatPercent(EX.b3.rate, 0)} marginal rate, because the lower slices are taxed lightly. For take-home pay with super, HECS and salary sacrifice included, use the <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">pay calculator on our homepage</Link>.</p>
+              <p className="text-warmgray">Take-home pay on {formatAUD(EX.salary)} is <strong>{formatAUD(EX.takeHome)} per year</strong>, or <strong>{formatAUD(EX.weekly, 2)} per week</strong>. The effective rate is <strong>{formatPercent(EX.effective)}</strong>, well below the {formatPercent(EX.b3.rate, 0)} marginal rate, because the lower slices are taxed lightly. For take-home pay with super, HECS and salary sacrifice included, use the <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">pay calculator on our homepage</Link>.</p>
             </section>
 
             {/* Tax on common salaries (with /tax-on/ links) */}
@@ -236,7 +236,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
               <p className="mb-4 text-warmgray">Tax offsets reduce your final tax bill dollar-for-dollar, unlike deductions, which lower assessable income before the brackets apply. Two offsets matter to most taxpayers.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2">Low Income Tax Offset (LITO)</h3>
-              <p className="mb-3 text-warmgray">Taxpayers earning under {formatAUD(LITO.nilOffsetIncome)} receive LITO automatically — up to <strong>{formatAUD(LITO.maxOffset)}</strong> — when their return is assessed. No form is required.</p>
+              <p className="mb-3 text-warmgray">Taxpayers earning under {formatAUD(LITO.nilOffsetIncome)} receive LITO automatically (up to <strong>{formatAUD(LITO.maxOffset)}</strong>) when their return is assessed. No form is required.</p>
               <ul className="list-disc pl-6 space-y-1 text-warmgray">
                 <li>Income up to {formatAUD(LITO.fullOffsetCeiling)}: full {formatAUD(LITO.maxOffset)} offset</li>
                 <li>{formatAUD(LITO.phaseOut1.start)} – {formatAUD(LITO.phaseOut1.end)}: reduces at 5c per dollar over {formatAUD(LITO.fullOffsetCeiling)}</li>
@@ -252,7 +252,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
               <ul className="list-disc pl-6 space-y-1 text-warmgray">
                 <li><strong>Singles:</strong> up to {formatAUD(SAPTO_BANDS.single.maxOffset)}, shading out from {formatAUD(SAPTO_BANDS.single.shadingOutThreshold)} and cutting out at {formatAUD(SAPTO_BANDS.single.cutOutThreshold)}</li>
                 <li><strong>Couples:</strong> up to {formatAUD(SAPTO_BANDS.couple.maxOffset)} each, with eligibility tested on combined rebate income up to {formatAUD(SAPTO_BANDS.couple.combinedCutOut)}</li>
-                <li>SAPTO is non-refundable — it can reduce tax to zero but does not generate a refund</li>
+                <li>SAPTO is non-refundable: it can reduce tax to zero but does not generate a refund</li>
               </ul>
               <p className="mt-3 text-sm text-warmgray-light">
                 Model your exact offset with the <Link href="/sapto-calculator/" className="text-eucalyptus-dark hover:underline font-medium">SAPTO Calculator</Link>.
@@ -300,9 +300,9 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* Tax withheld vs tax payable */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Withheld vs Tax Payable: Why Your Payslip Differs</h2>
-              <p className="mb-4 text-warmgray">This calculator shows your <strong>annual tax liability</strong> — the amount the ATO actually assesses on your income. What comes out of each payslip is <strong>PAYG withholding</strong>: an estimate your employer deducts using the ATO&apos;s withholding schedules, which annualise each pay period in isolation.</p>
-              <p className="mb-4 text-warmgray">The two rarely match to the dollar. Withholding can&apos;t see your deductions, a mid-year pay change, a second job, or weeks you didn&apos;t work — so most people end the year slightly over-withheld and receive the difference back as a refund after lodging. If you were under-withheld (common with two jobs both claiming the tax-free threshold), the same reconciliation produces a bill.</p>
-              <p className="text-warmgray">To check the exact amount your employer should be withholding each pay, see the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline font-medium">PAYG withholding tables</Link>, or jump straight to the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">weekly</Link>, <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">fortnightly</Link> or <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">monthly tax table</Link>. Bonuses and back pay are withheld under a separate method — the <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Schedule 5 tax table</Link>.</p>
+              <p className="mb-4 text-warmgray">This calculator shows your <strong>annual tax liability</strong>: the amount the ATO actually assesses on your income. What comes out of each payslip is <strong>PAYG withholding</strong>: an estimate your employer deducts using the ATO&apos;s withholding schedules, which annualise each pay period in isolation.</p>
+              <p className="mb-4 text-warmgray">The two rarely match to the dollar. Withholding can&apos;t see your deductions, a mid-year pay change, a second job, or weeks you didn&apos;t work, so most people end the year slightly over-withheld and receive the difference back as a refund after lodging. If you were under-withheld (common with two jobs both claiming the tax-free threshold), the same reconciliation produces a bill.</p>
+              <p className="text-warmgray">To check the exact amount your employer should be withholding each pay, see the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline font-medium">PAYG withholding tables</Link>, or jump straight to the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">weekly</Link>, <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">fortnightly</Link> or <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">monthly tax table</Link>. Bonuses and back pay are withheld under a separate method: the <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Schedule 5 tax table</Link>.</p>
             </section>
 
             {/* Beyond income tax */}
@@ -310,9 +310,9 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Beyond Income Tax: Medicare, HECS and Residency</h2>
               <p className="mb-3 text-warmgray">Income tax is usually the biggest deduction from your pay, but it is not the only one:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
-                <li><Link href="/medicare-levy/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy</Link> — <strong>{formatPercent(MEDICARE_LEVY.rate, 0)}</strong> of taxable income for most taxpayers, with a reduction for low incomes. A <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> of 1–1.5% applies above {formatAUD(MLS_START)} (singles) without private hospital cover.</li>
-                <li><Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP repayments</Link> — start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> of repayment income in FY{FY}, at {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} of every dollar above the threshold under the marginal repayment system.</li>
-                <li><Link href="/non-resident-tax/" className="font-medium text-eucalyptus-dark hover:underline">Non-resident tax</Link> — foreign residents pay {formatPercent(NON_RESIDENT_TAX_BRACKETS[0].rate, 0)} from the first dollar with no tax-free threshold, while <Link href="/working-holiday-tax/" className="font-medium text-eucalyptus-dark hover:underline">working holiday makers</Link> have their own 15% schedule.</li>
+                <li><Link href="/medicare-levy/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy</Link>: <strong>{formatPercent(MEDICARE_LEVY.rate, 0)}</strong> of taxable income for most taxpayers, with a reduction for low incomes. A <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> of 1–1.5% applies above {formatAUD(MLS_START)} (singles) without private hospital cover.</li>
+                <li><Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP repayments</Link> start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> of repayment income in FY{FY}, at {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} of every dollar above the threshold under the marginal repayment system.</li>
+                <li><Link href="/non-resident-tax/" className="font-medium text-eucalyptus-dark hover:underline">Non-resident tax</Link>: foreign residents pay {formatPercent(NON_RESIDENT_TAX_BRACKETS[0].rate, 0)} from the first dollar with no tax-free threshold, while <Link href="/working-holiday-tax/" className="font-medium text-eucalyptus-dark hover:underline">working holiday makers</Link> have their own 15% schedule.</li>
               </ul>
               <p className="mt-3 text-sm text-warmgray-light">
                 <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">See your full pay breakdown with every deduction →</Link>{" "}
@@ -388,7 +388,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* CTA */}
             <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Full Pay Breakdown</h2>
-              <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super — all in one calculation.</p>
+              <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super, all in one calculation.</p>
               <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
                 Calculate Your Take-Home Pay →
               </Link>

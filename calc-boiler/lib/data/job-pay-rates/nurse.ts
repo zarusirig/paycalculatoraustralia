@@ -133,7 +133,7 @@ const ENROLLED_NURSE_SECTION: OccupationSection = {
   id: "enrolled-nurse-pay",
   heading: "Enrolled nurse pay: award minimum and public hospital rates by state",
   paragraphs: [
-    `An enrolled nurse (EN) has a separate, lower scale than a registered nurse. Under the Nurses Award the general-stream EN minimum runs from ${money2(EN_AWARD[0].weekly)} a week (${money2(EN_AWARD[0].hourly)} an hour) at pay point 1 to ${money2(EN_AWARD[EN_AWARD.length - 1].weekly)} at pay point 5 — ${money0(annual52(EN_AWARD[0].weekly))} to ${money0(annual52(EN_AWARD[EN_AWARD.length - 1].weekly))} a year full-time. In aged care, an enrolled nurse supervising other direct care employees gets at least ${money2(EN_AGED.weekly)} a week (${money2(EN_AGED.hourly)} an hour) from the first full pay period on or after 1 August 2026.`,
+    `An enrolled nurse (EN) has a separate, lower scale than a registered nurse. Under the Nurses Award the general-stream EN minimum runs from ${money2(EN_AWARD[0].weekly)} a week (${money2(EN_AWARD[0].hourly)} an hour) at pay point 1 to ${money2(EN_AWARD[EN_AWARD.length - 1].weekly)} at pay point 5, or ${money0(annual52(EN_AWARD[0].weekly))} to ${money0(annual52(EN_AWARD[EN_AWARD.length - 1].weekly))} a year full-time. In aged care, an enrolled nurse supervising other direct care employees gets at least ${money2(EN_AGED.weekly)} a week (${money2(EN_AGED.hourly)} an hour) from the first full pay period on or after 1 August 2026.`,
     "Enrolled nurses in state public hospitals are paid under each state's own award or agreement, which pays well above the Nurses Award. The table shows the base enrolled nurse scale in each state's public health system, from the same verified tables as our state nurse pay pages. Where an instrument publishes weekly or fortnightly rates, the annual figure is weekly x 52 or fortnightly x 26.",
     `Jobs and Skills Australia reports median full-time earnings of ${money0(EN_MEDIAN_WEEKLY)} a week for enrolled and mothercraft nurses (ANZSCO 4114, ABS Survey of Employee Earnings and Hours, May 2025), about ${money0(annual52(EN_MEDIAN_WEEKLY))} a year before tax.`,
   ],
@@ -166,21 +166,21 @@ export const NURSE: Occupation = {
   },
   coverage: [
     "The Nurses Award 2020 [MA000034] is the national minimum for nurses employed by private hospitals, GP and specialist clinics, aged care providers, agencies and other national-system employers. It covers nursing assistants, enrolled nurses, registered nurses and nurse practitioners.",
-    "It is a safety net, not what most nurses are paid. Nurses in state public hospitals are covered by state awards and enterprise agreements that pay well above it — see the state nurse pay pages linked on this page for the rates that actually apply in each state's public health system.",
+    "It is a safety net, not what most nurses are paid. Nurses in state public hospitals are covered by state awards and enterprise agreements that pay well above it. See the state nurse pay pages linked on this page for the rates that actually apply in each state's public health system.",
     "Since the aged care work value case, the award has two rate streams. Aged care nurses are paid under clause 15.3 at materially higher rates than the general stream in clause 15.1; both are shown below.",
     "A registered nurse at level 1 moves up one pay point a year to pay point 8. A graduate with a 4-year degree starts on a higher rate ($1,273.40 a week) and a masters graduate on $1,317.20, before moving to pay points 4 and 5.",
   ],
   tables: [
     {
       id: "registered-nurse-1",
-      title: "Registered nurse level 1 pay rates — Nurses Award, general stream",
+      title: "Registered nurse level 1 pay rates: Nurses Award, general stream",
       intro:
         "Clause 15.1, from the first full pay period on or after 1 July 2026 (PR799315). Casual is the hourly rate plus the 25% loading, matching Schedule B.1.3.",
       rows: nursesAwardRows("Registered nurse — level 1", NURSES_AWARD_GENERAL, "Registered nurse level 1"),
     },
     {
       id: "registered-nurse-2-3",
-      title: "Registered nurse levels 2 and 3 — clinical nurse and clinical nurse consultant roles",
+      title: "Registered nurse levels 2 and 3: clinical nurse and clinical nurse consultant roles",
       intro: "Clause 15.1, general stream.",
       rows: [
         ...nursesAwardRows("Registered nurse — level 2", NURSES_AWARD_GENERAL, "Registered nurse level 2"),
@@ -198,7 +198,7 @@ export const NURSE: Occupation = {
     },
     {
       id: "aged-care",
-      title: "Aged care nurse pay rates — Nurses Award aged care stream",
+      title: "Aged care nurse pay rates: Nurses Award aged care stream",
       intro:
         "Clause 15.3, from the first full pay period on or after 1 August 2026 (PR812118). These apply only to aged care employees.",
       rows: [
@@ -226,7 +226,7 @@ export const NURSE: Occupation = {
     "Work in a state public hospital? This award is not your pay scale. Use the state nurse pay pages linked in the sidebar, which quote each state's own agreement.",
   ],
   notShown: [
-    "Registered nurse levels 4 and 5, nurse practitioners and student enrolled nurses — see the healthcare worker pay page for the full award.",
+    "Registered nurse levels 4 and 5, nurse practitioners and student enrolled nurses: see the healthcare worker pay page for the full award.",
     "Aged care enrolled nurse and level 3–5 aged care rates.",
     "State public sector registered nurse and midwife scales, which are on the state nurse pay pages.",
   ],
@@ -238,7 +238,7 @@ export const NURSE: Occupation = {
     },
     {
       q: "What is the award rate for a registered nurse in 2026?",
-      a: "Under the Nurses Award, a registered nurse level 1 pay point 1 must be paid at least $32.09 an hour, or $1,219.50 a week, from the first full pay period on or after 1 July 2026 — $63,414 a year full-time before tax. It rises to $38.57 an hour at pay point 8. Aged care registered nurses start higher, at $41.36 an hour.",
+      a: "Under the Nurses Award, a registered nurse level 1 pay point 1 must be paid at least $32.09 an hour, or $1,219.50 a week, from the first full pay period on or after 1 July 2026, which is $63,414 a year full-time before tax. It rises to $38.57 an hour at pay point 8. Aged care registered nurses start higher, at $41.36 an hour.",
     },
     {
       q: "Do public hospital nurses get paid the award rate?",
@@ -246,11 +246,11 @@ export const NURSE: Occupation = {
     },
     {
       q: "What is the casual rate for a nurse?",
-      a: "A casual registered nurse level 1 pay point 1 earns at least $40.11 an hour under the award, the $32.09 rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate — $60.17 an hour.",
+      a: "A casual registered nurse level 1 pay point 1 earns at least $40.11 an hour under the award, the $32.09 rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate, which is $60.17 an hour.",
     },
     {
       q: "How much is a nurse paid on a Sunday?",
-      a: "Under the Nurses Award, Sunday ordinary hours are paid at 175% of the minimum hourly rate — $56.16 an hour for an RN level 1 pay point 1. Public holidays are 200%.",
+      a: "Under the Nurses Award, Sunday ordinary hours are paid at 175% of the minimum hourly rate, or $56.16 an hour for an RN level 1 pay point 1. Public holidays are 200%.",
     },
     {
       q: "How much does an enrolled nurse earn in Australia?",
@@ -262,12 +262,12 @@ export const NURSE: Occupation = {
     },
   ],
   sources: [
-    { title: "Nurses Award 2020 [MA000034] — consolidated to 1 August 2026", publisher: "Fair Work Commission", url: awardTextUrl(NURSES_AWARD.code) },
+    { title: "Nurses Award 2020 [MA000034], consolidated to 1 August 2026", publisher: "Fair Work Commission", url: awardTextUrl(NURSES_AWARD.code) },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
     {
-      title: "Enrolled and Mothercraft Nurses (ANZSCO 4114) occupation profile — ABS Survey of Employee Earnings and Hours, May 2025",
+      title: "Enrolled and Mothercraft Nurses (ANZSCO 4114) occupation profile, ABS Survey of Employee Earnings and Hours, May 2025",
       publisher: "Jobs and Skills Australia",
       url: EN_JSA_URL,
     },

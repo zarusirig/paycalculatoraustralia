@@ -56,7 +56,7 @@ export const SA: Jurisdiction = {
   headline:
     "From the first full pay period on or after 1 July 2026, an ASO-3 in the South Australian public sector is paid $74,095 to $78,694, an ASO-4 $82,212 to $86,180, an ASO-5 $92,122 to $102,456 and an ASO-6 $105,747 to $111,854, under the South Australian Public Sector Enterprise Agreement: Salaried 2026. School Services Officers are on a separate agreement: from 1 May 2026 an SSO-1 is paid $58,360 to $69,759 and an SSO-2 $73,478 to $80,950.",
 
-  metaTitle: "SA Public Sector Pay Rates 2026 — ASO & SSO Pay Scales (ASO1–8)",
+  metaTitle: "SA Public Sector Pay Rates 2026 - ASO & SSO Pay Scales (ASO1–8)",
   metaDescription:
     "South Australian public sector pay from July 2026: every ASO-1 to ASO-8 increment, SSO-1 to SSO-6 School Services Officer rates, PO and OPS ranges and take-home pay.",
 
@@ -75,7 +75,7 @@ export const SA: Jurisdiction = {
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 July 2026",
       rangeMeaning:
-        "First and last increment of the level. Annual salary only — superannuation is paid on top.",
+        "First and last increment of the level. Annual salary only; superannuation is paid on top.",
       sourceId: "sa-salaried-2026",
       streams: [
         {
@@ -186,7 +186,7 @@ export const SA: Jurisdiction = {
               code: "ASO-8",
               name: "Administrative Services Officer Level 8",
               aliases: ["aso8", "aso8 salary"],
-              summary: "Three increments — the top of the ASO stream.",
+              summary: "Three increments, the top of the ASO stream.",
               min: 130_046,
               max: 134_956,
               payPoints: [
@@ -279,7 +279,7 @@ export const SA: Jurisdiction = {
     },
     {
       id: "sa-sso-2026",
-      title: "School Services Officers — Education Staff Enterprise Agreement 2024, from 1 May 2026",
+      title: "School Services Officers, Education Staff Enterprise Agreement 2024, from 1 May 2026",
       coverage:
         "School Services Officers in South Australian government schools and preschools, employed by the Department for Education. Not covered by the Salaried 2026 agreement.",
       basis: "agreement",
@@ -288,7 +288,7 @@ export const SA: Jurisdiction = {
         "First and last increment of the level. The top increment of each SSO level is criteria-based: the department's rate sheet says it is \"only applicable to those with relevant qualifications who have completed the top tier increment process\".",
       sourceId: "sa-education-2024",
       note:
-        "These are the standard per-annum rates for School Services Officers with leave conditions. The department also publishes loaded variants — a 16% loading version, the same spread over 52 weeks, and a casual rate — which are not reproduced here.",
+        "These are the standard per-annum rates for School Services Officers with leave conditions. The department also publishes loaded variants (a 16% loading version, the same spread over 52 weeks, and a casual rate), which are not reproduced here.",
       streams: [
         {
           id: "sa-sso",
@@ -446,11 +446,11 @@ export const SA: Jurisdiction = {
   ],
 
   unverified: [
-    "Every PO and OPS increment between the bottom and top of each level — only the two end points were transcribed, so the page shows the range and not the steps.",
+    "Every PO and OPS increment between the bottom and top of each level. Only the two end points were transcribed, so the page shows the range and not the steps.",
     "Other salaried streams in Appendix 2 of the Salaried 2026 agreement (technical, legal, medical scientist, allied health and so on), which have their own schedules.",
     "The 1 July 2027 column of the Salaried 2026 agreement. It is published, but it is not in force until the first full pay period on or after 1 July 2027 and is not tabled here.",
     "The loaded, 52-week and casual SSO variants on the Department for Education's rate sheet.",
-    "An employer superannuation percentage — neither agreement states one.",
+    "An employer superannuation percentage: neither agreement states one.",
     "SA Health nurses and SA teachers, who are on their own agreements (see the nurse and teacher pages).",
   ],
 
@@ -473,7 +473,7 @@ export const SA: Jurisdiction = {
     },
     {
       q: "Are School Services Officers on the same agreement as ASOs?",
-      a: "No. ASOs are paid under the South Australian Public Sector Enterprise Agreement: Salaried 2026, and School Services Officers under the South Australian School and Preschool Education Staff Enterprise Agreement 2024. The two move on different dates — 1 July for the salaried agreement and 1 May for the SSO schedule.",
+      a: "No. ASOs are paid under the South Australian Public Sector Enterprise Agreement: Salaried 2026, and School Services Officers under the South Australian School and Preschool Education Staff Enterprise Agreement 2024. The two move on different dates: 1 July for the salaried agreement and 1 May for the SSO schedule.",
     },
   ],
 };

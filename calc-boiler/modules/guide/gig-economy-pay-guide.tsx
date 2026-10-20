@@ -32,8 +32,8 @@ export default function GigEconomyPayGuidePage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Gig Economy Pay Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gig Economy Pay Guide — Tax &amp; Pay for Uber, Delivery &amp; Freelance Workers</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Working for Uber, Deliveroo, DoorDash, or freelancing? You are running a business, and the tax rules are different from employment. This guide covers ABN registration, GST obligations, quarterly BAS, deductions, and super — everything gig workers need to manage their tax.</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gig Economy Pay Guide: Tax &amp; Pay for Uber, Delivery &amp; Freelance Workers</h1>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Working for Uber, Deliveroo, DoorDash, or freelancing? You are running a business, and the tax rules are different from employment. This guide covers ABN registration, GST obligations, quarterly BAS, deductions, and super: everything gig workers need to manage their tax.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -44,14 +44,14 @@ export default function GigEconomyPayGuidePage() {
             <section id="employee-or-contractor">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Employee or Contractor?</h2>
               <p>
-                The distinction between employee and independent contractor determines your entire tax structure. Most gig platform workers — Uber drivers, Deliveroo riders, Airtasker providers, freelancers — are classified as <strong>independent contractors</strong>, not employees. This means:
+                The distinction between employee and independent contractor determines your entire tax structure. Most gig platform workers (Uber drivers, Deliveroo riders, Airtasker providers, freelancers) are classified as <strong>independent contractors</strong>, not employees. This means:
               </p>
               <ul>
-                <li><strong>No PAYG tax withholding</strong> — you receive gross income with no tax deducted. You are responsible for setting aside money for tax.</li>
-                <li><strong>No employer super contributions</strong> — you must arrange your own superannuation (or go without).</li>
-                <li><strong>No paid leave</strong> — no annual leave, sick leave, or public holiday pay.</li>
-                <li><strong>You can claim business deductions</strong> — expenses related to earning your gig income are deductible against that income.</li>
-                <li><strong>You need an ABN</strong> — an Australian Business Number is required to operate as a sole trader.</li>
+                <li><strong>No PAYG tax withholding</strong>: you receive gross income with no tax deducted. You are responsible for setting aside money for tax.</li>
+                <li><strong>No employer super contributions</strong>: you must arrange your own superannuation (or go without).</li>
+                <li><strong>No paid leave</strong>: no annual leave, sick leave, or public holiday pay.</li>
+                <li><strong>You can claim business deductions</strong>: expenses related to earning your gig income are deductible against that income.</li>
+                <li><strong>You need an ABN</strong>: an Australian Business Number is required to operate as a sole trader.</li>
               </ul>
               <p>
                 The ATO uses a multi-factor test to determine your classification. If you are unsure, see our detailed <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> or use our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> to compare the financial impact.
@@ -69,7 +69,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>GST Registration</h3>
               <p>
-                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. This is a special rule — Uber, DiDi, Ola, and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches $75,000</strong>.
+                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. This is a special rule: Uber, DiDi, Ola, and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches $75,000</strong>.
               </p>
               <p>
                 When registered for GST, you charge GST (10%) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
@@ -145,7 +145,7 @@ export default function GigEconomyPayGuidePage() {
                       <tr><th className="px-5 py-3">Deduction</th><th className="px-5 py-3">Details</th><th className="px-5 py-3 text-right">Typical Annual Amount</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Car expenses (logbook method)</td><td className="px-5 py-3">Fuel, servicing, registration, insurance, depreciation — business % only</td><td className="px-5 py-3 text-right">$5,000 – $15,000</td></tr>
+                      <tr><td className="px-5 py-3">Car expenses (logbook method)</td><td className="px-5 py-3">Fuel, servicing, registration, insurance, depreciation (business % only)</td><td className="px-5 py-3 text-right">$5,000 – $15,000</td></tr>
                       <tr><td className="px-5 py-3">Phone and data</td><td className="px-5 py-3">Business-use % of phone plan for navigation and ride apps</td><td className="px-5 py-3 text-right">$300 – $800</td></tr>
                       <tr><td className="px-5 py-3">Platform fees</td><td className="px-5 py-3">Commission and service fees charged by the platform</td><td className="px-5 py-3 text-right">Already deducted from income</td></tr>
                       <tr><td className="px-5 py-3">Phone mount, charger, dashcam</td><td className="px-5 py-3">Accessories used for rideshare work</td><td className="px-5 py-3 text-right">$50 – $300</td></tr>
@@ -182,8 +182,8 @@ export default function GigEconomyPayGuidePage() {
                       <tr><th className="px-5 py-3">Deduction</th><th className="px-5 py-3">Details</th><th className="px-5 py-3 text-right">Typical Annual Amount</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Home office (actual cost)</td><td className="px-5 py-3">Electricity, internet, phone — business-use % of actual bills</td><td className="px-5 py-3 text-right">$1,000 – $3,000</td></tr>
-                      <tr><td className="px-5 py-3">Computer equipment</td><td className="px-5 py-3">Laptop, monitor, keyboard, mouse — depreciate if over $300</td><td className="px-5 py-3 text-right">$500 – $2,000</td></tr>
+                      <tr><td className="px-5 py-3">Home office (actual cost)</td><td className="px-5 py-3">Electricity, internet, phone: business-use % of actual bills</td><td className="px-5 py-3 text-right">$1,000 – $3,000</td></tr>
+                      <tr><td className="px-5 py-3">Computer equipment</td><td className="px-5 py-3">Laptop, monitor, keyboard, mouse (depreciate if over $300)</td><td className="px-5 py-3 text-right">$500 – $2,000</td></tr>
                       <tr><td className="px-5 py-3">Software subscriptions</td><td className="px-5 py-3">Adobe, Figma, accounting software, project management tools</td><td className="px-5 py-3 text-right">$500 – $2,000</td></tr>
                       <tr><td className="px-5 py-3">Professional development</td><td className="px-5 py-3">Courses, books, conferences related to your freelance work</td><td className="px-5 py-3 text-right">$200 – $2,000</td></tr>
                       <tr><td className="px-5 py-3">Marketing and website</td><td className="px-5 py-3">Domain, hosting, advertising, business cards</td><td className="px-5 py-3 text-right">$200 – $1,000</td></tr>
@@ -201,7 +201,7 @@ export default function GigEconomyPayGuidePage() {
                 As an independent contractor, <strong>no one pays super for you</strong>. This is one of the biggest financial differences between employment and gig work. There is no compulsory SG contribution from the platform.
               </p>
               <p>
-                You can (and should) make voluntary super contributions. <strong>Personal concessional contributions</strong> are tax-deductible — you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>15%</strong> in the fund, compared to your marginal rate (which could be 30-45%). The annual concessional contributions cap is <strong>$30,000</strong>.
+                You can (and should) make voluntary super contributions. <strong>Personal concessional contributions</strong> are tax-deductible: you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>15%</strong> in the fund, compared to your marginal rate (which could be 30-45%). The annual concessional contributions cap is <strong>$30,000</strong>.
               </p>
               <p>
                 For example, a gig worker earning $80,000 in the 30% bracket who contributes $10,000 to super saves <strong>$1,500 in tax</strong> (30% marginal rate minus 15% super tax = 15% x $10,000). See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for detailed contribution strategies.
@@ -218,7 +218,7 @@ export default function GigEconomyPayGuidePage() {
                 <li><strong>Your employer withholds tax based on your employment income only.</strong> They do not know about your gig income. This means your withholding may be insufficient, leading to a tax debt at year end.</li>
                 <li><strong>Request additional withholding</strong> by lodging a <strong>PAYG withholding variation</strong> with the ATO, or voluntarily increase your withholding amount with your employer.</li>
                 <li><strong>Business deductions from gig work</strong> can only be offset against your gig income (or total income if you are a sole trader reporting in your individual tax return). You cannot salary sacrifice your gig income.</li>
-                <li><strong>GST obligations</strong> are based on your gig/business turnover only — your employment income is not included in the $75,000 GST threshold calculation.</li>
+                <li><strong>GST obligations</strong> are based on your gig/business turnover only. Your employment income is not included in the $75,000 GST threshold calculation.</li>
               </ul>
               <p>
                 Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> with your combined income to estimate total tax liability, then compare against the PAYG already withheld by your employer to see if you need to set extra aside. For a deeper look at structuring, see <Link href="/employee-vs-sole-trader-vs-company/">Employee vs Sole Trader vs Company</Link>.
@@ -231,7 +231,7 @@ export default function GigEconomyPayGuidePage() {
               <FaqAccordion faqs={GIG_ECONOMY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Gig economy tax information is sourced from the Australian Taxation Office (ATO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets, with LITO and the Medicare levy low-income shading applied. Deduction ranges are estimates based on typical gig worker claims. GST rules for rideshare services are per ATO Taxation Determination. Individual circumstances vary — consult a registered tax agent for personalised advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Gig economy tax information is sourced from the Australian Taxation Office (ATO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets, with LITO and the Medicare levy low-income shading applied. Deduction ranges are estimates based on typical gig worker claims. GST rules for rideshare services are per ATO Taxation Determination. Individual circumstances vary, so consult a registered tax agent for personalised advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("gig-economy-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">

@@ -766,7 +766,7 @@ const CLUSTERS: Cluster[] = [
       LEAVE_LOADING,
       { href: "/annual-leave-guide/", title: "Annual Leave Guide", blurb: "Four weeks a year, how it accrues and when it can be cashed out." },
       { href: "/leave-calculator/", title: "Leave Payout Calculator", blurb: "What unused annual leave is worth when you finish up." },
-      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "The other leave entitlement — 7 or 10 years, by state." },
+      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "The other leave entitlement: 7 or 10 years, by state." },
       { href: "/final-pay-calculator/", title: "Final Pay Calculator", blurb: "What you're owed when employment ends." },
       { href: "/redundancy-pay-calculator/", title: "Redundancy Pay Calculator", blurb: "Severance entitlements by years of service." },
       TAKE_HOME,

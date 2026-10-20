@@ -15,7 +15,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const TITLE = "Australian Tax and Pay Data: Free CSV and JSON Download";
-const DESCRIPTION = `Download Australian tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage history (2010 to ${SITE_CONFIG.financialYear}) as CSV and JSON. Sourced to the ATO and Fair Work Commission, free to reuse with a link.`;
+const DESCRIPTION = `Download Australian tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage history (2010 to ${SITE_CONFIG.financialYear}) as free CSV and JSON.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -98,7 +98,7 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Department of Justice Prison Officers' Industrial Agreement 2024 (AG 22 of 2025) — Schedule A, Annualised Salaries",
+      title: "Department of Justice Prison Officers' Industrial Agreement 2024 (AG 22 of 2025), Schedule A, Annualised Salaries",
       publisher: "Western Australian Industrial Relations Commission",
       url: DEP180,
     },
@@ -114,7 +114,7 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "Do WA prison officers get shift penalties?",
-      a: "Not as separate payments for ordinary hours. Shift officers are paid a higher annualised salary that replaces shift penalties, public holidays and accrued days off — $97,610 against $78,881 for a Monday to Friday officer in the first year.",
+      a: "Not as separate payments for ordinary hours. Shift officers are paid a higher annualised salary that replaces shift penalties, public holidays and accrued days off: $97,610 against $78,881 for a Monday to Friday officer in the first year.",
     },
   ],
 };

@@ -51,7 +51,7 @@ export const metadata: Metadata = withFeaturedImage({
     type: "website",
     locale: "en_AU",
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: `Take-home pay every 2 weeks — ${FY} rates.` },
+  twitter: { card: "summary_large_image", title: TITLE, description: `Take-home pay every 2 weeks, ${FY} rates.` },
 });
 
 const breadcrumb: WithContext<BreadcrumbList> = {

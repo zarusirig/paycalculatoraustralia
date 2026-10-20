@@ -242,7 +242,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl"
             style={HEADING_FONT}
           >
-            {state.h1 ?? `${state.code} Teacher Salary ${teacherRatesYear(state)} — ${state.name} Public School Pay Scale`}
+            {state.h1 ?? `${state.code} Teacher Salary ${teacherRatesYear(state)} - ${state.name} Public School Pay Scale`}
           </h1>
           {hasScales && grad !== null && top !== null ? (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
@@ -284,7 +284,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             {hasScales && (
               <section id="pay-scale">
                 <h2 style={HEADING_FONT}>
-                  {state.name} teacher pay scale {teacherRatesYear(state)} — every step
+                  {state.name} teacher pay scale {teacherRatesYear(state)}: every step
                 </h2>
                 {state.classificationNote && <p>{state.classificationNote}</p>}
                 <p>
@@ -432,7 +432,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 <h2 style={HEADING_FONT}>Which step am I on?</h2>
                 <p>
                   This is the part most teachers get wrong on their own payslip. Progression in{" "}
-                  {state.nameInSentence} is not simply one step per calendar year — the rules below are what{" "}
+                  {state.nameInSentence} is not simply one step per calendar year. The rules below are what{" "}
                   {state.employer} actually applies.
                 </p>
                 {state.progression.map((rule) => (
@@ -468,7 +468,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                   {formatAUD(grad)} and a top-of-scale teacher on {formatAUD(top)} both pay income
                   tax and the Medicare levy, and most also have a compulsory HECS-HELP repayment
                   deducted at these income levels. Every salary in the tables above links to its
-                  take-home figure — start with{" "}
+                  take-home figure: start with{" "}
                   <Link href={takeHomeHref(grad)}>
                     take-home pay on {formatAUD(nearestTakeHomeAmount(grad))}
                   </Link>{" "}
@@ -521,7 +521,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               </p>
               <p>
                 Salary sacrificing also lowers the income your compulsory HECS-HELP repayment is
-                assessed on only in limited cases — reportable fringe benefits and reportable super
+                assessed on only in limited cases: reportable fringe benefits and reportable super
                 contributions are added back for that test. If you are packaging, check the effect on
                 repayment income before assuming a saving.
               </p>

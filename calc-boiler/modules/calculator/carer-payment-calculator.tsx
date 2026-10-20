@@ -63,7 +63,7 @@ export default function CarerPaymentCalculatorPage({ children, afterCalculator }
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Carer Payment Calculator" title="Carer Payment Calculator 2026 — Rates, Income Test and Work Hours">
+        <W3Hero crumb="Carer Payment Calculator" title="Carer Payment Calculator 2026: Rates, Income Test and Work Hours">
           <p>
             Carer Payment is {formatAUD(R.maxFortnightly.single.total, 2)} a fortnight single and {formatAUD(R.maxFortnightly.coupleEach.total, 2)} each for a couple from {CP.ratesFrom}. Enter your pay to see how much you keep: the payment reduces by 50 cents for each dollar over {formatAUD(IT.single.freeArea)} a fortnight (single), and you can work up to {CP.workHoursLimit} hours in 4 weeks and still get it.
           </p>
@@ -109,7 +109,7 @@ export default function CarerPaymentCalculatorPage({ children, afterCalculator }
                   </div>
                   <div className={`rounded-xl border p-4 text-sm ${result.withinHours ? "border-eucalyptus bg-eucalyptus-light/40" : "border-ochre/40 bg-ochre/10"} text-navy`}>
                     {result.withinHours
-                      ? <><strong>{hours} hours in 4 weeks — within the {CP.workHoursLimit}-hour limit.</strong> You still need to provide care for a significant period each day.</>
+                      ? <><strong>{hours} hours in 4 weeks, within the {CP.workHoursLimit}-hour limit.</strong> You still need to provide care for a significant period each day.</>
                       : <><strong>{hours} hours in 4 weeks is over the {CP.workHoursLimit}-hour limit.</strong> You can use respite days (up to {CP.respiteDaysPerYear} a calendar year) to cover it, or the payment can be suspended for up to {CP.suspensionMonths} months and restored if your hours drop.</>}
                   </div>
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
@@ -127,7 +127,7 @@ export default function CarerPaymentCalculatorPage({ children, afterCalculator }
                       <Row label="Cut-off" value={situation === "single" ? formatAUD(R.publishedCutOff.single, 2) : `${formatAUD(R.publishedCutOff.coupleCombined, 2)} combined`} />
                     </div>
                   </div>
-                  <p className="text-xs text-warmgray-light">Income test only. Not modelled: the assets test (limits below), deeming, transitional rates, Rent Assistance. Services Australia pays the lower of the income-test and assets-test results. Carer Allowance ({formatAUD(CARER_ALLOWANCE.fortnightly, 2)}) is paid on top if you qualify — see <Link href="/carer-allowance/" className={LINK}>Carer Allowance</Link>.</p>
+                  <p className="text-xs text-warmgray-light">Income test only. Not modelled: the assets test (limits below), deeming, transitional rates, Rent Assistance. Services Australia pays the lower of the income-test and assets-test results. Carer Allowance ({formatAUD(CARER_ALLOWANCE.fortnightly, 2)}) is paid on top if you qualify; see <Link href="/carer-allowance/" className={LINK}>Carer Allowance</Link>.</p>
                 </div>
               </div>
             </CardContent>

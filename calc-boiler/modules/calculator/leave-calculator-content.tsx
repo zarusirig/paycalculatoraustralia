@@ -54,7 +54,7 @@ export default function LeaveCalculatorContent() {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Is Leave Loading Taxed?</h3>
         <p className="mb-4 text-warmgray">
-          Yes. Leave loading is <strong>ordinary income</strong> — your employer applies PAYG withholding to it the same way as salary, and it is taxed at your marginal rate. There is no concessional tax treatment for leave loading, whether it is paid while you take leave or paid out on termination. Estimate the tax with the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
+          Yes. Leave loading is <strong>ordinary income</strong>: your employer applies PAYG withholding to it the same way as salary, and it is taxed at your marginal rate. There is no concessional tax treatment for leave loading, whether it is paid while you take leave or paid out on termination. Estimate the tax with the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
         </p>
       </section>
 
@@ -99,25 +99,25 @@ export default function LeaveCalculatorContent() {
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Annual Leave</td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>4 weeks (152 hours)</strong></td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">Progressive, from day 1</td>
-                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong> — all accrued untaken leave</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong>: all accrued untaken leave</td>
               </tr>
               <tr className="bg-sandstone/30">
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Annual Leave (Shift Workers)</td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>5 weeks (190 hours)</strong></td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">Progressive, from day 1</td>
-                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong> — all accrued untaken leave</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong>: all accrued untaken leave</td>
               </tr>
               <tr>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Personal/Carer&apos;s Leave</td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>10 days (76 hours)</strong></td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">Progressive, cumulative carry-over</td>
-                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>No</strong> — no cash value</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>No</strong>: no cash value</td>
               </tr>
               <tr className="bg-sandstone/30">
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Long Service Leave</td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>8.67 weeks after 10 years</strong></td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">Continuous service (state laws)</td>
-                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong> — pro-rata after 7+ years in most states</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>Yes</strong>: pro-rata after 7+ years in most states</td>
               </tr>
               <tr>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Compassionate Leave</td>
@@ -182,7 +182,7 @@ export default function LeaveCalculatorContent() {
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference — apply only if your Award or contract provides for it.
+          Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference. Apply only if your Award or contract provides for it.
         </p>
       </section>
 
@@ -193,11 +193,11 @@ export default function LeaveCalculatorContent() {
           This leave calculator serves <strong>3 primary user groups</strong>: employees planning resignation, HR professionals processing terminations, and workers budgeting for leave.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
-          <li><strong>Employees resigning or changing jobs</strong> — calculating the expected leave payout in the final pay to plan finances between roles</li>
-          <li><strong>HR managers and payroll officers</strong> — verifying leave payout calculations for terminating employees to ensure NES compliance</li>
-          <li><strong>Workers planning extended leave</strong> — understanding how many weeks of paid annual leave have accrued and the dollar value of that balance</li>
-          <li><strong>Employees facing redundancy</strong> — combining leave payouts with severance entitlements using this calculator alongside the <Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link></li>
-          <li><strong>Accountants preparing EOFY estimates</strong> — projecting leave liabilities on company balance sheets for the {SITE_CONFIG.financialYear} financial year</li>
+          <li><strong>Employees resigning or changing jobs</strong>: calculating the expected leave payout in the final pay to plan finances between roles</li>
+          <li><strong>HR managers and payroll officers</strong>: verifying leave payout calculations for terminating employees to ensure NES compliance</li>
+          <li><strong>Workers planning extended leave</strong>: understanding how many weeks of paid annual leave have accrued and the dollar value of that balance</li>
+          <li><strong>Employees facing redundancy</strong>: combining leave payouts with severance entitlements using this calculator alongside the <Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link></li>
+          <li><strong>Accountants preparing EOFY estimates</strong>: projecting leave liabilities on company balance sheets for the {SITE_CONFIG.financialYear} financial year</li>
         </ul>
       </section>
 
@@ -274,7 +274,7 @@ export default function LeaveCalculatorContent() {
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          *Victoria is the outlier: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (weeks of service ÷ 60), and the entitlement to take it — or be paid out on termination — arises at 7 years, not 10. The other states above vest the full 8.67-week (or equivalent) entitlement specifically at their stated milestone.
+          *Victoria is the outlier: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (weeks of service ÷ 60), and the entitlement to take it (or be paid out on termination) arises at 7 years, not 10. The other states above vest the full 8.67-week (or equivalent) entitlement specifically at their stated milestone.
         </p>
       </section>
 
@@ -285,11 +285,11 @@ export default function LeaveCalculatorContent() {
           The most common leave calculation mistake is <strong>using calendar days instead of business days</strong>, which overstates leave entitlements by 40%.
         </p>
         <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-          <li><strong>Confusing calendar days with working days</strong> — 4 weeks of annual leave equals <strong>20 working days</strong>, not 28 calendar days. Leave accrues based on ordinary working hours (38 hours per week for full-time), not 7-day weeks.</li>
-          <li><strong>Including leave loading when the Award does not provide for it</strong> — Award-free employees on individual contracts rarely receive the 17.5% leave loading. Adding it incorrectly inflates the expected payout by <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong> per year at an $80,000 salary.</li>
-          <li><strong>Forgetting to pro-rate for part-time hours</strong> — A part-time employee working 25 hours per week accrues <strong>2.63 weeks</strong> of leave per year (25/38 x 4 weeks), not the full 4 weeks.</li>
-          <li><strong>Expecting sick leave to be paid out</strong> — Personal/carer&apos;s leave (10 days per year) carries over indefinitely but has <strong>zero cash value</strong> on termination. Only annual leave and long service leave are paid out.</li>
-          <li><strong>Applying the wrong tax rate to leave payouts</strong> — Leave payouts are added to assessable income for the financial year and taxed at marginal rates, not at a flat rate. A large payout can push the employee into a higher <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax bracket</Link>.</li>
+          <li><strong>Confusing calendar days with working days</strong>: 4 weeks of annual leave equals <strong>20 working days</strong>, not 28 calendar days. Leave accrues based on ordinary working hours (38 hours per week for full-time), not 7-day weeks.</li>
+          <li><strong>Including leave loading when the Award does not provide for it</strong>: Award-free employees on individual contracts rarely receive the 17.5% leave loading. Adding it incorrectly inflates the expected payout by <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong> per year at an $80,000 salary.</li>
+          <li><strong>Forgetting to pro-rate for part-time hours</strong>: a part-time employee working 25 hours per week accrues <strong>2.63 weeks</strong> of leave per year (25/38 x 4 weeks), not the full 4 weeks.</li>
+          <li><strong>Expecting sick leave to be paid out</strong>: Personal/carer&apos;s leave (10 days per year) carries over indefinitely but has <strong>zero cash value</strong> on termination. Only annual leave and long service leave are paid out.</li>
+          <li><strong>Applying the wrong tax rate to leave payouts</strong>: leave payouts are added to assessable income for the financial year and taxed at marginal rates, not at a flat rate. A large payout can push the employee into a higher <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax bracket</Link>.</li>
         </ol>
       </section>
 
@@ -300,11 +300,11 @@ export default function LeaveCalculatorContent() {
           Leave entitlements interact directly with <strong>5 other payroll calculations</strong> including tax, superannuation, and redundancy pay.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
-          <li><Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link> — calculate severance pay based on years of service and combine it with your leave payout total</li>
-          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — convert your gross annual salary to after-tax take-home pay for FY{SITE_CONFIG.financialYear}</li>
-          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — calculate the employer SG rate of 12% on your ordinary time earnings and check the Medicare levy surcharge threshold</li>
-          <li><Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link> — determine penalty rates for overtime, weekend, and public holiday work under your Award</li>
-          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — estimate how much tax you pay on salary and leave payouts combined in the {SITE_CONFIG.financialYear} financial year</li>
+          <li><Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link>: calculate severance pay based on years of service and combine it with your leave payout total</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: convert your gross annual salary to after-tax take-home pay for FY{SITE_CONFIG.financialYear}</li>
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG rate of 12% on your ordinary time earnings and check the Medicare levy surcharge threshold</li>
+          <li><Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link>: determine penalty rates for overtime, weekend, and public holiday work under your Award</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: estimate how much tax you pay on salary and leave payouts combined in the {SITE_CONFIG.financialYear} financial year</li>
         </ul>
       </section>
 
@@ -315,8 +315,8 @@ export default function LeaveCalculatorContent() {
         <ul className="list-disc pl-4 space-y-1">
           <li>NES minimum: 4 weeks (152 hours) annual leave per year of service for full-time employees</li>
           <li>Leave loading at 17.5% of base weekly pay (where applicable)</li>
-          <li>Assumes no leave has been taken — showing maximum accrued entitlement</li>
-          <li>Tax on payout is not calculated here — use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">take-home pay calculator</Link> for that</li>
+          <li>Assumes no leave has been taken, showing maximum accrued entitlement</li>
+          <li>Tax on payout is not calculated here. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">take-home pay calculator</Link> for that</li>
         </ul>
       </MethodologyDisclosure>
 

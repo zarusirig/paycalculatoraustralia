@@ -15,7 +15,7 @@ export const WA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average WA salary?",
-    a: `Full-time adults in WA earn ${awoteLine(PROFILE)} — the highest of any state (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
+    a: `Full-time adults in WA earn ${awoteLine(PROFILE)}, the highest of any state (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
   },
   {
     q: "Am I covered by WA state awards or federal awards?",

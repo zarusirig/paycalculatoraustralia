@@ -120,7 +120,7 @@ export const CGT_EXEMPT_THRESHOLDS = {
 export const CGT_EXEMPT_ASSETS: readonly string[] = [
   "Assets acquired before 20 September 1985 (pre-CGT assets)",
   "Your main residence, where you meet all the conditions",
-  "Cars and motorcycles — a car being a vehicle carrying under 1 tonne and fewer than 9 passengers",
+  "Cars and motorcycles, a car being a vehicle carrying under 1 tonne and fewer than 9 passengers",
   "Depreciating assets used solely for taxable purposes, such as business equipment and items in a rental property",
   "Collectables acquired for $500 or less, and personal use assets acquired for $10,000 or less",
   "Eligible granny flat arrangements",
@@ -234,7 +234,7 @@ export const COST_BASE_ELEMENTS: readonly CostBaseElement[] = [
     element: 3,
     name: "Costs of owning the asset",
     description:
-      "Holding costs — but only where you could not claim them as a deduction. You cannot use these to work out a capital loss, and they do not apply to assets acquired before 21 August 1991.",
+      "Holding costs, but only where you could not claim them as a deduction. You cannot use these to work out a capital loss, and they do not apply to assets acquired before 21 August 1991.",
     examples: [
       "Rates and land tax",
       "Insurance premiums",
@@ -260,7 +260,7 @@ export const COST_BASE_ELEMENTS: readonly CostBaseElement[] = [
 
 /** Amounts the ATO expressly excludes from the cost base [3]. */
 export const COST_BASE_EXCLUSIONS: readonly string[] = [
-  "Any cost you can claim as a tax deduction — including capital works deductions, which reduce the cost base rather than adding to it",
+  "Any cost you can claim as a tax deduction, including capital works deductions, which reduce the cost base rather than adding to it",
   "GST net input tax credits, if you are registered for GST",
   "Expenditure you later recouped, such as an insurance payout or an amount paid by someone else, unless you included it in assessable income",
   "Heritage conservation expenditure, and land care or water facility spending that gave rise to a tax offset, for assets acquired after 13 May 1997",
@@ -277,7 +277,7 @@ export const COST_BASE_EXCLUSIONS: readonly string[] = [
  */
 export const MAIN_RESIDENCE_CONDITIONS: readonly string[] = [
   "The dwelling has been the home of you, your partner and other dependants for the whole period you owned it",
-  "It has not been used to produce income — you have not run a business from it, rented it out, or bought it to renovate and sell at a profit",
+  "It has not been used to produce income: you have not run a business from it, rented it out, or bought it to renovate and sell at a profit",
   "It is on land of 2 hectares or less",
 ] as const;
 

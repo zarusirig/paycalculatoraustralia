@@ -100,8 +100,8 @@ export const SOFTWARE_ENGINEER: Occupation = {
     label: PEA.grad3,
     why: "a graduate software engineer with a 3-year ACS-accredited degree working for an IT-industry employer",
   },
-  heading: "Software Engineer Salary Australia 2026 — What Tax Returns Show & Take-Home",
-  metaTitle: `Software Engineer Salary 2026 — ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD3.hourly)}/hr Award`,
+  heading: "Software Engineer Salary Australia 2026: What Tax Returns Show & Take-Home",
+  metaTitle: `Software Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD3.hourly)}/hr Award`,
   metaDescription: `Software engineers' median salary was ${aud(ATO_MEDIAN)} on 2023–24 tax returns (ATO). When the IT award applies, its graduate floor and take-home pay on each figure.`,
   lede: `The 84,585 people who gave their occupation as software engineer on 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. Whether any award minimum applies depends on your employer: the Professional Employees Award covers IT professionals only at businesses principally in the IT or telecommunications industry, where a graduate's floor is ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   coverage: [
@@ -159,7 +159,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
     },
     {
       q: "Do software engineers get paid for on-call or after-hours work?",
-      a: `Under the Professional Employees Award, call-backs and remote work on devices count as overtime, paid at the ordinary hourly rate — but only while your salary is less than 25% above your level's minimum (${aud(exemptionThreshold(L2.annual!))} at Level 2). Above that, and for employees outside the award, your contract decides.`,
+      a: `Under the Professional Employees Award, call-backs and remote work on devices count as overtime, paid at the ordinary hourly rate, but only while your salary is less than 25% above your level's minimum (${aud(exemptionThreshold(L2.annual!))} at Level 2). Above that, and for employees outside the award, your contract decides.`,
     },
     {
       q: "Do software engineers earn more than developers and testers?",
@@ -167,7 +167,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
     },
   ],
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     { title: "Software Engineers (ANZSCO 261313) occupation profile", publisher: "Jobs and Skills Australia", url: jsaUrl("261313-software-engineers") },

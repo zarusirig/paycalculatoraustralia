@@ -33,7 +33,7 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   scales: [
     {
       id: "firefighters",
-      title: "Firefighters (Schedule 3 — base annual salary)",
+      title: "Firefighters (Schedule 3, base annual salary)",
       intro:
         "NTFRS firefighters from recruit through Firefighter Classes D, C, B and A (Qualified Firefighter, the 100% rate) to Senior Firefighter.",
       stepHeading: "Rank",
@@ -43,13 +43,13 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         { label: "Firefighter Class D", salary: 87_489 },
         { label: "Firefighter Class C", salary: 89_547 },
         { label: "Firefighter Class B", salary: 100_868 },
-        { label: "Firefighter Class A", salary: 102_930, note: "Qualified Firefighter — the 100% relativity rate" },
+        { label: "Firefighter Class A", salary: 102_930, note: "Qualified Firefighter, the 100% relativity rate" },
         { label: "Senior Firefighter", salary: 108_074 },
       ],
     },
     {
       id: "leading-firefighters-and-officers",
-      title: "Leading Firefighter and officers (Schedule 3 — base annual salary)",
+      title: "Leading Firefighter and officers (Schedule 3, base annual salary)",
       intro: "Leading Firefighter and the officer ranks.",
       stepHeading: "Rank",
       steps: [
@@ -64,11 +64,11 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   topStep: "Senior Firefighter",
 
   traineePay: [
-    "Recruit Firefighters are paid $80,285 a year for the first 4 months and $84,403 a year for the next 8 months (rates effective 21 November 2024) — 78% and 82% of the Firefighter Class A rate.",
+    "Recruit Firefighters are paid $80,285 a year for the first 4 months and $84,403 a year for the next 8 months (rates effective 21 November 2024), 78% and 82% of the Firefighter Class A rate.",
     "Recruits undertaking recruit training under the Training and Development Command do not receive the General Fire Fighting Allowance (clause 15.4).",
   ],
   penalties: [
-    "A General Fire Fighting Allowance of 4% of base salary is paid to employees on shift duty at a Darwin or Alice Springs station and on Track Station day shift — for example $4,117 a year for Firefighter Class A (clause 15, Schedule 3).",
+    "A General Fire Fighting Allowance of 4% of base salary is paid to employees on shift duty at a Darwin or Alice Springs station and on Track Station day shift, for example $4,117 a year for Firefighter Class A (clause 15, Schedule 3).",
     "A 10% Day Shift Allowance (e.g. $10,293 a year for Firefighter Class A) and a 5.2% Alice Springs Allowance (e.g. $5,352 a year for Firefighter Class A) apply where eligible (Schedule 3).",
     "Shift work follows the 10/14 roster: 10-hour day shifts (0800–1800) and 14-hour night shifts (1800–0800), with ordinary hours averaging 38 a week over 52 weeks (clauses 39 and 41).",
   ],
@@ -87,7 +87,7 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       url: "https://ocpe.nt.gov.au/media/documents/nt-public-sector-employment-information-about-ntps-employment/information-about-ntps-employment/ntps-fire-rescue-2021-2025-enterprise-agreement.PDF",
     },
     {
-      title: "Northern Territory Public Sector Fire and Rescue Service Enterprise Agreement — negotiations bulletins",
+      title: "Northern Territory Public Sector Fire and Rescue Service Enterprise Agreement, negotiations bulletins",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/current-enterprise-agreements/enterprise-agreement-negotiations/ntps-fire-and-rescue-service-ea",
     },

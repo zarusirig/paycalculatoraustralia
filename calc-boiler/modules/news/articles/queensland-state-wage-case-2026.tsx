@@ -37,7 +37,7 @@ export default function QueenslandStateWageCase2026() {
       </p>
 
       <NewsKeyFacts
-        title={`2026 State Wage Case — operative ${Q.operativeFrom}`}
+        title={`2026 State Wage Case, operative ${Q.operativeFrom}`}
         rows={[
           { label: "State award wages and salaries (full-time adults)", after: `+${pct}` },
           { label: "Work-related allowances and service increments", after: `+${pct}` },
@@ -51,7 +51,7 @@ export default function QueenslandStateWageCase2026() {
       <p>
         Award rates in the national Fair Work system rose {(NMW_DECISION.awardIncrease * 100).toFixed(2)}% from{" "}
         {NMW_DECISION.operativeFrom}. The State Wage Case covers
-        Queensland employers outside that system — chiefly the state public sector and local government. The parties&apos; agreed statistics in the decision put that group at an estimated{" "}
+        Queensland employers outside that system, chiefly the state public sector and local government. The parties&apos; agreed statistics in the decision put that group at an estimated{" "}
         {Q.qldSystemWorkers.toLocaleString("en-AU")} workers, including {Q.qldPublicSector.toLocaleString("en-AU")} in
         the Queensland public sector, where {Math.round(Q.qldPublicSectorAgreementCoverage * 100)}% are covered by an
         agreement and {Q.qldPublicSectorAwardReliant.toLocaleString("en-AU")} rely on the award alone.

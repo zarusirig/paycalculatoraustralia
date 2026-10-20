@@ -82,8 +82,8 @@ export const CIVIL_ENGINEER: Occupation = {
     label: PEA.grad45,
     why: "a graduate civil engineer with a 4 or 5-year degree recognised by Engineers Australia",
   },
-  heading: "Civil Engineer Salary Australia 2026 — Award Minimum, Median & Take-Home",
-  metaTitle: `Civil Engineer Salary 2026 — ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Award`,
+  heading: "Civil Engineer Salary Australia 2026: Award Minimum, Median & Take-Home",
+  metaTitle: `Civil Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Award`,
   metaDescription: `Civil engineer pay in Australia: ${aud(ATO_MEDIAN)} median and ${aud(ATO_AVERAGE)} average salary on 2023–24 tax returns, the ${aud(GRAD.annual!)} graduate award minimum, and take-home.`,
   lede: `Civil engineers who lodged 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. The legal floor is far lower: a graduate civil engineer must be paid at least ${aud(GRAD.annual!)} a year (${aud2(GRAD.hourly)} an hour) under the Professional Employees Award from 1 July 2026. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   parent: {
@@ -92,9 +92,9 @@ export const CIVIL_ENGINEER: Occupation = {
     blurb: "which lists every Professional Employees Award pay point and the rules all engineers share",
   },
   coverage: [
-    "A civil engineer doing professional engineering work — duties that need qualifications at least equal to a graduate member of Engineers Australia — is covered by the Professional Employees Award 2020 [MA000065] whatever industry the employer is in (cl 4.1(a)).",
+    "A civil engineer doing professional engineering work (duties that need qualifications at least equal to a graduate member of Engineers Australia) is covered by the Professional Employees Award 2020 [MA000065] whatever industry the employer is in (cl 4.1(a)).",
     "The award has exclusions that matter for civil engineers. It does not cover employees who are covered by the Water Industry, Rail Industry, Port Authorities, Airport Employees or State Government Agencies awards (cl 4.2), or local government employees covered by another award (cl 4.3). If you work for a water utility, a rail operator, a port, an airport, a council or a state agency, check whether one of those awards or an enterprise agreement sets your pay instead.",
-    "A graduate engineer starts at Level 1 pay point 1.1 and moves up one pay point on each anniversary to 1.4 (Schedule A.1.3). An experienced engineer — a member of Engineers Australia, or someone with 4 years' professional engineering experience after qualifying — is Level 2, and Levels 3 and 4 cover engineers with more independence and responsibility.",
+    "A graduate engineer starts at Level 1 pay point 1.1 and moves up one pay point on each anniversary to 1.4 (Schedule A.1.3). An experienced engineer (a member of Engineers Australia, or someone with 4 years' professional engineering experience after qualifying) is Level 2, and Levels 3 and 4 cover engineers with more independence and responsibility.",
   ],
   tables: [
     {
@@ -116,7 +116,7 @@ export const CIVIL_ENGINEER: Occupation = {
   penalties: PEA_PENALTIES,
   penaltiesNote: PEA_PENALTIES_NOTE,
   overtime: [
-    `Hours beyond 38 a week (or an agreed average) are paid at the minimum hourly rate, not time and a half — ${aud2(GRAD.hourly)} an hour for a graduate at pay point 1.1 (cl 18.2(a)).`,
+    `Hours beyond 38 a week (or an agreed average) are paid at the minimum hourly rate, not time and a half: ${aud2(GRAD.hourly)} an hour for a graduate at pay point 1.1 (cl 18.2(a)).`,
     `The overtime, penalty and record-keeping clauses stop applying once your contract salary is at least 25% above the minimum for your level (cl 18.6): ${aud2(exemptionThreshold(GRAD.annual!))} for a pay point 1.1 graduate, ${aud(exemptionThreshold(L2.annual!))} at Level 2 and ${aud2(exemptionThreshold(L4.annual!))} at Level 4.`,
     "Below that line, time off instead of overtime pay can be agreed hour for hour (cl 18.3).",
   ],
@@ -124,13 +124,13 @@ export const CIVIL_ENGINEER: Occupation = {
   median: MEDIAN,
   ato: CIVIL_ENGINEER_ATO,
   notices: [
-    `Overtime under this award is paid at the ordinary hourly rate, and not at all once your salary is 25% or more above your level's minimum — for a graduate, ${aud2(exemptionThreshold(GRAD.annual!))} (cl 18.2(a), cl 18.6).`,
+    `Overtime under this award is paid at the ordinary hourly rate, and not at all once your salary is 25% or more above your level's minimum: for a graduate, ${aud2(exemptionThreshold(GRAD.annual!))} (cl 18.2(a), cl 18.6).`,
     "A quantity surveyor is coded with civil engineers in ATO statistics but is a different job; see the surveyor page for land surveyors.",
   ],
   payslipNotes: [
-    `Pay point rises: as a graduate you move up one pay point on each anniversary — from ${aud(GRAD.annual!)} at 1.1 to ${aud(peaRow(PEA.pp12).annual!)}, ${aud(peaRow(PEA.pp13).annual!)} and ${aud(peaRow(PEA.pp14).annual!)} — unless your employer defers it, and either way it must be confirmed in writing (Schedule A.1.3–A.1.4). If your rate has not changed after an anniversary, ask why.`,
+    `Pay point rises: as a graduate you move up one pay point on each anniversary, from ${aud(GRAD.annual!)} at 1.1 to ${aud(peaRow(PEA.pp12).annual!)}, ${aud(peaRow(PEA.pp13).annual!)} and ${aud(peaRow(PEA.pp14).annual!)}, unless your employer defers it, and either way it must be confirmed in writing (Schedule A.1.3–A.1.4). If your rate has not changed after an anniversary, ask why.`,
     "Vehicle allowance: if you agree to use your own car for site visits or other work travel, the award requires at least $1.00 a kilometre (cl 16.3), and it must appear as its own line on the payslip, not folded into salary (Fair Work Regulations reg 3.46(1)(g), noted in cl 16).",
-    "Recorded hours: below the cl 18.6 salary line your employer must keep records of hours over 38 a week, before 6 am or after 10 pm, and on Sundays and public holidays (cl 18.5) — the hours any overtime or penalty line on your payslip is paid for.",
+    "Recorded hours: below the cl 18.6 salary line your employer must keep records of hours over 38 a week, before 6 am or after 10 pm, and on Sundays and public holidays (cl 18.5). These are the hours any overtime or penalty line on your payslip is paid for.",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
   ],
   notShown: [
@@ -153,7 +153,7 @@ export const CIVIL_ENGINEER: Occupation = {
     },
     {
       q: "Do civil engineers get paid overtime?",
-      a: `Only below a salary line. Under the Professional Employees Award, hours over 38 a week are paid at the ordinary minimum hourly rate — no time and a half — and that stops applying once your salary is at least 25% above your level's minimum, which is ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate and ${aud(exemptionThreshold(L2.annual!))} at Level 2. Above it, overtime depends on your contract.`,
+      a: `Only below a salary line. Under the Professional Employees Award, hours over 38 a week are paid at the ordinary minimum hourly rate (no time and a half), and that stops applying once your salary is at least 25% above your level's minimum, which is ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate and ${aud(exemptionThreshold(L2.annual!))} at Level 2. Above it, overtime depends on your contract.`,
     },
     {
       q: "Do structural and geotechnical engineers earn more than civil engineers?",
@@ -165,7 +165,7 @@ export const CIVIL_ENGINEER: Occupation = {
     },
   ],
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     FWO_PAY_SLIPS,

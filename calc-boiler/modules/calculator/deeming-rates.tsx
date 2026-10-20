@@ -29,8 +29,8 @@ const MARCH = DEEMING_HISTORY.find((r) => r.from === "20 March 2026")!;
 
 const KIND_LABEL: Record<DeemingKind, string> = {
   single: "Single",
-  pensionerCouple: "Couple — one or both get a pension",
-  nonPensionerCouple: "Couple — neither gets a pension",
+  pensionerCouple: "Couple, one or both get a pension",
+  nonPensionerCouple: "Couple, neither gets a pension",
 };
 
 export default function DeemingRatesPage({ children, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
@@ -59,9 +59,9 @@ export default function DeemingRatesPage({ children, afterCalculator }: { childr
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Deeming Rates" title="Deeming Rates 2026 and Deeming Calculator — 1.75% and 3.75% From 20 September">
+        <W3Hero crumb="Deeming Rates" title="Deeming Rates 2026 and Deeming Calculator - 1.75% and 3.75% From 20 September">
           <p>
-            From {DEEMING.ratesFrom} Centrelink deems your financial assets to earn <strong>{pct(DEEMING.lowerRate)}</strong> on the first <strong>{formatAUD(DEEMING.thresholds.single)}</strong> (single) or <strong>{formatAUD(DEEMING.thresholds.pensionerCouple)}</strong> (pensioner couple, combined), and <strong>{pct(DEEMING.upperRate)}</strong> on everything above. The deemed amount is added to your wages and other income for the income test — whatever your savings actually earn.
+            From {DEEMING.ratesFrom} Centrelink deems your financial assets to earn <strong>{pct(DEEMING.lowerRate)}</strong> on the first <strong>{formatAUD(DEEMING.thresholds.single)}</strong> (single) or <strong>{formatAUD(DEEMING.thresholds.pensionerCouple)}</strong> (pensioner couple, combined), and <strong>{pct(DEEMING.upperRate)}</strong> on everything above. The deemed amount is added to your wages and other income for the income test, whatever your savings actually earn.
           </p>
           <p className="text-base">The rates were {pct(MARCH.lower)} / {pct(MARCH.upper)} from 20 March to 19 September 2026. Enter your savings and your pay to see your deemed income and what it does to an Age Pension.</p>
         </W3Hero>
@@ -109,8 +109,8 @@ export default function DeemingRatesPage({ children, afterCalculator }: { childr
                     </div>
                   </div>
                   {r.pension === null
-                    ? <Note>For a couple on allowances (JobSeeker, Parenting Payment Partnered), deemed income joins each person&apos;s income test — try it in the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker calculator</Link> as &ldquo;other income&rdquo;.</Note>
-                    : <p className="text-xs text-warmgray-light">Pension figures use the income test only, with the {formatAUD(IT.single.freeArea)} single / {formatAUD(IT.couple.freeArea)} couple (combined) free areas. The assets test may give a lower rate — see the <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link>.</p>}
+                    ? <Note>For a couple on allowances (JobSeeker, Parenting Payment Partnered), deemed income joins each person&apos;s income test. Try it in the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker calculator</Link> as &ldquo;other income&rdquo;.</Note>
+                    : <p className="text-xs text-warmgray-light">Pension figures use the income test only, with the {formatAUD(IT.single.freeArea)} single / {formatAUD(IT.couple.freeArea)} couple (combined) free areas. The assets test may give a lower rate. See the <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link>.</p>}
                 </div>
               </div>
             </CardContent>

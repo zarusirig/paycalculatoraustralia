@@ -33,7 +33,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   name: "South Australia",
   nameInSentence: "South Australia",
   graduateStep: "Step 1",
-  h1: "SA Teacher Salary 2026 — South Australian Public School Pay Scale, Step 1 to 9",
+  h1: "SA Teacher Salary 2026: South Australian Public School Pay Scale, Step 1 to 9",
   classificationNote:
     "South Australia pays teachers on Step 1 to Step 9, and Step 9 is the only step that has to be applied for. Entry depends on qualification: Step 1 for a three or four year degree, Step 2 for a four year degree plus a Graduate Diploma in Education.",
   principalScaleIds: ["band-a-principals"],
@@ -49,7 +49,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   scales: [
     {
       id: "classroom-teachers",
-      title: "Teachers — Step 1 to Step 9",
+      title: "Teachers: Step 1 to Step 9",
       intro:
         "The classroom teacher scale. Where you enter depends on your qualification, and Step 9 is the only step you have to apply for.",
       stepHeading: "Step",
@@ -63,7 +63,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
         { label: "Step 6", salary: 106_890 },
         { label: "Step 7", salary: 111_269 },
         { label: "Step 8", salary: 117_198 },
-        { label: "Step 9", salary: 123_236, note: "By application — top of the classroom scale" },
+        { label: "Step 9", salary: 123_236, note: "By application, top of the classroom scale" },
       ],
     },
     {
@@ -76,7 +76,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
         {
           label: "Advanced Skills Teacher 2 (AST2)",
           salary: 127_798,
-          note: "Closed to new applications since Term 1, 2022 — grandfathered",
+          note: "Closed to new applications since Term 1, 2022 (grandfathered)",
         },
         {
           label: "Highly Accomplished Teacher (HAT)",
@@ -88,7 +88,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "band-b-leaders",
-      title: "Band B — deputy principals, senior leaders and coordinators",
+      title: "Band B: deputy principals, senior leaders and coordinators",
       intro:
         "Band B covers school leadership below the principal, and is where most teachers first move off the classroom scale into a leadership role.",
       stepHeading: "Band",
@@ -103,7 +103,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "band-a-principals",
-      title: "Band A — principals and preschool directors",
+      title: "Band A: principals and preschool directors",
       intro: "The principal scale. Band level follows the site, not length of service.",
       stepHeading: "Band",
       steps: [
@@ -141,14 +141,14 @@ export const SA_TEACHER_PAY: TeacherPayState = {
       heading: "Step 9 is the one you have to apply for",
       body: [
         "Every other step comes with duty days. Step 9 does not. Under the Step 9 Teacher Guidelines, teachers who have completed 207 duty days at Step 8 are entitled to apply and to have the application individually considered.",
-        "You submit a Professional Development Plan. Importantly, the guidelines state there will be no quota of Step 9 teachers — meeting the requirements is the test, not competing against colleagues.",
+        "You submit a Professional Development Plan. Importantly, the guidelines state there will be no quota of Step 9 teachers: meeting the requirements is the test, not competing against colleagues.",
       ],
     },
     {
       heading: "AST2 is closed; HAT and Lead are the live pathway",
       body: [
         "Clause 6.7.4 stopped accepting applications for AST2 after the end of Week 4, Term 1 in 2022. Teachers who held it keep it as their substantive classification, but nobody new can get it.",
-        "The live route above the classroom scale is national certification at the Highly Accomplished or Lead career stage. The department determines how many HAT and Lead positions are made available, and appointments run for up to five years — so unlike a step, it is not permanent.",
+        "The live route above the classroom scale is national certification at the Highly Accomplished or Lead career stage. The department determines how many HAT and Lead positions are made available, and appointments run for up to five years, so unlike a step, it is not permanent.",
       ],
     },
     {
@@ -167,11 +167,11 @@ export const SA_TEACHER_PAY: TeacherPayState = {
 
   unverified: [
     "Band B-0, the lowest Band B point. It appears only in the scanned agreement schedule and not on the department's rate sheet, so it is single-sourced OCR and is not published here.",
-    "The next increase after 1 May 2026 — the agreement's schedules simply end there and no successor has been published.",
-    "The percentage size of past increases — the agreement expresses them only as dated dollar columns and states no percentages anywhere.",
+    "The next increase after 1 May 2026. The agreement's schedules simply end there and no successor has been published.",
+    "The percentage size of past increases. The agreement expresses them only as dated dollar columns and states no percentages anywhere.",
     "Contract teacher rates and the principal site classification levels (SC1-SC6), which appear on the department rate sheet but not in the agreement schedules, and which two independent readings of that PDF did not agree on.",
     "Seconded teacher rates, which appear only in the scanned agreement and were not corroborated by a second source.",
-    "Fortnightly and daily columns from the department rate sheet — the annual figures above are double-sourced, those columns are not.",
+    "Fortnightly and daily columns from the department rate sheet. The annual figures above are double-sourced, those columns are not.",
     "Preschool and hourly-paid instructor classifications, which are separate scales.",
   ],
 
@@ -183,12 +183,12 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       title:
-        "South Australian School and Preschool Education Staff Enterprise Agreement 2024 — Schedules 1.1 and 1.3",
+        "South Australian School and Preschool Education Staff Enterprise Agreement 2024, Schedules 1.1 and 1.3",
       publisher: "SA Attorney-General's Department",
       url: "https://www.agd.sa.gov.au/__data/assets/pdf_file/0006/809394/SA-School-and-Preschool-Education-Staff-Enterprise-Agreement-2024.pdf",
     },
     {
-      title: "Teachers Award (South Australia), consolidated — clause 4.2 Incremental Progression",
+      title: "Teachers Award (South Australia), consolidated, clause 4.2 Incremental Progression",
       publisher: "South Australian Employment Tribunal",
       url: "https://www.saet.sa.gov.au/app/uploads/2024/04/451P-2.pdf",
     },

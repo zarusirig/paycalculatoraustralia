@@ -38,17 +38,17 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   rates: SUBWAY_PAY.rates.map((r, i) =>
     i === 0
-      ? { ...r, description: "Crew: front counter, kitchen and drive-through — taking orders, preparing and serving food, and incidental cleaning" }
+      ? { ...r, description: "Crew: front counter, kitchen and drive-through: taking orders, preparing and serving food, and incidental cleaning" }
       : r,
   ),
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to GYG crew in corporate and franchised restaurants. Some restaurants may pay more.",
-    "If you work in a franchised restaurant, your employer is the franchisee. If that franchisee has its own approved agreement, it sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "If you work in a franchised restaurant, your employer is the franchisee. If that franchisee has its own approved agreement, it sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
   ],
   unverified: [
-    "A franchisee agreement registered under a company name without \"Guzman\" in its title — our search was by title.",
-    "Salaried restaurant manager pay — set by contract.",
+    "A franchisee agreement registered under a company name without \"Guzman\" in its title (our search was by title).",
+    "Salaried restaurant manager pay, set by contract.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: SUBWAY_PAY.instrument.url },

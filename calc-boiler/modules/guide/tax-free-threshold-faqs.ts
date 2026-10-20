@@ -34,7 +34,7 @@ export const TAX_FREE_THRESHOLD_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What happens if I don't claim the tax-free threshold?",
-    a: `Your employer withholds more tax each pay. On ${formatAUD(900)} a week that is ${formatAUD(w900.notClaimed)} instead of ${formatAUD(w900.claimed)} — ${formatAUD(w900.difference)} more a week. The money isn't lost: when you lodge your return the ATO applies the threshold anyway and refunds any tax overpaid.`,
+    a: `Your employer withholds more tax each pay. On ${formatAUD(900)} a week that is ${formatAUD(w900.notClaimed)} instead of ${formatAUD(w900.claimed)}, ${formatAUD(w900.difference)} more a week. The money isn't lost: when you lodge your return the ATO applies the threshold anyway and refunds any tax overpaid.`,
   },
   {
     q: "Do I get the tax-free threshold if I arrived in Australia part-way through the year?",

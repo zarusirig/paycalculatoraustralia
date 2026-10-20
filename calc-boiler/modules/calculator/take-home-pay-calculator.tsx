@@ -84,7 +84,7 @@ export default function TakeHomePayCalculatorPage({ children, afterCalculator }:
           </ol></nav>
           <h1 className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Take Home Pay Calculator Australia {SITE_CONFIG.financialYear}
-            <span className="hidden md:inline"> — </span>
+            <span className="hidden md:inline"> - </span>
             <span className="block text-base font-semibold text-warmgray md:inline md:text-3xl md:font-bold md:text-navy">Net Pay After Tax</span>
           </h1>
           <p className="text-base md:text-lg text-navy">On <strong>$80,000</strong> you take home <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight) after income tax and Medicare in FY{SITE_CONFIG.financialYear}.</p>

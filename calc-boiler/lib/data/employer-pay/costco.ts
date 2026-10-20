@@ -77,9 +77,9 @@ export const COSTCO_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "150% for each hour worked, plus ordinary pay for the day", casual: "275%", note: "Casual 275% is from Costco's undertaking to the Commission, replacing the 150% printed in the table" },
   ],
   penaltyNotes: [
-    "Percentages are of your ordinary hourly rate (cl 6.6.1 for permanent staff, cl 4.2.3 for casuals). The casual percentages replace the 25% loading rather than adding to it, so casual Sunday is 175% — the same as permanent staff.",
+    "Percentages are of your ordinary hourly rate (cl 6.6.1 for permanent staff, cl 4.2.3 for casuals). The casual percentages replace the 25% loading rather than adding to it, so casual Sunday is 175%, the same as permanent staff.",
     "Premiums and overtime do not stack: \"There is no duplication of overtime and/or premium rates\" (cl 6.6).",
-    "For a Service Assistant on the first step ($30.02), that is $37.53 an hour on a weekday evening or Saturday (casual $45.03), $52.54 on a Sunday and $82.56 for a casual on a public holiday — our arithmetic.",
+    "For a Service Assistant on the first step ($30.02), that is $37.53 an hour on a weekday evening or Saturday (casual $45.03), $52.54 on a Sunday and $82.56 for a casual on a public holiday (our arithmetic).",
   ],
   allowances: [
     { name: "Forklift or electric pallet jack", amount: "$1.00 an hour", when: "For time spent operating one; not counted in the rate penalties are worked out from (cl 5.1.8)" },
@@ -90,13 +90,13 @@ export const COSTCO_PAY: EmployerPay = {
   ],
   notices: [
     "Costco's rates are printed in the agreement and rise with hours worked, not just the calendar: you move up a step every 980 hours. Only the first and top steps of each scale are shown here; the agreement lists all eight.",
-    "Costco pays long-serving hourly staff an \"Extra Cheque\" twice a year ($2,000 to $3,000 each, depending on hours worked; next pay date 19 November 2026 — cl 5.2). It is not included in the hourly rates.",
+    "Costco pays long-serving hourly staff an \"Extra Cheque\" twice a year ($2,000 to $3,000 each, depending on hours worked; next pay date 19 November 2026, cl 5.2). It is not included in the hourly rates.",
     "Casual rates in the table are the printed rate plus the 25% loading, worked out by us to the cent.",
   ],
   unverified: [
-    "The exact date each rate column starts — it is the first full pay period 12, 24 or 36 months after 15 November 2023, and Costco's pay cycle dates are not printed.",
-    "Whether casual employees move up the 980-hour steps — cl 6.9 mentions only full-time and part-time employees.",
-    "Which Retail Award level each Costco classification matches — the agreement does not map them.",
+    "The exact date each rate column starts: it is the first full pay period 12, 24 or 36 months after 15 November 2023, and Costco's pay cycle dates are not printed.",
+    "Whether casual employees move up the 980-hour steps: cl 6.9 mentions only full-time and part-time employees.",
+    "Which Retail Award level each Costco classification matches. The agreement does not map them.",
     "Depot, home office and member care rates (separate scales in cl 5.1.4–5.1.7) are not shown here.",
   ],
   awardHref: "/retail-award-rates/",

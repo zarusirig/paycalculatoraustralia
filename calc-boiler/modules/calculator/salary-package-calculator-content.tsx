@@ -48,7 +48,7 @@ export default function SalaryPackageCalculatorContent() {
   return (
     <>
       <section>
-        <h2 style={FONT} className={H2}>Package, Plus Super, Including Super — What Each One Means</h2>
+        <h2 style={FONT} className={H2}>Package, Plus Super, Including Super: What Each One Means</h2>
         <p className={P}>Australian offers use three phrasings for the same {RATE_PCT} of employer super, and they are not interchangeable:</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
@@ -78,7 +78,7 @@ export default function SalaryPackageCalculatorContent() {
               </tr>
               <tr>
                 <td className={TD + " font-medium"}>{formatAUD(100_000)} (no mention of super)</td>
-                <td className={TD}>Almost always base — but ask</td>
+                <td className={TD}>Almost always base, but ask</td>
                 <td className={TD + " text-right"}>{formatAUD(exBase100.base)}</td>
                 <td className={TD + " text-right"}>{formatAUD(exBase100.superAmount)}</td>
                 <td className={TD + " text-right font-bold"}>{formatAUD(exBase100.total)}</td>
@@ -87,23 +87,23 @@ export default function SalaryPackageCalculatorContent() {
           </table>
         </div>
         <p className={P + " mt-4"}>
-          Your tax, your HECS repayment and your take-home pay are all worked out on the <strong>base</strong>. The super never reaches your bank account. So the first thing to do with any offer is find the base — then put it through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.
+          Your tax, your HECS repayment and your take-home pay are all worked out on the <strong>base</strong>. The super never reaches your bank account. So the first thing to do with any offer is find the base, then put it through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>How to Work Out Base Salary From a Package Including Super</h2>
         <p className={P}>
-          Divide the package by {DIVISOR}. Super is {RATE_PCT} <em>of the base</em>, so a package is 1 + {SUPER_GUARANTEE.rate} times the base — not base plus {RATE_PCT} of the package. Taking {RATE_PCT} off the top of the package understates your base.
+          Divide the package by {DIVISOR}. Super is {RATE_PCT} <em>of the base</em>, so a package is 1 + {SUPER_GUARANTEE.rate} times the base, not base plus {RATE_PCT} of the package. Taking {RATE_PCT} off the top of the package understates your base.
         </p>
         <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 text-sm text-navy mb-4">
-          <p className="font-medium mb-2">Worked example — {formatAUD(112_000)} package including super</p>
+          <p className="font-medium mb-2">Worked example: {formatAUD(112_000)} package including super</p>
           <p>{formatAUD(112_000)} ÷ {DIVISOR} = <strong>{formatAUD(ex112.base)}</strong> base salary</p>
           <p>{formatAUD(112_000)} − {formatAUD(ex112.base)} = <strong>{formatAUD(ex112.superAmount)}</strong> super ({RATE_PCT} of the base)</p>
-          <p className="text-warmgray mt-2">Wrong way: {formatAUD(112_000)} × {RATE_PCT} = {formatAUD(112_000 * SUPER_GUARANTEE.rate)} super and {formatAUD(112_000 - 112_000 * SUPER_GUARANTEE.rate)} base — {formatAUD(ex112.base - (112_000 - 112_000 * SUPER_GUARANTEE.rate))} short.</p>
+          <p className="text-warmgray mt-2">Wrong way: {formatAUD(112_000)} × {RATE_PCT} = {formatAUD(112_000 * SUPER_GUARANTEE.rate)} super and {formatAUD(112_000 - 112_000 * SUPER_GUARANTEE.rate)} base, {formatAUD(ex112.base - (112_000 - 112_000 * SUPER_GUARANTEE.rate))} short.</p>
         </div>
         <p className={P}>
-          To go the other way — base to package — multiply the base by {DIVISOR}, or add {RATE_PCT} of it. The tables below do both for common amounts.
+          To go the other way (base to package), multiply the base by {DIVISOR}, or add {RATE_PCT} of it. The tables below do both for common amounts.
         </p>
       </section>
 
@@ -178,14 +178,14 @@ export default function SalaryPackageCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>When the Super Cap Changes the Split</h2>
         <p className={P}>
-          The super guarantee only has to be paid on base salary up to the <strong>maximum contribution base</strong> — {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year in {SITE_CONFIG.financialYear}, which caps SG at {formatAUD(SUPER_GUARANTEE.maxSGAnnual)}. Below that, ÷{DIVISOR} is exact. Above it, a package splits as package minus {formatAUD(SUPER_GUARANTEE.maxSGAnnual)}: a {formatAUD(400_000)} package is {formatAUD(capExample.base)} base and {formatAUD(capExample.superAmount)} super, not {formatAUD(Math.round(400_000 / (1 + SUPER_GUARANTEE.rate)))}. Some employers pay SG on the full base anyway; the calculator shows the legal minimum. See the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> for the cap in detail.
+          The super guarantee only has to be paid on base salary up to the <strong>maximum contribution base</strong>: {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year in {SITE_CONFIG.financialYear}, which caps SG at {formatAUD(SUPER_GUARANTEE.maxSGAnnual)}. Below that, ÷{DIVISOR} is exact. Above it, a package splits as package minus {formatAUD(SUPER_GUARANTEE.maxSGAnnual)}: a {formatAUD(400_000)} package is {formatAUD(capExample.base)} base and {formatAUD(capExample.superAmount)} super, not {formatAUD(Math.round(400_000 / (1 + SUPER_GUARANTEE.rate)))}. Some employers pay SG on the full base anyway; the calculator shows the legal minimum. See the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> for the cap in detail.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>This Is Not Salary Packaging</h2>
         <p className={P}>
-          A salary <em>package</em> is the total an employer pays you. Salary <em>packaging</em> (or salary sacrifice) is an arrangement where you give up part of your salary for a benefit — a novated lease, extra super, or an NFP living-expenses card — and it changes your tax. If that is what you are after, use the <Link href="/salary-sacrifice-calculator/" className={LINK}>salary sacrifice calculator</Link>, the <Link href="/salary-packaging-guide/" className={LINK}>salary packaging guide</Link> or the <Link href="/novated-lease-guide/" className={LINK}>novated lease guide</Link>.
+          A salary <em>package</em> is the total an employer pays you. Salary <em>packaging</em> (or salary sacrifice) is an arrangement where you give up part of your salary for a benefit (a novated lease, extra super, or an NFP living-expenses card), and it changes your tax. If that is what you are after, use the <Link href="/salary-sacrifice-calculator/" className={LINK}>salary sacrifice calculator</Link>, the <Link href="/salary-packaging-guide/" className={LINK}>salary packaging guide</Link> or the <Link href="/novated-lease-guide/" className={LINK}>novated lease guide</Link>.
         </p>
       </section>
 

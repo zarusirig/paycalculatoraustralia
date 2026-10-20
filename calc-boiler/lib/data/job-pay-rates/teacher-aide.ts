@@ -65,20 +65,20 @@ export const TEACHER_AIDE: Occupation = {
     why: "a teacher aide in a non-government school at classroom support services grade 2",
   },
   coverage: [
-    "Teacher aides, integration aides and classroom assistants in non-government schools — independent and Catholic — are covered by the Educational Services (Schools) General Staff Award 2020 [MA000076]. The award calls the role classroom support services.",
+    "Teacher aides, integration aides and classroom assistants in non-government schools (independent and Catholic) are covered by the Educational Services (Schools) General Staff Award 2020 [MA000076]. The award calls the role classroom support services.",
     "A teacher aide starts at Level 1.3 (classroom support grade 1: general assistance to teachers under direct supervision) or Level 2.1 (grade 2: helping with the educational program with some discretion; typically Year 12, or a Certificate I or II with relevant experience). Level 3 covers more senior roles such as a student services co-ordinator. Staff move up a pay point within a level after each year, subject to a performance review (cl 17.2).",
-    "Teacher aides in government schools — called education assistants, school learning support officers or teacher assistants depending on the state — are state public sector employees paid under their state's own award or agreement, which this award does not cover.",
+    "Teacher aides in government schools (called education assistants, school learning support officers or teacher assistants depending on the state) are state public sector employees paid under their state's own award or agreement, which this award does not cover.",
     "Many schools employ aides for school terms only. The award allows a contract to provide unpaid leave in non-term weeks, with the annual salary reduced in proportion to the weeks worked plus 4 weeks' annual leave (cl 12.2).",
   ],
   tables: [
     {
       id: "classroom-support",
-      title: "Teacher aide pay rates — non-government schools, 2026–27",
+      title: "Teacher aide pay rates, non-government schools, 2026–27",
       intro:
         "Clause 17.1: annual salary (weekly x 52.18), weekly and hourly minimums exactly as published. Casual rates are Schedule B.2.1 exactly.",
       rows: [
-        lvl("Level 1.3", 55_582, 1065.2, 28.03, 35.04, "Classroom support grade 1 — starting point"),
-        lvl("Level 2.1", 55_994, 1073.1, 28.24, 35.3, "Classroom support grade 2 — starting point"),
+        lvl("Level 1.3", 55_582, 1065.2, 28.03, 35.04, "Classroom support grade 1, starting point"),
+        lvl("Level 2.1", 55_994, 1073.1, 28.24, 35.3, "Classroom support grade 2, starting point"),
         lvl("Level 2.2", 57_722, 1106.2, 29.11, 36.39),
         lvl("Level 3.1", 58_436, 1119.9, 29.47, 36.84, "Classroom support grade 3"),
         lvl("Level 3.2", 59_480, 1139.9, 30.0, 37.5),
@@ -110,7 +110,7 @@ export const TEACHER_AIDE: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a teacher aide in 2026?",
-      a: "In a non-government school, a teacher aide at classroom support grade 2 (Level 2.1) must be paid at least $28.24 an hour, or $1,073.10 a week, from the first full pay period on or after 1 July 2026 — $55,994 a year full-time over 52.18 weeks. A grade 1 aide starts at Level 1.3, $28.03 an hour.",
+      a: "In a non-government school, a teacher aide at classroom support grade 2 (Level 2.1) must be paid at least $28.24 an hour, or $1,073.10 a week, from the first full pay period on or after 1 July 2026, or $55,994 a year full-time over 52.18 weeks. A grade 1 aide starts at Level 1.3, $28.03 an hour.",
     },
     {
       q: "What is the casual rate for a teacher aide?",
@@ -130,7 +130,7 @@ export const TEACHER_AIDE: Occupation = {
     },
   ],
   sources: [
-    { title: "Educational Services (Schools) General Staff Award 2020 [MA000076] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000076") },
+    { title: "Educational Services (Schools) General Staff Award 2020 [MA000076], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000076") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

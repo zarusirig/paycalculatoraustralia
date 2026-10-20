@@ -9,9 +9,9 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/privacy/`;
-const TITLE = "Privacy Policy — Pay Calculator Australia";
+const TITLE = "Privacy Policy - Pay Calculator Australia";
 const DESCRIPTION =
-  "How Pay Calculator Australia handles your data. All calculations happen in your browser — we don't collect, store, or transmit your salary information.";
+  "How Pay Calculator Australia handles your data. All calculations happen in your browser. We don't collect, store, or transmit your salary information.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
@@ -78,7 +78,7 @@ function PrivacyPage() {
             </p>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
               Your privacy matters. Here&apos;s exactly how{" "}
-              {SITE_CONFIG.name} handles your data — in plain English,
+              {SITE_CONFIG.name} handles your data, in plain English,
               not legal jargon.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
@@ -124,7 +124,7 @@ function PrivacyPage() {
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
                 <span>
                   <strong>We do not require any personal information.</strong>{" "}
-                  No signup, no email, no name — you can use every calculator
+                  No signup, no email, no name. You can use every calculator
                   on this site completely anonymously.
                 </span>
               </li>
@@ -268,7 +268,7 @@ function PrivacyPage() {
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warmgray-light" />
                 <span>
-                  <strong>Google Analytics 4</strong> — anonymous usage
+                  <strong>Google Analytics 4</strong>: anonymous usage
                   statistics (
                   <a
                     href="https://policies.google.com/privacy"
@@ -284,14 +284,14 @@ function PrivacyPage() {
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warmgray-light" />
                 <span>
-                  <strong>Google Firebase Hosting and Cloudflare</strong> —
+                  <strong>Google Firebase Hosting and Cloudflare</strong>:
                   website hosting and content delivery
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warmgray-light" />
                 <span>
-                  <strong>Google AdSense and Mediavine</strong> — advertising
+                  <strong>Google AdSense and Mediavine</strong>: advertising
                   (see Advertising above)
                 </span>
               </li>

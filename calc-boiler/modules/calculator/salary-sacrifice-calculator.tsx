@@ -75,7 +75,7 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
             </ol>
           </nav>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Salary Sacrifice Calculator — How Much Will You Save?
+            Salary Sacrifice Calculator: How Much Will You Save?
           </h1>
           <p className="text-base md:text-lg text-warmgray">
             Sacrificing {formatAUD(LEAD_SACRIFICE)} from {formatAUD(LEAD_SALARY)} lowers take-home pay by {formatAUD(LEAD_TAKE_HOME_DROP)} but
@@ -176,7 +176,7 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
               </div>
 
               <div className="mt-4 bg-sandstone border-l-4 border-eucalyptus/70 p-4 text-sm text-warmgray">
-                <p>You receive <strong>{formatAUD(takeHomeReduction)}</strong> less in take-home pay, but <strong>{formatAUD(sacrifice)}</strong> goes to super — that&apos;s <strong>{formatAUD(taxSaved)}</strong> in tax savings.</p>
+                <p>You receive <strong>{formatAUD(takeHomeReduction)}</strong> less in take-home pay, but <strong>{formatAUD(sacrifice)}</strong> goes to super, that&apos;s <strong>{formatAUD(taxSaved)}</strong> in tax savings.</p>
               </div>
               <ResultNextSteps links={nextSteps} />
               </div>

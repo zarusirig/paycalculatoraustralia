@@ -79,15 +79,15 @@ export default function RentAssistanceCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>Who Can Get Rent Assistance</h2>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-          <li>You get an eligible payment: <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Youth Allowance, Austudy</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link> (single or partnered), the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link>, Carer Payment, Disability Support Pension, ABSTUDY Living Allowance, Farm Household Allowance, Special Benefit — or <Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit Part A</Link> at more than the base rate. Special rules can apply if you&apos;re 25 or younger.</li>
-          <li>You pay an eligible accommodation cost — rent, lodging, board and lodging, retirement village or over-55s village fees, or site or mooring fees — above the threshold for your situation.</li>
+          <li>You get an eligible payment: <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Youth Allowance, Austudy</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link> (single or partnered), the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link>, Carer Payment, Disability Support Pension, ABSTUDY Living Allowance, Farm Household Allowance, Special Benefit, or <Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit Part A</Link> at more than the base rate. Special rules can apply if you&apos;re 25 or younger.</li>
+          <li>You pay an eligible accommodation cost (rent, lodging, board and lodging, retirement village or over-55s village fees, or site or mooring fees) above the threshold for your situation.</li>
           <li>You don&apos;t need to apply: Services Australia checks when you claim your payment or update your address and accommodation details, and pays it with your regular payment.</li>
         </ul>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>How Extra Work Hours Affect Rent Assistance</h2>
-        <p className={P}>Rent Assistance itself isn&apos;t tested against your wages; the payment it comes with is. Because it forms part of that payment, the same income test can reduce it once your earnings are high enough — and getting Rent Assistance raises the income at which your payment cuts out. For families, more hours can push family income past the point where FTB Part A drops to the base rate, and Rent Assistance stops there. Work through your fortnightly wages with the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>, then check the payment itself in the calculator for it.</p>
+        <p className={P}>Rent Assistance itself isn&apos;t tested against your wages; the payment it comes with is. Because it forms part of that payment, the same income test can reduce it once your earnings are high enough, and getting Rent Assistance raises the income at which your payment cuts out. For families, more hours can push family income past the point where FTB Part A drops to the base rate, and Rent Assistance stops there. Work through your fortnightly wages with the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>, then check the payment itself in the calculator for it.</p>
       </section>
 
       <section>
@@ -100,7 +100,7 @@ export default function RentAssistanceCalculatorContent() {
           <li>Rent Assistance = the lesser of the maximum for your situation and 75c × (fortnightly rent − threshold), floored at $0.</li>
           <li>Weekly rent × 2 = fortnightly; monthly rent × 12 ÷ 26 = fortnightly.</li>
           <li>Thresholds and maximums are Services Australia&apos;s figures from {RA.ratesFrom}, read on {FAMILY_PAYMENT_SOURCES.verifiedOn}. Our tests rebuild each published &ldquo;rent for the maximum&rdquo; figure from them to within a cent.</li>
-          <li>{SITE_CONFIG.name} is not Services Australia — use their Payment Finder to estimate your full payment including Rent Assistance.</li>
+          <li>{SITE_CONFIG.name} is not Services Australia. Use their Payment Finder to estimate your full payment including Rent Assistance.</li>
         </ul>
       </MethodologyDisclosure>
 

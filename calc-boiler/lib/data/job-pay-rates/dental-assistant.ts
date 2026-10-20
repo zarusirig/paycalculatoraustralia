@@ -121,7 +121,7 @@ export const DENTAL_ASSISTANT: Occupation = {
     },
   ],
   sources: [
-    { title: "Health Professionals and Support Services Award 2020 [MA000027] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000027") },
+    { title: "Health Professionals and Support Services Award 2020 [MA000027], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000027") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

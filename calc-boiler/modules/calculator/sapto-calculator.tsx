@@ -81,7 +81,7 @@ export default function SaptoCalculator() {
               >
                 {STATUS_ORDER.map((s) => (
                   <option key={s} value={s}>
-                    {SAPTO_BANDS[s].label} — up to {formatAUD(SAPTO_BANDS[s].maxOffset)}
+                    {SAPTO_BANDS[s].label}: up to {formatAUD(SAPTO_BANDS[s].maxOffset)}
                   </option>
                 ))}
               </select>
@@ -117,7 +117,7 @@ export default function SaptoCalculator() {
               />
               <p className="text-xs text-warmgray-light mt-1">
                 Taxable income plus reportable super contributions, total net investment loss and
-                adjusted fringe benefits — not just your salary.
+                adjusted fringe benefits, not just your salary.
               </p>
             </div>
 
@@ -222,7 +222,7 @@ export default function SaptoCalculator() {
             </div>
 
             <p className="text-xs text-warmgray-light">
-              SAPTO is non-refundable — it reduces tax payable to a minimum of zero and does not
+              SAPTO is non-refundable: it reduces tax payable to a minimum of zero and does not
               create a refund on its own. It stacks with the{" "}
               <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">
                 Low Income Tax Offset

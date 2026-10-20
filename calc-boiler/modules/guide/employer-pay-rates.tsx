@@ -136,7 +136,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
 
         <header className="mb-10 max-w-4xl lg:mb-16">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            {e.name} Pay Rates 2026 — Hourly Wage by Age &amp; Level
+            {e.name} Pay Rates 2026: Hourly Wage by Age &amp; Level
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
             {e.name} {e.industry} staff are paid under the {e.instrument.title} ({e.instrument.reference}).

@@ -39,16 +39,16 @@ function plumbing(): AwardPageCopy {
   return {
     slug: "plumbing-award-rates",
     crumb: "Plumbing Award Rates",
-    title: `Plumbing Award Pay Rates ${FY} (${a.meta.code}) — Plumber & Fire Sprinkler`,
+    title: `Plumbing Award Pay Rates ${FY} (${a.meta.code}) - Plumber & Fire Sprinkler`,
     description: fitDescription(
       `Plumbing and Fire Sprinklers Award (MA000036) rates: registered plumber ${$(t1r.hourly)}/hr, worker ${$(w1a.hourly)}/hr. Overtime, weekend, casual rates and the 16 Sept 2026 allowance variation.`,
       `Plumbing Award MA000036 rates: plumber ${$(t1r.hourly)}/hr registered, ${$(t1n.hourly)} not. Overtime, weekend and casual rates, with the 2026 allowance change.`,
     ),
     h1: `Plumbing Award Pay Rates ${FY}`,
-    standfirst: `Ordinary hourly rates for every plumbing, mechanical services and fire sprinkler fitting classification under the ${a.meta.name} (${a.meta.code}), with all-purpose allowances built in — consolidated to the 16 September 2026 variation.`,
+    standfirst: `Ordinary hourly rates for every plumbing, mechanical services and fire sprinkler fitting classification under the ${a.meta.name} (${a.meta.code}), with all-purpose allowances built in, consolidated to the 16 September 2026 variation.`,
     directAnswer: `A registered plumbing tradesperson Level 1 on weekly hire earns ${$(t1r.hourly)} an hour (${$(t1r.weekly)} a week) including the all-purpose allowances, or ${$(casual(a, t1r.hourly))} as a casual. A not-registered tradesperson Level 1 is ${$(t1n.hourly)}; a new-entrant worker Level 1(a) is ${$(w1a.hourly)}; a sprinkler fitter tradesperson Level 1 is ${$(sf1.hourly)}. Saturday is 150% for 2 hours then 200%, Sunday 200% and public holidays 250%.`,
     trap: {
-      heading: "The 16 September 2026 variation changed one allowance clause — no rate moved",
+      heading: "The 16 September 2026 variation changed one allowance clause, and no rate moved",
       body: `On 16 September 2026 the Fair Work Commission varied clause 21 (Allowances) under its own initiative (determination PR814392, decision [2026] FWC 3528) to fix a cross-referencing error in clause 21.9(f), the mileage allowance. It now reads that the allowance is for an employee entitled to the additional travelling time allowance under cl 21.9(d) who uses their own vehicle for travel beyond the defined radius (cl 21.9(c)(ii)), at ${$(0.55)} per kilometre. The first determination printed $0.54, and a correction (PR814410) the same day restored $0.55, the figure that already applied from 1 July 2026. Every other allowance and every minimum rate on this page is unchanged. And remember the award's table in clause 18 is not what you are paid: the industry, trade, registration and special fixed allowances are paid for all purposes (cl 21.2), so they sit inside the ordinary hourly rate that every penalty and overtime percentage is applied to.`,
     },
     workedExample: {
@@ -57,7 +57,7 @@ function plumbing(): AwardPageCopy {
       steps: [
         `First 2 hours at 150%: ${$(t1r.hourly)} × 1.5 = ${$(sat1)} an hour → ${$(roundCents(sat1 * 2))}.`,
         `Next 3 hours at 200%: ${$(t1r.hourly)} × 2 = ${$(sat2)} an hour → ${$(roundCents(sat2 * 3))}.`,
-        `Total: ${$(total)} before tax. The award guarantees at least 3 hours' work on a Saturday, so a shorter call-in still pays for 3 hours.`,
+        `Total: ${$(total)} before tax. The award requires at least 3 hours' work on a Saturday, so a shorter call-in still pays for 3 hours.`,
       ],
       outro: `A casual doing the same shift is paid 175% then 225% of the same ordinary hourly rate. A tradesperson who is not registered has the $44.76 registration allowance missing from the rate, so the same 5 hours is worth less: ${$(roundCents(x(t1n.hourly, 1.5) * 2 + x(t1n.hourly, 2) * 3))}.`,
     },
@@ -104,7 +104,7 @@ function pastoral(): AwardPageCopy {
   return {
     slug: "pastoral-award-rates",
     crumb: "Pastoral Award Rates",
-    title: `Pastoral Award Pay Rates ${FY} (${a.meta.code}) — Farm Hand Levels`,
+    title: `Pastoral Award Pay Rates ${FY} (${a.meta.code}) - Farm Hand Levels`,
     description: fitDescription(
       `Pastoral Award (MA000035) farm and livestock hand rates from ${a.meta.operativeFrom}: FLH1 ${$(f1.hourly)}/hr to FLH8 ${$(f8.hourly)}/hr. Casual, overtime, public holiday and keep. Shearers excluded.`,
       `Pastoral Award MA000035 farm hand rates: FLH1 ${$(f1.hourly)} to FLH8 ${$(f8.hourly)} an hour, with casual, overtime and public holiday rates. Shearing is piece rate.`,
@@ -113,7 +113,7 @@ function pastoral(): AwardPageCopy {
     standfirst: `Hourly rates for farm and livestock hands (FLH1 to FLH8) under Part 6 of the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}. Shearers and other piece-rate classifications are not covered here.`,
     directAnswer: `A new station hand or farm worker (FLH1) earns at least ${$(f1.hourly)} an hour (${$(f1.weekly)} a week), or ${$(casual(a, f1.hourly))} as a casual. A station hand with 12 months' experience (FLH3) earns ${$(f3.hourly)}, a senior station hand (FLH5) ${$(f5.hourly)} and a senior dairy operator (FLH8) ${$(f8.hourly)}. There is no weekend penalty for ordinary hours; overtime is 150% Monday to Saturday, and 200% on a Sunday except for feeding and watering stock (150%). A public holiday is 200%.`,
     trap: {
-      heading: "Shearers are paid by the sheep, not by the hour — and this page excludes them",
+      heading: "Shearers are paid by the sheep, not by the hour, and this page excludes them",
       body: "The Pastoral Award has nine parts. This page covers only Part 6, the hourly rates for broadacre farming and livestock hands. Shearers, crutchers and woolpressers are piece-rate workers paid per sheep shorn or bale pressed under Part 9 and Schedule A, and no hourly rate on this page applies to that work. Pig breeding (Part 7), poultry farming (Part 8) and shearing-shed hands are also not reproduced. Check the award text for those classifications.",
     },
     workedExample: {
@@ -123,7 +123,7 @@ function pastoral(): AwardPageCopy {
         `Sunday overtime other than feeding and watering stock is 200% for a permanent employee and 225% for a casual (cl 35.2): ${$(f3.hourly)} × 2.25 = ${$(x(f3.hourly, 2.25))} an hour.`,
         `6 hours × ${$(x(f3.hourly, 2.25))} = ${$(roundCents(x(f3.hourly, 2.25) * 6))} before tax and before any deduction for keep.`,
       ],
-      outro: `If the same hours were feeding and watering stock, the Sunday rate falls to 150% for permanent staff and 175% for casuals — ${$(otCas)} an hour for Mia instead of ${$(x(f3.hourly, 2.25))}. A permanent FLH3 doing Monday to Saturday overtime gets ${$(ot)} an hour.`,
+      outro: `If the same hours were feeding and watering stock, the Sunday rate falls to 150% for permanent staff and 175% for casuals: ${$(otCas)} an hour for Mia instead of ${$(x(f3.hourly, 2.25))}. A permanent FLH3 doing Monday to Saturday overtime gets ${$(ot)} an hour.`,
     },
     faqs: [
       ...commonFaqs(a),
@@ -163,16 +163,16 @@ function horticulture(): AwardPageCopy {
   return {
     slug: "horticulture-award-rates",
     crumb: "Horticulture Award Rates",
-    title: `Horticulture Award Pay Rates ${FY} (${a.meta.code}) — Picker Hourly Rates`,
+    title: `Horticulture Award Pay Rates ${FY} (${a.meta.code}) - Picker Hourly Rates`,
     description: fitDescription(
       `Horticulture Award (MA000028) hourly rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 5 ${$(l5.hourly)}/hr, casual ${$(cas1)}. Piece rate rules explained.`,
       `Horticulture Award MA000028 rates: Level 1 ${$(l1.hourly)}/hr, casual ${$(cas1)}, to Level 5 ${$(l5.hourly)}. How piece rates and the 15% rule work.`,
     ),
     h1: `Horticulture Award Pay Rates ${FY}`,
-    standfirst: `Hourly rates for Levels 1 to 5 under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom} — and what a piece rate must still guarantee for fruit and vegetable pickers.`,
+    standfirst: `Hourly rates for Levels 1 to 5 under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom} and what a piece rate must still pay for fruit and vegetable pickers.`,
     directAnswer: `A Level 1 horticulture worker (including a fruit or vegetable picker) earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(cas1)} as a casual. Level 2 is ${$(l2.hourly)}, rising to ${$(l5.hourly)} at Level 5. If paid by piece rate, an average-productivity picker must earn at least 15% more than the hourly rate and every worker must receive at least their hourly rate for each hour worked. Public holidays are 200% (casuals 225%).`,
     trap: {
-      heading: "Piecework is allowed — but the hourly rate is a floor you cannot be paid below",
+      heading: "Piecework is allowed, but the hourly rate is a floor you cannot be paid below",
       body: `An employer may pay full-time, part-time or casual horticulture workers a piece rate (cl 15.2). The award does not set the dollars per bucket, punnet or kilogram: the employer must fix a piece rate so that a competent worker (one with at least 76 hours' experience of the task) working at average productivity earns at least 15% more per hour than the hourly rate for their level, including the 25% casual loading for a casual. For a casual Level 1 picker the hourly rate is ${$(cas1)}, so average productivity must produce at least ${$(roundCents(cas1 * 1.15))} an hour. Whatever your piece rate yields, you must receive at least the hourly rate multiplied by the hours worked each day (cl 15.2(f)), and the employer must give you a written piecework record before you start. Overtime and the ordinary hours clauses do not apply to a pieceworker.`,
     },
     workedExample: {
@@ -240,7 +240,7 @@ function healthProfessionals(): AwardPageCopy {
     standfirst: `Hourly rates for Support Services employees (Levels 1–9) and the new Health Professional classification structure (AQF 5–9 and Levels 2–4) under the ${a.meta.name} (${a.meta.code}), consolidated to 1 October 2026.`,
     directAnswer: `From the first full pay period on or after 1 October 2026, a Health Professional Level 1 at AQF 7 (for example a physiotherapist or occupational therapist) is paid at least ${$(hp7.hourly)} an hour (${$(hp7.weekly)} a week) in the 1st year, rising to ${$(hp7top.hourly)} from the 7th year; an AQF 9 first-year professional is ${$(hp9.hourly)} and a Level 4 manager ${$(l4.hourly)}. Support Services Level 1 is ${$(ss1.hourly)} (rates from 1 July 2026). Weekends are 150% (casuals 175%) and public holidays 250% (casuals 275%).`,
     trap: {
-      heading: "The Health Professional table changed on 1 October 2026 — and it is only stage one",
+      heading: "The Health Professional table changed on 1 October 2026, and it is only stage one",
       body: `Determination PR814029 substituted clause 17 from the first full pay period starting on or after 1 October 2026. Health professionals are now paid by the AQF level of their profession's standard minimum qualification (AQF 5 to 9) and years of experience in the profession, plus Levels 2.1, 2.2, 3 and 4. The increase is phased: further stages take effect on 30 June in each of 2027, 2028, 2029 and 2030, so the table below is the first-stage rate, not where it will end up. If you were classified as a Health Professional employee on 30 September 2026, you are translated into the new structure under clause J.4 and cannot be paid less than your old rate. Support Services rates (Levels 1–9) were not changed by this variation and are the 1 July 2026 rates. Dental assistants and pathology collectors at some levels have separate transitional rates to 31 December 2026 and are not in the Support Services rows.`,
     },
     workedExample: {
@@ -324,7 +324,7 @@ function timber(): AwardPageCopy {
     directAnswer: `A General Timber Level 1 worker earns at least ${$(g1.hourly)} an hour (${$(g1.weekly)} a week), or ${$(casual(a, g1.hourly))} as a casual; Level 4 is ${$(g4.hourly)} and Level 7 ${$(g7.hourly)}. Pulp and Paper starts higher: Level 1 is ${$(p1.hourly)}, up to ${$(p9.hourly)} at Level 9. Saturday is 150% for the first 2 hours then 200%, Sunday 200% and public holidays 250% (General Timber casuals 275%).`,
     trap: {
       heading: "Find your stream first: the three tables are different",
-      body: `The Timber Industry Award has separate minimum rates for the General Timber stream, the Wood and Timber Furniture stream (which adds a Level 4A) and the Pulp and Paper stream (nine levels, starting at ${$(p1.hourly)} rather than ${$(g1.hourly)}). The casual public holiday rate of 275% is tabulated only for the General Timber stream (cl 27.1(d)), and casual day workers are paid casual overtime rates — not weekend penalty rates — for Saturday and Sunday work unless ordinary weekend hours have been agreed. Forest work and low loader allowances are paid for all purposes and are not in the rate tables.`,
+      body: `The Timber Industry Award has separate minimum rates for the General Timber stream, the Wood and Timber Furniture stream (which adds a Level 4A) and the Pulp and Paper stream (nine levels, starting at ${$(p1.hourly)} rather than ${$(g1.hourly)}). The casual public holiday rate of 275% is tabulated only for the General Timber stream (cl 27.1(d)), and casual day workers are paid casual overtime rates (not weekend penalty rates) for Saturday and Sunday work unless ordinary weekend hours have been agreed. Forest work and low loader allowances are paid for all purposes and are not in the rate tables.`,
     },
     workedExample: {
       heading: "Worked example: a casual Level 4 sawmill worker on overtime",
@@ -374,7 +374,7 @@ function meatIndustry(): AwardPageCopy {
   return {
     slug: "meat-industry-award-rates",
     crumb: "Meat Industry Award Rates",
-    title: `Meat Industry Award Pay Rates ${FY} (${a.meta.code}) — MI 1 to MI 8`,
+    title: `Meat Industry Award Pay Rates ${FY} (${a.meta.code}) - MI 1 to MI 8`,
     description: fitDescription(
       `Meat Industry Award (MA000059) rates from ${a.meta.operativeFrom}: MI 1 ${$(m1.hourly)}/hr to MI 8 ${$(m8.hourly)}/hr. Casual loading, weekend rates by establishment type, overtime and junior rates.`,
       `Meat Industry Award MA000059 rates: MI 1 ${$(m1.hourly)} to MI 8 ${$(m8.hourly)} an hour. Casual, weekend and overtime rates by establishment type.`,
@@ -383,7 +383,7 @@ function meatIndustry(): AwardPageCopy {
     standfirst: `Every classification rate (MI 1 to MI 8) under the ${a.meta.name} (${a.meta.code}) for meat processing, manufacturing and retail establishments, operative from ${a.meta.operativeFrom}.`,
     directAnswer: `An MI 1 meat industry employee earns at least ${$(m1.hourly)} an hour (${$(m1.weekly)} a week), or ${$(casual(a, m1.hourly))} as a casual. MI 4 is ${$(m4.hourly)}, MI 7 (the tradesperson level) ${$(m7.hourly)} and MI 8 ${$(m8.hourly)}. Overtime is 150% for 3 hours then 200%, and the casual loading is not paid on overtime. Weekend rates depend on the type of establishment: in a processing plant Saturday and Sunday ordinary hours (if agreed) are 150% and 200%.`,
     trap: {
-      heading: "Your weekend rate depends on the type of establishment — and casuals lose the loading on weekends",
+      heading: "Your weekend rate depends on the type of establishment, and casuals lose the loading on weekends",
       body: `The Meat Industry Award has three sets of ordinary hours and weekend rates. Meat processing establishments work ordinary hours Monday to Friday, with Saturday at 150% and Sunday at 200% only if agreed. Meat manufacturing establishments can work up to 4 ordinary hours on a Saturday at 125%. Meat retail (including retail staff of a processing or manufacturing business) is paid 125% on a Saturday and 150% on a Sunday. For a casual working a weekend, the weekend penalty is paid instead of the 25% loading, not on top of it, so a casual Saturday in retail is 125%, the same as a permanent employee.`,
     },
     workedExample: {
@@ -444,7 +444,7 @@ function commercialSales(): AwardPageCopy {
     standfirst: `Minimum rates for commercial travellers, merchandisers and advertising sales representatives under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Commercial Traveller or Advertising Sales Representative earns at least ${$(ct.hourly)} an hour (${$(ct.weekly)} a week), or ${$(casual(a, ct.hourly))} as a casual. A Merchandiser is ${$(mer.hourly)} and a Probationary Traveller ${$(pt.hourly)}. Work after 6.00 pm Monday to Friday and on Saturday is 150% (casuals 175%), Sunday is 200% (casuals 225%) and public holidays 250% (casuals 275%).`,
     trap: {
-      heading: "Check this award actually covers your job — it is an occupational award that often gives way",
+      heading: "Check this award actually covers your job: it is an occupational award that often gives way",
       body: "The Commercial Sales Award covers only commercial travellers, merchandisers and advertising sales representatives, and only where no other modern award has a classification for the work. It does not cover employees under the Clerks—Private Sector Award, the Contract Call Centres Award or the Graphic Arts, Printing and Publishing Award, or anyone covered by an enterprise agreement. Many sales roles are paid by commission on top of a base; the award sets the minimum, and a commercial traveller cannot be paid solely by commission, salary or retainer lower than the award minimum (cl 15.4).",
     },
     workedExample: {
@@ -493,13 +493,13 @@ function mining(): AwardPageCopy {
   return {
     slug: "mining-award-rates",
     crumb: "Mining Award Rates",
-    title: `Mining Award Pay Rates ${FY} (${a.meta.code}) — Entry to Level 7`,
+    title: `Mining Award Pay Rates ${FY} (${a.meta.code}) - Entry to Level 7`,
     description: fitDescription(
       `Mining Industry Award (MA000011) rates from ${a.meta.operativeFrom}: entry ${$(entry.hourly)}/hr to Level 7 ${$(l7.hourly)}/hr incl. industry allowance. Shift, weekend, casual and overtime rates.`,
       `Mining Industry Award MA000011 rates: ${$(entry.hourly)}–${$(l7.hourly)}/hr incl. industry allowance, with shift, weekend, casual and overtime rates.`,
     ),
     h1: `Mining Award Pay Rates ${FY}`,
-    standfirst: `Ordinary hourly rates for every classification under the ${a.meta.name} (${a.meta.code}), with the $41.41 industry allowance built in — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Ordinary hourly rates for every classification under the ${a.meta.name} (${a.meta.code}), with the $41.41 industry allowance built in, operative from ${a.meta.operativeFrom}.`,
     directAnswer: `An entry-level mining employee earns ${$(entry.hourly)} an hour (${$(entry.weekly)} a week) including the industry allowance, or ${$(casual(a, entry.hourly))} as a casual. Level 3 (competent) is ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7. Afternoon and night shifts are 115%, permanent night 130%, Saturday before noon 150% for 3 hours then 200%, and Sunday and public holidays 200% and 250%. For casuals every percentage applies to the casual rate.`,
     trap: {
       heading: "The award's table is not what you are paid: the industry allowance is part of the rate",

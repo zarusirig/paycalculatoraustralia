@@ -15,7 +15,7 @@ const URL = `${BASE}/teacher-pay-australia/`;
 // description stay national (no state names): state queries belong to the
 // /teacher-pay-australia/{state}/ pages, which the rows below link to by name.
 const summary = teacherHubSummary();
-const TITLE = `Teacher Salary Australia ${summary.year} — Teacher Pay by State (All 8)`;
+const TITLE = `Teacher Salary Australia ${summary.year} - Teacher Pay by State (All 8)`;
 const DESCRIPTION = `Teacher salaries in every Australian state: graduates start on ${formatAUD(
   summary.lowestGraduate.graduate,
 )} to ${formatAUD(summary.highestGraduate.graduate)} and the classroom scale tops out at ${formatAUD(

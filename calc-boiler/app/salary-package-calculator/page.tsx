@@ -13,7 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-package-calculator/`;
-const TITLE = "Salary Package Calculator — Including Super or Plus Super";
+const TITLE = "Salary Package Calculator - Including Super or Plus Super";
 const DESCRIPTION = `Turn "$X package", "$X including super" or "$X plus super" into base salary, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super, total package and ${SITE_CONFIG.financialYear} take-home pay. Tables for $50k–$300k both ways.`;
 
 export const metadata: Metadata = withFeaturedImage({

@@ -70,7 +70,7 @@ export default function SuperCoContributionPage() {
             <section id="government-co-contribution">
               <h2>Government Super Co-Contribution</h2>
               <p>
-                The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund — up to a maximum of <strong>$500 per financial year</strong>.
+                The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund, up to a maximum of <strong>$500 per financial year</strong>.
               </p>
               <p>
                 To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold. Low-income earners may also get the <Link href="/listo-calculator/">low income super tax offset (LISTO)</Link> on their employer&rsquo;s before-tax contributions.
@@ -78,9 +78,9 @@ export default function SuperCoContributionPage() {
 
               <h3>How It Works</h3>
               <ol>
-                <li><strong>Make a personal super contribution</strong> — Deposit after-tax money into your super fund (not salary sacrifice — it must be a non-concessional contribution from your own bank account)</li>
-                <li><strong>Lodge your tax return</strong> — The ATO automatically checks your eligibility after processing your return</li>
-                <li><strong>Receive the co-contribution</strong> — If eligible, the ATO pays the matching amount directly into your super fund, usually within 60 days of your tax return being processed</li>
+                <li><strong>Make a personal super contribution</strong>: deposit after-tax money into your super fund (not salary sacrifice; it must be a non-concessional contribution from your own bank account)</li>
+                <li><strong>Lodge your tax return</strong>: the ATO automatically checks your eligibility after processing your return</li>
+                <li><strong>Receive the co-contribution</strong>: if eligible, the ATO pays the matching amount directly into your super fund, usually within 60 days of your tax return being processed</li>
               </ol>
               <p>
                 You do <strong>not</strong> need to apply separately. The process is entirely automatic once your tax return is lodged and your super fund details are up to date with the ATO.
@@ -145,7 +145,7 @@ export default function SuperCoContributionPage() {
 
               <h3>How It Works</h3>
               <p>
-                You contribute after-tax money into your spouse&apos;s super fund (a non-concessional contribution to their account). When you lodge your tax return, you claim the spouse contribution tax offset. The offset directly reduces your tax payable — it is not a deduction, so it reduces tax dollar-for-dollar.
+                You contribute after-tax money into your spouse&apos;s super fund (a non-concessional contribution to their account). When you lodge your tax return, you claim the spouse contribution tax offset. The offset directly reduces your tax payable. It is not a deduction, so it reduces tax dollar-for-dollar.
               </p>
 
               <h3>Eligibility & Thresholds</h3>
@@ -198,7 +198,7 @@ export default function SuperCoContributionPage() {
             </section>
 
             <section id="combined-example">
-              <h2>Both Combined — Worked Example</h2>
+              <h2>Both Combined: Worked Example</h2>
               <p>
                 Consider a couple where <strong>Partner A</strong> earns $90,000 and <strong>Partner B</strong> earns $36,000, mostly from a part-time job. Partner B is eligible for the full government co-contribution, and because Partner B earns $37,000 or less, Partner A can claim the full spouse offset.
               </p>
@@ -246,10 +246,10 @@ export default function SuperCoContributionPage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <ul>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — Complete guide to SG, contribution caps, and investment options</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> — Project your retirement balance with employer and personal contributions</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> — Model pre-tax super contributions and tax savings</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — Calculate your tax liability at any income level</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: complete guide to SG, contribution caps, and investment options</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: project your retirement balance with employer and personal contributions</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: model pre-tax super contributions and tax savings</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: calculate your tax liability at any income level</li>
               </ul>
             </section>
 

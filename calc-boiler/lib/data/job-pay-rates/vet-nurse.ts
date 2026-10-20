@@ -82,7 +82,7 @@ export const VET_NURSE: Occupation = {
   slug: "vet-nurse",
   name: "Vet Nurse",
   plural: "vet nurses",
-  metaTitle: `Vet Nurse Salary Australia 2026 — ${money2(VN_L4.hourly)}/hr Award Minimum`,
+  metaTitle: `Vet Nurse Salary Australia 2026 - ${money2(VN_L4.hourly)}/hr Award Minimum`,
   award: {
     name: "Animal Care and Veterinary Services Award 2020",
     code: CODE,
@@ -98,7 +98,7 @@ export const VET_NURSE: Occupation = {
     "Vet nurses employed by private veterinary practices and by community-based animal welfare charities are covered by the Animal Care and Veterinary Services Award 2020 [MA000118] (cl 4.2–4.3). Clause 15.2 puts veterinary nurses on one pay scale with receptionists, animal attendants, assistants and practice managers, so the level depends on your skills and duties, not your job title.",
     "A vet nurse working at AQF Certificate IV level is Level 4. The award's indicative Level 4 tasks are the core of veterinary nursing: providing veterinary nursing care, preparing and supporting surgical procedures, monitoring patient anaesthesia, applying radiographic routines, performing pathology procedures and nursing hospitalised animals (Schedule A.2.5).",
     "Level 3 needs an AQF Certificate III or equivalent qualification, or the knowledge and experience to work at trade level. It covers animal care under limited supervision, routine monitoring of patients, basic animal first aid and supervising Level 1 staff (A.2.4). Levels 1 and 2 are assistant work under direct supervision, and Level 5 is the practice manager.",
-    "Vets themselves are on a separate annual salary scale in the same award — see the veterinarian page. The award covers private practices and animal welfare charities only, so a vet nurse employed by a university or a government agency is paid under a different instrument, and an enterprise agreement replaces the award where one applies.",
+    "Vets themselves are on a separate annual salary scale in the same award (see the veterinarian page) page. The award covers private practices and animal welfare charities only, so a vet nurse employed by a university or a government agency is paid under a different instrument, and an enterprise agreement replaces the award where one applies.",
   ],
   tables: [
     {
@@ -111,8 +111,8 @@ export const VET_NURSE: Occupation = {
   ],
   penalties: [
     { when: "Monday–Friday, and Saturday before 1 pm (ordinary hours, 6 am–9 pm)", permanent: "100%", casual: "125%" },
-    { when: "Saturday after 1 pm — first 3 hours", permanent: "150%", casual: "175%" },
-    { when: "Saturday after 1 pm — after 3 hours", permanent: "200%", casual: "225%" },
+    { when: "Saturday after 1 pm, first 3 hours", permanent: "150%", casual: "175%" },
+    { when: "Saturday after 1 pm, after 3 hours", permanent: "200%", casual: "225%" },
     { when: "Sunday", permanent: "200%", casual: "225%" },
     { when: "Public holiday (minimum 4 hours)", permanent: "250%", casual: "275%" },
     { when: "Shift finishing after 8 pm, or starting at or before 6.30 am", permanent: "115%", casual: "140%" },
@@ -135,7 +135,7 @@ export const VET_NURSE: Occupation = {
   ],
   median: VET_NURSE_MEDIAN,
   notices: [
-    "Someone new to the industry can be paid the Introductory level — $978.10 a week, $25.74 an hour — for no more than 3 months before moving to Level 1 (cl 15.2, Schedule A.2.1).",
+    "Someone new to the industry can be paid the Introductory level ($978.10 a week, $25.74 an hour) for no more than 3 months before moving to Level 1 (cl 15.2, Schedule A.2.1).",
     "Junior employees are paid a percentage of the adult rate for their level: 50% under 17, 60% at 17, 70% at 18, 80% at 19 and 90% at 20 (cl 15.4).",
   ],
   notShown: [
@@ -166,9 +166,9 @@ export const VET_NURSE: Occupation = {
     },
   ],
   sources: [
-    { title: "Animal Care and Veterinary Services Award 2020 [MA000118] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Animal Care and Veterinary Services Award 2020 [MA000118], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
     {
-      title: "Pay Guide — Animal Care and Veterinary Services Award [MA000118], published 24 June 2026",
+      title: "Pay Guide, Animal Care and Veterinary Services Award [MA000118], published 24 June 2026",
       publisher: "Fair Work Ombudsman",
       url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/animal-care-and-veterinary-services-award-ma000118-pay-guide.pdf.aspx",
     },

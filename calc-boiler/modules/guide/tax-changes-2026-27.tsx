@@ -76,7 +76,7 @@ export default function TaxChanges202627Page() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Tax Changes 2026-27 — What&apos;s Changing From 1 July 2026
+            Tax Changes 2026-27: What&apos;s Changing From 1 July 2026
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             The confirmed Australian tax changes for the 2026-27 financial year, now in effect. From the 15% rate cut and Payday Super to the published HECS thresholds, here&apos;s what you need to know to plan your take-home pay.
@@ -123,15 +123,15 @@ export default function TaxChanges202627Page() {
                 The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>12%</strong> on 1 July 2025 after a decade-long incremental increase from 9.5%. No further increases are legislated for FY2026-27 or beyond. From 1 July 2026 employers calculate SG on <strong>qualifying earnings</strong> (ordinary time earnings plus commissions for work done entirely outside ordinary hours), up to the annual maximum super contribution base.
               </p>
               <p>
-                The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY2026-27 (up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> &mdash; both confirmed by the ATO and applying from 1 July 2026. These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.
+                The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY2026-27 (up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong>, both confirmed by the ATO and applying from 1 July 2026. These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Payday Super Starts</h3>
               <p>
-                Payday Super commenced on <strong>1 July 2026</strong>. Employers must now get super guarantee contributions into your fund within <strong>7 business days of each payday</strong> instead of quarterly, and the maximum contribution base became an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>. Late payments attract a rebuilt super guarantee charge with interest at the general interest charge rate &mdash; <strong>{(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}%</strong> for {GENERAL_INTEREST_CHARGE.quarter}. That rate resets quarterly, with the next rate due {GENERAL_INTEREST_CHARGE.nextRateDue}.
+                Payday Super commenced on <strong>1 July 2026</strong>. Employers must now get super guarantee contributions into your fund within <strong>7 business days of each payday</strong> instead of quarterly, and the maximum contribution base became an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>. Late payments attract a rebuilt super guarantee charge with interest at the general interest charge rate, <strong>{(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}%</strong> for {GENERAL_INTEREST_CHARGE.quarter}. That rate resets quarterly, with the next rate due {GENERAL_INTEREST_CHARGE.nextRateDue}.
               </p>
               <p>
-                One transition measure is still pending: relief {PAYDAY_SUPER_CAP_RELIEF.purpose} was announced by {PAYDAY_SUPER_CAP_RELIEF.announcedBy}, but it is <strong>not yet law</strong> &mdash; the ATO&apos;s changeover page still says &ldquo;{PAYDAY_SUPER_CAP_RELIEF.atoWording}&rdquo; A bill to legislate it, the <a href={PAYDAY_SUPER_CAP_RELIEF.bill.url}>{PAYDAY_SUPER_CAP_RELIEF.bill.name}</a> ({PAYDAY_SUPER_CAP_RELIEF.bill.schedule}), was introduced on {PAYDAY_SUPER_CAP_RELIEF.bill.introduced} and has not passed (checked {PAYDAY_SUPER_CAP_RELIEF.verifiedOn}). Treat the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap as it stands until legislation passes.
+                One transition measure is still pending: relief {PAYDAY_SUPER_CAP_RELIEF.purpose} was announced by {PAYDAY_SUPER_CAP_RELIEF.announcedBy}, but it is <strong>not yet law</strong>: the ATO&apos;s changeover page still says &ldquo;{PAYDAY_SUPER_CAP_RELIEF.atoWording}&rdquo; A bill to legislate it, the <a href={PAYDAY_SUPER_CAP_RELIEF.bill.url}>{PAYDAY_SUPER_CAP_RELIEF.bill.name}</a> ({PAYDAY_SUPER_CAP_RELIEF.bill.schedule}), was introduced on {PAYDAY_SUPER_CAP_RELIEF.bill.introduced} and has not passed (checked {PAYDAY_SUPER_CAP_RELIEF.verifiedOn}). Treat the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap as it stands until legislation passes.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Thresholds Confirmed</h3>

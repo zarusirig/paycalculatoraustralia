@@ -52,7 +52,7 @@ function dateModified(): string | undefined {
 
 // <title> and description are fitted (lib/seo-title): the H1 keeps the full
 // PH_HUB_TITLE; the shorter <title> form keeps "Public Holiday Pay Rates" first.
-const HUB_TITLE = fitTitle(PH_HUB_TITLE, "Public Holiday Pay Rates 2026 — Penalty Rates & Calculator");
+const HUB_TITLE = fitTitle(PH_HUB_TITLE, "Public Holiday Pay Rates 2026 - Penalty Rates & Calculator");
 
 function hubDescription(): string {
   const r = publicHolidayRateRange();

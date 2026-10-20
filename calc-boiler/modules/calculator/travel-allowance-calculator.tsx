@@ -80,7 +80,7 @@ export default function TravelAllowanceCalculator() {
             )}
             <NumberField id="ta-nights" label="Nights away" value={nights} onChange={setNights} step={1} max={365} />
             {!overseas && (
-              <SelectField id="ta-provided" label="Employer pays the accommodation directly?" value={provided} onChange={setProvided} options={[{ value: "no", label: "No — the allowance covers it" }, { value: "yes", label: "Yes — allowance is meals and incidentals only" }]} />
+              <SelectField id="ta-provided" label="Employer pays the accommodation directly?" value={provided} onChange={setProvided} options={[{ value: "no", label: "No, the allowance covers it" }, { value: "yes", label: "Yes, allowance is meals and incidentals only" }]} />
             )}
             <div className="sm:col-span-2">
               <NumberField id="ta-paid" label="Travel allowance paid for the trip (optional)" hint={overseas ? "Overseas: enter the meals and incidentals part only. Tax is always withheld from an overseas accommodation allowance." : undefined} value={paid} onChange={setPaid} step={10} />

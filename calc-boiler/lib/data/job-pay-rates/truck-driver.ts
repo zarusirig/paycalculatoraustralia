@@ -53,7 +53,7 @@ export const TRUCK_DRIVER: Occupation = {
   },
   coverage: [
     "Truck drivers doing local and regional work are covered by the Road Transport and Distribution Award 2020 [MA000038]. Your grade depends on the vehicle you drive, not on how long you have been driving: the award's Schedule B lists each vehicle type against a Transport Worker grade from 1 to 10.",
-    "Drivers on long-distance work — interstate runs, or return journeys of more than 500 km — are covered by a different award, the Road Transport (Long Distance Operations) Award 2020 [MA000039]. It uses the same weekly rates for grades 3 to 10 but pays drivers by the kilometre or by an hourly driving rate.",
+    "Drivers on long-distance work (interstate runs, or return journeys of more than 500 km) are covered by a different award, the Road Transport (Long Distance Operations) Award 2020 [MA000039]. It uses the same weekly rates for grades 3 to 10 but pays drivers by the kilometre or by an hourly driving rate.",
     "If you drive more than one class of vehicle in a day, you are paid the highest grade for the whole day (cl 17.4).",
   ],
   tables: [
@@ -102,7 +102,7 @@ export const TRUCK_DRIVER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a truck driver in 2026?",
-      a: "It depends on the vehicle. A semi-trailer driver (Transport Worker Grade 6) must be paid at least $29.00 an hour, or $1,102.00 a week, under the Road Transport and Distribution Award from the first full pay period on or after 1 July 2026 — $57,304 a year before tax. A B-double driver (Grade 7) gets at least $29.42 an hour.",
+      a: "It depends on the vehicle. A semi-trailer driver (Transport Worker Grade 6) must be paid at least $29.00 an hour, or $1,102.00 a week, under the Road Transport and Distribution Award from the first full pay period on or after 1 July 2026. That is $57,304 a year before tax. A B-double driver (Grade 7) gets at least $29.42 an hour.",
     },
     {
       q: "What grade is a truck driver on?",
@@ -122,8 +122,8 @@ export const TRUCK_DRIVER: Occupation = {
     },
   ],
   sources: [
-    { title: "Road Transport and Distribution Award 2020 [MA000038] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000038") },
-    { title: "Road Transport (Long Distance Operations) Award 2020 [MA000039] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000039") },
+    { title: "Road Transport and Distribution Award 2020 [MA000038], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000038") },
+    { title: "Road Transport (Long Distance Operations) Award 2020 [MA000039], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000039") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

@@ -17,11 +17,11 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need a tax file number for my first job?",
-    a: `Yes. If you don't provide a TFN (or tell your employer you have applied for one), your employer must withhold tax at ${formatPercent(NO_TFN_RATES.resident, 0)} of every dollar — the top marginal rate plus Medicare levy. Apply for a TFN online through the ATO.`,
+    a: `Yes. If you don't provide a TFN (or tell your employer you have applied for one), your employer must withhold tax at ${formatPercent(NO_TFN_RATES.resident, 0)} of every dollar, the top marginal rate plus Medicare levy. Apply for a TFN online through the ATO.`,
   },
   {
     q: "How long does it take to get a TFN?",
-    a: "Online applications take 10-28 business days. You can start work before receiving your TFN — you have 28 days to provide it to your employer. In the meantime, your employer withholds tax at the higher no-TFN rate, but this is corrected once you provide your TFN.",
+    a: "Online applications take 10-28 business days. You can start work before receiving your TFN. You have 28 days to provide it to your employer. In the meantime, your employer withholds tax at the higher no-TFN rate, but this is corrected once you provide your TFN.",
   },
   {
     q: "What is the tax-free threshold?",
@@ -42,11 +42,11 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the minimum wage for my first job?",
-    a: `The national minimum wage for adults (21+) is ${formatAUD(NMW.hourly, 2)} per hour or ${formatAUD(NMW.weekly, 2)} per week (from 1 July 2026). Casual employees receive an additional ${formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading, making the casual minimum ${formatAUD(NMW.casualHourly, 2)}/hr. Many industries have award rates that are higher than the minimum wage — check our Award Rates Guide.`,
+    a: `The national minimum wage for adults (21+) is ${formatAUD(NMW.hourly, 2)} per hour or ${formatAUD(NMW.weekly, 2)} per week (from 1 July 2026). Casual employees receive an additional ${formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading, making the casual minimum ${formatAUD(NMW.casualHourly, 2)}/hr. Many industries have award rates that are higher than the minimum wage. Check our Award Rates Guide.`,
     links: { "Award Rates Guide": "/award-rates/" },
   },
   {
     q: "Do I have to lodge a tax return?",
-    a: `If you earned above the tax-free threshold (${TFT}), you must lodge a tax return. Even if you earned less, you should lodge if tax was withheld from your pay — you will receive a refund of all tax paid. Lodge for free through myTax at my.gov.au after 1 July each year.`,
+    a: `If you earned above the tax-free threshold (${TFT}), you must lodge a tax return. Even if you earned less, you should lodge if tax was withheld from your pay, as you will receive a refund of all tax paid. Lodge for free through myTax at my.gov.au after 1 July each year.`,
   },
 ];

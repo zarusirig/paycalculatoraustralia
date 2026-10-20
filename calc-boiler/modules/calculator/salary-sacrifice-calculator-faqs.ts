@@ -36,7 +36,7 @@ const LAPTOP = 2_500;
 export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   {
     q: "What is salary sacrificing?",
-    a: "Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value — such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, resulting in lower income tax and PAYG withholding.",
+    a: "Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value, such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, resulting in lower income tax and PAYG withholding.",
   },
   {
     q: "How much can I salary sacrifice into super?",
@@ -44,7 +44,7 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice reduce my take-home pay?",
-    a: `Yes. The sacrificed amount is deducted before income tax is calculated, reducing your net pay. The reduction is smaller than the sacrifice amount because of the tax saving. Sacrificing ${formatAUD(SACRIFICE)} on an $80,000 salary reduces take-home pay by approximately ${formatAUD(TAKE_HOME_DROP)} — the remaining ${formatAUD(SACRIFICE - TAKE_HOME_DROP)} is the income tax and Medicare levy you no longer pay.`,
+    a: `Yes. The sacrificed amount is deducted before income tax is calculated, reducing your net pay. The reduction is smaller than the sacrifice amount because of the tax saving. Sacrificing ${formatAUD(SACRIFICE)} on an $80,000 salary reduces take-home pay by approximately ${formatAUD(TAKE_HOME_DROP)}. The remaining ${formatAUD(SACRIFICE - TAKE_HOME_DROP)} is the income tax and Medicare levy you no longer pay.`,
   },
   {
     q: "Do I pay tax on salary sacrificed super?",
@@ -52,7 +52,7 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is salary sacrificing suitable for everyone?",
-    a: `No. It is most beneficial for middle-to-high income earners. Up to ${formatAUD(SECOND.max)}, your marginal income tax rate is ${pct(SECOND.rate)} for ${FY} — the same as the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax — so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
+    a: `No. It is most beneficial for middle-to-high income earners. Up to ${formatAUD(SECOND.max)}, your marginal income tax rate is ${pct(SECOND.rate)} for ${FY}, the same as the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax, so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
   },
   {
     q: "Can I salary sacrifice into things other than super?",
@@ -69,11 +69,11 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I change my salary sacrifice amount mid-year?",
-    a: "Yes. Most employers allow adjustments to salary sacrifice arrangements at any time, though some restrict changes to quarterly intervals. Changes apply to future pay periods only — you cannot retrospectively sacrifice income already received. Contact your payroll team to confirm your employer's specific adjustment schedule.",
+    a: "Yes. Most employers allow adjustments to salary sacrifice arrangements at any time, though some restrict changes to quarterly intervals. Changes apply to future pay periods only. You cannot retrospectively sacrifice income already received. Contact your payroll team to confirm your employer's specific adjustment schedule.",
   },
   {
     q: "Can I carry forward unused concessional cap amounts?",
-    a: `Yes. If your total super balance is below ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to ${CARRY_FORWARD.years} prior years — for FY${FY}, the years ${CF_WINDOW[0]?.year} to ${CF_WINDOW[CF_WINDOW.length - 1]?.year}. Unused amounts older than ${CARRY_FORWARD.years} years expire. This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.`,
+    a: `Yes. If your total super balance is below ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to ${CARRY_FORWARD.years} prior years (for FY${FY}, the years ${CF_WINDOW[0]?.year} to ${CF_WINDOW[CF_WINDOW.length - 1]?.year}). Unused amounts older than ${CARRY_FORWARD.years} years expire. This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.`,
   },
   {
     q: "Should I salary sacrifice or pay off my mortgage faster?",

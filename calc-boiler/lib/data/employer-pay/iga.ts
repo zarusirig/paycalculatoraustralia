@@ -29,13 +29,13 @@ import type { EmployerPay } from "./types";
 
 const AWARD_URL = "https://awards.fairwork.gov.au/MA000004.html";
 
-const SEE_AWARD = "Higher retail classification — the award's Schedule A lists the duties at each level";
+const SEE_AWARD = "Higher retail classification: the award's Schedule A lists the duties at each level";
 
 export const IGA_PAY: EmployerPay = {
   slug: "iga",
   name: "IGA",
   employerEntity:
-    "The company that owns your IGA store — every IGA supermarket is independently owned and operated, with Metcash as the wholesaler.",
+    "The company that owns your IGA store. Every IGA supermarket is independently owned and operated, with Metcash as the wholesaler.",
   industry: "supermarket",
   instrument: {
     kind: "modern-award",
@@ -43,7 +43,7 @@ export const IGA_PAY: EmployerPay = {
     reference: "MA000004",
     url: AWARD_URL,
     coverage:
-      "There is no IGA-wide enterprise agreement: each store's owner is the employer, and the General Retail Industry Award covers its staff unless that owner has its own approved agreement. A few do — for example Lloyds IGA and Champions IGA — and an agreement still cannot pay a base rate below the award.",
+      "There is no IGA-wide enterprise agreement: each store's owner is the employer, and the General Retail Industry Award covers its staff unless that owner has its own approved agreement. A few do (for example Lloyds IGA and Champions IGA), and an agreement still cannot pay a base rate below the award.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: {
@@ -95,11 +95,11 @@ export const IGA_PAY: EmployerPay = {
   ],
   notices: [
     "Your employer is the company that owns your IGA store, not IGA or Metcash. These are the General Retail Industry Award minimums; some store owners pay more.",
-    "Some IGA owners have their own enterprise agreement (for example Lloyds IGA and Champions IGA). If yours does, it sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "Some IGA owners have their own enterprise agreement (for example Lloyds IGA and Champions IGA). If yours does, it sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
   ],
   unverified: [
-    "Whether your particular IGA store's owner has its own enterprise agreement — agreements are registered under the owner's company name, which we cannot search store by store.",
-    "Rates under the Lloyds IGA and Champions IGA agreements — not transcribed here.",
+    "Whether your particular IGA store's owner has its own enterprise agreement. Agreements are registered under the owner's company name, which we cannot search store by store.",
+    "Rates under the Lloyds IGA and Champions IGA agreements: not transcribed here.",
     "Liquor, pharmacy and some bakery counters inside IGA stores can fall under other classifications or awards.",
   ],
   awardHref: "/retail-award-rates/",
@@ -108,7 +108,7 @@ export const IGA_PAY: EmployerPay = {
     { title: "General Retail Industry Award 2020 (MA000004), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },
     { title: "Lloyds IGA and SDA Enterprise Agreement 2023 (AE520134)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/agreements/fwa/ae520134.pdf" },
     { title: "Champions IGA Supermarket Enterprise Agreement 2023 (AE522127)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/agreements/fwa/ae522127.pdf" },
-    { title: "Our businesses — Food (IGA as a network of independently owned stores)", publisher: "Metcash", url: "https://www.metcash.com/our-businesses/food/" },
+    { title: "Our businesses, Food (IGA as a network of independently owned stores)", publisher: "Metcash", url: "https://www.metcash.com/our-businesses/food/" },
   ],
   faqs: [
     {

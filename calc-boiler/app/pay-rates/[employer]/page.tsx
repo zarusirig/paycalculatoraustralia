@@ -30,7 +30,7 @@ function canonicalFor(slug: string) {
 }
 
 function titleFor(e: EmployerPay) {
-  return `${e.name} Pay Rates 2026 — Hourly Wage by Age & Level`;
+  return `${e.name} Pay Rates 2026 - Hourly Wage by Age & Level`;
 }
 
 /** What the page actually shows beyond the adult table, so the description claims nothing it lacks. */

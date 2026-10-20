@@ -23,8 +23,8 @@ export default function PaydaySuperStartsJuly2026() {
 
       <h2>What payday super actually changes</h2>
       <p>
-        Until now, employers had until 28 days after the end of each quarter to pay super guarantee
-        — meaning contributions could sit outside your fund for up to four months after you earned
+        Until now, employers had until 28 days after the end of each quarter to pay super guarantee,
+        meaning contributions could sit outside your fund for up to four months after you earned
         them. Payday super closes that gap. From 1 July 2026, super guarantee on qualifying earnings
         must be calculated and paid alongside each pay run, and must reach your super fund within 7
         business days of payday, with a longer window for some new employees while their fund
@@ -65,7 +65,7 @@ export default function PaydaySuperStartsJuly2026() {
       <p>
         You can track whether contributions are landing on time through your super fund&apos;s app,
         member portal, or the ATO online services section of myGov. If you notice super guarantee is
-        missing a few business days after payday, raise it with your employer first — see our guide
+        missing a few business days after payday, raise it with your employer first. See our guide
         to <Link href="/understanding-your-payslip/">understanding your payslip</Link> for what your
         super line should show each pay cycle.
       </p>

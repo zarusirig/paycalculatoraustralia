@@ -15,8 +15,8 @@ export default function DeemingRatesChange2026() {
         rows={[
           { label: "Lower deeming rate", before: "0.25%", after: "1.25%" },
           { label: "Upper deeming rate", before: "2.25%", after: "3.25%" },
-          { label: "Lower-rate threshold — single", after: "Up to $64,200" },
-          { label: "Lower-rate threshold — couple (combined)", after: "Up to $106,200" },
+          { label: "Lower-rate threshold, single", after: "Up to $64,200" },
+          { label: "Lower-rate threshold, couple (combined)", after: "Up to $106,200" },
           { label: "Effective from", after: "20 March 2026" },
         ]}
       />
@@ -54,7 +54,7 @@ export default function DeemingRatesChange2026() {
         Deeming applies to bank accounts, term deposits, shares, managed investments and, for
         people who&apos;ve reached Age Pension age, most superannuation balances. Centrelink
         totals your financial assets, applies the lower rate up to the threshold and the higher
-        rate above it, and counts that assumed income toward your pension income test — whether
+        rate above it, and counts that assumed income toward your pension income test, whether
         your actual returns are higher, lower, or negative in a given year. Your home and most
         personal assets like your car and household contents aren&apos;t financial assets for
         deeming purposes, though they can still count toward the separate assets test.
@@ -78,7 +78,7 @@ export default function DeemingRatesChange2026() {
         other savings, deeming rates are one factor in how Centrelink treats different assets.
         Someone with a large lump sum in a low-interest savings account, for instance, is deemed
         to earn the same income as someone whose money is invested in higher-yielding term
-        deposits or shares — so the choice of where to hold your savings doesn&apos;t change your
+        deposits or shares, so the choice of where to hold your savings doesn&apos;t change your
         pension assessment, only your actual returns. Model your retirement balance with the{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link>, and use the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to see how the

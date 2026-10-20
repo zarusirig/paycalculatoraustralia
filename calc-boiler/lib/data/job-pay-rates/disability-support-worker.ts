@@ -106,7 +106,7 @@ const SUPPORT_WORKER_SECTION: OccupationSection = {
   id: "support-worker-pay",
   heading: "Support worker pay rates: which SCHADS stream applies",
   paragraphs: [
-    "\"Support worker\" is not a classification in the SCHADS Award. Your minimum depends on the stream your work falls in and then your level. Support in group homes, supported accommodation, respite and day programs is the Social and community services stream (Schedule B). Support in a person's own home is Home care — disability (Schedule E), or Home care — aged care (Schedule F) when the client is older. Support workers in residential aged care homes are covered by the Aged Care Award instead — see the aged care worker page.",
+    "\"Support worker\" is not a classification in the SCHADS Award. Your minimum depends on the stream your work falls in and then your level. Support in group homes, supported accommodation, respite and day programs is the Social and community services stream (Schedule B). Support in a person's own home is Home care — disability (Schedule E), or Home care — aged care (Schedule F) when the client is older. Support workers in residential aged care homes are covered by the Aged Care Award instead; see the aged care worker page.",
     `Home care — disability rates are about to rise. The Fair Work Commission's gender undervaluation decision (${SCHADS_SCHEDULE_E_INCREASE.decision}) lifts Schedule E rates by up to ${Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}% from ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (${SCHADS_SCHEDULE_E_INCREASE.determination}): Level 2 pay point 1 goes to ${money2(HCD_L2.weekly)} a week. The rest of the increase comes with a new classification structure from ${SCHADS_SCHEDULE_E_INCREASE.remainderFrom}.`,
   ],
   table: {
@@ -141,15 +141,15 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     why: "a support worker in a group home or day program who holds a relevant certificate",
   },
   coverage: [
-    "Disability support workers employed by NDIS providers and other disability services are covered by the Social, Community, Home Care and Disability Services Industry Award 2010 — the SCHADS Award [MA000100]. Which pay table applies depends on where the support is delivered.",
-    "Support in a community or residential setting — group homes, supported accommodation, respite and day programs — falls under the Social and community services stream (Schedule B). Support delivered in the client's own home falls under Home care — disability (Schedule E), which has lower rates.",
+    "Disability support workers employed by NDIS providers and other disability services are covered by the Social, Community, Home Care and Disability Services Industry Award 2010, the SCHADS Award [MA000100]. Which pay table applies depends on where the support is delivered.",
+    "Support in a community or residential setting (group homes, supported accommodation, respite and day programs) falls under the Social and community services stream (Schedule B). Support delivered in the client's own home falls under Home care — disability (Schedule E), which has lower rates.",
     "In the Social and community services stream, a support worker who has completed a relevant certificate and does work related to it must be appointed at Level 2. With a Certificate IV (or a diploma) the minimum is Level 2 pay point 2. Level 1 covers entry-level work under close direction, including new recruits with limited experience.",
     "The Social and community services rates for Levels 2 and up already include the Equal Remuneration Order uplift, which the award says forms part of ordinary pay for all purposes. Level 1 receives no uplift.",
   ],
   tables: [
     {
       id: "sacs",
-      title: "Disability support worker pay rates — group homes, day programs and residential settings",
+      title: "Disability support worker pay rates: group homes, day programs and residential settings",
       intro:
         "SCHADS Award Schedule B (Social and community services), Levels 1 to 4. Weekly and hourly rates as published, including the Equal Remuneration Order for Levels 2 and up. Casual is the hourly rate plus the 25% loading.",
       rows: SCHADS_SACS.filter((r) => /^Level [1-4] /.test(r.classification)).map((r) =>
@@ -158,7 +158,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     },
     {
       id: "home-care",
-      title: "Disability support worker pay rates — support in the client's home",
+      title: "Disability support worker pay rates: support in the client's home",
       intro:
         "SCHADS Award Schedule E (Home care — disability). These rates carry no Equal Remuneration Order uplift. Casual is the hourly rate plus the 25% loading.",
       rows: SCHADS_HOME_CARE_DISABILITY.map((r) => toRow(r)),
@@ -223,7 +223,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100] — consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
+    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100], consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

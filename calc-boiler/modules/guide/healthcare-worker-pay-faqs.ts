@@ -117,7 +117,7 @@ export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the Nurses Award 2020 and does it apply to me?",
-    a: `The Nurses Award 2020 (MA000034) is the federal modern award for nurses — a legal minimum, not a pay scale. Its registered nurse level 1 pay point 1 rate is ${formatAUD(AWARD_RN1.points[0].weekly, 2)} a week, or ${formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour, from ${NURSES_AWARD.generalRatesFrom}. If you work in a state public hospital you are almost certainly paid under an enterprise or state agreement that pays well above that. The award is what governs private hospital, GP clinic, aged care and some agency work. Note it now has two rate streams: aged care employees are on materially higher minimums than the general stream.`,
+    a: `The Nurses Award 2020 (MA000034) is the federal modern award for nurses: a legal minimum, not a pay scale. Its registered nurse level 1 pay point 1 rate is ${formatAUD(AWARD_RN1.points[0].weekly, 2)} a week, or ${formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour, from ${NURSES_AWARD.generalRatesFrom}. If you work in a state public hospital you are almost certainly paid under an enterprise or state agreement that pays well above that. The award is what governs private hospital, GP clinic, aged care and some agency work. Note it now has two rate streams: aged care employees are on materially higher minimums than the general stream.`,
   },
   {
     q: "Who is eligible for salary packaging in healthcare?",

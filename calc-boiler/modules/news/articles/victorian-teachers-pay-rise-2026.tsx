@@ -117,7 +117,7 @@ export default function VictorianTeachersPayRise2026() {
       </div>
       <p>
         Percentages are from the department&apos;s Agreement Explanation. The August 2026 step is bigger at
-        the bottom of the scale — 6.33% for a graduate against 3% at the top — so over the whole agreement
+        the bottom of the scale (6.33% for a graduate against 3% at the top), so over the whole agreement
         a graduate&apos;s salary rises from {formatAUD(gradNow)} to {formatAUD(gradEnd)}, about{" "}
         {Math.round((gradEnd / gradNow - 1) * 1000) / 10}%, while the top classroom step rises about{" "}
         {Math.round((topEnd / topNow - 1) * 1000) / 10}%.
@@ -138,8 +138,8 @@ export default function VictorianTeachersPayRise2026() {
           education support staff for the first time.
         </li>
         <li>
-          <strong>Face-to-face teaching maximums</strong> — 21 hours a week in primary and special schools,
-          18.5 in secondary — written into the agreement.
+          <strong>Face-to-face teaching maximums</strong>: 21 hours a week in primary and special schools,
+          18.5 in secondary, written into the agreement.
         </li>
         <li>
           <strong>An overnight school camp allowance</strong> from 2027, replacing time in lieu.
@@ -155,7 +155,7 @@ export default function VictorianTeachersPayRise2026() {
       <ul>
         <li>
           <strong>March 2026:</strong> teachers rejected a 17% offer; the AEU was seeking 35%. On 24 March
-          teachers, principals and support staff held a 24-hour statewide strike — the first in 13 years —
+          teachers, principals and support staff held a 24-hour statewide strike (the first in 13 years),
           and police estimated 35,000 marched to Parliament House (ABC).
         </li>
         <li>
@@ -172,7 +172,7 @@ export default function VictorianTeachersPayRise2026() {
           {VIC_2026_AGREEMENT.inPrincipleAnnounced}, and a third strike set for 19 August was called off.
         </li>
         <li>
-          <strong>{VIC_2026_AGREEMENT.ballotAnnounced}:</strong> the all-staff ballot result —{" "}
+          <strong>{VIC_2026_AGREEMENT.ballotAnnounced}:</strong> the all-staff ballot result:{" "}
           {VIC_2026_AGREEMENT.ballotYesPct}% yes from {VIC_2026_AGREEMENT.ballotParticipants.toLocaleString("en-AU")}{" "}
           voters.
         </li>

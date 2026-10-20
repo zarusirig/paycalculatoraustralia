@@ -98,7 +98,7 @@ const webApp: WithContext<WebApplication> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: `Medicare Levy — ${RATE} Rate, Thresholds and Exemptions`,
+  headline: `Medicare Levy - ${RATE} Rate, Thresholds and Exemptions`,
   url: URL,
   datePublished: "2025-07-01",
   dateModified: GUIDE_AUTHORSHIP["medicare-levy"].lastReviewed,

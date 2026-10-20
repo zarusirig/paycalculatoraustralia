@@ -251,7 +251,7 @@ export default function AustralianPayReport() {
             <section id="award-minimums">
               <h2 style={HEADING_FONT}>{awards.length} award minimums, ranked</h2>
               <p>
-                The entry-level adult rate in each modern award we publish verified tables for, from 1 July 2026 — the rate a new adult
+                The entry-level adult rate in each modern award we publish verified tables for, from 1 July 2026: the rate a new adult
                 starter is most likely to be on. Most sit a little above the minimum wage; aged care and nursing sit well above it after
                 the Fair Work Commission&apos;s work value decisions.
               </p>
@@ -272,8 +272,8 @@ export default function AustralianPayReport() {
               </Table>
               <p className="text-sm">
                 Full-time adult rates before penalty rates, loadings and allowances. The introductory entry grades some awards set for the
-                first weeks or months of employment — for example Manufacturing C14 (first 38 hours of induction training) and Level 1 in
-                the Miscellaneous, Fitness Industry, Live Performance, Horticulture, Pastoral, Meat Industry and Timber awards — can sit
+                first weeks or months of employment (for example Manufacturing C14 (first 38 hours of induction training) and Level 1 in
+                the Miscellaneous, Fitness Industry, Live Performance, Horticulture, Pastoral, Meat Industry and Timber awards) can sit
                 below the National Minimum Wage; the lowest award rate that applies to ongoing employment cannot. Full classification
                 tables are on each award page and on the <Link href="/award-rates/">award rates hub</Link>.
               </p>
@@ -355,7 +355,7 @@ export default function AustralianPayReport() {
               <h2 style={HEADING_FONT}>Cite this report</h2>
               <p>
                 Journalists, researchers, unions, schools and bloggers are welcome to quote or republish any figure or table under{" "}
-                <a href={REPORT.license} target="_blank" rel="noreferrer noopener">{REPORT.licenseName}</a> — the only condition is a link
+                <a href={REPORT.license} target="_blank" rel="noreferrer noopener">{REPORT.licenseName}</a>. The only condition is a link
                 back to this page. Permalink: <a href={REPORT.url}>{REPORT.url}</a>
               </p>
               <CopySnippet id="cite-text" label="Suggested citation" text={suggestedCitation()} />

@@ -95,9 +95,9 @@ export default function PublicHolidayPayCalculator({
                 options={[
                   ...PUBLIC_HOLIDAY_AWARD_RATES.map((a) => ({
                     value: a.key,
-                    label: compactAwardLabels ? a.shortName : `${a.shortName} — ${pctLabel(a.permanent)} / casual ${pctLabel(a.casual)}`,
+                    label: compactAwardLabels ? a.shortName : `${a.shortName}, ${pctLabel(a.permanent)} / casual ${pctLabel(a.casual)}`,
                   })),
-                  { value: CUSTOM, label: "Enterprise agreement or other — enter the rate" },
+                  { value: CUSTOM, label: "Enterprise agreement or other (enter the rate)" },
                 ]}
               />
             </div>
@@ -124,8 +124,8 @@ export default function PublicHolidayPayCalculator({
             </div>
             {key === CUSTOM ? (
               <>
-                <NumberField id="ph-custom-perm" label="Public holiday rate — permanent (%)" value={customPerm} onChange={setCustomPerm} step={5} max={500} />
-                <NumberField id="ph-custom-casual" label="Public holiday rate — casual (% of base)" value={customCasual} onChange={setCustomCasual} step={5} max={500} />
+                <NumberField id="ph-custom-perm" label="Public holiday rate, permanent (%)" value={customPerm} onChange={setCustomPerm} step={5} max={500} />
+                <NumberField id="ph-custom-casual" label="Public holiday rate, casual (% of base)" value={customCasual} onChange={setCustomCasual} step={5} max={500} />
               </>
             ) : null}
           </form>
@@ -147,7 +147,7 @@ export default function PublicHolidayPayCalculator({
             </dl>
             <p className={casual ? NOTE_WARN : NOTE_OK}>
               {casual
-                ? "Casuals are paid only for public holidays they work. The casual rate shown already includes the 25% loading — it is not added again."
+                ? "Casuals are paid only for public holidays they work. The casual rate shown already includes the 25% loading. It is not added again."
                 : "Full-time and part-time employees who normally work that day are paid their base rate for their ordinary hours even when they have the day off (Fair Work Act s 116)."}
             </p>
             {award?.note ? <p className="text-xs text-warmgray">{award.shortName}: {award.note}</p> : null}

@@ -217,7 +217,7 @@ export function levelSections(jurisdiction: Jurisdiction): LevelSection[] {
 export const PUBLIC_SERVICE_PAY_FAQS: readonly PayFaq[] = [
   {
     q: "Is there one public service pay scale in Australia?",
-    a: "No. Each service publishes its own, and the federal service does not publish a single scale at all — every APS agency bargains its own enterprise agreement, so an APS 6 salary is a range across agencies rather than one number. Victoria does publish a single table in Schedule C of the Victorian Public Service Enterprise Agreement 2024, and Queensland has an award floor with agency certified agreements sitting at or above it.",
+    a: "No. Each service publishes its own, and the federal service does not publish a single scale at all: every APS agency bargains its own enterprise agreement, so an APS 6 salary is a range across agencies rather than one number. Victoria does publish a single table in Schedule C of the Victorian Public Service Enterprise Agreement 2024, and Queensland has an award floor with agency certified agreements sitting at or above it.",
   },
   {
     q: "How do APS levels compare with VPS grades and Queensland AO levels?",

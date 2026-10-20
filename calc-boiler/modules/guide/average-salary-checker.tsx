@@ -105,7 +105,7 @@ export default function AverageSalaryChecker() {
                   {" "}and {pct(result.shareBelowCeiling)} earned under {dollars(result.bandCeiling)}
                 </>
               )}
-              . The median for this group is {dollars(pop.median)} a year —{" "}
+              . The median for this group is {dollars(pop.median)} a year:{" "}
               {salary >= pop.median ? "you are above it" : "you are below it"}.
             </p>
           </>

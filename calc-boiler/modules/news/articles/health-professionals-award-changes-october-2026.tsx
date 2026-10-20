@@ -70,7 +70,7 @@ export default function HealthProfessionalsAwardChangesOctober2026() {
       <ul>
         <li>
           <strong>Level 1 is split by qualification.</strong> Each profession is assigned the AQF level of its
-          standard minimum qualification in Schedule B — for example {aqf7Professions.slice(0, -1).join(", ")} and {aqf7Professions[aqf7Professions.length - 1]} are AQF Level 7,
+          standard minimum qualification in Schedule B. For example, {aqf7Professions.slice(0, -1).join(", ")} and {aqf7Professions[aqf7Professions.length - 1]} are AQF Level 7,
           and psychologists AQF Level 9. Pay then steps up in the 1st, 2nd–3rd, 4th–6th and 7th-plus years.
         </li>
         <li>
@@ -128,7 +128,7 @@ export default function HealthProfessionalsAwardChangesOctober2026() {
 
       <h2>Who is covered</h2>
       <p>
-        The award covers national-system employers in the health industry — private practices, private hospitals,
+        The award covers national-system employers in the health industry: private practices, private hospitals,
         NDIS and community health providers. State public hospital allied health staff are paid under state
         awards and agreements, and anyone on an enterprise agreement is paid under that agreement rather than
         the award.

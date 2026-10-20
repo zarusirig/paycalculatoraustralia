@@ -52,7 +52,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What if I work for two employers on a working holiday visa?",
-    a: `Both employers withhold at ${WHM_RATE} independently, but the ${WHM_CAP} threshold applies to your total combined income for the financial year. If your combined earnings exceed ${WHM_CAP}, you may have a tax shortfall because each employer applies the ${WHM_RATE} rate without knowing about the other. Lodge a tax return to settle the difference — the ATO calculates the correct tax on your total WHM income.`,
+    a: `Both employers withhold at ${WHM_RATE} independently, but the ${WHM_CAP} threshold applies to your total combined income for the financial year. If your combined earnings exceed ${WHM_CAP}, you may have a tax shortfall because each employer applies the ${WHM_RATE} rate without knowing about the other. Lodge a tax return to settle the difference. The ATO calculates the correct tax on your total WHM income.`,
   },
   {
     q: "Can working holiday makers claim tax deductions?",

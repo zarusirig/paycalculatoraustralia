@@ -172,7 +172,7 @@ export default function ZoneTaxOffsetCalculator() {
                 <p className="mt-2 text-xs text-warmgray">
                   Not in the {ZONE_LOCATIONS.length.toLocaleString()} locations we hold for{" "}
                   {COVERED_STATES.map((s) => STATE_NAMES[s]).join(" and ")}. The ATO&rsquo;s list is
-                  not exhaustive either — some places qualify as a special area without appearing on
+                  not exhaustive either. Some places qualify as a special area without appearing on
                   it. Check the{" "}
                   <a
                     href="https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones"
@@ -205,7 +205,7 @@ export default function ZoneTaxOffsetCalculator() {
               >
                 {AREA_ORDER.map((a) => (
                   <option key={a} value={a}>
-                    {ZONE_AREA_RATES[a].label} — {formatAUD(ZONE_AREA_RATES[a].fixedAmount)}
+                    {ZONE_AREA_RATES[a].label}: {formatAUD(ZONE_AREA_RATES[a].fixedAmount)}
                   </option>
                 ))}
               </select>
@@ -262,7 +262,7 @@ export default function ZoneTaxOffsetCalculator() {
                   >
                     {AREA_ORDER.map((a) => (
                       <option key={a} value={a}>
-                        {ZONE_AREA_RATES[a].label} — {formatAUD(ZONE_AREA_RATES[a].fixedAmount)}
+                        {ZONE_AREA_RATES[a].label}: {formatAUD(ZONE_AREA_RATES[a].fixedAmount)}
                       </option>
                     ))}
                   </select>
@@ -446,7 +446,7 @@ export default function ZoneTaxOffsetCalculator() {
                       .map((p) => (
                         <Row
                           key={p.area}
-                          label={`${ZONE_AREA_RATES[p.area].label} — ${p.daysClaimed}/${ZONE_QUALIFYING_DAYS} days`}
+                          label={`${ZONE_AREA_RATES[p.area].label}: ${p.daysClaimed}/${ZONE_QUALIFYING_DAYS} days`}
                           value={formatAUD(p.claimable)}
                         />
                       ))}
@@ -469,7 +469,7 @@ export default function ZoneTaxOffsetCalculator() {
             </div>
 
             <p className="text-xs text-warmgray-light">
-              The zone tax offset is non-refundable — it reduces tax payable to a minimum of zero
+              The zone tax offset is non-refundable: it reduces tax payable to a minimum of zero
               and does not generate a refund on its own. Check your location on the{" "}
               <a
                 href="https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones"

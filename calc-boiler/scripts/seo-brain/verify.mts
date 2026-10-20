@@ -2,7 +2,7 @@
  * seo-brain verify — after `next build`, prove each applied decision landed in
  * the export. Rebuild first; this reads ./out.
  *
- *   node scripts/seo-brain/verify.mts <decisions.json> [<more.json>…] [--dir=…]
+ *   node scripts/seo-brain/verify.mts <decisions.json> [<more.json>…]
  *
  * Checks per kind (unverifiable kinds are listed as "manual"):
  *   rewrite_title         <title> equals proposed
@@ -17,19 +17,15 @@
  *   consolidate           differentiate: titles differ; retarget: loser title changed
  * Exit 1 if any decision that is not no_action fails.
  */
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DecisionBatch, TITLE_MAX, DESCRIPTION_MAX } from "./schema.mts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../..");
-const repo = resolve(root, "..");
 const argv = process.argv.slice(2);
 const files = argv.filter((a) => !a.startsWith("--"));
-const args = Object.fromEntries(argv.filter((a) => a.startsWith("--")).map((a) => { const [k, v] = a.replace(/^--/, "").split("="); return [k, v ?? true]; }));
-const base = join(repo, "docs/seo/seo-brain");
-const dir = resolve(repo, typeof args.dir === "string" ? args.dir : join(base, readdirSync(base).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort().pop()!));
 const outDir = join(root, "out");
 if (!files.length) { console.error("usage: verify.mts <decisions.json>…"); process.exit(2); }
 
@@ -57,25 +53,25 @@ for (const f of files) {
   for (const d of batch.decisions) {
     switch (d.kind) {
       case "no_action": break;
-      case "rewrite_title": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const t = title(h); t === d.proposed ? ok(d.id, `title = "${t}"`) : bad(d.id, `title is "${t}", expected "${d.proposed}"`); break; }
-      case "rewrite_description": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const t = desc(h); t === d.proposed ? ok(d.id, `description set (${t.length} chars)`) : bad(d.id, `description is "${t.slice(0, 80)}…"`); break; }
-      case "add_internal_link": { const h = html(d.fromRoute); if (!h) { bad(d.id, "from page missing"); break; } const a = linksTo(h, d.toRoute); a.length ? ok(d.id, `${d.fromRoute} → ${d.toRoute} anchor "${a[0]}"`) : bad(d.id, `${d.fromRoute} has no in-content link to ${d.toRoute}`); break; }
-      case "add_section": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } headings(h).includes(d.heading.toLowerCase()) ? ok(d.id, `heading "${d.heading}"`) : bad(d.id, `heading "${d.heading}" not found; page has: ${headings(h).slice(0, 12).join(" | ")}`); break; }
-      case "add_faq": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } strip(main(h)).toLowerCase().includes(d.question.toLowerCase()) ? ok(d.id, "faq present") : bad(d.id, "faq question not on page"); break; }
-      case "citation_lead": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const l = norm(lead(h)); const want = norm(d.proposedLead).slice(0, 40); l.startsWith(want.slice(0, 25)) ? ok(d.id, `lead starts "${l.slice(0, 60)}…"`) : bad(d.id, `lead is "${l.slice(0, 80)}…"; expected to start "${want}"`); break; }
-      case "add_schema": { if (typeof d.scope !== "string") { man(d.id, "template-scoped schema"); break; } const h = html(d.scope); if (!h) { bad(d.id, "page missing"); break; } ldTypes(h).has(d.schemaType) ? ok(d.id, `${d.schemaType} on ${d.scope}`) : bad(d.id, `${d.schemaType} missing on ${d.scope}`); break; }
+      case "rewrite_title": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const t = title(h); if (t === d.proposed) ok(d.id, `title = "${t}"`); else bad(d.id, `title is "${t}", expected "${d.proposed}"`); break; }
+      case "rewrite_description": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const t = desc(h); if (t === d.proposed) ok(d.id, `description set (${t.length} chars)`); else bad(d.id, `description is "${t.slice(0, 80)}…"`); break; }
+      case "add_internal_link": { const h = html(d.fromRoute); if (!h) { bad(d.id, "from page missing"); break; } const a = linksTo(h, d.toRoute); if (a.length) ok(d.id, `${d.fromRoute} → ${d.toRoute} anchor "${a[0]}"`); else bad(d.id, `${d.fromRoute} has no in-content link to ${d.toRoute}`); break; }
+      case "add_section": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } if (headings(h).includes(d.heading.toLowerCase())) ok(d.id, `heading "${d.heading}"`); else bad(d.id, `heading "${d.heading}" not found; page has: ${headings(h).slice(0, 12).join(" | ")}`); break; }
+      case "add_faq": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } if (strip(main(h)).toLowerCase().includes(d.question.toLowerCase())) ok(d.id, "faq present"); else bad(d.id, "faq question not on page"); break; }
+      case "citation_lead": { const h = html(d.route); if (!h) { bad(d.id, "page missing"); break; } const l = norm(lead(h)); const want = norm(d.proposedLead).slice(0, 40); if (l.startsWith(want.slice(0, 25))) ok(d.id, `lead starts "${l.slice(0, 60)}…"`); else bad(d.id, `lead is "${l.slice(0, 80)}…"; expected to start "${want}"`); break; }
+      case "add_schema": { if (typeof d.scope !== "string") { man(d.id, "template-scoped schema"); break; } const h = html(d.scope); if (!h) { bad(d.id, "page missing"); break; } if (ldTypes(h).has(d.schemaType)) ok(d.id, `${d.schemaType} on ${d.scope}`); else bad(d.id, `${d.schemaType} missing on ${d.scope}`); break; }
       case "technical_fix": {
         if (typeof d.scope !== "string" || d.scope === "*") { man(d.id, d.issue); break; }
         const h = html(d.scope); if (!h) { bad(d.id, "page missing"); break; }
-        if (d.issue === "long_title") title(h).length <= TITLE_MAX ? ok(d.id, `title ${title(h).length} chars`) : bad(d.id, `title still ${title(h).length} chars`);
-        else if (d.issue === "long_description") desc(h).length <= DESCRIPTION_MAX ? ok(d.id, `description ${desc(h).length} chars`) : bad(d.id, `description still ${desc(h).length} chars`);
-        else if (d.issue === "missing_og_image") /<meta property="og:image"/.test(h) ? ok(d.id, "og:image present") : bad(d.id, "og:image still missing");
-        else if (d.issue === "no_h2") /<h2[\s>]/i.test(main(h)) ? ok(d.id, "has H2") : bad(d.id, "still no H2");
+        if (d.issue === "long_title") { if (title(h).length <= TITLE_MAX) ok(d.id, `title ${title(h).length} chars`); else bad(d.id, `title still ${title(h).length} chars`); }
+        else if (d.issue === "long_description") { if (desc(h).length <= DESCRIPTION_MAX) ok(d.id, `description ${desc(h).length} chars`); else bad(d.id, `description still ${desc(h).length} chars`); }
+        else if (d.issue === "missing_og_image") { if (/<meta property="og:image"/.test(h)) ok(d.id, "og:image present"); else bad(d.id, "og:image still missing"); }
+        else if (d.issue === "no_h2") { if (/<h2[\s>]/i.test(main(h))) ok(d.id, "has H2"); else bad(d.id, "still no H2"); }
         else man(d.id, d.issue);
         break;
       }
-      case "new_page": { const h = html(d.route); if (!h) { bad(d.id, `${d.route} not built`); break; } const from = d.inlinksFrom.filter((r) => { const s = html(r); return s && linksTo(s, d.route).length; }); from.length >= 2 ? ok(d.id, `${d.route} built, linked from ${from.join(", ")}`) : bad(d.id, `${d.route} built but only linked from ${from.join(", ") || "nothing"}`); break; }
-      case "consolidate": { const k = html(d.keepRoute); const ls = d.loserRoutes.map((r) => html(r)); if (!k || ls.some((x) => !x)) { bad(d.id, "page missing"); break; } const same = ls.some((x) => title(x!) === title(k)); same ? bad(d.id, "keeper and loser still share a title") : man(d.id, `titles differ: "${title(k)}" vs ${ls.map((x) => `"${title(x!)}"`).join(", ")}; check openings by eye`); break; }
+      case "new_page": { const h = html(d.route); if (!h) { bad(d.id, `${d.route} not built`); break; } const from = d.inlinksFrom.filter((r) => { const s = html(r); return s && linksTo(s, d.route).length; }); if (from.length >= 2) ok(d.id, `${d.route} built, linked from ${from.join(", ")}`); else bad(d.id, `${d.route} built but only linked from ${from.join(", ") || "nothing"}`); break; }
+      case "consolidate": { const k = html(d.keepRoute); const ls = d.loserRoutes.map((r) => html(r)); if (!k || ls.some((x) => !x)) { bad(d.id, "page missing"); break; } const same = ls.some((x) => title(x!) === title(k)); if (same) bad(d.id, "keeper and loser still share a title"); else man(d.id, `titles differ: "${title(k)}" vs ${ls.map((x) => `"${title(x!)}"`).join(", ")}; check openings by eye`); break; }
     }
   }
 }

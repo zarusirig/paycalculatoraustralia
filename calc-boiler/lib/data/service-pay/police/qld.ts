@@ -130,12 +130,12 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Queensland Police Service Certified Agreement 2025 (CB/2025/116) — Schedule 1 and CPI Uplift Adjustment (CUA) and Wages Clause",
+      title: "Queensland Police Service Certified Agreement 2025 (CB/2025/116), Schedule 1 and CPI Uplift Adjustment (CUA) and Wages Clause",
       publisher: "Queensland Industrial Relations Commission",
       url: "https://www.qirc.qld.gov.au/sites/default/files/2025-10/2025_cb116.pdf",
     },
     {
-      title: "CPI Uplift Adjustment — Police CUA Pay Rates",
+      title: "CPI Uplift Adjustment, Police CUA Pay Rates",
       publisher: "Queensland Police Service",
       url: "https://www.police.qld.gov.au/cpi-uplift-adjustment",
     },

@@ -60,7 +60,7 @@ const SOURCES_LIST: SourceLink[] = [
     url: CGT_REFORM_2027.actUrl,
     publisher: "Parliament of Australia",
   },
-  { title: "Budget 2026-27 — Tax reform", url: CGT_REFORM_2027.budgetUrl, publisher: "Australian Government" },
+  { title: "Budget 2026-27, Tax reform", url: CGT_REFORM_2027.budgetUrl, publisher: "Australian Government" },
 ];
 
 // Every worked figure below comes out of the engine, so the prose cannot drift
@@ -144,23 +144,23 @@ export default function CapitalGainsTaxPage() {
               ))}
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Identical {formatAUD(100_000)} gain, {CGT_INCOME_YEAR} rates, including the 2% Medicare levy. Effective rate is tax as a share of the full gain before the discount.</p></div>
 
-            <p>The &ldquo;effective rate&rdquo; column is the closest thing to a CGT rate that exists — and as you can see, it is an <em>outcome</em>, not a published figure. It moves with your income, and a gain large enough to push you into a higher bracket is partly taxed at that higher rate.</p>
+            <p>The &ldquo;effective rate&rdquo; column is the closest thing to a CGT rate that exists, and as you can see, it is an <em>outcome</em>, not a published figure. It moves with your income, and a gain large enough to push you into a higher bracket is partly taxed at that higher rate.</p>
           </section>
 
           <section>
             <h2 style={H2}>How CGT Is Actually Calculated</h2>
             <p>The ATO sets out eight steps. The calculator above follows them exactly, and the order matters more than people expect:</p>
             <ol>
-              <li>Work out your <strong>capital proceeds</strong> — what you received.</li>
-              <li>Work out your <strong>cost base</strong> — what the asset cost you to buy, hold and sell.</li>
+              <li>Work out your <strong>capital proceeds</strong>: what you received.</li>
+              <li>Work out your <strong>cost base</strong>: what the asset cost you to buy, hold and sell.</li>
               <li>Subtract the cost base from the proceeds. Above zero is a gain, below zero is a loss.</li>
               <li>Repeat for every CGT event in the year.</li>
-              <li><strong>Subtract your capital losses</strong> — carried-forward losses first.</li>
+              <li><strong>Subtract your capital losses</strong>: carried-forward losses first.</li>
               <li>Check whether you are left with a net gain or a net loss.</li>
               <li><strong>Apply the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount</strong> to whatever remains that is eligible.</li>
               <li>Report the net capital gain and pay tax on it at your marginal rate.</li>
             </ol>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>Losses come off before the discount, not after.</strong> This is step 5 before step 7, and reversing them is the most common error in third-party CGT calculators. It always understates the tax — see the worked example below, where getting the order wrong hides {formatAUD(RHI_WITH_LOSS.netCapitalGain - (RHI.netCapitalGain - 4_500))} of gain.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>Losses come off before the discount, not after.</strong> This is step 5 before step 7, and reversing them is the most common error in third-party CGT calculators. It always understates the tax. See the worked example below, where getting the order wrong hides {formatAUD(RHI_WITH_LOSS.netCapitalGain - (RHI.netCapitalGain - 4_500))} of gain.</p>
           </section>
 
           <section>
@@ -168,7 +168,7 @@ export default function CapitalGainsTaxPage() {
             <p>The ATO&rsquo;s own example. Rhi buys an investment property for {formatAUD(500_000)} and sells it five years later for {formatAUD(600_000)}:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Capital proceeds</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI.capitalProceeds)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Cost base — {formatAUD(500_000)} purchase, {formatAUD(15_000)} stamp duty, {formatAUD(1_200)} conveyancing, {formatAUD(1_300)} conveyancing on sale, {formatAUD(12_500)} agent&rsquo;s commission</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI.costBase, 0, "−")}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Cost base: {formatAUD(500_000)} purchase, {formatAUD(15_000)} stamp duty, {formatAUD(1_200)} conveyancing, {formatAUD(1_300)} conveyancing on sale, {formatAUD(12_500)} agent&rsquo;s commission</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI.costBase, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Capital gain</td><td className="px-5 py-3 text-right font-medium tabular-nums">{formatAUD(RHI.grossGain)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI.discountAmount, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-bold">Net capital gain reported</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(RHI.netCapitalGain)}</td></tr>
@@ -177,11 +177,11 @@ export default function CapitalGainsTaxPage() {
             <p>Now add a second asset. In the same year Rhi also sells shares that cost {formatAUD(10_000)} for {formatAUD(5_500)}, a capital loss of {formatAUD(4_500)}:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Capital gain on the property</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI_WITH_LOSS.grossGain)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Capital loss on the shares — applied <em>first</em></td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI_WITH_LOSS.lossesApplied, 0, "−")}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Capital loss on the shares, applied <em>first</em></td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI_WITH_LOSS.lossesApplied, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3">Gain after losses</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI_WITH_LOSS.gainAfterLosses)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI_WITH_LOSS.discountAmount, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-bold">Net capital gain reported</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(RHI_WITH_LOSS.netCapitalGain)}</td></tr>
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Discount first, then losses, would give {formatAUD(RHI.netCapitalGain - 4_500)} — understating the gain by {formatAUD(RHI_WITH_LOSS.netCapitalGain - (RHI.netCapitalGain - 4_500))}.</p></div>
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Discount first, then losses, would give {formatAUD(RHI.netCapitalGain - 4_500)}, understating the gain by {formatAUD(RHI_WITH_LOSS.netCapitalGain - (RHI.netCapitalGain - 4_500))}.</p></div>
           </section>
 
           <section>
@@ -189,7 +189,7 @@ export default function CapitalGainsTaxPage() {
             <p>If you are an Australian resident for tax purposes and you owned the asset for at least {CGT_MINIMUM_OWNERSHIP_MONTHS} months before the CGT event, you halve the remaining gain. Two details decide whether you actually qualify:</p>
             <ul>
               <li><strong>You exclude both end days.</strong> The day you acquired the asset and the day of the CGT event do not count toward the {CGT_MINIMUM_OWNERSHIP_MONTHS} months.</li>
-              <li><strong>For a contract sale, the CGT event is the contract date</strong> — not settlement. Property sales usually work this way, and it also decides which financial year the gain falls in.</li>
+              <li><strong>For a contract sale, the CGT event is the contract date</strong>: not settlement. Property sales usually work this way, and it also decides which financial year the gain falls in.</li>
             </ul>
             <p>There is no partial discount. Eleven months and 29 days gets you nothing; the discount is all or nothing.</p>
 
@@ -204,7 +204,7 @@ export default function CapitalGainsTaxPage() {
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_DISCOUNT} target="_blank" rel="noopener noreferrer" className="hover:underline">CGT discount</a> (QC66019).</p></div>
 
             <p><strong>Companies cannot use the CGT discount at all</strong>, no matter how long they held the asset. That is one reason holding an appreciating asset inside a company is often less tax-effective than holding it personally.</p>
-            <p>Two other cases change the answer. Providing <strong>affordable rental housing</strong> can add up to {formatPercent(CGT_AFFORDABLE_HOUSING.extraDiscount, 0)}, lifting the discount to as much as {formatPercent(CGT_AFFORDABLE_HOUSING.maxDiscount, 0)}. And for assets acquired before {CGT_INDEXATION_CUTOFF} you may instead index the cost base for inflation — but you cannot use both indexation and the discount.</p>
+            <p>Two other cases change the answer. Providing <strong>affordable rental housing</strong> can add up to {formatPercent(CGT_AFFORDABLE_HOUSING.extraDiscount, 0)}, lifting the discount to as much as {formatPercent(CGT_AFFORDABLE_HOUSING.maxDiscount, 0)}. And for assets acquired before {CGT_INDEXATION_CUTOFF} you may instead index the cost base for inflation, but you cannot use both indexation and the discount.</p>
           </section>
 
           <section>
@@ -224,7 +224,7 @@ export default function CapitalGainsTaxPage() {
             <h3 style={H2}>What you must leave out</h3>
             <p>The governing rule is simple: <strong>you cannot include anything you have claimed, or could claim, as a tax deduction.</strong> Double-dipping is the mistake the ATO looks for.</p>
             <ul>{COST_BASE_EXCLUSIONS.map((x) => (<li key={x}>{x}</li>))}</ul>
-            <p>Capital works deductions deserve special attention. If you claimed depreciation on the building, those deductions <em>reduce</em> your cost base rather than adding to it — which increases your gain. In the ATO&rsquo;s example, a {formatAUD(100_000)} cost base less {formatAUD(7_500)} of capital works deductions leaves a reduced cost base of {formatAUD(92_500)}, turning a {formatAUD(10_000)} apparent loss into a {formatAUD(2_500)} one. See our <Link href="/tax-deductions-guide/">tax deductions guide</Link> for what you can claim along the way.</p>
+            <p>Capital works deductions deserve special attention. If you claimed depreciation on the building, those deductions <em>reduce</em> your cost base rather than adding to it, which increases your gain. In the ATO&rsquo;s example, a {formatAUD(100_000)} cost base less {formatAUD(7_500)} of capital works deductions leaves a reduced cost base of {formatAUD(92_500)}, turning a {formatAUD(10_000)} apparent loss into a {formatAUD(2_500)} one. See our <Link href="/tax-deductions-guide/">tax deductions guide</Link> for what you can claim along the way.</p>
             <p>One trap on the third element: holding costs like rates, land tax, insurance and interest only go in the cost base <strong>where they were not deductible</strong>. For a normal rental property you have already deducted them, so they cannot be counted again. They also cannot be used to create or increase a capital loss.</p>
           </section>
 
@@ -233,15 +233,15 @@ export default function CapitalGainsTaxPage() {
             <p>The main residence exemption is the most valuable concession in the CGT system, and the most widely misunderstood. It is <strong>not automatic</strong>. To get the full exemption, all three of these must hold:</p>
             <ul>{MAIN_RESIDENCE_CONDITIONS.map((c) => (<li key={c}>{c}</li>))}</ul>
             <p>Fail any one of them and you fall back to a <strong>partial exemption</strong>, where part of the gain becomes assessable. The usual causes are renting out a room, running a business from home, or buying a place to renovate and flip. Being a foreign resident when the CGT event happens can remove the exemption entirely.</p>
-            <p>A dwelling is generally your main residence if you and your family live in it, your belongings are there, it is your mailing and electoral-roll address, and services are connected. Vacant land never qualifies — the property must have a dwelling on it and you must have lived in it.</p>
+            <p>A dwelling is generally your main residence if you and your family live in it, your belongings are there, it is your mailing and electoral-roll address, and services are connected. Vacant land never qualifies: the property must have a dwelling on it and you must have lived in it.</p>
 
             <h3 style={H2}>The {ABSENCE_RULE.incomeProducingYears}-year rule</h3>
             <p>When you move out, you can keep treating the property as your main residence:</p>
             <ul>
-              <li><strong>Indefinitely</strong>, if you do not use it to produce income — for example you leave it vacant or use it as a holiday house.</li>
+              <li><strong>Indefinitely</strong>, if you do not use it to produce income, for example you leave it vacant or use it as a holiday house.</li>
               <li><strong>For up to {ABSENCE_RULE.incomeProducingYears} years</strong>, if you do use it to produce income. This is the &ldquo;{ABSENCE_RULE.incomeProducingYears}-year rule&rdquo;.</li>
             </ul>
-            <p>While the choice applies you cannot treat any other property as your main residence, except for up to {ABSENCE_RULE.overlapMonths} months while you are moving house. Importantly, the {ABSENCE_RULE.incomeProducingYears} years applies <strong>to each separate period of absence</strong> — move back in, then leave again, and the clock restarts.</p>
+            <p>While the choice applies you cannot treat any other property as your main residence, except for up to {ABSENCE_RULE.overlapMonths} months while you are moving house. Importantly, the {ABSENCE_RULE.incomeProducingYears} years applies <strong>to each separate period of absence</strong>: move back in, then leave again, and the clock restarts.</p>
 
             <h3 style={H2}>What happens if you exceed {ABSENCE_RULE.incomeProducingYears} years</h3>
             <p>You are taxed on the portion of the ownership period after the limit, and your cost base resets to the market value when you first used the home to produce income. The ATO&rsquo;s worked example: an apartment sold for {formatAUD(555_000)} with a deemed cost base of {formatAUD(220_000)} plus {formatAUD(15_000)} of selling fees gives a {formatAUD(320_000)} gain. With 6,940 non-main-residence days out of 9,133 ownership days:</p>
@@ -250,7 +250,7 @@ export default function CapitalGainsTaxPage() {
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">× (6,940 non-main-residence days ÷ 9,133 ownership days)</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(ROYA_ASSESSABLE)}</td></tr>
               <tr><td className="px-5 py-3 font-bold">After the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(ROYA_NET)}</td></tr>
             </tbody></table></div></div>
-            <p>Note also that if you used part of your home to produce income <em>before</em> you moved out — say 25% as a consulting room — that same proportion of the gain stays assessable, both before and after you leave.</p>
+            <p>Note also that if you used part of your home to produce income <em>before</em> you moved out (say 25% as a consulting room), that same proportion of the gain stays assessable, both before and after you leave.</p>
           </section>
 
           <section>
@@ -259,7 +259,7 @@ export default function CapitalGainsTaxPage() {
             <p>What losses can do:</p>
             <ul>
               <li>Offset capital gains in the same year.</li>
-              <li>Carry forward <strong>indefinitely</strong> — there is no time limit — to offset future capital gains.</li>
+              <li>Carry forward <strong>indefinitely</strong>: there is no time limit, to offset future capital gains.</li>
               <li>Be applied selectively. You choose which gains to apply them to, and applying them to gains that are <em>not</em> discount-eligible first gives you the lowest tax.</li>
             </ul>
             <p>Some losses are not usable at all. You cannot deduct losses on personal use assets such as boats and furniture, on CGT-exempt assets such as cars and motorcycles, or on low-value collectables. Losses on collectables can only ever offset gains on other collectables.</p>
@@ -273,7 +273,7 @@ export default function CapitalGainsTaxPage() {
 
           <section>
             <h2 style={H2}>Coming {CGT_REFORM_2027.startDate}: The Discount Changes</h2>
-            <p className="not-prose rounded-lg border-l-4 border-eucalyptus bg-eucalyptus-light/30 p-4 text-base text-navy"><strong>{CGT_INCOME_YEAR} is the last full income year of the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount in its current form — but nothing on this page changes yet.</strong> The reform applies only to gains accruing on and after {CGT_REFORM_2027.startDate}.</p>
+            <p className="not-prose rounded-lg border-l-4 border-eucalyptus bg-eucalyptus-light/30 p-4 text-base text-navy"><strong>{CGT_INCOME_YEAR} is the last full income year of the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount in its current form, but nothing on this page changes yet.</strong> The reform applies only to gains accruing on and after {CGT_REFORM_2027.startDate}.</p>
             <p>The <strong>{CGT_REFORM_2027.actName}</strong> received assent on {CGT_REFORM_2027.assentDate} ({CGT_REFORM_2027.actNumber}). For capital gains accruing on and after {CGT_REFORM_2027.startDate} it replaces the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount for individuals, trusts and partnerships with:</p>
             <ul>
               <li><strong>Cost base indexation</strong> for assets held more than {CGT_MINIMUM_OWNERSHIP_MONTHS} months, so you are taxed on the real gain after inflation rather than the nominal one; and</li>
@@ -285,17 +285,17 @@ export default function CapitalGainsTaxPage() {
               {CGT_REFORM_2027.discountSurvivesFor.map((item) => (<li key={item}>{item}</li>))}
             </ul>
             <p>And these are outside the new indexation regime entirely: {CGT_REFORM_2027.indexationExcludes.join(", ")}.</p>
-            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} regime into this calculator.</strong> The indexation factors and the apportionment method for gains straddling {CGT_REFORM_2027.startDate} have not been published by the ATO yet, and we do not publish figures we cannot verify at source. Until they are, use this calculator for {CGT_INCOME_YEAR} disposals and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. Note the ATO&rsquo;s own CGT pages still describe this as &ldquo;announced in the 2026&ndash;27 Federal Budget&rdquo;, which reads like a proposal — it is law, with a deferred start.</p>
+            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} regime into this calculator.</strong> The indexation factors and the apportionment method for gains straddling {CGT_REFORM_2027.startDate} have not been published by the ATO yet, and we do not publish figures we cannot verify at source. Until they are, use this calculator for {CGT_INCOME_YEAR} disposals and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. Note the ATO&rsquo;s own CGT pages still describe this as &ldquo;announced in the 2026&ndash;27 Federal Budget&rdquo;, which reads like a proposal. It is law, with a deferred start.</p>
           </section>
 
           <section>
             <h2 style={H2}>Related Calculators</h2>
             <ul>
-              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — your full liability once the gain is included</li>
-              <li><Link href="/tax-brackets/">Australian Tax Brackets</Link> — the marginal rates the gain is taxed at</li>
-              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> — what lands in your account each pay</li>
-              <li><Link href="/tax-deductions-guide/">Tax Deductions Guide</Link> — what you can claim along the way, and why it changes your cost base</li>
-              <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link> — estimate your refund or bill</li>
+              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: your full liability once the gain is included</li>
+              <li><Link href="/tax-brackets/">Australian Tax Brackets</Link>: the marginal rates the gain is taxed at</li>
+              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: what lands in your account each pay</li>
+              <li><Link href="/tax-deductions-guide/">Tax Deductions Guide</Link>: what you can claim along the way, and why it changes your cost base</li>
+              <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link>: estimate your refund or bill</li>
             </ul>
           </section>
 
@@ -315,7 +315,7 @@ export default function CapitalGainsTaxPage() {
             </Accordion>
           </section>
 
-          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>The method, the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, the five cost base elements and the loss rules come from the ATO&rsquo;s <a href={ATO_CALC} target="_blank" rel="noopener noreferrer">How to calculate your CGT</a> (QC104071), <a href={ATO_DISCOUNT} target="_blank" rel="noopener noreferrer">CGT discount</a> (QC66019), <a href={ATO_COST_BASE} target="_blank" rel="noopener noreferrer">Cost base of assets</a> (QC66022) and <a href={ATO_LOSSES} target="_blank" rel="noopener noreferrer">Using capital losses</a> (QC66025), all verified {SITE_CONFIG.lastVerified}. The main residence rules come from QC69710 and <a href={ATO_MAIN_RESIDENCE} target="_blank" rel="noopener noreferrer">QC66030</a>.</p><p>Tax on the gain is computed by adding the net capital gain to your other income and taking the difference in income tax and Medicare levy — it never applies a standalone CGT rate, because no such rate exists. It uses the {CGT_INCOME_YEAR} resident brackets and the 2% Medicare levy. It does not model the Medicare levy surcharge, HECS-HELP repayments, other offsets, the indexation method for pre-{CGT_INDEXATION_CUTOFF} assets, small business CGT concessions, or the post-{CGT_REFORM_2027.startDate} regime. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s published worked examples — Rhi, Justin, Maree, Danuta, Roya and Helen — in automated tests.</p><p>This is general information, not personal tax advice. CGT on property and inherited assets gets complicated quickly; see a registered tax agent for your own position.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>The method, the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, the five cost base elements and the loss rules come from the ATO&rsquo;s <a href={ATO_CALC} target="_blank" rel="noopener noreferrer">How to calculate your CGT</a> (QC104071), <a href={ATO_DISCOUNT} target="_blank" rel="noopener noreferrer">CGT discount</a> (QC66019), <a href={ATO_COST_BASE} target="_blank" rel="noopener noreferrer">Cost base of assets</a> (QC66022) and <a href={ATO_LOSSES} target="_blank" rel="noopener noreferrer">Using capital losses</a> (QC66025), all verified {SITE_CONFIG.lastVerified}. The main residence rules come from QC69710 and <a href={ATO_MAIN_RESIDENCE} target="_blank" rel="noopener noreferrer">QC66030</a>.</p><p>Tax on the gain is computed by adding the net capital gain to your other income and taking the difference in income tax and Medicare levy. It never applies a standalone CGT rate, because no such rate exists. It uses the {CGT_INCOME_YEAR} resident brackets and the 2% Medicare levy. It does not model the Medicare levy surcharge, HECS-HELP repayments, other offsets, the indexation method for pre-{CGT_INDEXATION_CUTOFF} assets, small business CGT concessions, or the post-{CGT_REFORM_2027.startDate} regime. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s published worked examples (Rhi, Justin, Maree, Danuta, Roya and Helen) in automated tests.</p><p>This is general information, not personal tax advice. CGT on property and inherited assets gets complicated quickly; see a registered tax agent for your own position.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
             {(() => { const a = getGuideAuthorship("capital-gains-tax-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 

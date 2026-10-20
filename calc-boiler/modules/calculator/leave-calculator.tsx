@@ -63,7 +63,7 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Leave Payout Calculator: Unused Annual Leave &amp; {LEAD_LOADING_PCT} Loading — {SITE_CONFIG.financialYear}
+            Leave Payout Calculator: Unused Annual Leave &amp; {LEAD_LOADING_PCT} Loading ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-lg text-warmgray">
             When you leave a job, your employer must pay out the annual leave you have not taken. Annual leave builds at{" "}

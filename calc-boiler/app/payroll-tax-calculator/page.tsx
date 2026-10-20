@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payroll-tax-calculator/`;
 
-const TITLE = `Payroll Tax Calculator ${PAYROLL_TAX_FY} — NSW, VIC, QLD & All States`;
+const TITLE = `Payroll Tax Calculator ${PAYROLL_TAX_FY} - NSW, VIC, QLD & All States`;
 const DESCRIPTION = `Free payroll tax calculator for every Australian state and territory on ${PAYROLL_TAX_FY} rates: thresholds, phase-outs, VIC surcharges, the QLD levy and grouped wages.`;
 
 export const metadata: Metadata = withFeaturedImage({

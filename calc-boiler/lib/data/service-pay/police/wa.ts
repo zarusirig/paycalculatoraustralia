@@ -120,7 +120,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Western Australia Police Force Industrial Agreement 2024 (AG 24 of 2025) — clause 10 Salaries and clause 16 Shift Allowance",
+      title: "Western Australia Police Force Industrial Agreement 2024 (AG 24 of 2025), clause 10 Salaries and clause 16 Shift Allowance",
       publisher: "Western Australian Industrial Relations Commission",
       url: "https://downloads.wairc.wa.gov.au/agreements/wes338.pdf",
     },

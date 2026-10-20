@@ -63,7 +63,7 @@ export const PSYCHOLOGIST = hpssOct2026Occupation(9, {
     },
     {
       q: "What do psychologists actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,204 a week for psychologists and psychotherapists (ABS, May 2025), about $114,608 a year — well above the award minimum, because many work under public sector agreements or above-award salaries.",
+      a: "Jobs and Skills Australia reports median full-time earnings of $2,204 a week for psychologists and psychotherapists (ABS, May 2025), about $114,608 a year, well above the award minimum, because many work under public sector agreements or above-award salaries.",
     },
   ],
   related: [

@@ -116,7 +116,7 @@ export default function HomePageTemplate() {
               className="mb-2 text-xl font-extrabold leading-snug tracking-tight text-white sm:text-5xl sm:leading-tight lg:text-6xl"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
-              Pay Calculator Australia {FY} — Salary Calculator After Tax
+              Pay Calculator Australia {FY} - Salary Calculator After Tax
             </h1>
             <p className="mx-auto mb-3 max-w-2xl text-sm text-sandstone-dark/60 sm:mb-4 sm:text-lg">
               Enter any salary or hourly, weekly, fortnightly or monthly wage and see your take-home pay after ATO tax, Medicare, HECS-HELP and {formatPercent(SUPER_GUARANTEE.rate, 0)} super.
@@ -186,11 +186,11 @@ export default function HomePageTemplate() {
             <div className="rounded-xl border border-eucalyptus/20 bg-eucalyptus-light/20 p-4">
               <p className="mb-1 font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Income tax cut: {formatPercent(TAX_BRACKETS_2025_26[1].rate, 0)} &rarr; {formatPercent(TAX_BRACKETS[1].rate, 0)}</p>
               <p className="text-sm text-warmgray">
-                The rate on income between {formatAUD(TAX_BRACKETS[0].max)} and {formatAUD(TAX_BRACKETS[1].max)} dropped one point — worth up to <strong>{formatAUD(RATE_CUT_MAX_SAVING)} a year</strong>, received in full once you earn {formatAUD(TAX_BRACKETS[1].max)} or more.
+                The rate on income between {formatAUD(TAX_BRACKETS[0].max)} and {formatAUD(TAX_BRACKETS[1].max)} dropped one point, worth up to <strong>{formatAUD(RATE_CUT_MAX_SAVING)} a year</strong>, received in full once you earn {formatAUD(TAX_BRACKETS[1].max)} or more.
               </p>
             </div>
             <div className="rounded-xl border border-sky-200/60 bg-sky-50/60 p-4">
-              <p className="mb-1 font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super stays {formatPercent(SUPER_GUARANTEE.rate, 0)} — now paid every payday</p>
+              <p className="mb-1 font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super stays {formatPercent(SUPER_GUARANTEE.rate, 0)}, now paid every payday</p>
               <p className="text-sm text-warmgray">
                 The SG rate is unchanged at its legislated ceiling, but Payday Super started on {SUPER_GUARANTEE.paydaySuperStart}: contributions must now reach your fund within 7 business days of each payday instead of quarterly.
               </p>
@@ -198,7 +198,7 @@ export default function HomePageTemplate() {
             <div className="rounded-xl border border-violet-200/60 bg-violet-50/60 p-4">
               <p className="mb-1 font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP threshold: {formatAUD(HECS_HELP.minimumThreshold)}</p>
               <p className="text-sm text-warmgray">
-                Repayments are marginal — {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} of income <em>above</em> {formatAUD(HECS_HELP.minimumThreshold)}, not a percentage of your whole salary. Below the threshold you repay nothing.
+                Repayments are marginal: {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} of income <em>above</em> {formatAUD(HECS_HELP.minimumThreshold)}, not a percentage of your whole salary. Below the threshold you repay nothing.
               </p>
             </div>
             <div className="rounded-xl border border-amber-200/60 bg-amber-50/60 p-4">
@@ -222,16 +222,16 @@ export default function HomePageTemplate() {
             How Is Take-Home Pay Calculated?
           </h2>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Take-home pay is your gross salary minus income tax, minus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus any HECS-HELP repayment. Income tax is applied in stages — each marginal rate only taxes the slice of income inside its bracket, never your whole salary. Here is the full working for an <strong>$80,000</strong> salary in FY{FY}:
+            Take-home pay is your gross salary minus income tax, minus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus any HECS-HELP repayment. Income tax is applied in stages: each marginal rate only taxes the slice of income inside its bracket, never your whole salary. Here is the full working for an <strong>$80,000</strong> salary in FY{FY}:
           </p>
           <ol className="mb-3 list-decimal space-y-1 pl-6 text-warmgray">
-            <li>First {formatAUD(TAX_BRACKETS[0].max)} — tax-free = <strong>$0</strong></li>
+            <li>First {formatAUD(TAX_BRACKETS[0].max)}: tax-free = <strong>$0</strong></li>
             <li>{formatAUD(TAX_BRACKETS[1].min)} – {formatAUD(TAX_BRACKETS[1].max)} at {formatPercent(TAX_BRACKETS[1].rate, 0)} = <strong>{formatAUD(BRACKET2_TAX)}</strong></li>
-            <li>{formatAUD(TAX_BRACKETS[2].min)} – $80,000 at {formatPercent(TAX_BRACKETS[2].rate, 0)} = <strong>{formatAUD(BRACKET3_TAX_80K)}</strong> — income tax totals <strong>{formatAUD(BD80.netIncomeTax)}</strong></li>
+            <li>{formatAUD(TAX_BRACKETS[2].min)} – $80,000 at {formatPercent(TAX_BRACKETS[2].rate, 0)} = <strong>{formatAUD(BRACKET3_TAX_80K)}</strong>, so income tax totals <strong>{formatAUD(BD80.netIncomeTax)}</strong></li>
             <li>Medicare levy at {formatPercent(MEDICARE_LEVY.rate, 0)} = <strong>{formatAUD(BD80.medicareLevy)}</strong> (LITO is $0 above {formatAUD(LITO.nilOffsetIncome)})</li>
           </ol>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Total deductions come to {formatAUD(BD80.totalDeductions)}, leaving take-home pay of <strong>{formatAUD(BD80.takeHomePay)}</strong> a year — {formatAUD(BD80.weekly, 2)} a week or {formatAUD(BD80.monthly, 2)} a month. The effective rate on the whole salary is <strong>{formatPercent(BD80.effectiveTaxRate)}</strong>, far below the {formatPercent(BD80.marginalTaxRate)} marginal rate (including Medicare) on the next dollar earned. See the full working for <Link href="/tax-on/80000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $80,000</Link> or <Link href="/tax-on/100000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $100,000</Link>.
+            Total deductions come to {formatAUD(BD80.totalDeductions)}, leaving take-home pay of <strong>{formatAUD(BD80.takeHomePay)}</strong> a year ({formatAUD(BD80.weekly, 2)} a week or {formatAUD(BD80.monthly, 2)} a month). The effective rate on the whole salary is <strong>{formatPercent(BD80.effectiveTaxRate)}</strong>, far below the {formatPercent(BD80.marginalTaxRate)} marginal rate (including Medicare) on the next dollar earned. See the full working for <Link href="/tax-on/80000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $80,000</Link> or <Link href="/tax-on/100000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $100,000</Link>.
           </p>
           <p className="leading-relaxed text-warmgray">
             For a bracket-by-bracket breakdown of the tax side, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>; to compare net pay across salaries, use the <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>; to check what your employer takes out of each pay, use the <Link href="/tax-withheld-calculator/" className="font-medium text-eucalyptus-dark hover:underline">tax withheld calculator</Link>; and to decode each line of your payslip, read <Link href="/understanding-your-payslip/" className="font-medium text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>.
@@ -261,13 +261,13 @@ export default function HomePageTemplate() {
             This wage calculator converts an hourly rate to an annual salary the same way every major Australian pay tool does: rate &times; weekly hours &times; {EMPLOYMENT.weeksPerYear} weeks. A standard {EMPLOYMENT.standardWeeklyHours}-hour week is <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year</strong>, so {formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour is roughly an $80,000 salary. Use the <strong>Hourly</strong> tab in the calculator above, or the dedicated <Link href="/hourly-to-annual-salary-calculator/" className="font-medium text-eucalyptus-dark hover:underline">hourly to annual salary calculator</Link> and <Link href="/salary-vs-hourly/" className="font-medium text-eucalyptus-dark hover:underline">salary vs hourly guide</Link>.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>Casual workers</strong> receive casual loading — an extra {pctX(EMPLOYMENT.casualLoading)} on the base hourly rate in place of paid leave and notice entitlements. On the {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is <strong>{formatAUD(CASUAL_MIN_WAGE, 2)} an hour</strong>. The loading is taxed as ordinary income, so tick the casual toggle above to see the after-tax difference. How casual work compares with permanent: <Link href="/full-time-vs-part-time-vs-casual/" className="font-medium text-eucalyptus-dark hover:underline">full-time vs part-time vs casual</Link>.
+            <strong>Casual workers</strong> receive casual loading: an extra {pctX(EMPLOYMENT.casualLoading)} on the base hourly rate in place of paid leave and notice entitlements. On the {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is <strong>{formatAUD(CASUAL_MIN_WAGE, 2)} an hour</strong>. The loading is taxed as ordinary income, so tick the casual toggle above to see the after-tax difference. How casual work compares with permanent: <Link href="/full-time-vs-part-time-vs-casual/" className="font-medium text-eucalyptus-dark hover:underline">full-time vs part-time vs casual</Link>.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>Penalty rates</strong> are award-specific loadings for weekends, public holidays and late nights — commonly {pctX(EMPLOYMENT.penaltyRates.saturdayMin)}–{pctX(EMPLOYMENT.penaltyRates.saturdayMax)} on Saturdays, {pctX(EMPLOYMENT.penaltyRates.sundayMin)}–{pctX(EMPLOYMENT.penaltyRates.sundayMax)} on Sundays and {pctX(EMPLOYMENT.penaltyRates.publicHolidayMin)}–{pctX(EMPLOYMENT.penaltyRates.publicHolidayMax)} on public holidays, though every award sets its own percentages. This calculator deliberately doesn&apos;t guess them: check the <Link href="/overtime-penalty-rates-guide/" className="font-medium text-eucalyptus-dark hover:underline">penalty rates guide</Link> or your award — <Link href="/hospitality-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">hospitality</Link>, <Link href="/retail-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">retail</Link> or <Link href="/schads-award-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">SCHADS</Link> — for exact rates.
+            <strong>Penalty rates</strong> are award-specific loadings for weekends, public holidays and late nights, commonly {pctX(EMPLOYMENT.penaltyRates.saturdayMin)}–{pctX(EMPLOYMENT.penaltyRates.saturdayMax)} on Saturdays, {pctX(EMPLOYMENT.penaltyRates.sundayMin)}–{pctX(EMPLOYMENT.penaltyRates.sundayMax)} on Sundays and {pctX(EMPLOYMENT.penaltyRates.publicHolidayMin)}–{pctX(EMPLOYMENT.penaltyRates.publicHolidayMax)} on public holidays, though every award sets its own percentages. This calculator deliberately doesn&apos;t guess them: check the <Link href="/overtime-penalty-rates-guide/" className="font-medium text-eucalyptus-dark hover:underline">penalty rates guide</Link> or your award (<Link href="/hospitality-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">hospitality</Link>, <Link href="/retail-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">retail</Link> or <Link href="/schads-award-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">SCHADS</Link>) for exact rates.
           </p>
           <p className="leading-relaxed text-warmgray">
-            Workers under 21 may be on age-based percentages of the adult rate — see <Link href="/junior-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">junior pay rates</Link>. For overtime at time-and-a-half or double time, use the <Link href="/overtime-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">overtime pay calculator</Link>, and for a week-by-week view of a casual income, the <Link href="/weekly-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">weekly pay calculator</Link>.
+            Workers under 21 may be on age-based percentages of the adult rate. See <Link href="/junior-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">junior pay rates</Link>. For overtime at time-and-a-half or double time, use the <Link href="/overtime-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">overtime pay calculator</Link>, and for a week-by-week view of a casual income, the <Link href="/weekly-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">weekly pay calculator</Link>.
           </p>
         </section>
 
@@ -280,7 +280,7 @@ export default function HomePageTemplate() {
             Take-Home Pay on Common Salaries in FY{FY}
           </h2>
           <p className="mb-4 text-warmgray">
-            The table below is computed live from the FY{FY} rates — income tax (after LITO), Medicare levy, take-home pay and employer super for 10 common Australian salary levels.
+            The table below is computed live from the FY{FY} rates: income tax (after LITO), Medicare levy, take-home pay and employer super for 10 common Australian salary levels.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -348,7 +348,7 @@ export default function HomePageTemplate() {
                 <GraduationCap className="h-4 w-4 text-violet-500" />
                 <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. HECS/HELP</span>
               </div>
-              <p className="text-xs text-warmgray">Income-contingent student loan repayments under the marginal system — {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} above {formatAUD(HECS_HELP.minimumThreshold)}.</p>
+              <p className="text-xs text-warmgray">Income-contingent student loan repayments under the marginal system: {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} above {formatAUD(HECS_HELP.minimumThreshold)}.</p>
               <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">HECS-HELP Calculator &rarr;</span>
             </Link>
             <Link href="/superannuation-calculator/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
@@ -356,7 +356,7 @@ export default function HomePageTemplate() {
                 <PiggyBank className="h-4 w-4 text-sky-500" />
                 <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>4. Super ({formatPercent(SUPER_GUARANTEE.rate, 0)} SG)</span>
               </div>
-              <p className="text-xs text-warmgray">Employer Superannuation Guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} — paid on top of your salary, not deducted.</p>
+              <p className="text-xs text-warmgray">Employer Superannuation Guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)}, paid on top of your salary, not deducted.</p>
               <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">Superannuation Calculator &rarr;</span>
             </Link>
           </div>
@@ -391,7 +391,7 @@ export default function HomePageTemplate() {
             <li>{formatAUD(MEDICARE_LEVY.surcharge.tier3.min)} and above: surcharge of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 2)}</strong></li>
           </ul>
           <p className="leading-relaxed text-warmgray">
-            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year — on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, taking the total health-related levy to {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link> for the full threshold tables.
+            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year, on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, taking the total health-related levy to {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link> for the full threshold tables.
           </p>
         </section>
 
@@ -407,7 +407,7 @@ export default function HomePageTemplate() {
             Your employer pays a &quot;Superannuation Guarantee&quot; (SG) of <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> of your ordinary earnings into your nominated super fund. On a salary of $80,000 that is <strong>{formatAUD(BD80.superContribution)} per year</strong>; on $100,000 it is {formatAUD(BD100.superContribution)}; on $60,000, {formatAUD(calculateSuper(60_000))}. These amounts are paid on top of your gross salary and do not reduce your take-home pay. See the <Link href="/super-guarantee-rate-history/" className="font-medium text-eucalyptus-dark hover:underline">SG rate history</Link> for how the rate climbed to its {formatPercent(SUPER_GUARANTEE.rate, 0)} ceiling.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Since {SUPER_GUARANTEE.paydaySuperStart}, Payday Super requires employers to pay super <strong>on every payday</strong> rather than quarterly, calculated on qualifying earnings. Late payments trigger the Superannuation Guarantee Charge, which adds daily-compounding interest and an administrative uplift. The &quot;Maximum Super Contribution Base&quot; for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> per year — employers are not required to pay SG on earnings above this cap.
+            Since {SUPER_GUARANTEE.paydaySuperStart}, Payday Super requires employers to pay super <strong>on every payday</strong> rather than quarterly, calculated on qualifying earnings. Late payments trigger the Superannuation Guarantee Charge, which adds daily-compounding interest and an administrative uplift. The &quot;Maximum Super Contribution Base&quot; for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> per year. Employers are not required to pay SG on earnings above this cap.
           </p>
           <p className="leading-relaxed text-warmgray">
             The concessional contributions cap (employer SG plus salary sacrifice and personal deductible contributions) is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY{FY}. Use the <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> for your exact employer contributions, the <Link href="/salary-sacrifice-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model pre-tax contributions, or the <Link href="/superannuation-guide/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Guide</Link> for caps, options and withdrawal rules.
@@ -423,7 +423,7 @@ export default function HomePageTemplate() {
             How Do HECS-HELP Repayments Affect Take-Home Pay?
           </h2>
           <p className="mb-3 leading-relaxed text-warmgray">
-            HECS-HELP repayments are calculated under a marginal system for FY{FY}: repayments start when repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, and you only pay on the amount <em>above</em> the threshold — not on your total income.
+            HECS-HELP repayments are calculated under a marginal system for FY{FY}: repayments start when repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, and you only pay on the amount <em>above</em> the threshold, not on your total income.
           </p>
           <div className="mb-4 overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -467,7 +467,7 @@ export default function HomePageTemplate() {
             Which Pay Calculator Should You Use?
           </h2>
           <p className="mb-4 text-warmgray">
-            The calculator above handles the most common scenario — converting a salary or wage to take-home pay. For specialised situations, use one of the dedicated calculators below. Working holiday makers and non-residents are taxed differently: see the <Link href="/working-holiday-tax/" className="font-medium text-eucalyptus-dark hover:underline">working holiday tax guide</Link> and <Link href="/non-resident-tax/" className="font-medium text-eucalyptus-dark hover:underline">non-resident tax guide</Link>.
+            The calculator above handles the most common scenario: converting a salary or wage to take-home pay. For specialised situations, use one of the dedicated calculators below. Working holiday makers and non-residents are taxed differently: see the <Link href="/working-holiday-tax/" className="font-medium text-eucalyptus-dark hover:underline">working holiday tax guide</Link> and <Link href="/non-resident-tax/" className="font-medium text-eucalyptus-dark hover:underline">non-resident tax guide</Link>.
           </p>
 
           <h3
@@ -528,7 +528,7 @@ export default function HomePageTemplate() {
             Pay Calculator by State
           </h2>
           <p className="mb-4 text-warmgray">
-            Income tax in Australia is <strong>federal</strong> — every state and territory uses the same tax brackets, so a pay calculator for NSW gives the same take-home pay as one for WA. State-level differences affect employers through payroll tax (a tax on total wages paid), which influences hiring costs but does not directly reduce employee take-home pay. Average salaries also vary by state due to industry composition, cost of living, and labour market conditions.
+            Income tax in Australia is <strong>federal</strong>. Every state and territory uses the same tax brackets, so a pay calculator for NSW gives the same take-home pay as one for WA. State-level differences affect employers through payroll tax (a tax on total wages paid), which influences hiring costs but does not directly reduce employee take-home pay. Average salaries also vary by state due to industry composition, cost of living, and labour market conditions.
           </p>
           <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
@@ -603,14 +603,14 @@ export default function HomePageTemplate() {
             What Are the Most Common Pay Calculation Mistakes?
           </h2>
           <p className="mb-4 text-warmgray">
-            These 5 errors are the most frequent mistakes Australian workers make when estimating their take-home pay — each one leads to a materially wrong expectation of net income.
+            These 5 errors are the most frequent mistakes Australian workers make when estimating their take-home pay. Each one leads to a materially wrong expectation of net income.
           </p>
           <ol className="list-decimal space-y-4 pl-6 text-warmgray">
             <li>
-              <strong>Applying one flat tax rate to your entire salary.</strong> A worker earning $100,000 who assumes a {formatPercent(TAX_BRACKETS[2].rate, 0)} flat rate expects to pay <strong>{formatAUD(100_000 * TAX_BRACKETS[2].rate)}</strong> in tax. The actual income tax (using progressive marginal rates) is <strong>{formatAUD(BD100.netIncomeTax)}</strong> — an overestimate of {formatAUD(100_000 * TAX_BRACKETS[2].rate - BD100.netIncomeTax)}. Tax is calculated in brackets, not as a single percentage.
+              <strong>Applying one flat tax rate to your entire salary.</strong> A worker earning $100,000 who assumes a {formatPercent(TAX_BRACKETS[2].rate, 0)} flat rate expects to pay <strong>{formatAUD(100_000 * TAX_BRACKETS[2].rate)}</strong> in tax. The actual income tax (using progressive marginal rates) is <strong>{formatAUD(BD100.netIncomeTax)}</strong>, an overestimate of {formatAUD(100_000 * TAX_BRACKETS[2].rate - BD100.netIncomeTax)}. Tax is calculated in brackets, not as a single percentage.
             </li>
             <li>
-              <strong>Confusing gross salary with a package that includes super.</strong> A &quot;$100,000 package including super&quot; means a base salary of <strong>{formatAUD(BD100_PKG.grossSalary)}</strong> ($100,000 &divide; {(1 + SUPER_GUARANTEE.rate).toFixed(2)}). The take-home pay on that base is <strong>{formatAUD(BD100_PKG.takeHomePay)}</strong> — not the {formatAUD(BD100.takeHomePay)} you receive on a $100,000 base salary. The difference is <strong>{formatAUD(BD100.takeHomePay - BD100_PKG.takeHomePay)} per year</strong>.
+              <strong>Confusing gross salary with a package that includes super.</strong> A &quot;$100,000 package including super&quot; means a base salary of <strong>{formatAUD(BD100_PKG.grossSalary)}</strong> ($100,000 &divide; {(1 + SUPER_GUARANTEE.rate).toFixed(2)}). The take-home pay on that base is <strong>{formatAUD(BD100_PKG.takeHomePay)}</strong>, not the {formatAUD(BD100.takeHomePay)} you receive on a $100,000 base salary. The difference is <strong>{formatAUD(BD100.takeHomePay - BD100_PKG.takeHomePay)} per year</strong>.
             </li>
             <li>
               <strong>Forgetting the Medicare levy.</strong> The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy adds <strong>{formatAUD(80_000 * MEDICARE_LEVY.rate)}</strong> in deductions on an $80,000 salary, <strong>{formatAUD(100_000 * MEDICARE_LEVY.rate)}</strong> on $100,000, and <strong>{formatAUD(150_000 * MEDICARE_LEVY.rate)}</strong> on $150,000. This is a separate charge from income tax and applies to most Australian residents above the low-income threshold.
@@ -619,7 +619,7 @@ export default function HomePageTemplate() {
               <strong>Not accounting for HECS-HELP repayments.</strong> An employee earning $90,000 with a HECS debt loses an additional <strong>{formatAUD(BD90_HECS.hecsRepayment)}</strong> per year in compulsory repayments. This is deducted from every pay cycle by your employer, reducing your fortnightly take-home by <strong>{formatAUD(BD90_HECS.hecsRepayment / 26, 2)}</strong>.
             </li>
             <li>
-              <strong>Treating superannuation as a salary deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} employer SG contribution is paid on top of your gross salary — it does not reduce your take-home pay. Workers who subtract super from their gross overstate their deductions by <strong>{formatAUD(calculateSuper(80_000))}</strong> at the $80,000 salary level.
+              <strong>Treating superannuation as a salary deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} employer SG contribution is paid on top of your gross salary. It does not reduce your take-home pay. Workers who subtract super from their gross overstate their deductions by <strong>{formatAUD(calculateSuper(80_000))}</strong> at the $80,000 salary level.
             </li>
           </ol>
         </section>

@@ -118,7 +118,7 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
 
             <section id="pay-scale">
               <h2 style={HEADING_FONT}>
-                {j.employer} pay scale — every classification
+                {j.employer} pay scale: every classification
               </h2>
               {j.scales.map((scale) => (
                 <ScaleTable key={scale.id} scale={scale} caption={`${j.employer}: ${scale.title}`} />

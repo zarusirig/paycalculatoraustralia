@@ -95,12 +95,12 @@ export default function MedicareLevyPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How the Medicare Levy Is Calculated</h2>
-            <p>The Medicare levy funds Medicare — bulk-billed doctor visits, public hospital treatment and PBS medicines. It is charged on your <strong>taxable income</strong>, which is gross income less allowable deductions, and it sits on top of income tax rather than replacing any part of it.</p>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The part most calculators get wrong:</strong> the levy is not a flat {RATE} from the first dollar. There are three bands, and the middle one — the shade-in — catches roughly every part-time and low-income earner in the country.</p>
+            <p>The Medicare levy funds Medicare: bulk-billed doctor visits, public hospital treatment and PBS medicines. It is charged on your <strong>taxable income</strong>, which is gross income less allowable deductions, and it sits on top of income tax rather than replacing any part of it.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The part most calculators get wrong:</strong> the levy is not a flat {RATE} from the first dollar. There are three bands, and the middle one (the shade-in) catches roughly every part-time and low-income earner in the country.</p>
             <ul>
-              <li><strong>At or under {formatAUD(LOWER)}</strong> — no levy at all.</li>
-              <li><strong>Between {formatAUD(LOWER)} and {formatAUD(UPPER)}</strong> — you pay {SHADE} of the amount over {formatAUD(LOWER)}, which is always less than {RATE} of your income.</li>
-              <li><strong>Above {formatAUD(UPPER)}</strong> — the full {RATE}.</li>
+              <li><strong>At or under {formatAUD(LOWER)}</strong>: no levy at all.</li>
+              <li><strong>Between {formatAUD(LOWER)} and {formatAUD(UPPER)}</strong>: you pay {SHADE} of the amount over {formatAUD(LOWER)}, which is always less than {RATE} of your income.</li>
+              <li><strong>Above {formatAUD(UPPER)}</strong>: the full {RATE}.</li>
             </ul>
             <p>The upper threshold is not an arbitrary number. {SHADE} of the excess and {RATE} of total income meet at exactly 1.25 times the lower threshold, which is where the shade-in stops mattering. Every threshold pair the ATO publishes follows that ratio.</p>
 
@@ -128,12 +128,12 @@ export default function MedicareLevyPage() {
               <tr><td className="px-5 py-3 text-warmgray-light">What a flat {RATE} would have charged</td><td className="px-5 py-3 text-right tabular-nums text-warmgray-light">{formatAUD(ANGIE.fullRateLevy, 2)}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Medicare levy payable</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(ANGIE.levy, 2)}</td></tr>
             </tbody></table></div></div>
-            <p>The difference is {formatAUD(ANGIE.fullRateLevy - ANGIE.levy, 2)} — on an income of {formatAUD(29_000)}. Getting the shade-in wrong is not a rounding error.</p>
+            <p>The difference is {formatAUD(ANGIE.fullRateLevy - ANGIE.levy, 2)} on an income of {formatAUD(29_000)}. Getting the shade-in wrong is not a rounding error.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Family Thresholds</h2>
-            <p>If you had a spouse on 30 June, or you maintained a dependent child, a second and more generous test applies. It runs on <strong>family taxable income</strong> — your income plus your spouse&rsquo;s, or your own income alone if you are a sole parent — against a family threshold of {formatAUD(MEDICARE_LEVY.familyThreshold)}, which rises by <strong>{formatAUD(MEDICARE_LEVY.additionalChild)} for each dependent child</strong>.</p>
+            <p>If you had a spouse on 30 June, or you maintained a dependent child, a second and more generous test applies. It runs on <strong>family taxable income</strong> (your income plus your spouse&rsquo;s, or your own income alone if you are a sole parent) against a family threshold of {formatAUD(MEDICARE_LEVY.familyThreshold)}, which rises by <strong>{formatAUD(MEDICARE_LEVY.additionalChild)} for each dependent child</strong>.</p>
             <p>Below that threshold no levy is payable at all. Above it the levy is reduced until family income reaches {formatAUD(FAMILY_UPPER)} (again 1.25 times the threshold), after which the full {RATE} applies.</p>
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Dependent children</th><th className="px-5 py-3 text-right">No levy at or under</th><th className="px-5 py-3 text-right">Full {RATE} above</th><th className="px-5 py-3 text-right">SAPTO threshold</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -149,13 +149,13 @@ export default function MedicareLevyPage() {
 
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The family reduction is applied on top of the low-income reduction, not instead of it.</strong> Medicare Levy Act 1986 s 8(2) reduces the levy that would be payable <em>after</em> the individual shade-in. Software that applies only one of the two overstates the levy for most families in the band.</p>
 
-            <p>Where both partners would be liable for the levy, the reduction is split between them in proportion to their taxable incomes. Where only one partner is liable — because the other is under the individual threshold — that partner takes the whole reduction.</p>
+            <p>Where both partners would be liable for the levy, the reduction is split between them in proportion to their taxable incomes. Where only one partner is liable, because the other is under the individual threshold, that partner takes the whole reduction.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Seniors and Pensioners</h2>
             <p>Seniors and pensioners get materially higher thresholds: <strong>{formatAUD(MEDICARE_LEVY_SENIORS.singleThreshold)}</strong> single (full levy above {formatAUD(SENIOR_UPPER)}) and <strong>{formatAUD(MEDICARE_LEVY_SENIORS.familyThreshold)}</strong> for a family (full levy above {formatAUD(SENIOR_FAMILY_UPPER)}). A single senior on {formatAUD(40_000)} pays <strong>nothing</strong>, where anyone else on the same income pays {formatAUD(single(40_000).levy)}.</p>
-            <p>The qualifying test is the one people get wrong. It is not age — it is <strong>entitlement to at least $1 of the seniors and pensioners tax offset</strong>. Someone who reaches age-pension age but whose rebate income is too high for any SAPTO cannot use these thresholds. SAPTO for singles cuts out at {formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, which is <em>below</em> the {formatAUD(SENIOR_UPPER)} upper Medicare threshold — so the top of the seniors band is reached through the ordinary thresholds instead. Check your entitlement with the <Link href="/sapto-calculator/">SAPTO calculator</Link> first.</p>
+            <p>The qualifying test is the one people get wrong. It is not age. It is <strong>entitlement to at least $1 of the seniors and pensioners tax offset</strong>. Someone who reaches age-pension age but whose rebate income is too high for any SAPTO cannot use these thresholds. SAPTO for singles cuts out at {formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, which is <em>below</em> the {formatAUD(SENIOR_UPPER)} upper Medicare threshold, so the top of the seniors band is reached through the ordinary thresholds instead. Check your entitlement with the <Link href="/sapto-calculator/">SAPTO calculator</Link> first.</p>
             <p>The ATO&rsquo;s worked example shows both reductions stacking. Ashton is 68, has taxable income of {formatAUD(49_700)}, an illness-separated spouse on {formatAUD(21_700)}, no children, and is entitled to SAPTO:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Levy at {RATE} of {formatAUD(49_700)}</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(ASHTON.fullRateLevy, 2)}</td></tr>
@@ -188,24 +188,24 @@ export default function MedicareLevyPage() {
                 </div>
               ))}
             </div>
-            <p>You claim an exemption in the Medicare levy section of your tax return, and the ATO works the amount out for you. If your employer withheld the levy through the year but you were entitled to a reduction or exemption, the excess comes back as part of your refund — see the <Link href="/tax-return-calculator/">tax return calculator</Link>. Residency itself is covered in our <Link href="/non-resident-tax/">non-resident tax guide</Link>.</p>
+            <p>You claim an exemption in the Medicare levy section of your tax return, and the ATO works the amount out for you. If your employer withheld the levy through the year but you were entitled to a reduction or exemption, the excess comes back as part of your refund. See the <Link href="/tax-return-calculator/">tax return calculator</Link>. Residency itself is covered in our <Link href="/non-resident-tax/">non-resident tax guide</Link>.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How the Levy Reaches Your Pay</h2>
-            <p>The levy is bundled into PAYG withholding, so it does not appear as its own line on a payslip. The figure shown as &ldquo;tax&rdquo; already includes it — on {formatAUD(75_000)} of taxable income, {formatAUD(single(75_000).levy)} of the year&rsquo;s withholding is Medicare levy. Our <Link href="/understanding-your-payslip/">payslip guide</Link> breaks down the rest of the line items.</p>
+            <p>The levy is bundled into PAYG withholding, so it does not appear as its own line on a payslip. The figure shown as &ldquo;tax&rdquo; already includes it: on {formatAUD(75_000)} of taxable income, {formatAUD(single(75_000).levy)} of the year&rsquo;s withholding is Medicare levy. Our <Link href="/understanding-your-payslip/">payslip guide</Link> breaks down the rest of the line items.</p>
             <p>The <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link> behaves differently. The ATO says it isn&rsquo;t covered by the tax your employer withholds, so people who cross the threshold without cover usually meet it as a bill at lodgment rather than a smaller fortnightly pay. Salary sacrifice reduces taxable income and therefore the levy (see the <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link>) but not the surcharge tier.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <ul>
-              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> — income tax, Medicare levy, HECS and super in one breakdown</li>
-              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — your tax before the levy is added</li>
-              <li><Link href="/sapto-calculator/">SAPTO Calculator</Link> — check the entitlement that unlocks the seniors Medicare threshold</li>
-              <li><Link href="/medicare-levy-surcharge-calculator/">Medicare Levy Surcharge Calculator</Link> — your surcharge tier and whether cover beats it</li>
-              <li><Link href="/private-health-insurance-medicare/">Private Health Insurance and Medicare</Link> — the wider cover decision</li>
-              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> — the other concession low-income earners claim</li>
+              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: income tax, Medicare levy, HECS and super in one breakdown</li>
+              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: your tax before the levy is added</li>
+              <li><Link href="/sapto-calculator/">SAPTO Calculator</Link>: check the entitlement you need for the seniors Medicare threshold</li>
+              <li><Link href="/medicare-levy-surcharge-calculator/">Medicare Levy Surcharge Calculator</Link>: your surcharge tier and whether cover beats it</li>
+              <li><Link href="/private-health-insurance-medicare/">Private Health Insurance and Medicare</Link>: the wider cover decision</li>
+              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset</Link>: the other concession low-income earners claim</li>
             </ul>
           </section>
 
@@ -227,8 +227,8 @@ export default function MedicareLevyPage() {
 
           <div className="mt-12 not-prose">
             <MethodologyDisclosure title="How this calculator works">
-              <p>The levy is worked out in two stages, in the order the legislation sets. First the individual low-income reduction under Medicare Levy Act 1986 s 7: nil at or under the lower threshold, then {SHADE} of the excess until it meets {RATE} of income. Then, if you have a spouse or dependants, the family reduction under s 8(2) — <code>{RATE} × family threshold − 0.08 × (family income − family threshold)</code> — is subtracted from that result, split between spouses in proportion to their taxable incomes where both are liable. Both of the ATO&rsquo;s published worked examples reproduce to the cent under this method and are pinned in automated tests.</p>
-              <p><strong>Two income years are in play, deliberately.</strong> The low-income, family and seniors thresholds are the ATO&rsquo;s {MEDICARE_LEVY_INCOME_YEAR} figures — the latest published, and the year currently being lodged. The ATO had not released {MLS_INCOME_YEAR} Medicare levy thresholds when this page was last verified on {SITE_CONFIG.lastVerified}, so it is not labelled with that year. The surcharge tiers <em>are</em> published for {MLS_INCOME_YEAR} and are shown on that basis. The {RATE} rate has not changed since 1 July 2014.</p>
+              <p>The levy is worked out in two stages, in the order the legislation sets. First the individual low-income reduction under Medicare Levy Act 1986 s 7: nil at or under the lower threshold, then {SHADE} of the excess until it meets {RATE} of income. Then, if you have a spouse or dependants, the family reduction under s 8(2), <code>{RATE} × family threshold − 0.08 × (family income − family threshold)</code>, is subtracted from that result, split between spouses in proportion to their taxable incomes where both are liable. Both of the ATO&rsquo;s published worked examples reproduce to the cent under this method and are pinned in automated tests.</p>
+              <p><strong>Two income years are in play, deliberately.</strong> The low-income, family and seniors thresholds are the ATO&rsquo;s {MEDICARE_LEVY_INCOME_YEAR} figures: the latest published, and the year currently being lodged. The ATO had not released {MLS_INCOME_YEAR} Medicare levy thresholds when this page was last verified on {SITE_CONFIG.lastVerified}, so it is not labelled with that year. The surcharge tiers <em>are</em> published for {MLS_INCOME_YEAR} and are shown on that basis. The {RATE} rate has not changed since 1 July 2014.</p>
               <p>This is general information, not tax advice, and it assumes a full year of Australian residency with no exemption claimed. Every figure is derived from a single constants file so the calculator, tables and FAQ cannot disagree.</p>
             </MethodologyDisclosure>
             <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

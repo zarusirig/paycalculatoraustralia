@@ -74,7 +74,7 @@ export const EXCAVATOR_OPERATOR: Occupation = {
   slug: "excavator-operator",
   name: "Excavator Operator",
   plural: "excavator operators",
-  metaTitle: `Excavator Operator Salary Australia 2026 — ${money2(EX_CW4.hourly)}/hr Award`,
+  metaTitle: `Excavator Operator Salary Australia 2026 - ${money2(EX_CW4.hourly)}/hr Award`,
   award: { ...BUILDING_AWARD, awardPageHref: "/building-and-construction-award-rates/" },
   headline: {
     tableId: "excavator",
@@ -84,7 +84,7 @@ export const EXCAVATOR_OPERATOR: Occupation = {
   coverage: [
     "Excavator operators employed by civil, building and earthmoving contractors are covered by the Building and Construction General On-site Award 2020 [MA000020]. Its civil construction stream \"includes all related skills involved in earthmoving, plant operation and associated activity\" (Schedule A.1.2).",
     "The award grades plant operators by machine and size, not by licence. An excavator up to and including 0.5 cubic metre capacity is CW/ECW 4. An excavator above 0.5 cubic metres, a hydraulic telescopic boom excavator, or a dragline or shovel excavator up to 3 cubic metres is CW/ECW 5. A dragline or shovel excavator from 3 cubic metres is CW/ECW 6 (Schedule A).",
-    `Every operator also gets the industry allowance for all purposes — ${money2(general)} a week in general building and civil construction, ${money2(residential)} on single and dual occupancy residential work (cl 22.1) — so the bare clause 19.1 rate is never the minimum. An operator who is in charge of plant, such as the only operator on a machine who also does its general repair work, gets another ${money2(IN_CHARGE_OF_PLANT)} a week, which is part of a weekly hire employee's hourly rate (cl 2, 19.3(b), 23.9).`,
+    `Every operator also gets the industry allowance for all purposes: ${money2(general)} a week in general building and civil construction, ${money2(residential)} on single and dual occupancy residential work (cl 22.1) — so the bare clause 19.1 rate is never the minimum. An operator who is in charge of plant, such as the only operator on a machine who also does its general repair work, gets another ${money2(IN_CHARGE_OF_PLANT)} a week, which is part of a weekly hire employee's hourly rate (cl 2, 19.3(b), 23.9).`,
     "The employer's industry decides the award. An excavator operator working on a mine is covered by the Mining Industry Award, and one employed by a council is usually paid under the Local Government Industry Award or the council's enterprise agreement.",
   ],
   tables: [
@@ -128,7 +128,7 @@ export const EXCAVATOR_OPERATOR: Occupation = {
     },
     {
       q: "What is the casual rate for an excavator operator?",
-      a: `A casual operator on a civil or general building site earns at least ${money2(EX_CW4.casualHourly ?? 0)} an hour on an excavator up to 0.5 m³ and ${money2(EX_CW5.casualHourly ?? 0)} above 0.5 m³ — the ordinary rate plus the 25% casual loading — with a 4-hour minimum each engagement.`,
+      a: `A casual operator on a civil or general building site earns at least ${money2(EX_CW4.casualHourly ?? 0)} an hour on an excavator up to 0.5 m³ and ${money2(EX_CW5.casualHourly ?? 0)} above 0.5 m³ (the ordinary rate plus the 25% casual loading), with a 4-hour minimum each engagement.`,
     },
     {
       q: "What does 'in charge of plant' mean for an excavator operator?",

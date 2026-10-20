@@ -96,7 +96,7 @@ const EDUCATOR_SECTION: OccupationSection = {
   id: "early-childhood-educator-pay",
   heading: "Early childhood educator pay: Certificate III and Diploma",
   paragraphs: [
-    "\"Early childhood educator\" is the everyday name for the educator levels in the Children's Services Award, and your qualification sets your level. A Certificate III in Early Childhood Education and Care makes you a Level 3 Qualified Educator; a Diploma makes you a Level 5 Advanced Educator. University-qualified early childhood teachers are covered by a different award — see the early childhood teacher page.",
+    "\"Early childhood educator\" is the everyday name for the educator levels in the Children's Services Award, and your qualification sets your level. A Certificate III in Early Childhood Education and Care makes you a Level 3 Qualified Educator; a Diploma makes you a Level 5 Advanced Educator. University-qualified early childhood teachers are covered by a different award; see the early childhood teacher page.",
     "If your centre receives the Worker Retention Payment, it must pay at least the grant's minimum hourly rate for your level, which is higher than the award. Check which applies to you, then compare it with the hourly rate on your payslip.",
   ],
   table: {
@@ -127,10 +127,10 @@ export const CHILDCARE_WORKER: Occupation = {
     why: "an educator with the Certificate III that most long day care rooms require, which is where a qualified childcare worker starts",
   },
   coverage: [
-    "Childcare workers in long day care, family day care, out-of-school hours care, occasional care and kindergartens run by national-system employers are covered by the Children's Services Award 2010 [MA000120]. University-qualified early childhood teachers are covered by a different award — see the early childhood teacher page.",
+    "Childcare workers in long day care, family day care, out-of-school hours care, occasional care and kindergartens run by national-system employers are covered by the Children's Services Award 2010 [MA000120]. University-qualified early childhood teachers are covered by a different award; see the early childhood teacher page.",
     "The award's classifications were rebuilt from 1 March 2026 (PR794818). Educators are now classified on eight levels by qualification and role: Level 1—Introductory Educator (under 12 months' experience), Level 2—Educator, Level 3—Qualified Educator (Certificate III), Level 4—Experienced Educator (Certificate III plus four years at Level 3), Level 5—Advanced Educator (Diploma), then Room Leader, Assistant Director and Director (Schedule B.1).",
     "Cooks, cleaners, laundry, gardening, driving and administrative staff are Support Workers under clause 14.2. A cook who must hold or be working towards an early childhood qualification and may be counted in educator-to-child ratios is paid as an educator at the level matching that qualification (cl 14.1(c)).",
-    "Most centres pay more than this award. Providers that take the Australian Government's Worker Retention Payment must pay eligible staff at least the grant's minimum hourly rates — from 1 July 2026, $33.87 an hour for a Level 3 Qualified Educator and $38.14 for a Level 5 Advanced Educator. Those are grant conditions set by the Department of Education, not award minimums, and the program has been extended to 30 June 2028.",
+    "Most centres pay more than this award. Providers that take the Australian Government's Worker Retention Payment must pay eligible staff at least the grant's minimum hourly rates: from 1 July 2026, $33.87 an hour for a Level 3 Qualified Educator and $38.14 for a Level 5 Advanced Educator. Those are grant conditions set by the Department of Education, not award minimums, and the program has been extended to 30 June 2028.",
   ],
   tables: [
     {
@@ -152,16 +152,16 @@ export const CHILDCARE_WORKER: Occupation = {
     { when: "Afternoon shift (finishes after 6.30 pm, by midnight)", permanent: "115%", casual: "140%" },
     { when: "Night shift, rotating", permanent: "117.5%", casual: "142.5%" },
     { when: "Night shift, non-rotating", permanent: "130%", casual: "155%" },
-    { when: "Saturday — shiftworker ordinary hours", permanent: "150%", casual: "Not published" },
+    { when: "Saturday, shiftworker ordinary hours", permanent: "150%", casual: "Not published" },
     { when: "Sunday — all time worked", permanent: "200%", casual: "Not published" },
-    { when: "Public holiday — all time worked", permanent: "250%", casual: "Not published" },
+    { when: "Public holiday, all time worked", permanent: "250%", casual: "Not published" },
   ],
   penaltiesNote:
     "Percentages of the minimum hourly rate (cl 23.4 and 23.5). Ordinary hours are Monday to Friday between 6.00 am and 6.30 pm (cl 21.2–21.3), so Saturday work by a day worker is overtime (150% for 2 hours, then 200%). Weekend and public holiday work carries a 4-hour minimum payment (cl 23.5(e)). Casual shift figures are the pay guide's casual dollar rates; neither the award nor the pay guide sets a casual Saturday, Sunday or public holiday rate, so we show none.",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours, then 200%; each day stands alone (cl 23.2(a)).",
-    "Casual: 175% for the first 2 hours, then 225% — the casual loading is included (cl 23.2(b)). Casuals get overtime after 8 hours in a day or 38 in a week (cl 10.5(e)).",
-    "Up to one hour a week of genuine emergency overtime — such as a child needing urgent medical attention — is paid at the ordinary rate (cl 23.2(c)). A parent collecting a child late is not an emergency (cl 21.7(b)(iii)).",
+    "Casual: 175% for the first 2 hours, then 225%; the casual loading is included (cl 23.2(b)). Casuals get overtime after 8 hours in a day or 38 in a week (cl 10.5(e)).",
+    "Up to one hour a week of genuine emergency overtime (such as a child needing urgent medical attention) is paid at the ordinary rate (cl 23.2(c)). A parent collecting a child late is not an emergency (cl 21.7(b)(iii)).",
   ],
   allowances: [
     { name: "Educational leader allowance", amount: "$4,784.28 per year", note: "If you are the service's educational leader under Regulation 118 of the National Regulations, pro rata for fewer than 5 days a week (cl 15.7)." },
@@ -178,13 +178,13 @@ export const CHILDCARE_WORKER: Occupation = {
   notShown: [
     "Apprentice and trainee rates (cl 14.4–14.5 and the National Training Wage).",
     "Schedule I translation rates for employees who held a pre-March 2026 classification.",
-    "Every Worker Retention Payment rate — only the Level 3 and Level 5 figures are quoted; the Department of Education publishes the full table.",
+    "Every Worker Retention Payment rate; only the Level 3 and Level 5 figures are quoted; the Department of Education publishes the full table.",
   ],
   sections: [EDUCATOR_SECTION],
   faqs: [
     {
       q: "What is the award rate for a childcare worker in 2026?",
-      a: "A qualified childcare worker with a Certificate III (Level 3—Qualified Educator) must be paid at least $32.47 an hour, or $1,233.90 a week, under the Children's Services Award from the first full pay period on or after 1 July 2026 — $64,163 a year full-time before tax. An unqualified Level 1 Introductory Educator gets $28.81 an hour, and a Diploma-qualified Level 5 Advanced Educator $36.57.",
+      a: "A qualified childcare worker with a Certificate III (Level 3—Qualified Educator) must be paid at least $32.47 an hour, or $1,233.90 a week, under the Children's Services Award from the first full pay period on or after 1 July 2026, which is $64,163 a year full-time before tax. An unqualified Level 1 Introductory Educator gets $28.81 an hour, and a Diploma-qualified Level 5 Advanced Educator $36.57.",
     },
     {
       q: "What is the casual rate for a childcare worker?",
@@ -196,7 +196,7 @@ export const CHILDCARE_WORKER: Occupation = {
     },
     {
       q: "Do childcare workers get paid more than the award?",
-      a: "Often, yes. Centres that take the Worker Retention Payment must pay eligible educators at least the grant's minimum rates — $33.87 an hour for a Level 3 Qualified Educator from 1 July 2026, against the award's $32.47. Jobs and Skills Australia reports a median of $1,341 a week for full-time child carers (ABS, May 2025).",
+      a: "Often, yes. Centres that take the Worker Retention Payment must pay eligible educators at least the grant's minimum rates, $33.87 an hour for a Level 3 Qualified Educator from 1 July 2026, against the award's $32.47. Jobs and Skills Australia reports a median of $1,341 a week for full-time child carers (ABS, May 2025).",
     },
     {
       q: "How much does an early childhood educator earn per hour?",
@@ -208,9 +208,9 @@ export const CHILDCARE_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "Children's Services Award 2010 [MA000120] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
-    { title: "Pay Guide — Children's Services Award [MA000120], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/childrens-services-award-ma000120-pay-guide.pdf.aspx" },
-    { title: "Worker retention payment — minimum rates you must pay workers", publisher: "Department of Education", url: "https://www.education.gov.au/early-childhood/providers/workforce/worker-retention-payment/minimum-rates" },
+    { title: "Children's Services Award 2010 [MA000120], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Pay Guide, Children's Services Award [MA000120], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/childrens-services-award-ma000120-pay-guide.pdf.aspx" },
+    { title: "Worker retention payment, minimum rates you must pay workers", publisher: "Department of Education", url: "https://www.education.gov.au/early-childhood/providers/workforce/worker-retention-payment/minimum-rates" },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

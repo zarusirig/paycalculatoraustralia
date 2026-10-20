@@ -5,7 +5,7 @@ export default function PaydaySuperEmployeesPayslip() {
   return (
     <>
       <p className="lead">
-        Payday super, which started 1 July 2026, doesn&apos;t change your pay rate — but it changes
+        Payday super, which started 1 July 2026, doesn&apos;t change your pay rate, but it changes
         how often super guarantee is calculated and paid. Here&apos;s what to actually look for on
         your payslip now that super moves with every pay run instead of once a quarter.
       </p>
@@ -21,14 +21,14 @@ export default function PaydaySuperEmployeesPayslip() {
 
       <h2>What should appear on your payslip now</h2>
       <p>
-        Your payslip should still show a super guarantee line for each pay period — the same as
-        before — calculated as 12% of your qualifying earnings (for most people, ordinary time earnings) for that pay run. What&apos;s
+        Your payslip should still show a super guarantee line for each pay period (the same as
+        before), calculated as 12% of your qualifying earnings (for most people, ordinary time earnings) for that pay run. What&apos;s
         changed is the obligation behind it: employers must now pay that amount to your fund within
         7 business days, rather than bundling several pay periods together and paying once a
         quarter. If you&apos;re unsure what each line on your payslip means, our{" "}
         <Link href="/understanding-your-payslip/">understanding your payslip guide</Link> breaks
         down every standard field. Some payroll systems also add a short note or reference number
-        confirming when the contribution was sent to your fund, though this isn&apos;t mandatory —
+        confirming when the contribution was sent to your fund, though this isn&apos;t mandatory;
         the safest way to confirm payment is still checking directly with your super fund rather than
         relying solely on the payslip wording.
       </p>
@@ -37,7 +37,7 @@ export default function PaydaySuperEmployeesPayslip() {
       <p>
         Some employers previously issued a super summary once a quarter alongside the SBSCH payment
         run. Because contributions now move with every payday, that quarterly summary is being
-        replaced by payday-level reporting — you should be able to see contributions reflected in
+        replaced by payday-level reporting, so you should be able to see contributions reflected in
         your fund&apos;s app or member portal within days of each pay, rather than waiting until the
         next quarter to confirm the money arrived. This is a meaningful shift for employees who
         change jobs or work multiple casual roles, since each employer&apos;s contributions now show
@@ -49,7 +49,7 @@ export default function PaydaySuperEmployeesPayslip() {
       <p>
         Check your fund&apos;s transaction history a week or so after payday. If the expected
         contribution hasn&apos;t appeared, first confirm the amount and date on your payslip, then
-        raise it with your payroll or HR contact — employers now have a firm 7-business-day
+        raise it with your payroll or HR contact. Employers now have a firm 7-business-day
         deadline, so a missed payment is easier to identify and escalate than under the old
         quarterly cycle. See our{" "}
         <Link href="/news/payday-super-starts-july-2026/">guide to how payday super works for employers</Link>{" "}
@@ -58,7 +58,7 @@ export default function PaydaySuperEmployeesPayslip() {
 
       <h2>What this means for your pay</h2>
       <p>
-        Your take-home pay itself isn&apos;t affected by payday super — only your super guarantee
+        Your take-home pay itself isn&apos;t affected by payday super; only your super guarantee
         timing is. More frequent contributions mean your balance starts earning investment returns
         sooner, which compounds meaningfully over a career. Use our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to model how

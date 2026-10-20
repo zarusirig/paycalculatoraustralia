@@ -37,8 +37,8 @@ const PROFILE = STATE_PROFILES.SA;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13d, South Australia`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — South Australia", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13d, South Australia`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, South Australia", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1987)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "SA payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.sa.ratesUrl, publisher: PAYROLL_TAX_STATES.sa.revenueOffice },
 ];
@@ -86,7 +86,7 @@ export default function PayCalculatorSAPage() {
             <H2>How much of a South Australian salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
               South Australia levies no personal income tax, so every deduction on an Adelaide payslip
-              is federal. Here is the arithmetic on {formatAUD(typicalSalary(PROFILE))} — the average
+              is federal. Here is the arithmetic on {formatAUD(typicalSalary(PROFILE))}, the average
               full-time wage in SA, and the lowest of any mainland state.
             </p>
             <WorkedExample profile={PROFILE} />
@@ -108,7 +108,7 @@ export default function PayCalculatorSAPage() {
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               Health care and social assistance is the largest employing industry in SA, and most of it
-              runs on federal awards — check yours in the{" "}
+              runs on federal awards. Check yours in the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">award rates guide</Link> or the{" "}
               <Link href="/schads-award-pay-rates/" className="text-eucalyptus-dark hover:underline">SCHADS award rates</Link>, and remember
               that many SA health and charity employers offer salary packaging that changes the tax
@@ -121,7 +121,7 @@ export default function PayCalculatorSAPage() {
             <p className="mb-4 text-warmgray">
               SA has the most complicated holiday calendar in the country for anyone working retail or
               hospitality. Christmas Eve and New Year&apos;s Eve are both <em>part-day</em> public
-              holidays from 7 pm — so a shift that starts at 4 pm changes rate partway through — and 26
+              holidays from 7 pm (so a shift that starts at 4 pm changes rate partway through) and 26
               December is Proclamation Day rather than Boxing Day, with its own substitute day on the
               28th. Adelaide Cup Day in March is unique to SA.
             </p>
@@ -133,8 +133,8 @@ export default function PayCalculatorSAPage() {
             <H2>Long service leave in South Australia</H2>
             <p className="mb-4 text-warmgray">
               This is the single best employee entitlement in any Australian state. The{" "}
-              {PROFILE.longServiceLeave.act} gives 13 weeks after 10 years — half again what NSW, WA,
-              Queensland and Tasmania pay at the same milestone — and it accrues at the same 1.3 weeks
+              {PROFILE.longServiceLeave.act} gives 13 weeks after 10 years (half again what NSW, WA,
+              Queensland and Tasmania pay at the same milestone) and it accrues at the same 1.3 weeks
               a year whether you are full-time, part-time or casual.
             </p>
             <LongServiceLeaveBlock profile={PROFILE} />

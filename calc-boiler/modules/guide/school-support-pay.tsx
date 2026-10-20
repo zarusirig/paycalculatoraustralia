@@ -199,7 +199,7 @@ export function SchoolSupportHubPage() {
             <ul>
               {SCHOOL_SUPPORT_STATES.map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/school-support-staff-pay/${s.slug}/`}>{s.metaTitle.split(" — ")[0]}</Link>: {s.instrument.split(". ")[0]}.
+                  <Link href={`/school-support-staff-pay/${s.slug}/`}>{s.metaTitle.split(" - ")[0]}</Link>: {s.instrument.split(". ")[0]}.
                 </li>
               ))}
             </ul>

@@ -51,7 +51,7 @@ export default function SchadsHomeCareDisabilityPayRiseDecember2026() {
 
       <h2>Who gets the {pctLabel}</h2>
       <p>
-        The rise covers employees under Schedule E of the {SCHADS_AWARD.name} — &ldquo;home care employee —
+        The rise covers employees under Schedule E of the {SCHADS_AWARD.name}: &ldquo;home care employee —
         disability care&rdquo;. The award defines home care disability work as domestic assistance or home
         maintenance for a person with disability in the home care sector, and it does not include disability
         support work, which sits in the social and community services stream (Schedule B) and is not part of
@@ -60,7 +60,7 @@ export default function SchadsHomeCareDisabilityPayRiseDecember2026() {
       <p>
         Every Schedule E rate rises {pctLabel} except Level 4 pay point 2 and Level 5 pay point 2, which rise{" "}
         {(S.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}% and{" "}
-        {(S.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}% — for those two, that is the whole increase
+        {(S.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%. For those two, that is the whole increase
         the Commission found they were owed. Casuals keep the {Math.round(SCHADS_AWARD.casualLoading * 100)}%
         loading on top of the new base rate.
       </p>
@@ -74,7 +74,7 @@ export default function SchadsHomeCareDisabilityPayRiseDecember2026() {
         Commonwealth Government regarding funding&rdquo;.
       </p>
       <p>
-        The rest of the increase — a further {S.remainderRange}, on top of the {pctLabel} — arrives on{" "}
+        The rest of the increase (a further {S.remainderRange}, on top of the {pctLabel}) arrives on{" "}
         {S.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award.
         Those rates will be adjusted for the 2027 Annual Wage Review first.
       </p>
@@ -83,7 +83,7 @@ export default function SchadsHomeCareDisabilityPayRiseDecember2026() {
       <p>
         On the FY2026-27 withholding tables, with the tax-free threshold claimed and no study loan, the Level 3
         pay point 1 worker takes home about {money(takeNow)} a week now and <strong>{money(takeDec)}</strong>{" "}
-        from December — {money(r2(takeDec - takeNow))} more, from a gross rise of {money(r2(l3.dec - l3.now))}.
+        from December, {money(r2(takeDec - takeNow))} more, from a gross rise of {money(r2(l3.dec - l3.now))}.
         A casual at the same level goes from {money(casualNow)} to about {money(casualDec)} an hour (the new
         weekly rate divided by 38, plus the casual loading), or {money(r2((casualDec - casualNow) * CASUAL_HOURS))}{" "}
         more for a {CASUAL_HOURS}-hour week before tax.

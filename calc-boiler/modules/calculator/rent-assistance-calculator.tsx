@@ -50,9 +50,9 @@ export default function RentAssistanceCalculatorPage({ children, afterCalculator
               <li><span className="font-medium text-navy" aria-current="page">Rent Assistance Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Rent Assistance Calculator — Centrelink Rates From {RA.ratesFrom}</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Rent Assistance Calculator: Centrelink Rates From {RA.ratesFrom}</h1>
           <p className="text-lg text-warmgray">
-            Commonwealth Rent Assistance pays <strong>75 cents for every dollar of rent</strong> above a threshold, up to a maximum — <strong>{formatAUD(RA.rows.single.max, 2)} a fortnight</strong> for a single person, {formatAUD(RA.rows.singleFamily1or2.max, 2)} for a family with 1 or 2 children. Enter your rent to see what you could get.
+            Commonwealth Rent Assistance pays <strong>75 cents for every dollar of rent</strong> above a threshold, up to a maximum: <strong>{formatAUD(RA.rows.single.max, 2)} a fortnight</strong> for a single person, {formatAUD(RA.rows.singleFamily1or2.max, 2)} for a family with 1 or 2 children. Enter your rent to see what you could get.
           </p>
           <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">Rates from {RA.ratesFrom} · verified {FAMILY_PAYMENT_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />
@@ -108,7 +108,7 @@ export default function RentAssistanceCalculatorPage({ children, afterCalculator
                     </div>
                   </div>
                   <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-4 text-xs text-navy">
-                    <strong>Before the income test.</strong> Rent Assistance is paid on top of an eligible payment — JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension and others, or Family Tax Benefit Part A above the base rate for families. That payment&apos;s income and assets tests can reduce it. Not modelled: the special rules for people 25 or younger, board and lodging splits, and retirement village or site-fee arrangements. Rates read at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}.
+                    <strong>Before the income test.</strong> Rent Assistance is paid on top of an eligible payment: JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension and others, or Family Tax Benefit Part A above the base rate for families. That payment&apos;s income and assets tests can reduce it. Not modelled: the special rules for people 25 or younger, board and lodging splits, and retirement village or site-fee arrangements. Rates read at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}.
                   </div>
                 </div>
               </div>

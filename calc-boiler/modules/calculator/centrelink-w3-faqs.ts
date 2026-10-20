@@ -29,11 +29,11 @@ const PPL_NOW = PPL_ENTITLEMENT[PPL_ENTITLEMENT.length - 1];
 export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   {
     q: "How much is Carer Payment per fortnight?",
-    a: `From ${CP.ratesFrom} the maximum Carer Payment is ${formatAUD(R.single.total, 2)} a fortnight for a single person and ${formatAUD(R.coupleEach.total, 2)} each for a couple (${formatAUD(R.coupleCombined.total, 2)} combined). Those totals include the Pension Supplement and Energy Supplement — the same rates as the Age Pension. Rates change on 20 March and 20 September.`,
+    a: `From ${CP.ratesFrom} the maximum Carer Payment is ${formatAUD(R.single.total, 2)} a fortnight for a single person and ${formatAUD(R.coupleEach.total, 2)} each for a couple (${formatAUD(R.coupleCombined.total, 2)} combined). Those totals include the Pension Supplement and Energy Supplement, the same rates as the Age Pension. Rates change on 20 March and 20 September.`,
   },
   {
     q: "How many hours can I work on Carer Payment?",
-    a: `Up to ${CP.workHoursLimit} hours of paid work or self-employment in a ${CP.workHoursPeriodWeeks}-week period — an average of 25 hours a week. Travel to and from work, study, training and volunteering do not count towards the ${CP.workHoursLimit} hours. The limit is measured over 4 weeks rather than each week, so the time in any one week can vary. If you sometimes go over, you can use respite days (up to ${CP.respiteDaysPerYear} a calendar year) or have the payment suspended for up to ${CP.suspensionMonths} months.`,
+    a: `Up to ${CP.workHoursLimit} hours of paid work or self-employment in a ${CP.workHoursPeriodWeeks}-week period, an average of 25 hours a week. Travel to and from work, study, training and volunteering do not count towards the ${CP.workHoursLimit} hours. The limit is measured over 4 weeks rather than each week, so the time in any one week can vary. If you sometimes go over, you can use respite days (up to ${CP.respiteDaysPerYear} a calendar year) or have the payment suspended for up to ${CP.suspensionMonths} months.`,
   },
   {
     q: "How much can I earn on Carer Payment?",
@@ -53,14 +53,14 @@ export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Does the Work Bonus apply to Carer Payment?",
-    a: "Only if you are Age Pension age. Then the first $300 of employment income each fortnight, and any Work Bonus balance, is taken out of the income test — you still have to stay within the 100-hour work rule.",
+    a: "Only if you are Age Pension age. Then the first $300 of employment income each fortnight, and any Work Bonus balance, is taken out of the income test, but you still have to stay within the 100-hour work rule.",
   },
 ];
 
 export const CARER_ALLOWANCE_FAQS: readonly W3Faq[] = [
   {
     q: "How much is Carer Allowance?",
-    a: `${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight — a set rate, adjusted on ${CARER_ALLOWANCE.indexedOn} each year. If you share care with another carer who is not your partner, each of you may get a part payment based on your percentage of care.`,
+    a: `${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, a set rate, adjusted on ${CARER_ALLOWANCE.indexedOn} each year. If you share care with another carer who is not your partner, each of you may get a part payment based on your percentage of care.`,
   },
   {
     q: "What is the income limit for Carer Allowance?",
@@ -68,7 +68,7 @@ export const CARER_ALLOWANCE_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Does working affect Carer Allowance?",
-    a: `No, as long as combined income stays under ${formatAUD(CARER_ALLOWANCE.incomeLimit)} a year. Carer Allowance has no fortnightly income test, so your wages don't reduce it — you still need to be giving daily care. Carer Payment is different — it has an income test and a 100-hours-in-4-weeks work limit.`,
+    a: `No, as long as combined income stays under ${formatAUD(CARER_ALLOWANCE.incomeLimit)} a year. Carer Allowance has no fortnightly income test, so your wages don't reduce it, but you still need to be giving daily care. Carer Payment is different: it has an income test and a 100-hours-in-4-weeks work limit.`,
   },
   {
     q: "Is Carer Allowance taxable?",
@@ -102,7 +102,7 @@ export const ADVANCE_FAQS: readonly W3Faq[] = [
 export const CRISIS_FAQS: readonly W3Faq[] = [
   {
     q: "How much is the Centrelink Crisis Payment?",
-    a: `It equals one week's pay at the maximum basic rate of your income support payment — half the fortnightly basic rate, without supplements. For a single person on JobSeeker (basic rate ${formatAUD(JS.single, 2)} a fortnight from 20 September 2026) that works out at ${formatAUD(crisisPaymentAmount(JS.single), 2)}. Services Australia states the rule, not a dollar figure; the dollar amounts on this page are our calculation from the current basic rates.`,
+    a: `It equals one week's pay at the maximum basic rate of your income support payment: half the fortnightly basic rate, without supplements. For a single person on JobSeeker (basic rate ${formatAUD(JS.single, 2)} a fortnight from 20 September 2026) that works out at ${formatAUD(crisisPaymentAmount(JS.single), 2)}. Services Australia states the rule, not a dollar figure; the dollar amounts on this page are our calculation from the current basic rates.`,
   },
   {
     q: "Who can get a Crisis Payment?",
@@ -125,7 +125,7 @@ export const CRISIS_FAQS: readonly W3Faq[] = [
 export const DEBT_FAQS: readonly W3Faq[] = [
   {
     q: "What is the Centrelink debt refund people are talking about?",
-    a: "From late October 2025 Services Australia began contacting people who had overpaid a Centrelink debt — paid back more than they owed — and whose refunds had not been processed because of an error on its part. It calls or writes with the refund details; the refund isn't used to repay other Centrelink debts unless you ask, and no interest is added. If it hasn't contacted you and you think you overpaid, call the debt recovery line.",
+    a: "From late October 2025 Services Australia began contacting people who had overpaid a Centrelink debt (paid back more than they owed) and whose refunds had not been processed because of an error on its part. It calls or writes with the refund details; the refund isn't used to repay other Centrelink debts unless you ask, and no interest is added. If it hasn't contacted you and you think you overpaid, call the debt recovery line.",
   },
   {
     q: "What is the Income Apportionment Resolution Scheme?",
@@ -137,11 +137,11 @@ export const DEBT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How do I avoid a Centrelink overpayment when I work?",
-    a: "Report your gross (before-tax) pay for the fortnight you are paid, as it appears on your payslip, and tell Services Australia about changes within 14 days. Since 7 December 2020 you report income for the Centrelink fortnight you got paid, not the days you worked. An overpayment happens whenever you are paid more than you're eligible for — which is what a wrong or late income report produces.",
+    a: "Report your gross (before-tax) pay for the fortnight you are paid, as it appears on your payslip, and tell Services Australia about changes within 14 days. Since 7 December 2020 you report income for the Centrelink fortnight you got paid, not the days you worked. An overpayment happens whenever you are paid more than you're eligible for, which is what a wrong or late income report produces.",
   },
   {
     q: "What happens if I can't repay a Centrelink debt?",
-    a: "If you still get a Centrelink payment, repayments are deducted from it and you can ask to change the amount. Otherwise you can repay in full or set up an arrangement by the due date (usually 28 days after the letter); no interest applies if you keep to the arrangement. Centrelink debts don't affect your credit rating. In hardship, all or part of a debt can be waived under the special circumstances waiver — even one you have already repaid.",
+    a: "If you still get a Centrelink payment, repayments are deducted from it and you can ask to change the amount. Otherwise you can repay in full or set up an arrangement by the due date (usually 28 days after the letter); no interest applies if you keep to the arrangement. Centrelink debts don't affect your credit rating. In hardship, all or part of a debt can be waived under the special circumstances waiver, even one you have already repaid.",
   },
 ];
 
@@ -152,11 +152,11 @@ export const COL_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Is the $2,200 Centrelink cost of living payment real?",
-    a: "There is no such payment on servicesaustralia.gov.au. The regular increases that do happen are indexation of existing payments on 20 March and 20 September (and 1 January or 1 July for some payments). If a site, message or caller asks for your myGov or bank details to receive a cost of living payment, check with Services Australia before giving anything — it is not how real payments are made.",
+    a: "There is no such payment on servicesaustralia.gov.au. The regular increases that do happen are indexation of existing payments on 20 March and 20 September (and 1 January or 1 July for some payments). If a site, message or caller asks for your myGov or bank details to receive a cost of living payment, check with Services Australia before giving anything. It is not how real payments are made.",
   },
   {
     q: "What help with the cost of living is actually available?",
-    a: `Indexation of pensions and allowances (20 September 2026 was the latest), Rent Assistance with an eligible payment, concession cards, and state and territory rebates and concessions — for example South Australia's Cost of Living Concession of ${formatAUD(COST_OF_LIVING_FACTS.saCostOfLivingConcession2026_27, 2)} for 2026-27. energy.gov.au lists the state and territory energy rebates you may be eligible for.`,
+    a: `Indexation of pensions and allowances (20 September 2026 was the latest), Rent Assistance with an eligible payment, concession cards, and state and territory rebates and concessions, for example South Australia's Cost of Living Concession of ${formatAUD(COST_OF_LIVING_FACTS.saCostOfLivingConcession2026_27, 2)} for 2026-27. energy.gov.au lists the state and territory energy rebates you may be eligible for.`,
   },
   {
     q: "Did the energy bill rebate continue into 2026?",
@@ -171,11 +171,11 @@ export const PPL_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How many weeks of Paid Parental Leave do I get in 2026?",
-    a: `For a child born or adopted from ${PPL_NOW.label}, your family can get up to ${PPL_NOW.days} days — ${PPL_NOW.weeks} weeks based on a 5-day week. ${PPL_NOW.reservedForPartner} of those days are reserved for a partner. For a child born or adopted from 1 July 2025 to 30 June 2026 it is 120 days (24 weeks), with 15 reserved.`,
+    a: `For a child born or adopted from ${PPL_NOW.label}, your family can get up to ${PPL_NOW.days} days (${PPL_NOW.weeks} weeks based on a 5-day week). ${PPL_NOW.reservedForPartner} of those days are reserved for a partner. For a child born or adopted from 1 July 2025 to 30 June 2026 it is 120 days (24 weeks), with 15 reserved.`,
   },
   {
     q: "How much is Paid Parental Leave per week?",
-    a: `${formatAUD(PPL_RATES["2026-27"].daily, 2)} a day, or ${formatAUD(PPL_RATES["2026-27"].weekly, 2)} per 5-day week, before tax, for days taken in 2026-27. The rate is set by the financial year you take each day in, not the birth date — days taken in 2025-26 were paid ${formatAUD(PPL_RATES["2025-26"].daily, 2)} a day. The full ${PPL_NOW.days} days at the 2026-27 rate is ${formatAUD(pplGross(PPL_NOW.days, "2026-27"), 2)}.`,
+    a: `${formatAUD(PPL_RATES["2026-27"].daily, 2)} a day, or ${formatAUD(PPL_RATES["2026-27"].weekly, 2)} per 5-day week, before tax, for days taken in 2026-27. The rate is set by the financial year you take each day in, not the birth date. Days taken in 2025-26 were paid ${formatAUD(PPL_RATES["2025-26"].daily, 2)} a day. The full ${PPL_NOW.days} days at the 2026-27 rate is ${formatAUD(pplGross(PPL_NOW.days, "2026-27"), 2)}.`,
   },
   {
     q: "What is the income limit for Paid Parental Leave?",
@@ -183,7 +183,7 @@ export const PPL_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the Paid Parental Leave work test?",
-    a: `You must have worked ${PPL_WORK_TEST.monthsWorked} of the ${PPL_WORK_TEST.monthsWindow} months before the birth or adoption (${PPL_WORK_TEST.daysWorkedPeriod} of ${PPL_WORK_TEST.daysWindow} days) and at least ${PPL_WORK_TEST.minHours} hours in those 10 months — about one day a week — with no gap of more than ${PPL_WORK_TEST.maxGapWeeks} weeks between work days. Paid leave counts as work.`,
+    a: `You must have worked ${PPL_WORK_TEST.monthsWorked} of the ${PPL_WORK_TEST.monthsWindow} months before the birth or adoption (${PPL_WORK_TEST.daysWorkedPeriod} of ${PPL_WORK_TEST.daysWindow} days) and at least ${PPL_WORK_TEST.minHours} hours in those 10 months (about one day a week), with no gap of more than ${PPL_WORK_TEST.maxGapWeeks} weeks between work days. Paid leave counts as work.`,
   },
   {
     q: "Is super paid on Paid Parental Leave?",
@@ -191,10 +191,10 @@ export const PPL_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Can I work on a Paid Parental Leave day?",
-    a: `Not if you want to be paid for that day. Working ${PPL_RULES.workingDayHours} hour or more — including a keeping-in-touch meeting or training — counts as working, so you must pick another day or return that day to your balance. The birth mother must not work in the ${PPL_RULES.birthMotherNoWorkDays} days after the birth.`,
+    a: `Not if you want to be paid for that day. Working ${PPL_RULES.workingDayHours} hour or more, including a keeping-in-touch meeting or training, counts as working, so you must pick another day or return that day to your balance. The birth mother must not work in the ${PPL_RULES.birthMotherNoWorkDays} days after the birth.`,
   },
   {
     q: "Is Paid Parental Leave taxed?",
-    a: `Yes, it is taxable income. If Services Australia pays you, it withholds tax at ${Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate — which may not be enough if you have other income that year. If your employer pays it, they withhold at your usual rate.`,
+    a: `Yes, it is taxable income. If Services Australia pays you, it withholds tax at ${Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate, which may not be enough if you have other income that year. If your employer pays it, they withhold at your usual rate.`,
   },
 ];

@@ -32,8 +32,8 @@ const PH_COUNT_MAX = Math.max(...PH_COUNTS);
 const SOURCES_LIST: SourceLink[] = [
   { title: "Overtime and penalty rates", url: "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates", publisher: SOURCES.fwo.name },
   { title: "Maximum weekly hours", url: "https://www.fairwork.gov.au/employment-conditions/hours-of-work-breaks-and-rosters/hours-of-work", publisher: SOURCES.fwo.name },
-  { title: `Pay guide — General Retail Industry Award (${RETAIL_AWARD.code})`, url: RETAIL_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
-  { title: `Pay guide — Hospitality Industry (General) Award (${HOSPITALITY_AWARD.code})`, url: HOSPITALITY_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
+  { title: `Pay guide, General Retail Industry Award (${RETAIL_AWARD.code})`, url: RETAIL_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
+  { title: `Pay guide, Hospitality Industry (General) Award (${HOSPITALITY_AWARD.code})`, url: HOSPITALITY_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
 ];
 
 // Base rates for the worked examples, derived so they cannot drift from the
@@ -99,7 +99,7 @@ export default function OvertimePenaltyRatesGuidePage() {
           </ol>
         </nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates Australia &mdash; Weekend, Public Holiday &amp; Overtime Loadings</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates Australia: Weekend, Public Holiday &amp; Overtime Loadings</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually {HOSPITALITY_OVERTIME.weekdayFirst2Hours} times for the first two or three hours beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week and double time ({HOSPITALITY_OVERTIME.weekdayAfter2Hours.toFixed(1)} times) after that, with {RETAIL_OVERTIME.publicHoliday} times for overtime on a public holiday under awards such as retail. On a {formatAUD(30)} base, 3 hours at time-and-a-half is {formatAUD(30 * RETAIL_OVERTIME.weekdayFirst3Hours * 3)}. This guide covers the multipliers by award, how casual penalties differ and how the loadings are taxed. Rates current from {AWR_EFFECTIVE}.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -151,7 +151,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Penalty Rates by Award Type?</h2>
               <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each links to a full classification-by-classification breakdown. To price your own roster under any award, the Fair Work Ombudsman&apos;s tool applies the same percentages; see our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide.</p>
 
-              <h3>Retail &mdash; General Retail Industry Award ({RETAIL_AWARD.code})</h3>
+              <h3>Retail: General Retail Industry Award ({RETAIL_AWARD.code})</h3>
               <PenaltyTable
                 rows={[
                   { label: "Monday to Friday after 6pm", perm: RETAIL_PENALTIES.eveningAfter6pm, cas: RETAIL_PENALTIES.casualEveningAfter6pm },
@@ -164,7 +164,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               />
               <p className="text-sm text-warmgray">Applies to non-shiftworkers. Full table: <Link href="/retail-award-rates/">retail award rates</Link>.</p>
 
-              <h3>Hospitality &mdash; Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code})</h3>
+              <h3>Hospitality: Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code})</h3>
               <PenaltyTable
                 rows={[
                   { label: "Saturday", perm: HOSPITALITY_PENALTIES.saturday, cas: HOSPITALITY_PENALTIES.casualSaturday },
@@ -176,12 +176,12 @@ export default function OvertimePenaltyRatesGuidePage() {
               />
               <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <p className="text-sm leading-relaxed text-navy">
-                  <strong>Hospitality evening and night work is not a multiplier.</strong> The award adds a flat <strong>{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} per hour</strong> for evening work and <strong>{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} per hour</strong> at night, on top of the ordinary rate. Guides that print &ldquo;1.15x&rdquo; for hospitality late-night work &mdash; including an earlier version of this page &mdash; are wrong. Retail, by contrast, genuinely does use a percentage for evening work.
+                  <strong>Hospitality evening and night work is not a multiplier.</strong> The award adds a flat <strong>{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} per hour</strong> for evening work and <strong>{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} per hour</strong> at night, on top of the ordinary rate. Guides that print &ldquo;1.15x&rdquo; for hospitality late-night work (including an earlier version of this page) are wrong. Retail, by contrast, genuinely does use a percentage for evening work.
                 </p>
               </div>
               <p className="text-sm text-warmgray">Full table: <Link href="/hospitality-award-rates/">hospitality award rates</Link>.</p>
 
-              <h3>Social &amp; community services &mdash; SCHADS ({SCHADS_AWARD.code})</h3>
+              <h3>Social &amp; community services: SCHADS ({SCHADS_AWARD.code})</h3>
               <PenaltyTable
                 rows={[
                   { label: "Saturday", perm: SCHADS_PENALTIES.saturday, cas: SCHADS_PENALTIES.casualSaturday },
@@ -197,7 +197,7 @@ export default function OvertimePenaltyRatesGuidePage() {
 
               <h3>Other awards</h3>
               <p>
-                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers, and several differ materially from the three above &mdash; nursing weekend penalties in particular are higher. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
+                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers, and several differ materially from the three above, and nursing weekend penalties in particular are higher. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
               </p>
 
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Do Penalty Rates Apply?</h2>
@@ -327,7 +327,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               <p>Key changes affecting penalty rates and overtime in the {SITE_CONFIG.financialYear} financial year include:</p>
               <ul>
                 <li>The superannuation guarantee rate is <strong>12%</strong>, and from 1 July 2026 super must be paid on each payday rather than quarterly. Overtime hours generally still do not attract superannuation (see FAQ below)</li>
-                <li>The <strong>$18,201&ndash;$45,000</strong> bracket is now taxed at <strong>15%</strong>, down from 16%, and the <strong>$45,001&ndash;$135,000</strong> bracket at 30% &mdash; so penalty rate income is taxed slightly more lightly this year</li>
+                <li>The <strong>$18,201&ndash;$45,000</strong> bracket is now taxed at <strong>15%</strong>, down from 16%, and the <strong>$45,001&ndash;$135,000</strong> bracket at 30%, so penalty rate income is taxed slightly more lightly this year</li>
                 <li>The &quot;Right to Disconnect&quot; provisions (effective August 2024 for large employers, August 2025 for small employers) give employees the right to refuse contact outside working hours unless the refusal is unreasonable</li>
                 <li>Casual conversion pathway changes streamline the process for casual workers to convert to permanent employment after 12 months</li>
               </ul>
@@ -361,7 +361,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             </section>
 
             <div className="mt-12 not-prose">
-              <MethodologyDisclosure title="How this guide works"><p>The retail, hospitality and SCHADS penalty tables on this page derive from constants verified against the Fair Work Ombudsman pay guides and consolidated award texts, and are regression-tested &mdash; including the two rules most often modelled wrongly, that hospitality evening and night loadings are flat cash rather than multipliers, and that casual penalties are additive rather than compounded. Rates are current from {AWR_EFFECTIVE}. We do not publish penalty figures for awards we have not verified; those link to Fair Work instead. Tax calculations use ATO brackets for FY{SITE_CONFIG.financialYear}.</p></MethodologyDisclosure>
+              <MethodologyDisclosure title="How this guide works"><p>The retail, hospitality and SCHADS penalty tables on this page derive from constants verified against the Fair Work Ombudsman pay guides and consolidated award texts, and are regression-tested, including the two rules most often modelled wrongly, that hospitality evening and night loadings are flat cash rather than multipliers, and that casual penalties are additive rather than compounded. Rates are current from {AWR_EFFECTIVE}. We do not publish penalty figures for awards we have not verified; those link to Fair Work instead. Tax calculations use ATO brackets for FY{SITE_CONFIG.financialYear}.</p></MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("overtime-penalty-rates-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>

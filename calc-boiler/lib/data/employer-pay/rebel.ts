@@ -47,9 +47,9 @@ export const REBEL_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
   rates: [
-    { level: "Retail Team Member Level 1", description: "Sales assistant: customer service, point of sale, stock work, online orders, product fitting and assembly — equivalent to Retail Award Level 1", hourly: 28.2, casualHourly: 35.25 },
-    { level: "Retail Team Member Level 2", description: "Level 1 duties plus operating a forklift or ride-on equipment — equivalent to Retail Award Level 2", hourly: 28.83, casualHourly: 36.04 },
-    { level: "Supervisor / Shift Supervisor (Level 3)", description: "Helps management supervise the store and team, opens or closes the store — equivalent to Retail Award Level 3", hourly: 30.39, casualHourly: 37.98 },
+    { level: "Retail Team Member Level 1", description: "Sales assistant: customer service, point of sale, stock work, online orders, product fitting and assembly, equivalent to Retail Award Level 1", hourly: 28.2, casualHourly: 35.25 },
+    { level: "Retail Team Member Level 2", description: "Level 1 duties plus operating a forklift or ride-on equipment, equivalent to Retail Award Level 2", hourly: 28.83, casualHourly: 36.04 },
+    { level: "Supervisor / Shift Supervisor (Level 3)", description: "Helps management supervise the store and team, opens or closes the store, equivalent to Retail Award Level 3", hourly: 30.39, casualHourly: 37.98 },
   ],
   juniorScale: [
     { age: "16", percentage: 0.5 },
@@ -88,8 +88,8 @@ export const REBEL_PAY: EmployerPay = {
     "The agreement prints no rates after July 2026. Its nominal expiry date is 30 June 2027, so the next rise depends on a new agreement.",
   ],
   unverified: [
-    "Rates for team members under 16 — the agreement's tables start at 16.",
-    "Store manager and assistant manager pay — not covered by the agreement.",
+    "Rates for team members under 16 (the agreement's tables start at 16).",
+    "Store manager and assistant manager pay, not covered by the agreement.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",

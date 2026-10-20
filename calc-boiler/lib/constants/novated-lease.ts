@@ -232,13 +232,13 @@ export type LeaseTerm = (typeof LEASE_TERMS)[number];
  *  - Part-year leases: every figure is a full FBT year of availability.
  */
 export const NOVATED_LEASE_UNVERIFIED = [
-  "Lease finance charges (interest) — set per deal by the financier, and out of scope for this site",
+  "Lease finance charges (interest): set per deal by the financier, and out of scope for this site",
   "The GST credit the employer claims on lease payments and running costs, and whether your provider passes it on",
   "GST payable by the employer on an ECM post-tax contribution",
   "The one-third base value reduction from the FBT year after the car's fourth anniversary",
   "The operating cost (logbook) method of valuing a car fringe benefit",
   "Division 293 tax, which also counts your reportable fringe benefits amount",
-  "Part-year leases — every figure assumes a full FBT year of private availability",
+  "Part-year leases: every figure assumes a full FBT year of private availability",
 ] as const;
 
 // =============================================================================

@@ -61,16 +61,16 @@ export default function CommonwealthSeniorsHealthCardContent() {
 
       <W3Section title="What Counts as Income for the CSHC">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
-          <li><strong>Taxable income:</strong> wages and salary, casual and temporary work, bonuses and overtime, business income, interest, dividends, capital gains and taxable payments — gross income less allowable deductions.</li>
+          <li><strong>Taxable income:</strong> wages and salary, casual and temporary work, bonuses and overtime, business income, interest, dividends, capital gains and taxable payments: gross income less allowable deductions.</li>
           <li><strong>Plus:</strong> target foreign income, total net investment losses (such as a negatively geared property), reportable super contributions, and employer-provided fringe benefits over {formatAUD(CSHC.fringeBenefitsThreshold)}.</li>
-          <li><strong>Plus deemed income on account-based income streams</strong> — {pct(DEEMING.lowerRate)} on the first {formatAUD(DEEMING.thresholds.single)} (single) or {formatAUD(DEEMING.thresholds.nonPensionerCouple)} each (couple), {pct(DEEMING.upperRate)} above. {formatAUD(300_000)} in a single person&apos;s account-based pension is deemed to earn {formatAUD(deemedIncomeAnnual(300_000, "single"), 2)} a year. See <Link href="/deeming-rates/" className={LINK}>deeming rates</Link>.</li>
-          <li><strong>Not counted:</strong> the value of your home, savings, shares or property — there is no assets test. Only the taxable income they produce counts.</li>
+          <li><strong>Plus deemed income on account-based income streams</strong>: {pct(DEEMING.lowerRate)} on the first {formatAUD(DEEMING.thresholds.single)} (single) or {formatAUD(DEEMING.thresholds.nonPensionerCouple)} each (couple), {pct(DEEMING.upperRate)} above. {formatAUD(300_000)} in a single person&apos;s account-based pension is deemed to earn {formatAUD(deemedIncomeAnnual(300_000, "single"), 2)} a year. See <Link href="/deeming-rates/" className={LINK}>deeming rates</Link>.</li>
+          <li><strong>Not counted:</strong> the value of your home, savings, shares or property. There is no assets test. Only the taxable income they produce counts.</li>
         </ul>
       </W3Section>
 
       <W3Section title="Working and Keeping the Card">
-        <p className={P}>There is no limit on hours, and the card doesn&apos;t reduce as you earn — it is all-or-nothing at the income limit. A single card holder with no account-based pension can earn a taxable income just under {formatAUD(CSHC.incomeLimit.single)} and keep it. Reportable super contributions are added to your taxable income for the test.</p>
-        <p className={P}>Work out your taxable income from a wage on the <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link>, or your net pay on the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>. If your income is low enough for a part pension instead, the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension calculator</Link> and <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link> show whether you would get one — a pension comes with the Pensioner Concession Card.</p>
+        <p className={P}>There is no limit on hours, and the card doesn&apos;t reduce as you earn. It is all-or-nothing at the income limit. A single card holder with no account-based pension can earn a taxable income just under {formatAUD(CSHC.incomeLimit.single)} and keep it. Reportable super contributions are added to your taxable income for the test.</p>
+        <p className={P}>Work out your taxable income from a wage on the <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link>, or your net pay on the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>. If your income is low enough for a part pension instead, the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension calculator</Link> and <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link> show whether you would get one. A pension comes with the Pensioner Concession Card.</p>
         <Note>The test is on your adjusted taxable income for the year, so a year with a large bonus, a lot of overtime or a capital gain from selling shares or property can push you over the limit even if your regular pay doesn&apos;t.</Note>
       </W3Section>
 
@@ -80,10 +80,10 @@ export default function CommonwealthSeniorsHealthCardContent() {
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}></th><th scope="col" className={TH}>Commonwealth Seniors Health Card</th><th scope="col" className={TH}>Pensioner Concession Card</th></tr></thead>
             <tbody className="divide-y divide-sandstone-dark/10">
               <tr><td className={TD + " font-medium"}>Who gets it</td><td className={TD}>Age Pension age, not on a pension or income support</td><td className={TD}>Automatically with {PCC.automaticWith.join(", ")}; also some people 55+ or with partial capacity to work on other payments</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Income test</td><td className={TD}>Its own: under {formatAUD(CSHC.incomeLimit.single)} single, {formatAUD(CSHC.incomeLimit.couple)} couple</td><td className={TD}>None of its own — you qualify through the payment</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Income test</td><td className={TD}>Its own: under {formatAUD(CSHC.incomeLimit.single)} single, {formatAUD(CSHC.incomeLimit.couple)} couple</td><td className={TD}>None of its own. You qualify through the payment</td></tr>
               <tr><td className={TD + " font-medium"}>Assets test</td><td className={TD}>None</td><td className={TD}>Through the payment&apos;s assets test</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Main benefits</td><td className={TD}>Cheaper PBS medicines; bulk billing at your doctor&apos;s discretion; Medicare Safety Net; state and local concessions vary</td><td className={TD}>Cheaper medicines, bulk-billed doctor visits, help with hearing services, and some discounts</td></tr>
-              <tr><td className={TD + " font-medium"}>How to get it</td><td className={TD}>Claim once you are Age Pension age</td><td className={TD}>No claim — posted to you</td></tr>
+              <tr><td className={TD + " font-medium"}>How to get it</td><td className={TD}>Claim once you are Age Pension age</td><td className={TD}>No claim, posted to you</td></tr>
             </tbody>
           </table>
         </div>
@@ -97,7 +97,7 @@ export default function CommonwealthSeniorsHealthCardContent() {
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
           <li>Assessed income = adjusted taxable income (as you enter it) + deemed income on account-based income streams. Eligible when it is less than the limit for your situation plus {formatAUD(CSHC.perChild, 2)} per child.</li>
-          <li>Deeming uses the non-pensioner settings — {formatAUD(DEEMING.thresholds.single)} single, {formatAUD(DEEMING.thresholds.nonPensionerCouple)} per person for a couple — at {pct(DEEMING.lowerRate)} / {pct(DEEMING.upperRate)} from {DEEMING.ratesFrom}.</li>
+          <li>Deeming uses the non-pensioner settings ({formatAUD(DEEMING.thresholds.single)} single, {formatAUD(DEEMING.thresholds.nonPensionerCouple)} per person for a couple) at {pct(DEEMING.lowerRate)} / {pct(DEEMING.upperRate)} from {DEEMING.ratesFrom}.</li>
           <li>Limits read at Services Australia and in the DSS rates list for the 20 September 2026 indexation, on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia.</li>
         </ul>
       </MethodologyDisclosure>

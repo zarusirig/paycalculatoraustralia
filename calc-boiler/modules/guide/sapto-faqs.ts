@@ -18,7 +18,7 @@ export interface SaptoFaq {
 export const SAPTO_FAQS: readonly SaptoFaq[] = [
   {
     q: "How much is SAPTO?",
-    a: `The maximum seniors and pensioners tax offset is ${formatAUD(S.maxOffset)} if you are single, ${formatAUD(C.maxOffset)} for each partner of a couple living together, and ${formatAUD(I.maxOffset)} for each partner of an illness-separated couple, for the ${SAPTO_INCOME_YEAR} income year. You receive the full amount if your rebate income is below the shading-out threshold — ${formatAUD(S.shadingOutThreshold)} for singles.`,
+    a: `The maximum seniors and pensioners tax offset is ${formatAUD(S.maxOffset)} if you are single, ${formatAUD(C.maxOffset)} for each partner of a couple living together, and ${formatAUD(I.maxOffset)} for each partner of an illness-separated couple, for the ${SAPTO_INCOME_YEAR} income year. You receive the full amount if your rebate income is below the shading-out threshold: ${formatAUD(S.shadingOutThreshold)} for singles.`,
   },
   {
     q: "What is the SAPTO income threshold?",
@@ -26,11 +26,11 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "Who is eligible for SAPTO?",
-    a: "You must meet two conditions. First, you must receive an Australian Government pension or allowance — Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension if you are age-pension age, or a DVA service pension — or qualify for the age pension without claiming it. Second, your rebate income must be under the relevant limit. Age-pension age has been 67 since 1 July 2023.",
+    a: "You must meet two conditions. First, you must receive an Australian Government pension or allowance (Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension if you are age-pension age, or a DVA service pension), or qualify for the age pension without claiming it. Second, your rebate income must be under the relevant limit. Age-pension age has been 67 since 1 July 2023.",
   },
   {
     q: "Am I eligible for SAPTO?",
-    a: `Check three things. (1) You received an eligible payment — Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension or invalidity service pension at age-pension age, a DVA age service pension, income support supplement or Veteran Payment — or you were 67 or older and eligible for the Age Pension but did not get it because you did not claim or failed the income or assets test. (2) Your rebate income is under ${formatAUD(S.cutOutThreshold)} single, or half your combined rebate income is under ${formatAUD(C.cutOutThreshold)} for a couple. (3) You were not in jail for the whole year.`,
+    a: `Check three things. (1) You received an eligible payment (Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension or invalidity service pension at age-pension age, a DVA age service pension, income support supplement or Veteran Payment), or you were 67 or older and eligible for the Age Pension but did not get it because you did not claim or failed the income or assets test. (2) Your rebate income is under ${formatAUD(S.cutOutThreshold)} single, or half your combined rebate income is under ${formatAUD(C.cutOutThreshold)} for a couple. (3) You were not in jail for the whole year.`,
   },
   {
     q: "Can self-funded retirees get SAPTO?",
@@ -66,7 +66,7 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "Which financial year do these SAPTO amounts apply to?",
-    a: `The ${SAPTO_INCOME_YEAR} income year — the return being lodged now. The ATO publishes SAPTO thresholds with each year's rates, and had not released ${"2026-27"} figures when this page was last verified.`,
+    a: `The ${SAPTO_INCOME_YEAR} income year: the return being lodged now. The ATO publishes SAPTO thresholds with each year's rates, and had not released ${"2026-27"} figures when this page was last verified.`,
   },
   {
     q: "What if I was in jail during the year?",

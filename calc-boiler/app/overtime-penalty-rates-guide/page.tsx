@@ -15,7 +15,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
 
 
-const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime";
+const TITLE = "Penalty Rates Australia - Weekend, Public Holiday & Overtime";
 const DESCRIPTION = `Penalty rates for weekends, public holidays, evenings and overtime: Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}% (retail), plus hospitality and SCHADS tables.`;
 
 export const metadata: Metadata = withFeaturedImage({

@@ -38,8 +38,8 @@ export default function FirstJobPayGuidePage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">First Job Pay Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Job Pay Guide — Everything You Need to Know About Your First Pay</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Starting your first job is exciting, but your first payslip can be confusing. This guide explains what happens to your pay before it reaches your bank account — from tax and superannuation to understanding every line on your payslip.</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Job Pay Guide: Everything You Need to Know About Your First Pay</h1>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Starting your first job is exciting, but your first payslip can be confusing. This guide explains what happens to your pay before it reaches your bank account, from tax and superannuation to understanding every line on your payslip.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -48,14 +48,14 @@ export default function FirstJobPayGuidePage() {
 
             {/* ───── SECTION 1: Before You Start ───── */}
             <section id="before-you-start">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before You Start — Three Things You Need</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before You Start: Three Things You Need</h2>
               <p>
                 Before your first shift, there are three essential items you need to organise. Getting these right ensures you are paid correctly and don&apos;t overpay tax.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Tax File Number (TFN)</h3>
               <p>
-                A Tax File Number is your unique identifier with the Australian Taxation Office. You need a TFN before starting work. Without one, your employer is legally required to withhold tax at the <strong>highest marginal rate of 45% plus the 2% Medicare levy</strong> — meaning almost half your pay goes to tax. Apply for a TFN online at the ATO website (processing takes <strong>10-28 business days</strong>) or in person at a post office with 100 points of ID.
+                A Tax File Number is your unique identifier with the Australian Taxation Office. You need a TFN before starting work. Without one, your employer is legally required to withhold tax at the <strong>highest marginal rate of 45% plus the 2% Medicare levy</strong>, meaning almost half your pay goes to tax. Apply for a TFN online at the ATO website (processing takes <strong>10-28 business days</strong>) or in person at a post office with 100 points of ID.
               </p>
               <p>
                 If you have already started work without a TFN, you have <strong>28 days</strong> to provide it to your employer. Once provided, your employer adjusts your withholding to the correct rate. Any excess tax withheld is refunded when you lodge your first tax return. Learn more in our <Link href="/tax-file-number-declaration/">TFN Declaration Guide</Link>.
@@ -63,12 +63,12 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Superannuation Fund</h3>
               <p>
-                Your employer must pay <strong>12% of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages — it does not come out of your pay. You can choose your own super fund or be placed in your employer&apos;s default fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
+                Your employer must pay <strong>12% of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages. It does not come out of your pay. You can choose your own super fund or be placed in your employer&apos;s default fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
               <p>
-                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>$18,200 tax-free threshold</strong>, and whether you have a HECS-HELP debt. For your first and only job, you should <strong>always claim the tax-free threshold</strong>. This means you pay no tax on the first $18,200 you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold — it should only be claimed at one employer.
+                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>$18,200 tax-free threshold</strong>, and whether you have a HECS-HELP debt. For your first and only job, you should <strong>always claim the tax-free threshold</strong>. This means you pay no tax on the first $18,200 you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -99,10 +99,10 @@ export default function FirstJobPayGuidePage() {
                       <tr><th className="px-5 py-3">Payslip Line</th><th className="px-5 py-3">What It Means</th><th className="px-5 py-3">Example (20 hrs @ $25/hr)</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Gross pay</td><td className="px-5 py-3">Total pay before any deductions — hours worked multiplied by your rate</td><td className="px-5 py-3">$500.00</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Gross pay</td><td className="px-5 py-3">Total pay before any deductions: hours worked multiplied by your rate</td><td className="px-5 py-3">$500.00</td></tr>
                       <tr><td className="px-5 py-3 font-medium">PAYG tax withheld</td><td className="px-5 py-3">Income tax your employer sends to the ATO on your behalf</td><td className="px-5 py-3">{formatAUD(EX_TAX, 2)}</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Net pay</td><td className="px-5 py-3">The amount deposited into your bank account (gross minus tax)</td><td className="px-5 py-3">{formatAUD(EX_GROSS - EX_TAX, 2)}</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Superannuation</td><td className="px-5 py-3">12% paid by your employer into your super fund — not deducted from your pay</td><td className="px-5 py-3">$60.00</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Superannuation</td><td className="px-5 py-3">12% paid by your employer into your super fund, not deducted from your pay</td><td className="px-5 py-3">$60.00</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Year-to-date (YTD)</td><td className="px-5 py-3">Running total of gross pay and tax withheld since 1 July</td><td className="px-5 py-3">Varies</td></tr>
                     </tbody>
                   </table>
@@ -159,7 +159,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your First Tax Return</h3>
               <p>
-                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. Many part-time and casual workers in their first year of employment receive refunds because their annual income falls below $18,200 even though tax was withheld from each pay. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July — it is free and takes about 15 minutes.
+                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. Many part-time and casual workers in their first year of employment receive refunds because their annual income falls below $18,200 even though tax was withheld from each pay. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July. It is free and takes about 15 minutes.
               </p>
             </section>
 
@@ -179,7 +179,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What If I Am Under 18?</h3>
               <p>
-                Workers under 18 have the same tax obligations as adult workers — you still need a TFN and still pay tax on income above $18,200. The key difference is superannuation: employers only need to pay super for under-18 workers if they work <strong>more than 30 hours per week</strong>. Under-18 workers have the same minimum wage entitlements under the applicable award, though some awards include junior rates that are a percentage of the adult rate.
+                Workers under 18 have the same tax obligations as adult workers: you still need a TFN and still pay tax on income above $18,200. The key difference is superannuation: employers only need to pay super for under-18 workers if they work <strong>more than 30 hours per week</strong>. Under-18 workers have the same minimum wage entitlements under the applicable award, though some awards include junior rates that are a percentage of the adult rate.
               </p>
             </section>
 

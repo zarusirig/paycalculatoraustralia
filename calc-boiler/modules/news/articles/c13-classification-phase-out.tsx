@@ -5,8 +5,8 @@ export default function C13ClassificationPhaseOut() {
   return (
     <>
       <p className="lead">
-        The Fair Work Commission is phasing out C13 — the lowest ongoing pay classification in
-        most modern awards — over three stages, making C12 the new floor. Stage one starts from
+        The Fair Work Commission is phasing out C13, the lowest ongoing pay classification in
+        most modern awards, over three stages, making C12 the new floor. Stage one starts from
         1 July 2026, and C13 rates rise by 5.95% rather than the standard 4.75%, closing a third
         of the gap to C12.
       </p>
@@ -26,13 +26,13 @@ export default function C13ClassificationPhaseOut() {
         C13 is the lowest ongoing (non-casual) classification in most modern awards, sitting one
         rung below C12. The Fair Work Commission found the gap between the two too narrow to
         justify keeping C13 as a distinct entry point, and decided to fold it into C12 over
-        several Annual Wage Reviews rather than in one step — smoothing the transition for
+        several Annual Wage Reviews rather than in one step, smoothing the transition for
         employers who currently classify staff at C13.
       </p>
 
       <h2>How stage one works</h2>
       <p>
-        From the first full pay period on or after 1 July 2026, C13 rates rise by 5.95% in total —
+        From the first full pay period on or after 1 July 2026, C13 rates rise by 5.95% in total:
         the general 4.75% award increase plus an extra 1.2%, which represents exactly one-third of
         the dollar difference between the C13 and C12 rates. The C14 rate, which sits below C13,
         increases by the same percentage so its relativity to C13 is preserved. Every other
@@ -53,7 +53,7 @@ export default function C13ClassificationPhaseOut() {
       </p>
       <p>
         Because each stage is timed to a future Annual Wage Review rather than a fixed calendar
-        date, the pace of the phase-out depends on what the Expert Panel decides each year — the
+        date, the pace of the phase-out depends on what the Expert Panel decides each year. The
         Commission could complete it over two more reviews or spread it further if it judges
         employers or affected workers need more time to adjust. Either way, C13 workers should see
         their rate close in on C12 a little more with each annual decision until the two
@@ -68,14 +68,14 @@ export default function C13ClassificationPhaseOut() {
         for the phase-out; workers already classified at C12 or above are unaffected by this
         specific change, though they still receive the standard 4.75% award increase. If you&apos;re
         unsure which classification applies to your role, your award&apos;s classification
-        definitions — usually set out by skill level, qualification or years of experience — will
+        definitions (usually set out by skill level, qualification or years of experience) will
         confirm it.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
         If you&apos;re classified at C13, your pay rises by more than colleagues on other
-        classifications this year — 5.95% instead of 4.75% — and will keep closing the gap to C12
+        classifications this year (5.95% instead of 4.75%) and will keep closing the gap to C12
         in future reviews until the two rates merge. Compare your current and projected rate
         against the award schedule and our{" "}
         <Link href="/minimum-wage-history-australia/">minimum wage history</Link> page to see how

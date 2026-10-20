@@ -128,7 +128,7 @@ export default function AverageSalaryAustraliaPage() {
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             The average full-time salary in Australia is <strong className="text-navy">{dollars(HEADLINE.averageAnnual)}</strong> a year
             ({dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week), according to the ABS&apos;s {AWE_RELEASE.referencePeriod} figures
-            released on {AWE_RELEASE.released}. The <strong className="text-navy">median</strong> — what the worker in the middle earns — is{" "}
+            released on {AWE_RELEASE.released}. The <strong className="text-navy">median</strong> (what the worker in the middle earns) is{" "}
             <strong className="text-navy">{dollars(HEADLINE.medianFullTimeAnnual)}</strong> for full-time employees and{" "}
             <strong className="text-navy">{dollars(HEADLINE.medianAllAnnual)}</strong> across all employees, part-time included.
           </p>
@@ -199,7 +199,7 @@ export default function AverageSalaryAustraliaPage() {
               <p>
                 &ldquo;Average salary&rdquo; usually means the <strong>mean</strong>: total earnings divided by the number of workers. The ABS
                 measures it twice a year in <a href={AWE_RELEASE.url} target="_blank" rel="noreferrer noopener">Average Weekly Earnings</a>,
-                a survey of employers. The headline figure — full-time adult average weekly ordinary time earnings — is{" "}
+                a survey of employers. The headline figure, full-time adult average weekly ordinary time earnings, is{" "}
                 {dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week, or {dollars(HEADLINE.averageAnnual)} a year. It covers
                 full-time adults only and excludes overtime and employer super.
               </p>
@@ -286,7 +286,7 @@ export default function AverageSalaryAustraliaPage() {
               <h2 style={HEADING_FONT}>Average salary by industry</h2>
               <p>
                 Mining pays more than double accommodation and food services on both the average and the median. Industries with many
-                part-time and casual workers — retail, hospitality — have far lower medians than averages, because the median counts
+                part-time and casual workers, such as retail and hospitality, have far lower medians than averages, because the median counts
                 part-time workers and the full-time average does not.
               </p>
               <Table caption="Average and median salary by industry" head={["Industry", "Average full-time (yearly)", "After tax", "Median all employees (yearly)"]} minWidth={640}>
@@ -401,7 +401,7 @@ export default function AverageSalaryAustraliaPage() {
                   Every salary on this page is an Australian Bureau of Statistics figure. The average is full-time adult average weekly
                   ordinary time earnings from Average Weekly Earnings, {AWE_RELEASE.referencePeriod} (seasonally adjusted for the national
                   headline; original series for states, industries and sectors). Medians, percentiles and the checker use Employee Earnings,{" "}
-                  {EE_RELEASE.referencePeriod} — median weekly earnings in main job, and the Table 7 count of employees in $100-a-week bands.
+                  {EE_RELEASE.referencePeriod}: median weekly earnings in main job, and the Table 7 count of employees in $100-a-week bands.
                   Full-time quartiles come from Employee Earnings and Hours, {EEH_RELEASE.referencePeriod}. Weekly figures are shown exactly
                   as published; yearly figures are weekly × 52. Take-home pay uses our {SITE_CONFIG.financialYear} resident tax engine, the
                   same one behind the take-home pay pages.

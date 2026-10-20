@@ -158,7 +158,7 @@ export const TAS_PUBLIC_HOLIDAYS: StatePublicHolidays = {
           ],
         },
       ],
-      sourceTitle: "Public holidays — Table 2: Regional holidays (WorkSafe Tasmania)",
+      sourceTitle: "Public holidays, Table 2: Regional holidays (WorkSafe Tasmania)",
       sourceUrl: "https://worksafe.tas.gov.au/topics/laws-and-compliance/public-holidays",
     },
   ],

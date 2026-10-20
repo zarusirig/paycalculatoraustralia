@@ -74,7 +74,7 @@ export default function ChildCareSubsidyCalculatorPage({ children: content, afte
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Child Care Subsidy Calculator" title="Child Care Subsidy Calculator 2026-27 — Your CCS % and Gap Fee">
+        <W3Hero crumb="Child Care Subsidy Calculator" title="Child Care Subsidy Calculator 2026-27: Your CCS % and Gap Fee">
           <p>
             In 2026-27 families earning up to <strong>{formatAUD(CCS.standard.lowerThreshold)}</strong> get <strong>{CCS.standard.maxPercent}%</strong> Child Care Subsidy; it falls 1 percentage point for every {formatAUD(CCS.standard.step)} of combined family income and ends at {formatAUD(CCS.standard.cutOut)}. A second or younger child aged 5 or under gets up to <strong>{CCS.higher.maxPercent}%</strong> while family income is under {formatAUD(CCS.higher.incomeLimit)}. Since {CCS.hours.guaranteeFrom} every family gets at least <strong>{CCS.hours.guaranteed} subsidised hours</strong> per child a fortnight.
           </p>

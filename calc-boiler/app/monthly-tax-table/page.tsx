@@ -81,7 +81,7 @@ const dataset: WithContext<Dataset> = {
   ],
   temporalCoverage: "2026-07-01/2027-06-30",
   spatialCoverage: { "@type": "Country", name: "Australia" },
-  measurementTechnique: `ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) statement of formulas — weekly coefficient method, converted by 13/3`,
+  measurementTechnique: `ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) statement of formulas: weekly coefficient method, converted by 13/3`,
   variableMeasured: [
     "Gross monthly earnings",
     "Amount to be withheld with the tax-free threshold",

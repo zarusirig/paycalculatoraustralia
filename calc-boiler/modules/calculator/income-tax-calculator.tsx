@@ -114,7 +114,7 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
 
               <h1 className="mt-2 mb-2 text-2xl md:text-3xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                 Income Tax Calculator Australia {FY}
-                <span className="hidden md:inline"> — </span>
+                <span className="hidden md:inline"> - </span>
                 <span className="block text-base font-semibold text-warmgray md:inline md:text-3xl md:font-bold md:text-navy">Simple Tax Calculator</span>
               </h1>
               <p className="text-base md:text-lg text-warmgray">

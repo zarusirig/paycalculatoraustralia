@@ -66,7 +66,7 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "Why is my SCHADS pay rate higher than the award document says?",
-    a: `Because of the Equal Remuneration Order. Social and community services and crisis accommodation classifications receive an ERO loading on top of the minimum weekly wage printed in clause 15 of the award. At Level 4 pay point 1 the difference is ${formatAUD(CLAUSE_15_LEVEL_4, 2)} against an operative ${formatAUD(L4.weekly, 2)} — the rate you are actually owed is ${((L4.weekly / CLAUSE_15_LEVEL_4 - 1) * 100).toFixed(0)}% higher than the figure printed in the clause, a gap of ${formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week. Any SCHADS rate table that does not mention the ERO is quoting the wrong number.`,
+    a: `Because of the Equal Remuneration Order. Social and community services and crisis accommodation classifications receive an ERO loading on top of the minimum weekly wage printed in clause 15 of the award. At Level 4 pay point 1 the difference is ${formatAUD(CLAUSE_15_LEVEL_4, 2)} against an operative ${formatAUD(L4.weekly, 2)}. The rate you are actually owed is ${((L4.weekly / CLAUSE_15_LEVEL_4 - 1) * 100).toFixed(0)}% higher than the figure printed in the clause, a gap of ${formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week. Any SCHADS rate table that does not mention the ERO is quoting the wrong number.`,
   },
   {
     q: "Does the SCHADS award have junior rates?",
@@ -78,7 +78,7 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "What is the SCHADS casual rate?",
-    a: `Casual employees receive a ${(SCHADS_AWARD.casualLoading * 100).toFixed(0)}% loading on the ordinary hourly rate. At Level 1 pay point 1 that makes ${formatAUD(L1.hourly, 2)} an hour become ${formatAUD(schadsCasualHourly(L1.hourly), 2)}, and at Level 4 pay point 1 ${formatAUD(L4.hourly, 2)} becomes ${formatAUD(schadsCasualHourly(L4.hourly), 2)}. Casual weekend and public holiday penalties are additive rather than compounded — casual Sunday is ${(SCHADS_PENALTIES.casualSunday * 100).toFixed(0)}% of the base rate, not ${(SCHADS_PENALTIES.sunday * 100).toFixed(0)}% multiplied by the loading.`,
+    a: `Casual employees receive a ${(SCHADS_AWARD.casualLoading * 100).toFixed(0)}% loading on the ordinary hourly rate. At Level 1 pay point 1 that makes ${formatAUD(L1.hourly, 2)} an hour become ${formatAUD(schadsCasualHourly(L1.hourly), 2)}, and at Level 4 pay point 1 ${formatAUD(L4.hourly, 2)} becomes ${formatAUD(schadsCasualHourly(L4.hourly), 2)}. Casual weekend and public holiday penalties are additive rather than compounded: casual Sunday is ${(SCHADS_PENALTIES.casualSunday * 100).toFixed(0)}% of the base rate, not ${(SCHADS_PENALTIES.sunday * 100).toFixed(0)}% multiplied by the loading.`,
   },
   {
     q: "What are the SCHADS penalty rates?",
@@ -86,7 +86,7 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "How much is the SCHADS sleepover allowance?",
-    a: `${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are woken and required to work, those hours are paid separately at the applicable rate — the allowance does not buy the employer any working time.`,
+    a: `${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are woken and required to work, those hours are paid separately at the applicable rate. The allowance does not buy the employer any working time.`,
   },
   {
     q: "What is the difference between the SACS stream and the home care stream?",
@@ -98,6 +98,6 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "Why is there such a jump from SCHADS Level 1 to Level 2?",
-    a: `Because Level 1 receives no Equal Remuneration Order uplift and Level 2 does. Level 1 pay point 3 is ${formatAUD(L1_TOP.weekly, 2)} a week and Level 2 pay point 1 is ${formatAUD(L2.weekly, 2)} — a step of over ${formatAUD(L2.weekly - L1_TOP.weekly, 0)} a week between adjacent classifications. It looks like a typo and is not. It is the single largest reason getting your classification right is worth the argument.`,
+    a: `Because Level 1 receives no Equal Remuneration Order uplift and Level 2 does. Level 1 pay point 3 is ${formatAUD(L1_TOP.weekly, 2)} a week and Level 2 pay point 1 is ${formatAUD(L2.weekly, 2)}, a step of over ${formatAUD(L2.weekly - L1_TOP.weekly, 0)} a week between adjacent classifications. It looks like a typo and is not. It is the single largest reason getting your classification right is worth the argument.`,
   },
 ];

@@ -41,7 +41,7 @@ export const BUILDING_AWARD: AwardRef = {
 };
 
 export const BUILDING_SOURCE_TITLE =
-  "Building and Construction General On-site Award 2020 [MA000020] — consolidated to 1 July 2026";
+  "Building and Construction General On-site Award 2020 [MA000020], consolidated to 1 July 2026";
 
 /** cl 19.1(a) minimum weekly classification rates (not the minimum pay — see header). */
 export const BUILDING_BASE_WEEKLY = {
@@ -80,7 +80,7 @@ export function buildingRow(
 
 export const BUILDING_PENALTIES: PenaltyRow[] = [
   { when: "Ordinary hours (Monday–Friday, 7 am–6 pm)", permanent: "100%", casual: "125%" },
-  { when: "Saturday (overtime) — first 2 hours", permanent: "150%", casual: "175%" },
+  { when: "Saturday (overtime), first 2 hours", permanent: "150%", casual: "175%" },
   { when: "Saturday after 2 hours or after 12 noon; Sunday", permanent: "200%", casual: "225%" },
   { when: "Public holiday", permanent: "250%", casual: "275%" },
 ];

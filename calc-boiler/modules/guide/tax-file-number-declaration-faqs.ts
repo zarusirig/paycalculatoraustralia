@@ -21,7 +21,7 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim the tax-free threshold at two jobs?",
-    a: "You should only claim the tax-free threshold at one job — your main (highest-paying) employer. If you claim it at two jobs, both employers withhold less tax than they should, and you will likely owe money when you lodge your tax return. Use our Second Job Tax Calculator to see the impact.",
+    a: "You should only claim the tax-free threshold at one job: your main (highest-paying) employer. If you claim it at two jobs, both employers withhold less tax than they should, and you will likely owe money when you lodge your tax return. Use our Second Job Tax Calculator to see the impact.",
     links: { "Second Job Tax Calculator": "/second-job-tax-calculator/" },
   },
   {
@@ -30,7 +30,7 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How do I find my TFN if I've lost it?",
-    a: "You can find your TFN on previous tax returns, your myGov account (linked to the ATO), or correspondence from the ATO. You can also call the ATO on 13 28 61 to request your TFN. For security, the ATO will post your TFN to your registered address — they will not provide it over the phone or email.",
+    a: "You can find your TFN on previous tax returns, your myGov account (linked to the ATO), or correspondence from the ATO. You can also call the ATO on 13 28 61 to request your TFN. For security, the ATO will post your TFN to your registered address. They will not provide it over the phone or email.",
   },
   {
     q: "Do I need a new TFN declaration each financial year?",

@@ -8,7 +8,7 @@ import FeaturedImage from "@/components/common/featured-image";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "cost-of-living-payment-2026";
-const TITLE = "Cost of Living Payment 2026 — Is There One? (Checked Sep 2026)";
+const TITLE = "Cost of Living Payment 2026 - Is There One? (Checked Sep 2026)";
 const DESCRIPTION = `No Commonwealth cost of living payment exists in 2026: it stopped from ${COST_OF_LIVING_FACTS.cwthCostOfLivingPaymentEnded}. What you can get instead: 20 September 2026 increases and Rent Assistance.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));

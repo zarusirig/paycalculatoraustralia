@@ -20,7 +20,7 @@ export const VIC_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Which public holidays are unique to Victoria?",
-    a: "Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November — none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. Working one of these attracts public holiday penalty rates under most awards.",
+    a: "Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November, none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. Working one of these attracts public holiday penalty rates under most awards.",
   },
   {
     q: "When do I get long service leave in Victoria?",

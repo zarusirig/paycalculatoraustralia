@@ -21,7 +21,7 @@ const exampleSaving = MONTHLY * 12 * (EXAMPLE_RATE + MEDICARE_LEVY.rate - CONTRI
 export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   {
     q: "Is it better to pay off HECS or put extra into super?",
-    a: `For most young workers with 20+ years to retirement, extra super contributions provide better long-term value due to the tax benefit (${pct(CONTRIBUTIONS_TAX)} vs your marginal rate) and compound growth. However, if your HECS balance is large (over $50,000) and indexation is high, paying it down faster can be worthwhile for the guaranteed return and improved cash flow.`,
+    a: `For most young workers with 20+ years to retirement, extra super contributions provide better long-term value due to the tax benefit (${pct(CONTRIBUTIONS_TAX)} vs your marginal rate) and compound growth. However, if your HECS balance is large (over $50,000) and indexation is high, paying it down faster can be worthwhile for the certain return and improved cash flow.`,
   },
   {
     q: "How is HECS-HELP debt indexed?",
@@ -30,7 +30,7 @@ export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do voluntary HECS repayments reduce my compulsory repayments?",
-    a: "Voluntary repayments reduce your outstanding balance but do not change the compulsory repayment percentage applied to your income. However, if your voluntary payments bring the balance to zero, compulsory repayments cease entirely — immediately boosting your take-home pay.",
+    a: "Voluntary repayments reduce your outstanding balance but do not change the compulsory repayment percentage applied to your income. However, if your voluntary payments bring the balance to zero, compulsory repayments cease entirely, immediately boosting your take-home pay.",
   },
   {
     q: "What tax benefit do I get from extra super contributions?",

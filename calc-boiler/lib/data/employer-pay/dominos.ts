@@ -40,7 +40,7 @@ export const DOMINOS_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   rates: SUBWAY_PAY.rates.map((r, i) =>
     i === 0
-      ? { ...r, description: "In-store crew and pizza makers, and delivery drivers — the award's Level 1 includes preparing, serving and delivering food" }
+      ? { ...r, description: "In-store crew and pizza makers, and delivery drivers (the award's Level 1 includes preparing, serving and delivering food)" }
       : r,
   ),
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 team member")),
@@ -49,13 +49,13 @@ export const DOMINOS_PAY: EmployerPay = {
   ],
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to Domino's corporate and franchised stores. Some stores may pay more.",
-    "Domino's delivery drivers who are employees are paid the Level 1 rate — the same as in-store crew — plus a per-kilometre allowance for using their own car. People delivering through app platforms as contractors are not covered by these rates.",
+    "Domino's delivery drivers who are employees are paid the Level 1 rate (the same as in-store crew) plus a per-kilometre allowance for using their own car. People delivering through app platforms as contractors are not covered by these rates.",
     "In July 2026 the Federal Court gave judgment in a class action about Domino's use of old agreements between 2013 and January 2018. It concerns past pay, not current rates.",
   ],
   unverified: [
     "Five Domino's franchisee agreements from 2010 are not on the Fair Work Commission's terminated list. If one still applies to your store, it still cannot pay a base rate below these award rates.",
-    "A franchisee agreement registered under a company name without \"Domino's\" in its title — our search was by title.",
-    "Salaried store manager pay — set by contract.",
+    "A franchisee agreement registered under a company name without \"Domino's\" in its title (our search was by title).",
+    "Salaried store manager pay: set by contract.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },

@@ -109,7 +109,7 @@ export default function LongServiceLeaveCalculator({
     <Card className="shadow-md">
       <CardContent className="p-6 md:p-8">
         <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">
-          {heading ?? `Long Service Leave Calculator — ${j.abbr}`}
+          {heading ?? `Long Service Leave Calculator: ${j.abbr}`}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8">

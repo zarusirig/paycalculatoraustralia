@@ -41,7 +41,7 @@ export const ANNUAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is annual pay calculated in Australia?",
-    a: `Annual take-home pay equals your gross yearly salary minus income tax, the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and any HECS-HELP repayments for the financial year running 1 July to 30 June. The ATO applies progressive income tax brackets — ${bracketRatesSentence()} — meaning only the portion of income within each bracket is taxed at that bracket's marginal rate.`,
+    a: `Annual take-home pay equals your gross yearly salary minus income tax, the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and any HECS-HELP repayments for the financial year running 1 July to 30 June. The ATO applies progressive income tax brackets (${bracketRatesSentence()}), meaning only the portion of income within each bracket is taxed at that bracket's marginal rate.`,
   },
   {
     q: "What is the annual salary calculator used for?",
@@ -57,7 +57,7 @@ export const ANNUAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the average annual salary in Australia?",
-    a: `Average full-time adult ordinary time earnings were ${formatAUD(AWOTE_WEEKLY, 2)} a week in May 2026 (ABS, seasonally adjusted) — about ${formatAUD(AWOTE_ANNUAL)} a year. At that salary, annual take-home pay is approximately ${formatAUD(net(AWOTE_ANNUAL).takeHomePay)} in FY${FY}. The average is pulled up by high earners, so most full-time workers earn less than it.`,
+    a: `Average full-time adult ordinary time earnings were ${formatAUD(AWOTE_WEEKLY, 2)} a week in May 2026 (ABS, seasonally adjusted), about ${formatAUD(AWOTE_ANNUAL)} a year. At that salary, annual take-home pay is approximately ${formatAUD(net(AWOTE_ANNUAL).takeHomePay)} in FY${FY}. The average is pulled up by high earners, so most full-time workers earn less than it.`,
   },
   {
     q: "How is tax calculated if I only worked part of the year?",

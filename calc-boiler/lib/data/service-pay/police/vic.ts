@@ -143,12 +143,12 @@ export const VIC_POLICE_PAY: ServicePayJurisdiction = {
   sources: [
     {
       title:
-        "Victoria Police (Police Officers, Protective Services Officers, Police Reservists and Police Recruits) Enterprise Agreement 2025 (AE528554) — Schedule A",
+        "Victoria Police (Police Officers, Protective Services Officers, Police Reservists and Police Recruits) Enterprise Agreement 2025 (AE528554), Schedule A",
       publisher: "Fair Work Commission",
       url: "https://www.fwc.gov.au/documents/agreements/fwa/ae528554.pdf",
     },
     {
-      title: "List of agreements from 1 January 2025 to 31 December 2025 (AE528554 — dated 11 April 2025, nominal expiry 31 May 2028)",
+      title: "List of agreements from 1 January 2025 to 31 December 2025 (AE528554, dated 11 April 2025, nominal expiry 31 May 2028)",
       publisher: "Fair Work Commission",
       url: "https://www.fwc.gov.au/documents/agreements/resources/agreements2025.xlsx",
     },

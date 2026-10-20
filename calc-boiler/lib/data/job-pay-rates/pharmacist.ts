@@ -124,7 +124,7 @@ export const PHARMACIST: Occupation = {
   ],
   notShown: [
     "Hospital and public-sector pharmacist salaries, which come from state health agreements rather than this award.",
-    "Pharmacy assistant junior rates, which change from 1 December 2026 — see the pharmacy award page.",
+    "Pharmacy assistant junior rates, which change from 1 December 2026; see the pharmacy award page.",
     "Annualised salary arrangements under clause 18, which must be reconciled against the rates above.",
   ],
   faqs: [
@@ -134,7 +134,7 @@ export const PHARMACIST: Occupation = {
     },
     {
       q: "How much does an experienced pharmacist earn under the award?",
-      a: "An Experienced pharmacist — 4 or more years' full-time experience in community pharmacy — has a minimum of $45.72 an hour or $1,737.40 a week, about $90,345 a year. A Pharmacist manager's minimum is $52.15 an hour or $1,981.60 a week.",
+      a: "An Experienced pharmacist (4 or more years' full-time experience in community pharmacy) has a minimum of $45.72 an hour or $1,737.40 a week, about $90,345 a year. A Pharmacist manager's minimum is $52.15 an hour or $1,981.60 a week.",
     },
     {
       q: "What is the casual pay rate for a pharmacist?",
@@ -150,7 +150,7 @@ export const PHARMACIST: Occupation = {
     },
   ],
   sources: [
-    { title: "Pharmacy Industry Award 2020 [MA000012] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000012") },
+    { title: "Pharmacy Industry Award 2020 [MA000012], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000012") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

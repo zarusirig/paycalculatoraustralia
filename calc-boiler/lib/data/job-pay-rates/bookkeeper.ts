@@ -50,10 +50,10 @@ export const BOOKKEEPER: Occupation = {
   headline: {
     tableId: "clerks",
     label: "Level 3",
-    why: "a bookkeeper posting journals to ledgers, preparing bank statements and maintaining wage records — duties the award lists at Level 3",
+    why: "a bookkeeper posting journals to ledgers, preparing bank statements and maintaining wage records: duties the award lists at Level 3",
   },
   coverage: [
-    "Bookkeepers employed by private sector businesses — as distinct from self-employed bookkeepers and BAS agents working for their own clients — are covered by the Clerks—Private Sector Award 2020 [MA000002].",
+    "Bookkeepers employed by private sector businesses (as distinct from self-employed bookkeepers and BAS agents working for their own clients) are covered by the Clerks—Private Sector Award 2020 [MA000002].",
     "The award has no bookkeeper classification; it classifies by duties. Initial processing and recording of account reconciliations, invoices, payroll data and petty cash is Level 2 (Schedule A.3.2(f)). Preparing cash payment summaries, banking reports and bank statements, maintaining wage and salary records and posting journals to ledgers is Level 3 (A.4.2(a)). Preparing financial or tax schedules, calculating costings and wage requirements and reconciling accounts to balance is Level 4 (A.6.2(b)).",
     "Level 3 employees work with only general guidance and can train Level 1 and 2 staff; Level 4 employees need only limited guidance and often supervise lower levels (Schedule A.4.1, A.6.1).",
     CLERKS_COVERAGE_EXCLUSION,
@@ -82,13 +82,13 @@ export const BOOKKEEPER: Occupation = {
     "Self-employed bookkeepers and BAS agents set their own fees; the award applies only to employees.",
   ],
   notShown: [
-    "Junior rates (cl 16.4) and annualised wage arrangements (cl 18) — see the Clerks Award page.",
+    "Junior rates (cl 16.4) and annualised wage arrangements (cl 18). See the Clerks Award page.",
     "Level 5 duty definitions in full (Schedule A.7).",
   ],
   faqs: [
     {
       q: "What is the award rate for a bookkeeper in 2026?",
-      a: "A bookkeeper doing Level 3 work under the Clerks—Private Sector Award — posting journals to ledgers, preparing bank statements, maintaining wage records — must be paid at least $31.11 an hour, or $1,182.10 a week, from the first full pay period on or after 1 July 2026. That is $61,469 a year full-time before tax. Level 4 work pays at least $32.67 an hour.",
+      a: "A bookkeeper doing Level 3 work under the Clerks—Private Sector Award (posting journals to ledgers, preparing bank statements, maintaining wage records) must be paid at least $31.11 an hour, or $1,182.10 a week, from the first full pay period on or after 1 July 2026. That is $61,469 a year full-time before tax. Level 4 work pays at least $32.67 an hour.",
     },
     {
       q: "What is the casual rate for a bookkeeper?",

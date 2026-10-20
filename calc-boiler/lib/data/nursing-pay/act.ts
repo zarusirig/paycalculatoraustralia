@@ -30,7 +30,7 @@
 import type { NursingStateData } from "./types";
 
 const EA_SOURCE = {
-  title: "ACT Public Sector Nursing and Midwifery Enterprise Agreement 2023–2026 — Schedule 1",
+  title: "ACT Public Sector Nursing and Midwifery Enterprise Agreement 2023–2026, Schedule 1",
   url: "https://www.cmtedd.act.gov.au/__data/assets/pdf_file/0007/2548897/ACTPS-Nursing-and-Midwifery-EA-2023-2026.pdf",
   publisher: "ACT Government (Chief Minister, Treasury and Economic Development Directorate)",
 };
@@ -42,8 +42,8 @@ export const ACT_NURSING_PAY: NursingStateData = {
   code: "ACT",
   name: "Australian Capital Territory",
   shortName: "ACT",
-  metaTitle: "ACT Nurse Pay Rates 2026 — Canberra Health Services Nursing Pay",
-  h1: "ACT Nurse & Midwife Pay Rates 2026 — ACT Public Sector Nursing Pay Scales",
+  metaTitle: "ACT Nurse Pay Rates 2026 - Canberra Health Services Nursing Pay",
+  h1: "ACT Nurse & Midwife Pay Rates 2026: ACT Public Sector Nursing Pay Scales",
   employer: "ACT Public Service (Canberra Health Services and ACT Health)",
   ordinaryHoursPerWeek: 38,
 
@@ -53,7 +53,7 @@ export const ACT_NURSING_PAY: NursingStateData = {
       name: "ACT Public Sector Nursing and Midwifery Enterprise Agreement 2023–2026",
       effectiveFrom: "first full pay period on or after 1 December 2025 (4 December 2025)",
       nextIncrease:
-        "none scheduled — the agreement passed its nominal expiry on 31 March 2026 and a replacement is under negotiation",
+        "none scheduled: the agreement passed its nominal expiry on 31 March 2026 and a replacement is under negotiation",
       tribunal: "Fair Work Commission",
       reference: "AG2024/2516",
       source: EA_SOURCE,
@@ -78,7 +78,7 @@ export const ACT_NURSING_PAY: NursingStateData = {
         { label: "Pay point 7", annual: 104873 },
         { label: "Pay point 8", annual: 108780 },
       ],
-      note: "The entry registered nurse classification — eight annual pay points.",
+      note: "The entry registered nurse classification: eight annual pay points.",
     },
     {
       classification: "Midwife (RM) Level 1",
@@ -199,17 +199,17 @@ export const ACT_NURSING_PAY: NursingStateData = {
 
   derivation: {
     hourly:
-      "not shown — Schedule 1 publishes annual salaries only, and this page does not convert them to an hourly rate",
+      "not shown: Schedule 1 publishes annual salaries only, and this page does not convert them to an hourly rate",
   },
 
   notReproduced: [
-    "Midwife (RM) Levels 2 to 5 — Schedule 1 prints them as a separate ladder, but every figure is identical to the Registered Nurse level of the same number and grade shown here.",
+    "Midwife (RM) Levels 2 to 5: Schedule 1 prints them as a separate ladder, but every figure is identical to the Registered Nurse level of the same number and grade shown here.",
   ],
 
   unverified: [
-    "Shift, weekend and public holiday penalty rates — the agreement sets them, but they have not been transcribed for this page.",
-    "An hourly rate for any ACT classification — the agreement publishes annual salaries only.",
-    "Rates under a replacement agreement — the 2023–2026 agreement is being renegotiated and no replacement or interim increase had been published when this page was checked on 24 September 2026.",
+    "Shift, weekend and public holiday penalty rates: the agreement sets them, but they have not been transcribed for this page.",
+    "An hourly rate for any ACT classification: the agreement publishes annual salaries only.",
+    "Rates under a replacement agreement: the 2023–2026 agreement is being renegotiated and no replacement or interim increase had been published when this page was checked on 24 September 2026.",
   ],
 
   verifiedOn: "24 September 2026",
@@ -220,19 +220,19 @@ export const ACT_NURSING_PAY: NursingStateData = {
   highlights: [
     "Registered Nurse Level 1 starts at $82,993 and runs to $108,780 across eight pay points, from 4 December 2025.",
     "Enrolled nurses start at $75,849 at Level 1 and reach $81,806 at Level 2.",
-    "The ACT's last pay rise was 1% plus a flat $1,000 on 4 December 2025 — the flat amount gives lower-paid staff a bigger percentage rise.",
-    "Midwives are paid the same as registered nurses at the same level and grade — Midwife Level 1 is also $82,993 to $108,780.",
+    "The ACT's last pay rise was 1% plus a flat $1,000 on 4 December 2025. The flat amount gives lower-paid staff a bigger percentage rise.",
+    "Midwives are paid the same as registered nurses at the same level and grade: Midwife Level 1 is also $82,993 to $108,780.",
     "The agreement's nominal expiry was 31 March 2026 and a replacement is being negotiated, so watch for a rate change.",
   ],
 
   extraSources: [
     {
-      title: "Enterprise Agreements — ACTPS Employment Portal",
+      title: "Enterprise Agreements, ACTPS Employment Portal",
       url: "https://www.cmtedd.act.gov.au/employment-framework/for-employees/agreements",
       publisher: "ACT Government",
     },
     {
-      title: "Enterprise agreements — ACT Government health careers",
+      title: "Enterprise agreements, ACT Government health careers",
       url: "https://www.act.gov.au/work-with-act-government/act-government-health-careers/enterprise-agreements",
       publisher: "ACT Government",
     },

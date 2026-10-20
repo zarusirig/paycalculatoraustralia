@@ -17,8 +17,8 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/embed/`;
-const TITLE = "Free Take-Home Pay Calculator and Live Rate Badges for Your Website";
-const DESCRIPTION = `Embed a free Australian take-home pay calculator, or live badges for the minimum wage, super rate and tax-free threshold, on your website or blog. ${EMBED_DATA.fy} ATO and Fair Work rates, updated automatically. One line of code.`;
+const TITLE = "Free Take-Home Pay Calculator and Live Rate Badges for Your Site";
+const DESCRIPTION = `Embed a free Australian take-home pay calculator or live minimum wage, super rate and tax-free threshold badges. ${EMBED_DATA.fy} ATO and Fair Work rates, auto-updated.`;
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
 export const metadata: Metadata = withFeaturedImage({
@@ -89,14 +89,14 @@ function EmbedPage() {
             <h2 style={HEADING_FONT}>Copy the code</h2>
             <p>Paste this where you want the calculator to appear. It works in WordPress (Custom HTML block), Squarespace, Wix, Webflow, Ghost, SharePoint and plain HTML.</p>
             <CopySnippet id="embed-code" label="Embed code" text={embedCode()} />
-            <p>To open the calculator with a salary already filled in — for example on a job ad or a pay-scale page — add it to the address:</p>
+            <p>To open the calculator with a salary already filled in (for example on a job ad or a pay-scale page), add it to the address:</p>
             <CopySnippet id="embed-code-salary" label="Embed code with a starting salary of $90,000" text={embedCode({ salary: 90000 })} />
 
             <h3 style={HEADING_FONT}>Options</h3>
             <ul>
-              <li><code>?salary=85000</code> — starting amount.</li>
-              <li><code>?period=52</code> — starting pay period: <code>1</code> year, <code>12</code> month, <code>26</code> fortnight, <code>52</code> week, <code>h</code> hour.</li>
-              <li><code>?theme=dark</code> or <code>?theme=light</code> — force a colour scheme (it follows the visitor&apos;s system setting by default).</li>
+              <li><code>?salary=85000</code>: starting amount.</li>
+              <li><code>?period=52</code>: starting pay period: <code>1</code> year, <code>12</code> month, <code>26</code> fortnight, <code>52</code> week, <code>h</code> hour.</li>
+              <li><code>?theme=dark</code> or <code>?theme=light</code>: force a colour scheme (it follows the visitor&apos;s system setting by default).</li>
             </ul>
             <p>Combine options with <code>&amp;</code>, e.g. <code>{`${EMBED_URL}?salary=32&period=h`}</code>.</p>
 
@@ -140,7 +140,7 @@ function EmbedPage() {
               <li>Free for any website, including commercial, government, union, school and university sites.</li>
               <li>Keep the credit line under the calculator visible and linked. That link is the only thing we ask for.</li>
               <li>Don&apos;t alter the calculator or present it as your own work.</li>
-              <li>Results are estimates for Australian residents and not tax advice. We keep the rates current, but we can&apos;t guarantee them for any individual&apos;s situation.</li>
+              <li>Results are estimates for Australian residents and not tax advice. We keep the rates current, but we can&apos;t promise they fit any individual&apos;s situation.</li>
             </ul>
 
             <h2 style={HEADING_FONT}>What the widget calculates</h2>

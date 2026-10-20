@@ -64,7 +64,7 @@ export const LANDSCAPER: Occupation = {
   slug: "landscaper",
   name: "Landscaper",
   plural: "landscapers",
-  metaTitle: `Landscaper Salary Australia 2026 — ${money2(LS_L4.hourly)}/hr Award Minimum`,
+  metaTitle: `Landscaper Salary Australia 2026 - ${money2(LS_L4.hourly)}/hr Award Minimum`,
   award: {
     name: "Gardening and Landscaping Services Award 2020",
     code: CODE,
@@ -93,17 +93,17 @@ export const LANDSCAPER: Occupation = {
   ],
   penalties: [
     { when: "Monday–Friday 6 am–6 pm, and Saturday 6 am–12 noon (ordinary hours)", permanent: "100%", casual: "125%" },
-    { when: "Outside those hours, incl. Saturday afternoon and Sunday — first 2 hours", permanent: "150%", casual: "175%" },
-    { when: "Outside those hours — after 2 hours", permanent: "200%", casual: "225%" },
+    { when: "Outside those hours, incl. Saturday afternoon and Sunday: first 2 hours", permanent: "150%", casual: "175%" },
+    { when: "Outside those hours: after 2 hours", permanent: "200%", casual: "225%" },
     { when: "Public holiday (minimum 4 hours)", permanent: "250%", casual: "275%" },
     { when: "Ordinary hours moved outside the span by water restrictions", permanent: "150%", casual: "175%" },
     { when: "Working through a meal break", permanent: "150%", casual: "175%" },
   ],
   penaltiesNote:
-    "Percentages of the ordinary hourly rate (cl 13.2, 13.5, 14.1, 19 and 25.2; Schedule B.2–B.3). This award has no separate weekend penalty: Saturday between 6 am and noon is ordinary time, and work outside the span of ordinary hours — Saturday afternoon, Sunday, or before 6 am or after 6 pm on a weekday — is overtime. An all-purpose allowance such as the tool or leading hand allowance is added to the hourly rate before these percentages apply (Schedule B.1.1).",
+    "Percentages of the ordinary hourly rate (cl 13.2, 13.5, 14.1, 19 and 25.2; Schedule B.2–B.3). This award has no separate weekend penalty: Saturday between 6 am and noon is ordinary time, and work outside the span of ordinary hours (Saturday afternoon, Sunday, or before 6 am or after 6 pm on a weekday) is overtime. An all-purpose allowance such as the tool or leading hand allowance is added to the hourly rate before these percentages apply (Schedule B.1.1).",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours, then 200%, for time over 38 ordinary hours a week, over 10 hours a day, or outside the span of ordinary hours (cl 19.1).",
-    "Casual: 175% for the first 2 hours, then 225% — the casual loading is included (cl 19.2).",
+    "Casual: 175% for the first 2 hours, then 225%; the casual loading is included (cl 19.2).",
     "Recalled to work after leaving: at least 4 hours' pay at the appropriate rate (cl 19.6). Required to start again without a 10-hour break after overtime: 200% until released (cl 19.4(c)).",
   ],
   allowances: [
@@ -117,7 +117,7 @@ export const LANDSCAPER: Occupation = {
   median: null,
   notices: [
     "Saturday mornings are ordinary hours under this award: there is no penalty between 6 am and noon on a Saturday. Saturday afternoons and Sundays are paid as overtime.",
-    "New employees can be paid the Introductory level — $978.10 a week, $25.74 an hour — for no more than 3 months of training (cl 15.1, Schedule A.1). Juniors get 70% of the adult rate under 18, 80% at 18 and 90% at 19 (cl 15.2).",
+    "New employees can be paid the Introductory level ($978.10 a week, $25.74 an hour) for no more than 3 months of training (cl 15.1, Schedule A.1). Juniors get 70% of the adult rate under 18, 80% at 18 and 90% at 19 (cl 15.2).",
   ],
   notShown: [
     "Apprentice and adult apprentice rates (cl 15.3–15.4) and junior rates in dollars.",
@@ -127,7 +127,7 @@ export const LANDSCAPER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a landscaper in 2026?",
-      a: `A qualified landscaper — Certificate III in Landscaping, a horticulture trade, or 3 years' practical experience — is Level 4 under the Gardening and Landscaping Services Award: at least ${money2(LS_L4.hourly)} an hour or ${money2(LS_L4.weekly)} a week from the first full pay period on or after 1 July 2026, about ${money0(annual52(LS_L4.weekly))} a year full-time before tax. Level 5, with post-trade training, is ${money2(LS_L5.hourly)} an hour.`,
+      a: `A qualified landscaper (Certificate III in Landscaping, a horticulture trade, or 3 years' practical experience) is Level 4 under the Gardening and Landscaping Services Award: at least ${money2(LS_L4.hourly)} an hour or ${money2(LS_L4.weekly)} a week from the first full pay period on or after 1 July 2026, about ${money0(annual52(LS_L4.weekly))} a year full-time before tax. Level 5, with post-trade training, is ${money2(LS_L5.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a landscaper?",
@@ -147,9 +147,9 @@ export const LANDSCAPER: Occupation = {
     },
   ],
   sources: [
-    { title: "Gardening and Landscaping Services Award 2020 [MA000101] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Gardening and Landscaping Services Award 2020 [MA000101], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
     {
-      title: "Pay Guide — Gardening and Landscaping Services Award [MA000101], published 28 August 2026",
+      title: "Pay Guide: Gardening and Landscaping Services Award [MA000101], published 28 August 2026",
       publisher: "Fair Work Ombudsman",
       url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/gardening-and-landscaping-services-award-ma000101-pay-guide.pdf.aspx",
     },

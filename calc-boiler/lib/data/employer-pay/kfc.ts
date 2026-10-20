@@ -55,9 +55,9 @@ export const KFC_PAY: EmployerPay = {
     reference: "AG2019/4042, AE507798",
     url: EA_URL,
     approvedOn: "22 April 2020 ([2020] FWCA 2020), operating from 29 April 2020",
-    nominalExpiry: "29 April 2024 (passed — the agreement keeps operating until replaced or terminated)",
+    nominalExpiry: "29 April 2024 (passed; the agreement keeps operating until replaced or terminated)",
     coverage:
-      "It covers Team Members (including delivery drivers) and Shift Supervisors at KFC's company restaurants and at the franchisees named in the agreement when the Fair Work Commission approved it (77 employers). Managers are excluded. A franchisee that was not named, or that has its own agreement, is not covered — its staff are paid under that agreement or the Fast Food Industry Award.",
+      "It covers Team Members (including delivery drivers) and Shift Supervisors at KFC's company restaurants and at the franchisees named in the agreement when the Fair Work Commission approved it (77 employers). Managers are excluded. A franchisee that was not named, or that has its own agreement, is not covered: its staff are paid under that agreement or the Fast Food Industry Award.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: {
@@ -68,7 +68,7 @@ export const KFC_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
   casualRateNote:
-    "How the casual rate is worked out: the agreement's pay table (Table B) sets the casual rate at the Fast Food Award hourly rate plus 1 cent, plus the 25% loading — $34.78 for a Team Member — while permanent staff get the award weekly rate plus 0.5%. So the casual rate is not 25% on top of the $27.95 permanent rate. One clause (cl 5.4.2) could be read as 25% on top of the permanent rate ($34.94); the agreement's own printed 2020 casual figure follows the Table B method, so the table uses it.",
+    "How the casual rate is worked out: the agreement's pay table (Table B) sets the casual rate at the Fast Food Award hourly rate plus 1 cent, plus the 25% loading ($34.78 for a Team Member), while permanent staff get the award weekly rate plus 0.5%. So the casual rate is not 25% on top of the $27.95 permanent rate. One clause (cl 5.4.2) could be read as 25% on top of the permanent rate ($34.94); the agreement's own printed 2020 casual figure follows the Table B method, so the table uses it.",
   rates: [
     { level: "Team Member (Level 1)", description: "Crew, including delivery drivers and school-based trainees (award Level 1 weekly rate + 0.5%)", weekly: 1062.1, hourly: 27.95, casualHourly: 34.78 },
     { level: "Shift Supervisor (Level 2)", description: "Supervises the shift (award Level 2 weekly rate + 0.5%)", weekly: 1124.7, hourly: 29.6, casualHourly: 36.83 },
@@ -98,13 +98,13 @@ export const KFC_PAY: EmployerPay = {
     { when: "Monday to Friday, 10pm to midnight", permanent: "+ 10%", casual: "+ 35%" },
     { when: "Monday to Friday, midnight to 6am", permanent: "+ 15%", casual: "+ 40%" },
     { when: "Saturday", permanent: "+ 25%", casual: "+ 50%" },
-    { when: "Sunday — Team Members", permanent: "+ 25%", casual: "+ 50%" },
-    { when: "Sunday — Shift Supervisors", permanent: "+ 50%", casual: "+ 75%" },
+    { when: "Sunday (Team Members)", permanent: "+ 25%", casual: "+ 50%" },
+    { when: "Sunday (Shift Supervisors)", permanent: "+ 50%", casual: "+ 75%" },
     { when: "Public holiday", permanent: "225%", casual: "250%" },
   ],
   penaltyNotes: [
     "Penalties are paid on the ordinary hourly rate for your level (cl 7.1); casual figures include the 25% loading, added rather than multiplied. They are the same percentages as the Fast Food Award.",
-    "For a permanent Team Member ($27.95) that is $30.75 an hour from 10pm to midnight, $32.14 from midnight to 6am, $34.94 on a weekend and $62.89 on a public holiday — our arithmetic.",
+    "For a permanent Team Member ($27.95) that is $30.75 an hour from 10pm to midnight, $32.14 from midnight to 6am, $34.94 on a weekend and $62.89 on a public holiday (our arithmetic).",
   ],
   overtime: [
     { when: "First 2 hours", permanent: "150%", casual: "150% plus the casual loading" },
@@ -115,18 +115,18 @@ export const KFC_PAY: EmployerPay = {
   notices: [
     "The KFC agreement's rates are tied to the Fast Food Award: permanent staff get the award weekly rate plus 0.5%, and casuals the award hourly rate plus 1 cent plus the 25% loading. The 2026 dollars here are our calculation from that formula, which the Fair Work Commission's approval decision sets out.",
     "The KFC agreement passed its nominal expiry date in April 2024. It keeps applying until it is replaced or terminated, and no replacement has been approved or lodged as at September 2026.",
-    "Not every KFC restaurant is covered. The agreement covers KFC's own restaurants and the franchisees named when it was approved. If your restaurant's owner was not named — or has its own agreement — the Fast Food Award or that agreement applies instead. Your payslip must say which one you are paid under.",
+    "Not every KFC restaurant is covered. The agreement covers KFC's own restaurants and the franchisees named when it was approved. If your restaurant's owner was not named, or has its own agreement, the Fast Food Award or that agreement applies instead. Your payslip must say which one you are paid under.",
     "The Fair Work Commission's copy of the agreement is not currently downloadable, so the clause details (junior percentages, penalties, casual undertaking) were read from a published copy of the agreement and checked against the Commission's approval decision.",
   ],
   unverified: [
-    "The list of franchisees covered — KFC's own 2024 court defence says the Schedule A published on the Commission's website is blank, while the approval decision names 77 employers.",
+    "The list of franchisees covered: KFC's own 2024 court defence says the Schedule A published on the Commission's website is blank, while the approval decision names 77 employers.",
     "Whether Collins Foods' KFC restaurants in Queensland and northern NSW, which had their own 2014 agreement, now fall under this agreement.",
-    "Salaried and trainee manager pay — managers are excluded from the agreement.",
+    "Salaried and trainee manager pay: managers are excluded from the agreement.",
   ],
   awardHref: "/fast-food-award-rates/",
   awardLabel: "Fast Food Award rates 2026",
   sources: [
-    { title: "Approval decision [2020] FWCA 2020 — KFC National Enterprise Agreement 2020 (AE507798), with undertakings", publisher: "Fair Work Commission", url: EA_URL },
+    { title: "Approval decision [2020] FWCA 2020, KFC National Enterprise Agreement 2020 (AE507798), with undertakings", publisher: "Fair Work Commission", url: EA_URL },
     { title: "KFC National Enterprise Agreement 2020 (copy of the agreement text)", publisher: "Scribd", url: EA_COPY_URL },
     { title: "Your pay and conditions at KFC", publisher: "Shop, Distributive and Allied Employees' Association", url: "https://www.sda.au/your-rights/agreements/kfc-agreement/your-pay-and-conditions-at-kfc/" },
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: "https://awards.fairwork.gov.au/MA000003.html" },

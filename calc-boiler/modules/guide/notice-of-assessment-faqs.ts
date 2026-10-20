@@ -8,7 +8,7 @@ import type { FaqItem } from "@/lib/faq";
 export const NOTICE_OF_ASSESSMENT_FAQS: readonly FaqItem[] = [
   {
     q: "What is a Notice of Assessment?",
-    a: "A Notice of Assessment (NOA) is the ATO's official document showing the results of processing your tax return. It details your taxable income, tax calculated, offsets applied, Medicare levy, HECS repayment, PAYG credits, and the final result — either a refund or an amount you owe.",
+    a: "A Notice of Assessment (NOA) is the ATO's official document showing the results of processing your tax return. It details your taxable income, tax calculated, offsets applied, Medicare levy, HECS repayment, PAYG credits, and the final result: either a refund or an amount you owe.",
   },
   {
     q: "How long does it take to receive my NOA?",

@@ -16,12 +16,12 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/final-pay-calculator/`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: "Final Pay Calculator Australia — End of Employment Payout",
+  title: "Final Pay Calculator Australia - End of Employment Payout",
   description:
     "Calculate your final pay when leaving a job: unused annual leave payout, notice pay, long service leave and the tax on your final payment. Free calculator.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Final Pay Calculator Australia — End of Employment Payout (2026-27)",
+    title: "Final Pay Calculator Australia - End of Employment Payout (2026-27)",
     description:
       "Calculate your final pay when leaving a job including leave payout, notice period pay, and estimated tax.",
     url: PAGE_URL,
@@ -31,7 +31,7 @@ export const metadata: Metadata = withFeaturedImage({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Final Pay Calculator Australia — End of Employment Payout (2026-27)",
+    title: "Final Pay Calculator Australia - End of Employment Payout (2026-27)",
     description: "Calculate your final pay including leave payout, notice period, and tax on termination.",
   },
 });

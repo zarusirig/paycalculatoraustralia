@@ -11,7 +11,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rates/`;
-const TITLE = "Pay Rates by Employer 2026 — Coles, Woolworths, Bunnings & More";
+const TITLE = "Pay Rates by Employer 2026 - Coles, Woolworths, Bunnings & More";
 const DESCRIPTION =
   "Hourly pay rates at Coles, Woolworths, McDonald's, Hungry Jack's, Big W, Australia Post and other big Australian employers, from each agreement or award.";
 

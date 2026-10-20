@@ -45,7 +45,7 @@ export default function CarerAllowanceContent() {
   return (
     <>
       <W3Section title="How Much Is Carer Allowance?">
-        <p className={P}>{formatAUD(CA.fortnightly, 2)} a fortnight. It is a set rate — not reduced by your wages or savings — and it is adjusted on {CA.indexedOn} each year, not in March and September like the pensions. It isn&apos;t part of your taxable income. If you share the care of someone with another carer who is not your partner and they also claim, each of you gets a part payment based on the percentage of care you provide.</p>
+        <p className={P}>{formatAUD(CA.fortnightly, 2)} a fortnight. It is a set rate, not reduced by your wages or savings, and it is adjusted on {CA.indexedOn} each year, not in March and September like the pensions. It isn&apos;t part of your taxable income. If you share the care of someone with another carer who is not your partner and they also claim, each of you gets a part payment based on the percentage of care you provide.</p>
         <p className={P}>If you get Carer Allowance for a period that includes 1 July, Services Australia also pays the <strong>{formatAUD(CA.carerSupplementAnnual)} Carer Supplement</strong> automatically, and the Child Disability Assistance Payment if you care for a child with disability or a severe medical condition.</p>
       </W3Section>
 
@@ -71,7 +71,7 @@ export default function CarerAllowanceContent() {
               <tr><td className={TD + " font-medium"}>What it is</td><td className={TD}>Supplementary payment for daily care</td><td className={TD}>Income support at the pension rate for constant care</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Amount a fortnight</td><td className={TD}>{formatAUD(CA.fortnightly, 2)} set rate</td><td className={TD}>Up to {formatAUD(CARER_PAYMENT_RATES.maxFortnightly.single.total, 2)} single, {formatAUD(CARER_PAYMENT_RATES.maxFortnightly.coupleEach.total, 2)} each couple</td></tr>
               <tr><td className={TD + " font-medium"}>Income test</td><td className={TD}>Combined ATI under {formatAUD(CA.incomeLimit)} a year</td><td className={TD}>Pension income test: 50c per $1 over $226 a fortnight (single)</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Assets test</td><td className={TD}>None</td><td className={TD}>Yes — you and the person you care for</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Assets test</td><td className={TD}>None</td><td className={TD}>Yes: you and the person you care for</td></tr>
               <tr><td className={TD + " font-medium"}>Work</td><td className={TD}>Wages don&apos;t reduce it</td><td className={TD}>Up to {CARER_PAYMENT.workHoursLimit} hours in 4 weeks, and pay reduces it</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Care need</td><td className={TD}>Daily care, for at least 12 months or a terminal condition</td><td className={TD}>Constant care, for at least 6 months or end of life</td></tr>
               <tr><td className={TD + " font-medium"}>Taxable?</td><td className={TD}>No</td><td className={TD}>Only if you or the person you care for are Age Pension age</td></tr>
@@ -83,8 +83,8 @@ export default function CarerAllowanceContent() {
       </W3Section>
 
       <W3Section title="Working While Getting Carer Allowance">
-        <Note>Carer Allowance has no fortnightly income test — Services Australia says &ldquo;your work income won&apos;t affect how much Carer Allowance you get if you and your partner earn less than {formatAUD(CA.incomeLimit)} a year.&rdquo; What matters is that you keep giving daily care and attention to the person, in their home or yours.</Note>
-        <p className={P + " mt-4"}>So a carer earning, say, {formatAUD(1_500)} a fortnight keeps the full {formatAUD(CA.fortnightly, 2)} (if household income is under the limit), while the same wages would take Carer Payment down to {formatAUD(agePensionFortnightly(1_500, "single", CARER_PAYMENT_RATES), 2)} for a single carer. Check your take-home pay on wages plus payments with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link> — Carer Allowance itself adds no tax.</p>
+        <Note>Carer Allowance has no fortnightly income test. Services Australia says &ldquo;your work income won&apos;t affect how much Carer Allowance you get if you and your partner earn less than {formatAUD(CA.incomeLimit)} a year.&rdquo; What matters is that you keep giving daily care and attention to the person, in their home or yours.</Note>
+        <p className={P + " mt-4"}>So a carer earning, say, {formatAUD(1_500)} a fortnight keeps the full {formatAUD(CA.fortnightly, 2)} (if household income is under the limit), while the same wages would take Carer Payment down to {formatAUD(agePensionFortnightly(1_500, "single", CARER_PAYMENT_RATES), 2)} for a single carer. Check your take-home pay on wages plus payments with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>. Carer Allowance itself adds no tax.</p>
       </W3Section>
 
       <W3Section title="Related Calculators and Guides">

@@ -7,7 +7,7 @@ export default function TaxTime2026WhatsNew() {
       <p className="lead">
         Lodging your 2025-26 tax return this year? The Medicare levy low-income thresholds rose,
         the <strong>$2 minimum</strong> for gift deductions was scrapped, and the work-from-home
-        fixed rate holds at <strong>70 cents an hour</strong> — here&apos;s everything that&apos;s
+        fixed rate holds at <strong>70 cents an hour</strong>. Here&apos;s everything that&apos;s
         actually different this tax time.
       </p>
 
@@ -40,7 +40,7 @@ export default function TaxTime2026WhatsNew() {
       <p>
         Low-income Medicare levy thresholds rose 2.9% for 2025-26, backdated to 1 July 2025. The
         singles threshold lifted from $27,222 to $28,011, and the family threshold from $45,907 to
-        $47,238 — see our{" "}
+        $47,238 (see our{" "}
         <Link href="/news/medicare-levy-thresholds-2026/">Medicare levy thresholds explainer</Link>{" "}
         for the full table. The ATO applies this automatically; there&apos;s nothing extra to claim.
       </p>
@@ -50,21 +50,21 @@ export default function TaxTime2026WhatsNew() {
         The fixed rate method for working-from-home expenses stays at 70 cents per hour for
         2025-26, unchanged from 2024-25. You can still separately claim depreciation on assets
         costing more than $300, work-related purchases up to $300, and home office cleaning and
-        repair costs on top of the fixed rate — just keep a record of the hours you worked from
+        repair costs on top of the fixed rate. Just keep a record of the hours you worked from
         home across the year.
       </p>
       <p>
         If you&apos;d rather itemise, you can still use the actual cost method instead of the fixed
         rate, claiming the work-related portion of your actual electricity, internet, phone and
         depreciation costs with supporting records. Most people find the fixed rate simpler unless
-        their actual running costs are unusually high — compare both before you decide which to
+        their actual running costs are unusually high, so compare both before you decide which to
         use on this year&apos;s return.
       </p>
 
       <h2>Smaller changes worth knowing</h2>
       <p>
         The $2 minimum donation threshold for deductible gift recipients has been removed, backdated
-        to gifts made from 1 July 2024, so any eligible gift — no matter how small — is now
+        to gifts made from 1 July 2024, so any eligible gift, no matter how small, is now
         deductible with a receipt (political donations still need to be $2 or more). And if you incur
         general interest charge or shortfall interest charge from 1 July 2025 onward, you can no
         longer claim that interest as a tax deduction on your 2025-26 or later returns.
@@ -81,7 +81,7 @@ export default function TaxTime2026WhatsNew() {
 
       <h2>What this means for your pay</h2>
       <p>
-        None of this year&apos;s changes affect your fortnightly pay packet — they show up in your
+        None of this year&apos;s changes affect your fortnightly pay packet. They show up in your
         refund or tax bill once you lodge. Note that the $1,000 instant deduction does{" "}
         <em>not</em> apply to this year&apos;s return; see our{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">

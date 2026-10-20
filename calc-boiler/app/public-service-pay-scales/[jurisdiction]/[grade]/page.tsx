@@ -39,7 +39,7 @@ function resolve(jurisdiction: string, grade: string) {
 
 function meta(d: NonNullable<ReturnType<typeof resolve>>) {
   const label = d.grade.label;
-  const title = `${label} Salary 2026 — Pay Rates by Agency and After Tax`;
+  const title = `${label} Salary 2026 - Pay Rates by Agency and After Tax`;
   const description = `${label} salary from 12 March 2026: at least ${formatSalary(d.threshold.min)} in every APS agency, median ${formatSalary(d.survey.median ?? 0)}. ATO, Services Australia, Home Affairs, Defence pay points and take-home pay.`;
   return { title, description };
 }

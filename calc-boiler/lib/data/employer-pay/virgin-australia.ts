@@ -65,11 +65,11 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
   casualLoading: 0.25,
   fullTimeWeeklyHours: 36,
   payBasisNote:
-    "Virgin Australia pays cabin crew an annual base salary for a 36-hour week. The hourly figures are the agreement's Base Hourly Rate — full-time salary ÷ 52 ÷ 36 — calculated by us from the November 2025 salaries, because the agreement's printed hourly table stops at November 2024. Each level's salary is in its description.",
+    "Virgin Australia pays cabin crew an annual base salary for a 36-hour week. The hourly figures are the agreement's Base Hourly Rate (full-time salary ÷ 52 ÷ 36), calculated by us from the November 2025 salaries, because the agreement's printed hourly table stops at November 2024. Each level's salary is in its description.",
   rates: [
-    row("Cabin Crew 1 (CC1)", "New cabin crew start here: $56,246.04 a year ($1,081.65 a week) — the 2024 salary plus the 3.5% award-protected rise", 56246.04, true),
-    row("Cabin Crew 2 (CC2)", "$58,409.19 a year — the 2024 salary plus the 3.5% award-protected rise", 58409.19),
-    row("Senior Crew 1 (SC1)", "$60,572.34 a year — the 2024 salary plus the 3.5% award-protected rise", 60572.34),
+    row("Cabin Crew 1 (CC1)", "New cabin crew start here: $56,246.04 a year ($1,081.65 a week), the 2024 salary plus the 3.5% award-protected rise", 56246.04, true),
+    row("Cabin Crew 2 (CC2)", "$58,409.19 a year, the 2024 salary plus the 3.5% award-protected rise", 58409.19),
+    row("Senior Crew 1 (SC1)", "$60,572.34 a year, the 2024 salary plus the 3.5% award-protected rise", 60572.34),
     row("Senior Crew 2 (SC2)", "$65,664 a year", 65664),
     row("Senior Crew 3 (SC3)", "$69,995 a year", 69995),
     row("Senior Crew 4 (SC4)", "$72,162 a year", 72162),
@@ -91,8 +91,8 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
     "Overtime is paid on top of the Base Hourly Rate; the agreement's overtime clause does not apply to casuals (cl 2.12.4).",
   ],
   allowances: [
-    { name: "Daily Travel Allowance — single-day duty", amount: "$8.49 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
-    { name: "Daily Travel Allowance — multi-day trip", amount: "$7.48 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
+    { name: "Daily Travel Allowance, single-day duty", amount: "$8.49 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
+    { name: "Daily Travel Allowance, multi-day trip", amount: "$7.48 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
   ],
   overtime: [
     { when: "Domestic or short haul international: over 9 hours, up to 11", permanent: "+50% (time and a half)", casual: "—" },
@@ -102,13 +102,13 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
     { when: "Roster period: over 144 hours, or over 1,872 hours a calendar year", permanent: "+100%", casual: "—" },
   ],
   notices: [
-    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($57,064.80 a year) for a full-time cabin crew member. The Cabin Crew 1 salary ($56,246.04, or $1,081.65 a week) is lower. Every level's hourly rate is above the award's $28.88 — the weekly figure is lower because the agreement's full-time week is 36 hours, not 38. An agreement's base rate can't be below the award's base rate for the same work (Fair Work Act s 206); if you think your pay falls short, check with the Fair Work Ombudsman or your union.",
-    "The CC1, CC2 and SC1 salaries rose by 3.5% in November 2025, not the 3% printed in the table: the agreement guarantees those levels the Annual Wage Review percentage when it is higher, up to 4%, and the 2025 review gave 3.5%. The figures here apply that rule; your payslip may differ by a cent.",
+    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($57,064.80 a year) for a full-time cabin crew member. The Cabin Crew 1 salary ($56,246.04, or $1,081.65 a week) is lower. Every level's hourly rate is above the award's $28.88; the weekly figure is lower because the agreement's full-time week is 36 hours, not 38. An agreement's base rate can't be below the award's base rate for the same work (Fair Work Act s 206); if you think your pay falls short, check with the Fair Work Ombudsman or your union.",
+    "The CC1, CC2 and SC1 salaries rose by 3.5% in November 2025, not the 3% printed in the table: the agreement gives those levels the Annual Wage Review percentage when it is higher, up to 4%, and the 2025 review gave 3.5%. The figures here apply that rule; your payslip may differ by a cent.",
     "The agreement reached its nominal expiry date on 31 August 2026 and prints no rise after November 2025. Any further increase depends on a new agreement.",
   ],
   unverified: [
-    "Virgin Australia's actual payroll figures for CC1, CC2 and SC1 after the award-protection rule — our calculation, not published by Virgin.",
-    "Whether casual crew receive the public holiday payment — the agreement's casual clause does not say clearly.",
+    "Virgin Australia's actual payroll figures for CC1, CC2 and SC1 after the award-protection rule: our calculation, not published by Virgin.",
+    "Whether casual crew receive the public holiday payment. The agreement's casual clause does not say clearly.",
     "Virgin Australia Regional Airlines cabin crew pay (separate agreement AE525417) and cabin crew management pay.",
   ],
   sources: [

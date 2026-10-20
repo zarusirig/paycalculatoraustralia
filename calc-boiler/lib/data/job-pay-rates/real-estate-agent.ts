@@ -94,7 +94,7 @@ export const REAL_ESTATE_AGENT: Occupation = {
     },
   ],
   sources: [
-    { title: "Real Estate Industry Award 2020 [MA000106] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: REAL_ESTATE_AWARD.url },
+    { title: "Real Estate Industry Award 2020 [MA000106], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: REAL_ESTATE_AWARD.url },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(REAL_ESTATE_MEDIAN),

@@ -39,15 +39,15 @@ export const TAS_NURSING_PAY: NursingStateData = {
   code: "TAS",
   name: "Tasmania",
   shortName: "TAS",
-  metaTitle: "TAS Nurse Pay Rates 2026 — Tasmanian Health Nursing Salary",
-  h1: "TAS Nurse Pay Rates 2026 — Tasmanian Department of Health Nursing Pay Scales",
+  metaTitle: "TAS Nurse Pay Rates 2026 - Tasmanian Health Nursing Salary",
+  h1: "TAS Nurse Pay Rates 2026: Tasmanian Department of Health Nursing Pay Scales",
   employer: "Department of Health Tasmania (Tasmanian State Service)",
   ordinaryHoursPerWeek: 38,
 
   instruments: [
     {
       id: "tas-doh-rates",
-      name: "Nurses and Midwives (Tasmanian State Service) Award and Agreement — salary rates published by the Department of Health",
+      name: "Nurses and Midwives (Tasmanian State Service) Award and Agreement, salary rates published by the Department of Health",
       effectiveFrom: "1 December 2025",
       tribunal: "Tasmanian Industrial Commission",
       source: DOH_SOURCE,
@@ -102,7 +102,7 @@ export const TAS_NURSING_PAY: NursingStateData = {
         { label: "Year 5", annual: 109175 },
       ],
       note:
-        "Progression into Grade 4 is by application, and Year 3 carries a formal capability review — Tasmania gates its steps rather than paying them automatically.",
+        "Progression into Grade 4 is by application, and Year 3 carries a formal capability review: Tasmania gates its steps rather than paying them automatically.",
     },
     {
       classification: "Registered Nurse Grade 5",
@@ -214,7 +214,7 @@ export const TAS_NURSING_PAY: NursingStateData = {
         { label: "Grade 4 Year 5", annual: 109175 },
       ],
       note:
-        "This scale starts at Grade 3 Year 4 — community and family child health nurses enter above the general RN entry point.",
+        "This scale starts at Grade 3 Year 4: community and family child health nurses enter above the general RN entry point.",
     },
     {
       classification: "Registered Undergraduate Nurse",
@@ -234,28 +234,28 @@ export const TAS_NURSING_PAY: NursingStateData = {
 
   derivation: {
     hourly:
-      "not shown — the Department publishes a full-time-equivalent annual salary only, with no hourly rate and no prescribed divisor",
+      "not shown: the Department publishes a full-time-equivalent annual salary only, with no hourly rate and no prescribed divisor",
   },
 
   notReproduced: [],
 
   unverified: [
-    "Shift, weekend and public holiday penalty rates — the Department's salary page publishes base salaries only, and the agreement text has not been read for this page",
+    "Shift, weekend and public holiday penalty rates: the Department's salary page publishes base salaries only, and the agreement text has not been read for this page",
     "An hourly rate for any Tasmanian classification",
-    "A separate nurse practitioner rate — the Department's salary page does not publish one, and we will not guess which grade it maps to",
-    "A separate midwifery scale — Tasmania's published rates cover nurses and midwives together without distinguishing them",
+    "A separate nurse practitioner rate: the Department's salary page does not publish one, and we will not guess which grade it maps to",
+    "A separate midwifery scale: Tasmania's published rates cover nurses and midwives together without distinguishing them",
   ],
 
   verifiedOn: "28 August 2026",
 
   intro:
-    "Tasmania's Department of Health publishes full-time-equivalent salaries for nurses and midwives, effective 1 December 2025. Tasmania numbers its grades differently from every other state: the registered nurse ladder starts at Grade 3, because Grades 1 and 2 are the undergraduate and enrolled nurse classifications. Progression is also gated — the step into Grade 4 requires an application, and Year 3 of Grade 4 carries a formal capability review.",
+    "Tasmania's Department of Health publishes full-time-equivalent salaries for nurses and midwives, effective 1 December 2025. Tasmania numbers its grades differently from every other state: the registered nurse ladder starts at Grade 3, because Grades 1 and 2 are the undergraduate and enrolled nurse classifications. Progression is also gated: the step into Grade 4 requires an application, and Year 3 of Grade 4 carries a formal capability review.",
 
   highlights: [
-    "The registered nurse scale starts at Grade 3, not Grade 1 — Grades 1 and 2 are undergraduate and enrolled nurse.",
+    "The registered nurse scale starts at Grade 3, not Grade 1. Grades 1 and 2 are undergraduate and enrolled nurse.",
     "Registered Nurse Grade 3 Year 1 is $80,524 a year, and the grade runs to $102,295 at Year 9.",
     "Enrolled Nurse Grade 2 Year 4 lands on exactly the Registered Nurse Grade 3 Year 1 salary.",
     "Progression into Grade 4 requires an application and Year 3 requires a formal capability review, so the ladder is not automatic.",
-    "The Department's page names the 2019 agreement while the Tasmanian Industrial Commission lists a 2023 agreement as current — check which one your payslip cites.",
+    "The Department's page names the 2019 agreement while the Tasmanian Industrial Commission lists a 2023 agreement as current. Check which one your payslip cites.",
   ],
 };

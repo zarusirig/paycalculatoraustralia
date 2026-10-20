@@ -82,7 +82,7 @@ export const AGENCY_SCALES: readonly AgencyScale[] = [
     effectiveFrom: "12 March 2026",
     source: {
       id: "ato-ea",
-      title: "ATO Enterprise Agreement 2024 — Attachment A, Schedule 1: Pay rates",
+      title: "ATO Enterprise Agreement 2024, Attachment A, Schedule 1: Pay rates",
       publisher: "Australian Taxation Office",
       url: "https://www.ato.gov.au/careers/why-join-us/salary-leave-and-conditions/ato-enterprise-agreement-2024/attachments/attachment-a",
       effectiveFrom: "12 March 2026",
@@ -106,7 +106,7 @@ export const AGENCY_SCALES: readonly AgencyScale[] = [
     effectiveFrom: "12 March 2026",
     source: {
       id: "services-australia-ea",
-      title: "Services Australia Enterprise Agreement 2024–2027 — Table C1, General Employment Stream",
+      title: "Services Australia Enterprise Agreement 2024–2027, Table C1, General Employment Stream",
       publisher: "Services Australia",
       url: "https://www.servicesaustralia.gov.au/sites/default/files/2024-04/services-australia-agreement-2024-2027.pdf",
       effectiveFrom: "12 March 2026",
@@ -130,7 +130,7 @@ export const AGENCY_SCALES: readonly AgencyScale[] = [
     effectiveFrom: "12 March 2026",
     source: {
       id: "home-affairs-ea",
-      title: "Department of Home Affairs Enterprise Agreement 2024–27 — Attachment A, general salary table",
+      title: "Department of Home Affairs Enterprise Agreement 2024–27, Attachment A, general salary table",
       publisher: "Department of Home Affairs",
       url: "https://www.homeaffairs.gov.au/ea/Documents/enterprise-agreement-2024-27.pdf",
       effectiveFrom: "12 March 2026",
@@ -162,7 +162,7 @@ export const AGENCY_SCALES: readonly AgencyScale[] = [
     effectiveFrom: "12 March 2026",
     source: {
       id: "defence-deca",
-      title: "Defence Enterprise Collective Agreement 2024 — Annex A, Table 1: Standard classifications",
+      title: "Defence Enterprise Collective Agreement 2024, Annex A, Table 1: Standard classifications",
       publisher: "Department of Defence",
       url: "https://www.defence.gov.au/sites/default/files/2024-04/Defence-Enterprise-Collective-Agreement-2024.pdf",
       effectiveFrom: "12 March 2026",

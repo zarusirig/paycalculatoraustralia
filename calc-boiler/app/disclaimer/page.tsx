@@ -9,7 +9,7 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/disclaimer/`;
-const TITLE = "Disclaimer — Pay Calculator Australia";
+const TITLE = "Disclaimer - Pay Calculator Australia";
 const DESCRIPTION =
   "Pay Calculator Australia gives general information and estimates only. It is not financial, tax, legal or employment advice.";
 

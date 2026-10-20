@@ -50,8 +50,8 @@ export const WA_NURSING_PAY: NursingStateData = {
   code: "WA",
   name: "Western Australia",
   shortName: "WA",
-  metaTitle: "WA Nurse Pay Rates 2026 — WA Health Nursing & Midwifery Salary",
-  h1: "WA Nurse Pay Rates 2026 — WA Health Nursing & Midwifery Pay Scales",
+  metaTitle: "WA Nurse Pay Rates 2026 - WA Health Nursing & Midwifery Salary",
+  h1: "WA Nurse Pay Rates 2026: WA Health Nursing & Midwifery Pay Scales",
   employer: "WA health service providers (WA Country Health Service, East/North/South Metropolitan and Child and Adolescent Health Services)",
   ordinaryHoursPerWeek: 38,
 
@@ -197,7 +197,7 @@ export const WA_NURSING_PAY: NursingStateData = {
   penalties: [
     {
       instrumentId: "wa-anf-2024",
-      clause: "clause 26 — Shift Work Allowances",
+      clause: "clause 26, Shift Work Allowances",
       rows: [
         {
           label: "Afternoon shift",
@@ -224,7 +224,7 @@ export const WA_NURSING_PAY: NursingStateData = {
 
   derivation: {
     hourly:
-      "not shown — neither WA agreement publishes an hourly rate, and neither prescribes a divisor for converting the salary, so this page does not print one",
+      "not shown: neither WA agreement publishes an hourly rate, and neither prescribes a divisor for converting the salary, so this page does not print one",
   },
 
   notReproduced: [
@@ -234,7 +234,7 @@ export const WA_NURSING_PAY: NursingStateData = {
   ],
 
   unverified: [
-    "An hourly rate for any WA classification — neither agreement publishes one",
+    "An hourly rate for any WA classification, as neither agreement publishes one",
     "The nurse practitioner's actual level, which the employer sets by work value assessment case by case",
     "Public holiday penalty rates and overtime multipliers",
   ],

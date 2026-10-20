@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employee-vs-sole-trader-vs-company/`;
-const TITLE = "Employee vs Sole Trader vs Company — Which Pays More?";
+const TITLE = "Employee vs Sole Trader vs Company - Which Pays More?";
 const DESCRIPTION = "Compare employee, sole trader and company structures in Australia: tax rates, super, liability, GST and take-home pay at different income levels.";
 
 export const metadata: Metadata = withFeaturedImage({

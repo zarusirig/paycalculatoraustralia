@@ -25,15 +25,15 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim deductions without receipts?",
-    a: "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. Laundry of eligible work clothing allows claims up to $150 without written records. The ATO accepts digital records — photos of receipts and accounting apps are valid evidence.",
+    a: "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. Laundry of eligible work clothing allows claims up to $150 without written records. The ATO accepts digital records: photos of receipts and accounting apps are valid evidence.",
   },
   {
     q: "How do I claim deductions?",
-    a: "You claim deductions when you lodge your annual tax return, either through myTax (the ATO's free online tool) or through a registered tax agent. Deductions are entered in the \"Deductions\" section of your return. Your employer does not need to approve them — they are assessed by the ATO.",
+    a: "You claim deductions when you lodge your annual tax return, either through myTax (the ATO's free online tool) or through a registered tax agent. Deductions are entered in the \"Deductions\" section of your return. Your employer does not need to approve them, as they are assessed by the ATO.",
   },
   {
     q: "Do deductions reduce my tax or my taxable income?",
-    a: `Deductions reduce your taxable income, which then reduces the amount of tax calculated on that income. A ${formatAUD(DEDUCTION)} deduction does not save you ${formatAUD(DEDUCTION)} in tax — it saves you ${formatAUD(DEDUCTION)} multiplied by your marginal tax rate. At the ${pct(thirty)} bracket, a ${formatAUD(DEDUCTION)} deduction saves ${formatAUD(DEDUCTION * thirty)} in tax.`,
+    a: `Deductions reduce your taxable income, which then reduces the amount of tax calculated on that income. A ${formatAUD(DEDUCTION)} deduction does not save you ${formatAUD(DEDUCTION)} in tax. It saves you ${formatAUD(DEDUCTION)} multiplied by your marginal tax rate. At the ${pct(thirty)} bracket, a ${formatAUD(DEDUCTION)} deduction saves ${formatAUD(DEDUCTION * thirty)} in tax.`,
   },
   {
     q: "How much tax do deductions save?",

@@ -41,7 +41,7 @@ export default function SourceAttribution({
                 {source.title}
                 <ExternalLink className="h-3 w-3" aria-hidden="true" />
               </a>
-              <span className="ml-1 text-warmgray-light">— {source.publisher}</span>
+              <span className="text-warmgray-light">, {source.publisher}</span>
             </div>
           </li>
         ))}

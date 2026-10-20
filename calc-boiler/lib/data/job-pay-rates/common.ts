@@ -36,7 +36,7 @@ export const ALL_OCCUPATIONS_MEDIAN_WEEKLY = 1_852;
 
 export function jsaSource(median: MedianEarnings): OccupationSource {
   return {
-    title: `${median.anzscoTitle} (ANZSCO ${median.anzscoCode}) occupation profile — ABS Survey of Employee Earnings and Hours, May 2025`,
+    title: `${median.anzscoTitle} (ANZSCO ${median.anzscoCode}) occupation profile, ABS Survey of Employee Earnings and Hours, May 2025`,
     publisher: "Jobs and Skills Australia",
     url: median.url,
   };

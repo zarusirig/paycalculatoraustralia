@@ -28,14 +28,14 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         Austudy, ABSTUDY, Youth Disability Support Pension and Carer Allowance, along with the
         income tests that apply to them. Youth Allowance and Austudy&apos;s single, away-from-home
         maximum basic rate rose by $13.90 to $677.20 a fortnight, and ABSTUDY&apos;s independent
-        single rate for those aged 16 to 21 moved to match it. Other categories — living at home,
-        living away with dependents, or partnered — also moved, though by different dollar
+        single rate for those aged 16 to 21 moved to match it. Other categories (living at home,
+        living away with dependents, or partnered) also moved, though by different dollar
         amounts, since each rate is indexed against the same movement in the Consumer Price Index
         but starts from a different base.
       </p>
       <p>
-        The Youth Disability Support Pension — the rate of Disability Support Pension paid to
-        recipients under 21 — rose by up to $17.20 a fortnight, taking the rate for those living
+        The Youth Disability Support Pension (the rate of Disability Support Pension paid to
+        recipients under 21) rose by up to $17.20 a fortnight, taking the rate for those living
         independently to $839.80. If you&apos;re not sure which category applies to you, your
         Centrelink online account shows your specific payment rate and the date it was last
         reviewed, rather than the general headline figures reported in the media.
@@ -47,10 +47,10 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         to $162.60. Because Carer Allowance is a supplementary payment rather than an
         income-support payment, it can be paid on top of Carer Payment, a wage, or another
         Centrelink payment, and it isn&apos;t means-tested against the recipient&apos;s own income
-        the way most other payments are — instead it&apos;s tied to the care needs of the person
+        the way most other payments are. Instead it&apos;s tied to the care needs of the person
         being cared for. Alongside the rate rises, the student and apprentice income-free area
-        increased to $539 a fortnight, and the upper income threshold — the point where the
-        taper steps up from 50 cents to 60 cents in the dollar — rose to $646.
+        increased to $539 a fortnight, and the upper income threshold (the point where the
+        taper steps up from 50 cents to 60 cents in the dollar) rose to $646.
       </p>
       <p>
         These income test changes matter as much as the base rate rise for students working
@@ -62,7 +62,7 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
       <h2>Why January is different from March and September</h2>
       <p>
         Age Pension, JobSeeker and other pension-type payments follow their own indexation
-        timetable — 20 March and 20 September each year — so they weren&apos;t part of this round.
+        timetable (20 March and 20 September each year), so they weren&apos;t part of this round.
         January indexation instead targets younger claimants and carers, reflecting movements in
         the Consumer Price Index over the preceding six months. Family Tax Benefit and related
         family assistance payments follow a third cycle again, indexed each 1 July to align with

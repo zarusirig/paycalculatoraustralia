@@ -58,15 +58,15 @@ export const TAS: Jurisdiction = {
   headline:
     "A Tasmanian State Service employee at General Stream Band 3 is paid $77,850 to $84,084, at Band 4 $86,325 to $99,237 and at Band 5 $103,290 to $108,307, under the Tasmanian State Service Award as varied by the Public Sector Union Wages Agreement 2025. The General Stream runs from $55,616 at Band 1 to $194,052 at the top of Band 9, from the first full pay period on or after 1 December 2025.",
 
-  metaTitle: "Tasmanian State Service Pay Scales 2026 — Band 1–9 Salaries",
+  metaTitle: "Tasmanian State Service Pay Scales 2026 - Band 1–9 Salaries",
   metaDescription:
     "Tasmanian State Service pay from 1 December 2025: every General Stream Band 1–9 and Professional Stream salary point, from the PSUWA 2025, with take-home pay.",
 
   instrument:
-    "The Tasmanian State Service Award sets the classification structure — a General Stream of Bands 1 to 9 and a Professional Stream of Bands 1 to 6 — and the Public Sector Union Wages Agreement 2025, an industrial agreement under s55 of the Industrial Relations Act 1984 (Tas), sets the salaries in its Schedule 1. The agreement prevails over the award where they differ (clause 6).",
+    "The Tasmanian State Service Award sets the classification structure (a General Stream of Bands 1 to 9 and a Professional Stream of Bands 1 to 6), and the Public Sector Union Wages Agreement 2025, an industrial agreement under s55 of the Industrial Relations Act 1984 (Tas), sets the salaries in its Schedule 1. The agreement prevails over the award where they differ (clause 6).",
 
   payRise:
-    "The agreement makes three increases: 3% from the first full pay period on or after 1 December 2025, 3% from 1 December 2026 and 2.75% from 1 September 2027 (clause 7.1). Before each of the first two, staff up to the top of General Stream Band 5 get an $800 flat structural adjustment, Band 6 gets $600 and Bands 7 and 8 get $500 (clauses 7.2–7.7). The rates on this page are the 1 December 2025 column. The next increase is due from the first full pay period on or after 1 December 2026 — for example Band 1 Range 1 Level 1 rises to $58,108. The agreement runs to 30 June 2028.",
+    "The agreement makes three increases: 3% from the first full pay period on or after 1 December 2025, 3% from 1 December 2026 and 2.75% from 1 September 2027 (clause 7.1). Before each of the first two, staff up to the top of General Stream Band 5 get an $800 flat structural adjustment, Band 6 gets $600 and Bands 7 and 8 get $500 (clauses 7.2–7.7). The rates on this page are the 1 December 2025 column. The next increase is due from the first full pay period on or after 1 December 2026. For example, Band 1 Range 1 Level 1 rises to $58,108. The agreement runs to 30 June 2028.",
 
   schedules: [
     {
@@ -77,7 +77,7 @@ export const TAS: Jurisdiction = {
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 December 2025",
       rangeMeaning:
-        "First and last salary point of the band. Range 2 of a band is reached through an advancement assessment point. Annual salary only — superannuation is paid on top.",
+        "First and last salary point of the band. Range 2 of a band is reached through an advancement assessment point. Annual salary only; superannuation is paid on top.",
       sourceId: "tas-psuwa-2025",
       streams: [
         {
@@ -326,7 +326,7 @@ export const TAS: Jurisdiction = {
   ],
 
   progression: [
-    "Salary points within a range are written Band, Range and Level — Band 4 Range 1 Level 2 is the first Band 4 point. Movement between levels within a range is by annual increment under the Tasmanian State Service Award.",
+    "Salary points within a range are written Band, Range and Level: Band 4 Range 1 Level 2 is the first Band 4 point. Movement between levels within a range is by annual increment under the Tasmanian State Service Award.",
     "Bands 4 to 8 of the General Stream have a second range. Crossing from Range 1 to Range 2 is not automatic: the schedule marks an advancement assessment point between them, so the employee has to be assessed as meeting the higher range's requirements.",
     "Moving from one band to the next is a promotion to a position classified at the higher band. The bands do not overlap: the top of Band 5 is $108,307 and the bottom of Band 6 is $112,990.",
   ],
@@ -341,7 +341,7 @@ export const TAS: Jurisdiction = {
   sources: [
     {
       id: "tas-psuwa-2025",
-      title: "Public Sector Union Wages Agreement 2025 — Schedule 1, Salaries for Tasmanian State Service Award",
+      title: "Public Sector Union Wages Agreement 2025, Schedule 1, Salaries for Tasmanian State Service Award",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0010/855154/Public-Sector-Union-Wages-Agreement-2025.pdf",
       effectiveFrom: "first full pay period on or after 1 December 2025",
@@ -355,7 +355,7 @@ export const TAS: Jurisdiction = {
       url: "https://publicdocumentcentre.education.tas.gov.au/library/Shared%20Documents/Salary-Scales.pdf",
       effectiveFrom: "as at 27 August 2026",
       verifiedOn: VERIFIED,
-      note: "Prints the same Tasmanian State Service Award General and Professional Stream salaries — the second source for every figure on this page.",
+      note: "Prints the same Tasmanian State Service Award General and Professional Stream salaries, the second source for every figure on this page.",
     },
     {
       id: "tas-hoss-june-2026",
@@ -368,9 +368,9 @@ export const TAS: Jurisdiction = {
   ],
 
   unverified: [
-    "Health and Human Services (Tasmanian State Service) Award salaries — a separate award with different figures, used by the Department of Health. Not transcribed here.",
+    "Health and Human Services (Tasmanian State Service) Award salaries: a separate award with different figures, used by the Department of Health. Not transcribed here.",
     "Senior Executive Service remuneration, which is set outside the award and the agreement.",
-    "An employer superannuation rate above the Superannuation Guarantee — the agreement states none.",
+    "An employer superannuation rate above the Superannuation Guarantee. The agreement states none.",
     "Tasmanian teachers, nurses, allied health professionals and other staff on their own agreements (see the teacher and nurse pages).",
     "The 1 December 2026 and 1 September 2027 columns, which are printed in the agreement but are not yet in force, so only the next rise for Band 1 is quoted.",
   ],
@@ -394,7 +394,7 @@ export const TAS: Jurisdiction = {
     },
     {
       q: "What is the Professional Stream?",
-      a: "A parallel stream in the Tasmanian State Service Award for positions that require a professional qualification. Professional Band 1 starts at $79,356 — above General Stream Band 1 — and the stream runs to $228,493 at Professional Band 6.",
+      a: "A parallel stream in the Tasmanian State Service Award for positions that require a professional qualification. Professional Band 1 starts at $79,356 (above General Stream Band 1), and the stream runs to $228,493 at Professional Band 6.",
     },
     {
       q: "Were the December 2025 pay rises back-paid?",

@@ -13,7 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/parenting-payment-calculator/`;
-const TITLE = "Parenting Payment Calculator 2026 — Single & Partnered Rates";
+const TITLE = "Parenting Payment Calculator 2026 - Single & Partnered Rates";
 const DESCRIPTION = `Parenting Payment Single is ${formatAUD(PARENTING_PAYMENT.single.maxFortnightly, 2)} a fortnight and Partnered ${formatAUD(PARENTING_PAYMENT.partnered.maxFortnightly, 2)} from ${PARENTING_PAYMENT.ratesFrom}. What you keep when you work: the ${formatAUD(ppsFreeArea(1), 2)} free area and 40c taper.`;
 
 export const metadata: Metadata = withFeaturedImage({

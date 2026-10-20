@@ -21,7 +21,7 @@ import type { EmployerPay } from "./types";
 import { HOYTS_PAY } from "./hoyts";
 
 const JOB_AD_URL = "https://jobs.dayforcehcm.com/evtelevate/EVT/jobs/22904";
-const SCHEDULE_D = "Higher cinema classification — the award's Schedule D lists the duties at each level";
+const SCHEDULE_D = "Higher cinema classification: the award's Schedule D lists the duties at each level";
 
 export const EVENT_CINEMAS_PAY: EmployerPay = {
   ...HOYTS_PAY,
@@ -58,7 +58,7 @@ export const EVENT_CINEMAS_PAY: EmployerPay = {
   sources: [
     HOYTS_PAY.sources[0],
     HOYTS_PAY.sources[1],
-    { title: "Event Cinemas Macquarie — Cinema Worker Junior (job advertisement: \"Cinema Worker Level 1 BREC Award\")", publisher: "EVT, via Dayforce", url: JOB_AD_URL },
+    { title: "Event Cinemas Macquarie, Cinema Worker Junior (job advertisement: \"Cinema Worker Level 1 BREC Award\")", publisher: "EVT, via Dayforce", url: JOB_AD_URL },
     { title: "Lists of approved agreements 2016–2026 and terminated agreements list (no Event Cinemas agreement)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement" },
   ],
   faqs: [
@@ -68,7 +68,7 @@ export const EVENT_CINEMAS_PAY: EmployerPay = {
     },
     {
       q: "What does Event Cinemas pay on public holidays?",
-      a: "200% of the minimum hourly rate for both permanent and casual staff — $57.12 an hour for a Level 1 crew member. Casuals do not get an extra loading on top.",
+      a: "200% of the minimum hourly rate for both permanent and casual staff: $57.12 an hour for a Level 1 crew member. Casuals do not get an extra loading on top.",
     },
     {
       q: "Does Event Cinemas have an enterprise agreement?",

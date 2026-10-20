@@ -9,11 +9,11 @@
  *
  * Thresholds are explicit and live here, not inside the questions.
  */
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
-import { Decision, DecisionBatch, Route, SiteSignals, type Decision as D, type Opportunity, type PageSignals } from "./schema.mts";
+import { Decision, DecisionBatch, Route, SiteSignals, type Decision as D, type Opportunity } from "./schema.mts";
 import { num as n, type AnswerMap } from "./jev.mts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -99,7 +99,7 @@ for (const [id, j] of Object.entries(J).filter(([, j]) => j.level === "striking"
   const kindGap = kws.filter((k) => k.wants === "calculator" && p.template !== "calculator" && p.template !== "home" && k.vol >= 500);
   if (kindGap.length) findings.push(`searchers want a calculator; page is a ${p.template}: ${kindGap.map((k) => `"${k.kw}"`).join(", ")}`);
   if (!findings.length) { decisions.push({ kind: "no_action", id: nid("striking", p.route), level: "striking", route: p.route, priority: 10, confidence: 0.6, rationale: `Headings, opening and format already cover the striking-distance keywords (min heading coverage ${Math.min(...kws.map((k) => k.headingCovers)).toFixed(2)}). Movement here needs links or authority, not on-page changes.`, evidence: { gsc: p.gsc, keywords: p.ranked.slice(0, 6) }, targetQueries: kws.map((k) => k.kw) }); continue; }
-  orders.push({ kind: "section", id, route: p.route, priority: o.score, keywords: kws.map(({ titleCovers, ...k }) => k), existingHeadings: p.h2s, findings });
+  orders.push({ kind: "section", id, route: p.route, priority: o.score, keywords: kws.map(({ kw, vol, pos, wants, needsTable, headingCovers, openingAnswers }) => ({ kw, vol, pos, wants, needsTable, headingCovers, openingAnswers })), existingHeadings: p.h2s, findings });
 }
 
 // ---------- Cannibal ----------
@@ -119,13 +119,13 @@ for (const [id, j] of Object.entries(J).filter(([, j]) => j.level === "cannibal"
 
 // ---------- Links ----------
 const perSource = new Map<string, number>();
-for (const [id, j] of Object.entries(J).filter(([, j]) => j.level === "links")) {
+for (const j of Object.values(J).filter((j) => j.level === "links")) {
   const route = j.route as string; const a = j.answers; const anchors = j.anchors as string[]; const sources = j.sources as string[];
   let anchor = anchors[Number(String(a.anchor.choice).slice(1))] ?? anchors[0];
   const t = byRoute.get(route)!;
   if (anchor.length > 55) anchor = [...anchors].filter((x) => x.length <= 55).sort((x, y) => x.length - y.length)[0] ?? t.ranked[0]?.kw ?? anchor.slice(0, 55);
   let perTarget = 0;
-  sources.map((from, i) => ({ from, i, p: n(a[`s${i}_needs`]) })).sort((x, y) => y.p - x.p).forEach(({ from, i, p }) => {
+  sources.map((from, i) => ({ from, i, p: n(a[`s${i}_needs`]) })).sort((x, y) => y.p - x.p).forEach(({ from, p }) => {
     if (p < T.linkNeeds) return;
     if (byRoute.get(from)!.outlinks.includes(route)) return;
     if (perTarget >= 3 || (perSource.get(from) ?? 0) >= 3) return;

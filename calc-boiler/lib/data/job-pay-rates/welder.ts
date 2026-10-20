@@ -40,7 +40,7 @@ export const WELDER: Occupation = {
   headline: {
     tableId: "welder",
     label: TRADE.label,
-    why: "a trade-qualified welder or fabricator (Certificate III in Engineering — Fabrication Trade), paid the award's trade rate",
+    why: "a trade-qualified welder or fabricator (Certificate III in Engineering, Fabrication Trade), paid the award's trade rate",
   },
   coverage: [
     "Welders in manufacturing and metal fabrication workshops are covered by the Manufacturing and Associated Industries and Occupations Award 2020 [MA000010]. The award has no single welder rate. It grades welding by the skill the job needs.",
@@ -95,7 +95,7 @@ export const WELDER: Occupation = {
     },
   ],
   sources: [
-    { title: "Manufacturing and Associated Industries and Occupations Award 2020 [MA000010] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000010") },
+    { title: "Manufacturing and Associated Industries and Occupations Award 2020 [MA000010], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000010") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(METAL_MEDIAN),

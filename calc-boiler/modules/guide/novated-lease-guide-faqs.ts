@@ -24,7 +24,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are EVs eligible for novated leasing?",
-    a: `Yes. A battery electric or hydrogen fuel cell car first held and used on or after ${EV_EXEMPTION.firstHeldAndUsedFrom}, on which luxury car tax has never been payable, is exempt from FBT — along with its registration, insurance, servicing and charging. Plug-in hybrids stopped qualifying on ${EV_EXEMPTION.phevExcludedFrom} and are only exempt under a binding arrangement that was already in place and in use before that date. An exempt car is still a reportable fringe benefit. The novated lease calculator carries the current luxury car tax threshold.`,
+    a: `Yes. A battery electric or hydrogen fuel cell car first held and used on or after ${EV_EXEMPTION.firstHeldAndUsedFrom}, on which luxury car tax has never been payable, is exempt from FBT, along with its registration, insurance, servicing and charging. Plug-in hybrids stopped qualifying on ${EV_EXEMPTION.phevExcludedFrom} and are only exempt under a binding arrangement that was already in place and in use before that date. An exempt car is still a reportable fringe benefit. The novated lease calculator carries the current luxury car tax threshold.`,
     links: { "novated lease calculator": CALC },
   },
   {
@@ -37,7 +37,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much FBT do I pay on a novated lease?",
-    a: `Under the employee contribution method you can take it to $0 by contributing the statutory taxable value from post-tax pay — ${pct(FBT.statutoryRate)} of the car's GST-inclusive base value for a full FBT year. Otherwise FBT is ${pct(FBT.rate)} of that value grossed up at ${FBT.grossUpType1}, funded from the same packaging budget. An FBT-exempt electric car needs no contribution at all. The calculator prices both methods on your car.`,
+    a: `Under the employee contribution method you can take it to $0 by contributing the statutory taxable value from post-tax pay: ${pct(FBT.statutoryRate)} of the car's GST-inclusive base value for a full FBT year. Otherwise FBT is ${pct(FBT.rate)} of that value grossed up at ${FBT.grossUpType1}, funded from the same packaging budget. An FBT-exempt electric car needs no contribution at all. The calculator prices both methods on your car.`,
     links: { calculator: CALC },
   },
   {
@@ -55,7 +55,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the residual value and do I have to pay it?",
-    a: `The residual is the amount left at the end of the lease, set as a minimum percentage of the original cost by ATO Taxation Determination TD 93/142 — ${pct(RESIDUAL_MINIMUM_PCT[5])} on a five-year lease, ${pct(RESIDUAL_MINIMUM_PCT[3])} on a three-year one. On a ${formatAUD(RESIDUAL_EXAMPLE_PRICE)} car over five years that is ${formatAUD(minimumResidual(RESIDUAL_EXAMPLE_PRICE, 5))}, paid from after-tax money to own the car outright, refinanced into a new lease, or covered by trading the car in. A lease can be written above the minimum, so read the residual off your quote.`,
+    a: `The residual is the amount left at the end of the lease, set as a minimum percentage of the original cost by ATO Taxation Determination TD 93/142: ${pct(RESIDUAL_MINIMUM_PCT[5])} on a five-year lease, ${pct(RESIDUAL_MINIMUM_PCT[3])} on a three-year one. On a ${formatAUD(RESIDUAL_EXAMPLE_PRICE)} car over five years that is ${formatAUD(minimumResidual(RESIDUAL_EXAMPLE_PRICE, 5))}, paid from after-tax money to own the car outright, refinanced into a new lease, or covered by trading the car in. A lease can be written above the minimum, so read the residual off your quote.`,
   },
   {
     q: "Is there a kilometre limit on a novated lease?",
@@ -63,7 +63,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does a novated lease reduce my HECS-HELP repayment?",
-    a: "Not reliably, and it can raise it. Compulsory repayments are worked out on repayment income — taxable income plus your reportable fringe benefits amount. The lease cuts the first and adds to the second, and because the reported figure is grossed up it can more than replace the taxable income you removed. A full employee contribution takes the reported amount to nil; an FBT-exempt electric car still reports. The novated lease calculator shows both figures and the repayment, and the HECS-HELP calculator has the bands.",
+    a: "Not reliably, and it can raise it. Compulsory repayments are worked out on repayment income: taxable income plus your reportable fringe benefits amount. The lease cuts the first and adds to the second, and because the reported figure is grossed up it can more than replace the taxable income you removed. A full employee contribution takes the reported amount to nil; an FBT-exempt electric car still reports. The novated lease calculator shows both figures and the repayment, and the HECS-HELP calculator has the bands.",
     links: { "novated lease calculator": CALC, "HECS-HELP calculator": "/hecs-help-calculator/" },
   },
 ];

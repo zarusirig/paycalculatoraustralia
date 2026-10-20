@@ -50,7 +50,7 @@ export default function TaxRefundGuidePage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Refund Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Guide — How Tax Returns Work in Australia</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Guide: How Tax Returns Work in Australia</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how tax refunds work, what deductions you can claim, and how to maximise your return. A complete guide to the Australian tax return process for the FY{RY} return you lodge in 2026.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -68,7 +68,7 @@ export default function TaxRefundGuidePage() {
                 Throughout each pay cycle, your employer deducts income tax based on PAYG withholding schedules. These schedules assume you earn the same amount every pay period for the full 12 months. Three common situations create a gap between tax withheld and tax owed: claiming work-related deductions that reduce taxable income, working for only part of the financial year, and receiving tax offsets such as the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>{formatAUD(LITO.maxOffset)}</strong>.
               </p>
               <p>
-                The refund is not free money from the government — it is your own income that was over-withheld. Use our <Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY{RY}.
+                The refund is not free money from the government. It is your own income that was over-withheld. Use our <Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY{RY}.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -182,7 +182,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements offer a separate pathway to reduce taxable income — see our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details.
+                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements offer a separate pathway to reduce taxable income. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details.
               </p>
             </section>
 
@@ -233,7 +233,7 @@ export default function TaxRefundGuidePage() {
                 The ATO says most returns lodged online through myTax process in <strong>{RETURN_2026.onlineProcessingBusinessDays} business days</strong>, with most refunds issued within {RETURN_2026.onlineRefundTypical}. For paper returns, most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>. The ATO deposits refunds directly into the bank account linked to your tax file number (TFN).
               </p>
               <p>
-                Processing times increase during peak lodgment season in July and August. Returns flagged for review — due to unusual deductions, data mismatches, or random audits — take longer. The ATO contacts you via myGov messages if additional information is required.
+                Processing times increase during peak lodgment season in July and August. Returns flagged for review (due to unusual deductions, data mismatches, or random audits) take longer. The ATO contacts you via myGov messages if additional information is required.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Processing Time by Lodgment Method</h3>
@@ -317,7 +317,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. This affects employees who salary sacrifice into super — a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
+                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. This affects employees who salary sacrifice into super: a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
               </p>
               <p>
                 The ATO continues to invest in data-matching technology. Cryptocurrency exchanges, ride-share platforms, short-term rental platforms (Airbnb, Stayz), and the sharing economy reporting regime provide the ATO with third-party transaction data. Unreported income from these sources is increasingly detected during return processing.
@@ -331,15 +331,15 @@ export default function TaxRefundGuidePage() {
                 The Australian tax system connects income tax, superannuation, Medicare, and PAYG withholding into a single framework assessed through your annual tax return. The following tools and guides cover each component in detail.
               </p>
               <ul>
-                <li><Link href="/tax-return-calculator/">Tax Return Estimator</Link> — calculate your expected refund or tax debt based on income, deductions, and PAYG withheld.</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — compute income tax, Medicare levy, and take-home pay at any salary level for FY{SITE_CONFIG.financialYear}.</li>
-                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> — view all Australian income tax brackets with marginal rates, base amounts, and worked examples.</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> — learn how salary packaging into superannuation or novated leases reduces taxable income and increases your refund.</li>
-                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> — understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — review employer SG rate obligations, contribution caps, and the impact of super on your overall tax position.</li>
-                <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — check whether LITO applies to your income and how it reduces your assessed tax liability.</li>
-                <li><Link href="/medicare-levy-surcharge-calculator/">Medicare Levy Surcharge Calculator</Link> — check whether the surcharge applies to you and what hospital cover would save.</li>
-                <li><Link href="/medicare-levy/">Medicare Levy Guide</Link> — learn about the 2% Medicare levy, the surcharge thresholds, and exemptions for low-income earners.</li>
+                <li><Link href="/tax-return-calculator/">Tax Return Estimator</Link>: calculate your expected refund or tax debt based on income, deductions, and PAYG withheld.</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: compute income tax, Medicare levy, and take-home pay at any salary level for FY{SITE_CONFIG.financialYear}.</li>
+                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link>: view all Australian income tax brackets with marginal rates, base amounts, and worked examples.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: learn how salary packaging into superannuation or novated leases reduces taxable income and increases your refund.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link>: understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: review employer SG rate obligations, contribution caps, and the impact of super on your overall tax position.</li>
+                <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: check whether LITO applies to your income and how it reduces your assessed tax liability.</li>
+                <li><Link href="/medicare-levy-surcharge-calculator/">Medicare Levy Surcharge Calculator</Link>: check whether the surcharge applies to you and what hospital cover would save.</li>
+                <li><Link href="/medicare-levy/">Medicare Levy Guide</Link>: learn about the 2% Medicare levy, the surcharge thresholds, and exemptions for low-income earners.</li>
               </ul>
             </section>
 

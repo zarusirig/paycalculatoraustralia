@@ -75,7 +75,7 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is a contractor for tax purposes?",
-    a: "A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor — see our contractor vs employee guide.",
+    a: "A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor. See our contractor vs employee guide.",
     links: { "contractor vs employee guide": "/contractor-vs-employee-calculator/" },
   },
   {
@@ -84,7 +84,7 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to charge GST as a contractor?",
-    a: "If your ABN business turnover is $75,000 or more a year, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO, usually quarterly on your BAS — it's not your income. If you're under $75,000, GST registration is optional.",
+    a: "If your ABN business turnover is $75,000 or more a year, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO, usually quarterly on your BAS. It's not your income. If you're under $75,000, GST registration is optional.",
   },
   {
     q: "Do contractors need to pay super?",
@@ -96,11 +96,11 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can contractors claim business deductions?",
-    a: "Yes. Contractors can deduct legitimate business expenses from their assessable income — including equipment, home office, vehicle, phone, software, professional development, and insurance. This calculator estimates tax on your gross income; your actual tax may be lower after claiming deductions on your tax return.",
+    a: "Yes. Contractors can deduct legitimate business expenses from their assessable income, including equipment, home office, vehicle, phone, software, professional development, and insurance. This calculator estimates tax on your gross income; your actual tax may be lower after claiming deductions on your tax return.",
   },
   {
     q: "How do PAYG instalments work for contractors?",
-    a: `The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on 28 October, 28 February, 28 April, and 28 July. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Paying a PAYG instalment late attracts the general interest charge — ${formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} a year for ${GENERAL_INTEREST_CHARGE.quarter}, reset every quarter.`,
+    a: `The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on 28 October, 28 February, 28 April, and 28 July. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Paying a PAYG instalment late attracts the general interest charge: ${formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} a year for ${GENERAL_INTEREST_CHARGE.quarter}, reset every quarter.`,
   },
   {
     q: "Do I need both an ABN and a TFN as a contractor?",

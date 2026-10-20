@@ -37,8 +37,8 @@ const PROFILE = STATE_PROFILES.TAS;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13f, Tasmania`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — Tasmania", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13f, Tasmania`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Tasmania", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1976)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "TAS payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.tas.ratesUrl, publisher: PAYROLL_TAX_STATES.tas.revenueOffice },
 ];
@@ -104,7 +104,7 @@ export default function PayCalculatorTASPage() {
             <p className="mb-4 text-warmgray">
               Tasmania records the lowest full-time ordinary time earnings of any state or territory at{" "}
               {formatAUD(PROFILE.awote.personsFullTime, 2)} a week. It also records the narrowest gap
-              between men and women anywhere in Australia — {formatAUD(PROFILE.awote.malesFullTime - PROFILE.awote.femalesFullTime, 2)}{" "}
+              between men and women anywhere in Australia: {formatAUD(PROFILE.awote.malesFullTime - PROFILE.awote.femalesFullTime, 2)}{" "}
               a week, against far larger gaps in the resource states.
             </p>
             <AbsEarningsTable profile={PROFILE} />
@@ -112,7 +112,7 @@ export default function PayCalculatorTASPage() {
               Low averages make the award floor more relevant here than almost anywhere else. The
               national minimum wage is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour and{" "}
               {formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} a week for a {EMPLOYMENT.standardWeeklyHours}-hour
-              week — check your award rate in the{" "}
+              week. Check your award rate in the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">award rates guide</Link>.
             </p>
           </section>

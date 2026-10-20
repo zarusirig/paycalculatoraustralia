@@ -69,7 +69,7 @@ export default function CentsPerKmCalculator() {
               </>
             )}
             <p className="text-xs text-warmgray-light">
-              The rate covers all car costs — fuel, registration, insurance, repairs and depreciation — so nothing is added on top. You need a record of how you worked out your kilometres, but no receipts.
+              The rate covers all car costs (fuel, registration, insurance, repairs and depreciation), so nothing is added on top. You need a record of how you worked out your kilometres, but no receipts.
             </p>
           </div>
         </div>

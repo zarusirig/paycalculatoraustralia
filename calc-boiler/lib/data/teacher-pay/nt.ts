@@ -29,7 +29,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   code: "NT",
   name: "Northern Territory",
   nameInSentence: "the Northern Territory",
-  h1: "Northern Territory Teacher Salary 2026 — CT1 to CT9 Pay Scale",
+  h1: "Northern Territory Teacher Salary 2026 - CT1 to CT9 Pay Scale",
   classificationNote:
     "The Northern Territory classifies classroom teachers as CT1 to CT9, with the entry level set by completed years of post-qualification service. Senior teachers are on a separate ST1 to ST8 scale.",
   principalScaleIds: ["principals"],
@@ -48,7 +48,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   scales: [
     {
       id: "classroom-teachers",
-      title: "Classroom teachers — CT1 to CT9",
+      title: "Classroom teachers: CT1 to CT9",
       intro:
         "The main scale. Your entry classification is set by completed years of post-qualification service: less than 12 months starts at CT1, one year at CT2, and so on.",
       stepHeading: "Classification",
@@ -66,7 +66,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "senior-teachers",
-      title: "Senior teachers — ST1 to ST8",
+      title: "Senior teachers: ST1 to ST8",
       intro:
         "Promotion-based classifications, not steps you age into. Levels are set by the NTPS Job Evaluation System against the NTPS Capability Framework.",
       stepHeading: "Classification",
@@ -83,7 +83,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "principals",
-      title: "Principals — PLO1 to PLO7 (non-contract)",
+      title: "Principals: PLO1 to PLO7 (non-contract)",
       intro:
         "Each principal band has two pay points. Levels are promotion-based and set by the NTPS Job Evaluation System; movement between the two points within a band is by the pay progression scheme.",
       stepHeading: "Classification",
@@ -106,7 +106,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "aboriginal-team-teachers",
-      title: "Aboriginal team teachers — AT1 to AT7, and authorised persons",
+      title: "Aboriginal team teachers: AT1 to AT7, and authorised persons",
       intro:
         "A separate NT classification structure with its own salary scale under the same agreement.",
       stepHeading: "Classification",
@@ -129,7 +129,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     {
       heading: "You start at the classification your completed years buy",
       body: [
-        "Clause 37.4: a teacher with less than 12 months of post-qualification experience commences as a CT1. A teacher with more than 12 months is appointed at a classification that recognises their completed years of service — one year of experience means CT2, and so on.",
+        "Clause 37.4: a teacher with less than 12 months of post-qualification experience commences as a CT1. A teacher with more than 12 months is appointed at a classification that recognises their completed years of service: one year of experience means CT2, and so on.",
         "The recognition is done under the Salary Assessment Procedure, and only completed years count.",
       ],
     },
@@ -157,7 +157,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
       heading: "Principals move within a band only on performance",
       body: [
         "Clause 40: pay progression for principals is based on high performance and is not automatic. Participation is not mandatory and applications are at the principal's discretion.",
-        "To be eligible you need at least 12 months service at a principal classification, a 12-month performance agreement with satisfactory performance against it, and a submission made in advance of the annual assessment date demonstrating at least one of the progression criteria — sustained superior performance, successful increased duties, new projects with significant results, applied specialist expertise, or sustained leadership measured against the AITSL Professional Standard for Principals.",
+        "To be eligible you need at least 12 months service at a principal classification, a 12-month performance agreement with satisfactory performance against it, and a submission made in advance of the annual assessment date demonstrating at least one of the progression criteria: sustained superior performance, successful increased duties, new projects with significant results, applied specialist expertise, or sustained leadership measured against the AITSL Professional Standard for Principals.",
       ],
     },
     {
@@ -173,14 +173,14 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   ],
 
   unverified: [
-    "Assistant principal and deputy principal salaries — the NT has no such salary classification. The agreement mentions assistant principal only as a workload rule, and NT leadership pay runs Senior Teacher ST1-ST8 and Principal PLO1-PLO7.",
-    "Executive contract principal (PLEC) rates — published as total remuneration packages including superannuation and a vehicle, not base salaries, so they are not comparable to the tables above and are not shown.",
+    "Assistant principal and deputy principal salaries: the NT has no such salary classification. The agreement mentions assistant principal only as a workload rule, and NT leadership pay runs Senior Teacher ST1-ST8 and Principal PLO1-PLO7.",
+    "Executive contract principal (PLEC) rates are published as total remuneration packages including superannuation and a vehicle, not base salaries, so they are not comparable to the tables above and are not shown.",
     "Remote and district allowances, which are substantial in the NT but vary by location and are not a salary rate.",
   ],
 
   sources: [
     {
-      title: "Rates of pay — teachers and educators (rates effective 1 January 2026)",
+      title: "Rates of pay, teachers and educators (rates effective 1 January 2026)",
       publisher: "NT Office of the Commissioner for Public Employment",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/rates-of-pay/teachers-and-educators",
     },
@@ -206,7 +206,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How do NT teachers move up the pay scale?",
-      a: "One increment after each 12 months of service, continuous or broken, and each increment must be held for 12 months before the next. Unusually, the agreement says an annual increment will only be withheld as an outcome of inability or discipline procedures — not as a performance rating.",
+      a: "One increment after each 12 months of service, continuous or broken, and each increment must be held for 12 months before the next. Unusually, the agreement says an annual increment will only be withheld as an outcome of inability or discipline procedures, not as a performance rating.",
     },
     {
       q: "What is Rapid Incremental Progression in the NT?",

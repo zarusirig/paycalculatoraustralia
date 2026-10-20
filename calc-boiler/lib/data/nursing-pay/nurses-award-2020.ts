@@ -44,12 +44,12 @@ export const NURSES_AWARD = {
 
 export const NURSES_AWARD_SOURCES: readonly RateSource[] = [
   {
-    title: "Nurses Award 2020 [MA000034] — consolidated award text",
+    title: "Nurses Award 2020 [MA000034], consolidated award text",
     url: "https://awards.fairwork.gov.au/MA000034.html",
     publisher: "Fair Work Ombudsman",
   },
   {
-    title: "Work value case — nurses and midwives (AM2024/11)",
+    title: "Work value case, nurses and midwives (AM2024/11)",
     url: "https://www.fwc.gov.au/hearings-decisions/major-cases/work-value-case-nurses-and-midwives",
     publisher: "Fair Work Commission",
   },

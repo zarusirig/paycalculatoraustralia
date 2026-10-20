@@ -13,7 +13,7 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Income tax rates for individuals", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: "Stage 3 tax cuts — Treasury fact sheet", url: "https://treasury.gov.au/tax-cuts", publisher: "Australian Treasury" },
+  { title: "Stage 3 tax cuts, Treasury fact sheet", url: "https://treasury.gov.au/tax-cuts", publisher: "Australian Treasury" },
   { title: "Historical tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
 
@@ -23,7 +23,7 @@ export default function Stage3TaxCutsPage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Stage 3 Tax Cuts</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Stage 3 Tax Cuts — How Much More You Take Home</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Stage 3 Tax Cuts: How Much More You Take Home</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">The revised Stage 3 tax cuts took effect on 1 July 2024, changing tax brackets for every Australian taxpayer earning above $18,200. This guide shows exactly how much you save compared to the old rates, with a full before-and-after comparison at every income level.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -33,7 +33,7 @@ export default function Stage3TaxCutsPage() {
 
             {/* ───── SECTION 1: What Changed ───── */}
             <section id="what-changed">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed — Original vs Revised Plan</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed: Original vs Revised Plan</h2>
               <p>
                 The Stage 3 tax cuts were originally legislated in 2019 as part of a three-stage plan. The original design collapsed three tax brackets into two, creating a single <strong>30% rate from $45,001 to $200,000</strong>. In January 2024, the government announced a <strong>revised plan</strong> that instead reduced the bottom rate from 19% to 16%, kept more brackets, and spread the benefit more widely.
               </p>
@@ -65,7 +65,7 @@ export default function Stage3TaxCutsPage() {
 
             {/* ───── SECTION 2: Before & After Comparison ───── */}
             <section id="before-after">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before &amp; After — Tax Savings at Every Income Level</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before &amp; After: Tax Savings at Every Income Level</h2>
               <p>
                 The following table compares the income tax payable under the <strong>pre-Stage 3 rates (FY2023-24)</strong> versus the <strong>revised Stage 3 rates (FY2024-25 and FY2025-26)</strong>. All figures exclude Medicare levy and tax offsets, showing pure income tax only. From 1 July 2026 the 15% rate adds up to $268 a year on top of these savings (1 percentage point on the $26,800 between $18,200 and $45,000).
               </p>
@@ -134,7 +134,7 @@ export default function Stage3TaxCutsPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>High-Income Earners ($135,001 – $190,000)</h3>
               <p>
-                This group receives smaller savings under the revised plan compared to the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong> — still substantial, but less than the $3,975 that the original plan would have delivered.
+                This group receives smaller savings under the revised plan compared to the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong>, still substantial, but less than the $3,975 that the original plan would have delivered.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Very High-Income Earners ($190,001+)</h3>
@@ -145,7 +145,7 @@ export default function Stage3TaxCutsPage() {
 
             {/* ───── SECTION 4: Timeline ───── */}
             <section id="timeline">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Timeline — How We Got Here</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Timeline: How We Got Here</h2>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
@@ -156,12 +156,12 @@ export default function Stage3TaxCutsPage() {
                       <tr><td className="px-5 py-3 font-medium">2018-19 Budget</td><td className="px-5 py-3">Three-stage Personal Income Tax Plan announced by Morrison government</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2018</td><td className="px-5 py-3"><strong>Stage 1:</strong> Low and Middle Income Tax Offset (LMITO) introduced, worth up to $530</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2020</td><td className="px-5 py-3"><strong>Stage 2:</strong> 19% bracket extended from $37,000 to $45,000; 32.5% bracket extended from $90,000 to $120,000</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">June 2022</td><td className="px-5 py-3">LMITO (Stage 1) expired — not extended by the new Albanese government</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">25 January 2024</td><td className="px-5 py-3">Albanese government announces <strong>revised Stage 3</strong> — reduces bottom rate to 16%, retains 37% bracket, extends 30% bracket to $135,000</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">June 2022</td><td className="px-5 py-3">LMITO (Stage 1) expired and was not extended by the new Albanese government</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">25 January 2024</td><td className="px-5 py-3">Albanese government announces <strong>revised Stage 3</strong>: reduces bottom rate to 16%, retains 37% bracket, extends 30% bracket to $135,000</td></tr>
                       {/* Assent date verified at legislation.gov.au C2024A00003 (Act No. 3, 2024). */}
                       <tr><td className="px-5 py-3 font-medium">5 March 2024</td><td className="px-5 py-3">Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2024 receives Royal Assent</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">1 July 2024</td><td className="px-5 py-3"><strong>Revised Stage 3 takes effect</strong> — new tax brackets apply from FY2024-25</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">1 July 2025</td><td className="px-5 py-3">FY2025-26 begins — same brackets continue. SG rate increases to 12%</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">1 July 2024</td><td className="px-5 py-3"><strong>Revised Stage 3 takes effect</strong>: new tax brackets apply from FY2024-25</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">1 July 2025</td><td className="px-5 py-3">FY2025-26 begins and the same brackets continue. SG rate increases to 12%</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2026</td><td className="px-5 py-3">16% rate cut to <strong>15%</strong> (legislated in March 2025); a further cut to 14% is legislated from 1 July 2027</td></tr>
                     </tbody>
                   </table>

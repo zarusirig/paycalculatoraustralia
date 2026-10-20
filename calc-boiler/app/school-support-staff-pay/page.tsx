@@ -10,7 +10,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // salary 1.3k.
 
 const SLUG = "school-support-staff-pay";
-const TITLE = "Teacher Aide Pay by State 2026 — School Support Staff Pay Rates";
+const TITLE = "Teacher Aide Pay by State 2026 - School Support Staff Pay Rates";
 const DESCRIPTION =
   "Teacher aide pay in government schools by state: NSW SLSO, VIC Education Support, QLD teacher aide, WA Education Assistant and SA SSO rates, with take-home pay.";
 const URL = `https://pay-calculator-australia.com/${SLUG}/`;

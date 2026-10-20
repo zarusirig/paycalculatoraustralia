@@ -28,7 +28,7 @@ import type { EmployerPay } from "./types";
 
 const AWARD_URL = "https://awards.fairwork.gov.au/MA000091.html";
 const PAY_GUIDE_URL = "https://calculate.fairwork.gov.au/payguides/fairwork/ma000091/pdf";
-const SCHEDULE_D = "Higher cinema classification — the award's Schedule D lists the duties at each level";
+const SCHEDULE_D = "Higher cinema classification: the award's Schedule D lists the duties at each level";
 
 export const HOYTS_PAY: EmployerPay = {
   slug: "hoyts",
@@ -41,7 +41,7 @@ export const HOYTS_PAY: EmployerPay = {
     reference: "MA000091",
     url: AWARD_URL,
     coverage:
-      "Hoyts advertises its cinema crew roles as classified under this award (Part 10 — Cinemas), and we found no current Hoyts enterprise agreement. Cinema employers are not covered by the Hospitality or Restaurant awards, so food and bar crew at Hoyts LUX are paid under this award too.",
+      "Hoyts advertises its cinema crew roles as classified under this award (Part 10, Cinemas), and we found no current Hoyts enterprise agreement. Cinema employers are not covered by the Hospitality or Restaurant awards, so food and bar crew at Hoyts LUX are paid under this award too.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: null,
@@ -101,8 +101,8 @@ export const HOYTS_PAY: EmployerPay = {
   ],
   sources: [
     { title: "Broadcasting, Recorded Entertainment and Cinemas Award 2020 (MA000091), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },
-    { title: "Pay guide — Broadcasting, Recorded Entertainment and Cinemas Award, effective 1 July 2026", publisher: "Fair Work Ombudsman", url: PAY_GUIDE_URL },
-    { title: "LUX Crew Member — HOYTS Broadway (job advertisement stating the award and Cinema Worker Level 2)", publisher: "Hoyts, via Talent.com", url: "https://au.talent.com/view?id=635476876508865008" },
+    { title: "Pay guide: Broadcasting, Recorded Entertainment and Cinemas Award, effective 1 July 2026", publisher: "Fair Work Ombudsman", url: PAY_GUIDE_URL },
+    { title: "LUX Crew Member, HOYTS Broadway (job advertisement stating the award and Cinema Worker Level 2)", publisher: "Hoyts, via Talent.com", url: "https://au.talent.com/view?id=635476876508865008" },
   ],
   faqs: [
     {
@@ -119,7 +119,7 @@ export const HOYTS_PAY: EmployerPay = {
     },
     {
       q: "What does Hoyts pay on public holidays?",
-      a: "200% of the minimum hourly rate for both permanent and casual staff — $58.50 an hour for a Level 2 crew member. Casuals do not get an extra loading on top.",
+      a: "200% of the minimum hourly rate for both permanent and casual staff: $58.50 an hour for a Level 2 crew member. Casuals do not get an extra loading on top.",
     },
     {
       q: "Does Hoyts have an enterprise agreement?",

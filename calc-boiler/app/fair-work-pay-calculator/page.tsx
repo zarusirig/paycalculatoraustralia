@@ -9,7 +9,7 @@ import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "fair-work-pay-calculator";
-const TITLE = `Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear} — How It Works & Rates`;
+const TITLE = `Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear} - How It Works & Rates`;
 const DESCRIPTION = `How the Fair Work pay calculator (PACT) works, the ${SITE_CONFIG.financialYear} award base rates for ${AWARD_DIRECTORY.length} awards from ${formatAUD(NMW.hourly, 2)} an hour, and a checker for your own payslip rate.`;
 
 export const metadata: Metadata = withFeaturedImage({

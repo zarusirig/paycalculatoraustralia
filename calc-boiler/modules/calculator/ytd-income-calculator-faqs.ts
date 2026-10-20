@@ -25,11 +25,11 @@ export const YTD_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does YTD gross include superannuation?",
-    a: `No. Employer superannuation guarantee contributions (${formatPercent(SUPER_GUARANTEE.rate, 0)} in FY${SITE_CONFIG.financialYear}) are paid on top of your gross salary and tracked in a separate YTD super column. YTD gross only covers your own earnings — salary, overtime, bonuses, allowances, and leave payments.`,
+    a: `No. Employer superannuation guarantee contributions (${formatPercent(SUPER_GUARANTEE.rate, 0)} in FY${SITE_CONFIG.financialYear}) are paid on top of your gross salary and tracked in a separate YTD super column. YTD gross only covers your own earnings: salary, overtime, bonuses, allowances, and leave payments.`,
   },
   {
     q: "Why doesn't my YTD match my own calculation?",
-    a: "The usual culprits are pays that landed just before or after 1 July, a mid-year pay rise (so not every pay was the same amount), one-off payments like bonuses or leave loading, or unpaid leave reducing a pay cycle. Count the actual payslips issued since 1 July and add each gross amount — the running total should reconcile exactly. If it still doesn't, ask payroll to check.",
+    a: "The usual culprits are pays that landed just before or after 1 July, a mid-year pay rise (so not every pay was the same amount), one-off payments like bonuses or leave loading, or unpaid leave reducing a pay cycle. Count the actual payslips issued since 1 July and add each gross amount. The running total should reconcile exactly. If it still doesn't, ask payroll to check.",
   },
   {
     q: "Does YTD reset on 1 July?",
@@ -37,10 +37,10 @@ export const YTD_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How do banks use YTD income on loan applications?",
-    a: "Lenders annualise the YTD gross on your most recent payslips — dividing by the number of pay cycles elapsed and multiplying out to a full year — and cross-check the result against your stated salary and employment contract. Early in the financial year, many lenders will also ask for last year's income statement because a small YTD sample is less reliable.",
+    a: "Lenders annualise the YTD gross on your most recent payslips (dividing by the number of pay cycles elapsed and multiplying out to a full year) and cross-check the result against your stated salary and employment contract. Early in the financial year, many lenders will also ask for last year's income statement because a small YTD sample is less reliable.",
   },
   {
-    q: "I started my job part-way through the year — how do I annualise?",
+    q: "I started my job part-way through the year. How do I annualise?",
     a: `Count pays from your first payslip rather than from 1 July. If you have received ${MID_PAYS} fortnightly pays of ${formatAUD(MID_PAY)} since starting, your annualised income is ${formatAUD(MID_PAY)} × 26 = ${formatAUD(MID_PAY * 26)} even though your YTD shows only ${formatAUD(MID_PAY * MID_PAYS)}. Enter the actual number of pays you have received into the calculator above and it handles this correctly.`,
   },
 ];

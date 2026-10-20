@@ -53,9 +53,9 @@ export default function CommonwealthSeniorsHealthCardPage({ children: content, a
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Commonwealth Seniors Health Card" title="Commonwealth Seniors Health Card 2026 — Income Limit and Eligibility Check">
+        <W3Hero crumb="Commonwealth Seniors Health Card" title="Commonwealth Seniors Health Card 2026: Income Limit and Eligibility Check">
           <p>
-            From {CSHC.limitsFrom} you can get the Commonwealth Seniors Health Card if you are Age Pension age ({AGE_PENSION_AGE}), don&apos;t get a pension or other income support payment, and your adjusted taxable income is <strong>less than {formatAUD(CSHC.incomeLimit.single)} a year</strong> (single) or <strong>{formatAUD(CSHC.incomeLimit.couple)}</strong> (couple, combined). There is <strong>no assets test</strong>, and no work test — your wages count as income, and an account-based pension is deemed to earn income.
+            From {CSHC.limitsFrom} you can get the Commonwealth Seniors Health Card if you are Age Pension age ({AGE_PENSION_AGE}), don&apos;t get a pension or other income support payment, and your adjusted taxable income is <strong>less than {formatAUD(CSHC.incomeLimit.single)} a year</strong> (single) or <strong>{formatAUD(CSHC.incomeLimit.couple)}</strong> (couple, combined). There is <strong>no assets test</strong>, and no work test. Your wages count as income, and an account-based pension is deemed to earn income.
           </p>
         </W3Hero>
 
@@ -90,7 +90,7 @@ export default function CommonwealthSeniorsHealthCardPage({ children: content, a
                     <div className="text-sm text-navy mt-3 pt-3 border-t border-sandstone-dark/20">
                       {r.eligible
                         ? <>You could have about <strong>{formatAUD(Math.max(0, r.headroom - 0.01), 2)}</strong> more taxable income a year and still pass.</>
-                        : <>You are <strong>{formatAUD(-r.headroom, 2)}</strong> over. You must be <em>under</em> the limit — reaching it exactly doesn&apos;t pass.</>}
+                        : <>You are <strong>{formatAUD(-r.headroom, 2)}</strong> over. You must be <em>under</em> the limit. Reaching it exactly doesn&apos;t pass.</>}
                     </div>
                   </div>
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
@@ -106,7 +106,7 @@ export default function CommonwealthSeniorsHealthCardPage({ children: content, a
                       <Row label={r.eligible ? "Room under the limit" : "Over the limit by"} value={formatAUD(Math.abs(r.headroom), 2)} bold highlight />
                     </div>
                   </div>
-                  <p className="text-xs text-warmgray-light">You also need to be Age Pension age, meet the residence rules, not get an income support payment, and give your tax file number. Grandfathered income streams (held before 1 January 2015 with a card granted before then) are not deemed — leave their balance out.</p>
+                  <p className="text-xs text-warmgray-light">You also need to be Age Pension age, meet the residence rules, not get an income support payment, and give your tax file number. Grandfathered income streams (held before 1 January 2015 with a card granted before then) are not deemed. Leave their balance out.</p>
                 </div>
               </div>
             </CardContent>

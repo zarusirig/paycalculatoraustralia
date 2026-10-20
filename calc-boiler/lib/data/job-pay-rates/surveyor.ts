@@ -114,14 +114,14 @@ export const SURVEYOR: Occupation = {
     label: SURVEYOR_GRAD_LABEL,
     why: "a graduate surveyor with a 3-year degree, who enters at Level 8",
   },
-  heading: "Surveyor Salary Australia 2026 — Surveying Award Rates, Median Pay & Take-Home",
-  metaTitle: `Surveyor Salary Australia 2026 — ${aud2(GRAD.hourly)}/hr Award, ${aud(SURV.medianSalary)} Median`,
+  heading: "Surveyor Salary Australia 2026: Surveying Award Rates, Median Pay & Take-Home",
+  metaTitle: `Surveyor Salary Australia 2026 - ${aud2(GRAD.hourly)}/hr Award, ${aud(SURV.medianSalary)} Median`,
   metaDescription: `Surveyor pay in Australia: Surveying Award minimums from ${aud2(GRAD.hourly)} an hour for graduates to ${aud2(LICENSED.hourly)} licensed, ${aud(SURV.medianSalary)} median on 2023–24 tax returns, and take-home.`,
   lede: `Surveyors have their own award. Under the Surveying Award a graduate surveyor starts on at least ${aud2(GRAD.hourly)} an hour (${aud(GRAD_ANNUAL)} a year) with a 3-year degree, and a licensed or registered surveyor at Level 3 on ${aud2(LICENSED.hourly)} (${aud(LICENSED_ANNUAL)} a year), from 1 July 2026. On 2023–24 tax returns surveyors reported a median salary of ${aud(SURV.medianSalary)} (ATO), which leaves about ${aud(netFortnightly(SURV.medianSalary))} a fortnight after tax.`,
   coverage: [
     "The Surveying Award 2020 [MA000066] is an occupational award: it covers any employer who employs professional surveyors and other employees in its classifications, in any industry, to the exclusion of any other modern award (cl 4.1). Professional surveyors include graduate surveyors and licensed or registered surveyors (cl 4.2). It does not cover local government employees covered by another award (cl 4.5).",
     "The award defines surveying as determining the form, contour, position, area, height or depth of the earth's surface, or of features on, below or above it, including mapping and spatial data work by employees in its classifications (Schedule A.1). Quantity surveyors are a different occupation, which the ATO codes with civil engineering professionals; check that definition against your own duties before relying on this award.",
-    "A graduate surveyor enters at Level 8 (Survey Technician Level II) after a 3-year course or Level 7 (Surveying Technician Level III) after a 4-year course, and advances through the levels to Level 4 as they demonstrate competence — not automatically each year (cl 17.4, Schedule A.15.2). A licensed or registered surveyor is included at Level 3, Surveyor Level IV.",
+    "A graduate surveyor enters at Level 8 (Survey Technician Level II) after a 3-year course or Level 7 (Surveying Technician Level III) after a 4-year course, and advances through the levels to Level 4 as they demonstrate competence, not automatically each year (cl 17.4, Schedule A.15.2). A licensed or registered surveyor is included at Level 3, Surveyor Level IV.",
     "Survey assistants (Levels 10 to 12) and survey technicians (Levels 7 to 9) are covered by the same award.",
   ],
   tables: [
@@ -134,8 +134,8 @@ export const SURVEYOR: Occupation = {
     },
   ],
   penalties: [
-    { when: "Overtime Monday–Saturday — first 3 hours", permanent: "150%", casual: "187.5%" },
-    { when: "Overtime Monday–Saturday — after 3 hours", permanent: "200%", casual: "250%" },
+    { when: "Overtime Monday–Saturday, first 3 hours", permanent: "150%", casual: "187.5%" },
+    { when: "Overtime Monday–Saturday, after 3 hours", permanent: "200%", casual: "250%" },
     { when: "Sunday", permanent: "200%", casual: "250%" },
     { when: "Public holiday", permanent: "250%", casual: "312.5%" },
   ],
@@ -176,7 +176,7 @@ export const SURVEYOR: Occupation = {
     },
     {
       q: "How much does a licensed surveyor earn?",
-      a: `The award minimum for Level 3, Surveyor Level IV — which includes a licensed or registered surveyor — is ${aud2(LICENSED.hourly)} an hour, ${aud2(LICENSED.weekly)} a week or ${aud(LICENSED_ANNUAL)} a year. On 2023–24 tax returns, surveyors as a whole had a median salary or wage income of ${aud(SURV.medianSalary)} (ATO).`,
+      a: `The award minimum for Level 3, Surveyor Level IV (which includes a licensed or registered surveyor) is ${aud2(LICENSED.hourly)} an hour, ${aud2(LICENSED.weekly)} a week or ${aud(LICENSED_ANNUAL)} a year. On 2023–24 tax returns, surveyors as a whole had a median salary or wage income of ${aud(SURV.medianSalary)} (ATO).`,
     },
     {
       q: "How much do surveyors earn in Australia?",
@@ -196,7 +196,7 @@ export const SURVEYOR: Occupation = {
     },
   ],
   sources: [
-    { title: "Surveying Award 2020 [MA000066] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000066") },
+    { title: "Surveying Award 2020 [MA000066], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000066") },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     FWO_PAY_SLIPS,

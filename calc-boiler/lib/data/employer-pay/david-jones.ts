@@ -39,7 +39,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
     approvedOn: "22 April 2024 (PR773746), operating from 29 April 2024",
     nominalExpiry: "22 April 2028",
     coverage:
-      "It covers David Jones team members in the agreement's four store classification levels — sales and customer service, beauty, logistics, visual merchandising, loss prevention and supervisors. Salaried managers above Level 4 fall outside its classification structure.",
+      "It covers David Jones team members in the agreement's four store classification levels: sales and customer service, beauty, logistics, visual merchandising, loss prevention and supervisors. Salaried managers above Level 4 fall outside its classification structure.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: {
@@ -73,7 +73,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
   penaltyNotes: [
     "Penalties are added to your base hourly rate (cl 8.3). Casual figures include the 25% loading: casual Sunday is base + 75%, not 150% × 1.25.",
     "Work from 11pm to midnight on weekdays and Saturdays is paid at overtime rates. Ordinary hours run 7am to 11pm Monday to Saturday and 9am to 11pm Sunday.",
-    "For an adult Level 1 team member ($27.98) that is about $34.98 an hour on a weeknight or Saturday, $41.97 on a Sunday and $62.96 on a public holiday — our arithmetic.",
+    "For an adult Level 1 team member ($27.98) that is about $34.98 an hour on a weeknight or Saturday, $41.97 on a Sunday and $62.96 on a public holiday (our arithmetic).",
   ],
   overtime: [
     { when: "Monday to Saturday, first 3 hours", permanent: "150%", casual: "175%" },
@@ -86,7 +86,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
     "From the first full pay period on or after 1 December 2026, the Retail Award pays 18- and 19-year-olds with more than 6 months' service 75% and 85% of the award rate ($20.86 and $23.64). That is more than David Jones' 70% and 80% of $27.98 ($19.59 and $22.38), and an agreement cannot pay a base rate below the award, so those staff must get at least the award figure.",
   ],
   unverified: [
-    "David Jones' own 2026 pay table — not public; the dollars are the agreement's formula.",
+    "David Jones' own 2026 pay table is not public; the dollars are the agreement's formula.",
     "Current dollar amounts of allowances that are indexed to the award (meal, first aid, laundry).",
     "Salaried manager pay above Level 4.",
   ],

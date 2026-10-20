@@ -63,7 +63,7 @@ export const BIG_W_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period on or after 1 July 2027",
     detail:
-      "Every level rises by the 2027 Annual Wage Review percentage plus a 0.75% Boosted Leave increase (cl 4.2.1) — the last rise before the agreement's nominal expiry on 1 October 2027.",
+      "Every level rises by the 2027 Annual Wage Review percentage plus a 0.75% Boosted Leave increase (cl 4.2.1), the last rise before the agreement's nominal expiry on 1 October 2027.",
   },
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
@@ -93,7 +93,7 @@ export const BIG_W_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Casual rates include the 25% loading, and casuals are not paid a penalty on a penalty (cl 4.1.3). The loadings replace each other rather than stacking (cl 6.2).",
-    "For an adult Level 1 team member that is $35.36 an hour on a weekday evening or Saturday ($42.44 casual), $42.44 on a Sunday ($49.51 casual) and $63.65 on a public holiday ($70.73 casual) — our arithmetic on the formula rate.",
+    "For an adult Level 1 team member that is $35.36 an hour on a weekday evening or Saturday ($42.44 casual), $42.44 on a Sunday ($49.51 casual) and $63.65 on a public holiday ($70.73 casual), our arithmetic on the formula rate.",
     "Under BIG W's undertaking to the Fair Work Commission, the span of ordinary hours is the Retail Award's, and hours outside it are paid at overtime rates. Overtime is not reduced by the lower penalty in the table.",
   ],
   overtime: [
@@ -103,14 +103,14 @@ export const BIG_W_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   notices: [
-    "BIG W's agreement prints only its 2023 rates. Each July they rise by the Annual Wage Review percentage plus a Boosted Leave increase — 4.75% + 0.5% = 5.25% in 2026 — so the 2026 figures here are our calculation from that formula, not a BIG W table. The agreement says the increases \"do not compound\"; if that is read as applying every rise to the 2023 rate, Level 1 would be $28.14 rather than $28.29. Check your payslip, and ask the SDA if it shows less.",
-    "Boosted Leave does not change your hourly rate. Permanent staff who elect it (or who do not choose by 31 May, which counts as electing it) get extra paid leave — 3 days in 2026–27 for a full-timer — and its value is taken back out of pay in equal weekly amounts. Unused Boosted Leave is paid out at the end of the financial year. Casuals cannot elect it.",
+    "BIG W's agreement prints only its 2023 rates. Each July they rise by the Annual Wage Review percentage plus a Boosted Leave increase (4.75% + 0.5% = 5.25% in 2026), so the 2026 figures here are our calculation from that formula, not a BIG W table. The agreement says the increases \"do not compound\"; if that is read as applying every rise to the 2023 rate, Level 1 would be $28.14 rather than $28.29. Check your payslip, and ask the SDA if it shows less.",
+    "Boosted Leave does not change your hourly rate. Permanent staff who elect it (or who do not choose by 31 May, which counts as electing it) get extra paid leave (3 days in 2026–27 for a full-timer), and its value is taken back out of pay in equal weekly amounts. Unused Boosted Leave is paid out at the end of the financial year. Casuals cannot elect it.",
     "From the first full pay period on or after 1 December 2026, the Retail Award pays 18- and 19-year-olds with more than 6 months' service 75% and 85% of the award rate ($20.86 and $23.64). That is more than BIG W's 70% and 80%, and an agreement cannot pay a base rate below the award, so those staff must get at least the award figure.",
   ],
   unverified: [
-    "BIG W's own 2025 and 2026 pay tables — not public, so the 2026 dollars are calculated from the agreement's formula.",
-    "The dollar value of the weekly Boosted Leave offset — the agreement does not print one.",
-    "Saved-rate employees (Appendix D) and salaried managers — paid outside the rate table.",
+    "BIG W's own 2025 and 2026 pay tables, not public, so the 2026 dollars are calculated from the agreement's formula.",
+    "The dollar value of the weekly Boosted Leave offset. The agreement does not print one.",
+    "Saved-rate employees (Appendix D) and salaried managers, paid outside the rate table.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",
@@ -126,7 +126,7 @@ export const BIG_W_PAY: EmployerPay = {
     },
     {
       q: "What is Boosted Leave at Big W, and does it lower my hourly rate?",
-      a: "No. Permanent staff can use the above-award part of each pay rise to buy extra leave — up to 3 days in 2026–27 for a full-timer. Your base rate stays the same; the value of the leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
+      a: "No. Permanent staff can use the above-award part of each pay rise to buy extra leave, up to 3 days in 2026–27 for a full-timer. Your base rate stays the same; the value of the leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
     },
     {
       q: "How much does Big W pay a 16 or 17 year old?",

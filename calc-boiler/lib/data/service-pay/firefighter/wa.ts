@@ -53,17 +53,17 @@ export const WA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Western Australian Fire Service Enterprise Bargaining Agreement 2023 (AG 35/2023) — WAIRC agreement register",
+      title: "Western Australian Fire Service Enterprise Bargaining Agreement 2023 (AG 35/2023), WAIRC agreement register",
       publisher: "Western Australian Industrial Relations Commission",
       url: "https://www.wairc.wa.gov.au/resources/agreements?id=WES335",
     },
     {
-      title: "Western Australian Fire Service Enterprise Bargaining Agreement 2023 — registered agreement and order ([2023] WAIRC 00945)",
+      title: "Western Australian Fire Service Enterprise Bargaining Agreement 2023, registered agreement and order ([2023] WAIRC 00945)",
       publisher: "Western Australian Industrial Relations Commission (copy hosted by the UPFU of WA)",
       url: "https://www.ufuofwa.net.au/wp-content/uploads/2023/12/AG-35-2023-Order-Agreement-registered-2023-WAIRC-00945-6-December-2023.pdf",
     },
     {
-      title: "Career firefighting — current firefighter rates of pay",
+      title: "Career firefighting: current firefighter rates of pay",
       publisher: "Department of Fire and Emergency Services WA",
       url: "https://www.dfes.wa.gov.au/careers-and-volunteering/career-firefighting",
     },

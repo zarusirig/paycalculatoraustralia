@@ -7,7 +7,7 @@ export default function SuperTaxChangesExplained() {
       <p className="lead">
         Several superannuation changes landed together in 2026-27: payday super, Division 296 tax,
         and higher contribution and transfer balance caps. Most Australians are affected by the
-        first and third — Division 296 tax only hits people with a total super balance above{" "}
+        first and third. Division 296 tax only hits people with a total super balance above{" "}
         <strong>$3 million</strong>.
       </p>
 
@@ -26,7 +26,7 @@ export default function SuperTaxChangesExplained() {
         <Link href="/news/payday-super-starts-july-2026/">Payday super</Link> requires employers to
         pay super guarantee with every pay run and get it into your fund within 7 business days,
         replacing the old quarterly payment cycle. It doesn&apos;t change your super rate, but it
-        does mean your contributions start earning returns sooner — and it gives the ATO much faster
+        does mean your contributions start earning returns sooner, and it gives the ATO much faster
         visibility into employers who fall behind. For most workers, this is the single biggest
         practical change of the 2026-27 super reforms, since it affects every payday rather than a
         small subset of very large balances.
@@ -38,7 +38,7 @@ export default function SuperTaxChangesExplained() {
         above $3 million, and a further 10% above $10 million. The original proposal was
         controversial because it would have taxed unrealised gains, but the law as passed uses
         realised earnings that each super fund calculates and reports to the ATO. It
-        only applies if your balance exceeds $3 million — a small share of super members,
+        only applies if your balance exceeds $3 million, a small share of super members,
         concentrated in large self-managed super funds. See our full{" "}
         <Link href="/division-293-tax/">Division 293 tax guide</Link> for how it interacts with
         existing high-income super settings. Both the $3 million and $10 million thresholds are

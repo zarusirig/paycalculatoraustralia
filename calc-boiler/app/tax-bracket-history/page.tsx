@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-bracket-history/`;
-const TITLE = "Australian Tax Bracket History — Every Rate From 2020 to 2026";
+const TITLE = "Australian Tax Bracket History - Every Rate From 2020 to 2026";
 const DESCRIPTION = "Australian tax brackets from FY2020-21 to FY2026-27: how rates and thresholds changed year by year, including the Stage 3 tax cuts. Historical rate comparison.";
 
 export const metadata: Metadata = withFeaturedImage({

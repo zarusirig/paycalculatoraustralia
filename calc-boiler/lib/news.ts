@@ -65,7 +65,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "minimum-wage-increase-july-2026",
     headline: "Minimum Wage Rises 6% to $26.44 an Hour From 1 July 2026",
-    title: "Minimum Wage Increase July 2026: FWC Lifts NMW 6% — New Rates",
+    title: "Minimum Wage Increase July 2026: FWC Lifts NMW 6% - New Rates",
     description: "The minimum wage rises 6% from $24.95 to $26.44 an hour ($1,004.90 a week) and award rates 4.75% from 1 July 2026. Who gets the increase and your take-home pay.",
     category: "Wages",
     datePublished: "2026-06-02",
@@ -82,7 +82,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What is the new minimum wage in Australia from 1 July 2026?", answer: "The national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week, a 6% rise from the Fair Work Commission's Annual Wage Review, effective from the first full pay period on or after 1 July 2026. Modern award minimum rates rose by a separate 4.75%." },
-      { question: "Who gets the 4.75% wage increase?", answer: "Award-reliant employees — about 23% of employees, according to the ABS (May 2025) — get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
+      { question: "Who gets the 4.75% wage increase?", answer: "Award-reliant employees (about 23% of employees, according to the ABS, May 2025) get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
       { question: "When does the 2026 minimum wage increase start?", answer: "From the first full pay period starting on or after 1 July 2026. If your pay week begins on a Wednesday, the new rate applies from the first Wednesday in July." },
     ],
   },
@@ -106,9 +106,9 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What is the new minimum wage take-home pay after tax?", answer: "A full-time minimum-wage worker on $1,004.90 a week ($26.44/hour) takes home about $869.90 a week after tax, based on the FY2026-27 PAYG withholding schedule with the tax-free threshold claimed and no HECS debt. Fortnightly that's roughly $1,739.80, and around $45,230 for the full year." },
-      { question: "How much tax do you pay on minimum wage in Australia?", answer: "On the new $52,254.80 annual minimum-wage earnings, PAYG withholding works out to about $135 a week, $270 a fortnight, or roughly $7,025 for the year — after the low income tax offset and Medicare levy shading are applied. Your actual tax depends on your TFN declaration and any other income." },
+      { question: "How much tax do you pay on minimum wage in Australia?", answer: "On the new $52,254.80 annual minimum-wage earnings, PAYG withholding works out to about $135 a week, $270 a fortnight, or roughly $7,025 for the year, after the low income tax offset and Medicare levy shading are applied. Your actual tax depends on your TFN declaration and any other income." },
       { question: "Do casuals get more than $26.44 an hour on minimum wage?", answer: "Yes. Casual employees on the national minimum wage receive a 25% casual loading on top of the $26.44 base rate, taking their minimum casual hourly rate to $33.05 from 1 July 2026, to compensate for not getting paid leave entitlements." },
-      { question: "How is the minimum wage worked out for part-time workers?", answer: "Part-time minimum-wage workers are paid $26.44 for every hour actually worked, pro-rated to their contracted hours — there's no separate part-time rate. A 20-hour week at the minimum wage comes to $528.80 gross before tax." },
+      { question: "How is the minimum wage worked out for part-time workers?", answer: "Part-time minimum-wage workers are paid $26.44 for every hour actually worked, pro-rated to their contracted hours. There's no separate part-time rate. A 20-hour week at the minimum wage comes to $528.80 gross before tax." },
     ],
   },
   {
@@ -130,10 +130,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Minimum wages increase from 1 July 2026", url: "https://www.fairwork.gov.au/about-us/workplace-laws/annual-wage-review/annual-wage-review-2026", publisher: "Fair Work Ombudsman" },
     ],
     faq: [
-      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026 — including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. Award-reliant employees, about 23% of employees according to the ABS (May 2025), are covered." },
-      { question: "Is the award wage increase the same as the minimum wage increase?", answer: "No. The 4.75% rise applies only to modern award minimum rates. The national minimum wage — the safety-net rate for employees not covered by an award or agreement — rose separately by 6% to $26.44 an hour." },
+      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026, including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. Award-reliant employees, about 23% of employees according to the ABS (May 2025), are covered." },
+      { question: "Is the award wage increase the same as the minimum wage increase?", answer: "No. The 4.75% rise applies only to modern award minimum rates. The national minimum wage (the safety-net rate for employees not covered by an award or agreement) rose separately by 6% to $26.44 an hour." },
       { question: "How do I find my new award rate?", answer: "Check your award's classification schedule for your role and grade, then apply the 4.75% increase to the current base rate. Fair Work Ombudsman publishes updated pay guides for each award from 1 July, and our award rates guide links to the current tables." },
-      { question: "When do the new award rates start being paid?", answer: "From the first full pay period starting on or after 1 July 2026 — not 1 July itself. If your pay cycle doesn't align with the calendar, your first full July pay may still include a few days at the old rate." },
+      { question: "When do the new award rates start being paid?", answer: "From the first full pay period starting on or after 1 July 2026, not 1 July itself. If your pay cycle doesn't align with the calendar, your first full July pay may still include a few days at the old rate." },
     ],
   },
   {
@@ -156,7 +156,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What is the C13 classification and why is it being phased out?", answer: "C13 is the lowest ongoing pay classification in most modern awards. The Fair Work Commission decided to phase it out and make C12 the new lowest ongoing rate, in three stages, because it found the gap between C13 and C12 too narrow to justify as a distinct entry-level rate." },
-      { question: "How much extra do C13 workers get in stage one?", answer: "From 1 July 2026, C13 rates rise by 5.95% in total — the general 4.75% award increase plus an extra 1.2%, representing one-third of the dollar gap between C13 and C12. The C14 rate rises by the same percentage to preserve its relativity to C13." },
+      { question: "How much extra do C13 workers get in stage one?", answer: "From 1 July 2026, C13 rates rise by 5.95% in total: the general 4.75% award increase plus an extra 1.2%, representing one-third of the dollar gap between C13 and C12. The C14 rate rises by the same percentage to preserve its relativity to C13." },
       { question: "When will C13 disappear completely from awards?", answer: "The Fair Work Commission has not set a fixed end date. The phase-out continues over subsequent Annual Wage Reviews, with each stage closing another third of the gap to C12, until C13 is fully absorbed and C12 becomes the permanent lowest ongoing rate." },
       { question: "Does the C13 phase-out affect casual or junior rates?", answer: "The phase-out targets the ongoing (non-casual) C13 classification rate specifically. Casual loadings and junior, apprentice and trainee rates are calculated as usual off the adjusted base rate for your classification." },
     ],
@@ -252,7 +252,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "transfer-balance-cap-increase-2026",
     headline: "Transfer Balance Cap Lifts to $2.1 Million From 1 July 2026",
-    title: "Transfer Balance Cap 2026: Rises to $2.1 Million — What Changes",
+    title: "Transfer Balance Cap 2026: Rises to $2.1 Million - What Changes",
     description: "The transfer balance cap rises from $2.0 million to $2.1 million on 1 July 2026, lifting how much can move into a tax-free retirement pension.",
     category: "Super",
     datePublished: "2026-03-05",
@@ -311,9 +311,9 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Study and training loan indexation rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-indexation-rates", publisher: "Australian Taxation Office" },
     ],
     faq: [
-      { question: "What was the HECS indexation rate on 1 June 2026?", answer: "HELP debts, including HECS-HELP, were indexed by 2.8% on 1 June 2026 — the lowest rate since 2021. Indexation is capped at the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI), both measured to the March quarter, so your debt can never grow faster than average wages." },
+      { question: "What was the HECS indexation rate on 1 June 2026?", answer: "HELP debts, including HECS-HELP, were indexed by 2.8% on 1 June 2026, the lowest rate since 2021. Indexation is capped at the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI), both measured to the March quarter, so your debt can never grow faster than average wages." },
       { question: "How much did 2.8% indexation add to my HECS debt?", answer: "A $30,000 HECS balance grew by about $840 on 1 June 2026 at the 2.8% rate. Indexation applies to whatever balance remained unpaid for more than 11 months, so any voluntary repayment made before 1 June reduced the amount that was indexed." },
-      { question: "Why is HECS indexation capped at the lower of CPI or WPI?", answer: "The government introduced the cap after CPI-based indexation hit 7.1% in June 2023, adding thousands of dollars to balances overnight. Since 1 June 2023, indexation has used whichever measure — CPI or WPI — is lower, protecting borrowers from another inflation-driven spike." },
+      { question: "Why is HECS indexation capped at the lower of CPI or WPI?", answer: "The government introduced the cap after CPI-based indexation hit 7.1% in June 2023, adding thousands of dollars to balances overnight. Since 1 June 2023, indexation has used whichever measure (CPI or WPI) is lower, protecting borrowers from another inflation-driven spike." },
       { question: "Does indexation apply before or after the 20% debt cut?", answer: "The one-off 20% reduction was applied to balances as at 1 June 2025, before that year's indexation. Indexation each 1 June, including the 2.8% applied in 2026, is a separate annual adjustment that continues to apply to whatever balance remains outstanding." },
     ],
   },
@@ -332,13 +332,13 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     relatedArticles: ["hecs-indexation-2026", "hecs-marginal-repayment-first-tax-time"],
     sources: [
       { title: "20% reduction of HELP debts", url: "https://www.studyassist.gov.au/news/20-reduction-help-debts", publisher: "Study Assist, Australian Government" },
-      { title: "FAQs — 20% reduction off all outstanding HELP loan debt", url: "https://www.education.gov.au/higher-education-loan-program/20-reduction-student-loan-debt/faqs-20-reduction-all-outstanding-help-loan-debt", publisher: "Department of Education, Australian Government" },
+      { title: "FAQs, 20% reduction off all outstanding HELP loan debt", url: "https://www.education.gov.au/higher-education-loan-program/20-reduction-student-loan-debt/faqs-20-reduction-all-outstanding-help-loan-debt", publisher: "Department of Education, Australian Government" },
       { title: "More than 3.2 million Australians' student debt now cut by 20 per cent", url: "https://ministers.education.gov.au/clare/more-32-million-australians-student-debt-now-cut-20-cent", publisher: "Ministers' Media Centre, Department of Education" },
     ],
     faq: [
       { question: "Has the 20% HECS debt cut been applied yet?", answer: "Yes. The ATO has completed processing the one-off 20% reduction for every HELP and other student loan balance that existed on 1 June 2025. Most people received the cut before the end of 2025, with a small number of more complex accounts finalised in early 2026." },
-      { question: "How much was cut from the average HECS debt?", answer: "The average HELP debt of $27,600 was reduced by around $5,520 — 20% off the balance as it stood on 1 June 2025, before that year's indexation was applied. Your own reduction depends on your exact balance on that date." },
-      { question: "Do I need to apply for the 20% HECS reduction?", answer: "No. The reduction was applied automatically by the ATO to every eligible HELP, VET Student Loan and other study loan balance — there was no application process. If your loan existed on 1 June 2025, the cut should already be reflected in your account." },
+      { question: "How much was cut from the average HECS debt?", answer: "The average HELP debt of $27,600 was reduced by around $5,520: 20% off the balance as it stood on 1 June 2025, before that year's indexation was applied. Your own reduction depends on your exact balance on that date." },
+      { question: "Do I need to apply for the 20% HECS reduction?", answer: "No. The reduction was applied automatically by the ATO to every eligible HELP, VET Student Loan and other study loan balance; there was no application process. If your loan existed on 1 June 2025, the cut should already be reflected in your account." },
       { question: "How do I check the 20% cut applied to my HECS debt?", answer: "Log in to the ATO app or ATO online services through myGov and check your study loan account balance and transaction history under 'Tax > Study and training loans'. The reduction shows as a credit transaction dated against your 1 June 2025 balance." },
     ],
   },
@@ -366,7 +366,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "What is the HECS repayment threshold for 2026-27?", answer: "The minimum repayment threshold for FY2026-27 is $69,528. Below that repayment income, you make no compulsory HECS or HELP repayment at all. It's indexed up from $67,000 in FY2025-26, the year the marginal repayment system launched with a raised $54,435-to-$67,000 threshold jump." },
       { question: "What happens once I earn over $69,528?", answer: "Under the marginal system, you pay 15c for every dollar of repayment income above $69,528, up to $129,717. Above that, repayments are $9,028 plus 17c per dollar up to $186,050, and a flat 10% of your total repayment income once you earn above $186,050." },
-      { question: "Is the $69,528 threshold the same as $69,529?", answer: "No — $69,528 is the exempt threshold; the first dollar of repayment income taxed at 15% is $69,529. Below $69,528 you pay nothing, and the 15% rate applies only to income above that figure, not to the threshold amount itself." },
+      { question: "Is the $69,528 threshold the same as $69,529?", answer: "No. $69,528 is the exempt threshold; the first dollar of repayment income taxed at 15% is $69,529. Below $69,528 you pay nothing, and the 15% rate applies only to income above that figure, not to the threshold amount itself." },
       { question: "Does the higher threshold mean smaller HECS repayments?", answer: "Yes, for most earners. Because the threshold rose and repayments are now marginal rather than a flat percentage of total income, someone on $70,000 pays a small amount on the sliver above $69,528, instead of the old flat-rate cliff that applied to their entire income." },
     ],
   },
@@ -390,8 +390,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "Why is this tax time different for HECS debtors?", answer: "This is the second full financial year the marginal repayment system has applied, but the first where the FY2026-27 threshold, bands and 2.8% indexation all interact in the one assessment. Your notice of assessment reconciles what your employer withheld against your actual compulsory repayment." },
-      { question: "Will I get a refund if too much STSL was withheld?", answer: "Yes. If your employer withheld more STSL than your compulsory repayment for the year — common if you had irregular income or multiple jobs — the ATO refunds the difference as part of your tax return, or nets it against your HECS balance instead." },
-      { question: "Do I owe extra HECS if I had two jobs under the threshold?", answer: "Possibly. STSL withholding is calculated separately per employer, so two jobs each paying under $69,528 might trigger no withholding individually, but your combined repayment income at tax time can still exceed the threshold — leaving you with an unexpected compulsory repayment on your notice of assessment." },
+      { question: "Will I get a refund if too much STSL was withheld?", answer: "Yes. If your employer withheld more STSL than your compulsory repayment for the year (common if you had irregular income or multiple jobs), the ATO refunds the difference as part of your tax return, or nets it against your HECS balance instead." },
+      { question: "Do I owe extra HECS if I had two jobs under the threshold?", answer: "Possibly. STSL withholding is calculated separately per employer, so two jobs each paying under $69,528 might trigger no withholding individually, but your combined repayment income at tax time can still exceed the threshold, leaving you with an unexpected compulsory repayment on your notice of assessment." },
       { question: "How does the 20% debt cut show up on this tax return?", answer: "The 20% reduction was applied directly to your loan balance by the ATO during 2025, not through your tax return, so it doesn't appear as a line item on your notice of assessment. Your compulsory repayment for the year is calculated as usual on your reduced balance." },
     ],
   },
@@ -399,7 +399,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "federal-budget-2026-27-your-pay",
     headline: "Federal Budget 2026-27: What It Means for Your Take-Home Pay",
     title: "Federal Budget 2026-27: What It Means for Your Pay",
-    description: "The 12 May 2026 Budget added a $250 tax offset from 2027-28 on top of the 1 July tax cut and $1,000 deduction — worth up to $2,816 a year combined.",
+    description: "The 12 May 2026 Budget added a $250 tax offset from 2027-28 on top of the 1 July tax cut and $1,000 deduction, worth up to $2,816 a year combined.",
     category: "Tax",
     datePublished: "2026-05-12",
     dateModified: "2026-07-02",
@@ -416,14 +416,14 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "When was the 2026-27 Federal Budget handed down?", answer: "Treasurer Jim Chalmers handed down the 2026-27 Budget on Tuesday 12 May 2026. It confirmed the previously legislated 1 July 2026 tax cut and the $1,000 instant deduction, and added a new $250 Working Australians Tax Offset starting from the 2027-28 income year." },
       { question: "Did the Budget cut tax rates again?", answer: "No new rate cut was announced in this Budget. The 16% to 15% cut on income between $18,201 and $45,000 was already legislated in the 2025 Budget and simply took effect on 1 July 2026 as planned. This Budget's new measure was the $250 Working Australians Tax Offset from 2027-28." },
-      { question: "How much extra will an average earner get from this Budget?", answer: "Treasury estimates a worker on average earnings of $81,245 will be up to $2,816 a year better off from 2027-28 with the maximum $1,000 instant deduction benefit — or about $2,701 with the average $205 benefit — once every tax cut and the $250 offset are fully phased in, versus 2023-24 settings." },
+      { question: "How much extra will an average earner get from this Budget?", answer: "Treasury estimates a worker on average earnings of $81,245 will be up to $2,816 a year better off from 2027-28 with the maximum $1,000 instant deduction benefit, or about $2,701 with the average $205 benefit, once every tax cut and the $250 offset are fully phased in, versus 2023-24 settings." },
     ],
   },
   {
     slug: "medicare-levy-thresholds-2026",
     headline: "Medicare Levy Thresholds Lifted: Who Pays Less From 2025-26",
     title: "Medicare Levy Thresholds Lifted: Who Pays Less in 2025-26",
-    description: "Medicare levy low-income thresholds rose 2.9% for 2025-26 — singles now pay no levy below $28,011, up from $27,222, sparing over a million low earners.",
+    description: "Medicare levy low-income thresholds rose 2.9% for 2025-26: singles now pay no levy below $28,011, up from $27,222, sparing over a million low earners.",
     category: "Tax",
     datePublished: "2026-05-12",
     dateModified: "2026-07-02",
@@ -438,8 +438,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Cost of living", url: "https://budget.gov.au/content/02-cost-of-living.htm", publisher: "Budget 2026-27, Australian Government" },
     ],
     faq: [
-      { question: "What is the new Medicare levy low-income threshold?", answer: "For the 2025-26 income year, the singles threshold rose from $27,222 to $28,011 — below that, you pay no Medicare levy at all. The family threshold lifted from $45,907 to $47,238, and each dependent child or student adds $4,338 rather than $4,216 to the family threshold." },
-      { question: "When do the higher Medicare levy thresholds apply from?", answer: "The 2.9% increase is backdated to 1 July 2025, so it applies to the whole 2025-26 income year — the return most people lodge between July and October 2026. You don't need to do anything; the ATO applies the new thresholds automatically when it assesses your return." },
+      { question: "What is the new Medicare levy low-income threshold?", answer: "For the 2025-26 income year, the singles threshold rose from $27,222 to $28,011. Below that, you pay no Medicare levy at all. The family threshold lifted from $45,907 to $47,238, and each dependent child or student adds $4,338 rather than $4,216 to the family threshold." },
+      { question: "When do the higher Medicare levy thresholds apply from?", answer: "The 2.9% increase is backdated to 1 July 2025, so it applies to the whole 2025-26 income year, the return most people lodge between July and October 2026. You don't need to do anything; the ATO applies the new thresholds automatically when it assesses your return." },
       { question: "Do senior and pensioner thresholds also rise?", answer: "Yes. The single seniors and pensioners threshold increased from $43,020 to $44,268, and the senior and pensioner family threshold from $59,886 to $61,623, keeping pace with the same 2.9% uplift applied across all Medicare levy low-income categories for the 2025-26 income year." },
     ],
   },
@@ -465,7 +465,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "What tax rate changed on 1 July 2026?", answer: "The second marginal tax rate, applied to taxable income between $18,201 and $45,000, dropped from 16% to 15% from 1 July 2026. It's the first of two further cuts legislated in March 2025, after that year's Budget." },
       { question: "How much is the 1 July 2026 tax cut worth?", answer: "Every taxpayer earning above $45,000 saves the maximum $268 a year, because the full $26,800 of income in that bracket is now taxed 1 percentage point lower. Taxpayers earning less than $45,000 save proportionally less, based on how much of their income falls in the bracket." },
-      { question: "Is there another tax cut coming after this one?", answer: "Yes. The same legislation cuts the rate again, from 15% to 14%, from 1 July 2027, on the same $18,201 to $45,000 bracket, taking the maximum annual saving to $536 a year compared with 2024-25 settings — double the saving delivered by the 1 July 2026 cut alone." },
+      { question: "Is there another tax cut coming after this one?", answer: "Yes. The same legislation cuts the rate again, from 15% to 14%, from 1 July 2027, on the same $18,201 to $45,000 bracket, taking the maximum annual saving to $536 a year compared with 2024-25 settings, double the saving delivered by the 1 July 2026 cut alone." },
       { question: "Do I need to do anything to get the tax cut?", answer: "No. The lower withholding rate is built into the PAYG tax tables employers and payroll software use automatically from the first pay run after 1 July 2026, so the extra take-home pay shows up in your pay packet without any action on your part." },
     ],
   },
@@ -473,7 +473,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "1000-dollar-instant-tax-deduction",
     headline: "The $1,000 Instant Tax Deduction: No Receipts, One Tick",
     title: "$1,000 Instant Tax Deduction: How It Works for 2026-27",
-    description: "The $1,000 instant work-related deduction is now law for 2026-27 — claim it with no receipts from July 2027, saving workers an average $205.",
+    description: "The $1,000 instant work-related deduction is now law for 2026-27. Claim it with no receipts from July 2027, saving workers an average $205.",
     category: "Tax",
     datePublished: "2026-07-01",
     dateModified: "2026-07-02",
@@ -488,9 +488,9 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Tax reform", url: "https://budget.gov.au/content/04-tax-reform.htm", publisher: "Budget 2026-27, Australian Government" },
     ],
     faq: [
-      { question: "Is the $1,000 instant tax deduction law yet?", answer: "Yes. It's now law under the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026. It applies to the 2026-27 income year — the financial year that started on 1 July 2026, not the return most people are lodging right now." },
-      { question: "When can I actually claim the $1,000 deduction?", answer: "You claim it on your 2026-27 tax return, which you lodge from 1 July 2027. It doesn't apply to the 2025-26 return most workers lodge between July and October 2026 — that return still uses the normal substantiation rules for work-related expenses." },
-      { question: "Do I need receipts for the $1,000 deduction?", answer: "No. You can deduct up to $1,000 for work-related expenses with no receipts and no substantiation at all. If your actual work expenses are higher than $1,000, you can still claim the full, itemised amount the usual way instead — you choose whichever gives the better outcome." },
+      { question: "Is the $1,000 instant tax deduction law yet?", answer: "Yes. It's now law under the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026. It applies to the 2026-27 income year: the financial year that started on 1 July 2026, not the return most people are lodging right now." },
+      { question: "When can I actually claim the $1,000 deduction?", answer: "You claim it on your 2026-27 tax return, which you lodge from 1 July 2027. It doesn't apply to the 2025-26 return most workers lodge between July and October 2026. That return still uses the normal substantiation rules for work-related expenses." },
+      { question: "Do I need receipts for the $1,000 deduction?", answer: "No. You can deduct up to $1,000 for work-related expenses with no receipts and no substantiation at all. If your actual work expenses are higher than $1,000, you can still claim the full, itemised amount the usual way instead. You choose whichever gives the better outcome." },
       { question: "Can I claim other deductions on top of the $1,000?", answer: "Yes. Non-work deductions such as charitable donations, union or professional association fees, income protection premiums and investment expenses aren't capped by the instant deduction and remain fully claimable alongside it, using your normal records and receipts as you would in any other year." },
     ],
   },
@@ -546,9 +546,9 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What changed on 1 July 2026?", answer: "The minimum wage rose 6% to $26.44 an hour, payday super began requiring employers to pay super within 7 business days of payday, the 16% tax rate dropped to 15%, the HECS repayment threshold rose to $69,528, and several Centrelink payment rates were indexed upward." },
-      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group — every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect award-reliant workers (about 23% of employees, per the ABS) plus national minimum wage earners." },
-      { question: "Do these changes apply automatically?", answer: "Most do. The tax cut, payday super and minimum wage rise are all built into payroll systems and PAYG withholding tables from the first pay run after 1 July 2026, so you don't need to apply for them — they should simply appear in your pay and super." },
-      { question: "Where can I check how these changes affect my own pay?", answer: "Run your salary through our take-home pay calculator to see your new after-tax figure, or the income tax calculator to check your exact tax cut, HECS repayment and Medicare levy under the FY2026-27 settings — all in one place, updated for every change on this page." },
+      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group: every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect award-reliant workers (about 23% of employees, per the ABS) plus national minimum wage earners." },
+      { question: "Do these changes apply automatically?", answer: "Most do. The tax cut, payday super and minimum wage rise are all built into payroll systems and PAYG withholding tables from the first pay run after 1 July 2026, so you don't need to apply for them. They should simply appear in your pay and super." },
+      { question: "Where can I check how these changes affect my own pay?", answer: "Run your salary through our take-home pay calculator to see your new after-tax figure, or the income tax calculator to check your exact tax cut, HECS repayment and Medicare levy under the FY2026-27 settings, all in one place, updated for every change on this page." },
     ],
   },
   {
@@ -567,11 +567,11 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     relatedArticles: ["age-pension-increase-march-2026", "centrelink-changes-july-2026"],
     sources: [
       { title: "Changes to social security payments from 1 January", url: "https://ministers.dss.gov.au/media-releases/18636", publisher: "Department of Social Services Ministers" },
-      { title: "Rates list — 1 January 2026", url: "https://www.dss.gov.au/system/files/documents/2025-12/rates-list-1-january-2026.pdf", publisher: "Department of Social Services" },
+      { title: "Rates list, 1 January 2026", url: "https://www.dss.gov.au/system/files/documents/2025-12/rates-list-1-january-2026.pdf", publisher: "Department of Social Services" },
     ],
     faq: [
       { question: "What Centrelink payments increased on 1 January 2026?", answer: "Youth Allowance, Austudy, ABSTUDY and Carer Allowance all rose on 1 January 2026 as part of the standard indexation cycle. Youth Allowance and Austudy single rates away from home rose to $677.20 a fortnight, and ABSTUDY's independent single rate matched it, while Carer Allowance rose to $162.60 a fortnight." },
-      { question: "How much did Youth Allowance and Austudy go up by?", answer: "The single, away-from-home maximum basic rate for Youth Allowance and Austudy rose by $13.90 a fortnight, taking it to $677.20. The exact increase for other categories — such as living at home or with dependents — varies, so check your own rate on your Centrelink online account." },
+      { question: "How much did Youth Allowance and Austudy go up by?", answer: "The single, away-from-home maximum basic rate for Youth Allowance and Austudy rose by $13.90 a fortnight, taking it to $677.20. The exact increase for other categories (such as living at home or with dependents) varies, so check your own rate on your Centrelink online account." },
       { question: "Who gets the Carer Allowance increase?", answer: "Around 680,000 Carer Allowance recipients received the 1 January 2026 increase, taking the fortnightly rate to $162.60, up $3.30. Carer Allowance is a supplementary payment and can be received alongside Carer Payment or while working, unlike most other Centrelink income-support payments." },
       { question: "Did Age Pension or JobSeeker also rise on 1 January?", answer: "No. Age Pension, JobSeeker and other pension-type payments are indexed twice a year, on 20 March and 20 September, not 1 January. The January indexation round covers student and youth payments plus Carer Allowance, which follow a separate CPI-linked cycle." },
     ],
@@ -616,8 +616,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     relatedArticles: ["age-pension-increase-march-2026", "centrelink-changes-july-2026"],
     sources: [
-      { title: "Deeming rate recommendation — March 2026", url: "https://aga.gov.au/publications/deeming-rates/recommendation-march-2026", publisher: "Australian Government Actuary" },
-      { title: "Deeming — Age Pension", url: "https://www.servicesaustralia.gov.au/deeming?context=22526", publisher: "Services Australia" },
+      { title: "Deeming rate recommendation, March 2026", url: "https://aga.gov.au/publications/deeming-rates/recommendation-march-2026", publisher: "Australian Government Actuary" },
+      { title: "Deeming, Age Pension", url: "https://www.servicesaustralia.gov.au/deeming?context=22526", publisher: "Services Australia" },
     ],
     faq: [
       { question: "What are the new deeming rates from 20 March 2026?", answer: "The lower deeming rate rose to 1.25% and the upper rate to 3.25% from 20 March 2026, on the recommendation of the Australian Government Actuary. This ended a multi-year freeze at 0.25% and 2.25% that had applied since May 2020 to support pensioners through low interest rates." },
@@ -647,7 +647,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What Family Tax Benefit rates changed on 1 July 2026?", answer: "Family Tax Benefit Part A's maximum rate rose to $235.48 a fortnight for each child under 13 and $306.46 for each child aged 13 to 15. Family Tax Benefit Part B's maximum rate rose to $200.34 a fortnight where the youngest child is under 5, and $139.86 where the youngest is 5 or older." },
-      { question: "Did the Family Tax Benefit income limits also rise?", answer: "Yes. The Family Tax Benefit Part B primary earner income limit rose to $124,327 for 2026-27 — above that, a family isn't eligible for Part B at all. Part A income-free areas and taper thresholds were also indexed, following the standard annual 1 July cycle for family assistance payments." },
+      { question: "Did the Family Tax Benefit income limits also rise?", answer: "Yes. The Family Tax Benefit Part B primary earner income limit rose to $124,327 for 2026-27. Above that, a family isn't eligible for Part B at all. Part A income-free areas and taper thresholds were also indexed, following the standard annual 1 July cycle for family assistance payments." },
       { question: "Why are family payments indexed on 1 July, not March?", answer: "Family Tax Benefit and related family assistance payments run on the financial year and are indexed each 1 July, unlike pension-type payments such as Age Pension and JobSeeker, which are indexed every 20 March and 20 September on a separate, calendar-based cycle." },
       { question: "Do I need to do anything to get the higher FTB rate?", answer: "No. Services Australia applies the indexed rates automatically to ongoing Family Tax Benefit recipients from the first payment after 1 July 2026. If you're not currently claiming but think you're now eligible under the higher income limits, you'll need to lodge or update a claim through myGov." },
     ],
@@ -655,7 +655,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   // --- W5: Victorian teachers pay rise (23 Sep 2026) ---
   {
     slug: "victorian-teachers-pay-rise-2026",
-    headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes — What the New Agreement Pays and When",
+    headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes - What the New Agreement Pays and When",
     title: "VIC Teachers Pay Rise 2026: 93.1% Vote Yes, $133,456 Top Step",
     description: "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum.",
     category: "Wages",
@@ -671,8 +671,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "Proposed Victorian Government Schools Agreement 2026 (Schedule 1: Salary Rates)", url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615", publisher: "Victorian Department of Education" },
       { title: "Enterprise Bargaining: Overview (updated 17 September 2026)", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/overview", publisher: "Victorian Department of Education" },
-      { title: "Agreements in progress — Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026)", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress", publisher: "Fair Work Commission" },
-      { title: "Enterprise Bargaining: Resources — Agreement Explanation and Approval Process FAQs", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/resources", publisher: "Victorian Department of Education" },
+      { title: "Agreements in progress, Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026)", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress", publisher: "Fair Work Commission" },
+      { title: "Enterprise Bargaining: Resources, Agreement Explanation and Approval Process FAQs", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/resources", publisher: "Victorian Department of Education" },
       { title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)", url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise", publisher: "Premier of Victoria" },
       { title: "Labor Is Giving Education Workers A Payrise (17 August 2026)", url: "https://www.premier.vic.gov.au/labor-giving-education-workers-payrise", publisher: "Premier of Victoria" },
       { title: "VGSA 2026: Our campaign for a new agreement for members in public schools", url: "https://www.aeuvic.asn.au/vgsa-2026-our-campaign-new-agreement-members-public-schools", publisher: "Australian Education Union Victorian Branch" },
@@ -745,7 +745,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   return [
     {
       slug: "age-pension-increase-september-2026",
-      headline: `Age Pension Rises ${apRise} a Fortnight From 20 September 2026 — but Deeming Rates Rise Too`,
+      headline: `Age Pension Rises ${apRise} a Fortnight From 20 September 2026, but Deeming Rates Rise Too`,
       title: `Age Pension Increase September 2026: +${apRise} to ${m(apSep.single.total)}`,
       description: `The full Age Pension rose ${apRise} to ${m(apSep.single.total)} a fortnight on 20 September 2026 (couples ${m(apSep.coupleCombined.total)}). JobSeeker ${m(jsSep.single)}; deeming now ${p(D.lowerRate)}/${p(D.upperRate)}.`,
       category: "Centrelink & Payments",
@@ -761,7 +761,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       sources: [
         { title: "Deeming rates have increased (20 September 2026)", url: D.sources.news, publisher: "Services Australia" },
         { title: "Deeming", url: D.sources.deeming, publisher: "Services Australia" },
-        { title: "Social Security Payment Parameters — 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },
+        { title: "Social Security Payment Parameters, 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },
         { title: "September pensions and deeming rates update", url: D.sources.dva, publisher: "Department of Veterans' Affairs" },
       ],
       faq: [
@@ -787,17 +787,17 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       ],
       relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
       sources: [
-        { title: `Gender-based undervaluation — priority awards review, SCHADS Award: Decision ${SE.decision} (${SE.decidedOn})`, url: SE.decisionUrl, publisher: "Fair Work Commission" },
-        { title: `Determination ${SE.determination} — Schedule E interim increase`, url: SE.determinationUrl, publisher: "Fair Work Commission" },
+        { title: `Gender-based undervaluation, priority awards review, SCHADS Award: Decision ${SE.decision} (${SE.decidedOn})`, url: SE.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Determination ${SE.determination}, Schedule E interim increase`, url: SE.determinationUrl, publisher: "Fair Work Commission" },
         { title: "Gender-based undervaluation – priority awards review", url: SE.reviewUrl, publisher: "Fair Work Commission" },
         { title: "Changes to the Social, Community, Home Care and Disability Services Award (21 September 2026)", url: SE.fwoUrl, publisher: "Fair Work Ombudsman" },
         { title: "Vehicle allowance determination PR813674", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813674.pdf", publisher: "Fair Work Commission" },
       ],
       faq: [
         { question: `When does the SCHADS ${sePct} pay rise start?`, answer: `From the first full pay period starting on or after ${SE.operativeFrom}. The Fair Work Commission had proposed ${SE.deferredFrom}, but deferred it in ${SE.decision} because the Commonwealth had not committed to funding the increase.` },
-        { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award — home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
+        { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award: home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
         { question: `Is the increase exactly ${sePct} for everyone?`, answer: `Almost. Every Schedule E rate rises ${sePct} except Level 4 pay point 2 (${(SE.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}%) and Level 5 pay point 2 (${(SE.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%), whose full remaining increase is smaller than ${sePct}.` },
-        { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase — ${SE.remainderRange} — applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
+        { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase (${SE.remainderRange}) applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
       ],
     },
     {
@@ -816,7 +816,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       ],
       relatedArticles: ["schads-home-care-disability-pay-rise-december-2026", "award-wage-increase-2026-industries"],
       sources: [
-        { title: `Determination ${HP.determination} — Health Professionals and Support Services Award 2020`, url: HP.determinationUrl, publisher: "Fair Work Commission" },
+        { title: `Determination ${HP.determination}, Health Professionals and Support Services Award 2020`, url: HP.determinationUrl, publisher: "Fair Work Commission" },
         { title: `Decision ${HP.decision} (${HP.decidedOn})`, url: HP.decisionUrl, publisher: "Fair Work Commission" },
         { title: `Decision ${HP.structureDecision} (${HP.structureDecidedOn})`, url: HP.structureDecisionUrl, publisher: "Fair Work Commission" },
         { title: "Gender-based undervaluation – priority awards review", url: HP.reviewUrl, publisher: "Fair Work Commission" },
@@ -845,16 +845,16 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
       sources: [
         { title: `Implementation decision ${JP.implementationDecision} (${JP.implementationDecidedOn}), AM2024/24`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb222.pdf", publisher: "Fair Work Commission" },
-        { title: `Determination ${jRetail.determination} — ${jRetail.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jRetail.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
-        { title: `Determination ${jFF.determination} — ${jFF.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jFF.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
-        { title: `Determination ${jPh.determination} — ${jPh.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jPh.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jRetail.determination}, ${jRetail.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jRetail.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jFF.determination}, ${jFF.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jFF.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jPh.determination}, ${jPh.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jPh.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
         { title: `Principal decision ${JP.decision} (${JP.decidedOn})`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb75.pdf", publisher: "Fair Work Commission" },
       ],
       faq: [
         { question: "When do junior pay rates change in 2026?", answer: `From the first full pay period starting on or after ${JP.earliestStart}, for employees aged 18 to 20 under the General Retail, Fast Food and Pharmacy Industry Awards who have ${JP.serviceQualifier}. Further steps follow until ${jFF.rows[jFF.rows.length - 1].effective}.` },
         { question: "Do 18-year-olds get the full adult wage from December 2026?", answer: `No. It is a phase-in. Under the Fast Food Award an 18-year-old with more than 6 months' service goes from ${jFF.present.age18}% to ${jFF.rows[0].age18}% of the adult rate on ${jFF.rows[0].effective}, then rises five percentage points each July and December until reaching 100% on ${jFF.rows[jFF.rows.length - 1].effective}.` },
         { question: "Who does not get the junior pay increase?", answer: "Employees under 18, employees aged 18 to 20 with 6 months' service or less with their employer, and workers under awards other than the General Retail, Fast Food and Pharmacy Industry Awards. In retail, only employee levels 1 to 3 have junior rates, and 20-year-olds with more than 6 months' service already get the adult rate." },
-        { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild — a five-point first step, then steps of up to ten points each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
+        { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild: a five-point first step, then steps of up to ten points each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
       ],
     },
     {
@@ -879,14 +879,14 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       ],
       faq: [
         { question: "How much did Queensland state award wages increase in 2026?", answer: `By ${qPct}, operative on and from ${QS.operativeFrom}, under the QIRC's State Wage Case decision ${QS.citation} delivered on ${QS.deliveredOn}. Work-related monetary allowances and service increments rose by the same percentage.` },
-        { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees — the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
-        { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards — chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
-        { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly — their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
+        { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees, the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
+        { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards, chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
+        { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly. Their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
       ],
     },
     {
       slug: "tax-return-deadline-october-2026",
-      headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
+      headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} - a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
       title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
       description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNow}.`,
       category: "Tax",
@@ -911,10 +911,10 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { title: "General interest charge", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/interest-we-charge/general-interest-charge", publisher: "Australian Taxation Office" },
       ],
       faq: [
-        { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day — ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
+        { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day: ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
         { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
         { question: `What is the ATO general interest charge rate for ${GIC.quarter}?`, answer: `${gicNow} a year (a daily rate of ${GIC.dailyRatePercent}%), ${gicMove} ${gicPrev} for ${GIC.previousQuarter.label}. GIC compounds daily on overdue tax and resets every quarter; the next rate is due ${GIC.nextRateDue}. GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
-        { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
+        { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some (for example those whose latest return had a liability of $20,000 or more) have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
       ],
     },
     {
@@ -939,7 +939,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { title: "Airservices offers triple pay to stop flight delays (context)", url: "https://www.theaustralian.com.au/business/aviation/airservices-trials-300-per-cent-overtime-pay-for-controllers-to-stop-flight-chaos/news-story/f7077fe3c2761aa78dc40751af07f83a", publisher: "The Australian" },
       ],
       faq: [
-        { question: "When do air traffic controllers get their next pay rise?", answer: `The Airservices agreement's "24 months" salary column, a ${atcPct} rise, falls due on ${ATC_24_MONTH_COLUMN.dueOn} — 24 months after the agreement commenced on 7 October 2024. The salary table does not name the pay period it is first paid in.` },
+        { question: "When do air traffic controllers get their next pay rise?", answer: `The Airservices agreement's "24 months" salary column, a ${atcPct} rise, falls due on ${ATC_24_MONTH_COLUMN.dueOn}, 24 months after the agreement commenced on 7 October 2024. The salary table does not name the pay period it is first paid in.` },
         { question: "How much does a Level 1 air traffic controller earn from October 2026?", answer: `${w(atcL1)} a year base salary, up from ${w(atcL1Now)}. Controllers then progress one level a year to Level 10, which pays ${w(atcL10)} from ${ATC_24_MONTH_COLUMN.dueOn}. Penalty rates, overtime and allowances are paid on top.` },
         { question: "What do trainee air traffic controllers earn?", answer: `An ab initio trainee is paid ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])} and a field trainee ${w(ATC_24_MONTH_COLUMN.salaries["Field Trainee"])} under the agreement's "24 months" column from ${ATC_24_MONTH_COLUMN.dueOn}.` },
         { question: "Is this the last pay rise under the current agreement?", answer: "Yes. It is the third and final salary column. The agreement reaches its nominal expiry date on 7 October 2027, and salaries after that depend on a replacement agreement." },

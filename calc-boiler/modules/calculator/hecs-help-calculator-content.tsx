@@ -184,7 +184,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           <li>exempt foreign employment income</li>
         </ul>
         <p className="mb-4 text-warmgray">
-          That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold — the contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
+          That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold, because the contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
         </p>
         <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Repayment Table for {SITE_CONFIG.previousFinancialYear} (Your 2026 Tax Return)</h3>
         <p className="mb-4 text-warmgray">
@@ -293,7 +293,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section id="loan-schemes">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Study and Training Loan This Covers</h2>
         <p className="mb-4 text-warmgray">
-          There is no separate HECS calculation. The ATO states that <strong>all study and training loan types are covered by the same set of thresholds and rates</strong> for each financial year, so the figure above is your compulsory repayment whichever of the six loans you hold — and it is a single repayment even if you hold several.
+          There is no separate HECS calculation. The ATO states that <strong>all study and training loan types are covered by the same set of thresholds and rates</strong> for each financial year, so the figure above is your compulsory repayment whichever of the six loans you hold, and it is a single repayment even if you hold several.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
           <table className="w-full text-sm">
@@ -319,7 +319,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           </table>
         </div>
         <p className="mt-3 text-sm text-warmgray-light">
-          ATO, <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Study and training loan repayment thresholds and rates</a> and <a href={ATO_TYPES_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Types of loans</a>. Loan fee and lifetime limit rules differ by scheme and are set by the Department of Education, not the ATO — check <a href="https://www.studyassist.gov.au/" target="_blank" rel="noopener noreferrer" className="hover:underline">Study Assist</a> before relying on a fee figure.
+          ATO, <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Study and training loan repayment thresholds and rates</a> and <a href={ATO_TYPES_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Types of loans</a>. Loan fee and lifetime limit rules differ by scheme and are set by the Department of Education, not the ATO. Check <a href="https://www.studyassist.gov.au/" target="_blank" rel="noopener noreferrer" className="hover:underline">Study Assist</a> before relying on a fee figure.
         </p>
 
         <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>If You Hold More Than One Loan</h3>
@@ -344,7 +344,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           <li>Compare it to <strong>{formatAUD(T)}</strong>. At or below that, the compulsory repayment is <strong>$0</strong>.</li>
           <li>From {formatAUD(B1.min)} to {formatAUD(B1.max)}, repay <strong>15 cents per dollar</strong> above {formatAUD(T)}.</li>
           <li>From {formatAUD(B2.min)} to {formatAUD(B2.max)}, repay <strong>{formatAUD(B2.base)}</strong> plus <strong>17 cents per dollar</strong> above {formatAUD(B2.min - 1)}.</li>
-          <li>From {formatAUD(B3.min)}, repay <strong>{B3.marginalRate * 100}% of total repayment income</strong> — the one band that is not marginal.</li>
+          <li>From {formatAUD(B3.min)}, repay <strong>{B3.marginalRate * 100}% of total repayment income</strong>. This is the one band that is not marginal.</li>
         </ol>
         <div className="bg-sandstone rounded-xl p-5 mb-3">
           <p className="text-sm text-navy font-mono">
@@ -394,7 +394,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           </table>
         </div>
         <p className="mt-3 text-sm text-warmgray-light">
-          Nothing is payable at {formatAUD(65_000)} or at the {formatAUD(T)} threshold itself. Moving to {formatAUD(72_000)} costs {formatAUD(calculateHECS(72_000))} for the year ({formatAUD(annualToWeekly(calculateHECS(72_000)), 2)}/week) — the marginal system removed the old cliff, where a dollar over the line triggered a percentage of your <em>entire</em> income.{" "}
+          Nothing is payable at {formatAUD(65_000)} or at the {formatAUD(T)} threshold itself. Moving to {formatAUD(72_000)} costs {formatAUD(calculateHECS(72_000))} for the year ({formatAUD(annualToWeekly(calculateHECS(72_000)), 2)}/week). The marginal system removed the old cliff, where a dollar over the line triggered a percentage of your <em>entire</em> income.{" "}
           <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> gives the full net pay breakdown.
         </p>
       </section>
@@ -403,7 +403,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section id="why-payslip-differs">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Your Payslip Deduction Differs From Your Actual Repayment</h2>
         <p className="mb-3 text-warmgray">
-          The amount withheld each pay is an <strong>estimate</strong>. Employers withhold an additional PAYG component — shown as <strong>STSL</strong> on most payslips — from ATO withholding schedules, based on that pay period&apos;s earnings alone.
+          The amount withheld each pay is an <strong>estimate</strong>. Employers withhold an additional PAYG component (shown as <strong>STSL</strong> on most payslips) from ATO withholding schedules, based on that pay period&apos;s earnings alone.
         </p>
         <p className="mb-3 text-warmgray">
           Your actual compulsory repayment is only worked out when you lodge, using full-year repayment income. If your pay varied, or you had investment losses, reportable fringe benefits or reportable super, the two will not match, and the difference is settled through your refund or tax bill.
@@ -417,10 +417,10 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section id="indexation">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Indexation and Voluntary Repayments</h2>
         <p className="mb-3 text-warmgray">
-          Study loans carry no interest. Instead the ATO applies indexation on <strong>1 June</strong> each year to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. On {HECS_HELP.indexationDate} the rate was <strong>{HECS_HELP.indexationRate * 100}%</strong> — read more on <Link href="/news/hecs-indexation-2026/" className="text-eucalyptus-dark hover:underline font-medium">HECS indexation 2026</Link>.
+          Study loans carry no interest. Instead the ATO applies indexation on <strong>1 June</strong> each year to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. On {HECS_HELP.indexationDate} the rate was <strong>{HECS_HELP.indexationRate * 100}%</strong>. Read more on <Link href="/news/hecs-indexation-2026/" className="text-eucalyptus-dark hover:underline font-medium">HECS indexation 2026</Link>.
         </p>
         <p className="mb-4 text-warmgray">
-          That cap — the lower of CPI or WPI — was introduced after the June 2023 indexation came in at 7.1% under a CPI-only formula. It was backdated, and the ATO recalculated both 2023 and 2024, crediting the difference to affected balances.
+          That cap (the lower of CPI or WPI) was introduced after the June 2023 indexation came in at 7.1% under a CPI-only formula. It was backdated, and the ATO recalculated both 2023 and 2024, crediting the difference to affected balances.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
           <table className="w-full text-sm">
@@ -442,7 +442,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           ATO, <a href={ATO_INDEXATION_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Study and training loan indexation rates</a>.
         </p>
         <p className="mb-4 text-warmgray">
-          One quirk matters for timing. Compulsory repayments made through PAYG during the year are not credited to your loan until your return is assessed — usually after 1 June. So the balance that gets indexed is often larger than the balance you think you have. Separately, every study and training support debt that existed on 1 June 2025 received a one-off <strong>20% reduction</strong>; the ATO has finished processing it, and accounts left in credit were refunded.
+          One quirk matters for timing. Compulsory repayments made through PAYG during the year are not credited to your loan until your return is assessed, usually after 1 June. So the balance that gets indexed is often larger than the balance you think you have. Separately, every study and training support debt that existed on 1 June 2025 received a one-off <strong>20% reduction</strong>; the ATO has finished processing it, and accounts left in credit were refunded.
         </p>
         <p className="mb-3 text-warmgray">
           A voluntary repayment only reduces the indexed amount if it lands <em>before</em> 1 June. Beyond that timing point the case for paying early is a straight comparison: {HECS_HELP.indexationRate * 100}% indexation against what the money would earn or save elsewhere. Credit cards, car loans and personal loans all cost more, so they come first.
@@ -454,7 +454,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           <li><strong>You are leaving Australia.</strong> The obligation follows you, and reporting worldwide income each year from abroad is an ongoing chore.</li>
         </ul>
         <p className="mb-4 text-warmgray">
-          <strong>Timing beats amount.</strong> A payment on 31 May reduces what gets indexed; the same payment on 2 June does not. Allow processing time — BPAY to the ATO is not instant. Detail: ATO, <a href={ATO_VOLUNTARY_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Voluntary repayments</a>.
+          <strong>Timing beats amount.</strong> A payment on 31 May reduces what gets indexed; the same payment on 2 June does not. Allow processing time: BPAY to the ATO is not instant. Detail: ATO, <a href={ATO_VOLUNTARY_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Voluntary repayments</a>.
         </p>
         <p className="text-sm text-warmgray">
           Weighing it against super instead? See <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">extra super vs HECS repayment</Link>.
@@ -485,10 +485,10 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common HECS Mistakes</h2>
         <ol className="list-decimal pl-5 text-warmgray space-y-3">
           <li>
-            <strong>Not telling your employer about the loan.</strong> Without the declaration there is no STSL withholding at all, and the whole repayment — {formatAUD(calculateHECS(80_000))} on {formatAUD(80_000)} — arrives as a lump sum at tax time.
+            <strong>Not telling your employer about the loan.</strong> Without the declaration there is no STSL withholding at all, and the whole repayment ({formatAUD(calculateHECS(80_000))} on {formatAUD(80_000)}) arrives as a lump sum at tax time.
           </li>
           <li>
-            <strong>Using salary instead of repayment income.</strong> A wage of {formatAUD(66_000)} with {formatAUD(5_000)} of reportable super is repayment income of {formatAUD(71_000)} — above the {formatAUD(T)} threshold.
+            <strong>Using salary instead of repayment income.</strong> A wage of {formatAUD(66_000)} with {formatAUD(5_000)} of reportable super is repayment income of {formatAUD(71_000)}, above the {formatAUD(T)} threshold.
           </li>
           <li>
             <strong>Assuming salary sacrifice removes the repayment.</strong> Reportable super contributions are added back, so the benefit is small. Model it with the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrifice calculator</Link>.

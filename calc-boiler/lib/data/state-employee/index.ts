@@ -270,7 +270,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "a further 4.33 weeks (one month) for each additional 5 years of service",
       proRataOnEndingYears: 5,
       summary:
-        "Ten years of continuous service with the same employer earns 8.67 weeks — two months — of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is only owed if the employer ends the employment for a reason other than serious or wilful misconduct, or you resign because of illness, incapacity, or domestic or other pressing necessity. Past 10 years it is paid out however the job ends.",
+        "Ten years of continuous service with the same employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is only owed if the employer ends the employment for a reason other than serious or wilful misconduct, or you resign because of illness, incapacity, or domestic or other pressing necessity. Past 10 years it is paid out however the job ends.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/nsw/",
   },
@@ -291,7 +291,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "continued accrual at one week for every 60 weeks of continuous service",
       proRataOnEndingYears: 7,
       summary:
-        "Victoria has one of the shortest qualifying periods in the country: 7 years of continuous service with one employer. Leave accrues at one week for every 60 weeks of service — about 0.866 of a week a year, so roughly 6.1 weeks by the 7-year mark. Once you pass 7 years the full accrued balance is paid out however the employment ends, including resignation and redundancy.",
+        "Victoria has one of the shortest qualifying periods in the country: 7 years of continuous service with one employer. Leave accrues at one week for every 60 weeks of service, about 0.866 of a week a year, so roughly 6.1 weeks by the 7-year mark. Once you pass 7 years the full accrued balance is paid out however the employment ends, including resignation and redundancy.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/vic/",
   },
@@ -312,7 +312,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "a further 4.3333 weeks at 15 years, taking the total to 13 weeks; beyond that, accrued leave has no qualifying period",
       proRataOnEndingYears: 7,
       summary:
-        "Ten years of continuous service earns 8.6667 weeks of paid long service leave, rising to 13 weeks at 15 years. Between 7 and 10 years a proportionate payment is owed only in defined circumstances — death, illness or injury, domestic necessity, or dismissal for a reason other than conduct, capacity or performance. At 10 years the payment on termination becomes automatic.",
+        "Ten years of continuous service earns 8.6667 weeks of paid long service leave, rising to 13 weeks at 15 years. Between 7 and 10 years a proportionate payment is owed only in defined circumstances: death, illness or injury, domestic necessity, or dismissal for a reason other than conduct, capacity or performance. At 10 years the payment on termination becomes automatic.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/qld/",
   },

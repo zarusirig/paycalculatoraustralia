@@ -54,7 +54,7 @@ export const ACT: Jurisdiction = {
   headline:
     "An ACT public servant at ASO 4 is paid $86,750 to $93,416, at ASO 6 $102,657 to $116,592 and at Senior Officer Grade C $127,597 to $136,873, under the ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023–2026. These are the rates from 4 December 2025, still in force because employees voted down the proposed 2026–2029 replacement in September 2026.",
 
-  metaTitle: "ACT Public Service Pay Scales 2026 — ASO & SOG Salaries",
+  metaTitle: "ACT Public Service Pay Scales 2026 - ASO & SOG Salaries",
   metaDescription:
     "ACT Public Service pay from 4 December 2025: every ASO 1–6 and Senior Officer Grade C–A pay point ($65,124 to $172,246) from the ACTPS Admin EA, with take-home pay.",
 
@@ -73,7 +73,7 @@ export const ACT: Jurisdiction = {
       basis: "agreement",
       effectiveFrom: "4 December 2025",
       rangeMeaning:
-        "First and last pay point of the classification. Annual full-time salary only — superannuation is paid on top.",
+        "First and last pay point of the classification. Annual full-time salary only; superannuation is paid on top.",
       sourceId: "act-admin-ea-2023",
       streams: [
         {
@@ -197,7 +197,7 @@ export const ACT: Jurisdiction = {
               code: "SOG A",
               name: "Senior Officer Grade A",
               aliases: ["soga", "senior officer grade a", "act sog a", "sog a salary"],
-              summary: "Single rate — the top of the non-executive administrative structure.",
+              summary: "Single rate: the top of the non-executive administrative structure.",
               min: 172_246,
               max: 172_246,
             },
@@ -210,7 +210,7 @@ export const ACT: Jurisdiction = {
   progression: [
     "A new starter or promoted employee is paid the first pay point of the classification (clause C5.1), although the head of service can approve a start at a higher pay point (clause C5.2).",
     "An eligible employee moves up one pay point each year on the anniversary of starting in the classification, provided no underperformance or discipline action is under way (clause C5.5). After 12 months of higher duties within a 24-month period, an increment is also paid at the higher classification (clause C5.3).",
-    "Moving from one class to the next — ASO 4 to ASO 5, or ASO 6 to Senior Officer Grade C — is a promotion to a position at that level, not an increment. The top of ASO 6 is $116,592 and the bottom of SOG C is $127,597.",
+    "Moving from one class to the next (ASO 4 to ASO 5, or ASO 6 to Senior Officer Grade C) is a promotion to a position at that level, not an increment. The top of ASO 6 is $116,592 and the bottom of SOG C is $127,597.",
   ],
 
   superannuation: {
@@ -223,7 +223,7 @@ export const ACT: Jurisdiction = {
   sources: [
     {
       id: "act-admin-ea-2023",
-      title: "ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023–2026 (AG2023/2959) — Annex A",
+      title: "ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023–2026 (AG2023/2959), Annex A",
       publisher: "ACT Government (Chief Minister, Treasury and Economic Development Directorate)",
       url: "https://www.cmtedd.act.gov.au/__data/assets/pdf_file/0004/2287633/ACT-Public-Sector-Administrative-and-Related-Classifications-Enterprise-Agreement-2023-2026.pdf",
       effectiveFrom: "4 December 2025",
@@ -232,7 +232,7 @@ export const ACT: Jurisdiction = {
     },
     {
       id: "act-agreements-portal",
-      title: "Enterprise Agreements — ACTPS Employment Portal",
+      title: "Enterprise Agreements, ACTPS Employment Portal",
       publisher: "ACT Government",
       url: "https://www.cmtedd.act.gov.au/employment-framework/for-employees/agreements",
       verifiedOn: VERIFIED,
@@ -249,9 +249,9 @@ export const ACT: Jurisdiction = {
   ],
 
   unverified: [
-    "Rates under the proposed Administrative and Related Classifications Enterprise Agreement 2026–2029 — employees voted it down in September 2026, so its figures are not in force and are not shown.",
+    "Rates under the proposed Administrative and Related Classifications Enterprise Agreement 2026–2029: employees voted it down in September 2026, so its figures are not in force and are not shown.",
     "ACT Public Service executive (SES-equivalent) remuneration, which is set outside this agreement.",
-    "Graduate, cadet, trainee and apprentice rates, and the other local classifications in Annex A (Audit Office, Capital Linen Service, research officers, school assistants and others) — published in the same annex but not transcribed here.",
+    "Graduate, cadet, trainee and apprentice rates, and the other local classifications in Annex A (Audit Office, Capital Linen Service, research officers, school assistants and others): published in the same annex but not transcribed here.",
     "Retention points restricted to Trust Officers and DPP staff.",
     "Teachers, nurses, health professionals and other ACT staff on their own enterprise agreements (see the teacher and nurse pages).",
   ],

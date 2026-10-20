@@ -202,8 +202,8 @@ function ContactPage() {
                   className="text-eucalyptus hover:underline"
                 >
                   Australian Taxation Office
-                </a>{" "}
-                — 13 28 61
+                </a>
+                : 13 28 61
               </li>
               <li>
                 <strong>Workplace rights:</strong>{" "}
@@ -214,8 +214,8 @@ function ContactPage() {
                   className="text-eucalyptus hover:underline"
                 >
                   Fair Work Ombudsman
-                </a>{" "}
-                — 13 13 94
+                </a>
+                : 13 13 94
               </li>
               <li>
                 <strong>Medicare &amp; Centrelink:</strong>{" "}

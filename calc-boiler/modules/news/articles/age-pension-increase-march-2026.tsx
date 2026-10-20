@@ -19,9 +19,9 @@ export default function AgePensionIncreaseMarch2026() {
 
       <NewsKeyFacts
         rows={[
-          { label: "Age Pension — single", before: "$1,178.70", after: "$1,200.90" },
-          { label: "Age Pension — couple (each)", before: "$888.50", after: "$905.20" },
-          { label: "Age Pension — couple (combined)", before: "$1,777.00", after: "$1,810.40" },
+          { label: "Age Pension, single", before: "$1,178.70", after: "$1,200.90" },
+          { label: "Age Pension, couple (each)", before: "$888.50", after: "$905.20" },
+          { label: "Age Pension, couple (combined)", before: "$1,777.00", after: "$1,810.40" },
           { label: "Disability Support Pension", after: "Same rates as Age Pension" },
           { label: "Carer Payment", after: "Same rates as Age Pension" },
         ]}
@@ -30,7 +30,7 @@ export default function AgePensionIncreaseMarch2026() {
       <h2>The new pension rates</h2>
       <p>
         From 20 March 2026 to 19 September 2026, the maximum full Age Pension is $1,200.90 a
-        fortnight for a single person and $905.20 each for a couple — $1,810.40 combined. Both
+        fortnight for a single person and $905.20 each for a couple, or $1,810.40 combined. Both
         figures include the pension and energy supplements. The rise applies automatically to
         existing recipients; there&apos;s nothing you need to do to receive the higher rate, and
         the new amount should appear in your first payment on or after 20 March 2026 without any
@@ -39,7 +39,7 @@ export default function AgePensionIncreaseMarch2026() {
       <p>
         For context, the single rate has now risen every March and September for several years
         running, tracking cost-of-living pressures and wages growth. Couples separated by illness
-        — for example where one partner is in permanent residential care — are generally paid at
+        (for example where one partner is in permanent residential care) are generally paid at
         the higher single rate rather than the couple rate, so it&apos;s worth checking which rate
         applies to your specific household circumstances.
       </p>
@@ -75,7 +75,7 @@ export default function AgePensionIncreaseMarch2026() {
         proportion, some part-pensioners may find they&apos;re now eligible for a slightly higher
         payment, or that they&apos;ve become eligible for the first time even if their income and
         assets haven&apos;t changed. The way Centrelink assesses savings and investments also
-        changed on the same date — see how{" "}
+        changed on the same date. See how{" "}
         <Link href="/news/deeming-rates-change-2026/">deeming rates shifted</Link>, since a higher
         deeming rate can partly offset the benefit of a higher pension rate for part-pensioners
         with significant savings.

@@ -51,10 +51,10 @@ const SCHADS_MATRIX = [
 ] as const;
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: `Pay guide — ${SCHADS_AWARD.name} (${SCHADS_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary", publisher: SOURCES.fwo.name },
+  { title: `Pay guide, ${SCHADS_AWARD.name} (${SCHADS_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary", publisher: SOURCES.fwo.name },
   { title: `Consolidated award text ${SCHADS_AWARD.code}`, url: SCHADS_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
   { title: `Equal Remuneration Order ${SCHADS_AWARD.eroReference}`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/previous-major-cases/equal-remuneration-case-2010-12", publisher: SOURCES.fwc.name },
-  { title: `Annual Wage Review 2026 — ${SCHADS_AWARD.decision}`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
+  { title: `Annual Wage Review 2026, ${SCHADS_AWARD.decision}`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
 ];
 
 function find(rows: readonly SchadsRate[], classification: string): SchadsRate {
@@ -324,15 +324,15 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {[
                         { l: "Sleepover", v: SCHADS_ALLOWANCES.sleepover, b: "per sleepover (cl 25.7(d))" },
-                        { l: "Broken shift — one unpaid break", v: SCHADS_ALLOWANCES.brokenShiftOneBreak, b: "per shift" },
-                        { l: "Broken shift — two unpaid breaks", v: SCHADS_ALLOWANCES.brokenShiftTwoBreaks, b: "per shift" },
-                        { l: "On call — weekday", v: SCHADS_ALLOWANCES.onCallWeekday, b: "per 24-hour period" },
-                        { l: "On call — weekend or public holiday", v: SCHADS_ALLOWANCES.onCallOtherOrPublicHoliday, b: "per 24-hour period" },
+                        { l: "Broken shift: one unpaid break", v: SCHADS_ALLOWANCES.brokenShiftOneBreak, b: "per shift" },
+                        { l: "Broken shift: two unpaid breaks", v: SCHADS_ALLOWANCES.brokenShiftTwoBreaks, b: "per shift" },
+                        { l: "On call: weekday", v: SCHADS_ALLOWANCES.onCallWeekday, b: "per 24-hour period" },
+                        { l: "On call: weekend or public holiday", v: SCHADS_ALLOWANCES.onCallOtherOrPublicHoliday, b: "per 24-hour period" },
                         { l: "First aid", v: SCHADS_ALLOWANCES.firstAidWeekly, b: `per week (${formatAUD(SCHADS_ALLOWANCES.firstAidHourly, 2)}/hr for casuals)` },
-                        { l: "Meal — when working overtime", v: SCHADS_ALLOWANCES.mealOvertime, b: "per occasion" },
+                        { l: "Meal: when working overtime", v: SCHADS_ALLOWANCES.mealOvertime, b: "per occasion" },
                         { l: "Uniform", v: SCHADS_ALLOWANCES.uniformPerShift, b: `per shift, capped at ${formatAUD(SCHADS_ALLOWANCES.uniformWeeklyMax, 2)}/week` },
                         { l: "Laundry", v: SCHADS_ALLOWANCES.laundryPerShift, b: `per shift, capped at ${formatAUD(SCHADS_ALLOWANCES.laundryWeeklyMax, 2)}/week` },
-                        { l: "Vehicle — own car on duty", v: vehiclePerKm, b: `per kilometre: ${schadsVehicleAllowanceWording(asOf)}` },
+                        { l: "Vehicle: own car on duty", v: vehiclePerKm, b: `per kilometre: ${schadsVehicleAllowanceWording(asOf)}` },
                       ].map((row) => (
                         <tr key={row.l}>
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.l}</th>

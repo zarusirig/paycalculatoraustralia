@@ -33,7 +33,7 @@ export const SONOGRAPHER = hpssOct2026Occupation(AQF, {
   slug: "sonographer",
   name: "Sonographer",
   plural: "sonographers",
-  metaTitle: `Sonographer Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
+  metaTitle: `Sonographer Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year sonographer at AQF Level 8, the award's standard qualification level for the profession",
   coverage: [

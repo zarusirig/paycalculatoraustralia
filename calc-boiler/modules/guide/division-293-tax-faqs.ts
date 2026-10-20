@@ -38,7 +38,7 @@ export const DIVISION_293_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I have to pay Division 293 if my salary is under $250K?",
-    a: `Yes, potentially. Division 293 looks at your combined income and concessional super contributions. If your taxable income is ${formatAUD(EX_INCOME)} and you have ${formatAUD(EX_SUPER)} of concessional contributions (for example ${formatAUD(EX_SG)} of employer SG plus ${formatAUD(EX_SACRIFICE)} of salary sacrifice), your combined total is ${formatAUD(EX_INCOME + EX_SUPER)} — above the ${THRESHOLD} threshold. You would owe Division 293 tax on ${formatAUD(EX_EXCESS)} of super contributions (${formatAUD(EX_TAX)}).`,
+    a: `Yes, potentially. Division 293 looks at your combined income and concessional super contributions. If your taxable income is ${formatAUD(EX_INCOME)} and you have ${formatAUD(EX_SUPER)} of concessional contributions (for example ${formatAUD(EX_SG)} of employer SG plus ${formatAUD(EX_SACRIFICE)} of salary sacrifice), your combined total is ${formatAUD(EX_INCOME + EX_SUPER)}, above the ${THRESHOLD} threshold. You would owe Division 293 tax on ${formatAUD(EX_EXCESS)} of super contributions (${formatAUD(EX_TAX)}).`,
   },
   {
     q: "Can I pay Division 293 from my super fund?",

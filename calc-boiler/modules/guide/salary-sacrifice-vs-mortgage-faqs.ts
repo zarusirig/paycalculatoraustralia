@@ -35,6 +35,6 @@ export const SALARY_SACRIFICE_VS_MORTGAGE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I do both salary sacrifice and extra mortgage payments?",
-    a: `A hybrid approach often works best. Salary sacrifice enough to capture the tax benefit (especially if in the ${pct(HIGH)} or ${pct(TOP)} bracket), then direct surplus cash to mortgage repayments or an offset account for the guaranteed return at your mortgage interest rate. This balances the tax advantage with financial accessibility.`,
+    a: `A hybrid approach often works best. Salary sacrifice enough to capture the tax benefit (especially if in the ${pct(HIGH)} or ${pct(TOP)} bracket), then direct surplus cash to mortgage repayments or an offset account for the certain return at your mortgage interest rate. This balances the tax advantage with financial accessibility.`,
   },
 ];

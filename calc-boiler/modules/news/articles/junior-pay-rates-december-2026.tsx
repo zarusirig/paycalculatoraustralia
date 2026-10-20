@@ -42,8 +42,8 @@ export default function JuniorPayRatesDecember2026() {
         title={`Fast Food Level 1 junior hourly rates, more than 6 months' service`}
         rows={ages.map((a) => ({
           label: `Age ${a.age}`,
-          before: `${a.now}% — ${money(juniorHourly(w, a.now))}`,
-          after: `${a.dec}% — ${money(juniorHourly(w, a.dec))} from ${dec.effective}`,
+          before: `${a.now}%, ${money(juniorHourly(w, a.now))}`,
+          after: `${a.dec}%, ${money(juniorHourly(w, a.dec))} from ${dec.effective}`,
         }))}
       />
 
@@ -94,7 +94,7 @@ export default function JuniorPayRatesDecember2026() {
       <p>
         Retail 20-year-olds with more than six months&apos; service already get {retail.present.age20}%, so in retail
         only 18 and 19-year-olds move, and only at retail employee levels 1 to 3. Pharmacy follows a separate
-        schedule agreed with the Pharmacy Guild for pharmacy assistants levels 1 and 2 — a five-point first step in December 2026, then steps of up to ten points each 1 July to 2029 —
+        schedule agreed with the Pharmacy Guild for pharmacy assistants levels 1 and 2 (a five-point first step in December 2026, then steps of up to ten points each 1 July to 2029),
         which the Commission adopted by consent.
       </p>
 
@@ -103,7 +103,7 @@ export default function JuniorPayRatesDecember2026() {
         A Level 1 fast food employee aged 19 who has worked for the same business for more than six months is on{" "}
         {ff.present.age19}% of the adult rate of {money(w)} a week. As a casual, that is {money(casual19Now)} an hour
         including the {Math.round(CASUAL_LOADING * 100)}% loading. From their first full pay period on or after{" "}
-        {dec.effective} it becomes {dec.age19}%, or <strong>{money(casual19Dec)} an hour</strong> — about{" "}
+        {dec.effective} it becomes {dec.age19}%, or <strong>{money(casual19Dec)} an hour</strong>, about{" "}
         {money(r2((casual19Dec - casual19Now) * HOURS))} more for a {HOURS}-hour week before tax, before any weekend or
         evening penalties. Hourly figures here apply the percentage to the adult weekly rate and divide by 38.
       </p>

@@ -516,7 +516,7 @@ export default function HomeCalculator() {
           {/* Casual loading toggle */}
           <div className="rounded-xl border border-sandstone-dark/30 bg-sandstone/20 p-3.5">
             <label className="flex cursor-pointer items-center justify-between text-sm">
-              <span className="font-medium text-navy">Casual worker — add {pctX(EMPLOYMENT.casualLoading)} loading</span>
+              <span className="font-medium text-navy">Casual worker: add {pctX(EMPLOYMENT.casualLoading)} loading</span>
               <input
                 type="checkbox"
                 checked={casual}
@@ -525,7 +525,7 @@ export default function HomeCalculator() {
               />
             </label>
             <p className="mt-1.5 text-xs text-warmgray-light">
-              Adds the standard {pctX(EMPLOYMENT.casualLoading)} casual loading to your base rate. Your award may set a different figure — check the{" "}
+              Adds the standard {pctX(EMPLOYMENT.casualLoading)} casual loading to your base rate. Your award may set a different figure. Check the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">award rates guide</Link>.
             </p>
           </div>

@@ -78,7 +78,7 @@ export default function HECSHelpCalculatorPage({ children, afterCalculator }: { 
             HECS Repayment Calculator and Thresholds {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
-            Work out your compulsory repayment for {SITE_CONFIG.financialYear} on any study or training support loan — HELP, VSL, SFSS, SSL, ABSTUDY SSL or AASL. They all share one threshold of {formatAUD(T)}, and the marginal system charges only on the income above it.
+            Work out your compulsory repayment for {SITE_CONFIG.financialYear} on any study or training support loan: HELP, VSL, SFSS, SSL, ABSTUDY SSL or AASL. They all share one threshold of {formatAUD(T)}, and the marginal system charges only on the income above it.
           </p>
           {/* Above-the-fold answer for "hecs repayment thresholds" — the full table with context is #threshold below. */}
           <div className="mt-5 overflow-x-auto rounded-xl border border-sandstone-dark/20 bg-white">
@@ -100,7 +100,7 @@ export default function HECSHelpCalculatorPage({ children, afterCalculator }: { 
               </tbody>
             </table>
           </div>
-          <p className="text-sm text-warmgray-light mt-2">Updated {SITE_CONFIG.lastVerified} — {SITE_CONFIG.financialYear} thresholds applied. Source: <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">ATO</a>.</p>
+          <p className="text-sm text-warmgray-light mt-2">Updated {SITE_CONFIG.lastVerified}. {SITE_CONFIG.financialYear} thresholds applied. Source: <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">ATO</a>.</p>
           <TrustBar className="mt-4" />
         </section>
 

@@ -47,7 +47,7 @@ export default function MiningFIFOPayGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Mining &amp; FIFO Pay Guide — Salaries, Rosters &amp; Take-Home Pay
+            Mining &amp; FIFO Pay Guide: Salaries, Rosters &amp; Take-Home Pay
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             FIFO (fly-in, fly-out) jobs pay a base salary plus roster loadings and allowances: the ABS puts{" "}
@@ -107,7 +107,7 @@ export default function MiningFIFOPayGuidePage() {
                 <li><strong>4 days on / 3 days off (4/3):</strong> Common for drive-in, drive-out (DIDO) roles closer to regional centres. Workers spend 4 days on-site and 3 days at home, working approximately 208 days per year.</li>
               </ul>
               <p>
-                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings — a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
+                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings: a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function MiningFIFOPayGuidePage() {
                 Mining and FIFO workers pay income tax on the same marginal tax brackets as all other Australian employees. However, there are specific tax considerations that FIFO workers should understand.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset — Key Change for FIFO Workers</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset: Key Change for FIFO Workers</h3>
               <p>
                 The <Link href="/zone-tax-offset/">zone tax offset</Link> provides a tax reduction for people who live in remote or isolated areas of Australia. Zone A provides a base offset of <strong>{formatAUD(ZONE_AREA_RATES.zoneA.fixedAmount)}</strong>, Zone B provides <strong>{formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)}</strong>, and special areas within these zones provide <strong>{formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)}</strong> instead of the zone amount ({ZONE_OFFSET_INCOME_YEAR} figures).
               </p>
@@ -146,7 +146,7 @@ export default function MiningFIFOPayGuidePage() {
                 <div>
                   <h3 className="text-base font-bold text-navy mb-1">Important: FIFO Workers Generally NOT Eligible</h3>
                   <p className="text-navy text-sm mb-0">
-                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot; — simply flying in to work does not qualify. Only workers who genuinely relocate to a remote town and maintain their primary residence there can claim the offset.
+                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot;. Simply flying in to work does not qualify. Only workers who genuinely relocate to a remote town and maintain their primary residence there can claim the offset.
                   </p>
                 </div>
               </div>

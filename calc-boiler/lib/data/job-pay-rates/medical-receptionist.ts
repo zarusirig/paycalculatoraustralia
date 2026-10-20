@@ -104,7 +104,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
     },
     {
       q: "Is a medical receptionist covered by the Clerks Award?",
-      a: "Generally not. The Health Professionals and Support Services Award covers employers in the health industry — businesses delivering health care, medical services and dental services — and their employees in its classifications \"to the exclusion of any other modern award\" (cl 4.1). \"Receptionist\" is one of those classifications, at Level 3.",
+      a: "Generally not. The Health Professionals and Support Services Award covers employers in the health industry (businesses delivering health care, medical services and dental services) and their employees in its classifications \"to the exclusion of any other modern award\" (cl 4.1). \"Receptionist\" is one of those classifications, at Level 3.",
     },
     {
       q: "Can a medical receptionist be paid at Level 5?",
@@ -116,7 +116,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
     },
   ],
   sources: [
-    { title: "Health Professionals and Support Services Award 2020 [MA000027] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000027") },
+    { title: "Health Professionals and Support Services Award 2020 [MA000027], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000027") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

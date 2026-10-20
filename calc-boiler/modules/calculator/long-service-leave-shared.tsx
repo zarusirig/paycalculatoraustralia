@@ -39,11 +39,11 @@ export function takeHomeSalaryStep(amount: number): number {
 
 export function jurisdictionSource(code: JurisdictionCode): SourceLink {
   const j = LSL_JURISDICTIONS[code];
-  return { title: `${j.act} — ${j.agency}`, url: j.sourceUrl, publisher: j.agency };
+  return { title: `${j.act}, ${j.agency}`, url: j.sourceUrl, publisher: j.agency };
 }
 
 export const ATO_SOURCE: SourceLink = {
-  title: "Unused long service leave — withholding from unused leave payments on termination",
+  title: "Unused long service leave: withholding from unused leave payments on termination",
   url: LSL_SOURCES.ato,
   publisher: "Australian Taxation Office",
 };
@@ -61,8 +61,8 @@ export const FWO_SOURCE: SourceLink = {
 export function NotAnnualLeave() {
   return (
     <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-4 text-sm text-navy">
-      <strong>This is not annual leave.</strong> Annual leave is federal — four weeks a year for
-      everyone under the National Employment Standards — and it is worked out on a different page:
+      <strong>This is not annual leave.</strong> Annual leave is federal (four weeks a year for
+      everyone under the National Employment Standards), and it is worked out on a different page:
       the{" "}
       <Link href="/leave-calculator/" className={LINK}>
         annual leave calculator
@@ -82,7 +82,7 @@ export function ScopeNote({ authority, authorityUrl }: { authority: string; auth
   return (
     <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-4 text-xs text-warmgray">
       <strong className="text-navy">What this covers.</strong> How many weeks you have accrued, what
-      the balance is worth at your ordinary pay, and how the ATO taxes a payout — so you can check the
+      the balance is worth at your ordinary pay, and how the ATO taxes a payout, so you can check the
       figure on your payslip or final pay. It is not legal advice, and it does not cover disputes,
       dismissal or whether an award or agreement displaces the Act. For those, contact{" "}
       <a href={authorityUrl} target="_blank" rel="noreferrer noopener" className={LINK}>

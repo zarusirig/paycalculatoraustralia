@@ -37,9 +37,9 @@ export function SuperannuationCalculatorIntro() {
         <p className="mb-4 text-warmgray">Superannuation is calculated by multiplying your Ordinary Time Earnings (OTE) by the current SG rate of <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> for FY{SITE_CONFIG.financialYear}. Your employer pays this amount on top of your gross salary directly into your nominated super fund.</p>
         <p className="mb-4 text-warmgray">The calculation follows 3 steps:</p>
         <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-          <li><strong>Identify your OTE</strong> — base salary, commissions, shift loadings, and paid leave. Overtime payments, expense reimbursements, and workers&apos; compensation are excluded.</li>
-          <li><strong>Apply the SG rate</strong> — multiply your OTE by <strong>0.12</strong> (12%).</li>
-          <li><strong>Check the maximum super contribution base</strong> — employers are not required to pay SG on annual earnings above <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</li>
+          <li><strong>Identify your OTE</strong>: base salary, commissions, shift loadings, and paid leave. Overtime payments, expense reimbursements, and workers&apos; compensation are excluded.</li>
+          <li><strong>Apply the SG rate</strong>: multiply your OTE by <strong>0.12</strong> (12%).</li>
+          <li><strong>Check the maximum super contribution base</strong>: employers are not required to pay SG on annual earnings above <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</li>
         </ol>
 
         <h3 className="text-lg font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Superannuation on an $85,000 Salary</h3>
@@ -55,7 +55,7 @@ export function SuperannuationCalculatorIntro() {
             </tbody>
           </table>
         </div>
-        <p className="text-sm text-warmgray">On an $85,000 salary, your employer contributes <strong>$10,200 per year</strong> into your super fund. This is not deducted from your take-home pay — use our <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">Australian tax calculator</Link> to see your full net pay after income tax and Medicare levy deductions.</p>
+        <p className="text-sm text-warmgray">On an $85,000 salary, your employer contributes <strong>$10,200 per year</strong> into your super fund. This is not deducted from your take-home pay. Use our <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">Australian tax calculator</Link> to see your full net pay after income tax and Medicare levy deductions.</p>
       </section>
 
       {/* --- What Is the SG Rate for FY2026-27? --- */}
@@ -81,7 +81,7 @@ export function SuperannuationCalculatorIntro() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-warmgray-light">The {formatPercent(SUPER_GUARANTEE.rate, 0)} rate is now permanent — no further legislated increases are scheduled. Employers who fail to pay in full face the <Link href="/super-guarantee-charge/" className="text-eucalyptus-dark hover:underline font-medium">Super Guarantee Charge</Link> (SGC): since Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to {formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}.</p>
+        <p className="mt-3 text-sm text-warmgray-light">The {formatPercent(SUPER_GUARANTEE.rate, 0)} rate is now permanent, with no further legislated increases are scheduled. Employers who fail to pay in full face the <Link href="/super-guarantee-charge/" className="text-eucalyptus-dark hover:underline font-medium">Super Guarantee Charge</Link> (SGC): since Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to {formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}.</p>
       </section>
 
       {/* --- Super on Common Salaries --- */}
@@ -112,7 +112,7 @@ export function SuperannuationCalculatorIntro() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Superannuation Calculator?</h2>
         <p className="mb-4 text-warmgray">This superannuation calculator serves <strong>5 primary user groups</strong> across employment types, salary levels, and career stages.</p>
         <ul className="list-disc pl-6 space-y-3 text-warmgray">
-          <li><strong>Full-time employees</strong> comparing job offers — a $90,000 &quot;plus super&quot; package is worth <strong>$100,800</strong> total, while a $100,800 &quot;including super&quot; package provides only $90,000 in base salary.</li>
+          <li><strong>Full-time employees</strong> comparing job offers: a $90,000 &quot;plus super&quot; package is worth <strong>$100,800</strong> total, while a $100,800 &quot;including super&quot; package provides only $90,000 in base salary.</li>
           <li><strong>Casual and part-time workers</strong> verifying their employer pays the correct SG amount. Since 1 July 2022, all employees receive super regardless of monthly earnings.</li>
           <li><strong>Salary sacrifice planners</strong> calculating how much concessional cap space remains after employer SG contributions. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> to model specific arrangements.</li>
           <li><strong>Low-income earners</strong> checking the government top-up on their employer contributions. The <Link href="/listo-calculator/" className="text-eucalyptus-dark hover:underline font-medium">LISTO Calculator</Link> shows the low income super tax offset, $500 now and $810 from 1 July 2027.</li>
@@ -124,8 +124,8 @@ export function SuperannuationCalculatorIntro() {
       {/* --- Not a projection calculator --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>This Is Not a Retirement Projection Calculator</h2>
-        <p className="mb-4 text-warmgray">This tool answers one question: how much super your employer must contribute on your salary this financial year under the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee — plus your total package value and the concessional cap space left for salary sacrifice.</p>
-        <p className="mb-4 text-warmgray">It does <strong>not</strong> project what your balance will be at retirement. A balance projection needs your current balance, investment returns, fees, insurance premiums, and decades of future contributions. For that, use <a href="https://moneysmart.gov.au/how-super-works/superannuation-calculator" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline font-medium">Moneysmart&apos;s superannuation calculator</a> — the Australian government&apos;s free projection tool.</p>
+        <p className="mb-4 text-warmgray">This tool answers one question: how much super your employer must contribute on your salary this financial year under the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee, plus your total package value and the concessional cap space left for salary sacrifice.</p>
+        <p className="mb-4 text-warmgray">It does <strong>not</strong> project what your balance will be at retirement. A balance projection needs your current balance, investment returns, fees, insurance premiums, and decades of future contributions. For that, use <a href="https://moneysmart.gov.au/how-super-works/superannuation-calculator" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline font-medium">Moneysmart&apos;s superannuation calculator</a>, the Australian government&apos;s free projection tool.</p>
         <p className="text-warmgray">Then come back here for the contribution side: whether the super on your payslip is right, and how much extra you could contribute this year. The <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> models the take-home cost of using that cap space.</p>
       </section>
 
@@ -141,7 +141,7 @@ export function SuperannuationCalculatorIntro() {
             <ul className="list-disc pl-5 text-warmgray space-y-1"><li>Overtime payments</li><li>Unused leave on termination</li><li>Expense reimbursements</li><li>Workers compensation payments</li></ul>
           </div>
         </div>
-        <p className="mt-4 text-sm text-warmgray">Understanding OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base — that is <strong>$9,600</strong> in super, not $11,400. Check your payslip against our calculator to confirm your employer&apos;s calculation is correct.</p>
+        <p className="mt-4 text-sm text-warmgray">Understanding OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base, which is <strong>$9,600</strong> in super, not $11,400. Check your payslip against our calculator to confirm your employer&apos;s calculation is correct.</p>
       </section>
     </>
   );
@@ -156,7 +156,7 @@ export function SuperannuationCalculatorMiddle() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Maximum Super Contribution Base ({formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}/Year)</h2>
         <p className="mb-3 text-warmgray">There&apos;s an earnings limit above which your employer isn&apos;t legally required to pay super. With Payday Super, for FY{SITE_CONFIG.financialYear} this is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</p>
         <p className="mb-3 text-warmgray">This means the maximum SG your employer must pay is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)} per year</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} x {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}).</p>
-        <p className="text-sm text-warmgray-light">If you earn above this threshold, check your employment agreement — some employers voluntarily pay super on your full salary as part of a total remuneration package. <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer cost calculator</Link></p>
+        <p className="text-sm text-warmgray-light">If you earn above this threshold, check your employment agreement, as some employers voluntarily pay super on your full salary as part of a total remuneration package. <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer cost calculator</Link></p>
         <p className="text-warmgray mt-4">
             Offered a &ldquo;package&rdquo; or a salary &ldquo;including super&rdquo;? The <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary package calculator</Link> splits it into base salary, super and take-home pay, and applies this cap for large packages.
           </p>
@@ -180,7 +180,7 @@ export function SuperannuationCalculatorMiddle() {
       {/* --- What Changed in FY2026-27? --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Superannuation in FY{SITE_CONFIG.financialYear}?</h2>
-        <p className="mb-4 text-warmgray">The SG rate is unchanged at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> — the legislated ceiling reached on {SUPER_GUARANTEE.effectiveDate} — but {SUPER_GUARANTEE.paydaySuperStart} brought the biggest structural change since compulsory super began: <strong>Payday Super</strong>. Employers now pay super every payday instead of quarterly, and both contribution caps rose with indexation.</p>
+        <p className="mb-4 text-warmgray">The SG rate is unchanged at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> (the legislated ceiling reached on {SUPER_GUARANTEE.effectiveDate}), but {SUPER_GUARANTEE.paydaySuperStart} brought the biggest structural change since compulsory super began: <strong>Payday Super</strong>. Employers now pay super every payday instead of quarterly, and both contribution caps rose with indexation.</p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Change</th><th className="px-4 py-3 text-left font-semibold text-navy">FY{SITE_CONFIG.previousFinancialYear}</th><th className="px-4 py-3 text-left font-semibold text-navy">FY{SITE_CONFIG.financialYear}</th></tr></thead>
@@ -193,7 +193,7 @@ export function SuperannuationCalculatorMiddle() {
             </tbody>
           </table>
         </div>
-        <p className="text-warmgray">The higher concessional cap gives salary sacrificers an extra <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)}</strong> of pre-tax contribution room. On a $150,000 salary the employer contributes {formatAUD(calculateSuper(150_000))} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - calculateSuper(150_000))}</strong> of cap space in FY{SITE_CONFIG.financialYear}, up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious - calculateSuper(150_000))} — use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see how the combined FY{SITE_CONFIG.financialYear} changes affect your after-tax income.</p>
+        <p className="text-warmgray">The higher concessional cap gives salary sacrificers an extra <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)}</strong> of pre-tax contribution room. On a $150,000 salary the employer contributes {formatAUD(calculateSuper(150_000))} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - calculateSuper(150_000))}</strong> of cap space in FY{SITE_CONFIG.financialYear}, up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious - calculateSuper(150_000))}. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see how the combined FY{SITE_CONFIG.financialYear} changes affect your after-tax income.</p>
       </section>
 
       {/* --- Common Super Mistakes --- */}

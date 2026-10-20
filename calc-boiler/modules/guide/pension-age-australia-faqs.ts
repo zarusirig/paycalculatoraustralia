@@ -12,7 +12,7 @@ import {
 export const PENSION_AGE_FAQS: readonly { q: string; a: string }[] = [
   {
     q: "What is the pension age in Australia?",
-    a: `The Age Pension age is ${AGE_PENSION_AGE}. It has applied to everyone born on or after 1 January 1957 since ${AGE_PENSION_AGE_SINCE}, and Services Australia says there are no plans to change it. Reaching ${AGE_PENSION_AGE} doesn't guarantee a payment. You also have to meet the residence rules and the income and assets tests.`,
+    a: `The Age Pension age is ${AGE_PENSION_AGE}. It has applied to everyone born on or after 1 January 1957 since ${AGE_PENSION_AGE_SINCE}, and Services Australia says there are no plans to change it. Reaching ${AGE_PENSION_AGE} doesn't mean you'll get a payment. You also have to meet the residence rules and the income and assets tests.`,
   },
   {
     q: "What is the retirement age in Australia?",

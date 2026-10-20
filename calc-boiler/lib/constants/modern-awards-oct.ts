@@ -134,12 +134,12 @@ Level 4|1221.10|32.13
       fullTime: 2.5,
       casual: 2.5,
       casualTabulated: true,
-      note: "Casuals get the same 250% as permanent staff — the table has no extra 25% on a public holiday.",
+      note: "Casuals get the same 250% as permanent staff. The table has no extra 25% on a public holiday.",
     },
   ],
   penaltiesClause: "cl 20 and Schedule A.1.1 / A.2.1",
   penaltyNotes: [
-    "Weekday hours outside 7.00 am to 7.00 pm and all Saturday hours are 120% for permanent staff and 145% for casuals — the casual figure is the permanent percentage plus the 25% loading. Sunday is 150% (casuals 175%).",
+    "Weekday hours outside 7.00 am to 7.00 pm and all Saturday hours are 120% for permanent staff and 145% for casuals. The casual figure is the permanent percentage plus the 25% loading. Sunday is 150% (casuals 175%).",
     "The public holiday rate is the exception: Schedule A.2.1 shows casuals at 250%, the same as permanent staff, not 275%.",
   ],
   // cl 19.1; Schedule A.1.2.
@@ -189,9 +189,9 @@ Level 4|1221.10|32.13
     "No one can be required to work more than 5 hours without an unpaid meal break of at least 30 minutes (cl 14).",
   ],
   unverified: [
-    "Apprentice rates (cl 15.2) — percentages of the Level 3 rate by year, but no dollar table is published here",
+    "Apprentice rates (cl 15.2): percentages of the Level 3 rate by year, but no dollar table is published here",
     "National Training Wage (Schedule E) trainee rates and the Supported Wage System (Schedule D)",
-    "Whether this award covers you at all — it only covers employees not covered by any other modern award, and excludes managerial and professional employees (cl 4)",
+    "Whether this award covers you at all. It only covers employees not covered by any other modern award, and excludes managerial and professional employees (cl 4)",
   ],
 };
 
@@ -324,7 +324,7 @@ export const CONSTRUCTION_AWARD: ModernAwardData = {
     "Daily hire employees: their hourly rate includes a follow-the-job loading (52 over 50.4) and a different divisor for carpenter-divers (cl 19.3(a))",
     "Leading hand percentages (cl 19.2), shiftwork rates (cl 17), forepersons and supervisors (cl 43), and the lift industry (cl 42)",
     "Apprentice and trainee rates (cl 19.7 and Schedule D) and the other site, height, towers, underground and multi-storey allowances in cl 23",
-    "The weekly hire rate for the residential sector — use the $53.72 allowance in cl 22.1(b) instead of $67.15 and divide by 38",
+    "The weekly hire rate for the residential sector: use the $53.72 allowance in cl 22.1(b) instead of $67.15 and divide by 38",
   ],
 };
 
@@ -401,7 +401,7 @@ Level 6 — Law clerk|1369.20|36.03
   ],
   overtimeClause: "cl 20.2(a)(i)",
   overtimeNotes: [
-    "Casual overtime includes the 25% loading — the award's note says the casual rates are the loading added to the permanent rates (cl 20.2 NOTE).",
+    "Casual overtime includes the 25% loading. The award's note says the casual rates are the loading added to the permanent rates (cl 20.2 NOTE).",
     "Overtime is worked out on the weekly rate divided by 38, even when more than 38 ordinary hours are worked, and part-hours are rounded up to the next 30 minutes (cl 20.3).",
     "Continuous shiftworkers are paid 200% for all overtime (casuals 225%) (cl 20.2(b)).",
   ],
@@ -438,9 +438,9 @@ Level 6 — Law clerk|1369.20|36.03
     "An employee working overtime gets a paid 20-minute rest break after each 4 hours of overtime if work continues (cl 20.4).",
   ],
   unverified: [
-    "Annualised wage arrangements (cl 17) — many law firms pay an annualised salary that must still cover what the award would give for the hours actually worked",
+    "Annualised wage arrangements (cl 17): many law firms pay an annualised salary that must still cover what the award would give for the hours actually worked",
     "Law graduate special conditions (cl 28)",
-    "Classification definitions in Schedule A — we publish the rate for each level, not the duties that place someone in it",
+    "Classification definitions in Schedule A: we publish the rate for each level, not the duties that place someone in it",
     "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
   ],
 };
@@ -517,7 +517,7 @@ export const ELECTRICAL_AWARD: ModernAwardData = {
         ELECTRICAL_MIN.map(([l, w]) => `${l.replace("Electrical worker ", "")}: $${w.toFixed(2)} a week ($${ELECTRICAL_MIN_HOURLY[l].toFixed(2)} an hour)`).join("; ") +
         " (cl 16.2).",
     },
-    { level: "Grade 5", description: "A trade-qualified electrical, electronics, instrumentation, refrigeration or linework worker — holds a trade certificate or tradesperson's rights certificate, or an AQF Certificate III in Electrotechnology (Schedule A.2.5). The tool allowance starts here." },
+    { level: "Grade 5", description: "A trade-qualified electrical, electronics, instrumentation, refrigeration or linework worker who holds a trade certificate or tradesperson's rights certificate, or an AQF Certificate III in Electrotechnology (Schedule A.2.5). The tool allowance starts here." },
     { level: "Grade 6", description: "A grade 5 worker with 3 further training modules (or equivalent in-house training) and at least a year's experience as a grade 5 (Schedule A.2.6)." },
     { level: "Grade 7", description: "A grade 5 worker with a Post Trade Certificate, 9 modules towards an Advanced Certificate or AQF Diploma, an AQF Certificate IV in Electrotechnology, or 2 years' experience in the industry (Schedule A.2.7)." },
   ],
@@ -537,7 +537,7 @@ export const ELECTRICAL_AWARD: ModernAwardData = {
   penaltiesClause: "cl 20.4 and Schedule B.2.1 / B.3.1",
   penaltyNotes: [
     "Day workers' ordinary hours are Monday to Friday between 6.00 am and 6.00 pm (cl 13.2–13.3). Saturday work is overtime. Sunday and public holiday work is paid at the flat rates above.",
-    "For a casual, the permanent percentage is applied to the ordinary rate after adding the 25% loading — the award's own note says so. That is why a casual Sunday is 250% of the ordinary rate, not 225%, and a casual public holiday is 312.5%.",
+    "For a casual, the permanent percentage is applied to the ordinary rate after adding the 25% loading, as the award's own note says. That is why a casual Sunday is 250% of the ordinary rate, not 225%, and a casual public holiday is 312.5%.",
     "The shiftwork loadings (afternoon, night, permanent night and shift weekend rates) are in cl 13.13–13.16 and Schedule B.2.3; this page does not reproduce them.",
   ],
   // cl 20.1(a)–(b).
@@ -560,7 +560,7 @@ export const ELECTRICAL_AWARD: ModernAwardData = {
   allowances: [
     { name: "Industry allowance", amount: 41.41, unit: "per week", clause: "cl 18.3(a)", note: "All-purpose. Already in the rates above." },
     { name: "Tool allowance (grade 5 and above)", amount: 22.31, unit: "per week", clause: "cl 18.3(g)", note: "All-purpose. Already in the rates above for grade 5 and up." },
-    { name: "Electrician's licence allowance", amount: 40.29, unit: "per week", clause: "cl 18.3(b)", note: "All-purpose. NOT in the rates above — add it for an electrical mechanic who may be required to use an unrestricted licence." },
+    { name: "Electrician's licence allowance", amount: 40.29, unit: "per week", clause: "cl 18.3(b)", note: "All-purpose. NOT in the rates above. Add it for an electrical mechanic who may be required to use an unrestricted licence." },
     { name: "Leading hand — in charge of 3 to 10 employees", amount: 48.12, unit: "per week", clause: "cl 18.3(c)" },
     { name: "Leading hand — in charge of 11 to 20 employees", amount: 67.15, unit: "per week", clause: "cl 18.3(c)" },
     { name: "Leading hand — in charge of more than 20 employees", amount: 90.65, unit: "per week", clause: "cl 18.3(c)" },
@@ -652,7 +652,7 @@ Level 7|1325.70|34.89
   penaltiesClause: "cl 20.1, 26.3 and Schedule B.1.1 / B.2",
   penaltyNotes: [
     "Ordinary hours can be worked between 5.00 am and 11.00 pm Monday to Friday and 6.00 am and 9.00 pm on Saturday and Sunday (cl 13.1). Work outside those spans is overtime.",
-    "Casual loadings differ by day: 25% Monday to Friday and 30% on Saturday, Sunday and public holidays (cl 12.1). Schedule B.2 therefore shows casuals at 125% on weekdays and 130% on weekends — and a casual's Sunday rate is lower than a permanent employee's 150%.",
+    "Casual loadings differ by day: 25% Monday to Friday and 30% on Saturday, Sunday and public holidays (cl 12.1). Schedule B.2 therefore shows casuals at 125% on weekdays and 130% on weekends, and a casual's Sunday rate is lower than a permanent employee's 150%.",
     "The casual public holiday rate: cl 26.3(c) points casuals to the 30% loading in cl 12.1(b), and Schedule B.2 lists 130% for Saturday, Sunday and public holidays together. Because that sits so far below the permanent 250%, we do not print a dollar rate for it; confirm with Fair Work before relying on it.",
   ],
   // cl 19.2.
@@ -777,7 +777,7 @@ Level 4 (In-Charge)|1287.30
   overtimeClause: "cl 19.1(a) and Schedule B.1.1",
   overtimeNotes: [
     "Overtime is only paid for hours worked at the specific direction of the employer. Work done on your own initiative, without an express instruction, is not payable under this clause (cl 19.1(b)–(c)).",
-    "Hours over the ordinary 38 that are not on a rostered day off are paid at the ordinary hourly rate — 100% — not at 150%. The higher rates apply on a rostered day or half day off.",
+    "Hours over the ordinary 38 that are not on a rostered day off are paid at the ordinary hourly rate (100%), not at 150%. The higher rates apply on a rostered day or half day off.",
     "The award sets no casual rate for overtime on a rostered day off, so none is printed. Time off instead of overtime can be agreed in writing (cl 19.2).",
   ],
   casualPenaltyBasis: "additive",
@@ -936,7 +936,7 @@ Level 11|1865.60|49.09
     "Any employee can work ordinary hours outside the span for their role if they are paid the 120% weekday rate for those hours (cl 13.1(j)).",
   ],
   unverified: [
-    "The casual public holiday rate — Schedule B.2.1 has no public holiday column",
+    "The casual public holiday rate: Schedule B.2.1 has no public holiday column",
     "Apprentice rates (cl 16.3, percentages of the Level 4 rate) and school-based apprentices (Schedule D)",
     "Community services and recreation centre weekend rates, beyond the outside-5am-to-10pm exception noted above (Schedule B.1.3)",
     "Annualised wage arrangements (cl 18) and the remaining allowances in cl 19.2",

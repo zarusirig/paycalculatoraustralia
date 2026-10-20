@@ -96,14 +96,14 @@ export const CYBER_SECURITY: Occupation = {
     label: PEA.grad3,
     why: "a graduate cyber security professional with a 3-year ACS-accredited degree at an IT-industry employer",
   },
-  heading: "Cyber Security Salary Australia 2026 — Seven Roles From Tax Returns, With Take-Home",
-  metaTitle: `Cyber Security Salary 2026 — ${aud(ANALYST.medianSalary)}–${aud(ARCHITECT.medianSalary)} Median, ${aud2(GRAD3.hourly)}/hr`,
+  heading: "Cyber Security Salary Australia 2026 - Seven Roles From Tax Returns, With Take-Home",
+  metaTitle: `Cyber Security Salary 2026 - ${aud(ANALYST.medianSalary)}–${aud(ARCHITECT.medianSalary)} Median, ${aud2(GRAD3.hourly)}/hr`,
   metaDescription: `Cyber security salaries from 2023–24 tax returns: analysts ${aud(ANALYST.medianSalary)} median, engineers ${aud(ENGINEER_ROW.medianSalary)}, architects ${aud(ARCHITECT.medianSalary)}. Award floor and take-home pay on each.`,
   lede: `Cyber security pay depends heavily on the role. On 2023–24 tax returns the median salary was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO). At an employer principally in the IT industry, the Professional Employees Award sets a graduate floor of ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). An analyst on the median takes home about ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight after tax.`,
   coverage: [
     "No award names cyber security roles. Their award coverage, if any, comes through the information technology stream of the Professional Employees Award 2020 [MA000065], which applies only where the employer is principally engaged in the IT, telecommunications services or quality auditing industry (cl 4.1(b)), and only to work needing an ACS-accredited degree or equivalent standing as an ACS Certified Professional (cl 2.3).",
     "A security analyst at a bank, an insurer, a hospital or a government department is outside that stream. Check the award for the employer's industry or your enterprise agreement; if none applies, the National Minimum Wage and the National Employment Standards are the legal floor.",
-    "Where the award does apply, a graduate starts at Level 1 pay point 1.1 and an experienced IT employee — 4 years' professional IT experience after the degree — is Level 2. Roles that are wholly or principally managerial are not classified under the award (Schedule A).",
+    "Where the award does apply, a graduate starts at Level 1 pay point 1.1 and an experienced IT employee (4 years' professional IT experience after the degree) is Level 2. Roles that are wholly or principally managerial are not classified under the award (Schedule A).",
   ],
   tables: [
     {
@@ -127,7 +127,7 @@ export const CYBER_SECURITY: Occupation = {
     `The ATO figures cover ${PEOPLE.toLocaleString("en-AU")} people across seven cyber security occupations in 2023–24. Jobs and Skills Australia's median is for a wider group that also includes database and systems administrators.`,
   ],
   payslipNotes: [
-    "Night and weekend incident work: below the cl 18.6 salary line, hours worked at your employer's direction before 6 am or after 10 pm Monday to Saturday are paid at 125% — $42.14 an hour for a graduate on the 3-year rate — and Sundays and public holidays at 150%, $50.57 (cl 18.4, Schedule C.1). They must be shown separately from your ordinary pay (Fair Work Ombudsman, pay slips).",
+    "Night and weekend incident work: below the cl 18.6 salary line, hours worked at your employer's direction before 6 am or after 10 pm Monday to Saturday are paid at 125% ($42.14 an hour for a graduate on the 3-year rate) and Sundays and public holidays at 150%, $50.57 (cl 18.4, Schedule C.1). They must be shown separately from your ordinary pay (Fair Work Ombudsman, pay slips).",
     "Records: below that line your employer must record hours over 38 a week, before 6 am or after 10 pm, and on Sundays and public holidays (cl 18.5).",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
   ],
@@ -158,11 +158,11 @@ export const CYBER_SECURITY: Occupation = {
     },
     {
       q: "Are cyber security staff paid for after-hours incidents?",
-      a: `Under the Professional Employees Award, call-backs and remote work count as overtime at the ordinary hourly rate, and night and weekend hours attract 125% to 150% — but only while your salary is less than 25% above your level's minimum (${aud(exemptionThreshold(L2.annual!))} at Level 2). Otherwise your contract or agreement decides.`,
+      a: `Under the Professional Employees Award, call-backs and remote work count as overtime at the ordinary hourly rate, and night and weekend hours attract 125% to 150%, but only while your salary is less than 25% above your level's minimum (${aud(exemptionThreshold(L2.annual!))} at Level 2). Otherwise your contract or agreement decides.`,
     },
   ],
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     FWO_PAY_SLIPS,

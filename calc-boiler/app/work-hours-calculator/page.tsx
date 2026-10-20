@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/work-hours-calculator/`;
 
-const TITLE = "Work Hours Calculator — Timesheet With Breaks & Overtime";
+const TITLE = "Work Hours Calculator - Timesheet With Breaks & Overtime";
 const DESCRIPTION = `Add up work hours from start and finish times, minus unpaid breaks, in decimal hours and h:mm, with overnight shifts, ${CASUAL_LOADING * 100}% casual loading and overtime past ${STANDARD_WEEKLY_HOURS} hours.`;
 
 export const metadata: Metadata = withFeaturedImage({

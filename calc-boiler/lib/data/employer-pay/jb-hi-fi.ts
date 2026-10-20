@@ -42,21 +42,21 @@ export const JB_HI_FI_PAY: EmployerPay = {
     description:
       i === 0
         ? "The award's entry level for retail employees. JB Hi-Fi does not publish which level each store role sits at"
-        : "Higher retail classification — the award's Schedule A lists the duties at each level",
+        : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
-    "These are the General Retail Industry Award minimums that apply to JB Hi-Fi store staff. JB Hi-Fi's actual pay rates, and any sales incentives, are not published, so your pay may be higher — it cannot be lower.",
+    "These are the General Retail Industry Award minimums that apply to JB Hi-Fi store staff. JB Hi-Fi's actual pay rates, and any sales incentives, are not published, so your pay may be higher, but it cannot be lower.",
     "Your payslip must name the award or agreement you are paid under, and your classification level. If it says Retail Award, match your level to the table below.",
   ],
   unverified: [
-    "JB Hi-Fi's actual hourly rates, above-award payments and sales incentives — not public.",
-    "Which award level each JB Hi-Fi store role is classified at — JB Hi-Fi does not publish this.",
+    "JB Hi-Fi's actual hourly rates, above-award payments and sales incentives (not public).",
+    "Which award level each JB Hi-Fi store role is classified at. JB Hi-Fi does not publish this.",
     "Agreements approved before 2019 were not checked one by one; none was found in searches.",
-    "The Good Guys (owned by JB Hi-Fi) — no agreement found for it either, but not researched separately.",
+    "The Good Guys (owned by JB Hi-Fi): no agreement found for it either, but not researched separately.",
   ],
   sources: [
     { title: "General Retail Industry Award 2020 (MA000004), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },
-    { title: "JB Hi-Fi Group Pty Ltd — Proactive Compliance Deed (2015)", publisher: "Fair Work Ombudsman", url: DEED_URL },
+    { title: "JB Hi-Fi Group Pty Ltd, Proactive Compliance Deed (2015)", publisher: "Fair Work Ombudsman", url: DEED_URL },
     { title: "Find an enterprise agreement (JB Hi-Fi Home Delivery Centre Victoria agreements AE521349, AE533888)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement" },
   ],
   faqs: [

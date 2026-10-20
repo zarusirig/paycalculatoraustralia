@@ -38,7 +38,7 @@ export default function CostOfLivingPayment2026Page({ featuredImage }: { feature
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Cost of Living Payment 2026" title="Is There a Cost of Living Payment in 2026?">
           <p>
-            <strong>No.</strong> There is no Commonwealth cost of living payment in 2026. Services Australia says the Cost of Living Payment <strong>stopped from {COL.cwthCostOfLivingPaymentEnded}</strong>, and the federal Energy Bill Relief Fund <strong>ended on {COL.energyBillReliefEnded}</strong>. What does happen is the regular indexation of existing payments — most recently on 20 September 2026 — plus state and territory concessions.
+            <strong>No.</strong> There is no Commonwealth cost of living payment in 2026. Services Australia says the Cost of Living Payment <strong>stopped from {COL.cwthCostOfLivingPaymentEnded}</strong>, and the federal Energy Bill Relief Fund <strong>ended on {COL.energyBillReliefEnded}</strong>. What does happen is the regular indexation of existing payments (most recently on 20 September 2026), plus state and territory concessions.
           </p>
         </W3Hero>
         {featuredImage}
@@ -54,8 +54,8 @@ export default function CostOfLivingPayment2026Page({ featuredImage }: { feature
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Payment</th><th scope="col" className={TH}>Status</th><th scope="col" className={TH}>Source</th></tr></thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
                   <tr><td className={TD + " font-medium"}>Cost of Living Payment (Commonwealth)</td><td className={TD}>Stopped from {COL.cwthCostOfLivingPaymentEnded}. It was not taxable.</td><td className={TD}>Services Australia</td></tr>
-                  <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Energy Bill Relief Fund — 2025 extension</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2025Extension)} per household, two $75 instalments, 1 July – 31 December 2025. Ended {COL.energyBillReliefEnded}.</td><td className={TD}>energy.gov.au</td></tr>
-                  <tr><td className={TD + " font-medium"}>Energy Bill Relief Fund — 2024-25</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2024_25)} per household</td><td className={TD}>energy.gov.au</td></tr>
+                  <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Energy Bill Relief Fund, 2025 extension</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2025Extension)} per household, two $75 instalments, 1 July – 31 December 2025. Ended {COL.energyBillReliefEnded}.</td><td className={TD}>energy.gov.au</td></tr>
+                  <tr><td className={TD + " font-medium"}>Energy Bill Relief Fund, 2024-25</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2024_25)} per household</td><td className={TD}>energy.gov.au</td></tr>
                 </tbody>
               </table>
             </div>
@@ -81,7 +81,7 @@ export default function CostOfLivingPayment2026Page({ featuredImage }: { feature
             <p className={P}>If you pay rent and get an eligible payment, <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link> adds up to {formatAUD(RENT_ASSISTANCE.rows.single.max, 2)} a fortnight for a single person with no children (from {RENT_ASSISTANCE.ratesFrom}).</p>
 
             <h3 className="font-semibold text-navy mt-6 mb-2">3. State and territory concessions</h3>
-            <p className={P}>States run their own rebates for concession card holders. One that is paid as cash: South Australia&apos;s <strong>Cost of Living Concession</strong> — {formatAUD(COL.saCostOfLivingConcession2026_27, 2)} for 2026-27, paid between August and December to eligible tenants and homeowners on low or fixed incomes (apply by 31 December). For your state&apos;s energy rebates, use the <a href={SRC.energyRebates} className={LINK} target="_blank" rel="noopener noreferrer">energy.gov.au rebates finder</a>.</p>
+            <p className={P}>States run their own rebates for concession card holders. One that is paid as cash: South Australia&apos;s <strong>Cost of Living Concession</strong>: {formatAUD(COL.saCostOfLivingConcession2026_27, 2)} for 2026-27, paid between August and December to eligible tenants and homeowners on low or fixed incomes (apply by 31 December). For your state&apos;s energy rebates, use the <a href={SRC.energyRebates} className={LINK} target="_blank" rel="noopener noreferrer">energy.gov.au rebates finder</a>.</p>
 
             <h3 className="font-semibold text-navy mt-6 mb-2">4. One-off help if something goes wrong</h3>
             <p className={P}>A <Link href="/centrelink-crisis-payment/" className={LINK}>Crisis Payment</Link> (one week of your payment&apos;s basic rate) after an extreme circumstance, or an <Link href="/centrelink-advance-payment/" className={LINK}>advance</Link> of part of your payment, repaid over 13 fortnights.</p>

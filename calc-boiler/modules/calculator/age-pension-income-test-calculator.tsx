@@ -99,7 +99,7 @@ export default function AgePensionIncomeTestCalculatorPage({ children, afterCalc
               <li><span className="font-medium text-navy" aria-current="page">Age Pension Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Age Pension Calculator 2026 — Rates From 20 September and the Income Test</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Age Pension Calculator 2026 - Rates From 20 September and the Income Test</h1>
           <p className="text-lg text-warmgray mb-4">
             The full Age Pension is <strong>{formatAUD(SEP.maxFortnightly.single.total, 2)} a fortnight</strong> for a single person and <strong>{formatAUD(SEP.maxFortnightly.coupleEach.total, 2)} each</strong> for a couple ({formatAUD(SEP.maxFortnightly.coupleCombined.total, 2)} combined) from {RATE_SET_LABELS[SEPTEMBER_2026]}, up from {formatAUD(MAR.maxFortnightly.single.total, 2)} and {formatAUD(MAR.maxFortnightly.coupleEach.total, 2)}. Your income reduces it by 50 cents a dollar over {formatAUD(IT.single.freeArea)} a fortnight (single).
           </p>
@@ -206,7 +206,7 @@ export default function AgePensionIncomeTestCalculatorPage({ children, afterCalc
         <div className="max-w-4xl mx-auto space-y-10">
           <section>
             <h2 style={FONT} className={H2}>Age Pension Income Test Rules</h2>
-            <p className={P}>The free areas and tapers are unchanged by the 20 September 2026 indexation — it is the maximum rates, and therefore the cut-offs, that move.</p>
+            <p className={P}>The free areas and tapers are unchanged by the 20 September 2026 indexation. It is the maximum rates, and therefore the cut-offs, that move.</p>
             <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Situation</th><th scope="col" className={TH}>Income free area (per fortnight)</th><th scope="col" className={TH}>Reduction above it</th><th scope="col" className={TH + " text-right"}>Cut-off</th></tr></thead>
@@ -214,14 +214,14 @@ export default function AgePensionIncomeTestCalculatorPage({ children, afterCalc
                   <tr><td className={TD}>Single</td><td className={TD}>{formatAUD(IT.single.freeArea)}</td><td className={TD}>50c for each dollar</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: formatAUD(MAR.publishedCutOff.single, 2), [SEPTEMBER_2026]: formatAUD(SEP.publishedCutOff.single, 2) }} /></td></tr>
                   <tr className="bg-eucalyptus-light/30"><td className={TD}>Couple living together</td><td className={TD}>{formatAUD(IT.couple.freeArea)} combined</td><td className={TD}>25c for each combined dollar, off each pension</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: `${formatAUD(MAR.publishedCutOff.coupleCombined, 2)} combined`, [SEPTEMBER_2026]: `${formatAUD(SEP.publishedCutOff.coupleCombined, 2)} combined` }} /></td></tr>
                   <tr><td className={TD}>Couple apart due to ill health</td><td className={TD}>{formatAUD(IT.couple.freeArea)} combined</td><td className={TD}>25c for each combined dollar, off each pension</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: `${formatAUD(MAR.publishedCutOff.coupleApartIllHealthCombined, 2)} combined`, [SEPTEMBER_2026]: `${formatAUD(SEP.publishedCutOff.coupleApartIllHealthCombined, 2)} combined` }} /></td></tr>
-                  <tr className="bg-eucalyptus-light/30"><td className={TD}>Transitional rate — single</td><td className={TD}>{formatAUD(IT.transitional.single.freeArea)}</td><td className={TD}>40c for each dollar</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: formatAUD(MAR.publishedCutOff.transitionalSingle, 2), [SEPTEMBER_2026]: formatAUD(SEP.publishedCutOff.transitionalSingle, 2) }} /></td></tr>
-                  <tr><td className={TD}>Transitional rate — couple</td><td className={TD}>{formatAUD(IT.transitional.couple.freeArea)} combined</td><td className={TD}>20c for each combined dollar, off each pension</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: `${formatAUD(MAR.publishedCutOff.transitionalCoupleCombined, 2)} combined`, [SEPTEMBER_2026]: `${formatAUD(SEP.publishedCutOff.transitionalCoupleCombined, 2)} combined` }} /></td></tr>
+                  <tr className="bg-eucalyptus-light/30"><td className={TD}>Transitional rate, single</td><td className={TD}>{formatAUD(IT.transitional.single.freeArea)}</td><td className={TD}>40c for each dollar</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: formatAUD(MAR.publishedCutOff.transitionalSingle, 2), [SEPTEMBER_2026]: formatAUD(SEP.publishedCutOff.transitionalSingle, 2) }} /></td></tr>
+                  <tr><td className={TD}>Transitional rate, couple</td><td className={TD}>{formatAUD(IT.transitional.couple.freeArea)} combined</td><td className={TD}>20c for each combined dollar, off each pension</td><td className={TD}><DatedFigures activeKey={activeKey} values={{ [MARCH_2026]: `${formatAUD(MAR.publishedCutOff.transitionalCoupleCombined, 2)} combined`, [SEPTEMBER_2026]: `${formatAUD(SEP.publishedCutOff.transitionalCoupleCombined, 2)} combined` }} /></td></tr>
                 </tbody>
               </table>
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
               The income test counts income from all sources, including deemed income on financial assets. Services Australia pays the lower of the income-test and assets-test results.{" "}
-              {SEP.cutOffSource === "derived" && "The 20 September 2026 cut-offs are calculated from the DSS maximum rates and the unchanged free areas and tapers — Services Australia publishes its own on the day, and we will replace ours with them."}
+              {SEP.cutOffSource === "derived" && "The 20 September 2026 cut-offs are calculated from the DSS maximum rates and the unchanged free areas and tapers. Services Australia publishes its own on the day, and we will replace ours with them."}
             </p>
           </section>
 

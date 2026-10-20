@@ -31,15 +31,15 @@ export interface SuperannuationFaq {
 export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   {
     q: "Is super included in my salary?",
-    a: `Typically, no — most contracts quote base salary with super paid on top of it. Check the wording: "plus super" means additional, "including super" means the headline figure already covers it, so your base salary is lower. For a worked example on a $90,000 package, see the pay-package FAQ on the homepage.`,
+    a: `Typically, no. Most contracts quote base salary with super paid on top of it. Check the wording: "plus super" means additional, "including super" means the headline figure already covers it, so your base salary is lower. For a worked example on a $90,000 package, see the pay-package FAQ on the homepage.`,
   },
   {
     q: "Do casual workers get super?",
-    a: `Yes. Since 1 July 2022, all employees — including casuals — are entitled to SG regardless of how much they earn, after the previous ${formatAUD(450)}-a-month minimum earnings threshold was abolished. A casual worker earning ${formatAUD(200)} per week receives ${formatAUD(200 * SUPER_GUARANTEE.rate)} per week in super contributions at the ${RATE} rate.`,
+    a: `Yes. Since 1 July 2022, all employees, including casuals, are entitled to SG regardless of how much they earn, after the previous ${formatAUD(450)}-a-month minimum earnings threshold was abolished. A casual worker earning ${formatAUD(200)} per week receives ${formatAUD(200 * SUPER_GUARANTEE.rate)} per week in super contributions at the ${RATE} rate.`,
   },
   {
     q: "Can my employer pay super less than 12%?",
-    a: `No. ${RATE} SG is the legal minimum. Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)} — and unlike the old quarterly charge it is now tax-deductible.`,
+    a: `No. ${RATE} SG is the legal minimum. Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}, and unlike the old quarterly charge it is now tax-deductible.`,
   },
   {
     q: "How much super should I have at 30?",
@@ -47,7 +47,7 @@ export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   },
   {
     q: "Is super paid on overtime?",
-    a: `No. Overtime is excluded from Ordinary Time Earnings (OTE), so your employer doesn't have to pay super on overtime hours — a rule Payday Super kept. Super is calculated on your base hourly rate for ordinary hours only. Shift loadings for ordinary hours are included in OTE.`,
+    a: `No. Overtime is excluded from Ordinary Time Earnings (OTE), so your employer doesn't have to pay super on overtime hours, a rule Payday Super kept. Super is calculated on your base hourly rate for ordinary hours only. Shift loadings for ordinary hours are included in OTE.`,
   },
   {
     q: "What is the maximum super contribution base?",
@@ -55,7 +55,7 @@ export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   },
   {
     q: "When does my employer have to pay super?",
-    a: `Every payday. Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay SG each time they pay you, and the contribution must arrive in your fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday (${SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for a new employee's first contribution). The old quarterly deadlines — within 28 days of each quarter's end — only applied to earnings paid up to 30 June 2026. Late or missed contributions trigger the Super Guarantee Charge, which is now tax-deductible, unlike the old quarterly charge.`,
+    a: `Every payday. Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay SG each time they pay you, and the contribution must arrive in your fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday (${SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for a new employee's first contribution). The old quarterly deadlines (within 28 days of each quarter's end) only applied to earnings paid up to 30 June 2026. Late or missed contributions trigger the Super Guarantee Charge, which is now tax-deductible, unlike the old quarterly charge.`,
   },
   {
     q: "What is Division 293 tax on super?",

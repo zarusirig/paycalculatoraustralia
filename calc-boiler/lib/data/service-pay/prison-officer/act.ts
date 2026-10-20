@@ -42,10 +42,10 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
         "Annex A, the \"1% + $1,000 from 4/12/2025\" column. Pay points above the first are tied to the Certificate III and Certificate IV in Correctional Practice, as the agreement labels them.",
       stepHeading: "Pay point",
       steps: [
-        { label: "Class 1 — entry", salary: 79_546 },
-        { label: "Class 1 — Cert III Correctional Practice", salary: 83_297 },
-        { label: "Class 1 — next pay point", salary: 89_092 },
-        { label: "Class 1 — Cert IV Correctional Practice", salary: 93_658 },
+        { label: "Class 1, entry", salary: 79_546 },
+        { label: "Class 1, Cert III Correctional Practice", salary: 83_297 },
+        { label: "Class 1, next pay point", salary: 89_092 },
+        { label: "Class 1, Cert IV Correctional Practice", salary: 93_658 },
       ],
     },
     {
@@ -54,9 +54,9 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       intro: "Annex A, from 4 December 2025.",
       stepHeading: "Pay point",
       steps: [
-        { label: "Class 2 — pay point 1", salary: 97_903 },
-        { label: "Class 2 — pay point 2", salary: 101_168 },
-        { label: "Class 2 — Cert IV Correctional Practice", salary: 104_432 },
+        { label: "Class 2, pay point 1", salary: 97_903 },
+        { label: "Class 2, pay point 2", salary: 101_168 },
+        { label: "Class 2, Cert IV Correctional Practice", salary: 104_432 },
       ],
     },
     {
@@ -65,17 +65,17 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       intro: "Annex A, from 4 December 2025.",
       stepHeading: "Pay point",
       steps: [
-        { label: "Class 3 — pay point 1", salary: 111_366 },
-        { label: "Class 3 — pay point 2", salary: 114_630 },
-        { label: "Class 3 — pay point 3", salary: 118_302 },
-        { label: "Class 4 — pay point 1", salary: 128_909 },
-        { label: "Class 4 — pay point 2", salary: 133_805 },
-        { label: "Class 4 — pay point 3", salary: 137_068 },
+        { label: "Class 3, pay point 1", salary: 111_366 },
+        { label: "Class 3, pay point 2", salary: 114_630 },
+        { label: "Class 3, pay point 3", salary: 118_302 },
+        { label: "Class 4, pay point 1", salary: 128_909 },
+        { label: "Class 4, pay point 2", salary: 133_805 },
+        { label: "Class 4, pay point 3", salary: 137_068 },
       ],
     },
   ],
-  entryStep: "Class 1 — entry",
-  topStep: "Class 1 — Cert IV Correctional Practice",
+  entryStep: "Class 1, entry",
+  topStep: "Class 1, Cert IV Correctional Practice",
 
   traineePay: [
     "A Correctional Officer Trainee is paid $65,146 a year while on the course, from the first full pay period on or after 1 December 2025 (Annex A).",
@@ -92,7 +92,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "ACT Public Sector Correctional Officers Enterprise Agreement 2023-2026 — Annex A, Classifications and Rates of Pay",
+      title: "ACT Public Sector Correctional Officers Enterprise Agreement 2023-2026, Annex A, Classifications and Rates of Pay",
       publisher: "ACT Government (CMTEDD)",
       url: ACT_EA,
     },

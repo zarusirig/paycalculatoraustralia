@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // "8.67", not "8.6667": the published precision stays in the body copy
   // and the engine; the title only needs to read cleanly.
   const w = Number(j.weeksAtQualifying.toFixed(2));
-  const title = `Long Service Leave Calculator ${j.abbr} — ${w} Weeks After ${j.takeAfterYears} Years`;
+  const title = `Long Service Leave Calculator ${j.abbr} - ${w} Weeks After ${j.takeAfterYears} Years`;
   const description = fitDescription(
     `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}, accruing ${j.weeksPerYear.toFixed(4)} weeks a year. Pro-rata from ${j.proRataFromYears} years, what a resignation pays, casual and part-time rules, cashing out, and the tax on a payout.`,
     `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}. Pro-rata from ${j.proRataFromYears} years, resignation payouts, casuals and tax.`,

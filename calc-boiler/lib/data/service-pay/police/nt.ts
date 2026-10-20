@@ -51,7 +51,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
         { label: "Constable 2 (Probationer to 24 months)", salary: 88_744 },
         { label: "Constable 3", salary: 90_520 },
         { label: "Constable 4", salary: 92_330 },
-        { label: "Constable 1/C 5", salary: 94_175, note: "Constable First Class — from 4 completed years of service or on meeting the rank qualification pathway" },
+        { label: "Constable 1/C 5", salary: 94_175, note: "Constable First Class, from 4 completed years of service or on meeting the rank qualification pathway" },
         { label: "Constable 1/C 6", salary: 96_059 },
         { label: "Constable 1/C 7", salary: 97_980 },
         { label: "Constable 1/C 8", salary: 99_942 },
@@ -63,7 +63,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
         { label: "Senior Constable 4", salary: 115_857 },
         { label: "Senior Constable 5", salary: 118_176 },
         { label: "Senior Constable 6", salary: 120_539, note: "Top of the open constable ranks" },
-        { label: "Senior Constable 1/C 1", salary: 124_757, note: "Preserved rank — closed to new entrants" },
+        { label: "Senior Constable 1/C 1", salary: 124_757, note: "Preserved rank, closed to new entrants" },
         { label: "Senior Constable 1/C 2", salary: 126_628, note: "Preserved rank" },
         { label: "Senior Constable 1/C 3", salary: 128_529, note: "Preserved rank" },
       ],
@@ -117,7 +117,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Northern Territory Police Force Consent Agreement 2025 — Attachment A Salary Rates, clauses 3, 15, 17 and 20, and Police Arbitral Tribunal certification",
+      title: "Northern Territory Police Force Consent Agreement 2025, Attachment A Salary Rates, clauses 3, 15, 17 and 20, and Police Arbitral Tribunal certification",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: "https://ocpe.nt.gov.au/__data/assets/pdf_file/0010/1624438/nt-police-force-consent-agreement.pdf",
     },

@@ -72,7 +72,7 @@ export default function SickLeaveCalculator() {
                 <p className={r.takenHours > r.accruedHours ? NOTE_WARN : NOTE_OK} role="status" aria-live="polite">
                   {r.takenHours > r.accruedHours
                     ? `You've taken more than you've earned. The NES only pays leave you have accumulated; once paid leave runs out, you can take ${SICK_LEAVE.unpaidCarersDaysPerOccasion} days of unpaid carer's leave per occasion to care for family.`
-                    : `You earn 1 hour of paid sick and carer's leave for every 26 ordinary hours you work — ${h(r.annualHours)} a year at ${hoursPerWeek} hours a week. Unused leave carries over each year but isn't paid out when you leave.`}
+                    : `You earn 1 hour of paid sick and carer's leave for every 26 ordinary hours you work: ${h(r.annualHours)} a year at ${hoursPerWeek} hours a week. Unused leave carries over each year but isn't paid out when you leave.`}
                 </p>
               </>
             )}

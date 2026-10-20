@@ -46,14 +46,14 @@ export default function SuperGuaranteeChargePage() {
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Super Guarantee Charge &mdash; What Late Super Actually Costs
+            Super Guarantee Charge: What Late Super Actually Costs
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
             Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} and rebuilt the super guarantee charge from the ground up. Here is what the charge is now made of, when super is actually due, and what changed.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> If super is not received by your employee&rsquo;s fund within <strong>{C.businessDaysToPay} business days</strong> of payday, you owe the super guarantee charge. It has four components: the shortfall, notional earnings at the general interest charge rate ({pct(GENERAL_INTEREST_CHARGE.annualRate)} for {GENERAL_INTEREST_CHARGE.quarter}) compounded daily, an administrative uplift of up to <strong>{pct(C.administrativeUpliftMax)}</strong>, and a choice loading. Unlike the old quarterly charge, it is now <strong>tax-deductible</strong> &mdash; and you no longer lodge a statement.
+              <strong>Direct answer:</strong> If super is not received by your employee&rsquo;s fund within <strong>{C.businessDaysToPay} business days</strong> of payday, you owe the super guarantee charge. It has four components: the shortfall, notional earnings at the general interest charge rate ({pct(GENERAL_INTEREST_CHARGE.annualRate)} for {GENERAL_INTEREST_CHARGE.quarter}) compounded daily, an administrative uplift of up to <strong>{pct(C.administrativeUpliftMax)}</strong>, and a choice loading. Unlike the old quarterly charge, it is now <strong>tax-deductible</strong>, and you no longer lodge a statement.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -81,7 +81,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="what-is-sgc">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Super Guarantee Charge?</h2>
               <p>
-                The super guarantee charge is what an employer owes the ATO when super is not paid in full and on time. It is designed to cost more than paying the super would have, and under Payday Super it is assessed <strong>per payday</strong> rather than per quarter &mdash; so a single misconfigured pay run can generate a charge every fortnight until it is fixed.
+                The super guarantee charge is what an employer owes the ATO when super is not paid in full and on time. It is designed to cost more than paying the super would have, and under Payday Super it is assessed <strong>per payday</strong> rather than per quarter, so a single misconfigured pay run can generate a charge every fortnight until it is fixed.
               </p>
               <p>
                 Since {SUPER_GUARANTEE.paydaySuperStart} the charge has exactly <strong>four components</strong>:
@@ -188,7 +188,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="deductibility">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Charge Is Now Tax-Deductible &mdash; This Reversed</h2>
               <p>
-                For paydays from {SUPER_GUARANTEE.paydaySuperStart}, all four components of the super guarantee charge are <strong>deductible</strong>. The legacy quarterly SGC was expressly <strong>not</strong>, and that non-deductibility was much of what made it punitive. A great deal of published guidance &mdash; and, until recently, this site &mdash; still says the SGC cannot be claimed. That is now true only of the old charge.
+                For paydays from {SUPER_GUARANTEE.paydaySuperStart}, all four components of the super guarantee charge are <strong>deductible</strong>. The legacy quarterly SGC was expressly <strong>not</strong>, and that non-deductibility was much of what made it punitive. A great deal of published guidance (and, until recently, this site) still says the SGC cannot be claimed. That is now true only of the old charge.
               </p>
               <p>Three things attached to the new charge remain non-deductible:</p>
               <ul>
@@ -222,7 +222,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="maximum-contribution-base">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Maximum Contribution Base Became Annual</h2>
               <p>
-                The maximum contribution base caps the earnings on which SG is compulsory. From {SUPER_GUARANTEE.paydaySuperStart} it is an <strong>annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, replacing {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter. That is a change of structure, not just of number &mdash; it is now a running year-to-date test that resets each financial year, rather than four separate quarterly caps.
+                The maximum contribution base caps the earnings on which SG is compulsory. From {SUPER_GUARANTEE.paydaySuperStart} it is an <strong>annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, replacing {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter. That is a change of structure, not just of number: it is now a running year-to-date test that resets each financial year, rather than four separate quarterly caps.
               </p>
               <p>
                 It is derived from the concessional cap: {formatAUD(SUPER_GUARANTEE.concessionalCap)} × 100 ÷ 12, rounded down to the nearest $10. At {pct(SUPER_GUARANTEE.rate)} that caps compulsory SG at about <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong> a year. Employers can always contribute more voluntarily. See our <Link href="/superannuation-calculator/">superannuation calculator</Link> to model contributions.
@@ -266,7 +266,7 @@ export default function SuperGuaranteeChargePage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; how super works, contributions and caps</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; employer SG at {pct(SUPER_GUARANTEE.rate)} on any salary</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: employer SG at {pct(SUPER_GUARANTEE.rate)} on any salary</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; checking super is actually being paid</li>
                 <li><Link href="/employer-cost-calculator/">Employer Cost Calculator</Link> &mdash; the true cost of employing someone</li>
                 <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee</Link> &mdash; misclassification is a common source of SGC exposure</li>

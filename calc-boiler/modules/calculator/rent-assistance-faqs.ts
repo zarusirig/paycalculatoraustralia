@@ -23,7 +23,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "Do I need to claim Rent Assistance separately?",
-    a: "No. Services Australia checks whether you can get Rent Assistance when you claim an eligible payment — such as JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension, Carer Payment, Disability Support Pension, or Family Tax Benefit Part A above the base rate — or update your address and accommodation details, and pays it with your regular payment.",
+    a: "No. Services Australia checks whether you can get Rent Assistance when you claim an eligible payment (such as JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension, Carer Payment, Disability Support Pension, or Family Tax Benefit Part A above the base rate) or update your address and accommodation details, and pays it with your regular payment.",
   },
   {
     q: "What is the single sharer rate of Rent Assistance?",
@@ -31,7 +31,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "Does working more reduce Rent Assistance?",
-    a: "It can. Rent Assistance is part of the payment it's paid with, so the income test that reduces your JobSeeker, Youth Allowance or Parenting Payment can reduce it too — though getting Rent Assistance also lifts the income at which that payment cuts out. For families, Rent Assistance is paid with FTB Part A only while you get more than the base rate, so a rise in family income can end it.",
+    a: "It can. Rent Assistance is part of the payment it's paid with, so the income test that reduces your JobSeeker, Youth Allowance or Parenting Payment can reduce it too, though getting Rent Assistance also lifts the income at which that payment cuts out. For families, Rent Assistance is paid with FTB Part A only while you get more than the base rate, so a rise in family income can end it.",
   },
   {
     q: "When do Rent Assistance rates change?",

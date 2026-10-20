@@ -79,19 +79,19 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "What is the minimum wage for a 16 year old in Australia?",
-    a: `For an employee covered by no award or agreement, a 16-year-old receives ${pctOf(A16.percentage)} of the National Minimum Wage — ${formatAUD(A16.hourly, 2)} an hour, or ${formatAUD(A16.casualHourly, 2)} an hour as a casual. Most 16-year-olds, though, work in retail or fast food and are covered by an award, which sets its own junior percentage against the award classification rate rather than against the National Minimum Wage. Under the General Retail Industry Award a 16-year-old gets 50% of the adult rate; under the Fast Food Industry Award, also 50%. Check which award covers you before using the national figure.`,
+    a: `For an employee covered by no award or agreement, a 16-year-old receives ${pctOf(A16.percentage)} of the National Minimum Wage: ${formatAUD(A16.hourly, 2)} an hour, or ${formatAUD(A16.casualHourly, 2)} an hour as a casual. Most 16-year-olds, though, work in retail or fast food and are covered by an award, which sets its own junior percentage against the award classification rate rather than against the National Minimum Wage. Under the General Retail Industry Award a 16-year-old gets 50% of the adult rate; under the Fast Food Industry Award, also 50%. Check which award covers you before using the national figure.`,
   },
   {
     q: "What is the minimum wage for a 15 year old in Australia?",
-    a: `A 15-year-old falls in the "under 16" band: ${pctOf(U16.percentage)} of the National Minimum Wage, which is ${formatAUD(U16.hourly, 2)} an hour, or ${formatAUD(U16.casualHourly, 2)} as a casual. That is the award-free rate. If an award applies, the under-16 percentage of the award rate applies instead — 45% under the retail award and 40% under fast food, which is one of the few places those two awards genuinely differ.`,
+    a: `A 15-year-old falls in the "under 16" band: ${pctOf(U16.percentage)} of the National Minimum Wage, which is ${formatAUD(U16.hourly, 2)} an hour, or ${formatAUD(U16.casualHourly, 2)} as a casual. That is the award-free rate. If an award applies, the under-16 percentage of the award rate applies instead: 45% under the retail award and 40% under fast food, which is one of the few places those two awards genuinely differ.`,
   },
   {
     q: "What is the minimum wage for a 14 year old in Australia?",
-    a: `The same "under 16" band applies: ${formatAUD(U16.hourly, 2)} an hour award-free, or ${formatAUD(U16.casualHourly, 2)} casual. There is no separate 14-year-old rate. The more important question is usually whether a 14-year-old can legally be employed at all, and that depends entirely on the state or territory — there is no national minimum working age. NSW, South Australia and Tasmania set no minimum age; Victoria and Queensland set 13 for most work; Western Australia and the Northern Territory restrict what under-15s may do rather than setting a floor. Every jurisdiction separately prohibits work during school hours.`,
+    a: `The same "under 16" band applies: ${formatAUD(U16.hourly, 2)} an hour award-free, or ${formatAUD(U16.casualHourly, 2)} casual. There is no separate 14-year-old rate. The more important question is usually whether a 14-year-old can legally be employed at all, and that depends entirely on the state or territory. There is no national minimum working age. NSW, South Australia and Tasmania set no minimum age; Victoria and Queensland set 13 for most work; Western Australia and the Northern Territory restrict what under-15s may do rather than setting a floor. Every jurisdiction separately prohibits work during school hours.`,
   },
   {
     q: "What is the minimum working age in Australia?",
-    a: `There is no national minimum working age. The Fair Work Ombudsman says directly that the minimum age depends on the state or territory. ${noMinimum} set no minimum age at all. Victoria sets 13 for most work and 11 for delivering newspapers or advertising material; Queensland sets 13, or 11 for supervised delivery work. Western Australia and the Northern Territory instead restrict which jobs under-15s may do — in WA a 13 or 14-year-old may work in a shop, cafe or fast food outlet with written parental permission. The often-repeated claim that "the minimum age in Australia is 15" appears only in secondary sources and is not stated on any government page.`,
+    a: `There is no national minimum working age. The Fair Work Ombudsman says directly that the minimum age depends on the state or territory. ${noMinimum} set no minimum age at all. Victoria sets 13 for most work and 11 for delivering newspapers or advertising material; Queensland sets 13, or 11 for supervised delivery work. Western Australia and the Northern Territory instead restrict which jobs under-15s may do. In WA a 13 or 14-year-old may work in a shop, cafe or fast food outlet with written parental permission. The often-repeated claim that "the minimum age in Australia is 15" appears only in secondary sources and is not stated on any government page.`,
   },
   {
     q: "What are the junior pay rates for 2026-27?",
@@ -99,7 +99,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "What is the casual minimum wage in Australia?",
-    a: `For an adult award-free employee, ${formatAUD(EMPLOYMENT.minimumWageHourly * (1 + CASUAL_LOADING), 2)} an hour — the ${(CASUAL_LOADING * 100).toFixed(0)}% casual loading on top of the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} National Minimum Wage. For juniors the loading applies to the junior rate, giving ${formatAUD(U16.casualHourly, 2)} under 16, ${formatAUD(A16.casualHourly, 2)} at 16, ${formatAUD(A17.casualHourly, 2)} at 17, ${formatAUD(A18.casualHourly, 2)} at 18, ${formatAUD(A19.casualHourly, 2)} at 19 and ${formatAUD(A20.casualHourly, 2)} at 20. The loading compensates for having no paid annual leave, personal leave or notice of termination. If an award covers you, the loading applies to the award rate instead.`,
+    a: `For an adult award-free employee, ${formatAUD(EMPLOYMENT.minimumWageHourly * (1 + CASUAL_LOADING), 2)} an hour: the ${(CASUAL_LOADING * 100).toFixed(0)}% casual loading on top of the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} National Minimum Wage. For juniors the loading applies to the junior rate, giving ${formatAUD(U16.casualHourly, 2)} under 16, ${formatAUD(A16.casualHourly, 2)} at 16, ${formatAUD(A17.casualHourly, 2)} at 17, ${formatAUD(A18.casualHourly, 2)} at 18, ${formatAUD(A19.casualHourly, 2)} at 19 and ${formatAUD(A20.casualHourly, 2)} at 20. The loading compensates for having no paid annual leave, personal leave or notice of termination. If an award covers you, the loading applies to the award rate instead.`,
   },
   {
     q: "At what age do you get full adult pay in Australia?",
@@ -107,7 +107,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "Do junior rates apply to every job?",
-    a: `No. A junior rate only applies where the instrument covering you actually contains one. Some awards have no junior rates at all — the SCHADS award, which covers social, community, home care and disability work, contains no junior clause, so an 18-year-old disability support worker is paid the full adult rate for their classification. Under the retail award junior rates are confined to employee levels 1 to 3, so a junior doing level 4 work gets the full level 4 rate. And juniors in hospitality with a trade qualification, or working as liquor service employees, must be paid the adult rate regardless of age.`,
+    a: `No. A junior rate only applies where the instrument covering you actually contains one. Some awards have no junior rates at all. The SCHADS award, which covers social, community, home care and disability work, contains no junior clause, so an 18-year-old disability support worker is paid the full adult rate for their classification. Under the retail award junior rates are confined to employee levels 1 to 3, so a junior doing level 4 work gets the full level 4 rate. And juniors in hospitality with a trade qualification, or working as liquor service employees, must be paid the adult rate regardless of age.`,
   },
   {
     q: "Are junior rates being abolished?",
@@ -115,7 +115,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "How are junior rates calculated?",
-    a: `The percentage is applied to the weekly rate, and the hourly figure is then that weekly amount divided by ${EMPLOYMENT.standardWeeklyHours} ordinary hours. The order matters: applying the percentage directly to the hourly minimum instead produces a figure a cent lower at ages 17, 19 and 20. The casual rate is then the rounded junior hourly rate plus the ${(CASUAL_LOADING * 100).toFixed(0)}% loading — at 19 that gives ${formatAUD(A19.casualHourly, 2)}, where working from the unrounded figure would give a cent less. Every hourly and casual figure on this page matches Fair Work's own published dollars exactly.`,
+    a: `The percentage is applied to the weekly rate, and the hourly figure is then that weekly amount divided by ${EMPLOYMENT.standardWeeklyHours} ordinary hours. The order matters: applying the percentage directly to the hourly minimum instead produces a figure a cent lower at ages 17, 19 and 20. The casual rate is then the rounded junior hourly rate plus the ${(CASUAL_LOADING * 100).toFixed(0)}% loading. At 19 that gives ${formatAUD(A19.casualHourly, 2)}, where working from the unrounded figure would give a cent less. Every hourly and casual figure on this page matches Fair Work's own published dollars exactly.`,
   },
   {
     q: "Can an employer pay a junior less than these rates?",

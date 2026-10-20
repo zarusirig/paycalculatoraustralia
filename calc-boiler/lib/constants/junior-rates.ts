@@ -189,7 +189,7 @@ export const AWARD_JUNIOR_SCALES = [
     award: "Hair and Beauty Industry Award",
     code: "MA000005",
     clause: "Table 5",
-    note: "Adult rate at 18 — the earliest of any common award.",
+    note: "Adult rate at 18, the earliest of any common award.",
     scale: [
       { age: "Under 17", percentage: 0.5 },
       { age: "17", percentage: 0.75 },
@@ -368,7 +368,7 @@ export const MINIMUM_WORKING_AGE: readonly {
   },
   {
     jurisdiction: "WA",
-    summary: "No flat minimum — restricted by job type under 15",
+    summary: "No flat minimum: restricted by job type under 15",
     detail:
       "Any age in a family business, professional performance or for a charity. 10–12 may deliver newspapers or advertising material. 13–14 may work in a shop, fast food outlet, cafe or restaurant, or collect trolleys, with written parental permission, outside school hours and between 6am and 10pm.",
     url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/when-children-can-work-western-australia",
@@ -391,12 +391,12 @@ export const MINIMUM_WORKING_AGE: readonly {
     jurisdiction: "ACT",
     summary: "No minimum age stated; hours capped by age",
     detail:
-      "ACT government pages set hour limits without stating a floor — no more than 10 hours a week under 15, and daily caps rising from 3 hours under age 3 to 6 hours at ages 12–15.",
+      "ACT government pages set hour limits without stating a floor: no more than 10 hours a week under 15, and daily caps rising from 3 hours under age 3 to 6 hours at ages 12–15.",
     url: "https://www.act.gov.au/community/youth/employing-young-people",
   },
   {
     jurisdiction: "NT",
-    summary: "No flat minimum — restricted roles under 15",
+    summary: "No flat minimum: restricted roles under 15",
     detail:
       "Under 15s are limited to roles such as babysitting, helping in a family business or delivering newspapers. From 15 a wider range of work is allowed. No work during school hours, and none between 10pm and 6am under 15.",
     url: "https://nt.gov.au/learning/student-wellbeing-and-inclusion/school-attendance/school-age-children-in-jobs",

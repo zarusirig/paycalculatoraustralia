@@ -77,7 +77,7 @@ const NOTES: Record<string, string> = {
     "Casual rate is 250% of the casual hourly rate (cl 33), which is 312.5% of the minimum rate. Minimum 3 hours for day workers.",
   "aged-care":
     "Permanent employees can elect each year to have the hours added to annual leave instead of the extra 150% (cl 29.2(b)).",
-  "hair-and-beauty": "Casuals are paid 250% — the same as permanent staff. The 25% loading is not added (Table 15).",
+  "hair-and-beauty": "Casuals are paid 250%, the same as permanent staff. The 25% loading is not added (Table 15).",
   cleaning: "Part-time employees are paid 265% because their 15% part-time allowance applies too (cl 10.2).",
   "road-transport":
     "Day workers get 150% on top of the weekly wage for hours worked (effectively 250%), and 200% on top (300%) on Good Friday and Christmas Day; casual day workers 275% and 325% (cl 23.2).",

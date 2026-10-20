@@ -66,9 +66,9 @@ export const QANTAS_PAY: EmployerPay = {
   casualLoading: 0.25,
   fullTimeWeeklyHours: 32.25,
   payBasisNote:
-    "Qantas pays short haul cabin crew a weekly salary, which rises with each year of service. The hourly figures are the agreement's single-time rate — the annual salary divided by 1,677 hours (cl 12.18) — worked out by us from the printed weekly salary × 52, so treat them as close, not exact. Each level's weekly and annual salary is in its description.",
+    "Qantas pays short haul cabin crew a weekly salary, which rises with each year of service. The hourly figures are the agreement's single-time rate (the annual salary divided by 1,677 hours, cl 12.18), worked out by us from the printed weekly salary × 52, so treat them as close, not exact. Each level's weekly and annual salary is in its description.",
   rates: [
-    row("Flight Attendant — first to third year", "$1,038.39 a week ($53,996.28 a year) — the same salary applies during initial training and in years 1, 2 and 3", 1038.39, 47.29),
+    row("Flight Attendant, first to third year", "$1,038.39 a week ($53,996.28 a year); the same salary applies during initial training and in years 1, 2 and 3", 1038.39, 47.29),
     row("Fourth Year Flight Attendant", "$1,072.28 a week ($55,758.56 a year)", 1072.28),
     row("Fifth Year Flight Attendant", "$1,111.89 a week ($57,818.28 a year)", 1111.89),
     row("Sixth Year Flight Attendant", "$1,153.58 a week ($59,986.16 a year)", 1153.58),
@@ -111,15 +111,15 @@ export const QANTAS_PAY: EmployerPay = {
     { when: "Drafted to duty on a designated or substitute day off", permanent: "Double time, at least 8 hours", casual: "—", note: "cl 32.4; flights planned into a day off: double time, at least 4 hours (cl 32.2)" },
   ],
   notices: [
-    "This page covers only Qantas Airways Limited's short haul (domestic) cabin crew agreement. If you fly long haul, or are employed by Qantas Domestic Pty Ltd, QantasLink or Jetstar, a different agreement sets your pay — check the agreement named on your payslip.",
+    "This page covers only Qantas Airways Limited's short haul (domestic) cabin crew agreement. If you fly long haul, or are employed by Qantas Domestic Pty Ltd, QantasLink or Jetstar, a different agreement sets your pay. Check the agreement named on your payslip.",
     "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($28.88 an hour) for a full-time cabin crew member. The agreement's printed salaries for years 1 to 3 ($1,038.39) and year 4 ($1,072.28) are lower. The agreement's hourly rates are above the award's $28.88 because its full-time week is shorter than 38 hours. An agreement's base rate can't be below the award's base rate for the same work (Fair Work Act s 206); if you think your pay falls short, check with the Fair Work Ombudsman or your union.",
     "The agreement's last scheduled rise was on 1 January 2026, and it reaches its nominal expiry date on 31 December 2026. Any further rise depends on a new agreement.",
   ],
   unverified: [
-    "Pay under Qantas's other cabin crew agreements — long haul (EBA11), Qantas Domestic Pty Ltd, QantasLink and Jetstar — not transcribed.",
-    "How Qantas applies the award floor to the lower salary years in practice — not published.",
+    "Pay under Qantas's other cabin crew agreements (long haul EBA11, Qantas Domestic Pty Ltd, QantasLink and Jetstar), not transcribed.",
+    "How Qantas applies the award floor to the lower salary years in practice: not published.",
     "How bands-payment \"instances\" are counted on a roster.",
-    "Whether the annual salary Qantas divides by 1,677 hours is exactly 52 weeks of the weekly rate — our hourly figures assume it is.",
+    "Whether the annual salary Qantas divides by 1,677 hours is exactly 52 weeks of the weekly rate. Our hourly figures assume it is.",
   ],
   sources: [
     { title: "FAAA – Short Haul Division (Qantas Airways Limited) Enterprise Agreement 10 (AE519994), with approval decision PR761830", publisher: "Fair Work Commission", url: EA_URL },
@@ -137,7 +137,7 @@ export const QANTAS_PAY: EmployerPay = {
     },
     {
       q: "Is Qantas cabin crew pay below the award?",
-      a: "The Aircraft Cabin Crew Award's full-time minimum from 1 July 2026 is $1,097.40 a week. The agreement's printed salaries for years 1 to 4 ($1,038.39 and $1,072.28) are lower per week, but the agreement's hourly rates are above the award's $28.88 because its full-time week is shorter. Whether any crew member is underpaid depends on how the comparison is made for their hours — if you think you are, check with the Fair Work Ombudsman or your union.",
+      a: "The Aircraft Cabin Crew Award's full-time minimum from 1 July 2026 is $1,097.40 a week. The agreement's printed salaries for years 1 to 4 ($1,038.39 and $1,072.28) are lower per week, but the agreement's hourly rates are above the award's $28.88 because its full-time week is shorter. Whether any crew member is underpaid depends on how the comparison is made for their hours. If you think you are, check with the Fair Work Ombudsman or your union.",
     },
     {
       q: "Does this apply to Qantas long haul, QantasLink or Jetstar crew?",

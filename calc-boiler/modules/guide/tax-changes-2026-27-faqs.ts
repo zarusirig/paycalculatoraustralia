@@ -35,11 +35,11 @@ export const TAX_CHANGES_2026_27_FAQS: readonly TaxChangesFaq[] = [
   },
   {
     q: "Will tax brackets change in 2026-27?",
-    a: `Yes. The legislated cost-of-living tax cuts reduce the rate on income between ${formatAUD(TAX_BRACKETS[1].min - 1)} and ${formatAUD(TAX_BRACKETS[1].max)} from ${PCT(TAX_BRACKETS_2025_26[1].rate)} to ${PCT(TAX_BRACKETS[1].rate)} on 1 July 2026 — worth up to ${formatAUD(RATE_CUT_MAX_SAVING)} a year — with a further cut to 14% on 1 July 2027. Bracket thresholds themselves are unchanged.`,
+    a: `Yes. The legislated cost-of-living tax cuts reduce the rate on income between ${formatAUD(TAX_BRACKETS[1].min - 1)} and ${formatAUD(TAX_BRACKETS[1].max)} from ${PCT(TAX_BRACKETS_2025_26[1].rate)} to ${PCT(TAX_BRACKETS[1].rate)} on 1 July 2026 (worth up to ${formatAUD(RATE_CUT_MAX_SAVING)} a year), with a further cut to 14% on 1 July 2027. Bracket thresholds themselves are unchanged.`,
   },
   {
     q: "What is the super guarantee rate for 2026-27, and is it going up again?",
-    a: `No. The super guarantee rate remains at ${PCT(SUPER_GUARANTEE.rate)} for FY2026-27 — it reached its legislated ceiling of ${PCT(SUPER_GUARANTEE.rate)} on 1 July 2025 after a decade-long increase from 9.5%, and no further increases are currently scheduled. Any additional rise would require new legislation from Parliament.`,
+    a: `No. The super guarantee rate remains at ${PCT(SUPER_GUARANTEE.rate)} for FY2026-27. It reached its legislated ceiling of ${PCT(SUPER_GUARANTEE.rate)} on 1 July 2025 after a decade-long increase from 9.5%, and no further increases are currently scheduled. Any additional rise would require new legislation from Parliament.`,
   },
   {
     q: "What will the HECS threshold be in 2026-27?",
@@ -47,7 +47,7 @@ export const TAX_CHANGES_2026_27_FAQS: readonly TaxChangesFaq[] = [
   },
   {
     q: "When is the 2026 federal budget?",
-    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its headline tax measures — including the CGT reforms that apply from 1 July 2027 — have since passed Parliament and are now law.`,
+    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its headline tax measures, including the CGT reforms that apply from 1 July 2027, have since passed Parliament and are now law.`,
   },
   {
     q: "Will LITO change in 2026-27?",

@@ -442,7 +442,7 @@ export const LEVY_EXEMPTION_CATEGORIES: readonly LevyExemptionCategory[] = [
     category: "Medical (Category 1)",
     relief: "Full or half",
     detail:
-      "Blind pensioners, and anyone entitled to full free medical treatment for all conditions under Defence Force arrangements or a DVA Repatriation Health Card (Gold Card). You get the full exemption if you had no dependants, or if every dependant was itself exempt or paid the levy. It drops to a half exemption if you had at least one dependant — a spouse, typically — who was neither exempt nor liable for the levy.",
+      "Blind pensioners, and anyone entitled to full free medical treatment for all conditions under Defence Force arrangements or a DVA Repatriation Health Card (Gold Card). You get the full exemption if you had no dependants, or if every dependant was itself exempt or paid the levy. It drops to a half exemption if you had at least one dependant (a spouse, typically) who was neither exempt nor liable for the levy.",
   },
   {
     category: "Foreign residents",
@@ -454,7 +454,7 @@ export const LEVY_EXEMPTION_CATEGORIES: readonly LevyExemptionCategory[] = [
     category: "Not entitled to Medicare benefits",
     relief: "Full for the exempt period",
     detail:
-      "Temporary residents on visas that do not confer Medicare eligibility can apply to Services Australia for a Medicare Entitlement Statement and claim the exemption on lodgment. People from countries with a reciprocal health care agreement — including the UK, New Zealand and Ireland — are entitled to Medicare and so do pay the levy.",
+      "Temporary residents on visas that do not confer Medicare eligibility can apply to Services Australia for a Medicare Entitlement Statement and claim the exemption on lodgment. People from countries with a reciprocal health care agreement (including the UK, New Zealand and Ireland) are entitled to Medicare and so do pay the levy.",
   },
   {
     category: "Spouse and dependant tests",

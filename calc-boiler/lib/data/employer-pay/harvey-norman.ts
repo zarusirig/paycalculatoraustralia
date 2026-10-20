@@ -28,12 +28,12 @@ export const HARVEY_NORMAN_PAY: EmployerPay = {
   slug: "harvey-norman",
   name: "Harvey Norman",
   employerEntity:
-    "The franchisee that owns your store — Harvey Norman, Domayne and Joyce Mayne stores in Australia are run by independent franchisees.",
+    "The franchisee that owns your store. Harvey Norman, Domayne and Joyce Mayne stores in Australia are run by independent franchisees.",
   industry: "electrical and furniture retail",
   instrument: {
     ...IGA_PAY.instrument,
     coverage:
-      "There is no Harvey Norman-wide enterprise agreement. Each Harvey Norman store in Australia is run by an independent franchisee who employs the staff, and the General Retail Industry Award covers them unless that franchisee has its own approved agreement — which still cannot pay a base rate below the award.",
+      "There is no Harvey Norman-wide enterprise agreement. Each Harvey Norman store in Australia is run by an independent franchisee who employs the staff, and the General Retail Industry Award covers them unless that franchisee has its own approved agreement, which still cannot pay a base rate below the award.",
   },
   verifiedOn: "24 September 2026",
   rates: IGA_PAY.rates.map((r, i) => ({
@@ -41,21 +41,21 @@ export const HARVEY_NORMAN_PAY: EmployerPay = {
     description:
       i === 0
         ? "The award's entry level for retail employees, such as a sales assistant. Franchisees do not publish which level each role sits at"
-        : "Higher retail classification — the award's Schedule A lists the duties at each level",
+        : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
     "Your employer is the franchisee that owns your store, not Harvey Norman Holdings. These are the General Retail Industry Award minimums; franchisees can pay more, and many sales roles add commission on top.",
-    "If your franchisee has its own approved enterprise agreement, that sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "If your franchisee has its own approved enterprise agreement, that sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
     "Commission cannot replace the minimum: whatever the commission arrangement, your pay for each pay period must be at least the award rate for the hours you worked, including penalty rates.",
   ],
   unverified: [
-    "Whether your particular franchisee has its own enterprise agreement — agreements are registered under the franchisee's company name, which we cannot search store by store.",
-    "Commission rates and incentive schemes — set by each franchisee, not published.",
+    "Whether your particular franchisee has its own enterprise agreement. Agreements are registered under the franchisee's company name, which we cannot search store by store.",
+    "Commission rates and incentive schemes, set by each franchisee, not published.",
     "Which award level each Harvey Norman role is classified at.",
   ],
   sources: [
     { title: "General Retail Industry Award 2020 (MA000004), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: IGA_PAY.instrument.url },
-    { title: "Company overview — The Franchise Operating Model in Australia", publisher: "Harvey Norman Holdings Ltd", url: OVERVIEW_URL },
+    { title: "Company overview: The Franchise Operating Model in Australia", publisher: "Harvey Norman Holdings Ltd", url: OVERVIEW_URL },
     { title: "Lists of approved agreements 2016–2026 and terminated agreements list (no Harvey Norman agreement)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement" },
     { title: "Junior rates determination PR813655 (Retail Award, 26 August 2026)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813655.pdf" },
   ],

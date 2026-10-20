@@ -78,7 +78,7 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
             </ol>
           </nav>
           <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Pay Rise Calculator Australia — How Much Extra Will You Take Home? ({SITE_CONFIG.financialYear})
+            Pay Rise Calculator Australia: How Much Extra Will You Take Home? ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-base md:text-lg text-navy">
             A <strong>$10,000 pay rise on $80,000</strong> adds <strong>{formatAUD(RAISE_10K_ON_80K)} a year</strong> to your

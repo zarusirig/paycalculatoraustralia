@@ -8,7 +8,7 @@ import type { FaqItem } from "@/lib/faq";
 export const PAYSLIP_GENERATOR_FAQS: readonly FaqItem[] = [
   {
     q: "Is it legal to make your own payslip?",
-    a: "Yes — as long as the payslip is accurate. Small employers, bookkeepers and sole traders regularly create payslips manually or with tools like this one. What is illegal is creating a false payslip (for example, to inflate income on a loan application), which is fraud. Employers must also still meet Single Touch Payroll reporting obligations regardless of how the payslip itself is produced.",
+    a: "Yes, as long as the payslip is accurate. Small employers, bookkeepers and sole traders regularly create payslips manually or with tools like this one. What is illegal is creating a false payslip (for example, to inflate income on a loan application), which is fraud. Employers must also still meet Single Touch Payroll reporting obligations regardless of how the payslip itself is produced.",
   },
   {
     q: "What must a payslip include in Australia?",
@@ -16,7 +16,7 @@ export const PAYSLIP_GENERATOR_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How do I make a payslip for an ABN contractor?",
-    a: "Genuine independent contractors invoice for their work rather than receiving payslips — they handle their own tax and (usually) their own super, so a contractor normally issues an invoice, not a payslip. If you are paying someone with an ABN but they work like an employee (set hours, your direction, your equipment), they may legally be an employee entitled to payslips and super. Check the distinction with our contractor vs employee guide and use the contractor pay calculator to compare rates.",
+    a: "Genuine independent contractors invoice for their work rather than receiving payslips. They handle their own tax and (usually) their own super, so a contractor normally issues an invoice, not a payslip. If you are paying someone with an ABN but they work like an employee (set hours, your direction, your equipment), they may legally be an employee entitled to payslips and super. Check the distinction with our contractor vs employee guide and use the contractor pay calculator to compare rates.",
     links: {
       "contractor vs employee guide": "/contractor-vs-employee-calculator/",
       "contractor pay calculator": "/contractor-pay-calculator/",
@@ -24,7 +24,7 @@ export const PAYSLIP_GENERATOR_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do casual employees get payslips?",
-    a: "Yes. Every employee — full-time, part-time or casual — must receive a payslip within one working day of being paid. A casual's payslip should show the ordinary hourly rate including casual loading, the hours worked, and any penalty rates as separate items.",
+    a: "Yes. Every employee (full-time, part-time or casual) must receive a payslip within one working day of being paid. A casual's payslip should show the ordinary hourly rate including casual loading, the hours worked, and any penalty rates as separate items.",
   },
   {
     q: "Can I use this instead of payroll software?",

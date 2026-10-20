@@ -125,11 +125,11 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
               <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
                 Contractor Pay Calculator Australia
                 <span className="mt-2 block text-lg font-normal text-blue-300 sm:text-xl">
-                  What You Take Home as a Contractor — {SITE_CONFIG.financialYear}
+                  What You Take Home as a Contractor: {SITE_CONFIG.financialYear}
                 </span>
               </h1>
               <p className="mb-6 max-w-lg text-lg leading-relaxed text-sandstone-dark/50">
-                Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution and deductions — ABN vs PAYG side-by-side for FY{SITE_CONFIG.financialYear}.
+                Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution and deductions, with ABN vs PAYG side-by-side for FY{SITE_CONFIG.financialYear}.
               </p>
               <TrustBar className="mb-6" />
             </div>
@@ -227,7 +227,7 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
 
                 {/* Summary Table */}
                 <div className="mt-6 overflow-x-auto rounded-xl border border-sandstone-dark/20" role="region" aria-live="polite" aria-label="Contractor pay results">
-                  <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="bg-sandstone px-3 py-3 text-base font-bold text-navy sm:px-4">Gross &amp; Net — Summary Table</h2>
+                  <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="bg-sandstone px-3 py-3 text-base font-bold text-navy sm:px-4">Gross &amp; Net: Summary Table</h2>
                   <table className="w-full text-xs">
                     <thead className="bg-sandstone">
                       <tr>

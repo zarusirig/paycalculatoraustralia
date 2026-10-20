@@ -39,8 +39,8 @@ const PROFILE = STATE_PROFILES.NSW;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13a, New South Wales`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — New South Wales", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13a, New South Wales`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, New South Wales", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1955)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "NSW payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.nsw.ratesUrl, publisher: PAYROLL_TAX_STATES.nsw.revenueOffice },
 ];
@@ -92,7 +92,7 @@ export default function PayCalculatorNSWPage() {
             <p className="mb-4 text-warmgray">
               There is no such thing as NSW income tax. Every dollar of income tax you pay goes to the
               Commonwealth, on the same scale used in Perth and Hobart. What follows is the arithmetic
-              on {formatAUD(typicalSalary(PROFILE))} — the average full-time wage in this state, and
+              on {formatAUD(typicalSalary(PROFILE))}, the average full-time wage in this state, and
               the highest of any state on the mainland east coast.
             </p>
             <WorkedExample profile={PROFILE} />
@@ -111,13 +111,13 @@ export default function PayCalculatorNSWPage() {
             <p className="mb-4 text-warmgray">
               NSW is the highest-paying state after Western Australia and the ACT. Full-time adults
               here take {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings.
-              Note the gap between the first and last rows of the table — the &quot;all employees&quot;
+              Note the gap between the first and last rows of the table: the &quot;all employees&quot;
               figure is dragged down by part-time hours, not by lower hourly rates.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               An average is not a floor. If you suspect you are being underpaid, the floor is your
-              award rate — see the{" "}
+              award rate. See the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link>, or the
               {" "}<Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline">retail</Link> and{" "}
               <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline">hospitality</Link> rates, the two
@@ -128,7 +128,7 @@ export default function PayCalculatorNSWPage() {
           <section>
             <H2>NSW public holidays and what they do to your pay</H2>
             <p className="mb-4 text-warmgray">
-              NSW has the leanest public holiday calendar in the country — 13 days, with no equivalent
+              NSW has the leanest public holiday calendar in the country: 13 days, with no equivalent
               of Melbourne Cup Day, Canberra Day or the Ekka. What NSW does have is an extra day when
               Anzac Day falls on a weekend, and the October Labour Day that Victoria and WA hold in
               March.
@@ -146,7 +146,7 @@ export default function PayCalculatorNSWPage() {
           <section>
             <H2>Long service leave in NSW</H2>
             <p className="mb-4 text-warmgray">
-              NSW runs on the oldest long service leave statute in the country — the{" "}
+              NSW runs on the oldest long service leave statute in the country, the{" "}
               {PROFILE.longServiceLeave.act}, which still measures the entitlement in months and
               defines a month as 4⅓ weeks.
             </p>
@@ -163,7 +163,7 @@ export default function PayCalculatorNSWPage() {
             <H2>Does NSW payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Workers compensation premiums (iCare in NSW) work the same way — an employer expense,
+              Workers compensation premiums (iCare in NSW) work the same way: an employer expense,
               never a payslip line. The legitimate deductions are listed in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>; anything
               else is worth querying.

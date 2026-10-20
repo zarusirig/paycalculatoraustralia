@@ -12,7 +12,7 @@ const high = Math.max(...AWARD_DIRECTORY.map((a) => a.headlineHourly));
 export const AWARD_HUB_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What are the award rates for ${SITE_CONFIG.financialYear}?`,
-    a: `From the first full pay period on or after 1 July 2026, adult Level 1 rates in the major modern awards run from ${formatAUD(low, 2)} to ${formatAUD(high, 2)} an hour — for example ${AWARD_DIRECTORY.map((a) => `${a.name.replace(/ Award 20\d\d$/, "")} ${formatAUD(a.headlineHourly, 2)}`).slice(0, 4).join(", ")}. Higher classifications pay more, and casuals receive a 25% loading.`,
+    a: `From the first full pay period on or after 1 July 2026, adult Level 1 rates in the major modern awards run from ${formatAUD(low, 2)} to ${formatAUD(high, 2)} an hour, for example ${AWARD_DIRECTORY.map((a) => `${a.name.replace(/ Award 20\d\d$/, "")} ${formatAUD(a.headlineHourly, 2)}`).slice(0, 4).join(", ")}. Higher classifications pay more, and casuals receive a 25% loading.`,
   },
   {
     q: "What is a modern award?",
@@ -32,11 +32,11 @@ export const AWARD_HUB_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How much is casual loading?",
-    a: `25% on top of the minimum hourly rate in most awards. Retail Level 1 is ${formatAUD(RETAIL_RATES[0].hourly, 2)} an hour, so a casual receives ${formatAUD(Math.round(RETAIL_RATES[0].hourly * 125) / 100, 2)}. In most awards casual penalty rates add the loading rather than multiplying by it — casual Sunday in retail is ${Math.round(RETAIL_PENALTIES.casualSunday * 100)}%, not 150% x 1.25 — but the Manufacturing award compounds, applying penalties to the casual rate.`,
+    a: `25% on top of the minimum hourly rate in most awards. Retail Level 1 is ${formatAUD(RETAIL_RATES[0].hourly, 2)} an hour, so a casual receives ${formatAUD(Math.round(RETAIL_RATES[0].hourly * 125) / 100, 2)}. In most awards casual penalty rates add the loading rather than multiplying by it (casual Sunday in retail is ${Math.round(RETAIL_PENALTIES.casualSunday * 100)}%, not 150% x 1.25), but the Manufacturing award compounds, applying penalties to the casual rate.`,
   },
   {
     q: "Do junior employees get lower award rates?",
-    a: "In many awards, yes, as a percentage of the adult rate — but the scales differ. Hospitality reaches the adult rate at 20; retail, fast food, pharmacy and clerks at 21. The Security and SCHADS awards have no junior rates, so a young employee gets the full adult rate. From 1 December 2026 retail, fast food and pharmacy rates for 18–20 year olds with more than 6 months' service begin rising towards the adult rate.",
+    a: "In many awards, yes, as a percentage of the adult rate, but the scales differ. Hospitality reaches the adult rate at 20; retail, fast food, pharmacy and clerks at 21. The Security and SCHADS awards have no junior rates, so a young employee gets the full adult rate. From 1 December 2026 retail, fast food and pharmacy rates for 18–20 year olds with more than 6 months' service begin rising towards the adult rate.",
   },
   {
     q: "Are penalty rates the same in every award?",

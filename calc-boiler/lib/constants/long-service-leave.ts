@@ -206,7 +206,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "building and construction, contract cleaning, community services and black coal mining employees in a portable scheme",
     ],
     summary:
-      "Ten years of continuous service with one employer earns 8.67 weeks — two months — of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is owed only if the employer ends the job for something other than serious and wilful misconduct, or you resign because of illness, incapacity or pressing necessity. Past 10 years it is paid out however the job ends.",
+      "Ten years of continuous service with one employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is owed only if the employer ends the job for something other than serious and wilful misconduct, or you resign because of illness, incapacity or pressing necessity. Past 10 years it is paid out however the job ends.",
   },
 
   vic: {
@@ -224,7 +224,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     // 7 years x 52 weeks / 60 = 6.0667 weeks.
     weeksAtQualifying: 6.0667,
     weeksPerYear: RATE_4DP,
-    thereafter: "continuous accrual at one week for every 60 weeks of employment — no further waiting period",
+    thereafter: "continuous accrual at one week for every 60 weeks of employment, with no further waiting period",
     takingModel: "continuous",
     milestoneStepWeeks: null,
     milestoneEveryYears: null,
@@ -243,7 +243,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "building and construction employees, whose entitlement comes from the LeavePlus (formerly CoINVEST) scheme",
     ],
     summary:
-      "Victoria has one of the shortest qualifying periods in the country: 7 years of continuous employment with one employer, at which point about 6.07 weeks has accrued. Leave accrues at one week for every 60 weeks of employment, and once you pass 7 years the whole unused balance is paid out however the employment ends — resignation included.",
+      "Victoria has one of the shortest qualifying periods in the country: 7 years of continuous employment with one employer, at which point about 6.07 weeks has accrued. Leave accrues at one week for every 60 weeks of employment, and once you pass 7 years the whole unused balance is paid out however the employment ends, resignation included.",
   },
 
   qld: {
@@ -285,7 +285,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "building and construction, contract cleaning and community services workers in Queensland's QLeave portable schemes",
     ],
     summary:
-      "Ten years of continuous service earns 8.6667 weeks, rising to 13 weeks at 15 years; past 15 years leave can be taken as it accrues. Between 7 and 10 years a proportionate payment is owed only in defined circumstances — death, illness, domestic necessity, or a dismissal that is not about your conduct, capacity or performance. From 10 years the payment on termination is automatic and covers your full continuous service.",
+      "Ten years of continuous service earns 8.6667 weeks, rising to 13 weeks at 15 years; past 15 years leave can be taken as it accrues. Between 7 and 10 years a proportionate payment is owed only in defined circumstances: death, illness, domestic necessity, or a dismissal that is not about your conduct, capacity or performance. From 10 years the payment on termination is automatic and covers your full continuous service.",
   },
 
   wa: {
@@ -321,7 +321,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "on-site construction industry employees, who are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 (MyLeave)",
     ],
     summary:
-      "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. WA is unusually generous at the exit: after 7 years of continuous employment a full-time, part-time, casual or seasonal employee is paid pro-rata long service leave when the job ends by resignation, dismissal, redundancy or death — the only exception being dismissal for serious misconduct.",
+      "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. WA is unusually generous at the exit: after 7 years of continuous employment a full-time, part-time, casual or seasonal employee is paid pro-rata long service leave when the job ends by resignation, dismissal, redundancy or death. The only exception is dismissal for serious misconduct.",
   },
 
   sa: {
@@ -348,7 +348,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     proRataBasis: "completed-years",
     casualsCovered: true,
     casualsNote:
-      "Full-time, part-time and casual workers accrue at the same 1.3 weeks a year — employment status does not change the rate. A casual's contracts must form a continuous series; a prolonged gap or a clear termination can break it. Weeks that do not count as service (such as unpaid leave) must be added on before the 10 years is reached.",
+      "Full-time, part-time and casual workers accrue at the same 1.3 weeks a year: employment status does not change the rate. A casual's contracts must form a continuous series; a prolonged gap or a clear termination can break it. Weeks that do not count as service (such as unpaid leave) must be added on before the 10 years is reached.",
     // SafeWork SA, "Payment of entitlement" (read 10 October 2026).
     cashingOut: "by-agreement",
     cashingOutNote:
@@ -360,7 +360,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "workers whose long service leave comes from a pre-modernised award, or an award or agreement with its own long service leave terms",
     ],
     summary:
-      "South Australia pays the largest entitlement in the country: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each COMPLETED year — 8½ years pays 10.4 weeks, not 11.05. Before 10 years it is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice; from 10 years even a misconduct dismissal does not remove it.",
+      "South Australia pays the largest entitlement in the country: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each COMPLETED year, so 8½ years pays 10.4 weeks, not 11.05. Before 10 years it is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice; from 10 years even a misconduct dismissal does not remove it.",
   },
 
   tas: {
@@ -385,7 +385,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     proRataUnconditionalFromYears: 10,
     proRataConditions: [
       "you reach retirement age (60 for women, 65 for men, as the Act words it)",
-      "you die — the payment goes to your estate",
+      "you die (the payment goes to your estate)",
       "the employer terminates your employment for any reason other than serious and wilful misconduct",
       "employment ends through illness serious enough to justify it, or you resign because of incapacity or domestic or other pressing necessity (these two are decided case by case)",
     ],
@@ -442,10 +442,10 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     notCovered: [
       "employees covered by an award or agreement that contains long service leave provisions",
       "ACT and Commonwealth public sector employees",
-      "employees in the ACT Leave portable schemes — building and construction, community sector, security, and the Services Industry Scheme (contract cleaning; hairdressing and beauty, and accommodation and food services, from 1 January 2027)",
+      "employees in the ACT Leave portable schemes: building and construction, community sector, security, and the Services Industry Scheme (contract cleaning; hairdressing and beauty, and accommodation and food services, from 1 January 2027)",
     ],
     summary:
-      "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years of continuous service, then a further fifth of a month each year. If a public holiday or award holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or a dismissal short of serious and wilful misconduct — and it is worked out on completed years and months.",
+      "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years of continuous service, then a further fifth of a month each year. If a public holiday or award holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or a dismissal short of serious and wilful misconduct, and it is worked out on completed years and months.",
   },
 
   nt: {
@@ -470,7 +470,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     proRataUnconditionalFromYears: 10,
     proRataConditions: [
       "you have reached retirement age",
-      "the employer ends your employment for a reason other than serious misconduct — redundancy, for example",
+      "the employer ends your employment for a reason other than serious misconduct (redundancy, for example)",
       "you resign because you are unable to work due to illness, incapacity, or a domestic or other pressing necessity",
     ],
     proRataBasis: "completed-years",
@@ -485,7 +485,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "construction workers under the NT Build portable long service scheme",
     ],
     summary:
-      "Thirteen weeks of paid leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count — 14½ years pays 14 years — and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
+      "Thirteen weeks of paid leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count (14½ years pays 14 years), and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
   },
 };
 
@@ -747,7 +747,7 @@ export function entitlementOnEnding(
     } else if (misconduct && code === "wa") {
       payable = takeable;
       explanation =
-        "WA pays only the untaken part of the last fully accrued entitlement when an employee is dismissed for serious misconduct — nothing pro-rata for the years since.";
+        "WA pays only the untaken part of the last fully accrued entitlement when an employee is dismissed for serious misconduct, with nothing pro-rata for the years since.";
     } else {
       payable = accrued;
       unconditional = true;
@@ -755,7 +755,7 @@ export function entitlementOnEnding(
     }
   } else if (CONDITIONAL_QUALIFYING.includes(reason)) {
     payable = accrued;
-    explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances — and this one qualifies.`;
+    explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances, and this one qualifies.`;
   } else {
     explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances. A plain resignation is not one of them.`;
   }
@@ -936,7 +936,7 @@ export interface WorkedExample {
 export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   {
     code: "nsw",
-    label: "Dean — part-time from 1 November 2009, store closed 1 May 2015",
+    label: "Dean: part-time from 1 November 2009, store closed 1 May 2015",
     // NSW Industrial Relations gives dates, not a decimal, so the example is
     // reconciled from the dates themselves in the test.
     service: serviceBetween("2009-11-01", "2015-05-01"),
@@ -947,7 +947,7 @@ export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   },
   {
     code: "vic",
-    label: "Lissa — 11 years of continuous employment, resigns",
+    label: "Lissa: 11 years of continuous employment, resigns",
     service: serviceFromParts(11),
     // 11 x 52 = 572 weeks; 572 / 60 = 9.5333, printed as 9.5.
     publishedWeeks: 9.5333,
@@ -975,7 +975,7 @@ export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   },
   {
     code: "wa",
-    label: "Riley — resigned after 8 years, 4 months and 5 days",
+    label: "Riley: resigned after 8 years, 4 months and 5 days",
     service: serviceFromParts(8, 4, 0, 5),
     publishedWeeks: 7.24,
     tolerance: 0.01,
@@ -984,7 +984,7 @@ export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   },
   {
     code: "wa",
-    label: "Lee — made redundant after 12 years of continuous employment",
+    label: "Lee: made redundant after 12 years of continuous employment",
     service: serviceFromParts(12),
     publishedWeeks: 10.4,
     tolerance: 0.005,
@@ -992,7 +992,7 @@ export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   },
   {
     code: "sa",
-    label: "Aisha — resigns after 8½ years with Fabulous Floors",
+    label: "Aisha: resigns after 8½ years with Fabulous Floors",
     service: serviceFromParts(8, 6),
     // SafeWork SA: 8 x 1.3 weeks. The half year is dropped.
     publishedWeeks: 10.4,
@@ -1027,7 +1027,7 @@ export const LSL_WORKED_EXAMPLES: readonly WorkedExample[] = [
   },
   {
     code: "nt",
-    label: "Resigns after 14½ years — paid for 14 completed years",
+    label: "Resigns after 14½ years, paid for 14 completed years",
     service: serviceFromParts(14, 6),
     publishedWeeks: 18.2,
     tolerance: 0.0001,

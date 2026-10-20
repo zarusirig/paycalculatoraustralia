@@ -7,7 +7,7 @@ export default function MedicareLevyThresholds2026() {
       <p className="lead">
         Medicare levy low-income thresholds rose <strong>2.9%</strong> for the 2025-26 income
         year, backdated to 1 July 2025. Singles now pay no Medicare levy at all below{" "}
-        <strong>$28,011</strong>, up from $27,222 — sparing more than a million low-income
+        <strong>$28,011</strong>, up from $27,222, sparing more than a million low-income
         earners some or all of the 2% levy.
       </p>
 
@@ -31,12 +31,12 @@ export default function MedicareLevyThresholds2026() {
         Medicare levy low-income thresholds are indexed each year so that the levy doesn&apos;t
         start biting into wages that have simply kept pace with inflation. The 2.9% lift for
         2025-26 was confirmed as part of the government&apos;s cost-of-living measures, and
-        applies retrospectively to the whole income year — the return most people lodge between
+        applies retrospectively to the whole income year: the return most people lodge between
         July and October 2026.
       </p>
       <p>
-        The thresholds aren&apos;t a headline Budget centrepiece — they move most years by a
-        similar percentage — but a 2.9% lift is larger than some recent years&apos; indexation and
+        The thresholds aren&apos;t a headline Budget centrepiece (they move most years by a
+        similar percentage), but a 2.9% lift is larger than some recent years&apos; indexation and
         was specifically called out because it delivers tax relief to more than a million people
         who sit near the boundary. Treasury estimated the change reduces receipts by around $450
         million over five years from 2025-26, reflecting how many taxpayers fall into the
@@ -46,7 +46,7 @@ export default function MedicareLevyThresholds2026() {
       <h2>Who pays less</h2>
       <p>
         Below the singles threshold of $28,011, you pay no Medicare levy at all. Between $28,011
-        and $35,013, a reduced rate applies — 10 cents for every dollar over the threshold,
+        and $35,013, a reduced rate applies: 10 cents for every dollar over the threshold,
         instead of the full 2%. Families, seniors and pensioners have their own higher
         thresholds, all lifted by the same 2.9%, so a part-time worker or part-year retiree who
         was previously just over the old threshold may now pay nothing.
@@ -63,7 +63,7 @@ export default function MedicareLevyThresholds2026() {
       <h2>Do you need to do anything?</h2>
       <p>
         No. The ATO applies the updated thresholds automatically when it processes your 2025-26
-        tax return — there&apos;s no separate claim or form. If you had Medicare levy withheld through
+        tax return, and there&apos;s no separate claim or form. If you had Medicare levy withheld through
         the year based on the old thresholds, the difference is reconciled as part of your notice
         of assessment.
       </p>

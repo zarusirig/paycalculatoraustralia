@@ -60,8 +60,8 @@ export const DATA_ANALYST: Occupation = {
   award: null,
   headline: null,
   coverageMode: "depends",
-  heading: "Data Analyst Salary Australia 2026 — Median Pay From Tax Returns & Take-Home",
-  metaTitle: `Data Analyst Salary Australia 2026 — ${aud(ANALYST.medianSalary)} Median & Take-Home`,
+  heading: "Data Analyst Salary Australia 2026: Median Pay From Tax Returns & Take-Home",
+  metaTitle: `Data Analyst Salary Australia 2026 - ${aud(ANALYST.medianSalary)} Median & Take-Home`,
   metaDescription: `Data analysts' median salary was ${aud(ANALYST.medianSalary)} on 2023–24 tax returns, data scientists' ${aud(SCIENTIST.medianSalary)}. Take-home pay on each, award coverage and the legal minimum.`,
   lede: `The 14,837 people who gave their occupation as data analyst on 2023–24 tax returns had a median salary of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)}, according to the ATO; data scientists' median was ${aud(SCIENTIST.medianSalary)}. On the analyst median, take-home pay is about ${aud(netAnnual(ANALYST.medianSalary))} a year, or ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight, after tax. No award names the job, so the legal floor depends on your employer.`,
   coverage: [
@@ -108,7 +108,7 @@ export const DATA_ANALYST: Occupation = {
   ],
   sources: [
     ATO_TABLE_15,
-    { title: "Professional Employees Award 2020 [MA000065] — coverage, cl 4.1(b) and cl 2.3", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], coverage, cl 4.1(b) and cl 2.3", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     NMW_ORDER_2026,
     FWO_PAY_SLIPS,
   ],

@@ -16,7 +16,7 @@ export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to apply for the super co-contribution?",
-    a: "No. The ATO automatically determines your eligibility when you lodge your income tax return. If you qualify, the co-contribution is paid directly into your super fund — usually within 60 days of your tax return being processed. Make sure your super fund has your tax file number and your details are up to date with the ATO via your myGov account.",
+    a: "No. The ATO automatically determines your eligibility when you lodge your income tax return. If you qualify, the co-contribution is paid directly into your super fund, usually within 60 days of your tax return being processed. Make sure your super fund has your tax file number and your details are up to date with the ATO via your myGov account.",
   },
   {
     q: "What is the spouse super contribution tax offset?",
@@ -24,7 +24,7 @@ export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice count for the co-contribution?",
-    a: "No. Salary sacrifice contributions are concessional (pre-tax) contributions. The co-contribution only matches non-concessional (after-tax) personal contributions — money you transfer from your own bank account to your super fund. The two strategies are separate and can be used alongside each other.",
+    a: "No. Salary sacrifice contributions are concessional (pre-tax) contributions. The co-contribution only matches non-concessional (after-tax) personal contributions: money you transfer from your own bank account to your super fund. The two strategies are separate and can be used alongside each other.",
   },
   {
     q: "Can self-employed people get the co-contribution?",
@@ -32,7 +32,7 @@ export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I receive both the co-contribution and spouse offset?",
-    a: "Yes, but they apply to different people. The low-income spouse can receive the government co-contribution on their own personal contributions. Simultaneously, the higher-earning partner can contribute to the low-income spouse's super and claim the spouse offset on their own tax return. The two benefits stack — one rewards personal contributions, the other rewards spousal support.",
+    a: "Yes, but they apply to different people. The low-income spouse can receive the government co-contribution on their own personal contributions. Simultaneously, the higher-earning partner can contribute to the low-income spouse's super and claim the spouse offset on their own tax return. The two benefits stack: one rewards personal contributions, the other rewards spousal support.",
   },
   {
     q: "When do I need to make contributions by?",

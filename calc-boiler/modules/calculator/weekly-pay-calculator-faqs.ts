@@ -70,7 +70,7 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the difference between gross weekly pay and net weekly pay?",
-    a: `Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an ${formatAUD(EX_SALARY)} salary, gross weekly pay is ${formatAUD(GROSS_WEEKLY)} and net weekly pay is ${formatAUD(EX.weekly)} — a difference of ${formatAUD(GROSS_WEEKLY - EX.weekly)} per week.`,
+    a: `Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an ${formatAUD(EX_SALARY)} salary, gross weekly pay is ${formatAUD(GROSS_WEEKLY)} and net weekly pay is ${formatAUD(EX.weekly)}, a difference of ${formatAUD(GROSS_WEEKLY - EX.weekly)} per week.`,
   },
   {
     q: "Why do we divide by 52 and not 48?",
@@ -87,7 +87,7 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: `Do I pay tax if my weekly pay is below ${formatAUD(THRESHOLD_WEEKLY)}?`,
-    a: `Earning ${formatAUD(THRESHOLD_WEEKLY)} per week is equivalent to ${formatAUD(TAX_FREE_THRESHOLD)} per year, which is the tax-free threshold. If your total annual income from all sources stays at or below ${formatAUD(TAX_FREE_THRESHOLD)}, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold — your second job is taxed from the first dollar.`,
+    a: `Earning ${formatAUD(THRESHOLD_WEEKLY)} per week is equivalent to ${formatAUD(TAX_FREE_THRESHOLD)} per year, which is the tax-free threshold. If your total annual income from all sources stays at or below ${formatAUD(TAX_FREE_THRESHOLD)}, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold, so your second job is taxed from the first dollar.`,
   },
   {
     q: "How should I budget on weekly pay?",

@@ -24,11 +24,11 @@ export const STSL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if too much STSL is withheld?",
-    a: "The excess is refunded when you lodge your tax return. STSL withholding is a prepayment estimate — your actual repayment is calculated on full-year repayment income at assessment, and any overpayment comes back as part of your refund.",
+    a: "The excess is refunded when you lodge your tax return. STSL withholding is a prepayment estimate. Your actual repayment is calculated on full-year repayment income at assessment, and any overpayment comes back as part of your refund.",
   },
   {
     q: "Does STSL withholding reduce my HELP debt straight away?",
-    a: "No. Withheld STSL sits as a credit with the ATO until your tax return is assessed. Your loan balance — including 1 June indexation — is only reduced at assessment. Voluntary repayments are the only way to reduce the balance mid-year.",
+    a: "No. Withheld STSL sits as a credit with the ATO until your tax return is assessed. Your loan balance (including 1 June indexation) is only reduced at assessment. Voluntary repayments are the only way to reduce the balance mid-year.",
   },
   {
     q: "How do I stop STSL deductions after paying off my HECS?",
@@ -36,6 +36,6 @@ export const STSL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why is no STSL withheld at my second job?",
-    a: "STSL schedules apply per employer. If each job individually pays under the threshold, neither withholds STSL — but your combined repayment income may still trigger a compulsory repayment at tax time. Budget for this or ask one employer to withhold extra.",
+    a: "STSL schedules apply per employer. If each job individually pays under the threshold, neither withholds STSL, but your combined repayment income may still trigger a compulsory repayment at tax time. Budget for this or ask one employer to withhold extra.",
   },
 ];

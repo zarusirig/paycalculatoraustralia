@@ -62,17 +62,17 @@ export default function CommissionTaxCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>How Is Commission Taxed in Australia?</h2>
         <p className={P}>
-          Commission is ordinary income. It goes into the same assessable-income total as your salary, and the ATO taxes that total through the {SITE_CONFIG.financialYear} brackets. There is no commission tax rate, no flat rate and no separate return — a commission is simply more income in the year it is paid.
+          Commission is ordinary income. It goes into the same assessable-income total as your salary, and the ATO taxes that total through the {SITE_CONFIG.financialYear} brackets. There is no commission tax rate, no flat rate and no separate return. A commission is simply more income in the year it is paid.
         </p>
         <p className={P}>
-          What makes commission feel heavily taxed is that it sits on top of your salary, so every dollar of it is taxed at your <em>marginal</em> rate rather than your average rate. On a {formatAUD(EX_BASE_SALARY)} salary, a {formatAUD(EX_COMMISSION)} commission adds <strong>{formatAUD(EX_ANNUAL_TAX)}</strong> to the year&apos;s tax — {formatPercent(EX_ANNUAL_TAX / EX_COMMISSION)} of the commission, including the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy — while the same worker&apos;s average rate on their salary is far lower.
+          What makes commission feel heavily taxed is that it sits on top of your salary, so every dollar of it is taxed at your <em>marginal</em> rate rather than your average rate. On a {formatAUD(EX_BASE_SALARY)} salary, a {formatAUD(EX_COMMISSION)} commission adds <strong>{formatAUD(EX_ANNUAL_TAX)}</strong> to the year&apos;s tax ({formatPercent(EX_ANNUAL_TAX / EX_COMMISSION)} of the commission, including the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy), while the same worker&apos;s average rate on their salary is far lower.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>How Much Is Withheld From a Commission Payment?</h2>
         <p className={P}>
-          When a commission is paid on top of normal earnings, your employer withholds under <strong>ATO Schedule 5</strong> — the tax table for back payments, commissions, bonuses and similar payments. Method B(ii), which this calculator and our <Link href="/schedule-5-tax-table/" className={LINK}>Schedule 5 tax table</Link> both use, works like this:
+          When a commission is paid on top of normal earnings, your employer withholds under <strong>ATO Schedule 5</strong>, the tax table for back payments, commissions, bonuses and similar payments. Method B(ii), which this calculator and our <Link href="/schedule-5-tax-table/" className={LINK}>Schedule 5 tax table</Link> both use, works like this:
         </p>
         <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
           <li>Divide the commission by the number of pay periods in the year ({PAY_PERIODS.weekly} weekly, {PAY_PERIODS.fortnightly} fortnightly, {PAY_PERIODS.monthly} monthly) and ignore cents.</li>
@@ -81,14 +81,14 @@ export default function CommissionTaxCalculatorContent() {
           <li>Cap the result at {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the commission (including any study loan component).</li>
         </ol>
         <p className={P}>
-          Worked example — {formatAUD(EX_COMMISSION)} commission paid in one fortnight on {formatAUD(EX_BASE_SALARY)}: regular withholding {formatAUD(EX_WITHHOLDING.regularWithholding)} a fortnight; with a {formatAUD(EX_WITHHOLDING.apportionedAmount)} slice added it becomes {formatAUD(EX_WITHHOLDING.combinedWithholding)}; the {formatAUD(EX_WITHHOLDING.perPeriodDifference)} difference × {PAY_PERIODS.fortnightly} = <strong>{formatAUD(EX_WITHHOLDING.withheldFromAdditionalPayment)}</strong> withheld, leaving <strong>{formatAUD(EX_WITHHOLDING.netAdditionalPayment)}</strong> in hand. Against the {formatAUD(EX_ANNUAL_TAX)} the commission really adds to the year, the {formatAUD(Math.abs(EX_WITHHOLDING.withheldFromAdditionalPayment - EX_ANNUAL_TAX))} difference is {EX_WITHHOLDING.withheldFromAdditionalPayment >= EX_ANNUAL_TAX ? "returned in the refund" : "added to the bill"} at tax time.
+          Worked example: {formatAUD(EX_COMMISSION)} commission paid in one fortnight on {formatAUD(EX_BASE_SALARY)}. Regular withholding {formatAUD(EX_WITHHOLDING.regularWithholding)} a fortnight; with a {formatAUD(EX_WITHHOLDING.apportionedAmount)} slice added it becomes {formatAUD(EX_WITHHOLDING.combinedWithholding)}; the {formatAUD(EX_WITHHOLDING.perPeriodDifference)} difference × {PAY_PERIODS.fortnightly} = <strong>{formatAUD(EX_WITHHOLDING.withheldFromAdditionalPayment)}</strong> withheld, leaving <strong>{formatAUD(EX_WITHHOLDING.netAdditionalPayment)}</strong> in hand. Against the {formatAUD(EX_ANNUAL_TAX)} the commission really adds to the year, the {formatAUD(Math.abs(EX_WITHHOLDING.withheldFromAdditionalPayment - EX_ANNUAL_TAX))} difference is {EX_WITHHOLDING.withheldFromAdditionalPayment >= EX_ANNUAL_TAX ? "returned in the refund" : "added to the bill"} at tax time.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>Commission Paid Every Pay, Quarterly or One-Off</h2>
         <p className={P}>
-          The annual tax does not care how the commission arrives — {formatAUD(EX_COMMISSION)} of commission adds the same {formatAUD(EX_ANNUAL_TAX)} whether it lands in one pay or twelve. Withholding does care, because each payment is worked out on its own:
+          The annual tax does not care how the commission arrives: {formatAUD(EX_COMMISSION)} of commission adds the same {formatAUD(EX_ANNUAL_TAX)} whether it lands in one pay or twelve. Withholding does care, because each payment is worked out on its own:
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
           <li><strong>Retainer plus commission, paid every pay.</strong> Small regular commissions are withheld close to their true annual cost; the settlement at tax time is usually minor.</li>
@@ -126,14 +126,14 @@ export default function CommissionTaxCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>Is Super Paid on Commission?</h2>
         <p className={P}>
-          Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission — {formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission — up to the quarterly maximum contribution base. Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be. Comparing a sales offer quoted as OTE (on-target earnings)? See <Link href="/ote-salary/" className={LINK}>what OTE salary means</Link>.
+          Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission ({formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission), up to the quarterly maximum contribution base. Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be. Comparing a sales offer quoted as OTE (on-target earnings)? See <Link href="/ote-salary/" className={LINK}>what OTE salary means</Link>.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>Commission as a Contractor</h2>
         <p className={P}>
-          Real estate, recruitment and sales agents often earn commission under an ABN rather than as employees. Then nothing is withheld: the commission is business income, GST applies once turnover passes $75,000, and the ATO may ask for PAYG instalments through the year. The tax rate is the same individual rate — the difference is who sets the money aside. The <Link href="/contractor-pay-calculator/" className={LINK}>contractor pay calculator</Link> shows commission income after tax and GST, and <Link href="/contractor-vs-employee-calculator/" className={LINK}>contractor vs employee</Link> compares the two on the same money.
+          Real estate, recruitment and sales agents often earn commission under an ABN rather than as employees. Then nothing is withheld: the commission is business income, GST applies once turnover passes $75,000, and the ATO may ask for PAYG instalments through the year. The tax rate is the same individual rate. The difference is who sets the money aside. The <Link href="/contractor-pay-calculator/" className={LINK}>contractor pay calculator</Link> shows commission income after tax and GST, and <Link href="/contractor-vs-employee-calculator/" className={LINK}>contractor vs employee</Link> compares the two on the same money.
         </p>
       </section>
 
@@ -169,9 +169,9 @@ export default function CommissionTaxCalculatorContent() {
       <MethodologyDisclosure>
         <p className="mb-2 text-sm">Two calculations, two engines:</p>
         <ul className="list-disc pl-4 space-y-1">
-          <li><strong>Tax added to the year</strong> — full-year liability with and without the commission, using the {SITE_CONFIG.financialYear} resident brackets, LITO and Medicare levy (and the study loan repayment when ticked). The difference is the commission&apos;s real tax cost.</li>
-          <li><strong>Withheld from the pay</strong> — ATO Schedule 5, Method B(ii), on the regular pay for the frequency chosen, capped at {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)}. Employers using a different Schedule 5 method will withhold a different amount; the annual figure does not change.</li>
-          <li>Medicare levy surcharge, salary sacrifice and offsets other than LITO are not included — use the <Link href="/take-home-pay-calculator/" className={LINK}>main pay calculator</Link> for those.</li>
+          <li><strong>Tax added to the year</strong>: full-year liability with and without the commission, using the {SITE_CONFIG.financialYear} resident brackets, LITO and Medicare levy (and the study loan repayment when ticked). The difference is the commission&apos;s real tax cost.</li>
+          <li><strong>Withheld from the pay</strong>: ATO Schedule 5, Method B(ii), on the regular pay for the frequency chosen, capped at {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)}. Employers using a different Schedule 5 method will withhold a different amount; the annual figure does not change.</li>
+          <li>Medicare levy surcharge, salary sacrifice and offsets other than LITO are not included. Use the <Link href="/take-home-pay-calculator/" className={LINK}>main pay calculator</Link> for those.</li>
         </ul>
       </MethodologyDisclosure>
 

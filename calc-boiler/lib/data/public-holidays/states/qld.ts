@@ -28,7 +28,7 @@ export const QLD_PUBLIC_HOLIDAYS: StatePublicHolidays = {
         { date: "2026-04-06", source: "Monday 6 April", name: "Easter Monday", kind: "statewide" },
         { date: "2026-04-25", source: "Saturday 25 April", name: "Anzac Day", kind: "statewide", note: "Moves to Monday only when 25 April is a Sunday." },
         { date: "2026-05-04", source: "Monday 4 May", name: "Labour Day", kind: "statewide" },
-        { date: "2026-08-12", source: "Wednesday 12 August", name: "Royal Queensland Show (Ekka)", kind: "regional", note: "Brisbane area only. Other areas hold their own show holiday — see below." },
+        { date: "2026-08-12", source: "Wednesday 12 August", name: "Royal Queensland Show (Ekka)", kind: "regional", note: "Brisbane area only. Other areas hold their own show holiday (see below)." },
         { date: "2026-10-05", source: "Monday 5 October", name: "King's Birthday", kind: "statewide" },
         { date: "2026-12-24", source: "Thursday 24 December", name: "Christmas Eve", kind: "part-day", hours: "6pm to midnight" },
         { date: "2026-12-25", source: "Friday 25 December", name: "Christmas Day", kind: "statewide" },
@@ -67,17 +67,17 @@ export const QLD_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   regional: [
     {
       id: "show-holidays",
-      title: "Queensland show holidays 2026 — main centres",
+      title: "Queensland show holidays 2026: main centres",
       intro:
         "A show holiday is a public holiday only in the district it is appointed for. If your job is based in that district, public holiday rates apply that day. Elsewhere it is an ordinary working day. The Queensland Government's 2026 list has 97 entries, and these are the main population centres. Check the official list for smaller districts and exact boundaries.",
       rows: [
         { name: "Toowoomba Royal Show", area: "Toowoomba Regional Council, excluding Yarraman, Upper Yarraman and Cooyar", dates: [{ date: "2026-03-27", source: "27 March 2026" }] },
         { name: "Ipswich Show", area: "City of Ipswich", dates: [{ date: "2026-05-15", source: "15 May 2026" }] },
         { name: "Fraser Coast Show", area: "Fraser Coast region", dates: [{ date: "2026-05-22", source: "22 May 2026" }] },
-        { name: "Bundaberg Show", area: "Bundaberg region — postcodes 4660, 4670 and 4673", dates: [{ date: "2026-05-28", source: "28 May 2026" }] },
-        { name: "Maleny Show", area: "Sunshine Coast — former Caloundra City Council area", dates: [{ date: "2026-05-29", source: "29 May 2026" }] },
+        { name: "Bundaberg Show", area: "Bundaberg region, postcodes 4660, 4670 and 4673", dates: [{ date: "2026-05-28", source: "28 May 2026" }] },
+        { name: "Maleny Show", area: "Sunshine Coast, former Caloundra City Council area", dates: [{ date: "2026-05-29", source: "29 May 2026" }] },
         { name: "Rockhampton Show", area: "Rockhampton region", dates: [{ date: "2026-06-11", source: "11 June 2026" }] },
-        { name: "Sunshine Coast Show", area: "Sunshine Coast — former Maroochy Shire area", dates: [{ date: "2026-06-12", source: "12 June 2026" }] },
+        { name: "Sunshine Coast Show", area: "Sunshine Coast, former Maroochy Shire area", dates: [{ date: "2026-06-12", source: "12 June 2026" }] },
         { name: "Mackay Show", area: "Mackay region", dates: [{ date: "2026-06-18", source: "18 June 2026" }] },
         { name: "Mount Isa Show", area: "City of Mount Isa", dates: [{ date: "2026-06-19", source: "19 June 2026" }] },
         { name: "Townsville Show", area: "City of Townsville", dates: [{ date: "2026-07-06", source: "6 July 2026" }] },

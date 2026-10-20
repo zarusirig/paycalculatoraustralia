@@ -66,8 +66,8 @@ export const PROJECT_MANAGER: Occupation = {
   award: null,
   headline: null,
   coverageMode: "depends",
-  heading: "Project Manager Salary Australia 2026 — Construction, IT & Program Roles, With Take-Home",
-  metaTitle: `Project Manager Salary 2026 — ${aud(CONSTRUCTION.medianSalary)} to ${aud(ICT.medianSalary)} Median`,
+  heading: "Project Manager Salary Australia 2026: Construction, IT & Program Roles, With Take-Home",
+  metaTitle: `Project Manager Salary 2026 - ${aud(CONSTRUCTION.medianSalary)} to ${aud(ICT.medianSalary)} Median`,
   metaDescription: `Project manager salaries from 2023–24 tax returns: construction ${aud(CONSTRUCTION.medianSalary)} median, IT ${aud(ICT.medianSalary)}, program administrators ${aud(ADMIN.medianSalary)}. Take-home pay on each.`,
   lede: `What a project manager earns depends on what they manage. On 2023–24 tax returns the median salary was ${aud(CONSTRUCTION.medianSalary)} for construction project managers and ${aud(ICT.medianSalary)} for IT project managers, against ${aud(ADMIN.medianSalary)} for program and project administrators (ATO). A construction project manager on the median takes home about ${aud(netFortnightly(CONSTRUCTION.medianSalary))} a fortnight after tax; an IT project manager about ${aud(netFortnightly(ICT.medianSalary))}.`,
   coverage: [
@@ -108,7 +108,7 @@ export const PROJECT_MANAGER: Occupation = {
       a: "No award names the job. The Professional Employees Award, for example, excludes anyone in a wholly or principally managerial position. Whether another award applies depends on your employer's industry and duties; if none does, you are award-free and the National Minimum Wage is the floor.",
     },
   ],
-  sources: [ATO_TABLE_15, ...JSA_SOURCES, { title: "Professional Employees Award 2020 [MA000065] — Schedule A", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url }, NMW_ORDER_2026, FWO_PAY_SLIPS],
+  sources: [ATO_TABLE_15, ...JSA_SOURCES, { title: "Professional Employees Award 2020 [MA000065], Schedule A", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url }, NMW_ORDER_2026, FWO_PAY_SLIPS],
   verifiedOn: PROFESSIONAL_VERIFIED_ON,
   dateModified: "2026-10-09",
   related: [

@@ -80,7 +80,7 @@ export const FORTNIGHTLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why is my fortnightly pay different from monthly divided by 2?",
-    a: `Because a year has ${N} fortnights but 12 months. Fortnightly pay = annual salary ÷ ${N} (${formatAUD(grossFn, 2)} on ${formatAUD(EXAMPLE)}). Monthly pay = annual salary ÷ 12 (${formatAUD(grossMonth, 2)} on ${formatAUD(EXAMPLE)}). Dividing monthly by 2 gives ${formatAUD(grossMonth / 2, 2)} — which is ${formatAUD(grossMonth / 2 - grossFn, 2)} higher than the real fortnightly amount. Two months each year contain 3 fortnightly pays instead of 2.`,
+    a: `Because a year has ${N} fortnights but 12 months. Fortnightly pay = annual salary ÷ ${N} (${formatAUD(grossFn, 2)} on ${formatAUD(EXAMPLE)}). Monthly pay = annual salary ÷ 12 (${formatAUD(grossMonth, 2)} on ${formatAUD(EXAMPLE)}). Dividing monthly by 2 gives ${formatAUD(grossMonth / 2, 2)}, which is ${formatAUD(grossMonth / 2 - grossFn, 2)} higher than the real fortnightly amount. Two months each year contain 3 fortnightly pays instead of 2.`,
   },
   {
     q: "Is superannuation deducted from my fortnightly pay?",

@@ -24,7 +24,7 @@ export const STARBUCKS_PAY: EmployerPay = {
   ...SUBWAY_PAY,
   slug: "starbucks",
   name: "Starbucks",
-  employerEntity: "Starbucks Coffee Australia Pty Ltd — every Australian Starbucks store is company owned and operated",
+  employerEntity: "Starbucks Coffee Australia Pty Ltd (every Australian Starbucks store is company owned and operated)",
   industry: "coffee and fast food",
   instrument: {
     ...SUBWAY_PAY.instrument,
@@ -48,12 +48,12 @@ export const STARBUCKS_PAY: EmployerPay = {
     "In 2023 Starbucks gave the Fair Work Ombudsman an enforceable undertaking after finding it had underpaid 2,427 current and former staff $4.34 million (before superannuation and interest) between 2014 and 2020, mostly through the award's part-time and rostering rules. It concerns past pay, not current rates.",
   ],
   unverified: [
-    "Whether Starbucks pays above the award for any role — its own rates are not published.",
-    "Salaried store manager pay — set by contract.",
+    "Whether Starbucks pays above the award for any role. Its own rates are not published.",
+    "Salaried store manager pay, set by contract.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: SUBWAY_PAY.instrument.url },
-    { title: "Enforceable undertaking — Starbucks Coffee Australia Pty Ltd (2023)", publisher: "Fair Work Ombudsman", url: EU_URL },
+    { title: "Enforceable undertaking, Starbucks Coffee Australia Pty Ltd (2023)", publisher: "Fair Work Ombudsman", url: EU_URL },
     { title: "Lists of approved agreements 2016–2026 and terminated agreements list (no Starbucks agreement)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement" },
     { title: "Junior rates determination PR813654 (Fast Food Award, 26 August 2026)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813654.pdf" },
   ],

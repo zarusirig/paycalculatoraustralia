@@ -29,7 +29,7 @@ export const RED_ROOSTER_PAY: EmployerPay = {
   instrument: {
     ...SUBWAY_PAY.instrument,
     coverage:
-      "Red Rooster's old agreement (the Red Rooster Agreement 2009) was terminated by the Fair Work Commission on 31 May 2022, and no replacement has been approved. Staff at company-owned and franchised Red Rooster restaurants are paid under the Fast Food Industry Award unless their franchisee has its own agreement — which still cannot pay a base rate below the award.",
+      "Red Rooster's old agreement (the Red Rooster Agreement 2009) was terminated by the Fair Work Commission on 31 May 2022, and no replacement has been approved. Staff at company-owned and franchised Red Rooster restaurants are paid under the Fast Food Industry Award unless their franchisee has its own agreement, which still cannot pay a base rate below the award.",
   },
   verifiedOn: "24 September 2026",
   rates: SUBWAY_PAY.rates.map((r, i) =>
@@ -38,11 +38,11 @@ export const RED_ROOSTER_PAY: EmployerPay = {
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
     "These are the Fast Food Industry Award minimums. Your employer may be Craveable Brands or a franchisee; either way, these are the least you can be paid, and some restaurants pay more.",
-    "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
   ],
   unverified: [
-    "Whether any individual Red Rooster franchisee has its own agreement registered under its company name — our search of the Fair Work Commission's lists was by agreement title.",
-    "Salaried restaurant manager pay — set by contract.",
+    "Whether any individual Red Rooster franchisee has its own agreement registered under its company name. Our search of the Fair Work Commission's lists was by agreement title.",
+    "Salaried restaurant manager pay, set by contract.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },

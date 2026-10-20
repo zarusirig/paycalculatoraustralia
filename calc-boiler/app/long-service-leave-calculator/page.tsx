@@ -13,7 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/long-service-leave-calculator/`;
-const TITLE = "Long Service Leave Calculator Australia — NSW, VIC, QLD & More";
+const TITLE = "Long Service Leave Calculator Australia - NSW, VIC, QLD & More";
 const DESCRIPTION =
   "Work out your long service leave: weeks accrued, what you can take, what's paid out if you resign and the tax on it, with every state and territory Act compared.";
 

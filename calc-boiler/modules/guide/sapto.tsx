@@ -98,7 +98,7 @@ export default function SaptoPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How SAPTO Works for Couples</h2>
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>Two different incomes drive the calculation, and mixing them up is the most common error.</strong> Your <em>eligibility</em> is tested on <strong>half your combined</strong> rebate income. Your <em>offset amount</em> is then worked out on <strong>your own</strong> rebate income.</p>
-            <p>The practical consequence is that a couple can pass the eligibility test while one partner still receives nothing. In the ATO&rsquo;s example, a couple with rebate incomes of {formatAUD(54_020)} and {formatAUD(25_677)} have a combined {formatAUD(79_697)}. Half of that is {formatAUD(39_848.5, 2)}, comfortably under the {formatAUD(C.cutOutThreshold)} cut-out, so the couple qualifies. But the higher earner&rsquo;s own {formatAUD(54_020)} is well past the cut-out, so their offset is nil — while their partner receives the full {formatAUD(C.maxOffset)}.</p>
+            <p>The practical consequence is that a couple can pass the eligibility test while one partner still receives nothing. In the ATO&rsquo;s example, a couple with rebate incomes of {formatAUD(54_020)} and {formatAUD(25_677)} have a combined {formatAUD(79_697)}. Half of that is {formatAUD(39_848.5, 2)}, comfortably under the {formatAUD(C.cutOutThreshold)} cut-out, so the couple qualifies. But the higher earner&rsquo;s own {formatAUD(54_020)} is well past the cut-out, so their offset is nil, while their partner receives the full {formatAUD(C.maxOffset)}.</p>
             <p>It also works in your favour. A single-income couple where one partner earns {formatAUD(33_650)} and the other nothing is assessed at {formatAUD(16_825)} each, so the earner stays eligible and receives {formatAUD(calculateSAPTO({ status: "couple", rebateIncome: 33_650, spouseRebateIncome: 0 }).offset)}.</p>
           </section>
 
@@ -119,7 +119,7 @@ export default function SaptoPage() {
             <p>You must satisfy <strong>both</strong> a pension condition and an income condition.</p>
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The pension condition</h3>
             <p>You received one of these in the income year: Age Pension, Carer Payment, Disability Support Pension (if you are age-pension age), Education Entry Payment, Parenting Payment (single), age service pension, income support supplement, Veteran Payment, invalidity service pension (if age-pension age), or partner service pension.</p>
-            <p>You also qualify if you were age-pension age and <em>eligible</em> for the age pension but did not receive it — because you did not claim, or failed the income or assets test — provided you meet an Australian residence condition. Age-pension age has been <strong>67</strong> since 1 July 2023.</p>
+            <p>You also qualify if you were age-pension age and <em>eligible</em> for the age pension but did not receive it (because you did not claim, or failed the income or assets test), provided you meet an Australian residence condition. Age-pension age has been <strong>67</strong> since 1 July 2023.</p>
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The income condition</h3>
             <ul>
               <li><strong>No spouse:</strong> rebate income under {formatAUD(S.cutOutThreshold)}</li>
@@ -131,17 +131,17 @@ export default function SaptoPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Transferring Unused SAPTO to a Spouse</h2>
-            <p>If you and your spouse are both eligible and one of you does not use the full offset, the unused part can transfer. The ATO calculates and applies this when you both lodge — you do not claim it manually.</p>
+            <p>If you and your spouse are both eligible and one of you does not use the full offset, the unused part can transfer. The ATO calculates and applies this when you both lodge; you do not claim it manually.</p>
             <p>Where your spouse&rsquo;s taxable income is <strong>{formatAUD(SAPTO_TRANSFER.taxableIncomeFloor)} or less</strong>, the whole offset is available to transfer. Above that it reduces by {SAPTO_TRANSFER.reductionRate * 100} cents in the dollar: <code>A − ((B − {formatAUD(SAPTO_TRANSFER.taxableIncomeFloor)}) × {SAPTO_TRANSFER.reductionRate})</code>, where A is your spouse&rsquo;s offset and B is their taxable income plus exempt pension income.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <ul>
-              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — the offset most SAPTO recipients also claim</li>
-              <li><Link href="/zone-tax-offset/">Zone Tax Offset Calculator</Link> — for remote-area residents, and it stacks with SAPTO</li>
-              <li><Link href="/medicare-levy/">Medicare Levy Calculator</Link> — including the higher SAPTO low-income threshold</li>
-              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — your liability before offsets</li>
+              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: the offset most SAPTO recipients also claim</li>
+              <li><Link href="/zone-tax-offset/">Zone Tax Offset Calculator</Link>: for remote-area residents, and it stacks with SAPTO</li>
+              <li><Link href="/medicare-levy/">Medicare Levy Calculator</Link>, including the higher SAPTO low-income threshold</li>
+              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: your liability before offsets</li>
               <li><Link href="/tax-brackets/">Australian Tax Brackets</Link></li>
             </ul>
           </section>
@@ -162,7 +162,7 @@ export default function SaptoPage() {
             </Accordion>
           </section>
 
-          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Rates, thresholds and the calculation method come from the ATO&rsquo;s <a href={ATO_URL} target="_blank" rel="noopener noreferrer">Seniors and pensioners tax offset</a> page (QC72197). They apply to the {SAPTO_INCOME_YEAR} income year — the return being lodged now. The ATO had not published {SITE_CONFIG.financialYear} SAPTO thresholds when this page was last verified, so it is not labelled with that year. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s nine published worked examples in automated tests.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Rates, thresholds and the calculation method come from the ATO&rsquo;s <a href={ATO_URL} target="_blank" rel="noopener noreferrer">Seniors and pensioners tax offset</a> page (QC72197). They apply to the {SAPTO_INCOME_YEAR} income year, the return being lodged now. The ATO had not published {SITE_CONFIG.financialYear} SAPTO thresholds when this page was last verified, so it is not labelled with that year. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s nine published worked examples in automated tests.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
             {(() => { const a = getGuideAuthorship("sapto-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 

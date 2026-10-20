@@ -64,15 +64,15 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does having an ABN automatically make me a contractor?",
-    a: "No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The actual working arrangement — including control, tools, risk, and integration — determines the true classification.",
+    a: "No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The actual working arrangement, including control, tools, risk, and integration, determines the true classification.",
   },
   {
     q: "Are contractors entitled to superannuation?",
-    a: `Genuine independent contractors manage their own super. However, if a contractor is hired "wholly or principally for their personal labour and skills" — for example, a sole-trader IT consultant billing hourly — the hiring business must pay the ${SG_PCT} Super Guarantee on top of the contractor's invoices under the Superannuation Guarantee (Administration) Act 1992, even if the contractor quotes an ABN.`,
+    a: `Genuine independent contractors manage their own super. However, if a contractor is hired "wholly or principally for their personal labour and skills" (for example, a sole-trader IT consultant billing hourly), the hiring business must pay the ${SG_PCT} Super Guarantee on top of the contractor's invoices under the Superannuation Guarantee (Administration) Act 1992, even if the contractor quotes an ABN.`,
   },
   {
     q: "What are the penalties for sham contracting?",
-    a: `Courts can impose maximum penalties of ${SHAM_MAX_INDIVIDUAL} per contravention for individuals, ${SHAM_MAX_SMALL_BUSINESS} for businesses with fewer than 15 employees and ${SHAM_MAX_BUSINESS} for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments — often spanning several years of accumulated liability.`,
+    a: `Courts can impose maximum penalties of ${SHAM_MAX_INDIVIDUAL} per contravention for individuals, ${SHAM_MAX_SMALL_BUSINESS} for businesses with fewer than 15 employees and ${SHAM_MAX_BUSINESS} for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments, often spanning several years of accumulated liability.`,
   },
   {
     q: "Can I convert from contractor to employee?",
@@ -85,11 +85,11 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors pay more tax than employees?",
-    a: `Contractors and employees earning the same taxable income pay the same income tax — the FY${FY} tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.`,
+    a: `Contractors and employees earning the same taxable income pay the same income tax: the FY${FY} tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.`,
   },
   {
     q: "Is it legal to work for only one client as a contractor?",
-    a: "Working for a single client does not automatically make you an employee, but it is one of the strongest indicators the ATO examines. A genuine contractor working for one client must demonstrate independence in other areas — owning their tools, controlling their schedule, bearing commercial risk, and having the contractual right to take on other clients. Exclusive long-term arrangements with fixed hours attract heavy ATO scrutiny.",
+    a: "Working for a single client does not automatically make you an employee, but it is one of the strongest indicators the ATO examines. A genuine contractor working for one client must demonstrate independence in other areas: owning their tools, controlling their schedule, bearing commercial risk, and having the contractual right to take on other clients. Exclusive long-term arrangements with fixed hours attract heavy ATO scrutiny.",
   },
   {
     q: "Do contractors receive payslips?",

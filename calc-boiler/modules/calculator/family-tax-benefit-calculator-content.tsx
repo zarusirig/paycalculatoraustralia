@@ -94,7 +94,7 @@ export default function FamilyTaxBenefitCalculatorContent() {
               ] as const).map(([label, , base, nil], i) => (
                 <tr key={label} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                   <td className={TD}>{label}</td>
-                  <td className={TD + " text-right"}>{base ? formatAUD(base) : `never — stays above base until ${formatAUD(A.higherThreshold)}`}</td>
+                  <td className={TD + " text-right"}>{base ? formatAUD(base) : `never: stays above base until ${formatAUD(A.higherThreshold)}`}</td>
                   <td className={TD + " text-right"}>{formatAUD(nil)}</td>
                 </tr>
               ))}
@@ -116,7 +116,7 @@ export default function FamilyTaxBenefitCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Part B is a two-part test. First, the single parent — or in a couple, the higher earner — must have adjusted taxable income of {formatAUD(B.primaryEarnerLimit)} or less; above that there is no Part B at all. Second, for couples, the lower earner can earn {formatAUD(B.secondaryFreeArea)} a year before Part B reduces by 20 cents per dollar. A supplement of up to {formatAUD(B.supplementAnnual, 2)} per family is paid after the year.</p>
+        <p className={P + " mt-4"}>Part B is a two-part test. First, the single parent (or in a couple, the higher earner) must have adjusted taxable income of {formatAUD(B.primaryEarnerLimit)} or less; above that there is no Part B at all. Second, for couples, the lower earner can earn {formatAUD(B.secondaryFreeArea)} a year before Part B reduces by 20 cents per dollar. A supplement of up to {formatAUD(B.supplementAnnual, 2)} per family is paid after the year.</p>
       </section>
 
       <section>
@@ -132,18 +132,18 @@ export default function FamilyTaxBenefitCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Going from {formatAUD(70_000)} to {formatAUD(80_000)} costs about {formatAUD(ftbA(70_000, TWO_KIDS).annualExSupplement - ftbA(80_000, TWO_KIDS).annualExSupplement)} of Part A for this family, and crossing {formatAUD(A.supplementIncomeLimit)} loses the {formatAUD(2 * A.supplementAnnual, 2)} supplement. Tax takes its share of the rise too — see what an extra shift is worth after tax with the <Link href="/pay-rise-calculator/" className={LINK}>pay rise calculator</Link> or the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>, and remember to update your family income estimate with Services Australia.</p>
+        <p className={P + " mt-4"}>Going from {formatAUD(70_000)} to {formatAUD(80_000)} costs about {formatAUD(ftbA(70_000, TWO_KIDS).annualExSupplement - ftbA(80_000, TWO_KIDS).annualExSupplement)} of Part A for this family, and crossing {formatAUD(A.supplementIncomeLimit)} loses the {formatAUD(2 * A.supplementAnnual, 2)} supplement. Tax takes its share of the rise too. See what an extra shift is worth after tax with the <Link href="/pay-rise-calculator/" className={LINK}>pay rise calculator</Link> or the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>, and remember to update your family income estimate with Services Australia.</p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>Who Can Get Family Tax Benefit</h2>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-          <li>You care for a dependent child at least 35% of the time — a child under 16, or 16 to 19 in full-time secondary study.</li>
+          <li>You care for a dependent child at least 35% of the time: a child under 16, or 16 to 19 in full-time secondary study.</li>
           <li>You meet the residence rules, and your child meets the immunisation and Healthy Start for School requirements.</li>
           <li>Part A: your family&apos;s adjusted taxable income is under the limit for your children&apos;s ages (table above).</li>
           <li>Part B: you are a single parent or grandparent carer, or a couple with one main income and a youngest child under {B.coupleYoungestUnder}.</li>
         </ul>
-        <p className={P}>FTB is separate from <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link> — you can get both, and getting Parenting Payment means the maximum rate of Part A. Families who rent privately and get more than the base rate of Part A may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link>.</p>
+        <p className={P}>FTB is separate from <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link>. You can get both, and getting Parenting Payment means the maximum rate of Part A. Families who rent privately and get more than the base rate of Part A may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link>.</p>
       </section>
 
       <section>
@@ -156,7 +156,7 @@ export default function FamilyTaxBenefitCalculatorContent() {
           <li>Part A is the higher of two methods. Method 1: maximum rate − 20c × income between {formatAUD(A.lowerThreshold)} and {formatAUD(A.higherThreshold)} − 30c × income over {formatAUD(A.higherThreshold)}. Method 2: base rate − 30c × income over {formatAUD(A.higherThreshold)}.</li>
           <li>Part B: maximum rate if the single or higher-earner income is {formatAUD(B.primaryEarnerLimit)} or less; for couples, less 20c × the lower earner&apos;s income over {formatAUD(B.secondaryFreeArea)}.</li>
           <li>Yearly amounts are the fortnightly rate × 365 ÷ 14. Supplements are added to the tested amount and reduced last; the Part A supplement needs family ATI of {formatAUD(A.supplementIncomeLimit)} or less. These reproduce every income limit Services Australia publishes for {A.financialYear} to within $1 (our unit tests check each one).</li>
-          <li>Figures read at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder, which also handles shared care and child support.</li>
+          <li>Figures read at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder, which also handles shared care and child support.</li>
         </ul>
       </MethodologyDisclosure>
 

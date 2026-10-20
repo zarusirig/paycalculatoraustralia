@@ -19,7 +19,7 @@ const URL = `${BASE}/leave-calculator/`;
 // leave paid out when you leave, and the 17.5% loading). The accrual / balance
 // intent ("annual leave calculator") lives on /annual-leave-calculator/.
 const TITLE = `Leave Payout Calculator: Unused Annual Leave & Loading ${SITE_CONFIG.financialYear}`;
-const DESCRIPTION = `Work out what your unused annual leave is worth when you finish up, with the 17.5% leave loading where it applies and tax on the payout — FY${SITE_CONFIG.financialYear} rates.`;
+const DESCRIPTION = `Work out what your unused annual leave is worth when you finish up, with the 17.5% leave loading where it applies and tax on the payout, at FY${SITE_CONFIG.financialYear} rates.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

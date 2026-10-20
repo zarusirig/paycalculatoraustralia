@@ -66,7 +66,7 @@ export const PAYROLL_OFFICER: Occupation = {
   slug: "payroll-officer",
   name: "Payroll Officer",
   plural: "payroll officers",
-  metaTitle: `Payroll Officer Salary Australia 2026 — ${money2(PO_L3.hourly)}/hr Award Minimum`,
+  metaTitle: `Payroll Officer Salary Australia 2026 - ${money2(PO_L3.hourly)}/hr Award Minimum`,
   award: CLERKS_AWARD_REF,
   headline: {
     tableId: "payroll",
@@ -97,7 +97,7 @@ export const PAYROLL_OFFICER: Occupation = {
     "Payroll officers in hospitals, aged care, hotels, councils and the public service are usually paid under a different award or an agreement, because those industries have their own clerical classifications.",
   ],
   notShown: [
-    "Junior rates (cl 16.4) and annualised wage arrangements (cl 18) — see the Clerks Award page.",
+    "Junior rates (cl 16.4) and annualised wage arrangements (cl 18): see the Clerks Award page.",
     "Payroll manager salaries above Level 5, which are set by contract.",
     "Industry awards with their own clerical scales, such as the Health Professionals and Support Services Award and the Local Government Industry Award.",
   ],

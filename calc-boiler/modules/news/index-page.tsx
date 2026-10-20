@@ -46,7 +46,7 @@ export default function NewsIndexPage({
             Australian Pay &amp; Tax News
           </h1>
           <p className="text-xl text-warmgray leading-relaxed">
-            Wage decisions, tax changes, super rules and payment increases — what changed, when it
+            Wage decisions, tax changes, super rules and payment increases: what changed, when it
             starts, and what it means for your take-home pay. Every story links to a calculator so
             you can run your own numbers.
           </p>

@@ -65,14 +65,14 @@ function authorship(slug: string) {
 }
 
 const CASHING_LABEL: Record<string, string> = {
-  prohibited: "No — an offence",
+  prohibited: "No, an offence",
   "by-agreement": "Yes, by agreement",
   restricted: "Only in limited cases",
 };
 
 function cashingCell(code: JurisdictionCode) {
   const j = LSL_JURISDICTIONS[code];
-  return j.cashingOut === null ? "Not stated — check with the authority" : CASHING_LABEL[j.cashingOut];
+  return j.cashingOut === null ? "Not stated: check with the authority" : CASHING_LABEL[j.cashingOut];
 }
 
 
@@ -115,7 +115,7 @@ export function LongServiceLeaveHub() {
             </ol>
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Long Service Leave Calculator Australia — All 8 States and Territories
+            Long Service Leave Calculator Australia: All 8 States and Territories
           </h1>
           <p className="text-lg text-warmgray">
             A long service leave calculator works out accrued weeks from a start date and ordinary weekly pay under
@@ -228,8 +228,8 @@ export function LongServiceLeaveHub() {
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
               &ldquo;Pro-rata from&rdquo; is the completed service at which a payment can be owed when
-              employment ends. Where a second figure is shown, the first is a conditional window — the
-              payment is owed only on defined grounds, such as redundancy, illness or death — and the
+              employment ends. Where a second figure is shown, the first is a conditional window (the
+              payment is owed only on defined grounds, such as redundancy, illness or death) and the
               second is the point from which it is owed however the job ends.
             </p>
 
@@ -238,10 +238,10 @@ export function LongServiceLeaveHub() {
             </h3>
             <p className={P}>
               The single biggest difference is the rate. Six jurisdictions accrue{" "}
-              <strong>0.8667 weeks a year</strong> — two months of leave for 10 years of service.
+              <strong>0.8667 weeks a year</strong>, two months of leave for 10 years of service.
               South Australia and the Northern Territory accrue <strong>1.3 weeks a year</strong>, so
               the same 10 years earns 13 weeks. On {formatAUD(exampleWeekly)} a week that is{" "}
-              {formatAUD(13 * exampleWeekly)} instead of {formatAUD(examplePayout)} — a gap of{" "}
+              {formatAUD(13 * exampleWeekly)} instead of {formatAUD(examplePayout)}, a gap of{" "}
               {formatAUD(13 * exampleWeekly - examplePayout)} for identical service.
             </p>
             <p className={P}>
@@ -258,7 +258,7 @@ export function LongServiceLeaveHub() {
             <p className={P}>
               The arithmetic is the same shape everywhere: <strong>weeks of leave = years of
               continuous service × the weekly accrual rate</strong>, paid at your{" "}
-              <strong>ordinary</strong> weekly rate — no overtime — at the time you take the leave or
+              <strong>ordinary</strong> weekly rate (no overtime) at the time you take the leave or
               the job ends. What differs is how much of a part year counts, and whether you can take
               anything yet.
             </p>
@@ -294,7 +294,7 @@ export function LongServiceLeaveHub() {
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
               Weeks <em>accrued</em>, which is the figure paid out when employment ends and a pro-rata
-              entitlement exists. It is not always the figure you can take as leave — see the next
+              entitlement exists. It is not always the figure you can take as leave; see the next
               section.
             </p>
           </section>
@@ -306,7 +306,7 @@ export function LongServiceLeaveHub() {
             <p className={P}>
               In NSW, WA and Tasmania the leave arrives in blocks. Nothing is takeable until 10 years,
               then 8.667 weeks lands at once, then another 4.333 weeks every 5 years. Serving 14 years
-              gets you no more <em>takeable</em> leave than serving 10 — although the extra four years
+              gets you no more <em>takeable</em> leave than serving 10, although the extra four years
               still count if the job ends. Queensland steps at 10 and 15 and then runs continuously.
               Victoria, the ACT, South Australia and the Northern Territory hand over the accrued
               balance once you qualify.
@@ -356,7 +356,7 @@ export function LongServiceLeaveHub() {
               This is where the states diverge most, and it is the question that costs people the most
               money. In <strong>Victoria, WA and South Australia</strong> a plain resignation past 7
               years pays out the accrued balance. In <strong>NSW, Queensland, Tasmania and the
-              NT</strong> a plain resignation pays nothing until you reach 10 years — below that you
+              NT</strong> a plain resignation pays nothing until you reach 10 years. Below that you
               have to fall inside a defined list.
             </p>
             <div className={TABLE_WRAP}>
@@ -411,7 +411,7 @@ export function LongServiceLeaveHub() {
               <Link href="/redundancy-pay-calculator/" className={LINK}>
                 redundancy pay calculator
               </Link>{" "}
-              covers the separate NES scale — and, as the next section explains, redundancy also
+              covers the separate NES scale and, as the next section explains, redundancy also
               changes how the long service leave itself is taxed.
             </p>
           </section>
@@ -474,8 +474,8 @@ export function LongServiceLeaveHub() {
               </table>
             </div>
             <p className={P + " mt-4"}>
-              If you started your job after 17 August 1993 — which covers essentially every current
-              employee — the whole payout sits in the bottom row. Resign and it is taxed at your
+              If you started your job after 17 August 1993 (which covers essentially every current
+              employee), the whole payout sits in the bottom row. Resign and it is taxed at your
               marginal rate; be made redundant and it is withheld at a flat 32%, which is often
               <em> lower</em> than the marginal rate a large payout would otherwise attract. Where the
               post-1993 component plus unused annual leave comes to less than{" "}
@@ -487,7 +487,7 @@ export function LongServiceLeaveHub() {
               A payout is taxed in the year you receive it and can push you into a higher bracket for
               that year. On {formatAUD(exampleWeekly)} a week plus a {weeks(exampleWeeks)}-week NSW
               payout of {formatAUD(examplePayout)}, the year totals about{" "}
-              {formatAUD(exampleWeekly * 52 + examplePayout)} — see{" "}
+              {formatAUD(exampleWeekly * 52 + examplePayout)}. See{" "}
               <Link href={`/take-home-pay-on/${exampleTarget}/`} className={LINK}>
                 take-home pay on {formatAUD(exampleTarget)}
               </Link>{" "}
@@ -501,7 +501,7 @@ export function LongServiceLeaveHub() {
             </h2>
             <p className={P}>
               Casuals accrue long service leave in every state and territory, and part-timers accrue at
-              the same rate as full-timers — the entitlement is measured in weeks, so a part-timer gets
+              the same rate as full-timers: the entitlement is measured in weeks, so a part-timer gets
               the same number of weeks at their own ordinary pay. What differs is what breaks
               continuity, and Queensland uses an entirely separate formula.
             </p>
@@ -529,7 +529,7 @@ export function LongServiceLeaveHub() {
               whose long service leave already comes from a federal enterprise agreement or a
               pre-reform federal award, and industries covered by a{" "}
               <strong>portable long service leave scheme</strong>. Portable schemes let you build
-              service across employers in the same industry rather than with one employer — building
+              service across employers in the same industry rather than with one employer. Building
               and construction, contract cleaning, community services, security and black coal mining
               all have one. If any of those describes you, the figures on this page are not yours;
               contact the{" "}
@@ -649,7 +649,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
   for (const s of [
     jurisdictionSource(code),
     ...d.sources,
-    ...d.portable.map((p) => ({ title: p.name, url: p.url, publisher: p.name.split(" — ")[0] })),
+    ...d.portable.map((p) => ({ title: p.name, url: p.url, publisher: p.name.split(": ")[0] })),
     ATO_SOURCE,
     FWO_SOURCE,
   ]) {
@@ -702,7 +702,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
         </section>
 
         <section className="max-w-5xl mx-auto">
-          <LongServiceLeaveCalculator jurisdiction={code} heading={`Long Service Leave Calculator — ${j.name}`} />
+          <LongServiceLeaveCalculator jurisdiction={code} heading={`Long Service Leave Calculator: ${j.name}`} />
         </section>
 
         <WhatsNextInline route={`/long-service-leave-calculator/${code}/`} />
@@ -855,7 +855,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
                   <a href={p.url} target="_blank" rel="noreferrer noopener" className={LINK}>
                     {p.name}
                   </a>{" "}
-                  — {p.covers}
+                  : {p.covers}
                 </li>
               ))}
             </ul>
@@ -879,7 +879,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
                 ATO unused-leave schedule is set out on the hub
               </Link>
               . A {j.takeAfterYears}-year {j.abbr} entitlement of {weeks(qualifyingWeeks)} weeks at{" "}
-              {formatAUD(exampleWeekly)} a week is {formatAUD(examplePayout)} gross — see{" "}
+              {formatAUD(exampleWeekly)} a week is {formatAUD(examplePayout)} gross. See{" "}
               <Link href={`/take-home-pay-on/${exampleTarget}/`} className={LINK}>
                 take-home pay on {formatAUD(exampleTarget)}
               </Link>{" "}

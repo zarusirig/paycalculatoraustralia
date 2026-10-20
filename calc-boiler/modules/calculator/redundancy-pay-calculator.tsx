@@ -144,7 +144,7 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
                   <StickyResult targetId="calc-result" label="Redundancy pay after tax" value={formatAUD(r.tax.net)} />
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
                     <Row label="NES redundancy pay (gross)" value={formatAUD(r.gross, 2)} bold />
-                    <Row label={genuine ? `Tax-free limit (${Y})` : "Tax-free limit"} value={genuine ? formatAUD(r.tax.taxFreeLimit) : "Nil — not genuine"} />
+                    <Row label={genuine ? `Tax-free limit (${Y})` : "Tax-free limit"} value={genuine ? formatAUD(r.tax.taxFreeLimit) : "Nil (not genuine)"} />
                     <Row label="Tax-free part" value={formatAUD(r.tax.taxFree, 2)} green />
                     <Row label="Taxable ETP part" value={formatAUD(r.tax.etpTaxable, 2)} />
                     <Row label={`Tax on ETP (${pct(r.tax.rateWithinCap)}${r.tax.etpAboveCap > 0 ? ` / ${pct(ETP_RATES.aboveCap)} over cap` : ""})`} value={formatNegAUD(r.tax.tax, 2, "−")} />
@@ -163,7 +163,7 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
                     </p>
                   )}
                   <p className="text-xs text-warmgray-light">
-                    Excludes notice, unused leave and long service leave, which are paid and taxed separately — use the{" "}
+                    Excludes notice, unused leave and long service leave, which are paid and taxed separately. Use the{" "}
                     <Link href="/final-pay-calculator/" className={LINK}>final pay calculator</Link> for the whole payout.
                   </p>
                 </div>

@@ -16,7 +16,7 @@ export const ACT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average Canberra salary?",
-    a: `Full-time adults in the ACT earn ${awoteLine(PROFILE)} — the highest in Australia (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
+    a: `Full-time adults in the ACT earn ${awoteLine(PROFILE)}, the highest in Australia (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
   },
   {
     q: "Which public holidays are unique to the ACT?",

@@ -32,12 +32,12 @@ import FeaturedImage from "@/components/common/featured-image";
 const PAY_GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 
 export const ADF_SOURCES: SourceLink[] = [
-  { title: "PACMAN Chapter 3 Part 1: Salaries", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.salaries },
-  { title: "Schedule B.12: Other rank salary rates", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.otherRanks },
-  { title: "Schedule B.3: Officer salary rates", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.officers },
-  { title: "Schedule B.10: Service Warrant Officer and Warrant Officer Class 1 salary rates", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.warrantOfficers },
-  { title: "Schedule B.13: Trainee salary rates", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.trainees },
-  { title: "Schedule B.11: Other rank pay grades", publisher: "Department of Defence — ADF Pay and Conditions", url: PACMAN_URLS.otherRankPayGrades },
+  { title: "PACMAN Chapter 3 Part 1: Salaries", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.salaries },
+  { title: "Schedule B.12: Other rank salary rates", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.otherRanks },
+  { title: "Schedule B.3: Officer salary rates", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.officers },
+  { title: "Schedule B.10: Service Warrant Officer and Warrant Officer Class 1 salary rates", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.warrantOfficers },
+  { title: "Schedule B.13: Trainee salary rates", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.trainees },
+  { title: "Schedule B.11: Other rank pay grades", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.otherRankPayGrades },
   { title: "Category 1: Medical exemption from Medicare levy", publisher: "Australian Taxation Office", url: ATO_MEDICARE_DEFENCE_URL },
 ];
 
@@ -52,7 +52,7 @@ export const ADF_HUB_FAQS = [
   },
   {
     q: "What is an ADF pay grade?",
-    a: "Each employment category — Rifleman, Cook, Electrician, Aircraft Technician and so on — is assigned a pay grade from 1 to 10 in PACMAN Schedule B.11. Your salary is set by your rank, your pay grade and your increment within the rank. Two members of the same rank can be paid very differently because of their pay grade.",
+    a: "Each employment category (Rifleman, Cook, Electrician, Aircraft Technician and so on) is assigned a pay grade from 1 to 10 in PACMAN Schedule B.11. Your salary is set by your rank, your pay grade and your increment within the rank. Two members of the same rank can be paid very differently because of their pay grade.",
   },
   {
     q: "How much does an ADF officer earn?",
@@ -60,7 +60,7 @@ export const ADF_HUB_FAQS = [
   },
   {
     q: "Is ADF pay taxed?",
-    a: "Yes. ADF salary is taxed at ordinary resident rates. A member who is entitled to full free medical treatment for all conditions under Defence Force arrangements may be exempt from all or half of the Medicare levy, depending on their dependants — claim it in your tax return. The take-home figures on this page show both cases.",
+    a: "Yes. ADF salary is taxed at ordinary resident rates. A member who is entitled to full free medical treatment for all conditions under Defence Force arrangements may be exempt from all or half of the Medicare levy, depending on their dependants. Claim it in your tax return. The take-home figures on this page show both cases.",
   },
   {
     q: "When did ADF pay last increase?",
@@ -288,7 +288,7 @@ function Notices() {
     <div className="not-prose mb-8 flex gap-3 rounded-lg border border-sandstone-dark/30 bg-sandstone/50 p-4">
       <Info className="mt-0.5 h-5 w-5 shrink-0 text-eucalyptus-dark" aria-hidden="true" />
       <p className="text-sm text-navy">
-        Permanent Forces salaries effective {ADF_PAY_EFFECTIVE}, from PACMAN. These are base salaries only —
+        Permanent Forces salaries effective {ADF_PAY_EFFECTIVE}, from PACMAN. These are base salaries only:
         allowances such as the ADF Military Factor and location allowances can be paid on top and are not
         included.
       </p>
@@ -312,7 +312,7 @@ export function AdfPayScalesHub() {
         <Breadcrumbs trail={[{ href: "/", label: "Pay Calculator" }, { label: "ADF Pay Scales" }]} />
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            ADF Ranks and Pay Scales 2026 — Army, Navy &amp; RAAF Salary by Rank
+            ADF Ranks and Pay Scales 2026: Army, Navy &amp; RAAF Salary by Rank
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             A Private, Seaman or Aircraftman in the Permanent Forces earns{" "}
@@ -361,15 +361,15 @@ export function AdfPayScalesHub() {
               </p>
               <ul>
                 <li>
-                  <strong>Rank</strong> — the same scale applies across the services, so a Navy Petty Officer, an Army
+                  <strong>Rank</strong>: the same scale applies across the services, so a Navy Petty Officer, an Army
                   Sergeant and an Air Force Sergeant are paid from one table.
                 </li>
                 <li>
-                  <strong>Pay grade (1 to 10)</strong> — set by your employment category, your job. PACMAN Schedule
+                  <strong>Pay grade (1 to 10)</strong>: set by your employment category, your job. PACMAN Schedule
                   B.11 places every category at a pay grade; technical and specialist trades sit higher.
                 </li>
                 <li>
-                  <strong>Increment</strong> — a step within the rank. PACMAN lists the increments for each rank; the
+                  <strong>Increment</strong>: a step within the rank. PACMAN lists the increments for each rank; the
                   rules for moving between them are in PACMAN Chapter 3.
                 </li>
               </ul>
@@ -393,7 +393,7 @@ export function AdfPayScalesHub() {
               <RankSummary tables={OFFICER_SALARIES} />
               <TakeHomeNote />
               <p>
-                The Service Warrant Officer — the senior warrant officer position — is paid{" "}
+                The Service Warrant Officer (the senior warrant officer position) is paid{" "}
                 {formatAUD(SERVICE_WARRANT_OFFICER_SALARY)} a year (Schedule B.10).
               </p>
             </section>
@@ -476,7 +476,7 @@ export function serviceFaqs(service: AdfService) {
     },
     {
       q: `What pay grade is my ${service.name} job?`,
-      a: `PACMAN Schedule B.11 lists every ${service.name} employment category against a pay grade from 1 to 10. This page reproduces that list — find your category in the pay-grade section above.`,
+      a: `PACMAN Schedule B.11 lists every ${service.name} employment category against a pay grade from 1 to 10. This page reproduces that list; find your category in the pay-grade section above.`,
     },
   ];
 }
@@ -502,13 +502,13 @@ export function AdfServicePage({ service }: { service: AdfService }) {
         />
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            {service.name} Pay Scales 2026 — {service.fullName} Salary by Rank &amp; Pay Grade
+            {service.name} Pay Scales 2026: {service.fullName} Salary by Rank &amp; Pay Grade
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             A {pte.names[k]} in the {service.fullName} earns{" "}
             <strong className="text-navy">{formatAUD(pteR.min)} to {formatAUD(pteR.max)}</strong> a year depending on
             the pay grade of their job. Below: salary by rank, which pay grade every {service.name} employment category
-            sits on, and take-home pay — all from PACMAN, effective {ADF_PAY_EFFECTIVE}.
+            sits on, and take-home pay, all from PACMAN, effective {ADF_PAY_EFFECTIVE}.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />

@@ -44,7 +44,7 @@ export const COLES_PAY: EmployerPay = {
     approvedOn: "3 May 2024 ([2024] FWCFB 250), operating from 7 October 2024",
     nominalExpiry: "3 May 2028",
     coverage:
-      "It covers wages-paid team members in Coles supermarkets — including online and home delivery and every department in store — and in Coles Liquor stores such as Liquorland, First Choice Liquor Market and Vintage Cellars. Salaried managers and Store Support Centre staff are excluded, and distribution centres fall outside it.",
+      "It covers wages-paid team members in Coles supermarkets (including online and home delivery and every department in store) and in Coles Liquor stores such as Liquorland, First Choice Liquor Market and Vintage Cellars. Salaried managers and Store Support Centre staff are excluded, and distribution centres fall outside it.",
   },
   ratesEffectiveFrom: "the first full pay period after 1 July 2026",
   nextIncrease: {
@@ -91,13 +91,13 @@ export const COLES_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   notices: [
-    "The Coles agreement prints its 2024 starting rates and then lifts every level each July by the same percentage the Retail Award's Level 1 rate rises (cl 3.4.1) — 4.75% in 2026. The dollar figures here apply that rule to the agreement's own rates. Coles has not published a 2026 table, so your payslip may differ by a cent.",
+    "The Coles agreement prints its 2024 starting rates and then lifts every level each July by the same percentage the Retail Award's Level 1 rate rises (cl 3.4.1): 4.75% in 2026. The dollar figures here apply that rule to the agreement's own rates. Coles has not published a 2026 table, so your payslip may differ by a cent.",
     "Junior rates under the Retail Award rise from the first full pay period on or after 1 December 2026 for 18- to 20-year-olds with more than 6 months' service ([2026] FWCFB 222). An agreement can never pay a base rate below the award, so if the award rate for your age overtakes the Coles junior rate, you must be paid at least the award rate.",
   ],
   unverified: [
-    "Coles Express, Coles Local and distribution centre pay — not named in the agreement; we have not confirmed which instrument covers them.",
-    "Legacy Liquorland rates — some long-serving liquor staff keep higher 2014 rates under Appendix A4.3 until the Coles rate overtakes them.",
-    "Allowances — see the agreement itself.",
+    "Coles Express, Coles Local and distribution centre pay: not named in the agreement; we have not confirmed which instrument covers them.",
+    "Legacy Liquorland rates: some long-serving liquor staff keep higher 2014 rates under Appendix A4.3 until the Coles rate overtakes them.",
+    "Allowances: see the agreement itself.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",

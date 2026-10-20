@@ -22,7 +22,7 @@ import FeaturedImage from "@/components/common/featured-image";
 const HOW_NOTE: Record<PayrollTaxStateCode, string> = {
   nsw: "NSW is the simplest system in the country: the threshold never phases out, so every NSW-only employer over $1.2 million pays 5.45% on the excess.",
   vic: "The phase-out means the threshold falls by 50 cents for each dollar of Australian wages above $3 million. A Victoria-only employer can shortcut it as ($5 million − wages) × 50%.",
-  qld: "The deduction is worked out on Australian wages first — $1.3 million less one-seventh of wages above $1.3 million — and then multiplied by the Queensland share.",
+  qld: "The deduction is worked out on Australian wages first ($1.3 million less one-seventh of wages above $1.3 million) and then multiplied by the Queensland share.",
   wa: "WA's deductable amount is $1 million − (Australian wages − $1 million) × 2/13, multiplied by the WA share. It is zero from $7.5 million.",
   sa: "Two steps: the rate is set by total Australian wages (0% to 4.95% between $1.5 million and $1.7 million), then applied to SA wages less the $600,000 deduction (SA share).",
   tas: "Above $2 million of Australian wages: 4% on the gap between the two apportioned thresholds, plus 6.1% on Tasmanian wages above the apportioned $2 million.",

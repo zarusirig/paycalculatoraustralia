@@ -68,7 +68,7 @@ const EA_SOURCE = {
 };
 
 const SALARY_PAGE = {
-  title: "Salaries — SA Health careers",
+  title: "Salaries, SA Health careers",
   url: "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/careers/working+for+sa+health/our+benefits/salaries/salaries",
   publisher: "SA Health",
 };
@@ -87,7 +87,7 @@ export const SA_NURSING_PAY: NursingStateData = {
       name: "Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022",
       effectiveFrom: "first full pay period after 1 January 2025",
       nextIncrease:
-        "a further 2% administrative increase in October 2026, determined by the SA Government outside the agreement (on top of the 4% administrative increase from January 2026) — SA Health has not published the resulting dollar rates",
+        "a further 2% administrative increase in October 2026, determined by the SA Government outside the agreement (on top of the 4% administrative increase from January 2026); SA Health has not published the resulting dollar rates",
       tribunal: "South Australian Employment Tribunal",
       source: EA_SOURCE,
       note:
@@ -157,7 +157,7 @@ export const SA_NURSING_PAY: NursingStateData = {
         { label: "3rd increment", annual: 130779 },
       ],
       note:
-        "SA pays the unit manager, consultant, educator and manager roles at one level and one rate — the step up from Level 2 is the largest single jump in the SA structure.",
+        "SA pays the unit manager, consultant, educator and manager roles at one level and one rate. The step up from Level 2 is the largest single jump in the SA structure.",
     },
     {
       classification:
@@ -200,7 +200,7 @@ export const SA_NURSING_PAY: NursingStateData = {
         { label: "7th increment", annual: 72033 },
       ],
       note:
-        "The medication-administration authorisation is worth about $2,450 a year at the bottom of the scale — the two enrolled nurse streams run in parallel.",
+        "The medication-administration authorisation is worth about $2,450 a year at the bottom of the scale. The two enrolled nurse streams run in parallel.",
     },
     {
       classification: "Advanced Skills Enrolled Nurse",
@@ -253,7 +253,7 @@ export const SA_NURSING_PAY: NursingStateData = {
   penalties: [
     {
       instrumentId: "sa-ea-2022",
-      clause: "clause 9.3 — Night Shift Penalty",
+      clause: "clause 9.3, Night Shift Penalty",
       rows: [
         {
           label: "Rostered night shift, Monday to Friday",
@@ -269,7 +269,7 @@ export const SA_NURSING_PAY: NursingStateData = {
 
   derivation: {
     hourly:
-      "not shown — the agreement publishes an annual salary only and prescribes no hourly divisor, so this page does not print one",
+      "not shown: the agreement publishes an annual salary only and prescribes no hourly divisor, so this page does not print one",
   },
 
   notReproduced: [
@@ -288,11 +288,11 @@ export const SA_NURSING_PAY: NursingStateData = {
   verifiedOn: "14 October 2026",
 
   intro:
-    "South Australian public sector nurses and midwives are paid under the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025. The figures below are its last published column, from 1 January 2025. Since then the SA Government has paid a 4% administrative increase from January 2026 and has committed a further 2% from October 2026, so current pay is higher than this table — SA Health confirms the percentages but has not published the new dollar rates. A proposed 2026 agreement was voted down by employees in July 2026, so bargaining continues.",
+    "South Australian public sector nurses and midwives are paid under the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025. The figures below are its last published column, from 1 January 2025. Since then the SA Government has paid a 4% administrative increase from January 2026 and has committed a further 2% from October 2026, so current pay is higher than this table. SA Health confirms the percentages but has not published the new dollar rates. A proposed 2026 agreement was voted down by employees in July 2026, so bargaining continues.",
 
   highlights: [
     "SA numbers its scales RN/M1 to RN/M6 and overlaps them: a Clinical Nurse/Midwife at the bottom of Level 2 earns exactly what a Registered Nurse/Midwife earns at the 5th increment.",
-    "There is no separate nurse practitioner scale — nurse practitioners sit at Level 4 with the advanced unit manager and consultant roles.",
+    "There is no separate nurse practitioner scale. Nurse practitioners sit at Level 4 with the advanced unit manager and consultant roles.",
     "Night shift Monday to Friday attracts 20.5%, set by the agreement itself in place of the award rate.",
     "Current pay is 4% above the table: the SA Government paid a 4% administrative increase from January 2026, and a further 2% is due in October 2026. SA Health had not published the new dollar rates when this page was checked on 14 October 2026.",
     "The 2022 agreement nominally expired on 31 July 2025, and a proposed replacement was voted down in the 20–29 July 2026 ballot, so bargaining continues.",
@@ -301,7 +301,7 @@ export const SA_NURSING_PAY: NursingStateData = {
   extraSources: [
     SALARY_PAGE,
     {
-      title: "Proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026 — the agreement explained (confirms 4% January 2026 and 2% October 2026 administrative increases)",
+      title: "Proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026: the agreement explained (confirms 4% January 2026 and 2% October 2026 administrative increases)",
       url: "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/resources/proposed+nursing+midwifery+south+australian+public+sector+enterprise+agreement+2026",
       publisher: "SA Health",
     },

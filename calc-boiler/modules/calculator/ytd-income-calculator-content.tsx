@@ -26,18 +26,18 @@ export default function YTDIncomeCalculatorContent() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Does YTD Mean on a Payslip?</h2>
         <p className="mb-4 text-warmgray">
           YTD stands for <strong>year to date</strong>. On an Australian payslip, YTD is the running total of
-          everything you have earned and everything that has been withheld since 1 July — the start of the
-          financial year — up to and including that payslip. It is not a calendar-year figure.
+          everything you have earned and everything that has been withheld since 1 July (the start of the
+          financial year) up to and including that payslip. It is not a calendar-year figure.
         </p>
         <p className="mb-4 text-warmgray">
           Most payroll systems show several YTD columns side by side with your current pay:
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-          <li><strong>YTD gross</strong> — total earnings before tax, including overtime, bonuses, allowances, and leave loading</li>
-          <li><strong>YTD tax</strong> — total PAYG withholding your employer has sent to the ATO on your behalf (see the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">PAYG withholding tables</Link> for how each pay is calculated)</li>
-          <li><strong>YTD STSL</strong> — total study loan (HECS-HELP) amounts withheld, shown separately from income tax (see our <Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline">guide to STSL on your payslip</Link>)</li>
-          <li><strong>YTD super</strong> — total employer superannuation guarantee contributions accrued</li>
-          <li><strong>YTD net</strong> — total take-home pay actually deposited into your bank account</li>
+          <li><strong>YTD gross</strong>: total earnings before tax, including overtime, bonuses, allowances, and leave loading</li>
+          <li><strong>YTD tax</strong>: total PAYG withholding your employer has sent to the ATO on your behalf (see the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">PAYG withholding tables</Link> for how each pay is calculated)</li>
+          <li><strong>YTD STSL</strong>: total study loan (HECS-HELP) amounts withheld, shown separately from income tax (see our <Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline">guide to STSL on your payslip</Link>)</li>
+          <li><strong>YTD super</strong>: total employer superannuation guarantee contributions accrued</li>
+          <li><strong>YTD net</strong>: total take-home pay actually deposited into your bank account</li>
         </ul>
         <p className="text-warmgray">
           If any of these labels look unfamiliar, our guide to <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">understanding your payslip</Link> walks
@@ -56,9 +56,9 @@ export default function YTDIncomeCalculatorContent() {
           <p className="text-navy font-semibold">YTD gross = gross pay per period × pays received this financial year</p>
         </div>
         <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-          <li><strong>Find your gross pay per period</strong> — the before-tax amount on your payslip, not the net deposit.</li>
-          <li><strong>Count the pays received since 1 July</strong> — check payslip dates, or use the payslip-date option in the calculator above and we count the cycles for you.</li>
-          <li><strong>Multiply the two numbers</strong> — the result is your YTD gross income.</li>
+          <li><strong>Find your gross pay per period</strong>: the before-tax amount on your payslip, not the net deposit.</li>
+          <li><strong>Count the pays received since 1 July</strong>: check payslip dates, or use the payslip-date option in the calculator above and we count the cycles for you.</li>
+          <li><strong>Multiply the two numbers</strong>: the result is your YTD gross income.</li>
         </ol>
         <p className="text-warmgray">
           <strong>Worked example:</strong> Priya earns <strong>$2,000 per fortnight</strong> and has received
@@ -87,7 +87,7 @@ export default function YTDIncomeCalculatorContent() {
         </p>
         <p className="text-warmgray">
           There are 52 weekly, 26 fortnightly, or 12 monthly pays in a standard financial year. If your income
-          is irregular — overtime, casual shifts, commissions — annualising from a longer YTD window gives a
+          is irregular (overtime, casual shifts, commissions), annualising from a longer YTD window gives a
           more reliable projection than multiplying a single big or small pay.
         </p>
       </section>
@@ -96,9 +96,9 @@ export default function YTDIncomeCalculatorContent() {
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Your YTD Figure Matters</h2>
         <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
-          <li><strong>Home loan and rental applications</strong> — lenders annualise the YTD gross on your two most recent payslips to verify the income you declared. A YTD figure that annualises below your stated salary triggers follow-up questions, so it pays to check the maths before they do.</li>
-          <li><strong>Estimating your tax refund</strong> — comparing YTD tax withheld against the tax actually payable on your projected annual income reveals whether you are heading for a refund or a bill. Run your projected income through the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">income tax calculator</Link> to see the target figure.</li>
-          <li><strong>Catching payroll errors early</strong> — if YTD gross ÷ pays received does not equal your contracted per-period pay, something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment. YTD totals make errors visible that individual payslips hide.</li>
+          <li><strong>Home loan and rental applications</strong>: lenders annualise the YTD gross on your two most recent payslips to verify the income you declared. A YTD figure that annualises below your stated salary triggers follow-up questions, so it pays to check the maths before they do.</li>
+          <li><strong>Estimating your tax refund</strong>: comparing YTD tax withheld against the tax actually payable on your projected annual income reveals whether you are heading for a refund or a bill. Run your projected income through the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">income tax calculator</Link> to see the target figure.</li>
+          <li><strong>Catching payroll errors early</strong>: if YTD gross ÷ pays received does not equal your contracted per-period pay, something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment. YTD totals make errors visible that individual payslips hide.</li>
         </ul>
       </section>
 
@@ -111,7 +111,7 @@ export default function YTDIncomeCalculatorContent() {
         </p>
         <p className="mb-4 text-warmgray">
           A new financial year has just begun, so payslips issued in July show only one or two pays&apos; worth
-          of YTD income. That catches people out every year — a $2,000 YTD figure in mid-July is exactly on
+          of YTD income. That catches people out every year: a $2,000 YTD figure in mid-July is exactly on
           track for a $52,000 year for a fortnightly earner. Use the annualise mode above rather than judging
           the raw YTD number.
         </p>
@@ -160,11 +160,11 @@ export default function YTDIncomeCalculatorContent() {
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Related Calculators Should You Use?</h2>
         <ul className="list-disc pl-6 space-y-2 text-warmgray">
-          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — turn your projected annual gross into net pay after tax, Medicare levy, and HECS-HELP</li>
-          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — check the exact tax payable on your annualised income and compare it with your YTD tax withheld</li>
-          <li><Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link> — a line-by-line guide to every field on an Australian payslip, including all the YTD columns</li>
-          <li><Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">PAYG Withholding Tables</Link> — see how your employer calculates the tax withheld from each individual pay</li>
-          <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link> — reverse-calculate the gross salary needed to hit a target take-home amount</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: turn your projected annual gross into net pay after tax, Medicare levy, and HECS-HELP</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: check the exact tax payable on your annualised income and compare it with your YTD tax withheld</li>
+          <li><Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>: a line-by-line guide to every field on an Australian payslip, including all the YTD columns</li>
+          <li><Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">PAYG Withholding Tables</Link>: see how your employer calculates the tax withheld from each individual pay</li>
+          <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>: reverse-calculate the gross salary needed to hit a target take-home amount</li>
         </ul>
       </section>
 
@@ -173,7 +173,7 @@ export default function YTDIncomeCalculatorContent() {
         <ol className="list-decimal pl-4 space-y-1">
           <li>YTD mode multiplies your gross pay per period by the number of pays received since 1 July.</li>
           <li>Annualise mode divides your YTD gross by pays received, then multiplies by the pays in a full financial year (52 weekly / 26 fortnightly / 12 monthly).</li>
-          <li>When counting pays from a payslip date, we assume your first pay of the financial year fell in the first pay cycle after 1 July — override the pay count manually if yours did not.</li>
+          <li>When counting pays from a payslip date, we assume your first pay of the financial year fell in the first pay cycle after 1 July. Override the pay count manually if yours did not.</li>
           <li>Projected tax uses the FY{SITE_CONFIG.financialYear} resident tax brackets and 2% Medicare levy; HECS-HELP and salary sacrifice are excluded.</li>
         </ol>
       </MethodologyDisclosure>

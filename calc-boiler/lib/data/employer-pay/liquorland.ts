@@ -27,8 +27,8 @@ import { COLES_PAY } from "./coles";
 const EA_URL = COLES_PAY.instrument.url;
 
 const LIQUOR_TITLES: Record<string, string> = {
-  "Level 1": "Sales Assistant — the Coles Liquor title for Level 1",
-  "Level 3": "Senior Sales Assistant — the Coles Liquor title for Level 3",
+  "Level 1": "Sales Assistant, the Coles Liquor title for Level 1",
+  "Level 3": "Senior Sales Assistant, the Coles Liquor title for Level 3",
 };
 
 const colesLevel = (level: string) => {
@@ -61,7 +61,7 @@ export const LIQUORLAND_PAY: EmployerPay = {
     "Coles Liquor staff may agree to work up to 6 hours before their meal break (Appendix A4.5.1).",
   ],
   notices: [
-    "Liquorland, First Choice Liquor Market and Vintage Cellars staff are covered by the same agreement as Coles supermarkets, so the hourly rates are identical to Coles. The 2026 dollars apply the agreement's rule of lifting every level by the Retail Award Level 1 increase each July (cl 3.4.1) — 4.75% in 2026 — so your payslip may differ by a cent.",
+    "Liquorland, First Choice Liquor Market and Vintage Cellars staff are covered by the same agreement as Coles supermarkets, so the hourly rates are identical to Coles. The 2026 dollars apply the agreement's rule of lifting every level by the Retail Award Level 1 increase each July (cl 3.4.1): 4.75% in 2026 — so your payslip may differ by a cent.",
     "Long-serving staff on higher 2014 Liquor Agreement rates ($26.68 to $27.93) kept them only until the Coles rate caught up (cl A4.3); the 2026 rates are above all of them.",
   ],
   allowances: [
@@ -69,11 +69,11 @@ export const LIQUORLAND_PAY: EmployerPay = {
   ],
   unverified: [
     "Coles Liquor job titles are given only for Levels 1 and 3. If you are classified at Level 2, 4, 5 or 6, see the full table on the Coles page.",
-    "The current dollar amount of the liquor licence allowance — it follows the Retail Award allowance, which we have not re-verified for 2026.",
-    "Salaried store manager pay — set by contract, not the agreement.",
+    "The current dollar amount of the liquor licence allowance. It follows the Retail Award allowance, which we have not re-verified for 2026.",
+    "Salaried store manager pay, set by contract, not the agreement.",
   ],
   sources: [
-    { title: "Coles Retail Enterprise Agreement 2024 (AE524516) — cl 2.1.3 and Appendix 4 (Coles Liquor)", publisher: "Fair Work Commission", url: EA_URL },
+    { title: "Coles Retail Enterprise Agreement 2024 (AE524516), cl 2.1.3 and Appendix 4 (Coles Liquor)", publisher: "Fair Work Commission", url: EA_URL },
     ...COLES_PAY.sources.slice(1),
   ],
   faqs: [

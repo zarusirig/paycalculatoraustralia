@@ -22,14 +22,14 @@ export default function SuperContributionCaps202627() {
 
       <h2>What counts toward each cap</h2>
       <p>
-        The concessional cap covers all before-tax contributions combined — employer super
+        The concessional cap covers all before-tax contributions combined: employer super
         guarantee, salary sacrifice, and personal contributions you claim as a tax deduction. The
         non-concessional cap covers after-tax contributions you make from your own savings, which
         aren&apos;t taxed going into your fund but don&apos;t get a tax deduction either. Exceeding
         either cap can trigger extra tax, so it&apos;s worth checking your total contributions
         before the end of the financial year. Contributions made before 30 June 2026 are still
         assessed against the old caps of $30,000 concessional and $120,000 non-concessional, so the
-        higher 2026-27 limits only apply to contributions made on or after 1 July 2026 — timing
+        higher 2026-27 limits only apply to contributions made on or after 1 July 2026, so timing
         matters if you&apos;re planning a large one-off contribution near the cut-over.
       </p>
 
@@ -60,7 +60,7 @@ export default function SuperContributionCaps202627() {
         concessional cap alongside any salary sacrifice you arrange. On a $32,500 cap, someone
         earning around $150,000 already has roughly $18,000 of employer super guarantee using up
         cap space at the 12% rate, leaving room for further salary sacrifice or personal deductible
-        contributions before the higher cap is reached — a useful check to run before committing to
+        contributions before the higher cap is reached. This is a useful check to run before committing to
         a large voluntary contribution. Exceeding the concessional cap means the excess is added to
         your assessable income and taxed at your marginal rate, less a 15% offset for the tax already
         paid inside the fund, so it pays to tally employer contributions and any planned salary
@@ -70,7 +70,7 @@ export default function SuperContributionCaps202627() {
       <h2>What this means for your pay</h2>
       <p>
         If you salary sacrifice, the higher concessional cap gives you more room to direct pre-tax
-        income into super before hitting the limit — useful if you got a pay rise or bonus this
+        income into super before hitting the limit, which is useful if you got a pay rise or bonus this
         year. Model different salary sacrifice amounts against the new $32,500 cap with our{" "}
         <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link>, and check
         your overall super trajectory with the{" "}

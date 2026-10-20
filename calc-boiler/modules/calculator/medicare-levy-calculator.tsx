@@ -183,7 +183,7 @@ export default function MedicareLevyCalculator() {
                 aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
-                Gross income less allowable deductions — not your gross salary.
+                Gross income less allowable deductions, not your gross salary.
               </p>
             </div>
 
@@ -246,7 +246,7 @@ export default function MedicareLevyCalculator() {
                   Entitlement to at least $1 of SAPTO lifts your levy threshold to{" "}
                   {formatAUD(MEDICARE_LEVY_SENIORS.singleThreshold)} single and{" "}
                   {formatAUD(MEDICARE_LEVY_SENIORS.familyThreshold)} family. Being of age-pension age
-                  is not enough on its own — check with the{" "}
+                  is not enough on its own; check with the{" "}
                   <Link href="/sapto-calculator/" className="text-eucalyptus-dark hover:underline">
                     SAPTO calculator
                   </Link>
@@ -344,7 +344,7 @@ export default function MedicareLevyCalculator() {
 
             <p className="text-xs text-warmgray-light">
               An estimate for a full year of Australian residency, before any exemption. It does not
-              include income tax — see the{" "}
+              include income tax; see the{" "}
               <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">
                 income tax calculator
               </Link>{" "}

@@ -53,11 +53,11 @@ export const TAX_BRACKET_HISTORY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much do I save at $80,000 under Stage 3?",
-    a: `At ${formatAUD(EXAMPLE)} taxable income, income tax (before the Medicare levy and offsets) dropped from ${formatAUD(before)} under the FY2023-24 rates to ${formatAUD(after)} in FY2024-25 — a saving of ${formatAUD(saving)} per year or about ${formatAUD(saving / 52)} per week. This comes from the lower 16% rate (previously 19%) on income from $18,201 to $45,000 and the lower 30% rate (previously 32.5%) on income from $45,001 to $80,000.`,
+    a: `At ${formatAUD(EXAMPLE)} taxable income, income tax (before the Medicare levy and offsets) dropped from ${formatAUD(before)} under the FY2023-24 rates to ${formatAUD(after)} in FY2024-25, a saving of ${formatAUD(saving)} per year or about ${formatAUD(saving / 52)} per week. This comes from the lower 16% rate (previously 19%) on income from $18,201 to $45,000 and the lower 30% rate (previously 32.5%) on income from $45,001 to $80,000.`,
   },
   {
     q: "Have tax brackets changed for FY2025-26?",
-    a: "No. The FY2025-26 tax brackets are identical to FY2024-25. The next change took effect on 1 July 2026 — see the FY2026-27 Tax Changes guide.",
+    a: "No. The FY2025-26 tax brackets are identical to FY2024-25. The next change took effect on 1 July 2026. See the FY2026-27 Tax Changes guide.",
     links: { "FY2026-27 Tax Changes guide": "/tax-changes-2026-27/" },
   },
   {

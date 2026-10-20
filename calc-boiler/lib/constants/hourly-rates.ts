@@ -123,7 +123,7 @@ for (const r of SCHADS_HOME_CARE_DISABILITY) {
 }
 for (const r of SCHADS_HOME_CARE_AGED) {
   note(r.hourly, {
-    award: "SCHADS Award (home care — aged care)",
+    award: "SCHADS Award (home care, aged care)",
     code: SCHADS_AWARD.code,
     classification: r.classification,
     href: "/schads-award-pay-rates/",

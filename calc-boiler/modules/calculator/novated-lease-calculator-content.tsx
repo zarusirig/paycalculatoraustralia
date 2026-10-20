@@ -64,7 +64,7 @@ export function NovatedLeaseEvExemption() {
         <h2 style={FONT} className={H2}>Plug-In Hybrids: the {EV_EXEMPTION.phevExcludedFrom} Cut-Off</h2>
         <p className={P}>
           From {EV_EXEMPTION.phevExcludedFrom} a plug-in hybrid is not a zero or low emissions vehicle for FBT, so a
-          PHEV novated lease entered into now is fully subject to FBT — on a {formatAUD(60_000)} car that is{" "}
+          PHEV novated lease entered into now is fully subject to FBT. On a {formatAUD(60_000)} car that is{" "}
           {formatAUD(statutoryTaxableValue(60_000))} of taxable value and{" "}
           {formatAUD(fbtPayable(statutoryTaxableValue(60_000)))} of FBT for a full FBT year, before any employee
           contribution.
@@ -73,7 +73,7 @@ export function NovatedLeaseEvExemption() {
           A PHEV keeps the exemption only where <strong>both</strong> of these are true: it was used, or available
           for use, before that date and that use was exempt; and there is a financially binding commitment to keep
           providing it. The ATO says plainly it has no discretion to extend the date, including where delivery was
-          delayed. The exemption then ends the moment the commitment changes — an optional extension being taken up,
+          delayed. The exemption then ends the moment the commitment changes: an optional extension being taken up,
           a break in the novation, a change to the lease payments or the residual value, or a change of employer.
           Tick the box in the calculator only if that describes your arrangement.
         </p>
@@ -98,7 +98,7 @@ export function NovatedLeaseHecsAndFbtRates() {
         </p>
         <p className={P}>
           An FBT-<em>exempt</em> electric car is not exempt from that. The notional taxable value is still worked
-          out and still reported — so an EV lease can cut your taxable income and raise your compulsory study loan
+          out and still reported, so an EV lease can cut your taxable income and raise your compulsory study loan
           repayment at the same time. A full employee contribution is the one thing that removes it: it takes the
           taxable value to nil, so there is nothing left to report. The repayment threshold is{" "}
           {formatAUD(HECS_HELP.minimumThreshold)} for {SITE_CONFIG.financialYear}; the{" "}
@@ -111,7 +111,7 @@ export function NovatedLeaseHecsAndFbtRates() {
       <section>
         <h2 style={FONT} className={H2}>FBT Rates for the Year Ending {FBT.yearEnding}</h2>
         <p className={P}>
-          The FBT year runs {FBT.yearStart} to {FBT.yearEnd} — it is not the income year. A lease that starts in
+          The FBT year runs {FBT.yearStart} to {FBT.yearEnd}, so it is not the income year. A lease that starts in
           September is only available for part of the FBT year, and the statutory formula apportions by days, so
           your first year&apos;s FBT is smaller than a full year&apos;s.
         </p>
@@ -120,8 +120,8 @@ export function NovatedLeaseHecsAndFbtRates() {
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Figure</th><th scope="col" className={TH + " text-right"}>{FBT.yearLabel}</th><th scope="col" className={TH}>What it is for</th></tr></thead>
             <tbody className="divide-y divide-sandstone-dark/10">
               <tr><td className={TD}>FBT rate</td><td className={TD + " text-right font-bold"}>{formatPercent(FBT.rate, 0)}</td><td className={TD}>Applied to the grossed-up taxable value</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className={TD}>Type 1 gross-up rate</td><td className={TD + " text-right font-bold"}>{FBT.grossUpType1}</td><td className={TD}>Where the employer can claim GST credits — the usual novated lease case</td></tr>
-              <tr><td className={TD}>Type 2 gross-up rate</td><td className={TD + " text-right font-bold"}>{FBT.grossUpType2}</td><td className={TD}>No GST credits — and every reportable amount, whatever the type</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className={TD}>Type 1 gross-up rate</td><td className={TD + " text-right font-bold"}>{FBT.grossUpType1}</td><td className={TD}>Where the employer can claim GST credits, the usual novated lease case</td></tr>
+              <tr><td className={TD}>Type 2 gross-up rate</td><td className={TD + " text-right font-bold"}>{FBT.grossUpType2}</td><td className={TD}>No GST credits, and every reportable amount, whatever the type</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD}>Statutory percentage</td><td className={TD + " text-right font-bold"}>{formatPercent(FBT.statutoryRate, 0)}</td><td className={TD}>Flat since 1 April 2014, regardless of kilometres</td></tr>
               <tr><td className={TD}>Reportable threshold</td><td className={TD + " text-right font-bold"}>{formatAUD(FBT.reportableThreshold)}</td><td className={TD}>Taxable value above this is reported ({formatAUD(FBT.reportableMinimumGrossedUp)} grossed up)</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD}>EV home charging rate</td><td className={TD + " text-right font-bold"}>{FBT.evHomeChargingCentsPerKm}c/km</td><td className={TD}>PCG 2024/2 shortcut for home-charged electricity (4.20c before this year)</td></tr>
@@ -171,7 +171,7 @@ export default function NovatedLeaseCalculatorContent() {
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
           <li>Statutory formula taxable value = base value &times; {formatPercent(FBT.statutoryRate, 0)} &times; days available &divide; days in the FBT year, less the employee contribution. FBT = that value &times; {FBT.grossUpType1} &times; {formatPercent(FBT.rate, 0)}. Every figure here is a full FBT year of availability.</li>
-          <li>Capital repaid a year = (purchase price &minus; the TD 93/142 minimum residual) &divide; the term. <strong>Finance charges are not modelled</strong> — the interest rate is set per deal and this site does not compare lease finance. Both sides of the buy-versus-lease comparison are therefore interest-free, and both are GST-inclusive.</li>
+          <li>Capital repaid a year = (purchase price &minus; the TD 93/142 minimum residual) &divide; the term. <strong>Finance charges are not modelled</strong>. The interest rate is set per deal and this site does not compare lease finance. Both sides of the buy-versus-lease comparison are therefore interest-free, and both are GST-inclusive.</li>
           <li>Under the employee contribution method the post-tax deduction is the statutory taxable value (capped at the year&apos;s lease cost), which reduces the taxable value, the FBT and the reportable amount to nil. Under the statutory method the FBT is funded from the pre-tax deduction.</li>
           <li>Reportable fringe benefits amount = taxable value &times; {FBT.grossUpType2}, reported only where the taxable value exceeds {formatAUD(FBT.reportableThreshold)}, and applied to FBT-exempt electric cars as well. HECS-HELP and the Medicare levy surcharge are then calculated on taxable income <em>plus</em> that amount, using the site&apos;s shared {SITE_CONFIG.financialYear} tax engine.</li>
           <li>Not modelled: {NOVATED_LEASE_UNVERIFIED.join("; ")}.</li>

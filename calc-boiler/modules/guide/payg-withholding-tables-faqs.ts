@@ -60,7 +60,7 @@ export const PAYG_HUB_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Does salary sacrifice reduce PAYG withholding?",
-    a: `Yes. An effective salary sacrifice arrangement reduces the gross pay the table is applied to. For example, sacrificing ${formatAUD(10_000)} a year into super on a ${formatAUD(90_000)} salary paid weekly lowers the weekly withholding from ${formatAUD(weekly90k)} to ${formatAUD(weekly80k)} — about ${formatAUD(weekly90k - weekly80k)} a week — before any study loan component. Sacrificed super contributions are generally taxed at 15% in the fund instead.`,
+    a: `Yes. An effective salary sacrifice arrangement reduces the gross pay the table is applied to. For example, sacrificing ${formatAUD(10_000)} a year into super on a ${formatAUD(90_000)} salary paid weekly lowers the weekly withholding from ${formatAUD(weekly90k)} to ${formatAUD(weekly80k)} (about ${formatAUD(weekly90k - weekly80k)} a week) before any study loan component. Sacrificed super contributions are generally taxed at 15% in the fund instead.`,
   },
   {
     q: "How often are the PAYG withholding tables updated?",

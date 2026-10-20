@@ -23,7 +23,7 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Back payment of wages", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages", publisher: SOURCES.fwo.name },
-  { title: "Schedule 5 — back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
+  { title: "Schedule 5, back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
   { title: "Unpaid wages and underpayments", url: "https://www.fairwork.gov.au/pay-and-wages", publisher: SOURCES.fwo.name },
 ];
 

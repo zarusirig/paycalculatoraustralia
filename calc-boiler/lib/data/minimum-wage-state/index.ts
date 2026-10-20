@@ -88,7 +88,7 @@ export interface MwStateInfo {
 }
 
 const FWO_SYSTEM: MwSource = {
-  title: "Fair Work system — who is covered",
+  title: "Fair Work system, who is covered",
   publisher: "Fair Work Ombudsman",
   url: "https://www.fairwork.gov.au/about-us/workplace-laws/fair-work-system",
 };

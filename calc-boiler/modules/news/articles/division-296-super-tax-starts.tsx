@@ -28,9 +28,9 @@ export default function Division296SuperTaxStarts() {
         balance (TSB) at 30 June exceeds $3 million, the ATO calculates the proportion of your
         earnings for the year attributable to the balance above that threshold and taxes it at an
         extra 15%, on top of the 15% funds already pay. If your TSB exceeds $10 million, a further
-        10% applies to earnings attributable to the portion above that higher threshold — a combined
+        10% applies to earnings attributable to the portion above that higher threshold, a combined
         extra 25% on that top slice. The tax is levied on the individual, so it&apos;s calculated
-        across all of a person&apos;s super interests combined, not fund by fund — if you hold
+        across all of a person&apos;s super interests combined, not fund by fund. If you hold
         balances across several funds, the ATO aggregates your total super balance to work out
         whether you&apos;re over either threshold before apportioning the earnings.
       </p>
@@ -58,7 +58,7 @@ export default function Division296SuperTaxStarts() {
       <h2>Who is actually affected</h2>
       <p>
         Only individuals with a total super balance above $3 million at the end of a financial year
-        are in scope — a small fraction of super members, concentrated in self-managed super funds
+        are in scope: a small fraction of super members, concentrated in self-managed super funds
         with large property or business holdings. If your balance is well under $3 million, Division
         296 has no direct effect on you, though you may want to keep an eye on your growth if
         you&apos;re a high income earner already paying{" "}

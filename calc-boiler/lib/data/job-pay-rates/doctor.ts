@@ -61,15 +61,15 @@ export const DOCTOR: Occupation = {
     why: "a first-year doctor (intern) employed by a private hospital or other national-system employer",
   },
   coverage: [
-    "The Medical Practitioners Award 2020 [MA000031] covers doctors employed in hospitals, hospices, day procedure centres, Aboriginal health services, community health centres and similar settings (cl 4.2), where the employer is in the national workplace relations system — for example private hospitals.",
+    "The Medical Practitioners Award 2020 [MA000031] covers doctors employed in hospitals, hospices, day procedure centres, Aboriginal health services, community health centres and similar settings (cl 4.2), where the employer is in the national workplace relations system, for example private hospitals.",
     "Most junior doctors work in state public hospitals, and they are not paid under this award: each state has its own medical officers' award or enterprise agreement, which pays well above these minimums. See our healthcare worker pay and public service pay scale pages for the state picture.",
     "The award's classifications follow a doctor's career: intern (first postgraduate year), resident medical practitioner, registrar (in an accredited specialist training program), senior registrar, career and senior career medical practitioner, community medical practitioner and specialist levels (cl 12).",
-    "Self-employed GPs and doctors engaged as contractors — including GPs who contract to a practice rather than being employed by it — are not employees and have no award minimum.",
+    "Self-employed GPs and doctors engaged as contractors (including GPs who contract to a practice rather than being employed by it) are not employees and have no award minimum.",
   ],
   tables: [
     {
       id: "doctors-in-training",
-      title: "Doctors in training — intern, resident, registrar",
+      title: "Doctors in training: intern, resident, registrar",
       intro: "Clause 16.1(a)–(d): annual, weekly and hourly minimums exactly as published. Casual is the hourly rate plus the 25% loading (cl 11.1).",
       rows: [
         dr("Intern", 66_432, 1277.54, 33.62, "First postgraduate year"),
@@ -125,7 +125,7 @@ export const DOCTOR: Occupation = {
   penaltiesNote:
     "Penalty rates differ by classification (cl 21.1). Doctors in training instead get 2.5% of their minimum weekly rate for each rostered ordinary shift that starts or ends between 9 pm and 6 am. Only the higher penalty applies where two overlap, including overtime (cl 21.1(e)).",
   overtime: [
-    "All doctors except senior doctors: hours beyond 38 a week are overtime — 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250%. Casuals: 175%, 225% and 275% (cl 20.2).",
+    "All doctors except senior doctors: hours beyond 38 a week are overtime: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250%. Casuals: 175%, 225% and 275% (cl 20.2).",
     "On-call: 10% of the daily rate for each day on call (cl 20.3(a)). Recall: one hour's pay for travel plus at least 3 hours at 150% (weekdays) or 200% (weekends and public holidays) (cl 20.4).",
     "Sleepover for doctors in training: $103.96 per sleepover, covering up to an hour of work (cl 20.5).",
   ],
@@ -135,7 +135,7 @@ export const DOCTOR: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Work in a state public hospital? These award rates are not your pay scale — state medical officer agreements pay considerably more. The award applies to private hospitals and other national-system employers.",
+    "Work in a state public hospital? These award rates are not your pay scale. State medical officer agreements pay considerably more. The award applies to private hospitals and other national-system employers.",
   ],
   notShown: [
     "State public hospital medical officer scales (NSW, Victoria, Queensland, WA, SA, Tasmania, ACT, NT), which are set by state instruments.",
@@ -165,7 +165,7 @@ export const DOCTOR: Occupation = {
     },
   ],
   sources: [
-    { title: "Medical Practitioners Award 2020 [MA000031] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000031") },
+    { title: "Medical Practitioners Award 2020 [MA000031], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000031") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

@@ -37,7 +37,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   scales: [
     {
       id: "correctional-officer-day",
-      title: "Correctional Officer and First Class Correctional Officer — day workers (Schedule 1)",
+      title: "Correctional Officer and First Class Correctional Officer, day workers (Schedule 1)",
       intro: "Base salaries for day workers from the first full pay period on or after 1 December 2025 (a 3.0% increase).",
       stepHeading: "Classification",
       steps: [
@@ -52,7 +52,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       id: "correctional-officer-shift",
-      title: "Correctional Officer and FCCO — shift workers (Schedule 2)",
+      title: "Correctional Officer and FCCO, shift workers (Schedule 2)",
       intro:
         "Salaries including the annual allowance for shift work, which applies a 1.30 multiplier from the first full pay period on or after 1 December 2025.",
       stepHeading: "Classification",
@@ -68,7 +68,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       id: "correctional-supervisor",
-      title: "Correctional Supervisor — day workers (Schedule 1)",
+      title: "Correctional Supervisor, day workers (Schedule 1)",
       intro: "Base salaries from the first full pay period on or after 1 December 2025.",
       stepHeading: "Classification",
       steps: [
@@ -90,7 +90,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "A Correctional Officer in training is paid $66,520 a year (Schedule 1, from the first full pay period on or after 1 December 2025), moving to CO Probationary at $71,290, or $92,677 on the shift-worker salary.",
   ],
   penalties: [
-    "Shift workers are paid the Schedule 2 salaries, which build in an annual allowance for shift work through a 1.30 multiplier on the base salary from the first full pay period on or after 1 December 2025 — a CO Level 1 on shifts earns $96,217 against $74,013 as a day worker.",
+    "Shift workers are paid the Schedule 2 salaries, which build in an annual allowance for shift work through a 1.30 multiplier on the base salary from the first full pay period on or after 1 December 2025. A CO Level 1 on shifts earns $96,217 against $74,013 as a day worker.",
   ],
   notices: [
     "The Correctional Officers Agreement 2023 remains in force until 30 November 2026, and the 1 December 2025 increase is the last one it prints. Any later rise depends on a new agreement.",
@@ -100,7 +100,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Correctional Officers Agreement 2023 ([2024] TASIC 2, T15107 of 2024) — Schedules 1 and 2",
+      title: "Correctional Officers Agreement 2023 ([2024] TASIC 2, T15107 of 2024), Schedules 1 and 2",
       publisher: "Tasmanian Industrial Commission",
       url: COA,
     },

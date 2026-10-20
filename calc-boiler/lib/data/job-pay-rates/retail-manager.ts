@@ -109,7 +109,7 @@ export const RETAIL_MANAGER: Occupation = {
   slug: "retail-manager",
   name: "Retail Manager",
   plural: "retail managers",
-  metaTitle: `Retail & Store Manager Pay 2026 — ${money(L6.hourly)}/hr Award Minimum`,
+  metaTitle: `Retail & Store Manager Pay 2026 - ${money(L6.hourly)}/hr Award Minimum`,
   award: {
     name: RETAIL_AWARD.name,
     code: RETAIL_AWARD.code,
@@ -192,7 +192,7 @@ export const RETAIL_MANAGER: Occupation = {
     },
   ],
   sources: [
-    { title: "General Retail Industry Award 2020 [MA000004] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000004") },
+    { title: "General Retail Industry Award 2020 [MA000004], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000004") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

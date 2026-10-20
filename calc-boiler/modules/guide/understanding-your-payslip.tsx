@@ -194,7 +194,7 @@ export default function UnderstandingYourPayslipPage() {
                 Gross pay is the total amount your employer owes you before any deductions. Net pay (take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare Levy, and other deductions are subtracted.
               </p>
               <p>
-                The formula is: <code>Net Pay = Gross Pay &minus; PAYG Tax &minus; Medicare Levy &minus; Other Deductions</code>. On an <strong>$85,000</strong> gross salary in FY{SITE_CONFIG.financialYear}, net pay is approximately <strong>{formatAUD(EX85.takeHomePay)} per year</strong> (or <strong>{formatAUD(EX85.takeHomePay / FN)} per fortnight</strong>) for a resident with no HECS debt. The gap between gross and net widens at higher income tax brackets. An employee earning <strong>$150,000 gross</strong> takes home approximately <strong>{formatAUD(EX150.takeHomePay)} net</strong> &mdash; a deduction rate of <strong>{formatPercent(EX150.effectiveTaxRate)}</strong>.
+                The formula is: <code>Net Pay = Gross Pay &minus; PAYG Tax &minus; Medicare Levy &minus; Other Deductions</code>. On an <strong>$85,000</strong> gross salary in FY{SITE_CONFIG.financialYear}, net pay is approximately <strong>{formatAUD(EX85.takeHomePay)} per year</strong> (or <strong>{formatAUD(EX85.takeHomePay / FN)} per fortnight</strong>) for a resident with no HECS debt. The gap between gross and net widens at higher income tax brackets. An employee earning <strong>$150,000 gross</strong> takes home approximately <strong>{formatAUD(EX150.takeHomePay)} net</strong>: a deduction rate of <strong>{formatPercent(EX150.effectiveTaxRate)}</strong>.
               </p>
               <ul>
                 <li><strong>Gross Pay:</strong> The total, pre-tax amount earned during the pay period. A &ldquo;$100k salary&rdquo; refers to the gross annual figure. Gross pay includes base salary, overtime, penalty rates, allowances, and commissions.</li>
@@ -208,7 +208,7 @@ export default function UnderstandingYourPayslipPage() {
             <section id="common-deductions">
               <h2>What Are the Common Payslip Deductions?</h2>
               <p>
-                Payslip deductions fall into 2 categories: <strong>mandatory deductions</strong> (required by law) and <strong>voluntary deductions</strong> (authorised by the employee). Mandatory deductions include PAYG withholding and, where applicable, HECS-HELP repayments and child support. If your payslip shows a deduction code called STSL, that is the extra tax withheld for your study loan &mdash; see our guide to <Link href="/stsl-on-payslip/">STSL on your payslip</Link> for how the amount is worked out.
+                Payslip deductions fall into 2 categories: <strong>mandatory deductions</strong> (required by law) and <strong>voluntary deductions</strong> (authorised by the employee). Mandatory deductions include PAYG withholding and, where applicable, HECS-HELP repayments and child support. If your payslip shows a deduction code called STSL, that is the extra tax withheld for your study loan. See our guide to <Link href="/stsl-on-payslip/">STSL on your payslip</Link> for how the amount is worked out.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -244,7 +244,7 @@ export default function UnderstandingYourPayslipPage() {
                 &ldquo;PAYG Withholding&rdquo; is the single largest deduction on every Australian payslip. Your employer withholds income tax plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare Levy each pay cycle and remits the combined amount directly to the ATO.
               </p>
               <p>
-                PAYG stands for &ldquo;Pay As You Go.&rdquo; The system spreads your annual tax liability across 26 fortnights (or 52 weeks, or 12 months) so you do not face a lump-sum tax bill at the end of the financial year. On an <strong>$85,000</strong> salary, total annual PAYG withholding is approximately <strong>{formatAUD(EX85.totalDeductions)}</strong>, comprising <strong>{formatAUD(EX85.netIncomeTax)}</strong> in income tax (no Low Income Tax Offset applies at this income &mdash; it cuts out at $66,667) and <strong>{formatAUD(EX85.medicareLevy)}</strong> in Medicare Levy.
+                PAYG stands for &ldquo;Pay As You Go.&rdquo; The system spreads your annual tax liability across 26 fortnights (or 52 weeks, or 12 months) so you do not face a lump-sum tax bill at the end of the financial year. On an <strong>$85,000</strong> salary, total annual PAYG withholding is approximately <strong>{formatAUD(EX85.totalDeductions)}</strong>, comprising <strong>{formatAUD(EX85.netIncomeTax)}</strong> in income tax (no Low Income Tax Offset applies at this income, as it cuts out at $66,667) and <strong>{formatAUD(EX85.medicareLevy)}</strong> in Medicare Levy.
               </p>
               <p>
                 If your employer withholds too much tax during the year, the ATO refunds the excess when you lodge your tax return in July or August. Conversely, under-withholding results in a tax bill. The ATO&apos;s withholding schedules determine the correct amount based on your gross earnings, residency status, tax-free threshold claim, and HECS-HELP status. Check the <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> to verify your employer is withholding the correct amount.
@@ -293,7 +293,7 @@ export default function UnderstandingYourPayslipPage() {
               <ul>
                 <li><strong>YTD Gross:</strong> Total gross earnings since 1 July. At 30 June, this figure must match the gross income on your &ldquo;Income Statement&rdquo; (formerly called the PAYG Payment Summary) in myGov.</li>
                 <li><strong>YTD Tax:</strong> Total PAYG withholding (income tax + Medicare Levy) deducted so far. If this amount is significantly higher than expected based on your salary, you are likely over-withholding and due a refund. Review our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for details.</li>
-                <li><strong>YTD Super:</strong> Total superannuation contributions your employer has made. Cross-reference this against your super fund&apos;s online portal to confirm the money actually arrived. Unpaid super &mdash; where an employer lists super on a payslip but never transfers it &mdash; is one of the most common payslip problems.</li>
+                <li><strong>YTD Super:</strong> Total superannuation contributions your employer has made. Cross-reference this against your super fund&apos;s online portal to confirm the money actually arrived. Unpaid super (where an employer lists super on a payslip but never transfers it) is one of the most common payslip problems.</li>
               </ul>
               <h3>How to Use YTD to Estimate Your Tax Refund</h3>
               <p>
@@ -314,7 +314,7 @@ export default function UnderstandingYourPayslipPage() {
               </p>
               <h3>When Must Employers Pay Super?</h3>
               <p>
-                Since Payday Super commenced on 1 July 2026, employers must pay SG <strong>on every payday</strong> and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC) &mdash; the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%. This means super should now appear on your payslip and reach your fund in step with your pay, not months later.
+                Since Payday Super commenced on 1 July 2026, employers must pay SG <strong>on every payday</strong> and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC): the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%. This means super should now appear on your payslip and reach your fund in step with your pay, not months later.
               </p>
             </section>
 
@@ -336,7 +336,7 @@ export default function UnderstandingYourPayslipPage() {
                   </thead>
                   <tbody className="text-navy divide-y divide-gray-100">
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Payslip</td><td className="px-4 py-2">Every pay cycle (weekly, fortnightly, or monthly)</td><td className="px-4 py-2">Employer</td><td className="px-4 py-2">Payroll portal, email, or printed</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Payment Summary (PAYG Summary)</td><td className="px-4 py-2">Annual (discontinued from 2020)</td><td className="px-4 py-2">Employer</td><td className="px-4 py-2">No longer issued &mdash; replaced by Income Statement</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Payment Summary (PAYG Summary)</td><td className="px-4 py-2">Annual (discontinued from 2020)</td><td className="px-4 py-2">Employer</td><td className="px-4 py-2">No longer issued; replaced by Income Statement</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Income Statement</td><td className="px-4 py-2">Annual (marked &ldquo;Tax Ready&rdquo; by 14 July)</td><td className="px-4 py-2">ATO via employer STP reporting</td><td className="px-4 py-2">myGov &gt; ATO &gt; Income Statements</td></tr>
                   </tbody>
                 </table>
@@ -381,15 +381,15 @@ export default function UnderstandingYourPayslipPage() {
                 These Australian tax calculator tools and guides help you verify and understand every line on your payslip:
               </p>
               <ul>
-                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Generate a full pay breakdown at any salary to cross-check your payslip deductions.</li>
-                <li><Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> &mdash; Look up the exact weekly, fortnightly, or monthly tax withholding amount for your income bracket.</li>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; Understand SG rates, contribution caps, and how to verify your employer is paying super.</li>
-                <li><Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> &mdash; Convert between gross and net salary amounts for any pay frequency.</li>
-                <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> &mdash; Estimate your refund by comparing YTD tax withheld against your actual tax liability.</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> &mdash; Learn how pre-tax deductions on your payslip reduce taxable income and boost super.</li>
-                <li><Link href="/payslip-generator/">Payslip Generator</Link> &mdash; Create a free, Fair Work-compliant payslip with PAYG, super, and YTD totals.</li>
-                <li><Link href="/ytd-income-calculator/">YTD Income Calculator</Link> &mdash; Calculate year-to-date pay or annualise the YTD figure from your payslip.</li>
-                <li><Link href="/stsl-on-payslip/">STSL on Your Payslip</Link> &mdash; What the STSL deduction code means and how the amount is calculated.</li>
+                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: Generate a full pay breakdown at any salary to cross-check your payslip deductions.</li>
+                <li><Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link>: Look up the exact weekly, fortnightly, or monthly tax withholding amount for your income bracket.</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: Understand SG rates, contribution caps, and how to verify your employer is paying super.</li>
+                <li><Link href="/gross-pay-calculator/">Gross Pay Calculator</Link>: Convert between gross and net salary amounts for any pay frequency.</li>
+                <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link>: Estimate your refund by comparing YTD tax withheld against your actual tax liability.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: Learn how pre-tax deductions on your payslip reduce taxable income and boost super.</li>
+                <li><Link href="/payslip-generator/">Payslip Generator</Link>: Create a free, Fair Work-compliant payslip with PAYG, super, and YTD totals.</li>
+                <li><Link href="/ytd-income-calculator/">YTD Income Calculator</Link>: Calculate year-to-date pay or annualise the YTD figure from your payslip.</li>
+                <li><Link href="/stsl-on-payslip/">STSL on Your Payslip</Link>: What the STSL deduction code means and how the amount is calculated.</li>
               </ul>
             </section>
 

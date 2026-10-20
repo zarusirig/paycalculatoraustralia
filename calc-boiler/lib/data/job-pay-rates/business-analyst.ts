@@ -67,8 +67,8 @@ export const BUSINESS_ANALYST: Occupation = {
   award: null,
   headline: null,
   coverageMode: "depends",
-  heading: "Business Analyst Salary Australia 2026 — Median Pay & Take-Home",
-  metaTitle: `Business Analyst Salary Australia 2026 — ${aud(BA.medianSalary)} Median`,
+  heading: "Business Analyst Salary Australia 2026: Median Pay & Take-Home",
+  metaTitle: `Business Analyst Salary Australia 2026 - ${aud(BA.medianSalary)} Median`,
   metaDescription: `Business analysts' median salary was ${aud(BA.medianSalary)} on 2023–24 tax returns; full-time ICT analysts' median is $2,697 a week. Take-home pay and award coverage.`,
   lede: `Business analysts reported a median salary of ${aud(BA.medianSalary)} and an average of ${aud(BA.avgSalary)} on 2023–24 tax returns (ATO), and full-time ICT business and systems analysts had median pay of $2,697 a week in May 2025 (Jobs and Skills Australia). On the ${aud(BA.medianSalary)} median, take-home pay is about ${aud(netAnnual(BA.medianSalary))} a year after tax. No award names the job; whether one covers you depends on your employer.`,
   coverage: [
@@ -111,7 +111,7 @@ export const BUSINESS_ANALYST: Occupation = {
   sources: [
     ATO_TABLE_15,
     jsaSource(MEDIAN),
-    { title: "Professional Employees Award 2020 [MA000065] — coverage, cl 4.1(b) and cl 2.3", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], coverage, cl 4.1(b) and cl 2.3", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     NMW_ORDER_2026,
     FWO_PAY_SLIPS,
   ],

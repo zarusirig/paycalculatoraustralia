@@ -79,7 +79,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Employee vs Sole Trader vs Company — Which Structure Pays More?
+            Employee vs Sole Trader vs Company: Which Structure Pays More?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Your business structure determines how much tax you pay, whether you need to manage GST, how super works, and the level of personal liability you carry. Here is a real-numbers comparison at different income levels to help you choose the right structure.
@@ -135,9 +135,9 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Admin burden</td>
-                        <td className="p-3 text-navy">Minimal — employer handles tax</td>
-                        <td className="p-3 text-navy">Moderate — BAS, tax return, records</td>
-                        <td className="p-3 text-navy">High — ASIC fees, separate return, accounts</td>
+                        <td className="p-3 text-navy">Minimal: employer handles tax</td>
+                        <td className="p-3 text-navy">Moderate: BAS, tax return, records</td>
+                        <td className="p-3 text-navy">High: ASIC fees, separate return, accounts</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">GST</td>
@@ -154,8 +154,8 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                       <tr>
                         <td className="p-3 text-navy font-medium">Asset protection</td>
                         <td className="p-3 text-navy">N/A</td>
-                        <td className="p-3 text-navy">None — personal assets at risk</td>
-                        <td className="p-3 text-navy">Strong — personal assets separated</td>
+                        <td className="p-3 text-navy">None: personal assets at risk</td>
+                        <td className="p-3 text-navy">Strong: personal assets separated</td>
                       </tr>
                     </tbody>
                   </table>
@@ -179,17 +179,17 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="sole-trader">
               <h2>Sole Trader (ABN)</h2>
               <p>
-                A sole trader operates under their own name or a registered business name using an Australian Business Number (ABN). The sole trader and the business are legally the same entity — there is no separation between personal and business assets or liabilities.
+                A sole trader operates under their own name or a registered business name using an Australian Business Number (ABN). The sole trader and the business are legally the same entity. There is no separation between personal and business assets or liabilities.
               </p>
               <p>
                 Sole traders pay individual income tax at the same marginal rates as employees. Business income is reported on the individual tax return, and deductions for business expenses reduce taxable income. The key differences from employment are:
               </p>
               <ul>
-                <li><strong>No employer super</strong> — Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
-                <li><strong>GST registration</strong> — Required within {GST_REGISTRATION.daysToRegister} days once GST turnover reaches <strong>{formatAUD(GST_REGISTRATION.threshold)}</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
-                <li><strong>BAS lodgment</strong> — Quarterly (or monthly) Business Activity Statements reporting GST collected and paid, plus PAYG instalments on expected income tax</li>
-                <li><strong>No leave entitlements</strong> — Time off means no income. An employee is paid for {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave, {EMPLOYMENT.personalLeaveDays} days&apos; personal leave and public holidays; a sole trader has to fund those days from the days they bill. The <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> prices them in</li>
-                <li><strong>Business deductions</strong> — Home office, vehicle, tools, equipment, professional development, and other business-related expenses reduce taxable income</li>
+                <li><strong>No employer super</strong>: Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
+                <li><strong>GST registration</strong>: Required within {GST_REGISTRATION.daysToRegister} days once GST turnover reaches <strong>{formatAUD(GST_REGISTRATION.threshold)}</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
+                <li><strong>BAS lodgment</strong>: Quarterly (or monthly) Business Activity Statements reporting GST collected and paid, plus PAYG instalments on expected income tax</li>
+                <li><strong>No leave entitlements</strong>: Time off means no income. An employee is paid for {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave, {EMPLOYMENT.personalLeaveDays} days&apos; personal leave and public holidays; a sole trader has to fund those days from the days they bill. The <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> prices them in</li>
+                <li><strong>Business deductions</strong>: Home office, vehicle, tools, equipment, professional development, and other business-related expenses reduce taxable income</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Freelancers, contractors, and small operators who want simplicity and full control over their work. The Australian Business Register describes it as the simplest and cheapest business structure, and a successful online ABN application gives you your ABN immediately.
@@ -212,7 +212,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="company">
               <h2>Company (Pty Ltd)</h2>
               <p>
-                A proprietary limited company (Pty Ltd) is a separate legal entity from its directors and shareholders. The company earns income, pays tax, and can hold assets independently. This separation provides <strong>asset protection</strong> — creditors of the company generally cannot access the personal assets of directors.
+                A proprietary limited company (Pty Ltd) is a separate legal entity from its directors and shareholders. The company earns income, pays tax, and can hold assets independently. This separation provides <strong>asset protection</strong>: creditors of the company generally cannot access the personal assets of directors.
               </p>
               <p>
                 The base rate entity company tax rate is <strong>{COMPANY_RATE}</strong> for companies with aggregated turnover under ${COMPANY_TAX.aggregatedTurnoverThreshold / 1_000_000} million and no more than {pct(COMPANY_TAX.maxPassiveIncomeShare)} of assessable income from passive sources such as interest, rent and dividends; other companies pay {pct(COMPANY_TAX.fullRate)} (ATO, {COMPANY_TAX.firstYear} onwards). This flat rate is lower than the top individual marginal rate of {TOP} + {ML} Medicare levy = {pct(TOP_RATE + MEDICARE_LEVY.rate)}.
@@ -225,9 +225,9 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 Company directors typically pay themselves through a combination of:
               </p>
               <ul>
-                <li><strong>Salary/wages</strong> — Taxed at individual marginal rates. The company claims a deduction and must pay {SG} SG on the director&apos;s salary</li>
-                <li><strong>Dividends</strong> — Distributed from after-tax profits. Franked dividends carry franking credits that offset the individual&apos;s tax liability</li>
-                <li><strong>Retained earnings</strong> — Profits left in the company are taxed at {COMPANY_RATE} and can be reinvested or distributed later</li>
+                <li><strong>Salary/wages</strong>: Taxed at individual marginal rates. The company claims a deduction and must pay {SG} SG on the director&apos;s salary</li>
+                <li><strong>Dividends</strong>: Distributed from after-tax profits. Franked dividends carry franking credits that offset the individual&apos;s tax liability</li>
+                <li><strong>Retained earnings</strong>: Profits left in the company are taxed at {COMPANY_RATE} and can be reinvested or distributed later</li>
               </ul>
               <h3>Setup and Ongoing Costs</h3>
               <ul>
@@ -289,7 +289,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </div>
               ))}
               <p className="text-sm text-warmgray">
-                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with {COMPANY_RATE} company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. They assume the PSI rules do not apply. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays {pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates, leave out accounting and ASIC costs, and are simplified illustrations — consult an accountant for precise modelling.
+                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with {COMPANY_RATE} company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. They assume the PSI rules do not apply. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays {pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates, leave out accounting and ASIC costs, and are simplified illustrations. Consult an accountant for precise modelling.
               </p>
             </section>
 
@@ -299,10 +299,10 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 Switching from sole trader to company makes sense when several conditions align:
               </p>
               <ul>
-                <li><strong>Profit you do not need to draw</strong> — A base rate entity pays {COMPANY_RATE} on its profit, against individual marginal rates of {pct(ABOVE_COMPANY.rate)} to {TOP} (plus the {ML} Medicare levy) on income above {formatAUD(ABOVE_COMPANY.min - 1)}. Profit paid out later as a franked dividend is topped up to your marginal rate, so the saving is on profit left in the company for reinvestment</li>
-                <li><strong>Asset protection needs</strong> — If your business carries liability risk (client work, physical services, product supply), a company shields personal assets</li>
-                <li><strong>Multiple income streams</strong> — A company can split income through dividends to shareholders (within tax laws) and employ family members; where the PSI rules apply, personal services income is attributed to the person who earned it instead</li>
-                <li><strong>Professional credibility</strong> — Some clients and government contracts require engaging with a company rather than a sole trader</li>
+                <li><strong>Profit you do not need to draw</strong>: A base rate entity pays {COMPANY_RATE} on its profit, against individual marginal rates of {pct(ABOVE_COMPANY.rate)} to {TOP} (plus the {ML} Medicare levy) on income above {formatAUD(ABOVE_COMPANY.min - 1)}. Profit paid out later as a franked dividend is topped up to your marginal rate, so the saving is on profit left in the company for reinvestment</li>
+                <li><strong>Asset protection needs</strong>: If your business carries liability risk (client work, physical services, product supply), a company shields personal assets</li>
+                <li><strong>Multiple income streams</strong>: A company can split income through dividends to shareholders (within tax laws) and employ family members; where the PSI rules apply, personal services income is attributed to the person who earned it instead</li>
+                <li><strong>Professional credibility</strong>: Some clients and government contracts require engaging with a company rather than a sole trader</li>
               </ul>
               <p>
                 Do <strong>not</strong> switch solely for tax reasons. A company adds accounting fees, ASIC registration and annual review fees, and compliance work (separate bank accounts, company tax returns, director obligations). Get those costs from your accountant and ASIC, and set them against the tax difference the tables above show at your income.
@@ -312,11 +312,11 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <ul>
-                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> — Understand the legal distinction and ATO tests</li>
-                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> — Compare take-home pay for both arrangements</li>
-                <li><Link href="/gig-economy-pay-guide/">Gig Economy Pay Guide</Link> — Tax and super for platform-based workers</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — Calculate individual tax at any income level</li>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — SG obligations and voluntary contribution strategies</li>
+                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link>: Understand the legal distinction and ATO tests</li>
+                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link>: Compare take-home pay for both arrangements</li>
+                <li><Link href="/gig-economy-pay-guide/">Gig Economy Pay Guide</Link>: Tax and super for platform-based workers</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: Calculate individual tax at any income level</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: SG obligations and voluntary contribution strategies</li>
               </ul>
             </section>
 

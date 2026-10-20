@@ -36,7 +36,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   scales: [
     {
       id: "firefighters",
-      title: "Firefighters (Schedule 1, Table 1 — station based)",
+      title: "Firefighters (Schedule 1, Table 1, station based)",
       intro:
         "Permanent firefighters from recruit through to Senior Firefighter. Progression to Qualified Firefighter needs 24 months' service from starting as a recruit, and to Senior Firefighter at least 72 months, plus the required training at each step.",
       stepHeading: "Classification",
@@ -49,7 +49,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       id: "leading-firefighters-and-officers",
-      title: "Leading Firefighter and officers (Schedule 1, Table 1 — station based)",
+      title: "Leading Firefighter and officers (Schedule 1, Table 1, station based)",
       intro:
         "Leading Firefighter (reached by completing the Leading Firefighter Program) and the station-based officer ranks. Station Officer Team Member and Team Leader share one station-based rate.",
       stepHeading: "Classification",
@@ -74,7 +74,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   ],
   penalties: [
     "The weekly rates are composite: they already include shift allowance, weekend and public holiday loading, industry allowance and (except for recruits) a roster allowance for working a 42-hour week (clauses 13.2–13.3).",
-    "Station-based firefighters work the Standard 10/14 roster — four platoons over an 8-week cycle, day shifts 0800–1800 and night shifts 1800–0800 (clause 21.3).",
+    "Station-based firefighters work the Standard 10/14 roster: four platoons over an 8-week cycle, day shifts 0800–1800 and night shifts 1800–0800 (clause 21.3).",
     "Non-station-based team members are paid a 15% weekly allowance on top of their substantive rate, and team leaders 20% (clause 49.4.3).",
   ],
   notices: [
@@ -88,7 +88,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   sources: [
     {
       title: "Crown Employees (Fire and Rescue NSW Permanent Firefighting Staff) Award 2024 (Serial C10121)",
-      publisher: "Industrial Relations Commission of New South Wales — NSW Industrial Gazette",
+      publisher: "Industrial Relations Commission of New South Wales, NSW Industrial Gazette",
       url: "http://www.ircgazette.justice.nsw.gov.au/irc/ircgazette.nsf/webviewdate/C10121",
     },
   ],

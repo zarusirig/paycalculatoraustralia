@@ -16,7 +16,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/redundancy-pay-calculator/`;
 
 const Y = REDUNDANCY_TAX.incomeYear;
-const TITLE = `Redundancy Pay Calculator ${Y} — NES Table & Tax-Free Limit`;
+const TITLE = `Redundancy Pay Calculator ${Y} - NES Table & Tax-Free Limit`;
 const DESCRIPTION = `Free Australian redundancy calculator: NES redundancy pay (4 to 16 weeks by years of service), the ${Y} tax-free limit of ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} + ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, and ETP tax.`;
 
 export const metadata: Metadata = withFeaturedImage({

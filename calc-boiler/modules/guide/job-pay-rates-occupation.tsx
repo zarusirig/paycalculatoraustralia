@@ -36,8 +36,8 @@ import FeaturedImage from "@/components/common/featured-image";
 export function occupationHeading(occ: Occupation): string {
   if (occ.heading) return occ.heading;
   return occ.award
-    ? `${occ.name} Pay Rates Australia 2026 — Award & Hourly Wage`
-    : `${occ.name} Pay Rates Australia 2026 — Minimum Wage & Median Salary`;
+    ? `${occ.name} Pay Rates Australia 2026 - Award & Hourly Wage`
+    : `${occ.name} Pay Rates Australia 2026 - Minimum Wage & Median Salary`;
 }
 
 /** One figure a salary page compares, with where it comes from. */
@@ -52,11 +52,11 @@ export function salaryFigures(occ: Occupation): SalaryFigure[] {
   const out: SalaryFigure[] = [];
   const headline = headlineRow(occ);
   if (headline && occ.award) {
-    out.push({ label: `Award minimum — ${headline.label}`, source: `${occ.award.code}, 2026–27`, gross: rowAnnual(headline) });
+    out.push({ label: `Award minimum, ${headline.label}`, source: `${occ.award.code}, 2026–27`, gross: rowAnnual(headline) });
   }
   if (occ.median) {
     out.push({
-      label: `Median full-time pay — ${occ.median.anzscoTitle}`,
+      label: `Median full-time pay, ${occ.median.anzscoTitle}`,
       source: "Jobs and Skills Australia, May 2025 (weekly × 52)",
       gross: annualFromWeekly(occ.median.medianWeekly),
     });
@@ -65,9 +65,9 @@ export function salaryFigures(occ: Occupation): SalaryFigure[] {
   if (occ.ato && lead) {
     const source = `ATO tax returns, ${occ.ato.incomeYear}`;
     for (const r of occ.ato.rows.slice(0, occ.ato.takeHomeRows ?? 1)) {
-      out.push({ label: `Median salary or wages — ${r.title}`, source, gross: r.medianSalary });
+      out.push({ label: `Median salary or wages, ${r.title}`, source, gross: r.medianSalary });
     }
-    out.push({ label: `Average salary or wages — ${lead.title}`, source, gross: lead.avgSalary });
+    out.push({ label: `Average salary or wages, ${lead.title}`, source, gross: lead.avgSalary });
   }
   return out;
 }
@@ -353,8 +353,8 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
           ) : headline && occ.award && occ.headline && headlineAnnual !== null ? (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
               The award minimum for {occ.headline.why} is{" "}
-              <strong className="text-navy">{money(headline.hourly)} an hour</strong> —{" "}
-              {money(headline.weekly)} a week or {formatAUD(headlineAnnual)} a year full-time — under the{" "}
+              <strong className="text-navy">{money(headline.hourly)} an hour</strong>, or{" "}
+              {money(headline.weekly)} a week or {formatAUD(headlineAnnual)} a year full-time, under the{" "}
               {occ.award.name} [{occ.award.code}], from {occ.ratesFrom ?? JOB_PAY_RATES_FROM}.
               {headline.casualHourly !== null ? (
                 <> A casual on the same classification earns at least {money(headline.casualHourly)} an hour</>
@@ -373,7 +373,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               is the National Minimum Wage. In practice, full-time {occ.plural} earn a median of{" "}
               <strong className="text-navy">{formatAUD(occ.median.medianWeekly)} a week</strong> (about{" "}
               {formatAUD(medianAnnual)} a year) before tax, according to Jobs and Skills Australia
-              {net ? <> — about {formatAUD(net.netWeekly, 0)} a week after tax</> : null}.
+              {net ? <>, about {formatAUD(net.netWeekly, 0)} a week after tax</> : null}.
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
@@ -577,7 +577,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                   <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                     {(headlineTable
                       ? headlineTable.rows.map((r) => ({ label: r.label, gross: rowAnnual(r) }))
-                      : [{ label: `Median full-time pay — ${occ.median!.anzscoTitle}`, gross: afterTaxBase }]
+                      : [{ label: `Median full-time pay, ${occ.median!.anzscoTitle}`, gross: afterTaxBase }]
                     ).map((f) => {
                       const t = afterTax(f.gross);
                       return (
@@ -613,7 +613,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                 <ul>
                   {occ.spokes.map((sp) => (
                     <li key={sp.href}>
-                      <Link href={sp.href}>{sp.label}</Link> — {sp.blurb}
+                      <Link href={sp.href}>{sp.label}</Link>: {sp.blurb}
                     </li>
                   ))}
                 </ul>

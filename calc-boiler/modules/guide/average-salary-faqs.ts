@@ -47,11 +47,11 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Why is the average salary higher than the median?",
-    a: `Because earnings are skewed: a minority of very high earners pull the mean up, while the median is simply the middle person. The full-time average of ${dollars(HEADLINE.averageAnnual)} is about ${dollars(HEADLINE.averageAnnual - HEADLINE.medianFullTimeAnnual)} above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)}. The two figures also come from different ABS surveys and dates — the average from employers in ${AWE_RELEASE.referencePeriod}, the median from households in ${EE_RELEASE.referencePeriod}.`,
+    a: `Because earnings are skewed: a minority of very high earners pull the mean up, while the median is simply the middle person. The full-time average of ${dollars(HEADLINE.averageAnnual)} is about ${dollars(HEADLINE.averageAnnual - HEADLINE.medianFullTimeAnnual)} above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)}. The two figures also come from different ABS surveys and dates: the average from employers in ${AWE_RELEASE.referencePeriod}, the median from households in ${EE_RELEASE.referencePeriod}.`,
   },
   {
     q: "What is the average salary in Australia after tax?",
-    a: `On the average full-time salary of ${dollars(HEADLINE.averageAnnual)}, take-home pay is about ${dollars(takeHome(HEADLINE.averageAnnual))} a year for ${SITE_CONFIG.financialYear} — an Australian resident with no HECS debt and no Medicare levy surcharge, after income tax and the 2% Medicare levy. On the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)} it is about ${dollars(takeHome(HEADLINE.medianFullTimeAnnual))}.`,
+    a: `On the average full-time salary of ${dollars(HEADLINE.averageAnnual)}, take-home pay is about ${dollars(takeHome(HEADLINE.averageAnnual))} a year for ${SITE_CONFIG.financialYear} for an Australian resident with no HECS debt and no Medicare levy surcharge, after income tax and the 2% Medicare levy. On the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)} it is about ${dollars(takeHome(HEADLINE.medianFullTimeAnnual))}.`,
   },
   {
     q: "What is a good salary in Australia?",
@@ -63,7 +63,7 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What is the highest-paying industry in Australia?",
-    a: `${topIndustry.label} — full-time adults average ${dollarsCents(topIndustry.weekly)} a week, or ${dollars(annualise(topIndustry.weekly))} a year. ${lowIndustry.label} is the lowest at ${dollarsCents(lowIndustry.weekly)} a week (${dollars(annualise(lowIndustry.weekly))}). Source: ABS Average Weekly Earnings, ${AWE_RELEASE.referencePeriod}.`,
+    a: `${topIndustry.label}: full-time adults average ${dollarsCents(topIndustry.weekly)} a week, or ${dollars(annualise(topIndustry.weekly))} a year. ${lowIndustry.label} is the lowest at ${dollarsCents(lowIndustry.weekly)} a week (${dollars(annualise(lowIndustry.weekly))}). Source: ABS Average Weekly Earnings, ${AWE_RELEASE.referencePeriod}.`,
   },
   {
     q: "What is the average salary for men and women in Australia?",

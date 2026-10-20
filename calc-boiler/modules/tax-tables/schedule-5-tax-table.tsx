@@ -35,7 +35,7 @@ import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: `${ATO_SCHEDULE_5.title} (${ATO_SCHEDULE_5.nat})`, url: ATO_SCHEDULE_5.pageUrl, publisher: SOURCES.ato.name },
   {
-    title: "Schedule 5 — Working out the withholding amount",
+    title: "Schedule 5: Working out the withholding amount",
     url: `${ATO_SCHEDULE_5.pageUrl}/working-out-the-withholding-amount`,
     publisher: SOURCES.ato.name,
   },
@@ -64,7 +64,7 @@ export default function Schedule5TaxTablePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Schedule 5 Tax Table 2026-27 (ATO NAT 3348) — PAYG on Bonuses, Commissions &amp; Back Payments
+            Schedule 5 Tax Table 2026-27 (ATO NAT 3348): PAYG on Bonuses, Commissions &amp; Back Payments
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-3">
             The Schedule 5 tax table is the ATO schedule (<strong>{ATO_SCHEDULE_5.nat}</strong>) employers use to withhold
@@ -84,7 +84,7 @@ export default function Schedule5TaxTablePage() {
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <section id="calculator">
-              <h2>Schedule 5 Calculator — Tax Withheld From Your Bonus</h2>
+              <h2>Schedule 5 Calculator: Tax Withheld From Your Bonus</h2>
               <p>
                 Enter your regular pay and the additional payment to see the withholding your payroll should apply under the
                 2026-27 rates, along with the ATO&apos;s {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% cap on the amount.
@@ -152,14 +152,14 @@ export default function Schedule5TaxTablePage() {
             </section>
 
             <section id="method-a-vs-method-b">
-              <h2>Method A vs Method B — How Employers Calculate the Withholding</h2>
+              <h2>Method A vs Method B: How Employers Calculate the Withholding</h2>
               <p>
                 The ATO gives employers two methods, and either is acceptable. Method B is more complex but produces a
                 withholding amount more likely to approximate the payee&apos;s actual tax payable. If either method produces a
                 negative result, treat it as nil.
               </p>
 
-              <h3>Method A — apportion across the pay periods in the year</h3>
+              <h3>Method A: apportion across the pay periods in the year</h3>
               <p>
                 Method A can be used for <strong>any</strong> additional payment, regardless of which financial year it relates to.
                 It apportions the payment over the number of pay periods in a financial year and applies that average to the
@@ -182,7 +182,7 @@ export default function Schedule5TaxTablePage() {
                 commission covering four weeks for a weekly-paid employee can be divided by four instead of 52.
               </p>
 
-              <h3>Method B(i) — back pay for specific periods in the current financial year</h3>
+              <h3>Method B(i): back pay for specific periods in the current financial year</h3>
               <p>
                 Method B(i) is for back payments that map onto identifiable earlier pay periods <strong>in the current financial
                 year</strong>. Rather than averaging, it reconstructs each affected period: work out how much of the back payment
@@ -190,7 +190,7 @@ export default function Schedule5TaxTablePage() {
                 and subtract what was already withheld. Repeat for every affected period and total the differences.
               </p>
 
-              <h3>Method B(ii) — payments spread across the whole financial year</h3>
+              <h3>Method B(ii): payments spread across the whole financial year</h3>
               <p>
                 Method B(ii) is for back payments relating to a <strong>prior</strong> financial year, and for any additional payment
                 that does not belong to a single pay period. It averages the additional payments across the pay periods in the year
@@ -306,7 +306,7 @@ export default function Schedule5TaxTablePage() {
             </section>
 
             <TaxTableFaqSection
-              heading="Schedule 5 Tax Table — Frequently Asked Questions"
+              heading="Schedule 5 Tax Table: Frequently Asked Questions"
               mirrorHeading="Schedule 5 (NAT 3348) questions and answers"
               faqs={SCHEDULE_5_FAQS}
             />

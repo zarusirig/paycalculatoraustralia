@@ -33,7 +33,7 @@ export const SPEECH_PATHOLOGIST = hpssOct2026Occupation(AQF, {
   slug: "speech-pathologist",
   name: "Speech Pathologist",
   plural: "speech pathologists",
-  metaTitle: `Speech Pathologist Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Minimum`,
+  metaTitle: `Speech Pathologist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year speech pathologist at AQF Level 7, the lowest AQF level the award lists for the profession",
   coverage: [

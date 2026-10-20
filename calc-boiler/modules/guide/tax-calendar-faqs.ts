@@ -23,7 +23,7 @@ export const TAX_CALENDAR_FAQS: readonly FaqItem[] = [
   },
   {
     q: `When is the ${R.incomeYear} tax return due?`,
-    a: `If you lodge it yourself, by ${R.selfLodgeDueDate}${self.effectiveIso !== self.iso ? ` — it falls on a weekend, so the ATO accepts it on ${formatIso(self.effectiveIso, "long")}` : ""}. With a registered tax agent, most people have until ${R.agentDueDateMostPeople} if they are on the agent's list by ${R.selfLodgeDueDate}.`,
+    a: `If you lodge it yourself, by ${R.selfLodgeDueDate}${self.effectiveIso !== self.iso ? ` (it falls on a weekend, so the ATO accepts it on ${formatIso(self.effectiveIso, "long")})` : ""}. With a registered tax agent, most people have until ${R.agentDueDateMostPeople} if they are on the agent's list by ${R.selfLodgeDueDate}.`,
   },
   {
     q: "Can I lodge my tax return before 14 July?",

@@ -77,7 +77,7 @@ export const HAIRDRESSER: Occupation = {
   coverage: [
     "Hairdressers, barbers, beauty therapists, nail technicians and salon staff working in hair and beauty salons are covered by the Hair and Beauty Industry Award 2020 [MA000005].",
     "A hairdresser who holds a Certificate III in Hairdressing (or equivalent) is Hair and beauty employee level 3. A hairdresser with a Certificate IV is level 5. Salon assistants and receptionists are level 1 (Schedule A).",
-    "The award also sets a rate for a full-time hairdressing graduate in their first 12 months: 92.5% of the standard rate — $27.24 an hour, $1,035.17 a week (cl 18.6, Table 12). After those 12 months the full level 3 rate applies.",
+    "The award also sets a rate for a full-time hairdressing graduate in their first 12 months: 92.5% of the standard rate: $27.24 an hour, $1,035.17 a week (cl 18.6, Table 12). After those 12 months the full level 3 rate applies.",
     "Juniors are paid 50% of the adult rate under 17 and 75% at 17; from 18 the full adult rate applies (cl 17.2).",
   ],
   tables: [
@@ -90,7 +90,7 @@ export const HAIRDRESSER: Occupation = {
     },
     {
       id: "graduate",
-      title: "Hairdressing graduate rate — first 12 months",
+      title: "Hairdressing graduate rate, first 12 months",
       intro: "Clause 18.6, Table 12: 92.5% of the standard rate for a full-time graduate. The award sets this rate for full-time graduates only, so no casual figure is shown.",
       rows: [{ label: "Hairdressing graduate — first 12 months", weekly: 1035.17, hourly: 27.24, casualHourly: null }],
     },
@@ -127,7 +127,7 @@ export const HAIRDRESSER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a hairdresser in 2026?",
-      a: "A qualified hairdresser with a Certificate III (Hair and beauty employee level 3) must be paid at least $29.45 an hour, or $1,119.10 a week, under the Hair and Beauty Industry Award from the first full pay period on or after 1 July 2026 — $58,193 a year full-time before tax. A hairdresser with a Certificate IV (level 5) gets $30.89 an hour.",
+      a: "A qualified hairdresser with a Certificate III (Hair and beauty employee level 3) must be paid at least $29.45 an hour, or $1,119.10 a week, under the Hair and Beauty Industry Award from the first full pay period on or after 1 July 2026: $58,193 a year full-time before tax. A hairdresser with a Certificate IV (level 5) gets $30.89 an hour.",
     },
     {
       q: "What is the casual rate for a hairdresser?",
@@ -139,7 +139,7 @@ export const HAIRDRESSER: Occupation = {
     },
     {
       q: "What is a hairdressing graduate paid?",
-      a: "A full-time hairdressing graduate can be paid 92.5% of the standard rate for their first 12 months — $27.24 an hour or $1,035.17 a week from 1 July 2026 (cl 18.6). After that, the level 3 rate of $29.45 applies.",
+      a: "A full-time hairdressing graduate can be paid 92.5% of the standard rate for their first 12 months: $27.24 an hour or $1,035.17 a week from 1 July 2026 (cl 18.6). After that, the level 3 rate of $29.45 applies.",
     },
     {
       q: "What do hairdressers actually earn?",
@@ -147,8 +147,8 @@ export const HAIRDRESSER: Occupation = {
     },
   ],
   sources: [
-    { title: "Hair and Beauty Industry Award 2020 [MA000005] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
-    { title: "Pay Guide — Hair and Beauty Industry Award [MA000005], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/hair-and-beauty-industry-award-ma000005-pay-guide.pdf.aspx" },
+    { title: "Hair and Beauty Industry Award 2020 [MA000005], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Pay Guide, Hair and Beauty Industry Award [MA000005], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/hair-and-beauty-industry-award-ma000005-pay-guide.pdf.aspx" },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

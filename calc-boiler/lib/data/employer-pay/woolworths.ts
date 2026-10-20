@@ -72,7 +72,7 @@ export const WOOLWORTHS_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "Under cl 4.4 the junior percentages apply only to Store Team Member Level 1 and Clerical Assistant Level 1. At Level 2 and above you are paid the adult rate at any age, and from 20 you are paid the full adult rate — a year earlier than the national minimum wage.",
+    "Under cl 4.4 the junior percentages apply only to Store Team Member Level 1 and Clerical Assistant Level 1. At Level 2 and above you are paid the adult rate at any age, and from 20 you are paid the full adult rate, a year earlier than the national minimum wage.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "Base rate", casual: "Base + 25%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "Base + 25%", casual: "Base + 50%" },
@@ -98,9 +98,9 @@ export const WOOLWORTHS_PAY: EmployerPay = {
     "Junior rates under the Retail Award rise from the first full pay period on or after 1 December 2026 for 18- to 20-year-olds with more than 6 months' service ([2026] FWCFB 222). An agreement can never pay a base rate below the award, so if the award rate for your age overtakes the Woolworths junior rate, you must be paid at least the award rate.",
   ],
   unverified: [
-    "Distribution centre rates — distribution centres are outside this agreement and we have not identified which agreement covers them.",
-    "Salaried store manager pay — excluded from the agreement.",
-    "Allowances (first aid, meal, vehicle and others) — see the agreement itself.",
+    "Distribution centre rates: distribution centres are outside this agreement and we have not identified which agreement covers them.",
+    "Salaried store manager pay: excluded from the agreement.",
+    "Allowances (first aid, meal, vehicle and others): see the agreement itself.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",

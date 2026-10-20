@@ -25,11 +25,11 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Is Darwin in Zone A or Zone B?",
-    a: "Darwin is Zone A. So are Palmerston, Humpty Doo, Alice Springs, Katherine and Jabiru. Tennant Creek and Nhulunbuy are Zone A special areas. The ATO's Australian zone list was last updated on 1 July 2026 — older summaries that place Darwin in Zone B are out of date.",
+    a: "Darwin is Zone A. So are Palmerston, Humpty Doo, Alice Springs, Katherine and Jabiru. Tennant Creek and Nhulunbuy are Zone A special areas. The ATO's Australian zone list was last updated on 1 July 2026. Older summaries that place Darwin in Zone B are out of date.",
   },
   {
     q: "Can FIFO workers claim the zone tax offset?",
-    a: "No, unless their usual place of residence is itself in a zone. Working at a remote site on a fly-in fly-out roster does not qualify. The ATO looks at where your family lives, where you vote, where your belongings are and where you return after a roster — not where the work is.",
+    a: "No, unless their usual place of residence is itself in a zone. Working at a remote site on a fly-in fly-out roster does not qualify. The ATO looks at where your family lives, where you vote, where your belongings are and where you return after a roster, not where the work is.",
   },
   {
     q: "Do the 183 days need to be consecutive?",
@@ -61,10 +61,10 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Is the zone tax offset different from the overseas forces tax offset?",
-    a: `Yes, though both are claimed at question T4. The overseas forces tax offset applies to Australian Defence Force or United Nations armed force service in a specified overseas locality, and its fixed amount is ${formatAUD(OVERSEAS)}. If you qualify for both, you can claim only one — take whichever is greater.`,
+    a: `Yes, though both are claimed at question T4. The overseas forces tax offset applies to Australian Defence Force or United Nations armed force service in a specified overseas locality, and its fixed amount is ${formatAUD(OVERSEAS)}. If you qualify for both, you can claim only one, so take whichever is greater.`,
   },
   {
     q: "Which financial year do these amounts apply to?",
-    a: `The ${ZONE_OFFSET_INCOME_YEAR} income year — the return being lodged now, due 31 October 2026. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
+    a: `The ${ZONE_OFFSET_INCOME_YEAR} income year: the return being lodged now, due 31 October 2026. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
   },
 ] as const;

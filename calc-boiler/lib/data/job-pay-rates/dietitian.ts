@@ -33,7 +33,7 @@ export const DIETITIAN = hpssOct2026Occupation(AQF, {
   slug: "dietitian",
   name: "Dietitian",
   plural: "dietitians",
-  metaTitle: `Dietitian Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
+  metaTitle: `Dietitian Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year dietitian at AQF Level 7, the lowest AQF level the award lists for the profession",
   coverage: [

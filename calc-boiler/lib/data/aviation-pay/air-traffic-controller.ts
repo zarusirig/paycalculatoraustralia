@@ -146,7 +146,7 @@ export const ATC_PAY: AviationPayPage = {
     "On-the-job training instructor (OJTI) allowance: 20% of base salary for ATC/FDC, 15% for SSO and 10% for supervisor positions (SS, UTS, CSS and SM) while instructing (clause 24.13).",
     "ATC instructors at the Academy receive a 5% higher duties allowance if they keep a current Class 3 medical and ATC licence (clause 24.1(g)).",
     "Multi-skill allowance: $100, $150 or $200 per fortnight for Tier 1, 2 or 3 (clause 24.15). Portfolio allowance: $60 per fortnight per portfolio (clause 24.16).",
-    "District allowance is paid at listed remote locations — for example $7,079.47 a year (with eligible dependants) or $5,043.02 (without) at Broome, Port Hedland and Karratha (clause 24.10).",
+    "District allowance is paid at listed remote locations, for example $7,079.47 a year (with eligible dependants) or $5,043.02 (without) at Broome, Port Hedland and Karratha (clause 24.10).",
     "Superannuation for accumulation members: the higher of 14% of base salary plus listed allowances (shift allowance, public holiday penalties, higher duties, OJTI and others) or the Superannuation Guarantee minimum (clause 34.4).",
   ],
   otherInstruments: [
@@ -182,7 +182,7 @@ export const ATC_PAY: AviationPayPage = {
       url: "https://www.airservicesaustralia.com/wp-content/uploads/2024/11/ATC_Classification_Base_Salary.pdf",
     },
     {
-      title: "Air traffic control careers — frequently asked questions",
+      title: "Air traffic control careers: frequently asked questions",
       publisher: "Airservices Australia",
       url: "https://www.airservicesaustralia.com/careers/air-traffic-control-careers/frequently-asked-questions/",
     },

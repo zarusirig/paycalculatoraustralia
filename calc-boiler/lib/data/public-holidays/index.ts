@@ -48,7 +48,7 @@ export function partDays(y: HolidayYear): readonly PublicHolidayDate[] {
 
 /** H1 and <title> stem for a state page. */
 export function stateHeading(s: StatePublicHolidays): string {
-  return `${s.code} Public Holidays 2026 & 2027 — Dates + Public Holiday Pay Rates`;
+  return `${s.code} Public Holidays 2026 & 2027 - Dates + Public Holiday Pay Rates`;
 }
 
 /**

@@ -68,7 +68,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
   tables: [
     {
       id: "cabin-crew",
-      title: "Flight attendant pay rates — Aircraft Cabin Crew Award, 2026–27",
+      title: "Flight attendant pay rates, Aircraft Cabin Crew Award, 2026–27",
       intro:
         "Aircraft Cabin Crew Award cl 14.2, from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule D.2.1 ordinary rates (125% of the minimum hourly rate). These rates exclude the flying allowance and other allowances below.",
       rows: [CREW, SUPERVISOR, MANAGER],
@@ -125,7 +125,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
     },
   ],
   sources: [
-    { title: "Aircraft Cabin Crew Award 2020 [MA000047] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000047") },
+    { title: "Aircraft Cabin Crew Award 2020 [MA000047], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000047") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
   ],

@@ -74,11 +74,11 @@ export default function GrossPayCalculatorContent() {
               To reverse-calculate gross pay from a target net amount, follow these steps:
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Annualise your target net pay</strong> — multiply weekly by 52, fortnightly by 26, or monthly by 12. A target of $1,500 per week equals <strong>$78,000</strong> annually.</li>
-              <li><strong>Identify the income tax brackets</strong> — the FY{SITE_CONFIG.financialYear} rates are {bracketRatesSentence()}.</li>
-              <li><strong>Add the Medicare levy</strong> — a flat <strong>2%</strong> of taxable income applies to most Australian residents.</li>
-              <li><strong>Apply the Low Income Tax Offset</strong> — LITO reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below {formatAUD(LITO.nilOffsetIncome)}, effectively raising the tax-free threshold to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>.</li>
-              <li><strong>Iterate to solve</strong> — because Australia uses progressive marginal rates, no single formula converts net to gross. This calculator uses binary search across the ATO tax tables to find the exact gross salary that produces your target net pay.</li>
+              <li><strong>Annualise your target net pay</strong>: multiply weekly by 52, fortnightly by 26, or monthly by 12. A target of $1,500 per week equals <strong>$78,000</strong> annually.</li>
+              <li><strong>Identify the income tax brackets</strong>: the FY{SITE_CONFIG.financialYear} rates are {bracketRatesSentence()}.</li>
+              <li><strong>Add the Medicare levy</strong>: a flat <strong>2%</strong> of taxable income applies to most Australian residents.</li>
+              <li><strong>Apply the Low Income Tax Offset</strong>: LITO reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below {formatAUD(LITO.nilOffsetIncome)}, effectively raising the tax-free threshold to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>.</li>
+              <li><strong>Iterate to solve</strong>: because Australia uses progressive marginal rates, no single formula converts net to gross. This calculator uses binary search across the ATO tax tables to find the exact gross salary that produces your target net pay.</li>
             </ol>
             <p className="text-warmgray">
               Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the full bracket breakdown for any gross salary amount.
@@ -87,9 +87,9 @@ export default function GrossPayCalculatorContent() {
 
           {/* --- GROSS PAY VS NET PAY --- */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gross Pay vs Net Pay — What Is the Difference?</h2>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gross Pay vs Net Pay: What Is the Difference?</h2>
             <p className="mb-4 text-warmgray">
-              Gross pay is the total salary before deductions; net pay is the amount deposited into your bank account after income tax and the Medicare levy are withheld. On an <strong>$85,000</strong> gross salary in FY{SITE_CONFIG.financialYear}, net pay is <strong>{formatAUD(EX_85K.takeHomePay)}</strong> — a difference of <strong>{formatAUD(85_000 - EX_85K.takeHomePay)}</strong>.
+              Gross pay is the total salary before deductions; net pay is the amount deposited into your bank account after income tax and the Medicare levy are withheld. On an <strong>$85,000</strong> gross salary in FY{SITE_CONFIG.financialYear}, net pay is <strong>{formatAUD(EX_85K.takeHomePay)}</strong>, a difference of <strong>{formatAUD(85_000 - EX_85K.takeHomePay)}</strong>.
             </p>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm border border-sandstone-dark/20 rounded-xl overflow-hidden">
@@ -108,18 +108,18 @@ export default function GrossPayCalculatorContent() {
                   </tr>
                   <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                     <td className="px-4 py-3 font-medium">Includes income tax?</td>
-                    <td className="px-4 py-3">Yes — tax is embedded</td>
-                    <td className="px-4 py-3">No — tax already subtracted</td>
+                    <td className="px-4 py-3">Yes, tax is embedded</td>
+                    <td className="px-4 py-3">No, tax already subtracted</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/10">
                     <td className="px-4 py-3 font-medium">Includes Medicare levy?</td>
-                    <td className="px-4 py-3">Yes — levy is embedded</td>
-                    <td className="px-4 py-3">No — levy already subtracted</td>
+                    <td className="px-4 py-3">Yes, levy is embedded</td>
+                    <td className="px-4 py-3">No, levy already subtracted</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                     <td className="px-4 py-3 font-medium">Includes superannuation?</td>
-                    <td className="px-4 py-3">No — SG is paid on top</td>
-                    <td className="px-4 py-3">No — SG goes to super fund</td>
+                    <td className="px-4 py-3">No, SG is paid on top</td>
+                    <td className="px-4 py-3">No, SG goes to super fund</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/10">
                     <td className="px-4 py-3 font-medium">Used for</td>
@@ -135,7 +135,7 @@ export default function GrossPayCalculatorContent() {
               </table>
             </div>
             <p className="text-warmgray">
-              To calculate your net pay from a known gross salary, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>. The gross pay calculator on this page performs the reverse operation — converting net pay back to gross.
+              To calculate your net pay from a known gross salary, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>. The gross pay calculator on this page performs the reverse operation, converting net pay back to gross.
             </p>
           </section>
 
@@ -146,9 +146,9 @@ export default function GrossPayCalculatorContent() {
               The gross pay calculator serves anyone who knows what they need in their bank account and must work backwards to a pre-tax salary figure. Three primary user groups rely on this Australian tax calculator daily:
             </p>
             <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
-              <li><strong>Salary negotiators</strong> — employees entering a new role or requesting a pay rise who need to translate living expenses into a gross salary figure. A worker who spends $1,200 per week on rent, bills, and essentials needs a gross salary of at least <strong>{formatAUD(Math.round(GROSS_FOR_1200_WK))}</strong> to cover those costs after tax.</li>
-              <li><strong>Job seekers comparing offers</strong> — candidates who receive offers quoted as a &quot;Total Remuneration Package&quot; (gross plus super) and need to convert that figure to weekly take-home pay. A $100,000 TRP translates to a base salary of <strong>{formatAUD(TRP_BASE)}</strong> and net weekly pay of <strong>{formatAUD(EX_TRP.weekly)}</strong>.</li>
-              <li><strong>Budgeters and mortgage applicants</strong> — individuals who know their monthly expenses and need to determine the minimum gross income required. Lenders assess borrowing capacity on gross salary, so converting net targets to gross figures is essential for pre-approval applications.</li>
+              <li><strong>Salary negotiators</strong>: employees entering a new role or requesting a pay rise who need to translate living expenses into a gross salary figure. A worker who spends $1,200 per week on rent, bills, and essentials needs a gross salary of at least <strong>{formatAUD(Math.round(GROSS_FOR_1200_WK))}</strong> to cover those costs after tax.</li>
+              <li><strong>Job seekers comparing offers</strong>: candidates who receive offers quoted as a &quot;Total Remuneration Package&quot; (gross plus super) and need to convert that figure to weekly take-home pay. A $100,000 TRP translates to a base salary of <strong>{formatAUD(TRP_BASE)}</strong> and net weekly pay of <strong>{formatAUD(EX_TRP.weekly)}</strong>.</li>
+              <li><strong>Budgeters and mortgage applicants</strong>: individuals who know their monthly expenses and need to determine the minimum gross income required. Lenders assess borrowing capacity on gross salary, so converting net targets to gross figures is essential for pre-approval applications.</li>
             </ul>
             <p className="text-warmgray">
               Contractors and freelancers who set their own rates also benefit from reverse-calculating gross pay. Use the <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">Contractor Pay Calculator</Link> for scenarios involving GST, BAS, and business expenses.
@@ -201,12 +201,12 @@ export default function GrossPayCalculatorContent() {
               Gross pay includes every form of assessable income your employer pays before tax is withheld. The ATO treats all of the following components as part of your gross earnings for PAYG withholding purposes:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Base salary</strong> — the fixed annual amount stated in your employment contract, paid weekly, fortnightly, or monthly</li>
-              <li><strong>Overtime earnings</strong> — hours worked beyond the standard 38-hour week, paid at penalty rates of <strong>1.5x</strong> (time and a half) or <strong>2.0x</strong> (double time)</li>
-              <li><strong>Bonuses and commissions</strong> — performance-based payments, sign-on bonuses, and sales commissions added to your taxable income in the period received</li>
-              <li><strong>Allowances</strong> — travel allowances, tool allowances, uniform allowances, and meal allowances that are not otherwise exempt from tax</li>
-              <li><strong>Leave loading</strong> — an extra <strong>17.5%</strong> paid on annual leave entitlements under many awards and enterprise agreements</li>
-              <li><strong>Back pay and arrears</strong> — retrospective pay increases applied to prior periods, taxed in the period of payment</li>
+              <li><strong>Base salary</strong>: the fixed annual amount stated in your employment contract, paid weekly, fortnightly, or monthly</li>
+              <li><strong>Overtime earnings</strong>: hours worked beyond the standard 38-hour week, paid at penalty rates of <strong>1.5x</strong> (time and a half) or <strong>2.0x</strong> (double time)</li>
+              <li><strong>Bonuses and commissions</strong>: performance-based payments, sign-on bonuses, and sales commissions added to your taxable income in the period received</li>
+              <li><strong>Allowances</strong>: travel allowances, tool allowances, uniform allowances, and meal allowances that are not otherwise exempt from tax</li>
+              <li><strong>Leave loading</strong>: an extra <strong>17.5%</strong> paid on annual leave entitlements under many awards and enterprise agreements</li>
+              <li><strong>Back pay and arrears</strong>: retrospective pay increases applied to prior periods, taxed in the period of payment</li>
             </ul>
             <p className="text-warmgray mb-4">
               Superannuation guarantee contributions are <strong>not</strong> included in gross pay. The employer SG rate of <strong>{SG_PCT}</strong> for FY{SITE_CONFIG.financialYear} is paid on top of your gross salary into your nominated super fund. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to calculate the exact employer contribution for any salary level.
@@ -223,11 +223,11 @@ export default function GrossPayCalculatorContent() {
               The most common gross pay mistake is confusing a &quot;Total Remuneration Package&quot; with base salary, which overstates gross pay by <strong>{formatAUD(100_000 - TRP_BASE)}</strong> on a $100,000 package. Avoid these 5 errors:
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-              <li><strong>Treating TRP as base salary</strong> — a $100,000 TRP includes {SG_PCT} super, so the actual base salary is only <strong>{formatAUD(TRP_BASE)}</strong>. Assuming the full $100,000 is your gross pay inflates your expected take-home by <strong>{formatAUD(EX_100K.weekly - EX_TRP.weekly)} per week</strong>.</li>
-              <li><strong>Using a flat tax rate</strong> — dividing net by 0.7 to estimate gross assumes a flat 30% tax rate. Australia&apos;s progressive system means a $60,000 net actually requires a gross of <strong>{formatAUD(Math.round(GROSS_FOR_60K_NET))}</strong>, not the {formatAUD(Math.round(60_000 / 0.7))} that a flat-rate formula produces.</li>
-              <li><strong>Forgetting the Medicare levy</strong> — the <strong>2%</strong> Medicare levy applies on top of income tax. On a $90,000 gross salary, the levy adds <strong>{formatAUD(EX_90K.medicareLevy)}</strong> to total deductions, reducing weekly take-home by <strong>{formatAUD(EX_90K.medicareLevy / 52, 2)}</strong>.</li>
-              <li><strong>Ignoring HECS-HELP repayments</strong> — under the marginal repayment system for FY{SITE_CONFIG.financialYear}, a $90,000 income triggers a HECS repayment of <strong>{formatAUD(EX_90K_HECS.hecsRepayment)}</strong>. Workers with study debt need a higher gross salary to achieve the same net pay.</li>
-              <li><strong>Comparing pre-tax and post-tax figures</strong> — comparing a $95,000 gross offer against your current $1,400 weekly net pay without converting both to the same basis leads to incorrect conclusions about whether the new role pays more.</li>
+              <li><strong>Treating TRP as base salary</strong>: a $100,000 TRP includes {SG_PCT} super, so the actual base salary is only <strong>{formatAUD(TRP_BASE)}</strong>. Assuming the full $100,000 is your gross pay inflates your expected take-home by <strong>{formatAUD(EX_100K.weekly - EX_TRP.weekly)} per week</strong>.</li>
+              <li><strong>Using a flat tax rate</strong>: dividing net by 0.7 to estimate gross assumes a flat 30% tax rate. Australia&apos;s progressive system means a $60,000 net actually requires a gross of <strong>{formatAUD(Math.round(GROSS_FOR_60K_NET))}</strong>, not the {formatAUD(Math.round(60_000 / 0.7))} that a flat-rate formula produces.</li>
+              <li><strong>Forgetting the Medicare levy</strong>: the <strong>2%</strong> Medicare levy applies on top of income tax. On a $90,000 gross salary, the levy adds <strong>{formatAUD(EX_90K.medicareLevy)}</strong> to total deductions, reducing weekly take-home by <strong>{formatAUD(EX_90K.medicareLevy / 52, 2)}</strong>.</li>
+              <li><strong>Ignoring HECS-HELP repayments</strong>: under the marginal repayment system for FY{SITE_CONFIG.financialYear}, a $90,000 income triggers a HECS repayment of <strong>{formatAUD(EX_90K_HECS.hecsRepayment)}</strong>. Workers with study debt need a higher gross salary to achieve the same net pay.</li>
+              <li><strong>Comparing pre-tax and post-tax figures</strong>: comparing a $95,000 gross offer against your current $1,400 weekly net pay without converting both to the same basis leads to incorrect conclusions about whether the new role pays more.</li>
             </ol>
           </section>
 
@@ -273,13 +273,13 @@ export default function GrossPayCalculatorContent() {
               The gross pay calculator answers one specific question: what gross salary produces a given net pay. These related Australian tax calculators address adjacent scenarios:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray">
-              <li><Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">Salary package calculator</Link> &mdash; base salary and take-home from a package including super.</li>
-              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — enter a gross salary and see the net pay after income tax, Medicare levy, and HECS-HELP deductions</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — view a full breakdown of income tax brackets, LITO, and marginal rates for FY{SITE_CONFIG.financialYear}</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — calculate your employer&apos;s 12% SG contribution and project your super balance at retirement</li>
-              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> — model the tax savings from pre-tax super contributions or novated lease arrangements</li>
-              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> — calculate compulsory HECS-HELP repayments under the marginal system introduced in FY2025-26 (threshold {formatAUD(HECS_HELP.minimumThreshold)} in FY{SITE_CONFIG.financialYear})</li>
-              <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> — compare your current and proposed salary to see the actual net pay increase after tax</li>
+              <li><Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">Salary package calculator</Link>: base salary and take-home from a package including super.</li>
+              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: enter a gross salary and see the net pay after income tax, Medicare levy, and HECS-HELP deductions</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: view a full breakdown of income tax brackets, LITO, and marginal rates for FY{SITE_CONFIG.financialYear}</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate your employer&apos;s 12% SG contribution and project your super balance at retirement</li>
+              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link>: model the tax savings from pre-tax super contributions or novated lease arrangements</li>
+              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link>: calculate compulsory HECS-HELP repayments under the marginal system introduced in FY2025-26 (threshold {formatAUD(HECS_HELP.minimumThreshold)} in FY{SITE_CONFIG.financialYear})</li>
+              <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link>: compare your current and proposed salary to see the actual net pay increase after tax</li>
             </ul>
           </section>
 

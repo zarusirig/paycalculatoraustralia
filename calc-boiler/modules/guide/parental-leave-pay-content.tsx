@@ -55,7 +55,7 @@ export default function ParentalLeavePayContent() {
   return (
     <>
       <W3Section title="How Much Is Paid Parental Leave?">
-        <p className={P}>Parental Leave Pay is based on the national minimum wage and usually changes on 1 July. You are paid the rate for the <strong>financial year each day falls in</strong>, not the year your child was born — so leave that runs across 1 July is paid at two rates.</p>
+        <p className={P}>Parental Leave Pay is based on the national minimum wage and usually changes on 1 July. You are paid the rate for the <strong>financial year each day falls in</strong>, not the year your child was born, so leave that runs across 1 July is paid at two rates.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Days taken in</th><th scope="col" className={TH + " text-right"}>Per day</th><th scope="col" className={TH + " text-right"}>Per 5-day week</th><th scope="col" className={TH + " text-right"}>{NOW.days} days</th></tr></thead>
@@ -91,11 +91,11 @@ export default function ParentalLeavePayContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>A single parent gets all the days (and can choose to share). If you lodged a pre-birth claim before 1 July 2026 and the baby arrives on or after it, Services Australia adds the extra 10 days once it has proof of birth — no new claim needed.</p>
+        <p className={P + " mt-4"}>A single parent gets all the days (and can choose to share). If you lodged a pre-birth claim before 1 July 2026 and the baby arrives on or after it, Services Australia adds the extra 10 days once it has proof of birth. No new claim is needed.</p>
       </W3Section>
 
       <W3Section title="Paid Parental Leave Income Test">
-        <p className={P}>Services Australia looks at your adjusted taxable income for the financial year before the birth or adoption, or before your claim — whichever date is earlier.</p>
+        <p className={P}>Services Australia looks at your adjusted taxable income for the financial year before the birth or adoption, or before your claim, whichever date is earlier.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Income year</th><th scope="col" className={TH + " text-right"}>Individual limit</th><th scope="col" className={TH + " text-right"}>Family limit (if you fail the individual test)</th></tr></thead>
@@ -112,7 +112,7 @@ export default function ParentalLeavePayContent() {
       <W3Section title="Paid Parental Leave Work Test">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
           <li>Worked <strong>{PPL_WORK_TEST.monthsWorked} of the {PPL_WORK_TEST.monthsWindow} months</strong> before the birth or adoption ({PPL_WORK_TEST.daysWorkedPeriod} of {PPL_WORK_TEST.daysWindow} days), and</li>
-          <li>at least <strong>{PPL_WORK_TEST.minHours} hours</strong> in those 10 months — around one day a week, and</li>
+          <li>at least <strong>{PPL_WORK_TEST.minHours} hours</strong> in those 10 months (around one day a week), and</li>
           <li>no gap of more than <strong>{PPL_WORK_TEST.maxGapWeeks} weeks</strong> between work days.</li>
         </ul>
         <p className={P + " mt-4"}>Paid leave counts as work, work for several employers can be combined, and self-employed parents can qualify. There are exceptions for pregnancy-related illness, complications and premature birth, and a dangerous jobs provision. If you are the birth mother&apos;s partner (or the biological father or his partner), <em>both</em> you and the birth mother must meet the work test.</p>
@@ -120,19 +120,19 @@ export default function ParentalLeavePayContent() {
 
       <W3Section title="Flexible Days, Sharing and Working">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
-          <li>Take your days as one block, several blocks, single days, or a mix — all within <strong>{PPL_RULES.useWithinYears} years</strong> of the birth or adoption. You can change nominated days after claiming.</li>
+          <li>Take your days as one block, several blocks, single days, or a mix, all within <strong>{PPL_RULES.useWithinYears} years</strong> of the birth or adoption. You can change nominated days after claiming.</li>
           <li>The birth mother (or first adoptive parent) approves how many days are shared with the other parent; each parent claims separately.</li>
-          <li>Parental Leave Pay is only for days you don&apos;t work. Working <strong>{PPL_RULES.workingDayHours} hour or more</strong> — including a keeping-in-touch meeting or training — counts as working, so pick another day or return that day to your balance. The birth mother must not work in the first {PPL_RULES.birthMotherNoWorkDays} days after the birth.</li>
+          <li>Parental Leave Pay is only for days you don&apos;t work. Working <strong>{PPL_RULES.workingDayHours} hour or more</strong> (including a keeping-in-touch meeting or training) counts as working, so pick another day or return that day to your balance. The birth mother must not work in the first {PPL_RULES.birthMotherNoWorkDays} days after the birth.</li>
           <li>You can take Parental Leave Pay before, during or after employer-paid parental leave, annual leave or long service leave.</li>
         </ul>
       </W3Section>
 
       <W3Section title="Who Pays You: Employer or Centrelink">
-        <p className={P}>Your employer pays your Parental Leave Pay through payroll if you&apos;ve worked for them for at least 12 months before the birth or adoption, they&apos;re Australian based, and you take a continuous block of at least {PPL_RULES.employerMinBlockWeeks} weeks of 5-day weeks within a year of the birth — withholding tax at your usual rate. Otherwise Services Australia pays you every 2 weeks and withholds tax at {Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate. If you have other income that year, 15% may not be enough — the <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link> shows your likely bill.</p>
+        <p className={P}>Your employer pays your Parental Leave Pay through payroll if you&apos;ve worked for them for at least 12 months before the birth or adoption, they&apos;re Australian based, and you take a continuous block of at least {PPL_RULES.employerMinBlockWeeks} weeks of 5-day weeks within a year of the birth, withholding tax at your usual rate. Otherwise Services Australia pays you every 2 weeks and withholds tax at {Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate. If you have other income that year, 15% may not be enough. The <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link> shows your likely bill.</p>
       </W3Section>
 
       <W3Section title="Super on Paid Parental Leave">
-        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim — just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. It counts towards your concessional contributions cap and is taxed at 15% in the fund. On {NOW.days} days at the 2026-27 rate that is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
+        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim. Just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. It counts towards your concessional contributions cap and is taxed at 15% in the fund. On {NOW.days} days at the 2026-27 rate that is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
       </W3Section>
 
       <W3Section title="How and When to Claim">
@@ -142,7 +142,7 @@ export default function ParentalLeavePayContent() {
           <li>To be paid from the date of birth, the claim and proof must be in within <strong>{PPL_RULES.backdateDays} days (14 weeks)</strong>. Payments can be backdated up to 100 days.</li>
           <li>At least one parent must claim within {PPL_RULES.firstClaimWeeks} weeks of the birth or adoption; the other parent has 2 years.</li>
         </ol>
-        <p className={P + " mt-4"}>Separately from the government payment, employees may be entitled to unpaid parental leave under the National Employment Standards — see the Fair Work Ombudsman. Budget the drop from your salary with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</p>
+        <p className={P + " mt-4"}>Separately from the government payment, employees may be entitled to unpaid parental leave under the National Employment Standards. See the Fair Work Ombudsman. Budget the drop from your salary with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</p>
       </W3Section>
 
       <W3Section title="Related Calculators and Guides">

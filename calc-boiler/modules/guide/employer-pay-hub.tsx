@@ -36,7 +36,7 @@ export default function EmployerPayHubPage() {
 
         <header className="mb-10 max-w-4xl lg:mb-16">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            Pay Rates by Employer 2026 — Coles, Woolworths, Bunnings, McDonald&rsquo;s &amp; More
+            Pay Rates by Employer 2026: Coles, Woolworths, Bunnings, McDonald&rsquo;s &amp; More
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
             What Australia&rsquo;s biggest retail, fast food and other large employers pay per hour, read from each

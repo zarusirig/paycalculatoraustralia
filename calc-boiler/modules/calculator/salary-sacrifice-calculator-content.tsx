@@ -301,7 +301,7 @@ export default function SalarySacrificeCalculatorContent() {
 
         <h3 className="text-lg font-semibold text-navy mb-2">What Is Division 293 Tax?</h3>
         <p className="text-warmgray">
-          &quot;Division 293&quot; applies an additional <strong>15% tax</strong> on concessional contributions when your income plus concessional super contributions exceed <strong>$250,000</strong>. This brings the total super contributions tax to <strong>30%</strong> instead of 15%. Even at 30%, salary sacrifice remains beneficial for high-income earners because the top marginal income tax rate of 45% plus the 2% Medicare levy totals <strong>47%</strong> — still 17 percentage points higher than Division 293 taxation. Check your total assessable income using the{" "}
+          &quot;Division 293&quot; applies an additional <strong>15% tax</strong> on concessional contributions when your income plus concessional super contributions exceed <strong>$250,000</strong>. This brings the total super contributions tax to <strong>30%</strong> instead of 15%. Even at 30%, salary sacrifice remains beneficial for high-income earners because the top marginal income tax rate of 45% plus the 2% Medicare levy totals <strong>47%</strong>, still 17 percentage points higher than Division 293 taxation. Check your total assessable income using the{" "}
           <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>{" "}
           to determine if Division 293 applies to your situation.
         </p>
@@ -314,13 +314,13 @@ export default function SalarySacrificeCalculatorContent() {
           The most common salary sacrifice mistake is exceeding the <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> concessional cap: the excess is added to your assessable income and taxed at your marginal rate, less a 15% offset. See the <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide.
         </p>
         <ol className="list-decimal pl-6 space-y-3 text-warmgray">
-          <li><strong>Exceeding the concessional cap</strong> — Forgetting that employer SG contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $120,000 salary, employer SG is $14,400, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - 14_400)} of cap room, not the full {formatAUD(SUPER_GUARANTEE.concessionalCap)}.</li>
-          <li><strong>Ignoring the HECS-HELP impact</strong> — Reportable super contributions are added back to &quot;repayment income&quot; when calculating HECS-HELP repayments. Salary sacrifice does not reduce your{" "}
+          <li><strong>Exceeding the concessional cap</strong>: Forgetting that employer SG contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $120,000 salary, employer SG is $14,400, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - 14_400)} of cap room, not the full {formatAUD(SUPER_GUARANTEE.concessionalCap)}.</li>
+          <li><strong>Ignoring the HECS-HELP impact</strong>: Reportable super contributions are added back to &quot;repayment income&quot; when calculating HECS-HELP repayments. Salary sacrifice does not reduce your{" "}
             <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link>{" "}
             obligation.</li>
-          <li><strong>Sacrificing on a low marginal rate</strong> — Employees in the {SECOND_RATE_PCT} income tax bracket ($18,201 to $45,000) save no income tax from salary sacrifice into super in FY{FY} &mdash; only the 2 cent Medicare levy saving. The reduced liquidity is rarely worth the minimal tax saving.</li>
-          <li><strong>Reducing borrowing capacity</strong> — Lenders assess income after salary sacrifice deductions. A large annual sacrifice lowers the income a lender counts, which can reduce how much you can borrow.</li>
-          <li><strong>Not using carry-forward unused cap amounts</strong> — Since 1 July 2018, unused concessional cap amounts carry forward for up to 5 years if your total super balance is below <strong>$500,000</strong>. Employees who miss this opportunity leave tax savings on the table.</li>
+          <li><strong>Sacrificing on a low marginal rate</strong>: Employees in the {SECOND_RATE_PCT} income tax bracket ($18,201 to $45,000) save no income tax from salary sacrifice into super in FY{FY}, only the 2 cent Medicare levy saving. The reduced liquidity is rarely worth the minimal tax saving.</li>
+          <li><strong>Reducing borrowing capacity</strong>: Lenders assess income after salary sacrifice deductions. A large annual sacrifice lowers the income a lender counts, which can reduce how much you can borrow.</li>
+          <li><strong>Not using carry-forward unused cap amounts</strong>: Since 1 July 2018, unused concessional cap amounts carry forward for up to 5 years if your total super balance is below <strong>$500,000</strong>. Employees who miss this opportunity leave tax savings on the table.</li>
         </ol>
       </section>
 
@@ -328,7 +328,7 @@ export default function SalarySacrificeCalculatorContent() {
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Salary Sacrifice in FY{FY}?</h2>
         <p className="mb-4 text-warmgray">
-          The concessional cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> on 1 July 2026 (from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), the second income tax rate fell to <strong>{SECOND_RATE_PCT}</strong>, and Payday Super now requires employers to pay SG &mdash; still <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong>, the legislated ceiling &mdash; each payday. The SG rate itself last rose on {SUPER_GUARANTEE.effectiveDate}, from 11.5% to 12%.
+          The concessional cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> on 1 July 2026 (from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), the second income tax rate fell to <strong>{SECOND_RATE_PCT}</strong>, and Payday Super now requires employers to pay SG (still <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong>, the legislated ceiling) each payday. The SG rate itself last rose on {SUPER_GUARANTEE.effectiveDate}, from 11.5% to 12%.
         </p>
         <p className="text-warmgray">
           On a $100,000 salary, employer SG rose from $11,500 to <strong>$12,000</strong>, reducing cap room under the then {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} cap from $18,500 to $18,000. From 1 July 2026 the cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>, so the room on $100,000 is now <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)}</strong>. The Stage 3 income tax cuts from 1 July 2024 also changed the calculus: the 30% bracket now extends to $135,000 (previously $120,000), giving more employees access to the 30% vs 15% salary sacrifice benefit. Use the{" "}
@@ -404,7 +404,7 @@ export default function SalarySacrificeCalculatorContent() {
                 <tr className="border-b border-sandstone-dark/10">
                   <td className="p-3 text-navy font-medium">ICE vehicle (novated lease)</td>
                   <td className="p-3 text-navy">Liable</td>
-                  <td className="p-3 text-navy">FBT at 47% — benefit reduced or eliminated</td>
+                  <td className="p-3 text-navy">FBT at 47%: benefit reduced or eliminated</td>
                   <td className="p-3 text-navy">No cap, but FBT erodes savings</td>
                 </tr>
               </tbody>
@@ -418,7 +418,7 @@ export default function SalarySacrificeCalculatorContent() {
         <section id="who-benefits">
           <h2>Who Benefits Most from Salary Sacrifice?</h2>
           <p>
-            Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 15% bracket saves nothing on income tax (15% in, 15% contributions tax out) — only the 2c Medicare levy.
+            Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 15% bracket saves nothing on income tax (15% in, 15% contributions tax out), apart from the 2c Medicare levy.
           </p>
 
           <div className="overflow-x-auto not-prose my-6">
@@ -470,9 +470,9 @@ export default function SalarySacrificeCalculatorContent() {
             Three groups benefit the most from salary sacrifice arrangements:
           </p>
           <ul>
-            <li><strong>High-income earners ($135,000+)</strong> — The 37% and 45% marginal rates create the largest gap above the 15% super tax rate, producing savings of $2,200 to $3,000 per $10,000 sacrificed</li>
-            <li><strong>Employees approaching retirement (age 50–67)</strong> — Carry-forward rules allow lump-sum catch-up contributions to build super balances before retirement</li>
-            <li><strong>Not-for-profit sector workers</strong> — Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) of about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} a year at PBIs and health promotion charities, or about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} at public hospitals, produces savings even at lower income levels</li>
+            <li><strong>High-income earners ($135,000+)</strong>: The 37% and 45% marginal rates create the largest gap above the 15% super tax rate, producing savings of $2,200 to $3,000 per $10,000 sacrificed</li>
+            <li><strong>Employees approaching retirement (age 50–67)</strong>: Carry-forward rules allow lump-sum catch-up contributions to build super balances before retirement</li>
+            <li><strong>Not-for-profit sector workers</strong>: Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) of about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} a year at PBIs and health promotion charities, or about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} at public hospitals, produces savings even at lower income levels</li>
           </ul>
           <p>
             Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. Employees in the 15% bracket ($18,201–$45,000) gain only the 2% Medicare levy saving and are better served by claiming the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> instead.
@@ -513,13 +513,13 @@ export default function SalarySacrificeCalculatorContent() {
             Seven specific risks require consideration before entering a salary sacrifice arrangement:
           </p>
           <ol>
-            <li><strong>Reduced cash flow</strong> — Every dollar sacrificed is a dollar removed from your take-home pay. Budget accordingly using a fortnightly or monthly breakdown from our <Link href="/">Pay Calculator</Link></li>
-            <li><strong>Super preservation</strong> — Salary sacrificed into super is locked until a condition of release is met, typically reaching age 60 and retiring. Early access is restricted to severe financial hardship, terminal illness, or compassionate grounds</li>
-            <li><strong>HECS-HELP is unaffected</strong> — The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full repayment structure</li>
-            <li><strong>Exceeding the concessional cap</strong> — Contributions beyond {formatAUD(SUPER_GUARANTEE.concessionalCap)} (including employer SG, and before any carry-forward) are taxed at the employee&apos;s marginal rate less a 15% offset</li>
-            <li><strong>Impact on government benefits</strong> — Centrelink assessments may use adjusted taxable income, which includes reportable super contributions, potentially reducing eligibility for Family Tax Benefit, childcare subsidies, or other income-tested payments</li>
-            <li><strong>Employer insolvency risk</strong> — If your employer becomes insolvent before remitting salary sacrifice contributions to your super fund, those contributions may be treated as unpaid wages</li>
-            <li><strong>No retrospective changes</strong> — Once a pay period passes, the sacrifice cannot be reversed. Only future pay periods can be adjusted</li>
+            <li><strong>Reduced cash flow</strong>: Every dollar sacrificed is a dollar removed from your take-home pay. Budget accordingly using a fortnightly or monthly breakdown from our <Link href="/">Pay Calculator</Link></li>
+            <li><strong>Super preservation</strong>: Salary sacrificed into super is locked until a condition of release is met, typically reaching age 60 and retiring. Early access is restricted to severe financial hardship, terminal illness, or compassionate grounds</li>
+            <li><strong>HECS-HELP is unaffected</strong>: The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full repayment structure</li>
+            <li><strong>Exceeding the concessional cap</strong>: Contributions beyond {formatAUD(SUPER_GUARANTEE.concessionalCap)} (including employer SG, and before any carry-forward) are taxed at the employee&apos;s marginal rate less a 15% offset</li>
+            <li><strong>Impact on government benefits</strong>: Centrelink assessments may use adjusted taxable income, which includes reportable super contributions, potentially reducing eligibility for Family Tax Benefit, childcare subsidies, or other income-tested payments</li>
+            <li><strong>Employer insolvency risk</strong>: If your employer becomes insolvent before remitting salary sacrifice contributions to your super fund, those contributions may be treated as unpaid wages</li>
+            <li><strong>No retrospective changes</strong>: Once a pay period passes, the sacrifice cannot be reversed. Only future pay periods can be adjusted</li>
           </ol>
         </section>
         <section id="how-to-set-up">
@@ -528,12 +528,12 @@ export default function SalarySacrificeCalculatorContent() {
             Setting up a salary sacrifice arrangement requires a written agreement with your employer before the relevant pay period. The process takes <strong>1 to 4 weeks</strong> depending on your employer&apos;s payroll cycle and approval process.
           </p>
           <ol>
-            <li><strong>Calculate your cap space</strong> — Check your current employer SG contributions ({formatPercent(SUPER_GUARANTEE.rate, 0)} of your gross salary) and subtract from the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap. The result is your maximum sacrifice amount for super</li>
-            <li><strong>Determine the right amount</strong> — Model the impact on your take-home pay using the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>. Ensure the reduced fortnightly pay covers rent, mortgage repayments, groceries, and other essential expenses</li>
-            <li><strong>Request the arrangement in writing</strong> — Submit a written request to your employer or HR department specifying the dollar amount per pay period, the benefit type (super, novated lease, device), and the desired start date</li>
-            <li><strong>Employer approves and adjusts payroll</strong> — Your employer confirms the arrangement and updates the payroll system. The first adjusted pay slip reflects the lower gross salary and reduced PAYG withholding</li>
-            <li><strong>Verify your pay slip</strong> — Check that the sacrificed amount, adjusted gross income, reduced PAYG, and super contribution match the agreed figures. Report discrepancies to payroll immediately</li>
-            <li><strong>Review annually</strong> — Reassess the arrangement at the start of each financial year. Changes in salary, tax brackets, or the concessional cap (indexed to AWOTE in $2,500 increments) may require adjustment</li>
+            <li><strong>Calculate your cap space</strong>: Check your current employer SG contributions ({formatPercent(SUPER_GUARANTEE.rate, 0)} of your gross salary) and subtract from the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap. The result is your maximum sacrifice amount for super</li>
+            <li><strong>Determine the right amount</strong>: Model the impact on your take-home pay using the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>. Ensure the reduced fortnightly pay covers rent, mortgage repayments, groceries, and other essential expenses</li>
+            <li><strong>Request the arrangement in writing</strong>: Submit a written request to your employer or HR department specifying the dollar amount per pay period, the benefit type (super, novated lease, device), and the desired start date</li>
+            <li><strong>Employer approves and adjusts payroll</strong>: Your employer confirms the arrangement and updates the payroll system. The first adjusted pay slip reflects the lower gross salary and reduced PAYG withholding</li>
+            <li><strong>Verify your pay slip</strong>: Check that the sacrificed amount, adjusted gross income, reduced PAYG, and super contribution match the agreed figures. Report discrepancies to payroll immediately</li>
+            <li><strong>Review annually</strong>: Reassess the arrangement at the start of each financial year. Changes in salary, tax brackets, or the concessional cap (indexed to AWOTE in $2,500 increments) may require adjustment</li>
           </ol>
         </section>
         <section id="fbt-implications">
@@ -542,15 +542,15 @@ export default function SalarySacrificeCalculatorContent() {
             Fringe Benefits Tax is a <strong>47%</strong> tax imposed on employers who provide non-cash benefits to employees. FBT applies to most salary sacrifice items except superannuation, certain portable electronic devices used primarily for work, and eligible electric vehicles.
           </p>
           <p>
-            When an item attracts FBT, the employer bears the tax liability. In practice, most employers pass the FBT cost directly to the employee through payroll adjustments, eliminating any net tax benefit. On a $40,000 internal combustion engine (ICE) car under the statutory formula, the taxable value is <strong>{formatAUD(ICE_TAXABLE_VALUE)}</strong> ({Math.round(FBT.statutoryRate * 100)}% of the cost) and the FBT is about <strong>{formatAUD(ICE_FBT)}</strong> a year &mdash; which is why most novated leases on petrol cars use post-tax employee contributions to reduce the taxable value to nil.
+            When an item attracts FBT, the employer bears the tax liability. In practice, most employers pass the FBT cost directly to the employee through payroll adjustments, eliminating any net tax benefit. On a $40,000 internal combustion engine (ICE) car under the statutory formula, the taxable value is <strong>{formatAUD(ICE_TAXABLE_VALUE)}</strong> ({Math.round(FBT.statutoryRate * 100)}% of the cost) and the FBT is about <strong>{formatAUD(ICE_FBT)}</strong> a year, which is why most novated leases on petrol cars use post-tax employee contributions to reduce the taxable value to nil.
           </p>
           <p>
             FBT-exempt items deliver the full tax benefit because no additional tax applies. The 3 most common FBT-exempt salary sacrifice categories are:
           </p>
           <ul>
-            <li><strong>Superannuation contributions</strong> — Exempt from FBT, taxed at 15% inside the fund</li>
-            <li><strong>Eligible electric vehicles</strong> — FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</li>
-            <li><strong>Portable electronic devices</strong> — Laptops, tablets, and mobile phones used primarily for employment duties (limited to 1 device per FBT year per category)</li>
+            <li><strong>Superannuation contributions</strong>: Exempt from FBT, taxed at 15% inside the fund</li>
+            <li><strong>Eligible electric vehicles</strong>: FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</li>
+            <li><strong>Portable electronic devices</strong>: Laptops, tablets, and mobile phones used primarily for employment duties (limited to 1 device per FBT year per category)</li>
           </ul>
           <p>
             Read the full breakdown of FBT categories, rates, and exemptions on our <Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link>.
@@ -564,11 +564,11 @@ export default function SalarySacrificeCalculatorContent() {
           Salary sacrifice is one component of your total pay package. These calculators model the other components that affect your take-home pay and superannuation balance.
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray">
-          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — Project your total super balance at retirement, including employer SG and salary sacrifice contributions.</li>
-          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — See the full income tax brackets, LITO offset, and Medicare levy for FY{SITE_CONFIG.financialYear}.</li>
-          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — Calculate your net pay after tax, Medicare, and HECS deductions on any salary.</li>
-          <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> — Model your HECS-HELP repayment under the new marginal system, including the impact of reportable super contributions.</li>
-          <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> — Compare the after-tax value of a pay rise versus increasing your salary sacrifice amount.</li>
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: Project your total super balance at retirement, including employer SG and salary sacrifice contributions.</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: See the full income tax brackets, LITO offset, and Medicare levy for FY{SITE_CONFIG.financialYear}.</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: Calculate your net pay after tax, Medicare, and HECS deductions on any salary.</li>
+          <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link>: Model your HECS-HELP repayment under the new marginal system, including the impact of reportable super contributions.</li>
+          <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link>: Compare the after-tax value of a pay rise versus increasing your salary sacrifice amount.</li>
         </ul>
       </section>
 
@@ -580,7 +580,7 @@ export default function SalarySacrificeCalculatorContent() {
 
       <section className="bg-sandstone rounded-2xl p-8 text-center">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See your full pay breakdown</h2>
-        <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super — all in one calculation.</p>
+        <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super, all in one calculation.</p>
         <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Pay Calculator →</Link>
       </section>
 

@@ -52,8 +52,8 @@ const MEDIAN: MedianEarnings = {
 };
 
 const NOTES: Record<string, string> = {
-  "Level 3 pay point 3": "Graduate entry — relevant 3-year degree",
-  "Level 3 pay point 4": "Graduate entry — relevant 4-year degree (e.g. BSW)",
+  "Level 3 pay point 3": "Graduate entry, relevant 3-year degree",
+  "Level 3 pay point 4": "Graduate entry, relevant 4-year degree (e.g. BSW)",
   "Level 4 pay point 1": "Four-year degree plus 1 year's experience, or 3-year degree plus 2",
 };
 
@@ -84,15 +84,15 @@ export const SOCIAL_WORKER: Occupation = {
     why: "a graduate social worker with a four-year degree in a community organisation",
   },
   coverage: [
-    "Social workers employed by community organisations, charities, NDIS providers, family and youth services and other not-for-profits are covered by the Social, Community, Home Care and Disability Services Industry Award 2010 — the SCHADS Award [MA000100] — in the Social and community services stream (Schedule B). The award defines that sector as including social work.",
-    "Schedule B makes Level 3 the graduate entry level: a relevant 3-year degree starts at pay point 3 and a relevant 4-year degree — such as an accredited Bachelor of Social Work — at pay point 4. Level 4 generally requires a 4-year degree plus a year's experience (or a 3-year degree plus two); levels 5 and above are senior practitioner, supervisory and management roles.",
-    `Social workers in the health industry — private hospitals and health providers — are covered instead by the ${HPSS_AWARD.name} [${HPSS_AWARD.code}], which lists social worker as a health professional. From the first full pay period starting on or after 1 October 2026 a first-year social worker there is paid by the AQF level of their social work qualification: ${firstYear(7).hourly} an hour (${firstYear(7).weekly} a week) at AQF Level 7, the bachelor level, and ${firstYear(8).hourly} or ${firstYear(9).hourly} at AQF Level 8 or 9 — still well below the SCHADS rate.`,
+    "Social workers employed by community organisations, charities, NDIS providers, family and youth services and other not-for-profits are covered by the Social, Community, Home Care and Disability Services Industry Award 2010 (the SCHADS Award [MA000100]) in the Social and community services stream (Schedule B). The award defines that sector as including social work.",
+    "Schedule B makes Level 3 the graduate entry level: a relevant 3-year degree starts at pay point 3 and a relevant 4-year degree (such as an accredited Bachelor of Social Work) at pay point 4. Level 4 generally requires a 4-year degree plus a year's experience (or a 3-year degree plus two); levels 5 and above are senior practitioner, supervisory and management roles.",
+    `Social workers in the health industry (private hospitals and health providers) are covered instead by the ${HPSS_AWARD.name} [${HPSS_AWARD.code}], which lists social worker as a health professional. From the first full pay period starting on or after 1 October 2026 a first-year social worker there is paid by the AQF level of their social work qualification: ${firstYear(7).hourly} an hour (${firstYear(7).weekly} a week) at AQF Level 7, the bachelor level, and ${firstYear(8).hourly} or ${firstYear(9).hourly} at AQF Level 8 or 9, still well below the SCHADS rate.`,
     "The SCHADS rates for levels 2 and up include the Equal Remuneration Order, which the award says forms part of ordinary pay for all purposes. Social workers in state or Commonwealth government are paid under their public service agreement instead.",
   ],
   tables: [
     {
       id: "sacs",
-      title: "Social worker pay rates — SCHADS social and community services, Levels 3 to 6",
+      title: "Social worker pay rates, SCHADS social and community services, Levels 3 to 6",
       intro:
         "SCHADS Award Schedule B, weekly and hourly rates as published including the Equal Remuneration Order. Casual is the hourly rate plus the 25% loading (the award publishes no casual column).",
       rows: ROWS,
@@ -108,7 +108,7 @@ export const SOCIAL_WORKER: Occupation = {
   penaltiesNote:
     "Percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2).",
   overtime: [
-    "Social and community services employees: time and a half for the first 3 hours of overtime Monday to Saturday, then double time (cl 28.1(a)(ii)) — one hour longer at time and a half than disability and home care workers get.",
+    "Social and community services employees: time and a half for the first 3 hours of overtime Monday to Saturday, then double time (cl 28.1(a)(ii)), one hour longer at time and a half than disability and home care workers get.",
     "Sunday overtime is double time and public holiday overtime is double time and a half.",
     "Part-time and casual employees are paid overtime for work beyond 38 hours a week, 76 a fortnight or 10 hours in a day or shift (cl 28.1(b)).",
   ],
@@ -125,7 +125,7 @@ export const SOCIAL_WORKER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a social worker in 2026?",
-      a: "A graduate social worker with a four-year degree working for a community organisation is SCHADS Level 3 pay point 4, with a minimum of $43.42 an hour or $1,649.97 a week from the first full pay period on or after 1 July 2026 — $85,798 a year full-time before tax. A 3-year degree graduate starts at Level 3 pay point 3, $42.55 an hour.",
+      a: "A graduate social worker with a four-year degree working for a community organisation is SCHADS Level 3 pay point 4, with a minimum of $43.42 an hour or $1,649.97 a week from the first full pay period on or after 1 July 2026, or $85,798 a year full-time before tax. A 3-year degree graduate starts at Level 3 pay point 3, $42.55 an hour.",
     },
     {
       q: "What is the casual rate for a social worker?",
@@ -145,7 +145,7 @@ export const SOCIAL_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100] — consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
+    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100], consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
     HPSS_OCT_2026_SOURCES[0],
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,

@@ -83,11 +83,11 @@ export const ACT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   sources: [
     {
       title: "ACT Public Sector ACT Fire & Rescue Enterprise Agreement 2024-2026 (approved)",
-      publisher: "ACT Government — ACTPS Employment Portal (Fair Work Commission approved)",
+      publisher: "ACT Government, ACTPS Employment Portal (Fair Work Commission approved)",
       url: "https://www.cmtedd.act.gov.au/__data/assets/pdf_file/0006/2606460/Fire-and-Rescue-Enterprise-Agreement-2024-2026-Approved.pdf",
     },
     {
-      title: "Enterprise Agreements — ACTPS Employment Portal",
+      title: "Enterprise Agreements, ACTPS Employment Portal",
       publisher: "ACT Government",
       url: "https://www.cmtedd.act.gov.au/employment-framework/for-employees/agreements",
     },

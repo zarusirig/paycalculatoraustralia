@@ -175,7 +175,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Free Payslip Generator — Create Australian Payslips Online
+            Free Payslip Generator: Create Australian Payslips Online
           </h1>
           <p className="text-lg text-warmgray">
             A payslip generator creates a professional, Fair Work-compliant payslip from your pay details in seconds.
@@ -185,7 +185,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
           <TrustBar className="mt-4" />
           <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white/70 border border-sandstone-dark/20 px-4 py-2.5 text-sm text-navy">
             <Lock className="h-4 w-4 text-eucalyptus-dark" />
-            <span><strong>100% private:</strong> everything runs in your browser — no data is sent to a server or stored.</span>
+            <span><strong>100% private:</strong> everything runs in your browser. No data is sent to a server or stored.</span>
           </div>
         </section>
 
@@ -351,7 +351,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
                       </label>
                       <div>
                         <label htmlFor="manualTax" className="block text-sm font-medium text-gray-700 mb-1">
-                          Override PAYG amount <span className="text-warmgray-light">(optional — auto: {formatAUD(calc.autoTax, 2)})</span>
+                          Override PAYG amount <span className="text-warmgray-light">(optional, auto: {formatAUD(calc.autoTax, 2)})</span>
                         </label>
                         <input type="number" id="manualTax" min={0} step={0.01} value={manualTax} placeholder="Leave blank to auto-estimate"
                           onChange={(e) => setManualTax(e.target.value)} className={inputClass} />
@@ -455,7 +455,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
                       </thead>
                       <tbody className="text-navy">
                         <tr className="border-b border-sandstone-dark/10">
-                          <td className="py-2">PAYG withholding{includeHECS ? " (incl. STSL)" : ""}{calc.usingOverride ? "" : " — estimate"}</td>
+                          <td className="py-2">PAYG withholding{includeHECS ? " (incl. STSL)" : ""}{calc.usingOverride ? "" : " (estimate)"}</td>
                           <td className="py-2 text-right text-ochre">{formatNegAUD(calc.periodTax, 2)}</td>
                           <td className="py-2 text-right text-warmgray">{formatNegAUD(calc.ytd.tax, 2)}</td>
                         </tr>
@@ -483,7 +483,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
                       <tbody className="text-navy">
                         <tr>
                           <td className="py-2">
-                            Super Guarantee ({(SUPER_GUARANTEE.rate * 100).toFixed(0)}%){superFund ? ` — ${superFund}` : ""}
+                            Super Guarantee ({(SUPER_GUARANTEE.rate * 100).toFixed(0)}%){superFund ? `, ${superFund}` : ""}
                           </td>
                           <td className="py-2 text-right">{formatAUD(calc.superContribution, 2)}</td>
                           <td className="py-2 text-right text-warmgray">{formatAUD(calc.ytd.super, 2)}</td>
@@ -492,7 +492,7 @@ export default function PayslipGeneratorPage({ children, afterCalculator }: { ch
                     </table>
 
                     <div className="text-[10px] text-warmgray-light border-t border-sandstone-dark/10 pt-3">
-                      PAYG figures are estimates unless entered manually. Generated free with {SITE_CONFIG.name} — {SITE_CONFIG.domain}
+                      PAYG figures are estimates unless entered manually. Generated free with {SITE_CONFIG.name}, {SITE_CONFIG.domain}
                     </div>
                   </div>
                   <p className="text-xs text-warmgray-light mt-3">

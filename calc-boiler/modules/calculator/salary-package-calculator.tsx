@@ -56,7 +56,7 @@ export default function SalaryPackageCalculatorPage({ children, afterCalculator 
             </ol>
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Salary Package Calculator — Including Super or Plus Super
+            Salary Package Calculator: Including Super or Plus Super
           </h1>
           <p className="text-lg text-warmgray">
             &ldquo;{formatAUD(112_000)} package&rdquo;, &ldquo;{formatAUD(100_000)} plus super&rdquo; and &ldquo;{formatAUD(100_000)} including super&rdquo; are three different offers.

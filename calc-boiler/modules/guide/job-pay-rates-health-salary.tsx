@@ -306,7 +306,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                 {STAFF_SPECIALIST_SCALES.map((scale) => (
                   <div key={scale.state} className="not-prose my-8">
                     <h3 className="mb-2 text-xl font-bold text-navy" style={HEADING_FONT} id={`staff-specialist-${scale.state.toLowerCase()}`}>
-                      {scale.state} — {scale.instrument}
+                      {scale.state}: {scale.instrument}
                     </h3>
                     <p className="mb-4 text-warmgray">
                       {scale.effectiveFrom}. {scale.note}
@@ -377,7 +377,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                       <th scope="row" className="px-4 py-3 text-left font-medium text-navy">
                         {formatAUD(s.gross)}
                         <span className="block text-xs font-normal text-warmgray">
-                          {s.label} — {s.source}
+                          {s.label}, {s.source}
                         </span>
                       </th>
                       <td className="px-4 py-3 text-right">{formatNegAUD(s.t.tax, 0, "−")}</td>

@@ -39,8 +39,8 @@ const PROFILE = STATE_PROFILES.VIC;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13b, Victoria`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — Victoria", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13b, Victoria`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Victoria", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 2018)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "VIC payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.vic.ratesUrl, publisher: PAYROLL_TAX_STATES.vic.revenueOffice },
 ];
@@ -92,7 +92,7 @@ export default function PayCalculatorVICPage() {
           <section>
             <H2>How much of a Victorian salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
-              On {formatAUD(typicalSalary(PROFILE))} — the average full-time wage in Victoria — you
+              On {formatAUD(typicalSalary(PROFILE))} (the average full-time wage in Victoria) you
               keep a little over three-quarters of it. Victoria has no state income tax; nobody in
               Australia does. Your income tax, Medicare levy and HECS-HELP repayment are set by the
               ATO and are identical whether you work in Melbourne, Geelong, Ballarat or Bendigo.
@@ -102,7 +102,7 @@ export default function PayCalculatorVICPage() {
               The salary calculator above will redo this for your number. To see how the brackets
               stack up, read the {SITE_CONFIG.financialYear}{" "}
               <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax brackets</Link>, or model a
-              {" "}<Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> arrangement — many
+              {" "}<Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> arrangement; many
               Victorian health and charity employers offer packaging that cuts taxable income.
             </p>
           </section>
@@ -112,13 +112,13 @@ export default function PayCalculatorVICPage() {
             <H2>Is your Victorian salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               Victoria sits just below the national average. Full-time adults here earn{" "}
-              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week before overtime — behind NSW and WA,
+              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week before overtime, behind NSW and WA,
               a shade ahead of Queensland.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               If your pay is below the award floor rather than below the average, that is a different
-              problem. Most Victorian private-sector employees are covered by federal modern awards —
+              problem. Most Victorian private-sector employees are covered by federal modern awards:
               look yours up in the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link>. Victorian
               state public sector staff (teachers, public hospital nurses, public servants) are usually

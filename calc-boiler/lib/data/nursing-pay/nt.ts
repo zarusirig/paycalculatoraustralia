@@ -39,7 +39,7 @@
 import type { NursingStateData } from "./types";
 
 const EA_SOURCE = {
-  title: "NT Public Sector Nurses and Midwives' 2022–2026 Enterprise Agreement — Schedule 3, Table 1",
+  title: "NT Public Sector Nurses and Midwives' 2022–2026 Enterprise Agreement, Schedule 3, Table 1",
   url: "https://ocpe.nt.gov.au/media/documents/nt-public-sector-employment-information-about-ntps-employment/information-about-ntps-employment/ntps-nurses-and-midwives-2022-2026-enterprise-agreement.PDF",
   publisher: "Office of the Commissioner for Public Employment (NT)",
 };
@@ -51,8 +51,8 @@ export const NT_NURSING_PAY: NursingStateData = {
   code: "NT",
   name: "Northern Territory",
   shortName: "NT",
-  metaTitle: "NT Nurse Pay Rates 2026 — NT Health Nursing & Midwifery Salary",
-  h1: "NT Nurse & Midwife Pay Rates 2026 — NT Public Sector Nursing Pay Scales",
+  metaTitle: "NT Nurse Pay Rates 2026 - NT Health Nursing & Midwifery Salary",
+  h1: "NT Nurse & Midwife Pay Rates 2026 - NT Public Sector Nursing Pay Scales",
   employer: "NT Health (Northern Territory Public Sector)",
   ordinaryHoursPerWeek: 38,
 
@@ -62,7 +62,7 @@ export const NT_NURSING_PAY: NursingStateData = {
       name: "Northern Territory Public Sector Nurses and Midwives' 2022–2026 Enterprise Agreement",
       effectiveFrom: "19 August 2025 (first full pay period on or after 9 August 2025)",
       nextIncrease:
-        "none in force — the agreement passed its nominal expiry on 9 August 2026; an offer of 3% a year from 13 August 2026 depends on a successful ballot and approval of a new agreement",
+        "none in force: the agreement passed its nominal expiry on 9 August 2026; an offer of 3% a year from 13 August 2026 depends on a successful ballot and approval of a new agreement",
       tribunal: "Fair Work Commission",
       reference: "AG2023/2310",
       source: EA_SOURCE,
@@ -199,7 +199,7 @@ export const NT_NURSING_PAY: NursingStateData = {
 
   derivation: {
     hourly:
-      "not shown — Table 1 publishes annual salaries only; the agreement derives fortnightly pay as annual salary x 12 / 313 but prints no hourly column, so this page does not convert",
+      "not shown: Table 1 publishes annual salaries only; the agreement derives fortnightly pay as annual salary x 12 / 313 but prints no hourly column, so this page does not convert",
   },
 
   notReproduced: [
@@ -207,9 +207,9 @@ export const NT_NURSING_PAY: NursingStateData = {
   ],
 
   unverified: [
-    "Shift, weekend and public holiday penalty rates, and the income-related allowances in Table 4 — not transcribed for this page.",
-    "An hourly rate for any NT classification — the agreement publishes annual salaries only.",
-    "Rates under a replacement agreement — the Commissioner's 6 August 2026 offer (3% a year, first increase from 13 August 2026, and a restructured Nurse 2 scale) depends on a ballot and Fair Work Commission approval, and no new agreement was recorded as approved when this page was checked on 24 September 2026.",
+    "Shift, weekend and public holiday penalty rates, and the income-related allowances in Table 4, not transcribed for this page.",
+    "An hourly rate for any NT classification: the agreement publishes annual salaries only.",
+    "Rates under a replacement agreement. The Commissioner's 6 August 2026 offer (3% a year, first increase from 13 August 2026, and a restructured Nurse 2 scale) depends on a ballot and Fair Work Commission approval, and no new agreement was recorded as approved when this page was checked on 24 September 2026.",
     "Bulletin 4 lists the \"current\" Nurse 2.1 rate as $81,479, while the agreement's Table 1 and the OCPE rates page both show $80,665. We publish $80,665; check your payslip if you are at Nurse 2.1.",
   ],
 
@@ -228,12 +228,12 @@ export const NT_NURSING_PAY: NursingStateData = {
 
   extraSources: [
     {
-      title: "Nurses and midwives — NTPS rates of pay (rates effective 19 August 2025)",
+      title: "Nurses and midwives, NTPS rates of pay (rates effective 19 August 2025)",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/rates-of-pay/nurses-and-midwives",
       publisher: "Office of the Commissioner for Public Employment (NT)",
     },
     {
-      title: "Bulletin 4 — Offer for a new Enterprise Agreement (7 August 2026)",
+      title: "Bulletin 4: Offer for a new Enterprise Agreement (7 August 2026)",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/current-enterprise-agreements/enterprise-agreement-negotiations/ntps-nurses-and-midwives-enterprise-agreement/bulletin-4",
       publisher: "Office of the Commissioner for Public Employment (NT)",
     },

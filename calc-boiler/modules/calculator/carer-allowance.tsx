@@ -42,7 +42,7 @@ export default function CarerAllowancePage({ children, afterCalculator }: { chil
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Carer Allowance" title="Carer Allowance 2026 — How Much, Income Limit and Working">
+        <W3Hero crumb="Carer Allowance" title="Carer Allowance 2026: How Much, Income Limit and Working">
           <p>
             Carer Allowance is <strong>{formatAUD(CA.fortnightly, 2)} a fortnight</strong>, a set rate that isn&apos;t taxed. Your wages don&apos;t reduce it: the only income test is that you and your partner&apos;s combined adjusted taxable income is under {formatAUD(CA.incomeLimit)} a year. You can get it on top of Carer Payment, and each brings a {formatAUD(CA.carerSupplementAnnual)} Carer Supplement every year.
           </p>
@@ -70,7 +70,7 @@ export default function CarerAllowancePage({ children, afterCalculator }: { chil
                   <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                     <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Carer Allowance this fortnight</div>
                     <div className="text-4xl font-extrabold text-navy mb-1">{formatAUD(r.ca, 2)}</div>
-                    <div className="text-sm text-warmgray">{r.ca === 0 ? `Combined income is ${formatAUD(CA.incomeLimit)} or more — not eligible` : `${formatAUD(r.ca * FORTNIGHTS, 2)} over 26 fortnights, not taxable`}</div>
+                    <div className="text-sm text-warmgray">{r.ca === 0 ? `Combined income is ${formatAUD(CA.incomeLimit)} or more, not eligible` : `${formatAUD(r.ca * FORTNIGHTS, 2)} over 26 fortnights, not taxable`}</div>
                   </div>
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
                     <Row label="Carer Allowance (fortnight)" value={formatAUD(r.ca, 2)} />

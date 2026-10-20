@@ -81,8 +81,8 @@ export default function ContractorPayCalculatorContent() {
             {[
               "Accurate take-home pay for ABN workers, freelancers, consultants and gig-economy roles",
               "Calculate hourly, daily, weekly, fortnightly and monthly contractor income",
-              "GST integration — shows income with and without GST (10%) for sole traders",
-              `Super choice options — calculate contractor super contributions at ${formatPercent(SUPER_GUARANTEE.rate, 0)}`,
+              "GST integration: shows income with and without GST (10%) for sole traders",
+              `Super choice options: calculate contractor super contributions at ${formatPercent(SUPER_GUARANTEE.rate, 0)}`,
               "ATO-compliant tax estimate based on marginal tax rates and Medicare levy",
               "Real net pay after tax, GST, Medicare and optional super contributions",
             ].map((text, i) => (
@@ -100,7 +100,7 @@ export default function ContractorPayCalculatorContent() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
             <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
-            <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income — you remit it to the ATO." />
+            <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income. You remit it to the ATO." />
             <ResultCard title="Superannuation" desc={`Voluntary or employer-provided super shown separately. The default rate is ${formatPercent(SUPER_GUARANTEE.rate, 0)} from July 2025.`} />
             <ResultCard title="Net Pay" desc="Final contractor take-home pay after tax, Medicare, and contributions. This is what you actually keep." />
             <ResultCard title="Working Weeks" desc="Contractors typically work 46-48 weeks per year (52 minus holidays). Adjust this to match your situation." />
@@ -209,11 +209,11 @@ export default function ContractorPayCalculatorContent() {
             Over <strong>1 million</strong> independent contractors operate in Australia across construction, IT, healthcare, creative industries, and transport. This Australian tax calculator serves 5 primary user groups.
           </p>
           <ul className="list-disc space-y-2 pl-6 text-warmgray">
-            <li><strong>Freelancers and sole traders</strong> — graphic designers, copywriters, and web developers who invoice multiple clients and need to estimate quarterly tax obligations before each BAS lodgement</li>
-            <li><strong>IT contractors</strong> — software engineers, data analysts, and project managers on 6–12 month contracts who compare contractor rates against permanent salary offers</li>
-            <li><strong>Construction and trades contractors</strong> — electricians, plumbers, and builders operating under an ABN who calculate net pay after GST, insurance, and tool expenses</li>
-            <li><strong>Gig-economy workers</strong> — rideshare drivers, delivery riders, and platform workers who need to set aside tax from irregular income streams</li>
-            <li><strong>Business owners evaluating hiring costs</strong> — companies comparing the total cost of engaging a contractor versus hiring a permanent employee on a salary</li>
+            <li><strong>Freelancers and sole traders</strong>: graphic designers, copywriters, and web developers who invoice multiple clients and need to estimate quarterly tax obligations before each BAS lodgement</li>
+            <li><strong>IT contractors</strong>: software engineers, data analysts, and project managers on 6–12 month contracts who compare contractor rates against permanent salary offers</li>
+            <li><strong>Construction and trades contractors</strong>: electricians, plumbers, and builders operating under an ABN who calculate net pay after GST, insurance, and tool expenses</li>
+            <li><strong>Gig-economy workers</strong>: rideshare drivers, delivery riders, and platform workers who need to set aside tax from irregular income streams</li>
+            <li><strong>Business owners evaluating hiring costs</strong>: companies comparing the total cost of engaging a contractor versus hiring a permanent employee on a salary</li>
           </ul>
           <p className="mt-3 text-sm text-warmgray-light">
             Employees looking to convert their salary into an equivalent contractor hourly rate use this calculator alongside the <Link href="/hourly-to-annual-salary-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> to model both scenarios.
@@ -281,7 +281,7 @@ export default function ContractorPayCalculatorContent() {
             </table>
           </div>
           <p className="mt-3 text-sm text-warmgray-light">
-            Figures exclude GST (you remit any GST collected to the ATO). Super is self-funded — contractors choosing to pay themselves the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate should set aside that amount from the annual take-home shown above.
+            Figures exclude GST (you remit any GST collected to the ATO). Super is self-funded. Contractors choosing to pay themselves the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate should set aside that amount from the annual take-home shown above.
           </p>
         </section>
 
@@ -354,7 +354,7 @@ export default function ContractorPayCalculatorContent() {
               <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO &mdash; spend it and the shortfall lands at BAS time.
             </li>
             <li>
-              <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong> — a difficult amount to pay at once.
+              <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong>, a difficult amount to pay at once.
             </li>
             <li>
               <strong>Setting the hourly rate too low:</strong> Pricing contractor rates at the same level as employee hourly rates ignores the <strong>30–40%</strong> loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately <strong>$56–$64/hr</strong> as a contractor.

@@ -56,11 +56,11 @@ export const BARTENDER: Occupation = {
   headline: {
     tableId: "bar-staff",
     label: "Food and beverage attendant grade 2",
-    why: "a bartender pouring, dispensing and mixing drinks — work the award lists at Food and beverage attendant grade 2",
+    why: "a bartender pouring, dispensing and mixing drinks, work the award lists at Food and beverage attendant grade 2",
   },
   coverage: [
     "Bartenders in pubs, hotels, taverns, wine bars, resorts and casinos are covered by the Hospitality Industry (General) Award 2020 [MA000009]. Bar staff in restaurants, cafés and nightclubs are covered by the Restaurant Industry Award 2020 [MA000119], which uses the same food and beverage grades and pays the same minimum rates. Bar staff in registered clubs (RSLs, leagues and bowling clubs) are covered by the Registered and Licensed Clubs Award, which this page does not show.",
-    "The award has no \"bartender\" title. Bar work sits in the food and beverage attendant stream (Schedule A.2.1). Supplying, dispensing and mixing liquor, including selling from the bottle shop, is a grade 2 task. Grade 3 adds mixing a range of sophisticated drinks — cocktail bartending — as well as full control of a cellar or liquor store, attending gaming terminals, and training or supervising lower grades. Grade 1 is glass collecting and table clearing with no service to customers.",
+    "The award has no \"bartender\" title. Bar work sits in the food and beverage attendant stream (Schedule A.2.1). Supplying, dispensing and mixing liquor, including selling from the bottle shop, is a grade 2 task. Grade 3 adds mixing a range of sophisticated drinks (cocktail bartending) as well as full control of a cellar or liquor store, attending gaming terminals, and training or supervising lower grades. Grade 1 is glass collecting and table clearing with no service to customers.",
     "Qualifications move the floor: an employee who has completed a relevant AQF Certificate III and uses those skills must be classified at least at Level 4 (cl 2, definition of appropriate level of training, NOTE 1). Under the Restaurant Award a grade 2 attendant needs a relevant Certificate II to move to grade 3.",
     "A bar supervisor responsible for supervising food and beverage staff or for stock control of one or more bars is a Food and beverage supervisor (level 5).",
     "A junior working as a liquor service employee must be paid the adult rate (cl 13.5).",
@@ -68,11 +68,11 @@ export const BARTENDER: Occupation = {
   tables: [
     {
       id: "bar-staff",
-      title: "Bartender pay rates — Hospitality Award, 2026–27",
+      title: "Bartender pay rates, Hospitality Award, 2026–27",
       intro:
         "Hospitality Award cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading. The Restaurant Award pays the same dollars for the same grades.",
       rows: [
-        hospitalityRow("Level 1", "Food and beverage attendant grade 1", "Glass collecting, clearing tables — no customer service"),
+        hospitalityRow("Level 1", "Food and beverage attendant grade 1", "Glass collecting, clearing tables, no customer service"),
         hospitalityRow("Level 2", "Food and beverage attendant grade 2", "Pouring and mixing drinks, bottle shop, taking payment"),
         hospitalityRow("Level 3", "Food and beverage attendant grade 3", "Sophisticated drinks, cellar control, gaming, training"),
         hospitalityRow("Level 4", "Food and beverage attendant (tradesperson) grade 4", "Apprenticeship in waiting or trade test"),
@@ -100,7 +100,7 @@ export const BARTENDER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a bartender in 2026?",
-      a: "A bartender (Food and beverage attendant grade 2) must be paid at least $27.08 an hour, or $1,029.10 a week, under the Hospitality Award from the first full pay period on or after 1 July 2026 — $53,513 a year full-time before tax. A cocktail bartender or cellar hand at grade 3 gets $27.97 an hour.",
+      a: "A bartender (Food and beverage attendant grade 2) must be paid at least $27.08 an hour, or $1,029.10 a week, under the Hospitality Award from the first full pay period on or after 1 July 2026: $53,513 a year full-time before tax. A cocktail bartender or cellar hand at grade 3 gets $27.97 an hour.",
     },
     {
       q: "What is the casual rate for a bartender?",
@@ -120,8 +120,8 @@ export const BARTENDER: Occupation = {
     },
   ],
   sources: [
-    { title: "Hospitality Industry (General) Award 2020 [MA000009] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(HOSPITALITY_AWARD_REF.code) },
-    { title: "Restaurant Industry Award 2020 [MA000119] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RESTAURANT_AWARD_REF.code) },
+    { title: "Hospitality Industry (General) Award 2020 [MA000009], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(HOSPITALITY_AWARD_REF.code) },
+    { title: "Restaurant Industry Award 2020 [MA000119], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RESTAURANT_AWARD_REF.code) },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(BAR_ATTENDANTS_MEDIAN),

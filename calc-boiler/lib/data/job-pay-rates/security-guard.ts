@@ -94,7 +94,7 @@ export const SECURITY_GUARD: Occupation = {
     "You also need a state or territory security licence for most of this work. Licensing is separate from the award and does not change your minimum rate.",
   ],
   notShown: [
-    "Detailed Level 3 to 5 duty definitions — read Schedule A of the award for those.",
+    "Detailed Level 3 to 5 duty definitions: read Schedule A of the award for those.",
     "Cash-in-transit and armoured vehicle allowances.",
     "Junior and trainee rates.",
   ],
@@ -121,7 +121,7 @@ export const SECURITY_GUARD: Occupation = {
     },
   ],
   sources: [
-    { title: "Security Services Industry Award 2020 [MA000016] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000016") },
+    { title: "Security Services Industry Award 2020 [MA000016], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000016") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

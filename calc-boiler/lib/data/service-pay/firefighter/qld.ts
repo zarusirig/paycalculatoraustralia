@@ -59,57 +59,57 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Recruit",
           salary: 59_730,
-          note: "$2,291.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,241.63 is lower)",
+          note: "$2,291.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,241.63 is lower)",
         },
         {
           label: "Firefighter PP1 (including temporary Firefighter)",
           salary: 71_331,
-          note: "$2,736.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
+          note: "$2,736.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
         },
         {
           label: "Firefighter PP2",
           salary: 71_331,
-          note: "$2,736.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
+          note: "$2,736.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
         },
         {
           label: "First Class Firefighter PP1",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
+          note: "$2,942.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
         },
         {
           label: "First Class Firefighter PP2",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
+          note: "$2,942.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
         },
         {
           label: "First Class Firefighter PP3",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,905.99 is lower)",
+          note: "$2,942.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,905.99 is lower)",
         },
         {
           label: "First Class Firefighter PP4",
           salary: 76_900,
-          note: "$2,949.58 per fortnight — CA25 rate from 1 Aug 2026",
+          note: "$2,949.58 per fortnight: CA25 rate from 1 Aug 2026",
         },
         {
           label: "Senior Firefighter PP1",
           salary: 81_004,
-          note: "$3,107.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,054.44 is lower)",
+          note: "$3,107.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,054.44 is lower)",
         },
         {
           label: "Senior Firefighter PP2",
           salary: 81_004,
-          note: "$3,107.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,085.00 is lower)",
+          note: "$3,107.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,085.00 is lower)",
         },
         {
           label: "Senior Firefighter PP3",
           salary: 83_245,
-          note: "$3,192.98 per fortnight — CA25 rate from 1 Aug 2026",
+          note: "$3,192.98 per fortnight: CA25 rate from 1 Aug 2026",
         },
         {
           label: "Senior Firefighter PP4",
           salary: 84_494,
-          note: "$3,240.88 per fortnight — CA25 rate from 1 Aug 2026",
+          note: "$3,240.88 per fortnight: CA25 rate from 1 Aug 2026",
         },
       ],
     },
@@ -123,22 +123,22 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Leading Firefighter PP1",
           salary: 86_140,
-          note: "$3,304.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,260.00 is lower)",
+          note: "$3,304.00 per fortnight: award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,260.00 is lower)",
         },
         {
           label: "Leading Firefighter PP2",
           salary: 86_268,
-          note: "$3,308.92 per fortnight — CA25 rate from 1 Aug 2026",
+          note: "$3,308.92 per fortnight: CA25 rate from 1 Aug 2026",
         },
-        { label: "Station Officer 1 PP1", salary: 95_010, note: "$3,644.21 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 1 PP2", salary: 95_959, note: "$3,680.64 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 1 PP3", salary: 97_399, note: "$3,735.86 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 2 PP1", salary: 97_443, note: "$3,737.55 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 2 PP2", salary: 98_417, note: "$3,774.91 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 2 PP3", salary: 99_893, note: "$3,831.53 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 3 PP1", salary: 102_369, note: "$3,926.47 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 3 PP2", salary: 103_391, note: "$3,965.69 per fortnight — CA25 rate from 1 Aug 2026" },
-        { label: "Station Officer 3 PP3", salary: 104_942, note: "$4,025.18 per fortnight — CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 1 PP1", salary: 95_010, note: "$3,644.21 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 1 PP2", salary: 95_959, note: "$3,680.64 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 1 PP3", salary: 97_399, note: "$3,735.86 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 2 PP1", salary: 97_443, note: "$3,737.55 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 2 PP2", salary: 98_417, note: "$3,774.91 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 2 PP3", salary: 99_893, note: "$3,831.53 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 3 PP1", salary: 102_369, note: "$3,926.47 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 3 PP2", salary: 103_391, note: "$3,965.69 per fortnight: CA25 rate from 1 Aug 2026" },
+        { label: "Station Officer 3 PP3", salary: 104_942, note: "$4,025.18 per fortnight: CA25 rate from 1 Aug 2026" },
       ],
     },
   ],
@@ -146,7 +146,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   topStep: "Senior Firefighter PP4",
 
   traineePay: [
-    "Recruits are paid a base rate of $2,291.00 per fortnight from 1 September 2026 — the award minimum, which is higher than the CA25 recruit rate of $2,241.63 from 1 August 2026. That is about $59,730 a year before shift allowances.",
+    "Recruits are paid a base rate of $2,291.00 per fortnight from 1 September 2026, the award minimum, which is higher than the CA25 recruit rate of $2,241.63 from 1 August 2026. That is about $59,730 a year before shift allowances.",
     "The award sets the Recruit stage at 16 weeks, followed by 32 months as a Firefighter and 12 months as a First Class Firefighter before Senior Firefighter.",
   ],
   penalties: [
@@ -157,7 +157,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   ],
   notices: [
     "CA25 was certified by the Queensland Industrial Relations Commission on 14 April 2026 and replaced the Queensland Fire and Emergency Services Certified Agreement 2022. Its nominal expiry date is 31 July 2028.",
-    "The 2026 State Wage Case raised award wages by 4.75% from 1 September 2026. Because CA25 guarantees no employee is paid below the award base rate, several lower pay points now sit on the award rate rather than the CA25 rate. QFD's updated wage table, effective 1 September 2026 (page updated 8 October 2026), confirms these rows.",
+    "The 2026 State Wage Case raised award wages by 4.75% from 1 September 2026. Because CA25 provides that no employee is paid below the award base rate, several lower pay points now sit on the award rate rather than the CA25 rate. QFD's updated wage table, effective 1 September 2026 (page updated 8 October 2026), confirms these rows.",
     "A CPI Uplift Adjustment for the year from 1 August 2026 (CUA period 2) is triggered only if the March 2027 Brisbane CPI exceeds 2.5% (capped at 1%). Any such adjustment would be back-paid.",
   ],
   unverified: [
@@ -176,7 +176,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       url: "https://www.fire.qld.gov.au/sites/default/files/2026-10/QFD-CA25-wage-tables-SWC-uplift-20260801.pdf",
     },
     {
-      title: "Queensland Fire Department Certified Agreement 2025 (CA25) — bargaining updates and key documents",
+      title: "Queensland Fire Department Certified Agreement 2025 (CA25): bargaining updates and key documents",
       publisher: "Queensland Fire Department",
       url: "https://www.fire.qld.gov.au/about-us/corporate-knowledge-centre/ca25",
     },
@@ -206,7 +206,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When do Queensland firefighters get their next pay rise?",
-      a: "CA25 gives a further 2.5% from 1 August 2027 — for example the Recruit rate becomes $2,297.67 a fortnight. A CPI top-up of up to 1% can also apply if Brisbane inflation runs above 2.5%.",
+      a: "CA25 gives a further 2.5% from 1 August 2027. For example, the Recruit rate becomes $2,297.67 a fortnight. A CPI top-up of up to 1% can also apply if Brisbane inflation runs above 2.5%.",
     },
   ],
 };

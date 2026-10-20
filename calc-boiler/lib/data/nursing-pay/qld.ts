@@ -31,7 +31,7 @@
 import type { NursingStateData } from "./types";
 
 const WAGE_SCHEDULE = {
-  title: "Nursing stream wage rates — wage rates from 1 April 2026",
+  title: "Nursing stream wage rates: wage rates from 1 April 2026",
   url: "https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing",
   publisher: "Queensland Health",
 };
@@ -42,7 +42,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   name: "Queensland",
   shortName: "QLD",
   metaTitle: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
-  h1: "Queensland Nurse Pay Rates 2026 — Queensland Health Nursing Wages (EB12)",
+  h1: "Queensland Nurse Pay Rates 2026: Queensland Health Nursing Wages (EB12)",
   employer: "Queensland Health (Hospital and Health Services) and the Department of Education",
   ordinaryHoursPerWeek: 38,
 
@@ -51,7 +51,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
       id: "qld-eb12",
       name: "Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025",
       effectiveFrom: "1 April 2026",
-      nextIncrease: "1 April 2027, then 1 December 2027 — Queensland Health already publishes both tables",
+      nextIncrease: "1 April 2027, then 1 December 2027; Queensland Health already publishes both tables",
       tribunal: "Queensland Industrial Relations Commission",
       reference: "Certified agreement CB/2025/126",
       source: WAGE_SCHEDULE,
@@ -69,7 +69,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
         publisher: "Queensland Industrial Relations Commission",
       },
       note:
-        "The parent award supplies the shift and weekend penalties. The certified agreement also guarantees no employee is paid below the corresponding award rate.",
+        "The parent award supplies the shift and weekend penalties. The certified agreement also ensures no employee is paid below the corresponding award rate.",
     },
   ],
 
@@ -95,7 +95,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
         },
       ],
       note:
-        "Queensland pays registered nurses and midwives on one scale. Nurse Grade 5 is the registered nurse and midwife grade — the number is the grade, not the years of service.",
+        "Queensland pays registered nurses and midwives on one scale. Nurse Grade 5 is the registered nurse and midwife grade. The number is the grade, not the years of service.",
     },
     {
       classification: "Enrolled Nurse",
@@ -166,7 +166,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
         { label: "Pay point 4", annual: 152685, fortnightly: 5852.4, hourly: 77.0053, casualHourly: 96.2566 },
       ],
       note:
-        "Queensland puts the clinical nurse consultant and the nurse unit manager on the same grade and the same money — a difference from NSW, where they are separate scales.",
+        "Queensland puts the clinical nurse consultant and the nurse unit manager on the same grade and the same money, a difference from NSW, where they are separate scales.",
     },
     // Grades 9 to 13: read from the same Queensland Health wage schedule ("Wage
     // rates from 1 April 2026", per annum column) on 23 September 2026. Only the
@@ -260,7 +260,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   penalties: [
     {
       instrumentId: "qld-award-2015",
-      clause: "clause 15.12 — shift work and weekend penalties",
+      clause: "clause 15.12, shift work and weekend penalties",
       rows: [
         { label: "Afternoon shift", value: "+12.5%", note: "Shift starting at or after 1200 and before 1800. Nurse Grade 1 gets 15%." },
         { label: "Night shift", value: "+20%", note: "Shift starting at or after 1800 and before 0730. Nurse Grade 1 gets 17.5%." },
@@ -277,7 +277,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
         { label: "Over 10 ordinary hours in a weekend shift", value: "Double time", note: "For the hours beyond 10." },
       ],
       incomplete:
-        "Shift loadings do not stack on weekend penalties — the weekend rate replaces them. Public holiday rates sit in clause 23 and are not reproduced here.",
+        "Shift loadings do not stack on weekend penalties; the weekend rate replaces them. Public holiday rates sit in clause 23 and are not reproduced here.",
     },
   ],
 
@@ -297,10 +297,10 @@ export const QLD_NURSING_PAY: NursingStateData = {
   verifiedOn: "28 August 2026",
 
   intro:
-    "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service — a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade 6, a nurse unit manager or clinical nurse consultant is Grade 7, a nurse practitioner is Grade 8, and Grades 9 to 13 are the director of nursing and executive grades. The rates below are the ones in force from 1 April 2026.",
+    "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service: a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade 6, a nurse unit manager or clinical nurse consultant is Grade 7, a nurse practitioner is Grade 8, and Grades 9 to 13 are the director of nursing and executive grades. The rates below are the ones in force from 1 April 2026.",
 
   highlights: [
-    "A registered nurse or midwife in Queensland starts at $87,790 a year, which is $44.2763 an hour — Queensland Health publishes the hourly rate to four decimal places.",
+    "A registered nurse or midwife in Queensland starts at $87,790 a year, which is $44.2763 an hour. Queensland Health publishes the hourly rate to four decimal places.",
     "The 1 April 2026 rates include a 0.5% CPI Uplift Adjustment that the published agreement PDF does not yet show; the wage schedule is the operative document.",
     "Nurse Grade 5 has seven paid pay points now. Pay point 8 is legislated but does not start paying until 1 December 2027.",
     "Queensland pays the clinical nurse consultant and the nurse unit manager on the same grade and the same money.",

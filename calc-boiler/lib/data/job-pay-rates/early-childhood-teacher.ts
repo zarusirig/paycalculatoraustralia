@@ -69,7 +69,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
   },
   headline: {
     tableId: "long-day-care",
-    label: "Level 1 — long day care",
+    label: "Level 1 (long day care)",
     why: "a graduate early childhood teacher in a long day care centre",
   },
   coverage: [
@@ -81,28 +81,28 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
   tables: [
     {
       id: "long-day-care",
-      title: "Early childhood teacher pay rates — long day care centres",
+      title: "Early childhood teacher pay rates: long day care centres",
       intro:
         "Clause 17.1 long day care weekly rates and annual salaries (services open at least 8 hours a day for 48 weeks or more). Hourly is the weekly rate over 38 hours; casual is the award's 2-hour casual rate halved (Schedule B.1.4).",
       rows: [
-        t("Level 1 — long day care", 1513.6, 78_979, 99.58, "Graduate / provisional registration"),
-        t("Level 2 — long day care", 1654.4, 86_324, 108.84, "Proficient registration"),
-        t("Level 3 — long day care", 1801.0, 93_976, 118.48, "Proficient + 3 years at Level 2"),
-        t("Level 4 — long day care", 1947.7, 101_629, 128.14, "Proficient + 3 years at Level 3"),
-        t("Level 5 — long day care", 2094.3, 109_279, 137.78, "Highly Accomplished / Lead Teacher"),
+        t("Level 1 (long day care)", 1513.6, 78_979, 99.58, "Graduate / provisional registration"),
+        t("Level 2 (long day care)", 1654.4, 86_324, 108.84, "Proficient registration"),
+        t("Level 3 (long day care)", 1801.0, 93_976, 118.48, "Proficient + 3 years at Level 2"),
+        t("Level 4 (long day care)", 1947.7, 101_629, 128.14, "Proficient + 3 years at Level 3"),
+        t("Level 5 (long day care)", 2094.3, 109_279, 137.78, "Highly Accomplished / Lead Teacher"),
       ],
     },
     {
       id: "preschool",
-      title: "Early childhood teacher pay rates — preschools and kindergartens",
+      title: "Early childhood teacher pay rates: preschools and kindergartens",
       intro:
         "Clause 17.1 preschools and schools weekly rates and annual salaries. Casual is the award's 2-hour casual rate for services operating fewer than 48 weeks a year, halved (Schedule B.1.3).",
       rows: [
         t("Level 1 — preschool", 1455.4, 75_941, 95.76),
-        t("Level 2 — preschool", 1590.7, 83_004, 104.66),
-        t("Level 3 — preschool", 1731.7, 90_362, 113.92),
-        t("Level 4 — preschool", 1872.7, 97_720, 123.2),
-        t("Level 5 — preschool", 2013.7, 105_076, 132.48),
+        t("Level 2 (preschool)", 1590.7, 83_004, 104.66),
+        t("Level 3 (preschool)", 1731.7, 90_362, 113.92),
+        t("Level 4 (preschool)", 1872.7, 97_720, 123.2),
+        t("Level 5 (preschool)", 2013.7, 105_076, 132.48),
       ],
     },
   ],
@@ -119,12 +119,12 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
     "Casuals engaged for fewer than 5 consecutive days are paid no higher than the Level 3 rate (cl 17.5(a)).",
   ],
   allowances: [
-    { name: "Director's allowance", amount: "$8,733.22 to $13,137.79 a year", note: "For a full-time teacher appointed director, by number of places — up to 39, 40–59, or more (cl 19.2(b))." },
+    { name: "Director's allowance", amount: "$8,733.22 to $13,137.79 a year", note: "For a full-time teacher appointed director, by number of places (up to 39, 40–59, or more; cl 19.2(b))." },
     { name: "Educational leader allowance", amount: "$4,784.28 a year", note: "For a teacher appointed educational leader (cl 19.4(c))." },
   ],
   median: MEDIAN,
   notices: [
-    "Work in long day care? You are entitled to the long day care rate, 4% above the preschool rate — $1,513.60 a week at Level 1, not $1,455.40.",
+    "Work in long day care? You are entitled to the long day care rate, 4% above the preschool rate: $1,513.60 a week at Level 1, not $1,455.40.",
   ],
   notShown: [
     "Government preschool and kindergarten teacher scales, set by each state.",
@@ -134,7 +134,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for an early childhood teacher in 2026?",
-      a: "A graduate (Level 1) early childhood teacher in a long day care centre must be paid at least $1,513.60 a week — $78,979 a year, about $39.83 an hour — under the Educational Services (Teachers) Award from the first full pay period on or after 1 July 2026. In a preschool or kindergarten the Level 1 minimum is $1,455.40 a week ($75,941 a year).",
+      a: "A graduate (Level 1) early childhood teacher in a long day care centre must be paid at least $1,513.60 a week ($78,979 a year, about $39.83 an hour) under the Educational Services (Teachers) Award from the first full pay period on or after 1 July 2026. In a preschool or kindergarten the Level 1 minimum is $1,455.40 a week ($75,941 a year).",
     },
     {
       q: "What is the casual rate for an early childhood teacher?",
@@ -154,7 +154,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
     },
   ],
   sources: [
-    { title: "Educational Services (Teachers) Award 2020 [MA000077] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000077") },
+    { title: "Educational Services (Teachers) Award 2020 [MA000077], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000077") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

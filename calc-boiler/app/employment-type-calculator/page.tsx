@@ -33,7 +33,7 @@ export const metadata: Metadata = withFeaturedImage({
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Part-Time vs Full-Time vs Casual Calculator — Compare Pay & Entitlements",
+    title: "Part-Time vs Full-Time vs Casual Calculator - Compare Pay & Entitlements",
     description: DESCRIPTION,
     url: PAGE_URL,
     siteName: SITE_CONFIG.name,
@@ -59,7 +59,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Employment Type Calculator — Part-Time vs Full-Time vs Casual",
+  name: "Employment Type Calculator - Part-Time vs Full-Time vs Casual",
   url: PAGE_URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

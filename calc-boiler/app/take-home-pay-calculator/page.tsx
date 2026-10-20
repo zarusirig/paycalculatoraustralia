@@ -32,7 +32,7 @@ const TITLE = `Take Home Pay Calculator Australia ${FY}: Net Pay After Tax`;
 // fitDescription: fuller form first; the shorter form keeps the figure, the FY,
 // "take home pay", "net pay" and "after tax income calculator".
 const DESCRIPTION = fitDescription(
-  `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator — enter weekly, fortnightly, monthly or annual pay.`,
+  `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator: enter weekly, fortnightly, monthly or annual pay.`,
   `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator for weekly, fortnightly or annual pay.`,
 );
 
@@ -41,7 +41,7 @@ export const metadata: Metadata = withFeaturedImage({
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: "Net pay and after tax income — tax, Medicare, HECS & super." },
+  twitter: { card: "summary_large_image", title: TITLE, description: "Net pay and after tax income: tax, Medicare, HECS & super." },
 });
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [

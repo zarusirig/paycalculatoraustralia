@@ -43,15 +43,15 @@ export const NT: Jurisdiction = {
   headline:
     "From 13 August 2026 a Northern Territory public servant at AO4 is paid $79,664 to $90,824, at AO5 $93,674 to $98,332, at AO6 $102,505 to $114,282 and at AO7 $120,877 to $130,039, under the Northern Territory Public Sector 2025–2029 Enterprise Agreement. The administrative stream runs from $63,931 at AO2 to $171,482 at the top of SAO2.",
 
-  metaTitle: "NT Public Sector Pay Scales 2026 — AO2 to SAO2 Salaries",
+  metaTitle: "NT Public Sector Pay Scales 2026 - AO2 to SAO2 Salaries",
   metaDescription:
     "NT public sector pay from 13 August 2026: every AO2–AO7, SAO1–2 and EO2–3 pay point ($63,931 to $187,176) from the NTPS 2025–2029 EA, with take-home pay.",
 
   instrument:
-    "The Northern Territory Public Sector 2025–2029 Enterprise Agreement, a single-enterprise agreement approved by the Fair Work Commission on 30 January 2026 (AG2025/4592). It covers NT Public Sector employees in the general classifications — administrative, professional, technical, physical and others — with salaries in Part A of Schedule 11. Teachers, nurses and some other groups have their own NTPS agreements.",
+    "The Northern Territory Public Sector 2025–2029 Enterprise Agreement, a single-enterprise agreement approved by the Fair Work Commission on 30 January 2026 (AG2025/4592). It covers NT Public Sector employees in the general classifications (administrative, professional, technical, physical and others), with salaries in Part A of Schedule 11. Teachers, nurses and some other groups have their own NTPS agreements.",
 
   payRise:
-    "The agreement makes four increases: 3% from 17 November 2025, 3% from the first full pay period on or after 10 August 2026 (13 August 2026), 3.5% from the first full pay period on or after 10 August 2027, and 3.5% from the first full pay period on or after 10 August 2028 with any Darwin CPI above 3.5% added (clause 35.3). The rates on this page are the 13 August 2026 column. The next increase is 3.5% from 12 August 2027 — for example AO2 rises from $63,931 to $66,169.",
+    "The agreement makes four increases: 3% from 17 November 2025, 3% from the first full pay period on or after 10 August 2026 (13 August 2026), 3.5% from the first full pay period on or after 10 August 2027, and 3.5% from the first full pay period on or after 10 August 2028 with any Darwin CPI above 3.5% added (clause 35.3). The rates on this page are the 13 August 2026 column. The next increase is 3.5% from 12 August 2027. For example, AO2 rises from $63,931 to $66,169.",
 
   schedules: [
     {
@@ -62,7 +62,7 @@ export const NT: Jurisdiction = {
       basis: "agreement",
       effectiveFrom: "13 August 2026",
       rangeMeaning:
-        "First and last pay point of the designation. Annual full-time salary only — superannuation is paid on top.",
+        "First and last pay point of the designation. Annual full-time salary only; superannuation is paid on top.",
       sourceId: "nt-ea-2025",
       streams: [
         {
@@ -221,7 +221,7 @@ export const NT: Jurisdiction = {
   sources: [
     {
       id: "nt-ea-2025",
-      title: "Northern Territory Public Sector 2025–2029 Enterprise Agreement (AG2025/4592) — Schedule 11, Part A",
+      title: "Northern Territory Public Sector 2025–2029 Enterprise Agreement (AG2025/4592), Schedule 11, Part A",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: "https://ocpe.nt.gov.au/__data/assets/pdf_file/0008/1590713/ntps-2025-2029-enterprise-agreement.pdf",
       effectiveFrom: "13 August 2026",
@@ -230,17 +230,17 @@ export const NT: Jurisdiction = {
     },
     {
       id: "nt-ocpe-admin-rates",
-      title: "General NTPS — administrative stream — rates of pay (rates effective 13 August 2026)",
+      title: "General NTPS, administrative stream, rates of pay (rates effective 13 August 2026)",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/rates-of-pay/general-ntps-administrative-stream",
       effectiveFrom: "13 August 2026",
       verifiedOn: VERIFIED,
-      note: "Prints the same AO2 to EO3 figures — the second source for every figure on this page.",
+      note: "Prints the same AO2 to EO3 figures, the second source for every figure on this page.",
     },
   ],
 
   unverified: [
-    "Professional, technical, physical and other streams in Schedule 11 — published in the same agreement but not transcribed here.",
+    "Professional, technical, physical and other streams in Schedule 11, published in the same agreement but not transcribed here.",
     "Executive contract officer remuneration above EO3, which is set outside the agreement.",
     "NT teachers, nurses, police and other groups on their own agreements (see the teacher and nurse pages).",
     "Remote and district allowances, which vary by location and are not reproduced.",

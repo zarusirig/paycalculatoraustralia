@@ -6,7 +6,7 @@ export default function MinimumWageIncreaseJuly2026() {
     <>
       <p className="lead">
         The Fair Work Commission has lifted the national minimum wage by <strong>6%</strong> from
-        1 July 2026, taking it from $24.95 to <strong>$26.44 an hour</strong> — $1,004.90 for a
+        1 July 2026, taking it from $24.95 to <strong>$26.44 an hour</strong>, or $1,004.90 for a
         38-hour week. Modern award minimum rates rise a separate <strong>4.75%</strong>, a change
         that flows to award-reliant workers.
       </p>
@@ -30,14 +30,14 @@ export default function MinimumWageIncreaseJuly2026() {
         sitting above the Reserve Bank&apos;s target band and global fuel supply disruption.
       </p>
       <p>
-        The decision also starts a three-stage phase-out of the C13 classification — the lowest
-        ongoing rate in the award system — with the first stage taking effect from 1 July 2026.
+        The decision also starts a three-stage phase-out of the C13 classification (the lowest
+        ongoing rate in the award system), with the first stage taking effect from 1 July 2026.
       </p>
 
       <h2>Who gets the increase</h2>
       <p>
-        The rise applies to employees on the national minimum wage and the workers — about 23% of
-        employees, according to the ABS (May 2025) — whose pay is set only by a modern award. If you&apos;re on
+        The rise applies to employees on the national minimum wage and the workers, about 23% of
+        employees, according to the ABS (May 2025), whose pay is set only by a modern award. If you&apos;re on
         an enterprise agreement or an over-award salary, nothing changes automatically, though many
         agreements index their rates to the review. Check your award classification on our{" "}
         <Link href="/award-rates/">award rates guide</Link> if you&apos;re not sure which rate
@@ -47,13 +47,13 @@ export default function MinimumWageIncreaseJuly2026() {
       <h2>When it starts</h2>
       <p>
         The new rates apply from the first full pay period starting on or after 1 July 2026. If your
-        pay cycle runs Wednesday to Tuesday, the new rate begins on the first Wednesday in July —
+        pay cycle runs Wednesday to Tuesday, the new rate begins on the first Wednesday in July:
         your first full July payslip may still show a few days at the old rate.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        A full-time minimum-wage worker picks up about $56.90 a week before tax — roughly $2,959 a
+        A full-time minimum-wage worker picks up about $56.90 a week before tax, roughly $2,959 a
         year. Because the increase is taxed at your marginal rate, your take-home rise will be
         smaller: run your new rate through our{" "}
         <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link>{" "}

@@ -32,7 +32,7 @@ function TakeHomePayHubPage() {
         crumb: "Take-Home Pay by Salary",
         intro: (
           <p>
-            Take-home pay for {TAKE_HOME_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} on {SITE_CONFIG.financialYear} rates — every
+            Take-home pay for {TAKE_HOME_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} on {SITE_CONFIG.financialYear} rates: every
             $5,000 up to $200,000, then wider steps. Pick a salary for the weekly, fortnightly and monthly figures, the HECS-HELP case, super and the
             jobs whose median full-time pay is closest to it. For a figure between two pages, use the{" "}
             <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay calculator</Link>.

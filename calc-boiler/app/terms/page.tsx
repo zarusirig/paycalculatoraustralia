@@ -9,9 +9,9 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/terms/`;
-const TITLE = "Terms of Use — Pay Calculator Australia";
+const TITLE = "Terms of Use - Pay Calculator Australia";
 const DESCRIPTION =
-  "Terms of use for Pay Calculator Australia. Our calculators provide estimates based on official ATO rates — not financial advice. Read our full terms.";
+  "Terms of use for Pay Calculator Australia. Our calculators provide estimates based on official ATO rates, not financial advice. Read our full terms.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
@@ -176,7 +176,7 @@ function TermsPage() {
             <p className="mb-3 leading-relaxed text-warmgray">
               We take great care to ensure all figures are sourced from official
               government publications (ATO, Fair Work Commission, Services
-              Australia). However, we cannot guarantee that all information is
+              Australia). However, we cannot promise that all information is
               complete, current, or error-free at all times.
             </p>
             <p className="leading-relaxed text-warmgray">

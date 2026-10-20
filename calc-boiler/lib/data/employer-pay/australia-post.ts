@@ -50,18 +50,18 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.225,
   rates: [
-    { level: "Trainee Postal Delivery Officer (adult)", description: "New postie, for the first 3 months — $56,075 a year. Trainee Mail Officers and Parcel Post Officers are paid the same", hourly: 29.25, casualHourly: 35.83, annualSalary: 56075 },
-    { level: "Postal Delivery Officer — pay point 1", description: "Qualified postie, lowest point — $59,948 a year (Mail Officers the same)", hourly: 31.27, casualHourly: 38.31, annualSalary: 59948 },
-    { level: "Postal Delivery Officer — pay point 3", description: "Where Delivery Centre posties start after the trainee period (cl 11.8.4) — $64,138 a year", hourly: 33.46, casualHourly: 40.99, annualSalary: 64138 },
-    { level: "Postal Delivery Officer — pay point 5", description: "Top of the postie scale — $66,906 a year", hourly: 34.9, casualHourly: 42.75, annualSalary: 66906 },
+    { level: "Trainee Postal Delivery Officer (adult)", description: "New postie, for the first 3 months: $56,075 a year. Trainee Mail Officers and Parcel Post Officers are paid the same", hourly: 29.25, casualHourly: 35.83, annualSalary: 56075 },
+    { level: "Postal Delivery Officer — pay point 1", description: "Qualified postie, lowest point: $59,948 a year (Mail Officers the same)", hourly: 31.27, casualHourly: 38.31, annualSalary: 59948 },
+    { level: "Postal Delivery Officer — pay point 3", description: "Where Delivery Centre posties start after the trainee period (cl 11.8.4): $64,138 a year", hourly: 33.46, casualHourly: 40.99, annualSalary: 64138 },
+    { level: "Postal Delivery Officer — pay point 5", description: "Top of the postie scale: $66,906 a year", hourly: 34.9, casualHourly: 42.75, annualSalary: 66906 },
     { level: "Senior Postal Delivery Officer Grade 1", description: "$69,302 a year", hourly: 36.15, casualHourly: 44.28, annualSalary: 69302 },
-    { level: "Trainee Postal Services Officer (adult)", description: "New Post Office counter staff member, for the first 3 months — $56,979 a year", hourly: 29.72, casualHourly: 36.41, annualSalary: 56979 },
-    { level: "Postal Services Officer — pay point 1", description: "Post Office counter staff, lowest point — $60,903 a year", hourly: 31.77, casualHourly: 38.92, annualSalary: 60903 },
-    { level: "Postal Services Officer — pay point 5", description: "Top of the counter staff scale — $73,050 a year", hourly: 38.1, casualHourly: 46.67, annualSalary: 73050 },
+    { level: "Trainee Postal Services Officer (adult)", description: "New Post Office counter staff member, for the first 3 months: $56,979 a year", hourly: 29.72, casualHourly: 36.41, annualSalary: 56979 },
+    { level: "Postal Services Officer — pay point 1", description: "Post Office counter staff, lowest point: $60,903 a year", hourly: 31.77, casualHourly: 38.92, annualSalary: 60903 },
+    { level: "Postal Services Officer — pay point 5", description: "Top of the counter staff scale: $73,050 a year", hourly: 38.1, casualHourly: 46.67, annualSalary: 73050 },
   ],
   juniorScale: [],
   juniorNote:
-    "Australia Post does not pay junior rates to permanent employees: a permanent employee under 21 gets the adult rate (cl 11.6.1). Casual and fixed-term juniors in listed classifications are paid 50% of the adult salary under 17, 60% at 17, 70% at 18, 81% at 19 and 91% at 20 — for a junior trainee postie that is $28,044 to $51,031 a year in the Booklet.",
+    "Australia Post does not pay junior rates to permanent employees: a permanent employee under 21 gets the adult rate (cl 11.6.1). Casual and fixed-term juniors in listed classifications are paid 50% of the adult salary under 17, 60% at 17, 70% at 18, 81% at 19 and 91% at 20. For a junior trainee postie that is $28,044 to $51,031 a year in the Booklet.",
   penalties: [
     { when: "Monday to Friday", permanent: "Ordinary rate", casual: "Ordinary rate + 22.5%" },
     { when: "Shift any part of which falls between 6pm and 6.30am", permanent: "+ 15% of salary for that shift", casual: "+ 15%, plus the 22.5% loading" },
@@ -71,8 +71,8 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Penalties are percentages of the ordinary hourly rate (cl 18.1). They stand alone: they are not counted in overtime and not paid on top of another penalty (cl 18.2).",
-    "Casuals get the same penalties as permanent staff, in addition to the 22.5% loading — the two are added, not multiplied (cl 10.3).",
-    "For a trainee postie ($29.25 an hour) that is $43.88 on a Saturday ($50.46 casual) and $58.50 on a Sunday ($65.08 casual) — our arithmetic.",
+    "Casuals get the same penalties as permanent staff, in addition to the 22.5% loading: the two are added, not multiplied (cl 10.3).",
+    "For a trainee postie ($29.25 an hour) that is $43.88 on a Saturday ($50.46 casual) and $58.50 on a Sunday ($65.08 casual), our arithmetic.",
   ],
   allowances: [
     {
@@ -94,8 +94,8 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
     "These rates are for Australia Post itself. Staff at Licensed Post Offices work for the private licensee and are usually paid under the General Retail Industry Award, and StarTrack has its own agreements.",
   ],
   unverified: [
-    "The exact date the September 2026 rise started — \"the first full pay period in September\", which Australia Post does not print.",
-    "Other scales (transport, administrative, Postal Manager, co-ordinator and team roles) — in the Booklet but not shown here.",
+    "The exact date the September 2026 rise started: \"the first full pay period in September\", which Australia Post does not print.",
+    "Other scales (transport, administrative, Postal Manager, co-ordinator and team roles): in the Booklet but not shown here.",
     "Casual hourly rates are the formula rate plus 22.5%, rounded to the cent; the union's table can differ by a cent.",
   ],
   sources: [
@@ -117,7 +117,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
     },
     {
       q: "Does Australia Post pay weekend penalty rates?",
-      a: "Yes. Ordinary Saturday duty is paid at 50% extra and Sunday at 100% extra — $43.88 and $58.50 an hour for a trainee postie. Public holiday duty earns an extra time and a half. Casuals get these on top of their 22.5% loading.",
+      a: "Yes. Ordinary Saturday duty is paid at 50% extra and Sunday at 100% extra: $43.88 and $58.50 an hour for a trainee postie. Public holiday duty earns an extra time and a half. Casuals get these on top of their 22.5% loading.",
     },
     {
       q: "When is the next Australia Post pay rise?",

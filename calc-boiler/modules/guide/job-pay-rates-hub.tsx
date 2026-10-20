@@ -28,7 +28,7 @@ export const JOB_PAY_HUB_FAQS = [
   },
   {
     q: "What if my job is not covered by an award?",
-    a: "Award-free employees are still entitled to the National Minimum Wage — $26.44 an hour or $1,004.90 a week for adults from 1 July 2026 — and the National Employment Standards. Accountants are one example: see the accountant page.",
+    a: "Award-free employees are still entitled to the National Minimum Wage ($26.44 an hour or $1,004.90 a week for adults from 1 July 2026) and the National Employment Standards. Accountants are one example: see the accountant page.",
   },
   {
     q: "Why can the same job fall under different awards?",
@@ -92,7 +92,7 @@ export default function JobPayRatesHubPage() {
 
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            Job Pay Rates Australia 2026 — Award Minimums by Occupation
+            Job Pay Rates Australia 2026: Award Minimums by Occupation
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             The minimum hourly, casual and weekly pay for {OCCUPATIONS.length} common jobs, read from each job&rsquo;s
@@ -110,7 +110,7 @@ export default function JobPayRatesHubPage() {
               <p>
                 The award minimum is for the classification named in the second column; each job page explains why
                 that classification fits and lists every other level. The median is Jobs and Skills Australia&rsquo;s figure for full-time
-                employees in the occupation. Jobs are grouped by sector; several — chefs, baristas, lab technicians —
+                employees in the occupation. Jobs are grouped by sector; several (chefs, baristas, lab technicians)
                 are covered by different awards depending on the employer, and their pages show each one.
               </p>
               <nav aria-label="Jobs by sector" className="not-prose mb-6 flex flex-wrap gap-2 text-sm">
@@ -127,7 +127,7 @@ export default function JobPayRatesHubPage() {
               {SECTORS_WITH_JOBS.map((sector) => (
                 <div key={sector.id} id={sector.id} className="scroll-mt-24">
                   <h3 style={HEADING_FONT}>{sector.title}</h3>
-                  <TableShell minWidth="46rem" caption={`Minimum pay by job, 2026–27 — ${sector.title}`}>
+                  <TableShell minWidth="46rem" caption={`Minimum pay by job, 2026–27: ${sector.title}`}>
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th scope="col" className="px-4 py-3">Job</th>
@@ -194,7 +194,7 @@ export default function JobPayRatesHubPage() {
               <h2 style={HEADING_FONT}>How to read an award rate</h2>
               <p>
                 An award sets a minimum for each classification. Your classification depends on your duties,
-                qualifications and experience as the award defines them — not your job title. The weekly rate is for a
+                qualifications and experience as the award defines them, not your job title. The weekly rate is for a
                 38-hour full-time week; part-timers get the same hourly rate; casuals get the hourly rate plus a 25%
                 casual loading instead of paid leave.
               </p>

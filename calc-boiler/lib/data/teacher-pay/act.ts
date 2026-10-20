@@ -9,7 +9,7 @@
 // 4 Dec 2025" — is what this file publishes, because clause C2.2.7 is the final
 // increase the agreement makes.
 //
-// Cross-check: act.gov.au's "Careers in education — pay and benefits" page
+// Cross-check: act.gov.au's "Careers in education: pay and benefits" page
 // (last updated 20 May 2026) quotes "a starting salary of between $91,396 to
 // $104,314 from December 2025", "$108,619 to $129,106" for experienced
 // teachers, "$145,938 to $149,107" for school leader C, "$168,900 to $173,125"
@@ -28,7 +28,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   code: "ACT",
   name: "Australian Capital Territory",
   nameInSentence: "the ACT",
-  h1: "ACT Teacher Salary 2026 — Teacher Level 1 to 8 Pay Scale",
+  h1: "ACT Teacher Salary 2026: Teacher Level 1 to 8 Pay Scale",
   classificationNote:
     "The ACT classroom teacher scale is Teacher Level 1 to Teacher Level 8. Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage; those are development stages, not separate pay classifications.",
   principalScaleIds: ["school-leaders"],
@@ -44,12 +44,12 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   scales: [
     {
       id: "teacher-levels",
-      title: "Teacher Level 1 to 8 — the classroom teacher scale",
+      title: "Teacher Level 1 to 8: the classroom teacher scale",
       intro:
-        "The scale every ACT public school teacher is paid on. Teacher Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage — those are development stages, not separate pay classifications.",
+        "The scale every ACT public school teacher is paid on. Teacher Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage. Those are development stages, not separate pay classifications.",
       stepHeading: "Classification",
       steps: [
-        { label: "Teacher Level 1", salary: 91_396, note: "New Educator — graduate entry point" },
+        { label: "Teacher Level 1", salary: 91_396, note: "New Educator, graduate entry point" },
         { label: "Teacher Level 2", salary: 100_006, note: "New Educator" },
         { label: "Teacher Level 3", salary: 104_314, note: "New Educator" },
         { label: "Teacher Level 4", salary: 108_619, note: "Experienced Teacher" },
@@ -59,7 +59,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
         {
           label: "Teacher Level 8",
           salary: 129_106,
-          note: "Experienced Teacher — top of the scale",
+          note: "Experienced Teacher, top of the scale",
         },
       ],
     },
@@ -73,7 +73,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "school-leaders",
-      title: "School leaders — executive teacher, deputy principal and principal",
+      title: "School leaders: executive teacher, deputy principal and principal",
       intro:
         "The agreement's local designations: School Leader C is an executive teacher, School Leader B a deputy principal, and School Leader A a principal.",
       stepHeading: "Classification",
@@ -100,7 +100,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Everyone moves on the same day: 27 January",
       body: [
-        "Annex A is explicit — all classroom teachers have a common increment date of 27 January each year. You do not move on your own start-date anniversary; the whole teaching service steps together.",
+        "Annex A is explicit: all classroom teachers have a common increment date of 27 January each year. You do not move on your own start-date anniversary; the whole teaching service steps together.",
         "Periods of leave without pay can push your increment date out. The agreement delegates the detail to the Guidelines for Maintaining a Common Increment Date.",
       ],
     },
@@ -108,7 +108,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       heading: "Where you start depends on prior experience, counted in full years",
       body: [
         "Clause Q1.8: teachers are placed on the Teacher Level Classification Structure based on recognition of qualifications and prior experience, including both teaching and other work experience. All prior experience is recognised in full years only.",
-        "That means a career changer can start above Teacher Level 1 — but a part-year of experience counts for nothing until it becomes a full year.",
+        "That means a career changer can start above Teacher Level 1, but a part-year of experience counts for nothing until it becomes a full year.",
       ],
     },
     {
@@ -122,7 +122,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       heading: "Highly Accomplished and Lead certification is paid, either way",
       body: [
         "Clause N6.3 requires the head of service to financially reward teachers who achieve certification at the Highly Accomplished or Lead career stage. The reward takes effect from 27 January each year.",
-        "If you are not yet at the top of your structure, it is an additional salary increment. If you are already at the top of the Teacher Level structure or at the top of School Leader C, it is a HALT payment instead — $7,495 from December 2025, paid fortnightly for one calendar year.",
+        "If you are not yet at the top of your structure, it is an additional salary increment. If you are already at the top of the Teacher Level structure or at the top of School Leader C, it is a HALT payment instead: $7,495 from December 2025, paid fortnightly for one calendar year.",
       ],
     },
     {
@@ -140,20 +140,20 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   ],
 
   unverified: [
-    "Rates under any replacement agreement — bargaining is under way and nothing has been approved for teaching staff, so no future rate is shown.",
+    "Rates under any replacement agreement. Bargaining is under way and nothing has been approved for teaching staff, so no future rate is shown.",
     "The superseded Classroom Teacher 1.1/2.1/3.1 structure, abolished on 27 January 2024.",
-    "The detailed increment mechanics, which clause C5 delegates to the Guidelines for Incremental Salary Advancement, the Guidelines for Maintaining a Common Increment Date and the Teacher Performance and Development Guidelines — separate documents not published with the agreement.",
+    "The detailed increment mechanics, which clause C5 delegates to the Guidelines for Incremental Salary Advancement, the Guidelines for Maintaining a Common Increment Date and the Teacher Performance and Development Guidelines, which are separate documents not published with the agreement.",
   ],
 
   sources: [
     {
       title:
-        "ACT Public Sector Education Directorate (Teaching Staff) Enterprise Agreement 2023-2026 — Annex A",
+        "ACT Public Sector Education Directorate (Teaching Staff) Enterprise Agreement 2023-2026, Annex A",
       publisher: "ACT Chief Minister, Treasury and Economic Development Directorate",
       url: "https://www.cmtedd.act.gov.au/__data/assets/pdf_file/0006/2269437/Education-Directorate-Teaching-Staff-Enterprise-Agreement-2023-2026.pdf",
     },
     {
-      title: "Careers in education — pay and benefits",
+      title: "Careers in education: pay and benefits",
       publisher: "ACT Government",
       url: "https://www.act.gov.au/work-with-act-government/careers-in-education/pay-and-benefits",
     },
@@ -167,7 +167,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "What is the graduate teacher salary in the ACT?",
-      a: "A new teacher starts at Teacher Level 1, $91,396 a year, from the first full pay period on or after 4 December 2025. A teacher with recognised prior experience can start higher — the ACT recognises prior experience in full years only.",
+      a: "A new teacher starts at Teacher Level 1, $91,396 a year, from the first full pay period on or after 4 December 2025. A teacher with recognised prior experience can start higher. The ACT recognises prior experience in full years only.",
     },
     {
       q: "What is the top of the ACT teacher pay scale?",

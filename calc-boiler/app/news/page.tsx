@@ -10,7 +10,7 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
-const TITLE = "Australian Pay & Tax News — Wage, Super & Tax Changes";
+const TITLE = "Australian Pay & Tax News - Wage, Super & Tax Changes";
 const DESCRIPTION = "The latest Australian pay news: minimum wage decisions, tax changes, super rules, HECS updates and Centrelink increases, and what each means for your take-home pay.";
 
 export const metadata: Metadata = withFeaturedImage({

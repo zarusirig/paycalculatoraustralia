@@ -46,7 +46,7 @@ export default function DisabilitySupportPensionCalculatorContent() {
   return (
     <>
       <W3Section title="DSP Rates From 20 September 2026">
-        <p className={P}>If you are 21 or older, or younger than 21 with a child in your care, DSP is paid at the pension rate — the same figures as the Age Pension, adjusted every 20 March and 20 September.</p>
+        <p className={P}>If you are 21 or older, or younger than 21 with a child in your care, DSP is paid at the pension rate: the same figures as the Age Pension, adjusted every 20 March and 20 September.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Per fortnight</th><th scope="col" className={TH + " text-right"}>Single</th><th scope="col" className={TH + " text-right"}>Couple each</th><th scope="col" className={TH + " text-right"}>Couple combined</th></tr></thead>
@@ -62,7 +62,7 @@ export default function DisabilitySupportPensionCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">A couple separated due to ill health each get the single rate. Services Australia&apos;s DSP page shows the couple Pension Supplement as $65.50 each, but its total ({formatAUD(R.coupleEach.total, 2)}) only adds up with {formatAUD(R.coupleEach.supplement, 2)} — the figure in the DSS rates list and on the Age Pension page, which we use.</p>
+        <p className="mt-2 text-xs text-warmgray-light">A couple separated due to ill health each get the single rate. Services Australia&apos;s DSP page shows the couple Pension Supplement as $65.50 each, but its total ({formatAUD(R.coupleEach.total, 2)}) only adds up with {formatAUD(R.coupleEach.supplement, 2)}, the figure in the DSS rates list and on the Age Pension page, which we use.</p>
         <h3 className="font-semibold text-navy mt-6 mb-2">Under 21 with no children</h3>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
@@ -119,12 +119,12 @@ export default function DisabilitySupportPensionCalculatorContent() {
       <W3Section title="How Many Hours Can You Work on DSP?">
         <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
           <li><strong>Up to {DSP.maxWorkHoursPerWeek} hours a week:</strong> you keep DSP, and your pay goes through the income test.</li>
-          <li><strong>{DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis:</strong> DSP is suspended for up to {DSP.suspensionYears} years. You keep your Pensioner Concession Card, and can ask for DSP to be restored within that time if your hours or income drop — no new claim.</li>
+          <li><strong>{DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis:</strong> DSP is suspended for up to {DSP.suspensionYears} years. You keep your Pensioner Concession Card, and can ask for DSP to be restored within that time if your hours or income drop, with no new claim.</li>
           <li><strong>Exceptions:</strong> work in an Australian Disability Enterprise, under the Supported Wage System, or with ongoing Inclusive Employment Australia support doesn&apos;t trigger the suspension.</li>
           <li><strong>Pay over the cut-off:</strong> DSP is $0 for that fortnight. After more than {DSP.nilRateFortnights} fortnights in a row at $0, DSP is suspended (or cancelled if it&apos;s your partner&apos;s income on a payment like JobSeeker doing it).</li>
           <li><strong>Report every 2 weeks:</strong> your and your partner&apos;s gross pay and the hours you worked. Tell Services Australia within 14 days when you start work.</li>
         </ul>
-        <Note>To turn an hourly rate into the fortnightly gross the calculator needs, use the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>. DSP is tax-free under Age Pension age, so tax on your wages is the only tax in the picture — see the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</Note>
+        <Note>To turn an hourly rate into the fortnightly gross the calculator needs, use the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>. DSP is tax-free under Age Pension age, so tax on your wages is the only tax in the picture. See the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</Note>
       </W3Section>
 
       <W3Section title="DSP Assets Test">
@@ -140,14 +140,14 @@ export default function DisabilitySupportPensionCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Under 21 with no children, DSP stops above {formatAUD(DSP.under21AssetsCutOff.age16to17Dependent.homeowner)} (16–17, dependent, homeowner) to {formatAUD(DSP.under21AssetsCutOff.age16to20Independent.nonHomeowner)} (independent, non-homeowner). Run your own figures on the <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link> — the 21+ limits are identical.</p>
+        <p className="mt-2 text-xs text-warmgray-light">Under 21 with no children, DSP stops above {formatAUD(DSP.under21AssetsCutOff.age16to17Dependent.homeowner)} (16–17, dependent, homeowner) to {formatAUD(DSP.under21AssetsCutOff.age16to20Independent.nonHomeowner)} (independent, non-homeowner). Run your own figures on the <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link>; the 21+ limits are identical.</p>
       </W3Section>
 
       <W3Section title="Who Can Get DSP">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
           <li>You have a physical, intellectual or psychiatric condition that is likely to persist for more than {DSP.conditionYears} years and stops you from working, and you meet the medical rules.</li>
           <li>You are at least {DSP.minClaimAge} and under Age Pension age when you claim, and meet the residence rules and the income and assets tests.</li>
-          <li>If you are under {DSP.participationUnderAge} you may have participation requirements — a compulsory work-focused activity with an employment services provider.</li>
+          <li>If you are under {DSP.participationUnderAge} you may have participation requirements: a compulsory work-focused activity with an employment services provider.</li>
           <li>DSP is taxable only once you reach Age Pension age; you can then choose to transfer to the Age Pension.</li>
         </ul>
       </W3Section>
@@ -159,9 +159,9 @@ export default function DisabilitySupportPensionCalculatorContent() {
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
           <li>DSP = maximum rate − 50c per $1 of assessable income over {formatAUD(IT.single.freeArea)} (single), or − 25c per combined $1 over {formatAUD(IT.couple.freeArea)} for each member of a couple, floored at $0. For 21+ this reproduces Services Australia&apos;s published cut-offs exactly (tests assert it).</li>
-          <li>Under-21 maximum rates are as published and exclude Pharmaceutical Allowance and Energy Supplement, which the published cut-offs include — so the calculator reaches $0 slightly earlier than Services Australia&apos;s figure.</li>
+          <li>Under-21 maximum rates are as published and exclude Pharmaceutical Allowance and Energy Supplement, which the published cut-offs include, so the calculator reaches $0 slightly earlier than Services Australia&apos;s figure.</li>
           <li>Hours rule: up to {DSP.maxWorkHoursPerWeek} hours a week keeps DSP; {DSP.suspensionHoursPerWeek}+ ongoing suspends it. The calculator flags the hours; it doesn&apos;t decide whether hours are &ldquo;ongoing&rdquo;.</li>
-          <li>Rates and rules read at Services Australia on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
+          <li>Rates and rules read at Services Australia on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>
       </MethodologyDisclosure>
 

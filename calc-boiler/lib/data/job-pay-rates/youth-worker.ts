@@ -91,7 +91,7 @@ export const YOUTH_WORKER: Occupation = {
     why: "a youth worker with a Certificate IV or a diploma in youth work or community services, the common entry qualification for the role",
   },
   coverage: [
-    "Youth workers employed by community organisations, youth services, youth refuges and similar non-government providers are covered by the Social, Community, Home Care and Disability Services Industry Award 2010 — the SCHADS Award [MA000100]. The award's definition of the social and community services sector includes youth work by name.",
+    "Youth workers employed by community organisations, youth services, youth refuges and similar non-government providers are covered by the Social, Community, Home Care and Disability Services Industry Award 2010, the SCHADS Award [MA000100]. The award's definition of the social and community services sector includes youth work by name.",
     "The award has no classification called youth worker. It grades roles in the Social and community services stream (Schedule B) by qualification and responsibility. A youth worker with a relevant certificate is appointed at Level 2; with a Certificate IV the minimum is pay point 2, and a diploma commences at pay point 2 too. A youth worker who supervises staff or volunteers, including managing the day-to-day operations of a group of residential facilities for persons with a disability, is at Level 3, where a three-year degree commences no lower than pay point 3 and a four-year degree no lower than pay point 4.",
     "Rates for Levels 2 and up already include the Equal Remuneration Order uplift, which the award says forms part of ordinary pay for all purposes. Level 1 carries no uplift and is for entry-level work under close direction.",
     "State government youth justice and child protection workers are generally employed under state public sector awards or agreements rather than this award, so use this page for community sector youth work only.",
@@ -99,7 +99,7 @@ export const YOUTH_WORKER: Occupation = {
   tables: [
     {
       id: "sacs",
-      title: "Youth worker pay rates — Social and community services stream, 2026–27",
+      title: "Youth worker pay rates: Social and community services stream, 2026–27",
       intro:
         "SCHADS Award Schedule B, Levels 2 to 4, as published (including the Equal Remuneration Order). Casual is the hourly rate plus the 25% loading.",
       rows: SCHADS_SACS.filter((r) => /^Level [2-4] /.test(r.classification)).map((r) => toRow(r, NOTES[r.classification])),
@@ -141,7 +141,7 @@ export const YOUTH_WORKER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a youth worker in 2026?",
-      a: `A youth worker with a Certificate IV or diploma is SCHADS Level 2 pay point 2, with a minimum of ${money(L2P2.hourly)} an hour or ${money(L2P2.weekly)} a week from the first full pay period on or after 1 July 2026 — about $${Math.round(L2P2.weekly * 52).toLocaleString("en-AU")} a year before tax. A youth worker with a relevant certificate starts at Level 2 pay point 1: ${money(L2P1.hourly)} an hour.`,
+      a: `A youth worker with a Certificate IV or diploma is SCHADS Level 2 pay point 2, with a minimum of ${money(L2P2.hourly)} an hour or ${money(L2P2.weekly)} a week from the first full pay period on or after 1 July 2026, about $${Math.round(L2P2.weekly * 52).toLocaleString("en-AU")} a year before tax. A youth worker with a relevant certificate starts at Level 2 pay point 1: ${money(L2P1.hourly)} an hour.`,
     },
     {
       q: "Does the SCHADS Award have a youth worker classification?",
@@ -161,7 +161,7 @@ export const YOUTH_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100] — consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
+    { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100], consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
   ],

@@ -26,7 +26,7 @@ export default function Hecs20PercentCutStatus() {
       <p>
         The Universities Accord (Cutting Student Debt by 20 Per Cent) Act 2025 became law on 2
         August 2025, reducing every outstanding HELP, VET Student Loan and other study loan
-        balance by 20%, calculated against the balance as it stood on 1 June 2025 — before that
+        balance by 20%, calculated against the balance as it stood on 1 June 2025, before that
         year&apos;s indexation was applied. Because the reduction came first, 2025 indexation was
         then recalculated on the smaller post-cut amount, compounding the benefit slightly.
       </p>
@@ -34,13 +34,13 @@ export default function Hecs20PercentCutStatus() {
         On the average $27,600 debt, the cut is worth roughly $5,520; a $40,000 balance dropped by
         $8,000, and a $15,000 balance by $3,000. More than three million Australians with study
         loans received a reduction. The measure passed alongside the repayment reforms that lifted
-        the minimum threshold and introduced marginal rates, but the two operate independently —
+        the minimum threshold and introduced marginal rates, but the two operate independently:
         the cut changed what you owe, while the thresholds change how fast you repay it.
       </p>
 
       <h2>You didn&apos;t need to apply</h2>
       <p>
-        The reduction was applied automatically by the ATO to every eligible account — there was
+        The reduction was applied automatically by the ATO to every eligible account. There was
         no application form and nothing to opt into. Eligibility was determined entirely by
         whether your loan existed on 1 June 2025: debts fully repaid before that date missed out,
         and loans first drawn down after it were never in scope. Most reductions were processed
@@ -54,7 +54,7 @@ export default function Hecs20PercentCutStatus() {
       <p>
         Log in to the ATO app or ATO online services through myGov and open &ldquo;Tax &gt; Study
         and training loans&rdquo; to view your balance and transaction history. The reduction
-        shows as a credit transaction dated against your 1 June 2025 balance — look for it
+        shows as a credit transaction dated against your 1 June 2025 balance. Look for it
         alongside that year&apos;s recalculated indexation entry and any compulsory repayments
         credited after your 2024-25 return was assessed. If you held more than one loan type, such
         as a HECS-HELP debt and a SA-HELP debt, the 20% applied across your combined study loan
@@ -63,8 +63,8 @@ export default function Hecs20PercentCutStatus() {
         <Link href="/hecs-help-calculator/">HECS-HELP guide</Link>.
       </p>
       <p>
-        If the balance looks wrong — the reduction is missing entirely, or the amount doesn&apos;t
-        match 20% of what you owed on 1 June 2025 — check the transaction dates first, since
+        If the balance looks wrong (the reduction is missing entirely, or the amount doesn&apos;t
+        match 20% of what you owed on 1 June 2025), check the transaction dates first, since
         repayments credited after that date change the balance without affecting the cut. If it
         still doesn&apos;t reconcile, contact the ATO through myGov or by phone with your loan
         account details handy.
@@ -73,7 +73,7 @@ export default function Hecs20PercentCutStatus() {
       <h2>What this means for your pay</h2>
       <p>
         The 20% cut lowers your total loan balance, but it doesn&apos;t change your compulsory
-        repayment rate or the STSL withheld from each payslip — those are set by your income under
+        repayment rate or the STSL withheld from each payslip. Those are set by your income under
         the FY2026-27 thresholds, not your outstanding debt. The real effect shows up at the end:
         a smaller balance means fewer years of withholding before the debt clears, and less
         indexation added each 1 June along the way. Use our{" "}

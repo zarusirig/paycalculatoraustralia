@@ -41,7 +41,7 @@ export interface Faq {
 export const LSL_HUB_FAQS: Faq[] = [
   {
     q: "How much long service leave do you get in Australia?",
-    a: "It depends on the state or territory, because long service leave is not part of the National Employment Standards. Six jurisdictions — NSW, Victoria, Queensland, WA, Tasmania and the ACT — accrue about 0.8667 weeks a year, which is 8.667 weeks (two months) after 10 years. South Australia and the Northern Territory accrue 1.3 weeks a year, which is 13 weeks after 10 years, half as much again.",
+    a: "It depends on the state or territory, because long service leave is not part of the National Employment Standards. Six jurisdictions (NSW, Victoria, Queensland, WA, Tasmania and the ACT) accrue about 0.8667 weeks a year, which is 8.667 weeks (two months) after 10 years. South Australia and the Northern Territory accrue 1.3 weeks a year, which is 13 weeks after 10 years, half as much again.",
   },
   {
     q: "How much long service leave do you get after 10 years?",
@@ -49,27 +49,27 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "How much long service leave do you get after 7 years?",
-    a: "In Victoria and the ACT, 7 years is the qualifying period: Victoria gives about 6.07 weeks and the ACT 6.0667 weeks, and you can take it. Everywhere else 7 years earns nothing you can take yet, but it is the point at which a pro-rata payment becomes possible if the job ends — in Queensland, WA, SA, Tasmania and the NT. NSW opens that window earlier, at 5 years.",
+    a: "In Victoria and the ACT, 7 years is the qualifying period: Victoria gives about 6.07 weeks and the ACT 6.0667 weeks, and you can take it. Everywhere else 7 years earns nothing you can take yet, but it is the point at which a pro-rata payment becomes possible if the job ends: in Queensland, WA, SA, Tasmania and the NT. NSW opens that window earlier, at 5 years.",
   },
   {
     q: "Do you get long service leave paid out if you resign?",
-    a: "In Victoria, WA and South Australia, yes — once you pass 7 years the accrued balance is paid however the employment ends, resignation included (WA and SA except where you are dismissed for serious misconduct). In NSW, Queensland, Tasmania and the NT a plain resignation only pays out once you reach 10 years; below that you have to fall inside a defined list, such as illness, incapacity, domestic or other pressing necessity, redundancy or death.",
+    a: "In Victoria, WA and South Australia, yes. Once you pass 7 years the accrued balance is paid however the employment ends, resignation included (WA and SA except where you are dismissed for serious misconduct). In NSW, Queensland, Tasmania and the NT a plain resignation only pays out once you reach 10 years; below that you have to fall inside a defined list, such as illness, incapacity, domestic or other pressing necessity, redundancy or death.",
   },
   {
     q: "How is a long service leave payout taxed?",
-    a: `Long service leave you take as leave is taxed like ordinary pay. An unused balance paid out when the job ends follows the ATO's separate schedule. For service after 17 August 1993 — which is everyone who started in the last 33 years — the payout is taxed at your marginal rate. If you leave through genuine redundancy, invalidity or an early retirement scheme, everything accrued after 15 August 1978 is instead withheld at a flat ${LSL_TAX.flatRate * 100}%. Service between 16 August 1978 and 17 August 1993 is withheld at ${LSL_TAX.flatRate * 100}% whatever the reason, and only 5% of any pre-16 August 1978 service is taxed at all.`,
+    a: `Long service leave you take as leave is taxed like ordinary pay. An unused balance paid out when the job ends follows the ATO's separate schedule. For service after 17 August 1993 (which is everyone who started in the last 33 years), the payout is taxed at your marginal rate. If you leave through genuine redundancy, invalidity or an early retirement scheme, everything accrued after 15 August 1978 is instead withheld at a flat ${LSL_TAX.flatRate * 100}%. Service between 16 August 1978 and 17 August 1993 is withheld at ${LSL_TAX.flatRate * 100}% whatever the reason, and only 5% of any pre-16 August 1978 service is taxed at all.`,
   },
   {
     q: "Can you cash out long service leave?",
-    a: "It varies. NSW, Victoria and the Northern Territory prohibit it — in NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued, and South Australia by written, signed agreement once you reach 10 years. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. WorkSafe ACT does not address it in the guidance we verified, so check with them.",
+    a: "It varies. NSW, Victoria and the Northern Territory prohibit it. In NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued, and South Australia by written, signed agreement once you reach 10 years. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. WorkSafe ACT does not address it in the guidance we verified, so check with them.",
   },
   {
     q: "Do casual employees get long service leave?",
-    a: "Yes, in every state and territory, provided the service is continuous. NSW, Victoria, Queensland, WA, South Australia, Tasmania and the NT all name casuals in their coverage, and WorkSafe ACT says casuals may also be covered. What varies is how a gap between engagements is treated: Victoria breaks continuity at 12 weeks between engagements unless an exception applies, and Queensland at 3 months between contracts. Queensland also uses a different formula for casuals and regular part-timers — total ordinary hours ÷ 52 × 8.6667 ÷ 10.",
+    a: "Yes, in every state and territory, provided the service is continuous. NSW, Victoria, Queensland, WA, South Australia, Tasmania and the NT all name casuals in their coverage, and WorkSafe ACT says casuals may also be covered. What varies is how a gap between engagements is treated: Victoria breaks continuity at 12 weeks between engagements unless an exception applies, and Queensland at 3 months between contracts. Queensland also uses a different formula for casuals and regular part-timers: total ordinary hours ÷ 52 × 8.6667 ÷ 10.",
   },
   {
     q: "Does long service leave carry over if the business is sold?",
-    a: "Yes. Every jurisdiction we verified treats a transfer of business as continuous service, and the new employer inherits the liability for your whole period of employment — including the years with the previous owner. Victoria explicitly warns that failing to recognise it is a criminal offence under its Act.",
+    a: "Yes. Every jurisdiction we verified treats a transfer of business as continuous service, and the new employer inherits the liability for your whole period of employment, including the years with the previous owner. Victoria explicitly warns that failing to recognise it is a criminal offence under its Act.",
   },
   {
     q: "Is long service leave the same as annual leave?",
@@ -95,20 +95,20 @@ export function spokeFaqs(code: JurisdictionCode): Faq[] {
   return [
     {
       q: `How much long service leave do you get after 10 years ${j.inName}?`,
-      a: `${weeks(at10)} weeks. ${j.act} accrues ${j.weeksPerYear.toFixed(4)} weeks for every year of continuous service, and ${j.takeAfterYears === 10 ? `10 years is the point at which you can take it — ${j.weeksAtQualifying} weeks` : `you could already take leave from ${j.takeAfterYears} years`}. ${j.thereafter.charAt(0).toUpperCase()}${j.thereafter.slice(1)}.`,
+      a: `${weeks(at10)} weeks. ${j.act} accrues ${j.weeksPerYear.toFixed(4)} weeks for every year of continuous service, and ${j.takeAfterYears === 10 ? `10 years is the point at which you can take it, ${j.weeksAtQualifying} weeks` : `you could already take leave from ${j.takeAfterYears} years`}. ${j.thereafter.charAt(0).toUpperCase()}${j.thereafter.slice(1)}.`,
     },
     {
       q: `How much long service leave do you get after 7 years ${j.inName}?`,
       a:
         j.takeAfterYears <= 7
-          ? `${weeks(at7)} weeks, and you can take it — ${j.abbr} is one of only two jurisdictions where the qualifying period is 7 years rather than 10.`
+          ? `${weeks(at7)} weeks, and you can take it. ${j.abbr} is one of only two jurisdictions where the qualifying period is 7 years rather than 10.`
           : `${weeks(at7)} weeks has accrued, but ${j.abbr} does not let you take long service leave until ${j.takeAfterYears} years. Seven years does matter for another reason: it is ${j.proRataFromYears === 7 ? "the point at which a pro-rata payment becomes possible if the job ends" : `past the ${j.proRataFromYears}-year point at which a pro-rata payment becomes possible if the job ends`}.`,
     },
     {
       q: `Do you get long service leave paid out if you resign ${j.inName}?`,
       a: conditional
         ? `Only from ${j.proRataUnconditionalFromYears} years if you simply resign. Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.abbr} pays a pro-rata amount only where one of these applies: ${j.proRataConditions.join("; ")}. From ${j.proRataUnconditionalFromYears} years the accrued balance is paid however the employment ends.`
-        : `Yes. From ${j.proRataFromYears} years of continuous service ${j.abbr} pays the accrued balance however the employment ends — resignation, dismissal, redundancy or death${code === "wa" ? ", except that a dismissal for serious misconduct pays no pro-rata amount" : code === "sa" ? ", unless before 10 years you are dismissed for serious and wilful misconduct or you end the contract unlawfully" : ""}.`,
+        : `Yes. From ${j.proRataFromYears} years of continuous service ${j.abbr} pays the accrued balance however the employment ends (resignation, dismissal, redundancy or death)${code === "wa" ? ", except that a dismissal for serious misconduct pays no pro-rata amount" : code === "sa" ? ", unless before 10 years you are dismissed for serious and wilful misconduct or you end the contract unlawfully" : ""}.`,
     },
     {
       q: `How is long service leave pay calculated ${j.inName}?`,

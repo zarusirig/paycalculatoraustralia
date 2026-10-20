@@ -70,7 +70,7 @@ export const KMART_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "Kmart pays the adult rate from 20. Junior rates apply only to Retail Assistants and Trolley Collectors; under-20s in clerical or supervisor roles get the adult rate (cl 8.2.2). The agreement guarantees juniors the highest of three measures, and in 2026 that is the award percentage applied to the Kmart adult rate.",
+    "Kmart pays the adult rate from 20. Junior rates apply only to Retail Assistants and Trolley Collectors; under-20s in clerical or supervisor roles get the adult rate (cl 8.2.2). The agreement entitles juniors to the highest of three measures, and in 2026 that is the award percentage applied to the Kmart adult rate.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "Kmart base rate", casual: "Kmart base + 25%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "Award 125% + 1c", casual: "Award 150% + 1c" },
@@ -80,7 +80,7 @@ export const KMART_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "Award 225% + 1c", casual: "Award 250% + 1c" },
   ],
   penaltyNotes: [
-    "Outside Monday to Friday 7am–6pm, Kmart pays the Retail Award rate for the hour plus 1 cent — not a percentage of the Kmart base rate. For an adult Retail Assistant that is $34.77 on a Saturday ($41.73 casual), $41.73 on a Sunday ($48.68 casual) and $62.58 on a public holiday ($69.54 casual).",
+    "Outside Monday to Friday 7am–6pm, Kmart pays the Retail Award rate for the hour plus 1 cent, not a percentage of the Kmart base rate. For an adult Retail Assistant that is $34.77 on a Saturday ($41.73 casual), $41.73 on a Sunday ($48.68 casual) and $62.58 on a public holiday ($69.54 casual).",
     "Casual penalty rates already include the 25% loading.",
     "Night shifts starting from 11pm and before 5am are paid for the whole shift at the award night shift rate plus 1c: 130% Monday to Friday, 150% Saturday, 175% Sunday (casual 155%, 175%, 200%).",
     "Less than a 12-hour break between shifts is paid at 200% (casual 225%) until you get one (cl 15.6). The public holiday minimum payment is 3 hours.",
@@ -96,7 +96,7 @@ export const KMART_PAY: EmployerPay = {
   ],
   unverified: [
     "Saved rates for long-serving staff from the 2018 agreement (Appendix E).",
-    "Target pay — Target Australia has its own agreement (AE519106); not covered on this page.",
+    "Target pay: Target Australia has its own agreement (AE519106); not covered on this page.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",

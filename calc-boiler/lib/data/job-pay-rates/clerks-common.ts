@@ -18,7 +18,7 @@ export const CLERKS_AWARD_REF: AwardRef = {
   awardPageHref: CLERKS_AWARD.meta.href,
 };
 
-export const CLERKS_SOURCE_TITLE = "Clerks—Private Sector Award 2020 [MA000002] — consolidated to 1 July 2026";
+export const CLERKS_SOURCE_TITLE = "Clerks—Private Sector Award 2020 [MA000002], consolidated to 1 July 2026";
 
 export function clerksRow(level: string, note?: string): RateRow {
   return rowFromModernAward(CLERKS_AWARD, level, level, note);
@@ -36,7 +36,7 @@ export const CLERKS_PENALTIES_NOTE = `Percentages of the minimum hourly rate (${
 
 export const CLERKS_OVERTIME_LINES: string[] = [
   `Full-time and part-time: ${CLERKS_AWARD.overtime.map((o) => `${o.label.toLowerCase()} ${pct(o.fullTime)}`).join("; ")} (${CLERKS_AWARD.overtimeClause}).`,
-  `Casual: ${CLERKS_AWARD.overtime.map((o) => `${o.label.toLowerCase()} ${pct(o.casual ?? o.fullTime)}`).join("; ")} — the casual loading is included.`,
+  `Casual: ${CLERKS_AWARD.overtime.map((o) => `${o.label.toLowerCase()} ${pct(o.casual ?? o.fullTime)}`).join("; ")}. The casual loading is included.`,
   ...CLERKS_AWARD.overtimeNotes.slice(0, 1).map((n) => n.replace(/^Casual overtime includes the loading \(Table 5 NOTE 2\)\. /, "")),
 ];
 
@@ -49,4 +49,4 @@ export const CLERKS_ALLOWANCES: Allowance[] = CLERKS_AWARD.allowances
   }));
 
 export const CLERKS_COVERAGE_EXCLUSION =
-  "The Clerks—Private Sector Award is an occupational award: it covers private sector employees wholly or principally engaged in clerical work, but not where the employer is covered by an industry award that has its own clerical classifications (cl 4.3(a)) — for example health practices (Health Professionals and Support Services Award), hotels (Hospitality Award) or aged care. Public sector clerical staff are paid under public service agreements.";
+  "The Clerks—Private Sector Award is an occupational award: it covers private sector employees wholly or principally engaged in clerical work, but not where the employer is covered by an industry award that has its own clerical classifications (cl 4.3(a)), for example health practices (Health Professionals and Support Services Award), hotels (Hospitality Award) or aged care. Public sector clerical staff are paid under public service agreements.";

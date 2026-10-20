@@ -78,7 +78,7 @@ export const SYDNEY_TRAINS: DriverTable = {
   expiry: "Operates from 7 August 2025; nominal expiry 1 July 2028.",
   source: {
     id: "sydney-trains-ea",
-    title: "Sydney Trains and NSW TrainLink Enterprise Agreement 2025 (AE529763) — Schedule 4A",
+    title: "Sydney Trains and NSW TrainLink Enterprise Agreement 2025 (AE529763), Schedule 4A",
     publisher: "Fair Work Commission",
     url: "https://www.fwc.gov.au/documents/agreements/fwa/ae529763.pdf",
     effectiveFrom: "1 July 2026",
@@ -105,7 +105,7 @@ export const METRO_TRAINS: DriverTable = {
   expiry: "Operates from 6 March 2024; nominal expiry 30 June 2027.",
   source: {
     id: "metro-trains-ea",
-    title: "Metro Trains Melbourne Rail Operations Enterprise Agreement 2023 — Schedule B",
+    title: "Metro Trains Melbourne Rail Operations Enterprise Agreement 2023, Schedule B",
     publisher: "Rail, Tram and Bus Union (Victorian Locomotive Division), copy of the approved agreement",
     url: "https://www.rtbuvicloco.com.au/wp-content/uploads/2024/03/Metro-Trains-EA-2023.pdf",
     effectiveFrom: "July 2026",

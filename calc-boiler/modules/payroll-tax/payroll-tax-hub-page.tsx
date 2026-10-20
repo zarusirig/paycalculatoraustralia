@@ -72,7 +72,7 @@ export default function PayrollTaxHubPage() {
                   const s = PAYROLL_TAX_STATES[c];
                   return (
                     <li key={c}>
-                      <Link href={`/payroll-tax/${c}/`}>{s.abbr} payroll tax</Link> — {s.headlineRate},{" "}
+                      <Link href={`/payroll-tax/${c}/`}>{s.abbr} payroll tax</Link>: {s.headlineRate},{" "}
                       {formatAUD(s.annualThreshold)} threshold. Administered by {s.revenueOffice}.
                     </li>
                   );
@@ -92,8 +92,8 @@ export default function PayrollTaxHubPage() {
             <section id="who-pays">
               <h2 style={H2_STYLE}>Who Has to Pay Payroll Tax</h2>
               <p>
-                An employer pays payroll tax in a state when it pays wages there and its total Australian wages —
-                including the wages of every business it is grouped with — exceed that state&rsquo;s threshold. A
+                An employer pays payroll tax in a state when it pays wages there and its total Australian wages (
+                including the wages of every business it is grouped with) exceed that state&rsquo;s threshold. A
                 business with a $900,000 Victorian payroll that belongs to a group paying $4 million nationally is
                 liable, even though its own wages are under the threshold.
               </p>

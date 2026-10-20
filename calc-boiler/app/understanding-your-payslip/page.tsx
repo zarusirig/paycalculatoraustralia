@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/understanding-your-payslip/`;
-const TITLE = "Understanding Your Payslip in Australia — A Complete Guide";
+const TITLE = "Understanding Your Payslip in Australia - A Complete Guide";
 const DESCRIPTION = "How to read your Australian payslip: gross pay, net pay, PAYG withholding, superannuation contributions, and your rights under the Fair Work Ombudsman.";
 
 export const metadata: Metadata = withFeaturedImage({

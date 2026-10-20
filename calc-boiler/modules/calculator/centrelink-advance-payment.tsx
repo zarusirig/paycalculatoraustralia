@@ -53,7 +53,7 @@ export default function CentrelinkAdvancePaymentPage({ children, afterCalculator
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Centrelink Advance Payment" title="Centrelink Advance Payment Calculator — How Much and What You Repay">
+        <W3Hero crumb="Centrelink Advance Payment" title="Centrelink Advance Payment Calculator: How Much and What You Repay">
           <p>
             An advance is part of your Centrelink payment paid early as a lump sum. You repay it automatically: the advance divided by {ADVANCE_RULES.repaymentFortnights} comes out of each of your next {ADVANCE_RULES.repaymentFortnights} payments. On JobSeeker, Parenting Payment, Youth Allowance or Austudy it is {formatAUD(250)} to {formatAUD(500)}; on a pension, up to {formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} single.
           </p>
@@ -73,7 +73,7 @@ export default function CentrelinkAdvancePaymentPage({ children, afterCalculator
                   </div>
                   <MoneyInput id="advance" label="Advance you want" value={advance} onChange={setAdvance} max={lim.max} step={10}
                     hint={lim.min !== null ? `Between ${formatAUD(lim.min, 2)} and ${formatAUD(lim.max, 2)}.` : `FTB advances can't total more than ${formatAUD(lim.max, 2)}; your own limit depends on your FTB rate.`} />
-                  <MoneyInput id="payment" label="Your usual payment a fortnight" value={payment} onChange={setPayment} max={5_000} hint="Before the advance repayment. The starting figure is only an example — enter your own." />
+                  <MoneyInput id="payment" label="Your usual payment a fortnight" value={payment} onChange={setPayment} max={5_000} hint="Before the advance repayment. The starting figure is only an example, so enter your own." />
                 </form>
                 <div className="space-y-6">
                   <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">

@@ -42,7 +42,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   scales: [
     {
       id: "firefighters",
-      title: "Firefighters (Appendix A — total weekly wage)",
+      title: "Firefighters (Appendix A, total weekly wage)",
       intro:
         "Permanent full-time MFS firefighters from recruit through the Fourth, Third, Second and First Class ranks to Senior Firefighter.",
       stepHeading: "Rank",
@@ -62,7 +62,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       id: "officers",
-      title: "Officers (Appendix A — total weekly wage)",
+      title: "Officers (Appendix A, total weekly wage)",
       intro: "MFS Station Officers and Commanders.",
       stepHeading: "Rank",
       steps: [
@@ -80,7 +80,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "Recruit Firefighters are paid $1,657.19 per week from 1 July 2026 (about $86,411 a year).",
-    "Clause 15C lifted the Recruit Firefighter rate to 85% of the Fourth Class Firefighter rank from the first full pay period on or after 1 January 2026 — the recruit rate went from $1,187.12 per week (1 January 2025) to $1,575.97 per week (1 January 2026).",
+    "Clause 15C lifted the Recruit Firefighter rate to 85% of the Fourth Class Firefighter rank from the first full pay period on or after 1 January 2026. The recruit rate went from $1,187.12 per week (1 January 2025) to $1,575.97 per week (1 January 2026).",
   ],
   penalties: [
     "Rates are total weekly wages. The 1 January 2026 column also includes a 1.8925% public holiday adjustment, and from 1 July 2026 a $3,000-a-year base uplift reflecting rescue qualification and advanced skills (clause 15B).",

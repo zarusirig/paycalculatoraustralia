@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-guide/`;
-const TITLE = "Superannuation Guide — How Super Works in Australia";
+const TITLE = "Superannuation Guide - How Super Works in Australia";
 const DESCRIPTION = `How super works in ${SITE_CONFIG.financialYear}: the 12% SG rate, Payday Super from ${SUPER_GUARANTEE.paydaySuperStart}, the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap, transfer balance cap and salary sacrifice.`;
 
 export const metadata: Metadata = withFeaturedImage({

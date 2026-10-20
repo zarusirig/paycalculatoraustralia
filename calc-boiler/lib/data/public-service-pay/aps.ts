@@ -38,19 +38,19 @@ export const APS: Jurisdiction = {
       },
       {
         scheduleId: "treasury-2026",
-        label: "One agency's actual scale, not the APS rate — Treasury Enterprise Agreement 2024",
+        label: "One agency's actual scale, not the APS rate: Treasury Enterprise Agreement 2024",
       },
     ],
     year: "2026",
     title: "APS salary by level",
     intro:
-      "One section per APS level. The table is the 5th to 95th percentile of base salaries actually paid across every agency at 31 December 2025, before the 3.4% service-wide increase from March 2026; the median is the middle salary. Under each table are the APS-wide salary thresholds from the service-wide bargaining package — the minimum and maximum every agency's range for that level must at least reach from 12 March 2026 — and, where the level exists there, the Treasury Enterprise Agreement 2024 pay points as a worked example of one real agency scale. Every salary links to the nearest take-home pay page.",
+      "One section per APS level. The table is the 5th to 95th percentile of base salaries actually paid across every agency at 31 December 2025, before the 3.4% service-wide increase from March 2026; the median is the middle salary. Under each table are the APS-wide salary thresholds from the service-wide bargaining package (the minimum and maximum every agency's range for that level must at least reach from 12 March 2026) and, where the level exists there, the Treasury Enterprise Agreement 2024 pay points as a worked example of one real agency scale. Every salary links to the nearest take-home pay page.",
   },
 
   headline:
     "There is no single APS pay scale. Across the whole service at 31 December 2025 the median APS 6 base salary was $108,092, with 90% of APS 6 staff paid between $97,316 and $115,199. The median was $82,906 at APS 4, $92,324 at APS 5, $135,701 at EL 1 and $168,064 at EL 2. Each agency bargains its own enterprise agreement, but from 12 March 2026 every agency's APS 6 range must reach at least $99,734 at the bottom and $111,701 at the top under the service-wide salary thresholds.",
 
-  metaTitle: "APS Pay Scales 2026 — APS 4, APS 5, APS 6, EL1 & EL2 Salaries",
+  metaTitle: "APS Pay Scales 2026 - APS 4, APS 5, APS 6, EL1 & EL2 Salaries",
   metaDescription:
     "APS 4, APS 5, APS 6, EL1 and EL2 salaries in 2026: APS-wide thresholds from 12 March 2026, actual pay ranges and medians from APSC data, and each salary after tax.",
 
@@ -69,7 +69,7 @@ export const APS: Jurisdiction = {
       basis: "survey",
       effectiveFrom: "31 December 2025",
       rangeMeaning:
-        "5th to 95th percentile of base salaries actually paid — 90% of employees at that level sit inside it. Base Salary excludes superannuation, allowances and bonuses.",
+        "5th to 95th percentile of base salaries actually paid; 90% of employees at that level sit inside it. Base Salary excludes superannuation, allowances and bonuses.",
       sourceId: "apsc-rem-2025",
       note:
         "A handful of agencies use local classifications and the APSC maps those to the nearest APS level, which is why the single highest salary reported at some levels is far above the 95th percentile. The percentile range, not the reported maximum, is the useful figure.",
@@ -239,7 +239,7 @@ export const APS: Jurisdiction = {
       id: "aps-thresholds-2026",
       title: "APS-wide salary thresholds from 12 March 2026 (pay fragmentation mechanism)",
       coverage:
-        "Every APS agency. These are the minimum and maximum salary thresholds each agency's pay range for a classification must meet or exceed under the service-wide bargaining package — a floor for agency ranges, not a pay scale anyone is paid on.",
+        "Every APS agency. These are the minimum and maximum salary thresholds each agency's pay range for a classification must meet or exceed under the service-wide bargaining package. This is a floor for agency ranges, not a pay scale anyone is paid on.",
       basis: "agreement",
       effectiveFrom: "12 March 2026",
       rangeMeaning:
@@ -270,7 +270,7 @@ export const APS: Jurisdiction = {
       id: "treasury-2026",
       title: "One agency's scale: Treasury Enterprise Agreement 2024, from 12 March 2026",
       coverage:
-        "The Department of the Treasury only. Reproduced because it shows what an actual APS pay-point scale looks like — every other agency has its own, and the figures below are not the APS-wide rates.",
+        "The Department of the Treasury only. Reproduced because it shows what an actual APS pay-point scale looks like. Every other agency has its own, and the figures below are not the APS-wide rates.",
       basis: "agreement",
       effectiveFrom: "12 March 2026",
       rangeMeaning: "Bottom and top pay point of the level in this one agency's agreement.",
@@ -394,7 +394,7 @@ export const APS: Jurisdiction = {
   progression: [
     "Within a classification you move up pay points, and the rules live in your agency's enterprise agreement rather than in any APS-wide document. The usual pattern is one increment a year subject to a satisfactory performance rating: at Treasury, for example, APS 6 runs across four pay points from $105,260 to $127,521 and EL 2 across four from $167,708 to $192,469, so the distance from the bottom to the top of a single classification can be more than $24,000.",
     "At the top of the range some agencies pay a fixed top-of-salary-range payment instead of a further increment. The APSC counted 3,824 APS 6 employees receiving one in 2025, with a median payment of $1,087, and 4,638 EL 1 employees with a median of $1,357. It is a recurring payment, not a salary increase, so it does not lift your base for superannuation purposes in the way an increment does.",
-    "Moving between classifications is a promotion to a different job, not an increment, and it resets you to a pay point in the new band — usually the bottom one. That is why the APS-wide percentile ranges overlap: an EL 1 at the bottom of the band earns less than an APS 6 at the top of theirs in the same agency.",
+    "Moving between classifications is a promotion to a different job, not an increment, and it resets you to a pay point in the new band (usually the bottom one). That is why the APS-wide percentile ranges overlap: an EL 1 at the bottom of the band earns less than an APS 6 at the top of theirs in the same agency.",
     "Transferring between agencies at the same classification can change your salary in either direction, because the two agencies' agreements set different ranges for the same level. The APSC's 2025 data release notes that around 70 agencies made small adjustments of 0.1% to 1% to their minimum and maximum pay ranges that year to move toward the service-wide ranges, after a larger realignment in 2024.",
   ],
 
@@ -408,7 +408,7 @@ export const APS: Jurisdiction = {
   sources: [
     {
       id: "apsc-rem-2025",
-      title: "APS Remuneration Data 31 December 2025 — Appendix 3 data tables",
+      title: "APS Remuneration Data 31 December 2025, Appendix 3 data tables",
       publisher: "Australian Public Service Commission",
       url: "https://www.apsc.gov.au/appendix-3-data-tables",
       effectiveFrom: "31 December 2025",
@@ -418,7 +418,7 @@ export const APS: Jurisdiction = {
     },
     {
       id: "apsc-key-findings",
-      title: "APS Remuneration Data 31 December 2025 — Key findings for 2025",
+      title: "APS Remuneration Data 31 December 2025, Key findings for 2025",
       publisher: "Australian Public Service Commission",
       url: "https://www.apsc.gov.au/key-findings-2025",
       verifiedOn: "28 August 2026",
@@ -431,11 +431,11 @@ export const APS: Jurisdiction = {
       publisher: "Australian Public Service Commission",
       url: "https://www.apsc.gov.au/news-and-events/open-letters-australian-public-service/open-letter-australian-public-service-aps-bargaining-package-common-pay-and-conditions",
       verifiedOn: "28 August 2026",
-      note: "Source for 11.2% over three years — 4%, 3.8% and 3.4% from March 2024, 2025 and 2026.",
+      note: "Source for 11.2% over three years: 4%, 3.8% and 3.4% from March 2024, 2025 and 2026.",
     },
     {
       id: "apsc-common-conditions",
-      title: "APS Bargaining Statement of Common Conditions — salary thresholds for the pay fragmentation mechanism",
+      title: "APS Bargaining Statement of Common Conditions, salary thresholds for the pay fragmentation mechanism",
       publisher: "Australian Public Service Commission",
       url: "https://www.apsc.gov.au/sites/default/files/2023-11/APS%20Bargaining%20Statement%20of%20Common%20Conditions.pdf",
       effectiveFrom: "12 March 2026",
@@ -445,7 +445,7 @@ export const APS: Jurisdiction = {
     },
     {
       id: "treasury-ea",
-      title: "Treasury Enterprise Agreement 2024 — Appendix A, base salaries",
+      title: "Treasury Enterprise Agreement 2024: Appendix A, base salaries",
       publisher: "Department of the Treasury",
       url: "https://ea.treasury.gov.au/appendix-a-base-salaries",
       effectiveFrom: "12 March 2026",
@@ -462,7 +462,7 @@ export const APS: Jurisdiction = {
   ],
 
   unverified: [
-    "Pay-point scales for agencies other than Treasury — there are around 102 agency enterprise agreements and each publishes its own. Find yours on your agency's website rather than assuming another agency's rate.",
+    "Pay-point scales for agencies other than Treasury. There are around 102 agency enterprise agreements and each publishes its own. Find yours on your agency's website rather than assuming another agency's rate.",
     "SES Band 1–3 salaries are set by individual determinations, so no rate table exists to publish. The figures shown are the percentile spread of what SES employees were actually paid at 31 December 2025.",
     "The Australian Government Industry Award minimum rates that underpin APS classifications. The APSC publishes them in its annual wage review circular; we have not reproduced them here.",
   ],

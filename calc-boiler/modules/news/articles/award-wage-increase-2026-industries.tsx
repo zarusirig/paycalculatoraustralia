@@ -6,7 +6,7 @@ export default function AwardWageIncrease2026Industries() {
     <>
       <p className="lead">
         Every modern award minimum rate rises <strong>4.75%</strong> from the first full pay
-        period on or after 1 July 2026 — separate from the 6% national minimum wage increase.
+        period on or after 1 July 2026, separate from the 6% national minimum wage increase.
         Award-reliant workers, about 23% of employees according to the ABS (May 2025), get the rise
         automatically, spanning retail, hospitality, aged care and beyond.
       </p>
@@ -27,15 +27,15 @@ export default function AwardWageIncrease2026Industries() {
         Award, Fast Food Industry Award and Restaurant Industry Award all lift by the same
         percentage, as does the Aged Care Award and the awards covering cleaning, security and
         support services. If your pay is set by an award rather than an enterprise agreement or
-        an individual arrangement above the award, the rise applies to you automatically — no
+        an individual arrangement above the award, the rise applies to you automatically, with no
         request needed.
       </p>
 
       <h2>How it differs from the minimum wage rise</h2>
       <p>
         It&apos;s easy to conflate the two figures from this year&apos;s Annual Wage Review, but
-        they apply to different groups. The national minimum wage — the fallback rate for
-        employees not covered by an award or agreement — rose 6% to $26.44 an hour. Modern award
+        they apply to different groups. The national minimum wage (the fallback rate for
+        employees not covered by an award or agreement) rose 6% to $26.44 an hour. Modern award
         minimum rates, which set pay for classified roles across specific industries, rose a
         separate 4.75%. Most award base rates already sit above the national minimum wage, so the
         percentage increases don&apos;t translate to the same dollar amounts. Check our{" "}
@@ -63,7 +63,7 @@ export default function AwardWageIncrease2026Industries() {
       <p>
         Employers are required to apply the new rates from the first full pay period after 1 July
         2026, not from 1 July itself, so check your payslip against your award&apos;s updated pay
-        guide rather than assuming the increase lands automatically on the calendar date — our{" "}
+        guide rather than assuming the increase lands automatically on the calendar date. Our{" "}
         <Link href="/understanding-your-payslip/">guide to understanding your payslip</Link>{" "}
         explains what each line should show. Fair Work Ombudsman publishes an updated pay guide
         for each award once the new rates are set, listing base, casual, and penalty rates by
@@ -84,7 +84,7 @@ export default function AwardWageIncrease2026Industries() {
       <h2>What this means for your pay</h2>
       <p>
         If your award classification pays, say, $28 an hour today, expect roughly $29.33 an hour
-        from your first full July pay period — before any penalty rates or loadings. Overtime,
+        from your first full July pay period, before any penalty rates or loadings. Overtime,
         weekend and public holiday loadings then compound on the higher base, so shift workers see
         a bigger dollar increase than their base rate alone suggests. Run your new hourly rate
         through our <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> to see

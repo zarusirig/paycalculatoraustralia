@@ -28,7 +28,7 @@ export const SALARY_PACKAGE_FAQS: readonly SalaryPackageFaq[] = [
   },
   {
     q: "How do I work out base salary from a package including super?",
-    a: `Base salary = package ÷ ${(1 + SUPER_GUARANTEE.rate).toFixed(2)}. On ${formatAUD(112_000)} including super that is ${formatAUD(splitPackage(112_000).base)}. Tax is worked out on the base — the super goes to your fund, not your bank account — so the base is the number to put into a take-home pay calculator.`,
+    a: `Base salary = package ÷ ${(1 + SUPER_GUARANTEE.rate).toFixed(2)}. On ${formatAUD(112_000)} including super that is ${formatAUD(splitPackage(112_000).base)}. Tax is worked out on the base (the super goes to your fund, not your bank account), so the base is the number to put into a take-home pay calculator.`,
   },
   {
     q: "What does 'plus super' mean in a job ad?",
@@ -36,7 +36,7 @@ export const SALARY_PACKAGE_FAQS: readonly SalaryPackageFaq[] = [
   },
   {
     q: "What does 'package' or 'including super' mean?",
-    a: `The figure already contains the employer's super. ${formatAUD(75_000)} including super is a base of ${formatAUD(P75.base)} with ${formatAUD(P75.superAmount)} going to super — so the salary you are taxed on and paid from is ${formatAUD(75_000 - P75.base)} less than the headline.`,
+    a: `The figure already contains the employer's super. ${formatAUD(75_000)} including super is a base of ${formatAUD(P75.base)} with ${formatAUD(P75.superAmount)} going to super, so the salary you are taxed on and paid from is ${formatAUD(75_000 - P75.base)} less than the headline.`,
   },
   {
     q: "Is $100,000 package the same as $100,000 plus super?",
@@ -44,7 +44,7 @@ export const SALARY_PACKAGE_FAQS: readonly SalaryPackageFaq[] = [
   },
   {
     q: "Is super included in salary in Australia?",
-    a: `Usually not unless the offer says so. Awards, enterprise agreements and most job ads quote a base salary with super paid on top. If an offer says "package", "total remuneration" or "including super", the ${RATE} is inside the number. If it is not clear, ask which it is before you accept — on ${formatAUD(90_000)} the difference is ${formatAUD(B90.superAmount)} a year.`,
+    a: `Usually not unless the offer says so. Awards, enterprise agreements and most job ads quote a base salary with super paid on top. If an offer says "package", "total remuneration" or "including super", the ${RATE} is inside the number. If it is not clear, ask which it is before you accept: on ${formatAUD(90_000)} the difference is ${formatAUD(B90.superAmount)} a year.`,
   },
   {
     q: "Does the super guarantee rate apply to the package or the base?",

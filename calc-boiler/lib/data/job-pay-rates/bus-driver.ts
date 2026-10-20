@@ -77,7 +77,7 @@ export const BUS_DRIVER: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate for ordinary hours (cl 20.1). Casual percentages include the 25% loading. Penalty and overtime rates are not cumulative — you get whichever is higher. Two-driver operations have a different table (cl 20.2).",
+    "Percentages of the minimum hourly rate for ordinary hours (cl 20.1). Casual percentages include the 25% loading. Penalty and overtime rates are not cumulative: you get whichever is higher. Two-driver operations have a different table (cl 20.2).",
   overtime: [
     "150% for the first 3 hours, then 200% (cl 19.2).",
     "Where overtime and a penalty both apply, you are paid the higher of the two, not both.",
@@ -115,7 +115,7 @@ export const BUS_DRIVER: Occupation = {
     },
   ],
   sources: [
-    { title: "Passenger Vehicle Transportation Award 2020 [MA000063] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000063") },
+    { title: "Passenger Vehicle Transportation Award 2020 [MA000063], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000063") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

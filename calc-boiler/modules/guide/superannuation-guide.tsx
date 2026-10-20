@@ -64,7 +64,7 @@ export default function SuperannuationGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Superannuation Guide — How Super Works in Australia ({SITE_CONFIG.financialYear})
+            Superannuation Guide: How Super Works in Australia ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             The superannuation rate for {SITE_CONFIG.financialYear} is {formatPercent(SUPER_GUARANTEE.rate, 0)}, the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year. Under Payday Super, in force since {SUPER_GUARANTEE.paydaySuperStart}, it is due within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of each pay rather than quarterly. Contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in the fund. This guide covers the caps and how super affects your take-home pay.
@@ -140,7 +140,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                Since {SUPER_GUARANTEE.paydaySuperStart} the SG is calculated on &quot;qualifying earnings&quot;, not total earnings. Qualifying earnings are essentially the old ordinary time earnings (OTE) base; the ATO says the only additional payment type is {QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime, expense reimbursements, and termination payouts remain excluded. The distinction matters most for workers with significant overtime hours &mdash; use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to separate ordinary and overtime components, and see our <Link href="/payday-super/">Payday Super guide</Link> for how the per-pay rules work.
+                Since {SUPER_GUARANTEE.paydaySuperStart} the SG is calculated on &quot;qualifying earnings&quot;, not total earnings. Qualifying earnings are essentially the old ordinary time earnings (OTE) base; the ATO says the only additional payment type is {QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime, expense reimbursements, and termination payouts remain excluded. The distinction matters most for workers with significant overtime hours, so use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to separate ordinary and overtime components, and see our <Link href="/payday-super/">Payday Super guide</Link> for how the per-pay rules work.
               </p>
             </section>
 
@@ -164,7 +164,7 @@ export default function SuperannuationGuidePage() {
             <section id="ote-rules">
               <h2>What Counts as Qualifying Earnings for Super?</h2>
               <p>
-                Employers calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG on <strong>qualifying earnings (QE)</strong>. QE is built on ordinary time earnings (OTE) &mdash; the amount an employee earns for their ordinary hours of work &mdash; and the ATO confirms there are no changes to what counts as OTE under Payday Super. It includes base salary, most allowances, shift loadings, and leave taken, but excludes overtime and termination payments.
+                Employers calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG on <strong>qualifying earnings (QE)</strong>. QE is built on ordinary time earnings (OTE), the amount an employee earns for their ordinary hours of work, and the ATO confirms there are no changes to what counts as OTE under Payday Super. It includes base salary, most allowances, shift loadings, and leave taken, but excludes overtime and termination payments.
               </p>
               <div className="grid md:grid-cols-2 gap-4 not-prose mb-6 mt-4">
                 <Card className="bg-eucalyptus-light/30 border-sandstone-dark/20">
@@ -194,7 +194,7 @@ export default function SuperannuationGuidePage() {
                 </Card>
               </div>
               <p>
-                The distinction between OTE and non-OTE payments is governed by Superannuation Guarantee Ruling SGR 2009/2 from the ATO. A common mistake is assuming Payday Super extended super to overtime and bonuses generally &mdash; it did not. Performance, Christmas, sign-on and referral bonuses already attracted super and still do; a bonus paid solely for work performed entirely outside ordinary hours still does not. Use the <Link href="/bonus-tax-calculator/">Bonus Tax Calculator</Link> to calculate how a bonus is taxed and whether it attracts super.
+                The distinction between OTE and non-OTE payments is governed by Superannuation Guarantee Ruling SGR 2009/2 from the ATO. A common mistake is assuming Payday Super extended super to overtime and bonuses generally, but it did not. Performance, Christmas, sign-on and referral bonuses already attracted super and still do; a bonus paid solely for work performed entirely outside ordinary hours still does not. Use the <Link href="/bonus-tax-calculator/">Bonus Tax Calculator</Link> to calculate how a bonus is taxed and whether it attracts super.
               </p>
             </section>
 
@@ -244,7 +244,7 @@ export default function SuperannuationGuidePage() {
                 The {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap includes three contribution types: employer SG payments, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> amounts, and personal contributions for which you claim a tax deduction. All three count toward the single cap. On an {formatAUD(EX_SALARY)} salary, the employer SG of {formatAUD(EX_SG)} leaves <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - EX_SG)}</strong> of unused cap space for voluntary concessional contributions. Our <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide has a calculator for your own salary, including carry-forward.
               </p>
               <p>
-                These contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year &mdash; for example, after receiving a bonus or inheritance.
+                These contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year, for example after receiving a bonus or inheritance.
               </p>
 
               <h3>Non-Concessional Contributions Cap ({formatAUD(SUPER_GUARANTEE.nonConcessionalCap)})</h3>
@@ -257,7 +257,7 @@ export default function SuperannuationGuidePage() {
 
               <h3>Division 293 Tax for High-Income Earners</h3>
               <p>
-                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the total tax on super contributions to <strong>30%</strong> for high earners, reducing the tax advantage of superannuation. The ATO issues Division 293 assessments automatically after tax returns are lodged &mdash; you can pay the assessment from your super fund or from personal funds.
+                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the total tax on super contributions to <strong>30%</strong> for high earners, reducing the tax advantage of superannuation. The ATO issues Division 293 assessments automatically after tax returns are lodged. You can pay the assessment from your super fund or from personal funds.
               </p>
 
               <h3>Division 296 Tax on Large Super Balances</h3>
@@ -318,7 +318,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                The &quot;Transfer Balance Cap&quot; limits how much super you can move into the tax-free pension phase. The general cap is <strong>{millions(SUPER_GUARANTEE.transferBalanceCap)}</strong> for FY{SITE_CONFIG.financialYear}, up from {millions(TRANSFER_BALANCE_CAP_PREVIOUS)} in FY{SITE_CONFIG.previousFinancialYear}, and is indexed in $100,000 increments in line with CPI. Amounts above this cap remain in the accumulation phase where earnings are taxed at 15%. Understanding how super taxation interacts with your income tax brackets is critical &mdash; use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your total after-tax position.
+                The &quot;Transfer Balance Cap&quot; limits how much super you can move into the tax-free pension phase. The general cap is <strong>{millions(SUPER_GUARANTEE.transferBalanceCap)}</strong> for FY{SITE_CONFIG.financialYear}, up from {millions(TRANSFER_BALANCE_CAP_PREVIOUS)} in FY{SITE_CONFIG.previousFinancialYear}, and is indexed in $100,000 increments in line with CPI. Amounts above this cap remain in the accumulation phase where earnings are taxed at 15%. Understanding how super taxation interacts with your income tax brackets is critical. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your total after-tax position.
               </p>
             </section>
 
@@ -530,7 +530,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                For employees on a &quot;base + super&quot; structure, Payday Super changes when super arrives, not how much. On a {formatAUD(EX_SALARY)} salary the employer still pays {formatAUD(EX_SG)} for the year, but a fortnightly-paid employee should now see a contribution after every pay rather than four times a year. The higher {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap gives {formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)} more room for <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link>. Separately, the second income tax rate fell from 16% to 15% on 1 July 2026, so most taxpayers pay slightly less tax &mdash; see <Link href="/tax-brackets/">tax brackets</Link>.
+                For employees on a &quot;base + super&quot; structure, Payday Super changes when super arrives, not how much. On a {formatAUD(EX_SALARY)} salary the employer still pays {formatAUD(EX_SG)} for the year, but a fortnightly-paid employee should now see a contribution after every pay rather than four times a year. The higher {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap gives {formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)} more room for <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link>. Separately, the second income tax rate fell from 16% to 15% on 1 July 2026, so most taxpayers pay slightly less tax (see <Link href="/tax-brackets/">tax brackets</Link>).
               </p>
             </section>
 
@@ -593,7 +593,7 @@ export default function SuperannuationGuidePage() {
               </p>
               <h3>Default Funds (MySuper)</h3>
               <p>
-                If you have no existing fund and do not nominate one, your employer opens an account in their default fund. All default funds must offer a &quot;MySuper&quot; product &mdash; a simple, low-cost option designed for members who do not make active investment choices. MySuper products are subject to annual performance testing by APRA; funds that fail 2 consecutive years are closed to new members.
+                If you have no existing fund and do not nominate one, your employer opens an account in their default fund. All default funds must offer a &quot;MySuper&quot; product, a simple, low-cost option designed for members who do not make active investment choices. MySuper products are subject to annual performance testing by APRA; funds that fail 2 consecutive years are closed to new members.
               </p>
               <h3>Comparing Funds</h3>
               <p>
@@ -649,13 +649,13 @@ export default function SuperannuationGuidePage() {
                 The superannuation system intersects with income tax brackets, salary packaging, and overall take-home pay calculations. These related tools and guides provide deeper analysis on specific aspects of Australian tax and payroll.
               </p>
               <ul>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; Calculate the exact SG amount your employer must pay based on your salary, including the maximum contribution base cap.</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> &mdash; Model the tax savings of redirecting pre-tax salary into super, with side-by-side before/after comparison.</li>
-                <li><Link href="/concessional-contributions-cap/">Concessional Contributions Cap</Link> &mdash; The {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap, carry-forward, and a calculator for your remaining room.</li>
-                <li><Link href="/payday-super/">Payday Super Guide</Link> &mdash; How SG is paid each payday from {SUPER_GUARANTEE.paydaySuperStart}, with per-pay figures and due dates.</li>
-                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Calculate your after-tax income including super, Medicare Levy, HECS-HELP, and all deductions.</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; See exactly how the FY{SITE_CONFIG.financialYear} tax brackets apply to your assessable income.</li>
-                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> &mdash; Understand the new marginal repayment system and how HECS interacts with super salary sacrifice strategies.</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: Calculate the exact SG amount your employer must pay based on your salary, including the maximum contribution base cap.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: Model the tax savings of redirecting pre-tax salary into super, with side-by-side before/after comparison.</li>
+                <li><Link href="/concessional-contributions-cap/">Concessional Contributions Cap</Link>: The {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap, carry-forward, and a calculator for your remaining room.</li>
+                <li><Link href="/payday-super/">Payday Super Guide</Link>: How SG is paid each payday from {SUPER_GUARANTEE.paydaySuperStart}, with per-pay figures and due dates.</li>
+                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: Calculate your after-tax income including super, Medicare Levy, HECS-HELP, and all deductions.</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: See exactly how the FY{SITE_CONFIG.financialYear} tax brackets apply to your assessable income.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link>: Understand the new marginal repayment system and how HECS interacts with super salary sacrifice strategies.</li>
               </ul>
             </section>
 

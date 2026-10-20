@@ -49,7 +49,7 @@ export default function SalaryVsHourlyPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Salary vs Hourly Pay — Which Is Better For You?
+            Salary vs Hourly Pay: Which Is Better For You?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Choosing between a salaried role and hourly pay affects your income stability, overtime access, leave entitlements, and total package value. Here is how to compare them side by side and determine which arrangement genuinely pays more for your situation.
@@ -107,8 +107,8 @@ export default function SalaryVsHourlyPage() {
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Flexibility</td>
-                        <td className="p-3 text-navy">Less — fixed schedule expected</td>
-                        <td className="p-3 text-navy">More — can vary shifts and availability</td>
+                        <td className="p-3 text-navy">Less: fixed schedule expected</td>
+                        <td className="p-3 text-navy">More: can vary shifts and availability</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Tax treatment</td>
@@ -133,7 +133,7 @@ export default function SalaryVsHourlyPage() {
                   <CardContent className="p-4">
                     <h4 className="font-semibold text-eucalyptus-dark mb-2">The Pros</h4>
                     <ul className="list-disc list-inside text-sm text-navy space-y-1">
-                      <li>Predictable income — same amount every pay cycle</li>
+                      <li>Predictable income: same amount every pay cycle</li>
                       <li>Paid annual leave and personal/sick leave included</li>
                       <li>Easier to budget and plan for mortgage applications</li>
                       <li>Often includes additional benefits (bonuses, salary packaging)</li>
@@ -154,7 +154,7 @@ export default function SalaryVsHourlyPage() {
                 </Card>
               </div>
               <p>
-                The biggest advantage of salary is <strong>stability</strong>. You know exactly what you will earn each fortnight, regardless of public holidays, sick days, or quiet periods. This makes loan applications and long-term financial planning significantly easier. The trade-off is that additional effort — working late, weekend emails, extra projects — is rarely compensated separately.
+                The biggest advantage of salary is <strong>stability</strong>. You know exactly what you will earn each fortnight, regardless of public holidays, sick days, or quiet periods. This makes loan applications and long-term financial planning significantly easier. The trade-off is that additional effort (working late, weekend emails, extra projects) is rarely compensated separately.
               </p>
             </section>
 
@@ -165,7 +165,7 @@ export default function SalaryVsHourlyPage() {
                   <CardContent className="p-4">
                     <h4 className="font-semibold text-eucalyptus-dark mb-2">The Pros</h4>
                     <ul className="list-disc list-inside text-sm text-navy space-y-1">
-                      <li>Paid for every hour worked — no unpaid overtime</li>
+                      <li>Paid for every hour worked, no unpaid overtime</li>
                       <li>Overtime at 1.5x (first 2-3 hours) and 2x (thereafter)</li>
                       <li>Weekend and public holiday penalty rates (1.25x to 2.5x)</li>
                       <li>Can increase income by taking extra shifts</li>
@@ -177,7 +177,7 @@ export default function SalaryVsHourlyPage() {
                   <CardContent className="p-4">
                     <h4 className="font-semibold text-ochre mb-2">The Cons</h4>
                     <ul className="list-disc list-inside text-sm text-ochre space-y-1">
-                      <li>Income varies — fewer hours means less pay</li>
+                      <li>Income varies: fewer hours means less pay</li>
                       <li>Casual workers have no paid leave entitlements</li>
                       <li>Hours may be cut during quiet business periods</li>
                       <li>Harder to plan finances with variable income</li>
@@ -187,7 +187,7 @@ export default function SalaryVsHourlyPage() {
                 </Card>
               </div>
               <p>
-                Hourly pay shines when <strong>overtime and penalty rates</strong> are available. A worker earning $38.50/hr who regularly works 5 hours of overtime per week at 1.5x earns an additional <strong>$15,015 per year</strong> — money a salaried employee in an equivalent role would not receive. Use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model exact amounts.
+                Hourly pay shines when <strong>overtime and penalty rates</strong> are available. A worker earning $38.50/hr who regularly works 5 hours of overtime per week at 1.5x earns an additional <strong>$15,015 per year</strong>, money a salaried employee in an equivalent role would not receive. Use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model exact amounts.
               </p>
             </section>
 
@@ -256,7 +256,7 @@ export default function SalaryVsHourlyPage() {
                 </div>
               </div>
               <p>
-                In this scenario, the hourly worker earns <strong>$16,220 more per year</strong> in total package value — but works 260 additional hours (5 hours x 52 weeks). If overtime is not consistently available, the gap narrows or reverses. The salaried employee benefits from guaranteed income during quiet periods, paid sick days, and no income reduction during annual leave.
+                In this scenario, the hourly worker earns <strong>$16,220 more per year</strong> in total package value, but works 260 additional hours (5 hours x 52 weeks). If overtime is not consistently available, the gap narrows or reverses. The salaried employee benefits from steady income during quiet periods, paid sick days, and no income reduction during annual leave.
               </p>
             </section>
 
@@ -266,7 +266,7 @@ export default function SalaryVsHourlyPage() {
                 From a pure tax perspective, <strong>there is no difference</strong>. Both salaried and hourly employees pay individual income tax at the same marginal rates. PAYG withholding is calculated on gross earnings regardless of how pay is structured. The ATO does not differentiate between salary and hourly income on your tax return.
               </p>
               <p>
-                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax — the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
+                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax: the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
               </p>
               <p>
                 Salary sacrifice opportunities are typically more accessible to salaried employees. Employers are more likely to offer packaging arrangements (super, novated leases, devices) to permanent salaried staff. Check your eligibility with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
@@ -290,11 +290,11 @@ export default function SalaryVsHourlyPage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <ul>
-                <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> — Convert between hourly, weekly, and annual pay instantly</li>
-                <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> — Calculate overtime earnings at penalty rates</li>
-                <li><Link href="/employment-type-calculator/">Employment Type Calculator</Link> — Compare full-time, part-time, and casual arrangements</li>
-                <li><Link href="/leave-calculator/">Leave Calculator</Link> — Calculate annual leave entitlements and loading</li>
-                <li><Link href="/full-time-vs-part-time-vs-casual/">Full-Time vs Part-Time vs Casual Guide</Link> — Compare employment types in detail</li>
+                <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>: Convert between hourly, weekly, and annual pay instantly</li>
+                <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link>: Calculate overtime earnings at penalty rates</li>
+                <li><Link href="/employment-type-calculator/">Employment Type Calculator</Link>: Compare full-time, part-time, and casual arrangements</li>
+                <li><Link href="/leave-calculator/">Leave Calculator</Link>: Calculate annual leave entitlements and loading</li>
+                <li><Link href="/full-time-vs-part-time-vs-casual/">Full-Time vs Part-Time vs Casual Guide</Link>: Compare employment types in detail</li>
               </ul>
             </section>
 

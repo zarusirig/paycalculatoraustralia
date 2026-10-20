@@ -5,8 +5,8 @@ export default function TransferBalanceCapIncrease2026() {
   return (
     <>
       <p className="lead">
-        The general transfer balance cap — the limit on how much super can be moved into a
-        tax-free retirement pension — rose from $2.0 million to <strong>$2.1 million</strong> on 1
+        The general transfer balance cap (the limit on how much super can be moved into a
+        tax-free retirement pension) rose from $2.0 million to <strong>$2.1 million</strong> on 1
         July 2026. The increase also lifts several related contribution and eligibility thresholds.
       </p>
 
@@ -25,7 +25,7 @@ export default function TransferBalanceCapIncrease2026() {
         the full new personal transfer balance cap of $2.1 million. This is the maximum amount that
         can be moved from accumulation into a tax-free pension account over your lifetime, though
         your own balance may be well below that figure. Amounts above your personal cap can stay in
-        accumulation phase, where earnings are taxed at up to 15%, or be withdrawn as a lump sum —
+        accumulation phase, where earnings are taxed at up to 15%, or be withdrawn as a lump sum;
         they simply can&apos;t be converted into the tax-free retirement phase environment once your
         cap is reached.
       </p>
@@ -35,7 +35,7 @@ export default function TransferBalanceCapIncrease2026() {
         If you already started a pension before 1 July 2026 and have unused cap space, you get a
         proportional increase to your personal cap, based on the highest balance your transfer
         account has ever reached. Members who have already used their full $2.0 million cap don&apos;t
-        get any extra room — the indexation only benefits those with unused capacity. The ATO
+        get any extra room, as the indexation only benefits those with unused capacity. The ATO
         calculates each member&apos;s proportional indexation individually using their transfer
         balance account history, and updated personal caps aren&apos;t expected to display in ATO
         online services until 13 July 2026, so there can be a short lag before your exact figure is

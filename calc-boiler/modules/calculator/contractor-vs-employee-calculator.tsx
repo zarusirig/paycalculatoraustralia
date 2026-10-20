@@ -56,7 +56,7 @@ export default function ContractorVsEmployeeCalculatorPage({ children, afterCalc
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Contractor vs Employee Calculator — Compare Your Take-Home
+            Contractor vs Employee Calculator: Compare Your Take-Home
           </h1>
           <p className="text-lg text-warmgray">
             See the real difference between working as an employee and as a contractor (ABN).

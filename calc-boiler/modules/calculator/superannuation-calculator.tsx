@@ -56,7 +56,7 @@ export default function SuperannuationCalculatorPage({
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-gray-400" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Superannuation Calculator</span></li>
           </ol></nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Superannuation Calculator Australia — How Much Super Your Employer Pays ({SITE_CONFIG.financialYear})</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Superannuation Calculator Australia: How Much Super Your Employer Pays ({SITE_CONFIG.financialYear})</h1>
           <p className="text-lg text-navy">
             Your employer pays <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} super</strong> on top of your salary. On <strong>$80,000</strong> that is{" "}
             <strong>{formatAUD(calculateSuper(80_000))} a year</strong> ({formatAUD(annualToWeekly(calculateSuper(80_000)), 2)} a week), paid with every pay from{" "}
@@ -122,7 +122,7 @@ export default function SuperannuationCalculatorPage({
                 <tbody className="divide-y divide-gray-100">
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Rate</td><td className="px-4 py-3 text-warmgray">12% of OTE</td><td className="px-4 py-3 text-warmgray">Any amount up to cap</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax on contribution</td><td className="px-4 py-3 text-warmgray">15% in fund</td><td className="px-4 py-3 text-warmgray">15% in fund</td></tr>
-                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Impact on take-home pay</td><td className="px-4 py-3 text-warmgray">None — paid on top of salary</td><td className="px-4 py-3 text-warmgray">Reduces gross salary</td></tr>
+                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Impact on take-home pay</td><td className="px-4 py-3 text-warmgray">None, paid on top of salary</td><td className="px-4 py-3 text-warmgray">Reduces gross salary</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Concessional cap</td><td className="px-4 py-3 text-warmgray">Counts toward {formatAUD(SUPER_GUARANTEE.concessionalCap)}</td><td className="px-4 py-3 text-warmgray">Counts toward {formatAUD(SUPER_GUARANTEE.concessionalCap)}</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Who initiates</td><td className="px-4 py-3 text-warmgray">Employer (legal obligation)</td><td className="px-4 py-3 text-warmgray">Employee (voluntary agreement)</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax saving at $100K salary</td><td className="px-4 py-3 text-warmgray">N/A (employer cost)</td><td className="px-4 py-3 text-warmgray">$1,500 per $10,000 sacrificed</td></tr>
@@ -130,7 +130,7 @@ export default function SuperannuationCalculatorPage({
               </table>
             </div>
             <p className="text-warmgray mb-3">On a salary of {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in mandatory SG, leaving <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in concessional cap space. Sacrificing this full amount saves you tax at your marginal rate minus the 15% contributions tax.</p>
-            <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> — model exact take-home pay differences before and after sacrifice.</p>
+            <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link>: model exact take-home pay differences before and after sacrifice.</p>
           </section>
 
           {middle}

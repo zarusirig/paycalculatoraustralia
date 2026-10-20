@@ -36,11 +36,11 @@ const BD80 = calculatePayBreakdown({ grossSalary: 80_000 });
 // moved to /take-home-pay-calculator/; "tax calculator australia" to
 // /income-tax-calculator/ — so "Tax" and "Take-Home" leave this title.
 // Previous: "Pay Calculator Australia ${FY} — Salary, Tax & Take-Home Pay".
-const TITLE = `Pay Calculator Australia ${FY} — Salary Calculator After Tax`;
+const TITLE = `Pay Calculator Australia ${FY} - Salary Calculator After Tax`;
 // fitDescription: fuller form first; the shorter form keeps the $80k figure,
 // the FY and every head-term token (pay calculator, salary calculator).
 const DESCRIPTION = fitDescription(
-  `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Free Australian pay and salary calculator for any salary, hourly or casual wage — after tax, Medicare, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
+  `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Free Australian pay and salary calculator for any salary, hourly or casual wage, after tax, Medicare, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
   `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Pay and salary calculator for any salary, hourly or casual wage after tax, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
 );
 
@@ -97,7 +97,7 @@ const websiteSchema: WithContext<WebSite> = {
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: `Pay Calculator Australia ${FY} — Salary Calculator`,
+  name: `Pay Calculator Australia ${FY} - Salary Calculator`,
   url: SITE_CONFIG.baseUrl,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

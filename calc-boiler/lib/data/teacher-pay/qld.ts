@@ -53,7 +53,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   nameInSentence: "Queensland",
   graduateStep: "Band 2, Step 1",
   topClassroomStep: "Band 3, Step 4",
-  h1: "QLD Teacher Salary 2026 — Queensland State School Pay Scale by Band and Step",
+  h1: "QLD Teacher Salary 2026: Queensland State School Pay Scale by Band and Step",
   classificationNote:
     "Queensland labels classroom teacher pay as Band and Step, from Band 1 Step 1 to Band 3 Step 4. Senior Teacher, Experienced Senior Teacher, Highly Accomplished Teacher and Lead Teacher are paid above Band 3 Step 4. Four-year-trained graduates enter at Band 2 Step 1.",
   principalScaleIds: ["principals"],
@@ -97,7 +97,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "heads-of-program",
-      title: "Promotional teaching positions — Heads of Program (Stream 2)",
+      title: "Promotional teaching positions: Heads of Program (Stream 2)",
       intro:
         "Head of Department, Head of Department (Curriculum), Guidance Officer, Senior Guidance Officer and Head of Special Education Services.",
       stepHeading: "Level and pay point",
@@ -179,7 +179,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       note: "Band 3 Step 1 classification, including 25% casual loading",
     },
     {
-      label: "Supply (relief) teacher — daily",
+      label: "Supply (relief) teacher, daily",
       rate: 515.75,
       unit: "day",
       note: "Including 25% casual loading",
@@ -201,7 +201,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       ],
     },
     {
-      heading: "Above Band 3 you apply — and you stay in the classroom",
+      heading: "Above Band 3 you apply, and you stay in the classroom",
       body: [
         "Senior Teacher, Experienced Senior Teacher, and Highly Accomplished and Lead Teacher are all things you apply for rather than age into, and all of them keep you teaching. That is the distinguishing feature of the Queensland structure: there are four paid classifications above the incremental scale that do not require leaving the classroom.",
         "If you want a leadership role instead, the pathway runs from Head of Department (Curriculum) through to Principal, on the separate Stream 2 and Stream 3 scales above.",
@@ -210,7 +210,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     {
       heading: "What the agreement says about increments",
       body: [
-        "Clause 5.11.2: progression from one salary step to the next by increment is subject to satisfactory performance. Clause 5.11.1 adds something part-timers should know — incremental progression is not affected by your part-time employment fraction, so a 0.5 load still moves you a step a year.",
+        "Clause 5.11.2: progression from one salary step to the next by increment is subject to satisfactory performance. Clause 5.11.1 adds something part-timers should know: incremental progression is not affected by your part-time employment fraction, so a 0.5 load still moves you a step a year.",
         "Clause 5.11.3 is the exception: an employee subject to a Managing Unsatisfactory Performance process at Stage 2 or beyond at the time of their increment does not progress.",
       ],
     },
@@ -239,7 +239,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
 
   unverified: [
     "The final arbitrated rates. The replacement agreement is still before the QIRC, and the 3% interim increase applies until the proceedings are determined, so no later increase or date is published yet.",
-    "Paypoint 1 for Promotional Levels 1 and 2, for deputy principals, and for Principal Levels 1 to 7 — the department publishes those cells as \"--\" with no rate, so they are not shown.",
+    "Paypoint 1 for Promotional Levels 1 and 2, for deputy principals, and for Principal Levels 1 to 7. The department publishes those cells as \"--\" with no rate, so they are not shown.",
     "Coach classifications (Pedagogy, Literacy and Numeracy Coaches engaged before 1 July 2019), which the department directs to separate transition arrangements.",
     "Community Education Counsellor and school-based trainee scales, which are separate classifications.",
     "Rural and remote incentives and locality allowances, which vary by school and are not a salary rate.",
@@ -247,12 +247,12 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
 
   sources: [
     {
-      title: "Department of Education Salary Schedule — Teachers sheet (re-published with the 7 September 2026 rates; cover reads \"Updated 1 September 2026\")",
+      title: "Department of Education Salary Schedule, Teachers sheet (re-published with the 7 September 2026 rates; cover reads \"Updated 1 September 2026\")",
       publisher: "Queensland Department of Education",
       url: "https://qed.qld.gov.au/workingwithus/induction/centralandregionaloffices/Documents/salaryschedule.xls",
     },
     {
-      title: "State of Queensland (Department of Education) v Queensland Teachers' Union of Employees [2026] QIRC 267 — 3% interim increase operative 7 September 2026",
+      title: "State of Queensland (Department of Education) v Queensland Teachers' Union of Employees [2026] QIRC 267, 3% interim increase operative 7 September 2026",
       publisher: "Queensland Industrial Relations Commission (Supreme Court Library Queensland)",
       url: "https://archive.sclqld.org.au/qjudgment/2026/QIRC26-267.pdf",
     },
@@ -262,7 +262,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/teaching_state_ed_010926.pdf",
     },
     {
-      title: "Declaration of General Ruling (State Wage Case 2026) [2026] QIRC 280 — 4.75% from 1 September 2026",
+      title: "Declaration of General Ruling (State Wage Case 2026) [2026] QIRC 280, 4.75% from 1 September 2026",
       publisher: "Queensland Industrial Relations Commission",
       url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf",
     },
@@ -272,12 +272,12 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       url: "https://www.qirc.qld.gov.au/agreements/public-service-agreements",
     },
     {
-      title: "Pay and benefits — teaching in Queensland state schools (updated 1 October 2026)",
+      title: "Pay and benefits, teaching in Queensland state schools (updated 1 October 2026)",
       publisher: "Teach Queensland, Queensland Department of Education",
       url: "https://teach.qld.gov.au/teach-in-state-schools/pay-and-benefits",
     },
     {
-      title: "Salaries — Teachers CA 2022: updated salary schedule from 7 September 2026",
+      title: "Salaries, Teachers CA 2022: updated salary schedule from 7 September 2026",
       publisher: "Queensland Teachers' Union",
       url: "https://www.qtu.asn.au/salaries-CA2022",
     },
@@ -286,7 +286,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "What is the graduate teacher salary in Queensland?",
-      a: "A beginning teacher with a four-year degree starts at Band 2, Step 1, $90,164 a year on the department's salary schedule, the award rate in force from 1 September 2026. Band 1, at $80,615, is not the graduate band — it is for teachers on a Permission to Teach or working as an intern.",
+      a: "A beginning teacher with a four-year degree starts at Band 2, Step 1, $90,164 a year on the department's salary schedule, the award rate in force from 1 September 2026. Band 1, at $80,615, is not the graduate band. It is for teachers on a Permission to Teach or working as an intern.",
     },
     {
       q: "What is the top of the QLD teacher pay scale?",

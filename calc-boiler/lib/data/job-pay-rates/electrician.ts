@@ -64,7 +64,7 @@ export const ELECTRICIAN: Occupation = {
     "Electricians working for electrical contractors are covered by the Electrical, Electronic and Communications Contracting Award 2020 [MA000025]. The award grades electrical workers from 1 to 10. Grade 5 is the qualified tradesperson level; grades 6 to 10 are grade 5 electricians who hold further qualifications or experience set out in Schedule A.",
     "An electrician's minimum is more than the bare wage in the award. Clause 16.3 builds an \"all-purpose\" rate from the grade's minimum wage plus the industry allowance ($41.41 a week, paid to all employees) and, from grade 5 up, the tool allowance ($22.31 a week). That all-purpose rate is what overtime, penalties and leave are calculated on.",
     "An electrician who holds an unrestricted electrical licence and may be required to use it gets a further all-purpose licence allowance of $40.29 a week (cl 18.3(b)), which is not included in the table.",
-    "Electricians employed outside electrical contracting — in mining, manufacturing or by an electricity supplier, for example — may be covered by a different award or an enterprise agreement.",
+    "Electricians employed outside electrical contracting (in mining, manufacturing or by an electricity supplier, for example) may be covered by a different award or an enterprise agreement.",
   ],
   tables: [
     {
@@ -106,10 +106,10 @@ export const ELECTRICIAN: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "An electrician who holds an unrestricted licence and may be required to use it must also get the $40.29 weekly licence allowance on top of the grade 5 rate — an all-purpose minimum of $1,223.11 a week.",
+    "An electrician who holds an unrestricted licence and may be required to use it must also get the $40.29 weekly licence allowance on top of the grade 5 rate: an all-purpose minimum of $1,223.11 a week.",
   ],
   notShown: [
-    "Apprentice rates, which are percentages of the grade 5 rate set by year and start date — see the construction and trades pay guide.",
+    "Apprentice rates, which are percentages of the grade 5 rate set by year and start date. See the construction and trades pay guide.",
     "Shiftwork rates and special site allowances such as the multistorey allowance.",
   ],
   faqs: [
@@ -131,11 +131,11 @@ export const ELECTRICIAN: Occupation = {
     },
     {
       q: "What do electricians actually earn in Australia?",
-      a: "Jobs and Skills Australia reports a median of $2,191 a week for full-time electricians (ABS Survey of Employee Earnings and Hours, May 2025) — about $1,000 a week above the grade 5 award minimum. The median counts electricians on enterprise agreements and above-award pay, so it is a market figure, not an entitlement.",
+      a: "Jobs and Skills Australia reports a median of $2,191 a week for full-time electricians (ABS Survey of Employee Earnings and Hours, May 2025), about $1,000 a week above the grade 5 award minimum. The median counts electricians on enterprise agreements and above-award pay, so it is a market figure, not an entitlement.",
     },
   ],
   sources: [
-    { title: "Electrical, Electronic and Communications Contracting Award 2020 [MA000025] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000025") },
+    { title: "Electrical, Electronic and Communications Contracting Award 2020 [MA000025], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000025") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

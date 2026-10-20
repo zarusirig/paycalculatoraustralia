@@ -71,8 +71,8 @@ export const ENGINEER: Occupation = {
   },
   coverage: [
     "Employees doing professional engineering work are covered by the Professional Employees Award 2020 [MA000065], whichever industry their employer is in. The award covers graduate and experienced engineers, as well as scientists, IT professionals and quality auditors.",
-    "A graduate engineer — someone with a 4 or 5-year degree recognised by Engineers Australia — starts at Level 1 pay point 1.1 and moves through pay points 1.2 to 1.4. An experienced engineer (a member of Engineers Australia, or 4 years' professional experience after qualifying) is Level 2, and Levels 3 and 4 cover engineers with greater independence, responsibility and seniority (Schedule A).",
-    "The award sets annual salaries. It does not cover engineers in industries with their own award that excludes it — for example electricity, water, rail, black coal mining or state government agencies (cl 4.2) — nor engineers in state or local government covered by another award.",
+    "A graduate engineer (someone with a 4 or 5-year degree recognised by Engineers Australia) starts at Level 1 pay point 1.1 and moves through pay points 1.2 to 1.4. An experienced engineer (a member of Engineers Australia, or 4 years' professional experience after qualifying) is Level 2, and Levels 3 and 4 cover engineers with greater independence, responsibility and seniority (Schedule A).",
+    "The award sets annual salaries. It does not cover engineers in industries with their own award that excludes it, for example electricity, water, rail, black coal mining or state government agencies (cl 4.2), nor engineers in state or local government covered by another award.",
     "Engineering technicians and draftspersons are not professional engineers and are usually covered by the Manufacturing award or an industry award instead.",
   ],
   tables: [
@@ -101,7 +101,7 @@ export const ENGINEER: Occupation = {
   penaltiesNote:
     "Percentages of the minimum hourly rate for hours worked at the employer's direction (cl 18.4, Schedule C). There is no Saturday daytime penalty under this award.",
   overtime: [
-    "Hours beyond 38 a week (or an agreed average) are paid at the minimum hourly rate — not time and a half (cl 18.2(a)). Casuals likewise get their casual hourly rate.",
+    "Hours beyond 38 a week (or an agreed average) are paid at the minimum hourly rate, not time and a half (cl 18.2(a)). Casuals likewise get their casual hourly rate.",
     "Overtime includes call-backs and work done remotely on electronic devices, which must be recorded on a timesheet (cl 18.2).",
     "Time off instead of payment for overtime can be agreed hour for hour (cl 18.3).",
   ],
@@ -117,7 +117,7 @@ export const ENGINEER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a graduate engineer in 2026?",
-      a: "A graduate engineer with a 4 or 5-year degree recognised by Engineers Australia must be paid at least $68,538 a year — $34.57 an hour — under the Professional Employees Award from the first full pay period on or after 1 July 2026. A 3-year degree graduate professional starts at $66,825.",
+      a: "A graduate engineer with a 4 or 5-year degree recognised by Engineers Australia must be paid at least $68,538 a year ($34.57 an hour) under the Professional Employees Award from the first full pay period on or after 1 July 2026. A 3-year degree graduate professional starts at $66,825.",
     },
     {
       q: "What is the minimum salary for an experienced engineer?",
@@ -125,7 +125,7 @@ export const ENGINEER: Occupation = {
     },
     {
       q: "Do engineers get paid overtime?",
-      a: "Under the Professional Employees Award, hours beyond 38 a week must be paid, but only at the ordinary minimum hourly rate — there is no time-and-a-half. Hours worked before 6 am or after 10 pm attract 125%, and Sundays and public holidays 150%.",
+      a: "Under the Professional Employees Award, hours beyond 38 a week must be paid, but only at the ordinary minimum hourly rate. There is no time-and-a-half. Hours worked before 6 am or after 10 pm attract 125%, and Sundays and public holidays 150%.",
     },
     {
       q: "What is the casual rate for an engineer?",
@@ -133,7 +133,7 @@ export const ENGINEER: Occupation = {
     },
     {
       q: "What do engineers actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,217 a week for civil engineering professionals (ABS, May 2025), about $115,284 a year — far above the award, because most engineers are paid market salaries. Other engineering disciplines have their own medians: the civil, electrical and mechanical engineer pages show each one, with ATO tax-return figures.",
+      a: "Jobs and Skills Australia reports median full-time earnings of $2,217 a week for civil engineering professionals (ABS, May 2025), about $115,284 a year, far above the award, because most engineers are paid market salaries. Other engineering disciplines have their own medians: the civil, electrical and mechanical engineer pages show each one, with ATO tax-return figures.",
     },
   ],
   spokes: [
@@ -155,7 +155,7 @@ export const ENGINEER: Occupation = {
   ],
   dateModified: "2026-10-09",
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000065") },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000065") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

@@ -28,7 +28,7 @@ export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I refuse to work overtime?",
-    a: "Under the National Employment Standards, an employer can request \"reasonable overtime.\" You can refuse if it is unreasonable — factors include your personal circumstances, the notice given, your role, and health and safety risks. The Fair Work Ombudsman provides guidance on what constitutes reasonable overtime.",
+    a: "Under the National Employment Standards, an employer can request \"reasonable overtime.\" You can refuse if it is unreasonable. Factors include your personal circumstances, the notice given, your role, and health and safety risks. The Fair Work Ombudsman provides guidance on what constitutes reasonable overtime.",
   },
   {
     q: "Is superannuation paid on overtime hours?",
@@ -36,11 +36,11 @@ export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does overtime push me into a higher tax bracket?",
-    a: `Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from ${formatAUD(LOW.max)} to above ${formatAUD(MID.min)}), the portion above the threshold is taxed at the higher marginal rate of ${pct(MID.rate)} instead of ${pct(LOW.rate)}. Only the portion above the threshold is taxed at the higher rate — not your entire income.`,
+    a: `Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from ${formatAUD(LOW.max)} to above ${formatAUD(MID.min)}), the portion above the threshold is taxed at the higher marginal rate of ${pct(MID.rate)} instead of ${pct(LOW.rate)}. Only the portion above the threshold is taxed at the higher rate, not your entire income.`,
   },
   {
     q: "Can I take time off instead of overtime pay?",
-    a: "\"Time Off In Lieu\" (TOIL) allows employees to take paid time off instead of receiving overtime pay, but only where your award, enterprise agreement or contract allows it — the National Employment Standards do not provide it. The ratio depends on the award: the Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour, while the General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (2 hours at 150% = 3 hours off). The employee must genuinely agree; an employer cannot unilaterally substitute TOIL for overtime payment.",
+    a: "\"Time Off In Lieu\" (TOIL) allows employees to take paid time off instead of receiving overtime pay, but only where your award, enterprise agreement or contract allows it, as the National Employment Standards do not provide it. The ratio depends on the award: the Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour, while the General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (2 hours at 150% = 3 hours off). The employee must genuinely agree; an employer cannot unilaterally substitute TOIL for overtime payment.",
   },
   {
     q: "Is there a maximum number of overtime hours per week?",

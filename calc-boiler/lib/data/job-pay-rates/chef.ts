@@ -54,18 +54,18 @@ export const CHEF: Occupation = {
   headline: {
     tableId: "cooks-hospitality",
     label: "Cook grade 3 (tradesperson) — commis chef",
-    why: "a qualified chef who has finished an apprenticeship or passed the trade test — the award's \"commi chef or equivalent\"",
+    why: "a qualified chef who has finished an apprenticeship or passed the trade test, the award's \"commi chef or equivalent\"",
   },
   coverage: [
     "Which award covers a chef depends on where they work. Chefs in hotels, pubs, taverns, motels, resorts and casinos are covered by the Hospitality Industry (General) Award 2020 [MA000009]. Chefs in restaurants, cafés, reception centres and roadhouses are covered by the Restaurant Industry Award 2020 [MA000119]. A restaurant inside a hotel or licensed club stays under the Hospitality or Clubs award (Restaurant Award cl 4.2).",
-    "Both awards use the same cook grades and pay the same minimum weekly and hourly rates at every level. A qualified chef — someone who has completed a commercial cookery apprenticeship or passed the trade test (the Restaurant Award also accepts the appropriate level of training) — starts at Cook grade 3 (tradesperson), which both awards describe as \"a commi chef or equivalent\". A demi chef is Cook grade 4 and a chef de partie Cook grade 5.",
-    "Cook grades 1 and 2 cover unqualified cooks: grade 1 cooks breakfasts and snacks, grade 2 has the appropriate level of training. The awards differ on penalty rates — see the penalty section.",
+    "Both awards use the same cook grades and pay the same minimum weekly and hourly rates at every level. A qualified chef (someone who has completed a commercial cookery apprenticeship or passed the trade test; the Restaurant Award also accepts the appropriate level of training) starts at Cook grade 3 (tradesperson), which both awards describe as \"a commi chef or equivalent\". A demi chef is Cook grade 4 and a chef de partie Cook grade 5.",
+    "Cook grades 1 and 2 cover unqualified cooks: grade 1 cooks breakfasts and snacks, grade 2 has the appropriate level of training. The awards differ on penalty rates. See the penalty section.",
     "Chefs in takeaway shops are usually under the Fast Food Award, and cooks in residential aged care under the Aged Care Award general stream. Head chefs and executive chefs are commonly paid salaries above the award.",
   ],
   tables: [
     {
       id: "cooks-hospitality",
-      title: "Chef and cook pay rates — Hospitality Award, 2026–27",
+      title: "Chef and cook pay rates: Hospitality Award, 2026–27",
       intro:
         "Hospitality Award cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading.",
       rows: [
@@ -78,7 +78,7 @@ export const CHEF: Occupation = {
     },
     {
       id: "cooks-restaurant",
-      title: "Chef and cook pay rates — Restaurant Award, 2026–27",
+      title: "Chef and cook pay rates: Restaurant Award, 2026–27",
       intro:
         "Restaurant Award cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. The minimums are the same dollars as the Hospitality Award; the penalty rates differ.",
       rows: [
@@ -100,7 +100,7 @@ export const CHEF: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Many chefs are paid an annualised salary. Under both awards a written annualised wage agreement with a full-time employee must pay at least 25% more than the award minimum x 52 — $72,741.50 a year for a Cook grade 3 — and hours beyond the outer limits (an average of 18 penalty-rate ordinary hours or 12 overtime hours a week) must be paid on top (Hospitality cl 24.2; Restaurant cl 20.1).",
+    "Many chefs are paid an annualised salary. Under both awards a written annualised wage agreement with a full-time employee must pay at least 25% more than the award minimum x 52 ($72,741.50 a year for a Cook grade 3), and hours beyond the outer limits (an average of 18 penalty-rate ordinary hours or 12 overtime hours a week) must be paid on top (Hospitality cl 24.2; Restaurant cl 20.1).",
   ],
   notShown: [
     "Apprentice cook rates.",
@@ -110,7 +110,7 @@ export const CHEF: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a chef in 2026?",
-      a: "A qualified chef (Cook grade 3, tradesperson) must be paid at least $29.45 an hour, or $1,119.10 a week, under both the Hospitality and Restaurant awards from the first full pay period on or after 1 July 2026 — $58,193 a year full-time before tax. A demi chef (grade 4) gets $31.30 and a chef de partie (grade 5) $32.13 an hour.",
+      a: "A qualified chef (Cook grade 3, tradesperson) must be paid at least $29.45 an hour, or $1,119.10 a week, under both the Hospitality and Restaurant awards from the first full pay period on or after 1 July 2026, or $58,193 a year full-time before tax. A demi chef (grade 4) gets $31.30 and a chef de partie (grade 5) $32.13 an hour.",
     },
     {
       q: "What is the casual rate for a chef?",
@@ -122,7 +122,7 @@ export const CHEF: Occupation = {
     },
     {
       q: "How much is a chef paid on a Sunday?",
-      a: "A full-time or part-time chef gets 150% of the minimum hourly rate on Sunday — $44.18 an hour for a Cook grade 3. Public holidays are 225%, $66.26 an hour.",
+      a: "A full-time or part-time chef gets 150% of the minimum hourly rate on Sunday: $44.18 an hour for a Cook grade 3. Public holidays are 225%, $66.26 an hour.",
     },
     {
       q: "What do chefs actually earn?",
@@ -130,8 +130,8 @@ export const CHEF: Occupation = {
     },
   ],
   sources: [
-    { title: "Hospitality Industry (General) Award 2020 [MA000009] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(HOSPITALITY_AWARD_REF.code) },
-    { title: "Restaurant Industry Award 2020 [MA000119] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RESTAURANT_AWARD_REF.code) },
+    { title: "Hospitality Industry (General) Award 2020 [MA000009], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(HOSPITALITY_AWARD_REF.code) },
+    { title: "Restaurant Industry Award 2020 [MA000119], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RESTAURANT_AWARD_REF.code) },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

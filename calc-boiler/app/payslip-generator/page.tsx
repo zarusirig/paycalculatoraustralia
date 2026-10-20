@@ -14,9 +14,9 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
-const TITLE = "Free Payslip Generator Australia — Create Payslips Online";
+const TITLE = "Free Payslip Generator Australia - Create Payslips Online";
 const DESCRIPTION =
-  "Create a Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup.";
+  "Create a Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals. Print or save as PDF. No signup.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
@@ -33,7 +33,7 @@ export const metadata: Metadata = withFeaturedImage({
   twitter: {
     card: "summary_large_image",
     title: "Free Payslip Generator Australia",
-    description: "Create compliant Australian payslips online — PAYG tax, super and YTD totals included. Print or save as PDF.",
+    description: "Create compliant Australian payslips online with PAYG tax, super and YTD totals included. Print or save as PDF.",
   },
 });
 
@@ -62,7 +62,7 @@ const webApp: WithContext<WebApplication> = {
     "Super Guarantee calculation on ordinary time earnings",
     "Year-to-date totals",
     "Print or save as PDF",
-    "Client-side only — no data stored",
+    "Client-side only, no data stored",
   ],
   dateModified: pageDateModified("payslip-generator"),
   inLanguage: "en-AU",

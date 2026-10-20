@@ -30,7 +30,7 @@ import { RETAIL_FAQS } from "@/modules/guide/retail-award-faqs";
 import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: `Pay guide — ${RETAIL_AWARD.name} (${RETAIL_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000004-summary", publisher: SOURCES.fwo.name },
+  { title: `Pay guide, ${RETAIL_AWARD.name} (${RETAIL_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000004-summary", publisher: SOURCES.fwo.name },
   { title: `Consolidated award text ${RETAIL_AWARD.code}`, url: RETAIL_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
   { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
 ];
@@ -164,7 +164,7 @@ export default function RetailAwardRatesPage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {[
                         { label: "Monday to Friday — ordinary hours", perm: 1, cas: 1 + LOADING },
-                        { label: "Monday to Friday — after 6pm", perm: RETAIL_PENALTIES.eveningAfter6pm, cas: RETAIL_PENALTIES.casualEveningAfter6pm },
+                        { label: "Monday to Friday, after 6pm", perm: RETAIL_PENALTIES.eveningAfter6pm, cas: RETAIL_PENALTIES.casualEveningAfter6pm },
                         { label: "Saturday", perm: RETAIL_PENALTIES.saturday, cas: RETAIL_PENALTIES.casualSaturday },
                         { label: "Sunday", perm: RETAIL_PENALTIES.sunday, cas: RETAIL_PENALTIES.casualSunday },
                         { label: "Public holiday", perm: RETAIL_PENALTIES.publicHoliday, cas: RETAIL_PENALTIES.casualPublicHoliday },
@@ -208,8 +208,8 @@ export default function RetailAwardRatesPage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {[
-                        { l: "Monday to Saturday — first 3 hours", p: RETAIL_OVERTIME.weekdayFirst3Hours, c: RETAIL_OVERTIME.casualWeekdayFirst3Hours },
-                        { l: "Monday to Saturday — after 3 hours", p: RETAIL_OVERTIME.weekdayAfter3Hours, c: RETAIL_OVERTIME.casualWeekdayAfter3Hours },
+                        { l: "Monday to Saturday, first 3 hours", p: RETAIL_OVERTIME.weekdayFirst3Hours, c: RETAIL_OVERTIME.casualWeekdayFirst3Hours },
+                        { l: "Monday to Saturday, after 3 hours", p: RETAIL_OVERTIME.weekdayAfter3Hours, c: RETAIL_OVERTIME.casualWeekdayAfter3Hours },
                         { l: "Sunday", p: RETAIL_OVERTIME.sunday, c: RETAIL_OVERTIME.casualSunday },
                         { l: "Public holiday", p: RETAIL_OVERTIME.publicHoliday, c: RETAIL_OVERTIME.casualPublicHoliday },
                       ].map((row) => (

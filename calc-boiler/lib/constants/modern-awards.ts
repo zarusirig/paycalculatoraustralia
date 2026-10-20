@@ -344,7 +344,7 @@ Level 3 (in charge of 2 or more people)|1150.40|30.27
   penaltiesClause: "cl 21, Table 6",
   penaltyNotes: [
     "Sunday is paid differently by level: Level 1 employees receive 125% (casuals 150%), while Level 2 and Level 3 employees receive 150% (casuals 175%).",
-    "Casual penalty rates are the full-time percentage plus the 25% casual loading — Table 6 NOTE 1 says so in terms.",
+    "Casual penalty rates are the full-time percentage plus the 25% casual loading. Table 6 NOTE 1 says so in terms.",
   ],
   // cl 20.6(a), Table 5.
   overtime: [
@@ -447,7 +447,7 @@ Pharmacist manager|1981.60|52.15
     },
     {
       level: "Pharmacy interns",
-      description: "Paid by half of training — the first and second halves of the internship carry different rates.",
+      description: "Paid by half of training: the first and second halves of the internship carry different rates.",
     },
   ],
   // The main weekday/weekend bands for the level-by-level table. The full
@@ -474,7 +474,7 @@ Pharmacist manager|1981.60|52.15
   ],
   penaltiesClause: "cl 22.3, Table 6",
   penaltyNotes: [
-    "Pharmacy penalties depend on the time of day as well as the day — a Saturday shift can cross three different rates.",
+    "Pharmacy penalties depend on the time of day as well as the day, so a Saturday shift can cross three different rates.",
     "Ordinary hours can be worked on any day between 7.00 am and midnight (cl 13.1). Penalty rates are not cumulative on overtime rates (cl 22.2).",
   ],
   // cl 21.4, Table 5 — single column.
@@ -486,7 +486,7 @@ Pharmacist manager|1981.60|52.15
   ],
   overtimeClause: "cl 21.4, Table 5",
   overtimeNotes: [
-    "The casual loading is not payable on overtime worked by a casual employee (cl 11.3 NOTE) — the opposite of the Fast Food and Clerks awards.",
+    "The casual loading is not payable on overtime worked by a casual employee (cl 11.3 NOTE), the opposite of the Fast Food and Clerks awards.",
   ],
   casualPenaltyBasis: "additive",
   // cl 16.2, Table 4 — pharmacy assistants levels 1 and 2 only.
@@ -578,7 +578,7 @@ Security Officer Level 5|1185.70|31.20
   ],
   penaltiesClause: "cl 20.2, Table 7",
   penaltyNotes: [
-    "Night work is 121.7%, not a round number — and 130% for an employee on permanent night work, meaning more than two-thirds of their ordinary shifts in a roster cycle include the period between midnight and 6.00 am (cl 20.3).",
+    "Night work is 121.7%, not a round number, and 130% for an employee on permanent night work, meaning more than two-thirds of their ordinary shifts in a roster cycle include the period between midnight and 6.00 am (cl 20.3).",
     "The casual column in Table 7 is inclusive of the 25% casual loading, and cl 11.1(b) confirms the loading is paid in addition to any shift, weekend or public holiday penalty.",
   ],
   // cl 19.3(a), Table 5 — one column.
@@ -618,7 +618,7 @@ Security Officer Level 5|1185.70|31.20
     "Call back: an employee required to return to work after finishing is paid for at least 2 hours (Monday to Saturday disciplinary or administrative attendance), 3 hours (Monday to Saturday for any other purpose) or 4 hours (Sunday) (cl 19.5, Table 6).",
   ],
   unverified: [
-    "Classification definitions for Security Officer Levels 1 to 5 (Schedule A) — we publish the rate for each level but not the duties that place an officer at that level",
+    "Classification definitions for Security Officer Levels 1 to 5 (Schedule A). We publish the rate for each level but not the duties that place an officer at that level",
     "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
   ],
 };
@@ -665,7 +665,7 @@ Call centre technical associate|1415.10|37.24
     {
       level: "Years of service",
       description:
-        "Level 1 and Level 2 progress by year. Any service at the classification level — including administrative and clerical experience with a previous employer — counts towards a year of service (cl 16.2).",
+        "Level 1 and Level 2 progress by year. Any service at the classification level (including administrative and clerical experience with a previous employer) counts towards a year of service (cl 16.2).",
     },
   ],
   matrix: [
@@ -682,7 +682,7 @@ Call centre technical associate|1415.10|37.24
   ],
   penaltiesClause: "cl 24 and Schedule B.3.1",
   penaltyNotes: [
-    "Ordinary hours for non-shiftworkers run 7.00 am to 7.00 pm Monday to Friday and 7.00 am to 12.30 pm on Saturday (cl 13.3), movable by up to an hour by agreement. Sunday ordinary hours arise only where cl 13.5 applies — clerks working alongside employees under a different award.",
+    "Ordinary hours for non-shiftworkers run 7.00 am to 7.00 pm Monday to Friday and 7.00 am to 12.30 pm on Saturday (cl 13.3), movable by up to an hour by agreement. Sunday ordinary hours arise only where cl 13.5 applies: clerks working alongside employees under a different award.",
     "An employee required to work ordinary hours on a Sunday, or to work on a public holiday, is entitled to not less than 4 hours' pay (cl 24.3(c), 24.4(d)).",
     "Shiftworkers are paid under Part 6 (cl 31) instead; those rates are not reproduced here.",
   ],
@@ -833,8 +833,8 @@ D4 (driver)|1118.00|29.42
   ],
   penaltiesClause: "cl 33",
   penaltyNotes: [
-    "Day workers' ordinary hours are Monday to Friday between 6.00 am and 6.00 pm (cl 17.2). Saturday and Sunday are ordinary hours only by agreement — without one, weekend work is paid as overtime.",
-    "For casuals every percentage applies to the casual ordinary hourly rate, which already includes the 25% loading (cl 11.1(d)). A casual Saturday at 150% is therefore 187.5% of the base rate — this award compounds where most others add.",
+    "Day workers' ordinary hours are Monday to Friday between 6.00 am and 6.00 pm (cl 17.2). Saturday and Sunday are ordinary hours only by agreement. Without one, weekend work is paid as overtime.",
+    "For casuals every percentage applies to the casual ordinary hourly rate, which already includes the 25% loading (cl 11.1(d)). A casual Saturday at 150% is therefore 187.5% of the base rate. This award compounds where most others add.",
     "Saturday, Sunday and public holiday shift rates replace the afternoon and night shift loadings rather than adding to them (cl 33.2(i)–(j)). Extra rates, other than special rates and public holiday rates, are not cumulative beyond double the ordinary hourly rate (cl 26).",
   ],
   // cl 32.
@@ -864,7 +864,7 @@ D4 (driver)|1118.00|29.42
       { age: "21 and over", percentage: 1 },
     ],
     clause: "cl 25.1",
-    appliesTo: "unapprenticed juniors, as a percentage of the C13 / V2 rate — not foundry juniors (cl 25.3) or juniors on the heavy operations in cl 25.4, who have their own rules",
+    appliesTo: "unapprenticed juniors, as a percentage of the C13 / V2 rate, not foundry juniors (cl 25.3) or juniors on the heavy operations in cl 25.4, who have their own rules",
     adultAge: 21,
     baseLevel: "C13 / V2",
   },
@@ -993,9 +993,9 @@ export const RESTAURANT_AWARD: ModernAwardData = {
     { level: "Level 1", description: "Food and beverage attendant grade 1; kitchen attendant grade 1." },
     { level: "Level 2", description: "Food and beverage attendant grade 2; cook grade 1; kitchen attendant grade 2; clerical grade 1; storeperson grade 1; door person/security officer grade 1." },
     { level: "Level 3", description: "Food and beverage attendant grade 3; cook grade 2; kitchen attendant grade 3; clerical grade 2; storeperson grade 2; timekeeper/security officer grade 2; handyperson." },
-    { level: "Level 4", description: "Food and beverage attendant grade 4 (tradesperson); cook grade 3 (tradesperson) — a commis chef or equivalent; clerical grade 3; storeperson grade 3." },
-    { level: "Level 5", description: "Food and beverage supervisor; cook grade 4 (tradesperson) — a demi chef or equivalent; clerical supervisor." },
-    { level: "Level 6", description: "Cook grade 5 (tradesperson) — a chef de partie or equivalent." },
+    { level: "Level 4", description: "Food and beverage attendant grade 4 (tradesperson); cook grade 3 (tradesperson), a commis chef or equivalent; clerical grade 3; storeperson grade 3." },
+    { level: "Level 5", description: "Food and beverage supervisor; cook grade 4 (tradesperson), a demi chef or equivalent; clerical supervisor." },
+    { level: "Level 6", description: "Cook grade 5 (tradesperson), a chef de partie or equivalent." },
   ],
   matrix: [
     { label: "Mon–Fri", fullTime: 1, casual: 1.25 },
@@ -1016,7 +1016,7 @@ export const RESTAURANT_AWARD: ModernAwardData = {
       casual: 1.5,
       appliesTo: RESTAURANT_LOW,
       casualTabulated: true,
-      note: "Table 8 column 3: a casual at Introductory Level to Level 2 gets 150% on a Sunday — the same percentage as a full-timer, with no extra loading.",
+      note: "Table 8 column 3: a casual at Introductory Level to Level 2 gets 150% on a Sunday, the same percentage as a full-timer, with no extra loading.",
     },
     { label: "Sunday — Levels 3 to 6", fullTime: 1.5, casual: 1.75, appliesTo: RESTAURANT_HIGH },
     { label: "Public holiday", fullTime: 2.25, casual: 2.5 },
@@ -1038,7 +1038,7 @@ export const RESTAURANT_AWARD: ModernAwardData = {
   ],
   overtimeClause: "cl 23.4, Table 7",
   overtimeNotes: [
-    "Overtime percentages apply to the minimum hourly rate for casuals too — the award's Schedule B.1.4 prints casual overtime at exactly the full-time dollar figures, without the 25% loading.",
+    "Overtime percentages apply to the minimum hourly rate for casuals too. The award's Schedule B.1.4 prints casual overtime at exactly the full-time dollar figures, without the 25% loading.",
     "Work on a rostered day off is paid at the overtime rate for at least 4 hours (cl 23.1(d)–(e)). Each day's overtime stands alone (cl 23.3).",
   ],
   casualPenaltyBasis: "additive",
@@ -1181,7 +1181,7 @@ export const NURSES_AWARD: ModernAwardData = {
   ratesClause: "cl 15.1 and 15.3",
   entryLevel: "Registered nurse level 1 — pay point 1",
   classificationNotes: [
-    { level: "Two rate streams", description: "Clause 15.1 applies to every employee except aged care employees. Clause 15.3 applies to aged care employees — nurses providing services to aged persons in a nursing home, hostel, retirement village or other residential facility, or in an aged person's private home. Rows beginning “Aged care” are clause 15.3 rates." },
+    { level: "Two rate streams", description: "Clause 15.1 applies to every employee except aged care employees. Clause 15.3 applies to aged care employees: nurses providing services to aged persons in a nursing home, hostel, retirement village or other residential facility, or in an aged person's private home. Rows beginning “Aged care” are clause 15.3 rates." },
     { level: "Pay point progression", description: "Outside aged care, a full-time nurse moves up a pay point each year; a part-time or casual nurse after 1786 hours of experience (cl 15.2)." },
     { level: "Graduate entry", description: "A registered nurse entering with a 4-year degree starts on $1,273.40 a week and one with a Masters degree on $1,317.20, then progresses to level 1 pay point 4 and pay point 5 respectively (cl 15.1(c)(ii))." },
     { level: "Nursing assistants in aged care", description: "Since 1 January 2025, nursing assistants providing care to aged persons in aged care or home care are not covered by this award (cl 4.4). Residential aged care nursing assistants are paid under the Aged Care Award." },
@@ -1204,7 +1204,7 @@ export const NURSES_AWARD: ModernAwardData = {
   ],
   penaltiesClause: "cl 20.2, 21 and 28.2",
   penaltyNotes: [
-    "Casual shift loadings are worked out on the minimum hourly rate and the 25% casual loading is then added (cl 11.4), so a casual afternoon shift is 137.5% and a night shift 140%. Weekend and public holiday rates are the other way round: they are a percentage of the casual hourly rate (cl 21, 28.2), so a casual Saturday is 150% of the casual rate — 187.5% of the minimum rate.",
+    "Casual shift loadings are worked out on the minimum hourly rate and the 25% casual loading is then added (cl 11.4), so a casual afternoon shift is 137.5% and a night shift 140%. Weekend and public holiday rates are the other way round: they are a percentage of the casual hourly rate (cl 21, 28.2), so a casual Saturday is 150% of the casual rate (187.5% of the minimum rate).",
     "Shift loadings do not apply on a Saturday, Sunday or public holiday, where the weekend or public holiday rate is paid instead (cl 20.2(d)), and do not apply to registered nurse levels 4 and 5 (cl 20.2(e)).",
     "Christmas Day falling on a weekend attracts an extra 50% loading in businesses that operate 7 days a week (cl 28.2(b)).",
   ],
@@ -1222,7 +1222,7 @@ export const NURSES_AWARD: ModernAwardData = {
   ],
   casualPenaltyBasis: "compounded",
   casualRuleSummary:
-    "Casuals receive 25% on top of the minimum hourly rate. Afternoon and night shift loadings are calculated on the minimum rate and the 25% is then added (137.5% and 140%), but Saturday, Sunday, public holiday and overtime rates are a percentage of the casual hourly rate, so they compound — a casual Saturday is 150% of the casual rate, or 187.5% of the minimum rate.",
+    "Casuals receive 25% on top of the minimum hourly rate. Afternoon and night shift loadings are calculated on the minimum rate and the 25% is then added (137.5% and 140%), but Saturday, Sunday, public holiday and overtime rates are a percentage of the casual hourly rate, so they compound: a casual Saturday is 150% of the casual rate, or 187.5% of the minimum rate.",
   junior: null,
   noJuniorNote:
     "The Nurses Award has no junior rates. The only age-based rates are for student enrolled nurses under 21, shown in the rate table; every other classification is paid the same at any age.",
@@ -1244,7 +1244,7 @@ export const NURSES_AWARD: ModernAwardData = {
     "Shiftworkers get the higher of the 17.5% annual leave loading or the shift and weekend penalties they would have earned (cl 22.5(b)).",
   ],
   unverified: [
-    "Retained rates for aged care nurses translated on 1 March 2025 (Schedule F.3) — some are higher than the current table",
+    "Retained rates for aged care nurses translated on 1 March 2025 (Schedule F.3); some are higher than the current table",
     "Higher duties (cl 15.4) and the Christmas Day weekend loading in dollars (cl 28.2(b))",
     "Allowances do not apply to registered nurse levels 4 and 5 (cl 17.1)",
   ],
@@ -1299,15 +1299,15 @@ export const AGED_CARE_AWARD: ModernAwardData = {
     casualLoadingClause: "cl 10.4(b)",
     verifiedOn: VERIFIED_ON,
     hourlyDerivation:
-      "The Aged Care Award sets weekly rates only. A casual is paid 1/38th of the weekly rate for each hour plus the loading (cl 10.4(b)), and shift allowances use the weekly rate divided by 38 (cl 26.3), so the hourly figures here are that division rounded to the cent — the same figures as the Fair Work Ombudsman pay guide.",
+      "The Aged Care Award sets weekly rates only. A casual is paid 1/38th of the weekly rate for each hour plus the loading (cl 10.4(b)), and shift allowances use the weekly rate divided by 38 (cl 26.3), so the hourly figures here are that division rounded to the cent, the same figures as the Fair Work Ombudsman pay guide.",
   },
   // cl 14.1 (general), 14.2 (most senior food services employee), 14.3 (direct care).
   rates: AGED_CARE_RATES,
   ratesClause: "cl 14.1 to 14.3",
   entryLevel: "Direct care — level 1 (Introductory)",
   classificationNotes: [
-    { level: "Direct care", description: "An employee whose primary responsibility is personal care of residents under the supervision of a registered or enrolled nurse, or recreational and lifestyle activities — personal care workers, assistants in nursing and lifestyle staff (cl 3.1). Levels run from Introductory through Direct Carer, Qualified, Senior and Specialist to Team Leader (Schedule B)." },
-    { level: "General", description: "Everyone else in a residential aged care facility — administration, cleaning, laundry, food services, gardening and maintenance — on general levels 1 to 7 (cl 14.1)." },
+    { level: "Direct care", description: "An employee whose primary responsibility is personal care of residents under the supervision of a registered or enrolled nurse, or recreational and lifestyle activities: personal care workers, assistants in nursing and lifestyle staff (cl 3.1). Levels run from Introductory through Direct Carer, Qualified, Senior and Specialist to Team Leader (Schedule B)." },
+    { level: "General", description: "Everyone else in a residential aged care facility (administration, cleaning, laundry, food services, gardening and maintenance) on general levels 1 to 7 (cl 14.1)." },
     { level: "Most senior food services employee", description: "The single most senior food services employee at a facility, classified at general levels 4 to 7, is paid the higher clause 14.2 rate." },
     { level: "Who is not covered", description: "Registered and enrolled nurses are paid under the Nurses Award, and home care workers under the SCHADS Award." },
   ],
@@ -1336,7 +1336,7 @@ export const AGED_CARE_AWARD: ModernAwardData = {
   penaltyNotes: [
     "A shift allowance is paid for the whole shift (cl 26.2). An employee working fewer than 38 hours a week gets it only if the shift starts before 6.00 am or finishes after 6.00 pm (cl 26.1).",
     "Weekend rates replace shift allowances (cl 23.1), and a casual's 175% Saturday and 200% Sunday replace the casual loading rather than adding to it (cl 23.3).",
-    "On a public holiday a full-time or part-time employee is paid their ordinary pay plus an additional 150% for hours worked — 250% in all — or can elect each year to have the hours added to annual leave instead (cl 29.2(a)–(b)). Casuals are paid 275% (cl 29.2(c)).",
+    "On a public holiday a full-time or part-time employee is paid their ordinary pay plus an additional 150% for hours worked (250% in all), or can elect each year to have the hours added to annual leave instead (cl 29.2(a)–(b)). Casuals are paid 275% (cl 29.2(c)).",
   ],
   // cl 25.1.
   overtime: [
@@ -1353,7 +1353,7 @@ export const AGED_CARE_AWARD: ModernAwardData = {
   casualPenaltyBasis: "additive",
   junior: null,
   noJuniorNote:
-    "The Aged Care Award has no junior rates for its general or direct care classifications — only apprentices are paid a percentage of an adult rate. A 17-year-old personal care worker is owed the full rate for their level.",
+    "The Aged Care Award has no junior rates for its general or direct care classifications. Only apprentices are paid a percentage of an adult rate. A 17-year-old personal care worker is owed the full rate for their level.",
   juniorPhaseIn: null,
   // cl 15 and 22.9(d). Leading hand, nauseous work and sleepover allowances are
   // percentages of the standard rate ($1,256.00); the dollar figures are that
@@ -1436,7 +1436,7 @@ Level 6|1215.90|32.00
       fullTime: 2.5,
       casual: 2.5,
       casualTabulated: true,
-      note: "Table 15 sets casuals at 250% on a public holiday — the same as full-time and part-time employees. The 25% loading is not added on top.",
+      note: "Table 15 sets casuals at 250% on a public holiday, the same as full-time and part-time employees. The 25% loading is not added on top.",
     },
     { label: "Rostered day off (worked by written agreement)", fullTime: 2.0, casual: 2.0, employment: "permanent", note: "Paid for at least 4 hours (cl 23.3(c))." },
     { label: "Casuals — Monday to Friday before 7.00 am or after 9.00 pm", fullTime: 1.5, casual: 1.5, employment: "casual", note: "Outside the span of ordinary hours; full-time and part-time employees are paid overtime for this time." },
@@ -1484,11 +1484,11 @@ Level 6|1215.90|32.00
   allowancesClause: "cl 20",
   hoursNotes: [
     "Casuals must be engaged for at least 3 consecutive hours (cl 11.5).",
-    "No more than 9 ordinary hours a day, except that one day a week can be 10.5 hours — two by written agreement (cl 14.7 to 14.9).",
+    "No more than 9 ordinary hours a day, except that one day a week can be 10.5 hours, or two days by written agreement (cl 14.7 to 14.9).",
   ],
   unverified: [
     "Apprentice, pre-apprentice, trainee and graduate rates (cl 18, Tables 6 to 12)",
-    "Classification definitions for Levels 1 to 6 (Schedule A) — we publish the rate for each level but not the duties that place an employee at that level",
+    "Classification definitions for Levels 1 to 6 (Schedule A). We publish the rate for each level but not the duties that place an employee at that level",
     "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
   ],
 };
@@ -1546,7 +1546,7 @@ Level 3|1119.10|29.45
   penaltiesClause: "cl 20.2, Table 7",
   penaltyNotes: [
     "Part-time employees are paid a 15% allowance on every ordinary hour (cl 10.2), and Table 7's part-time column already includes it. In exchange a part-timer can be rostered up to 7.6 hours a day, 5 days a week without overtime.",
-    "The award's own worked example: a part-time Level 1 cleaner working 6.00 pm to 11.00 pm on a Friday, Saturday and Sunday is paid $35.20, $44.68 and $58.22 an hour — $690.50 for the three shifts (cl 20, Example 1).",
+    "The award's own worked example: a part-time Level 1 cleaner working 6.00 pm to 11.00 pm on a Friday, Saturday and Sunday is paid $35.20, $44.68 and $58.22 an hour, $690.50 for the three shifts (cl 20, Example 1).",
   ],
   // cl 19.3, Table 5. The part-time allowance is not added to overtime.
   overtime: [
@@ -1573,7 +1573,7 @@ Level 3|1119.10|29.45
       { age: "21 and over", percentage: 1 },
     ],
     clause: "cl 15.2, Table 3",
-    appliesTo: "employees of shopping trolley collection contractors only — every other cleaner is paid the adult rate at any age",
+    appliesTo: "employees of shopping trolley collection contractors only. Every other cleaner is paid the adult rate at any age",
     adultAge: 21,
   },
   juniorPhaseIn: null,
@@ -1598,7 +1598,7 @@ Level 3|1119.10|29.45
     "Every employee is entitled to 2 consecutive full days off in each 7 days (cl 13.7).",
   ],
   unverified: [
-    "Classification definitions for Levels 1 to 3 (Schedule A) — we publish the rate for each level but not the duties that place a cleaner at that level",
+    "Classification definitions for Levels 1 to 3 (Schedule A). We publish the rate for each level but not the duties that place a cleaner at that level",
     "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
   ],
 };
@@ -1683,7 +1683,7 @@ export const ROAD_TRANSPORT_AWARD: ModernAwardData = {
       fullTime: 1.5,
       casual: 2.75,
       casualTabulated: true,
-      note: "For full-time and part-time day workers the 150% is paid in addition to the weekly wage (cl 23.2(b)) — effectively 250% for the hours worked. Casuals get 250% plus the 25% loading (cl 23.2(e)).",
+      note: "For full-time and part-time day workers the 150% is paid in addition to the weekly wage (cl 23.2(b)), effectively 250% for the hours worked. Casuals get 250% plus the 25% loading (cl 23.2(e)).",
     },
     {
       label: "Public holiday — day workers, Good Friday and Christmas Day",
@@ -1708,7 +1708,7 @@ export const ROAD_TRANSPORT_AWARD: ModernAwardData = {
   ],
   overtimeClause: "cl 21.1, 11.4 and Schedule C",
   overtimeNotes: [
-    "A casual on overtime does not get the 25% casual loading. Instead they get the overtime rate plus 10% of the minimum hourly rate — 160% and 210% (cl 11.4 and its example).",
+    "A casual on overtime does not get the 25% casual loading. Instead they get the overtime rate plus 10% of the minimum hourly rate: 160% and 210% (cl 11.4 and its example).",
     "Each day's overtime stands alone (cl 21.2), and an employee called back after leaving work is paid for at least 4 hours (cl 21.6).",
   ],
   casualPenaltyBasis: "additive",
@@ -1741,7 +1741,7 @@ export const ROAD_TRANSPORT_AWARD: ModernAwardData = {
   allowancesClause: "cl 19",
   hoursNotes: [
     "Casuals are paid for at least 4 hours each engagement (cl 11.3).",
-    "Ordinary hours are at most 8 a day, worked continuously except for meal and fatigue breaks (cl 13.5), between 5.30 am and 6.30 pm — movable by an hour at each end by agreement (cl 13.6).",
+    "Ordinary hours are at most 8 a day, worked continuously except for meal and fatigue breaks (cl 13.5), between 5.30 am and 6.30 pm, movable by an hour at each end by agreement (cl 13.6).",
   ],
   unverified: [
     "Oil distribution workers (cl 14 and 17.2), whose 35-hour week gives different hourly rates for the same weekly wage",

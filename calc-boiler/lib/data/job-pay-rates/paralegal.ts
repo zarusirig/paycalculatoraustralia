@@ -119,19 +119,19 @@ export const PARALEGAL: Occupation = {
     label: LAW_CLERK_LABEL,
     why: "a paralegal in a law firm whose work meets the award's law clerk definition",
   },
-  heading: "Paralegal Salary Australia 2026 — Award Rates, Median Pay & Take-Home",
-  metaTitle: `Paralegal Salary Australia 2026 — ${aud2(L6.hourly)}/hr Award, ${aud(CLERK.medianSalary)} Median`,
+  heading: "Paralegal Salary Australia 2026: Award Rates, Median Pay & Take-Home",
+  metaTitle: `Paralegal Salary Australia 2026 - ${aud2(L6.hourly)}/hr Award, ${aud(CLERK.medianSalary)} Median`,
   metaDescription: `Paralegal pay in Australia: Legal Services Award law clerk minimum ${aud2(L6.hourly)} an hour (${aud(L6_ANNUAL)} a year), ${aud(CLERK.medianSalary)} median on 2023–24 tax returns, and take-home pay.`,
   lede: `A paralegal in a law firm whose work fits the Legal Services Award's law clerk definition must be paid at least ${aud2(L6.hourly)} an hour — ${aud2(L6.weekly)} a week, ${aud(L6_ANNUAL)} a year full-time — from 1 July 2026, with lower levels for more routine legal support work. On 2023–24 tax returns, law clerks had a median salary of ${aud(CLERK.medianSalary)} (ATO). A full-timer on the law clerk minimum takes home about ${aud(netFortnightly(L6_ANNUAL))} a fortnight after tax.`,
   coverage: [
     "The Legal Services Award 2020 [MA000116] does not use the word paralegal. The Australian Bureau of Statistics lists paralegal as another title for a law clerk, and the award defines a law clerk as a clerk engaged for the major part of their time in interviewing clients, preparing documents and general work assisting a barrister or solicitor (cl 2). A law clerk is Level 6.",
-    "If your work is more routine — the award's definition excludes employees principally engaged in word processing, filing, document delivery or other routine duties — you are classified at one of Levels 1 to 5, legal clerical and administrative employee, according to your skills and duties (Schedule A).",
+    "If your work is more routine (the award's definition excludes employees principally engaged in word processing, filing, document delivery or other routine duties), you are classified at one of Levels 1 to 5, legal clerical and administrative employee, according to your skills and duties (Schedule A).",
     "The award covers employers in the legal services industry: businesses providing legal and legal support services (cl 4.2). It does not cover community legal centres, Aboriginal legal services, or employers whose primary activity is not legal services, such as an in-house legal team in a company (cl 4.3).",
   ],
   tables: [
     {
       id: "legal-services",
-      title: "Paralegal and legal support award rates — Legal Services Award, 2026–27",
+      title: "Paralegal and legal support award rates, Legal Services Award, 2026–27",
       intro: "Clause 15.1 adult rates from the first full pay period on or after 1 July 2026. Casual rates are Schedule B.2.1 (125%) exactly.",
       rows: LEGAL_ROWS,
     },
@@ -156,7 +156,7 @@ export const PARALEGAL: Occupation = {
     "Jobs and Skills Australia's median ($1,345 a week) covers all court and legal clerks, including court staff who are not on this award.",
   ],
   payslipNotes: [
-    "Annualised salary: if you are paid a salary instead of the award's separate rates, your employer must tell you in writing which clauses it covers and how it was calculated, keep a record of your start and finish times, and each 12 months check it was at least what the award would have paid — paying any shortfall within 14 days (cl 17).",
+    "Annualised salary: if you are paid a salary instead of the award's separate rates, your employer must tell you in writing which clauses it covers and how it was calculated, keep a record of your start and finish times, and each 12 months check it was at least what the award would have paid, paying any shortfall within 14 days (cl 17).",
     "Overtime meal money: a meal allowance of $20.75 for qualifying overtime (cl 18.2) must appear as its own line, as must any uniform or vehicle allowance (Fair Work Regulations reg 3.46(1)(g), noted at cl 16 and cl 18).",
     "Pay cycle: you are paid fortnightly unless you and your employer agree otherwise (cl 16.1).",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
@@ -173,7 +173,7 @@ export const PARALEGAL: Occupation = {
     },
     {
       q: "How much do paralegals earn in Australia?",
-      a: `On 2023–24 tax returns, the 13,221 people coded as law clerks — the occupation that includes paralegals — had a median salary or wage income of ${aud(CLERK.medianSalary)} and an average of ${aud(CLERK.avgSalary)} (ATO). Those figures include part-time and part-year workers.`,
+      a: `On 2023–24 tax returns, the 13,221 people coded as law clerks (the occupation that includes paralegals) had a median salary or wage income of ${aud(CLERK.medianSalary)} and an average of ${aud(CLERK.avgSalary)} (ATO). Those figures include part-time and part-year workers.`,
     },
     {
       q: "What is a paralegal's take-home pay?",
@@ -193,9 +193,9 @@ export const PARALEGAL: Occupation = {
     },
   ],
   sources: [
-    { title: "Legal Services Award 2020 [MA000116] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000116") },
+    { title: "Legal Services Award 2020 [MA000116], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000116") },
     {
-      title: "OSCA 2024 — 521234 Law Clerk (alternative titles: Legal Assistant; Paralegal)",
+      title: "OSCA 2024, 521234 Law Clerk (alternative titles: Legal Assistant; Paralegal)",
       publisher: "Australian Bureau of Statistics",
       url: "https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0/browse-classification/5/52/521/5212/521234",
     },

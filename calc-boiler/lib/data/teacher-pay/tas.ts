@@ -26,7 +26,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   name: "Tasmania",
   nameInSentence: "Tasmania",
   graduateStep: "Band 1 Level 5",
-  h1: "Tasmanian Teacher Salary 2026 — Teachers Agreement Pay Scale by Band and Level",
+  h1: "Tasmanian Teacher Salary 2026: Teachers Agreement Pay Scale by Band and Level",
   classificationNote:
     "Tasmania writes the scale as Band 1, Level 1 to Level 13. Four and five year trained graduates enter at Band 1 Level 5 rather than at the bottom.",
   principalScaleIds: ["school-based-principals"],
@@ -38,14 +38,14 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "1 March 2027",
     detail:
-      "A further 3% from the first full pay period commencing on or after 1 March 2027, then 2.75% from 1 March 2028 — both already written into clause 8.1. The 2027 rise takes Band 1 Level 1 to $77,115 and Level 13 to $126,065.",
+      "A further 3% from the first full pay period commencing on or after 1 March 2027, then 2.75% from 1 March 2028, both already written into clause 8.1. The 2027 rise takes Band 1 Level 1 to $77,115 and Level 13 to $126,065.",
   },
   verifiedOn: "28 August 2026",
 
   scales: [
     {
       id: "classroom-teachers",
-      title: "Teachers — Band 1, Levels 1 to 13",
+      title: "Teachers: Band 1, Levels 1 to 13",
       intro:
         "The classroom teacher scale. Four and five year trained teachers do not start at the bottom: the award sets their graduate entry level at Band 1 Level 5.",
       stepHeading: "Level",
@@ -87,9 +87,9 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       id: "school-based-principals",
-      title: "School-based principals — Levels 1 to 6",
+      title: "School-based principals: Levels 1 to 6",
       intro:
-        "Each principal level has four progression points, and the top point of one level is the same salary as the first point of the next — that is where a promotion lands you.",
+        "Each principal level has four progression points, and the top point of one level is the same salary as the first point of the next. That is where a promotion lands you.",
       stepHeading: "Level and point",
       steps: [
         { label: "Level 1-1", salary: 151_590 },
@@ -140,13 +140,13 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
       heading: "You move on your anniversary, not on a common date",
       body: [
         "Progression within Band 1 occurs on the anniversary date of your appointment, based on an assessment against the requirements set in your performance management plan for the previous 12 months plus certification that performance has been satisfactory.",
-        "Leave without pay, or a break in service of more than three months, does not count toward continuous service — so either will push your increment date out.",
+        "Leave without pay, or a break in service of more than three months, does not count toward continuous service, so either will push your increment date out.",
       ],
     },
     {
       heading: "Your entry level depends on how long you trained",
       body: [
-        "The award sets the graduate entry level for four and five year trained teachers at Band 1 Level 5, which is $85,313 — three levels and about $10,000 above where a three-year-trained teacher starts.",
+        "The award sets the graduate entry level for four and five year trained teachers at Band 1 Level 5, which is $85,313, three levels and about $10,000 above where a three-year-trained teacher starts.",
         "Three year trained teachers enter at Band 1 Level 1 and work up through the same ladder.",
       ],
     },
@@ -154,7 +154,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
       heading: "The performance management plan is the mechanism",
       body: [
         "The plan must list the performance outcomes and specific requirements, be reviewed annually with at least one discussion between you and your principal, cover your training and development needs, and include a clear statement of outcomes.",
-        "That plan is what your increment is assessed against — so it is worth knowing what is in yours before your anniversary.",
+        "That plan is what your increment is assessed against, so it is worth knowing what is in yours before your anniversary.",
       ],
     },
     {
@@ -173,7 +173,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Above Level 13, it is promotion only",
       body: [
-        "The award defines a promotable position as duties classified higher than Band 1 Level 13. Getting one means an advertised vacancy at Band 2 or above and selection on merit — there is no incremental path from Level 13 into Advanced Skills Teacher or Assistant Principal.",
+        "The award defines a promotable position as duties classified higher than Band 1 Level 13. Getting one means an advertised vacancy at Band 2 or above and selection on merit. There is no incremental path from Level 13 into Advanced Skills Teacher or Assistant Principal.",
       ],
     },
   ],
@@ -184,13 +184,13 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   ],
 
   unverified: [
-    "Education Support Specialist, Specialist VET Teacher and Instrumental Musician scales — separate classifications rather than the teacher scale, so they are not shown here.",
+    "Education Support Specialist, Specialist VET Teacher and Instrumental Musician scales. These are separate classifications rather than the teacher scale, so they are not shown here.",
     "The doubled Level 9 and Level 10 increments that apply to some three-year-trained teachers (shown as Year 1 / Year 2 on the department's scales), which are a transitional arrangement rather than a distinct salary.",
   ],
 
   sources: [
     {
-      title: "Teachers Agreement 2025 — Schedule 2, Teacher Salary Scales",
+      title: "Teachers Agreement 2025, Schedule 2, Teacher Salary Scales",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0010/903196/Teachers-Agreement-2025.pdf",
     },
@@ -206,7 +206,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       title:
-        "Teaching Service (Tasmanian Public Sector) Award (S197), consolidated — Order No 5 of 2026",
+        "Teaching Service (Tasmanian Public Sector) Award (S197), consolidated, Order No 5 of 2026",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0009/927630/T15364-No-5-of-2026-Consolidated-Teaching-Service-Tasmanian-Public-Sector-Award-S197.pdf",
     },
@@ -219,7 +219,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the top of the Tasmanian teacher pay scale?",
-      a: "Band 1 Level 13, $122,393 a year. Above it, an Advanced Skills Teacher is paid $129,640, an assistant principal $143,334 and a deputy principal $151,590 — all promotion positions rather than steps.",
+      a: "Band 1 Level 13, $122,393 a year. Above it, an Advanced Skills Teacher is paid $129,640, an assistant principal $143,334 and a deputy principal $151,590. All are promotion positions rather than steps.",
     },
     {
       q: "How do Tasmanian teachers move up a level?",

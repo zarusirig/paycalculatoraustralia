@@ -12,7 +12,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/notice-of-assessment/`;
-const TITLE = "Notice of Assessment — How to Read Your ATO Assessment";
+const TITLE = "Notice of Assessment - How to Read Your ATO Assessment";
 const DESCRIPTION = "How to read your Notice of Assessment from the ATO. Understand taxable income, tax offsets, Medicare levy, credits, and what your refund or debt amount means.";
 
 export const metadata: Metadata = withFeaturedImage({

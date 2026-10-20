@@ -13,7 +13,7 @@ export const FINAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is leave loading included in my final pay?",
-    a: `Yes, if you would have received annual leave loading (typically ${formatPercent(COMMON_LEAVE_LOADING)}) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends — the Fair Work Ombudsman says this applies even where the award, agreement or contract says it is not payable on termination.`,
+    a: `Yes, if you would have received annual leave loading (typically ${formatPercent(COMMON_LEAVE_LOADING)}) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends. The Fair Work Ombudsman says this applies even where the award, agreement or contract says it is not payable on termination.`,
   },
   {
     q: "Do I get long service leave in my final pay?",
@@ -26,7 +26,7 @@ export const FINAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does my employer pay super on my final pay?",
-    a: `Employers must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG on ordinary time earnings up to your last day, and on any payment in lieu of notice — the ATO treats it as ordinary time earnings for every termination reason. Super is not payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the Superannuation Calculator to verify.`,
+    a: `Employers must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG on ordinary time earnings up to your last day, and on any payment in lieu of notice. The ATO treats it as ordinary time earnings for every termination reason. Super is not payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the Superannuation Calculator to verify.`,
     links: { "Superannuation Calculator": "/superannuation-calculator/" },
   },
   {

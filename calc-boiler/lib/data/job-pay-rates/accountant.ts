@@ -42,7 +42,7 @@ export const ACCOUNTANT: Occupation = {
   headline: null,
   coverage: [
     "Accountants are award-free. The Fair Work Ombudsman's guidance is that accountants working for an accounting firm are not covered by any modern award, and accountants working elsewhere are also award-free unless their employer's industry award has a classification that matches their duties.",
-    "An award-free accountant is still protected by the National Minimum Wage and the National Employment Standards — annual leave, personal leave, notice, redundancy pay and the rest. Above that floor, pay is whatever the employment contract or an enterprise agreement says.",
+    "An award-free accountant is still protected by the National Minimum Wage and the National Employment Standards: annual leave, personal leave, notice, redundancy pay and the rest. Above that floor, pay is whatever the employment contract or an enterprise agreement says.",
     "Clerical and bookkeeping staff are different. Accounts clerks and other clerical employees in an accounting firm are generally covered by the Clerks—Private Sector Award, which has its own minimum rates.",
   ],
   tables: [
@@ -66,7 +66,7 @@ export const ACCOUNTANT: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
-    "Accountants employed by the Australian Public Service or a state public service are paid under that service's enterprise agreement — see the public service pay scales.",
+    "Accountants employed by the Australian Public Service or a state public service are paid under that service's enterprise agreement. See the public service pay scales.",
   ],
   notShown: [
     "A graduate-to-partner salary ladder: no primary source publishes one, and we do not estimate salaries.",

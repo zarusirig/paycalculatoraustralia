@@ -3,7 +3,7 @@ import type { StatePublicHolidays } from "../types";
 // Source: NT Government "NT public and regional holidays" (Public Holidays Act
 // 1981), read 24 Sep 2026. Dates printed as "Friday 3 July 2026".
 
-const SHOW_NOTE = "Regional holiday — only in that show day region. Check the NT Government's show day regions map.";
+const SHOW_NOTE = "Regional holiday, only in that show day region. Check the NT Government's show day regions map.";
 
 export const NT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   slug: "nt",

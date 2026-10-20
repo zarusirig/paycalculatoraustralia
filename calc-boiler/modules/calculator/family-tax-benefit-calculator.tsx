@@ -77,9 +77,9 @@ export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculat
               <li><span className="font-medium text-navy" aria-current="page">Family Tax Benefit Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Family Tax Benefit Calculator — FTB Part A and Part B ({A.financialYear})</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Family Tax Benefit Calculator: FTB Part A and Part B ({A.financialYear})</h1>
           <p className="text-lg text-warmgray">
-            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0–12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a teenager; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your incomes and children to estimate both — and see how a pay rise or extra hours changes them.
+            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0–12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a teenager; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your incomes and children to estimate both, and see how a pay rise or extra hours changes them.
           </p>
           <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">{A.financialYear} rates and thresholds (from 1 July 2026) · verified {FAMILY_PAYMENT_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />
@@ -150,7 +150,7 @@ export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculat
                           {result.b && result.b.eligible ? (
                             <>
                               <Row label="FTB Part B a fortnight" value={formatAUD(result.b.fortnightly, 2)} bold />
-                              <Row label={family === "couple" ? `Lower earner ${formatAUD(result.secondary)} (free to ${formatAUD(B.secondaryFreeArea)})` : "Single parent — maximum rate"} value={formatAUD(result.b.annualExSupplement) + " a year"} />
+                              <Row label={family === "couple" ? `Lower earner ${formatAUD(result.secondary)} (free to ${formatAUD(B.secondaryFreeArea)})` : "Single parent, maximum rate"} value={formatAUD(result.b.annualExSupplement) + " a year"} />
                               <Row label="Part B supplement (after the year)" value={formatAUD(result.b.supplement)} />
                             </>
                           ) : (

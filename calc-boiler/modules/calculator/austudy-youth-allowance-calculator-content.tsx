@@ -35,8 +35,8 @@ const AUSTUDY_SITS: Sit[] = [
   { key: "a-single-kids", label: "Single, with children", rate: AUSTUDY.maxFortnightly.singleWithChildren, cutOff: AUSTUDY.publishedCutOff.singleWithChildren },
   { key: "a-couple", label: "Partnered, no children", rate: AUSTUDY.maxFortnightly.coupleNoChildren, cutOff: AUSTUDY.publishedCutOff.singleOrCoupleNoChildren },
   { key: "a-couple-kids", label: "Partnered, with children", rate: AUSTUDY.maxFortnightly.coupleWithChildren, cutOff: AUSTUDY.publishedCutOff.coupleWithChildren },
-  { key: "a-lt-single", label: "Single, no children — long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermSingleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermSingleNoChildren },
-  { key: "a-lt-couple", label: "Partnered, no children — long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermCoupleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermCoupleNoChildren },
+  { key: "a-lt-single", label: "Single, no children, long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermSingleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermSingleNoChildren },
+  { key: "a-lt-couple", label: "Partnered, no children, long-term income support rate", rate: AUSTUDY.maxFortnightly.longTermCoupleNoChildren, cutOff: AUSTUDY.publishedCutOff.longTermCoupleNoChildren },
 ];
 const YA = YOUTH_ALLOWANCE_STUDENT;
 const YA_SITS: Sit[] = [
@@ -103,7 +103,7 @@ export default function AustudyYouthAllowanceCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Job seeker cut-offs are Services Australia&apos;s &ldquo;maximum income before your payment reduces to $0&rdquo; figures (the principal carer one includes Pharmaceutical Allowance). Job seekers&apos; payments start reducing once income passes {formatAUD(YJ.freeArea)} a fortnight — far sooner than the {formatAUD(T.freeArea)} student free area. Students on the long-term income support rate get {formatAUD(YA.maxFortnightly.longTermAtHome, 2)} at home or {formatAUD(YA.maxFortnightly.longTermAwayFromHome, 2)} away from home (table further down).</p>
+        <p className="mt-2 text-xs text-warmgray-light">Job seeker cut-offs are Services Australia&apos;s &ldquo;maximum income before your payment reduces to $0&rdquo; figures (the principal carer one includes Pharmaceutical Allowance). Job seekers&apos; payments start reducing once income passes {formatAUD(YJ.freeArea)} a fortnight, far sooner than the {formatAUD(T.freeArea)} student free area. Students on the long-term income support rate get {formatAUD(YA.maxFortnightly.longTermAtHome, 2)} at home or {formatAUD(YA.maxFortnightly.longTermAwayFromHome, 2)} away from home (table further down).</p>
       </section>
 
       <section>
@@ -119,24 +119,24 @@ export default function AustudyYouthAllowanceCalculatorContent() {
         <p className={P}>You also need to meet the residence rules and the income and assets tests, and be in an approved course or a full-time apprenticeship. You can stay on Youth Allowance after turning 25 until you finish that course. Full-time secondary students under 18 usually can&apos;t get it unless they qualify for the away-from-home rate, meet the independence criteria, or moved straight across from Youth Allowance as a job seeker.</p>
         <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Job seekers</h3>
         <p className={P}>You must be {YJ.minAge} to {YJ.maxAge}, meet the residence rules and the income test, and either be unemployed and looking for work (part-time or casual work is fine) or be sick or injured and unable to do your usual work or study for a short time. From 22 the equivalent payment is <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>.</p>
-        <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Dependent or independent — your parents&apos; income</h3>
-        <p className={P}>Services Australia assesses you as dependent or independent. If you&apos;re dependent, a parental means test applies as well as your own income test: if your parents or guardians earn too much you can&apos;t be paid, and if you&apos;re under 18 your parent usually receives the payment. This calculator covers your own income test only — use the Payment Finder for the parental test. If you&apos;re 25 or older, the student payment is Austudy, which uses the same personal income test.</p>
+        <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Dependent or independent: your parents&apos; income</h3>
+        <p className={P}>Services Australia assesses you as dependent or independent. If you&apos;re dependent, a parental means test applies as well as your own income test: if your parents or guardians earn too much you can&apos;t be paid, and if you&apos;re under 18 your parent usually receives the payment. This calculator covers your own income test only. Use the Payment Finder for the parental test. If you&apos;re 25 or older, the student payment is Austudy, which uses the same personal income test.</p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>The Student Personal Income Test</h2>
-        <p className={P}>Austudy and Youth Allowance for students and Australian Apprentices share one personal income test. It is applied to your gross income — before tax, not including child support — when you claim and each fortnight you report.</p>
+        <p className={P}>Austudy and Youth Allowance for students and Australian Apprentices share one personal income test. It is applied to your gross income (before tax, not including child support) when you claim and each fortnight you report.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your income per fortnight</th><th scope="col" className={TH}>Your payment reduces by</th></tr></thead>
             <tbody className="divide-y divide-sandstone-dark/10">
-              <tr><td className={TD}>Up to {formatAUD(T.freeArea)}</td><td className={TD}>Nothing — and you build Income Bank credits</td></tr>
+              <tr><td className={TD}>Up to {formatAUD(T.freeArea)}</td><td className={TD}>Nothing, and you build Income Bank credits</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(T.freeArea)} to {formatAUD(T.band1End)}</td><td className={TD}>50 cents for each dollar over {formatAUD(T.freeArea)}</td></tr>
               <tr><td className={TD}>Over {formatAUD(T.band1End)}</td><td className={TD}>{formatAUD(T.band1Reduction, 2)} plus 60 cents for each dollar over {formatAUD(T.band1End)}</td></tr>
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Searches still quote a {formatAUD(509)} free area — that was the figure before the {AUSTUDY.ratesFrom} indexation. It is {formatAUD(T.freeArea)} now.</p>
+        <p className={P + " mt-4"}>Searches still quote a {formatAUD(509)} free area, but that was the figure before the {AUSTUDY.ratesFrom} indexation. It is {formatAUD(T.freeArea)} now.</p>
       </section>
 
       <section>
@@ -150,7 +150,7 @@ export default function AustudyYouthAllowanceCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Youth Allowance — students and Australian Apprentices</h3>
+        <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Youth Allowance: students and Australian Apprentices</h3>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Situation</th><th scope="col" className={TH + " text-right"}>Maximum per fortnight</th><th scope="col" className={TH + " text-right"}>Payment reaches $0 at</th></tr></thead>
@@ -177,7 +177,7 @@ export default function AustudyYouthAllowanceCalculatorContent() {
 
       <section id="income-bank">
         <h2 style={FONT} className={H2}>Income Bank, and the 12-Fortnight Rule</h2>
-        <p className={P}>In fortnights when you earn under {formatAUD(T.freeArea)}, the unused free area goes into your Income Bank. When a later fortnight is higher — exam-break shifts, a summer job — Services Australia draws on those credits before applying the taper, so the reduction above may not happen straight away. Once the Income Bank is empty the table applies in full. If income holds your payment at $0 for {T.cancelAfterZeroFortnights} fortnights in a row, the payment is cancelled and you must reapply.</p>
+        <p className={P}>In fortnights when you earn under {formatAUD(T.freeArea)}, the unused free area goes into your Income Bank. When a later fortnight is higher (exam-break shifts, a summer job), Services Australia draws on those credits before applying the taper, so the reduction above may not happen straight away. Once the Income Bank is empty the table applies in full. If income holds your payment at $0 for {T.cancelAfterZeroFortnights} fortnights in a row, the payment is cancelled and you must reapply.</p>
       </section>
 
       <section>
@@ -189,7 +189,7 @@ export default function AustudyYouthAllowanceCalculatorContent() {
         <ul className="list-disc pl-4 space-y-1">
           <li>Reduction = 50c × income between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)} + 60c × income over {formatAUD(T.band1End)}. Payment = maximum rate for the situation minus the reduction, floored at $0.</li>
           <li>Thresholds, rates and cut-offs are read from one constants file verified at Services Australia on {CENTRELINK_SOURCES.verifiedOn}; tests reconcile each published cut-off to its maximum rate.</li>
-          <li>Not modelled: Income Bank, parental means test, partner income test, assets test, supplements. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
+          <li>Not modelled: Income Bank, parental means test, partner income test, assets test, supplements. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>
       </MethodologyDisclosure>
 

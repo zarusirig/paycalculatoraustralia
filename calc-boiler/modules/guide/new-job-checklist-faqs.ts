@@ -16,7 +16,7 @@ export const NEW_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I use my existing super fund or the employer's default?",
-    a: "In most cases, use your existing fund to avoid creating multiple accounts that erode your balance with duplicate fees and insurance premiums. Provide your fund's name, USI (Unique Superannuation Identifier), and member number to your new employer. Compare fees before switching — if the employer's default fund has significantly lower fees, it may be worth switching.",
+    a: "In most cases, use your existing fund to avoid creating multiple accounts that erode your balance with duplicate fees and insurance premiums. Provide your fund's name, USI (Unique Superannuation Identifier), and member number to your new employer. Compare fees before switching. If the employer's default fund has significantly lower fees, it may be worth switching.",
   },
   {
     q: "How long until I receive my first pay?",
@@ -24,7 +24,7 @@ export const NEW_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens to unused leave from my old job?",
-    a: "Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Sick/personal leave is not paid out — it has no cash value when you leave.",
+    a: "Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Sick/personal leave is not paid out, as it has no cash value when you leave.",
   },
   {
     q: "Does probation affect my pay or entitlements?",

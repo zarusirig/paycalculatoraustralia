@@ -21,11 +21,11 @@ import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Fringe benefits tax — rates and thresholds (Table 5: capping thresholds)", url: FBT_CAPS_SOURCES.ratesAndThresholds, publisher: SOURCES.ato.name },
-  { title: "Fringe benefits tax — a guide for employers, ch 6.3–6.5 (capping, salary packaged entertainment)", url: FBT_CAPS_SOURCES.fbtGuideChapter6, publisher: SOURCES.ato.name },
+  { title: "Fringe benefits tax, rates and thresholds (Table 5: capping thresholds)", url: FBT_CAPS_SOURCES.ratesAndThresholds, publisher: SOURCES.ato.name },
+  { title: "Fringe benefits tax, a guide for employers, ch 6.3–6.5 (capping, salary packaged entertainment)", url: FBT_CAPS_SOURCES.fbtGuideChapter6, publisher: SOURCES.ato.name },
   { title: "Salary sacrificing for employees", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
   { title: "Reportable fringe benefits for employees", url: NOVATED_LEASE_SOURCES.reportableFringeBenefits, publisher: SOURCES.ato.name },
-  { title: "Family Assistance Guide 3.2.3 — adjusted fringe benefits total", url: "https://guides.dss.gov.au/family-assistance-guide/3/2/3", publisher: "Department of Social Services" },
+  { title: "Family Assistance Guide 3.2.3, adjusted fringe benefits total", url: "https://guides.dss.gov.au/family-assistance-guide/3/2/3", publisher: "Department of Social Services" },
 ];
 
 // Every cap is a GROSSED-UP value (ATO FBT rates and thresholds, Table 5).
@@ -93,10 +93,10 @@ export default function SalaryPackagingGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Salary Packaging Guide — Benefits Beyond Novated Leases
+            Salary Packaging Guide: Benefits Beyond Novated Leases
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Salary packaging extends far beyond novated car leases. Not-for-profit employees, public hospital staff, and charities workers can access FBT-exempt benefits worth thousands each year — from meal entertainment to portable devices and self-education expenses.
+            Salary packaging extends far beyond novated car leases. Not-for-profit employees, public hospital staff, and charities workers can access FBT-exempt benefits worth thousands each year, from meal entertainment to portable devices and self-education expenses.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -110,7 +110,7 @@ export default function SalaryPackagingGuidePage() {
             <section id="what-is">
               <h2>What Is Salary Packaging?</h2>
               <p>
-                Salary packaging is an arrangement where your employer pays for certain expenses or benefits from your <strong>pre-tax salary</strong>, reducing your taxable income. While the terms &quot;salary packaging&quot; and &quot;salary sacrifice&quot; are often used interchangeably, salary packaging is the broader concept — it covers all pre-tax benefits including living expenses, meal entertainment, novated leases, portable devices, and superannuation contributions.
+                Salary packaging is an arrangement where your employer pays for certain expenses or benefits from your <strong>pre-tax salary</strong>, reducing your taxable income. While the terms &quot;salary packaging&quot; and &quot;salary sacrifice&quot; are often used interchangeably, salary packaging is the broader concept: it covers all pre-tax benefits including living expenses, meal entertainment, novated leases, portable devices, and superannuation contributions.
               </p>
               <p>
                 Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation. Salary packaging encompasses the full range of benefits an employer can provide from pre-tax earnings. The distinction matters because different benefits have different FBT treatment, caps, and eligibility rules.
@@ -126,10 +126,10 @@ export default function SalaryPackagingGuidePage() {
                 All employees can access some form of salary packaging, but the range and value of benefits varies dramatically by employer type. The ATO classifies employers into categories that determine FBT exemptions:
               </p>
               <ul>
-                <li><strong>Public benevolent institutions (PBIs) and health promotion charities</strong> — Registered charities such as community services and disability organisations, endorsed by the ATO. FBT-exempt cap: <strong>{formatAUD(PBI_CAP)} grossed-up</strong> per employee per FBT year, which covers about <strong>{formatAUD(PBI_FACE)}</strong> of rent, mortgage or other GST-free expenses</li>
-                <li><strong>Public and not-for-profit hospitals and public ambulance services</strong> — FBT-exempt cap: <strong>{formatAUD(HOSPITAL_CAP)} grossed-up</strong>, which covers about <strong>{formatAUD(HOSPITAL_FACE)}</strong> of GST-free expenses. An organisation that is both a PBI and a hospital uses the hospital cap</li>
-                <li><strong>Rebatable employers</strong> — Certain registered charities and other non-government not-for-profit organisations. They get a {formatPercent(FBT.rate, 0)} FBT <em>rebate</em>, not an exemption, on up to {formatAUD(FBT_CAPS.rebatableEmployer)} grossed-up per employee, so FBT is reduced rather than removed</li>
-                <li><strong>Private sector employers</strong> — Salary packaging limited to super, novated leases (with FBT unless EV), and portable devices</li>
+                <li><strong>Public benevolent institutions (PBIs) and health promotion charities</strong>: Registered charities such as community services and disability organisations, endorsed by the ATO. FBT-exempt cap: <strong>{formatAUD(PBI_CAP)} grossed-up</strong> per employee per FBT year, which covers about <strong>{formatAUD(PBI_FACE)}</strong> of rent, mortgage or other GST-free expenses</li>
+                <li><strong>Public and not-for-profit hospitals and public ambulance services</strong>: FBT-exempt cap: <strong>{formatAUD(HOSPITAL_CAP)} grossed-up</strong>, which covers about <strong>{formatAUD(HOSPITAL_FACE)}</strong> of GST-free expenses. An organisation that is both a PBI and a hospital uses the hospital cap</li>
+                <li><strong>Rebatable employers</strong>: Certain registered charities and other non-government not-for-profit organisations. They get a {formatPercent(FBT.rate, 0)} FBT <em>rebate</em>, not an exemption, on up to {formatAUD(FBT_CAPS.rebatableEmployer)} grossed-up per employee, so FBT is reduced rather than removed</li>
+                <li><strong>Private sector employers</strong>: Salary packaging limited to super, novated leases (with FBT unless EV), and portable devices</li>
               </ul>
               <p>
                 Exempt and rebatable employers can also offer a separate <strong>{formatAUD(ENT_CAP)} grossed-up cap</strong> for salary-packaged meal entertainment and entertainment facility leasing expenses, on top of the general cap.
@@ -177,7 +177,7 @@ export default function SalaryPackagingGuidePage() {
 
               <h3>Portable Electronic Devices</h3>
               <p>
-                All employees — regardless of employer type — can salary package <strong>one portable electronic device per category per FBT year</strong> when the device is used primarily for work. Eligible categories include:
+                All employees, regardless of employer type, can salary package <strong>one portable electronic device per category per FBT year</strong> when the device is used primarily for work. Eligible categories include:
               </p>
               <ul>
                 <li>Laptop or notebook computer</li>
@@ -192,7 +192,7 @@ export default function SalaryPackagingGuidePage() {
 
               <h3>Self-Education Expenses</h3>
               <p>
-                Employer-provided education that is sufficiently connected to the employee&apos;s current role is an exempt benefit. This includes course fees, textbooks, and related travel for work-related education. The education must maintain or improve skills required in the employee&apos;s <strong>current</strong> employment — courses for a completely new career direction do not qualify.
+                Employer-provided education that is sufficiently connected to the employee&apos;s current role is an exempt benefit. This includes course fees, textbooks, and related travel for work-related education. The education must maintain or improve skills required in the employee&apos;s <strong>current</strong> employment. Courses for a completely new career direction do not qualify.
               </p>
             </section>
 
@@ -245,29 +245,29 @@ export default function SalaryPackagingGuidePage() {
             </section>
 
             <section id="rfba-reporting">
-              <h2>RFBA Reporting — How It Affects Other Obligations</h2>
+              <h2>RFBA Reporting: How It Affects Other Obligations</h2>
               <p>
                 When you salary package benefits (other than super), your employer reports the grossed-up taxable value as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong> on your income statement. While RFBA does not increase your income tax, it is added back for the following means-tested calculations:
               </p>
               <ul>
-                <li><strong>Centrelink income tests</strong> — Services Australia adds RFBA to your adjusted taxable income (ATI) for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service is counted at {formatPercent(CENTRELINK_FACTOR, 0)} (1 minus the FBT rate), which strips out the gross-up. See our <Link href="/centrelink-income-test/">Centrelink Income Test Guide</Link></li>
-                <li><strong>HECS-HELP repayments</strong> — The ATO includes the full RFBA in repayment income, potentially pushing you above a repayment threshold</li>
-                <li><strong>Medicare Levy Surcharge</strong> — RFBA is included in the income test for the MLS, which applies to singles with MLS income over {formatAUD(MLS_SINGLE_THRESHOLD)} in FY{SITE_CONFIG.financialYear} who don&apos;t hold private hospital cover</li>
-                <li><strong>Child support assessments</strong> — The Child Support Agency includes RFBA in adjusted taxable income</li>
+                <li><strong>Centrelink income tests</strong>: Services Australia adds RFBA to your adjusted taxable income (ATI) for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service is counted at {formatPercent(CENTRELINK_FACTOR, 0)} (1 minus the FBT rate), which strips out the gross-up. See our <Link href="/centrelink-income-test/">Centrelink Income Test Guide</Link></li>
+                <li><strong>HECS-HELP repayments</strong>: The ATO includes the full RFBA in repayment income, potentially pushing you above a repayment threshold</li>
+                <li><strong>Medicare Levy Surcharge</strong>: RFBA is included in the income test for the MLS, which applies to singles with MLS income over {formatAUD(MLS_SINGLE_THRESHOLD)} in FY{SITE_CONFIG.financialYear} who don&apos;t hold private hospital cover</li>
+                <li><strong>Child support assessments</strong>: The Child Support Agency includes RFBA in adjusted taxable income</li>
               </ul>
               <p>
-                The RFBA is always grossed up at the type 2 rate ({FBT.grossUpType2}), so it is close to the cap, not to what you spent. A PBI employee who packages {formatAUD(PBI_FACE)} of rent has an RFBA of about <strong>{formatAUD(PBI_RFBA)}</strong>; a public hospital employee who packages {formatAUD(HOSPITAL_FACE)} has an RFBA of about <strong>{formatAUD(HOSPITAL_RFBA)}</strong>. This amount appears on your income statement but does <strong>not</strong> increase the tax you owe — it only affects the income tests listed above.
+                The RFBA is always grossed up at the type 2 rate ({FBT.grossUpType2}), so it is close to the cap, not to what you spent. A PBI employee who packages {formatAUD(PBI_FACE)} of rent has an RFBA of about <strong>{formatAUD(PBI_RFBA)}</strong>; a public hospital employee who packages {formatAUD(HOSPITAL_FACE)} has an RFBA of about <strong>{formatAUD(HOSPITAL_RFBA)}</strong>. This amount appears on your income statement but does <strong>not</strong> increase the tax you owe; it only affects the income tests listed above.
               </p>
             </section>
 
             <section id="related-resources">
               <h2>Related Resources</h2>
               <ul>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> — Model the tax impact of sacrificing into super</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> — Deep dive into salary sacrifice into superannuation</li>
-                <li><Link href="/novated-lease-guide/">Novated Lease Guide</Link> — Compare EV and ICE novated lease structures</li>
-                <li><Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link> — Full FBT rates, exemptions, and employer obligations</li>
-                <li><Link href="/centrelink-income-test/">Centrelink Income Test</Link> — How adjusted taxable income affects government payments</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: Model the tax impact of sacrificing into super</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: A detailed look at salary sacrifice into superannuation</li>
+                <li><Link href="/novated-lease-guide/">Novated Lease Guide</Link>: Compare EV and ICE novated lease structures</li>
+                <li><Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link>: Full FBT rates, exemptions, and employer obligations</li>
+                <li><Link href="/centrelink-income-test/">Centrelink Income Test</Link>: How adjusted taxable income affects government payments</li>
               </ul>
             </section>
 

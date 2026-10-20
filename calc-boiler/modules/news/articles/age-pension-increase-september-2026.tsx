@@ -82,7 +82,7 @@ export default function AgePensionIncreaseSeptember2026() {
       <h2>Why part-pensioners on wages get the full rise</h2>
       <p>
         The income test free area ({formatAUD(AGE_PENSION_INCOME_TEST.single.freeArea)} a fortnight for a single)
-        and the 50c taper did not move — they index on 1 July. So a part-pensioner whose only other income is
+        and the 50c taper did not move: they index on 1 July. So a part-pensioner whose only other income is
         wages gets the whole increase. Take a single pensioner earning {formatAUD(WAGES_FORTNIGHT)} a fortnight.
         The Work Bonus takes out the first {formatAUD(WORK_BONUS.fortnightlyCredit)}, leaving{" "}
         {formatAUD(assessable)} assessable, and the pension goes from {money(ex1Before)} to{" "}
@@ -100,7 +100,7 @@ export default function AgePensionIncreaseSeptember2026() {
       <p>
         A single pensioner with {formatAUD(SAVINGS)} in the bank and no other income is now deemed to earn{" "}
         {money(deemedNew)} a fortnight, up from {money(deemedOld)}. Under the income test alone, their pension
-        goes from {money(ex2Before)} to <strong>{money(ex2After)}</strong> — a rise of{" "}
+        goes from {money(ex2Before)} to <strong>{money(ex2After)}</strong>, a rise of{" "}
         {money(Math.round((ex2After - ex2Before) * 100) / 100)}, not {money(singleRise)}. These examples ignore
         the assets test, which can pay a lower rate; Centrelink pays whichever test gives less.
       </p>

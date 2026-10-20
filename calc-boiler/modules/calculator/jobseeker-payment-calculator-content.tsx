@@ -92,7 +92,7 @@ export default function JobseekerPaymentCalculatorContent() {
     <>
       <section>
         <h2 style={FONT} className={H2}>JobSeeker Income Test Rates and Thresholds</h2>
-        <p className={P}>Services Australia reduces JobSeeker once your own income passes {formatAUD(T.freeArea)} a fortnight. The free area and the tapers are not part of the September indexation — they are the same before and after 20 September 2026:</p>
+        <p className={P}>Services Australia reduces JobSeeker once your own income passes {formatAUD(T.freeArea)} a fortnight. The free area and the tapers are not part of the September indexation. They are the same before and after 20 September 2026:</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your income per fortnight</th><th scope="col" className={TH}>Most recipients</th><th scope="col" className={TH}>Single principal carer</th></tr></thead>
@@ -139,7 +139,7 @@ export default function JobseekerPaymentCalculatorContent() {
         </div>
         <p className="mt-2 text-xs text-warmgray-light">
           Rates are indexed on {JOBSEEKER.indexedOn}. The {RATE_SET_LABELS[MARCH_2026]} figures are Services Australia&apos;s, read on {CENTRELINK_SOURCES.marchSetReadOn}; the {RATE_SET_LABELS[SEPTEMBER_2026]} rates are from the DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}.{" "}
-          {SEP.cutOffSource === "derived" && "The September cut-offs are calculated from those published rates and the unchanged taper — Services Australia publishes its own cut-off figures on the day, and we will replace ours with them."}{" "}
+          {SEP.cutOffSource === "derived" && "The September cut-offs are calculated from those published rates and the unchanged taper. Services Australia publishes its own cut-off figures on the day, and we will replace ours with them."}{" "}
           Cut-offs include an Energy Supplement (and, for some situations, a Pharmaceutical Allowance) that not every recipient gets, which is why the payment above reaches $0 slightly below them.
         </p>
       </section>
@@ -166,7 +166,7 @@ export default function JobseekerPaymentCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you 40 cents better off before tax, and that is before working credits — so working more always adds to the total, but at a flatter slope than the wage suggests. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
+        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you 40 cents better off before tax, and that is before working credits, so working more always adds to the total, but at a flatter slope than the wage suggests. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
       </section>
 
       <section>
@@ -175,7 +175,7 @@ export default function JobseekerPaymentCalculatorContent() {
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
           <li>be between 22 and Age Pension age;</li>
           <li>meet the residence rules, and the income and assets tests;</li>
-          <li>be unemployed and looking for work — which includes working part-time or casually, being temporarily stood down, or having your hours cut — <em>or</em> be sick or injured and unable to do your usual work or study for a short time (with a medical certificate).</li>
+          <li>be unemployed and looking for work (which includes working part-time or casually, being temporarily stood down, or having your hours cut) <em>or</em> be sick or injured and unable to do your usual work or study for a short time (with a medical certificate).</li>
         </ul>
         <p className={P}>Under 22? Look at <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Youth Allowance</Link>. Single and caring for a child under 14? <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link> pays more and tapers more gently. If you rent privately you may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link> with your JobSeeker.</p>
       </section>
@@ -187,7 +187,7 @@ export default function JobseekerPaymentCalculatorContent() {
 
       <section>
         <h2 style={FONT} className={H2}>What Counts as Income, and When</h2>
-        <p className={P}>Gross wages in the fortnight they are paid — before tax, salary sacrifice or HECS. Commission, bonuses, overtime and penalty rates count too. Your <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly gross</Link> is the figure to enter, and JobSeeker itself is taxable, so put the wages and the payment together through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link> to see the year.</p>
+        <p className={P}>Gross wages in the fortnight they are paid, before tax, salary sacrifice or HECS. Commission, bonuses, overtime and penalty rates count too. Your <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly gross</Link> is the figure to enter, and JobSeeker itself is taxable, so put the wages and the payment together through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link> to see the year.</p>
       </section>
 
       <section>
@@ -199,8 +199,8 @@ export default function JobseekerPaymentCalculatorContent() {
         <ul className="list-disc pl-4 space-y-1">
           <li>Reduction = 50c × income between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)} + 60c × income over {formatAUD(T.band1End)}; single principal carers 40c × income over {formatAUD(T.freeArea)}. Partner income (partner not on a pension): 60c × income over the limit for their age. The free area and tapers index on 1 July and did not change on 20 September 2026.</li>
           <li>Payment = maximum rate for the situation minus the reduction, floored at $0. Two dated rate sets are held: {RATE_SET_LABELS[MARCH_2026]} (Services Australia, read {CENTRELINK_SOURCES.marchSetReadOn}) and {RATE_SET_LABELS[SEPTEMBER_2026]} (DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}). The calculator reads today&apos;s date in your browser and applies whichever set is in force, so it changes over on 20 September by itself.</li>
-          <li>Both sets of cut-offs are Services Australia&apos;s published figures; the {RATE_SET_LABELS[SEPTEMBER_2026]} ones were re-checked on its income test page on {CENTRELINK_SOURCES.verifiedOn}. Each reconciles to cut-off = (typical total rate − $53) ÷ 0.6 + $256, or ÷ 0.4 + $150 for a single principal carer, to within a cent — the tests assert it.</li>
-          <li>Not modelled: working credits, assets test, Rent Assistance and other supplements, partners receiving a pension. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
+          <li>Both sets of cut-offs are Services Australia&apos;s published figures; the {RATE_SET_LABELS[SEPTEMBER_2026]} ones were re-checked on its income test page on {CENTRELINK_SOURCES.verifiedOn}. Each reconciles to cut-off = (typical total rate − $53) ÷ 0.6 + $256, or ÷ 0.4 + $150 for a single principal carer, to within a cent, and the tests assert it.</li>
+          <li>Not modelled: working credits, assets test, Rent Assistance and other supplements, partners receiving a pension. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>
       </MethodologyDisclosure>
 

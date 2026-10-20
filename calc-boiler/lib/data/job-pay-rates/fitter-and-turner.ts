@@ -103,7 +103,7 @@ export const FITTER_AND_TURNER: Occupation = {
   slug: "fitter-and-turner",
   name: "Fitter and Turner",
   plural: "fitters and turners",
-  metaTitle: `Fitter and Turner Salary Australia 2026 — ${money2(FT_C10.hourly)}/hr Award`,
+  metaTitle: `Fitter and Turner Salary Australia 2026 - ${money2(FT_C10.hourly)}/hr Award`,
   award: {
     name: "Manufacturing and Associated Industries and Occupations Award 2020",
     code: "MA000010",
@@ -173,9 +173,9 @@ export const FITTER_AND_TURNER: Occupation = {
     },
   ],
   sources: [
-    { title: "Manufacturing and Associated Industries and Occupations Award 2020 [MA000010] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000010") },
-    { title: "Mining Industry Award 2020 [MA000011] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000011") },
-    { title: "Building and Construction General On-site Award 2020 [MA000020] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000020") },
+    { title: "Manufacturing and Associated Industries and Occupations Award 2020 [MA000010], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000010") },
+    { title: "Mining Industry Award 2020 [MA000011], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000011") },
+    { title: "Building and Construction General On-site Award 2020 [MA000020], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000020") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(FITTER_MEDIAN),

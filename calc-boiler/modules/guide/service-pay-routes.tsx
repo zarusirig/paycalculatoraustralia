@@ -65,7 +65,7 @@ export function serviceHubMetadata(occupation: ServiceOccupation): Metadata {
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
   // J8: a fallback for occupation names too long for the full form ("Prison officer").
   const heading = serviceHubHeading(occupation);
-  const title = fitTitle(heading, heading.replace(/ — .+ Pay by State$/, " — Pay by State"));
+  const title = fitTitle(heading, heading.replace(/ - .+ Pay by State$/, " - Pay by State"));
   const description = hubDescription(occupation);
   const url = `${BASE}${cfg.hubPath}`;
   return {

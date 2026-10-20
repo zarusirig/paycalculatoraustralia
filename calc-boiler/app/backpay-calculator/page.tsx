@@ -16,12 +16,12 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: "Backpay Calculator Australia — Underpayment & Wage Theft",
+  title: "Backpay Calculator Australia - Underpayment & Wage Theft",
   description:
     "Calculate how much backpay you're owed: enter your actual and correct rates, hours and period to see the total underpayment, including super and leave.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
+    title: "Backpay Calculator Australia - Underpayment & Wage Theft Calculator",
     description:
       "Calculate how much you're owed in backpay including unpaid super, leave loading, and tax on the lump sum.",
     url: PAGE_URL,
@@ -31,7 +31,7 @@ export const metadata: Metadata = withFeaturedImage({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
+    title: "Backpay Calculator Australia - Underpayment & Wage Theft Calculator",
     description: "Calculate backpay owed including unpaid super and leave. Free Australian calculator.",
   },
 });
@@ -48,7 +48,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Backpay Calculator Australia — Underpayment Calculator",
+  name: "Backpay Calculator Australia - Underpayment Calculator",
   url: PAGE_URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

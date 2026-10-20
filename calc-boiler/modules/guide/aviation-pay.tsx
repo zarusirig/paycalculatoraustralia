@@ -38,7 +38,7 @@ interface AviationCopy {
 export const AVIATION_COPY: Readonly<Record<AviationPageSlug, AviationCopy>> = {
   "air-traffic-controller": {
     crumb: "Air Traffic Controller Salary",
-    heading: (year) => `Air Traffic Controller Salary Australia ${year} — Airservices ATC Pay Scale`,
+    heading: (year) => `Air Traffic Controller Salary Australia ${year} - Airservices ATC Pay Scale`,
     noun: "air traffic controller",
     plural: "air traffic controllers",
     employerPhrase: "Airservices Australia",
@@ -52,13 +52,13 @@ export const AVIATION_COPY: Readonly<Record<AviationPageSlug, AviationCopy>> = {
   },
   pilot: {
     crumb: "Pilot Salary",
-    heading: (year) => `Pilot Salary Australia ${year} — Air Pilots Award Minimum Pay`,
+    heading: (year) => `Pilot Salary Australia ${year} - Air Pilots Award Minimum Pay`,
     noun: "pilot",
     plural: "pilots",
     employerPhrase: "the Air Pilots Award",
     howPayWorks: [
       "Pilots are covered by the Air Pilots Award 2020 [MA000046], a modern award that sets minimum annual salaries. Unlike most awards, it sets pay as annual salaries by type of flying and aircraft rather than as hourly rates.",
-      "The award is a floor. Most airline pilots — at Qantas, Virgin Australia, Jetstar, Rex and regional carriers — are paid under their airline's enterprise agreement, which pays well above these minimums and has its own seniority scales. The award rates matter most in general aviation: charter, aerial work, flight instruction and smaller operators.",
+      "The award is a floor. Most airline pilots (at Qantas, Virgin Australia, Jetstar, Rex and regional carriers) are paid under their airline's enterprise agreement, which pays well above these minimums and has its own seniority scales. The award rates matter most in general aviation: charter, aerial work, flight instruction and smaller operators.",
     ],
     traineeHeading: "Cadet and trainee pilot pay",
     allowanceHeading: "Casual pilots, allowances and other rules",
@@ -184,7 +184,7 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
               <h2 style={HEADING_FONT}>What a {copy.noun} salary is worth after tax</h2>
               {entry !== null && top !== null ? (
                 <p>
-                  Every salary in the tables links to its take-home figure — for example{" "}
+                  Every salary in the tables links to its take-home figure, for example{" "}
                   <Link href={takeHomeHref(entry)}>take-home pay on {formatAUD(nearestTakeHome(entry))}</Link> and{" "}
                   <Link href={takeHomeHref(top)}>take-home pay on {formatAUD(nearestTakeHome(top))}</Link>. Allowances
                   and loadings are taxed as ordinary income on top of base salary.

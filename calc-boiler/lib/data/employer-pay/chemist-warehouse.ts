@@ -100,20 +100,20 @@ export const CHEMIST_WAREHOUSE_PAY: EmployerPay = {
     "Ordinary hours can be worked between 7am and midnight on any day.",
   ],
   overtime: [
-    { when: "Monday to Saturday", permanent: "150% for the first 2 hours, then 200%", casual: "Same as full-time — casual loading is not paid on overtime (cl 21.4(c))" },
+    { when: "Monday to Saturday", permanent: "150% for the first 2 hours, then 200%", casual: "Same as full-time; casual loading is not paid on overtime (cl 21.4(c))" },
     { when: "Sunday", permanent: "200%", casual: "200%" },
     { when: "Public holiday", permanent: "250%", casual: "250%" },
   ],
   notices: [
-    "Chemist Warehouse stores pay the Pharmacy Industry Award — there is no Chemist Warehouse store enterprise agreement. In South Australia, six franchise employers covering 13 stores have been ordered to bargain with the SDA for the network's first store agreement; none had been approved when we checked.",
+    "Chemist Warehouse stores pay the Pharmacy Industry Award. There is no Chemist Warehouse store enterprise agreement. In South Australia, six franchise employers covering 13 stores have been ordered to bargain with the SDA for the network's first store agreement; none had been approved when we checked.",
   ],
   unverified: [
-    "Distribution centre pay — covered by separate warehouse agreements whose current titles and IDs we could not confirm from the Fair Work Commission.",
-    "Above-award pay — an individual store may pay more than the award; these are the legal minimums.",
+    "Distribution centre pay is covered by separate warehouse agreements whose current titles and IDs we could not confirm from the Fair Work Commission.",
+    "Above-award pay: an individual store may pay more than the award; these are the legal minimums.",
   ],
   sources: [
     { title: "Pharmacy Industry Award 2020 (MA000012), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },
-    { title: "Pay guide — Pharmacy Industry Award, effective 1 July 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/payguides/fairwork/ma000012/pdf" },
+    { title: "Pay guide, Pharmacy Industry Award, effective 1 July 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/payguides/fairwork/ma000012/pdf" },
     { title: "Junior rates determination PR813656 (26 August 2026)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/sites/am2024-24/pr813656.pdf" },
     { title: "Changes to the Pharmacy Award (gender undervaluation)", publisher: "Fair Work Ombudsman", url: "https://www.fairwork.gov.au/about-us/workplace-laws/award-changes/major-award-changes/gender-undervaluation-priority-awards-review/changes-to-the-pharmacy-award" },
     { title: "Chemist Warehouse appeal dismissed (2 April 2026)", publisher: "Shop, Distributive and Allied Employees' Association", url: "https://www.sda.au/sa-nt/news/media-release-chemist-warehouse-appeal-dismissed/" },

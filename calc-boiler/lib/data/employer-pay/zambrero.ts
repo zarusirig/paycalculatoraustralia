@@ -22,12 +22,12 @@ export const ZAMBRERO_PAY: EmployerPay = {
   ...SUBWAY_PAY,
   slug: "zambrero",
   name: "Zambrero",
-  employerEntity: "The business that runs your restaurant — for a franchised restaurant, the franchisee, not Zambrero head office",
+  employerEntity: "The business that runs your restaurant. For a franchised restaurant, the franchisee, not Zambrero head office",
   industry: "fast food",
   instrument: {
     ...SUBWAY_PAY.instrument,
     coverage:
-      "We found no Zambrero enterprise agreement on the Fair Work Commission's lists of agreements approved since 2016, so crew fall under the Fast Food Industry Award unless the business that runs their restaurant has its own agreement — which still cannot pay a base rate below the award.",
+      "We found no Zambrero enterprise agreement on the Fair Work Commission's lists of agreements approved since 2016, so crew fall under the Fast Food Industry Award unless the business that runs their restaurant has its own agreement, which still cannot pay a base rate below the award.",
   },
   nextIncrease: {
     date: "First full pay period on or after 1 December 2026",
@@ -43,12 +43,12 @@ export const ZAMBRERO_PAY: EmployerPay = {
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
     "These are the Fast Food Industry Award minimums for Zambrero crew. Some restaurants may pay more; none can pay less.",
-    "Your employer is the business named on your payslip. If it has its own approved enterprise agreement, that agreement sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
+    "Your employer is the business named on your payslip. If it has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
   ],
   unverified: [
-    "Whether any individual Zambrero restaurant owner has its own enterprise agreement — agreements are registered under the owner's company name, which we cannot search restaurant by restaurant.",
+    "Whether any individual Zambrero restaurant owner has its own enterprise agreement. Agreements are registered under the owner's company name, which we cannot search restaurant by restaurant.",
     "Agreements approved before 2016 were not checked.",
-    "Salaried restaurant manager pay — set by contract.",
+    "Salaried restaurant manager pay, set by contract.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: SUBWAY_PAY.instrument.url },

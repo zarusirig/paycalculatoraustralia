@@ -15,7 +15,7 @@ export const TAS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average Tasmanian salary?",
-    a: `Full-time adults in Tasmania earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}) — the lowest of any state or territory. The worked example above shows the net result per week, fortnight and month.`,
+    a: `Full-time adults in Tasmania earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}), the lowest of any state or territory. The worked example above shows the net result per week, fortnight and month.`,
   },
   {
     q: "Do I get Royal Hobart Regatta or Recreation Day?",

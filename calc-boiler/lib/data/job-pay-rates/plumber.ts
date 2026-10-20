@@ -106,9 +106,9 @@ export const PLUMBER: Occupation = {
       intro:
         "Workers get the industry and special fixed allowances (level 2 also gets the plumbing trade allowance); unregistered tradespersons get everything except the registration allowance. Hourly and casual rates are Schedule C.1.3 and C.1.6.",
       rows: [
-        row("Plumbing worker level 1(a) — new entrant", 1013.6, WORKER_L1, 27.97, 34.96),
-        row("Plumbing worker level 1(b) — after 3 months", 1033.6, WORKER_L1, 28.49, 35.61),
-        row("Plumbing worker level 1(c) — after 12 months", 1047.3, WORKER_L1, 28.85, 36.06),
+        row("Plumbing worker level 1(a), new entrant", 1013.6, WORKER_L1, 27.97, 34.96),
+        row("Plumbing worker level 1(b), after 3 months", 1033.6, WORKER_L1, 28.49, 35.61),
+        row("Plumbing worker level 1(c), after 12 months", 1047.3, WORKER_L1, 28.85, 36.06),
         row("Plumbing worker level 1(d)", 1062.9, WORKER_L1, 29.26, 36.58),
         row("Plumbing worker level 2", 1119.1, TRADE_UNREGISTERED, 31.63, 39.54),
         row("Tradesperson level 1 (not registered)", 1119.1, TRADE_UNREGISTERED, 31.63, 39.54),
@@ -125,7 +125,7 @@ export const PLUMBER: Occupation = {
     { when: "Saturday — first 2 hours", permanent: "150%", casual: "175%" },
     { when: "Saturday after 2 hours; Sunday", permanent: "200%", casual: "225%" },
     { when: "Public holiday", permanent: "250%", casual: "275%" },
-    { when: "Shiftwork — 5+ consecutive shifts with 48 hours' notice", permanent: "133%", casual: "158%" },
+    { when: "Shiftwork, 5+ consecutive shifts with 48 hours' notice", permanent: "133%", casual: "158%" },
   ],
   penaltiesNote:
     "Percentages of the ordinary hourly rate, which already includes the all-purpose allowances (Schedule C.1.3–C.1.7).",
@@ -142,7 +142,7 @@ export const PLUMBER: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Check whether you are paid as registered. A registered plumber's minimum is $32.80 an hour; the same tradesperson paid as unregistered gets $31.63 — the $44.76 weekly registration allowance is the difference.",
+    "Check whether you are paid as registered. A registered plumber's minimum is $32.80 an hour; the same tradesperson paid as unregistered gets $31.63; the $44.76 weekly registration allowance is the difference.",
   ],
   notShown: [
     "Apprentice plumber rates (cl 18.2) and adult apprentice rates, which have their own summary in Schedule E.",
@@ -160,7 +160,7 @@ export const PLUMBER: Occupation = {
     },
     {
       q: "Why is a plumber's award rate higher than $29.45 an hour?",
-      a: "$29.45 is the bare tradesperson rate in clause 18.1. The award adds four all-purpose allowances — industry, plumbing trade, registration and special fixed — worth $127.44 a week for a registered plumber, which the award's own hourly schedule builds into the $32.80 ordinary rate.",
+      a: "$29.45 is the bare tradesperson rate in clause 18.1. The award adds four all-purpose allowances (industry, plumbing trade, registration and special fixed), worth $127.44 a week for a registered plumber, which the award's own hourly schedule builds into the $32.80 ordinary rate.",
     },
     {
       q: "Do plumbers get paid penalty rates on weekends?",
@@ -172,7 +172,7 @@ export const PLUMBER: Occupation = {
     },
   ],
   sources: [
-    { title: "Plumbing and Fire Sprinklers Award 2020 [MA000036] — consolidated to 16 September 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000036") },
+    { title: "Plumbing and Fire Sprinklers Award 2020 [MA000036], consolidated to 16 September 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000036") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

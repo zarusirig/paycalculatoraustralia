@@ -79,7 +79,7 @@ export default function WorkHoursCalculatorPage() {
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Work Hours Calculator</span></li></ol></nav>
 
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work Hours Calculator — Timesheet, Breaks and Overtime</h1><p className="text-xl text-warmgray leading-relaxed mb-6">Add up a week of shifts from start and finish times, take out unpaid breaks, and get the total in <strong>both decimal hours and h:mm</strong>. Overnight shifts, the {CASUAL_LOADING * 100}% casual loading and overtime past {STANDARD_WEEKLY_HOURS} hours are all handled. Nothing is uploaded — your timesheet stays in your browser.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work Hours Calculator: Timesheet, Breaks and Overtime</h1><p className="text-xl text-warmgray leading-relaxed mb-6">Add up a week of shifts from start and finish times, take out unpaid breaks, and get the total in <strong>both decimal hours and h:mm</strong>. Overnight shifts, the {CASUAL_LOADING * 100}% casual loading and overtime past {STANDARD_WEEKLY_HOURS} hours are all handled. Nothing is uploaded; your timesheet stays in your browser.</p><TrustBar className="!max-w-none" /></header>
 
       <div className="mb-12"><WorkHoursCalculator /></div>
 
@@ -91,10 +91,10 @@ export default function WorkHoursCalculatorPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Use the Timesheet Calculator</h2>
             <ol>
               <li><strong>Pick your pay period.</strong> A week gives you seven rows; a fortnight gives fourteen and moves the overtime threshold to {STANDARD_WEEKLY_HOURS * 2} hours. Add or remove rows for a roster that does not fit either.</li>
-              <li><strong>Enter start and finish times.</strong> Use the 24-hour clock. Leave a day blank if you did not work it — blank rows are ignored rather than counted as zero-hour days.</li>
+              <li><strong>Enter start and finish times.</strong> Use the 24-hour clock. Leave a day blank if you did not work it. Blank rows are ignored rather than counted as zero-hour days.</li>
               <li><strong>Put unpaid breaks in minutes.</strong> A 30-minute lunch is <code>30</code>. Paid rest breaks stay in your hours, so leave them out.</li>
               <li><strong>Add your hourly rate</strong> and tick casual loading if you are engaged as a casual.</li>
-              <li><strong>Set the overtime rules to match your award</strong> — the threshold, the width of the first overtime band, and the two multipliers are all editable.</li>
+              <li><strong>Set the overtime rules to match your award</strong>: the threshold, the width of the first overtime band, and the two multipliers are all editable.</li>
             </ol>
             <p>Each row shows its own daily total, and the running weekly total updates as you type. Refreshing the page will not lose your work.</p>
           </section>
@@ -121,18 +121,18 @@ export default function WorkHoursCalculatorPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Shifts That Finish After Midnight</h2>
             <p>This is where most timesheet tools quietly break. If you subtract a 6:00 am finish from a 10:00 pm start you get <strong>minus sixteen hours</strong>. A calculator that does not detect the day boundary either drops the shift or, worse, subtracts it from your week.</p>
             <p>The rule this calculator follows: <strong>if the finish time is earlier than the start time, the shift crosses midnight</strong> and a full day is added before the subtraction. So 10:00 pm to 6:00 am is {formatDecimalHours(calculateShift({ start: "22:00", end: "06:00" }).paidHours)} hours, and with a 30-minute unpaid break it is {formatDecimalHours(NIGHT_SHIFT.paidHours)} hours ({minutesToHm(NIGHT_SHIFT.paidMinutes)}). Rows that cross midnight are marked <strong>+1 day</strong> so you can see the calculator read it the way you meant.</p>
-            <p>The mirror-image mistake matters too. A finish time <em>equal</em> to the start time is a zero-length shift, not a 24-hour one — 9:00 am to 9:00 am is treated as nothing worked, because nobody types that meaning a full day.</p>
+            <p>The mirror-image mistake matters too. A finish time <em>equal</em> to the start time is a zero-length shift, not a 24-hour one. 9:00 am to 9:00 am is treated as nothing worked, because nobody types that meaning a full day.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Unpaid Breaks</h2>
             <p>Unpaid meal breaks come off your paid hours. A 9:00 am to 5:00 pm shift spans {formatDecimalHours(calculateShift({ start: "09:00", end: "17:00" }).paidHours)} hours, but with a 30-minute unpaid lunch you are paid {formatDecimalHours(NINE_TO_FIVE.paidHours)} hours ({minutesToHm(NINE_TO_FIVE.paidMinutes)}). That single half hour is {formatDecimalHours(2.5)} hours a week, or roughly {formatDecimalHours(130)} hours a year.</p>
-            <p>Shorter rest or tea breaks are usually paid under an award and stay inside your hours — do not enter those. If you were required to stay on site, keep a radio on, or remain available during a break, it may still count as time worked; the treatment varies by award, so check yours.</p>
+            <p>Shorter rest or tea breaks are usually paid under an award and stay inside your hours, so do not enter those. If you were required to stay on site, keep a radio on, or remain available during a break, it may still count as time worked; the treatment varies by award, so check yours.</p>
             <p>A break can never be longer than the shift it sits in. Enter one that is and the calculator caps it at the length of the shift and flags the row, rather than producing negative hours.</p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Overtime — Your Award Sets the Threshold</h2>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Overtime: Your Award Sets the Threshold</h2>
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>There is no single national overtime rule.</strong> The National Employment Standards set {STANDARD_WEEKLY_HOURS} ordinary hours a week for a full-time employee, but <em>when</em> overtime starts and <em>what</em> it pays comes from the modern award or enterprise agreement that covers you.</p>
             <p>Three common patterns, none of which is universal:</p>
             <ul>
@@ -140,7 +140,7 @@ export default function WorkHoursCalculatorPage() {
               <li><strong>Banded multipliers.</strong> The <Link href="/hospitality-award-rates/">Hospitality Award</Link> pays the first two hours of overtime at time and a half and everything after at double time. Set the first band to 2 hours, {OVERTIME_DEFAULTS.firstTierMultiplier}× and {OVERTIME_DEFAULTS.secondTierMultiplier}× to model it.</li>
               <li><strong>Day-dependent bands.</strong> The <Link href="/retail-award-rates/">Retail Award</Link> bands overtime differently from Monday to Saturday than on a Sunday, so a single weekly threshold will not capture it exactly.</li>
             </ul>
-            <p>Many awards also trigger overtime on a <strong>daily</strong> limit, on work outside the rostered span of hours, or on a day you were not rostered — none of which a weekly total can see. Read the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> before you rely on a figure, and use the dedicated <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> if you only need to price the overtime portion.</p>
+            <p>Many awards also trigger overtime on a <strong>daily</strong> limit, on work outside the rostered span of hours, or on a day you were not rostered, none of which a weekly total can see. Read the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> before you rely on a figure, and use the dedicated <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> if you only need to price the overtime portion.</p>
           </section>
 
           <section>
@@ -162,37 +162,37 @@ export default function WorkHoursCalculatorPage() {
               <tr className="bg-sandstone font-semibold text-navy"><td className="px-5 py-3" colSpan={4}>Weekly total</td><td className="px-5 py-3 text-right tabular-nums">{formatDecimalHours(EXAMPLE_TOTALS.totalHours)} h · {minutesToHm(EXAMPLE_TOTALS.paidMinutes)}</td></tr>
             </tbody></table></div></div>
 
-            <p>At {formatAUD(EXAMPLE_RATE, 2)} an hour with the default overtime rules — {STANDARD_WEEKLY_HOURS} ordinary hours, then {OVERTIME_DEFAULTS.firstTierHours} hours at {OVERTIME_DEFAULTS.firstTierMultiplier}× and the rest at {OVERTIME_DEFAULTS.secondTierMultiplier}× — that week prices out as:</p>
+            <p>At {formatAUD(EXAMPLE_RATE, 2)} an hour with the default overtime rules ({STANDARD_WEEKLY_HOURS} ordinary hours, then {OVERTIME_DEFAULTS.firstTierHours} hours at {OVERTIME_DEFAULTS.firstTierMultiplier}× and the rest at {OVERTIME_DEFAULTS.secondTierMultiplier}×), that week prices out as:</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-              <tr><td className="px-5 py-3">Ordinary — {formatDecimalHours(EXAMPLE_PAY.split.ordinaryHours)} h at {formatAUD(EXAMPLE_RATE, 2)}</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.ordinaryPay, 2)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Overtime — {formatDecimalHours(EXAMPLE_PAY.split.firstTierHours)} h at {OVERTIME_DEFAULTS.firstTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.firstTierPay, 2)}</td></tr>
-              <tr><td className="px-5 py-3">Overtime — {formatDecimalHours(EXAMPLE_PAY.split.secondTierHours)} h at {OVERTIME_DEFAULTS.secondTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.secondTierPay, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Ordinary: {formatDecimalHours(EXAMPLE_PAY.split.ordinaryHours)} h at {formatAUD(EXAMPLE_RATE, 2)}</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.ordinaryPay, 2)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Overtime: {formatDecimalHours(EXAMPLE_PAY.split.firstTierHours)} h at {OVERTIME_DEFAULTS.firstTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.firstTierPay, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Overtime: {formatDecimalHours(EXAMPLE_PAY.split.secondTierHours)} h at {OVERTIME_DEFAULTS.secondTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.secondTierPay, 2)}</td></tr>
               <tr className="bg-sandstone"><td className="px-5 py-3 font-semibold text-navy">Gross for the week</td><td className="px-5 py-3 text-right font-bold tabular-nums text-navy">{formatAUD(EXAMPLE_PAY.gross, 2)}</td></tr>
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Gross, before PAYG tax and superannuation. Overtime thresholds shown are the calculator defaults, not a statement of award entitlements.</p></div>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Loading on Top of Your Hours</h2>
-            <p>Casual employees receive a <strong>{CASUAL_LOADING * 100}% loading</strong> on their ordinary hourly rate in place of paid annual leave, paid personal leave and notice of termination. Tick the casual box and the calculator lifts the rate before applying any overtime multiplier — {formatAUD(EXAMPLE_RATE, 2)} becomes {formatAUD(EXAMPLE_RATE * (1 + CASUAL_LOADING), 2)}.</p>
-            <p>How loading and overtime combine is award-specific, and the two biggest casual-employing awards do it in opposite directions. Under the <Link href="/retail-award-rates/">General Retail Industry Award</Link> the casual loading <strong>is</strong> included in overtime, so casual overtime is 175% against 150% for a permanent employee. Under the <Link href="/hospitality-award-rates/">Hospitality Industry (General) Award</Link> it is <strong>not</strong> — overtime is computed on the ordinary hourly rate, which excludes the loading, so a casual and a full-time employee on the same classification are paid identical overtime. If your award works the hospitality way, leave the casual box unticked and enter the loaded rate manually for the ordinary hours. Our <Link href="/full-time-vs-part-time-vs-casual/">full-time vs part-time vs casual guide</Link> covers what you trade away for the loading.</p>
+            <p>Casual employees receive a <strong>{CASUAL_LOADING * 100}% loading</strong> on their ordinary hourly rate in place of paid annual leave, paid personal leave and notice of termination. Tick the casual box and the calculator lifts the rate before applying any overtime multiplier: {formatAUD(EXAMPLE_RATE, 2)} becomes {formatAUD(EXAMPLE_RATE * (1 + CASUAL_LOADING), 2)}.</p>
+            <p>How loading and overtime combine is award-specific, and the two biggest casual-employing awards do it in opposite directions. Under the <Link href="/retail-award-rates/">General Retail Industry Award</Link> the casual loading <strong>is</strong> included in overtime, so casual overtime is 175% against 150% for a permanent employee. Under the <Link href="/hospitality-award-rates/">Hospitality Industry (General) Award</Link> it is <strong>not</strong>: overtime is computed on the ordinary hourly rate, which excludes the loading, so a casual and a full-time employee on the same classification are paid identical overtime. If your award works the hospitality way, leave the casual box unticked and enter the loaded rate manually for the ordinary hours. Our <Link href="/full-time-vs-part-time-vs-casual/">full-time vs part-time vs casual guide</Link> covers what you trade away for the loading.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Keeping Your Own Timesheet</h2>
             <p>Employers must keep time and wages records for <strong>seven years</strong> under the Fair Work Act, including hours worked by casual and irregular part-time employees, overtime hours, and the start and finish times of any period attracting a penalty rate or loading. You are entitled to ask for a copy of your own records.</p>
-            <p>Keeping your own parallel record is still the fastest way to catch an underpayment. Note the date, start and finish times, and every unpaid break as you go — reconstructing a roster from memory three months later rarely survives a dispute. Use the <strong>Copy summary</strong> button to paste a week into an email or a note, or <strong>Print timesheet</strong> for a paper copy.</p>
+            <p>Keeping your own parallel record is still the fastest way to catch an underpayment. Note the date, start and finish times, and every unpaid break as you go. Reconstructing a roster from memory three months later rarely survives a dispute. Use the <strong>Copy summary</strong> button to paste a week into an email or a note, or <strong>Print timesheet</strong> for a paper copy.</p>
             <p>If the totals do not match your payslip, our <Link href="/understanding-your-payslip/">payslip guide</Link> explains what each line should show.</p>
           </section>
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <ul>
-              <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> — price time and a half, double time and public holiday rates</li>
-              <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> — how the thresholds actually work award by award</li>
-              <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> — turn an hourly rate into a yearly figure</li>
-              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> — gross to net after tax, Medicare and super</li>
-              <li><Link href="/retail-award-rates/">Retail Award Rates</Link> — General Retail Industry Award minimums</li>
-              <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link> — Hospitality Industry (General) Award minimums</li>
+              <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link>: price time and a half, double time and public holiday rates</li>
+              <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: how the thresholds actually work award by award</li>
+              <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>: turn an hourly rate into a yearly figure</li>
+              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: gross to net after tax, Medicare and super</li>
+              <li><Link href="/retail-award-rates/">Retail Award Rates</Link>: General Retail Industry Award minimums</li>
+              <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link>: Hospitality Industry (General) Award minimums</li>
             </ul>
           </section>
 
@@ -212,7 +212,7 @@ export default function WorkHoursCalculatorPage() {
             </Accordion>
           </section>
 
-          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Each row is converted to minutes past midnight and subtracted. When the finish time is earlier than the start time a full day (1,440 minutes) is added first, which is what makes overnight shifts work; an identical start and finish is treated as a zero-length shift rather than 24 hours. The unpaid break is then deducted, capped at the length of the shift so a break longer than the shift produces zero paid time rather than a negative. Totals are reported in decimal hours rounded to two places and in h:mm.</p><p>The {STANDARD_WEEKLY_HOURS}-hour ordinary week and the {CASUAL_LOADING * 100}% casual loading are read from the site&rsquo;s single employment constants file, so they cannot drift from the rest of the site. Overtime thresholds and multipliers are <strong>user inputs with common defaults</strong>, not statements of award entitlement — the applicable modern award or enterprise agreement governs when overtime starts and what it pays. The time arithmetic is covered by automated tests including the overnight, zero-length, over-long-break, exactly-{STANDARD_WEEKLY_HOURS}-hour and decimal-to-h:mm cases.</p><p>Results are gross, before PAYG withholding, study loan repayments and superannuation. Nothing you enter leaves your browser; the timesheet is held in local storage on this device only.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Each row is converted to minutes past midnight and subtracted. When the finish time is earlier than the start time a full day (1,440 minutes) is added first, which is what makes overnight shifts work; an identical start and finish is treated as a zero-length shift rather than 24 hours. The unpaid break is then deducted, capped at the length of the shift so a break longer than the shift produces zero paid time rather than a negative. Totals are reported in decimal hours rounded to two places and in h:mm.</p><p>The {STANDARD_WEEKLY_HOURS}-hour ordinary week and the {CASUAL_LOADING * 100}% casual loading are read from the site&rsquo;s single employment constants file, so they cannot drift from the rest of the site. Overtime thresholds and multipliers are <strong>user inputs with common defaults</strong>, not statements of award entitlement. The applicable modern award or enterprise agreement governs when overtime starts and what it pays. The time arithmetic is covered by automated tests including the overnight, zero-length, over-long-break, exactly-{STANDARD_WEEKLY_HOURS}-hour and decimal-to-h:mm cases.</p><p>Results are gross, before PAYG withholding, study loan repayments and superannuation. Nothing you enter leaves your browser; the timesheet is held in local storage on this device only.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
             {(() => { const a = getGuideAuthorship("work-hours-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 

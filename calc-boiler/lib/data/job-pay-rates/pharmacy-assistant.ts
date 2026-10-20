@@ -58,11 +58,11 @@ export const PHARMACY_ASSISTANT: Occupation = {
   headline: {
     tableId: "assistants",
     label: "Pharmacy assistant level 1",
-    why: "a pharmacy assistant who has not yet gained the Certificate II in Community Pharmacy competencies — where most assistants start",
+    why: "a pharmacy assistant who has not yet gained the Certificate II in Community Pharmacy competencies, where most assistants start",
   },
   coverage: [
     "Pharmacy assistants and dispensary assistants in community pharmacies (retail chemists) are covered by the Pharmacy Industry Award 2020 [MA000012], not the General Retail Award.",
-    "The level depends on Community Pharmacy qualifications. Level 1 has not yet acquired the competencies for a Community Pharmacy qualification. Level 2 has the Certificate II competencies. Level 3 — also called Dispensary assistant level 3 — has the Certificate III competencies and is required by the employer to work at that level, which can include dispensing under a pharmacist's direct supervision or supervising level 1 and 2 assistants. Level 4 has the Certificate IV competencies and is required to work at that level (Schedule A.1–A.4).",
+    "The level depends on Community Pharmacy qualifications. Level 1 has not yet acquired the competencies for a Community Pharmacy qualification. Level 2 has the Certificate II competencies. Level 3 (also called Dispensary assistant level 3) has the Certificate III competencies and is required by the employer to work at that level, which can include dispensing under a pharmacist's direct supervision or supervising level 1 and 2 assistants. Level 4 has the Certificate IV competencies and is required to work at that level (Schedule A.1–A.4).",
     "Holding a higher certificate does not by itself move a level 3 or 4 assistant up: the award also requires that the employer requires you to work at that level.",
   ],
   tables: [
@@ -91,13 +91,13 @@ export const PHARMACY_ASSISTANT: Occupation = {
     "Junior rates apply only to pharmacy assistant levels 1 and 2 (cl 16.2), and the percentages for 18- to 20-year-olds with more than 6 months with their employer rise in steps from the first full pay period on or after 1 December 2026. See the junior pay rates page.",
   ],
   notShown: [
-    "Junior pharmacy assistant percentages and the phase-in schedule — see the junior pay rates page.",
-    "Pharmacy student, intern and pharmacist rates — see the pharmacist page.",
+    "Junior pharmacy assistant percentages and the phase-in schedule: see the junior pay rates page.",
+    "Pharmacy student, intern and pharmacist rates: see the pharmacist page.",
   ],
   faqs: [
     {
       q: "What is the award rate for a pharmacy assistant in 2026?",
-      a: "A pharmacy assistant level 1 must be paid at least $27.81 an hour, or $1,056.80 a week, under the Pharmacy Industry Award from the first full pay period on or after 1 July 2026 — $54,954 a year full-time before tax. With Certificate II competencies (level 2) the minimum is $28.45 an hour.",
+      a: "A pharmacy assistant level 1 must be paid at least $27.81 an hour, or $1,056.80 a week, under the Pharmacy Industry Award from the first full pay period on or after 1 July 2026, which is $54,954 a year full-time before tax. With Certificate II competencies (level 2) the minimum is $28.45 an hour.",
     },
     {
       q: "What is the casual rate for a pharmacy assistant?",
@@ -105,11 +105,11 @@ export const PHARMACY_ASSISTANT: Occupation = {
     },
     {
       q: "What does a dispensary assistant get paid?",
-      a: "A dispensary assistant is pharmacy assistant level 3 under the award — Certificate III competencies and required to work at that level — with a minimum of $29.45 an hour or $1,119.10 a week.",
+      a: "A dispensary assistant is pharmacy assistant level 3 under the award (Certificate III competencies and required to work at that level), with a minimum of $29.45 an hour or $1,119.10 a week.",
     },
     {
       q: "Is a pharmacy assistant covered by the retail award?",
-      a: "No. Community pharmacies are covered by the Pharmacy Industry Award, and the General Retail Award expressly excludes them. The level 1 rate happens to be the same as Retail Employee Level 1, but the penalty rates differ — pharmacy penalties depend on the time of day.",
+      a: "No. Community pharmacies are covered by the Pharmacy Industry Award, and the General Retail Award expressly excludes them. The level 1 rate happens to be the same as Retail Employee Level 1, but the penalty rates differ: pharmacy penalties depend on the time of day.",
     },
     {
       q: "What do pharmacy assistants actually earn?",
@@ -117,7 +117,7 @@ export const PHARMACY_ASSISTANT: Occupation = {
     },
   ],
   sources: [
-    { title: "Pharmacy Industry Award 2020 [MA000012] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(PHARMACY_AWARD.meta.code) },
+    { title: "Pharmacy Industry Award 2020 [MA000012], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(PHARMACY_AWARD.meta.code) },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

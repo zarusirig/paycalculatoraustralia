@@ -16,12 +16,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/ytd-income-calculator/`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: "YTD Calculator Australia — Year to Date Income & Annualiser",
+  title: "YTD Calculator Australia - Year to Date Income & Annualiser",
   description:
     "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into projected annual salary and tax.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "YTD Calculator Australia — Year to Date Income",
+    title: "YTD Calculator Australia - Year to Date Income",
     description: "Calculate year-to-date income from your payslip, or annualise a YTD figure into a projected annual salary.",
     url: URL,
     siteName: SITE_CONFIG.name,
@@ -31,7 +31,7 @@ export const metadata: Metadata = withFeaturedImage({
   twitter: {
     card: "summary_large_image",
     title: "YTD Income Calculator",
-    description: "Calculate or annualise your year-to-date income — Australian financial year aware.",
+    description: "Calculate or annualise your year-to-date income. Australian financial year aware.",
   },
 });
 

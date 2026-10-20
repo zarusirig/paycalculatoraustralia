@@ -41,7 +41,7 @@ export const WA: Jurisdiction = {
   headline:
     "From 13 June 2026 a Western Australian public servant at Level 2 is paid $79,604 to $85,350, at Level 4 $99,134 to $104,044, at Level 5 $108,848 to $118,961 and at Level 6 $124,673 to $137,399, under the Public Sector CSA Agreement 2024. The General Division runs from $68,028 at Level 1.1 to $244,449 at Class 4.",
 
-  metaTitle: "WA Public Sector Pay Rates 2026 — Level 1–9 Salary Scale",
+  metaTitle: "WA Public Sector Pay Rates 2026 - Level 1–9 Salary Scale",
   metaDescription:
     "WA public sector pay from 13 June 2026: every General Division step from Level 1.1 ($68,028) to Class 4 ($244,449), the Specified Calling scale and take-home pay.",
 
@@ -59,7 +59,7 @@ export const WA: Jurisdiction = {
         "Public service officers employed by the Western Australian agencies listed in Schedule 6 of the agreement.",
       basis: "agreement",
       effectiveFrom: "13 June 2026",
-      rangeMeaning: "First and last increment of the level. Annual salary only — superannuation is paid on top.",
+      rangeMeaning: "First and last increment of the level. Annual salary only; superannuation is paid on top.",
       sourceId: "wa-csa-2024",
       streams: [
         {
@@ -352,7 +352,7 @@ export const WA: Jurisdiction = {
   ],
 
   progression: [
-    "Within a level you move through the increments written as level.increment — Level 5 has four (5.1 to 5.4), Level 4 has three (4.1 to 4.3). Increment rules are set by the agreement and the Public Service Award 1992 rather than restated here; check your agency's HR policy for the review date that applies to you.",
+    "Within a level you move through the increments written as level.increment: Level 5 has four (5.1 to 5.4), Level 4 has three (4.1 to 4.3). Increment rules are set by the agreement and the Public Service Award 1992 rather than restated here; check your agency's HR policy for the review date that applies to you.",
     "The levels do not overlap: the top of Level 4 is $104,044 and the bottom of Level 5 is $108,848, a gap of $4,804. Moving up a level is an appointment to a position classified at the higher level, not an increment.",
     "Adult trainees are paid at Level 1.1 (clause 11.3), and the separate rates for Level 1 employees under 21 were removed from the salary schedule (clause 10.9).",
   ],
@@ -367,7 +367,7 @@ export const WA: Jurisdiction = {
   sources: [
     {
       id: "wa-csa-2024",
-      title: "Public Sector CSA Agreement 2024 (2024 WAIRC 01069) — Schedules 2 and 3",
+      title: "Public Sector CSA Agreement 2024 (2024 WAIRC 01069), Schedules 2 and 3",
       publisher: "WA Health (copy of the registered agreement)",
       url: "https://www.health.wa.gov.au/~/media/Corp/Documents/Health-for/Industrial-relations/Awards-and-agreements/Public-service/Public-Sector-CSA-Agreement-2024.pdf",
       effectiveFrom: "13 June 2026",
@@ -376,7 +376,7 @@ export const WA: Jurisdiction = {
     },
     {
       id: "wa-wairc-pub072",
-      title: "Public Sector CSA Agreement 2024 — agreement record PUB072",
+      title: "Public Sector CSA Agreement 2024, agreement record PUB072",
       publisher: "Western Australian Industrial Relations Commission",
       url: "https://www.wairc.wa.gov.au/resources/agreements?id=PUB072",
       verifiedOn: VERIFIED,
@@ -385,11 +385,11 @@ export const WA: Jurisdiction = {
   ],
 
   unverified: [
-    "Schedule 4 – Legal Grade salaries for WA Government lawyers — published in the same agreement but not transcribed.",
+    "Schedule 4 – Legal Grade salaries for WA Government lawyers, published in the same agreement but not transcribed.",
     "Public Service Award 1992 minimum rates, which sit beneath the agreement rates actually paid.",
     "Junior and trainee rates below Level 1.1.",
     "WA Health nurses, WA teachers and other WA public sector employees on their own agreements (see the nurse and teacher pages).",
-    "An employer superannuation percentage above the Superannuation Guarantee — the agreement states none.",
+    "An employer superannuation percentage above the Superannuation Guarantee. The agreement states none.",
   ],
 
   faqs: [

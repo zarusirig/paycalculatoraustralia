@@ -41,7 +41,7 @@ const SIBLINGS: { href: string; label: string }[] = [
 export function serviceHubHeading(occupation: ServiceOccupation): string {
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
   const year = occupationSummary(occupation)?.year ?? "2026";
-  return `${cfg.salaryNoun} Australia ${year} — ${cfg.singular} Pay by State`;
+  return `${cfg.salaryNoun} Australia ${year} - ${cfg.singular} Pay by State`;
 }
 
 export default function ServicePayHub({ occupation }: { occupation: ServiceOccupation }) {
@@ -72,7 +72,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
               <strong className="text-navy">
                 {formatAUD(summary.lowestTop.top)} to {formatAUD(summary.highestTop.top)}
               </strong>
-              . Each figure is read from the state&rsquo;s own agreement or official pay table — there is no national
+              . Each figure is read from the state&rsquo;s own agreement or official pay table. There is no national
               award rate for {cfg.plural}.
             </p>
           ) : null}
@@ -145,7 +145,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
                   <SidebarLink
                     key={j.slug}
                     href={`${cfg.hubPath}${j.slug}/`}
-                    label={`${j.code} ${cfg.singular.toLowerCase()} pay — ${j.employer}`}
+                    label={`${j.code} ${cfg.singular.toLowerCase()} pay, ${j.employer}`}
                   />
                 ))}
               </div>
@@ -153,7 +153,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
               {unverified.length > 0 ? (
                 <div className="not-prose mt-8">
                   <h3 className="mb-3 text-lg font-bold text-navy" style={HEADING_FONT}>
-                    Not yet verified — see the official source
+                    Not yet verified, see the official source
                   </h3>
                   <p className="mb-4 text-sm text-warmgray">
                     We could not read a current table for these from a primary source, so we show no figure rather than
@@ -165,7 +165,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
                         <CardContent className="p-4">
                           <p className="mb-1 flex items-center gap-2 font-semibold text-navy">
                             <AlertTriangle className="h-4 w-4 text-eucalyptus-dark" aria-hidden="true" />
-                            {j.code} — {j.employer}
+                            {j.code}, {j.employer}
                           </p>
                           {j.unverified[0] ? <p className="mb-2 text-sm text-warmgray">{j.unverified[0]}</p> : null}
                           <a

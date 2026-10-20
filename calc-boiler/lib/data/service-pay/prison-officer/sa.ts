@@ -99,7 +99,7 @@ export const SA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "South Australian Public Sector Enterprise Agreement: Salaried 2026 (ET-26-00776) — Schedule 1.12 Correctional Officers",
+      title: "South Australian Public Sector Enterprise Agreement: Salaried 2026 (ET-26-00776), Schedule 1.12 Correctional Officers",
       publisher: "Attorney-General's Department (SA)",
       url: SA_EA,
     },

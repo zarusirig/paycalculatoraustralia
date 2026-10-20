@@ -45,7 +45,7 @@ export const PHYSIOTHERAPIST = hpssOct2026Occupation(7, {
   faqs: [
     {
       q: "What is the award rate for a physiotherapist in 2026?",
-      a: "A first-year physiotherapist must be paid at least $34.44 an hour, or $1,308.80 a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026 — $68,058 a year full-time before tax. The award sets physiotherapy at AQF Level 7, so a masters or Doctor of Physiotherapy graduate starts on the same rate unless the employer requires the higher qualification.",
+      a: "A first-year physiotherapist must be paid at least $34.44 an hour, or $1,308.80 a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026. That is $68,058 a year full-time before tax. The award sets physiotherapy at AQF Level 7, so a masters or Doctor of Physiotherapy graduate starts on the same rate unless the employer requires the higher qualification.",
     },
     {
       q: "What is the casual rate for a physiotherapist?",

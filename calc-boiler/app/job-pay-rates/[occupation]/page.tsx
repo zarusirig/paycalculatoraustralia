@@ -42,19 +42,19 @@ function titleFor(occ: Occupation): string {
     // where Google cuts them mid-figure. Keep the fullest form that fits.
     const hourly = `${money(r.hourly)}/hr`;
     const forms = [
-      `${occ.name} Pay Rates Australia 2026 — ${hourly} Award Minimum`,
-      `${occ.name} Pay Rates Australia 2026 — ${hourly} Minimum`,
-      `${occ.name} Pay Rates 2026 — ${hourly} Award Minimum`,
-      `${occ.name} Pay Rates 2026 — ${hourly} Minimum`,
+      `${occ.name} Pay Rates Australia 2026 - ${hourly} Award Minimum`,
+      `${occ.name} Pay Rates Australia 2026 - ${hourly} Minimum`,
+      `${occ.name} Pay Rates 2026 - ${hourly} Award Minimum`,
+      `${occ.name} Pay Rates 2026 - ${hourly} Minimum`,
     ];
     return forms.find((t) => t.length <= 65) ?? forms[forms.length - 1];
   }
   if (occ.median) {
     const median = `${formatAUD(occ.median.medianWeekly)}/wk Median`;
     return fitTitle(
-      `${occ.name} Pay Rates Australia 2026 — No Award, ${median}`,
-      `${occ.name} Pay Rates 2026 — No Award, ${median}`,
-      `${occ.name} Pay Rates 2026 — ${median}`,
+      `${occ.name} Pay Rates Australia 2026 - No Award, ${median}`,
+      `${occ.name} Pay Rates 2026 - No Award, ${median}`,
+      `${occ.name} Pay Rates 2026 - ${median}`,
     );
   }
   return occupationHeading(occ);

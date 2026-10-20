@@ -18,14 +18,14 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 export const metadata: Metadata = withFeaturedImage({
-  title: "Contractor Pay Calculator Australia — Your Real Take-Home",
+  title: "Contractor Pay Calculator Australia - Your Real Take-Home",
   description:
     "Contractor pay calculator for Australia: net pay after GST, income tax, super and deductions, with an ABN vs PAYG comparison for FY2026-27.",
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
   },
   openGraph: {
-    title: "Contractor Pay Calculator Australia — What You Take Home as a Contractor",
+    title: "Contractor Pay Calculator Australia - What You Take Home as a Contractor",
     description:
       "Calculate your take-home as a contractor. See net pay after GST, income tax, super self-contribution & deductions for FY2026-27.",
     url: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,

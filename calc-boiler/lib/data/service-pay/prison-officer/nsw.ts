@@ -91,12 +91,12 @@ export const NSW_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Crown Employees (Public Sector - Salaries 2024) Award, Serial C9875 — Part B, Correctional Officers table",
+      title: "Crown Employees (Public Sector - Salaries 2024) Award, Serial C9875, Part B, Correctional Officers table",
       publisher: "NSW Industrial Relations Commission (Industrial Gazette)",
       url: C9875,
     },
     {
-      title: "Crown Employees (Correctional Officers, Department of Communities and Justice - Corrective Services NSW) Award — reprint, Serial C9952",
+      title: "Crown Employees (Correctional Officers, Department of Communities and Justice - Corrective Services NSW) Award, reprint, Serial C9952",
       publisher: "NSW Industrial Relations Commission (Industrial Gazette)",
       url: C9952,
     },

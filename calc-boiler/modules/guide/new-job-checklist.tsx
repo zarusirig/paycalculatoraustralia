@@ -24,7 +24,7 @@ export default function NewJobChecklistPage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">New Job Checklist</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>New Job Pay Checklist — Set Up Your Pay Correctly From Day One</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>New Job Pay Checklist: Set Up Your Pay Correctly From Day One</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Starting a new job involves more than just showing up. From TFN declarations to super fund choice and verifying your first pay, this checklist ensures you get paid correctly and do not leave money on the table.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -41,7 +41,7 @@ export default function NewJobChecklistPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Understand Your Salary Package</h3>
               <ul>
-                <li>{"✅"} <strong>Confirm total package vs base salary.</strong> Some offers quote a &quot;total remuneration package&quot; that includes super. A $100,000 total package means your cash salary is approximately <strong>$89,286</strong> with $10,714 going to super (12%). A $100,000 base salary plus super means you receive $100,000 in cash and $12,000 in super — a total value of $112,000.</li>
+                <li>{"✅"} <strong>Confirm total package vs base salary.</strong> Some offers quote a &quot;total remuneration package&quot; that includes super. A $100,000 total package means your cash salary is approximately <strong>$89,286</strong> with $10,714 going to super (12%). A $100,000 base salary plus super means you receive $100,000 in cash and $12,000 in super, a total value of $112,000.</li>
                 <li>{"✅"} <strong>Check for salary sacrifice availability.</strong> Ask whether your new employer offers salary sacrifice into super or a novated lease. Pre-tax salary sacrifice reduces your taxable income and can save thousands in tax. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings.</li>
                 <li>{"✅"} <strong>Verify the applicable award or enterprise agreement.</strong> If your role is covered by a modern award, check the minimum pay rates for your classification level. Use our <Link href="/award-rates/">Award Rates Guide</Link> to confirm your offer meets or exceeds the award minimum.</li>
               </ul>
@@ -49,7 +49,7 @@ export default function NewJobChecklistPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Review Your Employment Contract</h3>
               <ul>
                 <li>{"✅"} <strong>Employment type:</strong> Full-time, part-time, or casual. Casual employees receive a <strong>25% loading</strong> but do not receive paid leave entitlements.</li>
-                <li>{"✅"} <strong>Pay frequency:</strong> Weekly, fortnightly, or monthly — this affects your cash flow planning.</li>
+                <li>{"✅"} <strong>Pay frequency:</strong> Weekly, fortnightly, or monthly. This affects your cash flow planning.</li>
                 <li>{"✅"} <strong>Notice period:</strong> Standard is 1-4 weeks depending on tenure, but contracts may specify different terms.</li>
                 <li>{"✅"} <strong>Probation period:</strong> Most new roles include a 3-6 month probationary period with reduced notice requirements.</li>
                 <li>{"✅"} <strong>Leave entitlements:</strong> Full-time employees receive 4 weeks annual leave and 10 days personal/carer&apos;s leave per year under the National Employment Standards.</li>
@@ -67,7 +67,7 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Complete the TFN Declaration form</strong> (NAT 3092). Your employer will provide this or you can download it from the ATO website.</li>
                 <li>{"✅"} <strong>Tax-free threshold:</strong> Claim the $18,200 tax-free threshold only if this is your <strong>highest-paying job</strong> (or only job). If you have another job where you already claim it, select &quot;No&quot;.</li>
-                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot; — your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ($69,528 in FY2026-27).</li>
+                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot;. Your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ($69,528 in FY2026-27).</li>
                 <li>{"✅"} <strong>Submit within 28 days</strong> of starting. Without this form, your employer withholds tax at the highest rate (47%).</li>
               </ul>
               <p>
@@ -88,13 +88,13 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Provide your bank account details</strong> (BSB and account number) for salary deposits.</li>
                 <li>{"✅"} <strong>Emergency contact details</strong> for workplace safety records.</li>
-                <li>{"✅"} <strong>Tax residency status</strong> — confirm you are an Australian resident for tax purposes to ensure correct withholding rates.</li>
+                <li>{"✅"} <strong>Tax residency status:</strong> confirm you are an Australian resident for tax purposes to ensure correct withholding rates.</li>
               </ul>
             </section>
 
             {/* ───── SECTION 3: First Pay Checks ───── */}
             <section id="first-pay-checks">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Pay — What to Check</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Pay: What to Check</h2>
               <p>
                 When you receive your first payslip, verify these items immediately. Errors caught early are easiest to fix.
               </p>

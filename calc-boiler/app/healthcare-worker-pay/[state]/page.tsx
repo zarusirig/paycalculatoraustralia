@@ -45,12 +45,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const employer = state.employer.split(" (")[0];
   const rn = range ? `registered nurse and midwife from ${formatAUD(range.entry)} to ${formatAUD(range.top)}` : "";
+  const rnShort = range ? `RN and midwife from ${formatAUD(range.entry)} to ${formatAUD(range.top)}` : "";
   // Instrument names run to ~110 characters: named only when the description still fits.
   const description = range
     ? fitDescription(
         `${employer} nursing pay scales: ${rn}, plus enrolled nurse, clinical nurse, unit manager and nurse practitioner rates. From the ${instrument.name}, effective ${instrument.effectiveFrom}. Shift penalties and after-tax figures included.`,
         `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Enrolled nurse, clinical nurse and NP rates, shift penalties and after-tax pay.`,
         `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Plus EN, CN and NP rates and after-tax pay.`,
+        `${employer} nursing pay scales: ${rnShort}, effective ${instrument.effectiveFrom}.`,
+        `${employer} nursing pay scales: ${rnShort}. Plus EN, CN and NP rates and after-tax pay.`,
       )
     : fitDescription(
         `${employer} nursing and midwifery pay scales from the ${instrument.name}, effective ${instrument.effectiveFrom}.`,

@@ -19,7 +19,7 @@ export interface ParentingFaq { q: string; a: string }
 export const PARENTING_FAQS: readonly ParentingFaq[] = [
   {
     q: "How much is Parenting Payment Single?",
-    a: `From ${PP.ratesFrom} the maximum Parenting Payment Single is ${formatAUD(S.basic, 2)} a fortnight plus a Pension Supplement of ${formatAUD(S.pensionSupplement, 2)} — ${formatAUD(S.maxFortnightly, 2)} in total, before any reduction for income. Energy Supplement is paid on top, and you may also get Rent Assistance and Family Tax Benefit.`,
+    a: `From ${PP.ratesFrom} the maximum Parenting Payment Single is ${formatAUD(S.basic, 2)} a fortnight plus a Pension Supplement of ${formatAUD(S.pensionSupplement, 2)}, making ${formatAUD(S.maxFortnightly, 2)} in total, before any reduction for income. Energy Supplement is paid on top, and you may also get Rent Assistance and Family Tax Benefit.`,
   },
   {
     q: "How much is Parenting Payment Partnered?",

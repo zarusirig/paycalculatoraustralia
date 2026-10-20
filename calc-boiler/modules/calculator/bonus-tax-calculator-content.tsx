@@ -362,7 +362,7 @@ export default function BonusTaxCalculatorContent() {
               The only practical difference is frequency: commissions are often paid monthly or quarterly, while bonuses tend to be annual or one-off. Frequent commission payments can trigger PAYG instalment obligations if your total income exceeds ATO thresholds. Track your annual earnings using the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link>.
             </p>
             <p className="text-warmgray">
-                Paid commission rather than a bonus? The <Link href="/commission-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">commission tax calculator</Link> shows the same two figures — the tax it adds to your year and the Schedule 5 withholding on the pay — for retainer-plus-commission, quarterly and commission-only structures.
+                Paid commission rather than a bonus? The <Link href="/commission-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">commission tax calculator</Link> shows the same two figures: the tax it adds to your year and the Schedule 5 withholding on the pay, for retainer-plus-commission, quarterly and commission-only structures.
               </p>
             </section>
 
@@ -370,15 +370,15 @@ export default function BonusTaxCalculatorContent() {
                       <section id="tax-back-on-bonus">
               <h2>Do You Get Tax Back on Bonuses?</h2>
               <p>
-                You receive a tax refund on your bonus only if your employer withheld more tax than your actual liability — the Schedule 5 method minimises this gap, so most refunds on bonus withholding are <strong>small or zero</strong>.
+                You receive a tax refund on your bonus only if your employer withheld more tax than your actual liability. The Schedule 5 method minimises this gap, so most refunds on bonus withholding are <strong>small or zero</strong>.
               </p>
               <p>
                 Over-withholding happens in 3 common scenarios:
               </p>
               <ul>
-                <li><strong>Bonus paid early in the financial year</strong> — the employer projects a full year of income, but you change jobs or reduce hours mid-year, lowering your actual taxable income</li>
-                <li><strong>Employer uses flat-rate annualisation</strong> instead of Schedule 5 — some payroll systems annualise the pay period containing the bonus, producing a higher withholding rate</li>
-                <li><strong>Significant tax deductions</strong> — work-related expenses, salary sacrifice contributions, or the &quot;Low Income Tax Offset&quot; reduce your assessable income below the projected amount</li>
+                <li><strong>Bonus paid early in the financial year</strong>: the employer projects a full year of income, but you change jobs or reduce hours mid-year, lowering your actual taxable income</li>
+                <li><strong>Employer uses flat-rate annualisation</strong> instead of Schedule 5. Some payroll systems annualise the pay period containing the bonus, producing a higher withholding rate</li>
+                <li><strong>Significant tax deductions</strong>: work-related expenses, salary sacrifice contributions, or the &quot;Low Income Tax Offset&quot; reduce your assessable income below the projected amount</li>
               </ul>
               <p>
                 When you lodge your tax return, the ATO calculates your actual tax liability on total income (salary plus bonus) and compares it to total PAYG withholding throughout the year. The difference is your refund or balance owing. See our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for a full explanation of how refunds are calculated.
@@ -399,7 +399,7 @@ export default function BonusTaxCalculatorContent() {
 
               <h3>Strategy 2: Time the Bonus Payment</h3>
               <p>
-                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year — due to parental leave, career break, or part-time work — ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if income drops below $45,000) costs about <strong>{formatAUD(DEFER_LOW)}</strong> &mdash; a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
+                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year (due to parental leave, career break, or part-time work), ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if income drops below $45,000) costs about <strong>{formatAUD(DEFER_LOW)}</strong> &mdash; a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
               </p>
 
               <h3>Strategy 3: Maximise Deductions</h3>
@@ -419,10 +419,10 @@ export default function BonusTaxCalculatorContent() {
                 {/* ATO "What payments are qualifying earnings", Table 10 (verified 24 Sep 2026):
                     performance, Christmas, sign-on, referral and return-to-work bonuses are included;
                     only a bonus solely for work entirely outside ordinary hours is excluded. */}
-                <li><strong>Performance and Christmas bonuses</strong> — included, attract the full {SG_PCT} SG</li>
-                <li><strong>Sign-on bonuses for new employees</strong> — included</li>
-                <li><strong>Referral bonuses</strong> — included</li>
-                <li><strong>Bonus solely for work performed entirely outside ordinary hours</strong> — excluded (treated as overtime)</li>
+                <li><strong>Performance and Christmas bonuses</strong>: included, attract the full {SG_PCT} SG</li>
+                <li><strong>Sign-on bonuses for new employees</strong>: included</li>
+                <li><strong>Referral bonuses</strong>: included</li>
+                <li><strong>Bonus solely for work performed entirely outside ordinary hours</strong>: excluded (treated as overtime)</li>
               </ul>
               <p>
                 Since Payday Super began, the maximum super contribution base is an annual figure &mdash; <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for FY{FY}. Employers are not required to pay SG on qualifying earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
@@ -443,7 +443,7 @@ export default function BonusTaxCalculatorContent() {
                 &quot;Lump Sum E&quot; is back pay for wages that accrued more than 12 months before you were paid. It is taxed in the year you receive it, but the ATO considers you for a tax offset, a Medicare levy exemption and a Medicare levy surcharge offset so you are not taxed more heavily just because the money arrived late.
               </p>
               <p>
-                Your employer reports it separately as Lump Sum E on your income statement — since 1 July 2025 there is no minimum amount. When you lodge, you enter the breakdown of which years it relates to and the ATO works out the offset; the myTax estimate does not show it. Back pay for the last 12 months is simply part of your normal income. &quot;Lump Sum B&quot; is something different (unused long service leave) and is not back pay.
+                Your employer reports it separately as Lump Sum E on your income statement. Since 1 July 2025 there is no minimum amount. When you lodge, you enter the breakdown of which years it relates to and the ATO works out the offset; the myTax estimate does not show it. Back pay for the last 12 months is simply part of your normal income. &quot;Lump Sum B&quot; is something different (unused long service leave) and is not back pay.
               </p>
               <p>
                 Common examples of Lump Sum E payments include retrospective pay rises under enterprise agreements, back-paid award rate increases, and underpayment settlements. Use the <Link href="/backpay-calculator/">back pay calculator</Link> to estimate how much you are owed.
@@ -471,9 +471,9 @@ export default function BonusTaxCalculatorContent() {
             <p className="mb-2 text-sm">This calculator estimates tax on bonuses using the following method:</p>
             <ul className="list-disc pl-4 space-y-1">
               <li>Calculates full-year tax liability with and without the bonus</li>
-              <li>The difference represents the tax the bonus adds to your annual liability — the same annualised approach that underpins the ATO&apos;s Schedule 5 withholding method, but it is not a prediction of the exact amount withheld from the paycheque</li>
+              <li>The difference represents the tax the bonus adds to your annual liability. This is the same annualised approach that underpins the ATO&apos;s Schedule 5 withholding method, but it is not a prediction of the exact amount withheld from the paycheque</li>
               <li>Includes income tax, LITO offset, and Medicare levy</li>
-              <li>Does not include Medicare surcharge, HECS repayments, or salary sacrifice — use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">main pay calculator</Link> for the complete picture</li>
+              <li>Does not include Medicare surcharge, HECS repayments, or salary sacrifice. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">main pay calculator</Link> for the complete picture</li>
             </ul>
           </MethodologyDisclosure>
 

@@ -137,7 +137,7 @@ export default function JobseekerPaymentCalculatorPage({ children, afterCalculat
               <li><span className="font-medium text-navy" aria-current="page">JobSeeker Payment Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">JobSeeker Payment Calculator — Rates and How Working Affects Your Payment</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">JobSeeker Payment Calculator: Rates and How Working Affects Your Payment</h1>
           <p className="text-lg text-warmgray">
             JobSeeker Payment is <strong>{formatAUD(active.maxFortnightly.single, 2)} a fortnight</strong> for a single person with no children, {formatAUD(active.maxFortnightly.singleWithChildren, 2)} with a dependent child and {formatAUD(active.maxFortnightly.partnered, 2)} each for a couple, from {active.ratesFrom}. Enter your gross fortnightly wages to see how much you keep: the first {formatAUD(T.freeArea)} is free, then it reduces by 50 cents to {formatAUD(T.band1End)} and 60 cents above.
           </p>
@@ -195,7 +195,7 @@ export default function JobseekerPaymentCalculatorPage({ children, afterCalculat
                       <div>
                         <label htmlFor="partnerAge" className={LABEL}>Your partner is</label>
                         <select id="partnerAge" value={partnerAge} onChange={(e) => setPartnerAge(e.target.value as PartnerAge)} className={INPUT}>
-                          {(Object.keys(PARTNER_LABELS) as PartnerAge[]).map((k) => <option key={k} value={k}>{PARTNER_LABELS[k]} — limit {formatAUD(active.partnerIncomeLimit[k])}</option>)}
+                          {(Object.keys(PARTNER_LABELS) as PartnerAge[]).map((k) => <option key={k} value={k}>{PARTNER_LABELS[k]}, limit {formatAUD(active.partnerIncomeLimit[k])}</option>)}
                         </select>
                         <p className="text-xs text-warmgray-light mt-1">Assumes your partner does not get a pension payment. From 20 September 2026 the 22-to-pension-age limit rises to {formatAUD(SEP.partnerIncomeLimit.partner22ToPensionAge)}; the under-22 limits are unchanged.</p>
                       </div>

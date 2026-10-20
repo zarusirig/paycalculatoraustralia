@@ -31,7 +31,7 @@ export const VIC: Jurisdiction = {
   },
 
   headline:
-    "From 1 May 2026 a VPS Grade 3 is paid between $81,496 and $98,955, a VPS 4 between $100,894 and $114,476, a VPS 5 between $116,413 and $140,849 and a VPS 6 between $142,790 and $191,084. Those are the value ranges in Schedule C of the Victorian Public Service Enterprise Agreement 2024, which applies across the whole VPS — Victoria, unlike the APS, does publish a single table.",
+    "From 1 May 2026 a VPS Grade 3 is paid between $81,496 and $98,955, a VPS 4 between $100,894 and $114,476, a VPS 5 between $116,413 and $140,849 and a VPS 6 between $142,790 and $191,084. Those are the value ranges in Schedule C of the Victorian Public Service Enterprise Agreement 2024, which applies across the whole VPS. Victoria, unlike the APS, does publish a single table.",
 
   metaTitle: "VPS Pay Scale 2026 (VPS1–VPS6): Grade and Step Rates",
   h1: "VPS Pay Scale 2026 (VPS1–VPS6)",
@@ -60,18 +60,18 @@ export const VIC: Jurisdiction = {
     "Victorian Public Service Enterprise Agreement 2024. Grades and value ranges are defined in Schedule C, and the classification and value range standard descriptors sit alongside the salary table.",
 
   payRise:
-    "The agreement sets four annual increases of 3% each, operative from 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027 — 12% over the life of the agreement. The rates on this page are the 1 May 2026 column, which applies until the 1 May 2027 increase.",
+    "The agreement sets four annual increases of 3% each, operative from 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027, 12% over the life of the agreement. The rates on this page are the 1 May 2026 column, which applies until the 1 May 2027 increase.",
 
   schedules: [
     {
       id: "vps-2026",
-      title: "VPS salaries from 1 May 2026 — Enterprise Agreement 2024, Schedule C",
+      title: "VPS salaries from 1 May 2026, Enterprise Agreement 2024, Schedule C",
       coverage:
         "All Victorian Public Service employers covered by the agreement, across grades 1 to 7 including the Senior Technical Specialist structure at grade 7.",
       basis: "agreement",
       effectiveFrom: "1 May 2026",
       rangeMeaning:
-        "First and last progression step of the value range. Salary only — superannuation is paid on top.",
+        "First and last progression step of the value range. Salary only. Superannuation is paid on top.",
       sourceId: "vps-ea-2024",
       streams: [
         {
@@ -171,7 +171,7 @@ export const VIC: Jurisdiction = {
               group: "VPS Grade 4",
               aliases: ["vps4", "vps grade 4"],
               summary:
-                "Grade 4 has a single value range with seven progression steps — the widest single range below grade 6.",
+                "Grade 4 has a single value range with seven progression steps, the widest single range below grade 6.",
               min: 100_894,
               max: 114_476,
               payPoints: [
@@ -309,11 +309,11 @@ export const VIC: Jurisdiction = {
       id: "vic-executives-2026",
       title: "Victorian public service executives from 1 July 2026",
       coverage:
-        "Executives employed in Victorian public service bodies — above the VPS grade structure. Set by determination of the Victorian Independent Remuneration Tribunal, not by the enterprise agreement.",
+        "Executives employed in Victorian public service bodies, above the VPS grade structure. Set by determination of the Victorian Independent Remuneration Tribunal, not by the enterprise agreement.",
       basis: "determination",
       effectiveFrom: "1 July 2026",
       rangeMeaning:
-        "Base and top of the band, expressed as total remuneration package (TRP) rather than base salary — so these figures are not directly comparable with the VPS salaries above.",
+        "Base and top of the band, expressed as total remuneration package (TRP) rather than base salary, so these figures are not directly comparable with the VPS salaries above.",
       sourceId: "vic-remuneration-tribunal",
       streams: [
         {
@@ -354,8 +354,8 @@ export const VIC: Jurisdiction = {
 
   progression: [
     "Progression through the steps inside a value range is not automatic. Clause 31 of the agreement ties it to the annual performance cycle: you are eligible to be considered when you have been employed in the VPS continuously for 12 months at the end of the cycle, have been at your current classification and progression step for 12 months, and have a current performance and development plan in place.",
-    "If you are already on the top step of your grade or value range and you achieve progression, you receive a top of grade or value range payment instead — a lump sum of 1.5% of your salary as at 30 June of that performance cycle. It replaced a 1% payment from the cycle ending 30 June 2024.",
-    "Moving between value ranges (from 3.1 to 3.2, for example) is a different mechanism again. It follows a job resizing review that assesses the work the employer requires and your performance of it against the classification and value range standard descriptors — it is a change in work value, not a time-served increment. The agreement is explicit that progression steps themselves are not points of defined work value.",
+    "If you are already on the top step of your grade or value range and you achieve progression, you receive a top of grade or value range payment instead: a lump sum of 1.5% of your salary as at 30 June of that performance cycle. It replaced a 1% payment from the cycle ending 30 June 2024.",
+    "Moving between value ranges (from 3.1 to 3.2, for example) is a different mechanism again. It follows a job resizing review that assesses the work the employer requires and your performance of it against the classification and value range standard descriptors. It is a change in work value, not a time-served increment. The agreement is explicit that progression steps themselves are not points of defined work value.",
     "Because the value ranges overlap at the top, the last step of one grade can pay more than the first step of the next: VPS 4.1.7 pays $114,476 while VPS 5.1.1 pays $116,413, a gap of under $2,000, so a promotion from the top of grade 4 to the bottom of grade 5 is a smaller pay rise than a single step inside grade 4.",
   ],
 
@@ -369,7 +369,7 @@ export const VIC: Jurisdiction = {
   sources: [
     {
       id: "vps-ea-2024",
-      title: "Victorian Public Service Enterprise Agreement 2024 — Schedule C, VPS salaries",
+      title: "Victorian Public Service Enterprise Agreement 2024, Schedule C, VPS salaries",
       publisher: "Victorian Government",
       url: "https://www.vic.gov.au/sites/default/files/2024-06/Attachment-A-VPS-Agreement-2024-Master-Agreement.docx",
       effectiveFrom: "1 May 2026",
@@ -396,9 +396,9 @@ export const VIC: Jurisdiction = {
   ],
 
   unverified: [
-    "Non-VPS-aligned adaptive structures in Section II of the agreement — custodial officers, sheriff's officers, fisheries officers and similar — which reference the VPS table but carry their own tables. Check the relevant appendix of the agreement rather than reading across from the VPS grade.",
+    "Non-VPS-aligned adaptive structures in Section II of the agreement (custodial officers, sheriff's officers, fisheries officers and similar), which reference the VPS table but carry their own tables. Check the relevant appendix of the agreement rather than reading across from the VPS grade.",
     "The separate Legal Officer, Allied Health and Science adaptive structures at Schedules D, E and F. They use the same value range mechanism but publish their own salary points.",
-    "Victorian public sector employers outside the VPS — Victoria Police, teachers, nurses and the wider public sector — bargain separate agreements and are not covered by Schedule C.",
+    "Victorian public sector employers outside the VPS (Victoria Police, teachers, nurses and the wider public sector) bargain separate agreements and are not covered by Schedule C.",
     "Department head (Secretary) and Victorian Public Sector Commissioner remuneration, which the Tribunal sets separately from the SES bands.",
   ],
 

@@ -26,7 +26,7 @@ export interface JobseekerFaq { q: string; a: string }
 export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   {
     q: "How much is JobSeeker Payment a fortnight?",
-    a: `From 20 September 2026: ${formatAUD(SEP.maxFortnightly.single)} a fortnight if you're single with no children (about ${formatAUD(SEP.maxFortnightly.single / 2)} a week), ${formatAUD(SEP.maxFortnightly.singleWithChildren)} if you're single with a dependent child, 55 or older after 9 months on payment, or have a partial capacity to work, and ${formatAUD(SEP.maxFortnightly.partnered)} each if you're partnered. These are maximums — your payment reduces once your own income passes ${formatAUD(T.freeArea)} a fortnight.`,
+    a: `From 20 September 2026: ${formatAUD(SEP.maxFortnightly.single)} a fortnight if you're single with no children (about ${formatAUD(SEP.maxFortnightly.single / 2)} a week), ${formatAUD(SEP.maxFortnightly.singleWithChildren)} if you're single with a dependent child, 55 or older after 9 months on payment, or have a partial capacity to work, and ${formatAUD(SEP.maxFortnightly.partnered)} each if you're partnered. These are maximums: your payment reduces once your own income passes ${formatAUD(T.freeArea)} a fortnight.`,
   },
   {
     q: "Who is eligible for JobSeeker Payment?",
@@ -34,7 +34,7 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   },
   {
     q: "Is JobSeeker the same as Newstart or the JobSeeker allowance?",
-    a: "Yes — JobSeeker Payment replaced Newstart Allowance in March 2020, and many people still call it the JobSeeker allowance. It is an allowance, so it uses the allowance income test (the $150 free area and 50c/60c tapers), not the pension income test.",
+    a: "Yes. JobSeeker Payment replaced Newstart Allowance in March 2020, and many people still call it the JobSeeker allowance. It is an allowance, so it uses the allowance income test (the $150 free area and 50c/60c tapers), not the pension income test.",
   },
   {
     q: "How much can I earn before JobSeeker reduces?",
@@ -46,7 +46,7 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   },
   {
     q: "What is the JobSeeker cut-off point?",
-    a: `To 19 September 2026: ${formatAUD(MAR.publishedCutOff.single)} a fortnight for a single person with no children, ${formatAUD(MAR.publishedCutOff.singleOver55LongTerm)} if you are 55 or older after 9 months on payment, and ${formatAUD(MAR.publishedCutOff.principalCarer)} for a single principal carer. From 20 September 2026 those become ${formatAUD(SEP.publishedCutOff.single)}, ${formatAUD(SEP.publishedCutOff.singleOver55LongTerm)} and ${formatAUD(SEP.publishedCutOff.principalCarer)}. Earn more than that in a fortnight and you are paid $0 for it — unless working credits cover part of the income.`,
+    a: `To 19 September 2026: ${formatAUD(MAR.publishedCutOff.single)} a fortnight for a single person with no children, ${formatAUD(MAR.publishedCutOff.singleOver55LongTerm)} if you are 55 or older after 9 months on payment, and ${formatAUD(MAR.publishedCutOff.principalCarer)} for a single principal carer. From 20 September 2026 those become ${formatAUD(SEP.publishedCutOff.single)}, ${formatAUD(SEP.publishedCutOff.singleOver55LongTerm)} and ${formatAUD(SEP.publishedCutOff.principalCarer)}. Earn more than that in a fortnight and you are paid $0 for it, unless working credits cover part of the income.`,
   },
   {
     q: "How much did JobSeeker go up on 20 September 2026?",
@@ -66,6 +66,6 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   },
   {
     q: "Do I report gross or net wages to Centrelink?",
-    a: "Gross — your pay before tax, and in the fortnight it is paid. The calculator uses the same gross fortnightly figure. If you are paid weekly, add the two pays that fall in the reporting fortnight.",
+    a: "Gross: your pay before tax, and in the fortnight it is paid. The calculator uses the same gross fortnightly figure. If you are paid weekly, add the two pays that fall in the reporting fortnight.",
   },
 ];

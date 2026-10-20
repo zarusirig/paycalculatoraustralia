@@ -15,7 +15,7 @@ const HIGH_INCOME_THRESHOLD = { amount: 190_100, from: "1 July 2026" } as const;
 export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   {
     q: "Is salary or hourly pay better in Australia?",
-    a: "Neither is universally better. Salary provides income stability, guaranteed paid leave, and predictable budgeting — ideal for employees who value consistency. Hourly pay ensures compensation for every hour worked including overtime and penalty rates — better for workers in industries with regular overtime opportunities. The best choice depends on your industry, role, and financial priorities.",
+    a: "Neither is universally better. Salary provides income stability, paid leave, and predictable budgeting, which suits for employees who value consistency. Hourly pay ensures compensation for every hour worked including overtime and penalty rates, which suits workers in industries with regular overtime opportunities. The best choice depends on your industry, role, and financial priorities.",
   },
   {
     q: "How do I convert my salary to an hourly rate?",
@@ -32,10 +32,10 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do hourly workers get superannuation?",
-    a: `Yes. All employees — salaried, hourly permanent, and hourly casual — receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on qualifying earnings, which for most people means ordinary time earnings (OTE). There is no minimum earnings threshold. OTE includes base rate, shift loadings, and casual loading, but generally excludes overtime.`,
+    a: `Yes. All employees (salaried, hourly permanent, and hourly casual) receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on qualifying earnings, which for most people means ordinary time earnings (OTE). There is no minimum earnings threshold. OTE includes base rate, shift loadings, and casual loading, but generally excludes overtime.`,
   },
   {
     q: "Which is better for getting a mortgage?",
-    a: "Lenders generally prefer salaried income because it is predictable and verifiable with a single letter of employment. Hourly and casual workers may need to provide 3-6 months of payslips, income statements, or tax returns to prove consistent income. Overtime and penalty rate income is often discounted by 20-50% in lending assessments because it is not guaranteed.",
+    a: "Lenders generally prefer salaried income because it is predictable and verifiable with a single letter of employment. Hourly and casual workers may need to provide 3-6 months of payslips, income statements, or tax returns to prove consistent income. Overtime and penalty rate income is often discounted by 20-50% in lending assessments because it is not assured.",
   },
 ];

@@ -49,13 +49,13 @@ export const TARGET_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period on or after 1 July 2027",
     detail:
-      "Customer Service Assistants move to the new Retail Award Level 1 rate plus 5 cents an hour, and Team Leaders to 112% of that (cl 19.1). Separately, from 1 December 2026 the Retail Award lifts pay for 18- and 19-year-olds with more than 6 months' service above Target's junior rates — see the notice above.",
+      "Customer Service Assistants move to the new Retail Award Level 1 rate plus 5 cents an hour, and Team Leaders to 112% of that (cl 19.1). Separately, from 1 December 2026 the Retail Award lifts pay for 18- and 19-year-olds with more than 6 months' service above Target's junior rates. See the notice above.",
   },
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
   rates: [
-    { level: "Customer Service Assistant", description: "Customer service, checkouts, stock replenishment, merchandising, online orders, goods receiving — mapped to Retail Award Level 1", hourly: 27.86, casualHourly: 34.83 },
-    { level: "Team Leader", description: "A Customer Service Assistant who helps supervise a department or task, opens or closes the store, or secures cash — 112% of the Customer Service Assistant rate", hourly: 31.2, casualHourly: 39.0 },
+    { level: "Customer Service Assistant", description: "Customer service, checkouts, stock replenishment, merchandising, online orders, goods receiving, mapped to Retail Award Level 1", hourly: 27.86, casualHourly: 34.83 },
+    { level: "Team Leader", description: "A Customer Service Assistant who helps supervise a department or task, opens or closes the store, or secures cash: 112% of the Customer Service Assistant rate", hourly: 31.2, casualHourly: 39.0 },
   ],
   juniorScale: [
     { age: "16 and under", percentage: 0.5 },
@@ -75,7 +75,7 @@ export const TARGET_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "The agreement adds 25% (weeknights after 6pm and Saturdays), 50% (Sundays) or 125% (public holidays) to the base rate; casuals get 50%, 75% and 150%, which already include the casual loading (cl 27.1).",
-    "For an adult Customer Service Assistant ($27.86) that is about $34.83 an hour on a weeknight or Saturday ($41.79 casual), $41.79 on a Sunday ($48.76 casual) and $62.69 on a public holiday ($69.65 casual) — our arithmetic on the formula rate.",
+    "For an adult Customer Service Assistant ($27.86) that is about $34.83 an hour on a weeknight or Saturday ($41.79 casual), $41.79 on a Sunday ($48.76 casual) and $62.69 on a public holiday ($69.65 casual). This is our arithmetic on the formula rate.",
     "Staff employed specifically as shiftworkers (shifts starting from 6pm and ending before 5am) get 130% Monday to Friday, 150% Saturday and 175% Sunday (casual 155%, 175% and 200%) instead (cl 28.3).",
   ],
   overtime: [
@@ -89,8 +89,8 @@ export const TARGET_PAY: EmployerPay = {
     "From the first full pay period on or after 1 December 2026, the Retail Award pays 18-year-olds with more than 6 months' service 75% of the award rate ($20.86) and 19-year-olds 85% ($23.64). That is more than Target's 70% and 80% of $27.86 ($19.50 and $22.29), and an agreement cannot pay a base rate below the award, so those staff must get at least the award figures.",
   ],
   unverified: [
-    "Target's own 2026 pay table — not public; the dollars are the agreement's formula.",
-    "Salaried department manager and store manager pay — set by contract, not the agreement.",
+    "Target's own 2026 pay table: not public; the dollars are the agreement's formula.",
+    "Salaried department manager and store manager pay: set by contract, not the agreement.",
     "Distribution centre pay (separate agreements AE521731 and AE523060).",
   ],
   awardHref: "/retail-award-rates/",

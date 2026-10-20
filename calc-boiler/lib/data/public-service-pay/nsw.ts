@@ -54,7 +54,7 @@ export const NSW: Jurisdiction = {
   headline:
     "From the first full pay period on or after 1 July 2026, a NSW public servant at Clerk Grade 3 is paid $87,199 in the first year and $89,829 thereafter, Clerk Grade 5 $102,936 then $106,182, Clerk Grade 7 $116,981 then $120,478 and Clerk Grade 9 $133,348 then $137,098, under the Crown Employees (Public Sector - Salaries 2024) Award. NSW Health administration staff are on a separate award: an Administration Officer Level 1 starts at $1,138.62 a week.",
 
-  metaTitle: "NSW Public Service Pay Rates 2026 — Clerk Grade 1–12 & NSW Health",
+  metaTitle: "NSW Public Service Pay Rates 2026 - Clerk Grade 1–12 & NSW Health",
   metaDescription:
     "NSW public sector pay from 1 July 2026: every Clerk Grade 1 to 12 salary, NSW Health Administration Officer rates, the next increase date and each salary after tax.",
 
@@ -67,13 +67,13 @@ export const NSW: Jurisdiction = {
   schedules: [
     {
       id: "nsw-crown-2026",
-      title: "Crown Employees (Public Sector - Salaries 2024) Award — Administrative and Clerical Officers, from 1 July 2026",
+      title: "Crown Employees (Public Sector - Salaries 2024) Award, Administrative and Clerical Officers, from 1 July 2026",
       coverage:
         "Administrative and clerical officers in NSW public service agencies covered by the Crown Employees (Administrative and Clerical Officers - Salaries) Award 2007 table in Part B of the award.",
       basis: "award",
       effectiveFrom: "the first full pay period on or after 1 July 2026",
       rangeMeaning:
-        "1st year of service and thereafter rates for the grade. Annual salary only — superannuation is paid on top.",
+        "1st year of service and thereafter rates for the grade. Annual salary only. Superannuation is paid on top.",
       sourceId: "nsw-crown-2024",
       streams: [
         {
@@ -234,7 +234,7 @@ export const NSW: Jurisdiction = {
       id: "nsw-health-admin-2026",
       title: "Health Employees' Administrative Staff (State) Award 2025, from 1 July 2026",
       coverage:
-        "Administrative staff employed in the NSW public health system — local health districts and specialty networks — under the Health Employees' Administrative Staff (State) Award 2025.",
+        "Administrative staff employed in the NSW public health system (local health districts and specialty networks) under the Health Employees' Administrative Staff (State) Award 2025.",
       basis: "award",
       effectiveFrom: "the first full pay period on or after 1 July 2026",
       rangeMeaning:
@@ -343,7 +343,7 @@ export const NSW: Jurisdiction = {
   ],
 
   progression: [
-    "Each Clerk Grade has two rates: the 1st year of service and thereafter. After a year at the grade you move to the thereafter rate — a rise of $2,292 at Grade 1 and $7,528 at Grade 12 — and beyond that pay only moves with the award increases or a move to a higher grade.",
+    "Each Clerk Grade has two rates: the 1st year of service and thereafter. After a year at the grade you move to the thereafter rate (a rise of $2,292 at Grade 1 and $7,528 at Grade 12), and beyond that pay only moves with the award increases or a move to a higher grade.",
     "Most NSW public service roles are advertised across two grades, such as Clerk Grade 5/6 or Clerk Grade 9/10. The range in the ad runs from the 1st-year rate of the lower grade to the thereafter rate of the higher one: Clerk Grade 9/10 is $133,348 to $146,945 from 1 July 2026.",
     "NSW Health Administration Officers move through yearly steps within their level — five at Level 1 and two at every other level. Moving to a higher level is an appointment to a position graded at that level.",
   ],
@@ -359,7 +359,7 @@ export const NSW: Jurisdiction = {
     {
       id: "nsw-crown-2024",
       title: "Crown Employees (Public Sector - Salaries 2024) Award (C9875)",
-      publisher: "NSW Industrial Relations Commission — Industrial Gazette",
+      publisher: "NSW Industrial Relations Commission, Industrial Gazette",
       url: "http://www.ircgazette.justice.nsw.gov.au/irc/ircgazette.nsf/webviewdate/C9875",
       effectiveFrom: "first full pay period on or after 1 July 2026",
       verifiedOn: VERIFIED,
@@ -368,7 +368,7 @@ export const NSW: Jurisdiction = {
     {
       id: "nsw-health-admin-2025",
       title: "Health Employees' Administrative Staff (State) Award 2025 (C10078)",
-      publisher: "NSW Industrial Relations Commission — Industrial Gazette",
+      publisher: "NSW Industrial Relations Commission, Industrial Gazette",
       url: "http://www.ircgazette.justice.nsw.gov.au/irc/ircgazette.nsf/webviewdate/C10078",
       effectiveFrom: "first full pay period on or after 1 July 2026",
       verifiedOn: VERIFIED,
@@ -381,7 +381,7 @@ export const NSW: Jurisdiction = {
     "The Clerks General Scale and the other occupational tables in the Crown Employees award (correctional officers, police administrative officers, psychologists and others).",
     "NSW Health General Administrative Grades 1 to 14 and Telephonist rates.",
     "NSW Health nurses and NSW teachers, who are on their own awards (see the nurse and teacher pages).",
-    "Any July 2027 increase — neither award provides one yet.",
+    "Any July 2027 increase: neither award provides one yet.",
   ],
 
   faqs: [
@@ -403,7 +403,7 @@ export const NSW: Jurisdiction = {
     },
     {
       q: "When is the next NSW public service pay rise?",
-      a: "Neither award provides one yet. The 1 July 2026 increase — 3% for the Crown Employees award and 4% for the NSW Health administrative staff award — is the last column in each. The Crown Employees award remains in force until 30 June 2027.",
+      a: "Neither award provides one yet. The 1 July 2026 increase (3% for the Crown Employees award and 4% for the NSW Health administrative staff award) is the last column in each. The Crown Employees award remains in force until 30 June 2027.",
     },
   ],
 };

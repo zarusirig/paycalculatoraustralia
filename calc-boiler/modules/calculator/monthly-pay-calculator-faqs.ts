@@ -32,7 +32,7 @@ export const MONTHLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I align my mortgage repayments with my monthly pay?",
-    a: "Matching mortgage repayments to your pay cycle simplifies cash flow management. Employees paid monthly benefit from a single monthly mortgage debit. Switching to fortnightly mortgage repayments (even while paid monthly) produces 26 half-payments — equivalent to 13 full payments per year — which reduces total interest over the life of the loan.",
+    a: "Matching mortgage repayments to your pay cycle simplifies cash flow management. Employees paid monthly benefit from a single monthly mortgage debit. Switching to fortnightly mortgage repayments (even while paid monthly) produces 26 half-payments (equivalent to 13 full payments per year), which reduces total interest over the life of the loan.",
   },
   {
     q: "How does salary packaging affect my monthly take-home?",

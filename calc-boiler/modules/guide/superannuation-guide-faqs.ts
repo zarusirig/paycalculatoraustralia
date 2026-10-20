@@ -44,7 +44,7 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does superannuation come out of my salary?",
-    a: `It depends on your contract structure. A "Base Salary + Super" contract means the employer pays ${SG} on top of your base pay, with no reduction to your salary. A "Total Remuneration Package" (TRP) contract includes super within the total figure — so ${SG} is deducted from the package to determine your base salary. On a ${formatAUD(TRP)} TRP, your base salary is approximately ${formatAUD(TRP_BASE)} and super is ${formatAUD(TRP - TRP_BASE)}.`,
+    a: `It depends on your contract structure. A "Base Salary + Super" contract means the employer pays ${SG} on top of your base pay, with no reduction to your salary. A "Total Remuneration Package" (TRP) contract includes super within the total figure, so ${SG} is deducted from the package to determine your base salary. On a ${formatAUD(TRP)} TRP, your base salary is approximately ${formatAUD(TRP_BASE)} and super is ${formatAUD(TRP - TRP_BASE)}.`,
   },
   {
     q: "Can I choose my own super fund?",

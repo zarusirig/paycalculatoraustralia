@@ -42,7 +42,7 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
 import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: `Pay guide — ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary", publisher: SOURCES.fwo.name },
+  { title: `Pay guide, ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary", publisher: SOURCES.fwo.name },
   { title: `Consolidated award text ${HOSPITALITY_AWARD.code}`, url: HOSPITALITY_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
   { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
 ];
@@ -386,8 +386,8 @@ export default function HospitalityAwardRatesPage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {[
-                        { l: "Monday to Friday — first 2 hours", v: HOSPITALITY_OVERTIME.weekdayFirst2Hours },
-                        { l: "Monday to Friday — after 2 hours", v: HOSPITALITY_OVERTIME.weekdayAfter2Hours },
+                        { l: "Monday to Friday, first 2 hours", v: HOSPITALITY_OVERTIME.weekdayFirst2Hours },
+                        { l: "Monday to Friday, after 2 hours", v: HOSPITALITY_OVERTIME.weekdayAfter2Hours },
                         { l: "Saturday or Sunday", v: HOSPITALITY_OVERTIME.weekend },
                         { l: "On a rostered day off", v: HOSPITALITY_OVERTIME.rosteredDayOff },
                       ].map((row) => (

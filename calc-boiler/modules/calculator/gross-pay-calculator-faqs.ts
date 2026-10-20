@@ -48,7 +48,7 @@ export const GROSS_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is a Total Remuneration Package (TRP)?",
-    a: `A TRP includes your base salary plus the employer's ${SG_PCT} superannuation guarantee contribution. So a $100,000 base salary equates to a ${formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))} TRP. Some job ads quote TRP instead of base salary, which can be misleading — always clarify which figure is being used during salary negotiations.`,
+    a: `A TRP includes your base salary plus the employer's ${SG_PCT} superannuation guarantee contribution. So a $100,000 base salary equates to a ${formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))} TRP. Some job ads quote TRP instead of base salary, which can be misleading, so always clarify which figure is being used during salary negotiations.`,
   },
   {
     q: `What is the tax-free threshold in Australia for FY${FY}?`,

@@ -30,7 +30,7 @@ const AWARD_URL = "https://awards.fairwork.gov.au/MA000003.html";
 export const SUBWAY_PAY: EmployerPay = {
   slug: "subway",
   name: "Subway",
-  employerEntity: "The franchisee that owns your store — every Subway restaurant in Australia is independently owned and operated.",
+  employerEntity: "The franchisee that owns your store. Every Subway restaurant in Australia is independently owned and operated.",
   industry: "fast food",
   instrument: {
     kind: "modern-award",
@@ -96,12 +96,12 @@ export const SUBWAY_PAY: EmployerPay = {
   ],
   notices: [
     "Your employer is the franchisee that owns your store, not Subway's head office. These are the Fast Food Industry Award minimums; some franchisees pay more.",
-    "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
     "The Fair Work Ombudsman found 18 of 22 Subway franchisees it investigated in 2017–19 had breached workplace laws, including underpaying minimum wages, casual loadings and penalty rates. If your pay is below these figures, the Fair Work Infoline is 13 13 94.",
   ],
   unverified: [
-    "Whether any individual Subway franchisee currently has its own approved enterprise agreement — we could not search the Fair Work Commission register store by store.",
-    "Salaried store and area manager pay — set by individual contracts, not published.",
+    "Whether any individual Subway franchisee currently has its own approved enterprise agreement. We could not search the Fair Work Commission register store by store.",
+    "Salaried store and area manager pay: set by individual contracts, not published.",
   ],
   awardHref: "/fast-food-award-rates/",
   awardLabel: "Fast Food Award rates 2026",

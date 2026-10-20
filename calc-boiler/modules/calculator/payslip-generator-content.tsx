@@ -20,14 +20,14 @@ export default function PayslipGeneratorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Use This Payslip Generator</h2>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Enter employer details</strong> — the business name and ABN that must appear on every Australian payslip.</li>
-              <li><strong>Add the employee and pay period</strong> — employee name, pay frequency, period start and end dates, and the date of payment.</li>
-              <li><strong>Enter earnings</strong> — an hourly rate and hours worked, or an annual salary. Add overtime and allowances if they apply.</li>
-              <li><strong>Check tax and super</strong> — the tool estimates PAYG withholding from the ATO tax rates and calculates the {(SUPER_GUARANTEE.rate * 100).toFixed(0)}% Super Guarantee. If you know the exact PAYG amount from your payroll software, type it in to override the estimate.</li>
-              <li><strong>Print or save</strong> — click Print / Save as PDF. Your browser&apos;s print dialog lets you save the payslip as a PDF file.</li>
+              <li><strong>Enter employer details</strong>: the business name and ABN that must appear on every Australian payslip.</li>
+              <li><strong>Add the employee and pay period</strong>: employee name, pay frequency, period start and end dates, and the date of payment.</li>
+              <li><strong>Enter earnings</strong>: an hourly rate and hours worked, or an annual salary. Add overtime and allowances if they apply.</li>
+              <li><strong>Check tax and super</strong>: the tool estimates PAYG withholding from the ATO tax rates and calculates the {(SUPER_GUARANTEE.rate * 100).toFixed(0)}% Super Guarantee. If you know the exact PAYG amount from your payroll software, type it in to override the estimate.</li>
+              <li><strong>Print or save</strong>: click Print / Save as PDF. Your browser&apos;s print dialog lets you save the payslip as a PDF file.</li>
             </ol>
             <p className="text-warmgray">
-              Every calculation happens locally in your browser. Nothing you type is uploaded, stored, or shared — which makes this
+              Every calculation happens locally in your browser. Nothing you type is uploaded, stored, or shared, which makes this
               generator safe to use with real employee names and pay figures.
             </p>
           </section>
@@ -98,12 +98,12 @@ export default function PayslipGeneratorContent() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Payslip Template vs Payslip Generator — Which Do You Need?</h2>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Payslip Template vs Payslip Generator: Which Do You Need?</h2>
             <p className="mb-4 text-warmgray">
               A payslip template is a blank layout (usually Word or Excel) that you fill in and recalculate by hand every pay run.
               A payslip generator does the calculations for you: it estimates PAYG withholding from the current ATO rates,
               applies the {(SUPER_GUARANTEE.rate * 100).toFixed(0)}% Super Guarantee to ordinary time earnings, and keeps
-              year-to-date totals consistent. The output of this page works as both — generate a payslip online, or print a
+              year-to-date totals consistent. The output of this page works as both: generate a payslip online, or print a
               blank one and use it as a free Australian payslip template.
             </p>
             <p className="text-warmgray">
@@ -118,14 +118,14 @@ export default function PayslipGeneratorContent() {
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Employer Payslip Obligations in Australia</h2>
             <p className="mb-4 text-warmgray">
               Payslips are a legal requirement, not a courtesy. Under the Fair Work Act, employers must give every employee a
-              payslip — electronic or paper — <strong>within one working day of payday</strong>, even if the employee is on leave.
+              payslip (electronic or paper) <strong>within one working day of payday</strong>, even if the employee is on leave.
               Employee records, including pay records, must be kept for <strong>seven years</strong>. The Fair Work Ombudsman can
               issue infringement notices and pursue penalties for missing or inaccurate payslips.
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Single Touch Payroll (STP) still applies</strong> — generating a payslip does not replace STP reporting. Employers must report salaries, PAYG and super to the ATO through STP-enabled software each pay day.</li>
-              <li><strong>Super must be shown</strong> — the payslip must list the Super Guarantee contribution for the period and the fund it is (or will be) paid into.</li>
-              <li><strong>Casuals get payslips too</strong> — every employee, including casual and part-time staff, must receive one.</li>
+              <li><strong>Single Touch Payroll (STP) still applies</strong>: generating a payslip does not replace STP reporting. Employers must report salaries, PAYG and super to the ATO through STP-enabled software each pay day.</li>
+              <li><strong>Super must be shown</strong>: the payslip must list the Super Guarantee contribution for the period and the fund it is (or will be) paid into.</li>
+              <li><strong>Casuals get payslips too</strong>: every employee, including casual and part-time staff, must receive one.</li>
             </ul>
             <p className="text-warmgray">
               Hiring and unsure what a wage really costs once super, leave and workers&apos; compensation are added? Use the
@@ -155,9 +155,9 @@ export default function PayslipGeneratorContent() {
             <ol className="list-decimal pl-4 space-y-1">
               <li>Ordinary earnings = hourly rate x hours (or annual salary ÷ pay periods per year).</li>
               <li>Gross pay for the period = ordinary earnings + overtime + allowances.</li>
-              <li>PAYG estimate: the period gross is annualised, FY{SITE_CONFIG.financialYear} income tax, LITO and the 2% Medicare levy are applied (plus HECS-HELP if selected), and the result is divided back to the pay period. If the tax-free threshold is not claimed, tax scales are applied from the first dollar. Employers&apos; payroll software uses the ATO Schedule 1 coefficients, so figures can differ by a few dollars — use the override field for exact amounts.</li>
+              <li>PAYG estimate: the period gross is annualised, FY{SITE_CONFIG.financialYear} income tax, LITO and the 2% Medicare levy are applied (plus HECS-HELP if selected), and the result is divided back to the pay period. If the tax-free threshold is not claimed, tax scales are applied from the first dollar. Employers&apos; payroll software uses the ATO Schedule 1 coefficients, so figures can differ by a few dollars, so use the override field for exact amounts.</li>
               <li>Super Guarantee ({(SUPER_GUARANTEE.rate * 100).toFixed(0)}%) is calculated on ordinary time earnings (ordinary hours plus allowances, excluding overtime).</li>
-              <li>YTD totals multiply the current period by the number of pays this financial year — replace with actual YTD figures from payroll records where available.</li>
+              <li>YTD totals multiply the current period by the number of pays this financial year. Replace with actual YTD figures from payroll records where available.</li>
               <li>All processing is client-side. No names, ABNs or pay figures leave your device.</li>
             </ol>
           </MethodologyDisclosure>

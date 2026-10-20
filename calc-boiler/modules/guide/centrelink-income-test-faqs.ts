@@ -34,7 +34,7 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I report gross or net income to Centrelink?",
-    a: "You report gross income — your total pay before income tax, Medicare levy, HECS-HELP repayments, or salary sacrifice deductions are taken out. This is the higher figure on your payslip, not the amount deposited into your bank account. Reporting net (after-tax) income instead of gross is one of the most common reporting errors and leads to Centrelink debts.",
+    a: "You report gross income: your total pay before income tax, Medicare levy, HECS-HELP repayments, or salary sacrifice deductions are taken out. This is the higher figure on your payslip, not the amount deposited into your bank account. Reporting net (after-tax) income instead of gross is one of the most common reporting errors and leads to Centrelink debts.",
   },
   {
     q: "What is the deeming rate and how does it affect my payment?",
@@ -60,11 +60,11 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is my Centrelink payment taxable income?",
-    a: "Yes. Most Centrelink income-support payments — including JobSeeker, Youth Allowance, Austudy, Age Pension, and Parenting Payment — are taxable income and must be included in your annual tax return. Centrelink withholds tax at a rate you choose (or a default rate) and issues a Centrelink Payment Summary at the end of each financial year. Non-taxable payments include Disability Support Pension (if you are under Age Pension age) and Carer Allowance.",
+    a: "Yes. Most Centrelink income-support payments (including JobSeeker, Youth Allowance, Austudy, Age Pension, and Parenting Payment) are taxable income and must be included in your annual tax return. Centrelink withholds tax at a rate you choose (or a default rate) and issues a Centrelink Payment Summary at the end of each financial year. Non-taxable payments include Disability Support Pension (if you are under Age Pension age) and Carer Allowance.",
   },
   {
     q: "Do I still need to report if I earned no income this fortnight?",
-    a: "Yes. You must submit a report every fortnight even if your employment income is $0. A nil report confirms your ongoing eligibility and triggers your payment. Failing to submit a nil report is treated the same as a late report — your payment is suspended until the report is received.",
+    a: "Yes. You must submit a report every fortnight even if your employment income is $0. A nil report confirms your ongoing eligibility and triggers your payment. Failing to submit a nil report is treated the same as a late report: your payment is suspended until the report is received.",
   },
   {
     q: "Can I get my payment back if it is reduced to $0 by the income test?",
@@ -72,6 +72,6 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is rental income assessed for the Centrelink income test?",
-    a: "Rental income is assessed as net rental income — your gross rent received minus allowable expenses such as property management fees, repairs, insurance, and loan interest. Centrelink calculates this on an annual basis, then converts it to a fortnightly figure. Unlike the ATO, Centrelink does not let a net rental loss reduce your other income for the income support income test: a loss-making property is counted as nil income. For Family Tax Benefit, net investment losses are added back to your adjusted taxable income.",
+    a: "Rental income is assessed as net rental income: your gross rent received minus allowable expenses such as property management fees, repairs, insurance, and loan interest. Centrelink calculates this on an annual basis, then converts it to a fortnightly figure. Unlike the ATO, Centrelink does not let a net rental loss reduce your other income for the income support income test: a loss-making property is counted as nil income. For Family Tax Benefit, net investment losses are added back to your adjusted taxable income.",
   },
 ];

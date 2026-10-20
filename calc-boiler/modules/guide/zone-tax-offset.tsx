@@ -53,7 +53,7 @@ export default function ZoneTaxOffsetPage() {
   return (
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Zone Tax Offset</span></li></ol></nav>
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset Calculator — Remote Area Tax Rebate</h1><p className="text-xl text-warmgray leading-relaxed mb-6">The zone tax offset is a non-refundable tax offset for Australian residents whose usual home is in a remote area (Zone A or Zone B) for {ZONE_QUALIFYING_DAYS} days or more in an income year. For {ZONE_OFFSET_INCOME_YEAR} the fixed amount is <strong>{formatAUD(A)}</strong> in Zone A, <strong>{formatAUD(B)}</strong> in Zone B and <strong>{formatAUD(SPECIAL)}</strong> in a special area, plus {Math.round(ZONE_AREA_RATES.zoneA.basePercentage * 100)}% (Zone A) or {Math.round(ZONE_AREA_RATES.zoneB.basePercentage * 100)}% (Zone B) of any dependant base amount, claimed at question T4. Work out your exact entitlement below.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset Calculator: Remote Area Tax Rebate</h1><p className="text-xl text-warmgray leading-relaxed mb-6">The zone tax offset is a non-refundable tax offset for Australian residents whose usual home is in a remote area (Zone A or Zone B) for {ZONE_QUALIFYING_DAYS} days or more in an income year. For {ZONE_OFFSET_INCOME_YEAR} the fixed amount is <strong>{formatAUD(A)}</strong> in Zone A, <strong>{formatAUD(B)}</strong> in Zone B and <strong>{formatAUD(SPECIAL)}</strong> in a special area, plus {Math.round(ZONE_AREA_RATES.zoneA.basePercentage * 100)}% (Zone A) or {Math.round(ZONE_AREA_RATES.zoneB.basePercentage * 100)}% (Zone B) of any dependant base amount, claimed at question T4. Work out your exact entitlement below.</p><TrustBar className="!max-w-none" /></header>
 
       <div className="mb-12"><ZoneTaxOffsetCalculator /></div>
 
@@ -73,7 +73,7 @@ export default function ZoneTaxOffsetPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Is the Zone Tax Offset?</h2>
             <p>The offset has two parts: a <strong>fixed amount</strong> set by your zone, and a <strong>percentage of your base amount</strong> if you maintained dependants. The maximum with no dependants is <strong>{formatAUD(SPECIAL)}</strong>, for a special area.</p>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>A special area replaces the Zone A or Zone B fixed amount — it is not added to it.</strong> A resident of a special area within Zone A claims {formatAUD(SPECIAL)}, not {formatAUD(A)} plus {formatAUD(SPECIAL)}.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>A special area replaces the Zone A or Zone B fixed amount. It is not added to it.</strong> A resident of a special area within Zone A claims {formatAUD(SPECIAL)}, not {formatAUD(A)} plus {formatAUD(SPECIAL)}.</p>
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Zone or area</th><th className="px-5 py-3">Fixed amount</th><th className="px-5 py-3">Percentage of base amount</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3 font-medium">Zone A</td><td className="px-5 py-3 font-medium">{formatAUD(A)}</td><td className="px-5 py-3">50%</td></tr>
@@ -111,8 +111,8 @@ export default function ZoneTaxOffsetPage() {
               <li>the first year&rsquo;s days plus the current year&rsquo;s days total {ZONE_QUALIFYING_DAYS} or more</li>
               <li>the current-year period includes the first day of the income year</li>
             </ul>
-            <p>The ATO&rsquo;s own example: a taxpayer living in a remote area from 1 March 2021 to 30 September 2025 could not claim in the first year (122 days), but added those 122 days to the 92 days from 1 July to 30 September 2025 for a total of 214 — enough to claim.</p>
-            <p>Non-residents for tax purposes are not eligible — see our <Link href="/non-resident-tax/">non-resident tax guide</Link>.</p>
+            <p>The ATO&rsquo;s own example: a taxpayer living in a remote area from 1 March 2021 to 30 September 2025 could not claim in the first year (122 days), but added those 122 days to the 92 days from 1 July to 30 September 2025 for a total of 214, enough to claim.</p>
+            <p>Non-residents for tax purposes are not eligible; see our <Link href="/non-resident-tax/">non-resident tax guide</Link>.</p>
           </section>
 
           {/* ── SECTION 4 ── */}
@@ -120,14 +120,14 @@ export default function ZoneTaxOffsetPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do You Claim the Zone Tax Offset?</h2>
             <p>You claim it at question <strong>T4 Zone or overseas forces</strong>, label R, in the supplementary section of your individual tax return.</p>
             <ol>
-              <li><strong>Confirm your zone</strong> — check your location on the ATO&rsquo;s <a href={ZONE_LIST_URL} target="_blank" rel="noopener noreferrer">Australian zone list</a>. The list is not exhaustive; some locations qualify as special areas without appearing on it.</li>
-              <li><strong>Count your days</strong> — the number of days between 1 July and 30 June your usual place of residence was in the zone.</li>
-              <li><strong>Work out any base amount</strong> — dependants, sole care, invalid and invalid carer offset.</li>
+              <li><strong>Confirm your zone</strong>: check your location on the ATO&rsquo;s <a href={ZONE_LIST_URL} target="_blank" rel="noopener noreferrer">Australian zone list</a>. The list is not exhaustive; some locations qualify as special areas without appearing on it.</li>
+              <li><strong>Count your days</strong>: the number of days between 1 July and 30 June your usual place of residence was in the zone.</li>
+              <li><strong>Work out any base amount</strong>: dependants, sole care, invalid and invalid carer offset.</li>
               <li><strong>Subtract any remote area allowance</strong> you received from Centrelink or the Department of Veterans&rsquo; Affairs.</li>
-              <li><strong>Lodge</strong> — by 31 October if you self-lodge, or by your tax agent&rsquo;s extended date.</li>
+              <li><strong>Lodge</strong>: by 31 October if you self-lodge, or by your tax agent&rsquo;s extended date.</li>
             </ol>
             <p>Your employer does not apply the offset through <Link href="/payg-withholding-tables/">PAYG withholding</Link> during the year, so you receive it as a reduced assessment or larger refund when you lodge.</p>
-            <p>If you qualify for both a zone tax offset and an overseas forces tax offset, you can claim <strong>only one</strong> — take whichever is greater.</p>
+            <p>If you qualify for both a zone tax offset and an overseas forces tax offset, you can claim <strong>only one</strong>: take whichever is greater.</p>
           </section>
 
           {/* ── SECTION 5 ── */}
@@ -137,7 +137,7 @@ export default function ZoneTaxOffsetPage() {
             <p>The ATO&rsquo;s worked examples make the two paths concrete:</p>
             <ul>
               <li><strong>Zone A for 190 days, Zone B for 40 days.</strong> Zone A pays more and already exceeds {ZONE_QUALIFYING_DAYS} days, so the claim is the full Zone A amount of {formatAUD(A)}. The Zone B time is ignored.</li>
-              <li><strong>Zone A for 100 days, Zone B for 120 days.</strong> Neither reaches {ZONE_QUALIFYING_DAYS}. The claim is 100/{ZONE_QUALIFYING_DAYS} of the Zone A amount plus 83/{ZONE_QUALIFYING_DAYS} of the Zone B amount — the Zone B days are trimmed so the total stops at {ZONE_QUALIFYING_DAYS}.</li>
+              <li><strong>Zone A for 100 days, Zone B for 120 days.</strong> Neither reaches {ZONE_QUALIFYING_DAYS}. The claim is 100/{ZONE_QUALIFYING_DAYS} of the Zone A amount plus 83/{ZONE_QUALIFYING_DAYS} of the Zone B amount. The Zone B days are trimmed so the total stops at {ZONE_QUALIFYING_DAYS}.</li>
             </ul>
             <p>The calculator above handles both. Tick &ldquo;I also lived in a second zone&rdquo; and it selects the correct ATO worksheet for you.</p>
           </section>
@@ -167,7 +167,7 @@ export default function ZoneTaxOffsetPage() {
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Scenario</th><th className="px-5 py-3">Eligible?</th><th className="px-5 py-3">Reason</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Lives in Adelaide, flies to Alice Springs for 12-day shifts</td><td className="px-5 py-3 font-medium">No</td><td className="px-5 py-3">Usual residence is Adelaide, which is not in a zone</td></tr>
-              <tr><td className="px-5 py-3">Lives in Darwin, drives to a Zone A special area mine for 14-day shifts</td><td className="px-5 py-3 font-medium">Yes — Zone A</td><td className="px-5 py-3">Usual residence is Darwin, a Zone A location</td></tr>
+              <tr><td className="px-5 py-3">Lives in Darwin, drives to a Zone A special area mine for 14-day shifts</td><td className="px-5 py-3 font-medium">Yes, Zone A</td><td className="px-5 py-3">Usual residence is Darwin, a Zone A location</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Lives in Brisbane, FIFO to a Zone B mine</td><td className="px-5 py-3 font-medium">No</td><td className="px-5 py-3">Usual residence is Brisbane</td></tr>
               <tr><td className="px-5 py-3">Flies in from Auckland, stays in hospital accommodation in Darwin</td><td className="px-5 py-3 font-medium">No</td><td className="px-5 py-3">Usual residence is overseas</td></tr>
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">All four are ATO worked examples.</p></div>
@@ -178,7 +178,7 @@ export default function ZoneTaxOffsetPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Towns Are in Each Zone?</h2>
             <p>Zone boundaries are defined in tax law and published by the ATO as a per-state list of locations. A <strong>special area</strong> is one more than 250 km, by the shortest practicable surface route, from the nearest population centre of 2,500 or more people.</p>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy">The zone list changed on <strong>1 July 2026</strong>. Locations widely described elsewhere as Zone B — including <strong>Darwin, Palmerston and Humpty Doo</strong> — are now listed as <strong>Zone A</strong>. Always check the current ATO list rather than an older summary.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy">The zone list changed on <strong>1 July 2026</strong>. Locations widely described elsewhere as Zone B (including <strong>Darwin, Palmerston and Humpty Doo</strong>) are now listed as <strong>Zone A</strong>. Always check the current ATO list rather than an older summary.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Verified examples</h3>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Location</th><th className="px-5 py-3">State</th><th className="px-5 py-3">Zone</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -202,9 +202,9 @@ export default function ZoneTaxOffsetPage() {
           {/* ── SECTION 9 ── */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does the Zone Tax Offset Interact with Other Offsets?</h2>
-            <p>The zone tax offset stacks with other non-refundable offsets, including the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link>. Together they reduce your tax payable, but never below zero — any excess is lost rather than refunded or carried forward.</p>
+            <p>The zone tax offset stacks with other non-refundable offsets, including the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link>. Together they reduce your tax payable, but never below zero. Any excess is lost rather than refunded or carried forward.</p>
             <p>Two interactions are worth knowing. A <strong>remote area allowance</strong> from Centrelink or DVA reduces your zone offset dollar for dollar. And the zone tax offset itself is <strong>not assessable income for Centrelink purposes</strong>, so claiming it does not affect your payments.</p>
-            <p>You cannot claim both the zone tax offset and the overseas forces tax offset — if you qualify for both, claim the larger.</p>
+            <p>You cannot claim both the zone tax offset and the overseas forces tax offset. If you qualify for both, claim the larger.</p>
           </section>
 
           {/* ── SECTION 10 ── */}
@@ -212,8 +212,8 @@ export default function ZoneTaxOffsetPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Records Do You Need?</h2>
             <p>You must be able to show your usual place of residence was in the zone for the days you claim. The ATO does not want documents with your return, but you must produce them if asked.</p>
             <ul>
-              <li><strong>Property records</strong> — lease, mortgage statement or council rates notice at the zone address</li>
-              <li><strong>Utility bills</strong> — electricity, water, gas or internet at that address</li>
+              <li><strong>Property records</strong>: lease, mortgage statement or council rates notice at the zone address</li>
+              <li><strong>Utility bills</strong>: electricity, water, gas or internet at that address</li>
               <li><strong>Electoral enrolment</strong> and <strong>vehicle registration</strong> showing the zone address</li>
               <li><strong>School enrolment</strong> for children at a zone-area school</li>
             </ul>
@@ -224,11 +224,11 @@ export default function ZoneTaxOffsetPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
             <ul>
-              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> — net pay after income tax, Medicare levy, super and HECS-HELP</li>
-              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — your liability across the current brackets</li>
-              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — the other offset most zone residents claim</li>
-              <li><Link href="/tax-brackets/">Australian Tax Brackets</Link> — the full marginal rate table</li>
-              <li><Link href="/mining-fifo-pay-guide/">Mining &amp; FIFO Pay Guide</Link> — what FIFO workers can claim instead</li>
+              <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: net pay after income tax, Medicare levy, super and HECS-HELP</li>
+              <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: your liability across the current brackets</li>
+              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: the other offset most zone residents claim</li>
+              <li><Link href="/tax-brackets/">Australian Tax Brackets</Link>: the full marginal rate table</li>
+              <li><Link href="/mining-fifo-pay-guide/">Mining &amp; FIFO Pay Guide</Link>: what FIFO workers can claim instead</li>
               <li><Link href="/pay-calculator-nt/">NT Pay Calculator</Link> and <Link href="/pay-calculator-wa/">WA Pay Calculator</Link></li>
             </ul>
           </section>
@@ -255,7 +255,7 @@ export default function ZoneTaxOffsetPage() {
             </Accordion>
           </section>
 
-          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Offset amounts and the calculation method are taken from ATO question T4 Zone or overseas forces 2026 (QC106871), worksheets 4 to 7, and the ATO zone tax offset page (QC105018). They apply to the {ZONE_OFFSET_INCOME_YEAR} income year — the return being lodged now. The ATO has not yet published zone amounts for FY{SITE_CONFIG.financialYear}; when it does, this page will be updated. Income tax and Medicare levy in the worked example are computed from the site&rsquo;s FY{SITE_CONFIG.financialYear} engine, not hardcoded. The invalid and invalid carer offset is taken as an input, exactly as ATO worksheet 4 row f does.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>Offset amounts and the calculation method are taken from ATO question T4 Zone or overseas forces 2026 (QC106871), worksheets 4 to 7, and the ATO zone tax offset page (QC105018). They apply to the {ZONE_OFFSET_INCOME_YEAR} income year, the return being lodged now. The ATO has not yet published zone amounts for FY{SITE_CONFIG.financialYear}; when it does, this page will be updated. Income tax and Medicare levy in the worked example are computed from the site&rsquo;s FY{SITE_CONFIG.financialYear} engine, not hardcoded. The invalid and invalid carer offset is taken as an input, exactly as ATO worksheet 4 row f does.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("zone-tax-offset"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
         <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/pay-calculator-nt/" label="NT Pay Calculator" /><SidebarLink href="/pay-calculator-wa/" label="WA Pay Calculator" /><SidebarLink href="/low-income-tax-offset/" label="LITO Guide" /><SidebarLink href="/tax-brackets/" label="Australian Tax Brackets" /><SidebarLink href="/mining-fifo-pay-guide/" label="Mining & FIFO Pay Guide" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /></div></CardContent></Card></div></aside>

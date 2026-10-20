@@ -13,7 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/family-tax-benefit-calculator/`;
-const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} — FTB Part A & B`;
+const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} - FTB Part A & B`;
 const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: income thresholds, the Part B limit and how a pay rise changes it.`;
 
 export const metadata: Metadata = withFeaturedImage({

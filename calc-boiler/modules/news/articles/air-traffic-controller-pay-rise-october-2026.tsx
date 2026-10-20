@@ -48,15 +48,15 @@ export default function AirTrafficControllerPayRiseOctober2026() {
       <p>
         The rise applies to every controller classification in the table, from ab initio trainees to the supervisor
         grades. On top of the pay rise, controllers from Level 1 still move up one level a year to Level 10 if they meet the licence,
-        medical and training conditions in clause 27.3 — so a controller who also progresses a level gets both.
+        medical and training conditions in clause 27.3, so a controller who also progresses a level gets both.
       </p>
 
       <h2>What it means after tax</h2>
       <p>
         For a Level 1 controller the rise is worth {formatAUD(l1.next - l1.now)} a year before tax. On 2026-27 rates,
         take-home pay goes from about {formatAUD(Math.round(l1Pay.now.takeHomePay))} to{" "}
-        <strong>{formatAUD(Math.round(l1Pay.next.takeHomePay))}</strong> a year — about{" "}
-        {formatAUD(Math.round(l1Pay.next.fortnightly - l1Pay.now.fortnightly))} more a fortnight — before penalty rates,
+        <strong>{formatAUD(Math.round(l1Pay.next.takeHomePay))}</strong> a year, about{" "}
+        {formatAUD(Math.round(l1Pay.next.fortnightly - l1Pay.now.fortnightly))} more a fortnight, before penalty rates,
         overtime and allowances, which depend on roster and location. Under the agreement, overtime is paid at 1.90
         times the hourly rate.
       </p>

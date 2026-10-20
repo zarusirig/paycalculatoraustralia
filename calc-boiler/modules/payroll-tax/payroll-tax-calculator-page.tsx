@@ -61,7 +61,7 @@ export default function PayrollTaxCalculatorPage() {
               <h2 style={H2_STYLE}>Payroll Tax Rates and Thresholds {PAYROLL_TAX_FY}</h2>
               <p>
                 Each state and territory sets its own rate and threshold. The threshold is tested against your total
-                Australian wages — and your group&rsquo;s, if you are grouped — not just the wages in one state.
+                Australian wages (and your group&rsquo;s, if you are grouped), not just the wages in one state.
               </p>
               <RatesTable />
               <p>

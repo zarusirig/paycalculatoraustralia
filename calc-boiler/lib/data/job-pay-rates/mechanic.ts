@@ -99,9 +99,9 @@ const DIESEL_MECHANIC_SECTION: OccupationSection = {
     caption: "Diesel mechanic minimum rates by award, 2026–27",
     head: ["Where you work", "Award and level", "Hourly", "Weekly", "Casual hourly"],
     rows: [
-      dieselRow("Truck or machinery workshop; dealership", "Vehicle Repair, Services and Retail Award — R6", MECHANIC_ROWS[0].hourly, MECHANIC_ROWS[0].weekly),
-      dieselRow("Factory or processing plant maintenance", "Manufacturing Award — C10 tradesperson", MANUFACTURING_TRADE.hourly, MANUFACTURING_TRADE.weekly),
-      dieselRow("Maintaining plant on a mine site", "Mining Industry Award — Level 3 (maintenance trades)", MINING_TRADE.hourly, MINING_TRADE.weekly),
+      dieselRow("Truck or machinery workshop; dealership", "Vehicle Repair, Services and Retail Award, R6", MECHANIC_ROWS[0].hourly, MECHANIC_ROWS[0].weekly),
+      dieselRow("Factory or processing plant maintenance", "Manufacturing Award, C10 tradesperson", MANUFACTURING_TRADE.hourly, MANUFACTURING_TRADE.weekly),
+      dieselRow("Maintaining plant on a mine site", "Mining Industry Award, Level 3 (maintenance trades)", MINING_TRADE.hourly, MINING_TRADE.weekly),
     ],
     note: "Minimums from the first full pay period on or after 1 July 2026. The mining row includes the all-purpose industry allowance (Schedule B.1.3). Casual is the hourly rate plus 25%; the Vehicle Repair Award's casual loading rises outside weekday daytime hours.",
   },
@@ -124,7 +124,7 @@ export const MECHANIC: Occupation = {
   },
   coverage: [
     "Mechanics working in car dealerships, service centres, independent workshops, tyre and auto-electrical businesses, and roadside service are covered by the Vehicle Repair, Services and Retail Award 2020 [MA000089]. The award covers repairing and servicing \"motor vehicles of all kinds, including motor cars, trucks, caravans, motorcycles, trailerable boats, agricultural machinery\" (cl 4.2(a)), so diesel and heavy vehicle mechanics in a truck workshop are covered too.",
-    "A qualified mechanic — trade certificate or a Certificate III gained through an apprenticeship — is tradesperson or equivalent Level I (R6). The award lists motor mechanic/automotive technician, motorcycle mechanic, brake mechanic, automotive electrician, panel beater, painter and wheel aligner at this level (Schedule A.1.5).",
+    "A qualified mechanic (trade certificate or a Certificate III gained through an apprenticeship) is tradesperson or equivalent Level I (R6). The award lists motor mechanic/automotive technician, motorcycle mechanic, brake mechanic, automotive electrician, panel beater, painter and wheel aligner at this level (Schedule A.1.5).",
     "Level II (R7) is for a tradesperson who also holds a Certificate IV automotive qualification (for example Automotive Mechanical Diagnosis) and is required to perform technical duties above R6, such as diagnosing complex faults. Master Technician and Automotive Technical Advisor are R7 titles (Schedule A.1.6).",
     "A diesel fitter employed by a mine, a manufacturer or another business that is not principally in vehicle repair, services or retail may be covered by a different award, such as the Mining Industry Award or the Manufacturing Award. The employer's industry decides it (cl 4.1).",
   ],
@@ -153,7 +153,7 @@ export const MECHANIC: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Permanent weekend and public holiday rates are cl 23.2; shift rates are cl 25.2 and do not apply to casuals (cl 25.1(b)). Casuals are paid a time-based loading instead (cl 11.3(a)): 25% on weekday days, 50% on weekday evenings and nights, 75% on Saturday, 125% on Sunday and 175% on public holidays. Loadings are not cumulative — the highest applicable one is paid (cl 11.3(b)).",
+    "Permanent weekend and public holiday rates are cl 23.2; shift rates are cl 25.2 and do not apply to casuals (cl 25.1(b)). Casuals are paid a time-based loading instead (cl 11.3(a)): 25% on weekday days, 50% on weekday evenings and nights, 75% on Saturday, 125% on Sunday and 175% on public holidays. Loadings are not cumulative: the highest applicable one is paid (cl 11.3(b)).",
   overtime: [
     "Monday to Saturday: 150% for the first 3 hours, then 200% until the overtime ends; Sunday 200%; public holiday 250% (cl 24.3).",
     "Casual overtime (more than 10 hours a day or an average of 38 a week): 75% loading for the first 3 hours, then 125% (cl 11.3(a)).",
@@ -179,7 +179,7 @@ export const MECHANIC: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a mechanic in 2026?",
-      a: "A qualified motor mechanic (tradesperson Level I, R6) must be paid at least $29.45 an hour, or $1,119.10 a week, under the Vehicle Repair, Services and Retail Award from the first full pay period on or after 1 July 2026 — $58,193 a year full-time before tax. A master technician with a Certificate IV (R7) gets at least $32.22 an hour.",
+      a: "A qualified motor mechanic (tradesperson Level I, R6) must be paid at least $29.45 an hour, or $1,119.10 a week, under the Vehicle Repair, Services and Retail Award from the first full pay period on or after 1 July 2026, or $58,193 a year full-time before tax. A master technician with a Certificate IV (R7) gets at least $32.22 an hour.",
     },
     {
       q: "What is the casual rate for a mechanic?",
@@ -187,7 +187,7 @@ export const MECHANIC: Occupation = {
     },
     {
       q: "What is the award rate for a diesel mechanic?",
-      a: "A diesel mechanic in a truck or heavy vehicle workshop is covered by the same award and classification as a motor mechanic — R6, $29.45 an hour — because the award covers repairing trucks, agricultural machinery and other vehicles. A diesel fitter employed by a mine or a manufacturer may be under a different award.",
+      a: "A diesel mechanic in a truck or heavy vehicle workshop is covered by the same award and classification as a motor mechanic (R6, $29.45 an hour) because the award covers repairing trucks, agricultural machinery and other vehicles. A diesel fitter employed by a mine or a manufacturer may be under a different award.",
     },
     {
       q: "Is a diesel fitter on a mine site paid more than a workshop diesel mechanic?",
@@ -203,9 +203,9 @@ export const MECHANIC: Occupation = {
     },
   ],
   sources: [
-    { title: "Vehicle Repair, Services and Retail Award 2020 [MA000089] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
-    { title: "Pay Guide — Vehicle Repair, Services and Retail Award [MA000089], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/vehicle-repair-services-and-retail-award-ma000089-pay-guide.pdf.aspx" },
-    { title: "Mining Industry Award 2020 [MA000011] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000011") },
+    { title: "Vehicle Repair, Services and Retail Award 2020 [MA000089], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Pay Guide, Vehicle Repair, Services and Retail Award [MA000089], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/vehicle-repair-services-and-retail-award-ma000089-pay-guide.pdf.aspx" },
+    { title: "Mining Industry Award 2020 [MA000011], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000011") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

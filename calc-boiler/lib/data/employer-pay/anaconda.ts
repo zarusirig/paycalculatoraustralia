@@ -35,14 +35,14 @@ export const ANACONDA_PAY: EmployerPay = {
     description:
       i === 0
         ? "The award's entry level for retail employees: customer service, checkouts and stock work. Anaconda does not publish which level each role sits at"
-        : "Higher retail classification — the award's Schedule A lists the duties at each level",
+        : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
-    "These are the General Retail Industry Award minimums that apply to Anaconda store staff. Anaconda's actual pay rates are not published, so your pay may be higher — it cannot be lower.",
-    "Your payslip must name the award or agreement you are paid under. If it names an agreement, that agreement sets your pay — but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
+    "These are the General Retail Industry Award minimums that apply to Anaconda store staff. Anaconda's actual pay rates are not published, so your pay may be higher, but it cannot be lower.",
+    "Your payslip must name the award or agreement you are paid under. If it names an agreement, that agreement sets your pay, but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
   ],
   unverified: [
-    "Anaconda's actual hourly rates and any above-award payments — not public.",
+    "Anaconda's actual hourly rates and any above-award payments: not public.",
     "The legal name of the company that employs Anaconda store staff.",
     "Agreements approved before 2016 were not checked; none for Anaconda was found on the terminated-agreements list.",
   ],

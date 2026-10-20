@@ -16,7 +16,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const TITLE = "What Changes and When: Australian Pay and Tax Dates 2026-27";
 const DESCRIPTION =
-  "What changed on 1 July 2026, what changes on 1 December 2026 (junior award phase-in), what does not change on 1 January 2027, and what is legislated for 1 July 2027. Sourced to the ATO and Fair Work Commission, with a calendar download.";
+  "Pay and tax changes on 1 July 2026, 1 December 2026 (junior award phase-in), 1 January 2027 (none) and 1 July 2027 (legislated), with a calendar download.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -15,18 +15,18 @@ export const HOW_PAY_IS_SET: Readonly<Record<ServiceOccupation, string[]>> = {
     "Within a service, pay rises by year of service through the qualified paramedic scale, then by role: intensive care, critical care, extended care and team-leader roles sit on higher tables.",
   ],
   police: [
-    "Police officers are not covered by a national modern award. Each state and territory police force sets pay in its own award, enterprise agreement or determination, and the Australian Federal Police — which provides ACT Policing — has its own enterprise agreement.",
+    "Police officers are not covered by a national modern award. Each state and territory police force sets pay in its own award, enterprise agreement or determination, and the Australian Federal Police (which provides ACT Policing) has its own enterprise agreement.",
     "Sworn pay is organised by rank and then by years at that rank: a probationary or first-year constable starts at the bottom of the constable scale, moves up yearly, and senior constable, sergeant and senior sergeant have their own increments.",
-    "Recruits are paid differently while they train at the academy — how, and how much, varies by state, and each state page says what its instrument or recruiting authority sets.",
+    "Recruits are paid differently while they train at the academy. How, and how much, varies by state, and each state page says what its instrument or recruiting authority sets.",
   ],
   firefighter: [
     "Career firefighters are paid under state and territory industrial instruments, not a national modern award. Volunteer firefighters in the rural and country fire services are unpaid and are not covered by these tables.",
     "A career firefighter starts on a recruit rate during training, moves through firefighter classes or levels as they qualify, and reaches senior or qualified firefighter after several years. Station officers and other officer ranks sit on separate, higher rates.",
-    "Most career firefighters work a rotating roster of day and night shifts. Several states build a shift or roster allowance into pay on top of base salary — each state page lists what its instrument sets.",
+    "Most career firefighters work a rotating roster of day and night shifts. Several states build a shift or roster allowance into pay on top of base salary. Each state page lists what its instrument sets.",
   ],
   // J8 (9 Oct 2026)
   "prison-officer": [
-    "Prison officers — called correctional officers or custodial officers in most states — are not paid under a national modern award. Each state and territory corrective services agency pays under its own state award, enterprise agreement or industrial agreement, so pay depends first on the state you work in.",
+    "Prison officers (called correctional officers or custodial officers in most states) are not paid under a national modern award. Each state and territory corrective services agency pays under its own state award, enterprise agreement or industrial agreement, so pay depends first on the state you work in.",
     "Every state starts new officers on a trainee or probationary rate while they complete entry training, then moves them up yearly or by qualification. Several states tie progression to the Certificate III and Certificate IV in Correctional Practice.",
     "Rosters change the numbers a lot. Western Australia and Tasmania pay shift officers a separate, higher annualised salary that replaces shift penalties, the Northern Territory adds a 40% consolidated allowance, and Victoria's salaries include 5.26% for working an 80-hour fortnight. Each state page says what its salary includes.",
   ],

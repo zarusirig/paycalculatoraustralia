@@ -33,7 +33,7 @@ export const RADIOGRAPHER = hpssOct2026Occupation(AQF, {
   slug: "radiographer",
   name: "Radiographer",
   plural: "radiographers",
-  metaTitle: `Radiographer Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
+  metaTitle: `Radiographer Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year radiographer at AQF Level 7, the award's standard qualification level for the profession",
   coverage: [

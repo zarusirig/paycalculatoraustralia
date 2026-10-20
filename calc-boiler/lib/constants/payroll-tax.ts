@@ -502,7 +502,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     extras:
       "Two surcharges apply once Australian wages pass $10 million: the mental health and wellbeing surcharge and the COVID-19 debt temporary surcharge (to 30 June 2033). Together they add 1% on Victorian wages above the (apportioned) $10 million threshold, and another 1% above $100 million.",
     registration:
-      "Register once you pay wages in Victoria and your taxable Australian wages (including your group's) exceed the threshold — $83,333 in a month.",
+      "Register once you pay wages in Victoria and your taxable Australian wages (including your group's) exceed the threshold ($83,333 in a month).",
     monthlyDue: "7th of the following month (next business day if the 7th is a weekend or public holiday).",
     annualDue: "21 July 2027",
     changeFrom2025_26: null,
@@ -526,7 +526,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     extras:
       "The mental health levy adds 0.25% on Queensland wages above an apportioned $10 million, plus a further 0.5% above an apportioned $100 million.",
     registration:
-      "Register within 7 days of the end of the first month in which your (or your group's) Australian wages exceed $25,000 a week — even if you expect to stay under $1.3 million for the year.",
+      "Register within 7 days of the end of the first month in which your (or your group's) Australian wages exceed $25,000 a week, even if you expect to stay under $1.3 million for the year.",
     monthlyDue:
       "7 days after the end of the return period. For 2026-27: 7 Aug, 7 Sep, 7 Oct, 9 Nov, 7 Dec 2026, 14 Jan, 8 Feb, 8 Mar, 7 Apr, 7 May, 7 Jun 2027.",
     annualDue: "21 July 2027 (includes June)",
@@ -574,7 +574,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
       "Once the rate applies, it is charged on SA wages less a deduction of up to $600,000 a year ($50,000 a month). Interstate employers get the SA share of the $600,000.",
     extras: null,
     registration:
-      "Register once your Australia-wide wages (or your group's) exceed $1.5 million a year — $125,000 a month or $28,846 a week.",
+      "Register once your Australia-wide wages (or your group's) exceed $1.5 million a year ($125,000 a month or $28,846 a week).",
     monthlyDue: "7th of the following month (next business day if the 7th is a weekend or public holiday).",
     annualDue: "28 July 2027",
     changeFrom2025_26: null,
@@ -597,7 +597,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
       "Both thresholds ($1.25 million and $2 million) are apportioned by the Tasmanian share of Australian wages. An employer that chooses not to claim the threshold pays 6.1% on all Tasmanian wages.",
     extras: null,
     registration:
-      "You are liable (and must register) when your — or your group's — Australian wages exceed $1.25 million a year, or $24,038 a week during a month, and you pay wages in Tasmania.",
+      "You are liable (and must register) when your (or your group's) Australian wages exceed $1.25 million a year, or $24,038 a week during a month, and you pay wages in Tasmania.",
     monthlyDue: "7th of the following month (for example, the September return is due 7 October).",
     annualDue: "21 July 2027 (the annual adjustment return replaces the June monthly return)",
     changeFrom2025_26: null,

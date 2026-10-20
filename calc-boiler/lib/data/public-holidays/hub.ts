@@ -9,7 +9,7 @@ import { getAwardPublicHolidayRate, publicHolidayRateRange, PUBLIC_HOLIDAY_AWARD
 import { pctLabel } from "./calc";
 import type { PhSource } from "./types";
 
-export const PH_HUB_TITLE = "Public Holiday Pay Rates 2026 — Penalty Rates, Your Rights & Calculator";
+export const PH_HUB_TITLE = "Public Holiday Pay Rates 2026 - Penalty Rates, Your Rights & Calculator";
 
 export const PH_NES_SOURCES: readonly PhSource[] = [
   {
@@ -42,7 +42,7 @@ export function hubFaqs(): { q: string; a: string }[] {
   return [
     {
       q: "What is the public holiday pay rate in Australia?",
-      a: `There is no single national rate — your award or enterprise agreement sets it. Across the ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards on this site, full-time and part-time employees are paid ${pctLabel(range.permanentMin)} to ${pctLabel(range.permanentMax)} of their base hourly rate for hours worked on a public holiday, and casuals ${pctLabel(range.casualMin)} to ${pctLabel(range.casualMax)}. The General Retail Award pays ${pctLabel(retail.permanent)} (casuals ${pctLabel(retail.casual)}).`,
+      a: `There is no single national rate: your award or enterprise agreement sets it. Across the ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards on this site, full-time and part-time employees are paid ${pctLabel(range.permanentMin)} to ${pctLabel(range.permanentMax)} of their base hourly rate for hours worked on a public holiday, and casuals ${pctLabel(range.casualMin)} to ${pctLabel(range.casualMax)}. The General Retail Award pays ${pctLabel(retail.permanent)} (casuals ${pctLabel(retail.casual)}).`,
     },
     {
       q: "Do I get paid for a public holiday if I don't work?",
@@ -54,7 +54,7 @@ export function hubFaqs(): { q: string; a: string }[] {
     },
     {
       q: "Are casual public holiday rates added to the casual loading?",
-      a: `In most awards the casual public holiday rate already includes the 25% loading — Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points — so nothing more is added. Two awards on this site work the other way: Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
+      a: `In most awards the casual public holiday rate already includes the 25% loading (Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points), so nothing more is added. Two awards on this site work the other way: Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
     },
     {
       q: "What happens if a public holiday falls during my annual leave?",

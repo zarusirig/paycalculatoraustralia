@@ -87,17 +87,17 @@ export default function AgePensionAssetsTestCalculatorPage({ children, afterCalc
   const appliesText =
     r.applies === "nil" ? "Both tests reduce your pension to $0." :
       r.applies === "both" ? "Both tests give the same rate." :
-        r.applies === "assets" ? "The assets test sets your pension — it gives the lower rate." :
-          "The income test sets your pension — it gives the lower rate.";
+        r.applies === "assets" ? "The assets test sets your pension: it gives the lower rate." :
+          "The income test sets your pension: it gives the lower rate.";
 
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        <W3Hero crumb="Age Pension Assets Test Calculator" title="Age Pension Assets Test Calculator 2026 — Limits, Taper and Which Test Applies">
+        <W3Hero crumb="Age Pension Assets Test Calculator" title="Age Pension Assets Test Calculator 2026 - Limits, Taper and Which Test Applies">
           <p>
             From {AT.ratesFrom} you get the full Age Pension with assets up to <strong>{formatAUD(AT.fullPensionLimit.single.homeowner)}</strong> (single homeowner) or <strong>{formatAUD(AT.fullPensionLimit.couple.homeowner)}</strong> (couple homeowner, combined). Above that the pension falls by <strong>$3 a fortnight for every $1,000</strong> ($1.50 each for a couple) and stops at <strong>{formatAUD(AT.partPensionCutOff.single.homeowner)}</strong> single or <strong>{formatAUD(AT.partPensionCutOff.couple.homeowner)}</strong> for a couple. Non-homeowners can have {formatAUD(AT.fullPensionLimit.single.nonHomeowner - AT.fullPensionLimit.single.homeowner)} more.
           </p>
-          <p className="text-base">The calculator runs the assets test and the income test (with your wages, the Work Bonus and deemed income on your savings) and shows which one sets your pension — Services Australia pays the lower.</p>
+          <p className="text-base">The calculator runs the assets test and the income test (with your wages, the Work Bonus and deemed income on your savings) and shows which one sets your pension. Services Australia pays the lower.</p>
         </W3Hero>
 
         <section className="max-w-4xl mx-auto">
@@ -117,8 +117,8 @@ export default function AgePensionAssetsTestCalculatorPage({ children, afterCalc
                   <div>
                     <label htmlFor="home" className={LABEL}>Do you own your home?</label>
                     <select id="home" value={home} onChange={(e) => setHome(e.target.value as Homeownership)} className={INPUT}>
-                      <option value="homeowner">Yes — homeowner</option>
-                      <option value="nonHomeowner">No — non-homeowner</option>
+                      <option value="homeowner">Yes, homeowner</option>
+                      <option value="nonHomeowner">No, non-homeowner</option>
                     </select>
                   </div>
                   <MoneyInput id="financial" label={`Financial assets${couple ? " (combined)" : ""}`} value={financial} onChange={setFinancial} max={5_000_000} step={1_000} hint="Bank accounts, term deposits, shares, managed funds, super once you are Age Pension age. These are also deemed." />
@@ -126,7 +126,7 @@ export default function AgePensionAssetsTestCalculatorPage({ children, afterCalc
                   <MoneyInput id="employment" label="Your employment income this fortnight" value={employment} onChange={setEmployment} max={10_000} />
                   <MoneyInput id="balance" label="Your Work Bonus balance" value={balance} onChange={setBalance} max={WORK_BONUS.maxBalance} step={100} hint={`Up to ${formatAUD(WORK_BONUS.maxBalance)}, shown in your Centrelink online account.`} />
                   {couple && <MoneyInput id="partnerEmployment" label="Partner's employment income this fortnight" value={partnerEmployment} onChange={setPartnerEmployment} max={10_000} hint="The first $300 is disregarded (Work Bonus); partner balance not modelled." />}
-                  <MoneyInput id="otherIncome" label={`Other income this fortnight${couple ? " (combined)" : ""}`} value={otherIncome} onChange={setOtherIncome} max={10_000} hint="Rent, overseas pensions. Do not include interest — the calculator deems your financial assets." />
+                  <MoneyInput id="otherIncome" label={`Other income this fortnight${couple ? " (combined)" : ""}`} value={otherIncome} onChange={setOtherIncome} max={10_000} hint="Rent, overseas pensions. Do not include interest. The calculator deems your financial assets." />
                 </form>
 
                 <div className="space-y-6">

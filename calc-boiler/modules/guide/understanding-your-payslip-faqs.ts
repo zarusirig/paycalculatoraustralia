@@ -58,7 +58,7 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should overtime appear separately on my payslip?",
-    a: "Yes. The Fair Work Act requires employers to itemise each component of pay separately — including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. This is especially important for verifying Award Rates compliance and correct penalty rate calculations.",
+    a: "Yes. The Fair Work Act requires employers to itemise each component of pay separately, including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. This is especially important for verifying Award Rates compliance and correct penalty rate calculations.",
     links: { "Award Rates": "/award-rates/" },
   },
   {

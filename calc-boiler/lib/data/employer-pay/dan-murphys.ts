@@ -26,7 +26,7 @@ export const DAN_MURPHYS_PAY: EmployerPay = {
   // The in-charge allowance in bws.ts is for BWS Team Members only (cl 5.2).
   allowances: undefined,
   notices: [
-    "Dan Murphy's and BWS staff share one agreement, the Endeavour Group Retail Agreement 2025, so their rates are the same apart from Dan Murphy's Duty Manager level. The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage — 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent.",
+    "Dan Murphy's and BWS staff share one agreement, the Endeavour Group Retail Agreement 2025, so their rates are the same apart from Dan Murphy's Duty Manager level. The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage: 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent.",
     "When it approved the agreement, the Fair Work Commission compared Team Member with Retail Award Levels 1 and 2, Senior Team Member with Levels 3 and 4 and Duty Manager with Level 6. In 2026 all three stay above those award rates ($28.45, $29.45 and $31.11).",
     "Staff who were on Retail Employee Level 2 under the Dan Murphy's Agreement 2019 when the new agreement started keep a higher base rate (undertakings 5 and 7): about $28.81 an hour in 2026 by the same formula.",
   ],

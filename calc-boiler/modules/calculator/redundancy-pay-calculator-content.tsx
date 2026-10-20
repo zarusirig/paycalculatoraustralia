@@ -56,7 +56,7 @@ const SA_IMP = "https://www.servicesaustralia.gov.au/income-maintenance-period";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Redundancy pay & entitlements", url: FWO_REDUNDANCY, publisher: SOURCES.fwo.name },
   { title: "Genuine redundancy payments", url: ATO_GENUINE, publisher: SOURCES.ato.name },
-  { title: "Employment termination payments — key rates and thresholds", url: ATO_ETP_RATES, publisher: SOURCES.ato.name },
+  { title: "Employment termination payments: key rates and thresholds", url: ATO_ETP_RATES, publisher: SOURCES.ato.name },
   { title: "Income maintenance period", url: SA_IMP, publisher: "Services Australia" },
 ];
 
@@ -131,8 +131,8 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <h2 className={H2} style={FONT}>Redundancy Payment Calculation Table: Weeks by Years of Service</h2>
         <p className={P}>
           The National Employment Standards set the minimum redundancy pay for every national system
-          employee in Australia. It is worked out on <strong>completed years of continuous service</strong> —
-          4 years and 11 months counts as 4 — and paid at your base rate for ordinary hours.
+          employee in Australia. It is worked out on <strong>completed years of continuous service</strong>
+          (4 years and 11 months counts as 4) and paid at your base rate for ordinary hours.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-6">
           <div className={TABLE_WRAP}>
@@ -280,13 +280,13 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className="mt-3 text-sm text-warmgray">
           Rates include the 2% Medicare levy. The excess over the tax-free limit on a genuine redundancy
           is an &ldquo;excluded&rdquo; ETP, so only the {Y} ETP cap applies to it. A non-genuine payment can
-          also be limited by the $180,000 whole-of-income cap, which depends on your other income — this
+          also be limited by the $180,000 whole-of-income cap, which depends on your other income, and this
           calculator does not model that, so treat its figure for a non-genuine payment as the lowest the
           tax could be.
         </p>
         <h3 className={H3} style={FONT}>What makes a redundancy genuine?</h3>
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
-          <li>You are <strong>dismissed</strong> because your position is genuinely redundant — the employer no longer needs the job done by anyone. Resigning, or dismissal for performance or misconduct, does not count.</li>
+          <li>You are <strong>dismissed</strong> because your position is genuinely redundant: the employer no longer needs the job done by anyone. Resigning, or dismissal for performance or misconduct, does not count.</li>
           <li>You are dismissed <strong>before pension age ({GENUINE_REDUNDANCY_AGE_LIMIT})</strong>.</li>
           <li>The payment is no more than an <strong>arm&apos;s length</strong> amount, and there is <strong>no arrangement to re-employ</strong> you.</li>
         </ul>
@@ -307,7 +307,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         </p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
           <li><strong>Long service leave</strong> is paid on top of redundancy pay under each state&apos;s own Act, and several states pay it out earlier when the reason is redundancy.</li>
-          <li><strong>State system employees</strong> — mainly state public servants, and in WA the employees of sole traders, partnerships and other unincorporated businesses — are covered by their state&apos;s industrial laws and awards rather than the NES scale.</li>
+          <li><strong>State system employees</strong> (mainly state public servants, and in WA the employees of sole traders, partnerships and other unincorporated businesses) are covered by their state&apos;s industrial laws and awards rather than the NES scale.</li>
         </ul>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
@@ -337,7 +337,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           </table>
         </div>
         <p className="mt-3 text-xs text-warmgray-light">
-          Long service leave figures from each state or territory Act — see the state pages linked above
+          Long service leave figures from each state or territory Act. See the state pages linked above
           for the rules and a calculator set to that state.
         </p>
       </section>
@@ -402,7 +402,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className="mt-3 text-sm text-warmgray mb-4">Add 1 week if you are over 45 and have at least 2 years of continuous service.</p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
           <li><strong>Unused annual leave</strong> is paid out with leave loading if your award or agreement provides it. When the reason is a genuine redundancy it is taxed at no more than 32%.</li>
-          <li><strong>Long service leave</strong> depends on your state — see the table above and the <Link href="/long-service-leave-calculator/" className={LINK}>long service leave calculator</Link>.</li>
+          <li><strong>Long service leave</strong> depends on your state. See the table above and the <Link href="/long-service-leave-calculator/" className={LINK}>long service leave calculator</Link>.</li>
           <li><strong>Super</strong> is not payable on the redundancy payment or on leave paid out at termination, only on wages to your last day.</li>
         </ul>
       </section>
@@ -426,8 +426,8 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className={P}>
           <strong>Centrelink:</strong> Services Australia can apply an{" "}
           <a href={SA_IMP} target="_blank" rel="noopener noreferrer" className={LINK}>income maintenance period</a>{" "}
-          for redundancy and leave payments — a payment worth 10 weeks of wages can mean waiting about 10
-          weeks for JobSeeker — and a liquid assets waiting period of up to 13 weeks. See the{" "}
+          for redundancy and leave payments (a payment worth 10 weeks of wages can mean waiting about 10
+          weeks for JobSeeker) and a liquid assets waiting period of up to 13 weeks. See the{" "}
           <Link href="/centrelink-income-test/" className={LINK}>Centrelink income test calculator</Link>.
         </p>
       </section>
@@ -436,11 +436,11 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
       <section>
         <h2 className={H2} style={FONT}>Related Calculators</h2>
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
-          <li><Link href="/final-pay-calculator/" className={LINK}>Final Pay Calculator</Link> — redundancy, notice and leave together</li>
-          <li><Link href="/long-service-leave-calculator/" className={LINK}>Long Service Leave Calculator</Link> — what your state pays on top</li>
-          <li><Link href="/leave-calculator/" className={LINK}>Leave Calculator</Link> — the value of unused annual leave</li>
-          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-Home Pay Calculator</Link> — pay in your next job</li>
-          <li><Link href="/tax-return-calculator/" className={LINK}>Tax Return Calculator</Link> — the year you were made redundant</li>
+          <li><Link href="/final-pay-calculator/" className={LINK}>Final Pay Calculator</Link>: redundancy, notice and leave together</li>
+          <li><Link href="/long-service-leave-calculator/" className={LINK}>Long Service Leave Calculator</Link>: what your state pays on top</li>
+          <li><Link href="/leave-calculator/" className={LINK}>Leave Calculator</Link>: the value of unused annual leave</li>
+          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-Home Pay Calculator</Link>: pay in your next job</li>
+          <li><Link href="/tax-return-calculator/" className={LINK}>Tax Return Calculator</Link>: the year you were made redundant</li>
         </ul>
       </section>
 

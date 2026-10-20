@@ -47,7 +47,7 @@ export default function SaptoEligibilityChecker() {
     if (pension === "neither") {
       return {
         ok: false,
-        text: "Not eligible on the payment condition: SAPTO needs one of the listed payments, or Age Pension eligibility at age-pension age. If you are a self-funded retiree aged 67 or older who meets the residence rules, choose the second option — failing the Age Pension income or assets test does not stop you qualifying that way.",
+        text: "Not eligible on the payment condition: SAPTO needs one of the listed payments, or Age Pension eligibility at age-pension age. If you are a self-funded retiree aged 67 or older who meets the residence rules, choose the second option. Failing the Age Pension income or assets test does not stop you qualifying that way.",
       };
     }
     const r = calculateSAPTO({
@@ -63,7 +63,7 @@ export default function SaptoEligibilityChecker() {
         text:
           status === "single"
             ? `Not eligible on income: your rebate income must be under ${formatAUD(band.cutOutThreshold)}.`
-            : `Not eligible on income: half your combined rebate income (${formatAUD(r.assessedRebateIncome, 2)}) must be under ${formatAUD(band.cutOutThreshold)} — combined under ${formatAUD(band.combinedCutOut)}.`,
+            : `Not eligible on income: half your combined rebate income (${formatAUD(r.assessedRebateIncome, 2)}) must be under ${formatAUD(band.cutOutThreshold)} (combined under ${formatAUD(band.combinedCutOut)}).`,
       };
     }
     if (r.offset === 0) {

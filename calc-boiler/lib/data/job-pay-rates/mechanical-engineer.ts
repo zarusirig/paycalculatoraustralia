@@ -85,8 +85,8 @@ export const MECHANICAL_ENGINEER: Occupation = {
     label: PEA.grad45,
     why: "a graduate mechanical engineer with a 4 or 5-year degree recognised by Engineers Australia",
   },
-  heading: "Mechanical Engineer Salary Australia 2026 — Median, Award Minimum & Take-Home",
-  metaTitle: `Mechanical Engineer Salary 2026 — ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr`,
+  heading: "Mechanical Engineer Salary Australia 2026: Median, Award Minimum & Take-Home",
+  metaTitle: `Mechanical Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr`,
   metaDescription: `Mechanical engineer salary: ${aud(ATO_MEDIAN)} median on 2023–24 tax returns, $2,614 a week full-time median, ${aud(GRAD.annual!)} graduate award minimum, and take-home on each.`,
   lede: `The 42,582 mechanical engineers on 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO). Full-time employees in the wider industrial, mechanical and production engineering group had median pay of $2,614 a week in May 2025 (Jobs and Skills Australia). The legal minimum for a graduate is ${aud(GRAD.annual!)} a year (${aud2(GRAD.hourly)} an hour), and on the ${aud(ATO_MEDIAN)} median take-home pay is about ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   parent: {
@@ -95,7 +95,7 @@ export const MECHANICAL_ENGINEER: Occupation = {
     blurb: "which lists every Professional Employees Award pay point and the rules all engineers share",
   },
   coverage: [
-    "A mechanical engineer doing professional engineering duties — work that needs qualifications at least equal to a graduate member of Engineers Australia (cl 2.2) — is covered by the Professional Employees Award 2020 [MA000065] in any industry (cl 4.1(a)).",
+    "A mechanical engineer doing professional engineering duties (work that needs qualifications at least equal to a graduate member of Engineers Australia, cl 2.2) is covered by the Professional Employees Award 2020 [MA000065] in any industry (cl 4.1(a)).",
     "Mechanical engineering technicians and draftspersons are not doing professional engineering duties as the award defines them, so these classifications and minimums are not theirs; which award covers them, if any, depends on the employer's industry.",
     "The award does not cover employees who are covered by the Black Coal Mining Industry, Airport Employees, Rail Industry, Electrical Power Industry, Water Industry, Port Authorities or State Government Agencies awards (cl 4.2).",
     "A graduate engineer enters at Level 1 pay point 1.1 and moves up one pay point each anniversary to 1.4 (Schedule A.1.3); Level 2 is an experienced engineer.",
@@ -112,7 +112,7 @@ export const MECHANICAL_ENGINEER: Occupation = {
   penalties: PEA_PENALTIES,
   penaltiesNote: PEA_PENALTIES_NOTE,
   overtime: [
-    `Hours over 38 a week are paid at the ordinary minimum hourly rate (cl 18.2(a)) — ${aud2(PP14.hourly)} an hour at pay point 1.4 — or taken as time off hour for hour by agreement (cl 18.3).`,
+    `Hours over 38 a week are paid at the ordinary minimum hourly rate (cl 18.2(a)), ${aud2(PP14.hourly)} an hour at pay point 1.4, or taken as time off hour for hour by agreement (cl 18.3).`,
     `Those rules fall away once your salary is at least 25% above your level's minimum (cl 18.6): ${aud2(exemptionThreshold(GRAD.annual!))} at pay point 1.1, ${aud2(exemptionThreshold(PP14.annual!))} at pay point 1.4 and ${aud(exemptionThreshold(L2.annual!))} at Level 2.`,
   ],
   allowances: PEA_ALLOWANCES,
@@ -147,11 +147,11 @@ export const MECHANICAL_ENGINEER: Occupation = {
     },
     {
       q: "Is a mechanical engineering technician paid the engineer award rate?",
-      a: "No. The Professional Employees Award covers professional engineering duties — work needing qualifications at least equal to a graduate member of Engineers Australia. Technicians fall outside it; which award covers them depends on the employer's industry. On 2023–24 tax returns their median salary was $100,450, against $115,872 for mechanical engineers.",
+      a: "No. The Professional Employees Award covers professional engineering duties: work needing qualifications at least equal to a graduate member of Engineers Australia. Technicians fall outside it; which award covers them depends on the employer's industry. On 2023–24 tax returns their median salary was $100,450, against $115,872 for mechanical engineers.",
     },
     {
       q: "Do mechanical engineers get paid overtime?",
-      a: `Below a salary line, yes, but at the ordinary hourly rate rather than time and a half (cl 18.2(a)), or as time off hour for hour. Once your salary is at least 25% above your level's minimum — ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate — the award's overtime clause no longer applies and your contract decides.`,
+      a: `Below a salary line, yes, but at the ordinary hourly rate rather than time and a half (cl 18.2(a)), or as time off hour for hour. Once your salary is at least 25% above your level's minimum (${aud2(exemptionThreshold(GRAD.annual!))} for a graduate), the award's overtime clause no longer applies and your contract decides.`,
     },
     {
       q: "Do industrial engineers earn the same as mechanical engineers?",
@@ -159,7 +159,7 @@ export const MECHANICAL_ENGINEER: Occupation = {
     },
   ],
   sources: [
-    { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
+    { title: "Professional Employees Award 2020 [MA000065], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url },
     ATO_TABLE_15,
     jsaSource(MEDIAN),
     FWO_PAY_SLIPS,

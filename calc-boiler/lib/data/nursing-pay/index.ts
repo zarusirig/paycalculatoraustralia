@@ -179,12 +179,12 @@ export function employerShortName(state: NursingStateData): string {
 
 export function nursingPageTitle(state: NursingStateData): string {
   if (state.metaTitle) return state.metaTitle;
-  return `${state.shortName} Nurse Pay Rates ${ratesYear(state)} — ${employerShortName(state)} Nursing Salary`;
+  return `${state.shortName} Nurse Pay Rates ${ratesYear(state)} - ${employerShortName(state)} Nursing Salary`;
 }
 
 export function nursingPageH1(state: NursingStateData): string {
   if (state.h1) return state.h1;
-  return `${state.shortName} Nurse & Midwife Pay Rates ${ratesYear(state)} — ${employerShortName(state)} Pay Scales`;
+  return `${state.shortName} Nurse & Midwife Pay Rates ${ratesYear(state)}: ${employerShortName(state)} Pay Scales`;
 }
 
 // ---------- per-scale anchors and the at-a-glance summary ----------

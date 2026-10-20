@@ -73,7 +73,7 @@ export const BRICKLAYER: Occupation = {
   slug: "bricklayer",
   name: "Bricklayer",
   plural: "bricklayers",
-  metaTitle: `Bricklayer Salary Australia 2026 — ${money2(BRICK_GENERAL.hourly)}/hr Award Minimum`,
+  metaTitle: `Bricklayer Salary Australia 2026 - ${money2(BRICK_GENERAL.hourly)}/hr Award Minimum`,
   award: { ...BUILDING_AWARD, awardPageHref: "/building-and-construction-award-rates/" },
   headline: {
     tableId: "bricklayer",
@@ -124,7 +124,7 @@ export const BRICKLAYER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a bricklayer in 2026?",
-      a: `A qualified bricklayer (CW3) on a general building or civil site must be paid at least ${money2(BRICK_GENERAL.hourly)} an hour, or ${money2(BRICK_GENERAL.weekly)} a week, under the Building and Construction General On-site Award from the first full pay period on or after 1 July 2026 — ${money0(annual52(BRICK_GENERAL.weekly))} a year full-time before tax. On single or dual occupancy homes the minimum is ${money2(BRICK_RESIDENTIAL.hourly)} an hour.`,
+      a: `A qualified bricklayer (CW3) on a general building or civil site must be paid at least ${money2(BRICK_GENERAL.hourly)} an hour, or ${money2(BRICK_GENERAL.weekly)} a week, under the Building and Construction General On-site Award from the first full pay period on or after 1 July 2026, or ${money0(annual52(BRICK_GENERAL.weekly))} a year full-time before tax. On single or dual occupancy homes the minimum is ${money2(BRICK_RESIDENTIAL.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a bricklayer?",

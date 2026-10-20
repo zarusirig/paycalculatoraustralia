@@ -63,7 +63,7 @@ export const VETERINARIAN: Occupation = {
   slug: "veterinarian",
   name: "Veterinarian",
   plural: "veterinarians",
-  metaTitle: "Vet Salary Australia 2026 — $34.20/hr Award Minimum",
+  metaTitle: "Vet Salary Australia 2026 - $34.20/hr Award Minimum",
   award: {
     name: "Animal Care and Veterinary Services Award 2020",
     code: "MA000118",
@@ -141,7 +141,7 @@ export const VETERINARIAN: Occupation = {
     },
   ],
   sources: [
-    { title: "Animal Care and Veterinary Services Award 2020 [MA000118] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000118") },
+    { title: "Animal Care and Veterinary Services Award 2020 [MA000118], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000118") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

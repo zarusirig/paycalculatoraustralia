@@ -110,7 +110,7 @@ export const VIC_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "Progression through the structure is linked to completing the Certificate III and Certificate IV in Correctional Practice (Appendix 1).",
   ],
   penalties: [
-    "Custodial officers can be rostered for up to 80 hours a fortnight — 76 ordinary hours plus 4 reasonable additional hours — and the agreement pays 5.26% more for that pattern, already included in the Table 46 salaries (clause 43.1(c)–(d)).",
+    "Custodial officers can be rostered for up to 80 hours a fortnight (76 ordinary hours plus 4 reasonable additional hours), and the agreement pays 5.26% more for that pattern, already included in the Table 46 salaries (clause 43.1(c)–(d)).",
     "Rotating shift allowances (Table 20): 15% for an afternoon shift, 20% for a night shift, 50% for Saturday, 100% for Sunday and 150% on a public holiday (or 50% plus a day's leave in lieu).",
   ],
   notices: [
@@ -122,7 +122,7 @@ export const VIC_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Victorian Public Service Enterprise Agreement 2024 — Appendix 1, Table 46 Custodial Officer Structure (80 hour fortnight)",
+      title: "Victorian Public Service Enterprise Agreement 2024, Appendix 1, Table 46 Custodial Officer Structure (80 hour fortnight)",
       publisher: "Department of Treasury and Finance (Victoria)",
       url: VPSEA,
     },

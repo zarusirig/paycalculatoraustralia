@@ -45,7 +45,7 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer",
       title: "Correctional Officer (CO) and First Class",
-      intro: "Schedule 1, salary from the first pay period commencing on or after 2 December 2024 — the last increase in the agreement.",
+      intro: "Schedule 1, salary from the first pay period commencing on or after 2 December 2024, the last increase in the agreement.",
       stepHeading: "Classification",
       steps: [
         { label: "CO (1)", salary: 69_074 },
@@ -88,12 +88,12 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Correctional Officer (NTPS) 2021-2025 Enterprise Agreement — Schedule 1, Rates of Pay",
+      title: "Correctional Officer (NTPS) 2021-2025 Enterprise Agreement, Schedule 1, Rates of Pay",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: NT_EA,
     },
     {
-      title: "Bulletin 26 — Post-declaration negotiating conference (23 September 2026)",
+      title: "Bulletin 26: Post-declaration negotiating conference (23 September 2026)",
       publisher: "Office of the Commissioner for Public Employment (NT)",
       url: NT_BULLETIN,
     },

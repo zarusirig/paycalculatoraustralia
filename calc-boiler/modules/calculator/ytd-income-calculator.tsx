@@ -97,7 +97,7 @@ export default function YTDIncomeCalculatorPage({ children, afterCalculator }: {
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            YTD Calculator — Year to Date Income Australia
+            YTD Calculator: Year to Date Income Australia
           </h1>
           <p className="text-lg text-warmgray">
             A year to date calculator adds up gross pay from 1 July to the latest payslip, or converts that YTD
@@ -286,7 +286,7 @@ export default function YTDIncomeCalculatorPage({ children, afterCalculator }: {
                     </div>
                     <div className="text-navy">
                       <strong>New financial year note:</strong> YTD figures reset to zero on 1 July each year. If your
-                      payslip is from early in the financial year, the YTD number will look small — that is normal.
+                      payslip is from early in the financial year, the YTD number will look small. That is normal.
                       Compare it against the projected annual figure above instead.
                     </div>
                   </div>

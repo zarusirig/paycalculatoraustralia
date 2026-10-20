@@ -69,7 +69,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
           salary: 107_566,
           note: "Leading Senior Constable. From 1 July 2025 requires a minimum of 9 years' policing experience (firm barrier)",
         },
-        { label: "Band 5.3", salary: 111_861, note: "Leading Senior Constable — top of the constable broadband" },
+        { label: "Band 5.3", salary: 111_861, note: "Leading Senior Constable, top of the constable broadband" },
       ],
     },
     {
@@ -110,7 +110,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Australian Federal Police Enterprise Agreement 2024 - 2027 — section 9, section 27, section 40, section 101 and Attachment A",
+      title: "Australian Federal Police Enterprise Agreement 2024 - 2027, section 9, section 27, section 40, section 101 and Attachment A",
       publisher: "Australian Federal Police",
       url: "https://www.afp.gov.au/news-centre/publications/enterprise-agreement-2024-2027",
     },
@@ -120,7 +120,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
       url: "https://www.afp.gov.au/jobs/benefits-conditions/enterprise-agreements",
     },
     {
-      title: "Skilled police program — skilled police officer salaries",
+      title: "Skilled police program, skilled police officer salaries",
       publisher: "Australian Federal Police",
       url: "https://www.afp.gov.au/jobs/pathway/skilled-policing",
     },

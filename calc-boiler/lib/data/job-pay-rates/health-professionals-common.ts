@@ -42,7 +42,7 @@ export const HPSS_AWARD: AwardRef = {
 };
 
 export const HPSS_SOURCE_TITLE =
-  "Health Professionals and Support Services Award 2020 [MA000027] — consolidated to 1 July 2026";
+  "Health Professionals and Support Services Award 2020 [MA000027], consolidated to 1 July 2026";
 
 /**
  * Clause 17.2–17.5 weekly and hourly minimums; casual = Schedule C.2.3 ordinary hours column.
@@ -57,7 +57,7 @@ export const HPSS_SOURCE_TITLE =
 export const HPSS_TABLES: RateTable[] = [
   {
     id: "level-1",
-    title: "Health professional level 1 — graduates and early career",
+    title: "Health professional level 1: graduates and early career",
     intro:
       "Clause 17.2. New graduates enter at the pay point matching their qualification and move up one pay point a year (full-time) or every 1,824 hours (part-time and casual) until pay point 6. Casual rates are Schedule C.2.3 exactly.",
     rows: [
@@ -71,7 +71,7 @@ export const HPSS_TABLES: RateTable[] = [
   },
   {
     id: "levels-2-4",
-    title: "Health professional levels 2 to 4 — experienced, senior and management",
+    title: "Health professional levels 2 to 4: experienced, senior and management",
     intro:
       "Clauses 17.3 to 17.5. Level 2 works independently on routine matters; level 3 is experienced and handles novel or complex work; level 4 carries senior or management responsibility (Schedule A.2). Casual rates are Schedule C.2.3 exactly.",
     rows: [

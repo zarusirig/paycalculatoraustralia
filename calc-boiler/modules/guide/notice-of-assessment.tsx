@@ -50,7 +50,7 @@ export default function NoticeOfAssessmentPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Notice of Assessment — Understanding Your ATO Tax Assessment
+            Notice of Assessment: Understanding Your ATO Tax Assessment
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the {RETURN_2026.incomeYear} return, most online lodgements are assessed within {RETURN_2026.onlineRefundTypical} and paper returns within {RETURN_2026.paperRefundBusinessDays} business days. This guide explains each line and what to do if something looks wrong.
@@ -71,7 +71,7 @@ export default function NoticeOfAssessmentPage() {
                 A Notice of Assessment (NOA) is an official document the Australian Taxation Office issues after processing your income tax return. It is the ATO&apos;s formal calculation of your tax position for the financial year, showing exactly how much tax you owe, any credits you are entitled to, and whether you receive a refund or have an amount owing.
               </p>
               <p>
-                The NOA is issued for every tax return lodged &mdash; whether you lodge through myTax, a registered tax agent, or on paper. It is typically available within <strong>2 weeks</strong> of electronic lodgement; for paper returns the ATO says most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>.
+                The NOA is issued for every tax return lodged, whether you lodge through myTax, a registered tax agent, or on paper. It is typically available within <strong>2 weeks</strong> of electronic lodgement; for paper returns the ATO says most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>.
               </p>
               <p>
                 Your NOA is an important document. You may need it when applying for loans, government benefits, or rental applications as proof of income. Keep a copy of each year&apos;s NOA for at least <strong>5 years</strong> (the standard ATO record-keeping period). You can access all your past NOAs through your myGov account linked to the ATO.
@@ -178,9 +178,9 @@ export default function NoticeOfAssessmentPage() {
                 You can request an amendment through:
               </p>
               <ul>
-                <li><strong>myTax</strong> &mdash; Log in to your myGov account, navigate to the ATO, and select &ldquo;Amend my return&rdquo;</li>
-                <li><strong>Tax agent</strong> &mdash; Your registered tax agent can lodge an amendment on your behalf</li>
-                <li><strong>Paper form</strong> &mdash; Complete a paper amendment request and mail it to the ATO</li>
+                <li><strong>myTax</strong>: Log in to your myGov account, navigate to the ATO, and select &ldquo;Amend my return&rdquo;</li>
+                <li><strong>Tax agent</strong>: Your registered tax agent can lodge an amendment on your behalf</li>
+                <li><strong>Paper form</strong>: Complete a paper amendment request and mail it to the ATO</li>
               </ul>
               <p>
                 Common reasons for amendments include: forgetting to claim a deduction, incorrect income reported by a payer, or receiving a revised payment summary after lodging.
@@ -224,10 +224,10 @@ export default function NoticeOfAssessmentPage() {
                 Common reasons your refund differs from your estimate include:
               </p>
               <ul>
-                <li><strong>ATO data matching</strong> &mdash; The ATO pre-fills income from banks, employers, and government agencies. If you missed reporting income, the ATO adds it automatically.</li>
-                <li><strong>Deductions disallowed</strong> &mdash; If the ATO does not accept a claimed deduction, your taxable income increases and your refund decreases.</li>
-                <li><strong>Prior year debt offset</strong> &mdash; The ATO may apply your refund to an outstanding debt from a previous year.</li>
-                <li><strong>Child support obligations</strong> &mdash; Refunds may be redirected to cover child support debts.</li>
+                <li><strong>ATO data matching</strong>: The ATO pre-fills income from banks, employers, and government agencies. If you missed reporting income, the ATO adds it automatically.</li>
+                <li><strong>Deductions disallowed</strong>: If the ATO does not accept a claimed deduction, your taxable income increases and your refund decreases.</li>
+                <li><strong>Prior year debt offset</strong>: The ATO may apply your refund to an outstanding debt from a previous year.</li>
+                <li><strong>Child support obligations</strong>: Refunds may be redirected to cover child support debts.</li>
               </ul>
               <p>
                 Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> before lodging to estimate your expected outcome and identify any discrepancies early.

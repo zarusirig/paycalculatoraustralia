@@ -29,11 +29,11 @@ const at1500Prev = withholdingForPeriod(1_500, "weekly", "tft", PAYG_PREVIOUS_FI
 export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
     q: "What is the weekly tax table NAT number?",
-    a: `The ATO publishes the weekly tax table as ${ATO_WEEKLY.nat}. The current edition was published on ${ATO_WEEKLY.published} and applies to payments made from 1 July 2026 — the 2026-27 financial year. If a payroll system or printed sheet is labelled with an earlier year, it is out of date and will over-withhold.`,
+    a: `The ATO publishes the weekly tax table as ${ATO_WEEKLY.nat}. The current edition was published on ${ATO_WEEKLY.published} and applies to payments made from 1 July 2026 (the 2026-27 financial year). If a payroll system or printed sheet is labelled with an earlier year, it is out of date and will over-withhold.`,
   },
   {
     q: "Which column of the weekly tax table applies to me?",
-    a: `Column 2 is "with tax-free threshold" — the standard column for your main job. Column 3 is "no tax-free threshold", used for a second job or where you have not claimed the threshold. Your answers on the Tax file number declaration decide the column, not your employer's preference. The ATO's own example: weekly earnings of ${formatAUD(ex.earnings, 2)} are looked up as ${formatAUD(ex.lookup)}, giving ${formatAUD(ex.withTFT)} in column 2 and ${formatAUD(ex.noTFT)} in column 3.`,
+    a: `Column 2 is "with tax-free threshold", the standard column for your main job. Column 3 is "no tax-free threshold", used for a second job or where you have not claimed the threshold. Your answers on the Tax file number declaration decide the column, not your employer's preference. The ATO's own example: weekly earnings of ${formatAUD(ex.earnings, 2)} are looked up as ${formatAUD(ex.lookup)}, giving ${formatAUD(ex.withTFT)} in column 2 and ${formatAUD(ex.noTFT)} in column 3.`,
   },
   {
     q: "How much tax is withheld from $1,000 a week?",
@@ -45,7 +45,7 @@ export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "What does the STSL column add to my weekly withholding?",
-    a: `STSL stands for study and training support loans — HELP, VET Student Loan, Financial Supplement, Student Start-up Loan and Australian Apprenticeship Support Loan debts. The component comes from ATO Schedule 8 (NAT 3539), which has its own coefficients, and is added on top of the ordinary withholding. At ${formatAUD(1_500)} a week with the threshold claimed, the loan component is ${formatAUD(at1500.stslWithheld)} on top of ${formatAUD(at1500.paygWithheld)} in income tax.`,
+    a: `STSL stands for study and training support loans: HELP, VET Student Loan, Financial Supplement, Student Start-up Loan and Australian Apprenticeship Support Loan debts. The component comes from ATO Schedule 8 (NAT 3539), which has its own coefficients, and is added on top of the ordinary withholding. At ${formatAUD(1_500)} a week with the threshold claimed, the loan component is ${formatAUD(at1500.stslWithheld)} on top of ${formatAUD(at1500.paygWithheld)} in income tax.`,
   },
   {
     q: "What happens if an employee does not give you a TFN?",
@@ -57,15 +57,15 @@ export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "What happens when there are 53 pays in a financial year?",
-    a: `The weekly tax table is built on ${WEEKLY_EXTRA_PAY.standardPayCount} pays a year. Some financial years contain ${WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days depending on where the pay date falls, and the extra pay is withheld as though it were an ordinary week — so slightly too little tax is collected across the year and the shortfall lands on the tax assessment. Employers should tell payees when it happens. A payee who wants to avoid a bill can ask for an extra ${formatAUD(WEEKLY_EXTRA_PAY.bands[0].additional)} to ${formatAUD(WEEKLY_EXTRA_PAY.bands[2].additional)} a week, depending on earnings, using the ATO's additional withholding table.`,
+    a: `The weekly tax table is built on ${WEEKLY_EXTRA_PAY.standardPayCount} pays a year. Some financial years contain ${WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days depending on where the pay date falls, and the extra pay is withheld as though it were an ordinary week, so slightly too little tax is collected across the year and the shortfall lands on the tax assessment. Employers should tell payees when it happens. A payee who wants to avoid a bill can ask for an extra ${formatAUD(WEEKLY_EXTRA_PAY.bands[0].additional)} to ${formatAUD(WEEKLY_EXTRA_PAY.bands[2].additional)} a week, depending on earnings, using the ATO's additional withholding table.`,
   },
   {
     q: "Is overtime taxed using the weekly tax table?",
-    a: "Yes. Overtime paid in a normal pay run is added to that week's gross earnings and withheld from the same table row for the higher total. That can push a big week into a higher band, but the excess comes back as a refund at tax time because your annual tax depends on annual income. Lump-sum bonuses, commissions and back payments are different — they use Schedule 5 (NAT 3348) instead.",
+    a: "Yes. Overtime paid in a normal pay run is added to that week's gross earnings and withheld from the same table row for the higher total. That can push a big week into a higher band, but the excess comes back as a refund at tax time because your annual tax depends on annual income. Lump-sum bonuses, commissions and back payments are different: they use Schedule 5 (NAT 3348) instead.",
   },
   {
     q: "Why is my payslip withholding slightly different from this table?",
-    a: "Common causes are salary sacrifice (withholding is calculated on the reduced gross), a tax offset claimed through a Withholding declaration, a Medicare levy adjustment, extra voluntary withholding, or a withholding variation. Payroll may also be applying an out-of-date table. If none of those explain the gap, check your Tax file number declaration settings with payroll — the difference between column 2 and column 3 is the single most common cause.",
+    a: "Common causes are salary sacrifice (withholding is calculated on the reduced gross), a tax offset claimed through a Withholding declaration, a Medicare levy adjustment, extra voluntary withholding, or a withholding variation. Payroll may also be applying an out-of-date table. If none of those explain the gap, check your Tax file number declaration settings with payroll. The difference between column 2 and column 3 is the single most common cause.",
   },
   {
     q: "Where is the official ATO weekly tax table PDF?",

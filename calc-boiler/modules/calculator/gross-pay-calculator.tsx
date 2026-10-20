@@ -77,7 +77,7 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
             </ol>
           </nav>
           <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Gross Pay Calculator Australia — Net to Gross ({SITE_CONFIG.financialYear})
+            Gross Pay Calculator Australia: Net to Gross ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-base md:text-lg text-navy">
             A <strong>{formatAUD(LEAD_NET_WEEKLY)} weekly</strong> net target needs{" "}

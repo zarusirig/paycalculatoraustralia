@@ -72,7 +72,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   topStep: "Senior Firefighter (Advanced)",
 
   traineePay: [
-    "The agreement does not set a separate recruit or trainee rate. Firefighter Year 1 — described as entry-level firefighters — is $74,169 a year from 1 December 2025.",
+    "The agreement does not set a separate recruit or trainee rate. Firefighter Year 1 (described as entry-level firefighters) is $74,169 a year from 1 December 2025.",
   ],
   penalties: [
     "Career brigades work the 2 days on / 2 nights on / 4 days off 10/14 shift roster within an average 42-hour week (clause 5.5).",
@@ -94,12 +94,12 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0007/900637/Firefighting-Industrial-Agreement-of-2025.pdf",
     },
     {
-      title: "Public Sector Agreements — current agreements list",
+      title: "Public Sector Agreements: current agreements list",
       publisher: "Tasmanian Industrial Commission",
       url: "https://www.tic.tas.gov.au/public_sector_agreements",
     },
     {
-      title: "Salary — Tasmania Fire Service Recruitment",
+      title: "Salary, Tasmania Fire Service Recruitment",
       publisher: "Tasmania Fire Service",
       url: "https://recruitment.fire.tas.gov.au/lifestyle/salary/",
     },

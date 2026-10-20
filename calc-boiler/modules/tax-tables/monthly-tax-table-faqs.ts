@@ -25,11 +25,11 @@ const at6500Prev = withholdingForPeriod(6_500, "monthly", "tft", PAYG_PREVIOUS_F
 export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
     q: "What is the monthly tax table NAT number?",
-    a: `The ATO publishes the monthly tax table as ${ATO_MONTHLY.nat}. The current edition was published on ${ATO_MONTHLY.published} and applies to payments made from 1 July 2026 — the 2026-27 financial year. It was reissued because the marginal rate on income between $18,201 and $45,000 fell from 16% to 15% on that date.`,
+    a: `The ATO publishes the monthly tax table as ${ATO_MONTHLY.nat}. The current edition was published on ${ATO_MONTHLY.published} and applies to payments made from 1 July 2026, the 2026-27 financial year. It was reissued because the marginal rate on income between $18,201 and $45,000 fell from 16% to 15% on that date.`,
   },
   {
     q: "How much tax is withheld from a $6,500 monthly salary?",
-    a: `Under the 2026-27 monthly tax table, ${formatAUD(6_500)} a month — a ${formatAUD(78_000)} annual salary — with the tax-free threshold claimed and no study loan has ${formatAUD(at6500.totalWithheld)} withheld, leaving ${formatAUD(at6500.netPerPeriod)}. That is roughly ${Math.round((at6500.totalWithheld / 6_500) * 100)}% of gross and includes the 2% Medicare levy.`,
+    a: `Under the 2026-27 monthly tax table, ${formatAUD(6_500)} a month (a ${formatAUD(78_000)} annual salary) with the tax-free threshold claimed and no study loan has ${formatAUD(at6500.totalWithheld)} withheld, leaving ${formatAUD(at6500.netPerPeriod)}. That is roughly ${Math.round((at6500.totalWithheld / 6_500) * 100)}% of gross and includes the 2% Medicare levy.`,
   },
   {
     q: "Is monthly withholding just the weekly amount times four?",
@@ -41,7 +41,7 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Which column of the monthly tax table applies to me?",
-    a: "Column 2 is \"with tax-free threshold\" — the standard column for your main job. Column 3 is \"no tax-free threshold\", used for a second job or where the threshold has not been claimed. The answers on your Tax file number declaration decide which applies. Do not allow tax offsets or a Medicare levy adjustment when using column 3.",
+    a: "Column 2 is \"with tax-free threshold\", the standard column for your main job. Column 3 is \"no tax-free threshold\", used for a second job or where the threshold has not been claimed. The answers on your Tax file number declaration decide which applies. Do not allow tax offsets or a Medicare levy adjustment when using column 3.",
   },
   {
     q: "Does a monthly pay cycle ever have a 13th pay?",
@@ -49,7 +49,7 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Does the monthly tax table include the Medicare levy?",
-    a: "Yes. The 2% Medicare levy is built into every amount in the standard columns, including the low-income shading. The Medicare Levy Surcharge is not included — it is assessed on your tax return if you earn above the surcharge threshold without private hospital cover.",
+    a: "Yes. The 2% Medicare levy is built into every amount in the standard columns, including the low-income shading. The Medicare Levy Surcharge is not included. It is assessed on your tax return if you earn above the surcharge threshold without private hospital cover.",
   },
   {
     q: "What does the STSL column add to monthly withholding?",

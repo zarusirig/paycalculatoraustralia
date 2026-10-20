@@ -34,7 +34,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
   code: "WA",
   name: "Western Australia",
   nameInSentence: "Western Australia",
-  h1: "WA Teacher Salary 2026 — Western Australian Public School Pay Scale, Level 2.1 to 2.9",
+  h1: "WA Teacher Salary 2026: Western Australian Public School Pay Scale, Level 2.1 to 2.9",
   classificationNote:
     "Western Australia writes the teacher scale as Level 2.1 to Level 2.9, with an annual increment each year. Senior teachers and Level 3 classroom teachers are paid on a separate scale above it.",
   employer: "the WA Department of Education",
@@ -48,7 +48,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
   scales: [
     {
       id: "classroom-teachers",
-      title: "Teachers — Level 2.1 to 2.9",
+      title: "Teachers, Level 2.1 to 2.9",
       intro:
         "The incremental scale every qualified WA public school teacher is paid on. The department's own wording: provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9.",
       stepHeading: "Level",
@@ -91,7 +91,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
       heading: "An annual increment to 2.9, subject to satisfactory teaching",
       body: [
         "The department states it plainly: provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9. That is nine levels from 2.1 to the top of the incremental scale.",
-        "The single largest jumps are early — 2.1 to 2.2 is $7,449 and 2.2 to 2.3 is $7,941, both well above the roughly $4,000 steps that follow.",
+        "The single largest jumps are early: 2.1 to 2.2 is $7,449 and 2.2 to 2.3 is $7,941, both well above the roughly $4,000 steps that follow.",
       ],
     },
     {
@@ -112,27 +112,27 @@ export const WA_TEACHER_PAY: TeacherPayState = {
       heading: "Senior Teacher and Level 3 are applications, not appointments you wait for",
       body: [
         "The department is explicit that both are competitive: current teachers who meet the eligibility criteria can apply to become a senior teacher, and outstanding teachers can apply to become a level 3 classroom teacher, which the department describes as recognising outstanding teaching practice.",
-        "Leadership is a separate route again — the department runs a Leadership Institute with programs intended to prepare teachers before they apply for deputy principal or principal roles.",
+        "Leadership is a separate route again: the department runs a Leadership Institute with programs intended to prepare teachers before they apply for deputy principal or principal roles.",
       ],
     },
     {
       heading: "Regional and remote loadings sit on top",
       body: [
-        "Teachers in rural, regional and remote WA locations may receive extra benefits on top of these salaries, and the amounts vary by school. The department publishes an allowances and benefits calculator that resolves it school by school — they are not part of the scale above.",
+        "Teachers in rural, regional and remote WA locations may receive extra benefits on top of these salaries, and the amounts vary by school. The department publishes an allowances and benefits calculator that resolves it school by school. They are not part of the scale above.",
       ],
     },
   ],
 
   notices: [
     "These are the rates the WA Department of Education publishes as \"Teacher salaries by level as of December 2025\". They come from the third and final increase under the 2023 general agreement, which delivered 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025.",
-    "The WA Industrial Relations Commission's document server was unreachable on 28 August 2026, so the general agreement itself could not be read. Deputy principal and principal salaries live in that document and are therefore not shown here — we would rather leave a gap than estimate a principal's salary.",
+    "The WA Industrial Relations Commission's document server was unreachable on 28 August 2026, so the general agreement itself could not be read. Deputy principal and principal salaries live in that document and are therefore not shown here. We would rather leave a gap than estimate a principal's salary.",
   ],
 
   unverified: [
-    "School administrator salaries — deputy principals and principals. These are in the School Education Act Employees' (Teachers and Administrators) General Agreement rather than on the department's salary page, and the WA Industrial Relations Commission's document server did not respond when we tried to read it. We would rather show nothing than a guessed principal salary.",
+    "School administrator salaries (deputy principals and principals). These are in the School Education Act Employees' (Teachers and Administrators) General Agreement rather than on the department's salary page, and the WA Industrial Relations Commission's document server did not respond when we tried to read it. We would rather show nothing than a guessed principal salary.",
     "The next scheduled increase. The 2023 agreement's three increases are exhausted as at December 2025, and we could not verify any successor agreement or further increase date. The department and the WAIRC register both still list the 2023 agreement as current.",
     "The agreement's nominal expiry date, which is in the same unreachable document.",
-    "Level 1 teacher rates below level 2.1 — the department's published table starts at 2.1.",
+    "Level 1 teacher rates below level 2.1, as the department's published table starts at 2.1.",
     "Relief and casual teacher rates, which the department publishes separately.",
     "Regional, remote and attraction-and-retention incentives, which vary by school and are not a salary rate.",
     "School psychologist salaries, which WA publishes on a separate scale.",
@@ -146,7 +146,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
     },
     {
       title:
-        "Awards and agreements — School Education Act Employees' (Teachers and Administrators) General Agreement 2023",
+        "Awards and agreements: School Education Act Employees' (Teachers and Administrators) General Agreement 2023",
       publisher: "WA Department of Education",
       url: "https://www.education.wa.edu.au/awards-and-agreements",
     },
@@ -156,19 +156,19 @@ export const WA_TEACHER_PAY: TeacherPayState = {
       url: "https://www.education.wa.edu.au/recognition-of-teaching-experience-and-qualifications",
     },
     {
-      title: "Career progression — senior teachers and level 3 classroom teachers",
+      title: "Career progression: senior teachers and level 3 classroom teachers",
       publisher: "WA Department of Education",
       url: "https://www.education.wa.edu.au/career-progression",
     },
     {
       title:
-        "Teachers receive pay rise as part of big investment into education (5 July 2024) — 5%/4%/3% from 6 December 2023, 2024 and 2025",
+        "Teachers receive pay rise as part of big investment into education (5 July 2024), 5%/4%/3% from 6 December 2023, 2024 and 2025",
       publisher: "Government of Western Australia",
       url: "https://www.wa.gov.au/government/media-statements/Cook-Labor-Government/Teachers-receive-pay-rise-as-part-of-big-investment-into-education-20240705",
     },
     {
       title:
-        "School Education Act Employees' (Teachers and Administrators) General Agreement 2023 (AG 24/2024) — register entry",
+        "School Education Act Employees' (Teachers and Administrators) General Agreement 2023 (AG 24/2024), register entry",
       publisher: "Western Australian Industrial Relations Commission",
       url: "https://www.wairc.wa.gov.au/resources/agreements?id=SCH013",
     },

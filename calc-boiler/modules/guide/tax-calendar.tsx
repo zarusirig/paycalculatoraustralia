@@ -121,11 +121,11 @@ export default function TaxCalendarPage() {
             <p>The ATO says most returns lodged through myTax are processed in <strong>{R.onlineProcessingBusinessDays} business days</strong> and most refunds are issued within <strong>{R.onlineRefundTypical}</strong>. For paper returns, most refunds are issued within {R.paperRefundBusinessDays} business days. If you owe tax, the amount is due by the date on your notice of assessment.</p>
             <p>Key dates for the {R.incomeYear} return:</p>
             <ul>
-              <li><strong>{R.prefillReady.replace(/^./, (c) => c.toUpperCase())} 2026</strong> — the ATO has pre-filled most employer, bank, health fund and government data</li>
-              <li><strong>{R.selfLodgeDueDate}</strong> — self-lodgment deadline{self.effectiveIso !== self.iso && <> (lodge by {formatIso(self.effectiveIso, "long")} because it falls on a weekend)</>}. Also due now: agent clients with a prior-year return still outstanding at 30 June 2026</li>
-              <li><strong>{R.agentDueDateLargeLiability}</strong> — agent clients whose latest return had a tax liability of $20,000 or more</li>
-              <li><strong>{R.agentDueDateMostPeople}</strong> — most other agent clients{agent.effectiveIso !== agent.iso && <> (next business day {formatIso(agent.effectiveIso, "long")})</>}</li>
-              <li><strong>{R.agentConcessionDate}</strong> — concession date for 15 May agent returns, if any payment is also made by then</li>
+              <li><strong>{R.prefillReady.replace(/^./, (c) => c.toUpperCase())} 2026</strong>: the ATO has pre-filled most employer, bank, health fund and government data</li>
+              <li><strong>{R.selfLodgeDueDate}</strong>: self-lodgment deadline{self.effectiveIso !== self.iso && <> (lodge by {formatIso(self.effectiveIso, "long")} because it falls on a weekend)</>}. Also due now: agent clients with a prior-year return still outstanding at 30 June 2026</li>
+              <li><strong>{R.agentDueDateLargeLiability}</strong>: agent clients whose latest return had a tax liability of $20,000 or more</li>
+              <li><strong>{R.agentDueDateMostPeople}</strong>: most other agent clients{agent.effectiveIso !== agent.iso && <> (next business day {formatIso(agent.effectiveIso, "long")})</>}</li>
+              <li><strong>{R.agentConcessionDate}</strong>: concession date for 15 May agent returns, if any payment is also made by then</li>
             </ul>
             <p>Your {R.incomeYear} return uses the {R.incomeYear} rates, with a {pct(TAX_BRACKETS_2025_26[1].rate)} second bracket. See the <Link href="/tax-return-2026/">2026 tax return guide</Link> for what changed, or check the rates on our <Link href="/tax-brackets/">Income Tax Brackets</Link> page.</p>
           </section>
@@ -174,11 +174,11 @@ export default function TaxCalendarPage() {
             <ol>
               <li><strong>Log in to myGov</strong> at my.gov.au and link the ATO. To link for the first time you need your tax file number and identity details.</li>
               <li><strong>Wait for your income statement</strong> to show as &quot;tax ready&quot;. Employers must finalise it through STP by 14 July, and the ATO has most other pre-fill data by {R.prefillReady}.</li>
-              <li><strong>Check the pre-filled information</strong> — salary, bank interest, dividends and government payments. Add any income that is missing, such as rent or freelance work.</li>
-              <li><strong>Claim your deductions</strong> — work-related expenses, working from home at {R.wfhFixedRateCents}c per hour for {R.incomeYear}, self-education and donations. Keep records for every claim.</li>
-              <li><strong>Check your offsets</strong> — the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> is applied automatically. Others, such as the zone tax offset, need you to enter details.</li>
-              <li><strong>Review your estimate</strong> — myTax shows your refund or amount owing before you submit. Cross-check it with our <Link href="/tax-return-calculator/">Tax Return Calculator</Link>.</li>
-              <li><strong>Submit</strong> — most refunds are issued within <strong>{R.onlineRefundTypical}</strong>. If you owe tax, pay by the due date on your notice of assessment to avoid the general interest charge.</li>
+              <li><strong>Check the pre-filled information</strong>: salary, bank interest, dividends and government payments. Add any income that is missing, such as rent or freelance work.</li>
+              <li><strong>Claim your deductions</strong>: work-related expenses, working from home at {R.wfhFixedRateCents}c per hour for {R.incomeYear}, self-education and donations. Keep records for every claim.</li>
+              <li><strong>Check your offsets</strong>: the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> is applied automatically. Others, such as the zone tax offset, need you to enter details.</li>
+              <li><strong>Review your estimate</strong>: myTax shows your refund or amount owing before you submit. Cross-check it with our <Link href="/tax-return-calculator/">Tax Return Calculator</Link>.</li>
+              <li><strong>Submit</strong>: most refunds are issued within <strong>{R.onlineRefundTypical}</strong>. If you owe tax, pay by the due date on your notice of assessment to avoid the general interest charge.</li>
             </ol>
 
             <h3 style={H}>Using a Registered Tax Agent</h3>
@@ -221,7 +221,7 @@ export default function TaxCalendarPage() {
               <li>Check your private hospital cover for the Medicare levy surcharge. For {Y.incomeYear} the thresholds are <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> for singles and <strong>{formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}</strong> for families, with a surcharge of 1% to 1.5% above them</li>
               <li>Consider selling investments that have fallen in value to offset capital gains</li>
               <li>Make donations to deductible gift recipients (DGRs) before 30 June</li>
-              <li>Plan salary sacrifice for the new year from 1 July — see our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link></li>
+              <li>Plan salary sacrifice for the new year from 1 July. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link></li>
             </ul>
           </section>
 
@@ -229,14 +229,14 @@ export default function TaxCalendarPage() {
           <section><h2 style={H}>What Tax Changes Apply in {Y.incomeYear}?</h2>
             <p>The biggest changes on {Y.start} are a lower second tax rate and Payday Super. The SG rate stays at <strong>{pct(SUPER_GUARANTEE.rate)}</strong> and the Medicare levy at <strong>{pct(MEDICARE_LEVY.rate)}</strong>.</p>
             <ul>
-              <li><strong>Second tax bracket</strong> — {pct(TAX_BRACKETS_2026_27[1].rate)} on income from $18,201 to $45,000, down from {pct(TAX_BRACKETS_2025_26[1].rate)}</li>
-              <li><strong>Payday Super</strong> — super is due within {SGC.current.businessDaysToPay} business days of each payday, on qualifying earnings</li>
-              <li><strong>Maximum super contribution base</strong> — {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year (previously a quarterly figure)</li>
-              <li><strong>Concessional contributions cap</strong> — {formatAUD(SUPER_GUARANTEE.concessionalCap)}; non-concessional cap {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</li>
-              <li><strong>Study loan repayment threshold</strong> — {formatAUD(HECS_HELP.minimumThreshold)} of repayment income</li>
-              <li><strong>Medicare levy surcharge thresholds</strong> — {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} for singles, {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} for families</li>
-              <li><strong>Penalty unit</strong> — {formatAUD(PENALTY_UNIT.amount)}, up from {formatAUD(PENALTY_UNIT.previousAmount)}</li>
-              <li><strong>Car expenses</strong> — {R.carCentsPerKmNextYear}c per km for {Y.incomeYear}, up from {R.carCentsPerKm}c</li>
+              <li><strong>Second tax bracket</strong>: {pct(TAX_BRACKETS_2026_27[1].rate)} on income from $18,201 to $45,000, down from {pct(TAX_BRACKETS_2025_26[1].rate)}</li>
+              <li><strong>Payday Super</strong>: super is due within {SGC.current.businessDaysToPay} business days of each payday, on qualifying earnings</li>
+              <li><strong>Maximum super contribution base</strong>: {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year (previously a quarterly figure)</li>
+              <li><strong>Concessional contributions cap</strong>: {formatAUD(SUPER_GUARANTEE.concessionalCap)}; non-concessional cap {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</li>
+              <li><strong>Study loan repayment threshold</strong>: {formatAUD(HECS_HELP.minimumThreshold)} of repayment income</li>
+              <li><strong>Medicare levy surcharge thresholds</strong>: {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} for singles, {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} for families</li>
+              <li><strong>Penalty unit</strong>: {formatAUD(PENALTY_UNIT.amount)}, up from {formatAUD(PENALTY_UNIT.previousAmount)}</li>
+              <li><strong>Car expenses</strong>: {R.carCentsPerKmNextYear}c per km for {Y.incomeYear}, up from {R.carCentsPerKm}c</li>
             </ul>
             <p>See all of them on our <Link href="/tax-changes-2026-27/">2026-27 tax changes</Link> page, or the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link> for the 1 December 2026 and 1 July 2027 dates, or see your take-home pay at current rates with the <Link href="/">Pay Calculator</Link>.</p>
           </section>
@@ -247,13 +247,13 @@ export default function TaxCalendarPage() {
           <section><h2 style={H}>Related Resources</h2>
             <p>Explore these guides and calculators for related Australian tax and payroll topics:</p>
             <ul>
-              <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link> — estimate your {R.incomeYear} refund or tax payable on the {R.incomeYear} rates</li>
-              <li><Link href="/tax-return-2026/">Tax Return 2026 Guide</Link> — deadlines, refund times and what changed for the {R.incomeYear} return</li>
-              <li><Link href="/payday-super/">Payday Super</Link> — how super on payday works and when each payment is due</li>
-              <li><Link href="/tax-brackets/">Income Tax Brackets</Link> — marginal tax rates, thresholds and worked examples</li>
-              <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — employer SG obligations, contribution caps and Division 293 tax</li>
-              <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> — how refunds are worked out and common reasons for ATO adjustments</li>
-              <li><Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> — weekly, fortnightly and monthly withholding amounts</li>
+              <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link>: estimate your {R.incomeYear} refund or tax payable on the {R.incomeYear} rates</li>
+              <li><Link href="/tax-return-2026/">Tax Return 2026 Guide</Link>: deadlines, refund times and what changed for the {R.incomeYear} return</li>
+              <li><Link href="/payday-super/">Payday Super</Link>: how super on payday works and when each payment is due</li>
+              <li><Link href="/tax-brackets/">Income Tax Brackets</Link>: marginal tax rates, thresholds and worked examples</li>
+              <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: employer SG obligations, contribution caps and Division 293 tax</li>
+              <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link>: how refunds are worked out and common reasons for ATO adjustments</li>
+              <li><Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link>: weekly, fortnightly and monthly withholding amounts</li>
             </ul>
           </section>
 

@@ -53,8 +53,8 @@ const HOURLY_ROWS = [
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13c, Queensland`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — Queensland", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13c, Queensland`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Queensland", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Industrial Relations Act 2016)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "QLD payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.qld.ratesUrl, publisher: PAYROLL_TAX_STATES.qld.revenueOffice },
 ];
@@ -157,7 +157,7 @@ export default function PayCalculatorQLDPage() {
               Queensland has a larger share of shift, mining and FIFO work than most states, so the
               ordinary-time figure often understates real earnings. If overtime is a regular part of
               your pay, run it through the{" "}
-              <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime pay calculator</Link> — overtime
+              <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime pay calculator</Link>: overtime
               is taxed at your marginal rate, which the calculator above reports.
             </p>
           </section>
@@ -166,7 +166,7 @@ export default function PayCalculatorQLDPage() {
             <H2>Is your Queensland salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               Queensland sits fractionally behind Victoria on ordinary time earnings but ahead of it
-              once overtime is counted — the resources and construction sectors do that. Compare the
+              once overtime is counted. The resources and construction sectors do that. Compare the
               first two rows of the table below: the gap between them is the biggest of any eastern
               state.
             </p>
@@ -185,7 +185,7 @@ export default function PayCalculatorQLDPage() {
             <H2>Queensland public holidays and what they do to your pay</H2>
             <p className="mb-4 text-warmgray">
               Queensland is unusual twice over. Christmas Eve is a <em>part-day</em> public holiday
-              from 6 pm — an hour earlier than the 7 pm start used in SA and the NT — so an evening
+              from 6 pm (an hour earlier than the 7 pm start used in SA and the NT), so an evening
               hospitality shift on 24 December crosses into penalty rates midway through. And the
               Royal Queensland Show (the Ekka) is a public holiday in the Brisbane area only; a
               Townsville worker gets nothing that day.
@@ -198,7 +198,7 @@ export default function PayCalculatorQLDPage() {
             <H2>Long service leave in Queensland</H2>
             <p className="mb-4 text-warmgray">
               Queensland is the only jurisdiction that puts long service leave inside its general
-              industrial statute rather than a dedicated Act — it lives in the{" "}
+              industrial statute rather than a dedicated Act. It lives in the{" "}
               {PROFILE.longServiceLeave.act}, which also covers casual, regular part-time and seasonal
               employees subject to conditions.
             </p>
@@ -214,7 +214,7 @@ export default function PayCalculatorQLDPage() {
             <H2>Does QLD payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Queensland&apos;s mental health levy catches the same confusion — it is charged to large
+              Queensland&apos;s mental health levy catches the same confusion: it is charged to large
               employers, not to employees, and it is not a second Medicare levy. The only health charge
               that touches your pay is the federal{" "}
               <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link>, which the calculator

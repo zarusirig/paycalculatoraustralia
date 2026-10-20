@@ -63,7 +63,7 @@ export default function TechSalaryGuideAustraliaPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            IT &amp; Tech Salary Guide — What Tech Workers Earn in Australia
+            IT &amp; Tech Salary Guide: What Tech Workers Earn in Australia
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Tech pay in Australia is set by the employment contract or an enterprise agreement unless an award applies, and the Professional Employees Award covers IT professionals only where the employer is principally in the IT or telecommunications industry. Net pay follows the ATO {SITE_CONFIG.financialYear} brackets: on a {formatAUD(110_000)} base, take-home is {formatAUD(EX110.takeHomePay)} a year after income tax and the Medicare levy, and employees receive {SG} super on top. This guide covers ATO median salaries for {TECH_ROLE_ROWS.length} tech occupations, the day rate a contractor needs to match a salary, how RSUs are taxed, and salary sacrifice.

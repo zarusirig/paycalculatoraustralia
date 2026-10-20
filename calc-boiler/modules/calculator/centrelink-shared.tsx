@@ -87,7 +87,7 @@ export function RateChangeNote({ activeKey, payment }: { activeKey: RateSetKey; 
           <strong>Rates change on 20 September 2026.</strong> This calculator is applying the{" "}
           {RATE_SET_LABELS[MARCH_2026]} rates, which are what {payment} pays until 19 September 2026. The{" "}
           {RATE_SET_LABELS[SEPTEMBER_2026]} figures are published (DSS rates list, {CENTRELINK_SOURCES.dssRatesListPublished})
-          and shown alongside every rate below — the calculator switches to them by itself on 20 September.
+          and shown alongside every rate below. The calculator switches to them by itself on 20 September.
         </>
       ) : (
         <>

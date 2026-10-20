@@ -48,7 +48,7 @@ export default function ConstructionTradesPayPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Construction &amp; Trades Pay Guide — Rates, Overtime &amp; Apprentice Wages
+            Construction &amp; Trades Pay Guide: Rates, Overtime &amp; Apprentice Wages
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Apprenticeship rates of pay are a percentage of the qualified tradesperson&apos;s award rate that steps up each year of the apprenticeship. Under the Electrical award from {APPRENTICE_ELECTRICIAN_AWARD.award?.consolidatedTo ?? SITE_CONFIG.financialYearStart} the minimums for a Year 12 completer are {APPRENTICE_PCTS}, or {APPRENTICE_HOURLY} an hour; adult apprentices get at least {formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)} an hour in first year. This guide also covers qualified trade rates, site allowances, overtime provisions and take-home pay.
@@ -90,7 +90,7 @@ export default function ConstructionTradesPayPage() {
                 </div>
               </div>
               <p>
-                Boilermakers and electricians command the highest rates due to specialised skills and demand from the mining and heavy industry sectors. Self-employed tradies running their own business can earn significantly more — an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
+                Boilermakers and electricians command the highest rates due to specialised skills and demand from the mining and heavy industry sectors. Self-employed tradies running their own business can earn significantly more: an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
               </p>
             </section>
 

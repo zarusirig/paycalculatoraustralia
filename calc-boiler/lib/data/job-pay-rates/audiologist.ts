@@ -33,7 +33,7 @@ export const AUDIOLOGIST = hpssOct2026Occupation(AQF, {
   slug: "audiologist",
   name: "Audiologist",
   plural: "audiologists",
-  metaTitle: `Audiologist Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
+  metaTitle: `Audiologist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year audiologist at AQF Level 9, the award's standard qualification level for the profession",
   coverage: [

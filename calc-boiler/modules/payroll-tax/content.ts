@@ -90,7 +90,7 @@ export const CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "What is payroll tax grouping?",
-    a: "Related businesses — for example companies that are related corporations, businesses under common control, or businesses that share employees — are grouped. The group's wages are added together to test the threshold, and only one member, the designated group employer, claims it.",
+    a: "Related businesses are grouped, for example companies that are related corporations, businesses under common control, or businesses that share employees. The group's wages are added together to test the threshold, and only one member, the designated group employer, claims it.",
   },
   {
     q: "Which state has the highest payroll tax threshold?",

@@ -75,7 +75,7 @@ export const HPSS_AWARD_OCT_2026: AwardRef = {
 
 export const HPSS_OCT_2026_SOURCES: OccupationSource[] = [
   {
-    title: `${HPSS_AWARD.name} [${HPSS_AWARD.code}] — consolidated to 1 October 2026 (PR814029)`,
+    title: `${HPSS_AWARD.name} [${HPSS_AWARD.code}], consolidated to 1 October 2026 (PR814029)`,
     publisher: "Fair Work Commission",
     url: HPSS_AWARD.url,
   },
@@ -123,7 +123,7 @@ export function hpssOct2026Label(aqf: HpssAqfLevel, yearBand: 0 | 1 | 2 | 3 = 0)
 export function hpssOct2026Level1Table(aqf: HpssAqfLevel, id = "level-1"): RateTable {
   return {
     id,
-    title: `Health professional level 1 — AQF Level ${aqf}, from 1 October 2026`,
+    title: `Health professional level 1, AQF Level ${aqf}, from 1 October 2026`,
     // How Level 1 pay is set (AQF level and years at Level 1) is in each
     // profession's coverage paragraphs, so the intro does not repeat it.
     intro: `Clause 17.1 as substituted by determination PR814029, AQF Level ${aqf} rows. Casual rates are Schedule C.2.3 exactly.`,

@@ -38,8 +38,8 @@ const PROFILE = STATE_PROFILES.ACT;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13h, Australian Capital Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
-  { title: "2026 public holidays — Australian Capital Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13h, Australian Capital Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Australian Capital Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1976)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
   { title: "ACT payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.act.ratesUrl, publisher: PAYROLL_TAX_STATES.act.revenueOffice },
 ];
@@ -95,7 +95,7 @@ export default function PayCalculatorACTPage() {
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              Cross-border commuters from Queanbeyan, Yass or Bungendore are taxed identically —
+              Cross-border commuters from Queanbeyan, Yass or Bungendore are taxed identically:
               income tax follows the taxpayer, not the border. Public holidays do not: you get the
               holidays of the place you are <em>based</em> for work.
             </p>
@@ -106,7 +106,7 @@ export default function PayCalculatorACTPage() {
             <p className="mb-4 text-warmgray">
               The ACT posts the highest full-time ordinary time earnings in Australia at{" "}
               {formatAUD(PROFILE.awote.personsFullTime, 2)} a week, and by some distance the smallest
-              gender gap of any jurisdiction — a consequence of a workforce dominated by classified
+              gender gap of any jurisdiction, a consequence of a workforce dominated by classified
               public service pay scales rather than negotiated private rates.
             </p>
             <AbsEarningsTable profile={PROFILE} />
@@ -129,7 +129,7 @@ export default function PayCalculatorACTPage() {
             <p className="text-sm text-warmgray">
               The calculator above uses the statutory guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)},
               which is what a private-sector Canberra employer pays. If you are on a higher scheme rate,
-              the take-home figure is unaffected — super is paid on top of salary, not out of it — but
+              the take-home figure is unaffected (super is paid on top of salary, not out of it), but
               the total package line will understate you. Compare offers with the{" "}
               <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">salary package calculator</Link>.
             </p>
@@ -138,7 +138,7 @@ export default function PayCalculatorACTPage() {
           <section>
             <H2>ACT public holidays and what they do to your pay</H2>
             <p className="mb-4 text-warmgray">
-              The ACT has 15 gazetted public holidays — more than NSW, which surrounds it. Two are
+              The ACT has 15 gazetted public holidays, more than NSW, which surrounds it. Two are
               unique to the Territory: Canberra Day in March and Reconciliation Day, held on the first
               Monday on or after 27 May. A retail or hospitality worker in Civic therefore gets two
               penalty-rate days a year that a colleague fifteen minutes away in Queanbeyan does not.
@@ -150,7 +150,7 @@ export default function PayCalculatorACTPage() {
           <section>
             <H2>Long service leave in the ACT</H2>
             <p className="mb-4 text-warmgray">
-              The ACT reaches the entitlement faster than anywhere else in Australia — 7 years, and a
+              The ACT reaches the entitlement faster than anywhere else in Australia: 7 years, and a
               pro-rata payment can be owed from as little as 5. There is also a quirk worth knowing:
               if a public holiday falls during your long service leave, the leave is extended by a day.
             </p>
@@ -170,7 +170,7 @@ export default function PayCalculatorACTPage() {
             <p className="mt-4 text-sm text-warmgray">
               The ACT charges the highest general payroll tax rate in the country (6.75%, rising with
               payroll size), but only on employers with more than $1.75 million of Australian wages. Either way it is not your
-              deduction — see the{" "}
+              deduction. See the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link> for the
               items that genuinely are.
             </p>

@@ -23,7 +23,7 @@ export const PODIATRIST = hpssOct2026Occupation(AQF, {
   slug: "podiatrist",
   name: "Podiatrist",
   plural: "podiatrists",
-  metaTitle: `Podiatrist Salary Australia 2026 — ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
+  metaTitle: `Podiatrist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),
   why: "a first-year podiatrist at AQF Level 7, the award's standard qualification level for the profession",
   coverage: [

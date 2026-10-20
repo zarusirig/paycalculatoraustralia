@@ -67,7 +67,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Why is my bonus smaller than expected?",
-    a: `Because the bonus is taxed at your marginal rate, not your effective rate. If your salary puts you in the ${formatPercent(MIDDLE.rate, 0)} bracket, ${formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0)} (${formatPercent(MIDDLE.rate, 0)} + ${MEDICARE} Medicare) applies to every dollar of the bonus — even though the overall effective tax rate on a ${formatAUD(90_000)} salary is only about ${formatPercent(AT_90K.effectiveTaxRate)}. The tax-free threshold and lower brackets are already used up by your regular income.`,
+    a: `Because the bonus is taxed at your marginal rate, not your effective rate. If your salary puts you in the ${formatPercent(MIDDLE.rate, 0)} bracket, ${formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0)} (${formatPercent(MIDDLE.rate, 0)} + ${MEDICARE} Medicare) applies to every dollar of the bonus, even though the overall effective tax rate on a ${formatAUD(90_000)} salary is only about ${formatPercent(AT_90K.effectiveTaxRate)}. The tax-free threshold and lower brackets are already used up by your regular income.`,
   },
   {
     q: "Do I get superannuation on my bonus?",
@@ -91,7 +91,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Does it matter when my bonus is paid during the financial year?",
-    a: `The timing within a financial year does not change your total tax liability — your annual tax is calculated on total income regardless of when it is received. However, if your employer can defer a bonus payment to the next financial year (e.g., from June to July), it shifts the income into a different tax year and could result in a lower marginal rate if your income is lower in that year.`,
+    a: `The timing within a financial year does not change your total tax liability: your annual tax is calculated on total income regardless of when it is received. However, if your employer can defer a bonus payment to the next financial year (e.g., from June to July), it shifts the income into a different tax year and could result in a lower marginal rate if your income is lower in that year.`,
   },
   {
     q: "Can I salary sacrifice my bonus into super?",

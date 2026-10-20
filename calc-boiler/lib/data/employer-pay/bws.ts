@@ -47,7 +47,7 @@ export const ENDEAVOUR_TEAM_MEMBER: RateRow = {
 
 export const ENDEAVOUR_SENIOR_TEAM_MEMBER: RateRow = {
   level: "Senior Team Member",
-  description: "Works above Team Member level — for example supervisory help to the Store Manager, opening and closing, or advanced product qualifications such as WSET (Appendix A)",
+  description: "Works above Team Member level, for example supervisory help to the Store Manager, opening and closing, or advanced product qualifications such as WSET (Appendix A)",
   hourly: 29.83,
   casualHourly: 37.29,
 };
@@ -65,7 +65,7 @@ export const BWS_PAY: EmployerPay = {
     approvedOn: "14 November 2025 ([2025] FWCA 3828), operating from 21 November 2025",
     nominalExpiry: "30 June 2029",
     coverage:
-      "It covers team members in Endeavour Group's stores — BWS and Dan Murphy's (including The Cellar, W for Wine and Swanbourne Cellars) — and its Customer Hub. Salaried positions, the support office, hotels (ALH) and distribution centres are not covered.",
+      "It covers team members in Endeavour Group's stores (BWS and Dan Murphy's, including The Cellar, W for Wine and Swanbourne Cellars) and its Customer Hub. Salaried positions, the support office, hotels (ALH) and distribution centres are not covered.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: {
@@ -78,7 +78,7 @@ export const BWS_PAY: EmployerPay = {
   rates: [ENDEAVOUR_TEAM_MEMBER, ENDEAVOUR_SENIOR_TEAM_MEMBER],
   juniorScale: [],
   juniorNote:
-    "The Endeavour Group agreement pays adult rates to every team member regardless of age — there are no junior percentages.",
+    "The Endeavour Group agreement pays adult rates to every team member regardless of age; there are no junior percentages.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "Base rate", casual: "Base + 25%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "Base + 25%", casual: "Base + 50%" },
@@ -90,7 +90,7 @@ export const BWS_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Casual rates include the 25% loading (cl 6.3); penalties replace each other rather than stacking, and are not used to work out overtime or public holiday pay.",
-    "For an adult Team Member that is about $35.69 an hour on a weekday evening or Saturday ($42.83 casual), $42.83 on a Sunday ($49.96 casual) and $64.24 on a public holiday ($71.38 casual) — our arithmetic on the formula rate.",
+    "For an adult Team Member that is about $35.69 an hour on a weekday evening or Saturday ($42.83 casual), $42.83 on a Sunday ($49.96 casual) and $64.24 on a public holiday ($71.38 casual). This is our arithmetic on the formula rate.",
     "If the Retail Award's Sunday penalty rates go up, the agreement's Sunday rates go up to match (cl 6.4). Christmas Day worked when it is not a public holiday is paid 200% (casual 225%).",
     "Staff engaged specifically as shiftworkers (shifts starting from 6pm to before 5am) get + 30% Sunday night to Friday, + 50% Saturday and + 75% Sunday (casual + 55%, + 75%, + 100%).",
   ],
@@ -101,7 +101,7 @@ export const BWS_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   notices: [
-    "The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage — 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
+    "The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage: 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
     "When it approved the agreement, the Fair Work Commission compared Team Member with Retail Award Levels 1 and 2 and Senior Team Member with Levels 3 and 4. In 2026 both stay above those award rates ($28.45 and $29.45).",
     "Some staff who were paid the higher Level 2 rate under the old BWS or Dan Murphy's 2019 agreements keep it (undertakings 5–7): about $29.21 (ex-BWS) or $28.81 (ex-Dan Murphy's) an hour in 2026, by the same formula.",
   ],
@@ -109,8 +109,8 @@ export const BWS_PAY: EmployerPay = {
     { name: "In-charge allowance", amount: "$5.20 a shift when the agreement was made, rising with the award each July", when: "BWS Team Members put in charge of a store (undertaking 1 and cl 5.2)" },
   ],
   unverified: [
-    "Endeavour Group's own 2026 pay table — not public, so the 2026 dollars are calculated from the agreement's formula.",
-    "Which Retail Award level each Endeavour role equates to — the agreement does not map them.",
+    "Endeavour Group's own 2026 pay table. It is not public, so the 2026 dollars are calculated from the agreement's formula.",
+    "Which Retail Award level each Endeavour role equates to. The agreement does not map them.",
     "Whether the overtime meal allowance ($23.59 when the agreement was made) has been indexed since.",
   ],
   awardHref: "/retail-award-rates/",

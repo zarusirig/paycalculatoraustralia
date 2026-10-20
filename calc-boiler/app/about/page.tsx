@@ -10,7 +10,7 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/about/`;
-const TITLE = "About Pay Calculator Australia — Methodology & Sources";
+const TITLE = "About Pay Calculator Australia - Methodology & Sources";
 const DESCRIPTION =
   "Learn how Pay Calculator Australia ensures accuracy. Our methodology, data sources (ATO, Fair Work), and commitment to free, up-to-date Australian pay calculators.";
 
@@ -94,7 +94,7 @@ function AboutPage() {
             <p className="leading-relaxed text-warmgray">
               Every Australian worker deserves to understand exactly what they
               earn, what gets deducted, and why. We provide instant, accurate
-              calculators backed by official government data — completely free,
+              calculators backed by official government data. It is completely free,
               with no signups, no paywalls, and no misleading complexity.
             </p>
           </section>
@@ -278,7 +278,7 @@ function AboutPage() {
                     >
                       {source.name}
                     </a>
-                    <span className="text-warmgray-light"> — {source.desc}</span>
+                    <span className="text-warmgray-light">, {source.desc}</span>
                   </div>
                 </li>
               ))}

@@ -35,10 +35,10 @@ const SOURCES_LIST: SourceLink[] = [
 // Exact-match anchors: this hub hands "weekly / fortnightly / monthly tax
 // table" intent to the dedicated pages rather than competing with them.
 const PAY_CYCLE_TABLES = [
-  { href: "/fortnightly-tax-table/", label: `Fortnightly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "26 pays a year — ATO NAT 1006" },
-  { href: "/weekly-tax-table/", label: `Weekly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "52 pays a year — ATO NAT 1005" },
-  { href: "/monthly-tax-table/", label: `Monthly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "12 pays a year — ATO NAT 1007" },
-  { href: "/schedule-5-tax-table/", label: "Schedule 5 tax table", detail: "Bonuses, commissions & back pay — ATO NAT 3348" },
+  { href: "/fortnightly-tax-table/", label: `Fortnightly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "26 pays a year, ATO NAT 1006" },
+  { href: "/weekly-tax-table/", label: `Weekly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "52 pays a year, ATO NAT 1005" },
+  { href: "/monthly-tax-table/", label: `Monthly tax table ${PAYG_FINANCIAL_YEAR}`, detail: "12 pays a year, ATO NAT 1007" },
+  { href: "/schedule-5-tax-table/", label: "Schedule 5 tax table", detail: "Bonuses, commissions & back pay, ATO NAT 3348" },
 ] as const;
 
 // One representative figure per pay cycle — the full tables live on the
@@ -110,7 +110,7 @@ export default function PAYGTablesGuidePage() {
             The ATO publishes a separate tax table for each pay cycle. Pick yours below for the full {PAYG_FINANCIAL_YEAR} table,
             an instant lookup and a CSV download &mdash; or read on for how the PAYG withholding schedules fit together.
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED} — all tables reflect the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000)</p>
+          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED}: all tables reflect the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000)</p>
 
           <nav aria-label="Tax tables by pay cycle" id="tables-by-pay-cycle" className="grid sm:grid-cols-2 gap-4 mb-8">
             {PAY_CYCLE_TABLES.map((t) => (

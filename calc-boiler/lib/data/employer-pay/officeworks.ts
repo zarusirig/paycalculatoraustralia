@@ -70,7 +70,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Casual rates include the 25% loading (cl 22.3.2). On public holidays casuals and permanent staff get the same 250%.",
-    "For an adult Level 1 team member ($28.50) that is about $35.63 an hour on a weeknight or Saturday ($42.75 casual), $42.75 on a Sunday ($49.88 casual) and $71.25 on a public holiday — our arithmetic on the formula rate.",
+    "For an adult Level 1 team member ($28.50) that is about $35.63 an hour on a weeknight or Saturday ($42.75 casual), $42.75 on a Sunday ($49.88 casual) and $71.25 on a public holiday. This is our arithmetic on the formula rate.",
     "Staff employed specifically as shiftworkers (shifts starting from 6pm and ending before 5am) get 130% Sunday night to Friday, 150% Saturday and 175% Sunday (casual 155%, 175%, 200%).",
   ],
   overtime: [
@@ -80,12 +80,12 @@ export const OFFICEWORKS_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   notices: [
-    "The Officeworks agreement prints its July 2024 rates and lifts them each July by the Annual Wage Review percentage plus 0.25% — 3.75% in 2025 and 5% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
+    "The Officeworks agreement prints its July 2024 rates and lifts them each July by the Annual Wage Review percentage plus 0.25%: 3.75% in 2025 and 5% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
     "From the first full pay period on or after 1 December 2026, the Retail Award pays 18-year-olds with more than 6 months' service 75% of the award rate ($20.86). That is more than Officeworks' 70% of $28.50 ($19.95), and an agreement cannot pay a base rate below the award, so those staff must get at least the award figure.",
   ],
   unverified: [
-    "Officeworks' own 2026 pay table — not public; the dollars are the agreement's formula.",
-    "Pay for 20-year-olds — the agreement prints no band for age 20; we treat them as adult.",
+    "Officeworks' own 2026 pay table: not public; the dollars are the agreement's formula.",
+    "Pay for 20-year-olds: the agreement prints no band for age 20; we treat them as adult.",
     "Customer Fulfilment Centre pay (separate agreement AE528025) and salaried roles.",
   ],
   awardHref: "/retail-award-rates/",

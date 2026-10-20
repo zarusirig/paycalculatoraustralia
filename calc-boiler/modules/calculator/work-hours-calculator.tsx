@@ -330,7 +330,7 @@ export default function WorkHoursCalculator() {
 
   const summaryText = useMemo(() => {
     const lines: string[] = [];
-    lines.push(`Timesheet summary — ${PERIODS[state.period].label}`);
+    lines.push(`Timesheet summary: ${PERIODS[state.period].label}`);
     lines.push("");
     state.rows.forEach((r, i) => {
       const res = totals.rows[i];
@@ -409,7 +409,7 @@ export default function WorkHoursCalculator() {
         </h2>
         <p className="text-sm text-warmgray mb-6">
           Enter a start and finish time for each day. The calculator adds up your hours, takes out
-          unpaid breaks and prices the period — including shifts that finish after midnight. Your
+          unpaid breaks and prices the period, including shifts that finish after midnight. Your
           entries stay in this browser; nothing is uploaded.
         </p>
 
@@ -562,7 +562,7 @@ export default function WorkHoursCalculator() {
                   )}
                   {result?.breakExceedsShift && (
                     <span className="mt-1 block text-[11px] text-ochre">
-                      Break is longer than the shift — capped at{" "}
+                      Break is longer than the shift, so it is capped at{" "}
                       {minutesToHm(result.elapsedMinutes)}.
                     </span>
                   )}
@@ -762,10 +762,10 @@ export default function WorkHoursCalculator() {
             </fieldset>
 
             <p className="text-xs text-warmgray-light">
-              The defaults — {STANDARD_WEEKLY_HOURS} ordinary hours a week, then{" "}
+              The defaults ({STANDARD_WEEKLY_HOURS} ordinary hours a week, then{" "}
               {OVERTIME_DEFAULTS.firstTierMultiplier}× for the first{" "}
               {OVERTIME_DEFAULTS.firstTierHours} hours and{" "}
-              {OVERTIME_DEFAULTS.secondTierMultiplier}× after that — are a common pattern, not a
+              {OVERTIME_DEFAULTS.secondTierMultiplier}× after that) are a common pattern, not a
               universal rule. <strong>Your award sets the real thresholds.</strong> Retail bands
               overtime differently from Monday to Saturday; hospitality pays the first two hours at
               time and a half then double time; many awards also trigger overtime on a daily limit.
@@ -832,18 +832,18 @@ export default function WorkHoursCalculator() {
               )}
               <div className="border-t border-sandstone-dark/10 pt-3" />
               <SummaryRow
-                label={`Ordinary — ${formatDecimalHours(pay.split.ordinaryHours)} h`}
+                label={`Ordinary: ${formatDecimalHours(pay.split.ordinaryHours)} h`}
                 value={formatAUD(pay.ordinaryPay, 2)}
               />
               {pay.split.firstTierHours > 0 && (
                 <SummaryRow
-                  label={`Overtime at ${state.firstTierMultiplier}× — ${formatDecimalHours(pay.split.firstTierHours)} h`}
+                  label={`Overtime at ${state.firstTierMultiplier}×: ${formatDecimalHours(pay.split.firstTierHours)} h`}
                   value={formatAUD(pay.firstTierPay, 2)}
                 />
               )}
               {pay.split.secondTierHours > 0 && (
                 <SummaryRow
-                  label={`Overtime at ${state.secondTierMultiplier}× — ${formatDecimalHours(pay.split.secondTierHours)} h`}
+                  label={`Overtime at ${state.secondTierMultiplier}×: ${formatDecimalHours(pay.split.secondTierHours)} h`}
                   value={formatAUD(pay.secondTierPay, 2)}
                 />
               )}

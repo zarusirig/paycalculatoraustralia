@@ -347,7 +347,7 @@ function ScheduleTable({ schedule }: { schedule: PaySchedule }) {
                       {group.bands.length > 1 && (
                         <tr className="bg-sandstone/40">
                           <td className="px-4 py-2 font-semibold text-navy" colSpan={isSurvey ? 5 : 3}>
-                            {group.label} &mdash; {formatBandRange(groupRange(group.bands))}
+                            {group.label}: {formatBandRange(groupRange(group.bands))}
                           </td>
                         </tr>
                       )}
@@ -545,29 +545,29 @@ export default function PublicServicePayJurisdictionPage({
               </p>
               <ul>
                 <li>
-                  <Link href="/income-tax-calculator/">Income tax calculator</Link> &mdash; tax and
+                  <Link href="/income-tax-calculator/">Income tax calculator</Link>: tax and
                   Medicare levy on an exact salary.
                 </li>
                 <li>
-                  <Link href="/take-home-pay-calculator/">Take-home pay calculator</Link> &mdash;
+                  <Link href="/take-home-pay-calculator/">Take-home pay calculator</Link>:
                   weekly, fortnightly and monthly net pay.
                 </li>
                 <li>
-                  <Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link> &mdash;
+                  <Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link>:
                   most public service payrolls pay fortnightly, and the classification tables above
                   are published as fortnightly rates.
                 </li>
                 <li>
-                  <Link href="/pay-rise-calculator/">Pay rise calculator</Link> &mdash; what an
+                  <Link href="/pay-rise-calculator/">Pay rise calculator</Link>: what an
                   increment or an agreement increase is worth in the hand.
                 </li>
                 <li>
-                  <Link href="/salary-sacrifice-calculator/">Salary sacrifice calculator</Link>{" "}
-                  &mdash; public sector employers commonly offer packaging; this shows the tax
+                  <Link href="/salary-sacrifice-calculator/">Salary sacrifice calculator</Link>:{" "}
+                  public sector employers commonly offer packaging; this shows the tax
                   effect.
                 </li>
                 <li>
-                  <Link href="/understanding-your-payslip/">Understanding your payslip</Link> &mdash;
+                  <Link href="/understanding-your-payslip/">Understanding your payslip</Link>:
                   how a classification and pay point appear on the payslip itself.
                 </li>
               </ul>

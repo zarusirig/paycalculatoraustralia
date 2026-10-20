@@ -38,14 +38,14 @@ export const SPOTLIGHT_PAY: EmployerPay = {
     description:
       i === 0
         ? "The award's entry level for retail employees: customer service, cutting counter, checkouts and stock work. Spotlight does not publish which level each role sits at"
-        : "Higher retail classification — the award's Schedule A lists the duties at each level",
+        : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
-    "These are the General Retail Industry Award minimums that apply to Spotlight store staff. Spotlight's actual pay rates are not published, so your pay may be higher — it cannot be lower.",
+    "These are the General Retail Industry Award minimums that apply to Spotlight store staff. Spotlight's actual pay rates are not published, so your pay may be higher, but it cannot be lower.",
     "Distribution centre staff are covered by the separate Spotlight Distribution Centre Enterprise Agreement 2024, not by these rates.",
   ],
   unverified: [
-    "Spotlight's actual hourly rates and any above-award payments — not public.",
+    "Spotlight's actual hourly rates and any above-award payments, not public.",
     "Which award level each Spotlight store role is classified at.",
     "Agreements approved between mid-2014 and 2015 were not checked one by one; none for Spotlight stores was found.",
   ],

@@ -62,7 +62,7 @@ export default function VicPayRise2026() {
           proposed agreement
         </a>{" "}
         the Department of Education published for the ballot, read on {VIC_2026_AGREEMENT.verifiedOn}.
-        Salaries rise at five dates — each from the first pay period on or after the date — for a
+        Salaries rise at five dates (each from the first pay period on or after the date) for a
         total of {VIC_2026_AGREEMENT.headlineRiseOverFourYears} over the agreement, depending on
         classification. Every full-time employee also gets a{" "}
         {formatAUD(VIC_2026_AGREEMENT.lumpSum)} lump sum when the agreement starts (pro rata for
@@ -132,7 +132,7 @@ export default function VicPayRise2026() {
         . The first increase is larger for lower steps (6.33% at graduate 1-1, 3% at 2-6), which is
         why a graduate&apos;s rise over the agreement is bigger in percentage terms than a top-step
         teacher&apos;s. Clause 8 makes each increase payable from the first pay period on or after its
-        date — including the two dates that fall before the agreement can start operating.
+        date, including the two dates that fall before the agreement can start operating.
       </p>
 
       {/* Full proposed schedule */}
@@ -188,8 +188,8 @@ export default function VicPayRise2026() {
           2027 for the first time.
         </li>
         <li>
-          <strong>Face-to-face limits written in.</strong> The existing maximums — 21 hours a week in
-          primary and special schools, 18.5 hours in secondary — move into the agreement itself.
+          <strong>Face-to-face limits written in.</strong> The existing maximums (21 hours a week in
+          primary and special schools, 18.5 hours in secondary) move into the agreement itself.
         </li>
         <li>
           <strong>School camps.</strong> From 2027 an overnight school camp allowance replaces time in
@@ -198,7 +198,7 @@ export default function VicPayRise2026() {
       </ul>
       <p>
         The agreement&apos;s nominal expiry date is {VIC_2026_AGREEMENT.nominalExpiry}. For how the deal
-        was reached — two statewide strikes, a rejected in-principle offer and the final ballot — see{" "}
+        was reached (two statewide strikes, a rejected in-principle offer and the final ballot), see{" "}
         <Link href="/news/victorian-teachers-pay-rise-2026/">
           Victorian teachers pay rise 2026: what the new agreement pays and when
         </Link>

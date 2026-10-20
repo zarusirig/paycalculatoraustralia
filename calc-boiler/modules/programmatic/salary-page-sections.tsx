@@ -92,7 +92,7 @@ function bracketNote(salary: number): string {
     case 3:
       return `${s} has crossed into the ${rate(b.rate)} bracket: ${aboveFloor} of it sits above ${formatAUD(floor)} and is taxed at ${rate(b.rate)}, the rest at the lower rates.${toNext}`;
     default:
-      return `${s} reaches the top ${rate(b.rate)} rate. The ${aboveFloor} above ${formatAUD(floor)} is taxed at ${rate(b.rate)} — ${formatAUD((salary - floor) * b.rate)} of the income tax bill comes from that slice alone.`;
+      return `${s} reaches the top ${rate(b.rate)} rate. The ${aboveFloor} above ${formatAUD(floor)} is taxed at ${rate(b.rate)}, so ${formatAUD((salary - floor) * b.rate)} of the income tax bill comes from that slice alone.`;
   }
 }
 
@@ -101,7 +101,7 @@ function litoNote(salary: number): string {
   const lito = f.breakdown.litoOffset;
   switch (f.litoStage) {
     case "full":
-      return `The full ${formatAUD(LITO.maxOffset)} Low Income Tax Offset applies${f.breakdown.netIncomeTax === 0 ? ", which wipes out the income tax entirely — LITO means no tax is payable on income up to " + formatAUD(LITO.effectiveTaxFreeThreshold) : ""}.`;
+      return `The full ${formatAUD(LITO.maxOffset)} Low Income Tax Offset applies${f.breakdown.netIncomeTax === 0 ? ", which wipes out the income tax entirely. LITO means no tax is payable on income up to " + formatAUD(LITO.effectiveTaxFreeThreshold) : ""}.`;
     case "phase-out-5c":
       return `LITO is phasing out here: it is ${formatAUD(lito)} (down from ${formatAUD(LITO.maxOffset)}), falling 5c for every dollar over ${formatAUD(LITO.fullOffsetCeiling)}. That clawback is why the rate on the next dollar is higher than the bracket rate alone.`;
     case "phase-out-1.5c":
@@ -163,7 +163,7 @@ function superNote(salary: number): string {
 function div293Note(salary: number): string {
   const f = salaryFacts(salary);
   if (f.division293 > 0) {
-    return `Division 293 applies: income plus employer super (${formatAUD(salary + f.employerSuper)}) is over ${formatAUD(DIVISION_293.threshold)}, so an extra ${rate(DIVISION_293.rate)} tax falls on contributions — about ${formatAUD(f.division293)} on the SG alone. The ATO bills it separately after your return; it is not withheld from pay and is not in the take-home figure.`;
+    return `Division 293 applies: income plus employer super (${formatAUD(salary + f.employerSuper)}) is over ${formatAUD(DIVISION_293.threshold)}, so an extra ${rate(DIVISION_293.rate)} tax falls on contributions, about ${formatAUD(f.division293)} on the SG alone. The ATO bills it separately after your return; it is not withheld from pay and is not in the take-home figure.`;
   }
   if (salary >= 200_000) {
     return `Division 293 does not apply yet: income plus employer super is ${formatAUD(salary + f.employerSuper)}, ${formatAUD(DIVISION_293.threshold - salary - f.employerSuper)} under the ${formatAUD(DIVISION_293.threshold)} threshold.`;
@@ -224,14 +224,14 @@ export function NextThousand({ salary }: { salary: number }) {
   }
   const differs = Math.abs(n.effectiveMarginal - statutory) > 0.001;
   const why = differs && reasons.length > 0
-    ? ` — ${n.effectiveMarginal > statutory ? "more" : "less"} than the ${pct(statutory)} headline marginal rate because ${reasons.join(" and ")}`
+    ? `, ${n.effectiveMarginal > statutory ? "more" : "less"} than the ${pct(statutory)} headline marginal rate because ${reasons.join(" and ")}`
     : "";
 
   let sacrificeCopy: string;
   if (sac.netGain > 150) {
     sacrificeCopy = `Salary sacrificing $1,000 into super instead costs ${formatAUD(sac.takeHomeCost)} of take-home pay and puts ${formatAUD(sac.intoSuper)} into super after contributions tax, ${formatAUD(sac.netGain)} ahead overall.`;
   } else if (sac.netGain > 0) {
-    sacrificeCopy = `Salary sacrificing $1,000 into super costs ${formatAUD(sac.takeHomeCost)} of take-home and adds ${formatAUD(sac.intoSuper)} to super — only ${formatAUD(sac.netGain)} ahead, because the tax rate here is close to the ${rate(0.15)} contributions tax.`;
+    sacrificeCopy = `Salary sacrificing $1,000 into super costs ${formatAUD(sac.takeHomeCost)} of take-home and adds ${formatAUD(sac.intoSuper)} to super, only ${formatAUD(sac.netGain)} ahead, because the tax rate here is close to the ${rate(0.15)} contributions tax.`;
   } else {
     sacrificeCopy = `Salary sacrificing $1,000 into super does not save tax at this income: it costs ${formatAUD(sac.takeHomeCost)} of take-home and adds ${formatAUD(sac.intoSuper)} after contributions tax.`;
   }

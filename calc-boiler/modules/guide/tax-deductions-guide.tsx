@@ -28,7 +28,7 @@ export default function TaxDeductionsGuidePage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Deductions Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Deductions Guide — Work-Related Deductions That Reduce Your Tax</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Deductions Guide: Work-Related Deductions That Reduce Your Tax</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how work-related tax deductions reduce your taxable income and lower your tax bill. From vehicle expenses to working from home, this guide covers every major deduction category for Australian taxpayers in FY2025-26.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -51,7 +51,7 @@ export default function TaxDeductionsGuidePage() {
                 <li><strong>You must have a record to prove it.</strong> The ATO requires receipts, invoices, bank statements, or diary entries for all claims. For total work-related expenses of <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount.</li>
               </ol>
               <p>
-                Deductions are claimed in your annual tax return. Your employer does not need to approve your deductions — they are between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
+                Deductions are claimed in your annual tax return. Your employer does not need to approve your deductions. They are between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -86,7 +86,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Clothing and Laundry</h3>
               <p>
-                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing — even if you only wear it for work — is not deductible. Laundry of eligible work clothing can be claimed at <strong>$1 per load</strong> (if washed with other items) or <strong>$2 per load</strong> (exclusive wash), up to <strong>$150</strong> without written records.
+                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing, even if you only wear it for work, is not deductible. Laundry of eligible work clothing can be claimed at <strong>$1 per load</strong> (if washed with other items) or <strong>$2 per load</strong> (exclusive wash), up to <strong>$150</strong> without written records.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tools, Equipment and Technology</h3>
@@ -101,7 +101,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Self-Education Expenses</h3>
               <p>
-                Course fees, textbooks, stationery, and student union fees are deductible when the education is <strong>directly related to your current employment</strong> — either maintaining or improving your skills in your current role, or the course leads to an increase in income from your current job. Study that enables you to move into a <strong>new</strong> occupation is not deductible. A nurse studying for a postgraduate nursing qualification can claim; a nurse studying to become an accountant cannot.
+                Course fees, textbooks, stationery, and student union fees are deductible when the education is <strong>directly related to your current employment</strong>, either maintaining or improving your skills in your current role, or the course leads to an increase in income from your current job. Study that enables you to move into a <strong>new</strong> occupation is not deductible. A nurse studying for a postgraduate nursing qualification can claim; a nurse studying to become an accountant cannot.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Phone and Internet</h3>
@@ -111,7 +111,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Union Fees and Professional Memberships</h3>
               <p>
-                Membership fees for trade unions, professional associations, and registration boards required for your employment are fully deductible. This includes fees for organisations like CPA Australia, the Law Society, medical boards, and teaching registration bodies. The fees must relate to your <strong>current</strong> employment — joining a professional body for a career you do not yet work in is not deductible.
+                Membership fees for trade unions, professional associations, and registration boards required for your employment are fully deductible. This includes fees for organisations like CPA Australia, the Law Society, medical boards, and teaching registration bodies. The fees must relate to your <strong>current</strong> employment. Joining a professional body for a career you do not yet work in is not deductible.
               </p>
             </section>
 
@@ -119,7 +119,7 @@ export default function TaxDeductionsGuidePage() {
             <section id="deduction-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will Deductions Save You?</h2>
               <p>
-                Your tax savings depend on your <strong>marginal tax rate</strong> — the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket (the year covered by returns lodged in 2026) for common deduction amounts. From 1 July 2026 the lowest band is 15%, so on your 2026-27 return a $1,000 deduction saves $150 in that band.
+                Your tax savings depend on your <strong>marginal tax rate</strong>, the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket (the year covered by returns lodged in 2026) for common deduction amounts. From 1 July 2026 the lowest band is 15%, so on your 2026-27 return a $1,000 deduction saves $150 in that band.
               </p>
 
               <div className="not-prose my-6">

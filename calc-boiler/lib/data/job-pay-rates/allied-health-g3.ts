@@ -78,7 +78,7 @@ export function entryParagraph(profession: string, aqfs: readonly HpssAqfLevel[]
   const which =
     aqfs.length === 1
       ? `Schedule B sets ${profession} at AQF Level ${aqfs[0]}, so a new graduate starts on the AQF Level ${aqfs[0]} 1st-year rate (${f.hourly} an hour)`
-      : `Schedule B lists ${profession} at ${aqfList(aqfs)}, and you are paid at the level of the listed qualification you hold — a new graduate at AQF Level ${aqfs[0]} starts on ${f.hourly} an hour`;
+      : `Schedule B lists ${profession} at ${aqfList(aqfs)}, and you are paid at the level of the listed qualification you hold. A new graduate at AQF Level ${aqfs[0]} starts on ${f.hourly} an hour`;
   return `From the first full pay period starting on or after 1 October 2026, Level 1 pay depends on the AQF level of the profession's standard minimum qualification and your years of experience in the profession at Level 1. ${which}, rising to ${f.later[0]} in the 2nd and 3rd years, ${f.later[1]} in the 4th to 6th years and ${f.later[2]} from the 7th year. An employer that requires a higher qualification must pay at that qualification's AQF level (cl B.2(d)).`;
 }
 
@@ -101,7 +101,7 @@ export function sharedFaqs(name: string, plural: string, aqfs: readonly HpssAqfL
   return [
     {
       q: `What is the award rate for a ${lower} in 2026?`,
-      a: `A first-year ${lower} at AQF Level ${aqf} must be paid at least ${f.hourly} an hour, or ${f.weekly} a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026 — ${f.annual} a year full-time before tax.${others}`,
+      a: `A first-year ${lower} at AQF Level ${aqf} must be paid at least ${f.hourly} an hour, or ${f.weekly} a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026, or ${f.annual} a year full-time before tax.${others}`,
     },
     {
       q: `What is the casual rate for a ${lower}?`,
@@ -109,7 +109,7 @@ export function sharedFaqs(name: string, plural: string, aqfs: readonly HpssAqfL
     },
     {
       q: `Do ${plural} get paid more on weekends?`,
-      a: `Yes. Ordinary hours between midnight Friday and midnight Sunday are paid at 150% of the minimum hourly rate for full-time and part-time staff — ${f.weekend} an hour for a first-year ${lower} at AQF Level ${aqf}. Public holidays are 250% (${f.publicHoliday}).`,
+      a: `Yes. Ordinary hours between midnight Friday and midnight Sunday are paid at 150% of the minimum hourly rate for full-time and part-time staff: ${f.weekend} an hour for a first-year ${lower} at AQF Level ${aqf}. Public holidays are 250% (${f.publicHoliday}).`,
     },
     {
       q: `How much does a senior ${lower} earn under the award?`,

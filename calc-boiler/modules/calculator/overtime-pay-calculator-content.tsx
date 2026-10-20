@@ -276,11 +276,11 @@ export default function OvertimePayCalculatorContent() {
           Underpayment of overtime is one of the most common payroll compliance issues in Australia, with the Fair Work Ombudsman recovering <strong>$453 million</strong> in underpaid wages in FY2025-26 alone. These 5 mistakes occur most frequently:
         </p>
         <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-          <li><strong>Applying the wrong multiplier</strong> — Using 1.5x for all overtime hours instead of escalating to 2.0x after the first 2 or 3 hours as required by most awards</li>
-          <li><strong>Calculating casual overtime on the loaded rate</strong> — The overtime multiplier applies to the base rate only, not the base rate plus the 25% casual loading</li>
-          <li><strong>Ignoring part-time overtime triggers</strong> — Part-time employees earn overtime after exceeding their agreed hours, not after 38 hours per week</li>
-          <li><strong>Missing public holiday penalties</strong> — Australia has 8 national public holidays and additional state-specific holidays, each attracting 2.0x to 2.5x penalty rates</li>
-          <li><strong>Using the wrong tax bracket</strong> — Overtime sits on top of your base salary, so the marginal rate on overtime is typically higher than your average tax rate across all income</li>
+          <li><strong>Applying the wrong multiplier</strong>: Using 1.5x for all overtime hours instead of escalating to 2.0x after the first 2 or 3 hours as required by most awards</li>
+          <li><strong>Calculating casual overtime on the loaded rate</strong>: The overtime multiplier applies to the base rate only, not the base rate plus the 25% casual loading</li>
+          <li><strong>Ignoring part-time overtime triggers</strong>: Part-time employees earn overtime after exceeding their agreed hours, not after 38 hours per week</li>
+          <li><strong>Missing public holiday penalties</strong>: Australia has 8 national public holidays and additional state-specific holidays, each attracting 2.0x to 2.5x penalty rates</li>
+          <li><strong>Using the wrong tax bracket</strong>: Overtime sits on top of your base salary, so the marginal rate on overtime is typically higher than your average tax rate across all income</li>
         </ol>
         <p className="text-warmgray">
           Employees who suspect underpayment of overtime should compare their payslip against the calculations from this overtime pay calculator and review their applicable award on the <a href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages/pay-guides" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">Fair Work Ombudsman website</a>.
@@ -297,11 +297,11 @@ export default function OvertimePayCalculatorContent() {
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray">
           <li><Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">Overtime and penalty rates guide</Link> &mdash; the award rules that set time-and-a-half, double time and weekend loadings.</li>
-          <li><Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link> — Convert your base salary plus overtime into a weekly after-tax amount</li>
-          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — Calculate your total income tax liability including overtime in your assessable income for FY{FY}</li>
-          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — See your net pay after tax, Medicare levy, and HECS-HELP on a salary that includes regular overtime</li>
-          <li><Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">Bonus Tax Calculator</Link> — Estimate tax on lump-sum payments, which follow the same marginal rate logic as overtime</li>
-          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — Calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on your ordinary time earnings, separate from overtime</li>
+          <li><Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>: Convert your base salary plus overtime into a weekly after-tax amount</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: Calculate your total income tax liability including overtime in your assessable income for FY{FY}</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: See your net pay after tax, Medicare levy, and HECS-HELP on a salary that includes regular overtime</li>
+          <li><Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">Bonus Tax Calculator</Link>: Estimate tax on lump-sum payments, which follow the same marginal rate logic as overtime</li>
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: Calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on your ordinary time earnings, separate from overtime</li>
         </ul>
       </section>
 

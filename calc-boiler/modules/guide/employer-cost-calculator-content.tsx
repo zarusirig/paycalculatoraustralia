@@ -157,7 +157,7 @@ export default function EmployerCostCalculatorContent() {
 
         <h3>Payment Deadlines</h3>
         <p>
-          Since <strong>1 July 2026</strong>, super must reach the employee&rsquo;s fund within <strong>7 business days of each payday</strong> — quarterly payment has ended. Missing that deadline triggers the Superannuation Guarantee Charge, now made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on a voluntary disclosure within 30 days. The charge is now tax-deductible. The final quarterly deadlines, which applied to earnings paid up to 30 June 2026, were:
+          Since <strong>1 July 2026</strong>, super must reach the employee&rsquo;s fund within <strong>7 business days of each payday</strong>, as quarterly payment has ended. Missing that deadline triggers the Superannuation Guarantee Charge, now made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on a voluntary disclosure within 30 days. The charge is now tax-deductible. The final quarterly deadlines, which applied to earnings paid up to 30 June 2026, were:
         </p>
         <div className="not-prose overflow-x-auto my-6">
           <table className="w-full text-sm border-collapse border border-sandstone-dark/20 rounded-lg">

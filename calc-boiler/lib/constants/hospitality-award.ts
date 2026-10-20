@@ -254,7 +254,7 @@ export const AWARD_UNVERIFIED = [
   "Hospitality apprentice rates",
   "Retail shiftworker rates and baking production early-morning/night rates",
   "Casino stream penalty detail",
-  "Loaded rate arrangements (hospitality cl 24) — produce different results from the standard tables",
+  "Loaded rate arrangements (hospitality cl 24): these produce different results from the standard tables",
 ] as const;
 
 /**
@@ -305,11 +305,11 @@ export interface FixedAllowance {
 
 export const HOSPITALITY_ALLOWANCES: readonly FixedAllowance[] = [
   { name: "Meal allowance (overtime of more than 2 hours, not advised the previous day)", amount: 17.42, unit: "per occasion", clause: "cl 26.4(b)(i)", note: "Full-time and part-time employees. Or the employer supplies a meal." },
-  { name: "Tool and equipment allowance — cook or apprentice cook using their own tools", amount: 2.03, unit: "per day", clause: "cl 26.5(a)", note: "Up to a maximum of $9.94 per week." },
-  { name: "First aid allowance — full-time", amount: 13.43, unit: "per week", clause: "cl 26.12(b)(i)" },
-  { name: "First aid allowance — part-time or casual", amount: 2.69, unit: "per day", clause: "cl 26.12(b)(ii)", note: "Up to a maximum of $13.43 per week." },
-  { name: "Split shift allowance — 2 to 3 hours between shifts", amount: 3.69, unit: "per day", clause: "cl 26.14(b)(i)", note: "Full-time and part-time employees." },
-  { name: "Split shift allowance — more than 3 hours between shifts", amount: 5.6, unit: "per day", clause: "cl 26.14(b)(ii)", note: "Full-time and part-time employees." },
+  { name: "Tool and equipment allowance (cook or apprentice cook using their own tools)", amount: 2.03, unit: "per day", clause: "cl 26.5(a)", note: "Up to a maximum of $9.94 per week." },
+  { name: "First aid allowance (full-time)", amount: 13.43, unit: "per week", clause: "cl 26.12(b)(i)" },
+  { name: "First aid allowance (part-time or casual)", amount: 2.69, unit: "per day", clause: "cl 26.12(b)(ii)", note: "Up to a maximum of $13.43 per week." },
+  { name: "Split shift allowance (2 to 3 hours between shifts)", amount: 3.69, unit: "per day", clause: "cl 26.14(b)(i)", note: "Full-time and part-time employees." },
+  { name: "Split shift allowance (more than 3 hours between shifts)", amount: 5.6, unit: "per day", clause: "cl 26.14(b)(ii)", note: "Full-time and part-time employees." },
   { name: "Motor vehicle allowance", amount: 1.01, unit: "per km", clause: "cl 26.7" },
   { name: "Fork-lift driver allowance", amount: 0.44, unit: "per hour", clause: "cl 26.3(a)", note: "All-purpose." },
   { name: "Overnight stay allowance (staying on the premises to assist guests)", amount: 67.15, unit: "per overnight stay", clause: "cl 26.15(b)(i)", note: "Work of more than an hour during the stay is paid at 150%." },

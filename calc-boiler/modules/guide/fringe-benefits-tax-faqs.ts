@@ -20,7 +20,7 @@ export const FBT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When is the FBT year?",
-    a: "The FBT year runs from 1 April to 31 March — different from the income tax year (1 July to 30 June). Employers lodge FBT returns and pay FBT by 21 May each year, or by 25 June if lodging electronically through a registered tax agent. Quarterly FBT instalments may also apply.",
+    a: "The FBT year runs from 1 April to 31 March, which is different from the income tax year (1 July to 30 June). Employers lodge FBT returns and pay FBT by 21 May each year, or by 25 June if lodging electronically through a registered tax agent. Quarterly FBT instalments may also apply.",
   },
   {
     q: "What is the FBT rate in Australia?",
@@ -36,11 +36,11 @@ export const FBT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What's the difference between Type 1 and Type 2 fringe benefits?",
-    a: `Type 1 benefits are those on which the employer is entitled to claim a GST credit — they use the higher gross-up factor of ${T1}. Type 2 benefits are those on which no GST credit is available (such as GST-free or input-taxed supplies like residential rent) — they use the lower gross-up factor of ${T2}. The FBT rate of ${RATE} applies to both, but the higher Type 1 gross-up means Type 1 benefits attract more FBT for the same taxable value.`,
+    a: `Type 1 benefits are those on which the employer is entitled to claim a GST credit, and they use the higher gross-up factor of ${T1}. Type 2 benefits are those on which no GST credit is available (such as GST-free or input-taxed supplies like residential rent), and they use the lower gross-up factor of ${T2}. The FBT rate of ${RATE} applies to both, but the higher Type 1 gross-up means Type 1 benefits attract more FBT for the same taxable value.`,
   },
   {
     q: "Does RFBA increase the amount of tax I pay?",
-    a: "Reportable fringe benefits amounts are not taxed again in the employee's hands — the employer has already paid FBT on the benefit — and they are not added to your assessable income. RFBA is used to calculate adjusted taxable income and other income tests, so it can still increase income-tested amounts such as the Medicare levy surcharge, HECS-HELP repayments and Division 293 tax, and reduce Family Tax Benefit, Centrelink payments and the super co-contribution.",
+    a: "Reportable fringe benefits amounts are not taxed again in the employee's hands (the employer has already paid FBT on the benefit), and they are not added to your assessable income. RFBA is used to calculate adjusted taxable income and other income tests, so it can still increase income-tested amounts such as the Medicare levy surcharge, HECS-HELP repayments and Division 293 tax, and reduce Family Tax Benefit, Centrelink payments and the super co-contribution.",
   },
   {
     q: "What qualifies as a minor benefit exemption?",

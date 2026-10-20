@@ -37,7 +37,7 @@ const schadsL1 = levelOf(SCHADS_SACS, (r) => r.classification === "Level 1 pay p
 
 const COVERS: Record<string, string> = {
   "fast-food": "Takeaway outlets and food courts",
-  pharmacy: "Community pharmacies — assistants, students, interns and pharmacists",
+  pharmacy: "Community pharmacies: assistants, students, interns and pharmacists",
   manufacturing: "Metal, engineering and manufacturing workers and tradespeople",
   security: "Security officers and guards",
   clerks: "Office, administration and call-centre staff",

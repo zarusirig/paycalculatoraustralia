@@ -141,7 +141,7 @@ export default function PublicServicePayScalesPage() {
               <ul>
                 <li>
                   <strong>APS (federal).</strong> Classifications come from the Public Service
-                  Classification Rules 2000 &mdash; APS 1 to APS 6, then Executive Level 1 and 2,
+                  Classification Rules 2000: APS 1 to APS 6, then Executive Level 1 and 2,
                   then Senior Executive Service Bands 1 to 3. The classification is service-wide but
                   the salary is not: each agency&rsquo;s enterprise agreement sets its own pay points
                   inside the level.
@@ -154,8 +154,8 @@ export default function PublicServicePayScalesPage() {
                   <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> table.
                 </li>
                 <li>
-                  <strong>Queensland.</strong> Four streams &mdash; administrative (AO), professional
-                  (PO), technical (TO) and operational (OO) &mdash; each with numbered levels and
+                  <strong>Queensland.</strong> Four streams (administrative (AO), professional
+                  (PO), technical (TO) and operational (OO), each with numbered levels and
                   numbered pay points inside them, written as AO3/2 or PO4/1. The award sets the
                   floor and each entity&rsquo;s certified agreement can sit above it.
                 </li>
@@ -241,7 +241,7 @@ export default function PublicServicePayScalesPage() {
                 points, so the honest answer is a range. Across the whole service at 31 December
                 2025 the median APS 6 base salary was <strong>$108,092</strong>, and 90% of APS 6
                 employees were paid between <strong>$97,316</strong> and <strong>$115,199</strong>.
-                One agency&rsquo;s agreement &mdash; Treasury&rsquo;s &mdash; pays APS 6 across four
+                One agency&rsquo;s agreement, Treasury&rsquo;s, pays APS 6 across four
                 pay points from $105,260 to $127,521 from 12 March 2026. Both statements are true;
                 neither is &ldquo;the&rdquo; APS 6 salary.
               </p>
@@ -257,7 +257,7 @@ export default function PublicServicePayScalesPage() {
                 Queensland has a milder version of the same problem, and the{" "}
                 <Link href="/public-service-pay-scales/qld/">Queensland page</Link> keeps the two
                 layers apart: the award rate that job advertisements quote, and one entity&rsquo;s
-                certified agreement schedule shown beside it. Victoria is the exception &mdash; one
+                certified agreement schedule shown beside it. Victoria is the exception: one
                 agreement, one table, published in Schedule C (our{" "}
                 <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> page transcribes it).
               </p>
@@ -307,27 +307,27 @@ export default function PublicServicePayScalesPage() {
               </p>
               <ul>
                 <li>
-                  <Link href="/income-tax-calculator/">Income tax calculator</Link> &mdash; tax and
+                  <Link href="/income-tax-calculator/">Income tax calculator</Link>: tax and
                   Medicare levy on your exact classification salary.
                 </li>
                 <li>
-                  <Link href="/take-home-pay-calculator/">Take-home pay calculator</Link> &mdash; net
+                  <Link href="/take-home-pay-calculator/">Take-home pay calculator</Link>: net
                   pay weekly, fortnightly and monthly.
                 </li>
                 <li>
-                  <Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link> &mdash;
+                  <Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link>:
                   matches the way public service pay points are published.
                 </li>
                 <li>
-                  <Link href="/pay-rise-calculator/">Pay rise calculator</Link> &mdash; what an
+                  <Link href="/pay-rise-calculator/">Pay rise calculator</Link>: what an
                   increment or an agreement increase is worth in the hand.
                 </li>
                 <li>
-                  <Link href="/superannuation-calculator/">Superannuation calculator</Link> &mdash;
+                  <Link href="/superannuation-calculator/">Superannuation calculator</Link>:
                   the effect of an employer rate above the guarantee.
                 </li>
                 <li>
-                  <Link href="/understanding-your-payslip/">Understanding your payslip</Link> &mdash;
+                  <Link href="/understanding-your-payslip/">Understanding your payslip</Link>:
                   where the classification and pay point appear on the payslip.
                 </li>
               </ul>
@@ -345,7 +345,7 @@ export default function PublicServicePayScalesPage() {
               <ul>
                 {PLANNED_JURISDICTIONS.map((planned) => (
                   <li key={planned.slug}>
-                    <strong>{planned.name}</strong> &mdash; {planned.authority}.
+                    <strong>{planned.name}</strong>: {planned.authority}.
                   </li>
                 ))}
               </ul>
@@ -394,7 +394,7 @@ export default function PublicServicePayScalesPage() {
                 </p>
                 <p className="mb-2">
                   Where a service publishes a rate table, the range is the bottom and top pay point.
-                  Where a service publishes actual salaries instead &mdash; the APS &mdash; the range
+                  Where a service publishes actual salaries instead (the APS), the range
                   is the 5th to 95th percentile of reported base salaries with the median beside it,
                   because there is no service-wide rate table to quote.
                 </p>

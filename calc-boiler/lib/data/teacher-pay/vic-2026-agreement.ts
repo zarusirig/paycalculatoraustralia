@@ -83,7 +83,7 @@ export const VIC_2026_AGREEMENT = {
 export const VIC_2026_SCALES: ProposedScale[] = [
   {
     id: "classroom-teachers-2026",
-    title: "Classroom teachers — Range 1 and Range 2",
+    title: "Classroom teachers: Range 1 and Range 2",
     steps: [
       { label: "1-1", rates: [84_631, 92_882, 96_598, 100_462, 105_384], note: "Graduate entry point" },
       { label: "1-2", rates: [86_848, 95_316, 99_128, 103_094, 108_145] },
@@ -100,7 +100,7 @@ export const VIC_2026_SCALES: ProposedScale[] = [
   },
   {
     id: "leading-teacher-learning-specialist-2026",
-    title: "Leading teachers and learning specialists — Range 3",
+    title: "Leading teachers and learning specialists: Range 3",
     steps: [
       { label: "3-1", rates: [127_690, 140_140, 145_745, 151_575, 159_002] },
       { label: "3-2", rates: [133_430, 146_439, 152_297, 158_389, 166_150] },

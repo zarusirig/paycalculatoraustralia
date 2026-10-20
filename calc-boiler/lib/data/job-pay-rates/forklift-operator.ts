@@ -88,7 +88,7 @@ const FORKLIFT_DRIVER_SECTION: OccupationSection = {
     caption: "Forklift driver minimum pay per year and take-home, 2026–27",
     head: ["Classification", "Hourly", "Weekly", "Annual", "Take-home a week"],
     rows: [
-      driverRow("Road Transport — Transport Worker Grade 3", TRANSPORT_GRADE_3),
+      driverRow("Road Transport: Transport Worker Grade 3", TRANSPORT_GRADE_3),
       driverRow("Storeworker grade 2 (licensed forklift driver)", GRADE_2),
       driverRow("Storeworker grade 3", GRADE_3),
       driverRow("Storeworker grade 4", GRADE_4),
@@ -120,13 +120,13 @@ export const FORKLIFT_OPERATOR: Occupation = {
   tables: [
     {
       id: "storage",
-      title: "Forklift operator pay rates — Storage Services and Wholesale Award, 2026–27",
+      title: "Forklift operator pay rates: Storage Services and Wholesale Award, 2026–27",
       intro:
         "Storage Services and Wholesale Award cl 15.1, from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule B.2.1 column: the hourly rate plus the 25% casual loading (cl 11.2). Grade 1 is entry level; a licensed forklift operator starts at grade 2.",
       rows: [
-        storeRow("Storeworker grade 1 — on commencement", 1029.1, 27.08, 33.85, "Entry level"),
-        storeRow("Storeworker grade 1 — after 3 months", 1041.6, 27.41, 34.26),
-        storeRow("Storeworker grade 1 — after 12 months", 1053.5, 27.72, 34.65),
+        storeRow("Storeworker grade 1, on commencement", 1029.1, 27.08, 33.85, "Entry level"),
+        storeRow("Storeworker grade 1, after 3 months", 1041.6, 27.41, 34.26),
+        storeRow("Storeworker grade 1, after 12 months", 1053.5, 27.72, 34.65),
         GRADE_2,
         GRADE_3,
         GRADE_4,
@@ -134,13 +134,13 @@ export const FORKLIFT_OPERATOR: Occupation = {
     },
     {
       id: "other-awards",
-      title: "Forklift operator pay rates — retail, manufacturing and transport awards",
+      title: "Forklift operator pay rates: retail, manufacturing and transport awards",
       intro:
         "The same job under other awards, from the first full pay period on or after 1 July 2026. Retail and Manufacturing from the shared award data on this site; Transport Worker Grade 3 from the Road Transport and Distribution Award.",
       rows: [
-        rowFromModernAward(MANUFACTURING_AWARD, "C12 / V3", "Manufacturing C12 — Employee Level III", "Operation of mobile equipment including fork-lifts"),
-        storeRow("Road Transport — Transport Worker Grade 3", TRANSPORT_GRADE_3.weekly, TRANSPORT_GRADE_3.hourly, 34.79, "Forklift up to 5 tonnes"),
-        rowFromModernAward(MANUFACTURING_AWARD, "C11 / V4", "Manufacturing C11 — Employee Level IV", "Licensed and certified above C12 level"),
+        rowFromModernAward(MANUFACTURING_AWARD, "C12 / V3", "Manufacturing C12: Employee Level III", "Operation of mobile equipment including fork-lifts"),
+        storeRow("Road Transport: Transport Worker Grade 3", TRANSPORT_GRADE_3.weekly, TRANSPORT_GRADE_3.hourly, 34.79, "Forklift up to 5 tonnes"),
+        rowFromModernAward(MANUFACTURING_AWARD, "C11 / V4", "Manufacturing C11: Employee Level IV", "Licensed and certified above C12 level"),
         retailRow("Level 2", "Forklift or ride-on equipment operator"),
       ],
     },
@@ -200,7 +200,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
     },
   ],
   sources: [
-    { title: "Storage Services and Wholesale Award 2020 [MA000084] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000084") },
+    { title: "Storage Services and Wholesale Award 2020 [MA000084], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000084") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

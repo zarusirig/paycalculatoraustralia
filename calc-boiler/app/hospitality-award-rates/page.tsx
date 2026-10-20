@@ -15,7 +15,6 @@ const URL = `${BASE}/hospitality-award-rates/`;
 
 // Derived from the constants so title, description, JSON-LD and page agree.
 const L1 = findRate(HOSPITALITY_RATES, "Level 1");
-const L6 = findRate(HOSPITALITY_RATES, "Level 6");
 
 // CTR test (5 Oct 2026): the page has 14.6k impressions at position 7.9 under the older
 // "Hospitality Award Pay Rates ... Penalty Rates" title. The new title leads with the head

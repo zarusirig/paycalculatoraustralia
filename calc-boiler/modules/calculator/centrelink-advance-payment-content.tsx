@@ -31,7 +31,7 @@ function source(title: string, url: string): SourceLink {
 
 const SOURCES_LIST = [
   source("Advance payment", SRC.advancePayment),
-  source("Centrelink online account help — apply for an advance payment", SRC.advancePaymentHowToApply),
+  source("Centrelink online account help, apply for an advance payment", SRC.advancePaymentHowToApply),
 ];
 
 export default function CentrelinkAdvancePaymentContent() {
@@ -67,7 +67,7 @@ export default function CentrelinkAdvancePaymentContent() {
       </W3Section>
 
       <W3Section title="Special Employment Advance">
-        <p className={P}>A separate advance of {formatAUD(ADVANCE_LIMITS.specialEmployment.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.specialEmployment.max)} for people who have been on Austudy, Carer Payment, Disability Support Pension, JobSeeker, Parenting Payment Single or Youth Allowance for at least 3 months and get a job of at least 6 weeks that will cut their payment by at least 50% — to buy things needed to start, such as work boots, tools or hi-vis — or whose employer hasn&apos;t paid them yet and won&apos;t for another 2 days. It is claimed with a form rather than online. Starting work will reduce your payment through the income test: see the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker payment calculator</Link>.</p>
+        <p className={P}>A separate advance of {formatAUD(ADVANCE_LIMITS.specialEmployment.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.specialEmployment.max)} for people who have been on Austudy, Carer Payment, Disability Support Pension, JobSeeker, Parenting Payment Single or Youth Allowance for at least 3 months and get a job of at least 6 weeks that will cut their payment by at least 50% (to buy things needed to start, such as work boots, tools or hi-vis), or whose employer hasn&apos;t paid them yet and won&apos;t for another 2 days. It is claimed with a form rather than online. Starting work will reduce your payment through the income test: see the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker payment calculator</Link>.</p>
       </W3Section>
 
       <W3Section title="How to Apply">

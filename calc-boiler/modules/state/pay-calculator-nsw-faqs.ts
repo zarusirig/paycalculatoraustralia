@@ -22,7 +22,7 @@ export const NSW_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When do I get long service leave in NSW?",
-    a: "After 10 years of continuous service with the same employer you are entitled to 8.67 weeks — two months — of paid leave under the Long Service Leave Act 1955, then 4.33 weeks for each further 5 years. Between 5 and 10 years a pro-rata payment is only owed in defined circumstances.",
+    a: "After 10 years of continuous service with the same employer you are entitled to 8.67 weeks (two months) of paid leave under the Long Service Leave Act 1955, then 4.33 weeks for each further 5 years. Between 5 and 10 years a pro-rata payment is only owed in defined circumstances.",
   },
   {
     q: "Do employees pay payroll tax or workers compensation premiums?",

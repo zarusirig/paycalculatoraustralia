@@ -26,7 +26,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is overtime taxed in Australia?",
-    a: `Overtime and penalty rate income is added to your regular income and taxed at your marginal rate. There is no separate tax rate for overtime or penalty rate income, and the ATO treats all employment earnings identically for PAYG withholding. Income between ${formatAUD(MID.min)} and ${formatAUD(MID.max)} is taxed at ${pct(MID.rate)} — the 32.5% bracket many guides still quote has not existed since the Stage 3 changes. Use our Overtime Pay Calculator to see the after-tax amount.`,
+    a: `Overtime and penalty rate income is added to your regular income and taxed at your marginal rate. There is no separate tax rate for overtime or penalty rate income, and the ATO treats all employment earnings identically for PAYG withholding. Income between ${formatAUD(MID.min)} and ${formatAUD(MID.max)} is taxed at ${pct(MID.rate)}. The 32.5% bracket many guides still quote has not existed since the Stage 3 changes. Use our Overtime Pay Calculator to see the after-tax amount.`,
     links: { "Overtime Pay Calculator": "/overtime-pay-calculator/" },
   },
   {
@@ -40,7 +40,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is casual loading paid on top of penalty rates?",
-    a: `Casual penalty rates are additive, not compounded. In the retail award, casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate — the ${pct(RETAIL_PENALTIES.sunday)} Sunday rate plus the ${CASUAL} casual loading — not ${pct(RETAIL_PENALTIES.sunday)} multiplied by 1.25, which would give ${pct(RETAIL_PENALTIES.sunday * 1.25)}. The award's casual column already includes the loading, so it is not added again. Compounding is one of the most common payroll errors.`,
+    a: `Casual penalty rates are additive, not compounded. In the retail award, casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate: the ${pct(RETAIL_PENALTIES.sunday)} Sunday rate plus the ${CASUAL} casual loading, not ${pct(RETAIL_PENALTIES.sunday)} multiplied by 1.25, which would give ${pct(RETAIL_PENALTIES.sunday * 1.25)}. The award's casual column already includes the loading, so it is not added again. Compounding is one of the most common payroll errors.`,
   },
   {
     q: "How do hospitality evening and night rates work?",

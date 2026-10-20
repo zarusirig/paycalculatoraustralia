@@ -47,7 +47,7 @@ import FeaturedImage from "@/components/common/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
 
-const TITLE = "Site Directory — Every Calculator, Guide & Tax Table";
+const TITLE = "Site Directory - Every Calculator, Guide & Tax Table";
 const DESCRIPTION =
   "Complete index of every calculator, guide, tax table and salary breakdown on Pay Calculator Australia. Browse the full site in one page.";
 
@@ -401,7 +401,7 @@ function Page() {
               Site Directory
             </h1>
             <p className="text-lg leading-relaxed text-warmgray">
-              Every calculator, guide, tax table and salary breakdown on this site — {total} pages,
+              Every calculator, guide, tax table and salary breakdown on this site: {total} pages,
               organised by topic. All figures use official ATO rates for FY{SITE_CONFIG.financialYear}.
             </p>
             <FeaturedImage className="mb-0 mt-6" />

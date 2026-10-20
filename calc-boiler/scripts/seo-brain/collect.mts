@@ -16,7 +16,7 @@ import { execSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { expectedCtr, Opportunity, PageSignals, SiteSignals, type Level, type Opportunity as Opp, type PageSignals as Page, type Template } from "./schema.mts";
+import { expectedCtr, Opportunity, SiteSignals, type Level, type Opportunity as Opp, type PageSignals as Page, type Template } from "./schema.mts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../..");

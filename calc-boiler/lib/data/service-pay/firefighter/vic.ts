@@ -30,7 +30,7 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   nameInSentence: "Victoria",
   employer: "Fire Rescue Victoria",
   agreementName:
-    "Fire Rescue Victoria — current gross salary pay rates (What you will get in return); underlying instrument: Fire Rescue Victoria Operational Employees Interim Enterprise Agreement 2020",
+    "Fire Rescue Victoria, current gross salary pay rates (What you will get in return); underlying instrument: Fire Rescue Victoria Operational Employees Interim Enterprise Agreement 2020",
   agreementUrl: "https://www.frv.vic.gov.au/what-you-will-get-return",
   ratesEffectiveFrom: "15 July 2026 (the date FRV published them; FRV does not say when they took effect)",
   nextIncrease: null,
@@ -47,27 +47,27 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Recruit Firefighter",
           salary: 58_066,
-          note: "$1,113.60 per week — during the 20-week training course",
+          note: "$1,113.60 per week, during the 20-week training course",
         },
         {
           label: "Firefighter Level 1",
           salary: 80_959,
-          note: "$1,552.63 per week — on completion of the recruit course",
+          note: "$1,552.63 per week, on completion of the recruit course",
         },
         {
           label: "Firefighter Level 2",
           salary: 82_457,
-          note: "$1,581.36 per week — on completion of 12 months' service and all required modules",
+          note: "$1,581.36 per week, on completion of 12 months' service and all required modules",
         },
         {
           label: "Firefighter Level 3",
           salary: 84_139,
-          note: "$1,613.62 per week — on completion of 24 months' service and all required modules",
+          note: "$1,613.62 per week, on completion of 24 months' service and all required modules",
         },
         {
           label: "Qualified Firefighter",
           salary: 90_669,
-          note: "$1,738.86 per week — on completion of 36 months' service and a certificate of proficiency",
+          note: "$1,738.86 per week, on completion of 36 months' service and a certificate of proficiency",
         },
       ],
     },
@@ -96,12 +96,12 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "What you will get in return (firefighter recruitment — remuneration and entitlements)",
+      title: "What you will get in return (firefighter recruitment: remuneration and entitlements)",
       publisher: "Fire Rescue Victoria",
       url: "https://www.frv.vic.gov.au/what-you-will-get-return",
     },
     {
-      title: "United Firefighters' Union of Australia — application for an intractable bargaining declaration (B2023/771)",
+      title: "United Firefighters' Union of Australia, application for an intractable bargaining declaration (B2023/771)",
       publisher: "Fair Work Commission",
       url: "https://www.fwc.gov.au/hearings-decisions/major-cases/united-firefighters-union-australia-application-intractable",
     },

@@ -165,8 +165,8 @@ export type AdvanceKind = "pensionSingle" | "pensionCouple" | "allowance" | "ftb
  * cap on all FTB advances combined; the lowest FTB advance is not published.
  */
 export const ADVANCE_LIMITS: Record<AdvanceKind, { label: string; min: number | null; max: number }> = {
-  pensionSingle: { label: "Age Pension, Carer Payment or DSP — single", min: 588.05, max: 1_764.15 },
-  pensionCouple: { label: "Age Pension, Carer Payment or DSP — member of a couple", min: 443.30, max: 1_329.90 },
+  pensionSingle: { label: "Age Pension, Carer Payment or DSP, single", min: 588.05, max: 1_764.15 },
+  pensionCouple: { label: "Age Pension, Carer Payment or DSP, member of a couple", min: 443.30, max: 1_329.90 },
   allowance: { label: "JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY", min: 250, max: 500 },
   ftb: { label: "Family Tax Benefit Part A (all advances combined)", min: null, max: 1_430.46 },
   specialEmployment: { label: "Special Employment Advance", min: 50, max: 500 },

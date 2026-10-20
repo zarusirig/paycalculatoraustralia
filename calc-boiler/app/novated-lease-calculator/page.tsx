@@ -16,7 +16,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-calculator/`;
-const TITLE = "Novated Lease Calculator — EV, PHEV and FBT";
+const TITLE = "Novated Lease Calculator - EV, PHEV and FBT";
 const DESCRIPTION = "Novated lease calculator: salary sacrifice a car and see the pre-tax deduction, post-tax contribution, FBT or the EV exemption, and take-home pay before and after.";
 
 export const metadata: Metadata = withFeaturedImage({

@@ -55,7 +55,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much do the Stage 3 tax cuts save me?",
-    a: `Every taxpayer earning above ${formatAUD(TAX_FREE_THRESHOLD)} receives a tax cut under the revised plan, starting at ${Math.round(LOW_CUT * 100)}c for each dollar over ${formatAUD(TAX_FREE_THRESHOLD)}. Compared with FY2023-24 rates, at $30,000 you save ${formatAUD(saving(30_000))}, at $50,000 you save ${formatAUD(saving(50_000))}, at $100,000 you save ${formatAUD(saving(100_000))}, and at $190,000+ you save ${formatAUD(saving(190_000))}. The ${pct(NEW_LOW.rate)} to ${pct(TAX_BRACKETS[1].rate)} cut from ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} adds up to ${formatAUD((TAX_BRACKETS[1].max - TAX_BRACKETS[1].min + 1) * (NEW_LOW.rate - TAX_BRACKETS[1].rate))} more. The exact saving depends on your taxable income — use the comparison table above or our Income Tax Calculator.`,
+    a: `Every taxpayer earning above ${formatAUD(TAX_FREE_THRESHOLD)} receives a tax cut under the revised plan, starting at ${Math.round(LOW_CUT * 100)}c for each dollar over ${formatAUD(TAX_FREE_THRESHOLD)}. Compared with FY2023-24 rates, at $30,000 you save ${formatAUD(saving(30_000))}, at $50,000 you save ${formatAUD(saving(50_000))}, at $100,000 you save ${formatAUD(saving(100_000))}, and at $190,000+ you save ${formatAUD(saving(190_000))}. The ${pct(NEW_LOW.rate)} to ${pct(TAX_BRACKETS[1].rate)} cut from ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} adds up to ${formatAUD((TAX_BRACKETS[1].max - TAX_BRACKETS[1].min + 1) * (NEW_LOW.rate - TAX_BRACKETS[1].rate))} more. The exact saving depends on your taxable income. Use the comparison table above or our Income Tax Calculator.`,
     links: { "Income Tax Calculator": "/income-tax-calculator/" },
   },
   {
@@ -76,7 +76,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are there more tax changes coming?",
-    a: `Yes. The ${pct(NEW_LOW.rate)} rate fell to ${pct(LEGISLATED_CUT_2027_28.fromRate)} on ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} — read our news coverage of the next tax cut from 1 July 2026 for what it means for your pay — and a further legislated cut lowers it to ${pct(LEGISLATED_CUT_2027_28.toRate)} from ${LEGISLATED_CUT_2027_28.effectiveDate}. Check our Tax Changes 2026-27 Guide for the latest announced changes and our Tax Brackets Guide for the current rates.`,
+    a: `Yes. The ${pct(NEW_LOW.rate)} rate fell to ${pct(LEGISLATED_CUT_2027_28.fromRate)} on ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} (read our news coverage of the next tax cut from 1 July 2026 for what it means for your pay), and a further legislated cut lowers it to ${pct(LEGISLATED_CUT_2027_28.toRate)} from ${LEGISLATED_CUT_2027_28.effectiveDate}. Check our Tax Changes 2026-27 Guide for the latest announced changes and our Tax Brackets Guide for the current rates.`,
     links: {
       "next tax cut from 1 July 2026": "/news/tax-cut-july-2026/",
       "Tax Changes 2026-27 Guide": "/tax-changes-2026-27/",

@@ -54,7 +54,7 @@ export default function STSLOnPayslipPage() {
           <p className="text-xl text-warmgray leading-relaxed mb-2">
             STSL on a payslip stands for <strong>Study and Training Support Loans</strong>: the extra PAYG amount an employer withholds each pay toward the compulsory repayment of a HECS-HELP, FEE-HELP, VET Student Loan or other government study loan. For {SITE_CONFIG.financialYear} withholding starts once earnings pass {formatAUD(STSL_THRESHOLD_2026_27)} a year, about {formatAUD(STSL_THRESHOLD_2026_27 / 52)} a week or {formatAUD(STSL_THRESHOLD_2026_27 / 26)} a fortnight, at {Math.round(BAND_15.marginalRate * 100)} cents per dollar above the threshold.
           </p>
-          <p className="text-sm text-warmgray-light mb-6">Updated: 2 July 2026 — reflects FY2026-27 thresholds.</p>
+          <p className="text-sm text-warmgray-light mb-6">Updated: 2 July 2026. Reflects FY2026-27 thresholds.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -67,7 +67,7 @@ export default function STSLOnPayslipPage() {
             <section id="what-does-stsl-stand-for">
               <h2>What Does STSL Stand For?</h2>
               <p>
-                STSL is the ATO&apos;s umbrella term for every Australian government study and training loan. Payroll software uses the STSL label because the same withholding rules apply to all of these loan types &mdash; not just HECS. Older payslips may show the same deduction as &quot;HECS&quot;, &quot;HELP&quot;, or &quot;SFSS&quot;; they all mean the same thing.
+                STSL is the ATO&apos;s umbrella term for every Australian government study and training loan. Payroll software uses the STSL label because the same withholding rules apply to all of these loan types, not just HECS. Older payslips may show the same deduction as &quot;HECS&quot;, &quot;HELP&quot;, or &quot;SFSS&quot;; they all mean the same thing.
               </p>
               <div className="overflow-x-auto not-prose my-6">
                 <table className="min-w-full text-sm border border-gray-200 rounded-lg">
@@ -96,7 +96,7 @@ export default function STSLOnPayslipPage() {
               </p>
               <ul>
                 <li><strong>You told your employer you have a study loan.</strong> Payroll flags your record, and the ATO&apos;s STSL withholding schedules activate.</li>
-                <li><strong>Your earnings exceed the repayment threshold for your pay cycle.</strong> For FY2026-27 the annual threshold is <strong>{formatAUD(STSL_THRESHOLD_2026_27)}</strong> &mdash; roughly {formatAUD(Math.round(STSL_THRESHOLD_2026_27 / 52))} per week or {formatAUD(Math.round(STSL_THRESHOLD_2026_27 / 26))} per fortnight before STSL withholding begins.</li>
+                <li><strong>Your earnings exceed the repayment threshold for your pay cycle.</strong> For FY2026-27 the annual threshold is <strong>{formatAUD(STSL_THRESHOLD_2026_27)}</strong>, roughly {formatAUD(Math.round(STSL_THRESHOLD_2026_27 / 52))} per week or {formatAUD(Math.round(STSL_THRESHOLD_2026_27 / 26))} per fortnight before STSL withholding begins.</li>
               </ul>
               <p>
                 If STSL suddenly appeared after a pay rise, that is usually the reason: your per-pay earnings crossed the threshold. Casual and variable-hour workers may see STSL in big weeks and not in quiet ones, because the schedules apply to each pay period independently.
@@ -106,7 +106,7 @@ export default function STSLOnPayslipPage() {
             <section id="how-is-stsl-calculated">
               <h2>How Is the STSL Amount Calculated?</h2>
               <p>
-                Your employer does not calculate your actual HECS repayment. Instead, payroll software looks up your gross earnings for the pay period in the ATO&apos;s <strong>STSL component tax tables</strong> &mdash; published alongside the standard <Link href="/payg-withholding-tables/">PAYG withholding tables</Link> &mdash; and withholds the listed extra amount on top of normal income tax.
+                Your employer does not calculate your actual HECS repayment. Instead, payroll software looks up your gross earnings for the pay period in the ATO&apos;s <strong>STSL component tax tables</strong>, published alongside the standard <Link href="/payg-withholding-tables/">PAYG withholding tables</Link>: and withholds the listed extra amount on top of normal income tax.
               </p>
               <p>
                 The tables are built from the annual repayment bands. For FY2026-27, compulsory repayments are <strong>15c per dollar of repayment income above {formatAUD(STSL_THRESHOLD_2026_27)}</strong> (rising to 17c above {formatAUD(BAND_15.max)}, and 10% of total repayment income from {formatAUD(BAND_10.min)}). Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your annual figure and weekly impact at any salary.
@@ -135,19 +135,19 @@ export default function STSLOnPayslipPage() {
                 </table>
               </div>
               <p className="text-sm">
-                The STSL line tracks the annual repayment: at {formatAUD(80_000)}, the FY2026-27 compulsory repayment is <strong>{formatAUD(EX_HECS)}</strong> a year, which is about <strong>{formatAUD(EX_STSL_FN)} per fortnight</strong>. The PAYG line includes the 2% Medicare levy. Figures are rounded &mdash; the exact withholding comes from the ATO STSL tax tables for your pay cycle. Cross-check your own payslip with our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>.
+                The STSL line tracks the annual repayment: at {formatAUD(80_000)}, the FY2026-27 compulsory repayment is <strong>{formatAUD(EX_HECS)}</strong> a year, which is about <strong>{formatAUD(EX_STSL_FN)} per fortnight</strong>. The PAYG line includes the 2% Medicare levy. Figures are rounded; the exact withholding comes from the ATO STSL tax tables for your pay cycle. Cross-check your own payslip with our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>.
               </p>
             </section>
 
             <section id="stsl-vs-actual-repayment">
               <h2>STSL Withholding vs Your Actual Annual Repayment</h2>
               <p>
-                The STSL amounts on your payslip are <strong>estimates held as a credit</strong> &mdash; they do not come off your loan balance during the year. When you lodge your tax return, the ATO calculates your real compulsory repayment from your full-year <em>repayment income</em> (taxable income plus reportable super, fringe benefits, net investment losses, and exempt foreign income) and applies the STSL credits against it.
+                The STSL amounts on your payslip are <strong>estimates held as a credit</strong>: they do not come off your loan balance during the year. When you lodge your tax return, the ATO calculates your real compulsory repayment from your full-year <em>repayment income</em> (taxable income plus reportable super, fringe benefits, net investment losses, and exempt foreign income) and applies the STSL credits against it.
               </p>
               <ul>
                 <li><strong>Too much withheld?</strong> Common if your income varied, you worked part of the year, or you have deductions. The excess comes back in your tax refund.</li>
                 <li><strong>Too little withheld?</strong> Common with second jobs (no STSL withheld if each job is under the threshold), salary sacrifice, or investment income. You will owe the shortfall at assessment.</li>
-                <li><strong>Timing quirk:</strong> because credits are applied at assessment, your HELP balance is still indexed on 1 June on its full outstanding amount &mdash; the year&apos;s withholding does not reduce it beforehand.</li>
+                <li><strong>Timing quirk:</strong> because credits are applied at assessment, your HELP balance is still indexed on 1 June on its full outstanding amount, and the year&apos;s withholding does not reduce it beforehand.</li>
               </ul>
               <p>
                 A second job is the most common cause of an STSL shortfall. If you work two jobs, check our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see your combined position, and read the <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> for repayment strategies.
@@ -157,7 +157,7 @@ export default function STSLOnPayslipPage() {
             <section id="stop-stsl">
               <h2>How to Stop STSL Deductions After Paying Off Your Loan</h2>
               <p>
-                Employers keep withholding STSL until you tell them to stop &mdash; the ATO does not notify payroll automatically. Once your loan balance reaches zero:
+                Employers keep withholding STSL until you tell them to stop. The ATO does not notify payroll automatically. Once your loan balance reaches zero:
               </p>
               <ol>
                 <li><strong>Check your balance</strong> in ATO online services (via myGov) under Loan accounts. Remember the year&apos;s withheld STSL has not been applied yet if you haven&apos;t lodged your return.</li>
@@ -165,7 +165,7 @@ export default function STSLOnPayslipPage() {
                 <li><strong>Payroll removes the STSL flag</strong> and the deduction stops from the next pay run.</li>
               </ol>
               <p>
-                If you forget, nothing is lost &mdash; the extra withholding is refunded when you lodge your tax return &mdash; but you are giving the ATO an interest-free loan from every pay in the meantime.
+                If you forget, nothing is lost (the extra withholding is refunded when you lodge your tax return), but you are giving the ATO an interest-free loan from every pay in the meantime.
               </p>
             </section>
 

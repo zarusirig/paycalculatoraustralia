@@ -18,7 +18,7 @@ const URL = `${BASE}/tax-return-calculator/`;
 
 const THIS = RETURN_YEARS["2025-26"];
 const NEXT = RETURN_YEARS["2026-27"];
-const TITLE = `Tax Return Calculator ${THIS.returnName} — Estimate Your ${THIS.incomeYear} Refund`;
+const TITLE = `Tax Return Calculator ${THIS.returnName} - Estimate Your ${THIS.incomeYear} Refund`;
 const DESCRIPTION = `Estimate your ${THIS.incomeYear} tax refund or bill using the ${THIS.incomeYear} rates your ${THIS.returnName} return is assessed on. Due ${RETURN_2026.selfLodgeDueDate}. Switch to ${NEXT.incomeYear} to plan next year.`;
 
 export const metadata: Metadata = withFeaturedImage({

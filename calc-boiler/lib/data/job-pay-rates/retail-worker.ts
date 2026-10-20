@@ -73,10 +73,10 @@ export const RETAIL_WORKER: Occupation = {
   headline: {
     tableId: "retail",
     label: "Retail Employee Level 1",
-    why: "a shop assistant or checkout operator — the award's own indicative Level 1 job titles",
+    why: "a shop assistant or checkout operator, the award's own indicative Level 1 job titles",
   },
   coverage: [
-    "Retail workers in shops, supermarkets, department stores and other retail businesses are covered by the General Retail Industry Award 2020 [MA000004], unless the business is covered by a more specific award — pharmacies (Pharmacy Award), fast food outlets (Fast Food Award), and motor vehicle retailing (Vehicle Repair, Services and Retail Award) have their own.",
+    "Retail workers in shops, supermarkets, department stores and other retail businesses are covered by the General Retail Industry Award 2020 [MA000004], unless the business is covered by a more specific award: pharmacies (Pharmacy Award), fast food outlets (Fast Food Award), and motor vehicle retailing (Vehicle Repair, Services and Retail Award) have their own.",
     "Most shop assistants, checkout operators, store workers, trolley collectors and merchandisers are Retail Employee Level 1 (Schedule A.1.3). Forklift and ride-on equipment operators are Level 2. Senior salespeople and second-in-charge of a department are Level 3, and a department manager with up to 2 staff, a shift or nightfill supervisor, or a butcher, baker or florist using a trade qualification is Level 4.",
     "Large supermarket and department store chains usually pay under an enterprise agreement. The employer pages linked on this site set out what Coles, Woolworths, Kmart and Bunnings agreements pay.",
   ],
@@ -99,7 +99,7 @@ export const RETAIL_WORKER: Occupation = {
     "Percentages of the minimum hourly rate for ordinary hours (cl 22.1, Table 12). Casual percentages include the 25% casual loading. Shiftworkers have separate rates that are not shown here.",
   overtime: [
     `Full-time and part-time: ${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.weekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.sunday)}; public holiday ${pct(RETAIL_OVERTIME.publicHoliday)} (cl 21.2(c), Table 11).`,
-    `Casual: ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.casualSunday)}; public holiday ${pct(RETAIL_OVERTIME.casualPublicHoliday)} — the casual loading is included.`,
+    `Casual: ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.casualSunday)}; public holiday ${pct(RETAIL_OVERTIME.casualPublicHoliday)}; the casual loading is included.`,
   ],
   allowances: RETAIL_ALLOWANCES.filter((a) => /Meal allowance \(|Laundry of special clothing — full-time|First aid|Liquor licence|Motor vehicle/.test(a.name)).map((a) => ({
     name: a.name,
@@ -111,14 +111,14 @@ export const RETAIL_WORKER: Occupation = {
     "Junior rates apply only to Retail Employee Levels 1 to 3 (cl 17.2), and the percentages for 18- and 19-year-olds with more than 6 months with their employer rise in steps from the first full pay period on or after 1 December 2026 ([2026] FWCFB 75; determination PR813655). See the junior pay rates page for the schedule.",
   ],
   notShown: [
-    "Junior percentages and the phase-in schedule — see the junior pay rates page.",
+    "Junior percentages and the phase-in schedule: see the junior pay rates page.",
     "Shiftworker penalty rates and baking production early-morning rates.",
     "Retail Employee Levels 5 to 8 duty definitions (Schedule A.5–A.8).",
   ],
   faqs: [
     {
       q: "What is the award rate for a retail worker in 2026?",
-      a: "A shop assistant or checkout operator (Retail Employee Level 1) must be paid at least $27.81 an hour, or $1,056.80 a week, under the General Retail Industry Award from the first full pay period on or after 1 July 2026 — $54,954 a year full-time before tax.",
+      a: "A shop assistant or checkout operator (Retail Employee Level 1) must be paid at least $27.81 an hour, or $1,056.80 a week, under the General Retail Industry Award from the first full pay period on or after 1 July 2026, or $54,954 a year full-time before tax.",
     },
     {
       q: "What is the casual rate for a retail worker?",
@@ -126,7 +126,7 @@ export const RETAIL_WORKER: Occupation = {
     },
     {
       q: "How much do retail workers get paid on a Sunday?",
-      a: "Full-time and part-time retail workers get 150% of the minimum hourly rate on Sunday — $41.72 an hour at Level 1. Casuals get 175%, $48.67 an hour.",
+      a: "Full-time and part-time retail workers get 150% of the minimum hourly rate on Sunday, which is $41.72 an hour at Level 1. Casuals get 175%, $48.67 an hour.",
     },
     {
       q: "Do supermarket workers get the retail award rate?",
@@ -138,7 +138,7 @@ export const RETAIL_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "General Retail Industry Award 2020 [MA000004] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RETAIL_AWARD.code) },
+    { title: "General Retail Industry Award 2020 [MA000004], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(RETAIL_AWARD.code) },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

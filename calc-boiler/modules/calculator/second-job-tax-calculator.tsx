@@ -137,7 +137,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                     <div>
-                      <label htmlFor="job1" className="block text-sm font-medium text-navy mb-1">Job 1 — Annual Salary (with tax-free threshold)</label>
+                      <label htmlFor="job1" className="block text-sm font-medium text-navy mb-1">Job 1: Annual Salary (with tax-free threshold)</label>
                       <div className="flex items-center">
                         <span className="text-warmgray-light mr-2">$</span>
                         <input type="number" id="job1" min={0} max={300000} step={1000} value={job1Salary}
@@ -148,7 +148,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                         value={clamp(job1Salary, 0, 200000)} onChange={(e) => setJob1Salary(Number(e.target.value))} />
                     </div>
                     <div>
-                      <label htmlFor="job2" className="block text-sm font-medium text-navy mb-1">Job 2 — Annual Salary (no tax-free threshold)</label>
+                      <label htmlFor="job2" className="block text-sm font-medium text-navy mb-1">Job 2: Annual Salary (no tax-free threshold)</label>
                       <div className="flex items-center">
                         <span className="text-warmgray-light mr-2">$</span>
                         <input type="number" id="job2" min={0} max={300000} step={1000} value={job2Salary}
@@ -168,7 +168,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                     {/* Job 1 breakdown */}
                     <Card className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
                       <CardContent className="p-4">
-                        <h3 className="text-sm font-semibold text-navy mb-2">Job 1 — With Tax-Free Threshold</h3>
+                        <h3 className="text-sm font-semibold text-navy mb-2">Job 1: With Tax-Free Threshold</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Gross</span><span className="font-medium text-navy">{formatAUD(job1Salary)}</span></div>
                           <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">{formatNegAUD(result.job1TotalWithheld)}</span></div>
@@ -181,7 +181,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                     {/* Job 2 breakdown */}
                     <Card className="bg-sandstone border-0 shadow-none">
                       <CardContent className="p-4">
-                        <h3 className="text-sm font-semibold text-navy mb-2">Job 2 — No Tax-Free Threshold</h3>
+                        <h3 className="text-sm font-semibold text-navy mb-2">Job 2: No Tax-Free Threshold</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Gross</span><span className="font-medium text-navy">{formatAUD(job2Salary)}</span></div>
                           <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">{formatNegAUD(result.job2TotalWithheld)}</span></div>
@@ -194,7 +194,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                     {/* Combined EOFY */}
                     <Card id="calc-result" className="bg-white border border-sandstone-dark/20 shadow-sm">
                       <CardContent className="p-4">
-                        <h3 className="text-sm font-semibold text-navy mb-2">Combined — End of Financial Year</h3>
+                        <h3 className="text-sm font-semibold text-navy mb-2">Combined: End of Financial Year</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Combined Income</span><span className="font-medium text-navy">{formatAUD(result.totalIncome)}</span></div>
                           <div className="flex justify-between"><span className="text-warmgray">Total Withheld</span><span className="font-medium text-navy">{formatNegAUD(result.totalWithheld)}</span></div>

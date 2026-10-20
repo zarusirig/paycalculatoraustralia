@@ -13,10 +13,10 @@ export default function CentrelinkChangesJuly2026() {
 
       <NewsKeyFacts
         rows={[
-          { label: "FTB Part A — per child under 13", after: "$235.48/fortnight" },
-          { label: "FTB Part A — per child 13–15", after: "$306.46/fortnight" },
-          { label: "FTB Part B — youngest under 5", after: "$200.34/fortnight" },
-          { label: "FTB Part B — youngest 5 and over", after: "$139.86/fortnight" },
+          { label: "FTB Part A, per child under 13", after: "$235.48/fortnight" },
+          { label: "FTB Part A, per child 13–15", after: "$306.46/fortnight" },
+          { label: "FTB Part B, youngest under 5", after: "$200.34/fortnight" },
+          { label: "FTB Part B, youngest 5 and over", after: "$139.86/fortnight" },
           { label: "FTB Part B primary earner limit", after: "$124,327" },
         ]}
       />
@@ -41,7 +41,7 @@ export default function CentrelinkChangesJuly2026() {
       <h2>Income limits moved too</h2>
       <p>
         Alongside the rate rises, the Family Tax Benefit Part B primary earner income limit lifted
-        to $124,327 for 2026-27 — families where the primary earner earns more than that aren&apos;t
+        to $124,327 for 2026-27. Families where the primary earner earns more than that aren&apos;t
         eligible for Part B at all. Family Tax Benefit Part A&apos;s income-free areas and taper
         thresholds were indexed on the same date, which can lift the payment for some families
         already receiving a part rate, and may bring some higher-income families back into
@@ -65,7 +65,7 @@ export default function CentrelinkChangesJuly2026() {
       <h2>Do you need to do anything</h2>
       <p>
         Existing Family Tax Benefit recipients get the higher rate automatically from their first
-        payment after 1 July 2026 — there&apos;s no need to reapply. If your family income has
+        payment after 1 July 2026, and there&apos;s no need to reapply. If your family income has
         dropped below the new, higher Part B limit and you weren&apos;t previously eligible, or
         you have a new baby or changed care arrangements, you&apos;ll need to lodge or update a
         claim through myGov to start receiving the payment. It&apos;s also worth confirming your

@@ -64,7 +64,7 @@ export default function ChildCareSubsidyCalculatorContent() {
               <tr><td className={TD}>{formatAUD(CCS.higher.band1End)} to below {formatAUD(CCS.higher.band2Start)}</td><td className={TD}>{CCS.higher.plateauPercent}%</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(CCS.higher.band2Start)} to below {formatAUD(CCS.higher.band2End)}</td><td className={TD}>Down 1% for every {formatAUD(CCS.higher.step)}, from {CCS.higher.plateauPercent}% to {CCS.higher.floorPercent}%</td></tr>
               <tr><td className={TD}>{formatAUD(CCS.higher.band2End)} to below {formatAUD(CCS.higher.incomeLimit)}</td><td className={TD}>{CCS.higher.floorPercent}%</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(CCS.higher.incomeLimit)} or more</td><td className={TD}>No higher rate — every child gets the standard rate</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(CCS.higher.incomeLimit)} or more</td><td className={TD}>No higher rate; every child gets the standard rate</td></tr>
             </tbody>
           </table>
         </div>
@@ -88,7 +88,7 @@ export default function ChildCareSubsidyCalculatorContent() {
       </W3Section>
 
       <W3Section title="Hourly Rate Caps 2026-27">
-        <p className={P}>Your CCS percentage applies to the lower of your hourly fee and the cap. If your centre charges a daily session, the hourly fee is the daily fee divided by the session length — not the hours your child actually attends.</p>
+        <p className={P}>Your CCS percentage applies to the lower of your hourly fee and the cap. If your centre charges a daily session, the hourly fee is the daily fee divided by the session length, not the hours your child actually attends.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Care type</th><th scope="col" className={TH + " text-right"}>Below school age</th><th scope="col" className={TH + " text-right"}>School age</th></tr></thead>
@@ -106,7 +106,7 @@ export default function ChildCareSubsidyCalculatorContent() {
       </W3Section>
 
       <W3Section title="The 3 Day Guarantee: Hours of Subsidised Care">
-        <p className={P}>The CCS activity test was replaced on {CCS.hours.guaranteeFrom}. Every eligible family now gets at least {CCS.hours.guaranteed} hours of subsidised care per child each fortnight — about three 12-hour days a week — however many hours the parents work.</p>
+        <p className={P}>The CCS activity test was replaced on {CCS.hours.guaranteeFrom}. Every eligible family now gets at least {CCS.hours.guaranteed} hours of subsidised care per child each fortnight (about three 12-hour days a week), however many hours the parents work.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your circumstances</th><th scope="col" className={TH + " text-right"}>Subsidised hours a fortnight, per child</th></tr></thead>
@@ -120,7 +120,7 @@ export default function ChildCareSubsidyCalculatorContent() {
       </W3Section>
 
       <W3Section title="How Your Pay Changes Your CCS">
-        <p className={P}>CCS is means-tested on your family&apos;s combined adjusted taxable income for the financial year — both parents&apos; wages, overtime and bonuses, plus reportable fringe benefits and reportable super contributions. Between {formatAUD(CCS.standard.lowerThreshold)} and {formatAUD(CCS.standard.cutOut)}, every extra {formatAUD(CCS.standard.step)} the family earns takes 1 percentage point off the standard subsidy. On {formatAUD(100)} of capped fees a day, that is about $1 a day per child for each {formatAUD(CCS.standard.step)} of extra income.</p>
+        <p className={P}>CCS is means-tested on your family&apos;s combined adjusted taxable income for the financial year: both parents&apos; wages, overtime and bonuses, plus reportable fringe benefits and reportable super contributions. Between {formatAUD(CCS.standard.lowerThreshold)} and {formatAUD(CCS.standard.cutOut)}, every extra {formatAUD(CCS.standard.step)} the family earns takes 1 percentage point off the standard subsidy. On {formatAUD(100)} of capped fees a day, that is about $1 a day per child for each {formatAUD(CCS.standard.step)} of extra income.</p>
         <p className={P}>Because CCS is paid on an estimate, a mid-year pay rise should go into your family income estimate straight away; otherwise the difference comes back as a debt when your CCS is balanced after the financial year. Check what a raise adds after tax on the <Link href="/pay-rise-calculator/" className={LINK}>pay rise calculator</Link>, and your household&apos;s take-home on the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</p>
         <Note>Family Tax Benefit uses the same family income estimate. See the <Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit calculator</Link>.</Note>
       </W3Section>

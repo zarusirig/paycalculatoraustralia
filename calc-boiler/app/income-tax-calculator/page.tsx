@@ -79,27 +79,27 @@ const RATE_CUT_SAVING = Math.round(
 const FAQS: readonly { q: string; a: string }[] = [
   {
     q: "How much income tax do I pay in Australia?",
-    a: `Australian residents pay income tax on a progressive scale in FY${FY}: 0% up to ${T1}, ${RATE_2} from ${formatAUD(TAX_BRACKETS[1].min)} to ${T2}, ${RATE_3} to ${T3}, ${RATE_4} to ${T4}, and ${RATE_5} above that. On an ${formatAUD(80_000)} salary you pay ${formatAUD(S80.net)} in income tax plus ${formatAUD(S80.medicare)} Medicare levy — ${formatAUD(S80.total)} in total, leaving take-home pay of ${formatAUD(S80.takeHome)}.`,
+    a: `Australian residents pay income tax on a progressive scale in FY${FY}: 0% up to ${T1}, ${RATE_2} from ${formatAUD(TAX_BRACKETS[1].min)} to ${T2}, ${RATE_3} to ${T3}, ${RATE_4} to ${T4}, and ${RATE_5} above that. On an ${formatAUD(80_000)} salary you pay ${formatAUD(S80.net)} in income tax plus ${formatAUD(S80.medicare)} Medicare levy, ${formatAUD(S80.total)} in total, leaving take-home pay of ${formatAUD(S80.takeHome)}.`,
   },
   {
     q: "How much tax do I pay on $60,000?",
-    a: `On a ${formatAUD(60_000)} salary you pay ${formatAUD(S60.net)} in income tax for FY${FY} after the Low Income Tax Offset, plus ${formatAUD(S60.medicare)} Medicare levy — ${formatAUD(S60.total)} in total, an effective rate of ${formatPercent(S60.effective)}. Take-home pay is ${formatAUD(S60.takeHome)} a year, about ${formatAUD(S60.weekly)} a week.`,
+    a: `On a ${formatAUD(60_000)} salary you pay ${formatAUD(S60.net)} in income tax for FY${FY} after the Low Income Tax Offset, plus ${formatAUD(S60.medicare)} Medicare levy, ${formatAUD(S60.total)} in total, an effective rate of ${formatPercent(S60.effective)}. Take-home pay is ${formatAUD(S60.takeHome)} a year, about ${formatAUD(S60.weekly)} a week.`,
   },
   {
     q: "How much tax do I pay on $80,000?",
-    a: `On ${formatAUD(80_000)} you pay ${formatAUD(S80.net)} in income tax for FY${FY} — down from ${formatAUD(taxIn2025_26(80_000))} in ${PREV_FY} thanks to the new ${RATE_2} rate. Adding the ${formatAUD(S80.medicare)} Medicare levy brings total tax to ${formatAUD(S80.total)}, for take-home pay of ${formatAUD(S80.takeHome)} a year (${formatAUD(S80.weekly)} a week).`,
+    a: `On ${formatAUD(80_000)} you pay ${formatAUD(S80.net)} in income tax for FY${FY}, down from ${formatAUD(taxIn2025_26(80_000))} in ${PREV_FY} thanks to the new ${RATE_2} rate. Adding the ${formatAUD(S80.medicare)} Medicare levy brings total tax to ${formatAUD(S80.total)}, for take-home pay of ${formatAUD(S80.takeHome)} a year (${formatAUD(S80.weekly)} a week).`,
   },
   {
     q: "How much tax do I pay on $100,000?",
-    a: `On ${formatAUD(100_000)} you pay ${formatAUD(S100.net)} in income tax for FY${FY}, plus ${formatAUD(S100.medicare)} Medicare levy — ${formatAUD(S100.total)} in total. Take-home pay is ${formatAUD(S100.takeHome)} a year, about ${formatAUD(S100.weekly)} a week, and every extra dollar you earn is taxed at your ${RATE_3} marginal rate.`,
+    a: `On ${formatAUD(100_000)} you pay ${formatAUD(S100.net)} in income tax for FY${FY}, plus ${formatAUD(S100.medicare)} Medicare levy, ${formatAUD(S100.total)} in total. Take-home pay is ${formatAUD(S100.takeHome)} a year, about ${formatAUD(S100.weekly)} a week, and every extra dollar you earn is taxed at your ${RATE_3} marginal rate.`,
   },
   {
     q: `What are the ${FY} tax brackets in Australia?`,
-    a: `The ATO resident brackets for FY${FY} are: ${T1} tax-free, then ${RATE_2} to ${T2}, ${RATE_3} to ${T3}, ${RATE_4} to ${T4}, and ${RATE_5} above ${T4}. The only change from ${PREV_FY} is the second rate falling from ${OLD_RATE_2} to ${RATE_2} on 1 July 2026 — a cut worth up to ${formatAUD(RATE_CUT_SAVING)} a year.`,
+    a: `The ATO resident brackets for FY${FY} are: ${T1} tax-free, then ${RATE_2} to ${T2}, ${RATE_3} to ${T3}, ${RATE_4} to ${T4}, and ${RATE_5} above ${T4}. The only change from ${PREV_FY} is the second rate falling from ${OLD_RATE_2} to ${RATE_2} on 1 July 2026, a cut worth up to ${formatAUD(RATE_CUT_SAVING)} a year.`,
   },
   {
     q: "What is the tax-free threshold in Australia?",
-    a: `The first ${T1} you earn each year is tax-free if you claim the threshold with your main employer. Because the Low Income Tax Offset refunds up to ${formatAUD(LITO.maxOffset)} of tax, you effectively pay no income tax until your income passes ${formatAUD(LITO.effectiveTaxFreeThreshold)} in FY${FY}. Claim the threshold with one employer only — claiming it twice creates a tax debt.`,
+    a: `The first ${T1} you earn each year is tax-free if you claim the threshold with your main employer. Because the Low Income Tax Offset refunds up to ${formatAUD(LITO.maxOffset)} of tax, you effectively pay no income tax until your income passes ${formatAUD(LITO.effectiveTaxFreeThreshold)} in FY${FY}. Claim the threshold with one employer only. Claiming it twice creates a tax debt.`,
   },
   {
     q: "What is the difference between marginal and effective tax rates?",
@@ -111,7 +111,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How is income tax collected from my pay?",
-    a: `Through PAYG (Pay As You Go) withholding: your employer deducts an estimate of tax from every pay using the ATO withholding schedules and sends it to the ATO. When you lodge your return — by 31 October, or later through a registered tax agent — the ATO compares the total withheld with your actual liability and refunds or bills the difference.`,
+    a: `Through PAYG (Pay As You Go) withholding: your employer deducts an estimate of tax from every pay using the ATO withholding schedules and sends it to the ATO. When you lodge your return (by 31 October, or later through a registered tax agent), the ATO compares the total withheld with your actual liability and refunds or bills the difference.`,
   },
   {
     q: "Why does my payslip show more tax than this calculator?",
@@ -119,15 +119,15 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How is income tax calculated if I have two jobs?",
-    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total — you are never taxed twice, but claiming the threshold on both jobs will leave you with a debt.`,
+    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total. You are never taxed twice, but claiming the threshold on both jobs will leave you with a debt.`,
   },
   {
     q: "Do I pay the Medicare levy on top of income tax?",
-    a: `Most taxpayers pay a Medicare levy of ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income on top of income tax — ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of 1–1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover.`,
+    a: `Most taxpayers pay a Medicare levy of ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income on top of income tax: ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of 1–1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover.`,
   },
   {
     q: "Is superannuation included in taxable income?",
-    a: `No. The ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee your employer pays goes to your fund on top of your salary and is not part of your assessable income. Concessional contributions, including salary sacrifice, are taxed at 15% inside the fund instead of at your marginal rate — which is why salary sacrificing can cut your income tax.`,
+    a: `No. The ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee your employer pays goes to your fund on top of your salary and is not part of your assessable income. Concessional contributions, including salary sacrifice, are taxed at 15% inside the fund instead of at your marginal rate, which is why salary sacrificing can cut your income tax.`,
   },
   {
     q: "What happens if I don't lodge a tax return?",
@@ -135,7 +135,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: `Can I still calculate my ${PREV_FY} tax?`,
-    a: `Yes. Tax returns lodged between July and October 2026 cover FY${PREV_FY}, when the second bracket rate was ${OLD_RATE_2} — so income tax on ${formatAUD(80_000)} was ${formatAUD(taxIn2025_26(80_000))} rather than ${formatAUD(S80.net)}. The brackets were otherwise identical. Use our tax return calculator to estimate your ${PREV_FY} refund before you lodge.`,
+    a: `Yes. Tax returns lodged between July and October 2026 cover FY${PREV_FY}, when the second bracket rate was ${OLD_RATE_2}, so income tax on ${formatAUD(80_000)} was ${formatAUD(taxIn2025_26(80_000))} rather than ${formatAUD(S80.net)}. The brackets were otherwise identical. Use our tax return calculator to estimate your ${PREV_FY} refund before you lodge.`,
   },
 ];
 
@@ -149,7 +149,7 @@ const FAQS: readonly { q: string; a: string }[] = [
 // $80k answer. "Income Tax Calculator Australia" contains "tax calculator
 // australia" verbatim.
 // Previous: "Income Tax Calculator Australia ${FY} — ATO Tax Brackets".
-const TITLE = `Income Tax Calculator Australia ${FY} — Simple Tax Calculator`;
+const TITLE = `Income Tax Calculator Australia ${FY} - Simple Tax Calculator`;
 // fitDescription: fuller form first; the shorter form keeps the $80k answer,
 // the FY and "simple tax calculator".
 const DESCRIPTION = fitDescription(

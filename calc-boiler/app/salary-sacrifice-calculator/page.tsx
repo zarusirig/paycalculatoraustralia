@@ -18,7 +18,7 @@ const URL = `${BASE}/salary-sacrifice-calculator/`;
 const FY = SITE_CONFIG.financialYear;
 // Previous: "Salary Sacrifice Calculator — How Much Will You Save?"
 // seo-brain 25 Sep 2026 (Jev-ranked): keep tokens calculator/salary/sacrifice; adds "tax" and the FY.
-const TITLE = `Salary Sacrifice Tax Calculator ${FY} — Pay Before and After`;
+const TITLE = `Salary Sacrifice Tax Calculator ${FY} - Pay Before and After`;
 // The calculator's defaults (modules/calculator/salary-sacrifice-calculator:
 // $100,000 salary, $10,000 sacrifice) through the same engine call it makes,
 // so the description and the first render always agree.

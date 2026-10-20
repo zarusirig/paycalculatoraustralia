@@ -32,7 +32,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
         The marginal system makes this reconciliation less brutal than it used to be. Under the
         old flat-rate rules, tipping just over the threshold made a percentage of your entire
         income repayable, so an under-withheld year could produce a four-figure surprise. Now the
-        repayment scales smoothly — as our coverage of the{" "}
+        repayment scales smoothly, as our coverage of the{" "}
         <Link href="/news/hecs-repayment-threshold-2026-27/">
           FY2026-27 threshold rise to $69,528
         </Link>{" "}
@@ -43,7 +43,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
       <p>
         Take a graduate on $80,000 with no other income. Their repayment income exceeds the
         threshold by $10,472, and 15c in the dollar on that excess comes to roughly $1,571 for the
-        year. If their employer withheld $30 a week in STSL — about $1,560 across 52 weeks — the
+        year. If their employer withheld $30 a week in STSL (about $1,560 across 52 weeks), the
         assessment lands within a few dollars of what was withheld, and the notice of assessment
         simply moves the credit onto the loan. Remember that repayment income is broader than
         salary: reportable fringe benefits, reportable super contributions and net investment
@@ -55,7 +55,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
       <h2>Two jobs, two separate calculations</h2>
       <p>
         If you held two jobs that each paid under $69,528, neither employer would have withheld
-        any STSL — but your combined repayment income from both jobs can still exceed the
+        any STSL, but your combined repayment income from both jobs can still exceed the
         threshold. That produces an unexpected compulsory repayment at tax time. Ticking the HELP
         debt box on every TFN declaration doesn&apos;t eliminate this, since withholding tables
         only ever look at income from that one job. If you&apos;re in this position ongoing, you
@@ -66,7 +66,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
       <h2>What the 20% cut and indexation don&apos;t change here</h2>
       <p>
         The 20% debt reduction and the 2.8% indexation applied on 1 June 2026 both adjust your
-        outstanding loan balance directly through the ATO — neither appears as a line item on your
+        outstanding loan balance directly through the ATO. Neither appears as a line item on your
         tax return. Your compulsory repayment for the year is simply your repayment income run
         through the bands, applied against whatever balance remains after those adjustments. The
         one place they matter at tax time: if your remaining balance is smaller than your
@@ -76,7 +76,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
 
       <h2>What this means for your pay</h2>
       <p>
-        If your income moved during the year — a raise, a new job, or extra hours — it&apos;s worth
+        If your income moved during the year (a raise, a new job, or extra hours), it&apos;s worth
         checking whether enough STSL was withheld before you lodge. Estimate your compulsory
         repayment with our <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>, then
         run your full return through our{" "}

@@ -35,7 +35,7 @@ const TABLE_BALANCES = [25_000, 50_000, 66_800, 100_000, 150_000, 200_000, 300_0
 
 const SOURCES_LIST = [
   source("Deeming (Age Pension)", SRC.deeming),
-  { title: "Social Security Guide 4.4.1.10 — Overview of deeming (rates and thresholds history)", url: SRC.deemingHistory, publisher: "Department of Social Services" },
+  { title: "Social Security Guide 4.4.1.10, Overview of deeming (rates and thresholds history)", url: SRC.deemingHistory, publisher: "Department of Social Services" },
   source("Income test for Age Pension", SRC.agePensionIncomeTest),
   source("Asset types", SRC.assetTypes),
 ];
@@ -102,18 +102,18 @@ export default function DeemingRatesContent() {
         <p className="mt-2 text-xs text-warmgray-light">From the DSS Social Security Guide 4.4.1.10, which lists every change since 1 July 1996. The rates sat at 0.25% / 2.25% from 1 May 2020 until 20 September 2025, then rose in three steps.</p>
       </W3Section>
 
-      <W3Section title="What Is Deemed — and What Isn't">
+      <W3Section title="What Is Deemed, and What Isn't">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
           <li><strong>Deemed:</strong> bank, building society and credit union accounts, term deposits, cash, managed investments, loans and debentures, listed shares and securities, some income streams (including account-based pensions), some gifts, and superannuation once you are Age Pension age.</li>
           <li><strong>Not deemed:</strong> your home, car, contents and other personal assets (they only count in the assets test), and super in accumulation phase while you are under Age Pension age.</li>
           <li><strong>Home sale proceeds</strong> you intend to use for a new home (sales from 1 January 2023) are deemed at the lower rate only.</li>
-          <li><strong>Exemptions</strong> are granted by the Minister only in special cases — failed investments, some inaccessible super, or an account holding only NDIS funds — never for poor performance.</li>
+          <li><strong>Exemptions</strong> are granted by the Minister only in special cases (failed investments, some inaccessible super, or an account holding only NDIS funds), never for poor performance.</li>
         </ul>
       </W3Section>
 
       <W3Section title="Deeming, Your Pay and Your Payment">
         <p className={P}>Deeming does not change your wages or the tax you pay on them. What it changes is how much of the Centrelink income free area your savings use up before your pay is counted. A single pensioner with {formatAUD(100_000)} in the bank is deemed to earn {formatAUD(deemedIncomeAnnual(100_000, "single") / 26, 2)} a fortnight; add a {formatAUD(500)} pay packet (only {formatAUD(assessableAfterWorkBonus(500, 0), 2)} of which counts after the Work Bonus) and the income test starts reducing the pension. See the full picture on the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension calculator</Link>, and your net pay on the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>.</p>
-        <p className={P}>Deeming also applies to working-age payments — JobSeeker, Parenting Payment, Austudy and Youth Allowance — and to the <Link href="/commonwealth-seniors-health-card/" className={LINK}>Commonwealth Seniors Health Card</Link> (account-based income streams only). It does not affect Family Tax Benefit.</p>
+        <p className={P}>Deeming also applies to working-age payments (JobSeeker, Parenting Payment, Austudy and Youth Allowance) and to the <Link href="/commonwealth-seniors-health-card/" className={LINK}>Commonwealth Seniors Health Card</Link> (account-based income streams only). It does not affect Family Tax Benefit.</p>
       </W3Section>
 
       <W3Section title="Related Calculators and Guides">

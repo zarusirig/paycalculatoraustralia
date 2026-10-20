@@ -99,7 +99,7 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
               </nav>
               <div className="flex justify-between items-start mb-2 mt-2">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                  Backpay Calculator Australia — Underpayment Calculator
+                  Backpay Calculator Australia: Underpayment Calculator
                 </h1>
               </div>
               <p className="text-base md:text-lg text-warmgray">

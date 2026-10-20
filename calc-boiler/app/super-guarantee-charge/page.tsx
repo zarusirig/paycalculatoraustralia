@@ -15,7 +15,7 @@ const URL = `${BASE}/super-guarantee-charge/`;
 
 const C = SUPER_GUARANTEE_CHARGE.current;
 
-const TITLE = "Super Guarantee Charge — What Late Super Costs in 2026-27";
+const TITLE = "Super Guarantee Charge - What Late Super Costs in 2026-27";
 const DESCRIPTION = `Payday Super started ${SUPER_GUARANTEE.paydaySuperStart} and rebuilt the SGC: super must reach the fund within ${C.businessDaysToPay} business days of payday. The charge and notional earnings explained.`;
 
 export const metadata: Metadata = withFeaturedImage({

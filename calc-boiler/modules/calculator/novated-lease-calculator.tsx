@@ -115,7 +115,7 @@ export default function NovatedLeaseCalculatorPage({
             </ol>
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Novated Lease Calculator — EV, PHEV and Petrol, With FBT
+            Novated Lease Calculator: EV, PHEV and Petrol, With FBT
           </h1>
           <p className="text-lg text-warmgray">
             See the pre-tax and post-tax deductions a novated lease puts on your payslip, the FBT (or the electric car
@@ -168,7 +168,7 @@ export default function NovatedLeaseCalculatorPage({
                       <span>
                         This plug-in hybrid was <strong>used, or available for use, before {EV_EXEMPTION.phevExcludedFrom}</strong>, and a
                         financially binding commitment continues to provide it.
-                        <span className="block text-xs text-warmgray mt-1">Leave this unticked for any PHEV lease signed since that date — the exemption ended and the ATO cannot extend it.</span>
+                        <span className="block text-xs text-warmgray mt-1">Leave this unticked for any PHEV lease signed since that date: the exemption ended and the ATO cannot extend it.</span>
                       </span>
                     </label>
                   )}
@@ -177,7 +177,7 @@ export default function NovatedLeaseCalculatorPage({
                     <label htmlFor="term" className={LABEL}>Lease term</label>
                     <select id="term" value={termYears} onChange={(e) => setTermYears(Number(e.target.value))} className={INPUT}>
                       {LEASE_TERMS.map((t) => (
-                        <option key={t} value={t}>{t} {t === 1 ? "year" : "years"} — minimum residual {formatPercent(RESIDUAL_MINIMUM_PCT[t], 2)}</option>
+                        <option key={t} value={t}>{t} {t === 1 ? "year" : "years"}, minimum residual {formatPercent(RESIDUAL_MINIMUM_PCT[t], 2)}</option>
                       ))}
                     </select>
                   </div>
@@ -187,7 +187,7 @@ export default function NovatedLeaseCalculatorPage({
                     <div className="flex items-center"><span className="text-warmgray-light mr-2">$</span>
                       <input type="number" id="running" min={0} max={50_000} step={500} value={annualRunningCosts}
                         onChange={(e) => setAnnualRunningCosts(clamp(Number(e.target.value || 0), 0, 50_000))} className={INPUT} /></div>
-                    <p className="text-xs text-warmgray-light mt-1">Fuel or charging, insurance, registration, tyres and servicing — whatever your packaging budget covers.</p>
+                    <p className="text-xs text-warmgray-light mt-1">Fuel or charging, insurance, registration, tyres and servicing: whatever your packaging budget covers.</p>
                   </div>
 
                   <fieldset disabled={result.exempt} className={result.exempt ? "opacity-50" : undefined}>
@@ -222,7 +222,7 @@ export default function NovatedLeaseCalculatorPage({
                     <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Take-home pay with the lease</div>
                     <div className="text-4xl font-extrabold text-navy mb-1">{formatAUD(after.takeHome)}</div>
                     <div className="text-sm text-warmgray">
-                      was {formatAUD(before.takeHome)} without it — the car costs you {formatAUD(result.annualCostToYou)} a year after tax
+                      was {formatAUD(before.takeHome)} without it, so the car costs you {formatAUD(result.annualCostToYou)} a year after tax
                     </div>
                   </div>
 
@@ -254,7 +254,7 @@ export default function NovatedLeaseCalculatorPage({
                           ? "An FBT-exempt electric car is still a reportable fringe benefit."
                           : "The taxable value left after your employee contribution is reportable."}{" "}
                         The notional taxable value of {formatAUD(result.taxableValueAfterContribution)} is grossed up at {FBT.grossUpType2} and
-                        shown on your income statement. It is never taxed — but it is added to your income for the
+                        shown on your income statement. It is never taxed, but it is added to your income for the
                         HECS-HELP, Medicare levy surcharge and Division 293 tests.
                       </p>
                       <Row label="Income used in those tests" value={formatAUD(after.incomeTestIncome)} note={`${formatAUD(after.taxableIncome)} taxable income + ${formatAUD(result.reportableFringeBenefits)} reported`} />
@@ -284,7 +284,7 @@ export default function NovatedLeaseCalculatorPage({
                         highlight
                       />
                       <p className="text-xs text-warmgray-light">
-                        Neither column includes lease interest — this site does not model finance charges. Ask your
+                        Neither column includes lease interest: this site does not model finance charges. Ask your
                         provider for the amount financed and the total of the payments, and add the difference to the
                         lease column.
                       </p>
@@ -295,7 +295,7 @@ export default function NovatedLeaseCalculatorPage({
                     <p className="rounded-lg border border-ochre/50 bg-ochre/5 p-3 text-sm text-navy">
                       At {formatAUD(vehiclePrice)} this car is over the {LUXURY_CAR_TAX.financialYear} luxury car tax
                       threshold for fuel-efficient vehicles ({formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold)}), so LCT
-                      was payable and the electric car exemption cannot apply — to any of it, not just the excess.
+                      was payable and the electric car exemption cannot apply, to any of it, not just the excess.
                     </p>
                   )}
                   {result.exceedsSalary && (
@@ -316,7 +316,7 @@ export default function NovatedLeaseCalculatorPage({
             <p className={P}>
               A novated lease should show as <strong>two</strong> deductions, not one. The pre-tax deduction comes off
               your gross pay before PAYG withholding, so your taxable income and your tax both fall. The post-tax
-              deduction — the employee contribution — comes off after tax and does not reduce your taxable income at
+              deduction (the employee contribution) comes off after tax and does not reduce your taxable income at
               all; its job is to cancel the FBT.
             </p>
             <div className={TABLE_WRAP}>
@@ -326,7 +326,7 @@ export default function NovatedLeaseCalculatorPage({
                   <tr><td className={TD}>Pre-tax deduction (salary sacrifice)</td><td className={TD}>Lease and running-cost budget{result.exempt ? "" : ", less the employee contribution, plus FBT"}</td><td className={TD + " text-right font-bold"}>{formatAUD(result.preTaxDeduction)}</td></tr>
                   <tr className="bg-eucalyptus-light/30"><td className={TD}>Post-tax deduction (employee contribution)</td><td className={TD}>{result.postTaxDeduction > 0 ? `${formatPercent(FBT.statutoryRate, 0)} of the base value` : "Nil under this method"}</td><td className={TD + " text-right font-bold"}>{formatAUD(result.postTaxDeduction)}</td></tr>
                   <tr><td className={TD}>Taxable gross (year to date)</td><td className={TD}>Salary less the pre-tax deduction</td><td className={TD + " text-right font-bold"}>{formatAUD(after.taxableIncome)}</td></tr>
-                  <tr className="bg-eucalyptus-light/30"><td className={TD}>Super</td><td className={TD}>Unchanged — calculated on pre-sacrifice salary</td><td className={TD + " text-right"}>no change</td></tr>
+                  <tr className="bg-eucalyptus-light/30"><td className={TD}>Super</td><td className={TD}>Unchanged: calculated on pre-sacrifice salary</td><td className={TD + " text-right"}>no change</td></tr>
                   <tr><td className={TD}>Reportable fringe benefits (income statement, not payslip)</td><td className={TD}>Taxable value grossed up at {FBT.grossUpType2}</td><td className={TD + " text-right font-bold"}>{formatAUD(result.reportableFringeBenefits)}</td></tr>
                 </tbody>
               </table>
@@ -345,14 +345,14 @@ export default function NovatedLeaseCalculatorPage({
             <p className={P}>
               Under the statutory formula the taxable value is {formatPercent(FBT.statutoryRate, 0)} of the base value,
               apportioned over the days the car is available for private use, less any employee contribution. FBT is
-              {" "}{formatPercent(FBT.rate, 0)} of that value grossed up at {FBT.grossUpType1} — so a dollar of taxable
+              {" "}{formatPercent(FBT.rate, 0)} of that value grossed up at {FBT.grossUpType1}, so a dollar of taxable
               value costs {formatAUD(FBT.grossUpType1 * FBT.rate, 2)}.
             </p>
             <p className={P}>
               That is why ECM works. A dollar paid from post-tax salary removes a dollar of taxable value, and with it
               {" "}{formatAUD(FBT.grossUpType1 * FBT.rate, 2)} of FBT that would otherwise have come out of your pre-tax
               budget. The methods break even at a marginal rate of {formatPercent(breakEven, 1)}, which is above the
-              {" "}{formatPercent(0.47, 0)} top rate including the Medicare levy — so in {SITE_CONFIG.financialYear}, for
+              {" "}{formatPercent(0.47, 0)} top rate including the Medicare levy, so in {SITE_CONFIG.financialYear}, for
               a resident employee, ECM is the cheaper method at every income.
             </p>
             <div className={TABLE_WRAP}>
@@ -382,7 +382,7 @@ export default function NovatedLeaseCalculatorPage({
               </table>
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
-              {result.exempt ? "This car is FBT-exempt, so both columns are the same — there is no FBT for a contribution to offset." : "Both columns fund the same lease budget; only the split between pre-tax salary, post-tax salary and FBT changes."}
+              {result.exempt ? "This car is FBT-exempt, so both columns are the same: there is no FBT for a contribution to offset." : "Both columns fund the same lease budget; only the split between pre-tax salary, post-tax salary and FBT changes."}
             </p>
           </section>
 
@@ -391,7 +391,7 @@ export default function NovatedLeaseCalculatorPage({
           <section>
             <h2 style={FONT} className={H2}>Residual Values by Lease Term</h2>
             <p className={P}>
-              The residual — the balloon payment — is set by the ATO as a minimum percentage of the original cost. It is
+              The residual (the balloon payment) is set by the ATO as a minimum percentage of the original cost. It is
               paid from after-tax money, which is why the comparison above counts it. A lease can be written with a
               higher residual, which lowers the deductions now and raises the payment at the end.
             </p>
@@ -410,7 +410,7 @@ export default function NovatedLeaseCalculatorPage({
                 </tbody>
               </table>
             </div>
-            <p className="mt-2 text-xs text-warmgray-light">ATO Taxation Determination TD 93/142, table at paragraph 3A, 8-year effective life — the column its own worked example uses for a car.</p>
+            <p className="mt-2 text-xs text-warmgray-light">ATO Taxation Determination TD 93/142, table at paragraph 3A, 8-year effective life, the column its own worked example uses for a car.</p>
           </section>
 
           {afterCalculator}

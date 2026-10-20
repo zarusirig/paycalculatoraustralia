@@ -71,7 +71,7 @@ export default function TeacherPayAustraliaPage() {
         {/* HERO */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={HEADING_FONT}>
-            Teacher Salary in Australia {year} — Pay Scales by State
+            Teacher Salary in Australia {year} - Pay Scales by State
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Every state and territory sets its own public school teacher pay scale. A qualified graduate
@@ -157,7 +157,7 @@ export default function TeacherPayAustraliaPage() {
                         <span className="block text-xs text-warmgray">
                           {grad !== null && top !== null
                             ? `${formatAUD(grad)} to ${formatAUD(top)} · verified ${s.verifiedOn}`
-                            : "Scale not yet verified — see the page"}
+                            : "Scale not yet verified, see the page"}
                         </span>
                       </span>
                       <ChevronRight className="h-4 w-4 shrink-0 text-warmgray-light group-hover:text-eucalyptus" />
@@ -171,7 +171,7 @@ export default function TeacherPayAustraliaPage() {
             <section id="classification-levels">
               <h2 style={HEADING_FONT}>Teacher career stages and pay</h2>
               <p>
-                The Australian Professional Standards for Teachers describe four career stages — Graduate,
+                The Australian Professional Standards for Teachers describe four career stages: Graduate,
                 Proficient, Highly Accomplished and Lead. How those map to pay differs by state:
               </p>
               <ul>
@@ -186,8 +186,8 @@ export default function TeacherPayAustraliaPage() {
                   Each state page lists those rows where they are published.
                 </li>
                 <li>
-                  <strong>Leadership roles</strong> — head teacher, assistant principal, deputy principal and
-                  principal — sit on separate scales set by school size or complexity, also listed on each state page.
+                  <strong>Leadership roles</strong> (head teacher, assistant principal, deputy principal and
+                  principal) sit on separate scales set by school size or complexity, also listed on each state page.
                 </li>
               </ul>
             </section>
@@ -198,7 +198,7 @@ export default function TeacherPayAustraliaPage() {
               <p>
                 Every salary on this page and the state pages links to the nearest take-home pay page, which shows
                 income tax, the Medicare levy and net pay by week, fortnight and month. Most early-career teachers also
-                have a HECS-HELP repayment taken out — the{" "}
+                have a HECS-HELP repayment taken out: the{" "}
                 <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> shows how much at your salary.
                 Public school teachers can salary sacrifice into super; the{" "}
                 <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> shows the effect.

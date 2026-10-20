@@ -38,7 +38,7 @@ export const PROPERTY_MANAGER: Occupation = {
   },
   coverage: [
     "Property managers employed by a real estate agency are covered by the Real Estate Industry Award 2020 [MA000106]. The award names \"Property Manager\" as an indicative Level 2 (Representative) title: Level 2 employees are responsible for managing rental or strata/community title properties, or for sourcing and securing new managements.",
-    "A property management assistant or associate — collecting rent, answering tenant enquiries and helping with inspections under supervision — is Level 1. A Property Management Supervisor is Level 3.",
+    "A property management assistant or associate (collecting rent, answering tenant enquiries and helping with inspections under supervision) is Level 1. A Property Management Supervisor is Level 3.",
     "Unlike sales agents, residential property managers cannot be employed on a commission-only basis. The award limits commission-only employment to property sales and commercial, industrial or retail leasing (cl 16.7).",
   ],
   tables: [
@@ -90,7 +90,7 @@ export const PROPERTY_MANAGER: Occupation = {
     },
   ],
   sources: [
-    { title: "Real Estate Industry Award 2020 [MA000106] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: REAL_ESTATE_AWARD.url },
+    { title: "Real Estate Industry Award 2020 [MA000106], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: REAL_ESTATE_AWARD.url },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(REAL_ESTATE_MEDIAN),

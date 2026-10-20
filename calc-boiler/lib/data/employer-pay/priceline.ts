@@ -45,7 +45,7 @@ export const PRICELINE_PAY: EmployerPay = {
     approvedOn: "10 September 2026 (PR814230), operating from 17 September 2026",
     nominalExpiry: "30 June 2030",
     coverage:
-      "It covers retail staff in the Priceline and atomica stores that Priceline Pty Ltd owns and runs itself — Wesfarmers Health operates 68 such non-pharmacy stores. Most Priceline Pharmacy stores are franchises run by community pharmacists, who employ their own staff; they are not covered by this agreement. Assistant managers and store managers are not covered either.",
+      "It covers retail staff in the Priceline and atomica stores that Priceline Pty Ltd owns and runs itself. Wesfarmers Health operates 68 such non-pharmacy stores. Most Priceline Pharmacy stores are franchises run by community pharmacists, who employ their own staff; they are not covered by this agreement. Assistant managers and store managers are not covered either.",
   },
   ratesEffectiveFrom:
     "the agreement's start on 17 September 2026 (its rate table is headed \"first full pay period on or after 1 July 2026\")",
@@ -57,8 +57,8 @@ export const PRICELINE_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
   rates: [
-    { level: "Retail Employee / Glow Assistant", description: "Sales assistant in a company-owned Priceline or atomica store — mapped to Retail Award Level 1", hourly: 29.57, casualHourly: 36.96 },
-    { level: "Specialist Sales Assistant / Glow Advisor", description: "A sales assistant appointed to a key category such as cosmetics or wellness — 105% of the Retail Employee rate (cl 19.1)", hourly: 31.05, casualHourly: 38.81 },
+    { level: "Retail Employee / Glow Assistant", description: "Sales assistant in a company-owned Priceline or atomica store, mapped to Retail Award Level 1", hourly: 29.57, casualHourly: 36.96 },
+    { level: "Specialist Sales Assistant / Glow Advisor", description: "A sales assistant appointed to a key category such as cosmetics or wellness (105% of the Retail Employee rate, cl 19.1)", hourly: 31.05, casualHourly: 38.81 },
   ],
   juniorScale: [
     { age: "16 and younger", percentage: 0.5 },
@@ -100,9 +100,9 @@ export const PRICELINE_PAY: EmployerPay = {
     "The agreement began on 17 September 2026. Its rate table is headed from the first full pay period on or after 1 July 2026, but it contains no back-pay clause, so pay before 17 September was set by the previous agreement.",
   ],
   unverified: [
-    "Whether Priceline back-paid the new rates to July 2026 — the agreement is silent.",
-    "Assistant manager and store manager pay — not covered by the agreement.",
-    "Pay in franchised Priceline Pharmacy stores — each pharmacist franchisee is a separate employer.",
+    "Whether Priceline back-paid the new rates to July 2026: the agreement is silent.",
+    "Assistant manager and store manager pay: not covered by the agreement.",
+    "Pay in franchised Priceline Pharmacy stores: each pharmacist franchisee is a separate employer.",
   ],
   awardHref: "/retail-award-rates/",
   awardLabel: "Retail Award rates 2026",
@@ -118,7 +118,7 @@ export const PRICELINE_PAY: EmployerPay = {
     },
     {
       q: "What does Priceline pay on a Sunday?",
-      a: "179% of the base rate, but never less than $53.07 an hour for an adult Retail Employee or $55.72 for a Specialist Sales Assistant — casual or permanent. Because 179% of $29.57 is only $52.93, the $53.07 floor is what adults get.",
+      a: "179% of the base rate, but never less than $53.07 an hour for an adult Retail Employee or $55.72 for a Specialist Sales Assistant, casual or permanent. Because 179% of $29.57 is only $52.93, the $53.07 floor is what adults get.",
     },
     {
       q: "How much does Priceline pay a 16 or 17 year old?",

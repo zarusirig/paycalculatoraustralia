@@ -16,9 +16,9 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-pay-calculator/`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: "Overtime Pay Calculator — Time-and-a-Half & Double Time",
+  title: "Overtime Pay Calculator - Time-and-a-Half & Double Time",
   description:
-    "Calculate your overtime and penalty rate pay. Enter your base rate, select the multiplier — see your overtime pay after tax. Free penalty rate calculator.",
+    "Calculate your overtime and penalty rate pay. Enter your base rate, select the multiplier and see your overtime pay after tax. Free penalty rate calculator.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Overtime & Penalty Rate Calculator",

@@ -99,8 +99,8 @@ export const MCDONALDS_PAY: EmployerPay = {
     "A class action over paid rest breaks at McDonald's, filed in the Federal Court in December 2021, was still running when we checked. It does not change the rates on this page.",
   ],
   unverified: [
-    "Salaried restaurant and area manager pay — set by individual contracts, not published.",
-    "The Fair Work Commission citation for the 2026 national bargaining authorisation — reported by the SDA; we could not retrieve the decision itself.",
+    "Salaried restaurant and area manager pay: set by individual contracts, not published.",
+    "The Fair Work Commission citation for the 2026 national bargaining authorisation, reported by the SDA; we could not retrieve the decision itself.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },

@@ -52,7 +52,7 @@ export interface MedicareLevyFaq {
 export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   {
     q: "How do I calculate the Medicare levy?",
-    a: `Start with your taxable income, not your gross salary. If it is at or under ${LOWER} you pay nothing. If it is between ${LOWER} and ${UPPER} you pay ${SHADE} of the amount over ${LOWER} — the shade-in. Above ${UPPER} you pay the full ${RATE}. On ${formatAUD(100_000)} that is ${formatAUD(AT_100K.levy)}. The calculator at the top of this page runs the same steps, including the family and seniors thresholds.`,
+    a: `Start with your taxable income, not your gross salary. If it is at or under ${LOWER} you pay nothing. If it is between ${LOWER} and ${UPPER} you pay ${SHADE} of the amount over ${LOWER}. This is the shade-in. Above ${UPPER} you pay the full ${RATE}. On ${formatAUD(100_000)} that is ${formatAUD(AT_100K.levy)}. The calculator at the top of this page runs the same steps, including the family and seniors thresholds.`,
   },
   {
     q: "How much is the Medicare levy on $29,000?",
@@ -80,14 +80,14 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "What is a half Medicare levy exemption?",
-    a: `A Category 1 medical exemption drops from full to half where you have at least one dependant — usually a spouse — who is neither in an exemption category nor liable for the levy themselves. You then pay half the levy you otherwise would. Where both partners would be liable and one is exempt, a signed family agreement decides who claims the full exemption and who claims the half. Shared care splits by day: half for days you had care of the child, full for days you did not.`,
+    a: `A Category 1 medical exemption drops from full to half where you have at least one dependant (usually a spouse) who is neither in an exemption category nor liable for the levy themselves. You then pay half the levy you otherwise would. Where both partners would be liable and one is exempt, a signed family agreement decides who claims the full exemption and who claims the half. Shared care splits by day: half for days you had care of the child, full for days you did not.`,
   },
   {
     q: "Does the Medicare levy come out of my pay?",
-    a: `Yes, but not as its own line. Employers use the ATO's PAYG withholding tables, which bundle the ${RATE} levy into the single "tax withheld" figure on your payslip. The surcharge is different — it is not withheld at all unless you ask for an upward variation, so people who cross the ${MLS_BASE} threshold without hospital cover usually meet it as a bill at lodgment.`,
+    a: `Yes, but not as its own line. Employers use the ATO's PAYG withholding tables, which bundle the ${RATE} levy into the single "tax withheld" figure on your payslip. The surcharge is different: it is not withheld at all unless you ask for an upward variation, so people who cross the ${MLS_BASE} threshold without hospital cover usually meet it as a bill at lodgment.`,
   },
   {
     q: "Which income year do these Medicare levy thresholds apply to?",
-    a: `The low-income, family and seniors thresholds on this page are the ATO's ${MEDICARE_LEVY_INCOME_YEAR} figures — the return being lodged now — and are the most recent published. ${MLS_INCOME_YEAR} levy thresholds had not been released when this page was last verified. The surcharge tiers are different: they are published for ${MLS_INCOME_YEAR} and are shown on that basis. The ${RATE} rate itself has not changed since 1 July 2014.`,
+    a: `The low-income, family and seniors thresholds on this page are the ATO's ${MEDICARE_LEVY_INCOME_YEAR} figures (the return being lodged now) and are the most recent published. ${MLS_INCOME_YEAR} levy thresholds had not been released when this page was last verified. The surcharge tiers are different: they are published for ${MLS_INCOME_YEAR} and are shown on that basis. The ${RATE} rate itself has not changed since 1 July 2014.`,
   },
 ] as const;

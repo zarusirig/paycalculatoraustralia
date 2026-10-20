@@ -170,7 +170,7 @@ export default function CgtCalculator() {
         </h2>
         <p className="text-sm text-warmgray mb-6">
           Works out your net capital gain for the {CGT_INCOME_YEAR} income year using the ATO&rsquo;s
-          own 8-step method, then taxes it at your marginal rate — because CGT is part of your income
+          own 8-step method, then taxes it at your marginal rate, because CGT is part of your income
           tax, not a separate tax with its own rate.
         </p>
 
@@ -187,7 +187,7 @@ export default function CgtCalculator() {
             <MoneyField
               id="cgt-purchase"
               label="Purchase price"
-              hint="First element of the cost base — what you paid for the asset."
+              hint="First element of the cost base: what you paid for the asset."
               value={purchasePrice}
               onChange={setPurchasePrice}
             />
@@ -273,14 +273,14 @@ export default function CgtCalculator() {
                 <MoneyField
                   id="cgt-improvements"
                   label="Capital improvements"
-                  hint="Fourth element — extensions and improvements, not repairs you have already deducted."
+                  hint="Fourth element: extensions and improvements, not repairs you have already deducted."
                   value={capitalImprovements}
                   onChange={setCapitalImprovements}
                 />
                 <MoneyField
                   id="cgt-ownership"
                   label="Non-deductible ownership costs"
-                  hint="Third element — rates, land tax, insurance and interest ONLY where you could not claim a deduction. Leave at zero for a normal rental property."
+                  hint="Third element: rates, land tax, insurance and interest ONLY where you could not claim a deduction. Leave at zero for a normal rental property."
                   value={ownershipCosts}
                   onChange={setOwnershipCosts}
                 />
@@ -299,7 +299,7 @@ export default function CgtCalculator() {
               </div>
               <div className="text-sm text-warmgray mt-2">
                 {r.isCapitalLoss
-                  ? "No CGT is payable. Carry this loss forward against future capital gains — it cannot reduce tax on your salary."
+                  ? "No CGT is payable. Carry this loss forward against future capital gains. It cannot reduce tax on your salary."
                   : `Effective rate of ${formatPercent(r.effectiveRateOnGain)} on the ${formatAUD(r.grossGain)} gain, at a ${formatPercent(r.marginalRate, 0)} marginal rate.`}
               </div>
             </div>
@@ -396,7 +396,7 @@ export default function CgtCalculator() {
                       Qualifying for the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount
                       would cut this by {formatAUD(discountForgone)}.
                     </strong>{" "}
-                    There is no partial discount for holding an asset eleven months — it is all or
+                    There is no partial discount for holding an asset eleven months. It is all or
                     nothing.
                   </p>
                 )}
@@ -404,7 +404,7 @@ export default function CgtCalculator() {
             )}
 
             <p className="text-xs text-warmgray-light">
-              The gain is added to your taxable income and taxed at marginal rates — there is no
+              The gain is added to your taxable income and taxed at marginal rates; there is no
               separate CGT rate. Figures use the {CGT_INCOME_YEAR}{" "}
               <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">
                 tax brackets

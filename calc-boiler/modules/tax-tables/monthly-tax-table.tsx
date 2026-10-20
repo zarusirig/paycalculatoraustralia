@@ -96,7 +96,7 @@ export default function MonthlyTaxTablePage() {
             </section>
 
             <section id="monthly-tax-table-2026-27">
-              <h2>Full Monthly Tax Table {PAYG_FINANCIAL_YEAR} — With and Without the Tax-Free Threshold</h2>
+              <h2>Full Monthly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
                 The table lists the amount to withhold from monthly earnings in {formatAUD(250)} steps, in the two
                 {" "}{ATO_MONTHLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
@@ -177,7 +177,7 @@ export default function MonthlyTaxTablePage() {
             </section>
 
             <section id="threshold-columns">
-              <h2>&quot;With Tax-Free Threshold&quot; vs &quot;Without&quot; — What the Columns Mean</h2>
+              <h2>&quot;With Tax-Free Threshold&quot; vs &quot;Without&quot;: What the Columns Mean</h2>
               <p>
                 The first {formatAUD(18_200)} of annual income is tax-free, but only one employer may apply it. Claiming the
                 threshold spreads roughly {formatAUD(18_200 / 12)} a month of tax-free income across your pays, which is why
@@ -346,7 +346,7 @@ export default function MonthlyTaxTablePage() {
             </section>
 
             <TaxTableFaqSection
-              heading="Monthly Tax Table — Frequently Asked Questions"
+              heading="Monthly Tax Table: Frequently Asked Questions"
               mirrorHeading="Monthly tax table (NAT 1007) questions and answers"
               faqs={MONTHLY_TAX_TABLE_FAQS}
             />
@@ -379,7 +379,7 @@ export default function MonthlyTaxTablePage() {
             links={[
               { href: "/weekly-tax-table/", label: "Weekly Tax Table (NAT 1005)" },
               { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table (NAT 1006)" },
-              { href: "/schedule-5-tax-table/", label: "Schedule 5 — Bonuses (NAT 3348)" },
+              { href: "/schedule-5-tax-table/", label: "Schedule 5: Bonuses (NAT 3348)" },
               { href: "/monthly-pay-calculator/", label: "Monthly Pay Calculator" },
               { href: "/payg-withholding-tables/", label: "PAYG Tables Hub" },
             ]}

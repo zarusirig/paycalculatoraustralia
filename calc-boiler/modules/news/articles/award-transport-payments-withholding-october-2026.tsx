@@ -25,7 +25,7 @@ export default function AwardTransportPaymentsWithholdingOctober2026() {
     <>
       <p className="lead">
         From <strong>{AWARD_TRANSPORT_CHANGE_DATE}</strong>, employers must withhold tax from award transport
-        payments — travel and fares allowances under long-standing industrial instruments that, until now, have been
+        payments: travel and fares allowances under long-standing industrial instruments that, until now, have been
         paid with no tax withheld. On a {formatAUD(ALLOWANCE)}-a-week fares allowance, a worker earning{" "}
         {formatAUD(mid.wage)} a week will have about <strong>{formatAUD(mid.extra)} more tax taken out</strong> each
         week.
@@ -37,7 +37,7 @@ export default function AwardTransportPaymentsWithholdingOctober2026() {
           { label: "PAYG withholding on the payment", before: "Varied to nil", after: "Withheld like other pay" },
           { label: "Single Touch Payroll", before: "Reported as award transport payment (type AD)", after: "Reported under the allowance's normal category" },
           { label: "Applies to amounts paid", after: `On or after ${AWARD_TRANSPORT_CHANGE_DATE}` },
-          { label: "Cents per km car allowance at the ATO rate", after: `Unchanged — ${Math.round(CURRENT_CPK_RATE * 100)}c/km up to ${CPK_KM_CAP.toLocaleString("en-AU")} km in ${CURRENT_CPK_YEAR}` },
+          { label: "Cents per km car allowance at the ATO rate", after: `Unchanged: ${Math.round(CURRENT_CPK_RATE * 100)}c/km up to ${CPK_KM_CAP.toLocaleString("en-AU")} km in ${CURRENT_CPK_YEAR}` },
         ]}
       />
 

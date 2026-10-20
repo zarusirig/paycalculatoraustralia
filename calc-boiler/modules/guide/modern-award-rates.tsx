@@ -79,8 +79,8 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
   const juniorHourlyBasis = award.junior?.basis === "hourly";
 
   const sources: SourceLink[] = [
-    { title: `Consolidated award text — ${meta.name} (${meta.code})`, url: meta.awardTextUrl, publisher: SOURCES.fwc.name },
-    { title: `Award summary and pay guide — ${meta.code}`, url: meta.summaryUrl, publisher: SOURCES.fwo.name },
+    { title: `Consolidated award text, ${meta.name} (${meta.code})`, url: meta.awardTextUrl, publisher: SOURCES.fwc.name },
+    { title: `Award summary and pay guide, ${meta.code}`, url: meta.summaryUrl, publisher: SOURCES.fwo.name },
     { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
     ...(phaseIn
       ? [{ title: `Junior rates determination ${phaseIn.determination} ([2026] FWCFB 222)`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${phaseIn.determination.toLowerCase()}.pdf`, publisher: SOURCES.fwc.name }]
@@ -447,7 +447,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                   Every figure comes from one constants file transcribed on {meta.verifiedOn} from the Fair Work Commission&rsquo;s consolidated {meta.code} award text, which incorporates all amendments up to and including {meta.consolidatedTo}. Clause numbers are cited against each table. Hourly is the published weekly rate divided by {meta.standardWeeklyHours}; derived dollar figures are rounded half up to the cent.
                 </p>
                 <p>
-                  Automated tests pin the published rates, check every hourly rate against its weekly rate, and assert the rules this award is most often modelled wrongly on{award.casualRuleSummary ? " — including which casual penalties add the loading and which compound on the casual rate" : compounded ? " — including that casual penalties compound on the casual rate" : " — including that casual penalties add the loading rather than multiplying by it"}. Parts of the award we have not verified are listed as gaps rather than estimated.
+                  Automated tests pin the published rates, check every hourly rate against its weekly rate, and assert the rules this award is most often modelled wrongly on{award.casualRuleSummary ? ", including which casual penalties add the loading and which compound on the casual rate" : compounded ? ", including that casual penalties compound on the casual rate" : ", including that casual penalties add the loading rather than multiplying by it"}. Parts of the award we have not verified are listed as gaps rather than estimated.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sources} lastVerified={meta.verifiedOn} />

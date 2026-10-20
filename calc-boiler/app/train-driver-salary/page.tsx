@@ -9,7 +9,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // sydney trains driver salary 320, train driver salary nsw 320.
 
 const SLUG = "train-driver-salary";
-const TITLE = "Train Driver Salary Australia 2026 — Sydney Trains & Metro Pay";
+const TITLE = "Train Driver Salary Australia 2026 - Sydney Trains & Metro Pay";
 const DESCRIPTION =
   "Train driver pay from July 2026: Sydney Trains drivers $1,861.35 a week, Metro Trains Melbourne qualified drivers $92,077 a year, trainee rates and take-home pay.";
 const URL = `https://pay-calculator-australia.com/${SLUG}/`;

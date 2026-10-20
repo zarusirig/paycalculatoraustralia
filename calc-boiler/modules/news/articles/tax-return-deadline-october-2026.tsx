@@ -31,7 +31,7 @@ export default function TaxReturnDeadlineOctober2026() {
         {moved ? (
           <>
             {" "}That is a {weekdayOf(self.iso)} this year, and under the ATO&apos;s weekend rule a due date that falls
-            on a non-business day moves to the next business day — <strong>{weekdayOf(self.effectiveIso)}{" "}
+            on a non-business day moves to the next business day: <strong>{weekdayOf(self.effectiveIso)}{" "}
             {formatIso(self.effectiveIso, "long")}</strong>.
           </>
         ) : null}{" "}
@@ -55,7 +55,7 @@ export default function TaxReturnDeadlineOctober2026() {
         The simplest is a registered tax agent. If you are on an agent&apos;s client list before{" "}
         {RETURN_2026.selfLodgeDueDate}, most people&apos;s {RETURN_2026.incomeYear} return is not due until{" "}
         {RETURN_2026.agentDueDateMostPeople}. The ATO warns that first-time clients, or anyone changing agent, should
-        contact the agent before 31 October. Some clients get an earlier date — for example{" "}
+        contact the agent before 31 October. Some clients get an earlier date, for example{" "}
         {RETURN_2026.agentDueDateLargeLiability} if their latest return had a tax liability of $20,000 or more.
       </p>
       <p>
@@ -68,8 +68,8 @@ export default function TaxReturnDeadlineOctober2026() {
 
       <h2>What lodging late costs</h2>
       <p>
-        The failure-to-lodge penalty is one penalty unit — {formatAUD(PENALTY_UNIT.amount)} for failures on or after{" "}
-        {PENALTY_UNIT.from} — for every 28 days or part of 28 days the return is overdue, up to five units (
+        The failure-to-lodge penalty is one penalty unit ({formatAUD(PENALTY_UNIT.amount)} for failures on or after{" "}
+        {PENALTY_UNIT.from}) for every 28 days or part of 28 days the return is overdue, up to five units (
         {formatAUD(FTL_MAX_INDIVIDUAL)}) for an individual. A return 10 days late would attract{" "}
         {formatAUD(ftl(10))}; 60 days late, {formatAUD(ftl(60))}. The ATO says it generally does not apply the
         penalty for an isolated late lodgment, and warns you and issues a notice to lodge before it does.
@@ -78,7 +78,7 @@ export default function TaxReturnDeadlineOctober2026() {
         Interest is the bigger risk if you owe tax. The general interest charge compounds daily and resets each
         quarter; the ATO has set it at <strong>{pct(G.annualRate)}</strong> for {G.quarter}, {move}{" "}
         {pct(prev.annualRate)} for {prev.label}, with a daily rate of {G.dailyRatePercent}%. On a {formatAUD(DEBT)} bill left unpaid
-        for {DAYS} days, that is about {formatAUD(gic, 2)} — and GIC incurred from 1 July 2025 can&apos;t be claimed as a tax deduction.
+        for {DAYS} days, that is about {formatAUD(gic, 2)}, and GIC incurred from 1 July 2025 can&apos;t be claimed as a tax deduction.
       </p>
 
       <h2>Check your refund before you lodge</h2>

@@ -24,16 +24,16 @@ function miscellaneous(): AwardPageCopy {
   return {
     slug: "miscellaneous-award-rates",
     crumb: "Miscellaneous Award Rates",
-    title: `Miscellaneous Award Pay Rates ${FY} (${a.meta.code}) — Levels 1–4`,
+    title: `Miscellaneous Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–4`,
     description: fitDescription(
       `Miscellaneous Award (MA000104) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 4 ${$(l4.hourly)}/hr. Casual, Saturday, Sunday, public holiday and overtime rates.`,
       `Miscellaneous Award MA000104 rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)} to Level 4 ${$(l4.hourly)} an hour, with casual, weekend and overtime rates.`,
     ),
     h1: `Miscellaneous Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}) — the safety-net award for employees no other modern award covers — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), the safety-net award for employees no other modern award covers, operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 employee under the Miscellaneous Award earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 2 is ${$(l2.hourly)}, Level 3 ${$(l3.hourly)} and Level 4 ${$(l4.hourly)}. Saturday is 120% (casuals 145%), Sunday 150% (casuals 175%) and public holidays 250% for everyone.`,
     trap: {
-      heading: "Check this is your award first — it only covers people no other award does",
+      heading: "Check this is your award first: it only covers people no other award does",
       body: "The Miscellaneous Award is a catch-all. It covers employees in the four levels below who are not covered by any other modern award, and it excludes managerial and professional employees such as accountants, marketers, lawyers, HR and IT specialists (cl 4). If your job fits a specific industry award, that award applies instead and its rates are different. Use Fair Work's award finder if you are unsure.",
     },
     workedExample: {
@@ -54,7 +54,7 @@ function miscellaneous(): AwardPageCopy {
       },
       {
         q: "What is the Miscellaneous Award Saturday and Sunday rate?",
-        a: `Ordinary hours on a Saturday are paid at 120% of the minimum hourly rate for permanent employees and 145% for casuals — ${$(x(l1.hourly, 1.2))} and ${$(x(l1.hourly, 1.45))} at Level 1. Sunday is 150% (casuals 175%), or ${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 1.75))} at Level 1. Weekday hours outside 7.00 am to 7.00 pm are also 120% (casuals 145%).`,
+        a: `Ordinary hours on a Saturday are paid at 120% of the minimum hourly rate for permanent employees and 145% for casuals: ${$(x(l1.hourly, 1.2))} and ${$(x(l1.hourly, 1.45))} at Level 1. Sunday is 150% (casuals 175%), or ${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 1.75))} at Level 1. Weekday hours outside 7.00 am to 7.00 pm are also 120% (casuals 145%).`,
       },
       {
         q: "What is the Miscellaneous Award overtime rate?",
@@ -88,11 +88,11 @@ function buildingConstruction(): AwardPageCopy {
       `Building and Construction Award MA000020 rates from ${a.meta.operativeFrom}: ${$(l1a.hourly)} to ${$(l9.hourly)} an hour, casual and weekend rates.`,
     ),
     h1: `Building and Construction Award Pay Rates ${FY}`,
-    standfirst: `Hourly rates for every CW/ECW level under the ${a.meta.name} (${a.meta.code}) on a weekly hire basis, with the industry allowance built in — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Hourly rates for every CW/ECW level under the ${a.meta.name} (${a.meta.code}) on a weekly hire basis, with the industry allowance built in, operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1(a) construction worker on weekly hire earns ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week), or ${$(casual(a, l1a.hourly))} as a casual, including the $67.15 weekly industry allowance. A Level 3 (the trade rate) is ${$(l3.hourly)}. Ordinary hours are Monday to Friday only: Saturday is overtime at 150% then 200%, Sunday is 200% and public holidays 250%.`,
     trap: {
-      heading: "The award's rate table is not what you are paid — the allowance is on top, for all purposes",
-      body: `The weekly rates in clause 19.1(a) are minimum classification rates only. The industry allowance of $67.15 a week (general building, civil and engineering construction; $53.72 for residential) is paid for all purposes, so it is part of the "ordinary hourly rate" that every penalty and overtime percentage applies to (cl 19.1(b), 19.3(b), 22.3). That is why a CW3 is ${$(l3.hourly)} an hour here, not the ${$(29.45)} in the award's table. Tradespeople who get tool allowances, and daily hire employees, are paid more again — see the notes below.`,
+      heading: "The award's rate table is not what you are paid: the allowance is on top, for all purposes",
+      body: `The weekly rates in clause 19.1(a) are minimum classification rates only. The industry allowance of $67.15 a week (general building, civil and engineering construction; $53.72 for residential) is paid for all purposes, so it is part of the "ordinary hourly rate" that every penalty and overtime percentage applies to (cl 19.1(b), 19.3(b), 22.3). That is why a CW3 is ${$(l3.hourly)} an hour here, not the ${$(29.45)} in the award's table. Tradespeople who get tool allowances, and daily hire employees, are paid more again (see the notes below).`,
     },
     workedExample: {
       heading: "Worked example: a Level 3 carpenter's Saturday",
@@ -143,14 +143,14 @@ function legalServices(): AwardPageCopy {
   return {
     slug: "legal-services-award-rates",
     crumb: "Legal Services Award Rates",
-    title: `Legal Services Award Pay Rates ${FY} (${a.meta.code}) — Levels 1–6`,
+    title: `Legal Services Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–6`,
     description: fitDescription(
       `Legal Services Award (MA000116) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to law clerk ${$(l6.hourly)}/hr. Casual, overtime, shift and junior rates.`,
       `Legal Services Award MA000116 rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l6.hourly)} an hour, with casual, overtime and shift rates.`,
     ),
     h1: `Legal Services Award Pay Rates ${FY}`,
-    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}) — legal secretaries, receptionists, paralegals who are not graduates, law graduates and law clerks — operative from ${a.meta.operativeFrom}.`,
-    directAnswer: `A Level 1 legal clerical employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 2 is ${$(l2.hourly)}, Level 5 ${$(l5.hourly)} (the same as a law graduate) and a Level 6 law clerk ${$(l6.hourly)}. Day workers have no weekend penalty rates — work outside Monday to Friday, 7.00 am to 6.30 pm, is overtime at 150% then 200%.`,
+    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}): legal secretaries, receptionists, paralegals who are not graduates, law graduates and law clerks. Operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 legal clerical employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 2 is ${$(l2.hourly)}, Level 5 ${$(l5.hourly)} (the same as a law graduate) and a Level 6 law clerk ${$(l6.hourly)}. Day workers have no weekend penalty rates. Work outside Monday to Friday, 7.00 am to 6.30 pm, is overtime at 150% then 200%.`,
     trap: {
       heading: "For a day worker, a Saturday is overtime, not a penalty rate",
       body: `Ordinary hours for day workers are Monday to Friday between 7.00 am and 6.30 pm (cl 13.1). Anything outside that span, including all Saturday and Sunday work, is overtime: 150% for the first 3 hours and 200% after, or 200% flat after 12 noon on a Saturday and on a Sunday, with a 3-hour minimum. Shiftworkers have separate shift and weekend rates. Some employers pay an annualised salary instead; the award allows it (cl 17) but the salary must still cover what the award would give for the hours actually worked.`,
@@ -199,17 +199,17 @@ function electrical(): AwardPageCopy {
   return {
     slug: "electrical-award-rates",
     crumb: "Electrical Award Rates",
-    title: `Electrical Award Pay Rates ${FY} (${a.meta.code}) — Grades 1–10`,
+    title: `Electrical Award Pay Rates ${FY} (${a.meta.code}) - Grades 1–10`,
     description: fitDescription(
       `Electrical, Electronic and Communications Contracting Award (MA000025) rates from ${a.meta.operativeFrom}: grade 1 ${$(g1.hourly)}/hr to grade 10 ${$(g10.hourly)}/hr. Casual, Sunday and overtime rates.`,
       `Electrical Award MA000025 rates from ${a.meta.operativeFrom}: grade 1 ${$(g1.hourly)} to grade 10 ${$(g10.hourly)} an hour, with casual and overtime rates.`,
     ),
     h1: `Electrical Award Pay Rates ${FY}`,
-    standfirst: `Ordinary hourly rates for every grade under the ${a.meta.name} (${a.meta.code}) — electricians, electronics and communications workers, linesworkers and refrigeration tradespeople — operative from ${a.meta.operativeFrom}.`,
-    directAnswer: `A grade 1 electrical worker is paid ${$(g1.hourly)} an hour (${$(g1.weekly)} a week), or ${$(casual(a, g1.hourly))} as a casual. A grade 5 tradesperson — the standard trade rate — is ${$(g5.hourly)} and a grade 10 is ${$(g10.hourly)}. These include the industry allowance (and the tool allowance from grade 5). Sunday work is 200% (casuals 250%), public holidays 250% (casuals 312.5%).`,
+    standfirst: `Ordinary hourly rates for every grade under the ${a.meta.name} (${a.meta.code}) (electricians, electronics and communications workers, linesworkers and refrigeration tradespeople), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A grade 1 electrical worker is paid ${$(g1.hourly)} an hour (${$(g1.weekly)} a week), or ${$(casual(a, g1.hourly))} as a casual. A grade 5 tradesperson (the standard trade rate) is ${$(g5.hourly)} and a grade 10 is ${$(g10.hourly)}. These include the industry allowance (and the tool allowance from grade 5). Sunday work is 200% (casuals 250%), public holidays 250% (casuals 312.5%).`,
     trap: {
       heading: "The hourly rate you are paid is higher than the award's minimum rate table",
-      body: `Clause 16.2 lists minimum rates ($29.45 an hour for a grade 5). But the award adds an all-purpose industry allowance of $41.41 a week to every grade and a $22.31 tool allowance from grade 5, and its ordinary hourly rate — the figure every penalty and overtime percentage applies to — includes both (Schedule B.2.1). So a grade 5 is ${$(g5.hourly)} an hour, not $29.45. Licensed electricians on an unrestricted licence get a further $40.29 a week all-purpose on top, which is not in the table.`,
+      body: `Clause 16.2 lists minimum rates ($29.45 an hour for a grade 5). But the award adds an all-purpose industry allowance of $41.41 a week to every grade and a $22.31 tool allowance from grade 5, and its ordinary hourly rate (the figure every penalty and overtime percentage applies to) includes both (Schedule B.2.1). So a grade 5 is ${$(g5.hourly)} an hour, not $29.45. Licensed electricians on an unrestricted licence get a further $40.29 a week all-purpose on top, which is not in the table.`,
     },
     workedExample: {
       heading: "Worked example: a grade 5 electrician's Saturday call-out",
@@ -255,13 +255,13 @@ function fitness(): AwardPageCopy {
   return {
     slug: "fitness-industry-award-rates",
     crumb: "Fitness Industry Award Rates",
-    title: `Fitness Industry Award Pay Rates ${FY} (${a.meta.code}) — Levels 1–7`,
+    title: `Fitness Industry Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–7`,
     description: fitDescription(
       `Fitness Industry Award (MA000094) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 7 ${$(l7.hourly)}/hr. Casual, weekend, public holiday and overtime rates for gym, pool and coaching staff.`,
       `Fitness Industry Award MA000094 rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l7.hourly)} an hour, with casual, weekend and overtime rates.`,
     ),
     h1: `Fitness Industry Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}) — gym and pool staff, instructors, fitness trainers, lifeguards, swimming and tennis coaches — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}) (gym and pool staff, instructors, fitness trainers, lifeguards, swimming and tennis coaches), operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 fitness employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. A Level 5 fitness trainer is ${$(l5.hourly)}. Saturday is 125% and Sunday 150% for permanent staff, but casuals get a 30% loading on weekends (130%), so a casual's Sunday rate is below a permanent employee's.`,
     trap: {
       heading: "Casual weekend rates are lower than permanent weekend rates on Sundays",
@@ -280,7 +280,7 @@ function fitness(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "What is the Fitness Industry Award Saturday and Sunday rate?",
-        a: `Permanent and part-time staff are paid 125% on a Saturday and 150% on a Sunday for ordinary hours — ${$(x(l1.hourly, 1.25))} and ${$(x(l1.hourly, 1.5))} at Level 1. Casuals are paid 130% on both days (${$(x(l1.hourly, 1.3))} at Level 1). Public holidays are 250% for permanent staff (${$(x(l1.hourly, 2.5))} at Level 1).`,
+        a: `Permanent and part-time staff are paid 125% on a Saturday and 150% on a Sunday for ordinary hours: ${$(x(l1.hourly, 1.25))} and ${$(x(l1.hourly, 1.5))} at Level 1. Casuals are paid 130% on both days (${$(x(l1.hourly, 1.3))} at Level 1). Public holidays are 250% for permanent staff (${$(x(l1.hourly, 2.5))} at Level 1).`,
       },
       {
         q: "What casual rate applies on a public holiday?",
@@ -288,7 +288,7 @@ function fitness(): AwardPageCopy {
       },
       {
         q: "What are overtime rates in the Fitness Industry Award?",
-        a: `Overtime is 150% for the first 2 hours Monday to Saturday and 200% after that, 200% on Sunday and 250% on a public holiday — ${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 2))} at Level 1. Overtime is anything outside 5.00 am to 11.00 pm Monday to Friday and 6.00 am to 9.00 pm on weekends, over 10 hours a day, or over an average of 38 a week over 4 weeks.`,
+        a: `Overtime is 150% for the first 2 hours Monday to Saturday and 200% after that, 200% on Sunday and 250% on a public holiday: ${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 2))} at Level 1. Overtime is anything outside 5.00 am to 11.00 pm Monday to Friday and 6.00 am to 9.00 pm on weekends, over 10 hours a day, or over an average of 38 a week over 4 weeks.`,
       },
       {
         q: "Which level is a swimming teacher, lifeguard or personal trainer?",
@@ -310,17 +310,17 @@ function realEstate(): AwardPageCopy {
   return {
     slug: "real-estate-award-rates",
     crumb: "Real Estate Award Rates",
-    title: `Real Estate Award Pay Rates ${FY} (${a.meta.code}) — Levels 1–4`,
+    title: `Real Estate Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–4`,
     description: fitDescription(
       `Real Estate Industry Award (MA000106) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1a.hourly)}/hr to Level 4 ${$(l4.hourly)}/hr. Casual, public holiday, overtime and junior rates, and the no-weekend-penalty rule.`,
       `Real Estate Industry Award MA000106 rates from ${a.meta.operativeFrom}: ${$(l1a.hourly)} to ${$(l4.hourly)} an hour, casual, public holiday and junior rates.`,
     ),
     h1: `Real Estate Award Pay Rates ${FY}`,
-    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}) — property managers, sales and leasing staff, assistants and administrators in real estate agencies — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}) (property managers, sales and leasing staff, assistants and administrators in real estate agencies), operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 (Associate) employee earns at least ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week) in their first 12 months and ${$(l1b.hourly)} after that; a casual earns 25% more. Level 2 is ${$(l2.hourly)}, Level 3 ${$(level("real-estate", "Level 3 (Supervisory)").hourly)} and Level 4 ${$(l4.hourly)}. There are no Saturday or Sunday penalty rates for ordinary hours; a public holiday is 200% (casuals 200% of their casual rate).`,
     trap: {
-      heading: "No weekend penalty rates — but a rostered day off is paid at overtime rates",
-      body: "Ordinary hours under the Real Estate Industry Award are 38 a week and can be worked on any day, so Saturday and Sunday open homes inside the week are paid at the ordinary rate. Only a public holiday (200%) or work on a rostered day off (150% for 2 hours, then 200%) pays more. And overtime is only payable for hours the employer specifically directed you to work — hours worked on your own initiative are not (cl 19.1(b)–(c)). Commission-only salespeople are outside these weekly rates entirely.",
+      heading: "No weekend penalty rates, but a rostered day off is paid at overtime rates",
+      body: "Ordinary hours under the Real Estate Industry Award are 38 a week and can be worked on any day, so Saturday and Sunday open homes inside the week are paid at the ordinary rate. Only a public holiday (200%) or work on a rostered day off (150% for 2 hours, then 200%) pays more. And overtime is only payable for hours the employer specifically directed you to work. Hours worked on your own initiative are not (cl 19.1(b)–(c)). Commission-only salespeople are outside these weekly rates entirely.",
     },
     workedExample: {
       heading: "Worked example: a Level 2 employee working a public holiday",
@@ -343,7 +343,7 @@ function realEstate(): AwardPageCopy {
       },
       {
         q: "How much is real estate overtime?",
-        a: `Hours the employer specifically directs you to work beyond the ordinary hours, other than on a rostered day off, are paid at the ordinary hourly rate (100%; casuals 125%) — not at a penalty rate. On a rostered day or half day off the rate is 150% for the first 2 hours and 200% after, or ${$(x(l2.hourly, 1.5))} and ${$(x(l2.hourly, 2))} at Level 2.`,
+        a: `Hours the employer specifically directs you to work beyond the ordinary hours, other than on a rostered day off, are paid at the ordinary hourly rate (100%; casuals 125%), not at a penalty rate. On a rostered day or half day off the rate is 150% for the first 2 hours and 200% after, or ${$(x(l2.hourly, 1.5))} and ${$(x(l2.hourly, 2))} at Level 2.`,
       },
       {
         q: "What allowances do real estate staff get?",
@@ -365,13 +365,13 @@ function localGovernment(): AwardPageCopy {
   return {
     slug: "local-government-award-rates",
     crumb: "Local Government Award Rates",
-    title: `Local Government Award Pay Rates ${FY} (${a.meta.code}) — Levels 1–11`,
+    title: `Local Government Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–11`,
     description: fitDescription(
       `Local Government Industry Award (MA000112) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 11 ${$(l11.hourly)}/hr. Casual, weekend, public holiday and overtime rates.`,
       `Local Government Award MA000112 rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l11.hourly)} an hour, casual, weekend and overtime rates.`,
     ),
     h1: `Local Government Award Pay Rates ${FY}`,
-    standfirst: `Every level under the ${a.meta.name} (${a.meta.code}) — council depot, library, customer service, parks, community and childcare staff — operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Every level under the ${a.meta.name} (${a.meta.code}) (council depot, library, customer service, parks, community and childcare staff), operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 council employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 4 is ${$(l4.hourly)} and Level 11 ${$(l11.hourly)}. Saturday is 150% and Sunday 175% only for roles with weekend ordinary hours (airports, libraries, customer service, hospitality, cleaning and similar); everyone else's weekend work is overtime. Public holidays are 250%.`,
     trap: {
       heading: "Weekend penalty rates depend on your role, and many councils pay under an enterprise agreement",
@@ -419,13 +419,13 @@ function livePerformance(): AwardPageCopy {
   return {
     slug: "live-performance-award-rates",
     crumb: "Live Performance Award Rates",
-    title: `Live Performance Award Pay Rates ${FY} (${a.meta.code}) — Crew`,
+    title: `Live Performance Award Pay Rates ${FY} (${a.meta.code}) - Crew`,
     description: fitDescription(
       `Live Performance Award (MA000081) hourly rates for production and support staff from ${a.meta.operativeFrom}: ${$(l1.hourly)}/hr to ${$(l10.hourly)}/hr. Casual, Sunday, midnight and overtime rates.`,
       `Live Performance Award MA000081 crew rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l10.hourly)} an hour, casual, Sunday and overtime rates.`,
     ),
     h1: `Live Performance Award Pay Rates ${FY}`,
-    standfirst: `Hourly rates for production and support staff — stagehands, riggers, lighting, sound and front-of-house crew — under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Hourly rates for production and support staff (stagehands, riggers, lighting, sound and front-of-house crew) under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 production and support employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 4 is ${$(level("live-performance", "Level 4 — Production and Support Staff 4").hourly)} and the top hourly level, Level 10, ${$(l10.hourly)}. Sunday work, work between midnight and 7.00 am and public holidays are all 200% (casuals 225%).`,
     trap: {
       heading: "This page covers crew, not performers or musicians",

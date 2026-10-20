@@ -59,12 +59,12 @@ export const SA_POLICE_PAY: ServicePayJurisdiction = {
   ],
   sources: [
     {
-      title: "Current agreements — South Australia Police Enterprise Agreement 2021 and variations",
+      title: "Current agreements: South Australia Police Enterprise Agreement 2021 and variations",
       publisher: "Attorney-General's Department (SA)",
       url: "https://www.agd.sa.gov.au/industrial-relations/current-agreements",
     },
     {
-      title: "Orders — Variation of Enterprise Agreement (s 84), South Australia Police Enterprise Agreement 2021 (ET-24-00737, February 2024)",
+      title: "Orders: Variation of Enterprise Agreement (s 84), South Australia Police Enterprise Agreement 2021 (ET-24-00737, February 2024)",
       publisher: "South Australian Employment Tribunal / Attorney-General's Department (SA)",
       url: "https://www.agd.sa.gov.au/__data/assets/pdf_file/0007/988873/ET-24-00737-South-Australian-Police-Enterprise-Agreement-2021-Variation.pdf",
     },

@@ -75,26 +75,26 @@ function jsa(code: string, title: string, slug: string, weekly: number, hourly: 
 
 function jsaSource(j: { anzscoCode: string; anzscoTitle: string; url: string }): HealthSalarySource {
   return {
-    title: `${j.anzscoTitle} (ANZSCO ${j.anzscoCode}) occupation profile — ABS Survey of Employee Earnings and Hours, May 2025`,
+    title: `${j.anzscoTitle} (ANZSCO ${j.anzscoCode}) occupation profile, ABS Survey of Employee Earnings and Hours, May 2025`,
     publisher: "Jobs and Skills Australia",
     url: j.url,
   };
 }
 
 const MA000031_SOURCE: HealthSalarySource = {
-  title: "Medical Practitioners Award 2020 [MA000031] — consolidated to 1 July 2026",
+  title: "Medical Practitioners Award 2020 [MA000031], consolidated to 1 July 2026",
   publisher: "Fair Work Commission",
   url: awardTextUrl("MA000031"),
 };
 
 const MA000027_SOURCE: HealthSalarySource = {
-  title: "Health Professionals and Support Services Award 2020 [MA000027] — consolidated to 1 October 2026",
+  title: "Health Professionals and Support Services Award 2020 [MA000027], consolidated to 1 October 2026",
   publisher: "Fair Work Commission",
   url: awardTextUrl("MA000027"),
 };
 
 const FWO_MA000027_SUMMARY: HealthSalarySource = {
-  title: "Health Services Award [MA000027] — who the award covers",
+  title: "Health Services Award [MA000027], who the award covers",
   publisher: "Fair Work Ombudsman",
   url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000027-summary",
 };
@@ -160,16 +160,16 @@ const STAFF_SPECIALIST_NOT_SHOWN =
 
 const [DENTIST, DENTIST_F, DENTIST_M] = ATO_15A.dentist;
 const DENTAL_JSA = jsa("2523", "Dental Practitioners", "dental-practitioners", 3_232, 85, 0.6, 42,
-  "The group counts dental specialists as well as dentists, and covers employees only — practice owners and contractors are not in it.");
+  "The group counts dental specialists as well as dentists, and covers employees only. Practice owners and contractors are not in it.");
 const DENTAL_STATES = ATO_15D.dentalPractitioner;
 
 const dentist: HealthSalaryPage = {
   slug: "dentist",
   name: "Dentist",
   plural: "dentists",
-  metaTitle: `Dentist Salary Australia 2026 — ${$(DENTIST.averageTaxableIncome)} Average (ATO Data)`,
+  metaTitle: `Dentist Salary Australia 2026 - ${$(DENTIST.averageTaxableIncome)} Average (ATO Data)`,
   metaDescription: `Dentists averaged ${$(DENTIST.averageTaxableIncome)} taxable income in 2023–24 (median ${$(DENTIST.medianTaxableIncome)}), ATO data. Full-time employee median ${$(DENTAL_JSA.medianWeekly)} a week, plus take-home pay.`,
-  heading: "Dentist Salary Australia 2026 — What Dentists Earn and Take Home",
+  heading: "Dentist Salary Australia 2026: What Dentists Earn and Take Home",
   atoOccupation: "occupation code 252312, Dentist",
   ato: DENTIST,
   atoBySex: [DENTIST_F, DENTIST_M],
@@ -200,7 +200,7 @@ const dentist: HealthSalaryPage = {
   jsa: DENTAL_JSA,
   coverageHeading: "Is there an award for dentists?",
   coverage: [
-    "No modern award names dentists. The Health Professionals and Support Services Award [MA000027] covers employers that deliver dental services, but its list of health professions (Schedule B, which the award calls an indicative list) names dental hygienists, dental therapists, oral health therapists and dental prosthetists — not dentists — and the Fair Work Ombudsman's summary of the award doesn't list dentists among its examples either.",
+    "No modern award names dentists. The Health Professionals and Support Services Award [MA000027] covers employers that deliver dental services, but its list of health professions (Schedule B, which the award calls an indicative list) names dental hygienists, dental therapists, oral health therapists and dental prosthetists (not dentists), and the Fair Work Ombudsman's summary of the award doesn't list dentists among its examples either.",
     "So this page publishes no award minimum for dentists. If you are an employed dentist and want to know whether an award applies to you, ask the Fair Work Ombudsman; an award-free adult employee is still owed at least the National Minimum Wage and the National Employment Standards.",
     "A dentist who owns a practice, or contracts to one rather than being employed by it, is not an employee: no award, minimum wage or payslip applies. Dentists in public dental services are paid under state awards and agreements, which this page doesn't reproduce.",
   ],
@@ -208,7 +208,7 @@ const dentist: HealthSalaryPage = {
     before: "The dental team around a dentist does have award minimums: see ",
     anchor: "dental hygienist pay rates",
     href: "/job-pay-rates/dental-hygienist/",
-    after: " — and dental assistants are covered by the same award.",
+    after: ", and dental assistants are covered by the same award.",
   },
   staffSpecialist: false,
   scenarios: [
@@ -239,7 +239,7 @@ const dentist: HealthSalaryPage = {
       q: "What is a dentist's take-home pay?",
       a: (() => {
         const t = th(DENTIST.medianTaxableIncome);
-        return `On the ${$(DENTIST.medianTaxableIncome)} median taxable income, a dentist keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
+        return `On the ${$(DENTIST.medianTaxableIncome)} median taxable income, a dentist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
       })(),
     },
     {
@@ -248,7 +248,7 @@ const dentist: HealthSalaryPage = {
     },
     {
       q: "Which state pays dentists the most?",
-      a: `In the ATO's 2023–24 figures for dental practitioners — dentists and dental specialists counted together — average taxable income was highest in the ACT (${$(DENTAL_STATES.find((r) => r.label === "ACT")!.averageTaxableIncome)}) and lowest in Victoria (${$(DENTAL_STATES.find((r) => r.label === "VIC")!.averageTaxableIncome)}). These are averages of what people reported, not salary rates, and they include part-time work.`,
+      a: `In the ATO's 2023–24 figures for dental practitioners (dentists and dental specialists counted together), average taxable income was highest in the ACT (${$(DENTAL_STATES.find((r) => r.label === "ACT")!.averageTaxableIncome)}) and lowest in Victoria (${$(DENTAL_STATES.find((r) => r.label === "VIC")!.averageTaxableIncome)}). These are averages of what people reported, not salary rates, and they include part-time work.`,
     },
     {
       q: "How much does a dental specialist earn?",
@@ -276,15 +276,15 @@ const dentist: HealthSalaryPage = {
 
 const [RADIOLOGIST, RADIOLOGIST_F, RADIOLOGIST_M] = ATO_15A.radiologist;
 const OTHER_MP_JSA = jsa("2539", "Other Medical Practitioners", "other-medical-practitioners", 5_013, 101, 0.77, 46,
-  "This is the median for the whole ANZSCO group radiologists belong to, which also counts dermatologists, emergency medicine specialists, ophthalmologists, pathologists and other specialists — so it is not a radiologist figure, and it covers employees only.");
+  "This is the median for the whole ANZSCO group radiologists belong to, which also counts dermatologists, emergency medicine specialists, ophthalmologists, pathologists and other specialists, so it is not a radiologist figure, and it covers employees only.");
 
 const radiologist: HealthSalaryPage = {
   slug: "radiologist",
   name: "Radiologist",
   plural: "radiologists",
-  metaTitle: `Radiologist Salary Australia 2026 — ${$(RADIOLOGIST.averageTaxableIncome)} Average (ATO)`,
+  metaTitle: `Radiologist Salary Australia 2026 - ${$(RADIOLOGIST.averageTaxableIncome)} Average (ATO)`,
   metaDescription: `Radiologists averaged ${$(RADIOLOGIST.averageTaxableIncome)} taxable income in 2023–24 (ATO). Public hospital staff specialist scales for NSW, VIC and QLD, and take-home pay after tax.`,
-  heading: "Radiologist Salary Australia 2026 — Earnings, Staff Specialist Pay and Take-Home",
+  heading: "Radiologist Salary Australia 2026: Earnings, Staff Specialist Pay and Take-Home",
   atoOccupation: "occupation code 253917, Diagnostic and interventional radiologist",
   ato: RADIOLOGIST,
   atoBySex: [RADIOLOGIST_F, RADIOLOGIST_M],
@@ -294,7 +294,7 @@ const radiologist: HealthSalaryPage = {
       title: "Radiologists against their ATO group",
       part: "Tables 15A and 15B",
       intro:
-        "The ATO counts radiologists in unit group 2539, Other medical practitioners, alongside a dozen other specialties — which is why there is no state breakdown for radiologists alone. Radiation oncologists are a separate occupation in the same group.",
+        "The ATO counts radiologists in unit group 2539, Other medical practitioners, alongside a dozen other specialties, which is why there is no state breakdown for radiologists alone. Radiation oncologists are a separate occupation in the same group.",
       rowHeading: "Occupation",
       rows: [
         { ...RADIOLOGIST, label: "253917 Diagnostic and interventional radiologist" },
@@ -345,7 +345,7 @@ const radiologist: HealthSalaryPage = {
       q: "What is a radiologist's take-home pay?",
       a: (() => {
         const t = th(RADIOLOGIST.medianTaxableIncome);
-        return `On the ${$(RADIOLOGIST.medianTaxableIncome)} median taxable income, a radiologist keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. A HELP debt would add a compulsory repayment of about ${t.help}, 10% of repayment income at this level.`;
+        return `On the ${$(RADIOLOGIST.medianTaxableIncome)} median taxable income, a radiologist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. A HELP debt would add a compulsory repayment of about ${t.help}, 10% of repayment income at this level.`;
       })(),
     },
     {
@@ -354,7 +354,7 @@ const radiologist: HealthSalaryPage = {
     },
     {
       q: "Is there an award rate for radiologists?",
-      a: `Only where the Medical Practitioners Award applies — private hospitals and the other settings in its clause 4.2. There a radiologist is a specialist, with a minimum of ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026. Private imaging practices are not on the award's list of settings.`,
+      a: `Only where the Medical Practitioners Award applies: private hospitals and the other settings in its clause 4.2. There a radiologist is a specialist, with a minimum of ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026. Private imaging practices are not on the award's list of settings.`,
     },
     {
       q: "Does Division 293 tax apply to radiologists?",
@@ -384,9 +384,9 @@ const anaesthetist: HealthSalaryPage = {
   slug: "anaesthetist",
   name: "Anaesthetist",
   plural: "anaesthetists",
-  metaTitle: `Anaesthetist Salary Australia 2026 — ${$(ANAESTHETIST.averageTaxableIncome)} Average (ATO)`,
+  metaTitle: `Anaesthetist Salary Australia 2026 - ${$(ANAESTHETIST.averageTaxableIncome)} Average (ATO)`,
   metaDescription: `Anaesthetists averaged ${$(ANAESTHETIST.averageTaxableIncome)} taxable income in 2023–24 (ATO), with figures for every state, public hospital staff specialist pay and take-home pay.`,
-  heading: "Anaesthetist Salary Australia 2026 — Earnings by State and Take-Home Pay",
+  heading: "Anaesthetist Salary Australia 2026: Earnings by State and Take-Home Pay",
   atoOccupation: "occupation code 253211, Anaesthetist",
   ato: ANAESTHETIST,
   atoBySex: [ANAESTHETIST_F, ANAESTHETIST_M],
@@ -404,7 +404,7 @@ const anaesthetist: HealthSalaryPage = {
   jsa: ANAESTHETIST_JSA,
   coverageHeading: "Which award or agreement sets an anaesthetist's pay?",
   coverage: [
-    "In a state public hospital an anaesthetist is employed as a staff specialist and paid on the state's specialist scale — the same scale as other specialties. The NSW, Victorian and Queensland scales are below.",
+    "In a state public hospital an anaesthetist is employed as a staff specialist and paid on the state's specialist scale, the same scale as other specialties. The NSW, Victorian and Queensland scales are below.",
     `Private hospitals and the other employers in the settings the Medical Practitioners Award lists (cl 4.2) must pay an employed specialist at least ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026 (cl 16.1(h)).`,
     "An anaesthetist in private practice on their own account is not an employee, so neither the award nor a payslip applies to that work.",
   ],
@@ -443,7 +443,7 @@ const anaesthetist: HealthSalaryPage = {
       q: "What is an anaesthetist's take-home pay?",
       a: (() => {
         const t = th(ANAESTHETIST.medianTaxableIncome);
-        return `On the ${$(ANAESTHETIST.medianTaxableIncome)} median taxable income, an anaesthetist keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
+        return `On the ${$(ANAESTHETIST.medianTaxableIncome)} median taxable income, an anaesthetist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
       })(),
     },
     {
@@ -482,9 +482,9 @@ const optometrist: HealthSalaryPage = {
   slug: "optometrist",
   name: "Optometrist",
   plural: "optometrists",
-  metaTitle: `Optometrist Salary Australia 2026 — ${$(OPTOMETRIST.averageTaxableIncome)} Average (ATO)`,
+  metaTitle: `Optometrist Salary Australia 2026 - ${$(OPTOMETRIST.averageTaxableIncome)} Average (ATO)`,
   metaDescription: `Optometrists averaged ${$(OPTOMETRIST.averageTaxableIncome)} taxable income in 2023–24 (median ${$(OPTOMETRIST.medianTaxableIncome)}), ATO data. State figures, award coverage and take-home pay.`,
-  heading: "Optometrist Salary Australia 2026 — What Optometrists Earn and Take Home",
+  heading: "Optometrist Salary Australia 2026: What Optometrists Earn and Take Home",
   atoOccupation: "occupation code 251411, Optometrist",
   ato: OPTOMETRIST,
   atoBySex: [OPTOMETRIST_F, OPTOMETRIST_M],
@@ -511,7 +511,7 @@ const optometrist: HealthSalaryPage = {
   coverageHeading: "Is there an award for optometrists?",
   coverage: [
     "No modern award names optometrists. The Health Professionals and Support Services Award [MA000027] covers employers in health care, and its list of common health professions (Schedule B) names orthoptists but not optometrists; the Fair Work Ombudsman's summary of who the award covers doesn't list optometrists either.",
-    "The award does provide for health professions that are not on its list (clause B.2(c)), so it may still cover an employed optometrist. Neither the award nor the Fair Work Ombudsman's summary settles that, so this page publishes no award minimum — ask the Fair Work Ombudsman about your own job.",
+    "The award does provide for health professions that are not on its list (clause B.2(c)), so it may still cover an employed optometrist. Neither the award nor the Fair Work Ombudsman's summary settles that, so this page publishes no award minimum. Ask the Fair Work Ombudsman about your own job.",
     "An optometrist who owns a practice, or contracts to one, is not an employee, so no award, minimum wage or payslip applies to that work.",
   ],
   upLink: {
@@ -527,7 +527,7 @@ const optometrist: HealthSalaryPage = {
     { label: "Average taxable income", gross: OPTOMETRIST.averageTaxableIncome, source: "ATO 2023–24" },
   ],
   payslip: [
-    `At the ${$(OPTOMETRIST.medianSalaryOrWages)} median salary or wage, an employed optometrist takes home about ${formatAUD(takeHome(OPTOMETRIST.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy with no HELP debt — or about ${formatAUD((takeHome(OPTOMETRIST.medianSalaryOrWages).net - takeHome(OPTOMETRIST.medianSalaryOrWages).help) / 26, 0)} with one, once the compulsory HELP repayment is withheld as well.`,
+    `At the ${$(OPTOMETRIST.medianSalaryOrWages)} median salary or wage, an employed optometrist takes home about ${formatAUD(takeHome(OPTOMETRIST.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy with no HELP debt, or about ${formatAUD((takeHome(OPTOMETRIST.medianSalaryOrWages).net - takeHome(OPTOMETRIST.medianSalaryOrWages).help) / 26, 0)} with one, once the compulsory HELP repayment is withheld as well.`,
   ],
   notices: [
     "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time optometrists and practice owners as well as full-time employees, so they are not a salary rate.",
@@ -546,7 +546,7 @@ const optometrist: HealthSalaryPage = {
       q: "What is an optometrist's take-home pay?",
       a: (() => {
         const t = th(OPTOMETRIST.medianTaxableIncome);
-        return `On the ${$(OPTOMETRIST.medianTaxableIncome)} median taxable income, an optometrist keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. With a HELP debt, a compulsory repayment of about ${t.help} a year comes out as well.`;
+        return `On the ${$(OPTOMETRIST.medianTaxableIncome)} median taxable income, an optometrist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. With a HELP debt, a compulsory repayment of about ${t.help} a year comes out as well.`;
       })(),
     },
     {
@@ -563,7 +563,7 @@ const optometrist: HealthSalaryPage = {
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_INDIVIDUALS_SOURCE, MA000027_SOURCE, FWO_MA000027_SUMMARY, {
-    title: "Optometrists and Orthoptists (ANZSCO 2514) occupation profile — median earnings published as N/A",
+    title: "Optometrists and Orthoptists (ANZSCO 2514) occupation profile, median earnings published as N/A",
     publisher: "Jobs and Skills Australia",
     url: OPTOMETRY_JSA_URL,
   }],
@@ -583,7 +583,7 @@ const optometrist: HealthSalaryPage = {
 
 const [GP, GP_F, GP_M] = ATO_15A.gp;
 const GP_JSA = jsa("2531", "General Practitioners and Resident Medical Officers", "general-practitioners-and-resident-medical-officers", 2_446, 60, 0.77, 45,
-  "This group counts hospital resident medical officers as well as GPs, and covers employees only — GPs who own or contract to a practice are not in it. The same median appears on our doctor pay rates page.");
+  "This group counts hospital resident medical officers as well as GPs, and covers employees only. GPs who own or contract to a practice are not in it. The same median appears on our doctor pay rates page.");
 const CMP1 = COMMUNITY_MEDICAL_PRACTITIONER[0];
 const CMP8 = COMMUNITY_MEDICAL_PRACTITIONER[COMMUNITY_MEDICAL_PRACTITIONER.length - 1];
 
@@ -591,9 +591,9 @@ const gp: HealthSalaryPage = {
   slug: "gp",
   name: "GP",
   plural: "GPs",
-  metaTitle: `GP Salary Australia 2026 — ${$(GP.averageTaxableIncome)} Average (ATO Data)`,
+  metaTitle: `GP Salary Australia 2026 - ${$(GP.averageTaxableIncome)} Average (ATO Data)`,
   metaDescription: `GPs averaged ${$(GP.averageTaxableIncome)} taxable income in 2023–24 (median ${$(GP.medianTaxableIncome)}), ATO data. The award minimum for employed GPs and take-home pay after tax.`,
-  heading: "GP Salary Australia 2026 — What General Practitioners Earn and Take Home",
+  heading: "GP Salary Australia 2026: What General Practitioners Earn and Take Home",
   atoOccupation: "occupation code 253111, Medical practitioner – general practice",
   ato: GP,
   atoBySex: [GP_F, GP_M],
@@ -613,7 +613,7 @@ const gp: HealthSalaryPage = {
   coverage: [
     "The Medical Practitioners Award 2020 [MA000031] covers doctors employed in the settings its clause 4.2 lists: hospitals, hospices, benevolent homes, day procedure centres, Aboriginal health services, community health centres and a few named bodies such as the Red Cross Blood Service.",
     "Its community medical practitioner classification (cl 12.7) is for a doctor with at least 4 years' post-graduate experience employed to practise in community health centres or in general medical practice. The minimums are in the table below.",
-    "GP registrars — doctors in an accredited training program leading to fellowship, including the general practice and rural and remote medicine colleges — are registrars under the award (cl 12.3).",
+    "GP registrars (doctors in an accredited training program leading to fellowship, including the general practice and rural and remote medicine colleges) are registrars under the award (cl 12.3).",
     "A GP who owns a practice, or contracts to one rather than being employed by it, is not an employee. No award minimum applies and there is no payslip.",
   ],
   upLink: {
@@ -625,7 +625,7 @@ const gp: HealthSalaryPage = {
   awardTable: {
     title: "Award minimum for an employed GP, 2026–27",
     intro:
-      "Medical Practitioners Award clause 16.1(g), community medical practitioner, from the first full pay period on or after 1 July 2026 — for a GP employed where the award applies. Annual, weekly and hourly figures exactly as the award prints them.",
+      "Medical Practitioners Award clause 16.1(g), community medical practitioner, from the first full pay period on or after 1 July 2026, for a GP employed where the award applies. Annual, weekly and hourly figures exactly as the award prints them.",
     rows: COMMUNITY_MEDICAL_PRACTITIONER.map((r) => ({ ...r })),
     footnote: "Medical Practitioners Award 2020 [MA000031], consolidated to 1 July 2026. Full-time, 38 ordinary hours a week, before tax and super.",
   },
@@ -657,7 +657,7 @@ const gp: HealthSalaryPage = {
       q: "What is a GP's take-home pay?",
       a: (() => {
         const t = th(GP.medianTaxableIncome);
-        return `On the ${$(GP.medianTaxableIncome)} median taxable income, a GP keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
+        return `On the ${$(GP.medianTaxableIncome)} median taxable income, a GP keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
       })(),
     },
     {
@@ -702,9 +702,9 @@ const surgeon: HealthSalaryPage = {
   slug: "surgeon",
   name: "Surgeon",
   plural: "surgeons",
-  metaTitle: `Surgeon Salary Australia 2026 — ${$(SURGEON.averageTaxableIncome)} Average (ATO Data)`,
+  metaTitle: `Surgeon Salary Australia 2026 - ${$(SURGEON.averageTaxableIncome)} Average (ATO Data)`,
   metaDescription: `Surgeons averaged ${$(SURGEON.averageTaxableIncome)} taxable income in 2023–24, the top occupation in ATO data. Figures by specialty and state, hospital pay and take-home.`,
-  heading: "Surgeon Salary Australia 2026 — Earnings by Specialty and Take-Home Pay",
+  heading: "Surgeon Salary Australia 2026: Earnings by Specialty and Take-Home Pay",
   atoOccupation: "unit group 2535, Surgeon (all nine surgical occupations)",
   ato: SURGEON,
   atoBySex: [SURGEON_F, SURGEON_M],
@@ -714,7 +714,7 @@ const surgeon: HealthSalaryPage = {
       title: "Surgeon income by specialty, 2023–24",
       part: "Table 15A",
       intro:
-        "Each surgical occupation the ATO codes within unit group 2535. Some groups are small — 143 cardiothoracic surgeons, 109 paediatric surgeons — so treat their averages with care.",
+        "Each surgical occupation the ATO codes within unit group 2535. Some groups are small (143 cardiothoracic surgeons, 109 paediatric surgeons), so treat their averages with care.",
       rowHeading: "Specialty",
       rows: [...SPECIALTIES],
     },
@@ -768,7 +768,7 @@ const surgeon: HealthSalaryPage = {
       q: "What is a surgeon's take-home pay?",
       a: (() => {
         const t = th(SURGEON.medianTaxableIncome);
-        return `On the ${$(SURGEON.medianTaxableIncome)} median taxable income, a surgeon keeps about ${t.net} a year — ${t.fortnight} a fortnight — at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
+        return `On the ${$(SURGEON.medianTaxableIncome)} median taxable income, a surgeon keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
       })(),
     },
     {

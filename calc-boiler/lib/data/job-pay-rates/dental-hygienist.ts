@@ -49,12 +49,12 @@ export const DENTAL_HYGIENIST = hpssOct2026Occupation(AQF, {
   median: MEDIAN,
   notices: [
     ...HPSS_OCT_2026_NOTICES,
-    "Dental assistants are covered by the same award but in the Support Services stream, on much lower rates — see the dental assistant page.",
+    "Dental assistants are covered by the same award but in the Support Services stream, on much lower rates. See the dental assistant page.",
   ],
   faqs: [
     {
       q: "What is the award rate for a dental hygienist in 2026?",
-      a: `A first-year dental hygienist must be paid at least ${F.hourly} an hour, or ${F.weekly} a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026 — ${F.annual} a year full-time before tax. The rate rises with experience, to ${F.later[2]} an hour from the 7th year at Level 1.`,
+      a: `A first-year dental hygienist must be paid at least ${F.hourly} an hour, or ${F.weekly} a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026, or ${F.annual} a year full-time before tax. The rate rises with experience, to ${F.later[2]} an hour from the 7th year at Level 1.`,
     },
     {
       q: "What is the casual rate for a dental hygienist?",
@@ -62,7 +62,7 @@ export const DENTAL_HYGIENIST = hpssOct2026Occupation(AQF, {
     },
     {
       q: "Do dental hygienists get paid more on Saturdays?",
-      a: `Yes. Ordinary hours between midnight Friday and midnight Sunday are paid at 150% of the minimum hourly rate for full-time and part-time staff — ${F.weekend} an hour for a first-year hygienist.`,
+      a: `Yes. Ordinary hours between midnight Friday and midnight Sunday are paid at 150% of the minimum hourly rate for full-time and part-time staff: ${F.weekend} an hour for a first-year hygienist.`,
     },
     {
       q: "What do dental hygienists actually earn?",

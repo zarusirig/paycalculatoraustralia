@@ -37,7 +37,7 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do sole traders have to pay super?",
-    a: `No, super contributions are optional for sole traders — but strongly recommended. You can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. This reduces your taxable income while building retirement savings. Without employer SG, sole traders must proactively fund their own retirement.`,
+    a: `No, super contributions are optional for sole traders, but strongly recommended. You can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. This reduces your taxable income while building retirement savings. Without employer SG, sole traders must proactively fund their own retirement.`,
   },
   {
     q: "How much does it cost to set up each structure?",

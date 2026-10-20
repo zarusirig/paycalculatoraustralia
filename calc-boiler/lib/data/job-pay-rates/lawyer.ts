@@ -60,7 +60,7 @@ export const LAWYER: Occupation = {
     why: "a law graduate doing practical legal training in a law firm (admitted lawyers are award-free)",
   },
   coverage: [
-    "Admitted lawyers — solicitors, barristers and legal practitioners — are award-free. The Fair Work Ombudsman's guidance is that a qualified lawyer working at a law firm is not covered by the Legal Services Award, because it has no classification for their work, and is not covered by the Miscellaneous Award, because that award excludes professional employees.",
+    "Admitted lawyers (solicitors, barristers and legal practitioners) are award-free. The Fair Work Ombudsman's guidance is that a qualified lawyer working at a law firm is not covered by the Legal Services Award, because it has no classification for their work, and is not covered by the Miscellaneous Award, because that award excludes professional employees.",
     "An award-free lawyer is still entitled to the National Minimum Wage and the National Employment Standards. Above that floor, pay is set by the employment contract or an enterprise agreement.",
     "Law graduates are different. A graduate working in a private law firm to complete the training required for admission is covered by the Legal Services Award 2020 [MA000116] and classified at Level 5 — Law graduate. Law clerks are Level 6, and legal secretaries and other support staff are Levels 1 to 5.",
     "The Legal Services Award does not cover community legal centres or Aboriginal legal services (cl 4.3). Lawyers in government are paid under public service agreements.",
@@ -68,7 +68,7 @@ export const LAWYER: Occupation = {
   tables: [
     {
       id: "legal-services",
-      title: "Law graduate and law clerk award rates — Legal Services Award",
+      title: "Law graduate and law clerk award rates, Legal Services Award",
       intro: "Clause 15.1, from the first full pay period on or after 1 July 2026. Casual rates are Schedule B.2.1 exactly.",
       rows: [
         { label: "Level 5 — Law graduate", weekly: 1291.8, hourly: 33.99, casualHourly: 42.49, note: "Before admission, completing practical legal training" },
@@ -86,14 +86,14 @@ export const LAWYER: Occupation = {
           weekly: EMPLOYMENT.minimumWageWeekly,
           hourly: EMPLOYMENT.minimumWageHourly,
           casualHourly: casualFromHourly(EMPLOYMENT.minimumWageHourly),
-          note: "Admitted lawyers — award-free",
+          note: "Admitted lawyers: award-free",
         },
       ],
     },
   ],
   penalties: [
-    { when: "Monday–Saturday until 12 noon, outside ordinary hours — first 3 hours", permanent: "150%", casual: "175%" },
-    { when: "Monday–Saturday until 12 noon — after 3 hours", permanent: "200%", casual: "225%" },
+    { when: "Monday–Saturday until 12 noon, outside ordinary hours, first 3 hours", permanent: "150%", casual: "175%" },
+    { when: "Monday–Saturday until 12 noon, after 3 hours", permanent: "200%", casual: "225%" },
     { when: "Saturday after 12 noon; Sunday", permanent: "200%", casual: "225%" },
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
@@ -119,7 +119,7 @@ export const LAWYER: Occupation = {
     },
     {
       q: "What is the minimum pay for a law graduate in 2026?",
-      a: "A law graduate in a private law firm is Level 5 under the Legal Services Award and must be paid at least $33.99 an hour, or $1,291.80 a week, from the first full pay period on or after 1 July 2026 — $67,174 a year full-time before tax. A casual law graduate gets at least $42.49 an hour.",
+      a: "A law graduate in a private law firm is Level 5 under the Legal Services Award and must be paid at least $33.99 an hour, or $1,291.80 a week, from the first full pay period on or after 1 July 2026, or $67,174 a year full-time before tax. A casual law graduate gets at least $42.49 an hour.",
     },
     {
       q: "What is the minimum wage for an admitted lawyer?",
@@ -136,7 +136,7 @@ export const LAWYER: Occupation = {
   ],
   sources: [
     { title: "Award coverage for lawyers and law graduates working in law firms (K600646)", publisher: "Fair Work Ombudsman", url: "https://library.fairwork.gov.au/viewer/?krn=K600646" },
-    { title: "Legal Services Award 2020 [MA000116] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000116") },
+    { title: "Legal Services Award 2020 [MA000116], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000116") },
     { title: "National Minimum Wage Order 2026 (PR799279)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr799279.pdf" },
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
@@ -147,5 +147,5 @@ export const LAWYER: Occupation = {
     { href: "/job-pay-rates/accountant/", label: "Accountant Pay Rates" },
     { href: "/average-salary-australia/", label: "Average Salary Australia" },
   ],
-  metaTitle: "Lawyer Pay Rates 2026 — Award-Free; Law Graduates $33.99/hr",
+  metaTitle: "Lawyer Pay Rates 2026 - Award-Free; Law Graduates $33.99/hr",
 };

@@ -64,7 +64,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Private Health Insurance &amp; Medicare — When PHI Saves You Money
+            Private Health Insurance &amp; Medicare: When PHI Saves You Money
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Private health insurance does not remove the {formatMlsRate(MEDICARE_LEVY.rate)} Medicare levy, which every resident taxpayer above the low-income threshold pays; it only exempts the holder from the Medicare levy surcharge. The surcharge for {MLS_INCOME_YEAR} is {formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}, {formatMlsRate(MEDICARE_LEVY.surcharge.tier2.rate)} or {formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)} of income for singles earning over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} or families over {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} who have no eligible hospital cover. To work out your own surcharge, use the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link>.
@@ -88,7 +88,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
 
             {/* SECTION 1: MLS Who Pays It */}
             <section id="mls-who-pays">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Surcharge — Who Pays It?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Surcharge: Who Pays It?</h2>
               <p>
                 The Medicare Levy Surcharge (MLS) is an <strong>additional</strong> tax on top of the standard 2% Medicare levy. It applies to Australian taxpayers who earn above the income threshold and do <strong>not</strong> hold an eligible private hospital cover policy.
               </p>
@@ -158,7 +158,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
 
             {/* SECTION 3: The Financial Decision */}
             <section id="financial-decision">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>PHI vs Surcharge — The Financial Decision</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>PHI vs Surcharge: The Financial Decision</h2>
               <p>
                 The key question is: <strong>is it cheaper to pay the MLS or buy private hospital cover?</strong> Premiums vary too much by insurer, state and excess for a single answer, so work out your <strong>break-even premium</strong>: the surcharge divided by the share of the premium you pay after your rebate. A quote below that, before the rebate, costs less than the surcharge.
               </p>

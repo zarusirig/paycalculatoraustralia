@@ -35,8 +35,8 @@ export const NSW_NURSING_PAY: NursingStateData = {
   code: "NSW",
   name: "New South Wales",
   shortName: "NSW",
-  metaTitle: "NSW Nurse Pay Rates 2026 — NSW Health Registered Nurse Salary",
-  h1: "NSW Nurse Pay Rates 2026 — NSW Health Registered Nurse & Midwife Salary",
+  metaTitle: "NSW Nurse Pay Rates 2026 - NSW Health Registered Nurse Salary",
+  h1: "NSW Nurse Pay Rates 2026: NSW Health Registered Nurse & Midwife Salary",
   employer: "NSW Health (local health districts and specialty networks)",
   ordinaryHoursPerWeek: 38,
 
@@ -50,7 +50,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
       reference: "Case Nos 242813, 242824 and 297588 of 2024, Full Bench, 15 May 2026",
       source: AWARD_SOURCE,
       note:
-        "Table 1 of Part B prints three columns — 1 July 2025, 1 July 2026 and 1 July 2027. The 1 July 2026 column is the one in force now.",
+        "Table 1 of Part B prints three columns: 1 July 2025, 1 July 2026 and 1 July 2027. The 1 July 2026 column is the one in force now.",
     },
   ],
 
@@ -181,7 +181,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
   penalties: [
     {
       instrumentId: "nsw-award-2025",
-      clause: "clause 15 — Penalty Rates for Shift Work and Weekend Work",
+      clause: "clause 15, Penalty Rates for Shift Work and Weekend Work",
       rows: [
         { label: "Afternoon shift starting 10am to before 1pm", value: "+10%" },
         { label: "Afternoon shift starting 1pm to before 4pm", value: "+12.5%" },
@@ -200,7 +200,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
   ],
 
   derivation: {
-    annual: "weekly rate x 52, which is what 26 fortnightly pays comes to — the award itself publishes no annual figure",
+    annual: "weekly rate x 52, which is what 26 fortnightly pays comes to; the award itself publishes no annual figure",
     hourly:
       "weekly rate divided by 38, the same arithmetic clause 29(iii) of the award prescribes for permanent part-time employees",
   },
@@ -208,7 +208,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
   notReproduced: [
     "Nurse/Midwife Manager Grades 1–7 (Table 1)",
     "Nurse/Midwife Educator Grades 1–3 (Table 1)",
-    "Registered Mothercraft Nurse 9th year — a closed classification for staff employed before 31 December 1988",
+    "Registered Mothercraft Nurse 9th year, a closed classification for staff employed before 31 December 1988",
     "Table 2 allowances: in-charge, on-call, continuing education, uniform, Justice Health and remote-hospital rates",
   ],
 
@@ -223,7 +223,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
     "NSW nurses and midwives in the public health system are paid under a state award made by the Industrial Relations Commission of New South Wales, not under a Fair Work agreement. The award runs registered nurses and midwives up an eight-year ladder, then into clinical nurse specialist, clinical nurse consultant and nurse manager grades. Every rate below is a weekly rate, because the award publishes weekly rates and nothing else.",
 
   highlights: [
-    "Registered nurses and midwives share one scale in NSW — there is no separate midwifery pay ladder.",
+    "Registered nurses and midwives share one scale in NSW. There is no separate midwifery pay ladder.",
     "The night shift loading rose from 15% to 20% from the first full pay period on or after 1 July 2025.",
     "Weekend ordinary hours pay time and a half on Saturday and time and three quarters on Sunday, and those rates replace the shift loading rather than adding to it.",
     "The award prints a further increase for 1 July 2027, so the figures on this page have a known expiry.",

@@ -87,23 +87,23 @@ export const AGED_CARE_WORKER: Occupation = {
     why: "a personal care worker with a Certificate III in Individual Support (Ageing), the standard qualification for direct care in residential aged care",
   },
   coverage: [
-    "Aged care workers employed in residential aged care — nursing homes, hostels, aged care serviced apartments and similar facilities — are covered by the Aged Care Award 2010 [MA000018]. The award defines the aged care industry as accommodation and care services for aged persons in residential facilities.",
+    "Aged care workers employed in residential aged care (nursing homes, hostels, aged care serviced apartments and similar facilities) are covered by the Aged Care Award 2010 [MA000018]. The award defines the aged care industry as accommodation and care services for aged persons in residential facilities.",
     "Personal care workers, assistants in nursing and other staff whose primary role is to provide direct care to residents are classified under the direct care stream (Schedule B.2): level 1 on starting, level 2 after 3 months, level 3 with a Certificate III in Individual Support (Ageing), and levels 4 to 6 for senior, specialist and team leader roles.",
     "Cleaners, laundry hands, kitchen staff, cooks, gardeners, drivers and administrative staff are on the general stream (Schedule B.1), which pays less than direct care.",
-    "Home care workers — including those caring for older people in their own homes — are not covered by this award. They are paid under the SCHADS Award home care stream; see the disability support worker page. Registered and enrolled nurses in aged care are paid under the Nurses Award aged care stream.",
+    "Home care workers, including those caring for older people in their own homes, are not covered by this award. They are paid under the SCHADS Award home care stream; see the disability support worker page. Registered and enrolled nurses in aged care are paid under the Nurses Award aged care stream.",
     "These rates include the increases from the Fair Work Commission's aged care work value case, which introduced the direct care classifications from 1 January 2025. The award text sets no further scheduled work-value increase.",
   ],
   tables: [
     {
       id: "direct-care",
-      title: "Aged care worker pay rates — direct care stream, 2026–27",
+      title: "Aged care worker pay rates: direct care stream, 2026–27",
       intro:
         "Clause 14.3 of the Aged Care Award, from the first full pay period on or after 1 July 2026. Hourly is the weekly rate divided by 38; casual adds the 25% loading (cl 10.4(b)), matching the Fair Work Ombudsman pay guide.",
       rows: AGED_CARE_DIRECT_CARE_ROWS,
     },
     {
       id: "general",
-      title: "Aged care general stream — cleaning, laundry, kitchen and admin",
+      title: "Aged care general stream: cleaning, laundry, kitchen and admin",
       intro:
         "Clause 14.1. The single most senior food services employee at a facility is paid a higher rate at levels 4 to 7 (cl 14.2), not shown here.",
       rows: GENERAL_ROWS,
@@ -143,7 +143,7 @@ export const AGED_CARE_WORKER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for an aged care worker in 2026?",
-      a: "A personal care worker with a Certificate III (direct care level 3—Qualified) must be paid at least $36.23 an hour, or $1,376.70 a week, under the Aged Care Award from the first full pay period on or after 1 July 2026 — $71,588 a year full-time before tax. A new starter on direct care level 1 gets $32.61 an hour.",
+      a: "A personal care worker with a Certificate III (direct care level 3—Qualified) must be paid at least $36.23 an hour, or $1,376.70 a week, under the Aged Care Award from the first full pay period on or after 1 July 2026, or $71,588 a year full-time before tax. A new starter on direct care level 1 gets $32.61 an hour.",
     },
     {
       q: "What is the casual rate for an aged care worker?",
@@ -163,8 +163,8 @@ export const AGED_CARE_WORKER: Occupation = {
     },
   ],
   sources: [
-    { title: "Aged Care Award 2010 [MA000018] — consolidated to 1 September 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
-    { title: "Pay Guide — Aged Care Award [MA000018], published 31 August 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/aged-care-award-ma000018-pay-guide.pdf.aspx" },
+    { title: "Aged Care Award 2010 [MA000018], consolidated to 1 September 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
+    { title: "Pay Guide: Aged Care Award [MA000018], published 31 August 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/aged-care-award-ma000018-pay-guide.pdf.aspx" },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

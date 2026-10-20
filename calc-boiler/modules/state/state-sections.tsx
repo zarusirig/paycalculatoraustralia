@@ -99,7 +99,7 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
       </h3>
       <p className="mb-4 text-sm text-warmgray-light">
         {formatAUD(salary)} is what a full-time adult {profile.inName} earns on average before
-        overtime — ABS average weekly ordinary time earnings of{" "}
+        overtime: ABS average weekly ordinary time earnings of{" "}
         {formatAUD(profile.awote.personsFullTime, 2)} a week, {STATE_EMPLOYEE_SOURCES.absReferencePeriod},
         over {EMPLOYMENT.weeksPerYear} weeks.
       </p>
@@ -134,7 +134,7 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
         </p>
         <p>
           Effective tax rate <strong>{formatPercent(r.effectiveTaxRate)}</strong>. The next dollar
-          you earn is taxed at <strong>{formatPercent(r.marginalTaxRate, 0)}</strong> — that is the
+          you earn is taxed at <strong>{formatPercent(r.marginalTaxRate, 0)}</strong>, that is the
           marginal bracket plus the {formatPercent(0.02, 0)} Medicare levy.
         </p>
         <p>
@@ -145,7 +145,7 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
         <p>
           With a HECS-HELP debt, a further{" "}
           <strong>{formatAUD(withHecs.hecsRepayment)}</strong> is withheld and take-home pay falls
-          to <strong>{formatAUD(withHecs.takeHomePay)}</strong> —{" "}
+          to <strong>{formatAUD(withHecs.takeHomePay)}</strong>, or{" "}
           {formatAUD(withHecs.fortnightly, 2)} a fortnight.
         </p>
       </div>
@@ -181,7 +181,7 @@ export function AbsEarningsTable({ profile }: { profile: StateEmployeeProfile })
     {
       label: "Full-time adults, ordinary hours",
       weekly: profile.awote.personsFullTime,
-      note: "Base pay only — the figure this page's worked example uses",
+      note: "Base pay only: the figure this page's worked example uses",
     },
     {
       label: "Full-time adults, including overtime",
@@ -314,7 +314,7 @@ export function PublicHolidayTable({ profile }: { profile: StateEmployeeProfile 
         >
           2026 public holidays
         </a>
-        , read {STATE_EMPLOYEE_SOURCES.verifiedOn}. Regional and part-day variations apply — check
+        , read {STATE_EMPLOYEE_SOURCES.verifiedOn}. Regional and part-day variations apply, so check
         with {profile.name} for the list that covers your town.
       </p>
       {/* --- G4 public holiday pay cluster (24 Sep 2026) --- */}
@@ -323,7 +323,7 @@ export function PublicHolidayTable({ profile }: { profile: StateEmployeeProfile 
           href={`/public-holiday-pay/${profile.code.toLowerCase()}/`}
           className="font-medium text-eucalyptus-dark hover:underline"
         >
-          {profile.shortName} public holidays 2026 &amp; 2027 — every date, regional days and public holiday pay rates →
+          {profile.shortName} public holidays 2026 &amp; 2027: every date, regional days and public holiday pay rates →
         </Link>
       </p>
       {/* --- end G4 --- */}
@@ -417,7 +417,7 @@ export function LongServiceLeaveBlock({ profile }: { profile: StateEmployeeProfi
       <p className="text-sm text-warmgray">
         Long service leave is paid at your ordinary rate, so the calculator at the top of this page
         tells you what a week of it is worth after tax. A lump sum paid out when you leave is taxed
-        differently — see the{" "}
+        differently: see the{" "}
         <Link href="/final-pay-calculator/" className="text-eucalyptus-dark hover:underline">
           final pay calculator
         </Link>
@@ -538,8 +538,8 @@ export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
         <li>
           <strong className="text-navy">Minimum wage:</strong> the national minimum wage is{" "}
           {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)}{" "}
-          for a 38-hour week) from 1 July 2026; most jobs pay an award rate above it — see the{" "}
-          <Link href="/minimum-wage-australia/" className={link}>minimum wage guide</Link>.
+          for a 38-hour week) from 1 July 2026; most jobs pay an award rate above it (see the{" "}
+          <Link href="/minimum-wage-australia/" className={link}>minimum wage guide</Link>).
           {code === "wa" && (
             <>
               {" "}Employees of WA sole traders, partnerships and other non-company employers are in the
@@ -558,7 +558,7 @@ export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
         </li>
         <li>
           <strong className="text-navy">Long service leave:</strong> {lsl.weeksAtEntitlement.toFixed(2)} weeks
-          after {lsl.takeAfterYears} years under the {lsl.act} —{" "}
+          after {lsl.takeAfterYears} years under the {lsl.act}:{" "}
           <Link href={profile.lslCalculatorPath} className={link}>
             {profile.shortName} long service leave calculator
           </Link>

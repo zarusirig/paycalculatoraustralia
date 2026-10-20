@@ -79,7 +79,7 @@ export const PERSONAL_TRAINER: Occupation = {
   slug: "personal-trainer",
   name: "Personal Trainer",
   plural: "personal trainers",
-  metaTitle: `Personal Trainer Salary Australia 2026 — ${money2(PT_L4A.hourly)}/hr Award`,
+  metaTitle: `Personal Trainer Salary Australia 2026 - ${money2(PT_L4A.hourly)}/hr Award`,
   award: {
     name: FITNESS_AWARD.meta.name,
     code: FITNESS_AWARD.meta.code,
@@ -94,9 +94,9 @@ export const PERSONAL_TRAINER: Occupation = {
   },
   coverage: [
     "Personal trainers employed by gyms, fitness centres, leisure centres and aquatic centres are covered by the Fitness Industry Award 2020 [MA000094]. The award has no classification called personal trainer: it grades by the qualification you hold and the level of supervision you work under.",
-    "A trainer who performs Level 4 duties — working under limited supervision and exercising initiative and judgment — and holds a Fitness Industry AQF Certificate IV relevant to the job is Level 4A (Schedule A.5–A.6). The Certificate IV in Fitness is the qualification training.gov.au describes as reflecting the role of personal trainers. A trainer with a Diploma who is employed as a fitness trainer or fitness specialist and can develop programs for special groups is Level 5 (A.7).",
+    "A trainer who performs Level 4 duties (working under limited supervision and exercising initiative and judgment) and holds a Fitness Industry AQF Certificate IV relevant to the job is Level 4A (Schedule A.5–A.6). The Certificate IV in Fitness is the qualification training.gov.au describes as reflecting the role of personal trainers. A trainer with a Diploma who is employed as a fitness trainer or fitness specialist and can develop programs for special groups is Level 5 (A.7).",
     "A fitness instructor with a Fitness Certificate III doing Level 3 work is Level 3A (A.4). If you hold a Certificate IV but are only given Level 3 duties under general supervision, the employer may classify you at 3A rather than 4A; the award ties each level to both the qualification and the work.",
-    "A personal trainer who is genuinely self-employed — for example, running their own business or paying rent to a gym to train their own clients — is not an employee, so no award minimum applies. Check how you are engaged before relying on these rates.",
+    "A personal trainer who is genuinely self-employed (for example, running their own business or paying rent to a gym to train their own clients) is not an employee, so no award minimum applies. Check how you are engaged before relying on these rates.",
   ],
   tables: [
     {
@@ -114,7 +114,7 @@ export const PERSONAL_TRAINER: Occupation = {
     { when: "Public holiday (minimum 4 hours)", permanent: "250%", casual: "Not published" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 12.1, 20.1 and 26.3; Schedule B.1.1 and B.2). A casual's weekend rate is the 30% casual loading on its own, so a casual Sunday (130%) pays less than a permanent Sunday (150%). The award sends casuals working a public holiday to the same 30% loading (cl 26.3(c)); because that sits so far below the permanent 250%, we do not print a casual public holiday figure — check it with the Fair Work Ombudsman.",
+    "Percentages of the minimum hourly rate (cl 12.1, 20.1 and 26.3; Schedule B.1.1 and B.2). A casual's weekend rate is the 30% casual loading on its own, so a casual Sunday (130%) pays less than a permanent Sunday (150%). The award sends casuals working a public holiday to the same 30% loading (cl 26.3(c)); because that sits so far below the permanent 250%, we do not print a casual public holiday figure. Check it with the Fair Work Ombudsman.",
   overtime: [
     "Overtime is work outside 5 am–11 pm on weekdays or 6 am–9 pm on weekends, over 10 hours in a day, or over an average of 38 hours a week across 4 weeks (cl 13.1–13.3, 19.1).",
     "Monday to Saturday: 150% for the first 2 hours, then 200%. Sunday: 200%. Public holiday: 250% (cl 19.2, Schedule B.1.2).",
@@ -129,7 +129,7 @@ export const PERSONAL_TRAINER: Occupation = {
     "Only 32% of fitness instructors work full-time, according to Jobs and Skills Australia, so most trainers' pay depends on hours booked, not the full-time figures on this page.",
   ],
   notShown: [
-    "Levels 1, 2, 6 and 7 — see the Fitness Industry Award rates page.",
+    "Levels 1, 2, 6 and 7: see the Fitness Industry Award rates page.",
     "The casual public holiday rate in dollars (see the penalty note).",
     "Commission, session splits and rent arrangements for self-employed trainers, which are business terms, not award pay.",
   ],
@@ -156,8 +156,8 @@ export const PERSONAL_TRAINER: Occupation = {
     },
   ],
   sources: [
-    { title: "Fitness Industry Award 2020 [MA000094] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000094") },
-    { title: "SIS40221 — Certificate IV in Fitness", publisher: "training.gov.au", url: "https://training.gov.au/training/details/SIS40221" },
+    { title: "Fitness Industry Award 2020 [MA000094], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000094") },
+    { title: "SIS40221, Certificate IV in Fitness", publisher: "training.gov.au", url: "https://training.gov.au/training/details/SIS40221" },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(PT_MEDIAN),

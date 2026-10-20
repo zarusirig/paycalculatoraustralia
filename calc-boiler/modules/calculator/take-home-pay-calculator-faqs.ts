@@ -55,7 +55,7 @@ export const TAKE_HOME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why is my first pay smaller than expected?",
-    a: `If you have not submitted a Tax File Number (TFN) declaration to your employer, PAYG withholding applies at ${pct(NO_TFN_RATES.resident)} for residents — the top marginal rate plus the Medicare levy. Submit your TFN declaration immediately to ensure the correct tax rate applies from your next pay cycle.`,
+    a: `If you have not submitted a Tax File Number (TFN) declaration to your employer, PAYG withholding applies at ${pct(NO_TFN_RATES.resident)} for residents: the top marginal rate plus the Medicare levy. Submit your TFN declaration immediately to ensure the correct tax rate applies from your next pay cycle.`,
   },
   {
     q: "How much does HECS-HELP reduce my take-home pay?",

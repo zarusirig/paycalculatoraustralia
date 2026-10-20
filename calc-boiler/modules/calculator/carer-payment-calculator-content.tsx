@@ -103,14 +103,14 @@ export default function CarerPaymentCalculatorContent() {
       </W3Section>
 
       <W3Section title="How Many Hours Can You Work on Carer Payment?">
-        <p className={P}>You can do paid work or self-employment for up to <strong>{CP.workHoursLimit} hours in a {CP.workHoursPeriodWeeks}-week period</strong> — an average of {CARER_PAYMENT_AVERAGE_WEEKLY_HOURS} hours a week — and keep Carer Payment. The count only includes time working when you are not providing care; hours worked from home count if you can&apos;t stop working when the person you care for needs help.</p>
+        <p className={P}>You can do paid work or self-employment for up to <strong>{CP.workHoursLimit} hours in a {CP.workHoursPeriodWeeks}-week period</strong> (an average of {CARER_PAYMENT_AVERAGE_WEEKLY_HOURS} hours a week) and keep Carer Payment. The count only includes time working when you are not providing care; hours worked from home count if you can&apos;t stop working when the person you care for needs help.</p>
         <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
           <li><strong>Not counted:</strong> travel to and from work, study, training and volunteering. You don&apos;t report these.</li>
-          <li><strong>Over {CP.workHoursLimit} hours now and then:</strong> use respite days — up to {CP.respiteDaysPerYear} a calendar year.</li>
+          <li><strong>Over {CP.workHoursLimit} hours now and then:</strong> use respite days, up to {CP.respiteDaysPerYear} a calendar year.</li>
           <li><strong>Over the limit without respite, or earning too much:</strong> the payment can be suspended for up to {CP.suspensionMonths} months. You keep your Pensioner Concession Card, and can ask for the payment to be restored if your hours or income drop within that time.</li>
           <li><strong>Report every fortnight:</strong> your gross pay and the hours you worked for each employer, even if zero. Tell Services Australia within 14 days if you start or stop work.</li>
         </ul>
-        <Note>Hours and income are two separate tests. You can be under {CP.workHoursLimit} hours and still have your payment reduced by the income test — the calculator above shows both.</Note>
+        <Note>Hours and income are two separate tests. You can be under {CP.workHoursLimit} hours and still have your payment reduced by the income test. The calculator above shows both.</Note>
       </W3Section>
 
       <W3Section title="Carer Payment Assets Test">
@@ -131,7 +131,7 @@ export default function CarerPaymentCalculatorContent() {
 
       <W3Section title="Who Can Get Carer Payment">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
-          <li>You give <strong>constant care</strong> — roughly a normal working day, every day — to someone with a disability or medical condition likely to last at least {CP.careNeedMonths} months, someone who is frail aged, or someone at the end of their life.</li>
+          <li>You give <strong>constant care</strong> (roughly a normal working day, every day) to someone with a disability or medical condition likely to last at least {CP.careNeedMonths} months, someone who is frail aged, or someone at the end of their life.</li>
           <li>The care is in their home; it can be physical help, guidance or supervision. You can care for more than one person.</li>
           <li>You and the person you care for are Australian residents and meet the income and assets tests.</li>
           <li>The person&apos;s treating doctor completes a medical form, and you describe the care you give.</li>
@@ -145,9 +145,9 @@ export default function CarerPaymentCalculatorContent() {
 
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Payment = maximum rate − 50c per $1 of assessable income over {formatAUD(IT.single.freeArea)} (single), or − 25c per combined $1 over {formatAUD(IT.couple.freeArea)} for each member of a couple, floored at $0. This is the pension income test Services Australia applies to Carer Payment, and it reproduces the published cut-offs ({formatAUD(R.publishedCutOff.single, 2)} single, {formatAUD(R.publishedCutOff.coupleCombined, 2)} couple) exactly — the tests assert it.</li>
+          <li>Payment = maximum rate − 50c per $1 of assessable income over {formatAUD(IT.single.freeArea)} (single), or − 25c per combined $1 over {formatAUD(IT.couple.freeArea)} for each member of a couple, floored at $0. This is the pension income test Services Australia applies to Carer Payment, and it reproduces the published cut-offs ({formatAUD(R.publishedCutOff.single, 2)} single, {formatAUD(R.publishedCutOff.coupleCombined, 2)} couple) exactly, and the tests assert it.</li>
           <li>Work Bonus is applied only when you tick Age Pension age, as Services Australia restricts it to carers of that age.</li>
-          <li>Rates are the 20 September 2026 figures, read on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
+          <li>Rates are the 20 September 2026 figures, read on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>
       </MethodologyDisclosure>
 

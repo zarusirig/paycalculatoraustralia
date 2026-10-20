@@ -18,7 +18,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
-const TITLE = "Schedule 5 Tax Table 2026-27 (NAT 3348) — Bonus PAYG";
+const TITLE = "Schedule 5 Tax Table 2026-27 (NAT 3348) - Bonus PAYG";
 // Previous: "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner."
 // seo-brain 25 Sep 2026 (Jev-ranked): the page's own worked example ($5,000 bonus on $2,000 a
 // fortnight) from calculateSchedule5MethodB; the cap from SCHEDULE_5_WITHHOLDING_LIMIT.
@@ -73,7 +73,7 @@ const dataset: WithContext<Dataset> = {
   "@type": "Dataset",
   name: `Schedule 5 additional-payment withholding 2026-27 (ATO ${ATO_SCHEDULE_5.nat})`,
   description:
-    `PAYG withholding on additional payments — bonuses, commissions and back payments — for the Australian 2026-27 financial year, computed by applying the ATO Schedule 5 (${ATO_SCHEDULE_5.nat}) apportionment steps to the Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient tables across ${SCHEDULE_5_BONUS_ROWS.length} additional-payment amounts. Includes the apportioned per-period slice, amount withheld, effective rate and net payment.`,
+    `PAYG withholding on additional payments (bonuses, commissions and back payments) for the Australian 2026-27 financial year, computed by applying the ATO Schedule 5 (${ATO_SCHEDULE_5.nat}) apportionment steps to the Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient tables across ${SCHEDULE_5_BONUS_ROWS.length} additional-payment amounts. Includes the apportioned per-period slice, amount withheld, effective rate and net payment.`,
   url: URL,
   identifier: ATO_SCHEDULE_5.nat,
   keywords: [
