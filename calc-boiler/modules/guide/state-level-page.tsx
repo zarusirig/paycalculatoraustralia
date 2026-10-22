@@ -3,10 +3,23 @@ import type { SourceLink } from "@/components/common/source-attribution";
 import { SUPER_GUARANTEE } from "@/lib/constants";
 import { afterTax } from "@/lib/data/job-pay-rates";
 import {
+  FACTS_READ_ON,
+  LEVEL_DESCRIPTORS,
+  LEVEL_FACT_SOURCES,
+  ORDINARY_HOURS,
+  WEEKS_PER_YEAR,
+  formatHourly,
+  headcountSentence,
+  hourlyRate,
+  levelFactSources,
+  levelHeadcount,
+} from "@/lib/data/public-service-pay/state-level-facts";
+import {
   levelSteps,
   stateLevelFaqs,
   stateLevelPath,
   type StateLevelData,
+  type StateLevelJurisdiction,
 } from "@/lib/data/public-service-pay/state-levels";
 import {
   TAKE_HOME_MAX,
@@ -60,13 +73,18 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
   const multiBand = section.bands.length > 1;
   const ladder = levelSteps(data);
   const source = j.sources.find((s) => s.id === section.schedule.sourceId);
-  const sources: SourceLink[] = [
+  const descriptor = LEVEL_DESCRIPTORS[section.id];
+  const headcount = levelHeadcount(section.id);
+  const hours = ORDINARY_HOURS[j.slug as StateLevelJurisdiction];
+  const allSources: SourceLink[] = [
     ...(source ? [{ title: source.title, url: source.url, publisher: source.publisher }] : []),
     ...section.compare.flatMap((c) => {
       const s = j.sources.find((x) => x.id === c.schedule.sourceId);
       return s ? [{ title: s.title, url: s.url, publisher: s.publisher }] : [];
     }),
+    ...levelFactSources(data),
   ];
+  const sources = allSources.filter((s, i) => allSources.findIndex((x) => x.url === s.url) === i);
 
   return (
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
@@ -100,7 +118,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
         <article className={ARTICLE_CLASS}>
           {config.caveat ? (
             <p className="rounded-lg border border-sandstone-dark/30 bg-sandstone/40 p-4 text-base">
-              <strong>Award rates, not every agreement.</strong> {config.caveat}
+              <strong>Award rates, not every agreement.</strong> The {label} figures on this page are the award minimum. Most {j.shortName} departments pay under their own agreement; the last question below explains.
             </p>
           ) : null}
 
@@ -133,6 +151,31 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
               <p key={b.code} className="text-base">{multiBand ? <strong>{b.code}: </strong> : null}{b.summary}</p>
             ))}
           </section>
+
+          <section>
+            <H2 id="hourly-rate">{label} Hourly Rate</H2>
+            <p>
+              {label} works out at {formatHourly(hourlyRate(range.min, hours.weekly))} to {formatHourly(hourlyRate(range.max, hours.weekly))} an hour before tax. Hourly rate = annual salary ÷ ({hours.weekly} × {WEEKS_PER_YEAR}). {hours.basis}. A year has {WEEKS_PER_YEAR} weeks (365 ÷ 7).
+            </p>
+            <DataTable
+              head={["Step", "Salary", "Hourly rate"]}
+              align={["l", "r", "r"]}
+              rows={points.map((p) => [p.label, formatSalary(p.annual), formatHourly(hourlyRate(p.annual, hours.weekly))])}
+              caption={<>{label} base hourly rate on {hours.weekly} ordinary hours a week, before tax. No casual loading, overtime or penalties. A payslip can differ by a few cents.</>}
+            />
+          </section>
+
+          {descriptor ? (
+            <section>
+              <H2 id="what-the-level-does">What {label} Staff Do</H2>
+              <p>{descriptor.text}</p>
+              {descriptor.titles ? <p>{descriptor.titles}</p> : null}
+              {headcount ? <p>{headcountSentence(label, headcount)}</p> : null}
+              <p className="text-base">
+                Our summary of the {LEVEL_FACT_SOURCES[descriptor.sourceId].title}, read {FACTS_READ_ON}.
+              </p>
+            </section>
+          ) : null}
 
           {section.compare.length > 0 ? (
             <section>
@@ -177,7 +220,6 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
             <p>
               {previous ? <>The level below is {previous.label} ({formatBandRange(previous.range)}). </> : null}
               {next ? <>The next level up is {next.label} ({formatBandRange(next.range)}). </> : null}
-              {config.nextRise}
             </p>
             <nav aria-label={`${j.shortName} levels`} className="not-prose my-4">
               <ul className="flex flex-wrap gap-2">
