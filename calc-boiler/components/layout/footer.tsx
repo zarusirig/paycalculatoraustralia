@@ -6,6 +6,7 @@ import {
   type MenuLink,
 } from "@/lib/navigation";
 import { SOURCES, SITE_CONFIG } from "@/lib/constants";
+import PreferredSourceBadge from "@/components/common/preferred-source-badge";
 
 /*
  * Columns mirror the header menus (lib/navigation.ts): hubs plus the key
@@ -42,6 +43,7 @@ export default function Footer() {
               Free Australian pay calculators with income tax, super, Medicare levy &amp; HECS. Updated for
               FY{SITE_CONFIG.financialYear} from official ATO and Fair Work data.
             </p>
+            <PreferredSourceBadge theme="dark" origin="footer" />
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
             <span className="inline-flex items-center gap-2 text-eucalyptus-light/90">

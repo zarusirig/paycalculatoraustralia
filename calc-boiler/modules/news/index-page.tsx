@@ -17,15 +17,20 @@ export type NewsIndexItem = {
   dateLabel: string;
 };
 
-/** `featuredImage`: the page's <FeaturedImage />, rendered by app/news/page.tsx (a server component). */
+/**
+ * `featuredImage` and `preferredSource` (the Google preferred source badge) are
+ * rendered by app/news/page.tsx (a server component), for the same G6 reason.
+ */
 export default function NewsIndexPage({
   items,
   categories,
   featuredImage,
+  preferredSource,
 }: {
   items: NewsIndexItem[];
   categories: NewsCategory[];
   featuredImage?: React.ReactNode;
+  preferredSource?: React.ReactNode;
 }) {
   const [filter, setFilter] = useState<NewsCategory | "All">("All");
   const articles = items.filter((a) => filter === "All" || a.category === filter);
@@ -50,6 +55,7 @@ export default function NewsIndexPage({
             starts, and what it means for your take-home pay. Every story links to a calculator so
             you can run your own numbers.
           </p>
+          {preferredSource}
           {featuredImage}
         </header>
 

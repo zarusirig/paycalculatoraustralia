@@ -44,6 +44,17 @@ export default function EngagementTracking() {
     // --- Next-step clicks: what actually drives pages per session ---
     const onClick = (event: Event) => {
       const target = event.target as HTMLElement | null;
+
+      // --- Google "preferred source" badge (added 23 Oct 2026) ---
+      const badge = target?.closest<HTMLElement>('[data-engagement="preferred-source"]');
+      if (badge) {
+        track("preferred_source_click", {
+          page_path: pathname,
+          origin: badge.dataset.preferredSourceOrigin ?? "unknown",
+        });
+        return;
+      }
+
       const link = target?.closest<HTMLElement>('[data-engagement="next-step"]');
       if (!link) return;
 

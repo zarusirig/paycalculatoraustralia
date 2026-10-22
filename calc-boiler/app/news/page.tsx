@@ -7,6 +7,7 @@ import NewsIndexPage from "@/modules/news/index-page";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 import FeaturedImage from "@/components/common/featured-image";
+import PreferredSourceBadge from "@/components/common/preferred-source-badge";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
@@ -54,6 +55,7 @@ function Page() {
       <JsonLd code={[collection, breadcrumb]} />
       <NewsIndexPage
         featuredImage={<FeaturedImage className="mb-0 mt-6" />}
+        preferredSource={<PreferredSourceBadge theme="light" origin="news-index" className="mt-5" />}
         categories={NEWS_CATEGORIES}
         items={getAllNews().map((a) => ({
           slug: a.slug,

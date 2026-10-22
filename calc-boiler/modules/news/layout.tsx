@@ -3,6 +3,7 @@ import { Children, Fragment, isValidElement, type ReactNode } from "react";
 import FeaturedImage from "@/components/common/featured-image";
 import { ChevronRight, Newspaper, ArrowRight } from "lucide-react";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import PreferredSourceBadge from "@/components/common/preferred-source-badge";
 import { AUTHORS } from "@/lib/authors";
 import { formatNewsDate, getRelatedNews, type NewsArticleMeta } from "@/lib/news";
 
@@ -90,6 +91,7 @@ export default function NewsArticleLayout({ meta, children }: { meta: NewsArticl
             By <span className="font-semibold text-navy">{author.name}</span>, {author.role} · Published {formatNewsDate(meta.datePublished)}
             {meta.dateModified !== meta.datePublished && <> · Updated {formatNewsDate(meta.dateModified)}</>}
           </p>
+          <PreferredSourceBadge theme="light" origin="news-article" className="mt-4" />
         </header>
 
         <div className="max-w-4xl">
