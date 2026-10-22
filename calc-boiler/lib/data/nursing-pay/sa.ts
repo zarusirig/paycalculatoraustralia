@@ -62,6 +62,19 @@
 // packets: the copy below says "at least 4% above" rather than "4% above" so
 // it cannot understate current pay. Data unchanged. Next check 28 October 2026.
 //
+// 23 OCTOBER 2026: UNION REPORT ADDED, AT THE OWNER'S REQUEST
+// -----------------------------------------------------------
+// SA Health, its salaries page, its explainer and SAET were re-read: nothing
+// official has moved. The ANMF (SA Branch) "Your EBA and Pay Rates" page (no
+// last-updated date shown; footer "Copyright © 2021 ANMF (SA Branch)") lists
+// "Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement
+// 2022 - 2% Interim Administrative Increase effective ffpp on or after
+// 1 October 2026" ("ffpp" = first full pay period). That is a union document,
+// so it is carried in `reportedChange` with `official: false` and rendered only
+// as an attributed sentence. No table figure, the "at least 4%" hedge, the
+// title, description and answer box are unchanged, and the union's pay-rates
+// PDF is not read or reproduced.
+//
 // TRANSCRIPTION CHECK
 // -------------------
 // The 2022 agreement PDF is a scan, so the salary table was read by OCR. Two
@@ -309,9 +322,28 @@ export const SA_NURSING_PAY: NursingStateData = {
     "SA numbers its scales RN/M1 to RN/M6 and overlaps them: a Clinical Nurse/Midwife at the bottom of Level 2 earns exactly what a Registered Nurse/Midwife earns at the 5th increment.",
     "There is no separate nurse practitioner scale. Nurse practitioners sit at Level 4 with the advanced unit manager and consultant roles.",
     "Night shift Monday to Friday attracts 20.5%, set by the agreement itself in place of the award rate.",
-    "Current pay is at least 4% above the table: the SA Government paid a 4% administrative increase from January 2026, and a further 2% was set for October 2026 with no day published. SA Health had not published the start date or the new dollar rates when this page was checked on 22 October 2026.",
     "The 2022 agreement nominally expired on 31 July 2025, and a proposed replacement was voted down in the 20–29 July 2026 ballot, so bargaining continues.",
+    // Kept last so the attributed union report (reportedChange) renders directly under it.
+    "Current pay is at least 4% above the table: the SA Government paid a 4% administrative increase from January 2026, and a further 2% was set for October 2026 with no day published. SA Health had not published the start date or the new dollar rates when this page was checked on 22 October 2026.",
   ],
+
+  // Union report, NOT official (see the 23 October 2026 note at the top).
+  reportedChange: {
+    reportedBy: "ANMF (SA Branch)",
+    reporterRole: "The nurses' union",
+    change: "the further 2%",
+    appliesFrom: "the first full pay period on or after 1 October 2026",
+    quote:
+      "Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022 - 2% Interim Administrative Increase effective ffpp on or after 1 October 2026",
+    officialPosition: "SA Health has not published new tables, so the figures on this page stay on the last official column",
+    source: {
+      title: "Your EBA and Pay Rates",
+      url: "https://www.anmfsa.org.au/Web/membership/Your_EBA_and_Pay_Rates.aspx",
+      publisher: "ANMF (SA Branch)",
+    },
+    readOn: "23 October 2026",
+    official: false,
+  },
 
   extraSources: [
     SALARY_PAGE,

@@ -341,3 +341,14 @@ export function scaleSummaries(state: NursingStateData): ScaleSummary[] {
     };
   });
 }
+
+/**
+ * The one sentence a union-reported pay change is allowed to appear in: it
+ * names the reporter, says what they report and states what the official
+ * source has not published. Null when the state has no reported change.
+ */
+export function reportedChangeSentence(state: NursingStateData): string | null {
+  const r = state.reportedChange;
+  if (!r) return null;
+  return `${r.reporterRole}, ${r.reportedBy}, reports that ${r.change} applies from ${r.appliesFrom}. ${r.officialPosition}.`;
+}

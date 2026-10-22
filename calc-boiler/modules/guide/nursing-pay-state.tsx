@@ -22,6 +22,7 @@ import {
   nursingPageH1,
   ratesYear,
   registeredNurseLadder as registeredNurseRange,
+  reportedChangeSentence,
   scaleAnchor,
   scaleSummaries,
   scalesInFamily,
@@ -190,6 +191,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
                     <li key={h}>{h}</li>
                   ))}
                 </ul>
+                <ReportedChangeNote state={state} />
               </section>
             ) : null}
 
@@ -760,6 +762,37 @@ function SalaryAnswerBox({ state }: { state: NursingStateData }) {
 }
 
 /** Future pay tables the source already prints, plus the pay deal behind them. */
+/**
+ * A union-reported pay change, shown only with its attribution and only next
+ * to the page's hedged "current pay" note. It never changes a figure.
+ */
+function ReportedChangeNote({ state }: { state: NursingStateData }) {
+  const r = state.reportedChange;
+  const sentence = reportedChangeSentence(state);
+  if (!r || !sentence) return null;
+  return (
+    <div
+      id="reported-pay-change"
+      className="not-prose my-5 rounded-xl border border-sandstone-dark/20 bg-sandstone/30 p-5 text-sm text-warmgray"
+    >
+      <p className="font-semibold text-navy">Reported by the union, not yet official</p>
+      <p className="mt-2">{sentence}</p>
+      <p className="mt-2 text-xs text-warmgray-light">
+        Source:{" "}
+        <a
+          href={r.source.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="font-medium text-eucalyptus-dark hover:text-navy hover:underline"
+        >
+          {r.source.publisher}, {r.source.title}
+        </a>
+        , which lists &ldquo;{r.quote}&rdquo; (read {r.readOn}).
+      </p>
+    </div>
+  );
+}
+
 function NextPayRise({ state }: { state: NursingStateData }) {
   const upcoming = state.upcoming ?? [];
   if (upcoming.length === 0 && !state.payDeal) return null;
