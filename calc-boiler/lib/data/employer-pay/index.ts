@@ -50,6 +50,11 @@ import { EVENT_CINEMAS_PAY } from "./event-cinemas";
 import { QANTAS_PAY } from "./qantas";
 import { VIRGIN_AUSTRALIA_PAY } from "./virgin-australia";
 // --- end J7 ---
+// --- Batch A (22 Oct 2026) ---
+import { ALDI_PAY } from "./aldi";
+import { COTTON_ON_PAY } from "./cotton-on";
+import { REJECT_SHOP_PAY } from "./reject-shop";
+// --- end Batch A ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -90,6 +95,11 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   qantas: QANTAS_PAY,
   "virgin-australia": VIRGIN_AUSTRALIA_PAY,
   // --- end J7 ---
+  // --- Batch A (22 Oct 2026) ---
+  aldi: ALDI_PAY,
+  "cotton-on": COTTON_ON_PAY,
+  "reject-shop": REJECT_SHOP_PAY,
+  // --- end Batch A ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
@@ -163,6 +173,11 @@ export const EMPLOYER_SECTOR: Readonly<Record<EmployerSlug, EmployerSector>> = {
   qantas: "airline",
   "virgin-australia": "airline",
   "australia-post": "postal",
+  // --- Batch A (22 Oct 2026) ---
+  aldi: "supermarket-liquor",
+  "cotton-on": "retail",
+  "reject-shop": "retail",
+  // --- end Batch A ---
 };
 
 export interface RelatedEmployers {
@@ -282,13 +297,17 @@ export interface WeeklyExample {
   casualWeekly: number;
 }
 
-/** Gross weekly pay at the entry-level adult rate, all hours at ordinary time. */
+/**
+ * Gross weekly pay at the entry-level adult rate, all hours at ordinary time.
+ * Batch A (22 Oct 2026): 0 for the casual column where the employer has no
+ * adult casual rate (rates[0].noCasual, e.g. ALDI).
+ */
 export function weeklyExamples(employer: EmployerPay): WeeklyExample[] {
   const entry = entryRate(employer);
   return EXAMPLE_HOURS.map((hours) => ({
     hours,
     permanentWeekly: roundCents(entry.hourly * hours),
-    casualWeekly: roundCents(entry.casualHourly * hours),
+    casualWeekly: entry.noCasual ? 0 : roundCents(entry.casualHourly * hours),
   }));
 }
 
@@ -340,6 +359,15 @@ export function hourlyToSalaryLink(hourly: number): { href: string; rate: number
     rate: best,
     exact: roundCents(best) === roundCents(hourly),
   };
+}
+
+/**
+ * "the Coles Retail Enterprise Agreement 2024", or the title alone when it
+ * already starts with "The" (Batch A, 22 Oct 2026: "The Reject Shop Agreement
+ * 2023"), so a sentence never reads "under the The ...".
+ */
+export function underInstrument(title: string): string {
+  return /^the\s/i.test(title) ? title : `the ${title}`;
 }
 
 /** "25%" from 0.25; one decimal where needed ("57.8%"). */

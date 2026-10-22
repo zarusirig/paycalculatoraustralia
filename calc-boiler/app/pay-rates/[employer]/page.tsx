@@ -9,6 +9,7 @@ import {
   EMPLOYER_SLUGS,
   entryRate,
   getEmployerPay,
+  underInstrument,
   type EmployerPay,
 } from "@/lib/data/employer-pay";
 import { fitDescription } from "@/lib/seo-title";
@@ -46,12 +47,15 @@ function contentsFor(e: EmployerPay): string {
 
 function descriptionFor(e: EmployerPay) {
   const entry = entryRate(e);
-  const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level}`;
+  // Batch A (22 Oct 2026): no casual figure where the employer has no adult casuals (ALDI).
+  const casual = entry.noCasual ? "" : ` (${formatAUD(entry.casualHourly, 2)} casual)`;
+  const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr${casual} at ${entry.level}`;
   const contents = contentsFor(e);
+  const under = underInstrument(e.instrument.title);
   return fitDescription(
-    `${lead} under the ${e.instrument.title}. ${contents}. Verified ${e.verifiedOn}.`,
-    `${lead} under the ${e.instrument.title}. ${contents}.`,
-    `${lead} under the ${e.instrument.title}.`,
+    `${lead} under ${under}. ${contents}. Verified ${e.verifiedOn}.`,
+    `${lead} under ${under}. ${contents}.`,
+    `${lead} under ${under}.`,
     `${lead}. ${contents}.`,
   );
 }

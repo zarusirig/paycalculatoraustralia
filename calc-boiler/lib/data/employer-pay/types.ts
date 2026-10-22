@@ -56,6 +56,11 @@ export const EMPLOYER_SLUGS = [
   "guzman-y-gomez",
   "rebel",
   // --- end J7 ---
+  // --- Batch A (22 Oct 2026), by search demand ---
+  "aldi",
+  "cotton-on",
+  "reject-shop",
+  // --- end Batch A ---
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];
@@ -98,7 +103,11 @@ export interface RateRow {
   /**
    * True when the instrument has no casual rate for this classification (e.g.
    * airline agreements pay casuals only at the entry level). The page shows
-   * "—" and `casualHourly` must be 0. Never set on rates[0].
+   * "—" and `casualHourly` must be 0. Not set on rates[0], except where the
+   * employer has no adult casual rate at all (Batch A, 22 Oct 2026: ALDI stores
+   * employ casuals under 18 only). Then every row carries it, `casualLoading`
+   * is 0, `casualRateNote` explains, and the page header, meta description, hub
+   * table and weekly examples drop the casual figure.
    */
   noCasual?: boolean;
   /** Full-time annual salary where the instrument sets pay as a salary. */
