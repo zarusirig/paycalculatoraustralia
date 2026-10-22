@@ -114,7 +114,7 @@ export const KFC_PAY: EmployerPay = {
   ],
   notices: [
     "The KFC agreement's rates are tied to the Fast Food Award: permanent staff get the award weekly rate plus 0.5%, and casuals the award hourly rate plus 1 cent plus the 25% loading. The 2026 dollars here are our calculation from that formula, which the Fair Work Commission's approval decision sets out.",
-    "The KFC agreement passed its nominal expiry date in April 2024. It keeps applying until it is replaced or terminated, and no replacement has been approved or lodged as at September 2026.",
+    "The KFC agreement passed its nominal expiry date in April 2024. It keeps applying until it is replaced or terminated, and we found no replacement approved or lodged on the Fair Work Commission's site as at 22 October 2026.",
     "Not every KFC restaurant is covered. The agreement covers KFC's own restaurants and the franchisees named when it was approved. If your restaurant's owner was not named, or has its own agreement, the Fast Food Award or that agreement applies instead. Your payslip must say which one you are paid under.",
     "The Fair Work Commission's copy of the agreement is not currently downloadable, so the clause details (junior percentages, penalties, casual undertaking) were read from a published copy of the agreement and checked against the Commission's approval decision.",
   ],
@@ -143,15 +143,46 @@ export const KFC_PAY: EmployerPay = {
     },
     {
       q: "Is the KFC enterprise agreement still in force?",
-      a: "Yes. Its nominal expiry date was in April 2024, but an agreement keeps applying until it is replaced or terminated, and no replacement KFC agreement had been approved or lodged by September 2026. It only covers KFC's own restaurants and the franchisees named in it.",
+      a: "Yes. Its nominal expiry date was in April 2024, but an agreement keeps applying until it is replaced or terminated, and we found no replacement KFC agreement approved or lodged with the Fair Work Commission as at 22 October 2026. It only covers KFC's own restaurants and the franchisees named in it.",
     },
     {
       q: "What does KFC pay on weekends and public holidays?",
       a: "Team Members get base + 25% on Saturdays and Sundays ($34.94 an hour for a permanent adult) and casuals + 50%. Shift Supervisors get + 50% on Sundays (casual + 75%). Public holidays pay 225%, or 250% for casuals.",
     },
     {
-      q: "Does KFC pay more than the award?",
-      a: "Only slightly: permanent staff get the Fast Food Award rate plus 0.5% ($27.95 against $27.81 for an adult Team Member) and casuals the award rate plus 1 cent before the loading. From 1 December 2026 the award's higher rates for some 18 to 20 year olds will overtake KFC's junior rates, and those staff must be paid the award figure.",
+      q: "Is KFC paid above the award?",
+      a: "Only slightly. Permanent staff get the Fast Food Award weekly rate plus 0.5% ($27.95 against $27.81 an hour for an adult Team Member) and casuals the award hourly rate plus 1 cent before the 25% loading, margins the Fair Work Commission recorded when it approved the agreement in 2020. From 1 December 2026 the award's higher rates for some 18 to 20 year olds will overtake KFC's junior rates, and those staff must be paid the award figure.",
+    },
+    {
+      q: "When is the next KFC pay rise?",
+      a: "Adult rates next move from the first full pay period on or after 1 July 2027, when the 2027 Annual Wage Review lifts the Fast Food Award and KFC's award-plus formula follows it. Before that, from the first full pay period on or after 1 December 2026, 18 to 20 year olds with more than 6 months' service must get at least the award's new 75%, 85% and 95% rates ($20.86, $23.64 and $26.42 an hour).",
     },
   ],
+  // 22 Oct 2026: read from the approval decision [2020] FWCA 2020 (FWC PDF).
+  // Checked for a replacement: nothing on the FWC's site, and the SDA's KFC
+  // page (dated 15 Aug 2024, status "current") still describes this agreement.
+  enterpriseAgreement: {
+    underlyingAward: { title: "Fast Food Industry Award 2020", code: "MA000003", url: "https://awards.fairwork.gov.au/MA000003.html" },
+    commencedOn: "29 April 2020",
+    status: "past-nominal-expiry",
+    statusNote:
+      "Past its nominal expiry date of 29 April 2024 but still in force: an agreement keeps applying until it is replaced or terminated. On 22 October 2026 we found no replacement KFC agreement, application or approval decision on the Fair Work Commission's site, and the SDA's KFC page still describes this agreement as current.",
+    payRises: [
+      { date: "1 February 2020", amount: "Fast Food Award weekly rate plus 0.25% for full-time and part-time staff; casuals the award hourly rate plus 1 cent before the loading", source: "[2020] FWCA 2020 at [72](g) and (h)", paid: true },
+      { date: "1 July 2021", amount: "Permanent margin lifted to the award weekly rate plus 0.5%", source: "[2020] FWCA 2020 at [72](g)", paid: true },
+      { date: "First full pay period on or after 1 July 2026", amount: "4.75%, the 2026 Annual Wage Review, flowing through the award-plus formula (Team Member $27.95)", source: "Fast Food Industry Award determination PR799284; agreement formula", paid: true },
+      { date: "First full pay period on or after 1 December 2026", amount: "Juniors aged 18 to 20 with more than 6 months' service must get at least the award's new 75%, 85% and 95% rates", source: "Determination PR813654; Fair Work Act s 206 (award floor)" },
+      { date: "First full pay period on or after 1 July 2027", amount: "The 2027 Annual Wage Review percentage, not yet decided", source: "Flows through the agreement's award-plus formula" },
+    ],
+    aboveAward:
+      "The approving Deputy President recorded that permanent staff get \"an additional 0.25% over the award rate from 1/2/20 and 0.5% over the award rate from 1/7/21\" and casuals \"an additional $0.01 per hour at the adult level (plus the additional 25% loading) over the award rate\", with the adult weekly rate rounded to the nearest 10 cents so that the agreement rates sit above the award ([2020] FWCA 2020 at [64] and [72]). On 2026 rates that is $27.95 against the award's $27.81 for an adult Team Member, 14 cents more.",
+    whatItMeans: [
+      "KFC's rates are the Fast Food Award plus a small fixed margin, so every Annual Wage Review flows straight into KFC pay each July.",
+      "Permanent staff get the award weekly rate plus 0.5%; casuals get the award hourly rate plus 1 cent, then the 25% loading.",
+      "From 1 December 2026 the award's higher junior rates for some 18 to 20 year olds overtake KFC's fixed percentages, and the award figure must be paid.",
+      "The agreement covers KFC's own restaurants and the franchisees named when it was approved; other franchisees pay under the award or their own agreement.",
+    ],
+    decision: { citation: "[2020] FWCA 2020 (Cross DP), 22 April 2020, approved with undertakings", url: EA_URL },
+    verifiedOn: "22 October 2026",
+  },
 };

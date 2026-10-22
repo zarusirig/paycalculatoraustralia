@@ -116,6 +116,7 @@ export const BIG_W_PAY: EmployerPay = {
   awardLabel: "Retail Award rates 2026",
   sources: [
     { title: "BIG W Stores Enterprise Agreement 2023 (AE523762)", publisher: "Fair Work Commission", url: EA_URL },
+    { title: "Approval decision [2024] FWCA 849 (Masson DP, 13 March 2024), with undertakings", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwca849.pdf" },
     { title: "BIG W Stores Enterprise Agreement 2023, with approval decision [2024] FWCA 849 and undertakings", publisher: "Shop, Distributive and Allied Employees' Association", url: SDA_COPY_URL },
     { title: "General Retail Industry Award 2020 (MA000004)", publisher: "Fair Work Commission", url: "https://awards.fairwork.gov.au/MA000004.html" },
   ],
@@ -140,5 +141,36 @@ export const BIG_W_PAY: EmployerPay = {
       q: "What is the Big W enterprise agreement?",
       a: "The BIG W Stores Enterprise Agreement 2023 (AE523762), approved by the Fair Work Commission on 13 March 2024. It started on 20 May 2024 and has a nominal expiry date of 1 October 2027. Pay rises each July by the Annual Wage Review percentage plus a Boosted Leave margin.",
     },
+    {
+      q: "Is Big W paid above the award?",
+      a: "Yes, by a small margin. When it approved the agreement the Fair Work Commission found rates between 0.44% and 1.87% above the Retail Award, and the margin grows a little each July because every rise is the Annual Wage Review percentage plus a Boosted Leave increase. On our 2026 calculation Level 1 is $28.29 against the award's $27.81.",
+    },
+    {
+      q: "When is the next Big W pay rise?",
+      a: "From the first full pay period on or after 1 July 2027: the 2027 Annual Wage Review percentage plus 0.75% (cl 4.2.1). It is the last rise before the agreement's nominal expiry on 1 October 2027. Separately, from 1 December 2026, 18 and 19 year olds with more than 6 months' service must get at least the Retail Award's higher junior rates.",
+    },
   ],
+  // 22 Oct 2026: read from the approval decision [2024] FWCA 849 (FWC PDF).
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "20 May 2024",
+    status: "in-term",
+    statusNote: "Inside its nominal term, which runs to 1 October 2027. One scheduled rise remains, in July 2027.",
+    payRises: [
+      { date: "First full pay period on or after 1 July 2024", amount: "3.75% Annual Wage Review plus 0.25% Boosted Leave increase", source: "Agreement cl 4.2.1", paid: true },
+      { date: "First full pay period on or after 1 July 2025", amount: "3.5% plus 0.5%", source: "Agreement cl 4.2.1", paid: true },
+      { date: "First full pay period on or after 1 July 2026", amount: "4.75% plus 0.5% (Level 1 about $28.29, our calculation)", source: "Agreement cl 4.2.1", paid: true },
+      { date: "First full pay period on or after 1 July 2027", amount: "The 2027 Annual Wage Review percentage plus 0.75%", source: "Agreement cl 4.2.1; the last rise before nominal expiry on 1 October 2027" },
+    ],
+    aboveAward:
+      "Deputy President Masson found that, with BIG W's undertakings, the agreement \"would provide for rates of pay of between 0.44% and 1.87% above the Award\", with wage increases \"set above the Annual Wage Review (AWR) outcome by a margin of 0.25% for 2024, 0.5% for 2025 and 2026 and 0.75% for 2027\" ([2024] FWCA 849 at [28]). On our 2026 calculation, Level 1 is $28.29 against the award's $27.81, 48 cents more.",
+    whatItMeans: [
+      "BIG W's base rates started just above the award and pull a little further ahead each July, because every rise is the Annual Wage Review percentage plus an extra Boosted Leave margin.",
+      "Permanent staff can take that extra margin as paid leave instead of pay; the base rate on this page is the same either way, and casuals are paid the margin as wages.",
+      "Penalty rates are base rate plus a percentage, so a higher base lifts evening, weekend and public holiday pay too.",
+      "An agreement cannot pay a base rate below the award, which matters for 18 and 19 year olds from 1 December 2026 when the award's junior rates rise above BIG W's.",
+    ],
+    decision: { citation: "[2024] FWCA 849 (Masson DP), 13 March 2024, approved with undertakings", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwca849.pdf" },
+    verifiedOn: "22 October 2026",
+  },
 };

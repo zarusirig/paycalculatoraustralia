@@ -249,4 +249,64 @@ export interface EmployerPay {
   /** One line under the allowance table, e.g. when the list is a selection. */
   allowancesNote?: string;
   // --- end 10 Oct 2026 ---
+  // --- 22 Oct 2026: "{Employer} enterprise agreement 2026" section ---
+  /**
+   * Lifecycle facts for the employer's enterprise agreement, read from the
+   * FWC approval decision (or, for an award-paid employer, the decision that
+   * removed or declined an agreement). The page renders the section only when
+   * this is set; employers without it are unchanged. Optional and last so the
+   * other employer files keep compiling.
+   */
+  enterpriseAgreement?: EnterpriseAgreementFacts;
+  // --- end 22 Oct 2026 ---
 }
+
+// --- 22 Oct 2026: enterprise agreement section types ---
+
+/** Where the agreement sits in its life on `EnterpriseAgreementFacts.verifiedOn`. */
+export type AgreementStatus =
+  /** Inside its nominal term. */
+  | "in-term"
+  /** Past its nominal expiry date, still applying, no replacement voted up. */
+  | "past-nominal-expiry"
+  /** A replacement has been voted up and is before the FWC; the old agreement still applies. */
+  | "replacement-before-fwc"
+  /** The employer has no enterprise agreement; the award applies. */
+  | "no-agreement";
+
+/** One scheduled rise, in the agreement's own words. Past rises stay in the list. */
+export interface AgreementPayRise {
+  /** When it takes effect: "First full pay period on or after 1 July 2027". */
+  date: string;
+  /** The rise: "3.25%", "the Annual Wage Review percentage", "Award rate + 20 cents". */
+  amount: string;
+  /** Clause or decision it comes from, and any condition. */
+  source: string;
+  /** True once the rise has been paid. */
+  paid?: boolean;
+}
+
+export interface EnterpriseAgreementFacts {
+  /** The modern award the FWC tested the agreement against, or that applies where there is none. */
+  underlyingAward: { title: string; code: string; url: string };
+  /** Date the agreement started operating, as the approval decision states it. Omit where there is no agreement. */
+  commencedOn?: string;
+  status: AgreementStatus;
+  /** One or two sentences: what applies now and what is expected next. */
+  statusNote: string;
+  /** Scheduled rises in date order, past rises first. Empty when none are scheduled. */
+  payRises: AgreementPayRise[];
+  /**
+   * The FWC's above-award finding from the approval decision, with its
+   * paragraph; where the decision states none, the agreement's own
+   * above-award formula with its clause. Never our estimate.
+   */
+  aboveAward: string;
+  /** Two to four sentences on what the agreement means for pay. */
+  whatItMeans: string[];
+  /** The FWC decision these facts were read from. */
+  decision: { citation: string; url: string };
+  /** Date these facts were read from the source. */
+  verifiedOn: string;
+}
+// --- end 22 Oct 2026 ---

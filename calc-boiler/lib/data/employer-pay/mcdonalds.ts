@@ -38,7 +38,7 @@ export const MCDONALDS_PAY: EmployerPay = {
     reference: "MA000003",
     url: AWARD_URL,
     coverage:
-      "McDonald's has no enterprise agreement: its 2013 agreement was terminated from 3 February 2020, and company restaurants and licensees have applied the Fast Food Industry Award since. The Fair Work Commission has authorised the SDA union to bargain with McDonald's licensees, but no agreement had been approved by September 2026.",
+      "McDonald's has no enterprise agreement: its 2013 agreement was terminated from 3 February 2020, and company restaurants and licensees have applied the Fast Food Industry Award since. The Fair Work Commission has authorised the SDA union to bargain with McDonald's licensees, but no agreement had been lodged or approved by 22 October 2026.",
   },
   ratesEffectiveFrom: "the first full pay period on or after 1 July 2026",
   nextIncrease: {
@@ -79,8 +79,8 @@ export const MCDONALDS_PAY: EmployerPay = {
     { when: "Monday to Friday, 10pm to midnight", permanent: "110%", casual: "135%" },
     { when: "Monday to Friday, midnight to 6am", permanent: "115%", casual: "140%" },
     { when: "Saturday", permanent: "125%", casual: "150%" },
-    { when: "Sunday — Level 1", permanent: "125%", casual: "150%" },
-    { when: "Sunday — Levels 2 and 3", permanent: "150%", casual: "175%" },
+    { when: "Sunday, Level 1", permanent: "125%", casual: "150%" },
+    { when: "Sunday, Levels 2 and 3", permanent: "150%", casual: "175%" },
     { when: "Public holiday", permanent: "225%", casual: "250%" },
   ],
   penaltyNotes: [
@@ -100,13 +100,14 @@ export const MCDONALDS_PAY: EmployerPay = {
   ],
   unverified: [
     "Salaried restaurant and area manager pay: set by individual contracts, not published.",
-    "The Fair Work Commission citation for the 2026 national bargaining authorisation, reported by the SDA; we could not retrieve the decision itself.",
+    "A national supported bargaining authorisation: the SDA says it has lodged applications covering McDonald's and its franchisees nationally and that national bargaining has started. On 22 October 2026 we found no Fair Work Commission decision making one, only the South Australian authorisation [2025] FWCFB 130.",
   ],
   sources: [
     { title: "Fast Food Industry Award 2020 (MA000003), consolidated to 1 July 2026", publisher: "Fair Work Commission", url: AWARD_URL },
     { title: "Termination of the McDonald's Australia Enterprise Agreement 2013, [2019] FWCA 8563", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/decisionssigned/html/2019fwca8563.htm" },
     { title: "Supported bargaining authorisation, [2025] FWCFB 130", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/sites/b2024-992/2025fwcfb130.pdf" },
     { title: "Junior rates determination PR813654 (Fast Food Award, 26 August 2026)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813654.pdf" },
+    { title: "Ardeen Pty Ltd v Shop, Distributive and Allied Employees Association [2026] FCAFC 93 (20 July 2026), upholding the supported bargaining authorisation", publisher: "Federal Court of Australia", url: "https://www.judgments.fedcourt.gov.au/judgments/Judgments/fca/full/2026/2026fcafc0093" },
   ],
   faqs: [
     {
@@ -119,7 +120,7 @@ export const MCDONALDS_PAY: EmployerPay = {
     },
     {
       q: "Does McDonald's have an enterprise agreement?",
-      a: "No. The McDonald's Australia Enterprise Agreement 2013 was terminated from 3 February 2020, and McDonald's and its licensees have paid under the Fast Food Industry Award since. Union bargaining for a new agreement has been authorised but nothing had been approved by September 2026.",
+      a: "No. The McDonald's Australia Enterprise Agreement 2013 was terminated from 3 February 2020, and McDonald's and its licensees have paid under the Fast Food Industry Award since. The Fair Work Commission authorised supported bargaining for 18 South Australian franchisees in June 2025, the Full Federal Court upheld that in July 2026, and the SDA says national bargaining has started. No new agreement had been lodged or approved by 22 October 2026.",
     },
     {
       q: "What are McDonald's penalty rates on Sunday?",
@@ -129,5 +130,37 @@ export const MCDONALDS_PAY: EmployerPay = {
       q: "Do McDonald's junior rates go up in December 2026?",
       a: "Yes, for 18 to 20 year olds who have been with their employer for more than 6 months. From the first full pay period on or after 1 December 2026 they move five percentage points closer to the adult rate, reaching it in stages by July 2029. Under-18 rates do not change.",
     },
+    {
+      q: "Is McDonald's paid above the award?",
+      a: "Not as a rule. McDonald's has no enterprise agreement, so the Fast Food Industry Award rates on this page ($27.81 an hour for an adult Level 1 crew member, $34.76 casual) are the legal minimum. Some licensees pay more by choice. The SDA is bargaining for an agreement, which would have to leave every employee better off overall than the award before the Fair Work Commission could approve it.",
+    },
+    {
+      q: "When is the next McDonald's pay rise?",
+      a: "Adult rates next change from the first full pay period on or after 1 July 2027, when the 2027 Annual Wage Review decision takes effect. Before that, from the first full pay period on or after 1 December 2026, crew aged 18 to 20 with more than 6 months' service move to 75%, 85% and 95% of the adult rate ($20.86, $23.64 and $26.42 at Level 1).",
+    },
   ],
+  // 22 Oct 2026: no agreement. Termination [2019] FWCA 8563; SA supported
+  // bargaining authorisation [2025] FWCFB 130 (30 June 2025), upheld in Ardeen
+  // Pty Ltd v SDA [2026] FCAFC 93 (20 July 2026). SDA campaign page (April 2026
+  // update) says national bargaining has started; no FWC agreement found.
+  enterpriseAgreement: {
+    underlyingAward: { title: "Fast Food Industry Award 2020", code: "MA000003", url: AWARD_URL },
+    status: "no-agreement",
+    statusNote:
+      "McDonald's has had no enterprise agreement since the McDonald's Australia Enterprise Agreement 2013 was terminated from 3 February 2020 ([2019] FWCA 8563). A Full Bench authorised supported bargaining for 18 South Australian franchisees on 30 June 2025 ([2025] FWCFB 130), and the Full Federal Court dismissed the franchisees' challenge on 20 July 2026 (Ardeen Pty Ltd v SDA [2026] FCAFC 93). The SDA says national bargaining has started. No new agreement had been lodged or approved by 22 October 2026.",
+    payRises: [
+      { date: "First full pay period on or after 1 July 2026", amount: "4.75%, the 2026 Annual Wage Review (Level 1 $27.81)", source: "Fast Food Industry Award, determination PR799284", paid: true },
+      { date: "First full pay period on or after 1 December 2026", amount: "Juniors aged 18 to 20 with more than 6 months' service move to 75%, 85% and 95% of the adult rate", source: "Determination PR813654, following [2026] FWCFB 222" },
+      { date: "First full pay period on or after 1 July 2027", amount: "The 2027 Annual Wage Review percentage, not yet decided", source: "Annual Wage Review, decided each June" },
+    ],
+    aboveAward:
+      "There is no above-award margin to report. With no agreement in force, the Fast Food Industry Award rates are the legal minimum for McDonald's crew; the 2013 agreement's termination took effect on 3 February 2020 ([2019] FWCA 8563) and the award has applied since. Some licensees choose to pay above the award, but nothing requires them to.",
+    whatItMeans: [
+      "Your pay is set by the Fast Food Industry Award, so every figure on this page is the award rate for your level and age.",
+      "Pay rises come from the Fair Work Commission's Annual Wage Review each July, not from a negotiated agreement.",
+      "If the SDA and McDonald's reach an agreement, it would need a yes vote and Commission approval before it changed anyone's pay, and it would have to leave every employee better off overall than the award.",
+    ],
+    decision: { citation: "[2019] FWCA 8563 (Colman DP), 19 December 2019, terminating the McDonald's Australia Enterprise Agreement 2013", url: "https://www.fwc.gov.au/documents/decisionssigned/html/2019fwca8563.htm" },
+    verifiedOn: "22 October 2026",
+  },
 };

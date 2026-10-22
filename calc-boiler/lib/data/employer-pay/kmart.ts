@@ -102,6 +102,7 @@ export const KMART_PAY: EmployerPay = {
   awardLabel: "Retail Award rates 2026",
   sources: [
     { title: "Kmart National Agreement 2024 (AE526796)", publisher: "Fair Work Commission", url: EA_URL },
+    { title: "Approval decision [2024] FWCA 4020 (Masson DP, 18 November 2024)", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwca4020.pdf" },
     { title: "General Retail Industry Award 2020 (MA000004), rates from 1 July 2026", publisher: "Fair Work Commission", url: "https://awards.fairwork.gov.au/MA000004.html" },
     { title: "Annual Wage Review 2025–26", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews" },
   ],
@@ -123,8 +124,34 @@ export const KMART_PAY: EmployerPay = {
       a: "The Kmart National Agreement 2024 (AE526796), approved by the Fair Work Commission on 18 November 2024 and operating from 10 March 2025. It covers Kmart store team members nationally and nominally expires on 17 November 2028.",
     },
     {
-      q: "Does Kmart pay more than the award?",
-      a: "For weekday daytime hours, by 15 cents an hour in 2026, rising to 20 cents in 2027 and 25 cents in 2028. Evening, weekend and public holiday hours are paid at the award rate plus 1 cent.",
+      q: "Is Kmart paid above the award?",
+      a: "Yes, by a fixed cents-per-hour margin. For weekday daytime hours the Kmart base rate is the Retail Award rate plus 15 cents an hour in 2026 ($27.96 against $27.81 for a Retail Assistant), rising to 20 cents in July 2027 and 25 cents in July 2028. Evening, weekend and public holiday hours are paid at the award rate plus 1 cent.",
+    },
+    {
+      q: "When is the next Kmart pay rise?",
+      a: "From the first full pay period on or after 1 July 2027. The base rate becomes the July 2027 Retail Award rate for your level plus 20 cents an hour (cl 8.1.2), so the dollar figure is set once the 2027 Annual Wage Review is decided, usually in June. A further rise to award plus 25 cents follows in July 2028.",
     },
   ],
+  // 22 Oct 2026: read from the approval decision [2024] FWCA 4020 (FWC PDF) and
+  // the agreement's own formula (cl 8.1.2, 15.5.1).
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "10 March 2025",
+    status: "in-term",
+    statusNote: "Inside its nominal term, which runs to 17 November 2028. Two formula rises remain, in July 2027 and July 2028.",
+    payRises: [
+      { date: "First full pay period on or after 1 July 2026", amount: "Retail Award rate for the equivalent level plus 15 cents an hour (Retail Assistant $27.96)", source: "Agreement cl 8.1.2", paid: true },
+      { date: "First full pay period on or after 1 July 2027", amount: "Retail Award rate for the equivalent level plus 20 cents an hour", source: "Agreement cl 8.1.2" },
+      { date: "First full pay period on or after 1 July 2028", amount: "Retail Award rate for the equivalent level plus 25 cents an hour", source: "Agreement cl 8.1.2" },
+    ],
+    aboveAward:
+      "The approval decision is short and states no margin: Deputy President Masson was satisfied that the requirements of ss 186 to 188 of the Fair Work Act, which include the better off overall test, were met ([2024] FWCA 4020 at [2]). The margin comes from the agreement's own formula: the weekday daytime base rate is the Retail Award rate plus 15 cents an hour in 2026 (cl 8.1.2), and every other hour is paid at the award penalty rate plus 1 cent (cl 15.5.1).",
+    whatItMeans: [
+      "Kmart's agreement tracks the Retail Award closely: your base rate is the award rate for your level plus a fixed margin of 15 cents an hour, rising to 20 cents in July 2027 and 25 cents in July 2028.",
+      "The margin applies only to Monday to Friday 7am to 6pm. Evenings, weekends and public holidays are paid at the award penalty rate plus 1 cent, which is slightly less than a percentage of the Kmart base would give.",
+      "Because the base rate is tied to the award, each July's Annual Wage Review flows straight into Kmart pay from the first full pay period on or after 1 July.",
+    ],
+    decision: { citation: "[2024] FWCA 4020 (Masson DP), 18 November 2024", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwca4020.pdf" },
+    verifiedOn: "22 October 2026",
+  },
 };

@@ -44,7 +44,13 @@ export const BUNNINGS_PAY: EmployerPay = {
       "It covers team members at Bunnings Warehouse, smaller-format Bunnings stores and Bunnings Trade centres nationally. Distribution centres have their own agreements, and Tool Kit Depot is not covered.",
   },
   ratesEffectiveFrom: "the first full pay cycle after 1 September 2025",
-  nextIncrease: null,
+  // 22 Oct 2026: the proposed 2026 agreement's first rise. Not yet approved by
+  // the FWC, so the rate table above stays on the 2023 agreement.
+  nextIncrease: {
+    date: "First full pay cycle after 26 October 2026 (proposed agreement, subject to Fair Work Commission approval)",
+    detail:
+      "The Bunnings Retail Enterprise Agreement 2026, voted up in October 2026, lifts minimum base rates by 4.25%: a Team Member goes from $28.64 to $29.86 an hour ($36.58 casual). Bunnings' summary says the rise is paid from 26 October 2026 with 4.25% back pay for hours worked from 31 August to 25 October 2026, but the new agreement only replaces the 2023 agreement once the Commission approves it. Further rises of 3.25% follow in July 2027 and July 2028.",
+  },
   verifiedOn: "23 September 2026",
   casualLoading: 0.225,
   rates: [
@@ -61,7 +67,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     { age: "18 and over", percentage: 1 },
   ],
   juniorNote:
-    "Bunnings pays the full adult rate from 18 — three years earlier than most retail and fast food employers. Junior rates apply only to Team Member and Team Member (Expert); Specialists and Supervisors are paid the adult rate at any age (cl 1.4).",
+    "Bunnings pays the full adult rate from 18, three years earlier than most retail and fast food employers. Junior rates apply only to Team Member and Team Member (Expert); Specialists and Supervisors are paid the adult rate at any age (cl 1.4).",
   publishedJuniorRates: [
     { age: "15 and under", hourly: 15.75, casualHourly: 19.3 },
     { age: "16", hourly: 17.19, casualHourly: 21.05 },
@@ -89,11 +95,11 @@ export const BUNNINGS_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "+ 150%", casual: "+ 172.5%" },
   ],
   notices: [
-    "The Bunnings agreement reached its nominal expiry date on 31 August 2026. It still applies until a replacement is approved, and no pay rise is scheduled after September 2025. Reports say bargaining for a new agreement is under way; we will update this page when one is lodged.",
+    "The Bunnings Retail Enterprise Agreement 2023 reached its nominal expiry date on 31 August 2026 and still applies. Its replacement, the Bunnings Retail Enterprise Agreement 2026, was voted up in October 2026 (68% yes, per the SDA) and now goes to the Fair Work Commission for approval. The rates on this page are the 2023 agreement's, which stay the legal minimum until the new agreement is approved. The enterprise agreement section below has the proposed rates and dates.",
     "These are minimum base rates. Under the agreement's performance pay system you are paid a Contract Rate that is at least the base rate, so your payslip may show more.",
   ],
   unverified: [
-    "Replacement agreement: we could not confirm from the Fair Work Commission whether a new retail agreement has been voted on or lodged.",
+    "Approval of the 2026 agreement: on 22 October 2026 the Fair Work Commission had not published an application or decision for the Bunnings Retail Enterprise Agreement 2026. The vote result and the proposed terms come from the SDA's published copy of the agreement and its summary.",
     "Distribution centre and Tool Kit Depot pay: covered by separate agreements or none, not this one.",
     "Sunday early-morning and late-night incentive rates and outside-span rates: in cl 2.1 of the agreement, summarised here only in part.",
   ],
@@ -104,6 +110,9 @@ export const BUNNINGS_PAY: EmployerPay = {
     { title: "Approval decision [2023] FWCFB 125", publisher: "Fair Work Commission", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2023fwcfb125.pdf" },
     { title: "Bunnings wage rates, September 2025 (cross-check of casual and junior dollars)", publisher: "Shop, Distributive and Allied Employees' Association (Victoria)", url: "https://content.solcon.org.au/live/files/144F8800-5328-47C7-8439-95EECA37E73B.pdf" },
     { title: "General Retail Industry Award 2020 (MA000004)", publisher: "Fair Work Commission", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    { title: "Proposed Bunnings Retail Enterprise Agreement 2026 (full text, as put to the vote)", publisher: "Shop, Distributive and Allied Employees' Association", url: "https://www.sda.au/wp-content/uploads/2026/10/Bunnings-Retail-Enterprise-Agreement-2026-.pdf" },
+    { title: "Bunnings Retail Enterprise Agreement 2026: summary document (wage table, rise dates, back pay)", publisher: "Shop, Distributive and Allied Employees' Association", url: "https://www.sda.au/wp-content/uploads/2026/10/Bunnings_Summary-Doc-2026_Warehouse-Long-FINAL-NATIONAL-1.pdf" },
+    { title: "New Bunnings Agreement voted up by workers (68% yes), 20 October 2026", publisher: "Shop, Distributive and Allied Employees' Association", url: "https://www.sda.au/sa-nt/news/new-bunnings-agreement-voted-up-by-workers/" },
   ],
   faqs: [
     {
@@ -112,7 +121,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     },
     {
       q: "What is the Bunnings EBA?",
-      a: "The Bunnings Retail Enterprise Agreement 2023 (AE520766), approved by the Fair Work Commission on 14 July 2023. It gave 3% rises in September 2024 and September 2025 and reached its nominal expiry on 31 August 2026, but keeps applying until it is replaced.",
+      a: "The Bunnings Retail Enterprise Agreement 2023 (AE520766), approved by the Fair Work Commission on 14 July 2023. It gave 3% rises in September 2024 and September 2025 and reached its nominal expiry on 31 August 2026, but keeps applying until it is replaced. Its replacement, the Bunnings Retail Enterprise Agreement 2026, was voted up in October 2026 and is before the Commission for approval.",
     },
     {
       q: "How much does Bunnings pay a 15, 16 or 17 year old?",
@@ -126,5 +135,40 @@ export const BUNNINGS_PAY: EmployerPay = {
       q: "What does Bunnings pay on Sundays and public holidays?",
       a: "Between 9am and 9pm on a Sunday, permanent staff get base + 50% and casuals + 62.5%. Public holidays pay + 125% for permanent staff and + 147.5% for casuals.",
     },
+    {
+      q: "Is Bunnings paid above the award?",
+      a: "Yes. An adult Team Member's minimum base rate of $28.64 is 83 cents (about 3%) above the Retail Award Level 1 rate of $27.81 in 2026, and most staff are paid a higher Contract Rate. When the Fair Work Commission approved the 2023 agreement it recorded rates 14.67% to 20.4% above the award for permanent staff; three award rises since have narrowed that gap. The proposed 2026 agreement keeps base rates at least 5% above the award.",
+    },
+    {
+      q: "When is the next Bunnings pay rise?",
+      a: "The proposed Bunnings Retail Enterprise Agreement 2026 lifts minimum base rates by 4.25% from the first full pay cycle after 26 October 2026, taking a Team Member from $28.64 to $29.86 an hour, with back pay to 31 August 2026. Further 3.25% rises follow in July 2027 and July 2028. The agreement was voted up in October 2026 and needs Fair Work Commission approval before it legally replaces the 2023 agreement.",
+    },
   ],
+  // 22 Oct 2026: 2023 facts from the approval decision [2023] FWCFB 125 (FWC
+  // PDF); 2026 facts from the SDA's copy of the proposed agreement (cl 1.1, 1.5,
+  // 16.2, Appendix 2), its summary document and its 20 Oct 2026 vote report.
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "13 November 2023",
+    status: "replacement-before-fwc",
+    statusNote:
+      "Past its nominal expiry date of 31 August 2026 but still in force. The replacement Bunnings Retail Enterprise Agreement 2026 was voted up in October 2026 (68% yes, per the SDA on 20 October 2026) and goes to the Fair Work Commission for approval. If approved on or before 26 February 2027 it starts on 26 April 2027, and it nominally expires on 31 July 2029 (proposed cl 16.2).",
+    payRises: [
+      { date: "First full pay cycle after 1 September 2024", amount: "3%", source: "2023 agreement cl 1.5", paid: true },
+      { date: "First full pay cycle after 1 September 2025", amount: "3% (Team Member $28.64)", source: "2023 agreement cl 1.5", paid: true },
+      { date: "First full pay cycle after 26 October 2026", amount: "4.25% (Team Member $28.64 to $29.86, casual $36.58), with 4.25% back pay on hours worked from 31 August to 25 October 2026", source: "Proposed 2026 agreement cl 1.1 and Appendix 2, and Bunnings' summary document; subject to Fair Work Commission approval" },
+      { date: "First full pay cycle after 1 July 2027", amount: "3.25%", source: "Proposed 2026 agreement cl 1.5(a); subject to approval" },
+      { date: "First full pay cycle after 1 July 2028", amount: "3.25%", source: "Proposed 2026 agreement cl 1.5(a); subject to approval" },
+    ],
+    aboveAward:
+      "When it approved the 2023 agreement the Full Bench recorded wage rates \"from 14.67 per cent to 20.4 per cent above the Award rates for permanent employees, and from 12.37 per cent to 18 per cent above the Award for casual employees\", measured against the award as at 19 June 2023 ([2023] FWCFB 125 at [28]). Three award rises since have narrowed that gap: on 2026 rates a Team Member's $28.64 is 83 cents (about 3%) above Retail Award Level 1 ($27.81). The proposed 2026 agreement adds a clause keeping base rates at least 5% above the matching award rate (proposed cl 1.5(c)).",
+    whatItMeans: [
+      "Until the Fair Work Commission approves the 2026 agreement, the 2023 agreement sets your legal minimum: $28.64 an hour for an adult Team Member, with a 22.5% casual loading.",
+      "Bunnings' summary of the new agreement says the 4.25% rise is paid from the first full pay cycle after 26 October 2026, with back pay to 31 August 2026, so your payslip may show the higher rate before approval.",
+      "Once approved, the new agreement locks in 3.25% rises in July 2027 and July 2028 and keeps base rates at least 5% above the award.",
+      "Most staff are paid a Contract Rate above the base rate under the performance pay system, so the figures here are floors, not your exact rate.",
+    ],
+    decision: { citation: "[2023] FWCFB 125 (Full Bench), 14 July 2023, approved with undertakings", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2023fwcfb125.pdf" },
+    verifiedOn: "22 October 2026",
+  },
 };
