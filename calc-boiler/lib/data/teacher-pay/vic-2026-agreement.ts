@@ -28,6 +28,16 @@
 // 2022). So `status` stays pending and the union's report is carried in
 // `reportedApproval`, rendered only with that attribution. Re-check daily.
 //
+// 23 OCTOBER 2026 (the reported operative date): still no official record.
+// The in-progress list again held 748 rows (AG2026/251 to AG2026/3066, newest
+// lodged 22/10/2026) without AG2026/2746. AustLII FWCA: "0 documents found for
+// ("Victorian Government Schools Agreement 2026")" (AustLII's FWCA run reaches
+// 15 October 2026). The FWC's own decision PDFs [2026] FWCA 2839 to 2914
+// (decisions dated 15 to 22 October 2026) were read one by one: none is
+// AG2026/2746; ten numbers in that run are not yet published. Department
+// pages unchanged (same "Updated" dates as 22 October). Only fwcCheckedOn and
+// VIC_TEACHER_PAY.verifiedOn moved.
+//
 // When FWC approval is published:
 //   1. move the current column into vic.ts scales,
 //   2. flip VIC_2026_AGREEMENT.status to "approved" and record the date,
@@ -85,7 +95,7 @@ export const VIC_2026_AGREEMENT = {
   fwcMatter: "AG2026/2746",
   fwcLodged: "23 September 2026",
   /** Last date the FWC list was checked, and the stage it showed ("not listed" = decided, decision not yet published). */
-  fwcCheckedOn: "22 October 2026",
+  fwcCheckedOn: "23 October 2026",
   fwcStage: "not listed" as "initial assessment" | "member consideration" | "not listed",
   /**
    * What a bargaining party has said about the outcome. NOT an official

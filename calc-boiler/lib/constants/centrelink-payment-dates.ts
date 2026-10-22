@@ -4,13 +4,15 @@
 //
 // SOURCES
 //   Services Australia, "Public holiday reporting and payment dates" (QC 26071).
-//     Live page read 22 October 2026 (page last updated 23 April 2026; also read
-//     14 October, 5 October and 24 September 2026): lists the national holidays
-//     it closes for, but NO Christmas 2026 dates yet. The Services Australia
-//     media releases list (read 22 October 2026; newest release 31 August 2026)
-//     and its news page for individuals (read 22 October 2026; the October
-//     items are tax-time and disaster-payment notices) have no 2026 holiday
-//     release either.
+//     Live page read 23 October 2026 (page last updated 23 April 2026; also read
+//     22 October, 14 October, 5 October and 24 September 2026): lists the
+//     national holidays it closes for, but NO Christmas 2026 dates yet. The
+//     Services Australia media releases list (read 23 October 2026; newest
+//     release 31 August 2026), its news page (read 23 October 2026; newest item
+//     "Check what support you can get", 23 October 2026; the October items are
+//     tax-time, disaster-payment and student notices) and its customer service
+//     changes page ("There are currently no service change notices", last
+//     updated 14 September 2026) have no 2026 holiday release either.
 //     https://www.servicesaustralia.gov.au/public-holiday-reporting-and-payment-dates
 //   The same page as it stood for Christmas 2025 (page last updated 27 October
 //   2025), read from the Internet Archive capture of 12 December 2025:
@@ -41,14 +43,14 @@ export const CENTRELINK_DATES_SOURCES = {
   onlineAccount: "https://www.servicesaustralia.gov.au/centrelink-online-account",
 } as const;
 
-export const CENTRELINK_DATES_VERIFIED_ON = "22 October 2026";
+export const CENTRELINK_DATES_VERIFIED_ON = "23 October 2026";
 
 /** Flip to true (and add the tables) once Services Australia publishes them. */
 export const CHRISTMAS_2026_27_PUBLISHED = false;
 
 /**
  * Christmas 2026 and New Year 2027 tables, exactly as Services Australia
- * publishes them. DELIBERATELY NULL: no dates are published as of 22 October
+ * publishes them. DELIBERATELY NULL: no dates are published as of 23 October
  * 2026 (the live page was last updated 23 April 2026), and nothing here may be
  * projected or inferred from last year.
  *
