@@ -138,7 +138,7 @@ export const CHANGE_DATES: readonly ChangeDate[] = [
       { text: `The legislated cut takes the rate on $18,201 to $45,000 from ${pct(LEGISLATED_CUT_2027_28.fromRate)} to ${pct(LEGISLATED_CUT_2027_28.toRate)} (${LEGISLATED_CUT_2027_28.actNumber}). Thresholds are unchanged.`, href: "/stage-3-tax-cuts/" },
       { text: `The ${NMW_DECISION.nextReview} outcome operates from ${NMW_DECISION.nextReviewOperativeFrom}. The new rate is not known until the Fair Work Commission decides it (the 2026 decision was made on ${NMW_DECISION.decidedOn}).`, href: "/minimum-wage-history-australia/" },
       { text: `Next junior step: retail and fast food 18, 19 and 20 year olds move to ${fastFood.rows[1].age18}%, ${fastFood.rows[1].age19}% and ${fastFood.rows[1].age20}% (retail 20 year olds stay at 100%); pharmacy assistants to ${pharmacy.rows[1].age18}%, ${pharmacy.rows[1].age19}% and ${pharmacy.rows[1].age20}%.`, href: "/junior-pay-rates/" },
-      { text: "The 50% CGT discount for individuals, trusts and partnerships is replaced with cost base indexation and a 30% minimum tax rate on gains that accrue on and after this date. Nothing changes for assets sold in 2026-27.", href: "/capital-gains-tax-calculator/" },
+      { text: "The 50% CGT discount for resident individuals and trusts, including partnership gains, is replaced with cost base indexation on gains that build up on and after this date, and resident individuals pay a 30% minimum tax on those gains. New residential dwellings and affordable housing keep a discount. Nothing changes for assets sold in 2026-27.", href: "/capital-gains-tax-calculator/" },
     ],
   },
 ];

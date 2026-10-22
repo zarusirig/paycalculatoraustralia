@@ -47,7 +47,7 @@ export const TAX_CHANGES_2026_27_FAQS: readonly TaxChangesFaq[] = [
   },
   {
     q: "When is the 2026 federal budget?",
-    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its headline tax measures, including the CGT reforms that apply from 1 July 2027, have since passed Parliament and are now law.`,
+    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its CGT and negative gearing reforms, which apply from 1 July 2027, passed Parliament in June 2026 and are now law. The proposed 30% minimum tax on discretionary trusts is still a bill before Parliament.`,
   },
   {
     q: "Will LITO change in 2026-27?",

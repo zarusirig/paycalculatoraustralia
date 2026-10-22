@@ -15,6 +15,7 @@ import {
   CGT_INCOME_YEAR,
   CGT_INDEXATION_CUTOFF,
   CGT_MINIMUM_OWNERSHIP_MONTHS,
+  CGT_PENDING_BILLS,
   CGT_REFORM_2027,
   CGT_START_DATE,
   COST_BASE_ELEMENTS,
@@ -58,6 +59,16 @@ const SOURCES_LIST: SourceLink[] = [
   {
     title: `${CGT_REFORM_2027.actName} (${CGT_REFORM_2027.actNumber})`,
     url: CGT_REFORM_2027.actUrl,
+    publisher: "Federal Register of Legislation",
+  },
+  {
+    title: `${CGT_REFORM_2027.impositionActName} (${CGT_REFORM_2027.impositionActNumber})`,
+    url: CGT_REFORM_2027.impositionActUrl,
+    publisher: "Federal Register of Legislation",
+  },
+  {
+    title: `${CGT_PENDING_BILLS.billName} (not yet law)`,
+    url: CGT_PENDING_BILLS.billUrl,
     publisher: "Parliament of Australia",
   },
   { title: "Budget 2026-27, Tax reform", url: CGT_REFORM_2027.budgetUrl, publisher: "Australian Government" },
@@ -145,6 +156,7 @@ export default function CapitalGainsTaxPage() {
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Identical {formatAUD(100_000)} gain, {CGT_INCOME_YEAR} rates, including the 2% Medicare levy. Effective rate is tax as a share of the full gain before the discount.</p></div>
 
             <p>The &ldquo;effective rate&rdquo; column is the closest thing to a CGT rate that exists, and as you can see, it is an <em>outcome</em>, not a published figure. It moves with your income, and a gain large enough to push you into a higher bracket is partly taxed at that higher rate.</p>
+            <p>This holds for {CGT_INCOME_YEAR}. From {CGT_REFORM_2027.firstAffectedYear} a floor is added: Australian resident individuals pay at least {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} on gains that build up from {CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year. See the section on the {CGT_REFORM_2027.startDate} changes below.</p>
           </section>
 
           <section>
@@ -268,24 +280,28 @@ export default function CapitalGainsTaxPage() {
           <section>
             <h2 style={H2}>Which Assets Are Exempt</h2>
             <ul>{CGT_EXEMPT_ASSETS.map((a) => (<li key={a}>{a}</li>))}</ul>
-            <p>Exemption cuts both ways: if an asset is exempt from CGT, you also cannot claim a capital loss on it. Assets acquired before {CGT_START_DATE} are pre-CGT and exempt, though improvements made after that date can still be caught. Full list at the <a href={ATO_EXEMPTIONS} target="_blank" rel="noopener noreferrer">ATO</a>.</p>
+            <p>Exemption cuts both ways: if an asset is exempt from CGT, you also cannot claim a capital loss on it. Assets acquired before {CGT_START_DATE} are pre-CGT and exempt, though improvements made after that date can still be caught. That exemption ends on {CGT_REFORM_2027.preCgtAssetsEndOn}: growth up to that date stays tax-free, but growth after it is taxed when you sell. Full list at the <a href={ATO_EXEMPTIONS} target="_blank" rel="noopener noreferrer">ATO</a>.</p>
           </section>
 
           <section>
             <h2 style={H2}>Coming {CGT_REFORM_2027.startDate}: The Discount Changes</h2>
-            <p className="not-prose rounded-lg border-l-4 border-eucalyptus bg-eucalyptus-light/30 p-4 text-base text-navy"><strong>{CGT_INCOME_YEAR} is the last full income year of the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount in its current form, but nothing on this page changes yet.</strong> The reform applies only to gains accruing on and after {CGT_REFORM_2027.startDate}.</p>
-            <p>The <strong>{CGT_REFORM_2027.actName}</strong> received assent on {CGT_REFORM_2027.assentDate} ({CGT_REFORM_2027.actNumber}). For capital gains accruing on and after {CGT_REFORM_2027.startDate} it replaces the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount for individuals, trusts and partnerships with:</p>
+            <p className="not-prose rounded-lg border-l-4 border-eucalyptus bg-eucalyptus-light/30 p-4 text-base text-navy"><strong>{CGT_INCOME_YEAR} is the last full income year of the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount in its current form, but nothing on this page changes yet.</strong> The reform applies only to CGT events on and after {CGT_REFORM_2027.startDate}, and only to the part of a gain that builds up from that date.</p>
+            <p>Two Acts received assent on {CGT_REFORM_2027.assentDate}: the <strong>{CGT_REFORM_2027.actName}</strong> ({CGT_REFORM_2027.actNumber}) and the <strong>{CGT_REFORM_2027.impositionActName}</strong> ({CGT_REFORM_2027.impositionActNumber}). For gains that build up on and after {CGT_REFORM_2027.startDate}, they replace the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount for Australian resident individuals and trusts, including partnership gains, with:</p>
             <ul>
-              <li><strong>Cost base indexation</strong> for assets held more than {CGT_MINIMUM_OWNERSHIP_MONTHS} months, so you are taxed on the real gain after inflation rather than the nominal one; and</li>
-              <li>a <strong>minimum tax rate of {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)}</strong> on net capital gains.</li>
+              <li><strong>Cost base indexation</strong> for assets held at least {CGT_REFORM_2027.indexationMinimumMonths} months. Each cost is grown by inflation: {CGT_REFORM_2027.indexationFormula}. Ownership costs such as rates and interest are not indexed. You are taxed on the real gain, not the nominal one; and</li>
+              <li>a <strong>{formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} minimum tax</strong> for Australian resident individuals. If the income tax on your post-{CGT_REFORM_2027.startDate} gains comes to less than {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} of those gains, you pay the gap as extra tax. It does not apply in a year you receive a payment such as the {CGT_REFORM_2027.minimumTaxExemptPayments.slice(0, 4).join(", ")} or Family Tax Benefit. It does not apply to companies or super funds.</li>
             </ul>
-            <p>It is not a clean switch-off. Assets are treated as <strong>deemed-disposed on {CGT_REFORM_2027.deemedDisposalDate} and reacquired the next day</strong>, so a gain on an asset you already hold gets split across the two regimes and apportioned between them. That mechanic, rather than the headline rate, is what will make {CGT_REFORM_2027.firstAffectedYear} returns harder.</p>
-            <p>The {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount survives for:</p>
+            <p>It is not a clean switch-off. An asset you hold through {CGT_REFORM_2027.deemedDisposalDate} is <strong>treated as sold that day and bought back on {CGT_REFORM_2027.startDate}</strong>, at its market value, or by a method the Minister can set instead. You pay nothing on that deemed sale. When you really sell, the gain is split: the part that built up before {CGT_REFORM_2027.startDate} generally gets the old {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, and the part after it gets indexation and the minimum tax. A valuation at {CGT_REFORM_2027.startDate} will matter more than the headline rate.</p>
+            <p>A discount still applies to:</p>
             <ul>
               {CGT_REFORM_2027.discountSurvivesFor.map((item) => (<li key={item}>{item}</li>))}
             </ul>
-            <p>And these are outside the new indexation regime entirely: {CGT_REFORM_2027.indexationExcludes.join(", ")}.</p>
-            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} regime into this calculator.</strong> The indexation factors and the apportionment method for gains straddling {CGT_REFORM_2027.startDate} have not been published by the ATO yet, and we do not publish figures we cannot verify at source. Until they are, use this calculator for {CGT_INCOME_YEAR} disposals and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. Note the ATO&rsquo;s own CGT pages still describe this as &ldquo;announced in the 2026&ndash;27 Federal Budget&rdquo;, which reads like a proposal. It is law, with a deferred start.</p>
+            <p>These are outside the new indexation regime: {CGT_REFORM_2027.indexationExcludes.join(", ")}. Companies still get no discount, as now.</p>
+            <p><strong>Not law yet.</strong> The <a href={CGT_PENDING_BILLS.billUrl} target="_blank" rel="noopener noreferrer">{CGT_PENDING_BILLS.billName}</a>, introduced on {CGT_PENDING_BILLS.introduced}, is still before Parliament. It proposes:</p>
+            <ul>
+              {CGT_PENDING_BILLS.proposals.map((item) => (<li key={item}>{item}</li>))}
+            </ul>
+            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} rules into this calculator.</strong> Indexation needs the CPI figure for the quarter you sell, which does not exist yet, and the split needs your asset&rsquo;s value at {CGT_REFORM_2027.startDate}. We do not publish figures we cannot check at source. Use this calculator for {CGT_INCOME_YEAR} sales and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. The ATO&rsquo;s CGT discount page still says these changes were &ldquo;announced in the 2026&ndash;27 Federal Budget&rdquo;, which reads like a proposal. They are law, with a start date of {CGT_REFORM_2027.startDate}.</p>
           </section>
 
           <section>

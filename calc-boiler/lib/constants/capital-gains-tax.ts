@@ -33,14 +33,19 @@
 // third-party CGT calculators. The ATO's two-asset "Rhi" example in [2] exists
 // to pin this and is asserted in the tests.
 //
-// YEAR NOTE — READ BEFORE CHANGING THE DISCOUNT. The 50% discount is CORRECT for
-// the 2026-27 income year, but 2026-27 is the last full year it applies in its
-// current form. The Treasury Laws Amendment (Tax Reform No. 1) Act 2026 [9]
-// received assent on 26 June 2026 and replaces the 50% discount for individuals,
-// trusts and partnerships with cost base indexation plus a 30% minimum tax rate
-// on capital gains accruing ON AND AFTER 1 JULY 2027. It does not touch gains
-// accruing before that date [8]. Do not apply the new regime to this engine
-// until the ATO publishes indexation factors and apportionment guidance.
+// YEAR NOTE, READ BEFORE CHANGING THE DISCOUNT. The 50% discount is CORRECT for
+// the 2026-27 income year. Re-verified 22 October 2026 against the Act text on
+// the Federal Register of Legislation and the APH bill pages:
+//   Treasury Laws Amendment (Tax Reform No. 1) Act 2026, Act No. 49 of 2026 [9]
+//   Income Tax Rates Amendment (Tax Reform No. 1) Act 2026, Act No. 50 of 2026
+// Both received assent on 26 June 2026. For CGT events on and after 1 July 2027
+// the 50% discount is replaced for Australian resident individuals and trusts
+// (and partnership gains) by cost base indexation, plus a 30% minimum tax on
+// resident individuals' post-1 July 2027 gains. Gains that built up before
+// 1 July 2027 keep the old rules through a deemed sale on 30 June 2027. Do not
+// apply the new regime to this engine for disposals from 1 July 2027: the CPI
+// index number for the sale quarter and the deemed-sale value are not known
+// yet. See CGT_REFORM_2027 below.
 // =============================================================================
 
 import { TAX_BRACKETS, calculateIncomeTax, calculateMedicareLevy } from "./australian-tax";
@@ -136,48 +141,68 @@ export const CGT_EXEMPT_ASSETS: readonly string[] = [
 export const CGT_FOREIGN_RESIDENT_CUTOFF = "8 May 2012";
 
 // ---------------------------------------------------------------------------
-// The 2027 reform — legislated, but NOT yet in force
+// The 2027 reform: legislated, but NOT yet in force
 // ---------------------------------------------------------------------------
 
 /**
- * Treasury Laws Amendment (Tax Reform No. 1) Act 2026. Verified at the
- * Parliament of Australia bill page [9]: status "Act", finally passed both
- * Houses 25 June 2026, assent 26 June 2026, Act No. 49 of 2026.
+ * Treasury Laws Amendment (Tax Reform No. 1) Act 2026 (Act No. 49 of 2026) and
+ * its companion Income Tax Rates Amendment (Tax Reform No. 1) Act 2026 (Act
+ * No. 50 of 2026), which imposes the minimum tax through new s 12AA of the
+ * Income Tax Rates Act 1986. APH bill pages r7493 and r7492: status "Act",
+ * finally passed both Houses 25 June 2026, assent 26 June 2026.
  *
- * This is law, but it applies only to gains accruing on and after 1 July 2027.
- * For the 2026-27 income year the 50% discount is unchanged.
+ * This is law, but it applies only to CGT events on and after 1 July 2027.
+ * For the 2026-27 income year the 50% discount is unchanged. Act No. 49, new
+ * paragraph 115-100(aa): the discount is "50% if: (i) the gain is made by an
+ * individual from a CGT event happening before 1 July 2027".
  */
 export const CGT_REFORM_2027 = {
+  verifiedOn: "2026-10-22",
   actName: "Treasury Laws Amendment (Tax Reform No. 1) Act 2026",
   actNumber: "Act No. 49 of 2026",
+  impositionActName: "Income Tax Rates Amendment (Tax Reform No. 1) Act 2026",
+  impositionActNumber: "Act No. 50 of 2026",
   assentDate: "26 June 2026",
   startDate: "1 July 2027",
   /** Financial year in which the new regime first applies. */
   firstAffectedYear: "2027-28",
-  /** Minimum tax rate on capital gains accruing from the start date. */
-  minimumTaxRate: 0.3,
   /**
-   * The Act itself, hosted on the ATO's own legal database. Cite this rather
-   * than the bill page: the ATO's CGT pages still describe the change as
-   * "announced in the 2026-27 Federal Budget" even after assent, which reads
-   * as though it were only a proposal.
+   * Minimum tax rate on a resident individual's "minimum tax capital gain".
+   * Act No. 49, s 119-10(2) step 1: "Multiply your minimum tax capital gain for
+   * the income year by 30%."
    */
-  actUrl: "https://www.ato.gov.au/law/view/pdf/acts/20260049.pdf",
+  minimumTaxRate: 0.3,
+  /** Ownership needed before indexation applies, s 114-10(1): "at least 12 months". */
+  indexationMinimumMonths: 12,
+  /**
+   * The Act as made, on the Federal Register of Legislation. Cite this rather
+   * than the bill page: the ATO's CGT discount page (last updated 29 June 2026)
+   * still says the changes were "announced in the 2026–27 Federal Budget",
+   * which reads as though they were only a proposal.
+   */
+  actUrl: "https://www.legislation.gov.au/C2026A00049/asmade/text",
+  impositionActUrl: "https://www.legislation.gov.au/C2026A00050/asmade/text",
   billUrl:
     "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7493",
+  impositionBillUrl:
+    "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7492",
   billsDigestUrl:
     "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd2526/26bd067",
   budgetUrl: "https://budget.gov.au/content/04-tax-reform.htm",
   /**
-   * It is not a clean switch-off. Verified against the Parliamentary Library
-   * bills digest for the Act.
+   * Where a discount keeps working after 1 July 2027. Act No. 49, s 115-1: "a
+   * discount of at least 50% continues to be available if the CGT event
+   * relates to a new residential dwelling or to the provision of affordable
+   * housing." For a new dwelling the discount applies unless the investor
+   * chooses indexation instead (s 115-102(5)).
    */
   discountSurvivesFor: [
-    "capital gains accrued before 1 July 2027",
-    "eligible new residential dwellings, where the taxpayer opts for the discount instead of indexation",
-    "certain entities and assets placed outside the reforms",
+    "the part of a gain that built up before 1 July 2027",
+    "new residential dwellings, unless the investor chooses indexation and the minimum tax instead",
+    "affordable housing, where the discount of up to 60% is kept",
+    "complying super funds, which keep their one-third discount and are outside the reform",
   ],
-  /** Entities excluded from the new indexation regime entirely. */
+  /** Entities left outside the new indexation regime by Act No. 49. */
   indexationExcludes: [
     "companies",
     "complying superannuation entities",
@@ -186,13 +211,106 @@ export const CGT_REFORM_2027 = {
     "temporary residents",
   ],
   /**
-   * The mechanic most likely to surprise a reader: assets are treated as
-   * deemed-disposed on 30 June 2027 and reacquired on 1 July 2027, so a gain
-   * can be split across the two regimes and apportioned between them.
+   * Who pays the minimum tax. s 119-10(1): extra income tax is payable if "(a)
+   * you are an individual; and (b) you are an Australian resident at any time
+   * during the income year; and (c) you have a minimum tax gap amount".
+   * Trust and partnership gains count when they flow to the individual.
+   */
+  minimumTaxAppliesTo: "Australian resident individuals",
+  /**
+   * s 119-15: s 119-10 "does not apply to you if you receive, at any time
+   * during the income year" a listed payment. A sample of the list.
+   */
+  minimumTaxExemptPayments: [
+    "Age Pension",
+    "JobSeeker Payment",
+    "Disability Support Pension",
+    "Carer Payment",
+    "Parenting Payment",
+    "Youth Allowance or Austudy",
+    "Family Tax Benefit",
+    "Parental Leave Pay",
+    "some veterans' and military pensions",
+  ],
+  /**
+   * The transition, s 112-155: assets held through 30 June 2027 are taken to
+   * be sold "just before 1 July 2027" and reacquired, with capital proceeds of
+   * "the asset's market value just before 1 July 2027" or, by choice, an
+   * apportioning method the Minister determines under s 112-185. The gain on
+   * that deemed sale is "disregarded (and deferred)" until the real sale.
    */
   deemedDisposalDate: "30 June 2027",
   splitsGainsAcrossRegimes: true,
+  /**
+   * s 112-175: assets that are pre-CGT on 30 June 2027 get the same deemed sale
+   * and "cease to be a pre-CGT asset" on 1 July 2027. Growth before that date
+   * stays exempt; growth after it is taxed.
+   */
+  preCgtAssetsEndOn: "1 July 2027",
+  /**
+   * s 960-275(1B): the indexation factor is the index number (CPI) for the
+   * quarter in which the CGT event happens over the index number for the
+   * quarter in which the expenditure is incurred. Third element costs
+   * (ownership costs) are not indexed (s 114-1).
+   */
+  indexationFormula:
+    "CPI for the quarter you sell divided by CPI for the quarter you paid the cost",
 } as const;
+
+/**
+ * Proposals that are NOT law as at 22 October 2026. Treasury Laws Amendment
+ * (Tax Reform No. 3) Bill 2026, APH r7554: introduced 14 October 2026, status
+ * "Before Reps", referred to the Senate Economics Legislation Committee with a
+ * report due 13 November 2026. Its EM (JC019191) says: "The 50 per cent CGT
+ * discount also remains available for new residential dwellings, unless the
+ * investor chooses to apply cost base indexation and the minimum tax on capital
+ * gains." That sentence restates Act No. 49 for new dwellings only.
+ */
+export const CGT_PENDING_BILLS = {
+  verifiedOn: "2026-10-22",
+  billName: "Treasury Laws Amendment (Tax Reform No. 3) Bill 2026",
+  billUrl:
+    "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7554",
+  billsDigestUrl:
+    "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd2627/27bd024",
+  introduced: "14 October 2026",
+  proposals: [
+    "a 30% minimum tax on the net income of some discretionary trusts from 1 July 2028",
+    "a discount and indexation for foreign and temporary residents, pro-rated to their days of Australian residency",
+    "no 30% minimum tax on gains of testamentary trusts, deceased estates and special disability trusts",
+    "a legal definition of a new residential dwelling",
+  ],
+} as const;
+
+/**
+ * The s 119-10(2) method statement for the minimum tax gap amount, for 2027-28
+ * and later years. Pure maths from Act No. 49. It needs that year's income tax
+ * function (basic income tax liability: no Medicare levy, no offsets).
+ *
+ *   Step 1  minimum tax capital gain x 30%
+ *   Step 2  tax on taxable income
+ *   Step 3  tax on taxable income less the minimum tax capital gain (not below nil)
+ *   Step 4  step 2 less step 3
+ *   Step 5  step 1 less step 4
+ *   Step 6  round down to whole dollars
+ *   Step 7  a positive result is the minimum tax gap amount (extra tax)
+ *
+ * Returns 0 when no extra tax is payable. It does not decide which gains count
+ * or whether a payment exemption applies; the caller must do that.
+ */
+export function minimumTaxGapAmount(
+  minimumTaxCapitalGain: number,
+  taxableIncome: number,
+  incomeTaxOn: (taxableIncome: number) => number,
+): number {
+  const gain = Math.max(0, minimumTaxCapitalGain);
+  if (gain === 0) return 0;
+  const income = Math.max(0, taxableIncome);
+  const step1 = gain * CGT_REFORM_2027.minimumTaxRate;
+  const step4 = incomeTaxOn(income) - incomeTaxOn(Math.max(0, income - gain));
+  const step6 = Math.floor(step1 - step4);
+  return step6 > 0 ? step6 : 0;
+}
 
 // ---------------------------------------------------------------------------
 // Cost base
