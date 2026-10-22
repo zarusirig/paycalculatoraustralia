@@ -201,6 +201,32 @@ export interface PenaltySet {
   incomplete?: string;
 }
 
+/**
+ * A pay change a bargaining party (a union) reports but the employer or
+ * tribunal has not yet published. NOT an official record: it is rendered only
+ * with its attribution, never moves a figure, a table or a date elsewhere on
+ * the page, and never feeds titles, descriptions or the answer box. Modelled
+ * on VIC_2026_AGREEMENT.reportedApproval in lib/data/teacher-pay.
+ */
+export interface ReportedPayChange {
+  /** Who reports it, as they name themselves, e.g. "ANMF (SA Branch)". */
+  reportedBy: string;
+  /** Plain-English description for the sentence, e.g. "The nurses' union". */
+  reporterRole: string;
+  /** What is reported, e.g. "the further 2%". */
+  change: string;
+  /** When the reporter says it applies, in plain words. */
+  appliesFrom: string;
+  /** The reporter's own words, verbatim from the source page. */
+  quote: string;
+  /** What the official source has (not) published, as a sentence without a full stop. */
+  officialPosition: string;
+  source: RateSource;
+  /** Date the source page was read. */
+  readOn: string;
+  official: false;
+}
+
 /** How a figure the source did not print is worked out, if it is at all. */
 export interface DerivationNotes {
   /** e.g. "weekly rate x 52 (26 fortnightly pays)". Absent means annual is published. */
@@ -264,6 +290,8 @@ export interface NursingStateData {
   midwifeNote?: string;
   /** Extra FAQ answers that restate what a named source says. */
   sourceFaqs?: { q: string; a: string }[];
+  /** A pay change reported by a union but not yet official. See ReportedPayChange. */
+  reportedChange?: ReportedPayChange;
 }
 
 /** Rates for a single classification in the federal Nurses Award 2020. */
