@@ -81,13 +81,10 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        {/* AdSense account switched (Oct 2026) to ca-pub-6751883350166414.
-            Needed for AdSense site verification. async, so it does not block paint. */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6751883350166414"
-          crossOrigin="anonymous"
-        />
+        {/* AdSense script removed 23 Oct 2026: Mediavine asked for AdSense to
+            come off the site before they switch on their ads. Mediavine serves
+            Google demand itself. Do not add adsbygoogle.js back while Mediavine
+            runs the ads. public/ads.txt is left as it is for Mediavine to manage. */}
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
         {ADSTERRA_ENABLED && <link rel="preconnect" href="https://bauval.org" />}
         {ADSTERRA_ENABLED && <link rel="dns-prefetch" href="https://bauval.org" />}
@@ -211,8 +208,10 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             // Consent Mode v2: analytics and ad storage start denied for the EEA,
-            // UK and Switzerland. Google's consent message (Funding Choices,
-            // enabled in AdSense > Privacy & messaging) updates these on opt-in.
+            // UK and Switzerland. A consent banner updates these on opt-in.
+            // Until 23 Oct 2026 that was Google's AdSense message, loaded by
+            // adsbygoogle.js. AdSense is now removed, so the EEA/UK banner must
+            // come from Mediavine's consent tool (open item: confirm with them).
             gtag('consent', 'default', {
               ad_storage: 'denied',
               ad_user_data: 'denied',
