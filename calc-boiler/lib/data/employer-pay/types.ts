@@ -56,6 +56,10 @@ export const EMPLOYER_SLUGS = [
   "guzman-y-gomez",
   "rebel",
   // --- end J7 ---
+  // --- B2 (22 Oct 2026), by search demand ---
+  "bakers-delight",
+  "boost-juice",
+  // --- end B2 ---
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];

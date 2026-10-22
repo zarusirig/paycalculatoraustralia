@@ -50,6 +50,10 @@ import { EVENT_CINEMAS_PAY } from "./event-cinemas";
 import { QANTAS_PAY } from "./qantas";
 import { VIRGIN_AUSTRALIA_PAY } from "./virgin-australia";
 // --- end J7 ---
+// --- B2 (22 Oct 2026) ---
+import { BAKERS_DELIGHT_PAY } from "./bakers-delight";
+import { BOOST_JUICE_PAY } from "./boost-juice";
+// --- end B2 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -90,6 +94,10 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   qantas: QANTAS_PAY,
   "virgin-australia": VIRGIN_AUSTRALIA_PAY,
   // --- end J7 ---
+  // --- B2 (22 Oct 2026) ---
+  "bakers-delight": BAKERS_DELIGHT_PAY,
+  "boost-juice": BOOST_JUICE_PAY,
+  // --- end B2 ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
@@ -163,6 +171,10 @@ export const EMPLOYER_SECTOR: Readonly<Record<EmployerSlug, EmployerSector>> = {
   qantas: "airline",
   "virgin-australia": "airline",
   "australia-post": "postal",
+  // --- B2 (22 Oct 2026) ---
+  "bakers-delight": "retail",
+  "boost-juice": "fast-food",
+  // --- end B2 ---
 };
 
 export interface RelatedEmployers {

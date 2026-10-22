@@ -428,6 +428,8 @@
   "/pay-rates/anaconda/": "pay-rates--anaconda",
   "/pay-rates/guzman-y-gomez/": "pay-rates--guzman-y-gomez",
   "/pay-rates/rebel/": "pay-rates--rebel",
+  "/pay-rates/bakers-delight/": "pay-rates--bakers-delight",
+  "/pay-rates/boost-juice/": "pay-rates--boost-juice",
   "/minimum-wage-australia/": "minimum-wage-australia",
   "/minimum-wage-by-age/14/": "minimum-wage-by-age",
   "/minimum-wage-by-age/15/": "minimum-wage-by-age",
@@ -2044,8 +2046,18 @@
    "width": 1200,
    "height": 675
   },
+  "pay-rates--bakers-delight": {
+   "alt": "At a pre-dawn bakery shift change, an older baker hangs up his apron as a young baker ties hers on",
+   "width": 1200,
+   "height": 675
+  },
   "pay-rates--big-w": {
    "alt": "A store worker in a navy polo pushes a trolley stacked with cardboard cartons through a homewares store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--boost-juice": {
+   "alt": "A young barista in a brown apron pours latte art into a cup in a busy café",
    "width": 1200,
    "height": 675
   },
