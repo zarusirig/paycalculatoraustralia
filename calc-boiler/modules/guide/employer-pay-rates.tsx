@@ -22,6 +22,7 @@ import {
   juniorRates,
   relatedEmployers,
   takeHomeHrefForAnnual,
+  type AgreementStatus,
   type EmployerPay,
   type PenaltyRow,
 } from "@/lib/data/employer-pay";
@@ -84,6 +85,11 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   const authorship = getGuideAuthorship("pay-rates");
   const related = relatedEmployers(e);
   const allowances = e.allowances ?? [];
+  // 22 Oct 2026: the "{Employer} enterprise agreement 2026" section. When it is
+  // present the agreement's lifecycle rows (approved, expiry, next rise) live
+  // there instead of in the table at the top, so nothing is said twice.
+  const ea = e.enterpriseAgreement;
+  const noAgreement = ea?.status === "no-agreement";
 
   // A description repeated down the table (award levels 2–8 share one) is
   // printed once, on its first row.
@@ -104,8 +110,8 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
       ),
     },
     { label: isAward ? "Award code" : "Fair Work Commission IDs", value: e.instrument.reference },
-    ...(e.instrument.approvedOn ? [{ label: "Approved", value: e.instrument.approvedOn }] : []),
-    ...(e.instrument.nominalExpiry ? [{ label: "Nominal expiry", value: e.instrument.nominalExpiry }] : []),
+    ...(e.instrument.approvedOn && !ea ? [{ label: "Approved", value: e.instrument.approvedOn }] : []),
+    ...(e.instrument.nominalExpiry && !ea ? [{ label: "Nominal expiry", value: e.instrument.nominalExpiry }] : []),
     { label: "Employer", value: e.employerEntity },
     { label: "Rates on this page from", value: e.ratesEffectiveFrom },
     { label: "Casual loading", value: loading },
@@ -166,10 +172,19 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 ))}
               </dl>
               <p>{e.instrument.coverage}</p>
-              {e.nextIncrease && (
+              {ea ? (
                 <p>
-                  <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
+                  <strong>Next scheduled increase:</strong>{" "}
+                  {e.nextIncrease ? e.nextIncrease.date : "none scheduled"}. The dates, the pay-rise
+                  schedule and the award comparison are in{" "}
+                  <a href="#enterprise-agreement">{e.name} enterprise agreement 2026</a> below.
                 </p>
+              ) : (
+                e.nextIncrease && (
+                  <p>
+                    <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
+                  </p>
+                )
               )}
               {e.awardHref && e.awardLabel && (
                 <p className="text-base">
@@ -328,6 +343,68 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
               </section>
             )}
 
+            {/* 22 Oct 2026: "{Employer} enterprise agreement 2026" */}
+            {ea && (
+              <section id="enterprise-agreement">
+                <h2 style={HEADING_FONT}>{e.name} enterprise agreement 2026</h2>
+                <dl className="not-prose my-6 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl border border-sandstone-dark/20 bg-sandstone/40 p-5 text-sm sm:grid-cols-[minmax(0,12rem)_1fr]">
+                  {agreementFacts(e).map((f) => (
+                    <div key={f.label} className="contents">
+                      <dt className="font-semibold text-navy">{f.label}</dt>
+                      <dd className="text-warmgray [&_a]:font-medium [&_a]:text-eucalyptus-dark [&_a]:underline">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p>{ea.statusNote}</p>
+
+                <h3 style={HEADING_FONT}>Pay rises under the {noAgreement ? "award" : "agreement"}</h3>
+                {ea.payRises.length > 0 ? (
+                  <div className={TABLE_WRAP}>
+                    <table className="w-full min-w-[34rem] text-left text-sm text-warmgray">
+                      <caption className="sr-only">{e.name} scheduled pay rises</caption>
+                      <thead className={THEAD}>
+                        <tr>
+                          <th scope="col" className="px-5 py-3">When</th>
+                          <th scope="col" className="px-5 py-3">Rise</th>
+                          <th scope="col" className="px-5 py-3">Where it comes from</th>
+                        </tr>
+                      </thead>
+                      <tbody className={TBODY}>
+                        {ea.payRises.map((r) => (
+                          <tr key={`${r.date} ${r.amount}`}>
+                            <th scope="row" className="px-5 py-3 text-left font-medium text-navy">
+                              {r.date}
+                              {r.paid && <span className="mt-1 block text-xs font-normal text-warmgray">Paid</span>}
+                            </th>
+                            <td className="px-5 py-3">{r.amount}</td>
+                            <td className="px-5 py-3">{r.source}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p>No pay rise is scheduled.</p>
+                )}
+
+                <h3 style={HEADING_FONT}>How {e.name} pay compares with the award</h3>
+                <p>{ea.aboveAward}</p>
+
+                <h3 style={HEADING_FONT}>What it means for your pay</h3>
+                <ul>
+                  {ea.whatItMeans.map((s) => <li key={s}>{s}</li>)}
+                </ul>
+                <p className="text-base">
+                  <Link href="/enterprise-agreement/">How enterprise agreements work</Link>
+                  {e.awardHref && e.awardLabel && (
+                    <>
+                      {" "}· <Link href={e.awardHref}>{e.awardLabel}</Link>
+                    </>
+                  )}
+                </p>
+              </section>
+            )}
+
             {e.unverified.length > 0 && (
               <section id="not-shown">
                 <h2 style={HEADING_FONT}>What this page does not show</h2>
@@ -408,6 +485,53 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
       </div>
     </div>
   );
+}
+
+// --- 22 Oct 2026: enterprise agreement section ---
+
+const AGREEMENT_STATUS_LABEL: Record<AgreementStatus, string> = {
+  "in-term": "In force, inside its nominal term",
+  "past-nominal-expiry": "In force, past its nominal expiry date",
+  "replacement-before-fwc": "In force; a replacement has been voted up and awaits Fair Work Commission approval",
+  "no-agreement": "No enterprise agreement; the award applies",
+};
+
+/** The fact table at the top of the enterprise agreement section, built only from the data file. */
+function agreementFacts(e: EmployerPay): { label: string; value: ReactNode }[] {
+  const ea = e.enterpriseAgreement;
+  if (!ea) return [];
+  const none = ea.status === "no-agreement";
+  return [
+    {
+      label: "Agreement",
+      value: none ? (
+        <>None. The {ea.underlyingAward.title} applies.</>
+      ) : (
+        <a href={e.instrument.url} target="_blank" rel="noreferrer noopener">{e.instrument.title}</a>
+      ),
+    },
+    { label: "Fair Work Commission code", value: none ? `None (award ${e.instrument.reference})` : e.instrument.reference },
+    ...(e.instrument.approvedOn ? [{ label: "Approved", value: e.instrument.approvedOn }] : []),
+    ...(ea.commencedOn ? [{ label: "In operation from", value: ea.commencedOn }] : []),
+    ...(e.instrument.nominalExpiry ? [{ label: "Nominal expiry", value: e.instrument.nominalExpiry }] : []),
+    { label: "Status", value: AGREEMENT_STATUS_LABEL[ea.status] },
+    { label: "Next pay rise", value: e.nextIncrease ? e.nextIncrease.date : "None scheduled" },
+    {
+      label: "Underlying award",
+      value: (
+        <a href={ea.underlyingAward.url} target="_blank" rel="noreferrer noopener">
+          {ea.underlyingAward.title} ({ea.underlyingAward.code})
+        </a>
+      ),
+    },
+    {
+      label: none ? "Fair Work Commission decision" : "Approval decision",
+      value: (
+        <a href={ea.decision.url} target="_blank" rel="noreferrer noopener">{ea.decision.citation}</a>
+      ),
+    },
+    { label: "Checked against the source", value: ea.verifiedOn },
+  ];
 }
 
 function EmployerLinks({ employers, showInstrument = false }: { employers: EmployerPay[]; showInstrument?: boolean }) {

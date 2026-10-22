@@ -48,10 +48,14 @@ function descriptionFor(e: EmployerPay) {
   const entry = entryRate(e);
   const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level}`;
   const contents = contentsFor(e);
+  // 22 Oct 2026: agreement-paid employers already name their agreement in the
+  // lead. An award-paid employer with an enterprise agreement section says so,
+  // so the snippet answers the "{employer} enterprise agreement" query.
+  const agreement = e.enterpriseAgreement?.status === "no-agreement" ? " No enterprise agreement: the award applies." : "";
   return fitDescription(
-    `${lead} under the ${e.instrument.title}. ${contents}. Verified ${e.verifiedOn}.`,
-    `${lead} under the ${e.instrument.title}. ${contents}.`,
-    `${lead} under the ${e.instrument.title}.`,
+    `${lead} under the ${e.instrument.title}.${agreement} ${contents}. Verified ${e.verifiedOn}.`,
+    `${lead} under the ${e.instrument.title}.${agreement} ${contents}.`,
+    `${lead} under the ${e.instrument.title}.${agreement}`,
     `${lead}. ${contents}.`,
   );
 }

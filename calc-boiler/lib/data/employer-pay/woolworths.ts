@@ -128,8 +128,34 @@ export const WOOLWORTHS_PAY: EmployerPay = {
       a: "The Woolworths Australian Food Group Agreement 2024 (AE525523), approved by the Fair Work Commission on 22 July 2024. It covers supermarket, Metro, eStore and fulfilment centre staff nationally and nominally expires on 17 April 2028.",
     },
     {
-      q: "Does Woolworths pay more than the award?",
-      a: "Yes, slightly. In 2026 the Level 1 rate is $28.26 against $27.81 under the General Retail Industry Award, and because both rise by the same annual wage review percentage the gap stays at about 1.6%.",
+      q: "Is Woolworths paid above the award?",
+      a: "Yes, by a small margin. Level 1 is $28.26 an hour in 2026 against $27.81 under the General Retail Industry Award, about 1.6% more, and because both rise by the same Annual Wage Review percentage the gap stays about the same. When it approved the agreement the Fair Work Commission described the rates as only marginally above the award, and said what matters is that a margin exists.",
+    },
+    {
+      q: "When is the next Woolworths pay rise?",
+      a: "From the first full pay period on or after 1 July 2027. Base rates rise by the percentage the Fair Work Commission's 2027 Annual Wage Review gives the Retail Award, usually decided in June. It is the last rise written into the agreement, which nominally expires on 17 April 2028.",
     },
   ],
+  // 22 Oct 2026: read from the approval decision [2024] FWCFB 314 (FWC PDF).
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "21 October 2024",
+    status: "in-term",
+    statusNote: "Inside its nominal term, which runs to 17 April 2028. One scheduled rise remains, in July 2027.",
+    payRises: [
+      { date: "First full pay period on or after 1 July 2025", amount: "3.5%, the 2025 Annual Wage Review percentage for the Retail Award", source: "Agreement cl 4.3; [2025] FWCFB 3500", paid: true },
+      { date: "First full pay period on or after 1 July 2026", amount: "4.75%, the 2026 Annual Wage Review percentage (Level 1 $28.26)", source: "Agreement cl 4.3; [2026] FWCFB 3500", paid: true },
+      { date: "First full pay period on or after 1 July 2027", amount: "The 2027 Annual Wage Review percentage for the Retail Award, not yet decided", source: "Agreement cl 4.3; the last rise the agreement provides for" },
+    ],
+    aboveAward:
+      "The Full Bench found the agreement passed the better off overall test, noting that its rates of pay are \"only marginally in excess of those in the Award\" and that what matters is that a margin exists ([2024] FWCFB 314 at [23] and [24]). On 2026 rates, Level 1 is $28.26 against the award's $27.81, about 1.6% more.",
+    whatItMeans: [
+      "Your base rate is set by the agreement, not the award, and it moves each July by the same percentage the Fair Work Commission gives the Retail Award.",
+      "That keeps the gap above the award at about 1.6% at every store level rather than growing or shrinking.",
+      "Penalty rates, the 25% casual loading and the junior scale all come from the agreement too, so check your payslip against this page rather than the award.",
+      "If the award rate for your level or age ever overtakes the agreement rate, Woolworths must pay at least the award rate (Fair Work Act s 206).",
+    ],
+    decision: { citation: "[2024] FWCFB 314 (Hatcher J, Colman DP, Matheson C), 22 July 2024", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwcfb314.pdf" },
+    verifiedOn: "22 October 2026",
+  },
 };

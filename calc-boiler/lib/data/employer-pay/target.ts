@@ -119,8 +119,35 @@ export const TARGET_PAY: EmployerPay = {
       a: "Sundays from 9am pay 150% for permanent staff and 175% for casuals (about $41.79 and $48.76 an hour for an adult Customer Service Assistant). Public holidays pay 225% and 250% (about $62.69 and $69.65).",
     },
     {
+      q: "Is Target paid above the award?",
+      a: "Yes, by 5 cents an hour. The agreement sets the Customer Service Assistant rate at the Retail Award Level 1 rate plus 5 cents ($27.86 against $27.81 in 2026) and the Team Leader rate at 112% of that ($31.20). Penalty percentages are the same as the award's, so the base margin is the main difference for most shifts.",
+    },
+    {
       q: "When is the next Target pay rise?",
       a: "From the first full pay period on or after 1 July 2027, when the Retail Award rises. Customer Service Assistants go to the new award Level 1 rate plus 5 cents. Before that, from 1 December 2026, 18- and 19-year-olds with more than 6 months' service must get at least the higher Retail Award junior rates.",
     },
   ],
+  // 22 Oct 2026: read from the approval decision PR750306 at the front of the
+  // FWC's agreement PDF, and the agreement's own formula (cl 19.1).
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "15 February 2023",
+    status: "in-term",
+    statusNote:
+      "Inside its nominal term, which ends on 7 February 2027. After that date it keeps applying until a new agreement replaces it. On 22 October 2026 we found no replacement application or decision on the Fair Work Commission's site.",
+    payRises: [
+      { date: "First full pay period on or after 1 July 2026", amount: "Retail Award Level 1 rate plus 5 cents (Customer Service Assistant $27.86); Team Leader 112% of that ($31.20)", source: "Agreement cl 19.1", paid: true },
+      { date: "First full pay period on or after 1 July 2027", amount: "The new Retail Award Level 1 rate plus 5 cents, and 112% of that for Team Leaders", source: "Agreement cl 19.1" },
+    ],
+    aboveAward:
+      "The approval decision states no margin: Deputy President Masson accepted three undertakings and was satisfied that the requirements of ss 186, 187 and 188 of the Fair Work Act, which include the better off overall test, were met (PR750306 at [2] and [3]). The margin comes from the agreement's own formula: the Customer Service Assistant rate is the Retail Award Level 1 rate plus 5 cents an hour, and the Team Leader rate is 112% of that (cl 19.1).",
+    whatItMeans: [
+      "Target's agreement sits 5 cents an hour above the Retail Award Level 1 rate, and that gap stays fixed because each July's award rise flows straight through.",
+      "Team Leaders are paid 112% of the Customer Service Assistant rate, $31.20 an hour in 2026.",
+      "Penalty percentages match the award's, so the small base margin is the main difference for most shifts.",
+      "The nominal term ends on 7 February 2027. Until a new agreement is voted up and approved, these rates stay in force.",
+    ],
+    decision: { citation: "PR750306 (Masson DP), 8 February 2023, approved with three undertakings", url: EA_URL },
+    verifiedOn: "22 October 2026",
+  },
 };

@@ -125,8 +125,35 @@ export const COLES_PAY: EmployerPay = {
       a: "The Coles Retail Enterprise Agreement 2024 (AE524516), approved by the Fair Work Commission on 3 May 2024. It covers Coles supermarket and Coles Liquor team members, runs to 3 May 2028, and ties each July's pay rise to the Retail Award Level 1 increase.",
     },
     {
-      q: "Does Coles pay more than the award?",
-      a: "Yes, by a small margin. In 2026 Coles Level 1 is $28.43 against $27.81 under the General Retail Industry Award, and Coles pays the adult rate from 20 where the award can pay 90% at that age.",
+      q: "Is Coles paid above the award?",
+      a: "Yes, by a small margin. Level 1 is $28.43 an hour in 2026 against $27.81 under the General Retail Industry Award, 62 cents more, and Coles pays the adult rate from 20 where the award can pay 90% at that age. The Fair Work Commission called the wage margin relatively small when it approved the agreement, but found staff better off overall once the other agreement terms were counted.",
+    },
+    {
+      q: "When is the next Coles pay rise?",
+      a: "From the first full pay period after 1 July 2027. Every level rises by the percentage the 2027 Annual Wage Review adds to the Retail Award Level 1 rate (cl 3.4.1), usually decided in June. It is the last rise the agreement provides for before its nominal expiry on 3 May 2028.",
     },
   ],
+  // 22 Oct 2026: read from the approval decision [2024] FWCFB 250 (FWC PDF).
+  enterpriseAgreement: {
+    underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
+    commencedOn: "7 October 2024",
+    status: "in-term",
+    statusNote: "Inside its nominal term, which runs to 3 May 2028. One scheduled rise remains, in July 2027.",
+    payRises: [
+      { date: "First full pay period after 1 July 2024", amount: "3.75%, the 2024 rise to the Retail Award Level 1 rate", source: "Agreement cl 3.4.1", paid: true },
+      { date: "First full pay period after 1 July 2025", amount: "3.5%", source: "Agreement cl 3.4.1; [2025] FWCFB 3500", paid: true },
+      { date: "First full pay period after 1 July 2026", amount: "4.75% (Level 1 $28.43)", source: "Agreement cl 3.4.1; [2026] FWCFB 3500", paid: true },
+      { date: "First full pay period after 1 July 2027", amount: "The 2027 Annual Wage Review percentage for Retail Award Level 1, not yet decided", source: "Agreement cl 3.4.1; the last rise the agreement provides for" },
+    ],
+    aboveAward:
+      "The Full Bench found the agreement passed the better off overall test on \"marginally higher salaries\" plus other above-award terms, and accepted that the margin over the award minimum is \"a relatively small one\" that nevertheless exists ([2024] FWCFB 250 at [17] and [27]). On 2026 rates, Level 1 is $28.43 against the award's $27.81, 62 cents more.",
+    whatItMeans: [
+      "Your base rate comes from the agreement and rises each July by the same percentage the Retail Award Level 1 rate rises, so the cents-above-award gap stays roughly steady.",
+      "Coles pays the full adult rate from 20, a year earlier than the award, which is worth more to a 20 year old than the base margin is to an adult.",
+      "Casual loading, penalty rates and the night shift loadings are all the agreement's own terms, and the Commission approved it with three undertakings that are now part of it.",
+      "If the award rate for your level or age ever overtakes the agreement rate, Coles must pay at least the award rate (Fair Work Act s 206).",
+    ],
+    decision: { citation: "[2024] FWCFB 250 (Full Bench), 3 May 2024, approved with three undertakings", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2024fwcfb250.pdf" },
+    verifiedOn: "22 October 2026",
+  },
 };
