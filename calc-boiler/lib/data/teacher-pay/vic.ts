@@ -21,6 +21,12 @@
 // vic-2026-agreement.ts; the page tables them separately as PROPOSED rates. The
 // scales below stay on the VGSA 2022 until the new agreement is approved and
 // operating.
+//
+// 22 October 2026: AG2026/2746 is no longer on the FWC agreements-in-progress
+// list and the AEU Victorian Branch reports approval with effect from
+// 23 October 2026, but no FWC decision and no new department salary schedule
+// had been published (Salary Rates page still "Updated 8 May 2025"). So the
+// scales below stay on the VGSA 2022 for now; see vic-2026-agreement.ts.
 
 import type { TeacherPayState } from "./types";
 
@@ -38,11 +44,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   agreementUrl: "https://www2.education.vic.gov.au/pal/salary-rates/overview",
   ratesEffectiveFrom: "the first pay period on or after 1 July 2025",
   nextIncrease: {
-    date: "pending Fair Work Commission approval of the VGSA 2026",
+    date: "pending publication of the Fair Work Commission's decision on the VGSA 2026",
     detail:
-      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and the department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746, passed to a Commission Member for consideration when checked on 14 October 2026, and not yet approved). Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
+      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and the department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746). On 22 October 2026 the matter was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided, and the Australian Education Union Victorian Branch says the Commission approved the agreement with effect from 23 October 2026; the Commission's decision and the department's new salary schedule had not been published when we checked. Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
   },
-  verifiedOn: "14 October 2026",
+  verifiedOn: "22 October 2026",
 
   scales: [
     {
@@ -181,7 +187,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
 
   notices: [
     "The VGSA 2022's nominal expiry date was 31 December 2025 and 1 July 2025 is the last salary column it makes. The department has not published a newer schedule, so the rates below are what is published and payable.",
-    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). It was listed at \"initial assessment\" on 24 September 2026 and at \"member consideration\" on 14 October 2026, which means the Commission has passed it to a Commission Member to consider; it is not yet approved. The government says approval can take up to six weeks, and the agreement starts operating seven days after approval. The proposed rates are tabled in the 2026 pay rise section; the tables further down stay on the VGSA 2022 until the new agreement operates.",
+    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). It was listed at \"initial assessment\" on 24 September 2026 and at \"member consideration\" on 14 October 2026. On 22 October 2026 it was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided, and the Australian Education Union Victorian Branch says the Commission has approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked, so the new rates are tabled in the 2026 pay rise section and the tables further down stay on the VGSA 2022 until they are.",
   ],
 
   unverified: [
@@ -198,7 +204,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615",
     },
     {
-      title: "Agreements in progress: Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026)",
+      title: "Agreements in progress: Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026; no longer listed on 22 October 2026)",
       publisher: "Fair Work Commission",
       url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",
     },
@@ -266,7 +272,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "When will Victorian teachers get the pay rise?",
-      a: "The agreement starts seven days after the Fair Work Commission approves it; the government says approval can take up to six weeks. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026, with further increases from 1 November 2027, 2028 and 2029.",
+      a: "The agreement starts seven days after the Fair Work Commission approves it. On 22 October 2026 the matter had left the Commission's agreements-in-progress list and the Australian Education Union Victorian Branch said the Commission had approved it with effect from 23 October 2026; the Commission's decision had not been published when we checked. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026, so both are back-paid once the agreement operates, with further increases from 1 November 2027, 2028 and 2029.",
     },
   ],
 };

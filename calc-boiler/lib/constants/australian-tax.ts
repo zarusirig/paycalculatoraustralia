@@ -317,6 +317,14 @@ export const QUALIFYING_EARNINGS = {
  * Schedule 6 "commences on the first 1 January, 1 April, 1 July or 1 October to
  * occur after the day the Bill receives Royal Assent". It has not passed.
  *
+ * 22 October 2026: unchanged in the House (the Progress table still ends at
+ * "Second reading moved 14 Oct 2026"; status "Before Reps"). The APH page now
+ * carries the note "Referred to Committee (15/10/2026): Senate Economics
+ * Legislation Committee; Report due 13/11/2026", and the committee's page
+ * gives "Submissions close: 29 October 2026" and "Reporting date: 13 November
+ * 2026". The ATO changeover page still says "This is not yet law." (last
+ * updated 10 August 2026).
+ *
  * Do not write "relief is available". Do not write "relief was abandoned".
  * The defensible line is: announced, bill before Parliament, not yet law.
  * Flip isLaw only when the bill receives Royal Assent.
@@ -339,7 +347,70 @@ export const PAYDAY_SUPER_CAP_RELIEF = {
     passed: false,
     url: "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7554",
   },
-  verifiedOn: "14 October 2026",
+  /** Senate committee inquiry into the bill (APH bill page notes and committee page, read 22 October 2026). */
+  senateCommittee: {
+    name: "Senate Economics Legislation Committee",
+    referred: "15 October 2026",
+    submissionsClose: "29 October 2026",
+    reportDue: "13 November 2026",
+    url: "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Economics/TLAB3ITRDT2026",
+  },
+  verifiedOn: "22 October 2026",
+} as const;
+
+/**
+ * Negative gearing: what is already law and what is only a bill.
+ *
+ * LAW. The Treasury Laws Amendment (Tax Reform No. 1) Act 2026 (APH r7493:
+ * "Finally passed both Houses 25 Jun 2026", "Assent, Act no: 49, Year: 2026,
+ * 26 Jun 2026"). The explanatory memorandum to the No. 3 bill (read 22 October
+ * 2026, paragraphs 5.4 to 5.6) describes what that Act did: it "established a
+ * general rule that losses and outgoings relating to investments in
+ * residential dwellings are quarantined and can only be used to reduce income
+ * and capital gains from investments in residential dwellings", with three
+ * exceptions (dwellings "acquired by the owner before 7.30pm (AEST) on 12 May
+ * 2026", new residential dwellings, and dwellings used for a specified
+ * activity or purpose), and "Starting on 1 July 2027, an entity with an
+ * ownership interest in a residential dwelling that does not meet an exception
+ * to the general rule cannot generally deduct net rental losses from
+ * assessable income (such as salary and wages), a practice commonly referred
+ * to as negative gearing."
+ *
+ * NOT LAW. Schedule 5 of the Treasury Laws Amendment (Tax Reform No. 3) Bill
+ * 2026 (APH r7554, "Before Reps" on 22 October 2026) supplies the definitions
+ * the exceptions depend on: when a dwelling is a "new residential dwelling"
+ * (four cases, each needing a certificate of occupancy first issued at or
+ * after 7.30pm AEST on 12 May 2026 and a separately acquirable legal interest)
+ * and which specified uses are exempt (specialist disability accommodation,
+ * affordable housing through an eligible community housing provider, public
+ * housing, active build to rent developments, retirement villages and
+ * residential care homes). It "commences on the first 1 January, 1 April,
+ * 1 July or 1 October to occur after the day the Bill receives Royal Assent".
+ *
+ * Nothing on the site describes negative gearing as a deduction against wages
+ * beyond 30 June 2027 for dwellings acquired after the cut-off. Flip
+ * bill.isLaw only on Royal Assent.
+ */
+export const NEGATIVE_GEARING_REFORM = {
+  law: {
+    name: "Treasury Laws Amendment (Tax Reform No. 1) Act 2026",
+    actNumber: "No. 49 of 2026",
+    assent: "26 June 2026",
+    /** First income year the quarantining rule bites, per the No. 3 EM (5.5). */
+    quarantiningStarts: "1 July 2027",
+    /** Dwellings acquired before this time keep negative gearing (No. 3 EM, 5.4). */
+    grandfatheredBefore: "7.30pm (AEST) on 12 May 2026",
+    url: "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7493",
+  },
+  bill: {
+    name: "Treasury Laws Amendment (Tax Reform No. 3) Bill 2026",
+    schedule: "Schedule 5",
+    introduced: "14 October 2026",
+    status: "before the House of Representatives",
+    isLaw: false,
+    url: "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7554",
+  },
+  verifiedOn: "22 October 2026",
 } as const;
 
 /**

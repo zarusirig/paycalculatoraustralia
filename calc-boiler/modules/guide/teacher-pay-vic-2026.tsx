@@ -48,10 +48,23 @@ export default function VicPayRise2026() {
             {VIC_2026_AGREEMENT.ballotParticipants.toLocaleString("en-AU")} employees voted (
             {VIC_2026_AGREEMENT.ballotParticipationPct}% of those eligible) and{" "}
             {VIC_2026_AGREEMENT.ballotYesPct}% voted yes. The department lodged it with the Fair Work
-            Commission on {VIC_2026_AGREEMENT.fwcLodged} ({VIC_2026_AGREEMENT.fwcMatter}, at{" "}
-            {VIC_2026_AGREEMENT.fwcStage} when checked on {VIC_2026_AGREEMENT.fwcCheckedOn}). It starts
-            operating seven days after the Commission approves it. Until then the VGSA 2022 rates further down
-            this page are what is paid.
+            Commission on {VIC_2026_AGREEMENT.fwcLodged} ({VIC_2026_AGREEMENT.fwcMatter}).{" "}
+            {VIC_2026_AGREEMENT.fwcStage === "not listed" ? (
+              <>
+                On {VIC_2026_AGREEMENT.fwcCheckedOn} the matter was no longer on the Commission&apos;s
+                agreements-in-progress list, which is what happens once an application has been decided, and
+                the {VIC_2026_AGREEMENT.reportedApproval.by} says the Commission has approved the agreement
+                with effect from {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The Commission&apos;s
+                decision and the department&apos;s new salary schedule had not been published when we checked,
+                so the VGSA 2022 rates further down this page remain the published rates until they are.
+              </>
+            ) : (
+              <>
+                It was at {VIC_2026_AGREEMENT.fwcStage} when checked on {VIC_2026_AGREEMENT.fwcCheckedOn}. It
+                starts operating seven days after the Commission approves it. Until then the VGSA 2022 rates
+                further down this page are what is paid.
+              </>
+            )}
           </p>
         </div>
       )}

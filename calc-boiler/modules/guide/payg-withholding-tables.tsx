@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { NEGATIVE_GEARING_REFORM, SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
@@ -412,6 +412,9 @@ export default function PAYGTablesGuidePage() {
               <h3>What Is a Withholding Variation?</h3>
               <p>
                 A &quot;Withholding Variation&quot; (also called a Section 15-15 variation) is a formal ATO approval that allows your employer to withhold a <strong>different amount</strong> than the standard tax tables prescribe. Common reasons for applying include large work-related deductions (such as $5,000+ in tools or uniforms), significant rental property losses creating negative gearing, or salary sacrifice arrangements that reduce assessable income. The employee applies directly to the ATO, which issues a letter specifying the varied withholding rate. The employer then applies that rate instead of the standard tables until the variation expires at the end of the financial year.
+              </p>
+              <p>
+                One change to plan for if a variation rests on rental losses. Under the {NEGATIVE_GEARING_REFORM.law.name} (assented to on {NEGATIVE_GEARING_REFORM.law.assent}), from {NEGATIVE_GEARING_REFORM.law.quarantiningStarts} losses on a residential dwelling acquired at or after {NEGATIVE_GEARING_REFORM.law.grandfatheredBefore} are quarantined to income and capital gains from residential property investments, so they will no longer reduce the tax withheld from wages. Dwellings acquired before that time keep negative gearing. The exemptions for new dwellings and for specified uses such as affordable housing sit in {NEGATIVE_GEARING_REFORM.bill.schedule} of the <a href={NEGATIVE_GEARING_REFORM.bill.url} target="_blank" rel="noopener noreferrer">{NEGATIVE_GEARING_REFORM.bill.name}</a>, which was {NEGATIVE_GEARING_REFORM.bill.status} and not yet law when checked on {NEGATIVE_GEARING_REFORM.verifiedOn}.
               </p>
               <p>
                 Salary sacrifice arrangements for superannuation, novated leases, and other pre-tax benefits also modify the withholding calculation. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for the impact on your take-home pay and taxable income.
