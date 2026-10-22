@@ -5,4 +5,11 @@ Disallow: /api/
 # Block faceted / parameterized URLs from being crawled as duplicates
 Disallow: /*?*
 
+# Next.js static export writes React Server Component payloads (__next.*.txt, index.txt)
+# beside every page. They are prefetch data, not pages: 5,329 files = 46% of Googlebot requests
+# in Sep-Oct 2026. Keep ads.txt and robots.txt crawlable.
+Disallow: /*.txt$
+Allow: /ads.txt
+Allow: /robots.txt
+
 Sitemap: https://pay-calculator-australia.com/sitemap.xml
