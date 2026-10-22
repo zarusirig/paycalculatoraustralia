@@ -41,8 +41,12 @@ export const QLD_NURSING_PAY: NursingStateData = {
   code: "QLD",
   name: "Queensland",
   shortName: "QLD",
-  metaTitle: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
-  h1: "Queensland Nurse Pay Rates 2026: Queensland Health Nursing Wages (EB12)",
+  metaTitle: "QLD Nurse Pay Rates 2026 - Queensland Health Nursing Wages",
+  // 23 Oct 2026: "nurse salary qld" (2,900 a month) and "qld health pay rates"
+  // (1,900) were missing from the title. The page ranked for "wages" and
+  // "pay rates" only, at position 9 to 10 with a 0.24% click rate.
+  salaryTitle: "Nurse Salary QLD {year}: QLD Health Pay Rates",
+  h1: "Nurse Salary QLD 2026: Queensland Health Nurse Pay Rates and Wages (EB12)",
   employer: "Queensland Health (Hospital and Health Services) and the Department of Education",
   ordinaryHoursPerWeek: 38,
 
@@ -60,11 +64,11 @@ export const QLD_NURSING_PAY: NursingStateData = {
     },
     {
       id: "qld-award-2015",
-      name: "Nurses and Midwives (Queensland Health) Award — State 2015",
+      name: "Nurses and Midwives (Queensland Health) Award - State 2015",
       effectiveFrom: "1 September 2023 (consolidated text)",
       tribunal: "Queensland Industrial Relations Commission",
       source: {
-        title: "Nurses and Midwives (Queensland Health) Award — State 2015",
+        title: "Nurses and Midwives (Queensland Health) Award - State 2015",
         url: "https://www.qirc.qld.gov.au/sites/default/files/2024-04/nurses_midwives_010923.pdf",
         publisher: "Queensland Industrial Relations Commission",
       },
@@ -80,7 +84,14 @@ export const QLD_NURSING_PAY: NursingStateData = {
       family: "registered",
       instrumentId: "qld-eb12",
       points: [
-        { label: "Re-entry", annual: 83872, fortnightly: 3214.8, hourly: 42.3, casualHourly: 52.875 },
+        {
+          label: "Re-entry",
+          annual: 83872,
+          fortnightly: 3214.8,
+          hourly: 42.3,
+          casualHourly: 52.875,
+          offLadder: true,
+        },
         { label: "Pay point 1", annual: 87790, fortnightly: 3365.0, hourly: 44.2763, casualHourly: 55.3454 },
         { label: "Pay point 2", annual: 91915, fortnightly: 3523.1, hourly: 46.3566, casualHourly: 57.9458 },
         { label: "Pay point 3", annual: 96053, fortnightly: 3681.7, hourly: 48.4434, casualHourly: 60.5543 },
@@ -173,7 +184,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
     // annual figure was transcribed for these grades, so the hourly and casual
     // columns show a dash rather than a derived number.
     {
-      classification: "Director of Nursing/Midwifery — Remote",
+      classification: "Director of Nursing/Midwifery - Remote",
       gradeCode: "Nurse Grade 9",
       family: "management",
       instrumentId: "qld-eb12",
@@ -185,7 +196,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
     },
     {
       classification:
-        "Assistant Director of Nursing/Midwifery, Director of Nursing/Midwifery — Rural",
+        "Assistant Director of Nursing/Midwifery, Director of Nursing/Midwifery - Rural",
       gradeCode: "Nurse Grade 10",
       family: "management",
       instrumentId: "qld-eb12",
@@ -284,7 +295,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   derivation: {},
 
   notReproduced: [
-    "Assistant in Nursing — Sterilising Services (Nurse Grade 1 Band 2)",
+    "Assistant in Nursing - Sterilising Services (Nurse Grade 1 Band 2)",
     "Allowance schedules: hyperbaric, laundry, mental health environment, operating theatre, pharmacy, relieving in-charge, targeted training, X-ray and radium, endorsed midwife, RANIP isolation bonuses, on-call and professional development",
   ],
 
@@ -294,7 +305,83 @@ export const QLD_NURSING_PAY: NursingStateData = {
     "Overtime multipliers",
   ],
 
-  verifiedOn: "28 August 2026",
+  // Re-checked 23 October 2026 against the same wage schedule: the
+  // 1 April 2026 table is unchanged and no new increase or uplift has been
+  // added since 28 August 2026.
+  verifiedOn: "23 October 2026",
+
+  keyGrades: [
+    {
+      label: "Registered nurse or midwife, first pay point",
+      classification: "Registered Nurse/Midwife",
+      point: "Pay point 1",
+    },
+    {
+      label: "Registered nurse or midwife, top pay point",
+      classification: "Registered Nurse/Midwife",
+      point: "Pay point 7",
+    },
+    {
+      label: "Enrolled nurse (Grade 3)",
+      classification: "Enrolled Nurse",
+      question: "How much does an enrolled nurse earn in QLD?",
+    },
+    { label: "Clinical nurse or midwife (Grade 6)", classification: "Clinical Nurse/Midwife" },
+    {
+      label: "Nurse unit manager or clinical nurse consultant (Grade 7)",
+      classification:
+        "Clinical Nurse/Midwife Consultant, Nurse/Midwife Unit Manager, Nurse/Midwife Manager, Nurse/Midwife Educator, Nurse/Midwife Researcher, Public Health Nurse, Nurse/Midwife Navigator, Nurse Practitioner Candidate",
+      question: "How much does a nurse unit manager earn in QLD?",
+    },
+    { label: "Nurse practitioner (Grade 8)", classification: "Nurse Practitioner" },
+    { label: "Assistant in nursing (Grade 1)", classification: "Assistant in Nursing/Midwifery" },
+  ],
+
+  // Both future tables are already printed on the Queensland Health wage
+  // schedule (read 23 October 2026). Figures copied, not projected.
+  upcoming: [
+    {
+      effectiveFrom: "1 April 2027",
+      source: { ...WAGE_SCHEDULE, title: "Nursing stream wage rates: wage rates from 1 April 2027" },
+      rows: [
+        { label: "RN or midwife, pay point 1", classification: "Registered Nurse/Midwife", point: "Pay point 1", annual: 89985, fortnightly: 3449.1, hourly: 45.3829 },
+        { label: "RN or midwife, pay point 7", classification: "Registered Nurse/Midwife", point: "Pay point 7", annual: 115422, fortnightly: 4424.1, hourly: 58.2118 },
+        { label: "Enrolled nurse, pay point 1", classification: "Enrolled Nurse", point: "Pay point 1", annual: 77462, fortnightly: 2969.1, hourly: 39.0671 },
+        { label: "Nurse Grade 7, pay point 1", classification: "Clinical Nurse/Midwife Consultant, Nurse/Midwife Unit Manager, Nurse/Midwife Manager, Nurse/Midwife Educator, Nurse/Midwife Researcher, Public Health Nurse, Nurse/Midwife Navigator, Nurse Practitioner Candidate", point: "Pay point 1", annual: 144149, fortnightly: 5525.2, hourly: 72.7 },
+      ],
+    },
+    {
+      effectiveFrom: "1 December 2027",
+      source: { ...WAGE_SCHEDULE, title: "Nursing stream wage rates: wage rates from 1 December 2027" },
+      rows: [
+        { label: "RN or midwife, pay point 1", classification: "Registered Nurse/Midwife", point: "Pay point 1", annual: 92685, fortnightly: 3552.6, hourly: 46.7447 },
+        { label: "RN or midwife, pay point 7", classification: "Registered Nurse/Midwife", point: "Pay point 7", annual: 118884, fortnightly: 4556.8, hourly: 59.9579 },
+        { label: "RN or midwife, new pay point 8", classification: "Registered Nurse/Midwife", point: "Pay point 8", annual: 122873, fortnightly: 4709.7, hourly: 61.97 },
+        { label: "Enrolled nurse, pay point 1", classification: "Enrolled Nurse", point: "Pay point 1", annual: 79786, fortnightly: 3058.2, hourly: 40.2395 },
+      ],
+    },
+  ],
+
+  payDeal: {
+    points: [
+      "The EB12 agreement sets four pay dates: 1 April 2025, 1 April 2026, 1 April 2027 and 1 December 2027.",
+      "In mid-2026 Queensland Health added a 0.5% Consumer Price Index Uplift Adjustment, after the March 2026 quarter Brisbane CPI. The rates on this page include it.",
+      "A new top step for registered nurses and midwives, Nurse Grade 5 pay point 8, starts paying on 1 December 2027.",
+      "Former employees may also be owed the CPI uplift. Queensland Health asks them to apply by email.",
+    ],
+    source: WAGE_SCHEDULE,
+  },
+
+  // "qld health pay rates 2026 pdf" drew 76 impressions in four weeks.
+  sourceFaqs: [
+    {
+      q: "Is there a QLD Health nurse pay rates PDF?",
+      a: "Queensland Health publishes its nursing wage rates as a web page, not a PDF. The EB12 agreement itself is a PDF on the Queensland Health careers site, but Queensland Health notes it has not been updated for the 0.5% CPI uplift added in mid-2026. Use the wage rates page, or the tables here, for the current Queensland figures.",
+    },
+  ],
+
+  midwifeNote:
+    "Queensland pays registered midwives on the same Nurse Grade 5 scale as registered nurses, at the same rate for each pay point. An endorsed midwife allowance of $211.80 a fortnight applies from 1 July 2026.",
 
   intro:
     "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service: a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade 6, a nurse unit manager or clinical nurse consultant is Grade 7, a nurse practitioner is Grade 8, and Grades 9 to 13 are the director of nursing and executive grades. The rates below are the ones in force from 1 April 2026.",

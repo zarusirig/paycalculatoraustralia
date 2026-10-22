@@ -36,7 +36,11 @@ export const NSW_NURSING_PAY: NursingStateData = {
   name: "New South Wales",
   shortName: "NSW",
   metaTitle: "NSW Nurse Pay Rates 2026 - NSW Health Registered Nurse Salary",
-  h1: "NSW Nurse Pay Rates 2026: NSW Health Registered Nurse & Midwife Salary",
+  // 23 Oct 2026: "nurse salary nsw" (1,900 a month) and "nsw health pay rates"
+  // (720) led the title rewrite. The page sat at position 11.5 with a 0.45%
+  // click rate on "nsw health rn pay rates 2026" style queries.
+  salaryTitle: "Nurse Salary NSW {year}: NSW Health Pay Rates",
+  h1: "Nurse Salary NSW 2026: NSW Health Nurse and Midwife Pay Rates",
   employer: "NSW Health (local health districts and specialty networks)",
   ordinaryHoursPerWeek: 38,
 
@@ -74,7 +78,7 @@ export const NSW_NURSING_PAY: NursingStateData = {
         "NSW runs registered nurses and midwives on one scale with the same rate at every year. There is no separate midwifery ladder.",
     },
     {
-      classification: "Registered Nurse — Pre Registration",
+      classification: "Registered Nurse - Pre Registration",
       family: "registered",
       instrumentId: "nsw-award-2025",
       points: [{ label: "1st year and thereafter", weekly: 1350.7 }],
@@ -111,9 +115,9 @@ export const NSW_NURSING_PAY: NursingStateData = {
       family: "clinical",
       instrumentId: "nsw-award-2025",
       points: [
-        { label: "Grade 1 — 1st year and thereafter", weekly: 2289.0 },
-        { label: "Grade 2 — 1st year", weekly: 2458.9 },
-        { label: "Grade 2 — 2nd year and thereafter", weekly: 2539.8 },
+        { label: "Grade 1 - 1st year and thereafter", weekly: 2289.0 },
+        { label: "Grade 2 - 1st year", weekly: 2458.9 },
+        { label: "Grade 2 - 2nd year and thereafter", weekly: 2539.8 },
       ],
     },
     {
@@ -122,12 +126,12 @@ export const NSW_NURSING_PAY: NursingStateData = {
       family: "clinical",
       instrumentId: "nsw-award-2025",
       points: [
-        { label: "Grade 1 — 1st year (appointed after 31/12/1999)", weekly: 2751.6 },
-        { label: "Grade 1 — 2nd year", weekly: 2807.9 },
-        { label: "Grade 2 — 1st year", weekly: 2863.4 },
-        { label: "Grade 2 — 2nd year", weekly: 2920.6 },
-        { label: "Grade 3 — 1st year", weekly: 3032.6 },
-        { label: "Grade 3 — 2nd year", weekly: 3088.9 },
+        { label: "Grade 1 - 1st year (appointed after 31/12/1999)", weekly: 2751.6 },
+        { label: "Grade 1 - 2nd year", weekly: 2807.9 },
+        { label: "Grade 2 - 1st year", weekly: 2863.4 },
+        { label: "Grade 2 - 2nd year", weekly: 2920.6 },
+        { label: "Grade 3 - 1st year", weekly: 3032.6 },
+        { label: "Grade 3 - 2nd year", weekly: 3088.9 },
         { label: "Appointed prior to 31/12/1999", weekly: 2815.0 },
       ],
     },
@@ -217,7 +221,86 @@ export const NSW_NURSING_PAY: NursingStateData = {
     "The 1 July 2027 non-salary allowance column, which the award prints as \"TBC\" pending the March 2027 CPI",
   ],
 
-  verifiedOn: "28 August 2026",
+  // Re-checked 23 October 2026 against the award PDF on the NSW Health site:
+  // Table 1 still prints the same 1 July 2025, 2026 and 2027 columns, and the
+  // NSW Health "Current rates of pay" page lists no newer nursing circular.
+  verifiedOn: "23 October 2026",
+
+  keyGrades: [
+    {
+      label: "RN or midwife, 1st year",
+      classification: "Registered Nurse/Midwife",
+      point: "1st year",
+    },
+    {
+      label: "RN or midwife, 8th year and thereafter",
+      classification: "Registered Nurse/Midwife",
+      point: "8th year and thereafter",
+      question: "What does an RN year 8 earn in NSW?",
+    },
+    {
+      label: "Enrolled nurse",
+      classification: "Enrolled Nurse",
+      question: "How much does an enrolled nurse earn in NSW?",
+    },
+    {
+      label: "Clinical nurse specialist (CNS 1 and CNS 2)",
+      classification: "Clinical Nurse/Midwife Specialist",
+      question: "How much does a CNS 2 earn in NSW Health?",
+    },
+    { label: "Clinical nurse consultant (CNC)", classification: "Clinical Nurse/Midwife Consultant" },
+    {
+      label: "Nursing unit manager (NUM)",
+      classification: "Nursing/Midwifery Unit Manager",
+      question: "How much does a nursing unit manager earn in NSW?",
+    },
+    { label: "Nurse practitioner", classification: "Nurse/Midwife Practitioner" },
+    { label: "Assistant in nursing (AIN)", classification: "Assistant in Nursing/Midwifery" },
+  ],
+
+  // The 1 July 2027 column of Table 1, read 23 October 2026. Weekly is the
+  // award's figure; nothing else is stored.
+  upcoming: [
+    {
+      effectiveFrom: "1 July 2027",
+      source: AWARD_SOURCE,
+      rows: [
+        { label: "RN or midwife, 1st year", classification: "Registered Nurse/Midwife", point: "1st year", weekly: 1613.7 },
+        {
+          label: "RN or midwife, 8th year and thereafter",
+          classification: "Registered Nurse/Midwife",
+          point: "8th year and thereafter",
+          weekly: 2265.6,
+        },
+        { label: "Enrolled nurse, 1st year", classification: "Enrolled Nurse", point: "1st year", weekly: 1480.7 },
+        {
+          label: "CNS grade 2, 2nd year and thereafter",
+          classification: "Clinical Nurse/Midwife Specialist",
+          point: "Grade 2 - 2nd year and thereafter",
+          weekly: 2616.0,
+        },
+        { label: "Nursing unit manager, level 1", classification: "Nursing/Midwifery Unit Manager", point: "Level 1", weekly: 2842.5 },
+      ],
+    },
+  ],
+
+  payDeal: {
+    points: [
+      "The Industrial Relations Commission ruled in April 2026. The new award was made on 15 May 2026 and is backdated to 1 July 2025.",
+      "Registered nurses and midwives get 16% over three years: 10% in the first year, then 3% in each of the next two years.",
+      "Enrolled nurses get 18%: 12% in the first year, then 3% and 3%.",
+      "Assistants in nursing get 28%: 22% in the first year, then 3% and 3%.",
+      "The first-year figures include the 3% interim rise paid in 2025. NSW Health said backpay would be paid by 1 June 2026.",
+    ],
+    source: {
+      title: "Nurses and midwives backpay payments commence following historic pay increase (26 May 2026)",
+      url: "https://www.health.nsw.gov.au/news/Pages/20260526_00.aspx",
+      publisher: "NSW Health",
+    },
+  },
+
+  midwifeNote:
+    "NSW pays registered midwives on the same Registered Nurse/Midwife scale as registered nurses, at the same weekly rate for each year. There is no separate midwifery pay ladder.",
 
   intro:
     "NSW nurses and midwives in the public health system are paid under a state award made by the Industrial Relations Commission of New South Wales, not under a Fair Work agreement. The award runs registered nurses and midwives up an eight-year ladder, then into clinical nurse specialist, clinical nurse consultant and nurse manager grades. Every rate below is a weekly rate, because the award publishes weekly rates and nothing else.",

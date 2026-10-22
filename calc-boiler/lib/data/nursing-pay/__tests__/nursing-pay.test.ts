@@ -18,6 +18,10 @@ import {
   annualIsPublished,
   baseRegisteredScale,
   familiesPresent,
+  fortnightlyFor,
+  keyGradeRows,
+  registeredNurseLadder,
+  resolveKeyGrade,
   getNursingPay,
   hourlyFor,
   instrumentFor,
@@ -270,23 +274,110 @@ test("aged care award rates are higher than the general award rates at level 1",
 
 // ---------- titles, anchors and the at-a-glance table ----------
 
-test("every state page title leads with '<STATE> Nurse Pay Rates <year>'", () => {
+test("every state page title leads with the state's nurse pay query and the year", () => {
   for (const state of STATES) {
     const title = nursingPageTitle(state);
-    assert.ok(
-      title.startsWith(`${state.shortName} Nurse Pay Rates ${ratesYear(state)}`),
-      `${state.slug}: ${title}`,
-    );
+    if (state.salaryTitle) {
+      // 23 Oct 2026: QLD, NSW and VIC lead with "Nurse Salary <state> <year>"
+      // and keep "Pay Rates" in the same title.
+      assert.match(title, new RegExp(`^Nurse Salary (${state.shortName}|${state.name}) ${ratesYear(state)}`), title);
+      assert.match(title, /Pay Rates/, title);
+    } else {
+      assert.ok(
+        title.startsWith(`${state.shortName} Nurse Pay Rates ${ratesYear(state)}`),
+        `${state.slug}: ${title}`,
+      );
+    }
     assert.ok(title.length <= 65, `${state.slug} title is ${title.length} chars`);
     assert.ok(nursingPageH1(state).includes(ratesYear(state)), `${state.slug} H1 has no year`);
+    assert.doesNotMatch(title + nursingPageH1(state), /—/, `${state.slug}: no em dashes in title or H1`);
   }
 });
 
-test("QLD title targets the Queensland Health nursing query", () => {
-  assert.equal(
-    nursingPageTitle(getNursingPay("qld")!),
-    "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
-  );
+test("salary titles carry the RN starting salary from the scale, not the re-entry rate", () => {
+  assert.equal(nursingPageTitle(getNursingPay("qld")!), "Nurse Salary QLD 2026: QLD Health Pay Rates (RN from $87,790)");
+  assert.equal(nursingPageTitle(getNursingPay("nsw")!), "Nurse Salary NSW 2026: NSW Health Pay Rates (RN from $81,468)");
+  assert.equal(nursingPageTitle(getNursingPay("vic")!), "Nurse Salary Victoria 2026: VIC Nurse Pay Rates (RN from $84,188)");
+});
+
+test("registeredNurseLadder skips off-ladder rows; registeredNurseRange does not", () => {
+  const qld = getNursingPay("qld")!;
+  const ladder = registeredNurseLadder(qld)!;
+  assert.equal(ladder.entry, 87_790);
+  assert.equal(ladder.entryLabel, "Pay point 1");
+  assert.equal(ladder.top, 112_607);
+  assert.equal(registeredNurseRange(qld)!.entry, 83_872);
+  for (const slug of ["nsw", "vic", "wa", "sa", "tas", "act", "nt"] as const) {
+    assert.deepEqual(registeredNurseLadder(getNursingPay(slug)!), registeredNurseRange(getNursingPay(slug)!), slug);
+  }
+});
+
+test("every answer-box row resolves to a real scale and step", () => {
+  for (const state of STATES) {
+    for (const grade of state.keyGrades ?? []) {
+      assert.ok(resolveKeyGrade(state, grade), `${state.slug}: ${grade.label} does not resolve`);
+    }
+    assert.equal(keyGradeRows(state).length, (state.keyGrades ?? []).length, state.slug);
+  }
+  for (const slug of ["qld", "nsw", "vic"] as const) {
+    assert.ok((getNursingPay(slug)!.keyGrades ?? []).length >= 5, `${slug} needs an answer box`);
+  }
+});
+
+test("answer-box figures match the published rates", () => {
+  const row = (slug: "qld" | "nsw" | "vic", label: string) => {
+    const state = getNursingPay(slug)!;
+    return resolveKeyGrade(state, state.keyGrades!.find((g) => g.label === label)!)!;
+  };
+  assert.equal(row("qld", "Registered nurse or midwife, first pay point").lowAnnual, 87_790);
+  assert.equal(row("qld", "Enrolled nurse (Grade 3)").lowAnnual, 75_573);
+  assert.equal(row("qld", "Enrolled nurse (Grade 3)").highAnnual, 80_204);
+  assert.equal(row("nsw", "RN or midwife, 8th year and thereafter").low.weekly, 2199.6);
+  assert.equal(row("nsw", "Nursing unit manager (NUM)").low.weekly, 2759.7);
+  assert.equal(row("vic", "RN Grade 2 Year 8").low.hourly, 54.41);
+  assert.equal(row("vic", "RUSON or RUSOM (student)").low.weekly, 1319.4);
+});
+
+test("fortnightly pay is published or weekly x 2, never cut from an annual salary", () => {
+  const qld = baseRegisteredScale(getNursingPay("qld")!)!;
+  assert.equal(fortnightlyFor(qld.points.find((p) => p.label === "Pay point 1")!), 3365.0);
+  const nsw = baseRegisteredScale(getNursingPay("nsw")!)!;
+  assert.equal(fortnightlyFor(nsw.points[0]), 3133.4);
+  const sa = baseRegisteredScale(getNursingPay("sa")!)!;
+  assert.equal(fortnightlyFor(sa.points[0]), null);
+});
+
+test("upcoming pay tables continue real rows and match the sources read 23 Oct 2026", () => {
+  for (const state of STATES) {
+    for (const table of state.upcoming ?? []) {
+      for (const r of table.rows) {
+        const scale = state.scales.find((s) => s.classification === r.classification);
+        assert.ok(scale, `${state.slug} ${table.effectiveFrom}: no scale ${r.classification}`);
+        assert.ok(scale!.points.some((p) => p.label === r.point), `${state.slug}: no step ${r.point}`);
+        assert.ok(r.annual ?? r.weekly, `${state.slug} ${r.label} has no rate`);
+      }
+    }
+  }
+  const qld = getNursingPay("qld")!.upcoming!;
+  assert.equal(qld[0].effectiveFrom, "1 April 2027");
+  assert.equal(qld[0].rows[0].annual, 89_985);
+  assert.equal(qld[1].effectiveFrom, "1 December 2027");
+  assert.equal(qld[1].rows.find((r) => r.point === "Pay point 8")!.annual, 122_873);
+  const nsw = getNursingPay("nsw")!.upcoming!;
+  assert.equal(nsw[0].effectiveFrom, "1 July 2027");
+  assert.equal(nsw[0].rows[0].weekly, 1613.7);
+  assert.equal(nsw[0].rows[1].weekly, 2265.6);
+  const vic = getNursingPay("vic")!.upcoming!;
+  assert.equal(vic[0].effectiveFrom, "30 November 2026");
+  assert.equal(vic[0].rows[0].weekly, 1619.0, "graduate year does not move on 30 Nov 2026");
+  assert.equal(vic[0].rows.find((r) => r.label === "RN Grade 2 Year 8")!.weekly, 2089.4);
+  assert.equal(vic[1].rows[0].weekly, 1667.6);
+});
+
+test("the three rebuilt states were re-verified on 23 October 2026", () => {
+  for (const slug of ["qld", "nsw", "vic"] as const) {
+    assert.equal(getNursingPay(slug)!.verifiedOn, "23 October 2026", slug);
+  }
 });
 
 test("scale anchors are unique within each state and URL-safe", () => {

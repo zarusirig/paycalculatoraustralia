@@ -14,12 +14,14 @@ import {
   annualFor,
   annualIsPublished,
   familiesPresent,
+  fortnightlyFor,
   hourlyFor,
   instrumentFor,
+  keyGradeRows,
   nearestTakeHomeSalary,
   nursingPageH1,
   ratesYear,
-  registeredNurseRange,
+  registeredNurseLadder as registeredNurseRange,
   scaleAnchor,
   scaleSummaries,
   scalesInFamily,
@@ -49,31 +51,32 @@ const STATE_LEADS: Partial<Record<NursingStateSlug, (state: NursingStateData) =>
   nsw: (state) => {
     const rn = registeredNurseRange(state);
     const en = scaleRange(scalesInFamily(state, "enrolled")[0]);
-    const cnc = scaleRange(state.scales.find((s) => s.classification.includes("Consultant")));
     const primary = state.instruments[0];
+    const next = state.upcoming?.[0];
     return (
       <>
-        NSW nurse salaries are weekly award rates, published by NSW Health, multiplied by {WEEKS_PER_YEAR}. On the
-        rates in force from {primary.effectiveFrom}, registered nurses and midwives earn{" "}
-        {rn ? `${formatAUD(rn.entry)} to ${formatAUD(rn.top)} a year across ${rn.entryLabel} to ${rn.topLabel}` : "the base scale"}
-        {cnc ? `, clinical nurse consultants from ${formatAUD(cnc.entry)}` : ""}
-        {en ? `, and enrolled nurses ${formatAUD(en.entry)} to ${formatAUD(en.top)}` : ""}. Every pay point is listed
-        below.
+        A registered nurse or midwife with NSW Health earns{" "}
+        {rn ? `${formatAUD(rn.entry)} a year in the ${rn.entryLabel} and ${formatAUD(rn.top)} from the ${rn.topLabel}` : "the base scale"}
+        . {en ? `An enrolled nurse earns ${formatAUD(en.entry)} to ${formatAUD(en.top)}. ` : ""}These are the award rates
+        from {primary.effectiveFrom}. The award sets weekly pay, so each yearly figure is the weekly rate x{" "}
+        {WEEKS_PER_YEAR}.{next ? ` The next rise is on ${next.effectiveFrom}.` : ""}
       </>
     );
   },
   qld: (state) => {
     const rn = registeredNurseRange(state);
     const base = state.scales.find((s) => s.family === "registered");
-    const hourly = base?.points.map((p) => hourlyFor(p, state)).find((h): h is number => h !== null);
+    const first = base?.points.find((p) => p.label === rn?.entryLabel);
+    const hourly = first ? hourlyFor(first, state) : null;
     const primary = state.instruments[0];
+    const next = state.upcoming?.[0];
     return (
       <>
-        Queensland Health nurse pay is set by the {primary.name} and published per annum, per fortnight and per hour for
-        every pay point. On the rates effective {primary.effectiveFrom}, a registered nurse or midwife
-        {base ? ` (${base.gradeCode})` : ""} earns{" "}
+        A registered nurse or midwife with Queensland Health earns{" "}
         {rn ? `${formatAUD(rn.entry)} to ${formatAUD(rn.top)} a year` : "the published scale"}
-        {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}, before shift penalties.
+        {hourly ? `, or ${formatAUD(hourly, 2)} an hour at the first pay point` : ""}. That is{" "}
+        {base?.gradeCode ?? "the RN grade"}, on the EB12 rates from {primary.effectiveFrom}, before shift penalties.
+        {next ? ` The next rise is on ${next.effectiveFrom}.` : ""}
       </>
     );
   },
@@ -93,15 +96,17 @@ const STATE_LEADS: Partial<Record<NursingStateSlug, (state: NursingStateData) =>
   vic: (state) => {
     const rn = registeredNurseRange(state);
     const base = state.scales.find((s) => s.family === "registered");
-    const hourly = base?.points.map((p) => hourlyFor(p, state)).find((h): h is number => h !== null);
+    const first = base?.points.find((p) => p.label === rn?.entryLabel);
+    const hourly = first ? hourlyFor(first, state) : null;
     const primary = state.instruments[0];
+    const next = state.upcoming?.[0];
     return (
       <>
-        A Victorian public sector nurse&apos;s salary is set by the {primary.name}, approved by the {primary.tribunal}. On
-        the rates effective from the {primary.effectiveFrom}, a {base?.classification ?? "registered nurse"} earns{" "}
-        {rn ? `${formatAUD(rn.entry)} a year at ${rn.entryLabel} and ${formatAUD(rn.top)} at ${rn.topLabel}` : "the published scale"}
-        {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}
-        {primary.nextIncrease ? `; the next increase is the ${primary.nextIncrease}` : ""}.
+        A registered nurse in a Victorian public hospital earns{" "}
+        {rn ? `${formatAUD(rn.entry)} a year in ${rn.entryLabel} and ${formatAUD(rn.top)} in ${rn.topLabel}` : "the published scale"}
+        {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}. Midwives get the same pay. These rates apply from the{" "}
+        {primary.effectiveFrom}, under the 2024-2028 public sector agreement.
+        {next ? ` The next rise is on ${next.effectiveFrom}.` : ""}
       </>
     );
   },
@@ -121,7 +126,9 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
       publisher: i.source.publisher,
     })),
     ...(state.extraSources ?? []).map((s) => ({ title: s.title, url: s.url, publisher: s.publisher })),
-  ];
+    ...(state.payDeal ? [state.payDeal.source] : []),
+    ...(state.upcoming ?? []).map((u) => u.source),
+  ].filter((s, i, all) => all.findIndex((o) => o.url === s.url) === i);
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -159,6 +166,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
             {nursingPageH1(state)}
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">{STATE_LEADS[state.slug]?.(state) ?? state.intro}</p>
+          <SalaryAnswerBox state={state} />
           <p className="mb-6 rounded-lg border border-eucalyptus/30 bg-eucalyptus-light/20 p-4 text-sm text-navy">
             <strong>Rates on this page:</strong> {primary.name}, effective {primary.effectiveFrom}
             {primary.nextIncrease ? `. Next scheduled change: ${primary.nextIncrease}` : ""}. Read from the source on{" "}
@@ -203,6 +211,8 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
                 </div>
               </section>
             ) : null}
+
+            <NextPayRise state={state} />
 
             {/* ── Pay scales ── */}
             <section id="pay-scales">
@@ -543,6 +553,7 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
   const anyHourly = scale.points.some((p) => hourlyFor(p, state) !== null);
   const anyCasual = scale.points.some((p) => typeof p.casualHourly === "number");
   const anyWeekly = scale.points.some((p) => typeof p.weekly === "number");
+  const anyFortnightly = scale.points.some((p) => fortnightlyFor(p) !== null);
 
   return (
     <div className="not-prose my-6 scroll-mt-24" id={scaleAnchor(state, scale)}>
@@ -571,6 +582,11 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
                   Weekly
                 </th>
               ) : null}
+              {anyFortnightly ? (
+                <th scope="col" className="px-4 py-3 text-right">
+                  Fortnightly
+                </th>
+              ) : null}
               {anyHourly ? (
                 <th scope="col" className="px-4 py-3 text-right">
                   Hourly
@@ -584,6 +600,9 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
               <th scope="col" className="px-4 py-3 text-right">
                 A year
               </th>
+              <th scope="col" className="px-4 py-3 text-right">
+                After tax
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -593,6 +612,7 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
                 point={point}
                 state={state}
                 showWeekly={anyWeekly}
+                showFortnightly={anyFortnightly}
                 showHourly={anyHourly}
                 showCasual={anyCasual}
               />
@@ -609,18 +629,22 @@ function ScaleRow({
   point,
   state,
   showWeekly,
+  showFortnightly,
   showHourly,
   showCasual,
 }: {
   point: PayPoint;
   state: NursingStateData;
   showWeekly: boolean;
+  showFortnightly: boolean;
   showHourly: boolean;
   showCasual: boolean;
 }) {
   const annual = annualFor(point);
   const hourly = hourlyFor(point, state);
-  const cols = 1 + (showWeekly ? 1 : 0) + (showHourly ? 1 : 0) + (showCasual ? 1 : 0) + 1;
+  const fortnightly = fortnightlyFor(point);
+  const cols =
+    1 + (showWeekly ? 1 : 0) + (showFortnightly ? 1 : 0) + (showHourly ? 1 : 0) + (showCasual ? 1 : 0) + 2;
 
   if (annual === null) {
     return (
@@ -644,6 +668,14 @@ function ScaleRow({
           {typeof point.weekly === "number" ? formatAUD(point.weekly, 2) : "—"}
         </td>
       ) : null}
+      {showFortnightly ? (
+        <td className="px-4 py-3 text-right">
+          {fortnightly !== null ? formatAUD(fortnightly, 2) : "—"}
+          {fortnightly !== null && typeof point.fortnightly !== "number" ? (
+            <span className="block text-xs font-normal text-warmgray-light">weekly x 2</span>
+          ) : null}
+        </td>
+      ) : null}
       {showHourly ? (
         <td className="px-4 py-3 text-right">{hourly !== null ? formatAUD(hourly, 2) : "—"}</td>
       ) : null}
@@ -658,7 +690,187 @@ function ScaleRow({
           <span className="ml-1 text-xs font-normal text-warmgray-light">(weekly x 52)</span>
         )}
       </td>
+      <td className="px-4 py-3 text-right">
+        <Link
+          href={takeHomeHref(annual)}
+          aria-label={`Take-home pay on ${formatAUD(nearestTakeHomeSalary(annual))}`}
+          className="text-xs font-semibold text-eucalyptus-dark hover:text-navy hover:underline"
+        >
+          Take-home on {formatAUD(nearestTakeHomeSalary(annual))}
+        </Link>
+      </td>
     </tr>
+  );
+}
+
+/**
+ * The answer box (23 Oct 2026): the salary for each main grade on one card,
+ * read from the state's `keyGrades`, each linking to its full table. Renders
+ * nothing for states without `keyGrades`.
+ */
+function SalaryAnswerBox({ state }: { state: NursingStateData }) {
+  const rows = keyGradeRows(state);
+  if (rows.length === 0) return null;
+  const primary = state.instruments[0];
+  const next = state.upcoming?.[0];
+  return (
+    <section
+      id="nurse-salary-answer"
+      aria-labelledby="nurse-salary-answer-heading"
+      className="mb-6 rounded-xl border border-eucalyptus/40 bg-white p-5 shadow-sm"
+    >
+      <h2 id="nurse-salary-answer-heading" className="mb-1 text-lg font-bold text-navy" style={HEADING_FONT}>
+        Nurse salary in {state.shortName}, {ratesYear(state)}
+      </h2>
+      <p className="mb-4 text-sm text-warmgray">
+        Base pay before tax and shift penalties, from {primary.effectiveFrom}.
+        {state.derivation.annual ? " Annual figures are the weekly rate x 52." : ""}
+      </p>
+      <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+        {rows.map((row) => {
+          const single = row.low === row.high;
+          const hourly = hourlyFor(row.low, state);
+          return (
+            <div key={row.grade.label} className="border-b border-sandstone-dark/20 pb-2">
+              <dt className="text-sm text-warmgray">
+                <a href={`#${row.anchor}`} className="hover:text-eucalyptus-dark hover:underline">
+                  {row.grade.label}
+                </a>
+              </dt>
+              <dd className="text-base font-semibold text-navy">
+                {single ? formatAUD(row.lowAnnual) : `${formatAUD(row.lowAnnual)} to ${formatAUD(row.highAnnual)}`}{" "}
+                <span className="text-sm font-normal text-warmgray">
+                  a year{hourly !== null ? `, ${single ? "" : "from "}${formatAUD(hourly, 2)} an hour` : ""}
+                </span>
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+      {next ? (
+        <p className="mt-4 text-sm text-navy">
+          <strong>Next pay rise:</strong> {next.effectiveFrom}.{" "}
+          <a href="#next-pay-rise" className="font-medium text-eucalyptus-dark hover:underline">
+            See the new rates
+          </a>
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
+/** Future pay tables the source already prints, plus the pay deal behind them. */
+function NextPayRise({ state }: { state: NursingStateData }) {
+  const upcoming = state.upcoming ?? [];
+  if (upcoming.length === 0 && !state.payDeal) return null;
+  return (
+    <section id="next-pay-rise">
+      <h2 style={HEADING_FONT}>
+        Next {state.shortName} nurse pay rise
+        {upcoming[0] ? `: ${upcoming[0].effectiveFrom}` : ""}
+      </h2>
+      {state.payDeal ? (
+        <>
+          <ul>
+            {state.payDeal.points.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+          <p className="text-sm text-warmgray">
+            Source:{" "}
+            <a href={state.payDeal.source.url} target="_blank" rel="noreferrer noopener">
+              {state.payDeal.source.title}
+            </a>{" "}
+            ({state.payDeal.source.publisher}).
+          </p>
+        </>
+      ) : null}
+      {upcoming.map((u) => {
+        const anyWeekly = u.rows.some((r) => typeof r.weekly === "number");
+        const anyFortnightly = u.rows.some((r) => typeof r.fortnightly === "number");
+        const anyHourly = u.rows.some((r) => typeof r.hourly === "number");
+        return (
+          <div key={u.effectiveFrom} className="not-prose my-6">
+            <h3 className="mb-2 text-base font-semibold text-navy">Rates from {u.effectiveFrom}</h3>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+              <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">
+                <caption className="sr-only">
+                  {state.name} nursing pay rates from {u.effectiveFrom}
+                </caption>
+                <thead className="bg-sandstone font-semibold text-navy">
+                  <tr>
+                    <th scope="col" className="px-4 py-3">
+                      Role and step
+                    </th>
+                    {anyWeekly ? (
+                      <th scope="col" className="px-4 py-3 text-right">
+                        Weekly
+                      </th>
+                    ) : null}
+                    {anyFortnightly ? (
+                      <th scope="col" className="px-4 py-3 text-right">
+                        Fortnightly
+                      </th>
+                    ) : null}
+                    {anyHourly ? (
+                      <th scope="col" className="px-4 py-3 text-right">
+                        Hourly
+                      </th>
+                    ) : null}
+                    <th scope="col" className="px-4 py-3 text-right">
+                      A year
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                  {u.rows.map((r) => {
+                    const annual =
+                      typeof r.annual === "number"
+                        ? r.annual
+                        : typeof r.weekly === "number"
+                          ? Math.round(r.weekly * WEEKS_PER_YEAR)
+                          : null;
+                    return (
+                      <tr key={r.label}>
+                        <td className="px-4 py-3 font-medium text-navy">{r.label}</td>
+                        {anyWeekly ? (
+                          <td className="px-4 py-3 text-right">
+                            {typeof r.weekly === "number" ? formatAUD(r.weekly, 2) : "—"}
+                          </td>
+                        ) : null}
+                        {anyFortnightly ? (
+                          <td className="px-4 py-3 text-right">
+                            {typeof r.fortnightly === "number" ? formatAUD(r.fortnightly, 2) : "—"}
+                          </td>
+                        ) : null}
+                        {anyHourly ? (
+                          <td className="px-4 py-3 text-right">
+                            {typeof r.hourly === "number" ? formatAUD(r.hourly, 2) : "—"}
+                          </td>
+                        ) : null}
+                        <td className="px-4 py-3 text-right font-medium">
+                          {annual !== null ? formatAUD(annual) : "—"}
+                          {annual !== null && typeof r.annual !== "number" ? (
+                            <span className="ml-1 text-xs font-normal text-warmgray-light">(weekly x 52)</span>
+                          ) : null}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-2 text-xs text-warmgray-light">
+              From{" "}
+              <a href={u.source.url} target="_blank" rel="noreferrer noopener" className="underline">
+                {u.source.title}
+              </a>
+              , read {state.verifiedOn}. These rates are already printed by the source, not projected.
+            </p>
+          </div>
+        );
+      })}
+    </section>
   );
 }
 

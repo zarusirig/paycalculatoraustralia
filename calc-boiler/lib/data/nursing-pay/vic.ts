@@ -34,6 +34,13 @@ const FWC_SOURCE = {
   publisher: "Fair Work Commission",
 };
 
+/** Full agreement text, clause 25.2 and Appendix 2A, as hosted by a covered health service. */
+const AGREEMENT_TEXT = {
+  title: "Nurses and Midwives (Victorian Public Sector) Single Interest Employer Agreement 2024-2028, clause 25.2 and Appendix 2A",
+  url: "https://westerly.wh.org.au/nursing-midwifery/wp-content/uploads/2024/09/Nurses-Midwives-Enterprise-Agreement-2024-2028.pdf",
+  publisher: "Western Health (a covered Victorian public health service)",
+};
+
 const EMPLOYER_SOURCE = {
   title: "Nurses & Midwives Enterprise Agreement 2024-2028 and rates of pay",
   url: "https://westerly.wh.org.au/nursing-midwifery/workforce/enterprise-agreements/",
@@ -46,7 +53,11 @@ export const VIC_NURSING_PAY: NursingStateData = {
   name: "Victoria",
   shortName: "VIC",
   metaTitle: "VIC Nurse Pay Rates 2026 - Victorian Nurses Salary & Wages",
-  h1: "VIC Nurse Pay Rates 2026: Victorian Public Sector Nurses Salary & Wages",
+  // 23 Oct 2026: "nurse salary victoria" (880 a month) and "registered nurse
+  // salary victoria" are the target. The page drew only 254 impressions in
+  // four weeks at position 15, and "salary" queries sat at 19 to 41.
+  salaryTitle: "Nurse Salary Victoria {year}: VIC Nurse Pay Rates",
+  h1: "Nurse Salary Victoria 2026: VIC Public Sector Nurse and Midwife Pay Rates",
   employer: "Victorian public health services (single interest employer bargaining)",
   ordinaryHoursPerWeek: 38,
 
@@ -256,7 +267,78 @@ export const VIC_NURSING_PAY: NursingStateData = {
     "The Victorian Public Mental Health Services Enterprise Agreement 2024-2028, which covers mental health nurses on a separate scale",
   ],
 
-  verifiedOn: "28 August 2026",
+  // Re-checked 23 October 2026 against Appendix 2A of the agreement text
+  // (AGREEMENT_TEXT below). The 11 May 2026 column is unchanged and the
+  // agreement has no new increase beyond its eight dated columns.
+  verifiedOn: "23 October 2026",
+
+  keyGrades: [
+    {
+      label: "RN Grade 2 Year 1 (graduate year)",
+      classification: "Registered Nurse Grade 2",
+      point: "Year 1 (graduate year)",
+    },
+    { label: "RN Grade 2 Year 8", classification: "Registered Nurse Grade 2", point: "Year 8" },
+    {
+      label: "Enrolled nurse, Level 2 Certificate IV",
+      classification: "Enrolled Nurse Level 2 (Certificate IV)",
+      question: "How much does an enrolled nurse earn in Victoria?",
+    },
+    { label: "Clinical nurse specialist", classification: "Clinical Nurse Specialist / Clinical Midwife Specialist" },
+    {
+      label: "Associate nurse unit manager (ANUM)",
+      classification: "Associate Nurse Unit Manager / Associate Midwife Unit Manager",
+    },
+    {
+      label: "Nurse unit manager (NUM)",
+      classification: "Nurse Unit Manager / Midwife Unit Manager",
+      question: "How much does a nurse unit manager earn in Victoria?",
+    },
+    { label: "Nurse practitioner", classification: "Nurse Practitioner" },
+    {
+      label: "RUSON or RUSOM (student)",
+      classification: "Registered Undergraduate Student of Nursing / of Midwifery",
+      question: "What is the RUSON pay rate in Victoria?",
+    },
+  ],
+
+  // The next two dated columns of Appendix 2A Part 1, read 23 October 2026.
+  // Weekly and indicative hourly are both printed by the agreement.
+  upcoming: [
+    {
+      effectiveFrom: "30 November 2026",
+      source: AGREEMENT_TEXT,
+      rows: [
+        { label: "RN Grade 2 Year 1 (graduate year)", classification: "Registered Nurse Grade 2", point: "Year 1 (graduate year)", weekly: 1619.0, hourly: 42.61 },
+        { label: "RN Grade 2 Year 2", classification: "Registered Nurse Grade 2", point: "Year 2", weekly: 1669.6, hourly: 43.94 },
+        { label: "RN Grade 2 Year 8", classification: "Registered Nurse Grade 2", point: "Year 8", weekly: 2089.4, hourly: 54.98 },
+        { label: "EN Level 2 Cert IV Year 1", classification: "Enrolled Nurse Level 2 (Certificate IV)", point: "Year 1", weekly: 1401.8, hourly: 36.89 },
+        { label: "Nurse unit manager Level 1", classification: "Nurse Unit Manager / Midwife Unit Manager", point: "Level 1", weekly: 2664.8, hourly: 70.13 },
+      ],
+    },
+    {
+      effectiveFrom: "first full pay period on or after 10 May 2027",
+      source: AGREEMENT_TEXT,
+      rows: [
+        { label: "RN Grade 2 Year 1 (graduate year)", classification: "Registered Nurse Grade 2", point: "Year 1 (graduate year)", weekly: 1667.6, hourly: 43.88 },
+        { label: "RN Grade 2 Year 8", classification: "Registered Nurse Grade 2", point: "Year 8", weekly: 2152.1, hourly: 56.63 },
+        { label: "EN Level 2 Cert IV Year 1", classification: "Enrolled Nurse Level 2 (Certificate IV)", point: "Year 1", weekly: 1443.9, hourly: 38.0 },
+        { label: "Nurse unit manager Level 1", classification: "Nurse Unit Manager / Midwife Unit Manager", point: "Level 1", weekly: 2744.7, hourly: 72.23 },
+      ],
+    },
+  ],
+
+  payDeal: {
+    points: [
+      "Clause 25.2 of the 2024-2028 agreement sets eight pay dates. Three are left: 30 November 2026, the first full pay period on or after 10 May 2027, and 29 November 2027.",
+      "The 30 November 2026 rise does not apply to every step. A graduate RN (Grade 2 Year 1) stays on $1,619.00 a week until May 2027.",
+      "Shift and on-call allowances move on their own dates. The next allowance column starts on 23 November 2026.",
+    ],
+    source: AGREEMENT_TEXT,
+  },
+
+  midwifeNote:
+    "Victoria gives midwives their own classification (Midwife Grade 2 Year 1 to 8), but each year is paid the same weekly rate as the matching RN Grade 2 year.",
 
   intro:
     "Victorian public health nurses and midwives are covered by a single interest employer agreement approved by the Fair Work Commission (federal, unlike the NSW and Queensland state instruments). Victoria runs registered nurses on a Grade 2 Year 1 to Year 8 ladder and gives midwives their own classification codes at the same money. It is also the one state on this site whose agreement publishes an indicative hourly rate next to every weekly rate, so nothing below has to be worked out.",

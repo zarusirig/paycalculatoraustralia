@@ -87,6 +87,56 @@ export interface PayPoint {
   casualHourly?: number;
   /** Used where a published table has a classification row but no rate yet. */
   note?: string;
+  /**
+   * True for a row that sits outside the normal ladder, such as Queensland's
+   * "Re-entry" rate. It stays in the full table but is not used as the
+   * "starts at" figure in the answer box, titles or FAQs.
+   */
+  offLadder?: boolean;
+}
+
+/**
+ * One row of the answer box at the top of a state page. Points at a real
+ * scale and step, so the box can only ever print a figure the full table also
+ * prints. `question`, when set, adds a search-shaped FAQ answered from the
+ * same row.
+ */
+export interface KeyGrade {
+  /** Short reader-facing label, e.g. "RN year 1". */
+  label: string;
+  /** PayScale.classification, verbatim. */
+  classification: string;
+  /** PayPoint.label. Omitted means the scale's lowest to highest priced step. */
+  point?: string;
+  /** Optional FAQ question this row answers, shaped by real search queries. */
+  question?: string;
+}
+
+/** A row of a future pay table the source has already published. */
+export interface UpcomingPayRow {
+  label: string;
+  /** PayScale.classification the row continues. */
+  classification: string;
+  /** PayPoint.label the row continues. */
+  point: string;
+  annual?: number;
+  weekly?: number;
+  fortnightly?: number;
+  hourly?: number;
+}
+
+/** A dated future pay table, read from the same source as the current rates. */
+export interface UpcomingRates {
+  /** Verbatim date, e.g. "1 April 2027". */
+  effectiveFrom: string;
+  rows: UpcomingPayRow[];
+  source: RateSource;
+}
+
+/** The pay deal behind the current rates, in plain sourced points. */
+export interface PayDeal {
+  points: string[];
+  source: RateSource;
 }
 
 /**
@@ -198,6 +248,22 @@ export interface NursingStateData {
   metaTitle?: string;
   /** H1 override; defaults to a longer form of the title. */
   h1?: string;
+  /**
+   * Salary-led title stem, e.g. "Nurse Salary QLD {year}: QLD Health Pay
+   * Rates". `{year}` is filled from `verifiedOn`, and the RN starting salary
+   * is appended when it fits. Takes priority over `metaTitle`.
+   */
+  salaryTitle?: string;
+  /** Rows for the answer box at the top of the page. */
+  keyGrades?: KeyGrade[];
+  /** Future pay tables the source already prints, nearest first. */
+  upcoming?: UpcomingRates[];
+  /** The pay deal behind these rates. */
+  payDeal?: PayDeal;
+  /** How midwives are paid in this state, from the same source. */
+  midwifeNote?: string;
+  /** Extra FAQ answers that restate what a named source says. */
+  sourceFaqs?: { q: string; a: string }[];
 }
 
 /** Rates for a single classification in the federal Nurses Award 2020. */

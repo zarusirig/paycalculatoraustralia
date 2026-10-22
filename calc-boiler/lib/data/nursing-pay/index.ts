@@ -15,7 +15,8 @@
 // shows the reason instead of a dollar sign.
 // =============================================================================
 
-import type { NursingStateData, NursingStateSlug, PayPoint, PayScale, ScaleFamily } from "./types";
+import type { KeyGrade, NursingStateData, NursingStateSlug, PayPoint, PayScale, ScaleFamily } from "./types";
+import { formatAUD } from "../../constants/australian-tax";
 import { NSW_NURSING_PAY } from "./nsw";
 import { VIC_NURSING_PAY } from "./vic";
 import { QLD_NURSING_PAY } from "./qld";
@@ -154,6 +155,94 @@ export function registeredNurseRange(
   };
 }
 
+/**
+ * Start and top of the base RN ladder, leaving out rows flagged `offLadder`
+ * (Queensland's re-entry rate). This is the "RN starts at" figure used in the
+ * answer box, the salary title and the FAQs. `registeredNurseRange` keeps the
+ * true lowest row for the hub and other pages that already use it.
+ */
+export function registeredNurseLadder(
+  state: NursingStateData,
+): { entry: number; top: number; entryLabel: string; topLabel: string } | null {
+  const scale = baseRegisteredScale(state);
+  if (!scale) return null;
+  const priced = scale.points
+    .filter((p) => !p.offLadder)
+    .map((p) => ({ point: p, annual: annualFor(p) }))
+    .filter((r): r is { point: PayPoint; annual: number } => r.annual !== null);
+  if (priced.length === 0) return null;
+  let low = priced[0];
+  let high = priced[0];
+  for (const row of priced) {
+    if (row.annual < low.annual) low = row;
+    if (row.annual > high.annual) high = row;
+  }
+  return { entry: low.annual, top: high.annual, entryLabel: low.point.label, topLabel: high.point.label };
+}
+
+/**
+ * Fortnightly pay for a pay point. Published fortnightly wins; otherwise a
+ * published weekly rate x 2. Null for states that publish an annual salary
+ * only, so the page never divides an annual figure into a pay it does not set.
+ */
+export function fortnightlyFor(point: PayPoint): number | null {
+  if (typeof point.fortnightly === "number") return point.fortnightly;
+  if (typeof point.weekly === "number") return Math.round(point.weekly * 2 * 100) / 100;
+  return null;
+}
+
+export interface ResolvedKeyGrade {
+  grade: KeyGrade;
+  scale: PayScale;
+  anchor: string;
+  /** The single step asked for, or the lowest priced step when no step is named. */
+  low: PayPoint;
+  /** Same as `low` for a single step; the highest priced step otherwise. */
+  high: PayPoint;
+  lowAnnual: number;
+  highAnnual: number;
+}
+
+/** Look up an answer-box row in the state's own scales. Null if it does not resolve. */
+export function resolveKeyGrade(state: NursingStateData, grade: KeyGrade): ResolvedKeyGrade | null {
+  const scale = state.scales.find((s) => s.classification === grade.classification);
+  if (!scale) return null;
+  const priced = scale.points
+    .filter((p) => !p.offLadder)
+    .map((p) => ({ point: p, annual: annualFor(p) }))
+    .filter((r): r is { point: PayPoint; annual: number } => r.annual !== null);
+  if (priced.length === 0) return null;
+  let lowRow = priced[0];
+  let highRow = priced[0];
+  if (grade.point) {
+    const one = priced.find((r) => r.point.label === grade.point);
+    if (!one) return null;
+    lowRow = one;
+    highRow = one;
+  } else {
+    for (const row of priced) {
+      if (row.annual < lowRow.annual) lowRow = row;
+      if (row.annual > highRow.annual) highRow = row;
+    }
+  }
+  return {
+    grade,
+    scale,
+    anchor: scaleAnchor(state, scale),
+    low: lowRow.point,
+    high: highRow.point,
+    lowAnnual: lowRow.annual,
+    highAnnual: highRow.annual,
+  };
+}
+
+/** All answer-box rows that resolve, in the order the state file lists them. */
+export function keyGradeRows(state: NursingStateData): ResolvedKeyGrade[] {
+  return (state.keyGrades ?? [])
+    .map((g) => resolveKeyGrade(state, g))
+    .filter((r): r is ResolvedKeyGrade => r !== null);
+}
+
 /** The instrument a scale's rates came from. */
 export function instrumentFor(state: NursingStateData, instrumentId: string) {
   return state.instruments.find((i) => i.id === instrumentId);
@@ -178,6 +267,13 @@ export function employerShortName(state: NursingStateData): string {
 }
 
 export function nursingPageTitle(state: NursingStateData): string {
+  if (state.salaryTitle) {
+    const stem = state.salaryTitle.replace("{year}", ratesYear(state));
+    const ladder = registeredNurseLadder(state);
+    if (!ladder) return stem;
+    const withPay = `${stem} (RN from ${formatAUD(ladder.entry)})`;
+    return withPay.length <= 65 ? withPay : stem;
+  }
   if (state.metaTitle) return state.metaTitle;
   return `${state.shortName} Nurse Pay Rates ${ratesYear(state)} - ${employerShortName(state)} Nursing Salary`;
 }

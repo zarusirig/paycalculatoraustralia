@@ -14,8 +14,17 @@
 // =============================================================================
 
 import { formatAUD } from "../../constants/australian-tax";
-import { annualFor, baseRegisteredScale, hourlyFor, registeredNurseRange, WEEKS_PER_YEAR } from "./index";
-import type { NursingStateData } from "./types";
+import {
+  annualFor,
+  annualIsPublished,
+  baseRegisteredScale,
+  fortnightlyFor,
+  hourlyFor,
+  keyGradeRows,
+  registeredNurseLadder,
+  WEEKS_PER_YEAR,
+} from "./index";
+import type { NursingStateData, PayPoint, UpcomingPayRow } from "./types";
 
 export interface NursingFaq {
   q: string;
@@ -29,8 +38,41 @@ function moneyPhrase(state: NursingStateData, annual: number, hourly: number | n
   return `${base}${derived}${suffix}`;
 }
 
+/**
+ * "$87,790 a year ($44.28 an hour, $3,365.00 a fortnight)". Each unit is
+ * printed only when the source publishes it or the state's derivation note
+ * allows it; a derived annual figure says so.
+ */
+export function payPointPhrase(state: NursingStateData, point: PayPoint): string {
+  const annual = annualFor(point);
+  if (annual === null) return "no published rate";
+  const parts: string[] = [];
+  const hourly = hourlyFor(point, state);
+  if (hourly !== null) parts.push(`${formatAUD(hourly, 2)} an hour`);
+  const fortnightly = fortnightlyFor(point);
+  if (fortnightly !== null) parts.push(`${formatAUD(fortnightly, 2)} a fortnight`);
+  if (typeof point.weekly === "number") parts.push(`${formatAUD(point.weekly, 2)} a week`);
+  const derived = annualIsPublished(point) ? "" : ", the weekly rate x 52";
+  return `${formatAUD(annual)} a year${derived}${parts.length ? ` (${parts.join(", ")})` : ""}`;
+}
+
+/** Same phrase for a row of a future table the source has already printed. */
+export function upcomingRowPhrase(row: UpcomingPayRow): string {
+  const annual =
+    typeof row.annual === "number"
+      ? `${formatAUD(row.annual)} a year`
+      : typeof row.weekly === "number"
+        ? `${formatAUD(Math.round(row.weekly * WEEKS_PER_YEAR))} a year (weekly x 52)`
+        : "";
+  const parts: string[] = [];
+  if (typeof row.weekly === "number") parts.push(`${formatAUD(row.weekly, 2)} a week`);
+  if (typeof row.fortnightly === "number") parts.push(`${formatAUD(row.fortnightly, 2)} a fortnight`);
+  if (typeof row.hourly === "number") parts.push(`${formatAUD(row.hourly, 2)} an hour`);
+  return [annual, parts.join(", ")].filter(Boolean).join(", ");
+}
+
 export function nursingStateFaqs(state: NursingStateData): NursingFaq[] {
-  const range = registeredNurseRange(state);
+  const range = registeredNurseLadder(state);
   const rnScale = baseRegisteredScale(state);
   const primary = state.instruments[0];
   const faqs: NursingFaq[] = [];
@@ -64,6 +106,43 @@ export function nursingStateFaqs(state: NursingStateData): NursingFaq[] {
       });
     }
   }
+
+  // Search-shaped questions from the answer box rows (23 Oct 2026, GSC queries).
+  for (const row of keyGradeRows(state)) {
+    if (!row.grade.question) continue;
+    const single = row.low === row.high;
+    const a = single
+      ? `Under the ${primary.name}, the ${row.scale.classification} rate at ${row.low.label} is ${payPointPhrase(
+          state,
+          row.low,
+        )}. That is the rate from ${primary.effectiveFrom}, before shift penalties.`
+      : `Under the ${primary.name}, ${row.scale.classification} pay runs from ${payPointPhrase(state, row.low)} at ${
+          row.low.label
+        } to ${payPointPhrase(state, row.high)} at ${row.high.label}. Rates are from ${primary.effectiveFrom}.`;
+    faqs.push({ q: row.grade.question, a });
+  }
+
+  if (state.midwifeNote && range) {
+    faqs.push({
+      q: `How much does a midwife earn in ${state.shortName}?`,
+      a: `${state.midwifeNote} On the rates from ${primary.effectiveFrom}, that is ${formatAUD(range.entry)} a year at ${
+        range.entryLabel
+      } and ${formatAUD(range.top)} at ${range.topLabel}.`,
+    });
+  }
+
+  const upcoming = state.upcoming ?? [];
+  if (upcoming.length > 0 && upcoming[0].rows.length > 0) {
+    const next = upcoming[0];
+    const rows = next.rows.slice(0, 2).map((r) => `${r.label}: ${upcomingRowPhrase(r)}`);
+    const later = upcoming.length > 1 ? ` A further rise follows on ${upcoming[1].effectiveFrom}.` : "";
+    faqs.push({
+      q: `When is the next nurse pay rise in ${state.shortName}?`,
+      a: `The next published rates under the ${primary.name} start on ${next.effectiveFrom}. ${rows.join(". ")}.${later}`,
+    });
+  }
+
+  for (const extra of state.sourceFaqs ?? []) faqs.push(extra);
 
   faqs.push({
     q: `Which award or agreement covers ${state.name} public hospital nurses?`,
