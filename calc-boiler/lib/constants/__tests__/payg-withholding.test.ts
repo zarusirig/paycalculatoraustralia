@@ -58,6 +58,7 @@ import {
   QUALIFYING_EARNINGS,
   GENERAL_INTEREST_CHARGE,
   PAYDAY_SUPER_CAP_RELIEF,
+  NEGATIVE_GEARING_REFORM,
 } from "../australian-tax";
 
 
@@ -462,8 +463,32 @@ test("Payday Super cap relief bill is introduced but not passed (APH r7554, 14 O
   assert.match(b.url, /^https:\/\/www\.aph\.gov\.au\/.*bId=r7554$/);
   // A bill before Parliament is not law: the two flags must agree.
   assert.equal(PAYDAY_SUPER_CAP_RELIEF.isLaw, b.passed);
-  assert.equal(PAYDAY_SUPER_CAP_RELIEF.verifiedOn, "14 October 2026");
+  assert.equal(PAYDAY_SUPER_CAP_RELIEF.verifiedOn, "22 October 2026");
   assert.match(PAYDAY_SUPER_CAP_RELIEF.atoPageUrl, /^https:\/\/www\.ato\.gov\.au\//);
+  // 22 Oct 2026 re-check: referred to a Senate committee on 15 Oct 2026, report due 13 Nov 2026.
+  const c = PAYDAY_SUPER_CAP_RELIEF.senateCommittee;
+  assert.equal(c.name, "Senate Economics Legislation Committee");
+  assert.equal(c.referred, "15 October 2026");
+  assert.equal(c.submissionsClose, "29 October 2026");
+  assert.equal(c.reportDue, "13 November 2026");
+  assert.match(c.url, /^https:\/\/www\.aph\.gov\.au\//);
+});
+
+test("negative gearing: the quarantining rule is law, the No. 3 bill's exemptions are not", () => {
+  const g = NEGATIVE_GEARING_REFORM;
+  // Tax Reform No. 1 Act 2026: APH r7493 "Assent, Act no: 49, Year: 2026, 26 Jun 2026".
+  assert.equal(g.law.actNumber, "No. 49 of 2026");
+  assert.equal(g.law.assent, "26 June 2026");
+  assert.equal(g.law.quarantiningStarts, "1 July 2027");
+  assert.equal(g.law.grandfatheredBefore, "7.30pm (AEST) on 12 May 2026");
+  assert.match(g.law.url, /bId=r7493$/);
+  // Tax Reform No. 3 Bill 2026, Schedule 5: before the House, not law.
+  assert.equal(g.bill.schedule, "Schedule 5");
+  assert.equal(g.bill.isLaw, false);
+  assert.equal(g.bill.name, PAYDAY_SUPER_CAP_RELIEF.bill.name);
+  assert.equal(g.bill.introduced, PAYDAY_SUPER_CAP_RELIEF.bill.introduced);
+  assert.equal(g.bill.isLaw, PAYDAY_SUPER_CAP_RELIEF.isLaw);
+  assert.equal(g.verifiedOn, PAYDAY_SUPER_CAP_RELIEF.verifiedOn);
 });
 
 test("the maximum contribution base is annual and derives from the concessional cap", () => {

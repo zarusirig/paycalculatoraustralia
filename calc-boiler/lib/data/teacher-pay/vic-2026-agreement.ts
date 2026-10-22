@@ -14,7 +14,21 @@
 // the FWC agreements-in-progress list showed "Initial assessment" on
 // 24 September 2026 and "Member consideration" on 14 October 2026 (the FWC
 // defines Status as whether "we are assessing the application or we have
-// passed it to a Commission Member to consider"). When FWC approves it:
+// passed it to a Commission Member to consider").
+//
+// 22 OCTOBER 2026: the matter was no longer on that list at all (every row
+// read with "Record per page: All", 748 rows from AG2026/251 to AG2026/3066),
+// which is what happens once an application has been decided. The AEU
+// Victorian Branch, a bargaining party, posted that the Commission had
+// approved the agreement and that it takes effect on 23 October 2026. No FWC
+// decision, no department notice and no new department salary schedule had
+// been published when checked (Enterprise Bargaining overview still "Updated
+// 17 September 2026", Resources "Updated 25 August 2026", Salary Rates
+// "Updated 8 May 2025", Industrial Agreements still listing only the VGSA
+// 2022). So `status` stays pending and the union's report is carried in
+// `reportedApproval`, rendered only with that attribution. Re-check daily.
+//
+// When FWC approval is published:
 //   1. move the current column into vic.ts scales,
 //   2. flip VIC_2026_AGREEMENT.status to "approved" and record the date,
 //   3. update vic.ts notices, nextIncrease, faqs and verifiedOn.
@@ -70,9 +84,19 @@ export const VIC_2026_AGREEMENT = {
   /** Fair Work Commission approval application (agreements-in-progress list). */
   fwcMatter: "AG2026/2746",
   fwcLodged: "23 September 2026",
-  /** Last date the FWC list was checked, and the stage it showed. */
-  fwcCheckedOn: "14 October 2026",
-  fwcStage: "member consideration" as "initial assessment" | "member consideration",
+  /** Last date the FWC list was checked, and the stage it showed ("not listed" = decided, decision not yet published). */
+  fwcCheckedOn: "22 October 2026",
+  fwcStage: "not listed" as "initial assessment" | "member consideration" | "not listed",
+  /**
+   * What a bargaining party has said about the outcome. NOT an official
+   * record: the FWC decision and the department's notice were not published
+   * when checked. Rendered only with that attribution.
+   */
+  reportedApproval: {
+    by: "Australian Education Union Victorian Branch",
+    operativeFrom: "23 October 2026",
+    official: false,
+  },
   fwcProgressUrl:
     "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",
   agreementUrl: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615",
