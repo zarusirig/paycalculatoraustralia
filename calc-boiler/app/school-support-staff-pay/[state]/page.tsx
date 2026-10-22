@@ -10,6 +10,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // J6 (wave 4, 24 Sep 2026): one page per state with verified current rates.
 // Targets (DataForSEO AU): slso pay rate nsw 480, sso pay rate 480,
 // education assistant pay wa 70, plus the teacher aide cluster on the hub.
+// H3 (22 Oct 2026): TAS, ACT and NT added; they carry their own publishedOn.
 
 interface PageProps {
   params: Promise<{ state: string }>;
@@ -52,7 +53,7 @@ async function Page({ params }: PageProps) {
           { name: state.code, path: `/${path}/` },
         ],
         faqs: [...state.faqs],
-        published: "2026-09-24",
+        published: state.publishedOn ?? "2026-09-24",
       })}
       <SchoolSupportStatePage state={state} />
     </>

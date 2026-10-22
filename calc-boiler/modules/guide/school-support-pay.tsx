@@ -7,6 +7,7 @@ import {
   SCHOOL_SUPPORT_NOT_BUILT,
   SCHOOL_SUPPORT_STATES,
   SCHOOL_SUPPORT_VERIFIED_ON,
+  SCHOOL_SUPPORT_VERIFIED_ON_H3,
   type SchoolSupportState,
   type SupportTable,
 } from "@/lib/data/school-support-pay";
@@ -30,6 +31,8 @@ import {
 
 const LINK = "text-eucalyptus-dark hover:underline";
 const hourly = (n: number) => `$${n.toFixed(n * 100 === Math.round(n * 100) ? 2 : 4)}`;
+/** "in Tasmania" but "in the Northern Territory" / "in the Australian Capital Territory". */
+const inPlace = (s: SchoolSupportState) => (s.code === "ACT" || s.code === "NT" ? `the ${s.stateName}` : s.stateName);
 
 const STATUS_LABEL: Record<SupportTable["status"], string> = {
   current: "In force",
@@ -98,7 +101,7 @@ export function SchoolSupportStatePage({ state }: { state: SchoolSupportState })
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
           <section>
-            <H2 id="rates">{state.roleName} Pay Rates in {state.stateName}</H2>
+            <H2 id="rates">{state.roleName} Pay Rates in {inPlace(state)}</H2>
             <p>{state.instrument}</p>
             {state.tables.map((t) => <RatesTable key={t.id} table={t} />)}
             <p className="text-sm">{TAX_NOTE}</p>
@@ -164,7 +167,7 @@ export function SchoolSupportHubPage() {
 
       <PageHeader featuredImage title="Teacher Aide Pay by State 2026: School Support Staff Pay Rates">
         <p>
-          <strong>A teacher aide in a government school starts on $38.33 an hour in NSW (SLSO 1), $31.69 in Queensland (OO2), $34.75 in WA (Education Assistant 1.1), $51,622 a year full-time in Victoria (ES 1-1) and $58,360 a year in South Australia (SSO-1).</strong> Each state pays its school support staff under its own award or agreement, with different job titles, hours and pay dates. Private and Catholic school teacher aides are covered by a federal award instead, on our <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
+          <strong>A teacher aide in a government school starts on $38.33 an hour in NSW (SLSO 1), $36.28 in Tasmania (Teacher Assistant, Band 2), $34.75 in WA (Education Assistant 1.1), $31.69 in Queensland (OO2), $51,622 a year full-time in Victoria (ES 1-1), $58,360 in South Australia (SSO-1), $59,725 in the ACT (School Assistant 2/3) and $58,817 in the Northern Territory (school-based AO2 at 92%).</strong> Every state and territory pays its school support staff under its own award or agreement, with different job titles, hours and pay dates. Private and Catholic school teacher aides are covered by a federal award instead, on our <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
         </p>
       </PageHeader>
 
@@ -187,10 +190,10 @@ export function SchoolSupportHubPage() {
                   <Link key={s.slug} href={`/school-support-staff-pay/${s.slug}/`} className={LINK}>{s.code} rates</Link>,
                 ];
               })}
-              caption={<>* Derived full-time equivalent: the hourly rate × the agreement&rsquo;s full-time hours (NSW 31.25, WA 32.5) × 52. Queensland&rsquo;s figure is 38 hours as printed. Victoria and SA publish annual salaries only. Read {SCHOOL_SUPPORT_VERIFIED_ON}.</>}
+              caption={<>* Derived full-time equivalent: the hourly rate × the agreement&rsquo;s full-time hours (NSW 31.25, WA 32.5) × 52. Queensland&rsquo;s figure is 38 hours as printed, and Tasmania&rsquo;s is the department&rsquo;s own full-time rate at 36.75 hours. Victoria, SA, the ACT and the NT publish annual salaries only. NSW to SA read {SCHOOL_SUPPORT_VERIFIED_ON}; Tasmania, the ACT and the NT read {SCHOOL_SUPPORT_VERIFIED_ON_H3}.</>}
             />
             <p>
-              Full-time hours differ: 31.25 a week for a NSW SLSO, 32.5 for a WA Education Assistant and 38 for a Queensland teacher aide, whose department builds its standard job on 30 hours. Compare hourly rates, not annual salaries, when the hours differ.
+              Full-time hours differ: 31.25 a week for a NSW SLSO or an ACT School Assistant 2/3, 32.5 for a WA Education Assistant, 36.75 for a Tasmanian Teacher Assistant or an NT school-based officer, and 38 for a Queensland teacher aide, whose department builds its standard job on 30 hours. Term-time patterns differ too: Tasmanian Teacher Assistants are paid for school terms only, while ACT and NT staff are paid across the school holidays at a scaled annual salary. Compare hourly rates, not annual salaries, when the hours differ.
             </p>
           </section>
 
@@ -204,7 +207,10 @@ export function SchoolSupportHubPage() {
               ))}
             </ul>
             <p>
-              We have not yet verified current rates for {SCHOOL_SUPPORT_NOT_BUILT.join(", ")}, so they are not listed. Other public-sector pay is on the <Link href="/public-service-pay-scales/">public service pay scales</Link> hub and teacher salaries on <Link href="/teacher-pay-australia/">teacher pay by state</Link>.
+              {SCHOOL_SUPPORT_NOT_BUILT.length > 0
+                ? `We have not yet verified current rates for ${SCHOOL_SUPPORT_NOT_BUILT.join(", ")}, so they are not listed. `
+                : "All eight states and territories are covered. "}
+              Other public-sector pay is on the <Link href="/public-service-pay-scales/">public service pay scales</Link> hub and teacher salaries on <Link href="/teacher-pay-australia/">teacher pay by state</Link>.
             </p>
           </section>
 
@@ -212,10 +218,10 @@ export function SchoolSupportHubPage() {
 
           <PageFooter
             slug="school-support-staff-pay"
-            lastVerified={SCHOOL_SUPPORT_VERIFIED_ON}
+            lastVerified={SCHOOL_SUPPORT_VERIFIED_ON_H3}
             sources={sources}
             methodology={<>
-              <p>Each rate is copied from the state&rsquo;s award or agreement for the date shown. Where the instrument publishes hourly rates only (NSW and WA) the annual figure is a full-time equivalent we derive, and is marked. South Australia&rsquo;s figures are the School Services Officer schedule on our SA public service page.</p>
+              <p>Each rate is copied from the state&rsquo;s award or agreement for the date shown. Where the instrument publishes hourly rates only (NSW and WA) the annual figure is a full-time equivalent we derive, and is marked. South Australia&rsquo;s figures are the School Services Officer schedule on our SA public service page. The ACT and NT figures are the school-based rows their agreements print beside the general administrative scale, and Tasmania&rsquo;s are the Teacher Assistant rows of the department&rsquo;s own salary schedule. NSW, Victoria, Queensland, WA and SA were read on {SCHOOL_SUPPORT_VERIFIED_ON}; Tasmania, the ACT and the NT on {SCHOOL_SUPPORT_VERIFIED_ON_H3}.</p>
               <p>General information, not advice.</p>
             </>}
           />

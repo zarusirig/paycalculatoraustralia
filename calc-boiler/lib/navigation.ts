@@ -932,6 +932,9 @@ export const GUIDE_CATEGORIES = [
       { href: "/school-support-staff-pay/qld/", label: "QLD Teacher Aide Pay", description: "Current rates and take-home pay" },
       { href: "/school-support-staff-pay/wa/", label: "WA Education Assistant Pay", description: "Current rates and take-home pay" },
       { href: "/school-support-staff-pay/sa/", label: "SA SSO Pay Rates", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/tas/", label: "TAS Teacher Assistant Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/act/", label: "ACT School Assistant Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/nt/", label: "NT School Support Staff Pay", description: "Current rates and take-home pay" },
     ],
   },
   {
