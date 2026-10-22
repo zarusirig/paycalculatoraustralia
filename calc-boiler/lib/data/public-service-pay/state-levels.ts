@@ -19,6 +19,7 @@
 import { getJurisdiction, levelSections, type LevelSection } from "./index";
 import type { Jurisdiction, PayFaq } from "./types";
 import { formatBandRange, formatSalary } from "./types";
+import { levelFactFaqs } from "./state-level-facts";
 
 export type StateLevelJurisdiction = "vic" | "qld" | "sa";
 
@@ -209,6 +210,8 @@ export function stateLevelFaqs(d: StateLevelData): PayFaq[] {
       q: `How much does ${withArticle(label)} earn?`,
       a: `From ${d.config.effective}, ${label} pays ${formatSalary(range.min)} at the first ${d.config.stepWord} (${first.label}) and ${formatSalary(range.max)} at the top (${last.label}), across ${n} ${d.config.stepWord}s. That is a full-time annual salary before tax, with superannuation paid on top.`,
     },
+    // Level-specific questions from real searches (state-level-facts.ts).
+    ...levelFactFaqs(d),
     {
       q: `What is ${label} pay per fortnight?`,
       a: `Before tax, ${label} is about ${formatSalary(range.min / 26)} a fortnight at the bottom and ${formatSalary(range.max / 26)} at the top, dividing the annual salary by 26. Your payslip can differ slightly because ${d.jurisdiction.shortName} payroll uses its own fortnightly rate. The table on this page shows take-home pay for every ${d.config.stepWord}.`,
