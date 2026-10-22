@@ -72,7 +72,34 @@ export const WELDER: Occupation = {
     "Welding on construction sites or in mining may be paid under an enterprise agreement or another award, so the minimums on this page may not be what applies to you.",
   ],
   notShown: METAL_NOT_SHOWN,
+  lede: `The Manufacturing Award has no single welder rate. It grades welding by the skill the job needs: basic spot and butt welding is C13 at ${money(BASIC.hourly)} an hour, welding that needs more than that is C12 at ${money(SKILLED.hourly)}, and a welder with a fabrication trade certificate is a C10 tradesperson at ${money(TRADE.hourly)} an hour or ${money(TRADE.weekly)} a week from 1 July 2026. Which of the three you are is decided by the work you are required to do and your training, not your job title.`,
+  sections: [
+    {
+      id: "grading",
+      heading: "How the award grades welding work",
+      paragraphs: [
+        "Schedule A of the Manufacturing and Associated Industries and Occupations Award 2020 lists indicative tasks for each wage group, and welding appears at three of them. At C13 (Employee Level II) the indicative task is basic soldering or butt and spot welding skills, or cutting scrap with an oxyacetylene blow pipe (A.5.2). At C12 (Employee Level III) it is welding which requires the exercise of knowledge and skills above level C13 (A.5.3). At C10 the employee is an Engineering/Manufacturing Tradesperson Level I who holds a recognised trade certificate, and the award names the Certificate III in Engineering, Fabrication Trade, among the C10 qualifications (A.3.1). The C13 and C12 levels are production classifications: a process worker who welds on a line is paid for the skill the welding needs, and moves up only when the work, and the training behind it, moves up.",
+        "The award's vehicle manufacturing stream in Schedule B grades the same way with V levels. Welder, electric spot and buff, is a V2 classification, and welding which requires the exercise of knowledge and skills above Level V2 is an indicative task of a V3 employee. A vehicle industry tradesperson Level 1 (V5) holds a trade certificate in the electrical, mechanical or fabrication vehicle industry stream. The dollar figures for the V levels match the C levels alongside them in the rate table, so the same test applies in a car plant as in a fabrication shop: certificate, or production skill level.",
+      ],
+    },
+    {
+      id: "trade-route",
+      heading: "The trade certificate, and the apprenticeship that leads to it",
+      paragraphs: [
+        "The route to the C10 rate is a fabrication trade apprenticeship. The Vehicle Repair, Services and Retail Award lists welder, tradesperson, among its 21 apprenticeship trades (cl 13.2), and the Manufacturing Award's own apprentices are paid the clause 21.6 percentages of the C10 rate while they train, with the Certificate III in Engineering, Fabrication Trade as the qualification. A welder who holds that certificate is a C10 tradesperson from the first day in a new workshop, whatever the job advertisement called the role.",
+        "Jobs and Skills Australia separates first-class welders (322313) from pressure welders (322312) and metal fabricators (322311) inside its unit group 3223, and lists the group's tasks as studying blueprints, drawings and specifications, selecting and preparing metal stock, cutting marked-out sections with hand tools, flame cutting torches and cutting machines, aligning parts with measuring instruments, joining sections by welding, bolting and riveting, examining welds for width of bead, penetration and precision, and cleaning and smoothing welds by filing, chiselling and grinding. Reading blueprints and checking penetration are tradesperson tasks; repetition spot welding on set-up equipment is the C13 task the award describes. The gap between them in 2026-27 is the gap between a C13 and a C10 wage.",
+      ],
+    },
+  ],
   faqs: [
+    {
+      q: "Is spot welding paid at the trade rate?",
+      a: "No. Under the Manufacturing Award, basic soldering or butt and spot welding skills are an indicative task of the C13 classification (Schedule A.5.2), and welding that needs knowledge and skills above C13 is an indicative task of C12. The C10 trade rate is for a tradesperson with a recognised trade certificate, such as the Certificate III in Engineering, Fabrication Trade.",
+    },
+    {
+      q: "Do I need a trade certificate to be paid the C10 welder rate?",
+      a: "The award's C10 classification is an Engineering/Manufacturing Tradesperson Level I who holds a recognised trade certificate or an equivalent qualification, including the Certificate III in Engineering, Fabrication Trade. Welders without a trade certificate are classified by the skill their welding needs, at C13 or C12 in the general stream or V2 and V3 in vehicle manufacturing.",
+    },
     {
       q: "What is the award rate for a welder in 2026?",
       a: `A trade-qualified welder or fabricator is an Engineering/Manufacturing Tradesperson Level I (C10) under the Manufacturing Award: at least ${money(TRADE.hourly)} an hour or ${money(TRADE.weekly)} a week from the first full pay period on or after 1 July 2026, about $${Math.round(TRADE.weekly * 52).toLocaleString("en-AU")} a year before tax. Welding that needs skills above C13 is C12, ${money(SKILLED.hourly)} an hour, and basic spot and butt welding is C13, ${money(BASIC.hourly)} an hour.`,

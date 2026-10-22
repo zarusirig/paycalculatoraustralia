@@ -116,6 +116,11 @@ export function SchoolSupportStatePage({ state }: { state: SchoolSupportState })
             <H2 id="progression">Where You Start and How You Move Up</H2>
             <p>{state.startingPoint}</p>
             <ul>{state.notes.map((n) => <li key={n}>{n}</li>)}</ul>
+            <p>
+              Student wellbeing, engagement and youth work roles are often employed outside the school support structure, by a council or a
+              community organisation under the SCHADS award: see <Link href="/job-pay-rates/youth-worker/">youth worker pay rates</Link> for
+              those minimums.
+            </p>
           </section>
 
           <section>

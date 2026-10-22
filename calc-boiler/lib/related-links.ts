@@ -98,11 +98,11 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/retail-award-rates/": [job("retail-worker", "Retail Worker", "Retail award levels as hourly, weekly and annual pay."), job("retail-manager", "Retail Manager", "Store and department manager levels 4 to 8, hourly and annual."), COLES, WOOLWORTHS, KMART, JUNIOR, PENALTY_GUIDE],
   "/fast-food-award-rates/": [MCDONALDS, SUBWAY, job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), L("/minimum-wage-by-age/15/", "Minimum Wage for 15 Year Olds", "The junior percentage most first jobs start on."), JUNIOR, PENALTY_GUIDE],
   "/pharmacy-award-rates/": [job("pharmacy-assistant", "Pharmacy Assistant", "Pharmacy assistant levels 1 to 4, hourly and annual."), job("pharmacist", "Pharmacist", "Pharmacist pay from intern to manager."), CHEMIST_WAREHOUSE, JUNIOR, PENALTY_GUIDE, TOIL],
-  "/hospitality-award-rates/": [job("bartender", "Bartender", "Bar attendant rates and weekend penalties."), job("chef", "Chef", "Cook and chef grades from commis to head chef."), job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), JUNIOR, PENALTY_GUIDE, L("/apprentice-pay-rates/", "Apprentice Chef Pay", "First to fourth-year apprentice cook minimums, and other trades.")],
+  "/hospitality-award-rates/": [job("bartender", "Bartender", "Bar attendant rates and weekend penalties."), job("chef", "Chef", "Cook and chef grades from commis to head chef."), job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), JUNIOR, PENALTY_GUIDE, L("/apprentice-pay/chef/", "Apprentice Chef Pay", "First to fourth-year cookery apprentice minimums under this award.")],
   "/restaurant-award-rates/": [job("chef", "Chef", "Cook and chef grades from commis to head chef."), job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), job("bartender", "Bartender", "Bar attendant rates and weekend penalties."), JUNIOR, PENALTY_GUIDE, TOIL],
   "/aged-care-award-rates/": [job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "The award for home care and disability support."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/cleaning-award-rates/": [job("cleaner", "Cleaner", "Cleaning services levels and shift penalties."), MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
-  "/hair-and-beauty-award-rates/": [job("hairdresser", "Hairdresser", "Hairdresser and apprentice rates, hourly to annual."), L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Hairdressing and beauty apprentice minimums by year, plus other trades."), JUNIOR, OVERTIME, PENALTY_GUIDE],
+  "/hair-and-beauty-award-rates/": [job("hairdresser", "Hairdresser", "Hairdresser and apprentice rates, hourly to annual."), L("/apprentice-pay/hairdresser/", "Apprentice Hairdresser Pay", "Year 1 to 4 minimums, the 133% Saturday rate and the tool allowance."), JUNIOR, OVERTIME, PENALTY_GUIDE, L("/allowances-guide/", "Allowances Guide", "Tool, laundry and first aid allowances across the awards.")],
   "/nurses-award-rates/": [job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), job("midwife", "Midwife", "Midwife pay by year of experience."), L("/healthcare-worker-pay/", "Nurse Salary Australia by State", "Public hospital nurse scales in every state."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/road-transport-award-rates/": [job("truck-driver", "Truck Driver", "Truck driver grades 1 to 10, hourly and annual."), job("bus-driver", "Bus Driver", "Bus and coach driver pay rates."), job("forklift-operator", "Forklift Operator", "Warehouse, retail, factory and transport forklift rates."), OVERTIME, PENALTY_GUIDE, L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
   "/clerks-award-rates/": [job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), job("bookkeeper", "Bookkeeper", "Bookkeeper pay rates by level."), job("payroll-officer", "Payroll Officer", "Payroll duties from Level 2 to Level 5."), job("medical-receptionist", "Medical Receptionist", "Practice reception pay rates."), MIN_WAGE, OVERTIME, TOIL],
@@ -118,12 +118,12 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/local-government-award-rates/": [L("/enterprise-agreement/", "Enterprise Agreements", "Why most councils pay under an agreement, not the award."), JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL],
   "/live-performance-award-rates/": [JUNIOR, MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
   // --- October 2026 award batch 2 ---
-  "/plumbing-award-rates/": [job("plumber", "Plumber", "Plumber pay from apprentice to qualified, with take-home."), L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums for apprentices by trade and year."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Trade pay, allowances and take-home."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/plumbing-award-rates/": [job("plumber", "Plumber", "Plumber pay from apprentice to qualified, with take-home."), L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4 minimums under this award, allowances already inside the rate."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Trade pay, allowances and take-home."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/pastoral-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL, L("/horticulture-award-rates/", "Horticulture Award Rates", "Fruit and vegetable pickers, and the piece rate rules.")],
   "/horticulture-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, L("/pastoral-award-rates/", "Pastoral Award Rates", "Farm and livestock hands, station hands and dairy workers.")],
   "/health-professionals-award-rates/": [job("physiotherapist", "Physiotherapist", "Physiotherapist pay by year of experience."), job("occupational-therapist", "Occupational Therapist", "OT pay under the new AQF structure."), job("psychologist", "Psychologist", "Psychologist pay by year of experience."), L("/healthcare-worker-pay/", "Healthcare Worker Pay", "Nurses, allied health and support staff compared."), OVERTIME, PENALTY_GUIDE],
   "/timber-award-rates/": [L("/construction-trades-pay/", "Construction & Trades Pay Guide", "What tradies and apprentices actually earn."), job("forklift-operator", "Forklift Operator", "Forklift operator pay under the award."), OVERTIME, PENALTY_GUIDE, TOIL],
-  "/meat-industry-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL, EA],
+  "/meat-industry-award-rates/": [L("/apprentice-pay/butcher/", "Apprentice Butcher Pay", "Year 1 to 4 minimums under this award, with the butcher shop weekend rates."), MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, EA],
   "/commercial-sales-award-rates/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE],
   "/mining-award-rates/": [L("/mining-fifo-pay-guide/", "Mining & FIFO Pay Guide", "How FIFO rosters and agreement rates work."), L("/fifo-pay-calculator/", "FIFO Pay Calculator", "Roster, allowances and take-home for FIFO work."), job("fitter-and-turner", "Fitter and Turner", "Mine maintenance fitters compared with workshop rates."), OVERTIME, PENALTY_GUIDE, EA],
   "/schads-award-pay-rates/": [job("disability-support-worker", "Disability Support Worker", "SCHADS levels for disability support work."), job("youth-worker", "Youth Worker", "Where youth work sits in the SCHADS levels."), job("social-worker", "Social Worker", "Social and community services pay."), job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), OVERTIME, PENALTY_GUIDE, TOIL],
@@ -144,11 +144,10 @@ const JOB_LINKS: Record<string, RelatedLink[]> = {
   actuary: [job("data-analyst", "Data Analyst", "Data analysts' and data scientists' pay."), job("accountant", "Accountant", "Accountants are award-free: the median and the floor.")],
   "mortgage-broker": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), job("real-estate-agent", "Real Estate Agent", "Agent pay, commission and take-home.")],
   paralegal: [L("/legal-services-award-rates/", "Legal Services Award Rates", "Every level of the Legal Services Award."), job("lawyer", "Lawyer", "Law graduates and admitted lawyers.")],
-  lawyer: [job("paralegal", "Paralegal", "Law clerk and legal support award rates.")],
   surveyor: [job("civil-engineer", "Civil Engineer", "Civil engineers' salaries and award exclusions."), job("architect", "Architect", "Architects' award and median pay.")],
   // F4 (Oct 2026)
   "retail-manager": [L("/retail-award-rates/", "Retail Award Rates", "Every General Retail Industry Award level, with penalties."), job("retail-worker", "Retail Worker", "Retail Levels 1 to 4 as hourly, weekly and annual pay.")],
-  "youth-worker": [L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "Every SCHADS level, sleepover and shift rate."), job("disability-support-worker", "Disability Support Worker", "The same award for disability services.")],
+  "youth-worker": [L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "Every SCHADS level, sleepover and shift rate."), job("disability-support-worker", "Disability Support Worker", "The same award for disability services."), L("/local-government-award-rates/", "Local Government Award Rates", "The award for council youth and community workers.")],
   // J8 (9 Oct 2026)
   "vet-nurse": [job("veterinarian", "Veterinarian", "Vet salaries under the same award."), L("/casual-loading-calculator/", "Casual Loading Calculator", "What the 25% casual loading adds to an hourly rate.")],
   bricklayer: [L("/apprentice-pay/bricklayer/", "Apprentice Bricklayer Pay", "Year 1 to 4 minimums with the tool and industry allowances."), L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award."), job("carpenter", "Carpenter", "The CW3 trade rate with a carpenter's tool allowance.")],
@@ -156,16 +155,20 @@ const JOB_LINKS: Record<string, RelatedLink[]> = {
   landscaper: [L("/horticulture-award-rates/", "Horticulture Award Rates", "Farm and nursery work is under a different award."), OVERTIME],
   "personal-trainer": [L("/fitness-industry-award-rates/", "Fitness Industry Award Rates", "Every fitness award level, with weekend casual loadings."), L("/casual-loading-calculator/", "Casual Loading Calculator", "What the casual loading adds to an hourly rate.")],
   "payroll-officer": [L("/clerks-award-rates/", "Clerks Award Pay Rates", "Every Clerks Award level and penalty."), job("bookkeeper", "Bookkeeper", "Bookkeeping duties under the same award.")],
-  "excavator-operator": [L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award."), job("crane-operator", "Crane Operator", "Crane grades under the same award."), job("truck-driver", "Truck Driver", "Road transport grades for tipper and plant float drivers.")],
+  "excavator-operator": [L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award."), job("crane-operator", "Crane Operator", "Crane grades under the same award."), L("/mining-award-rates/", "Mining Award Rates", "Plant and machine operators on mine sites."), job("truck-driver", "Truck Driver", "Road transport grades for tipper and plant float drivers.")],
   // Apprentice spokes (Oct 2026)
-  carpenter: [L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 minimums with the tool and industry allowances."), L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award.")],
-  plumber: [L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4 minimums, allowances already included."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Tradie rates, allowances and overtime.")],
+  carpenter: [L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 minimums with the tool and industry allowances."), L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award."), L("/timber-award-rates/", "Timber Award Rates", "The award for joinery shops, sawmills and furniture making.")],
+  plumber: [L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4 minimums, allowances already included."), L("/plumbing-award-rates/", "Plumbing Award Rates", "Every level of the Plumbing and Fire Sprinklers Award, with the registration allowance."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Tradie rates, allowances and overtime.")],
+  electrician: [L("/electrical-award-rates/", "Electrical Award Rates", "Every level of the Electrical, Electronic and Communications Contracting Award."), job("apprentice-electrician", "Apprentice Electrician", "Apprentice electrician rates by year."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Trade pay, allowances and take-home.")],
+  lawyer: [job("paralegal", "Paralegal", "Law clerk and legal support award rates."), L("/legal-services-award-rates/", "Legal Services Award Rates", "The award for law firm clerical and law clerk staff.")],
+  "real-estate-agent": [L("/real-estate-award-rates/", "Real Estate Award Rates", "Every level of the Real Estate Industry Award, with the commission-only rules."), job("property-manager", "Property Manager", "Property manager pay by level and state."), L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments.")],
+  "property-manager": [L("/real-estate-award-rates/", "Real Estate Award Rates", "Every level of the Real Estate Industry Award."), job("real-estate-agent", "Real Estate Agent", "Agent pay, commission and take-home.")],
   mechanic: [L("/apprentice-pay/mechanic/", "Apprentice Mechanic Pay", "Year 1 to 4 minimums, weekend rates and tool allowance."), L("/manufacturing-award-rates/", "Manufacturing Award Rates", "The award for many engineering trades.")],
   hairdresser: [L("/apprentice-pay/hairdresser/", "Apprentice Hairdresser Pay", "Year 1 to 4 minimums, adult start and take-home."), L("/hair-and-beauty-award-rates/", "Hair and Beauty Award Rates", "Every level, with penalties.")],
   chef: [L("/apprentice-pay/chef/", "Apprentice Chef Pay", "Year 1 to 4 cookery apprentice minimums."), L("/hospitality-award-rates/", "Hospitality Award Rates", "Every level of the hospitality award.")],
   boilermaker: [L("/apprentice-pay/boilermaker/", "Apprentice Boilermaker Pay", "Year 1 to 4 minimums under the Manufacturing Award."), L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("welder", "Welder", "Welding grades under the same award.")],
-  welder: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("boilermaker", "Boilermaker", "The trade rate for fabrication tradespeople.")],
-  "forklift-operator": [job("truck-driver", "Truck Driver", "Road transport grades, including forklift work."), job("retail-worker", "Retail Worker", "Forklift and ride-on operators sit at Level 2 in retail.")],
+  welder: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("boilermaker", "Boilermaker", "The trade rate for fabrication tradespeople."), L("/mining-award-rates/", "Mining Award Rates", "The award for fabrication and maintenance trades on mine sites.")],
+  "forklift-operator": [job("truck-driver", "Truck Driver", "Road transport grades, including forklift work."), job("retail-worker", "Retail Worker", "Forklift and ride-on operators sit at Level 2 in retail."), L("/timber-award-rates/", "Timber Award Rates", "Forklift operators in sawmills and timber yards.")],
   "flight-attendant": [L("/pilot-salary/", "Pilot Salary", "Pilot pay under the Air Pilots Award and airline agreements."), L("/air-traffic-controller-salary/", "Air Traffic Controller Salary", "Airservices Australia agreement pay by level.")],
   "retail-worker": [COLES, WOOLWORTHS, KMART, BUNNINGS, L("/minimum-wage-by-age/16/", "Minimum Wage for 16 Year Olds", "What a 16-year-old must be paid in retail and elsewhere."), job("retail-manager", "Retail Manager", "Where store and department managers sit in the same award.")],
   "pharmacy-assistant": [CHEMIST_WAREHOUSE, L("/pharmacy-award-rates/", "Pharmacy Award Rates", "Every Pharmacy Industry Award level and penalty."), JUNIOR],
@@ -175,9 +178,16 @@ const JOB_LINKS: Record<string, RelatedLink[]> = {
   "truck-driver": [L("/road-transport-award-rates/", "Road Transport Award Rates", "Every grade in the Road Transport and Distribution Award."), L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time."), job("forklift-operator", "Forklift Operator", "Forklift rates in warehouse, factory and retail awards.")],
   "bus-driver": [L("/road-transport-award-rates/", "Road Transport Award Rates", "Driver grades under the Road Transport Award."), AWARD_RATES],
   cleaner: [L("/cleaning-award-rates/", "Cleaning Award Rates", "Cleaning Services Award levels and shift rates."), MIN_WAGE],
-  "apprentice-electrician": [L("/minimum-wage-by-age/18/", "Minimum Wage for 18 Year Olds", "How junior and apprentice rates compare."), AWARD_RATES],
+  "apprentice-electrician": [L("/electrical-award-rates/", "Electrical Award Rates", "The award these apprentice percentages come from."), L("/minimum-wage-by-age/18/", "Minimum Wage for 18 Year Olds", "How junior and apprentice rates compare."), AWARD_RATES],
   "childcare-worker": [L("/minimum-wage-by-age/19/", "Minimum Wage for 19 Year Olds", "Junior percentages for trainees under 21."), AWARD_RATES],
 };
+
+// Allied health occupations paid under the Health Professionals and Support
+// Services Award link up to that award page (Oct 2026 silent-pages pass).
+const HEALTH_PROF_AWARD = L("/health-professionals-award-rates/", "Health Professionals Award Rates", "Every Health Professional and Support Services level, with the 1 October 2026 rates.");
+for (const slug of ["physiotherapist", "occupational-therapist", "psychologist", "dietitian", "podiatrist", "speech-pathologist", "audiologist", "radiographer", "sonographer", "dental-hygienist", "pathology-collector"]) {
+  JOB_LINKS[slug] = [HEALTH_PROF_AWARD, L("/healthcare-worker-pay/", "Healthcare Worker Pay", "Nurses, allied health and support staff compared."), ...(JOB_LINKS[slug] ?? [])];
+}
 
 /** Employer → the award and job pages its rates come from. */
 const EMPLOYER_LINKS: Record<string, RelatedLink[]> = {
@@ -231,8 +241,8 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/centrelink-working-credit-calculator/": [JOBSEEKER, INCOME_TEST_HUB, FORTNIGHTLY_PAY, L("/age-pension-income-test-calculator/", "Age Pension Income Test", "The Work Bonus, the pension's own earnings shield.")],
   "/understanding-your-payslip/": [GROSS_VS_NET, LEAVE_LOADING, L("/travel-allowance/", "Allowances on Your Payslip", "Travel allowance rates and when they are taxed."), TAX_WITHHELD, TOIL, L("/news/payday-super-employees-payslip/", "Payday Super on Your Payslip", "What changed on payslips from July 2026.")],
   "/payslip-generator/": [PAYSLIP, GROSS_VS_NET, LEAVE_LOADING, TAX_WITHHELD],
-  "/overtime-pay-calculator/": [TOIL, PENALTY_GUIDE, L("/casual-loading-calculator/", "Casual Loading Calculator", "The 25% loading and how it interacts with penalties."), AWARD_RATES],
-  "/overtime-penalty-rates-guide/": [OVERTIME, TOIL, EA, AWARD_RATES],
+  "/overtime-pay-calculator/": [TOIL, PENALTY_GUIDE, L("/casual-loading-calculator/", "Casual Loading Calculator", "The 25% loading and how it interacts with penalties."), L("/allowances-guide/", "Allowances Guide", "First aid, tool, laundry and on-call allowances by award."), L("/public-holiday-pay/", "Public Holiday Pay Rates", "Rates for every award we cover, and a calculator."), AWARD_RATES],
+  "/overtime-penalty-rates-guide/": [OVERTIME, TOIL, EA, AWARD_RATES, L("/christmas-day-pay-rates/", "Christmas Day Pay Rates", "What the day pays under each award, and the dates by state.")],
   "/casual-loading-calculator/": [OVERTIME, JUNIOR, L("/full-time-vs-part-time-vs-casual/", "Full-Time vs Part-Time vs Casual", "Leave, loading and hours compared."), AWARD_RATES],
   // --- G3 wave 4 opportunities (24 Sep 2026) ---
   "/sick-leave-calculator/": [L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out."), LEAVE_LOADING, L("/final-pay-calculator/", "Final Pay Calculator", "What is (and isn't) paid out when you leave."), PAYSLIP],
@@ -251,24 +261,24 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/gig-economy-pay-guide/": [L("/delivery-driver-pay-rate/", "Delivery Driver Pay Rate", "The legal hourly minimum for delivery workers from 17 August 2026."), L("/rideshare-delivery-earnings-after-tax/", "Rideshare & Delivery Tax", "GST, income tax and what to set aside, on your figures."), L("/contractor-pay-calculator/", "Contractor Pay Calculator", "Convert a contract rate to real take-home."), L("/contractor-vs-employee-calculator/", "Contractor vs Employee", "Compare both sides on the same income."), L("/cents-per-km/", "Cents per Kilometre", "The car expense methods compared."), TAKE_HOME],
   "/contractor-pay-calculator/": [L("/delivery-driver-pay-rate/", "Delivery Driver Pay Rate", "The legal hourly minimum for delivery workers."), L("/rideshare-delivery-earnings-after-tax/", "Rideshare & Delivery Tax", "GST and tax for drivers and riders."), L("/contractor-vs-employee-calculator/", "Contractor vs Employee", "Compare both sides on the same income."), L("/gig-economy-pay-guide/", "Gig Economy Pay Guide", "Rideshare and delivery earnings, tax and super."), L("/employer-cost-calculator/", "Employer Cost Calculator", "The full cost of employing someone."), TAKE_HOME],
   "/apprentice-pay-rates/": [L("/job-pay-rates/apprentice-electrician/", "Apprentice Electrician Pay", "Full electrical apprentice rates, adult and penalty rates."), L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."), L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4, allowances already included."), L("/construction-trades-pay/", "Construction & Trades Pay", "Tradie rates, allowances and overtime."), JUNIOR, TAKE_HOME],
-  "/graduate-salary-australia/": [HECS_CALC, TAKE_HOME_HUB, JOBS_HUB, L("/first-job-pay-guide/", "First Job Pay Guide", "Payslips, tax and super in your first job."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), PAY_RISE],
-  "/construction-trades-pay/": [L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums by trade and year, with a wages calculator."), L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."), L("/apprentice-pay/bricklayer/", "Apprentice Bricklayer Pay", "Year 1 to 4 with the bricklayer tool allowance."), TAKE_HOME, AWARD_RATES, INCOME_TAX],
+  "/graduate-salary-australia/": [HECS_CALC, TAKE_HOME_HUB, JOBS_HUB, L("/first-job-pay-guide/", "First Job Pay Guide", "Payslips, tax and super in your first job."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), L("/highest-paying-jobs-australia/", "Highest Paying Jobs", "Where each profession's median sits, and what it takes home.")],
+  "/construction-trades-pay/": [L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums by trade and year, with a wages calculator."), L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."), L("/apprentice-pay/bricklayer/", "Apprentice Bricklayer Pay", "Year 1 to 4 with the bricklayer tool allowance."), L("/apprentice-pay/painter/", "Apprentice Painter Pay", "Year 1 to 4 with the painter tool allowance."), L("/electrical-award-rates/", "Electrical Award Rates", "Every level of the electrical contracting award."), TAKE_HOME],
   "/teacher-pay-australia/": [L("/graduate-salary-australia/", "Graduate Salary Australia", "What new graduates earn, teachers included, from official sources."), TAKE_HOME, { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a raise actually adds to each pay." }, AWARD_RATES],
-  "/healthcare-worker-pay/": [L("/graduate-salary-australia/", "Graduate Salary Australia", "What new nurses, doctors and others earn, from official sources."), TAKE_HOME, { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a raise actually adds to each pay." }, AWARD_RATES],
+  "/healthcare-worker-pay/": [L("/graduate-salary-australia/", "Graduate Salary Australia", "What new nurses, doctors and others earn, from official sources."), L("/health-professionals-award-rates/", "Health Professionals Award Rates", "The award for allied health and health support staff."), TAKE_HOME, { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a raise actually adds to each pay." }, L("/nurses-award-rates/", "Nurses Award Rates", "The award floor under the state agreements."), AWARD_RATES],
   // --- end Oct 2026 set ---
 
   // Tax core ↔ salary tables
   "/tax-brackets/": [TAX_ON_HUB, TAX_WITHHELD, TAX_FREE_THRESHOLD, L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time."), L("/australian-tax-and-pay-data/", "Tax and Pay Data (CSV)", "The tax scales and thresholds as a free download.")],
   "/australian-tax-and-pay-data/": [L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time."), L("/minimum-wage-history-australia/", "Minimum Wage History", "How the national minimum wage has changed year by year."), L("/pay-and-tax-changes-calendar/", "Pay and Tax Changes Calendar", "What changes on 1 December, 1 January and 1 July."), L("/embed/", "Live Rate Badges", "Show the current minimum wage or super rate on your site."), L("/australian-pay-report-2026/", "Australian Pay Report 2026", "Take-home pay, minimum wage and award rates in tables."), TAKE_HOME],
   "/pay-and-tax-changes-calendar/": [L("/tax-changes-2026-27/", "Tax Changes 2026-27", "Everything that changed on 1 July."), L("/tax-calendar/", "Tax Calendar", "Tax return, BAS and super due dates."), L("/junior-pay-rates/", "Junior Pay Rates", "Minimum wage by age, from 14 to 20."), L("/australian-tax-and-pay-data/", "Tax and Pay Data (CSV)", "The rates behind these dates as a free download."), L("/minimum-wage-australia/", "Minimum Wage Australia", "The national minimum wage and when it next changes."), TAKE_HOME],
-  "/low-income-tax-offset/": [L("/take-home-pay-on/45000/", "Take-Home Pay on $45,000", "Net pay at an income where LITO is in play."), TAX_FREE_THRESHOLD, L("/super-co-contribution/", "Super Co-Contribution", "The government top-up for lower-income earners."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors offset, stacked with LITO.")],
+  "/low-income-tax-offset/": [L("/take-home-pay-on/45000/", "Take-Home Pay on $45,000", "Net pay at an income where LITO is in play."), TAX_FREE_THRESHOLD, L("/super-co-contribution/", "Super Co-Contribution", "The government top-up for lower-income earners."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors offset, stacked with LITO."), L("/working-australians-tax-offset/", "Working Australians Tax Offset", "The $250 offset that joins LITO from 1 July 2027.")],
   "/tax-free-threshold/": [L("/tax-on/20000/", "Tax on $20,000", "What you pay just above the tax-free threshold."), LITO, TAX_WITHHELD, TAX_BRACKETS],
-  "/tax-withheld-calculator/": [WEEKLY_PAY, FORTNIGHTLY_PAY, PAYG_TABLES, TAKE_HOME_HUB, GROSS_VS_NET, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "PAYG withholding for fortnightly pay.")],
+  "/tax-withheld-calculator/": [WEEKLY_PAY, FORTNIGHTLY_PAY, PAYG_TABLES, TAKE_HOME_HUB, L("/weekly-tax-table/2026-27/", "Weekly Tax Table 2026-27", "The edition for pay dates from 1 July 2026, and which year a pay date belongs to."), L("/fortnightly-tax-table/", "Fortnightly Tax Table", "PAYG withholding for fortnightly pay.")],
   "/medicare-levy-surcharge-calculator/": [L("/medicare-levy/", "Medicare Levy Calculator", "The 2% levy and the low-income reduction."), L("/take-home-pay-on/120000/", "Take-Home Pay on $120,000", "Net pay at an income where the surcharge can bite."), L("/private-health-insurance-medicare/", "Private Health Insurance & Medicare", "Cover, the rebate and the surcharge together."), TAX_BRACKETS],
-  "/medicare-levy/": [MLS, TAX_ON_HUB, TAX_BRACKETS, TAKE_HOME],
+  "/medicare-levy/": [MLS, TAX_ON_HUB, TAX_BRACKETS, TAKE_HOME, L("/australian-tax-and-pay-data/", "Tax and Pay Data (CSV)", "The Medicare levy thresholds and tax scales as a free download."), INCOME_TAX],
 
   // Salary hubs ↔ pay calculators
-  "/take-home-pay-on/": [TAKE_HOME, WEEKLY_PAY, FORTNIGHTLY_PAY, PAY_RISE],
+  "/take-home-pay-on/": [TAKE_HOME, WEEKLY_PAY, FORTNIGHTLY_PAY, PAY_RISE, L("/highest-paying-jobs-australia/", "Highest Paying Jobs", "Median pay for each job we cover, and what it takes home."), JOBS_HUB],
   "/tax-on/": [INCOME_TAX, TAX_WITHHELD, TAX_BRACKETS, FORTNIGHTLY_PAY, WEEKLY_PAY, TAKE_HOME_HUB],
   "/salary-to-hourly/": [L("/hourly-to-annual-salary-calculator/", "Hourly to Annual Salary Calculator", "Convert any hourly rate to a yearly salary."), WEEKLY_PAY, FORTNIGHTLY_PAY, PAY_RISE, TAKE_HOME, TAKE_HOME_HUB],
   "/pay-rise-calculator/": [TAKE_HOME_HUB, INCOME_TAX, TAX_BRACKETS, L("/salary-sacrifice-calculator/", "Salary Sacrifice Calculator", "Put part of the rise into super before tax.")],
@@ -319,7 +329,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/super-co-contribution/": [L("/listo-calculator/", "LISTO Calculator", "The other low-income super offset, on before-tax contributions."), SUPER_CALC, L("/salary-sacrifice-calculator/", "Salary Sacrifice Calculator", "See if sacrificing into super leaves you better off."), LITO, L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), TAKE_HOME],
   "/redundancy-pay-calculator/": [L("/termination-payment-tax-calculator/", "Termination Payment Tax Calculator", "Tax on a redundancy or termination payment, with the caps."), L("/final-pay-calculator/", "Final Pay Calculator", "What you are owed when employment ends."), L("/long-service-leave-calculator/", "Long Service Leave Calculator", "The other leave entitlement, by state."), L("/leave-calculator/", "Leave Payout Calculator", "What unused annual leave is worth when you finish up."), L("/jobseeker-payment-calculator/", "JobSeeker Payment Calculator", "Income support after you finish."), TAKE_HOME],
   "/final-pay-calculator/": [L("/termination-payment-tax-calculator/", "Termination Payment Tax Calculator", "Tax on a redundancy or termination payment."), L("/redundancy-pay-calculator/", "Redundancy Pay Calculator", "Severance entitlements by years of service."), L("/leave-calculator/", "Leave Payout Calculator", "What unused annual leave is worth when you finish up."), L("/long-service-leave-calculator/", "Long Service Leave Calculator", "The other leave entitlement, by state."), LEAVE_LOADING, TAKE_HOME],
-  "/tax-changes-2026-27/": [L("/working-australians-tax-offset/", "Working Australians Tax Offset", "The $250 offset and 14% rate from 1 July 2027."), INCOME_TAX, TAKE_HOME, TAX_BRACKETS, PAY_RISE, L("/tax-bracket-history/", "Tax Bracket History", "How the rates have moved, year by year.")],
+  "/tax-changes-2026-27/": [L("/working-australians-tax-offset/", "Working Australians Tax Offset", "The $250 offset and 14% rate from 1 July 2027."), INCOME_TAX, TAKE_HOME, TAX_BRACKETS, L("/pay-and-tax-changes-calendar/", "Pay and Tax Changes Calendar", "Every dated change to pay and tax rules, in order."), L("/tax-bracket-history/", "Tax Bracket History", "How the rates have moved, year by year.")],
 };
 
 // --- Oct core new pages (5 Oct 2026) ---------------------------------------
@@ -411,6 +421,41 @@ Object.assign(PAGE_LINKS, {
 JOB_LINKS.doctor = [RADIOLOGIST_SALARY, ANAESTHETIST_SALARY, SURGEON_SALARY, GP_SALARY];
 // --- end health salary pages ---------------------------------------------------
 
+// --- Silent pages pass (22 Oct 2026) -------------------------------------------
+// 79 published pages had no impressions in the 28 days to 20 October 2026
+// (docs/seo/2026-10-22-silent-pages-audit.md). Each now gets cards from its
+// cluster hub and from the high-traffic pages whose topic fits. Lists stay at
+// six cards or fewer, so an existing card is replaced only where the new
+// destination is the better fit for the page.
+const WATO = L("/working-australians-tax-offset/", "Working Australians Tax Offset", "The $250 offset and the 14% rate legislated for 1 July 2027.");
+const CALENDAR = L("/pay-and-tax-changes-calendar/", "Pay and Tax Changes Calendar", "Every dated change to pay and tax rules, in order.");
+const DATA_CSV = L("/australian-tax-and-pay-data/", "Tax and Pay Data (CSV)", "The tax scales, Medicare, super, HECS and minimum wage data as free downloads.");
+const LATE_PENALTY = L("/late-tax-return-penalty/", "Late Tax Return Penalty", "The failure-to-lodge penalty and when the ATO waives it.");
+const MINING_AWARD = L("/mining-award-rates/", "Mining Award Rates", "Every level of the Mining Industry Award, with shift and roster rates.");
+const COMMERCIAL_SALES = L("/commercial-sales-award-rates/", "Commercial Sales Award Rates", "The award for commission-paid sales reps and merchandisers.");
+const REAL_ESTATE_AWARD = L("/real-estate-award-rates/", "Real Estate Award Rates", "Minimum rates for agents, and when commission-only pay is allowed.");
+const HORTICULTURE_AWARD = L("/horticulture-award-rates/", "Horticulture Award Rates", "Fruit and vegetable picking and packing, and the piece rate rules.");
+const PASTORAL_AWARD = L("/pastoral-award-rates/", "Pastoral Award Rates", "Farm, station and dairy hands, by level.");
+const WEEKLY_FY_2026 = L("/weekly-tax-table/2026-27/", "Weekly Tax Table 2026-27", "The edition for pay dates from 1 July 2026.");
+const FORTNIGHTLY_FY_2026 = L("/fortnightly-tax-table/2026-27/", "Fortnightly Tax Table 2026-27", "The edition for pay dates from 1 July 2026.");
+const MONTHLY_FY_2026 = L("/monthly-tax-table/2026-27/", "Monthly Tax Table 2026-27", "The edition for pay dates from 1 July 2026.");
+const MONTHLY_FY_2025 = L("/monthly-tax-table/2025-26/", "Monthly Tax Table 2024-25 and 2025-26", "The one ATO edition for pay dates from 1 July 2024 to 30 June 2026.");
+
+Object.assign(PAGE_LINKS, {
+  "/income-tax-calculator/": [TAKE_HOME, TAX_BRACKETS, MARGINAL_RATES, WATO, LITO, TAX_WITHHELD],
+  "/tax-bracket-history/": [TAX_BRACKETS, DATA_CSV, MARGINAL_RATES, INCOME_TAX],
+  "/tax-calendar/": [L("/tax-return-2026/", "Tax Return 2026 Guide", "Deadlines, refund times and what changed this year."), LATE_PENALTY, CALENDAR, L("/tax-return-calculator/", "Tax Return Calculator", "Estimate your refund or bill before you lodge."), PAYG_TABLES, INCOME_TAX],
+  "/commission-tax-calculator/": [L("/bonus-tax-calculator/", "Bonus Tax Calculator", "Tax on a bonus at your marginal rate."), L("/schedule-5-tax-table/", "Schedule 5 Tax Table", "ATO withholding on bonuses, commissions and back pay."), COMMERCIAL_SALES, REAL_ESTATE_AWARD, job("mortgage-broker", "Mortgage Broker", "Broker earnings from tax returns, and how commission is taxed."), PAY_RISE],
+  "/schedule-5-tax-table/": [L("/bonus-tax-calculator/", "Bonus Tax Calculator", "Tax on a bonus at your marginal rate."), L("/commission-tax-calculator/", "Commission Tax Calculator", "Annual tax on commission and what is withheld from the pay."), FORTNIGHTLY_FY_2026, WEEKLY_FY_2026, PAY_RISE, TAKE_HOME],
+  "/monthly-pay-calculator/": [TAKE_HOME, L("/monthly-tax-table/", "Monthly Tax Table", "PAYG withholding for monthly pay cycles."), MONTHLY_FY_2026, MONTHLY_FY_2025, WEEKLY_PAY, FORTNIGHTLY_PAY],
+  "/second-job-tax-calculator/": [TAX_FREE_THRESHOLD, TAX_WITHHELD, WEEKLY_FY_2026, FORTNIGHTLY_FY_2026, TAKE_HOME, INCOME_TAX],
+  "/working-holiday-tax/": [HORTICULTURE_AWARD, PASTORAL_AWARD, L("/hospitality-award-rates/", "Hospitality Award Rates", "Cafe, pub and hotel minimum rates and penalties."), TAKE_HOME, INCOME_TAX, TAX_BRACKETS],
+  "/mining-fifo-pay-guide/": [MINING_AWARD, L("/fifo-pay-calculator/", "FIFO Pay Calculator", "Roster, allowances and take-home for FIFO work."), job("fitter-and-turner", "Fitter and Turner", "Mine maintenance fitters compared with workshop rates."), job("excavator-operator", "Excavator Operator", "Plant operator grades, and what mining pays above them."), TAKE_HOME, EA],
+  "/fifo-pay-calculator/": [MINING_AWARD, L("/mining-fifo-pay-guide/", "Mining & FIFO Pay Guide", "How FIFO rosters and agreement rates work."), job("fitter-and-turner", "Fitter and Turner", "Mine maintenance fitters compared with workshop rates."), TAKE_HOME],
+  "/super-guarantee-rate-history/": [SUPER_CALC, DATA_CSV, L("/payday-super/", "Payday Super", "Super paid every payday from 1 July 2026."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super.")],
+} satisfies Record<string, RelatedLink[]>);
+// --- end silent pages pass -------------------------------------------------------
+
 /**
  * Wider pool used to top up a page that filtered itself out of its own cluster.
  * Ordered by breadth of appeal — the first entries suit almost any visitor.
@@ -458,6 +503,16 @@ const HOLIDAY_LINKS: RelatedLink[] = [
   L("/christmas-shutdown-annual-leave/", "Christmas Shutdown Leave", "When your employer can direct annual leave."),
   L("/easter-public-holiday-pay/", "Easter 2027 Pay", "Good Friday to Easter Monday, by state."),
 ];
+/** The seven holiday guides, in the order the state pages rotate through them. */
+const HOLIDAY_GUIDE_LINKS: RelatedLink[] = [
+  HOLIDAY_LINKS[1],
+  HOLIDAY_LINKS[2],
+  L("/new-years-day-pay-rates/", "New Year's Day Pay Rates", "1 January and New Year's Eve, state by state."),
+  L("/australia-day-public-holiday-pay/", "Australia Day Pay Rates", "26 January 2027 and what the day pays."),
+  HOLIDAY_LINKS[5],
+  HOLIDAY_LINKS[4],
+  HOLIDAY_LINKS[3],
+];
 
 const CLUSTERS: Cluster[] = [
   // --- Apprentice pay spokes (Oct 2026): /apprentice-pay/{trade}/ ---
@@ -484,7 +539,18 @@ const CLUSTERS: Cluster[] = [
   },
   {
     match: (p) => p.startsWith("/public-holiday-pay/") || HOLIDAY_GUIDES.includes(p),
-    links: HOLIDAY_LINKS,
+    links: (p) => {
+      // The hub and its eight state pages carry the holiday guides. Six cards
+      // cannot hold all seven guides plus the hub, so each state page rotates
+      // which five it shows: every guide then has at least six state pages
+      // pointing at it (22 Oct 2026, silent-pages pass).
+      const st = p.match(/^\/public-holiday-pay\/([a-z]+)\/$/)?.[1];
+      if (!st) return HOLIDAY_LINKS;
+      const i = Math.max(0, STATES.indexOf(st as (typeof STATES)[number]));
+      const guides = HOLIDAY_GUIDE_LINKS;
+      const pick = Array.from({ length: 5 }, (_, k) => guides[(i + k) % guides.length]);
+      return [HOLIDAY_LINKS[0], ...pick];
+    },
     limit: 6,
   },
   // --- F4 (Oct 2026): aviation salary pages → cabin crew award page ---
@@ -743,6 +809,7 @@ const CLUSTERS: Cluster[] = [
       HECS_CALC,
       { href: "/extra-super-vs-hecs-repayment/", title: "Extra Super vs HECS", blurb: "Which is the better use of a spare dollar?" },
       TAKE_HOME,
+      { href: "/australian-tax-and-pay-data/", title: "HECS Thresholds Data (CSV)", blurb: "Every repayment threshold and rate as a free download." },
     ],
   },
   // --- Tax tables / withholding ---

@@ -397,6 +397,17 @@ function meatIndustry(): AwardPageCopy {
       ],
       outro: "A permanent MI 3 is paid exactly the same overtime rates, which is why the Meat award's casual overtime column matches the permanent one.",
     },
+    related: {
+      heading: "Apprentice butcher pay under this award",
+      body: [
+        "Clause 16.3 pays apprentices a percentage of the MI 7 rate: 50% (55% with Year 12), 60% (65%), 85% and 95% for an apprenticeship that started on or after 1 January 2014, with the steepest third-year step of any trade on this site. The year-by-year dollars, the butcher shop weekend rates and the cold temperature allowance are on the apprentice page:",
+      ],
+      links: [
+        { href: "/apprentice-pay/butcher/", label: "Apprentice butcher pay", note: "year 1 to 4 under clause 16.3, with take-home" },
+        { href: "/apprentice-pay-rates/", label: "Apprentice pay rates by trade", note: "every trade side by side, with a wages calculator" },
+        { href: "/pastoral-award-rates/", label: "Pastoral Award rates", note: "the award for the farm and station work upstream of processing" },
+      ],
+    },
     faqs: [
       ...commonFaqs(a),
       nmwFaq(m1, "Check your classification in Schedule A: the award sets MI 1 as its lowest grade."),

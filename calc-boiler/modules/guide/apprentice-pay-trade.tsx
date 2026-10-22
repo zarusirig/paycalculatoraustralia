@@ -382,11 +382,18 @@ export default function ApprenticePayTradePage({ spoke }: { spoke: ApprenticeSpo
             )}
           </section>
 
+          {(spoke.sections ?? []).map((s, i) => (
+            <section key={s.heading}>
+              <H2 id={`trade-rules-${i + 1}`}>{s.heading}</H2>
+              {s.paragraphs.map((p) => <p key={p.slice(0, 48)}>{p}</p>)}
+            </section>
+          ))}
+
           <section>
             <H2 id="check-payslip">Check Your Payslip</H2>
             <ol>
               <li>Find your year of apprenticeship{split ? " and whether you completed Year 12" : ""} and read the matching hourly figure in the first table{pg ? " for your type of site" : ""}.</li>
-              <li>{pg ? "Your payslip may show the wage and the tool and industry allowances as separate lines; add them before comparing with the table." : "Add any allowance that applies to you from the allowances section, and compare the total with the hourly rate on your payslip."} The <Link href="/understanding-your-payslip/">payslip guide</Link> explains each line.</li>
+              <li>{pg ? "Your payslip may show the wage and the tool and industry allowances as separate lines; add them before comparing with the table." : "Add any allowance that applies to you from the allowances section, and compare the total with the hourly rate on your payslip."} The <Link href="/understanding-your-payslip/">payslip guide</Link> explains each line, and the <Link href="/allowances-guide/">allowances guide</Link> shows how tool and industry allowances compare across the awards and how they are taxed.</li>
               <li>If you are paid less, ask your employer to explain which award or agreement they use, then contact the Fair Work Ombudsman on 13 13 94. The <Link href="/backpay-calculator/">backpay calculator</Link> shows what a shortfall adds up to.</li>
             </ol>
             <p>

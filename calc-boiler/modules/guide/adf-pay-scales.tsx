@@ -28,8 +28,20 @@ import {
 } from "@/lib/data/adf-pay";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 import FeaturedImage from "@/components/common/featured-image";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
 
 const PAY_GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+
+// Professions the ADF employs under its specialist structures, with what the
+// same profession is paid outside Defence (22 Oct 2026). Figures come from the
+// same data as each pay page.
+const CIVILIAN_COMPARISONS = payGlances(JOB_GROUPS.adfProfessions);
+const UNIFORMED_HUBS = [
+  { href: "/police-pay/", label: "police pay by state" },
+  { href: "/firefighter-pay/", label: "firefighter pay by state" },
+  { href: "/paramedic-pay/", label: "paramedic pay by state" },
+  { href: "/prison-officer-pay/", label: "prison officer pay by state" },
+] as const;
 
 export const ADF_SOURCES: SourceLink[] = [
   { title: "PACMAN Chapter 3 Part 1: Salaries", publisher: "Department of Defence, ADF Pay and Conditions", url: PACMAN_URLS.salaries },
@@ -433,6 +445,32 @@ export function AdfPayScalesHub() {
                   one-star rank and above, and the nuclear-submariner and cyber warfare salary divisions.
                 </li>
               </ul>
+            </section>
+
+            <section id="civilian-comparison">
+              <h2 style={HEADING_FONT}>ADF pay compared with the same job outside Defence</h2>
+              <p>
+                Many ADF employment categories are civilian professions in uniform. The specialist officer structures above are not on
+                this page, but the pay pages for the same professions across every employer are, each leading with the median people
+                in the job reported to the ATO or the award minimum where one applies:
+              </p>
+              <ul>
+                {CIVILIAN_COMPARISONS.map((g) => (
+                  <li key={g.slug}>
+                    <Link href={g.href}>{g.name} pay</Link>: {g.figure}
+                  </li>
+                ))}
+              </ul>
+              <p>
+                The other uniformed services are paid under state agreements rather than PACMAN:{" "}
+                {UNIFORMED_HUBS.map((h, i) => (
+                  <span key={h.href}>
+                    {i > 0 ? (i === UNIFORMED_HUBS.length - 1 ? " and " : ", ") : ""}
+                    <Link href={h.href}>{h.label}</Link>
+                  </span>
+                ))}
+                .
+              </p>
             </section>
 
             <section id="faq">

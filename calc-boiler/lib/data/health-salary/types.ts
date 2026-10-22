@@ -157,6 +157,12 @@ export interface HealthSalaryPage {
   /** Extra paragraph under the staff specialist scales, specific to the job. */
   staffSpecialistNote?: string;
   scenarios: TakeHomeScenario[];
+  /**
+   * Page-specific sections rendered between the after-tax table and the payslip
+   * section (22 Oct 2026): what the labour market statistics say about this
+   * specialty alone, so the six pages built on one template read differently.
+   */
+  sections?: { id: string; heading: string; paragraphs: string[] }[];
   /** "On your payslip" paragraphs. */
   payslip: string[];
   notices: string[];

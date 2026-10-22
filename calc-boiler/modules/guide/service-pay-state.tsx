@@ -19,8 +19,10 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import {
+  SERVICE_OCCUPATIONS,
   SERVICE_OCCUPATION_CONFIG,
   entrySalary,
+  getServicePay,
   ratesYear,
   scaleRanges,
   serviceJurisdictions,
@@ -56,6 +58,13 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
   const authorship = getGuideAuthorship(cfg.authorKey);
   const sources: SourceLink[] = j.sources.map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
   const others = serviceJurisdictions(j.occupation).filter((o) => o.slug !== j.slug && isVerified(o));
+  // The same state's other uniformed services, where a verified table exists
+  // (22 Oct 2026: the police, firefighter and paramedic pages are the natural
+  // way into the prison officer pages, which had no inbound links outside
+  // their own family).
+  const sameState = SERVICE_OCCUPATIONS.filter((o) => o !== j.occupation)
+    .map((o) => ({ occupation: o, page: getServicePay(o, j.slug) }))
+    .filter((x): x is { occupation: typeof x.occupation; page: ServicePayJurisdiction } => x.page !== undefined && isVerified(x.page));
   const lowerNoun = cfg.singular.toLowerCase();
   // Some instruments publish weekly or fortnightly rates; the notes column quotes them.
   const converted = j.scales.some((s) => s.steps.some((step) => /week|fortnight/i.test(step.note ?? "")));
@@ -181,6 +190,35 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
                 </Link>
               </div>
             </section>
+
+            {sameState.length > 0 ? (
+              <section id="other-services">
+                <h2 style={HEADING_FONT}>
+                  Other uniformed services in {j.code}
+                </h2>
+                <p>
+                  {j.code} sets {lowerNoun} pay in its own instrument, and it does the same for its other uniformed services. Each of
+                  these pages is read from that service&rsquo;s {j.code} agreement or determination, so the figures compare like with like:
+                  base salary before shift penalties and allowances.
+                </p>
+                <ul>
+                  {sameState.map(({ occupation, page }) => {
+                    const ocfg = SERVICE_OCCUPATION_CONFIG[occupation];
+                    const entry = entrySalary(page);
+                    const top = topSalary(page);
+                    return (
+                      <li key={occupation}>
+                        <Link href={`${ocfg.hubPath}${page.slug}/`}>
+                          {j.code} {ocfg.singular.toLowerCase()} pay
+                        </Link>
+                        , {page.employer}
+                        {entry !== null && top !== null ? <>: {formatAUD(entry)} at entry to {formatAUD(top)} at the top of the scale</> : null}.
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ) : null}
 
             {others.length > 0 ? (
               <section id="other-states">

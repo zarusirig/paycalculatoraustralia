@@ -39,6 +39,7 @@ import { fyTaxTableFaqs } from "./fy-tax-table-faqs";
 import {
   FY_CYCLES,
   FY_CYCLE_ORDER,
+  STSL_2026_27_THRESHOLDS,
   adjacentFys,
   fyLabel,
   fyLabelOr,
@@ -46,6 +47,7 @@ import {
   fyWindow,
   longDate,
 } from "./fy-tax-table-data";
+import { SUPER_GUARANTEE } from "@/lib/constants";
 import FeaturedImage from "@/components/common/featured-image";
 
 const COMPARE_ROWS: Record<PayFrequency, readonly number[]> = {
@@ -410,6 +412,89 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
                   </tbody>
                 </table>
               </div>
+            </section>
+
+            {/* Year-specific: which other schedules moved with this edition (22 Oct 2026). */}
+            <section id="other-schedules">
+              {isCurrent ? (
+                <>
+                  <h2>What Else Changed for a {cyclePeriodTitle}ly Pay on 1 July 2026</h2>
+                  <p>
+                    The {cycle.period}ly table was one of 12 tax tables and 15 withholding schedules the ATO reissued for payments made from
+                    1 July 2026. Its index of tax tables says the updates carry the <em>Treasury Laws Amendment (More Cost of Living
+                    Relief) Act 2025</em> (the 15% rate and the higher Medicare levy low-income thresholds), the annual indexing of the
+                    repayment income thresholds for study and training support loans, and refreshed examples and cap amounts. For a payroll
+                    that was correct on 30 June 2026, three other documents changed with this one:
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Study and training support loans, {cycle.period}ly ({STSL_2026_27_THRESHOLDS[frequency].nat}).</strong> The 2026-27
+                      edition withholds a loan component once {cycle.period}ly income reaches{" "}
+                      {formatAUD(STSL_2026_27_THRESHOLDS[frequency].tft, STSL_2026_27_THRESHOLDS[frequency].tft % 1 ? 2 : 0)} for a payee who
+                      claims the tax-free threshold, or {formatAUD(STSL_2026_27_THRESHOLDS[frequency].noTft, STSL_2026_27_THRESHOLDS[frequency].noTft % 1 ? 2 : 0)}{" "}
+                      for one who does not. It applies to all earnings including taxable allowances, bonuses and commissions, but not to lump sum
+                      termination payments, and it is added to the amount from the table above. The lookup on this page does that addition when
+                      you tick the study loan box; the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> shows the annual repayment
+                      the withholding is aiming at.
+                    </li>
+                    <li>
+                      <strong>Schedule 5 (NAT 3348), back payments, commissions and bonuses.</strong> Also reissued for 1 July 2026. Method B(ii)
+                      works from the regular {cycle.period}ly table on this page, so a bonus paid with a {cycle.period}ly pay dated in 2026-27 is
+                      checked against this edition first: see the <Link href="/schedule-5-tax-table/">Schedule 5 tax table</Link> and the{" "}
+                      <Link href="/bonus-tax-calculator/">bonus tax calculator</Link>.
+                    </li>
+                    <li>
+                      <strong>Payday Super.</strong> From {SUPER_GUARANTEE.paydaySuperStart} the superannuation guarantee is paid with each pay
+                      rather than quarterly, so the super line now moves on the same {cycle.period}ly cycle as the withholding in this table:
+                      see <Link href="/payday-super/">Payday Super</Link>.
+                    </li>
+                  </ul>
+                  <p>
+                    The next edition is already legislated. From 1 July 2027 the 15% rate falls to 14% and the{" "}
+                    <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> of $250 begins, so a {cycle.period}ly pay
+                    dated on or after that day will need the 2027-28 table, not this one. Every dated change is on the{" "}
+                    <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2>Which 2025-26 Schedules Were New, and Which Were Not</h2>
+                  <p>
+                    The ATO&apos;s list of tax tables for 2025-26 points to the same {cycle.period}ly table ({cycle.ato.nat}) and Schedule 1
+                    (NAT 1004) that applied from 1 July 2024, which is why this page covers both years. But not every withholding document stood
+                    still on 1 July 2025, and a payroll correcting a pay dated in 2025-26 has to pick the right edition of each one:
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Unchanged for both years:</strong> the weekly, fortnightly and monthly tables (NAT 1005, 1006, 1007), the daily and
+                      casual workers table (NAT 1024), Schedule 1, the Medicare levy adjustment and no-and-half Medicare levy tables, and the
+                      payee-specific schedules for horticulture and shearing (Schedule 2), entertainers (Schedule 3), seniors and pensioners
+                      (Schedule 9) and working holiday makers (Schedule 15). Schedules 4, 6, 7, 10, 11 and 14 also kept their 1 July 2024 to
+                      30 June 2026 editions.
+                    </li>
+                    <li>
+                      <strong>New for 2025-26:</strong> Schedule 5 for back payments, commissions and bonuses (NAT 3348) was issued for payments
+                      made from 1 July 2025 to 30 June 2026, as were Schedule 12 for superannuation lump sums and Schedule 13 for superannuation
+                      income streams. A bonus paid with a {cycle.period}ly pay in 2025-26 therefore used the 2025-26 Schedule 5 against this
+                      unchanged regular table: see the <Link href="/schedule-5-tax-table/">Schedule 5 tax table</Link>.
+                    </li>
+                    <li>
+                      <strong>Changed twice:</strong> Schedule 8 (NAT 3539) and the study and training support loans tables (NAT 2173, 2185 and
+                      2186) had one edition for payments made from 1 July 2025 to 23 September 2025 and another from 24 September 2025 to
+                      30 June 2026, after the HELP repayment changes legislated that year. That is why this page shows income tax only: a payee
+                      with a study loan had a different loan component depending on which side of 24 September 2025 the pay date fell, while the
+                      amount in the table above did not move. The <Link href="/stsl-on-payslip/">STSL on your payslip</Link> guide explains how
+                      the component is shown.
+                    </li>
+                  </ul>
+                  <p>
+                    For a correction, then, take the {cycle.period}ly amount from this page for any pay dated between {longDate(info.payDatesFrom)}{" "}
+                    and {longDate(info.payDatesTo)}, and add the Schedule 8 component from the edition in force on that pay date. Pay dated from
+                    1 July 2026 moved to the <Link href={fyPath(frequency, "2026-27")}>{cycle.label.toLowerCase()} tax table for 2026-27</Link>,
+                    which carries a single 2026-27 study loan table and does the addition for you.
+                  </p>
+                </>
+              )}
             </section>
 
             <section id="coefficients">

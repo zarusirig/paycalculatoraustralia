@@ -27,10 +27,78 @@ import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 // J6: each APS level section links to its own grade page.
 import { apsGradeHrefForLabel } from "@/lib/data/public-service-pay/aps-grades";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
+import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, getServicePay, isVerified } from "@/lib/data/service-pay";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
+
+/**
+ * Jobs the public sector employs that are paid outside the classification
+ * scale on this page: the state's uniformed services (each with its own
+ * agreement), council staff under the Local Government Industry Award, and the
+ * professional and administrative roles whose pay across all employers has its
+ * own page. Added 22 Oct 2026 so those pages are reached from a page people
+ * actually land on.
+ */
+function OutsideTheScale({ jurisdiction }: { jurisdiction: Jurisdiction }) {
+  const stateSlug = jurisdiction.slug === "aps" ? null : jurisdiction.slug;
+  const stateCode = stateSlug ? stateSlug.toUpperCase() : "";
+  const uniformed = stateSlug
+    ? SERVICE_OCCUPATIONS.map((o) => ({ occupation: o, page: getServicePay(o, stateSlug) })).filter(
+        (x) => x.page !== undefined && isVerified(x.page),
+      )
+    : [];
+  const roles = payGlances(JOB_GROUPS.publicServiceRoles);
+  return (
+    <section id="outside-the-scale">
+      <h2 style={HEADING_FONT}>Pay set outside the {jurisdiction.shortName} scale</h2>
+      <p>
+        Not everyone who works for {stateSlug ? "the state" : "the Commonwealth"} is on these classifications.
+        {uniformed.length > 0 ? (
+          <>
+            {" "}Uniformed services have their own agreements, each read from the primary instrument:{" "}
+            {uniformed.map(({ occupation, page }, i) => {
+              const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
+              return (
+                <span key={occupation}>
+                  {i > 0 ? (i === uniformed.length - 1 ? " and " : ", ") : ""}
+                  <Link href={`${cfg.hubPath}${page!.slug}/`}>
+                    {stateCode} {cfg.singular.toLowerCase()} pay
+                  </Link>
+                </span>
+              );
+            })}
+            .
+          </>
+        ) : null}
+        {stateSlug ? (
+          <>
+            {" "}Council employees are not state public servants at all: their minimum rates come from the{" "}
+            <Link href="/local-government-award-rates/">Local Government Industry Award</Link>, with most councils paying above it under an
+            enterprise agreement.
+          </>
+        ) : null}
+      </p>
+      {roles.length > 0 ? (
+        <>
+          <p>
+            Many public servants do a job that also exists in the private sector. These pages show what that job pays across every employer,
+            from award minimums and ATO tax-return data, so a classification can be compared with the wider market:
+          </p>
+          <ul>
+            {roles.map((r) => (
+              <li key={r.slug}>
+                <Link href={r.href}>{r.name} pay</Link>: {r.figure}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+    </section>
+  );
+}
 
 const BASIS_LABEL: Record<PaySchedule["basis"], string> = {
   award: "Award rate",
@@ -572,6 +640,9 @@ export default function PublicServicePayJurisdictionPage({
                 </li>
               </ul>
             </section>
+
+            {/* Pay set outside the classification scale (22 Oct 2026) */}
+            <OutsideTheScale jurisdiction={jurisdiction} />
 
             {/* Gaps */}
             <section id="not-published">

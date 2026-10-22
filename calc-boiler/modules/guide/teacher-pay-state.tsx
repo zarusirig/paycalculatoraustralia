@@ -495,7 +495,9 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               <p>
                 To check the PAYG amount on a single payslip, look up your gross pay in the ATO{" "}
                 <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or, if your school
-                pays monthly, the <Link href="/monthly-tax-table/">monthly tax table</Link>.
+                pays monthly, the <Link href="/monthly-tax-table/">monthly tax table</Link>. For how a
+                teacher&rsquo;s pay compares with other occupations, by median weekly pay and take-home,
+                see the <Link href="/highest-paying-jobs-australia/">highest paying jobs in Australia</Link>.
               </p>
               <div className="not-prose my-8">
                 <Link

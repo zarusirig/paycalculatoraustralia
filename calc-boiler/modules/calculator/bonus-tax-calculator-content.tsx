@@ -22,6 +22,11 @@ import {
 } from "@/lib/constants";
 import { BONUS_TAX_FAQS, BONUS_5K, BONUS_5K_ROWS } from "./bonus-tax-faqs";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
+
+// Professions where incentive pay is common, with the salary each pay page
+// leads with (22 Oct 2026). Read from the same data as those pages.
+const BONUS_JOBS = payGlances(JOB_GROUPS.bonusEarners);
 
 // Google AU "related searches" for "bonus tax calculator" / "how much tax on
 // bonus australia" (Sept 2026), each pointed at the page that answers it.
@@ -316,6 +321,25 @@ export default function BonusTaxCalculatorContent() {
             </ul>
             <p className="text-warmgray">
               An employee on $90,000 receiving a $10,000 bonus pays <strong>{formatAUD(EX_TAX_ON_BONUS)}</strong> in tax on the bonus ({formatPercent(EX_TAX_ON_BONUS / 10_000, 0)}) &mdash; the same as FY2025-26, because both figures sit in the unchanged {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket. Their saving shows up in the annual tax bill instead. Check the full impact on your salary using our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
+            </p>
+            <p className="mt-4 text-warmgray">
+              The next change is already legislated: from 1 July 2027 the 15% rate falls to 14% and a new <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of $250 starts, so a bonus paid after that date in the second bracket is taxed a point lower again. Every dated change to pay and tax rules, including the 1 December 2026 junior rate step, is on the <Link href="/pay-and-tax-changes-calendar/" className="text-eucalyptus-dark hover:underline">pay and tax changes calendar</Link>. Your employer still works out the regular part of the pay from the ATO table for the pay date: the <Link href="/weekly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">weekly</Link>, <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly</Link> or <Link href="/monthly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">monthly tax table for 2026-27</Link>, before the Schedule 5 amount for the bonus is added.
+            </p>
+          </section>
+
+          {/* --- H2: Which jobs pay bonuses? (22 Oct 2026) --- */}
+          <section id="bonus-jobs">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Which Jobs Commonly Pay a Bonus?</h2>
+            <p className="mb-4 text-warmgray">
+              Performance and incentive pay is most common in professions with no modern award, where the National Minimum Wage is the only legal floor and the whole package is set by contract. The salary each page leads with is the median people in the job reported to the ATO, before any bonus:
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-warmgray">
+              {BONUS_JOBS.map((j) => (
+                <li key={j.slug}><Link href={j.href} className="text-eucalyptus-dark hover:underline">{j.name} pay</Link>: {j.figure}</li>
+              ))}
+            </ul>
+            <p className="mt-4 text-warmgray">
+              Commission-paid roles are taxed the same way: see <Link href="/job-pay-rates/mortgage-broker/" className="text-eucalyptus-dark hover:underline">mortgage broker pay</Link> and the <Link href="/commercial-sales-award-rates/" className="text-eucalyptus-dark hover:underline">Commercial Sales Award</Link>, the award for commission-paid sales reps and merchandisers.
             </p>
           </section>
 

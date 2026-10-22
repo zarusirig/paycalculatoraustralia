@@ -282,6 +282,9 @@ export default function RetailAwardRatesPage() {
                 Fixed-dollar allowances in clause 19 of the award, from {RETAIL_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost are not listed.
               </p>
               <AllowanceTable allowances={RETAIL_ALLOWANCES} caption="Retail award allowances" />
+              <p className="text-sm">
+                How these compare with the allowances in other awards, and how each is taxed: <Link href="/allowances-guide/">allowances guide</Link>.
+              </p>
               <TakeHomeLinks rows={MATRIX_ROWS} heading="What does a retail rate take home?" />
             </section>
 
@@ -323,6 +326,11 @@ export default function RetailAwardRatesPage() {
                 <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> &mdash; social, community and home care</li>
                 <li><Link href="/retail-hospitality-pay-guide/">Working in Retail &amp; Hospitality</Link> &mdash; rights, rosters and take-home pay</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; your award rate after tax</li>
+                <li><Link href="/job-pay-rates/retail-manager/">Retail Manager Pay Rates</Link> &mdash; where store and department managers sit, levels 4 to 8</li>
+                <li><Link href="/job-pay-rates/forklift-operator/">Forklift Operator Pay Rates</Link> &mdash; the Level 2 retail rate against warehouse and transport awards</li>
+                <li><Link href="/christmas-day-pay-rates/">Christmas Day</Link>, <Link href="/boxing-day-pay-rates/">Boxing Day</Link>, <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day</Link>, <Link href="/australia-day-public-holiday-pay/">Australia Day</Link> and <Link href="/easter-public-holiday-pay/">Easter</Link> pay &mdash; the retail public holiday rate on each day, with the dates by state</li>
+                <li><Link href="/christmas-shutdown-annual-leave/">Christmas Shutdown and Annual Leave</Link> &mdash; when a store that closes can direct you to take leave</li>
+                <li><Link href="/pay-and-tax-changes-calendar/">Pay and Tax Changes Calendar</Link> &mdash; the dated steps of the 1 December 2026 junior rate change</li>
               </ul>
             </section>
 

@@ -16,7 +16,14 @@ import {
   NMW_PERIODS,
   currentRow,
 } from "@/modules/guide/minimum-wage-australia-data";
+import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
+import { APPRENTICE_SPOKES, headlineRate } from "@/lib/data/apprentice-pay/spokes";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
 import FeaturedImage from "@/components/common/featured-image";
+
+// Award-free professions: the National Minimum Wage is their only legal floor,
+// and what they are actually paid comes from ATO tax-return data (22 Oct 2026).
+const AWARD_FREE_JOBS = payGlances(JOB_GROUPS.awardFree);
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const money = (v: number) => formatAUD(v, 2);
@@ -188,6 +195,59 @@ export default function MinimumWageAustraliaPage() {
                   Adult full-time and part-time rates from the first full pay period on or after {NMW_DECISION.operativeFrom}, from each award&rsquo;s minimum rates clause. Other awards: see <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">award rates</Link>.
                 </p>
               </div>
+              <h3>The entry rate in every award we cover</h3>
+              <p>
+                The same comparison for all {AWARD_DIRECTORY.length} awards with a full rate table on this site. The entry rate is the adult Level 1 (or first adult) classification, so it shows how far above the {money(NMW.hourly)} National Minimum Wage each award starts; higher classifications are on each award page.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[34rem] text-left text-sm text-navy">
+                    <caption className="sr-only">Entry-level adult rate in every modern award on this site, compared with the National Minimum Wage</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-5 py-4">Award</th>
+                        <th scope="col" className="px-5 py-4">Entry classification</th>
+                        <th scope="col" className="px-5 py-4">Hourly</th>
+                        <th scope="col" className="px-5 py-4">Above NMW</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {AWARD_DIRECTORY.map((a) => (
+                        <tr key={a.href}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">
+                            <Link href={a.href} className="text-eucalyptus-dark hover:underline">{a.name.replace(/ Award 20\d\d$/, "")} award rates</Link>
+                          </th>
+                          <td className="px-5 py-3 text-xs text-warmgray">{a.headlineLevel}</td>
+                          <td className="px-5 py-3 font-medium">{money(a.headlineHourly)}</td>
+                          <td className="px-5 py-3">{a.headlineHourly - NMW.hourly < 0.005 ? "Same" : `+${money(a.headlineHourly - NMW.hourly)}`}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <h3>Jobs with no award: the minimum wage is the only floor</h3>
+              <p>
+                Some professions are not covered by any modern award, so the National Minimum Wage is the legal floor and the market sets the rest. For these jobs the pay pages lead with what people in the job reported to the ATO:{" "}
+                {AWARD_FREE_JOBS.map((j, i) => (
+                  <span key={j.slug}>
+                    {i > 0 ? (i === AWARD_FREE_JOBS.length - 1 ? " and " : ", ") : ""}
+                    <Link href={j.href}>{j.name.toLowerCase()}</Link> ({j.figure})
+                  </span>
+                ))}
+                .
+              </p>
+              <h3>Apprentices</h3>
+              <p>
+                The National Minimum Wage order does not bind an apprentice under a training contract. Their minimum is the award&rsquo;s apprentice percentage, which is why a first-year apprentice can lawfully be paid under {money(NMW.hourly)} an hour: from {NMW_DECISION.operativeFrom}, with Year 12 completed,{" "}
+                {APPRENTICE_SPOKES.map((s, i) => (
+                  <span key={s.slug}>
+                    {i > 0 ? (i === APPRENTICE_SPOKES.length - 1 ? " and " : ", ") : ""}
+                    <Link href={`/apprentice-pay/${s.slug}/`}>apprentice {s.label.toLowerCase()}s start on {money(headlineRate(s, 1, "completed").hourly)}</Link>
+                  </span>
+                ))}
+                .
+              </p>
             </section>
 
             <section id="casual-part-time">
@@ -240,7 +300,7 @@ export default function MinimumWageAustraliaPage() {
                 </div>
               </div>
               <p>
-                Every rate back to 2010 is on the <Link href="/minimum-wage-history-australia/">minimum wage history</Link> page.
+                Every rate back to 2010 is on the <Link href="/minimum-wage-history-australia/">minimum wage history</Link> page, and as a free CSV on the <Link href="/australian-tax-and-pay-data/">tax and pay data</Link> page. The 1 July increase is one of several dated changes to pay each year; the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link> lists them in order, including the 1 December 2026 junior rate step and the 1 July 2027 tax cut.
               </p>
             </section>
 

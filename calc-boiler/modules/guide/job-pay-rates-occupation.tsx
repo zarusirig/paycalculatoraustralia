@@ -555,6 +555,10 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                     ))}
                   </tbody>
                 </TableShell>
+                <p className="text-base">
+                  How each kind of allowance is paid and taxed, across every award we cover:{" "}
+                  <Link href="/allowances-guide/">allowances guide</Link>.
+                </p>
               </section>
             )}
 
@@ -668,12 +672,18 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                     );
                   })}
                 </div>
-                {sector ? (
-                  <p>
-                    Every {sector.title.toLowerCase()} job is on the{" "}
-                    <Link href={`/job-pay-rates/#${sector.id}`}>job pay rates hub</Link>.
-                  </p>
-                ) : null}
+                <p>
+                  {sector ? (
+                    <>
+                      Every {sector.title.toLowerCase()} job is on the{" "}
+                      <Link href={`/job-pay-rates/#${sector.id}`}>job pay rates hub</Link>, and{" "}
+                    </>
+                  ) : (
+                    <>Every job we cover is on the <Link href="/job-pay-rates/">job pay rates hub</Link>, and </>
+                  )}
+                  the <Link href="/highest-paying-jobs-australia/">highest paying jobs ranking</Link> sets each job&rsquo;s median pay
+                  against the others, with the take-home on each.
+                </p>
               </section>
             )}
 

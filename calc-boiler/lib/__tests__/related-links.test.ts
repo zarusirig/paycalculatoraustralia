@@ -10,6 +10,7 @@ import path from "node:path";
 
 import { getRelatedLinks } from "../related-links";
 import { hasPage } from "../data/salary-pages";
+import { PAYG_TABLE_YEARS } from "../constants/payg-withholding";
 
 const APP = path.join(process.cwd(), "app");
 const STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
@@ -36,6 +37,11 @@ function routeExists(href: string): boolean {
       return /^(1[4-9]|20)$/.test(slug);
     case "apprentice-pay":
       return ["carpenter", "bricklayer", "painter", "plumber", "mechanic", "hairdresser", "chef", "boilermaker", "butcher"].includes(slug);
+    case "weekly-tax-table":
+    case "fortnightly-tax-table":
+    case "monthly-tax-table":
+      // The year-locked pages, /<cycle>-tax-table/[fy]/ (modules/tax-tables/fy-tax-table-data.ts).
+      return (PAYG_TABLE_YEARS as readonly string[]).includes(slug);
     case "take-home-pay-on":
       return hasPage("take-home", Number(slug));
     case "tax-on":
@@ -71,6 +77,9 @@ function samplePaths(): string[] {
     if (/^[a-z-]+\.ts$/.test(f) && !/(index|types)/.test(f)) out.push(`/pay-rates/${f.replace(/\.ts$/, "")}/`);
   }
   out.push("/take-home-pay-on/45000/", "/take-home-pay-on/85000/", "/take-home-pay-on/150000/", "/tax-on/40000/", "/tax-on/120000/", "/salary-to-hourly/60000/", "/hourly-to-salary/30/", "/news/deeming-rates-change-2026/");
+  // The public holiday state pages rotate their cards (22 Oct 2026), so check every state.
+  for (const s of STATES) out.push(`/public-holiday-pay/${s}/`);
+  for (const fy of PAYG_TABLE_YEARS) out.push(`/weekly-tax-table/${fy}/`, `/fortnightly-tax-table/${fy}/`, `/monthly-tax-table/${fy}/`);
   return out;
 }
 

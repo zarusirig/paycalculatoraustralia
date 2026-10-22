@@ -22,6 +22,14 @@ import {
 } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
+
+// Fortnightly take-home on the salary each profession's pay page leads with
+// (22 Oct 2026). The gross figure is the ATO median salary or wages, or the
+// award annual rate, read from the same data as the destination page.
+const PROFESSION_ROWS = payGlances(JOB_GROUPS.salaried)
+  .map((g) => ({ ...g, pay: calculatePayBreakdown({ grossSalary: g.annual, includeHECS: false, hasPrivateHealth: true }) }))
+  .sort((a, b) => b.annual - a.annual);
 
 // Google AU "related searches" for "fortnightly pay calculator" and
 // "fortnightly tax calculator" (Sept 2026), each pointed at the page that answers it.
@@ -156,6 +164,9 @@ export default function FortnightlyPayCalculatorContent() {
             <p className="mt-3 text-sm text-warmgray">
               ATO fortnightly tax table amounts for a resident claiming the tax-free threshold, no HECS-HELP debt. See every $1 step on the <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link>.
             </p>
+            <p className="mt-3 text-warmgray">
+              The ATO picks the table from the date the pay is made, not the period it covers. A fortnightly pay dated from 1 July 2026 uses the <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly tax table for 2026-27</Link>; a pay dated between 1 July 2024 and 30 June 2026 uses the <Link href="/fortnightly-tax-table/2025-26/" className="text-eucalyptus-dark hover:underline">2024-25 and 2025-26 fortnightly table</Link>, one ATO edition that covered both years. From 1 July 2027 the amounts fall again, when the 15% rate drops to 14% and the <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of $250 starts.
+            </p>
           </section>
 
           {/* --- FORTNIGHTLY PAY TABLE --- */}
@@ -188,6 +199,43 @@ export default function FortnightlyPayCalculatorContent() {
                 </tbody>
               </table>
             </div>
+          </section>
+
+          {/* --- FORTNIGHTLY TAKE-HOME BY PROFESSION (22 Oct 2026) --- */}
+          <section id="by-profession">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Fortnightly Take-Home in Common Professions?</h2>
+            <p className="text-warmgray mb-4">
+              The same arithmetic on the salary each profession&apos;s pay page leads with: the median salary or wages people in the job reported to the ATO, or the award rate where one applies. Resident, tax-free threshold claimed, no HECS-HELP debt, private hospital cover; super is paid on top. Each page has the full source and the award, if any.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Fortnightly take-home pay on the median or award salary of common professions, FY{SITE_CONFIG.financialYear}</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Profession</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Annual gross</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Gross a fortnight</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Take-home a fortnight</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {PROFESSION_ROWS.map((r) => (
+                    <tr key={r.slug}>
+                      <td className="px-4 py-3 text-navy">
+                        <Link href={r.href} className="font-medium text-eucalyptus-dark hover:underline">{r.name} pay</Link>
+                        <span className="block text-xs text-warmgray">{r.basis === "award" ? "Award minimum, full-time" : r.basis === "ato" ? "ATO median salary or wages" : "Jobs and Skills Australia median"}</span>
+                      </td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.annual)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.annual / 26, 2)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.pay.fortnightly, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              For every job we cover ranked by median pay, see the <Link href="/highest-paying-jobs-australia/" className="text-eucalyptus-dark hover:underline">highest paying jobs in Australia</Link>.
+            </p>
           </section>
 
           {/* --- WHO USES THIS CALCULATOR? --- */}

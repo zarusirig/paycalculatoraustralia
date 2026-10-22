@@ -20,6 +20,15 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import { NMW, NMW_DECISION } from "@/lib/constants/minimum-wage";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
+import { APPRENTICE_SPOKES, headlineRate } from "@/lib/data/apprentice-pay/spokes";
+
+// Award hourly minimums for jobs people convert to a salary (22 Oct 2026).
+// Figures come from the same data as each job page, so the table and the
+// destination can never disagree. Annual is hourly x 38 x 52, the conversion
+// this page teaches.
+const TRADE_RATES = payGlances(JOB_GROUPS.hourlyTrades).filter((g) => g.hourly !== null);
+const APPRENTICE_RATES = APPRENTICE_SPOKES.map((s) => ({ slug: s.slug, label: s.label, hourly: headlineRate(s, 1, "completed").hourly }));
 
 // Minimum wage figures derive from NMW (Annual Wage Review 2026). The page
 // previously paired the 2026-27 hourly rate with 2024 annual/weekly figures
@@ -440,6 +449,50 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
                 <span><strong>Ignoring tax bracket impacts at the annual level</strong> &mdash; an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is {Math.round(TAX_BRACKETS[2].rate * 100)}% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
               </li>
             </ul>
+          </section>
+
+          {/* H2: Award hourly rates converted (22 Oct 2026) */}
+          <section>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Common Award Hourly Rates Come To in a Year</h2>
+            <p className="mb-4 text-warmgray">
+              The same conversion applied to real award minimums. Each hourly figure is the award rate the job page leads with, from the first full pay period on or after {NMW_DECISION.operativeFrom}; the annual column is that rate for 38 hours a week over 52 weeks, before overtime, penalties and allowances.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Award hourly minimums for common jobs and their 38-hour annual equivalent</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Job</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Award hourly minimum</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Weekly (38 hrs)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Annual (52 wks)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {TRADE_RATES.map((g) => (
+                    <tr key={g.slug} className="hover:bg-sandstone/50">
+                      <td className="px-4 py-2.5 font-medium text-navy"><Link href={g.href} className="text-eucalyptus-dark underline hover:text-navy">{g.name} pay rates</Link></td>
+                      <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(g.hourly!, 2)}</td>
+                      <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(g.hourly! * 38, 2)}</td>
+                      <td className="px-4 py-2.5 text-right font-semibold text-navy">{formatAUD(Math.round(g.hourly! * 38 * 52))}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 mb-4 text-warmgray">
+              Apprentices sit below these figures because their wage is a percentage of the trade rate. First-year minimums with Year 12 completed, as an hourly rate:{" "}
+              {APPRENTICE_RATES.map((a, i) => (
+                <span key={a.slug}>
+                  {i > 0 ? (i === APPRENTICE_RATES.length - 1 ? " and " : ", ") : ""}
+                  <Link href={`/apprentice-pay/${a.slug}/`} className="text-eucalyptus-dark underline hover:text-navy">apprentice {a.label.toLowerCase()} {formatAUD(a.hourly, 2)}</Link>
+                </span>
+              ))}
+              . Each page converts every year of the apprenticeship to weekly and annual pay and take-home.
+            </p>
+            <p className="text-warmgray">
+              Once you have an annual figure, the ATO <Link href="/weekly-tax-table/2026-27/" className="text-eucalyptus-dark underline hover:text-navy">weekly tax table for 2026-27</Link> shows what is withheld from each week&apos;s pay at that rate, and the <Link href="/highest-paying-jobs-australia/" className="text-eucalyptus-dark underline hover:text-navy">highest paying jobs ranking</Link> sets the median pay of every job we cover side by side.
+            </p>
           </section>
 
           {/* H2: Related Calculators */}
