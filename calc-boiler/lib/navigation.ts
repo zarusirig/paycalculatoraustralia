@@ -65,23 +65,11 @@ export type MegaMenu = {
   stateGrid?: { topics: readonly { key: StateTopicKey; label: string; hub: string }[]; rows: readonly StateRow[] };
 };
 
-const STATES = [
-  ["nsw", "NSW", "New South Wales"],
-  ["vic", "VIC", "Victoria"],
-  ["qld", "QLD", "Queensland"],
-  ["wa", "WA", "Western Australia"],
-  ["sa", "SA", "South Australia"],
-  ["tas", "TAS", "Tasmania"],
-  ["act", "ACT", "Australian Capital Territory"],
-  ["nt", "NT", "Northern Territory"],
-] as const;
-
-// Which states have a built page in each state-split cluster. The route
-// check fails if one of these is removed without updating the list.
-// H2 (24 Sep 2026): ACT/NT nurses and TAS/ACT/NT public service added.
-const NURSE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
-const PUBLIC_SERVICE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
-
+// 22 Oct 2026: menu cut from 234 to about 80 links. GSC (28 days to 20 Oct)
+// showed sitewide menu links did not earn clicks: 176 pages with ~880 links
+// each mostly got 0 to 2 clicks. Every link below earns clicks or is a hub.
+// Pages taken out stay reachable from their hubs, related links and
+// /site-directory/. Add a page here only if it earns clicks.
 export const MEGA_MENU: readonly MegaMenu[] = [
   {
     id: "calculators",
@@ -89,105 +77,55 @@ export const MEGA_MENU: readonly MegaMenu[] = [
     intro: "Free calculators on current ATO and Fair Work rates.",
     featured: [
       { href: "/", label: "Pay Calculator", description: "Take-home pay on any salary" },
-      { href: "/income-tax-calculator/", label: "Income Tax Calculator", description: "Tax, Medicare levy and brackets" },
       { href: "/bonus-tax-calculator/", label: "Bonus Tax Calculator", description: "Tax withheld on a bonus" },
-      { href: "/superannuation-calculator/", label: "Super Calculator", description: "Employer super at 12%" },
+      { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Salary", description: "Any hourly rate as a salary" },
+      { href: "/fortnightly-pay-calculator/", label: "Fortnightly Pay", description: "Take-home every 2 weeks" },
     ],
     groups: [
       {
-        title: "Take-home & pay",
+        title: "Pay",
         href: "/take-home-pay-calculator/",
         links: [
           { href: "/take-home-pay-calculator/", label: "Take-home pay" },
-          { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay" },
-          { href: "/fortnights-in-a-year/", label: "Fortnights in a year" },
           { href: "/weekly-pay-calculator/", label: "Weekly pay" },
-          { href: "/monthly-pay-calculator/", label: "Monthly pay" },
-          { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to annual salary" },
           { href: "/gross-pay-calculator/", label: "Gross pay" },
-          { href: "/net-pay-calculator/", label: "Net pay" }, // Oct core
           { href: "/pay-rise-calculator/", label: "Pay rise" },
+          { href: "/second-job-tax-calculator/", label: "Second job tax" },
+          { href: "/backpay-calculator/", label: "Back pay" },
           { href: "/salary-package-calculator/", label: "Salary package" },
         ],
       },
       {
-        title: "Tax",
-        href: "/tax-brackets/",
+        title: "Tax & super",
+        href: "/income-tax-calculator/",
         links: [
-          { href: "/tax-brackets/", label: "Tax brackets 2026-27" },
-          { href: "/marginal-tax-rates/", label: "Marginal tax rates" },
-          { href: "/tax-withheld-calculator/", label: "Tax withheld calculator" },
-          { href: "/tax-return-calculator/", label: "Tax return estimate" },
-          { href: "/second-job-tax-calculator/", label: "Second job tax" },
-          { href: "/tax-free-threshold/", label: "Tax-free threshold" },
-          { href: "/medicare-levy/", label: "Medicare levy" },
-          { href: "/medicare-levy-surcharge-calculator/", label: "Medicare levy surcharge" },
-          { href: "/hecs-help-calculator/", label: "HECS-HELP repayments" },
-        ],
-      },
-      {
-        title: "Super",
-        href: "/superannuation-guide/",
-        links: [
+          { href: "/income-tax-calculator/", label: "Income tax" },
+          { href: "/hecs-help-calculator/", label: "HECS-HELP" },
           { href: "/superannuation-calculator/", label: "Superannuation" },
-          { href: "/salary-sacrifice-calculator/", label: "Salary sacrifice" },
-          { href: "/concessional-contributions-cap/", label: "Concessional cap" },
-          { href: "/payday-super/", label: "Payday Super" },
-          { href: "/super-guarantee-rate-history/", label: "Super guarantee rate" },
-          { href: "/novated-lease-calculator/", label: "Novated lease" },
+          { href: "/payg-withholding-tables/", label: "PAYG tax tables" },
+          { href: "/fortnightly-tax-table/", label: "Fortnightly tax table" },
+          { href: "/weekly-tax-table/", label: "Weekly tax table" },
         ],
       },
       {
         title: "Work & leave",
         links: [
-          { href: "/overtime-pay-calculator/", label: "Overtime pay" },
-          { href: "/annual-leave-calculator/", label: "Annual leave calculator" }, // Oct core
-          { href: "/leave-calculator/", label: "Annual leave payout" },
-          { href: "/leave-loading-calculator/", label: "Leave loading" },
-          { href: "/time-in-lieu/", label: "Time in lieu (TOIL)" },
-          { href: "/sick-leave-calculator/", label: "Sick & carer's leave" }, // G3
-          { href: "/compassionate-leave/", label: "Compassionate leave" }, // G3
           { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
-          { href: "/payment-in-lieu-of-notice/", label: "Payment in lieu of notice" }, // Oct core
-          { href: "/long-service-leave-calculator/", label: "Long service leave" },
+          { href: "/leave-calculator/", label: "Leave" },
+          { href: "/employment-type-calculator/", label: "Employment type" },
+          { href: "/overtime-pay-calculator/", label: "Overtime pay" },
           { href: "/casual-loading-calculator/", label: "Casual loading" },
-          { href: "/casual-conversion/", label: "Casual conversion" }, // Oct core
-          { href: "/pro-rata-salary-calculator/", label: "Pro-rata salary" },
-          { href: "/backpay-calculator/", label: "Backpay" },
         ],
       },
       {
         title: "Centrelink",
-        href: "/centrelink-income-test/",
         links: [
-          { href: "/centrelink-income-test/", label: "Income test explained" },
-          { href: "/centrelink-payment-rates/", label: "All payment rates" }, // J6
+          { href: "/centrelink-income-test/", label: "Centrelink income test" },
+          { href: "/centrelink-working-credit-calculator/", label: "Working credit" },
+          { href: "/disability-support-pension-calculator/", label: "Disability support pension" },
           { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
-          { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
-          // H3 Centrelink wave 3 (added 2026-09-24)
-          { href: "/age-pension-assets-test-calculator/", label: "Age Pension assets test" },
-          { href: "/deeming-rates/", label: "Deeming rates" },
-          { href: "/disability-support-pension-calculator/", label: "Disability Support Pension" },
-          { href: "/child-care-subsidy-calculator/", label: "Child Care Subsidy" },
-          { href: "/commonwealth-seniors-health-card/", label: "Seniors Health Card" },
-          // end H3
-          { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
-          { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
-          { href: "/parenting-payment-calculator/", label: "Parenting Payment" },
-          { href: "/parental-leave-pay/", label: "Paid Parental Leave" },
-          { href: "/centrelink-working-credit-calculator/", label: "Working Credit" },
+          { href: "/parenting-payment-calculator/", label: "Parenting payment" },
           { href: "/centrelink-payment-dates/", label: "Payment dates" },
-        ],
-      },
-      {
-        title: "Contractors & employers",
-        links: [
-          { href: "/contractor-pay-calculator/", label: "Contractor pay" },
-          { href: "/contractor-vs-employee-calculator/", label: "Contractor vs employee" },
-          { href: "/employment-type-calculator/", label: "Full-time vs casual" },
-          { href: "/employer-cost-calculator/", label: "Employer cost" },
-          { href: "/payroll-tax-calculator/", label: "Payroll tax" },
-          { href: "/payslip-generator/", label: "Payslip generator" },
         ],
       },
     ],
@@ -195,60 +133,20 @@ export const MEGA_MENU: readonly MegaMenu[] = [
   {
     id: "pay-rates",
     label: "Pay rates",
-    intro: "Minimum rates from Fair Work awards, agreements and pay scales.",
+    intro: "Award, employer, job and public sector pay rates.",
     featured: [
-      { href: "/award-rates/", label: "Award Rates", description: "Every modern award we cover, every level" },
-      { href: "/job-pay-rates/", label: "Pay Rates by Job", description: "41 jobs, award to average" },
       { href: "/pay-rates/", label: "Pay Rates by Employer", description: "Coles, Woolworths, Bunnings…" },
+      { href: "/award-rates/", label: "Award Rates", description: "Every modern award we cover, every level" },
+      { href: "/adf-pay-scales/", label: "ADF Pay Scales", description: "Every rank, 2026" },
       { href: "/minimum-wage-australia/", label: "Minimum Wage", description: "National rate from 1 July 2026" },
     ],
     groups: [
       {
-        title: "Award rates",
-        href: "/award-rates/",
-        links: [
-          { href: "/hospitality-award-rates/", label: "Hospitality" },
-          { href: "/retail-award-rates/", label: "Retail" },
-          { href: "/schads-award-pay-rates/", label: "SCHADS" },
-          { href: "/fast-food-award-rates/", label: "Fast food" },
-          { href: "/aged-care-award-rates/", label: "Aged care" },
-          { href: "/nurses-award-rates/", label: "Nurses" },
-          { href: "/clerks-award-rates/", label: "Clerks" },
-          { href: "/overtime-penalty-rates-guide/", label: "Penalty rates" },
-          { href: "/fair-work-pay-calculator/", label: "Fair Work pay calculator" },
-        ],
-      },
-      {
-        title: "Minimum & junior wages",
-        href: "/minimum-wage-australia/",
-        links: [
-          { href: "/junior-pay-rates/", label: "Junior pay rates" },
-          { href: "/apprentice-pay-rates/", label: "Apprentice pay rates" }, // Oct 2026
-          { href: "/minimum-wage-by-age/16/", label: "Minimum wage at 16" },
-          { href: "/minimum-wage-by-age/17/", label: "Minimum wage at 17" },
-          { href: "/minimum-wage-by-age/18/", label: "Minimum wage at 18" },
-          { href: "/minimum-wage-history-australia/", label: "Minimum wage history" },
-        ],
-      },
-      {
-        title: "By job",
-        href: "/job-pay-rates/",
-        links: [
-          { href: "/job-pay-rates/nurse/", label: "Nurse" },
-          { href: "/job-pay-rates/electrician/", label: "Electrician" },
-          { href: "/job-pay-rates/truck-driver/", label: "Truck driver" },
-          { href: "/job-pay-rates/disability-support-worker/", label: "Disability support worker" },
-          { href: "/job-pay-rates/childcare-worker/", label: "Childcare worker" },
-          { href: "/job-pay-rates/chef/", label: "Chef" },
-          { href: "/job-pay-rates/pharmacist/", label: "Pharmacist" },
-        ],
-      },
-      {
         title: "By employer",
         href: "/pay-rates/",
         links: [
-          { href: "/pay-rates/coles/", label: "Coles" },
           { href: "/pay-rates/woolworths/", label: "Woolworths" },
+          { href: "/pay-rates/coles/", label: "Coles" },
           { href: "/pay-rates/bunnings/", label: "Bunnings" },
           { href: "/pay-rates/mcdonalds/", label: "McDonald’s" },
           { href: "/pay-rates/kmart/", label: "Kmart" },
@@ -256,186 +154,102 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         ],
       },
       {
-        title: "Public sector",
-        href: "/public-service-pay-scales/",
+        title: "Award rates",
+        href: "/award-rates/",
         links: [
-          { href: "/public-service-pay-scales/", label: "Public service pay scales" },
-          { href: "/public-service-pay-scales/aps/", label: "APS pay scales" },
-          { href: "/public-service-pay-scales/aps/aps-6/", label: "APS 6 salary" }, // J6
-          { href: "/public-service-pay-scales/aps/el1/", label: "EL1 salary" }, // J6
-          { href: "/public-service-pay-scales/vic/", label: "VPS pay scales" },
-          { href: "/teacher-pay-australia/", label: "Teacher pay" },
-          { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
-          { href: "/school-support-staff-pay/", label: "Teacher aide pay" }, // J6
-          { href: "/healthcare-worker-pay/", label: "Nurse & healthcare pay" },
-          { href: "/adf-pay-scales/", label: "ADF pay scales" },
-          { href: "/paramedic-pay/", label: "Paramedics" },
-          { href: "/police-pay/", label: "Police" },
-          { href: "/firefighter-pay/", label: "Firefighters" },
-          { href: "/prison-officer-pay/", label: "Prison officers" }, // J8
+          { href: "/retail-award-rates/", label: "Retail" },
+          { href: "/fast-food-award-rates/", label: "Fast food" },
+          { href: "/hospitality-award-rates/", label: "Hospitality" },
+          { href: "/schads-award-pay-rates/", label: "SCHADS" },
+          { href: "/aged-care-award-rates/", label: "Aged care" },
+          { href: "/clerks-award-rates/", label: "Clerks" },
+          { href: "/nurses-award-rates/", label: "Nurses" },
         ],
       },
       {
-        title: "Salary benchmarks",
-        href: "/average-salary-australia/",
+        title: "Minimum & junior wages",
+        href: "/minimum-wage-australia/",
         links: [
-          { href: "/average-salary-australia/", label: "Average salary Australia" },
-          { href: "/australian-pay-report-2026/", label: "Australian Pay Report 2026" },
+          { href: "/junior-pay-rates/", label: "Junior pay rates" },
+          { href: "/minimum-wage-by-age/16/", label: "Minimum wage at 16" },
+          { href: "/minimum-wage-history-australia/", label: "Minimum wage history" },
+          { href: "/apprentice-pay-rates/", label: "Apprentice pay rates" },
+        ],
+      },
+      {
+        title: "By job",
+        href: "/job-pay-rates/",
+        links: [
+          { href: "/job-pay-rates/", label: "Pay rates by job" },
+          { href: "/job-pay-rates/chef/", label: "Chef" },
           { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO" },
           { href: "/fifo-pay-calculator/", label: "FIFO pay calculator" },
-          { href: "/tech-salary-guide-australia/", label: "IT & tech" },
-          { href: "/construction-trades-pay/", label: "Construction & trades" },
-          { href: "/retail-hospitality-pay-guide/", label: "Retail & hospitality" },
         ],
       },
     ],
   },
   {
     id: "by-state",
-    label: "By state",
-    intro: "State pay calculators, payroll tax and state pay scales.",
+    label: "Public sector",
+    intro: "Teacher, school, public service and nurse pay by state.",
     featured: [
-      { href: "/payroll-tax/", label: "Payroll Tax by State", description: "Rates and thresholds, all 8" },
-      { href: "/long-service-leave-calculator/", label: "Long Service Leave", description: "Every state’s LSL rules" },
-      { href: "/teacher-pay-australia/", label: "Teacher Pay by State", description: "Salary by step and state" },
       { href: "/public-service-pay-scales/", label: "Public Service Pay", description: "APS and state pay scales" },
+      { href: "/teacher-pay-australia/", label: "Teacher Pay by State", description: "Salary by step and state" },
+      { href: "/school-support-staff-pay/", label: "Teacher Aide Pay", description: "School support staff by state" },
+      { href: "/public-holiday-pay/", label: "Public Holiday Pay", description: "Dates and rates by state" },
     ],
     groups: [
-      { title: "Pay calculator", links: STATES.map(([c, abbr]) => ({ href: `/pay-calculator-${c}/`, label: `Pay calculator ${abbr}` })) },
-      { title: "Payroll tax", href: "/payroll-tax/", links: STATES.map(([c, abbr]) => ({ href: `/payroll-tax/${c}/`, label: `${abbr} payroll tax` })) },
-      { title: "Minimum wage", href: "/minimum-wage-australia/", links: STATES.map(([c, abbr]) => ({ href: `/minimum-wage/${c}/`, label: `${abbr} minimum wage` })) }, // F1
-      { title: "Long service leave", href: "/long-service-leave-calculator/", links: STATES.map(([c, abbr]) => ({ href: `/long-service-leave-calculator/${c}/`, label: `${abbr} long service leave` })) },
-      // --- G4 public holiday pay cluster (24 Sep 2026) ---
-      { title: "Public holidays", href: "/public-holiday-pay/", links: STATES.map(([c, abbr]) => ({ href: `/public-holiday-pay/${c}/`, label: `${abbr} public holidays` })) },
-      // --- end G4 ---
-      { title: "Teacher pay", href: "/teacher-pay-australia/", links: STATES.map(([c, abbr]) => ({ href: `/teacher-pay-australia/${c}/`, label: `${abbr} teacher pay` })) },
-      { title: "Nurse pay", href: "/healthcare-worker-pay/", links: NURSE_STATES.map((c) => ({ href: `/healthcare-worker-pay/${c}/`, label: `${c.toUpperCase()} nurse pay` })) },
       {
         title: "Public service",
         href: "/public-service-pay-scales/",
         links: [
+          { href: "/public-service-pay-scales/qld/", label: "QLD public service" },
+          { href: "/public-service-pay-scales/vic/", label: "VPS pay scales" },
+          { href: "/public-service-pay-scales/sa/", label: "SA public service" },
+          { href: "/public-service-pay-scales/wa/", label: "WA public service" },
+          { href: "/public-service-pay-scales/nsw/", label: "NSW public service" },
           { href: "/public-service-pay-scales/aps/", label: "APS (Commonwealth)" },
-          ...PUBLIC_SERVICE_STATES.map((c) => ({ href: `/public-service-pay-scales/${c}/`, label: `${c.toUpperCase()} public service` })),
+        ],
+      },
+      {
+        title: "Schools",
+        href: "/teacher-pay-australia/",
+        links: [
+          { href: "/teacher-pay-australia/vic/", label: "VIC teacher pay" },
+          { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
+          { href: "/teacher-pay-australia/nsw/", label: "NSW teacher pay" },
+          { href: "/school-support-staff-pay/vic/", label: "VIC education support" },
+          { href: "/school-support-staff-pay/qld/", label: "QLD teacher aide" },
+        ],
+      },
+      {
+        title: "Health & holidays",
+        links: [
+          { href: "/healthcare-worker-pay/wa/", label: "WA nurse pay" },
+          { href: "/healthcare-worker-pay/nsw/", label: "NSW nurse pay" },
+          { href: "/public-holiday-pay/qld/", label: "QLD public holidays" },
         ],
       },
     ],
-    stateGrid: {
-      topics: [
-        { key: "pay", label: "Pay calculator", hub: "/" },
-        { key: "payrollTax", label: "Payroll tax", hub: "/payroll-tax/" },
-        { key: "minWage", label: "Minimum wage", hub: "/minimum-wage-australia/" }, // F1
-        { key: "lsl", label: "Long service leave", hub: "/long-service-leave-calculator/" },
-        { key: "publicHolidays", label: "Public holidays", hub: "/public-holiday-pay/" }, // G4
-        { key: "teachers", label: "Teachers", hub: "/teacher-pay-australia/" },
-        { key: "nurses", label: "Nurses", hub: "/healthcare-worker-pay/" },
-        { key: "publicService", label: "Public service", hub: "/public-service-pay-scales/" },
-      ],
-      rows: STATES.map(([c, abbr, name]) => ({
-        code: abbr,
-        name,
-        cells: {
-          pay: `/pay-calculator-${c}/`,
-          payrollTax: `/payroll-tax/${c}/`,
-          minWage: `/minimum-wage/${c}/`, // F1
-          lsl: `/long-service-leave-calculator/${c}/`,
-          publicHolidays: `/public-holiday-pay/${c}/`, // G4
-          teachers: `/teacher-pay-australia/${c}/`,
-          nurses: NURSE_STATES.includes(c) ? `/healthcare-worker-pay/${c}/` : undefined,
-          publicService: PUBLIC_SERVICE_STATES.includes(c) ? `/public-service-pay-scales/${c}/` : undefined,
-        },
-      })),
-    },
   },
   {
     id: "guides",
     label: "Guides",
     intro: "Plain-English guides to tax, super and your payslip.",
     featured: [
-      { href: "/understanding-your-payslip/", label: "Understanding Your Payslip", description: "What every line means" },
-      { href: "/tax-return-2026/", label: "Tax Return 2026", description: "Deadline, refund and rates" },
-      { href: "/tax-changes-2026-27/", label: "Tax Changes 2026-27", description: "What changed on 1 July" },
       { href: "/news/", label: "Pay & Tax News", description: "Rate changes as they land" },
+      { href: "/enterprise-agreement/", label: "Enterprise Agreements", description: "How an EA sets your pay" },
+      { href: "/travel-allowance/", label: "Travel Allowance", description: "ATO rates and rules" },
+      { href: "/low-income-tax-offset/", label: "Low Income Tax Offset", description: "Who gets it and how much" },
     ],
     groups: [
-      {
-        title: "Tax",
-        links: [
-          { href: "/tax-refund-guide/", label: "Tax refund guide" },
-          { href: "/low-income-tax-offset/", label: "Low income tax offset" },
-          { href: "/tax-bracket-history/", label: "Tax bracket history" },
-          { href: "/stage-3-tax-cuts/", label: "Stage 3 tax cuts" },
-          { href: "/tax-calendar/", label: "Tax calendar" },
-          { href: "/notice-of-assessment/", label: "Notice of assessment" },
-        ],
-      },
-      {
-        title: "PAYG tax tables",
-        href: "/payg-withholding-tables/",
-        links: [
-          { href: "/payg-withholding-tables/", label: "PAYG withholding tables" },
-          { href: "/weekly-tax-table/", label: "Weekly tax table" },
-          { href: "/fortnightly-tax-table/", label: "Fortnightly tax table" },
-          { href: "/monthly-tax-table/", label: "Monthly tax table" },
-          { href: "/schedule-5-tax-table/", label: "Schedule 5 tax table" },
-        ],
-      },
-      {
-        title: "Deductions & allowances",
-        href: "/tax-deductions-guide/",
-        links: [
-          { href: "/tax-deductions-guide/", label: "Tax deductions" },
-          { href: "/work-from-home-deductions/", label: "Work-from-home deductions" },
-          { href: "/cents-per-km/", label: "Cents per km (car)" },
-          { href: "/travel-allowance/", label: "Travel allowance" },
-          { href: "/fringe-benefits-tax/", label: "Fringe benefits tax" },
-        ],
-      },
-      {
-        title: "Super & packaging",
-        href: "/superannuation-guide/",
-        links: [
-          { href: "/superannuation-guide/", label: "How super works" },
-          { href: "/super-guarantee-charge/", label: "Super guarantee charge" },
-          { href: "/division-293-tax/", label: "Division 293 tax" },
-          { href: "/super-co-contribution/", label: "Super co-contribution" },
-          { href: "/salary-packaging-guide/", label: "Salary packaging" },
-          { href: "/novated-lease-guide/", label: "How a novated lease works" },
-        ],
-      },
-      {
-        title: "Work & employment",
-        links: [
-          { href: "/first-job-pay-guide/", label: "Your first job" },
-          { href: "/gross-vs-net-pay/", label: "Gross vs net pay" },
-          { href: "/enterprise-agreement/", label: "Enterprise agreements" },
-          { href: "/annual-leave-guide/", label: "Annual leave" },
-          { href: "/full-time-vs-part-time-vs-casual/", label: "Full-time vs part-time vs casual" },
-          { href: "/gig-economy-pay-guide/", label: "Gig economy pay" },
-          { href: "/delivery-driver-pay-rate/", label: "Delivery driver pay rate" }, // Oct 2026
-          { href: "/rideshare-delivery-earnings-after-tax/", label: "Rideshare & delivery tax" }, // Oct 2026
-          { href: "/graduate-salary-australia/", label: "Graduate salary" }, // Oct 2026
-          { href: "/new-job-checklist/", label: "New job checklist" },
-        ],
-      },
-      {
-        title: "Special situations",
-        links: [
-          { href: "/working-holiday-tax/", label: "Working holiday tax" },
-          { href: "/non-resident-tax/", label: "Non-resident tax" },
-          { href: "/zone-tax-offset/", label: "Zone tax offset" },
-          { href: "/sapto-calculator/", label: "Seniors tax offset (SAPTO)" },
-          { href: "/pension-age-australia/", label: "Pension age" },
-          { href: "/centrelink-debt/", label: "Centrelink debt" },
-        ],
-      },
       {
         title: "Latest news",
         href: "/news/",
         links: [
-          { href: "/news/july-1-2026-money-changes/", label: "July 1 money changes" },
-          { href: "/news/minimum-wage-increase-july-2026/", label: "Minimum wage increase 2026" },
-          { href: "/news/payday-super-starts-july-2026/", label: "Payday Super starts" },
-          { href: "/news/hecs-indexation-2026/", label: "HECS indexation 2026" },
+          { href: "/news/queensland-state-wage-case-2026/", label: "QLD state wage case 2026" },
+          { href: "/news/health-professionals-award-changes-october-2026/", label: "Health Professionals Award changes" },
+          { href: "/news/victorian-teachers-pay-rise-2026/", label: "VIC teachers pay rise 2026" },
         ],
       },
     ],
@@ -457,54 +271,39 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     title: "Calculators",
     links: [
       { href: "/", label: "Pay calculator" },
-      { href: "/income-tax-calculator/", label: "Income tax" },
-      { href: "/take-home-pay-calculator/", label: "Take-home pay" },
       { href: "/bonus-tax-calculator/", label: "Bonus tax" },
-      { href: "/superannuation-calculator/", label: "Superannuation" },
-      { href: "/hecs-help-calculator/", label: "HECS-HELP" },
+      { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to salary" },
       { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay" },
-      { href: "/overtime-pay-calculator/", label: "Overtime pay" },
-      { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
-      { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
+      { href: "/second-job-tax-calculator/", label: "Second job tax" },
+      { href: "/hecs-help-calculator/", label: "HECS-HELP" },
     ],
   },
   {
     title: "Pay rates",
     links: [
-      { href: "/award-rates/", label: "Award rates" },
-      { href: "/job-pay-rates/", label: "Pay rates by job" },
       { href: "/pay-rates/", label: "Pay rates by employer" },
-      { href: "/minimum-wage-australia/", label: "Minimum wage" },
+      { href: "/award-rates/", label: "Award rates" },
       { href: "/junior-pay-rates/", label: "Junior pay rates" },
+      { href: "/minimum-wage-australia/", label: "Minimum wage" },
+      { href: "/adf-pay-scales/", label: "ADF pay scales" },
+    ],
+  },
+  {
+    title: "Tax",
+    links: [
+      { href: "/income-tax-calculator/", label: "Income tax" },
+      { href: "/payg-withholding-tables/", label: "PAYG tax tables" },
+      { href: "/fortnightly-tax-table/", label: "Fortnightly tax table" },
+      { href: "/superannuation-calculator/", label: "Superannuation" },
+    ],
+  },
+  {
+    title: "Public sector",
+    links: [
       { href: "/public-service-pay-scales/", label: "Public service pay" },
       { href: "/teacher-pay-australia/", label: "Teacher pay" },
-      { href: "/healthcare-worker-pay/", label: "Nurse pay" },
-      { href: "/adf-pay-scales/", label: "ADF pay scales" },
-      { href: "/average-salary-australia/", label: "Average salary" },
-      { href: "/australian-pay-report-2026/", label: "Pay Report 2026" },
-    ],
-  },
-  {
-    title: "Tax & super guides",
-    links: [
-      { href: "/tax-brackets/", label: "Tax brackets" },
-      { href: "/medicare-levy/", label: "Medicare levy" },
-      { href: "/tax-free-threshold/", label: "Tax-free threshold" },
-      { href: "/payg-withholding-tables/", label: "PAYG tax tables" },
-      { href: "/tax-return-2026/", label: "Tax return 2026" },
-      { href: "/tax-deductions-guide/", label: "Tax deductions" },
-      { href: "/superannuation-guide/", label: "How super works" },
-      { href: "/concessional-contributions-cap/", label: "Concessional cap" },
-      { href: "/payday-super/", label: "Payday Super" },
-      { href: "/understanding-your-payslip/", label: "Your payslip" },
-    ],
-  },
-  {
-    title: "States",
-    links: [
-      ...STATES.map(([c, abbr]) => ({ href: `/pay-calculator-${c}/`, label: `Pay calculator ${abbr}` })),
-      { href: "/payroll-tax/", label: "Payroll tax by state" },
-      { href: "/long-service-leave-calculator/", label: "LSL by state" },
+      { href: "/school-support-staff-pay/", label: "Teacher aide pay" },
+      { href: "/public-holiday-pay/", label: "Public holiday pay" },
     ],
   },
 ];
