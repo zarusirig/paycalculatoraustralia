@@ -18,6 +18,8 @@
 // listed in `notShown` rather than filled in.
 // =============================================================================
 
+import type { AlliedProfession } from "../public-health-allied-pay/types";
+
 export const OCCUPATION_SLUGS = [
   "pharmacist",
   "dental-assistant",
@@ -327,4 +329,22 @@ export interface Occupation {
   spokes?: { href: string; label: string; blurb: string }[];
   /** ISO date for the WebPage dateModified, when later than the cluster default. */
   dateModified?: string;
+
+  // ---------------------------------------------------------------------------
+  // Public hospital pay (23 Oct 2026 health job pages). Optional, so every
+  // other page renders exactly as before.
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Show the state public hospital pay tables for this profession, read from
+   * lib/data/public-health-allied-pay, plus an answer box at the top of the
+   * page built from the same rows.
+   */
+  publicHospital?: {
+    profession: AlliedProfession;
+    /** One or two sentences opening the "Public hospital pay by state" section. */
+    intro: string;
+  };
+  /** The answer-box question, shaped by real search queries. */
+  answerQuestion?: string;
 }

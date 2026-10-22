@@ -412,6 +412,9 @@ test("W4: early childhood teacher — long day care is 4% above preschool, casua
 test("W4: a metaTitle override still states the headline hourly rate", () => {
   for (const occ of OCCUPATIONS) {
     if (!occ.metaTitle) continue;
+    // 23 Oct 2026: health job pages lead with the median and public hospital
+    // pay instead; their titles are checked in public-health-allied-pay.test.ts.
+    if (occ.publicHospital) continue;
     const r = headlineRow(occ);
     if (!r) {
       // P1 (Oct 2026): pages with no award to quote lead with a median salary.
@@ -610,7 +613,8 @@ test("G3: allied health pages headline their Schedule B.3 AQF level, 1st year (P
     assert.equal(occ.award?.consolidatedTo, "1 October 2026", slug);
     const h = headlineRow(occ)!;
     assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], expected[slug], slug);
-    assert.ok(occ.metaTitle?.includes("Salary") && occ.metaTitle.includes(`$${expected[slug][2].toFixed(2)}`), slug);
+    // Radiographer and sonographer lead with the median since 23 Oct 2026 (public-health-allied-pay.test.ts).
+    assert.ok(occ.metaTitle?.includes("Salary") && (occ.publicHospital !== undefined || occ.metaTitle.includes(`$${expected[slug][2].toFixed(2)}`)), slug);
     assert.ok(occ.metaTitle!.length <= 65, `${slug} title ${occ.metaTitle!.length}`);
     assert.ok(!occ.tables.flatMap((t) => t.rows).some((r) => /pay point/.test(r.label)), `${slug} still shows pre-October pay points`);
   }

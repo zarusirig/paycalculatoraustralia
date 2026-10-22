@@ -23,7 +23,9 @@ import {
   type RateRow,
   type RateTable,
 } from "@/lib/data/job-pay-rates";
+import { publicPaySources } from "@/lib/data/public-health-allied-pay";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import { PublicHospitalAnswerBox, PublicHospitalSection, publicHospitalRange } from "./job-pay-public-hospital";
 import FeaturedImage from "@/components/common/featured-image";
 
 // One template for every /job-pay-rates/<occupation>/ page. Each section is
@@ -330,7 +332,22 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
   const ownPayslipNotes = (occ.payslipNotes ?? []).filter((n) => !GENERIC_PAYSLIP_NOTES.has(n));
   const related = relatedOccupations(occ);
   const sector = JOB_SECTORS.find((s) => s.id === OCCUPATION_SECTOR[occ.slug]);
-  const sourceLinks: SourceLink[] = occ.sources.map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
+  const allSources = [...occ.sources, ...(occ.publicHospital ? publicPaySources(occ.publicHospital.profession) : [])];
+  const sourceLinks: SourceLink[] = allSources
+    .filter((s, i) => allSources.findIndex((o) => o.url === s.url) === i)
+    .map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
+  const hospitalRange = publicHospitalRange(occ);
+  const noticesBlock =
+    occ.notices.length > 0 ? (
+      <div className="not-prose mb-8 space-y-3">
+        {occ.notices.map((notice) => (
+          <div key={notice} className="flex gap-3 rounded-lg border border-sandstone-dark/30 bg-sandstone/50 p-4">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-eucalyptus-dark" aria-hidden="true" />
+            <p className="text-sm text-navy">{notice}</p>
+          </div>
+        ))}
+      </div>
+    ) : null;
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -376,28 +393,24 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               {net ? <>, about {formatAUD(net.netWeekly, 0)} a week after tax</> : null}.
             </p>
           ) : null}
+          <PublicHospitalAnswerBox occ={occ} />
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="mv-content prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
-            {occ.notices.length > 0 && (
-              <div className="not-prose mb-8 space-y-3">
-                {occ.notices.map((notice) => (
-                  <div key={notice} className="flex gap-3 rounded-lg border border-sandstone-dark/30 bg-sandstone/50 p-4">
-                    <Info className="mt-0.5 h-5 w-5 shrink-0 text-eucalyptus-dark" aria-hidden="true" />
-                    <p className="text-sm text-navy">{notice}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* Health job pages lead with the state public hospital tables;
+                their award notices move down to sit with the award tables. */}
+            {occ.publicHospital ? <PublicHospitalSection occ={occ} /> : noticesBlock}
 
             {salaryPage ? (
               <SalaryFiguresSection occ={occ} payslipLink={ownPayslipNotes.length === 0 && (occ.payslipNotes ?? []).length > 0} />
             ) : null}
 
             {leadWithMedian ? <MedianSection occ={occ} heading={`What ${occ.plural} actually earn`} /> : null}
+
+            {occ.publicHospital ? noticesBlock : null}
 
             {occ.award ? (
               <section id="pay-rates">
@@ -699,6 +712,9 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                   {occ.median
                     ? ` Median: Jobs and Skills Australia, ${occ.median.anzscoTitle} (ANZSCO ${occ.median.anzscoCode}).`
                     : ""}
+                  {occ.publicHospital
+                    ? " Public hospital pay: each state's own award or agreement, copied from its published pay table; weekly rates are annualised x 52 and take-home pay uses the site's 2026-27 tax engine."
+                    : ""}
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sourceLinks} lastVerified={occ.verifiedOn} />
@@ -732,6 +748,16 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                       <div className="flex items-baseline justify-between gap-3">
                         <dt className="text-warmgray">ATO median salary ({occ.ato.incomeYear})</dt>
                         <dd className="font-semibold text-navy">{formatAUD(occ.ato.rows[0].medianSalary)}</dd>
+                      </div>
+                    )}
+                    {hospitalRange && (
+                      <div className="flex items-baseline justify-between gap-3">
+                        <dt className="text-warmgray">
+                          <a href="#public-hospital-pay" className="hover:underline">Public hospitals</a>
+                        </dt>
+                        <dd className="text-right font-semibold text-navy">
+                          {formatAUD(hospitalRange.low)} to {formatAUD(hospitalRange.high)}
+                        </dd>
                       </div>
                     )}
                     {occ.median && (
