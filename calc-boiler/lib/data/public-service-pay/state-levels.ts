@@ -33,6 +33,10 @@ interface StateLevelConfig {
   nextRise: string;
   /** Employer super as a number, or null when the instrument sets none. */
   superRate: number | null;
+  /** Employer super, in this service's own terms (short, level-neutral). */
+  superText: string;
+  /** How you move between steps and levels (short, level-neutral). */
+  progression: string;
   /** What a "step" is called in this structure. */
   stepWord: string;
   /** A caveat every page in this jurisdiction must carry, if any. */
@@ -47,6 +51,10 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     nextRise:
       "The Victorian Public Service Enterprise Agreement 2024 sets a further 3% increase from 1 May 2027, the last of its four 3% rises. Until then the 1 May 2026 rates on this page apply.",
     superRate: null,
+    superText:
+      "The VPS agreement sets no employer super rate above the legal minimum. Clause 41.2 only requires enough to avoid the superannuation guarantee charge, so the Superannuation Guarantee rate applies. APS agencies pay a median of 15.4%, so compare total pay, not just salary, if you are weighing a federal job.",
+    progression:
+      "Moving up a progression step is not automatic. Under clause 31 you are considered once a year, at the end of the performance cycle, if you have 12 months at your current step and a current performance and development plan. On the top step, a successful cycle pays a lump sum of 1.5% of salary instead. Moving from one value range to the next (3.1 to 3.2, say) needs a job resizing review, not time served.",
     stepWord: "progression step",
   },
   qld: {
@@ -56,9 +64,13 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     nextRise:
       "Award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case and next move when the Queensland Industrial Relations Commission decides the 2027 case. The State Government Entities Certified Agreement 2023 nominally expired on 30 June 2026 and keeps applying until a replacement is certified.",
     superRate: 12.75,
+    superText:
+      "The Queensland Government pays 12.75% employer super for employees under 75, above the Superannuation Guarantee. It is paid on ordinary time earnings, including paid leave and ordinary-time allowances such as shift and weekend penalties.",
+    progression:
+      "Queensland levels are written as level and pay point, so AO5/2 is the second pay point of AO5. You move up one pay point at a time under the certified agreement and public sector directives. A move to the next level is a promotion to a job classified at that level. AO7 and PO5 pay the same at every pay point, so a move between streams at the same level is not a pay rise.",
     stepWord: "pay point",
     caveat:
-      "These are the award rates, the legal minimum. Most Queensland departments pay under the State Government Entities Certified Agreement 2023, whose wage schedule we have not reproduced, so check your department's schedule. Where an agreement rate is below the award, the award rate is paid.",
+      "These are the award rates, the legal minimum. Most Queensland departments pay under the State Government Entities Certified Agreement 2023 (the core agreement). We have not reproduced its wage schedule, so check your department's schedule. The Department of Education rates further down are one agency's agreement, shown for comparison. Where any agreement rate is below the award, the award rate is paid.",
   },
   sa: {
     levels: ["aso-2", "aso-3", "aso-4", "aso-5", "aso-6", "aso-7", "aso-8"],
@@ -67,6 +79,10 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     nextRise:
       "The SA Public Sector Enterprise Agreement: Salaried 2026 sets one more increase, from the first full pay period on or after 1 July 2027 (clause 7.2). Until then the 1 July 2026 rates on this page apply.",
     superRate: null,
+    superText:
+      "The Salaried 2026 agreement does not state an employer super rate. Super is paid to Super SA by default, and you can choose your own fund. Treat the Superannuation Guarantee as the floor and check your agency's arrangement.",
+    progression:
+      "Each ASO level has a few numbered increments. You move up increments within your level; a move to the next level happens by appointment to a job classified at that level, not by time served. ASO levels do not overlap, so the top of one level is always below the bottom of the next.",
     stepWord: "increment",
   },
 };
@@ -145,6 +161,36 @@ export function stateLevelMeta(d: StateLevelData): { title: string; description:
   const title = `${label} Salary 2026 - Pay Points and Take-Home Pay`;
   const description = `${label} salary from ${d.config.effective}: ${formatBandRange(range)} across ${d.points.length} ${d.config.stepWord}s. Every ${d.config.stepWord}, pay per fortnight and after tax.`;
   return { title, description };
+}
+
+export interface LevelSteps {
+  /** Moves from the first step to the top step. */
+  moves: number;
+  /** Top minus bottom, in dollars and as a % of the bottom. */
+  spread: number;
+  spreadPct: number;
+  /** Average dollar gain per move. */
+  averageStep: number;
+  /** Largest single move between consecutive steps. */
+  largest: { from: string; to: string; gain: number };
+}
+
+/** The shape of the ladder inside one level, computed from its pay points. */
+export function levelSteps(d: StateLevelData): LevelSteps {
+  const p = d.points;
+  const spread = p[p.length - 1].annual - p[0].annual;
+  let largest = { from: p[0].label, to: p[0].label, gain: 0 };
+  for (let i = 1; i < p.length; i++) {
+    const gain = p[i].annual - p[i - 1].annual;
+    if (gain > largest.gain) largest = { from: p[i - 1].label, to: p[i].label, gain };
+  }
+  return {
+    moves: p.length - 1,
+    spread,
+    spreadPct: (spread / p[0].annual) * 100,
+    averageStep: spread / Math.max(1, p.length - 1),
+    largest,
+  };
 }
 
 /** "a VPS 5", "an AO5", "an ASO-5". */

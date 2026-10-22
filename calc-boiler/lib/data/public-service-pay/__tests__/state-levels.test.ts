@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   STATE_LEVEL_CONFIG,
+  levelSteps,
   stateLevelData,
   stateLevelFaqs,
   stateLevelHref,
@@ -64,4 +65,14 @@ test("state levels: titles, descriptions and FAQs read correctly", () => {
     }
   }
   assert.ok(stateLevelFaqs(stateLevelData("qld", "ao3")!).some((f) => f.q.includes("every Queensland department")));
+});
+
+test("state levels: ladder maths", () => {
+  const vps4 = levelSteps(stateLevelData("vic", "vps-4")!);
+  assert.equal(vps4.moves, 6);
+  assert.equal(vps4.spread, 114476 - 100894);
+  for (const { jurisdiction, grade } of stateLevelParams()) {
+    const l = levelSteps(stateLevelData(jurisdiction, grade)!);
+    assert.ok(l.spread > 0 && l.largest.gain > 0 && l.largest.gain <= l.spread, grade);
+  }
 });

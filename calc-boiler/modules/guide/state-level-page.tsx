@@ -3,11 +3,19 @@ import type { SourceLink } from "@/components/common/source-attribution";
 import { SUPER_GUARANTEE } from "@/lib/constants";
 import { afterTax } from "@/lib/data/job-pay-rates";
 import {
+  levelSteps,
   stateLevelFaqs,
   stateLevelPath,
   type StateLevelData,
 } from "@/lib/data/public-service-pay/state-levels";
-import { formatBandRange, formatSalary, nearestTakeHomeSalary, takeHomeHref } from "@/lib/data/public-service-pay/types";
+import {
+  TAKE_HOME_MAX,
+  TAKE_HOME_STEP,
+  formatBandRange,
+  formatSalary,
+  nearestTakeHomeSalary,
+  takeHomeHref,
+} from "@/lib/data/public-service-pay/types";
 import {
   ARTICLE_CLASS,
   Breadcrumbs,
@@ -28,6 +36,18 @@ import {
 
 const LINK = "text-eucalyptus-dark hover:underline";
 
+/** The nearest take-home page, or the calculator above the last page ($200k). */
+function BreakdownLink({ salary }: { salary: number }) {
+  if (salary > TAKE_HOME_MAX + TAKE_HOME_STEP / 2) {
+    return <Link href="/take-home-pay-calculator/" className={`${LINK} whitespace-nowrap`}>Calculator</Link>;
+  }
+  return (
+    <Link href={takeHomeHref(salary)} className={`${LINK} whitespace-nowrap`}>
+      {formatSalary(nearestTakeHomeSalary(salary))} page
+    </Link>
+  );
+}
+
 export default function StateLevelPage({ data }: { data: StateLevelData }) {
   const { jurisdiction: j, config, section, points, previous, next, siblings } = data;
   const { label, range } = section;
@@ -38,6 +58,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
   const low = afterTax(range.min);
   const high = afterTax(range.max);
   const multiBand = section.bands.length > 1;
+  const ladder = levelSteps(data);
   const source = j.sources.find((s) => s.id === section.schedule.sourceId);
   const sources: SourceLink[] = [
     ...(source ? [{ title: source.title, url: source.url, publisher: source.publisher }] : []),
@@ -100,13 +121,14 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
                   formatSalary(p.annual / 26),
                   formatSalary(t.netAnnual),
                   formatSalary(t.netAnnual / 26),
-                  <Link key={p.label} href={takeHomeHref(p.annual)} className={`${LINK} whitespace-nowrap`}>
-                    {formatSalary(nearestTakeHomeSalary(p.annual))} page
-                  </Link>,
+                  <BreakdownLink key={p.label} salary={p.annual} />,
                 ];
               })}
-              caption={<>{section.schedule.rangeMeaning} Read from the {section.schedule.title}; verified {j.verifiedOn}.</>}
+              caption={<>Every {config.stepWord} in {label}. Full-time annual salary; super is paid on top. Read from the {section.schedule.title}; verified {j.verifiedOn}.</>}
             />
+            <p>
+              From the first {config.stepWord} to the top of {label} is {ladder.moves} {ladder.moves === 1 ? "move" : "moves"}, worth {formatSalary(ladder.spread)} a year in total ({ladder.spreadPct.toFixed(1)}% on the starting salary). That is about {formatSalary(ladder.averageStep)} a move on average. The biggest single move is {ladder.largest.from} to {ladder.largest.to}, at {formatSalary(ladder.largest.gain)}. After tax, the bottom of {label} is {formatSalary(low.netAnnual / 26)} a fortnight and the top is {formatSalary(high.netAnnual / 26)}.
+            </p>
             {section.bands.map((b) => (
               <p key={b.code} className="text-base">{multiBand ? <strong>{b.code}: </strong> : null}{b.summary}</p>
             ))}
@@ -115,9 +137,17 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
           {section.compare.length > 0 ? (
             <section>
               <H2 id="agreement">{label} Under an Agency Agreement</H2>
-              {section.compare.map((c) => (
+              {section.compare.map((c) => {
+                const pts = c.band.payPoints ?? [];
+                const awardAlwaysHigher = pts.every((p, i) => (points[i]?.annual ?? 0) >= p.annual);
+                return (
                 <div key={c.schedule.id}>
-                  <p>{c.label}.</p>
+                  <p>
+                    {c.label}.{" "}
+                    {awardAlwaysHigher
+                      ? `At ${label} the award is higher at every pay point, so the award rate is what this agency pays.`
+                      : "Where the agreement is higher, it is what this agency pays."}
+                  </p>
                   <DataTable
                     head={["Pay point", "Agreement rate", "Award rate", "Paid"]}
                     align={["l", "r", "r", "r"]}
@@ -128,13 +158,14 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
                     caption={<>Where the agreement rate is below the award rate, the award rate is paid.</>}
                   />
                 </div>
-              ))}
+                );
+              })}
             </section>
           ) : null}
 
           <section>
             <H2 id="super">{label} Superannuation</H2>
-            <p>{j.superannuation.text}</p>
+            <p>{config.superText}</p>
             <p>
               At {superRate}%, employer super on {label} is {formatSalary(range.min * superRate / 100)} a year at the bottom and {formatSalary(range.max * superRate / 100)} at the top. Super is paid on top of salary and is not part of take-home pay.
             </p>
@@ -142,9 +173,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
 
           <section>
             <H2 id="progression">Moving Up Within and Beyond {label}</H2>
-            {j.progression.slice(0, 2).map((para) => (
-              <p key={para.slice(0, 40)}>{para}</p>
-            ))}
+            <p>{config.progression}</p>
             <p>
               {previous ? <>The level below is {previous.label} ({formatBandRange(previous.range)}). </> : null}
               {next ? <>The next level up is {next.label} ({formatBandRange(next.range)}). </> : null}
