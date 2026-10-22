@@ -27,6 +27,9 @@
 // 23 October 2026, but no FWC decision and no new department salary schedule
 // had been published (Salary Rates page still "Updated 8 May 2025"). So the
 // scales below stay on the VGSA 2022 for now; see vic-2026-agreement.ts.
+// 23 October 2026: re-checked, still unofficial (no FWC decision among the
+// published [2026] FWCA decisions to 22 October, department pages unchanged);
+// only verifiedOn moved.
 
 import type { TeacherPayState } from "./types";
 
@@ -48,7 +51,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     detail:
       "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and the department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746). On 22 October 2026 the matter was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided, and the Australian Education Union Victorian Branch says the Commission approved the agreement with effect from 23 October 2026; the Commission's decision and the department's new salary schedule had not been published when we checked. Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
   },
-  verifiedOn: "22 October 2026",
+  verifiedOn: "23 October 2026",
 
   scales: [
     {
