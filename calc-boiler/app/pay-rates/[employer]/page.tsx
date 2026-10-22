@@ -9,6 +9,7 @@ import {
   EMPLOYER_SLUGS,
   entryRate,
   getEmployerPay,
+  underInstrument,
   type EmployerPay,
 } from "@/lib/data/employer-pay";
 import { fitDescription } from "@/lib/seo-title";
@@ -46,16 +47,19 @@ function contentsFor(e: EmployerPay): string {
 
 function descriptionFor(e: EmployerPay) {
   const entry = entryRate(e);
-  const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level}`;
+  // Batch A (22 Oct 2026): no casual figure where the employer has no adult casuals (ALDI).
+  const casual = entry.noCasual ? "" : ` (${formatAUD(entry.casualHourly, 2)} casual)`;
+  const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr${casual} at ${entry.level}`;
   const contents = contentsFor(e);
   // 22 Oct 2026: agreement-paid employers already name their agreement in the
   // lead. An award-paid employer with an enterprise agreement section says so,
   // so the snippet answers the "{employer} enterprise agreement" query.
   const agreement = e.enterpriseAgreement?.status === "no-agreement" ? " No enterprise agreement: the award applies." : "";
+  const under = underInstrument(e.instrument.title);
   return fitDescription(
-    `${lead} under the ${e.instrument.title}.${agreement} ${contents}. Verified ${e.verifiedOn}.`,
-    `${lead} under the ${e.instrument.title}.${agreement} ${contents}.`,
-    `${lead} under the ${e.instrument.title}.${agreement}`,
+    `${lead} under ${under}.${agreement} ${contents}. Verified ${e.verifiedOn}.`,
+    `${lead} under ${under}.${agreement} ${contents}.`,
+    `${lead} under ${under}.${agreement}`,
     `${lead}. ${contents}.`,
   );
 }

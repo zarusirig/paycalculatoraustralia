@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
 import { SOURCES } from "@/lib/constants";
-import { EMPLOYERS } from "@/lib/data/employer-pay";
+import { EMPLOYERS, underInstrument } from "@/lib/data/employer-pay";
 import EaAwardFloorChecker from "@/modules/calculator/ea-award-floor-checker";
 import { ENTERPRISE_AGREEMENT_FAQS } from "./enterprise-agreement-faqs";
 import {
@@ -136,7 +136,7 @@ export default function EnterpriseAgreementPage() {
             {pastExpiry.length > 0 && (
               <p>
                 {pastExpiry.map((e, i) => (
-                  <span key={e.slug}>{i > 0 ? " " : ""}For example, the {e.instrument.title} ({e.instrument.reference}) reached its nominal expiry on {e.instrument.nominalExpiry?.replace(/\s*\(.*\)\s*$/, "")} and still sets <Link href={`/pay-rates/${e.slug}/`}>{e.name} pay rates</Link>.</span>
+                  <span key={e.slug}>{i > 0 ? " " : ""}For example, {underInstrument(e.instrument.title)} ({e.instrument.reference}) reached its nominal expiry on {e.instrument.nominalExpiry?.replace(/\s*\(.*\)\s*$/, "")} and still sets <Link href={`/pay-rates/${e.slug}/`}>{e.name} pay rates</Link>.</span>
                 ))}
               </p>
             )}

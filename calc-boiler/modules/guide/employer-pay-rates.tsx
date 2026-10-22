@@ -23,6 +23,7 @@ import {
   relatedEmployers,
   takeHomeHrefForAnnual,
   type AgreementStatus,
+  underInstrument,
   type EmployerPay,
   type PenaltyRow,
 } from "@/lib/data/employer-pay";
@@ -114,7 +115,8 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
     ...(e.instrument.nominalExpiry && !ea ? [{ label: "Nominal expiry", value: e.instrument.nominalExpiry }] : []),
     { label: "Employer", value: e.employerEntity },
     { label: "Rates on this page from", value: e.ratesEffectiveFrom },
-    { label: "Casual loading", value: loading },
+    // Batch A (22 Oct 2026): no loading to show where the employer has no adult casuals (ALDI).
+    ...(entry.noCasual ? [] : [{ label: "Casual loading", value: loading }]),
     ...(e.fullTimeWeeklyHours !== undefined
       ? [{ label: "Full-time week", value: `${e.fullTimeWeeklyHours} hours` }]
       : []),
@@ -145,10 +147,17 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
             {e.name} Pay Rates 2026: Hourly Wage by Age &amp; Level
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
-            {e.name} {e.industry} staff are paid under the {e.instrument.title} ({e.instrument.reference}).
+            {e.name} {e.industry} staff are paid under {underInstrument(e.instrument.title)} ({e.instrument.reference}).
             From {e.ratesEffectiveFrom}, an adult at {entry.level} {isAward ? "must get at least" : "gets"}{" "}
-            <strong className="text-navy">{money(entry.hourly)} an hour</strong>, or{" "}
-            <strong className="text-navy">{money(entry.casualHourly)}</strong> as a casual.
+            <strong className="text-navy">{money(entry.hourly)} an hour</strong>
+            {/* Batch A (22 Oct 2026): no casual figure where the employer has no adult casuals (ALDI) */}
+            {entry.noCasual ? (
+              "."
+            ) : (
+              <>
+                , or <strong className="text-navy">{money(entry.casualHourly)}</strong> as a casual.
+              </>
+            )}
           </p>
           <p className="text-sm text-warmgray">
             Pay Calculator Australia is independent and not affiliated with, endorsed by or sponsored
@@ -246,7 +255,8 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
               {/* H1: instruments whose casual rate is not base + loading */}
               {e.casualRateNote && <p className="text-sm">{e.casualRateNote}</p>}
               <p className="text-base">
-                Full-time at {entry.level}: <strong>{formatAUD(entryAnnual)}</strong> a year before tax
+                {/* Batch A (22 Oct 2026): "at the ... rate", since an entry level can be a part-time type (ALDI Limited Roster) */}
+                Full-time hours at the {entry.level} rate: <strong>{formatAUD(entryAnnual)}</strong> a year before tax
                 {entry.annualSalary !== undefined ? " (the printed salary)" : ` (${fullTimeHours(e)} hours × 52 weeks)`}.
                 See <Link href={takeHome.href}>take-home pay on {formatAUD(takeHome.amount)}</Link>
                 {takeHome.amount === Math.round(entryAnnual) ? "" : " (nearest we publish)"}.
@@ -433,7 +443,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 <h2 style={HEADING_FONT}>Related employers</h2>
                 {related.sameInstrument.length > 0 && (
                   <>
-                    <h3 style={HEADING_FONT}>Also paid under the {e.instrument.title}</h3>
+                    <h3 style={HEADING_FONT}>Also paid under {underInstrument(e.instrument.title)}</h3>
                     <EmployerLinks employers={related.sameInstrument} />
                   </>
                 )}

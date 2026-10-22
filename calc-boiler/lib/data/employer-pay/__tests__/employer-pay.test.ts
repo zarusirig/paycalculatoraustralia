@@ -69,7 +69,8 @@ test("related employers: same instrument first, then same sector, never self, at
 
 test("allowance rows are complete, and only where the data has them", () => {
   const withAllowances = EMPLOYERS.filter((e) => (e.allowances?.length ?? 0) > 0).map((e) => e.slug).sort();
-  assert.deepEqual(withAllowances, ["australia-post", "bws", "costco", "dominos", "liquorland", "qantas", "virgin-australia"]);
+  // Batch A (22 Oct 2026): ALDI's Relieving Shift Manager allowance (Sch 2 cl 17).
+  assert.deepEqual(withAllowances, ["aldi", "australia-post", "bws", "costco", "dominos", "liquorland", "qantas", "virgin-australia"]);
   for (const e of EMPLOYERS) {
     for (const a of e.allowances ?? []) {
       assert.ok(a.name.length > 3 && a.amount.length > 1 && a.when.length > 5, `${e.slug} ${a.name}`);
@@ -227,7 +228,9 @@ test("weekly examples multiply the entry rate by the example hours", () => {
     assert.deepEqual(xs.map((x) => x.hours), [...EXAMPLE_HOURS]);
     for (const x of xs) {
       assert.equal(x.permanentWeekly, roundCents(entryRate(e).hourly * x.hours));
-      assert.ok(x.casualWeekly > x.permanentWeekly);
+      // Batch A (22 Oct 2026): no casual column where the employer has no adult casuals (ALDI).
+      if (entryRate(e).noCasual) assert.equal(x.casualWeekly, 0);
+      else assert.ok(x.casualWeekly > x.permanentWeekly);
     }
   }
 });

@@ -86,7 +86,8 @@ export default function EmployerPayHubPage() {
                             <span className="block text-warmgray">{e.instrument.title}</span>
                           </td>
                           <td className="px-4 py-3 text-right font-medium text-navy">{money(entry.hourly)}</td>
-                          <td className="px-4 py-3 text-right">{money(entry.casualHourly)}</td>
+                          {/* Batch A (22 Oct 2026): no casual figure where the employer has no adult casuals (ALDI) */}
+                          <td className="px-4 py-3 text-right">{entry.noCasual ? "—" : money(entry.casualHourly)}</td>
                           <td className="px-4 py-3 text-right">{money(top.hourly)}</td>
                         </tr>
                       );
