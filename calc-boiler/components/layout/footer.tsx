@@ -3,25 +3,15 @@ import Link from "next/link";
 import {
   FOOTER_COLUMNS,
   FOOTER_COMPANY,
-  FOOTER_SALARY_HUBS,
-  FOOTER_TAKE_HOME_SALARIES,
   type MenuLink,
 } from "@/lib/navigation";
-import { SOURCES, SITE_CONFIG, calculatePayBreakdown } from "@/lib/constants";
+import { SOURCES, SITE_CONFIG } from "@/lib/constants";
 
 /*
  * Columns mirror the header menus (lib/navigation.ts): hubs plus the key
  * leaves, not every page. Everything else is one click away via the Site
  * directory link, which lists every built page.
  */
-
-// Derived from the tax engine, never hardcoded: these render on every page,
-// and a stale figure here is invisible to any year-string search.
-const TAKE_HOME = FOOTER_TAKE_HOME_SALARIES.map((salary) => ({
-  href: `/take-home-pay-on/${salary}/`,
-  label: `$${salary / 1_000}k`,
-  weekly: `$${Math.round(calculatePayBreakdown({ grossSalary: salary }).weekly).toLocaleString("en-AU")}/wk`,
-}));
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const linkBase =
@@ -75,38 +65,9 @@ export default function Footer() {
         </div>
 
         {/* Link columns: one per menu cluster */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-10 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-10 sm:grid-cols-3 lg:grid-cols-5">
           <FooterColumn title={calculators.title} links={calculators.links} />
           <FooterColumn title={payRates.title} links={payRates.links} />
-          <div>
-            <ColumnHeading>Salary tables</ColumnHeading>
-            <ul role="list" className="space-y-1">
-              {FOOTER_SALARY_HUBS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="mb-1 mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-sandstone-dark/60">
-              Weekly take-home on
-            </p>
-            <ul role="list" className="space-y-1">
-              {TAKE_HOME.map((t) => (
-                <li key={t.href}>
-                  <Link href={t.href} className={`${linkClass} gap-2`}>
-                    <span className="sr-only">Take-home pay on</span>
-                    <span className="font-medium text-sandstone">{t.label}</span>
-                    <span aria-hidden="true" className="text-sandstone-dark/40">
-                      &rarr;
-                    </span>
-                    <span className="tabular-nums text-eucalyptus-light/85">{t.weekly}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           <FooterColumn title={guides.title} links={guides.links} />
           <FooterColumn title={states.title} links={states.links} />
           <FooterColumn title="Company" links={FOOTER_COMPANY} />

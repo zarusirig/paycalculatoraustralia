@@ -65,11 +65,6 @@ export type MegaMenu = {
   stateGrid?: { topics: readonly { key: StateTopicKey; label: string; hub: string }[]; rows: readonly StateRow[] };
 };
 
-const tho = (n: number) => ({ href: `/take-home-pay-on/${n}/`, label: `Take-home on $${(n / 1000).toFixed(0)}k` });
-const taxOn = (n: number) => ({ href: `/tax-on/${n}/`, label: `Tax on $${(n / 1000).toFixed(0)}k` });
-const s2h = (n: number) => ({ href: `/salary-to-hourly/${n}/`, label: `$${(n / 1000).toFixed(0)}k a year hourly` });
-const h2s = (n: number) => ({ href: `/hourly-to-salary/${n}/`, label: `$${n} an hour yearly` });
-
 const STATES = [
   ["nsw", "NSW", "New South Wales"],
   ["vic", "VIC", "Victoria"],
@@ -296,34 +291,6 @@ export const MEGA_MENU: readonly MegaMenu[] = [
     ],
   },
   {
-    id: "salary-tables",
-    label: "Salary tables",
-    intro: "Every salary worked out: tax, take-home and hourly.",
-    featured: [
-      { href: "/take-home-pay-on/", label: "Take-home Pay on Every Salary", description: "$20k to $500k, after tax" },
-      { href: "/tax-on/", label: "Tax on Every Salary", description: "Income tax and Medicare levy" },
-      { href: "/salary-to-hourly/", label: "Salary to Hourly", description: "Any salary as an hourly rate" },
-      { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Salary", description: "Any hourly rate as a salary" },
-    ],
-    groups: [
-      { title: "Take-home pay on", href: "/take-home-pay-on/", links: [65000, 80000, 100000, 110000, 130000, 140000, 160000, 200000].map(tho) },
-      { title: "Tax on", href: "/tax-on/", links: [40000, 50000, 60000, 70000, 100000, 130000, 150000].map(taxOn) },
-      { title: "Salary to hourly", href: "/salary-to-hourly/", links: [60000, 75000, 80000, 90000, 100000, 110000, 150000].map(s2h) },
-      { title: "Hourly to salary", href: "/hourly-to-annual-salary-calculator/", links: [25, 30, 32, 35, 40, 45, 50].map(h2s) },
-      {
-        title: "PAYG tax tables",
-        href: "/payg-withholding-tables/",
-        links: [
-          { href: "/payg-withholding-tables/", label: "PAYG withholding tables" },
-          { href: "/weekly-tax-table/", label: "Weekly tax table" },
-          { href: "/fortnightly-tax-table/", label: "Fortnightly tax table" },
-          { href: "/monthly-tax-table/", label: "Monthly tax table" },
-          { href: "/schedule-5-tax-table/", label: "Schedule 5 tax table" },
-        ],
-      },
-    ],
-  },
-  {
     id: "by-state",
     label: "By state",
     intro: "State pay calculators, payroll tax and state pay scales.",
@@ -402,6 +369,17 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         ],
       },
       {
+        title: "PAYG tax tables",
+        href: "/payg-withholding-tables/",
+        links: [
+          { href: "/payg-withholding-tables/", label: "PAYG withholding tables" },
+          { href: "/weekly-tax-table/", label: "Weekly tax table" },
+          { href: "/fortnightly-tax-table/", label: "Fortnightly tax table" },
+          { href: "/monthly-tax-table/", label: "Monthly tax table" },
+          { href: "/schedule-5-tax-table/", label: "Schedule 5 tax table" },
+        ],
+      },
+      {
         title: "Deductions & allowances",
         href: "/tax-deductions-guide/",
         links: [
@@ -473,11 +451,7 @@ export const NAV_CTA: MenuLink = { href: "/", label: "Calculate pay" };
 // ----- Footer -----
 export type FooterColumn = { title: string; href?: string; links: readonly MenuLink[] };
 
-/**
- * Footer columns mirror the menu clusters: hub first, then the key leaves.
- * Salary tables are rendered by the footer itself (it adds live take-home
- * figures from the tax engine) from FOOTER_TAKE_HOME_SALARIES.
- */
+/** Footer columns mirror the menu clusters: hub first, then the key leaves. */
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   {
     title: "Calculators",
@@ -535,16 +509,6 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   },
 ];
 
-/** Salaries listed (with live weekly take-home) in the footer's Salary tables column. */
-export const FOOTER_TAKE_HOME_SALARIES = [50_000, 65_000, 80_000, 100_000, 120_000, 150_000] as const;
-
-export const FOOTER_SALARY_HUBS: readonly MenuLink[] = [
-  { href: "/take-home-pay-on/", label: "Take-home on every salary" },
-  { href: "/tax-on/", label: "Tax on every salary" },
-  { href: "/salary-to-hourly/", label: "Salary to hourly" },
-  { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to salary" },
-];
-
 export const FOOTER_COMPANY: readonly MenuLink[] = [
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
@@ -569,8 +533,6 @@ export function allNavHrefs(): string[] {
     m.stateGrid?.rows.forEach((r) => Object.values(r.cells).forEach((h) => h && out.add(h)));
   }
   FOOTER_COLUMNS.forEach((c) => c.links.forEach((l) => out.add(l.href)));
-  FOOTER_TAKE_HOME_SALARIES.forEach((s) => out.add(`/take-home-pay-on/${s}/`));
-  FOOTER_SALARY_HUBS.forEach((l) => out.add(l.href));
   FOOTER_COMPANY.forEach((l) => out.add(l.href));
   return [...out];
 }
