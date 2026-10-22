@@ -10,6 +10,7 @@ import { EMPLOYER_SLUGS } from "@/lib/data/employer-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
 import { APS_GRADE_SLUGS } from "@/lib/data/public-service-pay/aps-grades"; // J6
+import { stateLevelParams } from "@/lib/data/public-service-pay/state-levels";
 import { SCHOOL_SUPPORT_SLUGS } from "@/lib/data/school-support-pay"; // J6
 import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
@@ -414,6 +415,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   allPages.push({ slug: "train-driver-salary", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end J6 ---
+  // 23 Oct 2026: VPS, QLD AO and SA ASO level pages.
+  for (const { jurisdiction, grade } of stateLevelParams()) {
+    allPages.push({ slug: `public-service-pay-scales/${jurisdiction}/${grade}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
   // --- Oct 2026 tax and super pages (feat/oct-tax-super) ---
   for (const slug of ["late-tax-return-penalty", "working-australians-tax-offset", "listo-calculator", "carry-forward-concessional-contributions-calculator", "termination-payment-tax-calculator"]) {
     allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });

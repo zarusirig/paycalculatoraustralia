@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ApsGradePage from "@/modules/guide/aps-grade-page";
+import StateLevelPage from "@/modules/guide/state-level-page";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { SITE_CONFIG } from "@/lib/constants";
 import {
@@ -11,6 +12,13 @@ import {
   type ApsGradeSlug,
 } from "@/lib/data/public-service-pay/aps-grades";
 import { formatSalary } from "@/lib/data/public-service-pay/types";
+import {
+  stateLevelData,
+  stateLevelFaqs,
+  stateLevelMeta,
+  stateLevelParams,
+  stateLevelPath,
+} from "@/lib/data/public-service-pay/state-levels";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -20,13 +28,18 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // Targets (DataForSEO AU, Sep 2026): aps 6 salary / aps6 salary / aps 6 pay
 // rate 1.9k each, aps 5 salary 1.3k, aps 4 salary 1k, el1 salary 880,
 // el2 salary 590, aps3 salary 480.
+// 23 Oct 2026: VIC (VPS 2 to 7), QLD (AO2 to AO8) and SA (ASO-2 to ASO-8)
+// level pages added through lib/data/public-service-pay/state-levels.ts.
 
 interface PageProps {
   params: Promise<{ jurisdiction: string; grade: string }>;
 }
 
 export async function generateStaticParams() {
-  return APS_GRADE_SLUGS.map((grade) => ({ jurisdiction: "aps", grade }));
+  return [
+    ...APS_GRADE_SLUGS.map((grade) => ({ jurisdiction: "aps", grade })),
+    ...stateLevelParams(),
+  ];
 }
 
 export const dynamicParams = false;
@@ -44,8 +57,23 @@ function meta(d: NonNullable<ReturnType<typeof resolve>>) {
   return { title, description };
 }
 
+function pageMetadata(title: string, description: string, url: string): Metadata {
+  return withFeaturedImage({
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    twitter: { card: "summary_large_image", title, description },
+  });
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { jurisdiction, grade } = await params;
+  const state = stateLevelData(jurisdiction, grade);
+  if (state) {
+    const { title, description } = stateLevelMeta(state);
+    return pageMetadata(title, description, `${SITE_CONFIG.baseUrl}${stateLevelPath(state)}`);
+  }
   const d = resolve(jurisdiction, grade);
   if (!d) return {};
   const { title, description } = meta(d);
@@ -61,6 +89,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 async function Page({ params }: PageProps) {
   const { jurisdiction, grade } = await params;
+  const state = stateLevelData(jurisdiction, grade);
+  if (state) {
+    const { title, description } = stateLevelMeta(state);
+    const path = stateLevelPath(state);
+    return (
+      <>
+        {t3JsonLd({
+          slug: path.replace(/^\/|\/$/g, ""),
+          title,
+          description,
+          headline: `${state.section.label} Salary 2026: Pay Points, Pay per Fortnight and Take-Home Pay`,
+          crumbs: [
+            { name: "Public Service Pay Scales", path: "/public-service-pay-scales/" },
+            { name: state.jurisdiction.label, path: `/public-service-pay-scales/${state.jurisdiction.slug}/` },
+            { name: `${state.section.label} salary`, path },
+          ],
+          faqs: stateLevelFaqs(state),
+          published: "2026-10-23",
+        })}
+        <StateLevelPage data={state} />
+      </>
+    );
+  }
   const d = resolve(jurisdiction, grade);
   if (!d) notFound();
   const { title, description } = meta(d);

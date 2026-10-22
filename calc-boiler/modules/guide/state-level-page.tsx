@@ -1,0 +1,195 @@
+import Link from "next/link";
+import type { SourceLink } from "@/components/common/source-attribution";
+import { SUPER_GUARANTEE } from "@/lib/constants";
+import { afterTax } from "@/lib/data/job-pay-rates";
+import {
+  stateLevelFaqs,
+  stateLevelPath,
+  type StateLevelData,
+} from "@/lib/data/public-service-pay/state-levels";
+import { formatBandRange, formatSalary, nearestTakeHomeSalary, takeHomeHref } from "@/lib/data/public-service-pay/types";
+import {
+  ARTICLE_CLASS,
+  Breadcrumbs,
+  DataTable,
+  FaqSection,
+  H2,
+  KeyFigures,
+  PAGE_INNER,
+  PAGE_WRAP,
+  PageFooter,
+  PageHeader,
+  RelatedSidebar,
+} from "./t3-shared";
+
+// /public-service-pay-scales/{vic|qld|sa}/{level}/ (23 Oct 2026). Figures come
+// from levelSections() via lib/data/public-service-pay/state-levels.ts; after
+// tax uses the same engine as /take-home-pay-on/N/.
+
+const LINK = "text-eucalyptus-dark hover:underline";
+
+export default function StateLevelPage({ data }: { data: StateLevelData }) {
+  const { jurisdiction: j, config, section, points, previous, next, siblings } = data;
+  const { label, range } = section;
+  const faqs = stateLevelFaqs(data);
+  const slug = stateLevelPath(data).replace(/^\/|\/$/g, "");
+  const hub = `/public-service-pay-scales/${j.slug}/`;
+  const superRate = config.superRate ?? SUPER_GUARANTEE.rate * 100;
+  const low = afterTax(range.min);
+  const high = afterTax(range.max);
+  const multiBand = section.bands.length > 1;
+  const source = j.sources.find((s) => s.id === section.schedule.sourceId);
+  const sources: SourceLink[] = [
+    ...(source ? [{ title: source.title, url: source.url, publisher: source.publisher }] : []),
+    ...section.compare.flatMap((c) => {
+      const s = j.sources.find((x) => x.id === c.schedule.sourceId);
+      return s ? [{ title: s.title, url: s.url, publisher: s.publisher }] : [];
+    }),
+  ];
+
+  return (
+    <div className={PAGE_WRAP}><div className={PAGE_INNER}>
+      <Breadcrumbs items={[
+        { href: "/", label: "Pay Calculator" },
+        { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
+        { href: hub, label: j.label },
+        { label: `${label} salary` },
+      ]} />
+
+      <PageHeader featuredImage title={`${label} Salary 2026: Pay Points, Pay per Fortnight and Take-Home Pay`}>
+        <p>
+          <strong>
+            From {config.effective}, {label} pays {formatSalary(range.min)} to {formatSalary(range.max)} a year across {points.length} {config.stepWord}s.
+          </strong>{" "}
+          That is about {formatSalary(low.netAnnual)} to {formatSalary(high.netAnnual)} a year after tax. {label} is also written {config.alsoCalled(label)}. The figures come from the {section.schedule.title}.
+          {multiBand ? ` The level has ${section.bands.length} value ranges: ${section.bands.map((b) => `${b.code} ${formatBandRange(b)}`).join("; ")}.` : ""}
+        </p>
+      </PageHeader>
+
+      <KeyFigures
+        items={[
+          { k: "Bottom of level", v: formatSalary(range.min), s: points[0].label },
+          { k: "Top of level", v: formatSalary(range.max), s: points[points.length - 1].label },
+          { k: "Per fortnight", v: `${formatSalary(range.min / 26)}–${formatSalary(range.max / 26)}`, s: "Before tax, annual ÷ 26" },
+          { k: "Employer super", v: `${superRate}%`, s: config.superRate ? "Set for this service" : "Superannuation Guarantee" },
+        ]}
+      />
+
+      <div className="flex flex-col lg:flex-row gap-12">
+        <article className={ARTICLE_CLASS}>
+          {config.caveat ? (
+            <p className="rounded-lg border border-sandstone-dark/30 bg-sandstone/40 p-4 text-base">
+              <strong>Award rates, not every agreement.</strong> {config.caveat}
+            </p>
+          ) : null}
+
+          <section>
+            <H2 id="pay-points">{label} Pay Points and Take-Home Pay</H2>
+            <p>
+              Every {config.stepWord} in {label}, from {config.effective}. Fortnightly figures divide the year by 26. Take-home pay uses 2026–27 resident tax rates, the Medicare levy and no HECS.
+            </p>
+            <DataTable
+              head={[...(multiBand ? ["Value range"] : []), "Step", "Salary", "Gross per fortnight", "Take-home a year", "Take-home per fortnight", "Full breakdown"]}
+              align={[...(multiBand ? ["l" as const] : []), "l", "r", "r", "r", "r", "l"]}
+              rows={points.map((p) => {
+                const t = afterTax(p.annual);
+                return [
+                  ...(multiBand ? [p.band] : []),
+                  p.label,
+                  formatSalary(p.annual),
+                  formatSalary(p.annual / 26),
+                  formatSalary(t.netAnnual),
+                  formatSalary(t.netAnnual / 26),
+                  <Link key={p.label} href={takeHomeHref(p.annual)} className={`${LINK} whitespace-nowrap`}>
+                    {formatSalary(nearestTakeHomeSalary(p.annual))} page
+                  </Link>,
+                ];
+              })}
+              caption={<>{section.schedule.rangeMeaning} Read from the {section.schedule.title}; verified {j.verifiedOn}.</>}
+            />
+            {section.bands.map((b) => (
+              <p key={b.code} className="text-base">{multiBand ? <strong>{b.code}: </strong> : null}{b.summary}</p>
+            ))}
+          </section>
+
+          {section.compare.length > 0 ? (
+            <section>
+              <H2 id="agreement">{label} Under an Agency Agreement</H2>
+              {section.compare.map((c) => (
+                <div key={c.schedule.id}>
+                  <p>{c.label}.</p>
+                  <DataTable
+                    head={["Pay point", "Agreement rate", "Award rate", "Paid"]}
+                    align={["l", "r", "r", "r"]}
+                    rows={(c.band.payPoints ?? []).map((p, i) => {
+                      const award = points[i]?.annual ?? 0;
+                      return [p.label, formatSalary(p.annual), formatSalary(award), formatSalary(Math.max(p.annual, award))];
+                    })}
+                    caption={<>Where the agreement rate is below the award rate, the award rate is paid.</>}
+                  />
+                </div>
+              ))}
+            </section>
+          ) : null}
+
+          <section>
+            <H2 id="super">{label} Superannuation</H2>
+            <p>{j.superannuation.text}</p>
+            <p>
+              At {superRate}%, employer super on {label} is {formatSalary(range.min * superRate / 100)} a year at the bottom and {formatSalary(range.max * superRate / 100)} at the top. Super is paid on top of salary and is not part of take-home pay.
+            </p>
+          </section>
+
+          <section>
+            <H2 id="progression">Moving Up Within and Beyond {label}</H2>
+            {j.progression.slice(0, 2).map((para) => (
+              <p key={para.slice(0, 40)}>{para}</p>
+            ))}
+            <p>
+              {previous ? <>The level below is {previous.label} ({formatBandRange(previous.range)}). </> : null}
+              {next ? <>The next level up is {next.label} ({formatBandRange(next.range)}). </> : null}
+              {config.nextRise}
+            </p>
+            <nav aria-label={`${j.shortName} levels`} className="not-prose my-4">
+              <ul className="flex flex-wrap gap-2">
+                {siblings.map((s) => (
+                  <li key={s.id}>
+                    {s.id === section.id ? (
+                      <span className="inline-block rounded-full border border-navy bg-navy px-3 py-1 text-sm font-medium text-white" aria-current="page">{s.label}</span>
+                    ) : (
+                      <Link href={`${hub}${s.id}/`} className="inline-block rounded-full border border-sandstone-dark/30 bg-white px-3 py-1 text-sm font-medium text-navy hover:border-eucalyptus hover:text-eucalyptus-dark">{s.label} salary</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <p>
+              Every level, the full schedule and the other streams are on the <Link href={hub}>{j.label} pay scales</Link> page. Other services are on the <Link href="/public-service-pay-scales/">public service pay scales</Link> hub, including <Link href="/public-service-pay-scales/aps/">APS levels</Link>.
+            </p>
+          </section>
+
+          <FaqSection faqs={faqs} label={`${label} salary`} />
+
+          <PageFooter
+            slug={slug}
+            lastVerified={j.verifiedOn}
+            sources={sources}
+            methodology={<>
+              <p>Every salary on this page is copied from the {section.schedule.title}, the same figures as the {j.label} page. Nothing is averaged or estimated. Fortnightly figures divide the annual salary by 26, so they can differ by a few dollars from a payslip.</p>
+              <p>Take-home pay uses the same engine as our take-home pay pages: 2026–27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS, salary sacrifice or Medicare levy surcharge. General information, not advice.</p>
+            </>}
+          />
+        </article>
+
+        <RelatedSidebar links={[
+          { href: hub, label: `${j.label} pay scales` },
+          ...(next && siblings.some((s) => s.id === next.id) ? [{ href: `${hub}${next.id}/`, label: `${next.label} salary` }] : []),
+          { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
+          { href: takeHomeHref(range.min), label: `Take-Home Pay on ${formatSalary(nearestTakeHomeSalary(range.min))}` },
+          { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+          { href: "/salary-sacrifice-calculator/", label: "Salary Sacrifice Calculator" },
+        ]} />
+      </div>
+    </div></div>
+  );
+}

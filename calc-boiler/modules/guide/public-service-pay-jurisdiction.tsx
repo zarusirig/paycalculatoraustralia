@@ -26,6 +26,7 @@ import {
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 // J6: each APS level section links to its own grade page.
 import { apsGradeHrefForLabel } from "@/lib/data/public-service-pay/aps-grades";
+import { stateLevelHref } from "@/lib/data/public-service-pay/state-levels";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, getServicePay, isVerified } from "@/lib/data/service-pay";
 import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
@@ -346,7 +347,11 @@ function LevelGuideSection({ jurisdiction }: { jurisdiction: Jurisdiction }) {
         <LevelSectionBlock
           key={section.id}
           section={section}
-          detailHref={jurisdiction.slug === "aps" ? apsGradeHrefForLabel(section.label) : undefined}
+          detailHref={
+            jurisdiction.slug === "aps"
+              ? apsGradeHrefForLabel(section.label)
+              : stateLevelHref(jurisdiction.slug, section.id)
+          }
         />
       ))}
     </div>
