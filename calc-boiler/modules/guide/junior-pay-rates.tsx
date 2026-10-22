@@ -23,7 +23,17 @@ import {
 import { JUNIOR_EMPLOYER_AGES, JUNIOR_EMPLOYER_ROWS, JUNIOR_FAQS } from "@/modules/guide/junior-pay-rates-faqs";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { MIN_WAGE_AGES, ageSummary, money } from "@/modules/guide/minimum-wage-by-age-data";
+import { MODERN_AWARDS } from "@/lib/constants/modern-awards";
+import { APPRENTICE_SPOKES, headlineRate } from "@/lib/data/apprentice-pay/spokes";
 import FeaturedImage from "@/components/common/featured-image";
+
+// Every other award page on the site that carries a junior scale, for the
+// "Junior Rates by Award" section (22 Oct 2026). Read from the award constants
+// so the list cannot name an award whose page has no junior table.
+const OTHER_JUNIOR_AWARDS = Object.values(MODERN_AWARDS)
+  .filter((a) => a.junior)
+  .map((a) => ({ href: a.meta.href, name: a.meta.shortName, adultAge: a.junior!.adultAge }))
+  .sort((a, b) => a.name.localeCompare(b.name, "en-AU"));
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
@@ -277,6 +287,28 @@ export default function JuniorPayRatesPage() {
               <p>
                 Full classification tables are on our <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages. Hospitality is a fourth scale again, paying 85% at 19 where retail pays 80%, and it has a separate table for office employees. The dated steps of the retail, fast food and pharmacy 18 to 20 phase-in are on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
               </p>
+              <h3>Other awards with a junior scale</h3>
+              <p>
+                Each of these award pages prints its own junior table, worked out from that award&rsquo;s classification rate, with the age the full adult rate starts:
+              </p>
+              <ul>
+                {OTHER_JUNIOR_AWARDS.map((a) => (
+                  <li key={a.href}>
+                    <Link href={a.href}>{a.name} junior rates</Link>: adult rate from {a.adultAge}
+                  </li>
+                ))}
+              </ul>
+              <h3>Apprentices are not on junior rates</h3>
+              <p>
+                An apprentice under a training contract is paid the award&rsquo;s apprentice percentages, which step up by year rather than by age, and the National Minimum Wage order does not bind them. First-year minimums for an apprentice who has completed Year 12, from 1 July 2026:{" "}
+                {APPRENTICE_SPOKES.map((s, i) => (
+                  <span key={s.slug}>
+                    {i > 0 ? (i === APPRENTICE_SPOKES.length - 1 ? " and " : ", ") : ""}
+                    <Link href={`/apprentice-pay/${s.slug}/`}>{s.label.toLowerCase()} {formatAUD(headlineRate(s, 1, "completed").hourly, 2)}</Link>
+                  </span>
+                ))}
+                . Every trade side by side, with a wages calculator, is on <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
+              </p>
             </section>
 
             <section id="awards-without-junior-rates">
@@ -424,6 +456,7 @@ export default function JuniorPayRatesPage() {
                 <li><Link href="/minimum-wage-australia/">Minimum Wage Australia</Link>: the adult rate from {ADULT_AGE}, weekly, annual and after tax</li>
                 <li><Link href="/casual-loading-calculator/">Casual Loading Calculator</Link>: what the 25% loading is worth against paid leave</li>
                 <li><Link href="/minimum-wage-history-australia/">Minimum Wage History</Link>: how the National Minimum Wage has moved</li>
+                <li><Link href="/australian-tax-and-pay-data/">Junior minimum wage data (CSV)</Link>: every age band and rate as a free download</li>
               </ul>
             </section>
 

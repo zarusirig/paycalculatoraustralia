@@ -10,7 +10,7 @@ import {
   type PaygFinancialYear,
 } from "@/lib/constants/payg-withholding";
 import type { TaxTableFaq } from "./weekly-tax-table-faqs";
-import { FY_CYCLES, fyLabel, fyLabelOr, fyWindow, adjacentFys, type FyCycleConfig } from "./fy-tax-table-data";
+import { FY_CYCLES, STSL_2026_27_THRESHOLDS, fyLabel, fyLabelOr, fyWindow, adjacentFys, type FyCycleConfig } from "./fy-tax-table-data";
 import { ATO_WORKED_EXAMPLES } from "./ato-schedules";
 
 export function fyTaxTableFaqs(cycle: FyCycleConfig, fy: PaygFinancialYear): TaxTableFaq[] {
@@ -54,6 +54,15 @@ export function fyTaxTableFaqs(cycle: FyCycleConfig, fy: PaygFinancialYear): Tax
         ? `The standard columns are income tax only. The study and training support loan component comes from Schedule 8 (NAT 3539) and is added on top; the lookup on this page includes it when you tick the study loan box.`
         : `No. The columns here are income tax only (including the Medicare levy). Study and training support loan amounts come from a separate ATO schedule (Schedule 8), which had three editions across these two years: from 1 July 2024, from 1 July 2025 and from 24 September 2025. For a payee with a HELP or similar debt, check the Schedule 8 edition in force on the pay date.`,
     },
+    sharedEdition
+      ? {
+          q: `Did any withholding schedule change on 1 July 2025, if the ${cycle.period}ly table did not?`,
+          a: `Yes. The ATO's 2025-26 list keeps the ${cycle.period}ly table (${cycle.ato.nat}) and Schedule 1 on their 1 July 2024 edition, but Schedule 5 for back payments, commissions and bonuses, Schedule 12 for superannuation lump sums and Schedule 13 for superannuation income streams were issued for payments made from 1 July 2025 to 30 June 2026. Schedule 8 and the study and training support loans tables changed twice, with one edition for 1 July to 23 September 2025 and another from 24 September 2025 to 30 June 2026.`,
+        }
+      : {
+          q: `When does a ${cycle.period}ly pay in ${label} have a study loan amount withheld?`,
+          a: `Under the 2026-27 study and training support loans ${cycle.period}ly table (${STSL_2026_27_THRESHOLDS[f].nat}), a loan component is withheld once ${cycle.period}ly income reaches ${formatAUD(STSL_2026_27_THRESHOLDS[f].tft, STSL_2026_27_THRESHOLDS[f].tft % 1 ? 2 : 0)} for a payee who claims the tax-free threshold, or ${formatAUD(STSL_2026_27_THRESHOLDS[f].noTft, STSL_2026_27_THRESHOLDS[f].noTft % 1 ? 2 : 0)} for one who does not. It is worked out on all earnings including taxable allowances, bonuses and commissions, not on lump sum termination payments, and is added to the amount from the regular table on this page.`,
+        },
     {
       q: `Does the ${label} table still matter once ${sharedEdition ? "those years have" : "the year has"} ended?`,
       a: `Yes, for payroll corrections, back-pay runs and audits of a pay dated in ${labelOr}: the amount to withhold is fixed by the table in force on the pay date. It does not set your actual tax, which is worked out on your tax return for the year. ${

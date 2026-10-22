@@ -421,6 +421,7 @@ export default function TaxBracketsGuidePage() {
               <p>The second cut is already law. The {LEGISLATED_CUT_2027_28.act} ({LEGISLATED_CUT_2027_28.actNumber}, assented {LEGISLATED_CUT_2027_28.assent}) reduces the {pct(B[1].rate)} rate to <strong>{pct(N[1].rate)}</strong> from {LEGISLATED_CUT_2027_28.effectiveDate}. The thresholds stay where they are. The ATO&rsquo;s rate table doesn&rsquo;t show 2027-28 yet, so the base amounts below are worked out from the legislated rate.</p>
               <BracketTable brackets={N} caption="Resident tax brackets 2027-28 (legislated)" />
               <p>Compared with {FY}, anyone earning over {formatAUD(N[1].max)} saves another {formatAUD(MAX_SAVING_2027_28)} a year, and the no-tax point with LITO rises to {formatAUD(NIL_NEXT)}. Tax at the top of each band will be {nextThresholds.slice(1).map((t) => formatAUD(t.tax)).join(", ")}.</p>
+              <p>The same Act adds a new offset on top of the rate cut. The <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> pays $250 against tax from 2027-28, alongside LITO, so the saving for a low or middle earner is larger than the bracket table alone shows. The date it starts, and every other dated change, is on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.</p>
             </section>
 
             <section id="faq">

@@ -214,11 +214,32 @@ export function WeekendHolidayTable({ rows, code }: { rows: readonly WeekendHoli
   );
 }
 
-/** Small link printed under an award page's public holiday row. */
+/** The holiday guides an award page's public holiday row points at (22 Oct 2026: the five dated guides, not only the hub). */
+const HOLIDAY_ROW_GUIDES = [
+  { href: "/christmas-day-pay-rates/", label: "Christmas Day" },
+  { href: "/boxing-day-pay-rates/", label: "Boxing Day" },
+  { href: "/new-years-day-pay-rates/", label: "New Year's Day" },
+  { href: "/australia-day-public-holiday-pay/", label: "Australia Day" },
+  { href: "/easter-public-holiday-pay/", label: "Easter" },
+] as const;
+
+/** Small links printed under an award page's public holiday row. */
 export function PublicHolidayRowLink() {
   return (
-    <Link href="/public-holiday-pay/" className="mt-1 block text-xs font-normal text-eucalyptus-dark hover:underline">
-      Public holiday pay calculator &amp; dates by state →
-    </Link>
+    <span className="mt-1 block text-xs font-normal text-warmgray">
+      <Link href="/public-holiday-pay/" className="text-eucalyptus-dark hover:underline">
+        Public holiday pay calculator &amp; dates by state
+      </Link>
+      . What this rate pays on{" "}
+      {HOLIDAY_ROW_GUIDES.map((g, i) => (
+        <span key={g.href}>
+          {i > 0 ? (i === HOLIDAY_ROW_GUIDES.length - 1 ? " and " : ", ") : ""}
+          <Link href={g.href} className="text-eucalyptus-dark hover:underline">
+            {g.label}
+          </Link>
+        </span>
+      ))}
+      .
+    </span>
   );
 }

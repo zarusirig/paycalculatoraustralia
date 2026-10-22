@@ -323,6 +323,17 @@ const radiologist: HealthSalaryPage = {
     { label: "Median taxable income", gross: RADIOLOGIST.medianTaxableIncome, source: "ATO 2023–24" },
     { label: "Average taxable income", gross: RADIOLOGIST.averageTaxableIncome, source: "ATO 2023–24" },
   ],
+  sections: [
+    {
+      id: "workforce",
+      heading: "The group the labour statistics put radiologists in",
+      paragraphs: [
+        "There is no employee median for radiologists on their own. Jobs and Skills Australia publishes its earnings data for unit group 2539, Other Medical Practitioners, which gathers dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, diagnostic and interventional radiologists, radiation oncologists and medical practitioners not covered elsewhere into one profile of 23,400 employed people (ABS Labour Force Survey, 2025 four-quarter average). On the May 2025 Survey of Employee Earnings and Hours that group's median full-time employee earned $5,013 a week, or $101 an hour, against $1,852 and $47 for all occupations. The ATO's occupation code 253917 above is the only published figure that is radiologists alone.",
+        "The group's shape differs from the surgical and anaesthetic workforces. 77% work full-time hours and the part-time share is 23%, the highest of the medical specialties on this site; the average full-time week is 46 hours. Women are 55% of the group, against 48% of all workers, and the median age is 43. By state, 32.6% work in New South Wales and 29.2% in Victoria. Jobs and Skills Australia projects employment in the group to grow by about 1,400 a year. Within that profile the task it assigns to radiologists is to provide diagnostic medical services and manage patients using radiant energy techniques: general radiography, angiography, fluoroscopy, mammography, ultrasound and computed tomography among them.",
+        "For pay, the practical consequence is that a radiologist comparing an offer has three reference points rather than one: the ATO's radiologist-only tax-return figures above, the staff specialist scales below for public hospital employment, and the Other Medical Practitioners employee median as the best available guide to a salaried specialist's weekly pay. None of them is a market rate for private radiology practice, which no primary source publishes.",
+      ],
+    },
+  ],
   payslip: [
     "In NSW, the private practice level a staff specialist chooses decides which allowances are paid on top of base salary: the 17.4% special allowance at Levels 1 to 4, and a private practice allowance of 20%, 14% or 8% at Levels 1 to 3. Each is pay, taxed through PAYG withholding with the salary.",
     "A radiologist who reports for a private practice as a contractor, or takes a share of a practice's profit as an owner, is not paid through payroll: tax on that income is paid through PAYG instalments or at tax time.",
@@ -355,6 +366,10 @@ const radiologist: HealthSalaryPage = {
     {
       q: "Is there an award rate for radiologists?",
       a: `Only where the Medical Practitioners Award applies: private hospitals and the other settings in its clause 4.2. There a radiologist is a specialist, with a minimum of ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026. Private imaging practices are not on the award's list of settings.`,
+    },
+    {
+      q: "Why is there no employee median salary for radiologists?",
+      a: "Jobs and Skills Australia publishes earnings for unit group 2539, Other Medical Practitioners, not for radiologists alone. That group of 23,400 people includes dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, radiologists and radiation oncologists, and its median full-time employee earned $5,013 a week in May 2025. The ATO's occupation code 253917 is the only published radiologist-only figure.",
     },
     {
       q: "Does Division 293 tax apply to radiologists?",
@@ -422,6 +437,17 @@ const anaesthetist: HealthSalaryPage = {
     { label: "Median taxable income", gross: ANAESTHETIST.medianTaxableIncome, source: "ATO 2023–24" },
     { label: "Average taxable income", gross: ANAESTHETIST.averageTaxableIncome, source: "ATO 2023–24" },
   ],
+  sections: [
+    {
+      id: "workforce",
+      heading: "Who the anaesthetist figures describe",
+      paragraphs: [
+        "Jobs and Skills Australia's profile for unit group 2532 counts 7,400 employed anaesthetists (ABS Labour Force Survey, 2025 four-quarter average) and includes anaesthetic registrars who are still training, which is one reason its employee median sits below the ATO averages for established specialists. It is an overwhelmingly full-time profession: 90% work full-time hours, the part-time share is 10%, and the average full-time week is 46 hours against 44 for all occupations. On the May 2025 Survey of Employee Earnings and Hours the median full-time employee earned $8,293 a week, or $218 an hour, against $1,852 and $47 for all occupations.",
+        "The workforce is older and more male than the labour force as a whole. The median age is 49 against 39 for all occupations, and women are 32% of anaesthetists against 48% of all workers. The 2021 Census age profile puts the largest group, 32.8%, between 35 and 44, with 27.2% aged 45 to 54, 17.2% aged 25 to 34 and 6.4% aged 65 and over; there is no one under 25, which follows from the length of medical training. Half of anaesthetists (50.3%) report a postgraduate qualification as their highest level of education, and registration with the Medical Board of Australia is required to practise.",
+        "By state, 31.5% of anaesthetists work in New South Wales, 21.5% in Victoria, 17.9% in Queensland, 12.7% in Western Australia and 11.1% in South Australia, with Tasmania at 2.2%, the ACT at 1.8% and the Northern Territory at 1.5% (ABS Labour Force Survey, Detailed, February 2026, Jobs and Skills Australia trend data). Set against the ATO state table above, that means the two largest anaesthetist workforces, NSW and Victoria, sit at opposite ends of the average income range. Jobs and Skills Australia projects employment to grow by about 200 a year.",
+      ],
+    },
+  ],
   payslip: [
     `At the Jobs and Skills Australia employee median of ${$(ANAESTHETIST_JSA.medianWeekly)} a week, take-home comes to about ${formatAUD(takeHome(ANAESTHETIST_JSA.medianWeekly * 52).fortnightly, 0)} a fortnight after tax and the Medicare levy, with no HELP debt or salary packaging.`,
     "Private work done outside hospital employment is paid separately and is not on the hospital payslip; tax on it is paid through PAYG instalments or at tax time.",
@@ -453,6 +479,10 @@ const anaesthetist: HealthSalaryPage = {
     {
       q: "How much does a public hospital anaesthetist earn?",
       a: `A public hospital anaesthetist is a staff specialist on the same scale as other specialties. ${STAFF_SPECIALIST_ENTRY}`,
+    },
+    {
+      q: "How many anaesthetists are there in Australia, and how many work full-time?",
+      a: "Jobs and Skills Australia counts 7,400 employed anaesthetists in unit group 2532, including anaesthetic registrars in training (ABS Labour Force Survey, 2025 four-quarter average). 90% work full-time hours, the part-time share is 10%, and the average full-time week is 46 hours. The median age is 49 and women make up 32% of the workforce.",
     },
     {
       q: "Can a public hospital anaesthetist salary package?",
@@ -748,6 +778,17 @@ const surgeon: HealthSalaryPage = {
     { label: "Median taxable income", gross: SURGEON.medianTaxableIncome, source: "ATO 2023–24" },
     { label: "Average taxable income", gross: SURGEON.averageTaxableIncome, source: "ATO 2023–24" },
   ],
+  sections: [
+    {
+      id: "workforce",
+      heading: "Why the employee median is so far below the ATO average",
+      paragraphs: [
+        "The two figures measure different people. Jobs and Skills Australia's unit group 2535 counts 7,400 employed surgeons and includes medical registrars training as surgeons (ABS Labour Force Survey, 2025 four-quarter average), so its employee median of $3,905 a week, or $80 an hour on the May 2025 Survey of Employee Earnings and Hours, is pulled towards hospital salaries at the start of a surgical career. The ATO figures above are taxable income from every source, dominated by established surgeons in private practice. Both are right; they answer different questions.",
+        "Surgery is the longest working week of any occupation on this site. The average full-time surgeon works 54 hours a week against 44 for all occupations (2021 Census), 93% work full-time hours and the part-time share is 7%. The median age is 43, four years above the all-occupations median of 39, and 26% of surgeons are women against 48% of all workers. The 2021 Census age profile shows 20.1% aged 25 to 34, 28.6% aged 35 to 44, 25.2% aged 45 to 54 and 9.7% aged 65 and over, double the 4.9% share of workers that age across all occupations. Jobs and Skills Australia projects employment in the group to fall by about 800 a year.",
+        "The nine occupations in the group match the ATO specialty table above: general surgeons, cardiothoracic surgeons, neurosurgeons, orthopaedic surgeons, ear, nose and throat specialists, paediatric surgeons, plastic and reconstructive surgeons, urologists and vascular surgeons. By state, Victoria has the largest share of surgeons at 31.9%, then New South Wales at 23.6% and Queensland at 21.3%, with South Australia at 9.1%, Western Australia at 7.9%, Tasmania at 3.0%, the ACT at 1.7% and the Northern Territory at 1.4% (ABS Labour Force Survey, Detailed, February 2026, Jobs and Skills Australia trend data). Tasmania's high ATO average therefore rests on a small number of people.",
+      ],
+    },
+  ],
   payslip: [
     `The ATO's median salary or wage for surgeons, ${$(SURGEON.medianSalaryOrWages)}, works out to about ${formatAUD(takeHome(SURGEON.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy. Income from private practice is not on that payslip; tax on it is paid through PAYG instalments or at tax time.`,
   ],
@@ -774,6 +815,10 @@ const surgeon: HealthSalaryPage = {
     {
       q: "Which type of surgeon earns the most?",
       a: `In the ATO's 2023–24 figures, neurosurgeons had the highest average taxable income (${$(byAverage("Neurosurgeon").averageTaxableIncome)}, ${byAverage("Neurosurgeon").individuals} people), followed by plastic and reconstructive surgeons (${$(byAverage("Plastic and reconstructive surgeon").averageTaxableIncome)}). General surgeons, the largest group at ${byAverage("Surgeon (general)").individuals.toLocaleString("en-AU")}, averaged ${$(byAverage("Surgeon (general)").averageTaxableIncome)}, and paediatric surgeons ${$(byAverage("Paediatric surgeon").averageTaxableIncome)}.`,
+    },
+    {
+      q: "How many hours a week does a surgeon work?",
+      a: "The average full-time surgeon worked 54 hours a week at the 2021 Census, against 44 hours for all occupations, according to Jobs and Skills Australia's profile for unit group 2535. 93% of surgeons work full-time hours and the part-time share is 7%. The group, which includes surgical registrars, numbers 7,400 (ABS Labour Force Survey, 2025 four-quarter average).",
     },
     {
       q: "Are surgeons the highest-paid job in Australia?",

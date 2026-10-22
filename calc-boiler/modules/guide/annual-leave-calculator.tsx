@@ -167,6 +167,7 @@ export default function AnnualLeavePage() {
             <H2>Related Calculators and Guides</H2>
             <ul>
               <li><Link href="/annual-leave-guide/">Annual Leave Guide</Link>: cashing out, directions to take leave, shutdowns</li>
+              <li><Link href="/christmas-shutdown-annual-leave/">Christmas Shutdown and Annual Leave</Link>: how many days a December closure uses, with public holidays taken out</li>
               <li><Link href="/leave-calculator/">Leave Payout Calculator</Link>: unused leave paid out when you leave</li>
               <li><Link href="/leave-loading-calculator/">Leave Loading Calculator</Link>: the 17.5% by award</li>
               <li><Link href="/sick-leave-calculator/">Sick Leave Calculator</Link>: personal/carer&rsquo;s leave, 10 days a year</li>

@@ -372,6 +372,10 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                         baseLabel={award.entryLevel}
                         caption={`${meta.shortName} junior rate phase-in from 1 December 2026`}
                       />
+                      <p className="text-sm">
+                        Each step is dated on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>, next to the
+                        1 July award increase and the other changes that land during the year.
+                      </p>
                     </>
                   )}
                   <p>
@@ -389,6 +393,10 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                 Fixed-dollar allowances in {award.allowancesClause}, operative from {meta.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met.
               </p>
               <AllowanceTable allowances={award.allowances} caption={`${meta.shortName} allowances`} />
+              <p className="text-sm">
+                How these compare with the first aid, laundry, tool, split shift and on-call allowances in other awards, and how each one is
+                taxed, is on the <Link href="/allowances-guide/">allowances guide</Link>.
+              </p>
             </section>
 
             <section id="hours">

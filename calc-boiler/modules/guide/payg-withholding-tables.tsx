@@ -429,6 +429,13 @@ export default function PAYGTablesGuidePage() {
                 16% to <strong>15%</strong>, worth up to $268 a year. A further cut to <strong>14%</strong> follows on 1 July 2027.
                 The tables also continue the Stage 3 bracket structure and the 12% superannuation guarantee rate.
               </p>
+              <p>
+                The ATO reissued all 15 withholding schedules and 12 tax tables for 1 July 2026, so a pay dated on or after that day must
+                use the new edition even if it covers work done in June; the year-locked pages below hold each edition. The 1 July 2027
+                cut, the <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> that starts with it, and the
+                other dated changes to pay and tax rules are on the{" "}
+                <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
+              </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-navy">

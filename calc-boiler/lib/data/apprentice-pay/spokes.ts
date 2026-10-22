@@ -146,6 +146,13 @@ export interface ApprenticeSpoke {
   qualification: Qualification;
   /** Plain, verified facts: coverage, progression, what is not in the table. */
   facts: string[];
+  /**
+   * Trade-specific sections rendered after the facts (22 Oct 2026). The nine
+   * spoke pages share one template, so the award rules each page explains are
+   * split between trades rather than repeated: what one page covers in depth,
+   * its siblings mention in a line.
+   */
+  sections?: { heading: string; paragraphs: string[] }[];
   /** Occupation-specific FAQs added to the shared ones. */
   faqs: SpokeFaq[];
   /** Other spokes that share this spoke's percentage table. */
@@ -240,7 +247,32 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       "A qualified carpenter or joiner is a CW/ECW 3 classification (Schedule A.2.3). The award places a joiner special class at CW/ECW 4 ($1,154.40 a week) and a carpenter-diver at CW/ECW 8 ($1,286.70), and a carpenter-diver also gets $1.33 an hour for all purposes (cl 23.5). Once the apprenticeship is complete, clause 19.7(a) sets the floor at the $1,119.10 standard rate, so with the tool and industry allowances a carpenter on a general building site is on at least $1,227.47 a week.",
       "The training plan that sets your stage dates is for the Certificate III in Carpentry. Apprentices who signed up under CPC30220 and those under its replacement CPC30326 progress the same way: stage 2 at 25% of the competencies in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever is earlier each time (cl 19.7(b)).",
     ],
+    sections: [
+      {
+        heading: "TAFE Fees, Textbooks and Block Release",
+        paragraphs: [
+          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. All fees charged by the registered training organisation and the cost of every prescribed textbook that the apprentice has paid for must be reimbursed by the employer, and clause 14.6(a) sets the time limit from the start of the apprenticeship or of the stage the fees relate to. An employer who pays the RTO directly meets the same obligation.",
+          "Time at the RTO is paid time. Under clause 14.3 an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training, and any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated. A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site, and the tool and industry allowances stay in the rate because the award pays them for all purposes.",
+          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.3(e)), but if the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
+        ],
+      },
+      {
+        heading: "Three-Year Terms and the Rest of the Carpenter Group",
+        paragraphs: [
+          "The tables on this page are the award's four-year nominal term. Clause 19.7(b)(i)(B) prints a separate table for a three-year apprenticeship: 55% of the standard rate in stage 1, 75% in stage 2 (entered at 50% of the training plan competencies or 12 months, whichever is earlier) and 90% in stage 3 (entered at 75% of competencies or 12 months after stage 2). It has no Year 12 split. If your training contract names a three-year term, those percentages apply instead of the four-year ones, with the same tool and industry allowances added.",
+          "Clause 21.1(a) attaches the $41.22 tool allowance to one line of trades: artificial stoneworker, carpenter and/or joiner, carpenter-diver, carver, bridge and wharf carpenter, floor sander, letter cutter, marble and slate worker, stonemason and tilelayer. An apprentice in any of those trades is on the table above. Whichever trade it is, clause 19.7(a) sets the floor after completion: a person who has completed a full apprenticeship must not be paid less than the $1,119.10 standard rate, before the allowances.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "Does my employer have to pay my TAFE fees as an apprentice carpenter?",
+        a: "Yes. Clause 14.6 of the Building and Construction General On-site Award requires the employer to reimburse all RTO fees and prescribed textbook costs the apprentice has paid, within the time limit in clause 14.6(a), or to pay the RTO directly. Time at the RTO for training and assessment in the training contract is paid as time worked (cl 14.3).",
+      },
+      {
+        q: "What if my carpentry apprenticeship is a three-year term?",
+        a: "A different table applies. Clause 19.7(b)(i)(B) pays a three-year apprentice 55% of the standard rate in stage 1, 75% in stage 2 and 90% in stage 3, with no Year 12 split, plus the $41.22 tool allowance and the industry allowance for all purposes. Stage 2 starts at 50% of the training plan competencies or after 12 months, and stage 3 at 75% or 12 months after stage 2, whichever comes first.",
+      },
       {
         q: "Is the tool allowance included in the apprentice carpenter rate?",
         a: "Not in the percentage of the standard rate, but it is part of the minimum. Clause 19.7(b) and (c) of the Building and Construction General On-site Award make an apprentice's minimum the percentage rate plus the $41.22 carpenter tool allowance and the industry allowance, for all purposes. The Fair Work Ombudsman pay guide figures on this page, such as $19.05 an hour in first year with Year 12 on a general building site, already include both.",
@@ -277,7 +309,32 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       "The paving specialisation lines up with a separate award classification, paviour (including segmental paving), which has no tool allowance in clause 21.1(a). If your employer classifies you as a paviour rather than a bricklayer, the pay guide's \"All others\" apprentice table applies instead: $682.66 a week ($17.96 an hour) in first year with Year 12 on a general building site, against $711.92 ($18.73) for a bricklayer.",
       "Stage progression counts the competencies in the training plan for your Certificate III: stage 2 at 25% or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever comes first (cl 19.7(b)).",
     ],
+    sections: [
+      {
+        heading: "Moving Up a Stage Early: How the Competency Test Works",
+        paragraphs: [
+          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying), any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience are met, and either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees.",
+          "If the employer disagrees with the RTO's assessment and the three parties cannot resolve it by agreement, the matter goes through the award's dispute procedure rather than sitting unresolved on the payslip (cl 14.9(b)). Once agreement is reached or a determination is made, the new rate is paid from the first full pay period starting on or after that date (cl 14.9(d)). The training package for the qualification named in the contract of training decides how competency is assessed (cl 14.9(c)).",
+          "For a bricklaying apprentice the three markers are worth $55.95, $111.91 and $167.86 a week respectively in the wage part of the rate (5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12, 10 points between stages 2 and 3, and 15 points between stages 3 and 4), with the $29.26 tool allowance and the industry allowance unchanged. Our arithmetic on clause 19.7(b).",
+        ],
+      },
+      {
+        heading: "Labourers, Adult Apprentices and the Rates Around You on Site",
+        paragraphs: [
+          "Not everyone laying bricks or carrying them is on the apprentice table. A labourer on a pick and shovel, or a plasterer's, terrazzo or stonemason's assistant, is a CW/ECW 1 classification in Schedule A.2.1, paid at least $1,013.50 a week plus the industry allowance, with no tool allowance. Because a first-year apprentice with Year 12 is on $711.92 a week on a general site, an apprentice can be paid less than the labourer passing them bricks; the difference is the training contract and the trade rate at the end of it.",
+          "An apprentice who signs the contract of training at 21 or older is an adult apprentice (cl 14.1(a)). The Fair Work Ombudsman pay guide prints one adult apprentice bricklayer rate for every year of the apprenticeship: $1,109.91 a week ($29.21 an hour) on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, both including the $29.26 tool allowance and the industry allowance. Under clause 19.8(a), someone who already worked for the employer before becoming its adult apprentice keeps the ordinary hourly rate of their old classification if it is higher.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "What happens if my employer disagrees that I have reached the next stage?",
+        a: "Clause 14.9 of the award pays the next stage rate once the RTO has assessed the apprentice as competent in the required proportion of units, unless the employer tells the RTO and the apprentice it disagrees. A disagreement that cannot be settled between the RTO, the employer and the apprentice goes through the award's dispute procedure. Once agreed or determined, the higher rate starts from the first full pay period on or after that date.",
+      },
+      {
+        q: "How much is an adult apprentice bricklayer paid?",
+        a: "The Fair Work Ombudsman pay guide for the Building and Construction General On-site Award prints $1,109.91 a week ($29.21 an hour) for an adult apprentice bricklayer on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, for all years of the apprenticeship, including the $29.26 tool allowance and the industry allowance. An adult apprentice is someone 21 or over when the contract of training is signed.",
+      },
       {
         q: "How much is the bricklayer tool allowance for an apprentice?",
         a: "$29.26 a week from 1 July 2026, the clause 21.1(a) amount for a refractory bricklayer or bricklayer under the Building and Construction General On-site Award. Apprentices get the full amount, not a percentage, as part of the ordinary weekly rate for all purposes (cl 19.7(c)). It is already in the pay guide figures on this page.",
@@ -312,7 +369,31 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       "Stage progression counts the competencies in your Certificate III training plan: stage 2 at 25% or 12 months after starting, stage 3 at 50% or 12 months after stage 2, and stage 4 at 75% or 12 months after stage 3, whichever is earlier each time (cl 19.7(b)).",
       "Coverage depends on the work your employer does and on any enterprise agreement, so check the award named on your contract before relying on these tables.",
     ],
+    sections: [
+      {
+        heading: "Overtime, Shiftwork and Days Away for Painting Apprentices",
+        paragraphs: [
+          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter more here than in most trades. Under clause 14.4 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate, but an apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to, and no apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results.",
+          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship, except absences on paid leave or on leave without pay taken in accordance with the award's leave provisions. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked unpaid overtime on a push to finish a job, then been stood down in a wet fortnight, needs both halves of that rule.",
+        ],
+      },
+      {
+        heading: "Adult Apprentice Painters",
+        paragraphs: [
+          "The Fair Work Ombudsman pay guide prints a single adult apprentice rate for the glazier, painter and signwriter group that applies in every year of the apprenticeship: $1,090.54 a week ($28.70 an hour) on a general building, civil or engineering construction site and $1,077.11 ($28.35) on residential work, each including the $9.89 tool allowance and the industry allowance. An adult apprentice is a person who is 21 or over when the contract of training is signed (cl 14.1(a)).",
+          "Because the adult rate is close to the $1,119.10 standard rate a qualified painter must get after completion (cl 19.7(a)), the pay rise at the end of an adult painting apprenticeship is small: $28.59 a week in the wage part before allowances, by our arithmetic. The bigger difference is for the junior: a first-year with Year 12 moves from $692.55 a week on a general site to the trade rate over four stages.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "Can an apprentice painter be made to work overtime?",
+        a: "Not alone, and not if under 18 unless they choose to. Clause 14.4 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate, but says no apprentice will work overtime or shiftwork on their own, no apprentice under 18 can be required to work it, and no apprentice can be required to work at times that would prevent attendance at the RTO except in an emergency.",
+      },
+      {
+        q: "Do I have to serve extra time if I am away from work?",
+        a: "For unpaid absences, yes. Clause 14.5 adds a day to the apprenticeship for each day of absence in a year, except absences on paid leave or on leave without pay taken under the award's leave provisions, and credits back time worked beyond ordinary hours during that year. Paid sick leave and annual leave do not extend the apprenticeship.",
+      },
       {
         q: "Do apprentice painters get the industry allowance?",
         a: "On work covered by the Building and Construction General On-site Award, yes. The award adds the industry allowance ($67.15 a week for general building, civil and engineering construction, $53.72 for residential building) and the $9.89 painter tool allowance to the percentage rate, for all purposes. A painting employer who is not covered by this award may pay differently.",
@@ -332,7 +413,10 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     lead:
       "Plumbing apprentices are paid under the Plumbing and Fire Sprinklers Award 2020, which builds the allowances into the apprentice rate itself. The hourly rates in Schedule E.2.1 include the full industry allowance and the apprentice's percentage of the tool and plumbing trade allowances, all for all purposes, so there is nothing to add for those three when you check a payslip. The same schedule prints the weekend and public holiday rates.",
     job: { href: "/job-pay-rates/plumber/", label: "Plumber pay rates (qualified)" },
-    extraLinks: [{ href: "/construction-trades-pay/", label: "Construction and Trades Pay Guide", blurb: "What tradies and apprentices earn, with allowances and take-home." }],
+    extraLinks: [
+      { href: "/plumbing-award-rates/", label: "Plumbing Award rates", blurb: "Every level of the Plumbing and Fire Sprinklers Award, with the registration allowance." },
+      { href: "/construction-trades-pay/", label: "Construction and Trades Pay Guide", blurb: "What tradies and apprentices earn, with allowances and take-home." },
+    ],
     allowances: [],
     penalty: {
       heading: "Weekend and Public Holiday Rates",
@@ -410,7 +494,32 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       "Adult apprentices are paid by reference to award classification levels instead of percentages: 80% of R6 in first year, then Level 1, Level 2 and Level 3, and the full R6 rate after the apprenticeship (cl 16.10(b)). A person already employed in the vehicle industry before becoming an adult apprentice with that employer cannot have their pay cut by signing the contract (cl 16.10(c)).",
       "The tool allowance for apprentices rises by year, from $5.88 to $12.14 a week, against $13.86 for a tradesperson, and is payable only where the apprentice is required to provide their own tools (cl 19.6(a), (b)).",
     ],
+    sections: [
+      {
+        heading: "The 21 Trades on the Same Apprentice Table",
+        paragraphs: [
+          "The Vehicle Repair, Services and Retail Award does not have a mechanic-only apprentice scale. Clause 13.2 lists 21 apprenticeship trades, and every junior apprentice in any of them is paid from the one table in clause 16.9: $559.55 a week in first year ($615.51 with Year 12), $671.46 ($727.42) in second year, $839.33 in third year and $984.81 in fourth. The trades are automotive electrician, automotive engine reconditioner, automotive parts interpreter (specialist), bodymaker and wheelwright, brake mechanic, electrical fitter and armature winder (auto), electroplater, electrical mechanic, fitter and turner, machinist (metal), motorcycle or motor scooter mechanic, motor mechanic or automotive technician, painter (tradesperson), panel beater, plant mechanic, signwriter, smith, trimmer (tradesperson), welder (tradesperson), wheel aligner and wood machinist.",
+          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums, and why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)): the only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13).",
+          "The employer carries the training costs. Fees for prescribed courses and prescribed textbooks that the apprentice pays must be reimbursed, and the employer can instead pay the training provider directly within six months of the start of the apprenticeship or of the relevant stage (cl 13.3). Where block release training needs an overnight stay, the employer pays the excess reasonable travel costs, less any government apprentice travel assistance the apprentice can claim (cl 13.4). Attendance at training and assessment under the training contract is paid as time worked (cl 13).",
+        ],
+      },
+      {
+        heading: "Where the Penalty Percentages Come From",
+        paragraphs: [
+          "Schedule B of the award prints three separate tables for junior apprentices: B.5.1 for ordinary hours and weekend and public holiday penalties, B.5.2 for shiftwork and B.5.3 for overtime, each expressed as a percentage of the junior apprentice hourly rate. Adult apprentices have their own set at B.6.1 to B.6.3, worked as a percentage of the adult apprentice hourly rate. The penalty table above is B.5.1 applied to the Year 12 rates; an apprentice on afternoon or night shift, or working overtime, should read the B.5.2 and B.5.3 percentages instead.",
+          "Progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year, so a mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "Are panel beater and auto electrician apprentices paid the same as apprentice mechanics?",
+        a: "Yes, under the Vehicle Repair, Services and Retail Award 2020. Clause 13.2 lists 21 apprenticeship trades, including motor mechanic, panel beater, automotive electrician, painter and brake mechanic, and clause 16.9 pays every junior apprentice in them from one table: $559.55 a week ($615.51 with Year 12) in first year, rising to $984.81 in fourth year, from 1 July 2026.",
+      },
+      {
+        q: "Does my employer pay my TAFE fees as an apprentice mechanic?",
+        a: "Yes. Clause 13.3 of the award requires the costs of fees for prescribed courses and prescribed textbooks to be reimbursed to the apprentice, or paid directly to the training provider within six months of the start of the apprenticeship or stage. Excess travel costs for block release training that needs an overnight stay are also the employer's (cl 13.4).",
+      },
       {
         q: "What is the penalty rate for an apprentice mechanic on a Saturday?",
         a: "Under Schedule B.5.1 of the Vehicle Repair, Services and Retail Award 2020, a junior apprentice is paid 150% of their hourly rate on a Saturday, 200% on a Sunday and 250% on a public holiday. A first-year junior apprentice who completed Year 12 is on $16.20 an hour, so $24.30 on a Saturday.",
@@ -590,7 +699,10 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     h1: "Apprentice Butcher Pay",
     lead:
       "Butchery apprentices are paid under the Meat Industry Award 2020, which has the steepest third-year step of the trades on these pages: 85% of the MI 7 rate, against 70% to 80% in the others. In a butcher shop the award also sets its own Saturday and Sunday rates, and a cold temperature allowance applies to work in freezers.",
-    extraLinks: [{ href: "/junior-pay-rates/", label: "Junior Pay Rates", blurb: "Age-based rates for workers who are not apprentices." }],
+    extraLinks: [
+      { href: "/meat-industry-award-rates/", label: "Meat Industry Award rates", blurb: "Every MI level, with the weekend rates by establishment type." },
+      { href: "/junior-pay-rates/", label: "Junior Pay Rates", blurb: "Age-based rates for workers who are not apprentices." },
+    ],
     allowances: [],
     penalty: {
       heading: "Weekend Rates in a Butcher Shop",
@@ -614,7 +726,32 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       "Work in a temperature artificially reduced below zero attracts a cold temperature allowance for every hour or part of an hour (cl 20.2(a)): $0.77 below 0°C, $1.33 below -16°C, $1.88 below -18°C and $2.56 below -21°C. The Fair Work Ombudsman pay guide lists no tool allowance in this award.",
       "Some retail butchers are not under this award. It does not cover employees who are covered by the General Retail Industry Award 2020, so a butcher employed by a supermarket may be on different rates or an enterprise agreement. Check the award named on your contract.",
     ],
+    sections: [
+      {
+        heading: "Stages, Competency Points and How Long the Apprenticeship Runs",
+        paragraphs: [
+          "The Meat Industry Award treats the butchery apprenticeship as competency based, and says so plainly: the actual time taken to complete it will vary with the intensity of training, the variety of work experience and any prior learning (cl 16.5(e)). Clause 16.9 sets the entry test for each stage. Stage 2 starts on attainment of 25% of the total competency points for the Certificate III in the training plan or 12 months after commencing, whichever is earlier; stage 3 at 50% of the points or 12 months after starting stage 2; stage 4 at 75% or 12 months after starting stage 3. The exit point is 100% of the competency points, and the apprentice is then paid as a qualified MI 7 tradesperson.",
+          "The nominal period is up to four years, but it moves in both directions. It can be shortened to recognise prior learning, including vocational education in school and pre-apprenticeship programs, with the approval of the apprenticeship authority (cl 16.5(f)(ii)), and it can be extended by up to 6 months in stage 3 and 12 months in stage 4 where that is needed to complete the competencies (cl 16.5(f)(iii)). The probationary period cannot exceed 3 months (cl 16.5(i)).",
+          "Days away count. The nominal period is extended by a day for each day of absence in each year of the apprenticeship, except annual leave and long service leave (cl 16.5(o)), but paid personal and carer's leave totalling ten or fewer days in an apprenticeship year does not extend it (cl 16.5(p)). Training and assessment time under the training contract is paid as time worked (cl 16.5(j)), and an apprentice's ordinary hours cannot exceed those of the tradesperson they work alongside (cl 16.5(l)).",
+        ],
+      },
+      {
+        heading: "Adult Apprentices and the Qualification at the End",
+        paragraphs: [
+          "An adult apprentice is 21 or over when the apprenticeship commences. For an apprenticeship that started on or after 1 January 2014, clause 16.4 pays an adult apprentice at least 80% of the MI 7 rate in the first stage, which is $895.28 a week by our arithmetic on the $1,119.10 rate, and from the second stage at least the lowest adult classification rate in clause 16.1. Someone who was already employed under this award by the same employer before signing the training agreement cannot have their minimum wage cut by becoming an adult apprentice (cl 16.4(c)).",
+          "The qualification the stages lead to is the one Schedule A has in mind when it defines a general butcher as an employee who holds an accredited and relevant retail butchering trade qualification. Group training organisations that host apprentices in the meat industry are covered by the award too (cl 4.5), so an apprentice placed with a butcher shop by a group training company is on the same table.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "Can a butchery apprenticeship be extended or shortened?",
+        a: "Both. Under clause 16.5(f) of the Meat Industry Award 2020 the nominal period of up to four years can be shortened to recognise prior learning, including school-based training and pre-apprenticeship programs, with the apprenticeship authority's approval, and extended by up to 6 months in stage 3 and 12 months in stage 4 where that is needed to complete the competencies. Each day of absence other than annual or long service leave also adds a day (cl 16.5(o)).",
+      },
+      {
+        q: "Is an adult apprentice butcher paid more than a junior?",
+        a: "In the first stage, yes. Clause 16.4 pays an adult apprentice who started on or after 1 January 2014 at least 80% of the MI 7 rate, which is $895.28 a week against $615.51 for a junior with Year 12. From the second stage the adult minimum is at least the lowest adult classification rate in clause 16.1, and an existing employee who becomes an adult apprentice with the same employer cannot have their minimum wage reduced.",
+      },
       {
         q: "How much do apprentice butchers earn?",
         a: "From 1 July 2026 the Meat Industry Award 2020 sets a first-year minimum of $14.73 an hour ($559.55 a week) for an apprentice who did not complete Year 12 and $16.20 an hour ($615.51 a week) for one who did. By 4th year the minimum is $27.98 an hour ($1,063.15 a week). Many butchers are on an enterprise agreement that pays more.",

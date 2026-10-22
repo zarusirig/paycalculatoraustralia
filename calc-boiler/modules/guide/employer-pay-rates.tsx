@@ -28,6 +28,7 @@ import {
   type PenaltyRow,
 } from "@/lib/data/employer-pay";
 import FeaturedImage from "@/components/common/featured-image";
+import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
 
 // Everything below the header is built from the employer's own data file.
 // Generic explanations (casual loading, penalty rates, enterprise agreements,
@@ -85,6 +86,9 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   const instrumentWord = isAward ? "award" : "agreement";
   const authorship = getGuideAuthorship("pay-rates");
   const related = relatedEmployers(e);
+  // Supermarkets and retailers: the retail award jobs their agreements are tested against (22 Oct 2026).
+  const sector = EMPLOYER_SECTOR[e.slug];
+  const retailJobs = sector === "supermarket-liquor" || sector === "retail" ? payGlances(JOB_GROUPS.retailJobs) : [];
   const allowances = e.allowances ?? [];
   // 22 Oct 2026: the "{Employer} enterprise agreement 2026" section. When it is
   // present the agreement's lifecycle rows (approved, expiry, next rise) live
@@ -323,6 +327,14 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 <Link href="/overtime-penalty-rates-guide/">How penalty rates work</Link> ·{" "}
                 <Link href="/overtime-pay-calculator/">overtime calculator</Link>
               </p>
+              <p className="text-base">
+                The public holiday rate above applies on the days each state declares. For the dates and a worked example on the busiest
+                trading days, see <Link href="/christmas-day-pay-rates/">Christmas Day</Link>,{" "}
+                <Link href="/boxing-day-pay-rates/">Boxing Day</Link>, <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day</Link>,{" "}
+                <Link href="/australia-day-public-holiday-pay/">Australia Day</Link> and{" "}
+                <Link href="/easter-public-holiday-pay/">Easter</Link>, and for a store that closes over Christmas, the{" "}
+                <Link href="/christmas-shutdown-annual-leave/">Christmas shutdown and annual leave guide</Link>.
+              </p>
             </section>
 
             {allowances.length > 0 && (
@@ -350,6 +362,10 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                   </table>
                 </div>
                 {e.allowancesNote && <p className="text-sm">{e.allowancesNote}</p>}
+                <p className="text-sm">
+                  What each kind of allowance is for, and how it is taxed, is on the{" "}
+                  <Link href="/allowances-guide/">allowances guide</Link>.
+                </p>
               </section>
             )}
 
@@ -462,6 +478,23 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 <Link href="/pay-rates/">Pay rates at other employers</Link>
               </p>
             )}
+
+            {retailJobs.length > 0 ? (
+              <section id="award-jobs">
+                <h2 style={HEADING_FONT}>The award rates behind a {e.name} job</h2>
+                <p>
+                  An enterprise agreement must leave each employee better off overall than the award, so the award minimum for the same job
+                  is the floor these rates are tested against. For the jobs most {e.name} team members do, the award pages are:
+                </p>
+                <ul>
+                  {retailJobs.map((r) => (
+                    <li key={r.slug}>
+                      <Link href={r.href}>{r.name} pay rates</Link>: {r.figure}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
 
             <div className="not-prose mt-12">
               <SourceAttribution sources={sourceLinks} lastVerified={e.verifiedOn} />

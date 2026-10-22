@@ -107,6 +107,19 @@ export function fyLabelOr(fy: PaygFinancialYear): string {
   return PAYG_YEAR_INFO[fy].coversYears.join(" or ");
 }
 
+/**
+ * Earnings from which the 2026-27 study and training support loans tables
+ * withhold a loan component, with and without the tax-free threshold. Read
+ * from the ATO pages on 22 October 2026 ("This tax table is for payments made
+ * from 1 July 2026"). Not in the 2024-25 and 2025-26 edition, which had two
+ * Schedule 8 editions across those years.
+ */
+export const STSL_2026_27_THRESHOLDS: Record<PayFrequency, { tft: number; noTft: number; nat: string; url: string }> = {
+  weekly: { tft: 1_337, noTft: 987, nat: "NAT 2173", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-weekly-tax-table" },
+  fortnightly: { tft: 2_674, noTft: 1_974, nat: "NAT 2185", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-fortnightly-tax-table" },
+  monthly: { tft: 5_793.67, noTft: 4_277, nat: "NAT 2186", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-monthly-tax-table" },
+};
+
 /** The year before / after, within the years the site carries. */
 export function adjacentFys(fy: PaygFinancialYear): { newer: PaygFinancialYear | null; older: PaygFinancialYear | null } {
   const i = PAYG_TABLE_YEARS.indexOf(fy);

@@ -231,6 +231,20 @@ function manufacturing(): AwardPageCopy {
       heading: "In this award casual penalties compound",
       body: `Most awards add the casual loading to the penalty (Saturday 150% becomes 175%). The Manufacturing award applies the penalty to the casual ordinary hourly rate instead (cl 11.1(d), 32.1(f)). A casual C14 working at 150% is paid 150% of ${$(cas)}, which is ${$(roundCents(cas * 1.5))} (the award's own Schedule C figure), not ${$(roundCents(c14.hourly * 1.75))}. Weekend work is also not ordinary time for day workers unless it has been agreed; without agreement it is overtime.`,
     },
+    related: {
+      heading: "Trade and apprentice pay under this award",
+      body: [
+        "The C10 trade rate is the base for most engineering trades, and the award's apprentice percentages in clause 21.6 are read against it. These pages show what each trade is paid at every C level, and what an apprentice earns on the way there:",
+      ],
+      links: [
+        { href: "/job-pay-rates/boilermaker/", label: "Boilermaker pay rates", note: "C10 to C5 for fabrication tradespeople" },
+        { href: "/job-pay-rates/welder/", label: "Welder pay rates", note: "C13, C12 and C10, graded by welding skill" },
+        { href: "/job-pay-rates/fitter-and-turner/", label: "Fitter and turner pay rates", note: "the mechanical trade ladder" },
+        { href: "/apprentice-pay/boilermaker/", label: "Apprentice boilermaker pay", note: "clause 21.6 percentages, year by year, with the tool allowance" },
+        { href: "/apprentice-pay/mechanic/", label: "Apprentice mechanic pay", note: "the Vehicle award's percentages, for comparison" },
+        { href: "/mining-award-rates/", label: "Mining Award rates", note: "the award for maintenance trades on mine sites" },
+      ],
+    },
     faqs: [
       ...commonFaqs(a),
       {
@@ -485,6 +499,17 @@ function hairAndBeauty(): AwardPageCopy {
     trap: {
       heading: "Saturday is 133%, casual public holidays are 250%, and adult pay starts at 18",
       body: `Salon Saturdays are paid at 133% (${$(roundCents(l1.hourly * 1.33))} at Level 1), not the 125% most awards use. On a public holiday a casual gets 250%, the same as a permanent employee, because the 25% loading is not added. Juniors reach the adult rate at 18: under-17s get 50% and 17-year-olds 75%.`,
+    },
+    related: {
+      heading: "Apprentice and qualified hairdresser pay",
+      body: [
+        "Clause 18 pays apprentice hairdressers a percentage of the Level 3 rate, with a 77% third year and a separate 30-month scale for pre-apprentices. The year-by-year figures, the Saturday rate and the tool allowance are on the apprentice page; the qualified hairdresser page sets Level 3 and above against what hairdressers actually earn:",
+      ],
+      links: [
+        { href: "/apprentice-pay/hairdresser/", label: "Apprentice hairdresser pay", note: "year 1 to 4, junior and pre-apprentice scales" },
+        { href: "/job-pay-rates/hairdresser/", label: "Hairdresser pay rates", note: "Level 3 to Level 6, hourly to annual, with the median" },
+        { href: "/apprentice-pay-rates/", label: "Apprentice pay rates by trade", note: "every trade side by side, with a wages calculator" },
+      ],
     },
     faqs: [
       ...commonFaqs(a),

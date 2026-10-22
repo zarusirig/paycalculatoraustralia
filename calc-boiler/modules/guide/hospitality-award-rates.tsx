@@ -457,6 +457,9 @@ export default function HospitalityAwardRatesPage() {
                 Fixed-dollar allowances in clause 26 of the award, from {HOSPITALITY_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost (such as special clothing) are not listed.
               </p>
               <AllowanceTable allowances={HOSPITALITY_ALLOWANCES} caption="Hospitality award allowances" />
+              <p className="text-sm">
+                How these compare with the allowances in other awards, and how each is taxed: <Link href="/allowances-guide/">allowances guide</Link>.
+              </p>
               <TakeHomeLinks rows={HOSPITALITY_RATES.map((r) => ({ level: r.level, hourly: r.hourly }))} heading="What does a hospitality rate take home?" />
             </section>
 
@@ -498,6 +501,10 @@ export default function HospitalityAwardRatesPage() {
                 <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> &mdash; social, community and home care</li>
                 <li><Link href="/retail-hospitality-pay-guide/">Working in Retail &amp; Hospitality</Link> &mdash; rights, rosters and take-home pay</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; your award rate after tax</li>
+                <li><Link href="/apprentice-pay/chef/">Apprentice Chef Pay</Link> &mdash; the cookery apprentice percentages in this award, year by year</li>
+                <li><Link href="/live-performance-award-rates/">Live Performance Award Rates</Link> &mdash; the award for venue production and front-of-house staff at theatres and concerts</li>
+                <li><Link href="/christmas-day-pay-rates/">Christmas Day</Link>, <Link href="/boxing-day-pay-rates/">Boxing Day</Link>, <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day</Link>, <Link href="/australia-day-public-holiday-pay/">Australia Day</Link> and <Link href="/easter-public-holiday-pay/">Easter</Link> pay &mdash; the hospitality public holiday rate on each day, with the dates by state</li>
+                <li><Link href="/christmas-shutdown-annual-leave/">Christmas Shutdown and Annual Leave</Link> &mdash; a worked example on this award&rsquo;s Level 1 rate</li>
               </ul>
             </section>
 

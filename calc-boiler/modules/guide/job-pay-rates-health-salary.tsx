@@ -418,6 +418,15 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
               </div>
             </section>
 
+            {(page.sections ?? []).map((s) => (
+              <section key={s.id} id={s.id}>
+                <h2 style={HEADING_FONT}>{s.heading}</h2>
+                {s.paragraphs.map((p) => (
+                  <p key={p.slice(0, 48)}>{p}</p>
+                ))}
+              </section>
+            ))}
+
             <section id="payslip">
               <h2 style={HEADING_FONT}>What {withArticle(page.name)}&rsquo;s pay looks like on a payslip</h2>
               {page.payslip.map((p) => (
@@ -453,6 +462,10 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                   <SidebarLink key={p.slug} href={healthSalaryPath(p.slug)} label={`${p.name} salary`} />
                 ))}
               </div>
+              <p>
+                For where {page.plural} sit against every other occupation we cover, by median weekly pay and take-home, see the{" "}
+                <Link href="/highest-paying-jobs-australia/">highest paying jobs in Australia</Link>.
+              </p>
             </section>
 
             <div className="not-prose mt-12">

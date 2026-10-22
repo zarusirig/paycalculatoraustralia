@@ -104,6 +104,21 @@ function buildingConstruction(): AwardPageCopy {
       ],
       outro: "A carpenter or joiner also receives the $41.22 weekly tool allowance for all purposes, which lifts the ordinary rate and every percentage on top of it. See the carpenter pay page for the version with tools included.",
     },
+    related: {
+      heading: "Apprentice and trade pay under this award",
+      body: [
+        "Clause 19.7 pays apprentices a percentage of the standard rate plus the clause 21.1 tool allowance for their trade and the industry allowance, for all purposes. The Fair Work Ombudsman prints one apprentice table per tool allowance group, and these pages carry those tables year by year with take-home pay:",
+      ],
+      links: [
+        { href: "/apprentice-pay/carpenter/", label: "Apprentice carpenter pay", note: "the $41.22 carpenter and joiner group" },
+        { href: "/apprentice-pay/bricklayer/", label: "Apprentice bricklayer pay", note: "the $29.26 bricklayer and refractory bricklayer group" },
+        { href: "/apprentice-pay/painter/", label: "Apprentice painter pay", note: "the $9.89 glazier, painter and signwriter group" },
+        { href: "/job-pay-rates/carpenter/", label: "Carpenter pay rates", note: "the CW3 rate with the tool allowance included" },
+        { href: "/job-pay-rates/bricklayer/", label: "Bricklayer pay rates", note: "CW3, with the bricklayer tool allowance" },
+        { href: "/job-pay-rates/excavator-operator/", label: "Excavator operator pay rates", note: "the civil stream grades by machine size" },
+        { href: "/allowances-guide/", label: "Allowances guide", note: "how tool and industry allowances are paid and taxed across the awards" },
+      ],
+    },
     faqs: [
       {
         q: `What are the building and construction award pay rates for ${FY}?`,
