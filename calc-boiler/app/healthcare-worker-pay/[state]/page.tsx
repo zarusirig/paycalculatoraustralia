@@ -9,8 +9,12 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import {
   NURSING_PAY_STATES,
   getNursingPay,
+  hourlyFor,
+  nursingPageH1,
+  ratesYear,
   nursingPageTitle,
-  registeredNurseRange,
+  registeredNurseLadder as registeredNurseRange,
+  resolveKeyGrade,
 } from "@/lib/data/nursing-pay";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
@@ -47,7 +51,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const rn = range ? `registered nurse and midwife from ${formatAUD(range.entry)} to ${formatAUD(range.top)}` : "";
   const rnShort = range ? `RN and midwife from ${formatAUD(range.entry)} to ${formatAUD(range.top)}` : "";
   // Instrument names run to ~110 characters: named only when the description still fits.
-  const description = range
+  // Salary-led description for the states rebuilt on 23 Oct 2026 around
+  // "nurse salary {state}". Every figure comes from the state's scales.
+  const firstPoint = range
+    ? state.scales.find((s) => s.family === "registered")?.points.find((p) => p.label === range.entryLabel)
+    : undefined;
+  const firstHourly = firstPoint ? hourlyFor(firstPoint, state) : null;
+  const en = state.keyGrades?.find((g) => /enrolled/i.test(g.label));
+  const enRow = en ? resolveKeyGrade(state, en) : null;
+  const nextRise = state.upcoming?.[0]?.effectiveFrom;
+  const salaryDescription =
+    state.salaryTitle && range
+      ? fitDescription(
+          `${state.shortName} nurse salary ${ratesYear(state)}: RN ${formatAUD(range.entry)} to ${formatAUD(range.top)}${
+            firstHourly !== null ? ` (from ${formatAUD(firstHourly, 2)} an hour)` : ""
+          }${enRow ? `, EN from ${formatAUD(enRow.lowAnnual)}` : ""}. Every ${employer} grade with fortnightly and after-tax pay.${
+            nextRise ? ` Next rise ${nextRise}.` : ""
+          }`,
+          `${state.shortName} nurse salary: RN ${formatAUD(range.entry)} to ${formatAUD(range.top)}${
+            enRow ? `, EN from ${formatAUD(enRow.lowAnnual)}` : ""
+          }. Every ${employer} pay grade, hourly and after tax.${nextRise ? ` Next rise ${nextRise}.` : ""}`,
+          `${state.shortName} nurse salary: RN ${formatAUD(range.entry)} to ${formatAUD(range.top)}. Every ${employer} pay grade, hourly and after tax.`,
+        )
+      : null;
+
+  const description = salaryDescription
+    ? salaryDescription
+    : range
     ? fitDescription(
         `${employer} nursing pay scales: ${rn}, plus enrolled nurse, clinical nurse, unit manager and nurse practitioner rates. From the ${instrument.name}, effective ${instrument.effectiveFrom}. Shift penalties and after-tax figures included.`,
         `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Enrolled nurse, clinical nurse and NP rates, shift penalties and after-tax pay.`,
@@ -102,7 +132,7 @@ async function Page({ params }: PageProps) {
     datePublished: pageDatePublished(`healthcare-worker-pay/${slug}`),
     dateModified: pageDateModified(`healthcare-worker-pay/${slug}`),
     "@id": `${url}#article`,
-    headline: `Nurse and midwife pay rates in ${state.name}`,
+    headline: nursingPageH1(state),
     image: `${BASE}/og-image.png`,
     description: range
       ? `Registered nurse and midwife pay in ${state.name} runs from ${formatAUD(range.entry)} to ${formatAUD(
