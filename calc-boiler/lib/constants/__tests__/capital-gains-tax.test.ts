@@ -27,6 +27,7 @@ import {
   CGT_AFFORDABLE_HOUSING,
   CGT_DISCOUNT_RATES,
   CGT_MINIMUM_OWNERSHIP_MONTHS,
+  CGT_PENDING_BILLS,
   CGT_REFORM_2027,
   COST_BASE_ELEMENTS,
   apportionMainResidenceGain,
@@ -34,7 +35,9 @@ import {
   calculateCostBase,
   discountRateFor,
   marginalRateFor,
+  minimumTaxGapAmount,
 } from "../capital-gains-tax";
+import { calculateIncomeTax } from "../australian-tax";
 
 // ---------------------------------------------------------------------------
 // Published discount rates
@@ -433,10 +436,12 @@ test("the 2027 reform is law, but does not touch the current income year", () =>
 });
 
 test("the reform is not a clean switch-off of the 50% discount", () => {
-  // Three carve-outs survive, and five entity types never enter indexation.
-  assert.equal(CGT_REFORM_2027.discountSurvivesFor.length, 3);
+  // Four carve-outs survive, and five entity types never enter indexation.
+  assert.equal(CGT_REFORM_2027.discountSurvivesFor.length, 4);
   assert.ok(CGT_REFORM_2027.discountSurvivesFor.some((x) => /before 1 July 2027/.test(x)));
   assert.ok(CGT_REFORM_2027.discountSurvivesFor.some((x) => /new residential dwellings/.test(x)));
+  assert.ok(CGT_REFORM_2027.discountSurvivesFor.some((x) => /affordable housing/.test(x)));
+  assert.ok(CGT_REFORM_2027.discountSurvivesFor.some((x) => /super funds/.test(x)));
   assert.equal(CGT_REFORM_2027.indexationExcludes.length, 5);
   const excluded: readonly string[] = CGT_REFORM_2027.indexationExcludes;
   for (const e of ["companies", "foreign residents", "temporary residents"]) {
@@ -451,6 +456,51 @@ test("the deemed disposal date is the day before the new regime starts", () => {
 
 test("the reform cites the Act, not just the bill page", () => {
   // The ATO still calls this "announced"; linking the bill invites the same
-  // misreading. The Act PDF on the ATO legal database is the authority.
-  assert.match(CGT_REFORM_2027.actUrl, /ato\.gov\.au\/law\/view\/pdf\/acts\/20260049\.pdf/);
+  // misreading. The Act as made on the Federal Register is the authority.
+  assert.match(CGT_REFORM_2027.actUrl, /legislation\.gov\.au\/C2026A00049\//);
+  assert.match(CGT_REFORM_2027.impositionActUrl, /legislation\.gov\.au\/C2026A00050\//);
+});
+
+// =============================================================================
+// Re-verified 22 October 2026 against Act No. 49 and Act No. 50 of 2026 on
+// legislation.gov.au and the APH bill pages r7493, r7492 and r7554.
+// =============================================================================
+
+test("both Acts are recorded, with a verifiedOn date", () => {
+  assert.equal(CGT_REFORM_2027.verifiedOn, "2026-10-22");
+  assert.equal(CGT_REFORM_2027.impositionActNumber, "Act No. 50 of 2026");
+  assert.match(CGT_REFORM_2027.impositionActName, /Income Tax Rates Amendment \(Tax Reform No\. 1\) Act 2026/);
+  assert.equal(CGT_REFORM_2027.indexationMinimumMonths, 12);
+  assert.equal(CGT_REFORM_2027.preCgtAssetsEndOn, "1 July 2027");
+  assert.equal(CGT_REFORM_2027.minimumTaxAppliesTo, "Australian resident individuals");
+  assert.ok(CGT_REFORM_2027.minimumTaxExemptPayments.includes("Age Pension"));
+});
+
+test("Tax Reform No. 3 is recorded as a bill, not law", () => {
+  assert.equal(CGT_PENDING_BILLS.verifiedOn, "2026-10-22");
+  assert.match(CGT_PENDING_BILLS.billName, /Bill 2026$/);
+  assert.match(CGT_PENDING_BILLS.billUrl, /bId=r7554$/);
+  assert.ok(CGT_PENDING_BILLS.proposals.some((p) => /discretionary trusts from 1 July 2028/.test(p)));
+});
+
+// The s 119-10(2) method statement. It applies from 2027-28; the 2026-27 scale
+// is used here only as a known tax function to test the arithmetic.
+test("minimum tax gap: low-income seller pays the top-up to 30%", () => {
+  // $50,000 gain is the whole taxable income. 30% = $15,000. Tax on $50,000
+  // = $4,020 + $5,000 x 30% = $5,520. Gap = $9,480.
+  assert.equal(minimumTaxGapAmount(50_000, 50_000, calculateIncomeTax), 9_480);
+});
+
+test("minimum tax gap: nil when the gain is already taxed at 30% or more", () => {
+  // Gain sits wholly in the 30% bracket: tax on it is exactly $12,000.
+  assert.equal(minimumTaxGapAmount(40_000, 100_000, calculateIncomeTax), 0);
+  // Top-bracket earner: tax on the gain is $45,000, above $30,000.
+  assert.equal(minimumTaxGapAmount(100_000, 300_000, calculateIncomeTax), 0);
+});
+
+test("minimum tax gap: rounds down to whole dollars and ignores nil gains", () => {
+  const noTax = () => 0;
+  assert.equal(minimumTaxGapAmount(1_234.56, 1_234.56, noTax), 370);
+  assert.equal(minimumTaxGapAmount(0, 80_000, calculateIncomeTax), 0);
+  assert.equal(minimumTaxGapAmount(-5_000, 80_000, calculateIncomeTax), 0);
 });

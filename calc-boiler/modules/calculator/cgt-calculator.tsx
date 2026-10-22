@@ -8,6 +8,7 @@ import {
   CGT_DISCOUNT_RATES,
   CGT_INCOME_YEAR,
   CGT_MINIMUM_OWNERSHIP_MONTHS,
+  CGT_REFORM_2027,
   calculateCGT,
 } from "@/lib/constants/capital-gains-tax";
 
@@ -172,6 +173,15 @@ export default function CgtCalculator() {
           Works out your net capital gain for the {CGT_INCOME_YEAR} income year using the ATO&rsquo;s
           own 8-step method, then taxes it at your marginal rate, because CGT is part of your income
           tax, not a separate tax with its own rate.
+        </p>
+        <p className="text-sm text-navy mb-6 rounded-lg border-l-4 border-ochre bg-sandstone/60 p-3">
+          <strong>Selling on or after {CGT_REFORM_2027.startDate}?</strong> This calculator only
+          covers contract dates up to 30 June 2027. From {CGT_REFORM_2027.startDate} the part of a
+          gain that builds up after that date gets cost base indexation instead of the{" "}
+          {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, and resident individuals pay at
+          least {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} on it. That cannot be worked out
+          yet, because it needs CPI for the quarter you sell and your asset&rsquo;s value at{" "}
+          {CGT_REFORM_2027.startDate}.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">

@@ -152,7 +152,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>CGT Discount Replacement Is Now Law (From 1 July 2027)</h3>
               <p>
-                The 2026-27 budget&apos;s capital gains reforms have passed into law: from <strong>1 July 2027</strong>, the 50% CGT discount for individuals, trusts and partnerships is replaced with cost base indexation and a 30% minimum tax rate on capital gains, applying only to gains that accrue after that date. Nothing changes for assets sold during FY2026-27, and the ATO has not yet published indexation or apportionment guidance. See the <Link href="/capital-gains-tax-calculator/">Capital Gains Tax Calculator</Link> for the current rules.
+                The 2026-27 budget&apos;s capital gains reforms have passed into law: from <strong>1 July 2027</strong>, the 50% CGT discount for Australian resident individuals and trusts, including partnership gains, is replaced with cost base indexation, and resident individuals pay a 30% minimum tax on those gains. It applies only to the part of a gain that builds up on and after that date. New residential dwellings, affordable housing and super funds keep a discount, and Age Pension and other income support recipients are exempt from the minimum tax. Nothing changes for assets sold during FY2026-27. A further bill with a 30% minimum tax on some discretionary trusts from 1 July 2028 is still before Parliament. See the <Link href="/capital-gains-tax-calculator/">Capital Gains Tax Calculator</Link> for the current rules.
               </p>
             </section>
 
