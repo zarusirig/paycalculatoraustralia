@@ -336,12 +336,15 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "public-service-pay-scales/aps/aps-6": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "public-service-pay-scales/aps/el1": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "public-service-pay-scales/aps/el2": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
-  "school-support-staff-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay": { authorId: "anita-bell", lastReviewed: "2026-10-22" },
   "school-support-staff-pay/nsw": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/vic": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/qld": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/wa": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/sa": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/tas": { authorId: "anita-bell", lastReviewed: "2026-10-22" },
+  "school-support-staff-pay/act": { authorId: "anita-bell", lastReviewed: "2026-10-22" },
+  "school-support-staff-pay/nt": { authorId: "anita-bell", lastReviewed: "2026-10-22" },
   "train-driver-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end J6 ---
   // --- Oct 2026 gig / apprentice / graduate set (5 Oct 2026) ---
