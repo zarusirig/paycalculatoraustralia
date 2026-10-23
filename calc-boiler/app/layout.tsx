@@ -84,7 +84,7 @@ export default function RootLayout({
         {/* AdSense script removed 23 Oct 2026: Mediavine asked for AdSense to
             come off the site before they switch on their ads. Mediavine serves
             Google demand itself. Do not add adsbygoogle.js back while Mediavine
-            runs the ads. public/ads.txt is left as it is for Mediavine to manage.
+            runs the ads. /ads.txt 301s to Mediavine's hosted file (firebase.json).
             The EEA/UK consent banner used to load with this script; the consent
             gtag call below now relies on Mediavine's CMP (set 16 Oct 2026). */}
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
