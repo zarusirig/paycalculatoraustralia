@@ -6,9 +6,11 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "enterprise-agreement";
-const TITLE = "Enterprise Agreement Search & EBA Lookup: Find Yours";
+// Meta pass (23 Oct 2026): "eba lookup" (350 impressions) is the head query, ahead of
+// "eba search" and "enterprise agreement search"; the description gives the answer first.
+const TITLE = "EBA Lookup and Search: How to Find Your Enterprise Agreement";
 const DESCRIPTION =
-  "What an enterprise agreement is, how to find yours in the Fair Work Commission's search, why an expired EBA still applies, and how EBA pay compares with the award.";
+  "EBA lookup: search the employer name or ABN on your payslip in the Fair Work Commission's Document Search. Why an expired EBA still applies, and the award floor.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

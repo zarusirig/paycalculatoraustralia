@@ -8,14 +8,18 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-working-credit-calculator";
 const TITLE = "Centrelink Working Credit Calculator (2026)";
+// Meta intent pass 23 Oct 2026: "what is working credit centrelink" (500 impr) and
+// "working credit centrelink" are the head queries, so the <title> asks the question.
+// TITLE stays as the schema title.
+const META_TITLE = "What Is Centrelink Working Credit? Calculator & Rules 2026";
 const DESCRIPTION = `Working Credit builds up to ${WORKING_CREDIT.maxPerFortnight} credits a fortnight when you earn under $${WORKING_CREDIT.accrualThreshold}, up to ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} (${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance job seekers), keeping JobSeeker paid.`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
+  title: META_TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: DESCRIPTION },
 });
 
 const jsonLd = t3JsonLd({

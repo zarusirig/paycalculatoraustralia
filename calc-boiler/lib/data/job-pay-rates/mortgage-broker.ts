@@ -74,7 +74,7 @@ export const MORTGAGE_BROKER: Occupation = {
   headline: null,
   coverageMode: "depends",
   heading: "Mortgage Broker Salary Australia 2026 - Tax-Return Figures, Commission & Take-Home",
-  metaTitle: `Mortgage Broker Salary 2026 - ${aud(FIN.medianSalary)} Median & Take-Home`,
+  metaTitle: `Mortgage Broker Salary Australia 2026: ${aud(FIN.medianSalary)} Median & Take-Home`,
   metaDescription: `Finance brokers, the ATO code that includes mortgage brokers, had an ${aud(FIN.medianSalary)} median salary in 2023–24. Take-home pay, commission on payslips, award coverage.`,
   lede: `Mortgage brokers are counted by the ATO as finance brokers. On 2023–24 tax returns, finance brokers who earned wages had a median salary of ${aud(FIN.medianSalary)} and an average of ${aud(FIN.avgSalary)}, while their average taxable income (which includes business income) was ${aud(FIN.avgTaxableIncome)}. On the ${aud(FIN.medianSalary)} median, take-home pay is about ${aud(netAnnual(FIN.medianSalary))} a year after tax. No award names the job.`,
   coverage: [

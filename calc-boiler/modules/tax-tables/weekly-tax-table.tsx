@@ -19,6 +19,7 @@ import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import ExtraPayTable from "./extra-pay-table";
 import AtoDownloads from "./ato-downloads";
+import TableDownloads from "./table-downloads";
 import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
@@ -76,6 +77,7 @@ export default function WeeklyTaxTablePage() {
             {formatAUD(1_000)} a week with the tax-free threshold claimed has <strong>{formatAUD(example1000.totalWithheld)}</strong>{" "}
             withheld ({formatAUD(example1000.netPerPeriod)} take-home).
           </p>
+          <TableDownloads frequency="weekly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_WEEKLY} className="mb-6" />
           <TaxTableLookupWidget frequency="weekly" defaultGross={1_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
             {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle

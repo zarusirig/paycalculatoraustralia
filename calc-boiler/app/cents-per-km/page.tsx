@@ -12,12 +12,18 @@ const c = (d: number) => `${Math.round(d * 100)}c`;
 const TITLE = `Cents per km ${CURRENT_CPK_YEAR}: ATO Rate ${c(CURRENT_CPK_RATE)} + Calculator`;
 const DESCRIPTION = `The ATO cents per km rate is ${c(CURRENT_CPK_RATE)} for ${CURRENT_CPK_YEAR} (${c(PREVIOUS_CPK_RATE)} for 2025-26), capped at ${CPK_KM_CAP.toLocaleString("en-AU")} km per car: up to ${formatAUD(CURRENT_CPK_RATE * CPK_KM_CAP)}. Rates by year, payslip withholding and a calculator.`;
 
+// Meta pass 23 Oct 2026: queries are "km reimbursement rate 2027", "2026 km
+// rate", "2026 c/km rate" (pos 7 to 9, CTR 0.2%). Meta title adds "Rate" next
+// to the head term and "Reimbursement" for the employer per-km allowance intent
+// the page covers. TITLE above still feeds the JSON-LD unchanged.
+const META_TITLE = `Cents per km ${CURRENT_CPK_YEAR}: ATO ${c(CURRENT_CPK_RATE)} Rate, Reimbursement & Calculator`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
+  title: META_TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: DESCRIPTION },
 });
 
 const jsonLd = t3JsonLd({

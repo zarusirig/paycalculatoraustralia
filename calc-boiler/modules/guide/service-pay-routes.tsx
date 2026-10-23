@@ -23,7 +23,13 @@ import {
 import { serviceHubFaqs } from "@/lib/data/service-pay/hub";
 import ServicePayHub, { serviceHubHeading } from "./service-pay-hub";
 import ServicePayStatePage, { serviceStateHeading } from "./service-pay-state";
-import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { fitDescription } from "@/lib/seo-title";
+import {
+  serviceHubSearchDescription,
+  serviceHubSearchTitle,
+  serviceStateSearchDescription,
+  serviceStateSearchTitle,
+} from "@/lib/data/service-pay/meta";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -64,9 +70,9 @@ function hubDescription(occupation: ServiceOccupation): string {
 export function serviceHubMetadata(occupation: ServiceOccupation): Metadata {
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
   // J8: a fallback for occupation names too long for the full form ("Prison officer").
-  const heading = serviceHubHeading(occupation);
-  const title = fitTitle(heading, heading.replace(/ - .+ Pay by State$/, " - Pay by State"));
-  const description = hubDescription(occupation);
+  // Search-shaped metadata (23 Oct 2026, lib/data/service-pay/meta.ts); the H1 and WebPage schema keep the heading and hubDescription.
+  const title = serviceHubSearchTitle(occupation);
+  const description = serviceHubSearchDescription(occupation);
   const url = `${BASE}${cfg.hubPath}`;
   return {
     title,
@@ -142,10 +148,10 @@ export function serviceStateMetadata(occupation: ServiceOccupation, slug: string
   const j = verifiedOrNull(occupation, slug);
   if (!j) return {};
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
-  // The H1 names the employer in full; the <title> drops the trailing "Pay Scale" if it won't fit.
-  const heading = serviceStateHeading(j);
-  const title = fitTitle(heading, heading.replace(/ Pay Scale$/, ""), heading.replace(/ — .+$/, " — Pay Scale")); // J8: last form for long employer names
-  const description = stateDescription(j);
+  // Search-shaped metadata (23 Oct 2026, lib/data/service-pay/meta.ts): no em dash, per-occupation
+  // wording ("Pay by Rank", "Pay Rates"). The H1 and WebPage schema keep serviceStateHeading/stateDescription.
+  const title = serviceStateSearchTitle(j);
+  const description = serviceStateSearchDescription(j);
   const url = `${BASE}${cfg.hubPath}${j.slug}/`;
   return {
     title,

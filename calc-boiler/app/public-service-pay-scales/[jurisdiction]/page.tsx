@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTION_SLUGS, getJurisdiction } from "@/lib/data/public-service-pay";
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
+import { jurisdictionPageMeta } from "@/lib/data/public-service-pay/state-levels";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -27,13 +28,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!jurisdiction) return {};
 
   const url = `${SITE_CONFIG.baseUrl}/public-service-pay-scales/${jurisdiction.slug}/`;
+  // Search-shaped title/description; the H1 and Dataset schema keep metaTitle/metaDescription.
+  const { title, description } = jurisdictionPageMeta(jurisdiction);
   return withFeaturedImage({
-    title: jurisdiction.metaTitle,
-    description: jurisdiction.metaDescription,
+    title,
+    description,
     alternates: { canonical: url },
     openGraph: {
-      title: jurisdiction.metaTitle,
-      description: jurisdiction.metaDescription,
+      title,
+      description,
       url,
       siteName: SITE_CONFIG.name,
       type: "website",
@@ -41,8 +44,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: jurisdiction.metaTitle,
-      description: jurisdiction.metaDescription,
+      title,
+      description,
     },
   });
 }

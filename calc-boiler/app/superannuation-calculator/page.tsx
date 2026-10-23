@@ -26,7 +26,8 @@ const SUPER_80K = calculateSuper(80_000);
 // super on salary", "superannuation calculator for employers", "how much
 // employer super contribution", "sg calculator". Title answers that; the
 // description leads with a computed figure and the Payday Super change.
-const TITLE = `Super Calculator ${FY}: How Much Super Your Employer Pays`;
+// Meta intent pass 23 Oct 2026: GSC queries are "85000 plus super", "90000 plus super": salary plus super.
+const TITLE = `Salary Plus Super Calculator ${FY}: What ${SG} Super Adds`;
 const DESCRIPTION = `Your employer pays ${SG} super on top of salary: ${formatAUD(SUPER_80K)} a year on $80,000, paid with every pay from ${SUPER_GUARANTEE.paydaySuperStart}. Total package and ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap space for ${FY}.`;
 
 export const metadata: Metadata = withFeaturedImage({

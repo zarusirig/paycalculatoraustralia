@@ -7,10 +7,10 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
-import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
+import { TAX_ON_SALARIES, salaryFacts } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
-import { fitTitle } from "@/lib/seo-title";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
@@ -35,20 +35,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
   const totalRate = ((totalTax / salaryAmount) * 100).toFixed(1);
 
+  // Top bracket reached (15/30/37/45), from the same facts the page's bracket
+  // table and "sits $X into the 30% bracket" sentence use.
+  const bracketPct = Math.round(salaryFacts(salaryAmount).bracketRate * 100);
+  const fy = SITE_CONFIG.financialYear;
+
   return withFeaturedImage({
-    // Leads with the answer, in GSC phrasing ("tax on 60000 australia"). Only a
-    // listing showing the number competes with an AI Overview that already
-    // states one. Deliberately drops "Take-Home Pay"/"After Tax" — those belong
-    // to /take-home-pay-on/. FY label from SITE_CONFIG rolls over each 1 July.
-    // Previous: "Tax on $45,000 in Australia: $3,695 Income Tax (2026-27)"
-    // seo-brain 25 Sep 2026 (Jev-ranked): question form in the GSC phrasing; the figure is
-    // totalTax (income tax plus Medicare levy), the number the hero and the
-    // description already lead with. Keep token: australia.
+    // Meta intent pass 23 Oct 2026: "Tax on $X in Australia" first, the exact
+    // H1 and GSC phrasing ("tax on 60000 australia"); Google was already
+    // rewriting the question form to the H1 in the SERP. The bracket is the
+    // per-salary differentiator ("tax bracket" queries) and keeps the page on
+    // tax-owed intent: no take-home figure here, "X after tax" belongs to
+    // /take-home-pay-on/ (44% of this route's query impressions were
+    // after-tax queries that page should win). FY label rolls over each 1 July.
+    // Previous (25 Sep): "How Much Tax on $100,000 in Australia? $22,520 in 2026-27"
     title: fitTitle(
-      `How Much Tax on ${formattedSalary} in Australia? ${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}`,
-      `Tax on ${formattedSalary} in Australia? ${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}`,
+      ...(bracketPct > 0
+        ? [
+            `Tax on ${formattedSalary} in Australia ${fy}: ${formatAUD(totalTax)} (${bracketPct}% Tax Bracket)`,
+            `Tax on ${formattedSalary} in Australia ${fy}: ${formatAUD(totalTax)} (${bracketPct}% Bracket)`,
+          ]
+        : []),
+      `Tax on ${formattedSalary} in Australia ${fy}: ${formatAUD(totalTax)}`,
     ),
-    description: `Tax on ${formattedSalary} in ${SITE_CONFIG.financialYear} is ${formatAUD(breakdown.netIncomeTax)} income tax plus ${formatAUD(breakdown.medicareLevy)} Medicare levy: ${formatAUD(totalTax)} in total (${totalRate}% of salary), leaving ${formatAUD(breakdown.takeHomePay)} take-home a year.`,
+    // Answer first (total, then its two parts, average rate, bracket); the
+    // take-home figure stays off this page's snippet (see title note).
+    description:
+      totalTax === 0
+        ? `Tax on ${formattedSalary} in ${fy} is $0: no income tax or Medicare levy is payable at this income, so you keep the full ${formattedSalary}. See the tax in each bracket.`
+        : fitDescription(
+            `Tax on ${formattedSalary} in ${fy} is ${formatAUD(totalTax)}: ${formatAUD(breakdown.netIncomeTax)} income tax plus ${formatAUD(breakdown.medicareLevy)} Medicare levy, ${totalRate}% of salary, in the ${bracketPct}% tax bracket. See the tax in each bracket.`,
+            `Tax on ${formattedSalary} in ${fy} is ${formatAUD(totalTax)}: ${formatAUD(breakdown.netIncomeTax)} income tax plus ${formatAUD(breakdown.medicareLevy)} Medicare levy, ${totalRate}% of salary, in the ${bracketPct}% tax bracket.`,
+          ),
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`,
     },

@@ -3,7 +3,8 @@ import NetPayPage from "@/modules/guide/net-pay-calculator";
 import { NET_PAY_CALCULATOR_FAQS } from "@/modules/guide/net-pay-calculator-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { netPay } from "@/lib/constants/net-pay";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct core batch (5 Oct 2026): head term "net pay calculator". The hourly-rate
@@ -15,12 +16,20 @@ const TITLE = `Net Pay Calculator Australia ${SITE_CONFIG.financialYear}: Hourly
 const DESCRIPTION =
   "Net pay calculator for Australia: enter your hourly rate and hours to see net pay each week, fortnight or month, line by line, and what each hour is worth after tax.";
 
+// Meta pass 23 Oct 2026: 703 impr/28d at pos 9.3 and 0 clicks. "Hourly to
+// Payslip" is not how anyone searches; the SERP says "after tax". The
+// description leads with the page's own worked example from the engine.
+// TITLE/DESCRIPTION above still feed the JSON-LD unchanged.
+const example = netPay({ hourlyRate: 40, hoursPerWeek: 38, frequency: "fortnightly" });
+const META_TITLE = `Net Pay Calculator Australia ${SITE_CONFIG.financialYear}: Hourly Rate After Tax`;
+const META_DESCRIPTION = `$40 an hour for 38 hours a week is ${formatAUD(example.gross)} a fortnight gross and ${formatAUD(example.net)} net in ${SITE_CONFIG.financialYear}: ${formatAUD(example.netPerHour, 2)} for each hour worked. See it line by line, like a payslip.`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
-  description: DESCRIPTION,
+  title: META_TITLE,
+  description: META_DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: META_DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: META_DESCRIPTION },
 });
 
 const jsonLd = t3JsonLd({

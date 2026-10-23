@@ -46,6 +46,7 @@ function arch(label: string, annual: number, weekly: number, hourly: number, cas
 export const ARCHITECT: Occupation = {
   slug: "architect",
   name: "Architect",
+  metaTerm: "salary",
   plural: "architects",
   metaTitle: "Architect Salary Australia 2026 - $39.77/hr Award Minimum",
   award: {

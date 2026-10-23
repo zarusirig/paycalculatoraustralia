@@ -9,7 +9,7 @@ import type {
 } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { CONTRACTOR_PAY_FAQS } from "@/modules/calculator/contractor-pay-calculator-faqs";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
 
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
@@ -17,17 +17,24 @@ import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
+// Meta pass 23 Oct 2026: GSC queries are "abn to wages calculator" (pos 9.3),
+// "abn to tfn calculator", "abn calculator"; the old title never said ABN.
+// The description leads with the page's own worked example ($50/h, 38 h,
+// 48 weeks = the $91,200 gross in the comparison table).
+// Previous title: "Contractor Pay Calculator Australia - Your Real Take-Home".
+const FY = SITE_CONFIG.financialYear;
+const TITLE = "Contractor Pay Calculator Australia: ABN to Wages After Tax";
+const DESCRIPTION = `An ABN rate of $50 an hour for 38 hours over 48 weeks is ${formatAUD(50 * 38 * 48)} gross. See take-home after tax, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super and GST, compared with PAYG wages in ${FY}.`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: "Contractor Pay Calculator Australia - Your Real Take-Home",
-  description:
-    "Contractor pay calculator for Australia: net pay after GST, income tax, super and deductions, with an ABN vs PAYG comparison for FY2026-27.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
   },
   openGraph: {
-    title: "Contractor Pay Calculator Australia - What You Take Home as a Contractor",
-    description:
-      "Calculate your take-home as a contractor. See net pay after GST, income tax, super self-contribution & deductions for FY2026-27.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
     siteName: SITE_CONFIG.name,
     type: "website",

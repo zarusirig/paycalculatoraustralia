@@ -96,6 +96,7 @@ const TABLES: RateTable[] = [
 export const LAB_TECHNICIAN: Occupation = {
   slug: "lab-technician",
   name: "Lab Technician",
+  metaTerm: "salary",
   plural: "lab technicians",
   award: HPSS_AWARD_OCT_2026,
   headline: {

@@ -127,6 +127,7 @@ const SUPPORT_WORKER_SECTION: OccupationSection = {
 export const DISABILITY_SUPPORT_WORKER: Occupation = {
   slug: "disability-support-worker",
   name: "Disability Support Worker",
+  metaTerm: "salary",
   plural: "disability support workers",
   award: {
     name: SCHADS_AWARD.name,

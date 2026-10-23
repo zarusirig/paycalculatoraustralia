@@ -19,6 +19,7 @@ import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import ExtraPayTable from "./extra-pay-table";
 import AtoDownloads from "./ato-downloads";
+import TableDownloads from "./table-downloads";
 import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
@@ -77,6 +78,7 @@ export default function FortnightlyTaxTablePage() {
             {formatAUD(example2000.netPerPeriod)} take-home. The table below lists the amount to withhold at each
             earnings step, with and without the threshold.
           </p>
+          <TableDownloads frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_FORTNIGHTLY} className="mb-6" />
           <TaxTableLookupWidget frequency="fortnightly" defaultGross={2_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
             {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle

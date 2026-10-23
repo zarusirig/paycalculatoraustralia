@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ApprenticePayRatesPage from "@/modules/guide/apprentice-pay-rates";
 import { APPRENTICE_PAY_FAQS } from "@/modules/guide/apprentice-pay-rates-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { formatAUD } from "@/lib/constants";
+import { APPRENTICE_TRADES, apprenticeRate } from "@/lib/data/apprentice-pay";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -11,9 +13,15 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // 5 October 2026; see lib/data/apprentice-pay.
 
 const SLUG = "apprentice-pay-rates";
-const TITLE = "Apprentice Pay Rates Australia 2026-27 & Wages Calculator";
-const DESCRIPTION =
-  "Apprentice award minimums by trade and year from 1 July 2026: carpentry, plumbing, electrical, mechanic, hairdressing, cookery. Check your wage with the calculator.";
+// Meta intent pass, 23 Oct 2026: the page is found for "4th year apprentice
+// carpenter wage", "1st year apprentice boilermaker wages" and similar (pos 7
+// to 11, 0.5% CTR). Searchers say "wages" and "1st year", so the title does
+// too, and the description gives the first-year range the page leads with.
+const FIRST_YEAR_HOURLY = APPRENTICE_TRADES.flatMap((t) =>
+  (["completed", "not-completed"] as const).map((y) => apprenticeRate(t, "junior", 1, y)!.hourly),
+);
+const TITLE = "Apprentice Pay Rates & Wages 2026-27: 1st to 4th Year by Trade";
+const DESCRIPTION = `1st year apprentice wages run from ${formatAUD(Math.min(...FIRST_YEAR_HOURLY), 2)} to ${formatAUD(Math.max(...FIRST_YEAR_HOURLY), 2)} an hour from 1 July 2026 and rise each year to 4th year. Rates for all ${APPRENTICE_TRADES.length} trades, with a wages calculator.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -11,6 +11,7 @@ import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 interface PageProps {
   params: Promise<{
@@ -35,14 +36,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const withHecs = calculatePayBreakdown({ grossSalary: salaryAmount, includeHECS: true });
   const shortSalary = `$${(salaryAmount / 1000).toLocaleString("en-AU")}k`;
+  const hecsLine = withHecs.hecsRepayment > 0 ? ` With HECS: ${formatAUD(withHecs.takeHomePay)}.` : "";
 
   return withFeaturedImage({
     // Answer-first, in the phrasing GSC shows ("110k after tax australia",
     // "100 000 after tax australia"). Owns net-pay intent; /tax-on/ owns
     // tax-owed intent, so neither title carries the other's head phrase.
     // FY label comes from SITE_CONFIG so the title rolls over each 1 July.
-    title: `${formattedSalary} After Tax in Australia = ${formatAUD(breakdown.takeHomePay)} (${SITE_CONFIG.financialYear})`,
-    description: `${shortSalary} after tax is ${formatAUD(breakdown.takeHomePay)} a year in Australia for ${SITE_CONFIG.financialYear}: ${formatAUD(breakdown.fortnightly)} a fortnight or ${formatAUD(breakdown.weekly)} a week, after ${formatAUD(breakdown.netIncomeTax)} tax and ${formatAUD(breakdown.medicareLevy)} Medicare.${withHecs.hecsRepayment > 0 ? ` With HECS: ${formatAUD(withHecs.takeHomePay)}.` : ""}`,
+    // Meta intent pass 23 Oct 2026: the weekly figure joins the title. "a year
+    // is how much a week (after tax)" and "after tax weekly" are this route's
+    // second-largest query group (~1,000 impr/28d) and the rival listings
+    // (wagecalculator, link.com.au, salaryadviser) only show it in snippets.
+    // Drops "in" only where the full form passes 65 characters.
+    // Previous: "$100,000 After Tax in Australia = $77,480 (2026-27)"
+    title: fitTitle(
+      `${formattedSalary} After Tax in Australia ${SITE_CONFIG.financialYear}: ${formatAUD(breakdown.takeHomePay)} (${formatAUD(breakdown.weekly)} a Week)`,
+      `${formattedSalary} After Tax Australia ${SITE_CONFIG.financialYear}: ${formatAUD(breakdown.takeHomePay)} (${formatAUD(breakdown.weekly)} a Week)`,
+      `${formattedSalary} After Tax in Australia = ${formatAUD(breakdown.takeHomePay)} (${SITE_CONFIG.financialYear})`,
+    ),
+    // Monthly figure joins where it fits (mostly salaries without a HECS
+    // line); otherwise the description is unchanged from before 23 Oct.
+    description: fitDescription(
+      `${shortSalary} after tax is ${formatAUD(breakdown.takeHomePay)} a year in Australia for ${SITE_CONFIG.financialYear}: ${formatAUD(breakdown.monthly)} a month, ${formatAUD(breakdown.fortnightly)} a fortnight or ${formatAUD(breakdown.weekly)} a week, after ${formatAUD(breakdown.netIncomeTax)} tax and ${formatAUD(breakdown.medicareLevy)} Medicare.${hecsLine}`,
+      `${shortSalary} after tax is ${formatAUD(breakdown.takeHomePay)} a year in Australia for ${SITE_CONFIG.financialYear}: ${formatAUD(breakdown.fortnightly)} a fortnight or ${formatAUD(breakdown.weekly)} a week, after ${formatAUD(breakdown.netIncomeTax)} tax and ${formatAUD(breakdown.medicareLevy)} Medicare.${hecsLine}`,
+    ),
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`,
     },

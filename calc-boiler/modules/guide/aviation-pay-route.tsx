@@ -37,8 +37,20 @@ function description(slug: AviationPageSlug): string {
 export function aviationMetadata(slug: AviationPageSlug): Metadata {
   const page = AVIATION_PAY[slug];
   const heading = AVIATION_COPY[slug].heading(aviationRatesYear(page));
-  // The H1 keeps "ATC Pay Scale"; the <title> shortens it if it won't fit.
-  const title = fitTitle(heading, heading.replace(/ ATC Pay Scale$/, " Pay Scale"), heading.replace(/ ATC Pay Scale$/, " Pay"));
+  // Meta intent pass, 23 Oct 2026: "air traffic controller salary" and "pilot
+  // salary australia" ranked 7 to 11 at under 1% CTR with no figure in the
+  // title. The <title> now leads with the salary range the page publishes; the
+  // H1 is unchanged.
+  const entry = aviationEntrySalary(page);
+  const top = aviationTopSalary(page);
+  const lead = heading.replace(/ - .*$/, "");
+  const range = entry !== null && top !== null ? `${formatAUD(entry)} to ${formatAUD(top)}` : null;
+  const ranged = range
+    ? slug === "pilot"
+      ? [`${lead}: ${range} Award Minimum`, `${lead}: ${range}`]
+      : [`${lead}: ${range}`, `${lead}: Up to ${formatAUD(top!)}`]
+    : [];
+  const title = fitTitle(...ranged, heading, heading.replace(/ ATC Pay Scale$/, " Pay Scale"), heading.replace(/ ATC Pay Scale$/, " Pay"));
   const desc = description(slug);
   const url = `${BASE}${AVIATION_PATHS[slug]}`;
   return {

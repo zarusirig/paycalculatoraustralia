@@ -12,21 +12,31 @@ import {
   ATO_TAX_TABLES_INDEX,
 } from "@/modules/tax-tables/ato-schedules";
 import { pageDatePublished } from "@/lib/page-dates";
+import downloads from "@/modules/tax-tables/downloads-manifest.json";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
 // 5 Oct 2026: "PAYG Calculator" removed (that query belongs to /tax-withheld-calculator/); both financial years named because the 1 July rollover drives search for each.
-const TITLE = `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} and 2025-26 (ATO NAT 1006)`;
+// 23 Oct 2026 meta pass: GSC 24 Sep to 21 Oct, pos 8.7, CTR 0.51%; "fortnightly tax table 2026" 7,625 impr at
+// 9.3, plus "... pdf free download" queries, now served by the hosted PDF/CSV (public/downloads,
+// scripts/generate-tax-table-downloads.mjs). 2025-26 has its own page (/fortnightly-tax-table/2025-26/).
+// Previous title: "Fortnightly Tax Table 2026-27 and 2025-26 (ATO NAT 1006)".
+const files = downloads.fy === PAYG_FINANCIAL_YEAR ? downloads.files.fortnightly : null;
+const TITLE = files
+  ? `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR}: Free PDF and CSV (ATO NAT 1006)`
+  : `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006)`;
 // Previous: "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV."
 // seo-brain 25 Sep 2026 (Jev-ranked): the HTML table's range from HTML_TABLE_RANGES and the
 // $2,000 worked example from the Schedule 1 engine (same call the page body makes).
 const TABLE_RANGE = HTML_TABLE_RANGES.fortnightly;
 const at2000 = calculatePAYGWithholding(2_000, "fortnightly");
 const at2000NoTft = calculatePAYGWithholding(2_000, "fortnightly", { claimsTaxFreeThreshold: false });
-const DESCRIPTION =
-  `ATO fortnightly tax table ${PAYG_FINANCIAL_YEAR} (${ATO_FORTNIGHTLY.nat}), ${formatAUD(TABLE_RANGE.from)} to ${formatAUD(TABLE_RANGE.to)} in ${formatAUD(TABLE_RANGE.step)} steps: on ${formatAUD(2_000)} a fortnight, ${formatAUD(at2000.totalWithheld)} is withheld with the threshold, ${formatAUD(at2000NoTft.totalWithheld)} without. STSL and CSV.`;
+// Previous (25 Sep): "ATO fortnightly tax table 2026-27 (NAT 1006), $700 to $8,000 in $100 steps: on $2,000 a fortnight, $276 is withheld with the threshold, $498 without. STSL and CSV."
+const DESCRIPTION = files
+  ? `Free fortnightly tax table ${PAYG_FINANCIAL_YEAR} PDF and CSV (${ATO_FORTNIGHTLY.nat}), every ${formatAUD(files.step)} to ${formatAUD(files.to)}. On ${formatAUD(2_000)} a fortnight, ${formatAUD(at2000.totalWithheld)} is withheld with the threshold, ${formatAUD(at2000NoTft.totalWithheld)} without.`
+  : `ATO fortnightly tax table ${PAYG_FINANCIAL_YEAR} (${ATO_FORTNIGHTLY.nat}), ${formatAUD(TABLE_RANGE.from)} to ${formatAUD(TABLE_RANGE.to)} in ${formatAUD(TABLE_RANGE.step)} steps: on ${formatAUD(2_000)} a fortnight, ${formatAUD(at2000.totalWithheld)} is withheld with the threshold, ${formatAUD(at2000NoTft.totalWithheld)} without. STSL and CSV.`;
 const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = withFeaturedImage({

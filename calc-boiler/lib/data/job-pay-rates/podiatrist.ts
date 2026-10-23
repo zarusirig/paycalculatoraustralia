@@ -22,6 +22,7 @@ const AQF: readonly HpssAqfLevel[] = [7];
 export const PODIATRIST = hpssOct2026Occupation(AQF, {
   slug: "podiatrist",
   name: "Podiatrist",
+  metaTerm: "salary",
   plural: "podiatrists",
   metaTitle: `Podiatrist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),

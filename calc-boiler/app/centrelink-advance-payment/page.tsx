@@ -10,7 +10,8 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-advance-payment";
-const TITLE = "Centrelink Advance Payment 2026 — Amounts & Repayment Calculator";
+// Meta intent pass 23 Oct 2026: top query "how much is the centrelink advance payment".
+const TITLE = "Centrelink Advance Payment 2026: How Much You Can Get & Repay";
 const DESCRIPTION = `Centrelink advance payment: ${formatAUD(250)} to ${formatAUD(500)} on JobSeeker, Parenting Payment and Youth Allowance, up to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} on a pension, repaid over 13 fortnights.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));

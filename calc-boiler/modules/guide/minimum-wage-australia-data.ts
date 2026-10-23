@@ -32,7 +32,9 @@ export const NMW_PERIODS = [
 export const previousRow = NMW_HISTORY[NMW_HISTORY.length - 2];
 export const currentRow = NMW_HISTORY[NMW_HISTORY.length - 1];
 
-export const MW_TITLE = `Minimum Wage Australia ${currentRow.fy}: ${money(NMW.hourly)} an Hour, ${money(NMW.weekly)} a Week`;
+// Meta pass (23 Oct 2026): the top queries are "minimum wage annual salary" and "minimum annual
+// salary in australia", so the title gives the hour and the year; the week stays in the description.
+export const MW_TITLE = `Minimum Wage Australia ${currentRow.fy}: ${money(NMW.hourly)} an Hour, ${formatAUD(NMW.annual, 2)} a Year`;
 
 export const MW_DESCRIPTION = `The National Minimum Wage is ${money(NMW.hourly)} an hour, ${money(NMW.weekly)} a week or ${formatAUD(NMW.annual, 2)} a year from ${NMW_DECISION.operativeFrom}, up ${currentRow.published} from ${money(NMW.previousHourly)}. Casual ${money(NMW.casualHourly)}, plus after-tax pay.`;
 

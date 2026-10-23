@@ -81,6 +81,10 @@ test("state levels: titles, descriptions and FAQs read correctly", () => {
     }
   }
   assert.ok(stateLevelFaqs(stateLevelData("qld", "ao3")!).some((f) => f.q.includes("every Queensland department")));
+  // 23 Oct 2026: AO and ASO codes are shared with NT and the ACT, so those titles name the state.
+  assert.equal(stateLevelMeta(stateLevelData("qld", "ao7")!).title, "AO7 Salary QLD Government 2026 - Pay Points and After Tax");
+  assert.equal(stateLevelMeta(stateLevelData("sa", "aso-6")!).title, "ASO-6 Salary SA Government 2026 - Pay Points and After Tax");
+  assert.equal(stateLevelMeta(stateLevelData("vic", "vps-5")!).title, "VPS 5 Salary 2026 - Pay Points and Take-Home Pay");
 });
 
 test("state levels: ladder maths", () => {

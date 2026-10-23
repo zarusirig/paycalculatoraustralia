@@ -633,8 +633,25 @@ export function employerSuperRate(): number {
 // Copy that feeds the page, metadata and FAQPage together
 // -----------------------------------------------------------------------------
 
+/**
+ * Meta pass (23 Oct 2026): searchers type the capital ("minimum wage perth",
+ * "adelaide minimum wage", "melbourne minimum wage 2026", "minimum wage darwin").
+ */
+const MW_CAPITAL: Readonly<Record<MwStateSlug, string>> = {
+  nsw: "Sydney",
+  vic: "Melbourne",
+  wa: "Perth",
+  sa: "Adelaide",
+  tas: "Hobart",
+  qld: "Brisbane",
+  act: "Canberra",
+  nt: "Darwin",
+};
+
 export function mwStateTitle(s: MwStateInfo): string {
   return fitTitle(
+    `Minimum Wage ${MW_CAPITAL[s.slug]} & ${s.code} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
+    `Minimum Wage ${MW_CAPITAL[s.slug]} & ${s.code} 2026: ${money(NMW.hourly)}/hr and Take-Home`,
     `Minimum Wage ${s.name} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
     `Minimum Wage in ${s.code} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
     `${s.code} Minimum Wage 2026: ${money(NMW.hourly)}/hr, Take-Home & Rules`,
@@ -655,7 +672,12 @@ export function mwStateDescription(s: MwStateInfo): string {
         : s.slug === "nsw"
           ? "NSW state awards +4.75%. "
           : "";
+  // Meta pass (23 Oct 2026): the capital first, as searchers type it.
+  const where = `in ${MW_CAPITAL[s.slug]} and ${s.inName.replace(/^in /, "")}`;
   return fitDescription(
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, ${money(NMW.weekly)}/wk, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}Who is in the state system, child work rules and a calculator.`,
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State system, child work rules, calculator.`,
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State rules and a calculator.`,
     `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, ${money(NMW.weekly)}/wk, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}Who is in the state system, child work rules and a calculator.`,
     `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State system, child work rules, calculator.`,
     `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. State rules and a take-home calculator.`,

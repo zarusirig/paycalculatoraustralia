@@ -13,7 +13,8 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/commission-tax-calculator/`;
-const TITLE = "Commission Tax Calculator Australia — Tax on Commission";
+// Meta intent pass 23 Oct 2026: the SERP titles carry the year ("2026-27"); ours did not.
+const TITLE = `Commission Tax Calculator Australia ${SITE_CONFIG.financialYear}: Tax on Commission`;
 const DESCRIPTION = `Tax on commission in ${SITE_CONFIG.financialYear}: what it adds at your marginal rate, what's withheld under ATO Schedule 5, and the refund or bill that settles the difference.`;
 
 export const metadata: Metadata = withFeaturedImage({

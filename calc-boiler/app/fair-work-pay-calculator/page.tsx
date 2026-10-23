@@ -12,12 +12,19 @@ const SLUG = "fair-work-pay-calculator";
 const TITLE = `Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear} - How It Works & Rates`;
 const DESCRIPTION = `How the Fair Work pay calculator (PACT) works, the ${SITE_CONFIG.financialYear} award base rates for ${AWARD_DIRECTORY.length} awards from ${formatAUD(NMW.hourly, 2)} an hour, and a checker for your own payslip rate.`;
 
+// Meta pass 23 Oct 2026: "pact calculator" is 2,224 impr/28d at pos 3.8 with
+// 0.2% CTR, plus "pact pay calculator" (405). Searchers type "PACT" first, so
+// the meta title leads with it; the description says what PACT is before what
+// this page adds. TITLE/DESCRIPTION above still feed the JSON-LD unchanged.
+const META_TITLE = `PACT Pay Calculator ${SITE_CONFIG.financialYear}: How Fair Work's Tool Works + Rates`;
+const META_DESCRIPTION = `PACT is the Fair Work Ombudsman's free pay calculator. See how to use it, the ${SITE_CONFIG.financialYear} base rates for ${AWARD_DIRECTORY.length} awards from ${formatAUD(NMW.hourly, 2)} an hour, and check your payslip rate.`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
-  description: DESCRIPTION,
+  title: META_TITLE,
+  description: META_DESCRIPTION,
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_CONFIG.baseUrl}/${SLUG}/`, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: META_DESCRIPTION, url: `${SITE_CONFIG.baseUrl}/${SLUG}/`, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: META_DESCRIPTION },
 });
 
 const jsonLd = t3JsonLd({

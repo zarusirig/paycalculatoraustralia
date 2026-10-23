@@ -16,7 +16,7 @@ import { NT_PUBLIC_HOLIDAYS } from "./states/nt";
 
 export * from "./types";
 export { PUBLIC_HOLIDAY_AWARD_RATES, getAwardPublicHolidayRate, publicHolidayRateRange } from "./award-rates";
-export { publicHolidayPay, pctLabel } from "./calc";
+export { publicHolidayPay, pctLabel, multipleWords } from "./calc";
 export { formatHolidayDate, weekdayOf, shortDate } from "./dates";
 
 export const PH_HUB_PATH = "/public-holiday-pay/";

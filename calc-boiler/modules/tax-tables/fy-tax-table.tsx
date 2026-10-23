@@ -34,6 +34,7 @@ import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
 import PayDateFinder from "./pay-date-finder";
+import TableDownloads from "./table-downloads";
 import { ATO_SCHEDULE_1, ATO_SCHEDULE_8, ATO_TAX_TABLES_INDEX } from "./ato-schedules";
 import { fyTaxTableFaqs } from "./fy-tax-table-faqs";
 import {
@@ -213,6 +214,8 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
             On {formatAUD(g)} a {cycle.period} with the tax-free threshold claimed, <strong>{formatAUD(result.totalWithheld)}</strong> is
             withheld, leaving {formatAUD(result.netPerPeriod)}. The table sits just below.
           </p>
+
+          <TableDownloads frequency={frequency} fy={fy} doc={cycle.ato} className="mb-6" />
 
           <section id="which-table" aria-labelledby="which-table-h" className="rounded-xl border-2 border-eucalyptus/30 bg-sandstone p-5">
             <h2 id="which-table-h" className="text-lg font-bold text-navy mb-2">Which table applies to my pay date?</h2>

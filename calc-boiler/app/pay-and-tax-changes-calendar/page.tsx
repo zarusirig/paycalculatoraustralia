@@ -14,7 +14,7 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
-const TITLE = "What Changes and When: Australian Pay and Tax Dates 2026-27";
+const TITLE = "Pay and Tax Changes 2026-27: What Changes and When, by Date";
 const DESCRIPTION =
   "Pay and tax changes on 1 July 2026, 1 December 2026 (junior award phase-in), 1 January 2027 (none) and 1 July 2027 (legislated), with a calendar download.";
 

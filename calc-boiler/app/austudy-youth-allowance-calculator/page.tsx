@@ -14,7 +14,8 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/austudy-youth-allowance-calculator/`;
-const TITLE = "Youth Allowance Calculator 2026 — Rates, Eligibility, Income Test";
+// Meta intent pass 23 Oct 2026: "youth allowance calculator" leads; Austudy named because the page covers both.
+const TITLE = "Youth Allowance & Austudy Calculator 2026: Rates, Income Test";
 // Previous: "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c."
 // seo-brain 25 Sep 2026 (Jev-ranked): the rates most searched (Austudy single, YA 18+ at home /
 // away) from the 1 Jan 2026 constants; the income test from STUDENT_INCOME_TEST.

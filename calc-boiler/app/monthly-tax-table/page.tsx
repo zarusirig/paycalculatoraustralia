@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import MonthlyTaxTablePage from "@/modules/tax-tables/monthly-tax-table";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
+import { PAYG_FINANCIAL_YEAR, calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
+import downloads from "@/modules/tax-tables/downloads-manifest.json";
 import { MONTHLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/monthly-tax-table-faqs";
 import {
   ATO_MONTHLY,
@@ -17,10 +18,20 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-tax-table/`;
-// 5 Oct 2026: "PAYG Calculator" removed (that query belongs to /tax-withheld-calculator/); both financial years named because the 1 July rollover drives search for each.
-const TITLE = `Monthly Tax Table ${PAYG_FINANCIAL_YEAR} and 2025-26 (ATO NAT 1007)`;
-const DESCRIPTION =
-  `Monthly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007): enter your monthly salary to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.`;
+// 23 Oct 2026 meta pass: GSC 24 Sep to 21 Oct, pos 7.5, CTR 1.04%; "monthly tax table 2026 pdf" (59 impr)
+// and "monthly tax tables 2027 pdf download" now land on the hosted PDF/CSV (public/downloads,
+// scripts/generate-tax-table-downloads.mjs). 2025-26 has its own page (/monthly-tax-table/2025-26/).
+// Previous title: "Monthly Tax Table 2026-27 and 2025-26 (ATO NAT 1007)".
+// Previous description: "Monthly tax table 2026-27 (ATO NAT 1007): enter your monthly salary to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV."
+const files = downloads.fy === PAYG_FINANCIAL_YEAR ? downloads.files.monthly : null;
+const at6500 = calculatePAYGWithholding(6_500, "monthly");
+const at6500NoTft = calculatePAYGWithholding(6_500, "monthly", { claimsTaxFreeThreshold: false });
+const TITLE = files
+  ? `Monthly Tax Table ${PAYG_FINANCIAL_YEAR}: Free PDF and CSV (ATO NAT 1007)`
+  : `Monthly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007)`;
+const DESCRIPTION = files
+  ? `Free monthly tax table ${PAYG_FINANCIAL_YEAR} PDF and CSV (ATO NAT 1007), every row to ${formatAUD(files.to)}. ${formatAUD(6_500)} a month has ${formatAUD(at6500.totalWithheld)} withheld with the tax-free threshold, ${formatAUD(at6500NoTft.totalWithheld)} without.`
+  : `Monthly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007): ${formatAUD(6_500)} a month has ${formatAUD(at6500.totalWithheld)} withheld with the tax-free threshold, ${formatAUD(at6500NoTft.totalWithheld)} without. Full table and CSV.`;
 const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = withFeaturedImage({

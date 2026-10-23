@@ -12,6 +12,8 @@ import {
   getTeacherPayState,
   graduateSalary,
   teacherStateMetaTitle,
+  teacherStateSearchDescription,
+  teacherStateSearchTitle,
   topOfClassroomScale,
   type TeacherPayState,
 } from "@/lib/data/teacher-pay";
@@ -56,8 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const state = getTeacherPayState(slug);
   if (!state) return {};
 
-  const title = titleFor(state);
-  const description = descriptionFor(state);
+  // Search-shaped metadata (23 Oct 2026); the WebPage schema keeps titleFor/descriptionFor.
+  const title = teacherStateSearchTitle(state);
+  const description = teacherStateSearchDescription(state);
   const url = canonicalFor(state.slug);
 
   return withFeaturedImage({

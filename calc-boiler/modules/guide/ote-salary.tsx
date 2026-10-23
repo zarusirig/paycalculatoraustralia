@@ -27,7 +27,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Piece rates and commission payments", url: SRC.fwoCommission, publisher: SOURCES.fwo.name },
 ];
 
-const EXAMPLE = { base: 80_000, target: 40_000 };
+export const EXAMPLE = { base: 80_000, target: 40_000 };
 const ATTAINMENTS = [0, 50, 80, 100, 120, 150] as const;
 const rows = ATTAINMENTS.map((a) => {
   const r = oteBreakdown({ base: EXAMPLE.base, targetVariable: EXAMPLE.target, attainmentPct: a });

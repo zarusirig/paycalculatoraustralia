@@ -3,15 +3,14 @@ import { notFound } from "next/navigation";
 import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import JobPayRatesOccupationPage, { occupationHeading } from "@/modules/guide/job-pay-rates-occupation";
 import { JsonLd } from "@/modules/seo/json-ld";
-import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import {
   OCCUPATION_SLUGS,
   getOccupation,
-  headlineRow,
   type Occupation,
 } from "@/lib/data/job-pay-rates";
-import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { occupationMetaDescription, occupationMetaTitle } from "@/lib/data/job-pay-rates/meta";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -29,56 +28,13 @@ function canonicalFor(slug: string) {
   return `${BASE}/job-pay-rates/${slug}/`;
 }
 
-function money(n: number) {
-  return formatAUD(n, 2);
-}
-
-/** Title leads with the answer: the hourly minimum, or the median for award-free jobs. */
+/** Title and description templates live in lib/data/job-pay-rates/meta.ts. */
 function titleFor(occ: Occupation): string {
-  if (occ.metaTitle) return occ.metaTitle;
-  const r = headlineRow(occ);
-  if (r) {
-    // Long occupation names pushed 16 of these titles past ~65 characters,
-    // where Google cuts them mid-figure. Keep the fullest form that fits.
-    const hourly = `${money(r.hourly)}/hr`;
-    const forms = [
-      `${occ.name} Pay Rates Australia 2026 - ${hourly} Award Minimum`,
-      `${occ.name} Pay Rates Australia 2026 - ${hourly} Minimum`,
-      `${occ.name} Pay Rates 2026 - ${hourly} Award Minimum`,
-      `${occ.name} Pay Rates 2026 - ${hourly} Minimum`,
-    ];
-    return forms.find((t) => t.length <= 65) ?? forms[forms.length - 1];
-  }
-  if (occ.median) {
-    const median = `${formatAUD(occ.median.medianWeekly)}/wk Median`;
-    return fitTitle(
-      `${occ.name} Pay Rates Australia 2026 - No Award, ${median}`,
-      `${occ.name} Pay Rates 2026 - No Award, ${median}`,
-      `${occ.name} Pay Rates 2026 - ${median}`,
-    );
-  }
-  return occupationHeading(occ);
+  return occupationMetaTitle(occ) ?? occupationHeading(occ);
 }
 
 function descriptionFor(occ: Occupation): string {
-  if (occ.metaDescription) return occ.metaDescription;
-  const r = headlineRow(occ);
-  if (r && occ.award) {
-    // Award names run long ("Electrical, Electronic and Communications Contracting
-    // Award 2020"): the rates lead, and the award is named in full only if it fits.
-    const rates = `${money(r.hourly)}/hr, ${money(r.weekly)}/wk${r.casualHourly !== null ? `, casual ${money(r.casualHourly)}/hr` : ""}`;
-    return fitDescription(
-      `${occ.name} award pay rates for 2026–27 under the ${occ.award.name} [${occ.award.code}]: ${rates}. Every classification, penalty rates, overtime and take-home pay. Verified ${occ.verifiedOn}.`,
-      `${occ.name} award pay rates for 2026–27 under the ${occ.award.name} [${occ.award.code}]: ${rates}. Every classification, penalty rates and take-home pay.`,
-      `${occ.name} award pay rates for 2026–27: ${rates} under the ${occ.award.name}. Penalty rates and take-home pay.`,
-      `${occ.name} award pay rates for 2026–27: ${rates} under ${occ.award.code}. Every classification, penalty rates and take-home pay.`,
-      `${occ.name} award pay rates for 2026–27: ${rates} under ${occ.award.code}. Penalty rates and take-home pay.`,
-    );
-  }
-  return fitDescription(
-    `Is there an award for ${occ.plural}? What the law requires (the National Minimum Wage), the ${occ.median ? `${formatAUD(occ.median.medianWeekly)} a week median` : "market median"}, and take-home pay. Verified ${occ.verifiedOn}.`,
-    `Is there an award for ${occ.plural}? What the law requires (the National Minimum Wage), the ${occ.median ? `${formatAUD(occ.median.medianWeekly)} a week median` : "market median"}, and take-home pay.`,
-  );
+  return occupationMetaDescription(occ);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

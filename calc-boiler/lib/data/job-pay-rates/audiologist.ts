@@ -32,6 +32,7 @@ const AQF: readonly HpssAqfLevel[] = [9];
 export const AUDIOLOGIST = hpssOct2026Occupation(AQF, {
   slug: "audiologist",
   name: "Audiologist",
+  metaTerm: "salary",
   plural: "audiologists",
   metaTitle: `Audiologist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),

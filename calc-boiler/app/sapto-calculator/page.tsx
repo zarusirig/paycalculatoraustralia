@@ -18,7 +18,8 @@ const COUPLE = formatAUD(SAPTO_BANDS.couple.maxOffset);
 
 // No year in the title: the engine is on the ATO's 2025-26 thresholds (the
 // 2026-27 ones were announced as changing but not yet readable from the ATO).
-const TITLE = `SAPTO Calculator & Eligibility Checker - Offset up to ${SINGLE}`;
+// Meta intent pass 23 Oct 2026: top-10 titles spell out the offset name next to "SAPTO".
+const TITLE = `SAPTO Calculator: Seniors & Pensioners Tax Offset up to ${SINGLE}`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

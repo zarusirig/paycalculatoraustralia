@@ -18,6 +18,9 @@ import { SA_TEACHER_PAY } from "./sa";
 import { TAS_TEACHER_PAY } from "./tas";
 import { ACT_TEACHER_PAY } from "./act";
 import { NT_TEACHER_PAY } from "./nt";
+import { VIC_2026_AGREEMENT, VIC_2026_EFFECTIVE_DATES } from "./vic-2026-agreement";
+import { formatAUD } from "../../constants/australian-tax";
+import { fitDescription, fitTitle } from "../../seo-title";
 
 export const TEACHER_PAY_BY_STATE: Readonly<Record<TeacherStateSlug, TeacherPayState>> = {
   nsw: NSW_TEACHER_PAY,
@@ -156,6 +159,57 @@ export function scaleRanges(
  */
 export function teacherStateMetaTitle(state: TeacherPayState): string {
   return `${state.name} Teacher Salary ${teacherRatesYear(state)} (Scale and Step)`;
+}
+
+/**
+ * Search <title> and meta description for a state page (23 Oct 2026 intent
+ * pass). Metadata only: the H1 and WebPage schema keep teacherStateMetaTitle.
+ * GSC 24 Sep to 21 Oct 2026: searchers write the state the short way ("qld
+ * teacher salary 2026", "nsw teacher salary 2026 pdf", "act teacher salary")
+ * except Victoria and Tasmania ("teacher pay scale victoria 2026", "vgsa 2026
+ * pay scale", "tasmania teacher salary"). Victoria leads with "pay scale".
+ */
+const SEARCH_NAME: Readonly<Record<TeacherStateSlug, string>> = {
+  nsw: "NSW",
+  vic: "Victoria",
+  qld: "QLD",
+  wa: "WA",
+  sa: "SA",
+  tas: "Tasmania",
+  act: "ACT",
+  nt: "NT",
+};
+
+export function teacherStateSearchTitle(state: TeacherPayState): string {
+  const year = teacherRatesYear(state);
+  if (state.slug === "vic") return `Teacher Pay Scale Victoria ${year} - VGSA 2026 Rates and Steps`;
+  const name = SEARCH_NAME[state.slug];
+  return fitTitle(
+    `${name} Teacher Salary ${year} - Pay Scale, Steps and After Tax`,
+    `${name} Teacher Salary ${year} - Pay Scale and Steps`,
+  );
+}
+
+export function teacherStateSearchDescription(state: TeacherPayState): string {
+  const grad = graduateSalary(state);
+  const top = topOfClassroomScale(state);
+  if (grad === null || top === null) {
+    return `What ${state.employer} pays public school teachers, what we could verify from the ${state.agreementName}, and what we deliberately do not publish. Checked ${state.verifiedOn}.`;
+  }
+  const year = teacherRatesYear(state);
+  const span = `${formatAUD(grad)} for a graduate to ${formatAUD(top)} at the top`;
+  if (state.slug === "vic") {
+    const pending = VIC_2026_AGREEMENT.status !== "approved" ? " (not yet official)" : "";
+    return fitDescription(
+      `Victorian teacher pay scale: ${span} (VGSA 2022), plus the VGSA 2026 table from ${VIC_2026_EFFECTIVE_DATES[0]}${pending}. Every step, after tax.`,
+      `Victorian teacher pay scale: ${span} (VGSA 2022), plus the VGSA 2026 table${pending}. Every step and take-home pay.`,
+    );
+  }
+  return fitDescription(
+    `${state.code} teacher salary ${year}: ${span} of the classroom scale, effective ${state.ratesEffectiveFrom}. Every step, leadership rates and take-home pay.`,
+    `${state.code} teacher salary ${year}: ${span} of the classroom scale. Every step of the pay scale, leadership rates and take-home pay.`,
+    `${state.code} teacher salary: ${span} of the scale. Every step, leadership rates and take-home pay.`,
+  );
 }
 
 /**

@@ -57,3 +57,17 @@ export function pctLabel(multiple: number): string {
   const v = Math.round(multiple * 1000) / 10;
   return `${Number.isInteger(v) ? v.toFixed(0) : v}%`;
 }
+
+/**
+ * The plain-English name searchers use for a public holiday multiple
+ * ("double time and a half" for 2.5), or undefined when it has none.
+ */
+export function multipleWords(multiple: number): string | undefined {
+  const words: Record<string, string> = {
+    "2": "double time",
+    "2.25": "double time and a quarter",
+    "2.5": "double time and a half",
+    "3": "triple time",
+  };
+  return words[String(Math.round(multiple * 100) / 100)];
+}

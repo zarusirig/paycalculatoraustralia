@@ -17,14 +17,18 @@ const m = (n: number) => formatAUD(n);
 // variants GSC already shows ("low income tax offset calculator", "lito
 // calculator"). Answer-first: amount, both phase-out bands, cut-out.
 const TITLE = `LITO Calculator ${FY}: Low Income Tax Offset (${m(LITO.maxOffset)} Max)`;
+// Meta intent pass 23 Oct 2026: "low income tax offset 2026" (264 impr) is the
+// main non-ambiguous query ("lito" alone also hits art prints and Wikipedia), so
+// the <title> leads with the full name. TITLE stays as the schema name.
+const META_TITLE = `Low Income Tax Offset ${FY} (LITO): ${m(LITO.maxOffset)} Max + Calculator`;
 const DESCRIPTION = `The low income tax offset is ${m(LITO.maxOffset)} up to ${m(LITO.fullOffsetCeiling)}, ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)} and nil at ${m(LITO.nilOffsetIncome)}. Work out your LITO for ${FY} and why you pay no tax up to ${m(NIL_NOW)}.`;
 
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
+  title: META_TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: DESCRIPTION },
 });
 
 const breadcrumb: WithContext<BreadcrumbList> = {

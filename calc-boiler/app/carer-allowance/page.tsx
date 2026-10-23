@@ -10,7 +10,8 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "carer-allowance";
-const TITLE = "Carer Allowance 2026 — Centrelink Rate, Income Limit & Work";
+// Meta intent pass 23 Oct 2026: "carer allowance income test" and "income limit" lead GSC.
+const TITLE = `Carer Allowance 2026: Income Test, ${formatAUD(CARER_ALLOWANCE.incomeLimit)} Limit & Rate`;
 const DESCRIPTION = `Centrelink Carer Allowance is ${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, not taxed, with a ${formatAUD(CARER_ALLOWANCE.incomeLimit)} combined income limit and no assets test. Plus the ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} Carer Supplement.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));

@@ -73,6 +73,7 @@ const GENERAL_ROWS: RateRow[] = [
 export const AGED_CARE_WORKER: Occupation = {
   slug: "aged-care-worker",
   name: "Aged Care Worker",
+  metaTerm: "salary",
   plural: "aged care workers",
   award: {
     name: "Aged Care Award 2010",

@@ -6,6 +6,7 @@ import { LSL_HUB_FAQS } from "@/modules/calculator/long-service-leave-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
+import { JURISDICTION_CODES, LSL_JURISDICTIONS } from "@/lib/constants/long-service-leave";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -14,8 +15,28 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/long-service-leave-calculator/`;
 const TITLE = "Long Service Leave Calculator Australia - NSW, VIC, QLD & More";
-const DESCRIPTION =
-  "Work out your long service leave: weeks accrued, what you can take, what's paid out if you resign and the tax on it, with every state and territory Act compared.";
+// Meta pass 23 Oct 2026: answer-first description built from the
+// jurisdiction table (weeks at the qualifying years, grouped by rule), so the
+// snippet answers "how much long service leave do I get" for every state.
+// Previous: "Work out your long service leave: weeks accrued, what you can
+// take, what's paid out if you resign and the tax on it, with every state and
+// territory Act compared."
+const LSL_GROUPS = (() => {
+  const groups = new Map<string, { weeks: number; years: number; abbrs: string[] }>();
+  for (const code of JURISDICTION_CODES) {
+    const j = LSL_JURISDICTIONS[code];
+    const weeks = Number(j.weeksAtQualifying.toFixed(2));
+    const key = `${weeks}|${j.takeAfterYears}`;
+    const g = groups.get(key) ?? { weeks, years: j.takeAfterYears, abbrs: [] };
+    g.abbrs.push(j.abbr);
+    groups.set(key, g);
+  }
+  const list = (a: string[]) => (a.length > 1 ? `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}` : a[0]);
+  // Longest qualifying period first; "after N years" only when N changes.
+  const sorted = [...groups.values()].sort((x, y) => y.years - x.years || x.weeks - y.weeks);
+  return sorted.map((g, i) => `${g.weeks} weeks${i > 0 && sorted[i - 1].years === g.years ? "" : ` after ${g.years} years`} in ${list(g.abbrs)}`);
+})();
+const DESCRIPTION = `Long service leave: ${LSL_GROUPS.join(", ")}. Work out your payout.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -302,6 +302,12 @@ export interface Occupation {
    * admitted lawyers are award-free).
    */
   metaTitle?: string;
+  /**
+   * The search term the templated title and description lead with: "pay rate"
+   * (the default) or "salary", for jobs whose Search Console queries say
+   * "<job> salary" (meta intent pass, 23 Oct 2026). A metaTitle still wins.
+   */
+  metaTerm?: "pay rate" | "salary";
 
   // ---------------------------------------------------------------------------
   // Optional salary-page fields (Oct 2026 professional occupations). All

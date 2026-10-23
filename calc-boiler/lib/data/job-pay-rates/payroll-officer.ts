@@ -65,6 +65,7 @@ export const PO_L5 = clerksRow("Level 5", "Administers the organisation's salary
 export const PAYROLL_OFFICER: Occupation = {
   slug: "payroll-officer",
   name: "Payroll Officer",
+  metaTerm: "salary",
   plural: "payroll officers",
   metaTitle: `Payroll Officer Salary Australia 2026 - ${money2(PO_L3.hourly)}/hr Award Minimum`,
   award: CLERKS_AWARD_REF,

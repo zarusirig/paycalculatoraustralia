@@ -30,6 +30,7 @@ import {
   awardTextUrl,
   toCents,
 } from "./common";
+import { money2 } from "./j8-common";
 import type { Occupation, RateRow } from "./types";
 
 /** Clause 16.2 and 18.3 figures the apprentice rate is built from, per week. */
@@ -51,6 +52,14 @@ export function apprenticeWeekly(wage: number, allowancePct: number): number {
 function junior(label: string, pct: number, hourly: number, note?: string): RateRow {
   return { label, weekly: apprenticeWeekly(pct * I.grade5, pct), hourly, casualHourly: null, ...(note ? { note } : {}) };
 }
+
+const YEAR_12_ROWS: RateRow[] = [
+  junior("1st year — completed Year 12", 0.55, 17.97, "55% of grade 5"),
+  junior("2nd year — completed Year 12", 0.65, 21.13, "65% of grade 5"),
+  junior("3rd year — completed Year 12", 0.7, 22.71, "70% of grade 5"),
+  junior("4th year — completed Year 12", 0.82, 26.5, "82% of grade 5"),
+];
+const [Y12_1ST, Y12_2ND, , Y12_4TH] = YEAR_12_ROWS;
 
 const NOT_NMW = "Apprentice wages under a training contract are set by the award, not the National Minimum Wage order.";
 
@@ -82,12 +91,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
       intro:
         "Weekly = percentage of the $1,119.10 grade 5 wage + $22.31 tool allowance + the same percentage of the industry and licence allowances. Hourly rates are exactly as published in Schedule B.4.5. The award sets no casual apprentice rate.",
       belowMinimumWage: NOT_NMW,
-      rows: [
-        junior("1st year — completed Year 12", 0.55, 17.97, "55% of grade 5"),
-        junior("2nd year — completed Year 12", 0.65, 21.13, "65% of grade 5"),
-        junior("3rd year — completed Year 12", 0.7, 22.71, "70% of grade 5"),
-        junior("4th year — completed Year 12", 0.82, 26.5, "82% of grade 5"),
-      ],
+      rows: YEAR_12_ROWS,
     },
     {
       id: "junior-no-year-12",
@@ -171,4 +175,8 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
     { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
     { href: "/first-job-pay-guide/", label: "First Job Pay Guide" },
   ],
+  // Meta intent pass, 23 Oct 2026: the page's top query is "1st year apprentice
+  // electrician wages" (then 2nd and 4th year), so the title answers it.
+  metaTitle: `1st Year Apprentice Electrician Wages 2026-27: ${money2(Y12_1ST.hourly)} an Hour`,
+  metaDescription: `1st year apprentice electrician wage from 1 July 2026: ${money2(Y12_1ST.hourly)} an hour with Year 12, ${money2(Y12_2ND.hourly)} in 2nd year and ${money2(Y12_4TH.hourly)} in 4th, plus adult rates and take-home pay.`,
 };

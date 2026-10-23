@@ -62,6 +62,7 @@ function vet(label: string, annual: number, hourly: number, casualHourly: number
 export const VETERINARIAN: Occupation = {
   slug: "veterinarian",
   name: "Veterinarian",
+  metaTerm: "salary",
   plural: "veterinarians",
   metaTitle: "Vet Salary Australia 2026 - $34.20/hr Award Minimum",
   award: {

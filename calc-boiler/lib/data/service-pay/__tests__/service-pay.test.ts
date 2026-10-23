@@ -20,6 +20,7 @@ import {
 import { TAKE_HOME_SALARIES } from "../../salary-pages";
 import type { ServicePayJurisdiction } from "../types";
 import { SERVICE_PAY_BUILT } from "../built";
+import * as meta from "../meta";
 
 const ALL: ServicePayJurisdiction[] = SERVICE_OCCUPATIONS.flatMap((o) => serviceJurisdictions(o));
 const VERIFIED = ALL.filter(isVerified);
@@ -186,4 +187,22 @@ test("QLD firefighter rows match QFD's 1 September 2026 wage table (14 Oct 2026 
   assert.match(note("Senior Firefighter PP2"), /^\$3,107\.00 per fortnight/);
   assert.match(note("Leading Firefighter PP1"), /^\$3,304\.00 per fortnight/);
   assert.match(note("Senior Firefighter PP4"), /^\$3,240\.88 per fortnight/);
+});
+
+test("search titles and descriptions: no em dash, within limits, figures from the data (23 Oct 2026)", () => {
+  for (const occupation of SERVICE_OCCUPATIONS) {
+    const hubTitle = meta.serviceHubSearchTitle(occupation);
+    const hubDescription = meta.serviceHubSearchDescription(occupation);
+    assert.ok(hubTitle.length <= 65 && hubDescription.length <= 165, occupation);
+    assert.doesNotMatch(hubTitle + hubDescription, /[—–]/, occupation);
+    for (const j of verifiedJurisdictions(occupation)) {
+      const title = meta.serviceStateSearchTitle(j);
+      const description = meta.serviceStateSearchDescription(j);
+      assert.ok(title.length <= 65, `${j.occupation}/${j.slug} title ${title.length}`);
+      assert.ok(description.length <= 165, `${j.occupation}/${j.slug} description ${description.length}`);
+      assert.doesNotMatch(title + description, /[—–]/, `${j.occupation}/${j.slug}`);
+      assert.ok(title.startsWith(`${j.code} `), title);
+      assert.ok(description.includes(`$${entrySalary(j)!.toLocaleString("en-AU")}`), description);
+    }
+  }
 });

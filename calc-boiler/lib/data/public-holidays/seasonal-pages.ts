@@ -14,7 +14,7 @@
 // "Direction to take annual leave during a shutdown".
 
 import { getAwardPublicHolidayRate } from "./award-rates";
-import { pctLabel } from "./calc";
+import { multipleWords, pctLabel } from "./calc";
 import { publicHolidayRateRange } from "./award-rates";
 import { MODERN_AWARDS } from "../../constants/modern-awards";
 import type { PhSource } from "./types";
@@ -103,6 +103,9 @@ const RETAIL_P = pc("retail", "permanent");
 const RETAIL_C = pc("retail", "casual");
 const HOSP_P = pc("hospitality", "permanent");
 const HOSP_C = pc("hospitality", "casual");
+// "double time and a half": the wording searchers use for the casual rate.
+const RETAIL_C_WORDS = multipleWords(getAwardPublicHolidayRate("retail")!.casual);
+const RETAIL_C_NAMED = RETAIL_C_WORDS ? `${RETAIL_C} (${RETAIL_C_WORDS})` : RETAIL_C;
 
 // Road Transport's Good Friday / Christmas Day rows, read from the award data.
 const ROAD = MODERN_AWARDS["road-transport"];
@@ -126,6 +129,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     titles: ["Christmas Day Pay Rates 2026: Public Holiday Rates by State", "Christmas Day Pay Rates 2026 by State & Award"],
     h1: "Christmas Day pay rates 2026 and 2027: what you earn by state and award",
     descriptions: [
+      `Christmas Day 2026 is Friday 25 December. Retail and hospitality pay ${RETAIL_P}, and casuals ${RETAIL_C_NAMED}. Dates by state and a pay calculator.`,
       `Christmas Day is Friday 25 December 2026. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Dates by state, Christmas Eve part-day rules and a pay calculator.`,
       `Christmas Day 2026 is Friday 25 December. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Dates by state, Christmas Eve rules and a calculator.`,
     ],
@@ -234,6 +238,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     titles: ["Boxing Day Pay Rates 2026: Saturday 26 & Monday 28 December", "Boxing Day Pay Rates 2026: Dates and Rates by State"],
     h1: "Boxing Day pay rates 2026: Saturday 26 and Monday 28 December",
     descriptions: [
+      `Boxing Day 2026 is Saturday 26 December, plus Monday 28 December in most states. Retail pays ${RETAIL_P}, and casuals ${RETAIL_C_NAMED}. Calculator inside.`,
       `Boxing Day 2026 is Saturday 26 December, with an extra public holiday on Monday 28 December in most states. Pay is ${RETAIL_P} in retail (casual ${RETAIL_C}). Calculator inside.`,
       `Boxing Day 2026 is Saturday 26 December, with Monday 28 December added in most states. Retail pays ${RETAIL_P} (casual ${RETAIL_C}). Calculator inside.`,
     ],
@@ -505,7 +510,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     slug: "melbourne-cup-day-pay",
     guideKey: "melbourne-cup-day-pay",
     shortName: "Melbourne Cup Day pay",
-    titles: ["Melbourne Cup Day 2026 Pay: Public Holiday Rates in Victoria", "Melbourne Cup Day Pay 2026: Public Holiday Rates"],
+    titles: ["Melbourne Cup Day 2026 Pay Rates: Tuesday 3 November in Victoria", "Melbourne Cup Day 2026 Pay: Public Holiday Rates in Victoria"],
     h1: "Melbourne Cup Day 2026 pay: Tuesday 3 November public holiday rates",
     descriptions: [
       `Melbourne Cup Day is Tuesday 3 November 2026. Hospitality and retail pay ${HOSP_P} (casual ${HOSP_C}). Regional Victoria swaps, interstate workers and a calculator.`,
@@ -789,7 +794,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     slug: "christmas-shutdown-annual-leave",
     guideKey: "christmas-shutdown-annual-leave",
     shortName: "Christmas shutdown and annual leave",
-    titles: ["Christmas Shutdown: Annual Leave, Pay and Your Rights", "Christmas Shutdown and Annual Leave: Your Rights"],
+    titles: ["Christmas Shutdown and Annual Leave: Can Your Employer Force It?", "Christmas Shutdown and Annual Leave: Your Rights"],
     h1: "Christmas shutdown and annual leave: can your employer make you take it?",
     descriptions: [
       "Can your employer make you take annual leave over a Christmas closedown? What the award must allow, how much leave it uses, public holidays and a worked example.",

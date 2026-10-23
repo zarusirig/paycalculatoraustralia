@@ -137,6 +137,8 @@ export interface HpssOccupationInput {
   related: { href: string; label: string }[];
   /** Optional <title> override (G3: "salary" wording for "{job} salary" searches). Must still state the headline hourly rate. */
   metaTitle?: string;
+  /** "salary" where the job is searched as "<job> salary" (see Occupation.metaTerm). */
+  metaTerm?: Occupation["metaTerm"];
 }
 
 export function hpssOccupation(input: HpssOccupationInput): Occupation {
@@ -165,6 +167,7 @@ export function hpssOccupation(input: HpssOccupationInput): Occupation {
     verifiedOn: JOB_PAY_VERIFIED_ON,
     related: input.related,
     ...(input.metaTitle ? { metaTitle: input.metaTitle } : {}),
+    ...(input.metaTerm ? { metaTerm: input.metaTerm } : {}),
   };
 }
 

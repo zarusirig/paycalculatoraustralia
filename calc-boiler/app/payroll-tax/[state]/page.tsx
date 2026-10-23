@@ -37,10 +37,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${s.abbr} Payroll Tax ${PAYROLL_TAX_FY}: ${s.headlineRate} Rate, ${millions(s.annualThreshold)} Threshold, Calculator`,
     `${s.abbr} Payroll Tax ${PAYROLL_TAX_FY}: ${s.headlineRate} Rate, ${millions(s.annualThreshold)} Threshold`,
   );
-  const lead = `${s.name} payroll tax for ${PAYROLL_TAX_FY}: ${s.headlineRate} above a ${formatAUD(s.annualThreshold)} threshold.`;
+  // Meta intent pass 23 Oct 2026: searchers type the abbreviation ("act payroll tax",
+  // "wa payroll tax calculator"), so it now sits beside the full name, and the old
+  // "a ACT / a NT / a SA calculator" wording is gone.
+  const lead = `${s.name} (${s.abbr}) payroll tax for ${PAYROLL_TAX_FY}: ${s.headlineRate} above a ${formatAUD(s.annualThreshold)} threshold.`;
   const description = fitDescription(
-    `${lead} How to calculate it, worked examples, who must register, due dates, and a calculator set to ${s.abbr}.`,
-    `${lead} How to calculate it, who must register, due dates and a ${s.abbr} calculator.`,
+    `${lead} How to calculate it, who must register, due dates and a payroll tax calculator.`,
     `${lead} Worked examples, registration, due dates and a calculator.`,
   );
   return withFeaturedImage({

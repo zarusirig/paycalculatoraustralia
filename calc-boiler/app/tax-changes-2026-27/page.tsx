@@ -11,8 +11,8 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
-const TITLE = "Tax Changes 2026-27 - What Changed From 1 July 2026";
-const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, 12% super guarantee, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and your take-home pay.`;
+const TITLE = "Tax Changes 2026-27: 16% Rate Cut to 15% and What Else Changed";
+const DESCRIPTION = `From 1 July 2026 the 16% tax rate fell to 15% on income from $18,201 to $45,000, worth up to $268 a year. Plus the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold and Payday Super.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

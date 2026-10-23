@@ -11,7 +11,8 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "disability-support-pension-calculator";
 const R = DSP.rates21Plus.maxFortnightly;
-const TITLE = "Disability Support Pension Calculator 2026 - DSP Rates & Work";
+// Meta intent pass 23 Oct 2026: "disability pension rates" and "dsp rates 2026" lead GSC.
+const TITLE = "Disability Support Pension Rates 2026: DSP Calculator & Work";
 const DESCRIPTION = `DSP is ${formatAUD(R.single.total, 2)} a fortnight single and ${formatAUD(R.coupleEach.total, 2)} each for couples from ${DSP.ratesFrom}. Work up to ${DSP.maxWorkHoursPerWeek} hours a week: see what your pay does to DSP.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));

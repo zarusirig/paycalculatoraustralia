@@ -32,6 +32,7 @@ const AQF: readonly HpssAqfLevel[] = [7, 8, 9];
 export const DIETITIAN = hpssOct2026Occupation(AQF, {
   slug: "dietitian",
   name: "Dietitian",
+  metaTerm: "salary",
   plural: "dietitians",
   metaTitle: `Dietitian Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Award Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),

@@ -52,8 +52,21 @@ import FeaturedImage from "@/components/common/featured-image";
 const f2 = (n: number) => formatAUD(n, 2);
 const lc = (s: string) => s.toLowerCase();
 
+// Meta intent pass, 23 Oct 2026: these trades are searched as "1st year
+// apprentice <trade> wages" and "4th year apprentice <trade> wage", so the
+// title says "Wages" and "1st Year", with the same headline rates as the
+// description (Year 12 completed, from the spoke's own table).
 export function spokeTitle(spoke: ApprenticeSpoke) {
-  return fitTitle(`${spoke.h1} 2026-27: Year 1 to 4 Rates and Take-Home`, `${spoke.h1} 2026-27: Year 1 to 4 Rates`, `${spoke.h1} 2026-27: Rates by Year`);
+  const y1 = f2(headlineRate(spoke, 1, "completed").hourly);
+  const y4 = f2(headlineRate(spoke, 4, "completed").hourly);
+  const head = `Apprentice ${spoke.label} Wages 2026-27`;
+  return fitTitle(
+    `${head}: 1st Year ${y1}/hr to 4th Year ${y4}`,
+    `${head}: 1st Year ${y1}/hr to 4th ${y4}`,
+    `${head}: 1st Year ${y1} to 4th ${y4}`,
+    `${head}: ${y1} to ${y4} an Hour`,
+    `${spoke.h1} 2026-27: Rates by Year`,
+  );
 }
 
 export function spokeDescription(spoke: ApprenticeSpoke) {
@@ -62,13 +75,14 @@ export function spokeDescription(spoke: ApprenticeSpoke) {
   const who = lc(spoke.label);
   if (spoke.payGuide) {
     return fitDescription(
-      `Apprentice ${who} minimums from 1 July 2026 with the $${spoke.payGuide.toolAllowance.toFixed(2)} tool and industry allowances: ${f2(y1.hourly)} an hour in year 1 to ${f2(y4.hourly)} in year 4, plus take-home pay.`,
-      `Apprentice ${who} minimums from 1 July 2026 with tool and industry allowances: ${f2(y1.hourly)} an hour in year 1 to ${f2(y4.hourly)} in year 4.`,
+      `Apprentice ${who} wages from 1 July 2026: ${f2(y1.hourly)} an hour in 1st year to ${f2(y4.hourly)} in 4th year, with the $${spoke.payGuide.toolAllowance.toFixed(2)} tool and industry allowances, plus take-home pay.`,
+      `Apprentice ${who} wages from 1 July 2026: ${f2(y1.hourly)} an hour in 1st year to ${f2(y4.hourly)} in 4th year, with tool and industry allowances.`,
     );
   }
   return fitDescription(
-    `Apprentice ${who} award minimums from 1 July 2026: ${f2(y1.hourly)} an hour in year 1 to ${f2(y4.hourly)} in year 4, with allowances, adult start and take-home pay.`,
-    `Apprentice ${who} award minimums from 1 July 2026: ${f2(y1.hourly)} an hour in year 1 to ${f2(y4.hourly)} in year 4, and take-home pay.`,
+    `Apprentice ${who} wages from 1 July 2026: ${f2(y1.hourly)} an hour in 1st year to ${f2(y4.hourly)} in 4th year under the award, with allowances, adult rates and take-home pay.`,
+    `Apprentice ${who} wages from 1 July 2026: ${f2(y1.hourly)} an hour in 1st year to ${f2(y4.hourly)} in 4th year, with allowances, adult rates and take-home pay.`,
+    `Apprentice ${who} wages from 1 July 2026: ${f2(y1.hourly)} an hour in 1st year to ${f2(y4.hourly)} in 4th year, and take-home pay.`,
   );
 }
 

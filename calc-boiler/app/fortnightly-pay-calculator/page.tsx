@@ -8,7 +8,6 @@ import { faqPageSchema } from "@/lib/faq";
 import { FORTNIGHTLY_FAQS } from "@/modules/calculator/fortnightly-pay-calculator-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { fitDescription } from "@/lib/seo-title";
-import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -34,9 +33,15 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 const TITLE = `Fortnightly Pay & Tax Calculator Australia ${FY}: Take-Home Pay`;
 // fitDescription: fuller form first; the shorter form keeps the figure, the FY
 // and "fortnightly tax calculator".
+// Meta pass 23 Oct 2026: the "26 fortnights a year, or 27" tail is gone. The
+// answer query "how many fortnights in a year" (12,964 impr/28d split across
+// this URL and /fortnights-in-a-year/) belongs to /fortnights-in-a-year/; this
+// snippet now answers the calculator's own "$X a fortnight is how much a year".
+// Previous: "$80,000 is $X a fortnight after tax in FY ($3,077 gross ÷ 26). Fortnightly
+// tax calculator: enter fortnightly pay or salary. 26 fortnights a year, or 27."
 const DESCRIPTION = fitDescription(
-  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, sometimes ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`,
-  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, or ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`,
+  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY}, and $2,500 a fortnight is ${formatAUD(2_500 * 26)} a year before tax. Fortnightly tax calculator for any pay or salary.`,
+  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY}; $2,500 a fortnight is ${formatAUD(2_500 * 26)} a year. Fortnightly tax calculator for pay or salary.`,
 );
 
 export const metadata: Metadata = withFeaturedImage({

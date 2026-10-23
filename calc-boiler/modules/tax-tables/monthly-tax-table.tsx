@@ -18,6 +18,7 @@ import TaxTableLookupWidget from "./lookup-widget";
 import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import AtoDownloads from "./ato-downloads";
+import TableDownloads from "./table-downloads";
 import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
@@ -75,6 +76,7 @@ export default function MonthlyTaxTablePage() {
             {formatAUD(6_500)} a month with the tax-free threshold claimed has <strong>{formatAUD(example6500.totalWithheld)}</strong>{" "}
             withheld ({formatAUD(example6500.netPerPeriod)} take-home).
           </p>
+          <TableDownloads frequency="monthly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_MONTHLY} className="mb-6" />
           <TaxTableLookupWidget frequency="monthly" defaultGross={6_500} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
             {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle

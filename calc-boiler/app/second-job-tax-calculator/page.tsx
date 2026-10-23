@@ -3,7 +3,7 @@ import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calc
 import WhatsNextInline from "@/components/common/whats-next-inline";
 import SecondJobTaxCalculatorContent from "@/modules/calculator/second-job-tax-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
-import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-tax-calculator-faqs";
+import { SECOND_JOB_FAQS, NO_TFT_START_RATE } from "@/modules/calculator/second-job-tax-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -16,15 +16,19 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 
+// Meta intent pass 23 Oct 2026: "second job tax rate" (167 impr) and "2nd job
+// tax rate" lead the GSC queries, so the title names the rate as well as the
+// calculator and the description answers the rate question first.
+const TITLE = `Second Job Tax Calculator Australia: 2nd Job Tax Rate ${SITE_CONFIG.financialYear}`;
+const DESCRIPTION = `A second job is not taxed at a higher rate. You claim the tax-free threshold once, so it is withheld from the first dollar, starting at ${NO_TFT_START_RATE}. Work out both jobs.`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: "Second Job Tax Calculator Australia - Tax on Two Jobs",
-  description:
-    "Calculate how much tax you pay on a second job in Australia: why it's taxed higher, PAYG withholding without the tax-free threshold, and combined take-home pay.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Second Job Tax Calculator Australia - Tax on Two Jobs (2026-27)",
-    description:
-      "Calculate how much tax you pay on a second job in Australia. See PAYG withholding without the tax-free threshold and your combined take-home pay.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: PAGE_URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -32,8 +36,8 @@ export const metadata: Metadata = withFeaturedImage({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Second Job Tax Calculator Australia - Tax on Two Jobs (2026-27)",
-    description: "Calculate tax on a second job including PAYG withholding and combined take-home pay.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 });
 

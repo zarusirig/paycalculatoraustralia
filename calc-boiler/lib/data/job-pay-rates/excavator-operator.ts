@@ -73,6 +73,7 @@ const DAILY_CW5 = dailyHireHourly(EX_CW5.weekly);
 export const EXCAVATOR_OPERATOR: Occupation = {
   slug: "excavator-operator",
   name: "Excavator Operator",
+  metaTerm: "salary",
   plural: "excavator operators",
   metaTitle: `Excavator Operator Salary Australia 2026 - ${money2(EX_CW4.hourly)}/hr Award`,
   award: { ...BUILDING_AWARD, awardPageHref: "/building-and-construction-award-rates/" },

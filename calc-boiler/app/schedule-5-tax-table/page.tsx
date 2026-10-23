@@ -3,7 +3,7 @@ import Schedule5TaxTablePage from "@/modules/tax-tables/schedule-5-tax-table";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
-import { PAYG_FINANCIAL_YEAR, SCHEDULE_5_WITHHOLDING_LIMIT, calculateSchedule5MethodB } from "@/lib/constants/payg-withholding";
+import { PAYG_FINANCIAL_YEAR, calculateSchedule5MethodB } from "@/lib/constants/payg-withholding";
 import { AUTHORS } from "@/lib/authors";
 import { SCHEDULE_5_FAQS } from "@/modules/tax-tables/schedule-5-tax-table-faqs";
 import {
@@ -18,13 +18,17 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
-const TITLE = "Schedule 5 Tax Table 2026-27 (NAT 3348) - Bonus PAYG";
-// Previous: "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner."
+// 23 Oct 2026 meta pass: GSC 24 Sep to 21 Oct, pos 7.6, CTR 1.12%; the head query is "payg on schedule 5"
+// (210 of 2,499 impr), a "what does it mean" search the old title did not contain.
+// Previous title: "Schedule 5 Tax Table 2026-27 (NAT 3348) - Bonus PAYG".
+const TITLE = `PAYG on Schedule 5: Bonus Tax Table ${PAYG_FINANCIAL_YEAR} (ATO ${ATO_SCHEDULE_5.nat})`;
+// Previous (25 Sep to 23 Oct): "PAYG on Schedule 5: a $5,000 bonus on $2,000 a fortnight has $1,612 withheld (32.2%), leaving $3,388, in 2026-27. NAT 3348 methods A and B, 47% cap and reckoner."
+// Earlier: "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner."
 // seo-brain 25 Sep 2026 (Jev-ranked): the page's own worked example ($5,000 bonus on $2,000 a
 // fortnight) from calculateSchedule5MethodB; the cap from SCHEDULE_5_WITHHOLDING_LIMIT.
 const bonusExample = calculateSchedule5MethodB(2_000, 5_000, "fortnightly");
 const DESCRIPTION =
-  `PAYG on Schedule 5: a ${formatAUD(5_000)} bonus on ${formatAUD(2_000)} a fortnight has ${formatAUD(bonusExample.withheldFromAdditionalPayment)} withheld (${(bonusExample.effectiveRate * 100).toFixed(1)}%), leaving ${formatAUD(bonusExample.netAdditionalPayment)}, in ${PAYG_FINANCIAL_YEAR}. ${ATO_SCHEDULE_5.nat} methods A and B, ${Math.round(SCHEDULE_5_WITHHOLDING_LIMIT * 100)}% cap and reckoner.`;
+  `PAYG on Schedule 5 is tax withheld from a bonus, commission or back pay. In ${PAYG_FINANCIAL_YEAR} a ${formatAUD(5_000)} bonus on ${formatAUD(2_000)} a fortnight has ${formatAUD(bonusExample.withheldFromAdditionalPayment)} (${(bonusExample.effectiveRate * 100).toFixed(1)}%) withheld, ${formatAUD(bonusExample.netAdditionalPayment)} paid.`;
 const MODIFIED = "2026-07-28";
 
 export const metadata: Metadata = withFeaturedImage({

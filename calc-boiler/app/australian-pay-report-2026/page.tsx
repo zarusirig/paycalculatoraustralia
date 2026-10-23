@@ -6,14 +6,16 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { Article, BreadcrumbList, Dataset, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { REPORT, REPORT_CSV_FILES, maxTaxCutGain, reportCsvHref, suggestedCitation } from "@/lib/data/pay-report";
+import { REPORT, REPORT_CSV_FILES, reportCsvHref, suggestedCitation } from "@/lib/data/pay-report";
+import { AWE_HEADLINE, AWE_RELEASE } from "@/lib/data/average-salary";
+import { NMW } from "@/lib/constants/minimum-wage";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
-const cut = maxTaxCutGain();
-const TITLE = `${REPORT.title}: Take-Home Pay, Minimum Wage & Awards`;
-const DESCRIPTION = `Data study: take-home pay at every salary ${SITE_CONFIG.previousFinancialYear} vs ${SITE_CONFIG.financialYear} (the tax cut is worth at most $${cut.perYear} a year), minimum vs median wage and 14 award minimums ranked.`;
+const TITLE = `${REPORT.title}: Average Earnings vs Minimum Wage`;
+const aud2 = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const DESCRIPTION = `Average full-time earnings are ${aud2(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week (ABS, ${AWE_RELEASE.referencePeriod}) against a ${aud2(NMW.weekly)} minimum wage. Take-home pay at every salary and 14 awards ranked.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -6,11 +6,14 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/centrelink-income-test/`;
 // Previous: "Centrelink Income Test — How Income Affects Your Payment"
 // seo-brain 25 Sep 2026 (Jev-ranked): names the calculators and the three payments searched with the term.
-const TITLE = "Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension";
+// Meta intent pass 23 Oct 2026: the top query is "centrelink payment calculator when working"
+// (155 impr). This page is the guide that links to each calculator, so the title names the
+// working question rather than promising a calculator on the page.
+const TITLE = "Centrelink Income Test 2026: How Working Affects Each Payment";
 // Previous: "Centrelink income test explained: free areas, tapers and cut-offs for JobSeeker, FTB, Age Pension, DSP and CCS, plus the assets test and deeming, from 20 Sep 2026."
 // seo-brain 25 Sep 2026 (Jev-ranked): JobSeeker free area and tapers from JOBSEEKER_INCOME_TEST, never typed.
 const JS_TEST = JOBSEEKER_INCOME_TEST;
-const DESCRIPTION = `JobSeeker income test: ${formatAUD(JS_TEST.freeArea)} free area, ${Math.round(JS_TEST.taper1 * 100)}c per dollar to ${formatAUD(JS_TEST.band1End)}, then ${Math.round(JS_TEST.taper2 * 100)}c. How income affects each Centrelink payment from 20 Sep 2026, with calculators.`;
+const DESCRIPTION = `Earn up to ${formatAUD(JS_TEST.freeArea)} a fortnight on JobSeeker before it drops ${Math.round(JS_TEST.taper1 * 100)}c per dollar to ${formatAUD(JS_TEST.band1End)}, then ${Math.round(JS_TEST.taper2 * 100)}c. Free areas and tapers for each Centrelink payment from 20 Sep 2026.`;
 export const metadata: Metadata = withFeaturedImage({ title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" } });
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Centrelink Income Test", item: URL }] };
 const webPage: WithContext<WebPage> = { "@context": "https://schema.org", "@type": "WebPage", name: "Centrelink Income Test Guide", url: URL, publisher: { "@type": "Organization", name: SITE_CONFIG.name } };

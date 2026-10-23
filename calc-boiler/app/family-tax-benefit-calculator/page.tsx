@@ -13,8 +13,11 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/family-tax-benefit-calculator/`;
-const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} - FTB Part A & B`;
-const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: income thresholds, the Part B limit and how a pay rise changes it.`;
+// Meta intent pass 23 Oct 2026: the year was written with an en dash ("2026–27");
+// searchers and the SERP use "2026-27".
+const FTB_FY = FTB_A.financialYear.replace("–", "-");
+const TITLE = `Family Tax Benefit Calculator ${FTB_FY}: FTB Part A & B Rates`;
+const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_FY}: income thresholds, the Part B limit and how a pay rise changes it.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -33,7 +33,10 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation } from "./types";
+import { money0, money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, RateRow } from "./types";
+
+const LAW_GRADUATE: RateRow = { label: "Level 5 — Law graduate", weekly: 1291.8, hourly: 33.99, casualHourly: 42.49, note: "Before admission, completing practical legal training" };
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "2713",
@@ -71,7 +74,7 @@ export const LAWYER: Occupation = {
       title: "Law graduate and law clerk award rates, Legal Services Award",
       intro: "Clause 15.1, from the first full pay period on or after 1 July 2026. Casual rates are Schedule B.2.1 exactly.",
       rows: [
-        { label: "Level 5 — Law graduate", weekly: 1291.8, hourly: 33.99, casualHourly: 42.49, note: "Before admission, completing practical legal training" },
+        LAW_GRADUATE,
         { label: "Level 6 — Law clerk", weekly: 1369.2, hourly: 36.03, casualHourly: 45.04 },
       ],
     },
@@ -147,5 +150,8 @@ export const LAWYER: Occupation = {
     { href: "/job-pay-rates/accountant/", label: "Accountant Pay Rates" },
     { href: "/average-salary-australia/", label: "Average Salary Australia" },
   ],
-  metaTitle: "Lawyer Pay Rates 2026 - Award-Free; Law Graduates $33.99/hr",
+  // Meta intent pass, 23 Oct 2026: searched as "lawyer salary"; the templated
+  // description would have called the law graduate rate a lawyer's pay rate.
+  metaTitle: `Lawyer Salary Australia 2026: Award-Free, Graduates ${money2(LAW_GRADUATE.hourly)}/hr`,
+  metaDescription: `Admitted lawyers are award-free and the solicitor median is ${money0(MEDIAN.medianWeekly)} a week. Law graduates get at least ${money2(LAW_GRADUATE.hourly)} an hour under the Legal Services Award.`,
 };

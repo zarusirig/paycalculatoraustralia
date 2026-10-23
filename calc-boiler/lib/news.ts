@@ -37,6 +37,7 @@ import {
 // --- end G6 ---
 import { LISTO_2027_28, LISTO_CURRENT, LISTO_SOURCES } from "@/lib/constants/listo";
 import { formatAUD } from "@/lib/constants/australian-tax";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -65,7 +66,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "minimum-wage-increase-july-2026",
     headline: "Minimum Wage Rises 6% to $26.44 an Hour From 1 July 2026",
-    title: "Minimum Wage Increase July 2026: FWC Lifts NMW 6% - New Rates",
+    title: "Minimum Wage Increase July 2026: 6% Rise to $26.44 an Hour",
     description: "The minimum wage rises 6% from $24.95 to $26.44 an hour ($1,004.90 a week) and award rates 4.75% from 1 July 2026. Who gets the increase and your take-home pay.",
     category: "Wages",
     datePublished: "2026-06-02",
@@ -89,8 +90,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "new-minimum-wage-take-home-pay",
     headline: "What the New $26.44 Minimum Wage Means for Your Take-Home Pay",
-    title: "New Minimum Wage 2026: Weekly, Fortnightly & Annual Take-Home Pay",
-    description: "From 1 July 2026 the minimum wage is $26.44/hour, $1,004.90 a week or about $52,255 a year. What lands in your bank after tax, and new casual and part-time rates.",
+    title: "$26.44 Minimum Wage After Tax: Weekly, Fortnightly, Annual Pay",
+    description: "The $26.44 minimum wage is $1,004.90 a week before tax and about $869.90 after tax, or $1,739.80 a fortnight. Annual, casual and part-time take-home pay.",
     category: "Wages",
     datePublished: "2026-06-16",
     dateModified: "2026-07-02",
@@ -295,7 +296,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "hecs-indexation-2026",
     headline: "HECS Indexation 2026: 2.8% Added to Student Debts on 1 June",
-    title: "HECS Indexation 2026: 2.8% Added on 1 June",
+    title: "HECS Indexation 2026: 2.8% Added to HELP Debts on 1 June",
     description: "HECS and HELP debts were indexed 2.8% on 1 June 2026, the lowest rate since 2021 and below the lower CPI/WPI cap. See what it adds to your balance.",
     category: "HECS",
     datePublished: "2026-06-01",
@@ -446,7 +447,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "tax-cut-july-2026",
     headline: "Tax Cut From 1 July 2026: The 16% Rate Drops to 15%",
-    title: "Tax Cut From 1 July 2026: 16% Rate Drops to 15%",
+    title: "Tax Cut From 1 July 2026: 16% Rate Drops to 15%, Up to $268",
     description: "From 1 July 2026 the 16% tax rate on income between $18,201 and $45,000 fell to 15%, cutting up to $268 a year off every taxpayer bill this year.",
     category: "Tax",
     datePublished: "2026-07-01",
@@ -629,7 +630,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "centrelink-changes-july-2026",
     headline: "Centrelink Changes From 1 July: Family Payments and Higher Limits",
-    title: "Centrelink Changes July 2026: Family Payment Increases",
+    title: "Centrelink Changes From 1 July 2026: Family Tax Benefit Rises",
     description: "From 1 July 2026, Family Tax Benefit Part A rose to $235.48 a fortnight per child under 13, Part B to $200.34, and the Part B income limit lifted to $124,327.",
     category: "Centrelink & Payments",
     datePublished: "2026-07-01",
@@ -656,8 +657,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "victorian-teachers-pay-rise-2026",
     headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes - What the New Agreement Pays and When",
-    title: "VIC Teachers Pay Rise 2026: 93.1% Vote Yes, $133,456 Top Step",
-    description: "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum.",
+    title: "VIC Teachers Pay Rise 2026: VGSA Approved, $133,456 Top Step",
+    description: "The AEU says the Fair Work Commission approved the VGSA 2026 from 23 October. Top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029.",
     category: "Wages",
     datePublished: "2026-09-17",
     dateModified: "2026-10-22",
@@ -831,7 +832,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
     {
       slug: "junior-pay-rates-december-2026",
       headline: `Junior Pay Rates Rise From ${JP.earliestStart}: 18 to 20-Year-Olds in Retail, Fast Food and Pharmacy Move Toward the Adult Rate`,
-      title: `Junior Pay Rates 1 December 2026: New % for 18–20-Year-Olds`,
+      title: `Junior Pay Rates 1 December 2026: New Rates for Ages 18 to 20`,
       description: `18 to 20-year-olds with 6+ months' service in retail, fast food and pharmacy move toward the adult rate from ${JP.earliestStart}. Full timetable to ${jFF.rows[jFF.rows.length - 1].effective}.`,
       category: "Wages",
       datePublished: "2026-08-26",
@@ -887,8 +888,14 @@ function G6_ARTICLES(): NewsArticleMeta[] {
     {
       slug: "tax-return-deadline-october-2026",
       headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} - a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
-      title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
-      description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNow}.`,
+      title: fitTitle(
+        `Tax Return Deadline 2026: Self-Lodge by ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long").replace(/ \d{4}$/, "")}`,
+        `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
+      ),
+      description: fitDescription(
+        `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. With a tax agent by then, most have until ${RETURN_2026.agentDueDateMostPeople}.`,
+        `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNow}.`,
+      ),
       category: "Tax",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",

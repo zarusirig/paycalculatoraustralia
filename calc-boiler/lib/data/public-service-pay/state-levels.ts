@@ -42,6 +42,19 @@ interface StateLevelConfig {
   stepWord: string;
   /** A caveat every page in this jurisdiction must carry, if any. */
   caveat?: string;
+  /**
+   * Meta title/description only (23 Oct 2026 intent pass). Searchers add the
+   * state to codes another service shares ("ao7 salary queensland
+   * government", "aso4 salary sa government": NT also has AO levels, the ACT
+   * ASO levels). VPS is Victorian only, so it carries no qualifier.
+   */
+  titlePlace?: string;
+  /** "in the Queensland Government", placed after "{label} salary". */
+  metaWhere: string;
+  /** The effective date, short enough for a description. */
+  metaEffective: string;
+  /** Appended to the range, e.g. " (award rates)". */
+  metaNote?: string;
 }
 
 export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig> = {
@@ -57,6 +70,8 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     progression:
       "Moving up a progression step is not automatic. Under clause 31 you are considered once a year, at the end of the performance cycle, if you have 12 months at your current step and a current performance and development plan. On the top step, a successful cycle pays a lump sum of 1.5% of salary instead. Moving from one value range to the next (3.1 to 3.2, say) needs a job resizing review, not time served.",
     stepWord: "progression step",
+    metaWhere: "in the Victorian Public Service",
+    metaEffective: "1 May 2026",
   },
   qld: {
     levels: ["ao2", "ao3", "ao4", "ao5", "ao6", "ao7", "ao8"],
@@ -70,6 +85,10 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     progression:
       "Queensland levels are written as level and pay point, so AO5/2 is the second pay point of AO5. You move up one pay point at a time under the certified agreement and public sector directives. A move to the next level is a promotion to a job classified at that level. AO7 and PO5 pay the same at every pay point, so a move between streams at the same level is not a pay rise.",
     stepWord: "pay point",
+    titlePlace: "QLD Government",
+    metaWhere: "in the Queensland Government",
+    metaEffective: "1 September 2026",
+    metaNote: " (award rates)",
     caveat:
       "These are the award rates, the legal minimum. Most Queensland departments pay under the State Government Entities Certified Agreement 2023 (the core agreement). We have not reproduced its wage schedule, so check your department's schedule. The Department of Education rates further down are one agency's agreement, shown for comparison. Where any agreement rate is below the award, the award rate is paid.",
   },
@@ -85,6 +104,9 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     progression:
       "Each ASO level has a few numbered increments. You move up increments within your level; a move to the next level happens by appointment to a job classified at that level, not by time served. ASO levels do not overlap, so the top of one level is always below the bottom of the next.",
     stepWord: "increment",
+    titlePlace: "SA Government",
+    metaWhere: "in the SA public sector",
+    metaEffective: "July 2026",
   },
 };
 
@@ -159,8 +181,17 @@ export function stateLevelPath(d: StateLevelData): string {
 
 export function stateLevelMeta(d: StateLevelData): { title: string; description: string } {
   const { label, range } = d.section;
-  const title = `${label} Salary 2026 - Pay Points and Take-Home Pay`;
-  const description = `${label} salary from ${d.config.effective}: ${formatBandRange(range)} across ${d.points.length} ${d.config.stepWord}s. Every ${d.config.stepWord}, pay per fortnight and after tax.`;
+  const { titlePlace, metaWhere, metaEffective, metaNote = "", stepWord } = d.config;
+  const title = titlePlace
+    ? `${label} Salary ${titlePlace} 2026 - Pay Points and After Tax`
+    : `${label} Salary 2026 - Pay Points and Take-Home Pay`;
+  const span = `${formatBandRange(range)} across ${d.points.length} ${stepWord}s${metaNote}`;
+  const forms = [
+    `${label} salary ${metaWhere} from ${metaEffective}: ${span}. Every ${stepWord}, pay per fortnight and after tax.`,
+    `${label} salary ${metaWhere} from ${metaEffective}: ${span}, each per fortnight and after tax.`,
+    `${label} salary from ${metaEffective}: ${span}. Every ${stepWord}, pay per fortnight and after tax.`,
+  ];
+  const description = forms.find((t) => t.length <= 160) ?? forms[forms.length - 1];
   return { title, description };
 }
 
@@ -235,4 +266,88 @@ export function stateLevelFaqs(d: StateLevelData): PayFaq[] {
     faqs.push({ q: `Is this what every ${d.jurisdiction.shortName} department pays ${withArticle(label)}?`, a: d.config.caveat });
   }
   return faqs;
+}
+
+// ---------------------------------------------------------------------------
+// Jurisdiction page <title> and meta description (23 Oct 2026 intent pass).
+// Metadata only: the H1 (which defaults to metaTitle) and the Dataset schema
+// keep the jurisdiction's own metaTitle/metaDescription. Every figure is read
+// from levelSections(), never typed.
+// ---------------------------------------------------------------------------
+
+function sectionRange(j: Jurisdiction, from: string, to = from): string | undefined {
+  const sections = levelSections(j);
+  const a = sections.find((s) => s.id === from);
+  const b = sections.find((s) => s.id === to);
+  return a && b ? formatBandRange({ min: a.range.min, max: b.range.max }) : undefined;
+}
+
+function firstFit(max: number, ...forms: (string | undefined)[]): string | undefined {
+  const ok = forms.filter((f): f is string => !!f && !/undefined/.test(f));
+  return ok.find((f) => f.length <= max) ?? ok[ok.length - 1];
+}
+
+export function jurisdictionPageMeta(j: Jurisdiction): { title: string; description: string } {
+  const fallback = { title: j.metaTitle, description: j.metaDescription };
+  switch (j.slug) {
+    case "vic": {
+      // "vps salary 2026" 880 impr, "vps salary" 776, "vps pay scale" 566 (GSC 24 Sep to 21 Oct).
+      const r = (id: string) => sectionRange(j, id);
+      const description = firstFit(
+        165,
+        `VPS salary from ${STATE_LEVEL_CONFIG.vic.effective}: VPS 4 ${r("vps-4")}, VPS 5 ${r("vps-5")}, VPS 6 ${r("vps-6")}. Every grade and step, VPS 1 to 7, after tax.`,
+        `VPS salary from ${STATE_LEVEL_CONFIG.vic.effective}: VPS 3 ${r("vps-3")}, VPS 4 ${r("vps-4")}, VPS 5 ${r("vps-5")}, VPS 6 ${r("vps-6")}.`,
+      );
+      return { title: "VPS Pay Scale 2026 - VPS 1 to 7 Salary by Grade and Step", description: description ?? fallback.description };
+    }
+    case "qld": {
+      // AO queries ("ao7 salary queensland government", "a03 salary qld") at
+      // position 8 to 10. Nurse wording removed: it drew QLD nurse queries that
+      // belong to /healthcare-worker-pay/qld/.
+      const description = firstFit(
+        165,
+        `Queensland Government salary from ${STATE_LEVEL_CONFIG.qld.effective} (award rates): AO2 ${sectionRange(j, "ao2")}, AO5 ${sectionRange(j, "ao5")}, AO7 ${sectionRange(j, "ao7")}. Every AO, PO, TO and OO pay point after tax.`,
+        `Queensland Government salary from ${STATE_LEVEL_CONFIG.qld.effective} (award rates): AO2 ${sectionRange(j, "ao2")}, AO7 ${sectionRange(j, "ao7")}. Every AO, PO, TO and OO pay point after tax.`,
+      );
+      return { title: "QLD Government AO Salary 2026 - AO1 to AO8, PO, TO and OO", description: description ?? fallback.description };
+    }
+    case "nsw": {
+      // "clerk grade 3/4 salary nsw", "clerk grade 9/10 salary nsw", "grade 5/6 nsw government salary".
+      const description = firstFit(
+        165,
+        `NSW Clerk Grade salary from 1 July 2026: Grade 3/4 ${sectionRange(j, "clerk-3", "clerk-4")}, 5/6 ${sectionRange(j, "clerk-5", "clerk-6")}, 9/10 ${sectionRange(j, "clerk-9", "clerk-10")}. Every grade, NSW Health rates and after tax.`,
+        `NSW Clerk Grade salary from 1 July 2026: Grade 3/4 ${sectionRange(j, "clerk-3", "clerk-4")}, 9/10 ${sectionRange(j, "clerk-9", "clerk-10")}. Every grade, NSW Health rates and after tax.`,
+      );
+      return { title: "NSW Clerk Grade Salary 2026 - Public Service Grade 1 to 12", description: description ?? fallback.description };
+    }
+    case "sa": {
+      // "aso6 salary", "aso4 salary sa government", "aso pay rates", "sso2 pay rate".
+      const aso1 = levelSections(j).find((s) => s.id === "aso-1");
+      const aso8 = levelSections(j).find((s) => s.id === "aso-8");
+      const description =
+        aso1 && aso8
+          ? firstFit(
+              165,
+              `SA public sector ASO pay from July 2026: ${formatSalary(aso1.range.min)} at ASO-1 to ${formatSalary(aso8.range.max)} at ASO-8, every increment, SSO-1 to SSO-6 School Services Officer rates and take-home pay.`,
+            )
+          : undefined;
+      return { title: "SA ASO Pay Rates 2026 - ASO1 to ASO8 and SSO Salary Scales", description: description ?? fallback.description };
+    }
+    case "nt": {
+      // "nt gov pay scales" 31 impr at position 7.9; the title said "Public Sector".
+      const sections = levelSections(j);
+      const ao2 = sections.find((s) => s.id === "ao2");
+      const eo3 = sections.find((s) => s.id === "eo3");
+      const description =
+        ao2 && eo3
+          ? firstFit(
+              165,
+              `NT Government pay from 13 August 2026: ${formatSalary(ao2.range.min)} at AO2 to ${formatSalary(eo3.range.max)} at EO3. Every AO2 to AO7, SAO1, SAO2, EO2 and EO3 pay point from the NTPS EA, with take-home pay.`,
+            )
+          : undefined;
+      return { title: "NT Government Pay Scales 2026 - NTPS AO2 to SAO2 Salaries", description: description ?? fallback.description };
+    }
+    default:
+      return fallback;
+  }
 }

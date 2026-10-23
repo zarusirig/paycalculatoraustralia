@@ -32,6 +32,7 @@ const AQF: readonly HpssAqfLevel[] = [7, 8, 9];
 export const SPEECH_PATHOLOGIST = hpssOct2026Occupation(AQF, {
   slug: "speech-pathologist",
   name: "Speech Pathologist",
+  metaTerm: "salary",
   plural: "speech pathologists",
   metaTitle: `Speech Pathologist Salary Australia 2026 - ${firstYear(AQF[0]).hourly}/hr Minimum`,
   headlineLabel: hpssOct2026Label(AQF[0]),

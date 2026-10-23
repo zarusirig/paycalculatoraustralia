@@ -15,8 +15,9 @@ const URL = `${BASE}/award-rates/`;
 const low = Math.min(...AWARD_DIRECTORY.map((a) => a.headlineHourly));
 const high = Math.max(...AWARD_DIRECTORY.map((a) => a.headlineHourly));
 
-const TITLE = `Award Rates ${SITE_CONFIG.financialYear} — A–Z Pay Rates for ${AWARD_DIRECTORY.length} Modern Awards`;
-const DESCRIPTION = `Current award rates from 1 July 2026: Level 1 pay ${formatAUD(low, 2)}–${formatAUD(high, 2)}/hr across the major awards, with casual, penalty and junior rates. Minimum wage ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr.`;
+// Meta pass (23 Oct 2026): "find my award pay rate" wording, no em or en dashes.
+const TITLE = `Award Rates ${SITE_CONFIG.financialYear}: Find Your Award Pay Rate, ${AWARD_DIRECTORY.length} Awards A to Z`;
+const DESCRIPTION = `Find your award pay rate from 1 July 2026: Level 1 pays ${formatAUD(low, 2)} to ${formatAUD(high, 2)}/hr across ${AWARD_DIRECTORY.length} modern awards, with casual, penalty and junior rates. Minimum wage ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import TrainDriverSalaryPage from "@/modules/guide/train-driver-salary";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
-import { TRAIN_DRIVER_FAQS } from "@/lib/data/train-driver-pay";
+import { METRO_TRAINS, SYDNEY_TRAINS, TRAIN_DRIVER_FAQS } from "@/lib/data/train-driver-pay";
+import { formatAUD } from "@/lib/constants";
+import { fitTitle } from "@/lib/seo-title";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -9,7 +11,13 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // sydney trains driver salary 320, train driver salary nsw 320.
 
 const SLUG = "train-driver-salary";
-const TITLE = "Train Driver Salary Australia 2026 - Sydney Trains & Metro Pay";
+// Meta intent pass, 23 Oct 2026: searched as "metro train driver pay" and
+// "sydney train driver pay" (pos 5 to 8, 0.7% CTR), so the title gives both
+// annual figures, from the same rows the page leads with.
+const TITLE = fitTitle(
+  `Train Driver Salary Australia 2026: Sydney ${formatAUD(SYDNEY_TRAINS.rows[3].annual)}, Metro ${formatAUD(METRO_TRAINS.rows[1].annual)}`,
+  "Train Driver Salary Australia 2026 - Sydney Trains & Metro Pay",
+);
 const DESCRIPTION =
   "Train driver pay from July 2026: Sydney Trains drivers $1,861.35 a week, Metro Trains Melbourne qualified drivers $92,077 a year, trainee rates and take-home pay.";
 const URL = `https://pay-calculator-australia.com/${SLUG}/`;

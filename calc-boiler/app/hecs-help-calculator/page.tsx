@@ -17,22 +17,25 @@ const T = HECS_HELP.minimumThreshold;
 const B2 = HECS_HELP.bands[2];
 const B3 = HECS_HELP.bands[3];
 
-const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} - Thresholds & Rates Table`;
-const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, indexation, voluntary repayments and the overseas rules.`;
+// Meta intent pass 23 Oct 2026: "hecs calculator" (110 impr) is the head query,
+// ahead of "hecs repayment calculator"; "how much hecs do i pay" is answered first.
+const B1 = HECS_HELP.bands[1];
+const TITLE = `HECS Calculator ${SITE_CONFIG.financialYear}: Repayment Thresholds & Rates Table`;
+const DESCRIPTION = `How much HECS do you pay in ${SITE_CONFIG.financialYear}? Nothing up to ${formatAUD(T)}, then ${Math.round(B1.marginalRate * 100)}c per $1 over it: ${formatAUD(calculateHECS(90_000))} a year on ${formatAUD(90_000)}. Calculator, rates table and indexation.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
-    title: `HECS Repayment Calculator Australia ${SITE_CONFIG.financialYear}`,
-    description: `Free calculator on the marginal repayment system. ${SITE_CONFIG.financialYear} threshold ${formatAUD(T)}, covering every study and training support loan.`,
+    title: TITLE,
+    description: DESCRIPTION,
     url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU",
   },
   twitter: {
     card: "summary_large_image",
-    title: `HECS Repayment Calculator Australia ${SITE_CONFIG.financialYear}`,
-    description: `Marginal system calculator, ${SITE_CONFIG.financialYear} thresholds, all six study loan schemes.`,
+    title: TITLE,
+    description: DESCRIPTION,
   },
 });
 

@@ -14,6 +14,7 @@ import {
   type AdfService,
 } from "@/lib/data/adf-pay";
 import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { adfServiceSearchDescription, adfServiceSearchTitle } from "@/lib/data/adf-pay/meta";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
@@ -54,8 +55,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { service } = await params;
   const s = getAdfService(service);
   if (!s) return {};
-  const title = titleFor(s);
-  const description = descriptionFor(s);
+  // Search-shaped metadata (23 Oct 2026, lib/data/adf-pay/meta.ts); the WebPage schema keeps titleFor/descriptionFor.
+  const title = adfServiceSearchTitle(s);
+  const description = adfServiceSearchDescription(s);
   const url = canonicalFor(s.slug);
   return withFeaturedImage({
     title,

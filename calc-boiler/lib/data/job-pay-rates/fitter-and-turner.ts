@@ -102,6 +102,7 @@ const CASUAL_SATURDAY = atPercent(FT_C10.casualHourly ?? 0, 1.5);
 export const FITTER_AND_TURNER: Occupation = {
   slug: "fitter-and-turner",
   name: "Fitter and Turner",
+  metaTerm: "salary",
   plural: "fitters and turners",
   metaTitle: `Fitter and Turner Salary Australia 2026 - ${money2(FT_C10.hourly)}/hr Award`,
   award: {

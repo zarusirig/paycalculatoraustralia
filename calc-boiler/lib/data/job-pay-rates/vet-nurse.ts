@@ -81,6 +81,7 @@ const PUBLIC_HOLIDAY = atPercent(VN_L4.hourly, 2.5);
 export const VET_NURSE: Occupation = {
   slug: "vet-nurse",
   name: "Vet Nurse",
+  metaTerm: "salary",
   plural: "vet nurses",
   metaTitle: `Vet Nurse Salary Australia 2026 - ${money2(VN_L4.hourly)}/hr Award Minimum`,
   award: {

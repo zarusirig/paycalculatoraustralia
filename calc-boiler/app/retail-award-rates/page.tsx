@@ -18,7 +18,9 @@ const URL = `${BASE}/retail-award-rates/`;
 const L1 = findRate(RETAIL_RATES, "Level 1");
 const L8 = findRate(RETAIL_RATES, "Level 8");
 
-const TITLE = `Retail Award Pay Rates ${SITE_CONFIG.financialYear} (${RETAIL_AWARD.code}) - Casual & Junior Rates`;
+// Meta pass (23 Oct 2026): "general retail award pay rates 2026" is the second query, so the
+// title carries "General"; junior rates are in the description.
+const TITLE = `General Retail Award Pay Rates ${SITE_CONFIG.financialYear} (${RETAIL_AWARD.code}) - Casual Rates`;
 const DESCRIPTION = `Current ${RETAIL_AWARD.code} pay rates from ${RETAIL_AWARD.operativeFrom}: level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L8.hourly, 2)} at level 8, casual ${formatAUD(casualHourly(L1.hourly, RETAIL_AWARD.casualLoading), 2)}. Weekend, evening and public holiday penalties, junior rates.`;
 
 export const metadata: Metadata = withFeaturedImage({

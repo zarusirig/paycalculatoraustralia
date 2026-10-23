@@ -82,6 +82,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         `${employer} nursing pay scales: ${rn}, plus enrolled nurse, clinical nurse, unit manager and nurse practitioner rates. From the ${instrument.name}, effective ${instrument.effectiveFrom}. Shift penalties and after-tax figures included.`,
         `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Enrolled nurse, clinical nurse and NP rates, shift penalties and after-tax pay.`,
         `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Plus EN, CN and NP rates and after-tax pay.`,
+        // 23 Oct 2026: keeps the EN/CN/NP and after-tax line when only the short RN wording fits (TAS, WA).
+        `${employer} nursing pay scales: ${rnShort}, effective ${instrument.effectiveFrom}. Plus EN, CN and NP rates and after-tax pay.`,
         `${employer} nursing pay scales: ${rnShort}, effective ${instrument.effectiveFrom}.`,
         `${employer} nursing pay scales: ${rnShort}. Plus EN, CN and NP rates and after-tax pay.`,
       )

@@ -140,7 +140,7 @@ function fastFood(): AwardPageCopy {
   return {
     slug: "fast-food-award-rates",
     crumb: "Fast Food Award Rates",
-    title: `Fast Food Award Pay Rates ${FY} (${a.meta.code}) - Casual & Junior`,
+    title: `Fast Food Industry Award Pay Rates ${FY} - Casual & Junior`,
     description: `Fast Food Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr (${$(casual(a, l1.hourly))} casual) to ${$(top.hourly)} at Level 3. Weekend, late-night, public holiday and junior rates.`,
     h1: `Fast Food Award Pay Rates ${FY}`,
     standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering takeaway shops, burger and pizza chains, food courts and delivery, operative from ${a.meta.operativeFrom}.`,
@@ -222,7 +222,7 @@ function manufacturing(): AwardPageCopy {
   return {
     slug: "manufacturing-award-rates",
     crumb: "Manufacturing Award Rates",
-    title: `Manufacturing Award Pay Rates ${FY} (${a.meta.code}) - C14 to C2`,
+    title: `Manufacturing Award Pay Guide ${FY} (${a.meta.code}) - C14 to C2`,
     description: `Manufacturing Award rates from ${a.meta.operativeFrom}: C14 ${$(c14.hourly)}/hr, C10 tradesperson ${$(c10.hourly)}, up to ${$(top.hourly)} at C2(b). Casual, shift and overtime rates.`,
     h1: `Manufacturing Award Pay Rates ${FY}`,
     standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering the C14–C2 structure, vehicle manufacturing V levels and driver grades, operative from ${a.meta.operativeFrom}.`,
@@ -303,7 +303,7 @@ function clerks(): AwardPageCopy {
   return {
     slug: "clerks-award-rates",
     crumb: "Clerks Award Rates",
-    title: `Clerks Award Pay Rates ${FY} (${a.meta.code}) - Private Sector Levels 1–5`,
+    title: `Clerks Private Sector Award Pay Guide ${FY} - Levels 1 to 5`,
     description: `Clerks—Private Sector Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 5 ${$(l5.hourly)}/hr. Casual, weekend, public holiday, overtime and junior rates.`,
     h1: `Clerks Award Pay Rates ${FY}`,
     standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering administration, reception, office and call-centre staff in the private sector, operative from ${a.meta.operativeFrom}.`,
@@ -339,7 +339,7 @@ function restaurant(): AwardPageCopy {
   return {
     slug: "restaurant-award-rates",
     crumb: "Restaurant Award Rates",
-    title: `Restaurant Award Pay Rates ${FY} (${a.meta.code}) - Sunday Rates`,
+    title: `Restaurant Award Rates ${FY} (${a.meta.code}) - Chef, Cook & Casual`,
     description: `Restaurant Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr (${$(casual(a, l1.hourly))} casual), cook grade 3 ${$(l4.hourly)}, chef de partie ${$(l6.hourly)}. Weekend and holiday rates.`,
     h1: `Restaurant Award Pay Rates ${FY}`,
     standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering waiters, bar and kitchen staff, cooks and chefs in restaurants and cafés, operative from ${a.meta.operativeFrom}.`,
@@ -442,8 +442,8 @@ function agedCare(): AwardPageCopy {
   return {
     slug: "aged-care-award-rates",
     crumb: "Aged Care Award Rates",
-    title: `Aged Care Award Pay Rates ${FY} (${a.meta.code}) - Care Workers`,
-    description: `Aged Care Award rates from ${a.meta.operativeFrom}: direct care (personal care worker) ${$(dc1.hourly)}–${$(dc6.hourly)}/hr, general staff ${$(g1.hourly)}–${$(g7.hourly)}. Casual, shift and weekend rates.`,
+    title: `Aged Care Award Pay Rates & Pay Guide ${FY} (${a.meta.code})`,
+    description: `Aged Care Award rates from ${a.meta.operativeFrom}: direct care (personal care worker) ${$(dc1.hourly)} to ${$(dc6.hourly)}/hr, general staff ${$(g1.hourly)} to ${$(g7.hourly)}. Casual, shift and weekend rates.`,
     h1: `Aged Care Award Pay Rates ${FY}`,
     standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}): personal care workers and other direct care staff, plus the general stream for administration, cleaning, laundry, kitchen and maintenance staff in residential aged care.`,
     directAnswer: `A direct care worker (personal care worker) earns at least ${$(dc1.hourly)} an hour at Introductory level, ${$(dc2.hourly)} as a Direct Carer and ${$(dc3.hourly)} once Qualified, or ${$(casual(a, dc3.hourly))} as a casual. General staff earn ${$(g1.hourly)} to ${$(g7.hourly)}. Saturday is 150% (casuals 175%), Sunday 175% (casuals 200%) and public holidays 250% (casuals 275%).`,

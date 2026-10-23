@@ -72,6 +72,7 @@ const CW3 = BUILDING_BASE_WEEKLY["CW/ECW 3"];
 export const BRICKLAYER: Occupation = {
   slug: "bricklayer",
   name: "Bricklayer",
+  metaTerm: "salary",
   plural: "bricklayers",
   metaTitle: `Bricklayer Salary Australia 2026 - ${money2(BRICK_GENERAL.hourly)}/hr Award Minimum`,
   award: { ...BUILDING_AWARD, awardPageHref: "/building-and-construction-award-rates/" },

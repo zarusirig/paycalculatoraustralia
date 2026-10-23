@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import UnderstandingYourPayslipPage from "@/modules/guide/understanding-your-payslip";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
@@ -15,12 +15,19 @@ const URL = `${BASE}/understanding-your-payslip/`;
 const TITLE = "Understanding Your Payslip in Australia - A Complete Guide";
 const DESCRIPTION = "How to read your Australian payslip: gross pay, net pay, PAYG withholding, superannuation contributions, and your rights under the Fair Work Ombudsman.";
 
+// Meta pass 23 Oct 2026: "understanding your payslip" is 1,183 impr/28d at
+// pos 6.2 with 0.2% CTR. "A Complete Guide" said nothing; the SERP rewards
+// line-by-line explainers ("Every Field Explained"). TITLE/DESCRIPTION above
+// still feed the WebPage and Article JSON-LD unchanged.
+const META_TITLE = "Understanding Your Payslip Australia: Every Line Explained";
+const META_DESCRIPTION = `Read your payslip line by line: gross and net pay, PAYG tax, Medicare, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super and YTD totals, what it must show by law and how to spot an underpayment.`;
+
 export const metadata: Metadata = withFeaturedImage({
-  title: TITLE,
-  description: DESCRIPTION,
+  title: META_TITLE,
+  description: META_DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { title: META_TITLE, description: META_DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: META_TITLE, description: META_DESCRIPTION },
 });
 
 const breadcrumb: WithContext<BreadcrumbList> = {

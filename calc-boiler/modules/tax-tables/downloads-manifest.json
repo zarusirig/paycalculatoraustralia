@@ -1,0 +1,51 @@
+{
+  "fy": "2026-27",
+  "generated": "2026-10-23",
+  "files": {
+    "weekly": {
+      "pdf": {
+        "href": "/downloads/weekly-tax-table-2026-27.pdf",
+        "bytes": 109758,
+        "pages": 25
+      },
+      "csv": {
+        "href": "/downloads/weekly-tax-table-2026-27.csv",
+        "bytes": 68507
+      },
+      "rows": 3400,
+      "step": 1,
+      "from": 1,
+      "to": 3400
+    },
+    "fortnightly": {
+      "pdf": {
+        "href": "/downloads/fortnightly-tax-table-2026-27.pdf",
+        "bytes": 111411,
+        "pages": 25
+      },
+      "csv": {
+        "href": "/downloads/fortnightly-tax-table-2026-27.csv",
+        "bytes": 75285
+      },
+      "rows": 3400,
+      "step": 2,
+      "from": 2,
+      "to": 6800
+    },
+    "monthly": {
+      "pdf": {
+        "href": "/downloads/monthly-tax-table-2026-27.pdf",
+        "bytes": 99268,
+        "pages": 22
+      },
+      "csv": {
+        "href": "/downloads/monthly-tax-table-2026-27.csv",
+        "bytes": 73837
+      },
+      "rows": 2925,
+      "step": null,
+      "from": 4.33,
+      "to": 12675
+    }
+  }
+}

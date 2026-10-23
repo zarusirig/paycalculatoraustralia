@@ -18,6 +18,8 @@ import {
   principalSummaries,
   teacherAnchorText,
   teacherStateMetaTitle,
+  teacherStateSearchDescription,
+  teacherStateSearchTitle,
   scaleRanges,
   takeHomeHref,
   teacherRatesYear,
@@ -312,6 +314,18 @@ test("state titles follow '{State} Teacher Salary 2026 (Scale and Step)'", () =>
     assert.ok(teacherStateMetaTitle(state).endsWith("(Scale and Step)"), state.code);
     assert.ok((state.h1 ?? "").length > 0, `${state.code} has its own H1`);
     assert.ok((state.classificationNote ?? "").length > 0, `${state.code} has classification language`);
+  }
+});
+
+test("search titles and descriptions lead with the state the way people search (23 Oct 2026)", () => {
+  assert.equal(teacherStateSearchTitle(getTeacherPayState("vic")!), "Teacher Pay Scale Victoria 2026 - VGSA 2026 Rates and Steps");
+  assert.equal(teacherStateSearchTitle(getTeacherPayState("qld")!), "QLD Teacher Salary 2026 - Pay Scale, Steps and After Tax");
+  for (const state of TEACHER_PAY_STATES) {
+    const title = teacherStateSearchTitle(state);
+    const description = teacherStateSearchDescription(state);
+    assert.ok(title.length <= 65, `${state.code} title is ${title.length} chars`);
+    assert.ok(description.length >= 120 && description.length <= 165, `${state.code} description is ${description.length} chars`);
+    assert.doesNotMatch(title + description, /[—–]/, `${state.code}: no em or en dashes`);
   }
 });
 

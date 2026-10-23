@@ -78,6 +78,7 @@ const SUN_4A = atPercent(PT_L4A.hourly, 1.5);
 export const PERSONAL_TRAINER: Occupation = {
   slug: "personal-trainer",
   name: "Personal Trainer",
+  metaTerm: "salary",
   plural: "personal trainers",
   metaTitle: `Personal Trainer Salary Australia 2026 - ${money2(PT_L4A.hourly)}/hr Award`,
   award: {

@@ -5,7 +5,9 @@ import SalaryPackageCalculatorContent from "@/modules/calculator/salary-package-
 import { SALARY_PACKAGE_FAQS } from "@/modules/calculator/salary-package-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
+import { packageFromBase, splitPackage } from "@/lib/constants/salary-package";
+import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -13,8 +15,20 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-package-calculator/`;
-const TITLE = "Salary Package Calculator - Including Super or Plus Super";
-const DESCRIPTION = `Turn "$X package", "$X including super" or "$X plus super" into base salary, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super, total package and ${SITE_CONFIG.financialYear} take-home pay. Tables for $50k–$300k both ways.`;
+// Meta pass 23 Oct 2026: GSC queries are "100k plus super", "170k plus super",
+// "how to calculate base salary from package including super" (pos 6 to 11),
+// so the title puts "Plus Super" first and carries the FY like the SERP
+// (paycal, industrysuper), and the description answers both directions with
+// engine figures. Previous title: "Salary Package Calculator - Including Super
+// or Plus Super"; previous description listed inputs with "$50k–$300k".
+const FY = SITE_CONFIG.financialYear;
+const plus100k = packageFromBase(100_000);
+const incl100k = splitPackage(100_000);
+const TITLE = `Salary Package Calculator ${FY}: Plus Super or Including Super`;
+const DESCRIPTION = fitDescription(
+  `$100,000 plus super is a ${formatAUD(plus100k.total)} package; $100,000 including super is ${formatAUD(incl100k.base)} base and ${formatAUD(incl100k.superAmount)} super at ${formatPercent(SUPER_GUARANTEE.rate, 0)}. Split any package and see ${FY} take-home pay.`,
+  `$100,000 plus super is a ${formatAUD(plus100k.total)} package; $100,000 including super is ${formatAUD(incl100k.base)} base. Split any package and see ${FY} take-home pay.`,
+);
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

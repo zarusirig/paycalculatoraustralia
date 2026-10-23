@@ -14,7 +14,8 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
 const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
-const TITLE = "JobSeeker Payment Calculator 2026 - Rates From 20 September";
+// Meta intent pass 23 Oct 2026: top query "jobseeker payment calculator when working".
+const TITLE = "JobSeeker Payment Calculator 2026: What You Get When Working";
 const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See what you keep when you work: the $150 free area, tapers and partner income.`;
 
 export const metadata: Metadata = withFeaturedImage({

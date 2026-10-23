@@ -10,7 +10,8 @@ import FeaturedImage from "@/components/common/featured-image";
 import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-crisis-payment";
-const TITLE = "Centrelink Crisis Payment 2026: Eligibility, Amount, How to Claim";
+// Meta intent pass 23 Oct 2026: top query "how much is centrelink crisis payment".
+const TITLE = "Centrelink Crisis Payment 2026: How Much It Is & Who Can Get It";
 const DESCRIPTION = `Crisis Payment is one week of your payment's maximum basic rate: ${formatAUD(crisisPaymentAmount(JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single), 2)} on single JobSeeker. Who qualifies, the 7-day contact rule and how to claim.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));

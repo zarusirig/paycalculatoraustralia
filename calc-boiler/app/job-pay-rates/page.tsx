@@ -10,9 +10,10 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/job-pay-rates/`;
-const TITLE = "Job Pay Rates Australia 2026 - Award Minimums by Occupation";
-const DESCRIPTION =
-  "Award pay rates for 40+ jobs in 2026–27: nurses, aged care, childcare, chefs, retail workers, cleaners, electricians and more. Hourly, casual and weekly minimums.";
+// Meta intent pass, 23 Oct 2026: "40+ jobs" had fallen behind the data, and
+// the job pages now quote yearly pay and take-home as well as hourly rates.
+const TITLE = `Job Pay Rates Australia 2026-27: Minimum Pay for ${OCCUPATIONS.length} Jobs`;
+const DESCRIPTION = `Pay rates for ${OCCUPATIONS.length} jobs in 2026-27, from nurses and aged care to chefs, electricians and engineers. Hourly, weekly and casual minimums, with take-home pay.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

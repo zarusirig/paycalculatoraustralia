@@ -83,7 +83,7 @@ export const CIVIL_ENGINEER: Occupation = {
     why: "a graduate civil engineer with a 4 or 5-year degree recognised by Engineers Australia",
   },
   heading: "Civil Engineer Salary Australia 2026: Award Minimum, Median & Take-Home",
-  metaTitle: `Civil Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Award`,
+  metaTitle: `Civil Engineer Salary Australia 2026: ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr`,
   metaDescription: `Civil engineer pay in Australia: ${aud(ATO_MEDIAN)} median and ${aud(ATO_AVERAGE)} average salary on 2023–24 tax returns, the ${aud(GRAD.annual!)} graduate award minimum, and take-home.`,
   lede: `Civil engineers who lodged 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. The legal floor is far lower: a graduate civil engineer must be paid at least ${aud(GRAD.annual!)} a year (${aud2(GRAD.hourly)} an hour) under the Professional Employees Award from 1 July 2026. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   parent: {

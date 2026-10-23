@@ -63,6 +63,7 @@ const L4_OT_AFTER_2 = 58.9;
 export const LANDSCAPER: Occupation = {
   slug: "landscaper",
   name: "Landscaper",
+  metaTerm: "salary",
   plural: "landscapers",
   metaTitle: `Landscaper Salary Australia 2026 - ${money2(LS_L4.hourly)}/hr Award Minimum`,
   award: {

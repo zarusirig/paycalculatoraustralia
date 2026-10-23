@@ -11,7 +11,9 @@ import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import {
   PH_HUB_PATH,
   STATE_PUBLIC_HOLIDAYS,
+  getAwardPublicHolidayRate,
   getStatePublicHolidays,
+  multipleWords,
   PUBLIC_HOLIDAY_AWARD_RATES,
   pctLabel,
   publicHolidayRateRange,
@@ -52,15 +54,46 @@ function dateModified(): string | undefined {
 
 // <title> and description are fitted (lib/seo-title): the H1 keeps the full
 // PH_HUB_TITLE; the shorter <title> form keeps "Public Holiday Pay Rates" first.
-const HUB_TITLE = fitTitle(PH_HUB_TITLE, "Public Holiday Pay Rates 2026 - Penalty Rates & Calculator");
+const HUB_TITLE = fitTitle(
+  `Public Holiday Pay Rates 2026: Calculator & ${PUBLIC_HOLIDAY_AWARD_RATES.length} Awards Compared`,
+  "Public Holiday Pay Rates 2026: Penalty Rates & Calculator",
+);
+
+/**
+ * The headline public holiday rate for meta descriptions: the General Retail
+ * Award's, named with Hospitality too when the two awards pay the same.
+ */
+function headlineRate() {
+  const retail = getAwardPublicHolidayRate("retail")!;
+  const hosp = getAwardPublicHolidayRate("hospitality");
+  const same = !!hosp && hosp.permanent === retail.permanent && hosp.casual === retail.casual;
+  return {
+    who: same ? "retail and hospitality" : "retail",
+    where: same ? "retail or hospitality" : "retail",
+    perm: pctLabel(retail.permanent),
+    casual: pctLabel(retail.casual),
+    permWords: multipleWords(retail.permanent),
+    casualWords: multipleWords(retail.casual),
+  };
+}
+
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 function hubDescription(): string {
   const r = publicHolidayRateRange();
-  const rates = `${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} for permanent staff, ${pctLabel(r.casualMin)}–${pctLabel(r.casualMax)} for casuals`;
-  return fitDescription(
-    `Public holiday pay rates for ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards: ${rates}. Pay for not working, refusing a shift, substitute days, and a calculator. Dates for every state.`,
-    `Public holiday pay rates for ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards: ${rates}. Pay for not working, substitute days and a calculator.`,
+  const h = headlineRate();
+  const n = PUBLIC_HOLIDAY_AWARD_RATES.length;
+  const forms: string[] = [];
+  if (h.permWords && h.casualWords) {
+    forms.push(
+      `${cap(h.who)} pay ${h.perm} (${h.permWords}) on a public holiday, and casuals ${h.casual} (${h.casualWords}). Compare ${n} awards and a calculator.`,
+    );
+  }
+  forms.push(
+    `Public holiday pay is ${h.perm} in ${h.who} (casuals ${h.casual}), and ${pctLabel(r.permanentMin)} to ${pctLabel(r.permanentMax)} across ${n} awards. Pay calculator, days off and state dates.`,
+    `Public holiday pay is ${h.perm} in ${h.who} (casuals ${h.casual}), and ${pctLabel(r.permanentMin)} to ${pctLabel(r.permanentMax)} across ${n} awards. Pay calculator included.`,
   );
+  return fitDescription(...forms);
 }
 
 export function publicHolidayHubMetadata(): Metadata {
@@ -111,19 +144,27 @@ export function publicHolidayStateParams() {
   return STATE_PUBLIC_HOLIDAYS.map((s) => ({ state: s.slug }));
 }
 
-/** <title>: the H1 (stateHeading) in full when it fits, else the ":" form. */
+/**
+ * <title>: "QLD Public Holidays 2026 & 2027 + Public Holiday Pay Rates". Both
+ * search forms ("qld public holidays 2026", "public holiday pay rates qld") in
+ * under 60 characters; the H1 (stateHeading) stays as it is.
+ */
 function stateTitle(s: StatePublicHolidays): string {
-  return fitTitle(stateHeading(s), `${s.code} Public Holidays 2026 & 2027: Dates + Public Holiday Pay Rates`);
+  return fitTitle(
+    `${s.code} Public Holidays 2026 & 2027 + Public Holiday Pay Rates`,
+    `${s.code} Public Holidays 2026 & 2027: Dates and Pay Rates`,
+  );
 }
 
 function stateDescription(s: StatePublicHolidays): string {
   const n26 = statewideDays(yearOf(s, 2026)!).length;
   const n27 = statewideDays(yearOf(s, 2027)!).length;
-  const r = publicHolidayRateRange();
-  const rates = `${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} under the main awards`;
+  const h = headlineRate();
+  const lead = `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027`;
   return fitDescription(
-    `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027 from the ${s.sources[0].publisher}, plus what you're paid: ${rates}, base pay if you don't work. Public holiday pay calculator included.`,
-    `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027, plus public holiday pay: ${rates}, base pay if you do not work. Calculator included.`,
+    ...(h.casualWords ? [`${lead}. ${cap(h.who)} pay ${h.perm}, or ${h.casual} for casuals (${h.casualWords}). Calculator included.`] : []),
+    `${lead}, from the ${s.sources[0].publisher}. Work one in ${h.where} and you earn ${h.perm} (casuals ${h.casual}). Pay calculator included.`,
+    `${lead}. Work one in ${h.where} and you earn ${h.perm} (casuals ${h.casual}). Pay calculator included.`,
   );
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import OteSalaryPage from "@/modules/guide/ote-salary";
+import OteSalaryPage, { EXAMPLE } from "@/modules/guide/ote-salary";
+import { formatAUD } from "@/lib/constants";
 import { OTE_SALARY_FAQS } from "@/modules/guide/ote-salary-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -11,8 +12,10 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "ote-salary";
 const TITLE = "OTE Salary Meaning: On-Target Earnings + Calculator";
-const DESCRIPTION =
-  "OTE means on-target earnings: base salary plus commission at 100% of target. See pay above and below target, 12% super on commission and take-home pay.";
+// Meta intent pass, 23 Oct 2026: queries are "120k ote", "150k ote meaning",
+// "80k ote meaning" (0.16% CTR at pos 9), so the description answers with the
+// page's own $120,000 worked example.
+const DESCRIPTION = `OTE means on-target earnings: base plus commission at 100% of target. A ${formatAUD(EXAMPLE.base + EXAMPLE.target)} OTE with an ${formatAUD(EXAMPLE.base)} base guarantees ${formatAUD(EXAMPLE.base)} and ${formatAUD(EXAMPLE.target)} depends on results.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
