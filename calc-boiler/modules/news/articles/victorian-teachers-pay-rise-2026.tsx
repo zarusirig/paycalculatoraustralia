@@ -34,6 +34,7 @@ export default function VictorianTeachersPayRise2026() {
   const topEnd = proposed(CLASSROOM, "2-6", 4);
   const ltNow = now(RANGE_3, "3-2");
   const ltOct = proposed(RANGE_3, "3-2", 1);
+  const reported = VIC_2026_AGREEMENT.fwcStage === "not listed";
 
   return (
     <>
@@ -41,8 +42,17 @@ export default function VictorianTeachersPayRise2026() {
         Victorian government school staff have approved their new enterprise agreement:{" "}
         <strong>{VIC_2026_AGREEMENT.ballotYesPct}%</strong> of the{" "}
         {VIC_2026_AGREEMENT.ballotParticipants.toLocaleString("en-AU")} employees who voted said yes,
-        the Department of Education announced on {VIC_2026_AGREEMENT.ballotAnnounced}. Once the Fair Work
-        Commission approves it, a teacher at the top of the classroom scale goes from{" "}
+        the Department of Education announced on {VIC_2026_AGREEMENT.ballotAnnounced}.{" "}
+        {reported ? (
+          <>
+            The {VIC_2026_AGREEMENT.reportedApproval.by} now says the Fair Work Commission has approved it
+            with effect from {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}; the decision itself is not
+            yet published. Under the agreement
+          </>
+        ) : (
+          <>Once the Fair Work Commission approves it</>
+        )}
+        , a teacher at the top of the classroom scale goes from{" "}
         <strong>{formatAUD(topNow)}</strong> to <strong>{formatAUD(topOct)}</strong> from October 2026, and
         to {formatAUD(topEnd)} by November 2029.
       </p>
@@ -58,10 +68,14 @@ export default function VictorianTeachersPayRise2026() {
         {VIC_2026_AGREEMENT.fwcStage === "not listed" ? (
           <>
             no longer showed the matter on {VIC_2026_AGREEMENT.fwcCheckedOn}, which is what happens once an
-            application has been decided. The {VIC_2026_AGREEMENT.reportedApproval.by} says the Commission has
-            approved the agreement with effect from {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The
-            Commission&apos;s decision and the department&apos;s new salary schedule had not been published when
-            we checked, so the VGSA 2022 rates remain the published rates until they are.
+            application has been decided. The {VIC_2026_AGREEMENT.reportedApproval.by}{" "}
+            <a href={VIC_2026_AGREEMENT.reportedApproval.sourceUrl} rel="noopener noreferrer" target="_blank">
+              reports
+            </a>{" "}
+            that the Commission approved the agreement with effect from{" "}
+            {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The Commission&apos;s decision and the
+            department&apos;s new salary schedule had not been published when we checked, so the VGSA 2022
+            rates remain the latest official rates until they are.
           </>
         ) : (
           <>
@@ -94,8 +108,21 @@ export default function VictorianTeachersPayRise2026() {
         approves it, and runs to a nominal expiry date of {VIC_2026_AGREEMENT.nominalExpiry}.
       </p>
       <p>
-        Until then the Victorian Government Schools Agreement 2022 still applies, and its 1 July 2025 rates
-        are what teachers are paid. The{" "}
+        {reported ? (
+          <>
+            If the union&apos;s report is right, the agreement operates from{" "}
+            {VIC_2026_AGREEMENT.reportedApproval.operativeFrom} and the August and October 2026 increases are
+            back-paid to their own dates. Until the Commission&apos;s decision and the department&apos;s new
+            salary schedule are published, the Victorian Government Schools Agreement 2022&apos;s 1 July 2025
+            rates are the latest official rates.
+          </>
+        ) : (
+          <>
+            Until then the Victorian Government Schools Agreement 2022 still applies, and its 1 July 2025
+            rates are what teachers are paid.
+          </>
+        )}{" "}
+        The{" "}
         <Link href="/teacher-pay-australia/vic/">Victorian teacher pay scale</Link> shows both: the rates
         in force now, and the new agreement&apos;s full schedule.
       </p>

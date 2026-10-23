@@ -43,7 +43,12 @@ export default function VicPayRise2026() {
         <div className="not-prose my-6 flex gap-3 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-4">
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
           <p className="text-sm text-navy">
-            <strong>Voted up, not yet in force.</strong> Staff approved the proposed{" "}
+            <strong>
+              {VIC_2026_AGREEMENT.fwcStage === "not listed"
+                ? "Approved, the AEU says; decision not yet published."
+                : "Voted up, not yet in force."}
+            </strong>{" "}
+            Staff approved the proposed{" "}
             {VIC_2026_AGREEMENT.name} in a ballot announced on {VIC_2026_AGREEMENT.ballotAnnounced}:{" "}
             {VIC_2026_AGREEMENT.ballotParticipants.toLocaleString("en-AU")} employees voted (
             {VIC_2026_AGREEMENT.ballotParticipationPct}% of those eligible) and{" "}
@@ -53,10 +58,14 @@ export default function VicPayRise2026() {
               <>
                 On {VIC_2026_AGREEMENT.fwcCheckedOn} the matter was no longer on the Commission&apos;s
                 agreements-in-progress list, which is what happens once an application has been decided, and
-                the {VIC_2026_AGREEMENT.reportedApproval.by} says the Commission has approved the agreement
-                with effect from {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The Commission&apos;s
-                decision and the department&apos;s new salary schedule had not been published when we checked,
-                so the VGSA 2022 rates further down this page remain the published rates until they are.
+                the {VIC_2026_AGREEMENT.reportedApproval.by}{" "}
+                <a href={VIC_2026_AGREEMENT.reportedApproval.sourceUrl} target="_blank" rel="noreferrer noopener">
+                  reports
+                </a>{" "}
+                that the Commission approved the agreement with effect from{" "}
+                {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The Commission&apos;s decision and the
+                department&apos;s new salary schedule had not been published when we checked, so the VGSA 2022
+                rates further down this page remain the latest official rates until they are.
               </>
             ) : (
               <>

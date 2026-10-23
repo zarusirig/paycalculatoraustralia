@@ -657,11 +657,11 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "victorian-teachers-pay-rise-2026",
     headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes - What the New Agreement Pays and When",
-    title: "VIC Teachers Pay Rise 2026: VGSA Approved, $133,456 Top Step",
-    description: "The AEU says the Fair Work Commission approved the VGSA 2026 from 23 October. Top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029.",
+    title: "VIC Teachers Pay Rise 2026: AEU Says VGSA Approved, Top $133,456",
+    description: "The AEU says the Fair Work Commission approved the VGSA 2026 from 23 October; no decision published yet. Top step: $118,063 to $133,456, then $151,419 by 2029.",
     category: "Wages",
     datePublished: "2026-09-17",
-    dateModified: "2026-10-22",
+    dateModified: "2026-10-23",
     authorId: "anita-bell",
     relatedCalculators: [
       { href: "/teacher-pay-australia/vic/", label: "Victorian Teacher Pay Scale" },
@@ -677,6 +677,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)", url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise", publisher: "Premier of Victoria" },
       { title: "Labor Is Giving Education Workers A Payrise (17 August 2026)", url: "https://www.premier.vic.gov.au/labor-giving-education-workers-payrise", publisher: "Premier of Victoria" },
       { title: "VGSA 2026: Our campaign for a new agreement for members in public schools", url: "https://www.aeuvic.asn.au/vgsa-2026-our-campaign-new-agreement-members-public-schools", publisher: "Australian Education Union Victorian Branch" },
+      { title: "\"Your VGSA 2026 has just been approved by the Fair Work Commission\" (public post, read 23 October 2026)", url: "https://www.facebook.com/aeuvic/posts/congratulations-to-all-members-who-participated-in-the-vgsa-campaign-including-t/1622913039877681/", publisher: "Australian Education Union Victorian Branch" },
       { title: "Victorian teachers and support staff strike for first time in 13 years over pay dispute", url: "https://www.abc.net.au/news/2026-03-24/teacher-strike-victoria-school-closures/106487444", publisher: "ABC News" },
       { title: "Victorian teachers 'need relief' as tens of thousands strike for a second time", url: "https://www.abc.net.au/news/2026-07-23/victorian-teachers-on-strike-today-as-offer-is-rejected/106946678", publisher: "ABC News" },
     ],

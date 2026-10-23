@@ -8,6 +8,8 @@ import {
   VIC_2026_SCALES,
   proposedRate,
 } from "../vic-2026-agreement";
+import { getTeacherPayState, teacherStateSearchDescription } from "../index";
+import { getSchoolSupportState } from "../../school-support-pay";
 
 const current = (label: string) =>
   VIC_TEACHER_PAY.scales[0].steps.find((s) => s.label === label)!.salary;
@@ -73,4 +75,24 @@ test("status and ballot facts", () => {
   assert.equal(VIC_2026_AGREEMENT.ballotYesPct, 93.1);
   assert.equal(proposedRate("nope", "2-6", 0), null);
   assert.equal(proposedRate("classroom-teachers-2026", "2-6", 5), null);
+});
+
+test("pages carry the union report with attribution, not an official approval", () => {
+  // 23 Oct 2026 evening: FWCA 2915 to 2933 read, none is AG2026/2746; department pages unchanged.
+  const r = VIC_2026_AGREEMENT.reportedApproval;
+  assert.match(r.sourceUrl, /^https:\/\/www\.facebook\.com\/aeuvic\//);
+  assert.match(r.quote, /approved by the Fair Work Commission/);
+  const description = teacherStateSearchDescription(getTeacherPayState("vic")!);
+  // The meta description must agree with the news page: no "not yet official", and it names the AEU.
+  assert.doesNotMatch(description, /not yet official/);
+  assert.match(description, /the AEU says apply from 23 October/);
+  assert.ok(description.length <= 165, `description ${description.length}`);
+  const faq = VIC_TEACHER_PAY.faqs.map((f) => f.a).join(" ");
+  assert.doesNotMatch(faq, /Once the Fair Work Commission approves it/);
+  assert.match(faq, /reports that the Fair Work Commission approved/);
+  const school = getSchoolSupportState("vic")!;
+  const vgsa2026 = school.tables.find((t) => t.id === "vic-2026-proposed")!;
+  assert.equal(vgsa2026.status, "proposed");
+  assert.doesNotMatch(vgsa2026.title + vgsa2026.caption, /not payable until|not yet approved/);
+  assert.match(school.instrument, /reports that the Fair Work Commission approved it with effect from 23 October 2026/);
 });

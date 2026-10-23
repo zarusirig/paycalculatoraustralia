@@ -20,11 +20,15 @@ export const FBT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When is the FBT year?",
-    a: "The FBT year runs from 1 April to 31 March, which is different from the income tax year (1 July to 30 June). Employers lodge FBT returns and pay FBT by 21 May each year, or by 25 June if lodging electronically through a registered tax agent. Quarterly FBT instalments may also apply.",
+    a: `The FBT year runs from 1 April to 31 March, which is different from the income tax year (1 July to 30 June). The current FBT year runs from ${FBT.yearLabel}. Employers lodge FBT returns and pay FBT by 21 May each year, or by 25 June if a registered tax agent lodges electronically. Employers whose FBT for the previous year was ${formatAUD(FBT.instalmentThreshold)} or more also pay quarterly instalments through their activity statements.`,
   },
   {
     q: "What is the FBT rate in Australia?",
-    a: `The FBT rate is ${RATE} for the FBT year ending ${FBT.yearEnding}. This equals the top marginal income tax rate of ${TOP} plus the ${ML} Medicare levy. The rate has remained at ${RATE} since 1 April 2017. FBT is applied to the grossed-up taxable value of non-cash benefits, using the Type 1 (${T1}) or Type 2 (${T2}) gross-up factor.`,
+    a: `The FBT rate is ${RATE} for the FBT year ending ${FBT.yearEnding}. This equals the top marginal income tax rate of ${TOP} plus the ${ML} Medicare levy. The rate has stayed at ${RATE} since 1 April 2017, so it is the same as for the year ending ${FBT.prevYearEnding}. FBT is applied to the grossed-up taxable value of non-cash benefits, using the Type 1 (${T1}) or Type 2 (${T2}) gross-up factor.`,
+  },
+  {
+    q: `What is the FBT benchmark interest rate and car parking threshold for ${FBT.yearShort}?`,
+    a: `For the FBT year ending ${FBT.yearEnding}, the statutory or benchmark interest rate is ${formatPercent(FBT.benchmarkInterestRate, 2)} (${formatPercent(FBT.benchmarkInterestRatePrevYear, 2)} for the year ending ${FBT.prevYearEnding}) and the car parking threshold is ${formatAUD(FBT.carParkingThreshold, 2)} a day (${formatAUD(FBT.carParkingThresholdPrevYear, 2)} the year before). The benchmark rate sets the taxable value of low-interest employer loans and is also used for some car valuations. Unlike the ${RATE} FBT rate and the gross-up rates, both figures are reset by the ATO for each FBT year.`,
   },
   {
     q: "Are electric vehicles exempt from FBT?",

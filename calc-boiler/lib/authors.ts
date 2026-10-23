@@ -110,7 +110,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "bonus-tax-guide": { authorId: "anita-bell", lastReviewed: "2026-03-09" },
   "tax-refund-guide": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "tax-calendar": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
-  "fringe-benefits-tax": { authorId: "anita-bell", lastReviewed: "2026-03-04" },
+  "fringe-benefits-tax": { authorId: "anita-bell", lastReviewed: "2026-10-23" },
   "working-holiday-tax": { authorId: "anita-bell", lastReviewed: "2026-03-03" },
   "non-resident-tax": { authorId: "anita-bell", lastReviewed: "2026-03-02" },
   "zone-tax-offset": { authorId: "anita-bell", lastReviewed: "2026-07-28" },

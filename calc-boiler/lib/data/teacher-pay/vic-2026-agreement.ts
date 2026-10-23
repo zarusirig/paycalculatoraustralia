@@ -38,6 +38,24 @@
 // pages unchanged (same "Updated" dates as 22 October). Only fwcCheckedOn and
 // VIC_TEACHER_PAY.verifiedOn moved.
 //
+// 23 OCTOBER 2026, evening re-check: still no official record. The FWC has
+// now published [2026] FWCA 2915 to 2933 (decisions dated 21 to 23 October
+// 2026, read one by one); none is AG2026/2746. 2840, 2841, 2884, 2893, 2906,
+// 2908, 2919, 2924, 2928, 2930 and 2934 onward still return 404 (2898 and 2912
+// now read: not this matter). Department pages unchanged: Enterprise
+// Bargaining overview "Updated 17 September 2026", Salary Rates "Updated
+// 8 May 2025" (Teachers schedule "last updated 17 August 2022"), Industrial
+// Agreements resources "Updated 5 August 2025" (VGSA 2022 only), PAL
+// "Recently updated" newest entry 22 October 2026 with no bargaining item.
+// AEU Victoria's own VGSA page is members-only; its public Facebook and
+// Instagram posts say: "Your VGSA 2026 has just been approved by the Fair Work
+// Commission. The Agreement will take effect from 23 October 2026." (quoted
+// from search results; Firecrawl cannot open Facebook or Instagram). Clause 5
+// (operation on the seventh day after approval) would put the approval on
+// 16 October 2026, but no party has published that date, so it is not
+// recorded. Every page now says the same thing: the AEU reports approval from
+// 23 October 2026 and the FWC decision is not yet published.
+//
 // When FWC approval is published:
 //   1. move the current column into vic.ts scales,
 //   2. flip VIC_2026_AGREEMENT.status to "approved" and record the date,
@@ -106,6 +124,11 @@ export const VIC_2026_AGREEMENT = {
     by: "Australian Education Union Victorian Branch",
     operativeFrom: "23 October 2026",
     official: false,
+    /** The AEU's public post (its VGSA web page is members-only). */
+    sourceUrl:
+      "https://www.facebook.com/aeuvic/posts/congratulations-to-all-members-who-participated-in-the-vgsa-campaign-including-t/1622913039877681/",
+    quote: "Your VGSA 2026 has just been approved by the Fair Work Commission.",
+    readOn: "23 October 2026",
   },
   fwcProgressUrl:
     "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",

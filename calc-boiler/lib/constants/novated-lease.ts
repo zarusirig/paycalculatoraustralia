@@ -71,7 +71,8 @@ export const NOVATED_LEASE_SOURCES = {
 } as const;
 
 // ---------- FBT rates ----------
-// ATO "Fringe benefits tax - rates and thresholds", last updated 20 May 2026.
+// ATO "Fringe benefits tax - rates and thresholds", last updated 20 May 2026,
+// re-read 23 October 2026 (NOVATED_LEASE_SOURCES.fbtRatesAndThresholds).
 // The 47% rate and both gross-up rates are fixed for the FBT years ending
 // 31 March 2023 through 31 March 2027 — they do not move with the income tax
 // cuts that took effect on 1 July 2026.
@@ -88,7 +89,24 @@ export const FBT = {
   yearEnd: "31 March",
   yearLabel: "1 April 2026 to 31 March 2027",
   yearEnding: "31 March 2027",
+  /** Short label for the FBT year, as the ATO writes it ("2026–27 FBT year"). */
+  yearShort: "2026-27",
+  prevYearEnding: "31 March 2026",
   daysInYear: 365,
+  // Tables 6, 9 and 10 of the ATO rates page (last updated 20 May 2026, read
+  // 23 October 2026). These move every FBT year, unlike the rate above.
+  /** Statutory or benchmark interest rate, FBT year ending 31 March 2027 (Table 10). */
+  benchmarkInterestRate: 0.0827,
+  /** FBT year ending 31 March 2026 (Table 10). */
+  benchmarkInterestRatePrevYear: 0.0862,
+  /** Car parking threshold per day, FBT year ending 31 March 2027 (Table 9). */
+  carParkingThreshold: 11.48,
+  /** FBT year ending 31 March 2026 (Table 9). */
+  carParkingThresholdPrevYear: 11.03,
+  /** Record keeping exemption threshold, FBT year ending 31 March 2027 (Table 6). */
+  recordKeepingExemptionThreshold: 10_962,
+  /** FBT of this much or more last year means quarterly instalments this year. */
+  instalmentThreshold: 3_000,
   /** Report on the income statement once taxable value EXCEEDS this. */
   reportableThreshold: 2_000,
   /** The ATO's own worked figure for a taxable value of $2,000.01. */

@@ -199,7 +199,16 @@ export function teacherStateSearchDescription(state: TeacherPayState): string {
   const year = teacherRatesYear(state);
   const span = `${formatAUD(grad)} for a graduate to ${formatAUD(top)} at the top`;
   if (state.slug === "vic") {
-    const pending = VIC_2026_AGREEMENT.status !== "approved" ? " (not yet official)" : "";
+    const a = VIC_2026_AGREEMENT;
+    if (a.status !== "approved" && a.fwcStage === "not listed") {
+      // A union report, not an official record: say who says it.
+      const from = a.reportedApproval.operativeFrom.replace(/ 20\d{2}$/, "");
+      return fitDescription(
+        `Victorian teacher pay scale: ${span} (VGSA 2022), plus VGSA 2026 rates the AEU says apply from ${from}. Every step, after tax.`,
+        `Victorian teacher pay scale: ${span} (VGSA 2022), plus VGSA 2026 rates the AEU says apply from ${from}.`,
+      );
+    }
+    const pending = a.status !== "approved" ? " (not yet official)" : "";
     return fitDescription(
       `Victorian teacher pay scale: ${span} (VGSA 2022), plus the VGSA 2026 table from ${VIC_2026_EFFECTIVE_DATES[0]}${pending}. Every step, after tax.`,
       `Victorian teacher pay scale: ${span} (VGSA 2022), plus the VGSA 2026 table${pending}. Every step and take-home pay.`,

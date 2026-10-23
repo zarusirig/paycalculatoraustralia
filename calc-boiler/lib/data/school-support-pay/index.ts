@@ -33,6 +33,7 @@ import { SA } from "../public-service-pay/sa";
 import { NT as NT_PUBLIC_SERVICE } from "../public-service-pay/nt";
 import type { PayFaq, PaySource } from "../public-service-pay/types";
 import { formatSalary } from "../public-service-pay/types";
+import { VIC_2026_AGREEMENT } from "../teacher-pay/vic-2026-agreement";
 
 export type SchoolSupportStateSlug = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
@@ -239,6 +240,12 @@ const VIC_ROWS: VicRow[] = [
   ["6-4", 149_551, 154_038, 169_056],
   ["6-5", 155_033, 159_684, 175_253],
 ];
+// VGSA 2026 status, worded the same as /teacher-pay-australia/vic/ and the
+// news article (23 Oct 2026): a union report, not yet an official record.
+// When the FWC decision is published, follow the steps in vic-2026-agreement.ts
+// and rewrite the VIC wording below with it.
+const VGSA_2026_REPORTED = `${VIC_2026_AGREEMENT.reportedApproval.by} reports that the Fair Work Commission approved it with effect from ${VIC_2026_AGREEMENT.reportedApproval.operativeFrom}, but the Commission's decision had not been published when we checked`;
+
 const vicRange = (sub: string) => (sub.startsWith("6") ? "Level 2 Range 6" : `Level 1 Range ${sub[0]}`);
 
 const VIC: SchoolSupportState = {
@@ -248,8 +255,8 @@ const VIC: SchoolSupportState = {
   roleName: "Education Support (ES) staff",
   roleShort: "ES",
   employer: "Victorian Department of Education",
-  instrument: "Victorian Government Schools Agreement 2022, Education Support Class. A replacement Victorian Government Schools Agreement 2026 was approved by staff in September 2026 and lodged with the Fair Work Commission; its rates apply only once the Commission approves it.",
-  headline: "Education Support staff in Victorian government schools are paid from $51,622 a year (ES Level 1 Range 1, subdivision 1-1) to $72,460 at the top of Range 2 and $89,335 at the top of Range 3, under the Victorian Government Schools Agreement 2022 rates from the first pay period on or after 1 July 2025. These are full-time (52/52) salaries; part-time and term-time staff are paid a proportion. The proposed 2026 agreement would lift 1-1 to $53,171 from 10 August 2026 and $58,355 from 1 October 2026 once approved.",
+  instrument: `Victorian Government Schools Agreement 2022, Education Support Class. A replacement Victorian Government Schools Agreement 2026 was approved by staff in September 2026 and lodged with the Fair Work Commission; the ${VGSA_2026_REPORTED}.`,
+  headline: `Education Support staff in Victorian government schools are paid from $51,622 a year (ES Level 1 Range 1, subdivision 1-1) to $72,460 at the top of Range 2 and $89,335 at the top of Range 3, under the Victorian Government Schools Agreement 2022 rates from the first pay period on or after 1 July 2025. These are full-time (52/52) salaries; part-time and term-time staff are paid a proportion. The 2026 agreement lifts 1-1 to $53,171 from 10 August 2026 and $58,355 from 1 October 2026; the ${VGSA_2026_REPORTED}.`,
   metaTitle: "Education Support Pay Rates VIC 2026 - ES Salary Ranges 1 to 6",
   metaDescription: "Victorian Education Support (ES) salaries: every range 1-1 to 6-5 from $51,622, proposed VGSA 2026 rates from 10 Aug and 1 Oct 2026, and take-home pay.",
   h1: "Education Support Pay Rates Victoria 2026: ES Salary by Range",
@@ -271,18 +278,18 @@ const VIC: SchoolSupportState = {
     },
     {
       id: "vic-2026-proposed",
-      title: "Proposed Victorian Government Schools Agreement 2026, not yet approved",
+      title: "Victorian Government Schools Agreement 2026, approval reported but not yet published",
       status: "proposed",
       effectiveFrom: "the first pay period on or after 10 August 2026, then 1 October 2026",
       annualBasis: "published",
-      caption: "Schedule 1 of the proposed agreement, The salary column is the 1 October 2026 rate; the 10 August 2026 rate is in the note. Further increases are set for 1 November 2027, 2028 and 2029. These rates are not payable until the Fair Work Commission approves the agreement.",
+      caption: `Schedule 1 of the proposed agreement. The salary column is the 1 October 2026 rate; the 10 August 2026 rate is in the note. Further increases are set for 1 November 2027, 2028 and 2029. The ${VGSA_2026_REPORTED}, so these are not yet official rates.`,
       sourceId: "vic-vgsa-2026",
       showHourly: false,
       rows: VIC_ROWS.map(([sub, , aug, oct]) => ({ label: `${vicRange(sub)}, ${sub}`, annual: oct, note: `${formatSalary(aug)} from 10 Aug 2026` })),
     },
   ],
   notes: [
-    "The 1 July 2025 column is the final increase in the 2022 agreement, so it is still the rate in force until the 2026 agreement is approved.",
+    "The 1 July 2025 column is the final increase in the 2022 agreement, so it stays the latest official rate until the Fair Work Commission's decision on the 2026 agreement is published.",
     "The proposed 2026 agreement also introduces a mandatory AQF qualification framework for ES staff no earlier than 1 February 2029 (cl 18(1)(c)).",
     "Casual Education Support rates are set on a separate departmental schedule that we have not reproduced.",
   ],
@@ -313,7 +320,7 @@ const VIC: SchoolSupportState = {
     },
     {
       q: "What is the ES pay rise in the new Victorian schools agreement?",
-      a: "The proposed Victorian Government Schools Agreement 2026 would lift every ES rate from the first pay period on or after 10 August 2026 and again from 1 October 2026, then each 1 November from 2027 to 2029. For example, 1-1 goes from $51,622 to $53,171 and then $58,355, and 2-4 from $63,096 to $64,989 and then $71,325. The rates apply once the Fair Work Commission approves the agreement.",
+      a: `The proposed Victorian Government Schools Agreement 2026 would lift every ES rate from the first pay period on or after 10 August 2026 and again from 1 October 2026, then each 1 November from 2027 to 2029. For example, 1-1 goes from $51,622 to $53,171 and then $58,355, and 2-4 from $63,096 to $64,989 and then $71,325. The ${VIC_2026_AGREEMENT.reportedApproval.by} reports that the Commission approved the agreement with effect from ${VIC_2026_AGREEMENT.reportedApproval.operativeFrom}; the decision had not been published when we checked.`,
     },
     {
       q: "What range does an integration aide start on in Victoria?",

@@ -380,6 +380,26 @@ test("the three rebuilt states were re-verified on 23 October 2026", () => {
   }
 });
 
+test("WA ANF rates are the clause 17 column from 12 October 2026", () => {
+  const wa = getNursingPay("wa")!;
+  const anf = wa.instruments.find((i) => i.id === "wa-anf-2024")!;
+  assert.equal(anf.effectiveFrom, "12 October 2026");
+  assert.equal(anf.nextIncrease, undefined, "clause 17 prints no later column");
+  const point = (classification: string, label: string) =>
+    wa.scales.find((s) => s.classification === classification)!.points.find((p) => p.label === label)!.annual;
+  assert.equal(point("Registered Nurse/Midwife", "Level 1.1"), 85_848);
+  assert.equal(point("Registered Nurse/Midwife", "Level 2.4"), 124_087);
+  assert.equal(point("Senior Registered Nurse/Midwife", "Level 1"), 134_225);
+  assert.equal(point("Senior Registered Nurse/Midwife", "Level 10"), 201_533);
+  assert.equal(point("Enrolled Mental Health Nurse", "Pay point 1"), 75_453);
+  assert.equal(point("Enrolled Nurse (Mothercraft Nursing only)", "Year 5"), 77_478);
+  assert.equal(
+    wa.scales.find((s) => s.classification === "Nurse Practitioner")!.points[0].annual,
+    point("Senior Registered Nurse/Midwife", "Level 3"),
+    "nurse practitioner floor is SRN/M Level 3",
+  );
+});
+
 test("scale anchors are unique within each state and URL-safe", () => {
   for (const state of STATES) {
     const ids = state.scales.map((scale) => scaleAnchor(state, scale));
