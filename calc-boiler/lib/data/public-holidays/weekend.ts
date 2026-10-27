@@ -69,13 +69,16 @@ export const WEEKEND_EVENTS: readonly WeekendEvent[] = [
  * text wins and the row says so. Tasmania 2027: WorkSafe Tasmania's table lists
  * Monday 27 December for Christmas Day, but its substitute-holiday rules state
  * that when 25 December is a Saturday "both the Saturday and the Monday
- * following are holidays".
+ * following are holidays". The Statutory Holidays Act 2000 (Tas) s 4(i), (ia)
+ * settles it: Christmas Day is always a holiday and, when it is a Saturday, so
+ * is the following Monday (re-read 27 Oct 2026). tas.ts now lists 25 December
+ * 2027 itself, so this override agrees with the data and only supplies the note.
  */
 const OVERRIDES: Partial<Record<PhStateSlug, Record<string, { holiday: boolean; note: string }>>> = {
   tas: {
     "2027-12-25": {
       holiday: true,
-      note: "WorkSafe Tasmania's substitute-holiday rules make both the Saturday and the Monday holidays, although its 2027 table lists only the Monday. Check your award or agreement.",
+      note: "The Statutory Holidays Act 2000 (s 4) makes both the Saturday and the Monday public holidays, and WorkSafe Tasmania's substitute-holiday rules say the same, although its 2027 table lists only the Monday.",
     },
   },
 };

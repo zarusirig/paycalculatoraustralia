@@ -77,6 +77,15 @@ export interface ApprenticeTrade {
 export const STANDARD_WEEKLY_RATE = 1119.1;
 export const FULL_TIME_HOURS = 38;
 
+/**
+ * Hospitality award cl 26.5(a), cook or apprentice cook required to provide and
+ * use their own tools: "$2.03 per day or part day up to a maximum of $9.94 per
+ * week" (MA000009 consolidated to 1 July 2026, read 27 Oct 2026). Expense
+ * allowance, CPI-adjusted each July.
+ */
+export const COOKERY_TOOL_ALLOWANCE = { daily: 2.03, weeklyMax: 9.94 } as const;
+const dollars2 = (n: number) => `$${n.toFixed(2)}`;
+
 const awardUrl = (code: string) => `https://awards.fairwork.gov.au/${code}.html`;
 
 // ---- Electrical (reused) ---------------------------------------------------
@@ -400,7 +409,7 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
     junior: COOKERY,
     adult: null,
     notes: [
-      "A cook or apprentice cook who must supply their own tools gets $2.03 a day (up to $9.94 a week), which is not in these figures (cl 26.5(a)).",
+      `A cook or apprentice cook who must supply their own tools gets ${dollars2(COOKERY_TOOL_ALLOWANCE.daily)} a day (up to ${dollars2(COOKERY_TOOL_ALLOWANCE.weeklyMax)} a week), which is not in these figures (cl 26.5(a)).`,
       "Apprentices who reach the proficiency standard on all three occasions are paid the standard hourly rate for the whole of 4th year (cl 19.3).",
       "Adult apprentice rules (cl 19.5) and the Restaurant Industry Award's equivalent rates are not tabulated.",
       SCHOOL_BASED_NOTE,

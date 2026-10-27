@@ -1,0 +1,94 @@
+{
+ "name": "cf-010-commission-tax-faqs",
+ "files": [
+  "modules/calculator/commission-tax-faqs.ts",
+  "modules/calculator/contractor-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/commission-tax-faqs.ts:54",
+   "file": "modules/calculator/commission-tax-faqs.ts",
+   "line": "54",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Optional consistency fix in a file I do not own. The FAQ says 'up to the maximum contribution base.' That is not wrong, but it does not say the base is annual. To match the content section, change it to: 'up to the annual maximum contribution base (${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} in ${SITE_CONFIG.financialYear}).' Both SUPER_GUARANTEE and SITE_CONFIG are already used in that file."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:247",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "247",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Replace typed 'over 48 working weeks' and 'over 48 weeks' with {BILLABLE_WEEKS} (already imported in that file) so prose cannot drift from DAY_RATE_GROSS."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:129",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "129",
+   "page": "",
+   "claims": [
+    "Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: ATO: register at GST turnover of $75,000 or more (gross income minus GST), not 'above'. Import GST_REGISTRATION_THRESHOLD from @/lib/constants/gig-tax. Same fix at line 231 ('turnover exceeding $75,000' -> 'GST turnover of {formatAUD(GST_REGISTRATION_THRESHOLD)} or more'; 'below $75,000' -> render constant) and line 227 ('above the $75,000 threshold' -> 'at or above the {formatAUD(GST_REGISTRATION_THRESHOLD)} threshold'). Line 231 also lists taxi/rideshare but not limousine or fuel tax credits. After: Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more a year</strong> must register for GST"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:360",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "360",
+   "page": "",
+   "claims": [
+    "ignores the 30\u201340% loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately $56\u2013$64/hr as a contractor."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Unsourced loading range and derived figures, inconsistent with the site's own floor formula (about 1.21x at 38 hours x 48 weeks with 12% SG) and with the now-removed 1.4 to 1.6 multiplier in the FAQs. Proposed: delete the percentage and dollar range, or compute from the floor formula with constants. Also uses en dashes in prose."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:239",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "239",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Division 293 threshold '$250,000' is typed in prose; render it from the Division 293 constant if one exists in lib/constants. SG labour rule wording on that line is correct per ATO (2 Sep 2026)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

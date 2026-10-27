@@ -1,0 +1,113 @@
+{
+ "name": "cf-016-super-guarantee-charge-f",
+ "files": [
+  "modules/guide/super-guarantee-charge-faqs.ts",
+  "modules/guide/superannuation-guide.tsx",
+  "modules/guide/tax-file-number-declaration-faqs.ts",
+  "modules/guide/tax-return-2026-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/super-guarantee-charge-faqs.ts:46",
+   "file": "modules/guide/super-guarantee-charge-faqs.ts",
+   "line": "46",
+   "page": "",
+   "claims": [
+    "A business day excludes weekends and public holidays, and a public holiday anywhere in Australia removes a day nationally."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same wrong claim as question :136. Exact change: replace it with 'A business day excludes weekends and any public holiday that covers the whole of an Australian state or territory, which removes a day nationally. A holiday in only part of a state or territory (such as Royal Hobart Show Day) is still a business day.'"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-guarantee-charge-faqs.ts:86",
+   "file": "modules/guide/super-guarantee-charge-faqs.ts",
+   "line": "86",
+   "page": "",
+   "claims": [
+    "lodge an unpaid super enquiry with the ATO, which can be done anonymously."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same wrong claim as question faqs.ts:67. Exact change: replace it with 'report it with the ATO's \"Report unpaid super contributions from my employer\" online tool. The ATO asks your permission to use your name when it contacts your employer; to keep your identity confidential, use the ATO tip-off form or call 1800 060 062.' The same answer also says 'within roughly a fortnight of each payday', which is loose wording; the rule is 7 business days (C.businessDaysToPay)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:382",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "382",
+   "page": "",
+   "claims": [
+    "lodge an &quot;Unpaid super enquiry&quot; through the ATO."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This is the old tool name. Exact change: 'report it with the ATO&rsquo;s &quot;Report unpaid super contributions from my employer&quot; online tool.'"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration-faqs.ts:",
+   "file": "modules/guide/tax-file-number-declaration-faqs.ts",
+   "line": "",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer's proposal, and the NAT 3093 page backs it: 'Give your employer a withholding declaration as soon as possible so HECS is withheld from future pays.' No edit made (file not owned)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration-faqs.ts:",
+   "file": "modules/guide/tax-file-number-declaration-faqs.ts",
+   "line": "",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer's proposed wording (withholding declaration for changes with the same employer; keep the different-ABN sentence). No edit made."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-return-2026-faqs.ts:64",
+   "file": "modules/guide/tax-return-2026-faqs.ts",
+   "line": "64",
+   "page": "",
+   "claims": [
+    "tax-return-2025-26.ts header: '31 October 2026 where a prior-year return was outstanding at 30 June 2026; 31 March 2027 where the latest return had a liability of $20,000 or more' (ATO registered agent lodgment program, updated 1 Jul 2026)"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: R.incomeYearEnd = \"30 June 2026\" (tax-return-2025-26.ts line 63), so the rendered text is unchanged. The $20,000 is still typed, and the proposal to add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 is correct as a cross-file change. After: ...tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at ${R.incomeYearEnd})"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

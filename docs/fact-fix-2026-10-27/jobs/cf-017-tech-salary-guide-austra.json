@@ -1,0 +1,96 @@
+{
+ "name": "cf-017-tech-salary-guide-austra",
+ "files": [
+  "modules/guide/tech-salary-guide-australia-faqs.ts",
+  "modules/guide/working-holiday-tax-faqs.ts",
+  "modules/guide/zone-tax-offset.tsx",
+  "modules/tax-tables/fortnightly-tax-table-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tech-salary-guide-australia-faqs.ts:67",
+   "file": "modules/guide/tech-salary-guide-australia-faqs.ts",
+   "line": "67",
+   "page": "",
+   "claims": [
+    "2021\u201322 and future years | $50m | 25.0% | 30.0%"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not edited (file not owned). The proposed change is supported by the same ATO page: the 25% rate applies to '2021\u201322 and future years'. Best done by rendering SITE_CONFIG.financialYear and COMPANY_TAX.firstYear with the en dash turned into a hyphen. After: A company has its own tax rate, ${BASE_RATE_ENTITY_TAX} for a base rate entity in 2026-27 (the ATO rate for every income year from 2021-22), but"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax-faqs.ts:39",
+   "file": "modules/guide/working-holiday-tax-faqs.ts",
+   "line": "39",
+   "page": "",
+   "claims": [
+    "Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold, regardless of how long they live in Australia."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same Addy/NDA exception as line 77 of the guide. A resident WHM from an eligible NDA country pays the lower of WHM tax and resident tax, so in effect they get the tax-free threshold. Proposed: replace 'regardless of how long they live in Australia' with 'unless they are an Australian resident for tax purposes from an eligible NDA country (Chile, Finland, Germany, Israel, Japan, Norway, Turkey or the UK), who can claim resident rates when they lodge'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset.tsx:129",
+   "file": "modules/guide/zone-tax-offset.tsx",
+   "line": "129",
+   "page": "",
+   "claims": [
+    "Your employer does not apply the offset through PAYG withholding during the year, so you receive it as a reduced assessment or larger refund when you lodge."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Wrong. NAT 3093 question 7 lets an employee claim the zone or overseas forces offset through reduced withholding. Proposed replacement: 'Your employer reduces your PAYG withholding for the offset only if you give them a Withholding declaration (NAT 3093) and answer yes at question 7. Otherwise you receive it as a reduced assessment or larger refund when you lodge.' (keep the existing PAYG withholding Link)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset.tsx:181",
+   "file": "modules/guide/zone-tax-offset.tsx",
+   "line": "181",
+   "page": "",
+   "claims": [
+    "The zone list changed on 1 July 2026. Locations widely described elsewhere as Zone B (including Darwin, Palmerston and Humpty Doo) are now listed as Zone A."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The ATO NT page only shows 'Last updated 1 July 2026'. It does not show that any placement changed, and 'widely described elsewhere' is an unsourced population claim. Proposed: 'The ATO's Northern Territory zone list (last updated 1 July 2026) lists Darwin, Palmerston and Humpty Doo as Zone A. Check the current ATO list rather than an older summary.' Line 197's footnote 'Verified against the ATO Australian zone list, last updated 1 July 2026' should name the Northern Territory page."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/fortnightly-tax-table-faqs.ts:",
+   "file": "modules/tax-tables/fortnightly-tax-table-faqs.ts",
+   "line": "",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No edit in this job's files. The fortnightly and monthly FAQs are not this fixer's files. The proposed change matches the manifest: fortnightly from 2 to 6800, step 2, 3,400 rows; CSV_TABLE_RANGES.fortnightly is to 10,000, step 2; monthly CSV_TABLE_RANGES is to 21,000, step 1. Route it to the owners of those files. I did not verify the monthly manifest values beyond what the fixer quoted."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

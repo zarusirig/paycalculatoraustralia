@@ -1,0 +1,110 @@
+{
+ "name": "cf-009-news",
+ "files": [
+  "lib/news.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/news.ts:477, 520",
+   "file": "lib/news.ts",
+   "line": "477, 520",
+   "page": "",
+   "claims": [
+    "Claim it with no receipts from July 2027 ... is claimed on the return lodged from July 2027"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Minor wording issue, not a wrong figure: the ATO applies the standard deduction automatically ('you don't need to do anything to claim the deduction'). Optional change for the FAQ answer at line 520: 'is applied automatically to the return lodged from July 2027'. Not my file, so not edited."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/news.ts:68-70",
+   "file": "lib/news.ts",
+   "line": "68-70",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This needs an owner choice, and there was no edit. 6% is the correctly rounded weekly rise, and 5.97% is the hourly rise. The headline and title are locked."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/news.ts:624, 627",
+   "file": "lib/news.ts",
+   "line": "624, 627",
+   "page": "",
+   "claims": [
+    "624: \"...on the recommendation of the Australian Government Actuary. This ended a multi-year freeze at 0.25% and 2.25% that had applied since May 2020 to support pensioners through low interest rates.\" 627: \"...The Australian Government Actuary recommended lifting rates from their pandemic-era freeze as interest rates on savings accounts rose, though the new rates remain below long-term historical averages.\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer's proposed change. It matches the AGA quote (freeze ended 30 June 2025, 'majority of payment recipients') and the 20 September 2025 row in DEEMING_HISTORY. Not my file, so not edited. After: 624: \"...on the recommendation of the Australian Government Actuary. This was the second step in a gradual reset: the rates were frozen at 0.25% and 2.25% from 1 May 2020 to 30 June 2025, then rose to 0.75% and 2.75% on 20 September 2025.\" 627: \"Deeming rates are meant to reflect returns available on standard, low-risk investments such as savings accounts. The Australian Government Actuary recommended 1.25% and 3.25% because they reflect investment returns available to most payment recipients and support the government's plan to reset deeming rates gradually after the freeze ended on 30 June 2"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/news.ts:335-340",
+   "file": "lib/news.ts",
+   "line": "335-340",
+   "page": "",
+   "claims": [
+    "Sources list lacks an ATO completion notice; FAQ answer ends: \"Most people received the cut before the end of 2025, with a small number of more complex accounts finalised in early 2026.\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree: add the ATO 'what's new' source (last updated 13 Oct 2026) and delete the unsourced 'end of 2025 / early 2026' FAQ sentence. Not edited. After: Add to sources: { title: \"Study and training loans \u2013 what's new\", url: \"https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/study-and-training-loans-what-s-new\", publisher: \"Australian Taxation Office\" }. Delete the FAQ's last sentence, so the answer ends \"...that existed on 1 June 2025.\""
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/news.ts:393",
+   "file": "lib/news.ts",
+   "line": "393",
+   "page": "",
+   "claims": [
+    "This is the second full financial year the marginal repayment system has applied, but the first where the FY2026-27 threshold, bands and 2.8% indexation all interact in the one assessment."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer. The FAQ's 'FY2026-27 threshold' and 'second full financial year' are wrong, because the 2026 return assesses 2025-26 income at $67,000 in the first year of the marginal system (ATO what's new and compulsory repayments pages). The proposed text should get the same top-band condition: '... worked out only on repayment income above $67,000, the 2025-26 threshold, unless your repayment income is $179,286 or more, when it is 10% of your total repayment income.' Not edited (file not owned). After: Your 2025-26 return is the first one assessed under the marginal repayment system, which started with the 2025-26 income year. The compulsory repayment is worked out only on repayment income above $67,000, the 2025-26 threshold."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/news.ts:358",
+   "file": "lib/news.ts",
+   "line": "358",
+   "page": "",
+   "claims": [
+    "Millions lodge their first return under the new marginal HECS system this year, with 15% charged only above $69,528."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer: returns lodged in 2026 use the 2025-26 $67,000 threshold (HECS_HELP_2025_26.minimumThreshold), and $69,528 is the 2026-27 threshold (HECS_HELP.minimumThreshold). The replacement '$69,528' -> '$67,000' is proven. The 'Millions' claim is unsourced and should be removed. Not edited."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

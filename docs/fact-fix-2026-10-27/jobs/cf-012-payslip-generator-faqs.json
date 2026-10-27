@@ -1,0 +1,115 @@
+{
+ "name": "cf-012-payslip-generator-faqs",
+ "files": [
+  "modules/calculator/payslip-generator-faqs.ts",
+  "modules/calculator/salary-sacrifice-calculator-content.tsx",
+  "modules/calculator/weekly-pay-calculator-content.tsx",
+  "modules/guide/annual-leave-guide-faqs.ts",
+  "modules/guide/aps-grade-page.tsx",
+  "modules/guide/casual-conversion-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/payslip-generator-faqs.ts:15",
+   "file": "modules/calculator/payslip-generator-faqs.ts",
+   "line": "15",
+   "page": "",
+   "claims": [
+    "employer's Australian Business Number (if applicable)"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: There are two errors. (1) The ABN is required only if the employer has one. (2) 'or annual salary (for salaried employees)' is not on the FWO or reg 3.46 list. Reg 3.46 requires the ordinary hourly rate, the hours at that rate and the amount at that rate for hourly-paid employees. It also requires the rate on the last day of employment. After: the employer's name and ABN (if it has one), the employee's name, ... the hourly rate, hours worked at that rate and the total for those hours (for hourly employees), ..."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:144",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "144",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I made no edit because this file is not owned by this job. The proposal is consistent with salary-sacrifice-calculator-faqs.ts, where SECOND_SAVING includes MEDICARE_LEVY.rate. The correct net saving is 0.30 + 0.02 - 0.15 = $0.17."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-content.tsx:164",
+   "file": "modules/calculator/weekly-pay-calculator-content.tsx",
+   "line": "164",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same unsourced statistic: 'Fortnightly pay is the most common cycle in Australia, used by approximately 45% of employers.' No primary source exists in the code. Proposed: delete that sentence, so the line reads '...which suits employees who manage expenses week to week. Monthly pay is standard for...'. The 'Monthly pay is standard for salaried professionals in corporate, government, and finance sectors' claim is also unsourced; the owner of that file should check it."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide-faqs.ts:39",
+   "file": "modules/guide/annual-leave-guide-faqs.ts",
+   "line": "39",
+   "page": "",
+   "claims": [
+    "Annual leave accumulates when an employee is on: ... paid family and domestic violence leave; community service leave including jury duty; long service leave."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The fixer made no edit here, and that was right because they do not own this file. The proposed change is supported by the FWO page. The 'before' text matches the current working copy of the FAQ, which another fixer has already edited. After: Leave continues to accrue during paid leave (annual, personal, family and domestic violence, long service) and during community service leave, including jury duty."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/aps-grade-page.tsx:172",
+   "file": "modules/guide/aps-grade-page.tsx",
+   "line": "172",
+   "page": "",
+   "claims": [
+    "APS agencies pay employer super well above the 12% Superannuation Guarantee. ... {APS_SUPER_RATE}% is {formatSalary(threshold.min * 0.154)} a year; on the median of {formatSalary(median)} it is {formatSalary(median * 0.154)}."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This is the same internal mismatch as aps-grades.ts:296, in a file I do not own. Exact change: replace both '* 0.154' with '* (APS_SUPER_RATE / 100)', and replace 'the 12% Superannuation Guarantee' with 'the {SUPER_GUARANTEE.rate * 100}% Superannuation Guarantee', importing SUPER_GUARANTEE from \"@/lib/constants\"."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/casual-conversion-faqs.ts:57-66",
+   "file": "modules/guide/casual-conversion-faqs.ts",
+   "line": "57-66",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Proposed: add to EMPLOYEE_CHOICE `firstNoticeDate: \"26 February 2025\"`, `firstNoticeDateSmallBusiness: \"26 August 2025\"`, `oldPathwaysEnd: \"26 August 2025\"` (FWO 'Becoming a permanent employee', scraped 27 Oct 2026, quotes in the :42 result). Then modules/guide/casual-conversion-faqs.ts:42 can render them instead of typing the dates."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

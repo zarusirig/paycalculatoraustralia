@@ -28,7 +28,7 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What if I forget to declare my HECS debt?",
-    a: "If you don't declare your HECS-HELP debt on your TFN declaration, your employer won't withhold any HECS repayments from your pay. The ATO will calculate your compulsory repayment when you lodge your tax return, and you'll owe the full amount as a lump sum. Submit a new TFN declaration (or a withholding declaration) to your employer as soon as possible to start having HECS withheld going forward.",
+    a: "If you don't declare your HECS-HELP debt on your TFN declaration, your employer won't withhold any HECS repayments from your pay. The ATO will calculate your compulsory repayment when you lodge your tax return, and you'll owe the full amount as a lump sum. Give your employer a withholding declaration as soon as possible so HECS is withheld from future pays.",
   },
   {
     q: "How do I find my TFN if I've lost it?",
@@ -36,11 +36,11 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need a new TFN declaration each financial year?",
-    a: "No. Your TFN declaration remains in effect with your current employer until you submit a replacement or leave the job. You only need a new one if your circumstances change (for example, a new HECS debt, a change in residency, or moving the tax-free threshold to a different employer).",
+    a: "No. Your TFN declaration stays in effect with your current employer. If your circumstances change with the same employer (for example, a new HECS debt, a change in residency, or a change to your tax-free threshold claim), give them a withholding declaration instead. You complete a new TFN declaration only when you start with a new payer.",
   },
   {
     q: "Do I need to submit a new TFN declaration if I change roles within the same company?",
-    a: "No, unless your circumstances change (for example, you acquire a HECS debt, change residency status, or want to change your tax-free threshold claim). If you move to a different employing entity (a different ABN) within the same corporate group, that is a new payer and a new TFN declaration is required.",
+    a: "No. If your circumstances change (for example, you acquire a HECS debt, change residency status, or want to change your tax-free threshold claim), give your employer a withholding declaration. If you move to a different employing entity (a different ABN) within the same corporate group, that is a new payer and a new TFN declaration is required.",
   },
   {
     q: "Do contractors need to complete a TFN declaration?",

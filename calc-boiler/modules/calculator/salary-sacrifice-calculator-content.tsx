@@ -42,6 +42,9 @@ const SECOND_SAVING = `$${Math.max(0, SECOND_RATE - CONTRIBUTIONS_TAX_RATE).toFi
 const RATES_ABOVE_SUPER_TAX = TAX_BRACKETS.filter((b) => b.rate > CONTRIBUTIONS_TAX_RATE).map((b) => `${Math.round(b.rate * 1000) / 10}%`);
 const RATES_ABOVE_SUPER_TAX_LIST = `${RATES_ABOVE_SUPER_TAX.slice(0, -1).join(", ")} and ${RATES_ABOVE_SUPER_TAX[RATES_ABOVE_SUPER_TAX.length - 1]}`;
 const MEDICARE_CENTS = Math.round(MEDICARE_LEVY.rate * 100);
+// Lead example ($100,000 less $10,000) sits wholly in the third bracket, where the full Medicare levy applies.
+const THIRD_RATE = TAX_BRACKETS[2].rate;
+const THIRD_NET_SAVING = `$${(THIRD_RATE + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX_RATE).toFixed(2)}`;
 // $40,000 petrol car, statutory formula, full year, no employee contribution.
 const ICE_TAXABLE_VALUE = statutoryTaxableValue(40_000);
 const ICE_FBT = Math.round(fbtPayable(ICE_TAXABLE_VALUE));
@@ -148,7 +151,7 @@ export default function SalarySacrificeCalculatorContent() {
           </table>
         </div>
         <p className="text-warmgray">
-          The sacrifice reduces take-home pay by less than $10,000 because income tax and the Medicare levy are worked out on the lower taxable income. Every dollar sacrificed from the 30% income tax bracket saves <strong>$0.15</strong> in net tax (30% marginal rate minus 15% super contributions tax).
+          The sacrifice reduces take-home pay by less than $10,000 because income tax and the Medicare levy are worked out on the lower taxable income. Every dollar sacrificed from the {formatPercent(THIRD_RATE, 0)} income tax bracket saves <strong>{THIRD_NET_SAVING}</strong> in net tax ({formatPercent(THIRD_RATE, 0)} marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} super contributions tax).
         </p>
       </section>
 

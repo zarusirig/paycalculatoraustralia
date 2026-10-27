@@ -5,6 +5,14 @@
 //   T4 Zone or overseas forces 2026  QC106871  (last updated 30 May 2026)
 //   Zone tax offset                  QC105018  (last updated  8 June 2026)
 //   T5 Invalid and invalid carer 2026 QC106872 (last updated 30 May 2026)
+//   Tax offsets: Australian zones, Northern Territory (last updated 1 July
+//   2026, retrieved 27 Oct 2026): Darwin, Palmerston, Humpty Doo, Alice
+//   Springs, Katherine, Jabiru = Zone A; Tennant Creek, Nhulunbuy = Zone A
+//   special area.
+//   https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones/northern-territory
+//   Withholding declaration NAT 3093 Q7 (retrieved 27 Oct 2026): the zone or
+//   overseas forces offset can be claimed through reduced withholding.
+//   https://www.ato.gov.au/forms-and-instructions/withholding-declaration
 //
 // YEAR NOTE. These amounts govern the 2025-26 income year — the return being
 // lodged now. The ATO has not published FY2026-27 zone amounts and will not

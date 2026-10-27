@@ -26,8 +26,9 @@
 //
 // Common to all eight: time off must be taken at an agreed time within the
 // window; untaken TOIL must be paid at the overtime rate applicable when the
-// overtime was worked, in the next pay period after the window ends or after
-// the employee asks; untaken TOIL is paid at the overtime rate on termination;
+// overtime was worked (SCHADS: based on the rates of pay applying when payment
+// is made), in the next pay period after the window ends or after the employee
+// asks; untaken TOIL is paid at the overtime rate on termination;
 // the employer must not exert undue influence or pressure.
 //
 // Written agreement: the Clerks, Hospitality, Manufacturing, Security,

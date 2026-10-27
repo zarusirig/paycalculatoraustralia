@@ -76,4 +76,4 @@ export const HOSPITALITY_OVERTIME_LINES: string[] = [
 ];
 
 export const HOSPITALITY_EVENING_NOTE =
-  "The evening and night loadings are flat dollar amounts added to each hour, not percentages. Where more than one penalty applies only the highest is paid (Hospitality cl 29.3; Restaurant cl 24.3).";
+  "The evening and night loadings are flat dollar amounts added to each hour, not percentages. Where more than one penalty applies only the highest is paid (Hospitality cl 29.3(b); Restaurant cl 24.3(a)), except that the 50% extra for being refused an unpaid meal break (Hospitality cl 16.6; Restaurant cl 16.6, where no break time was rostered) is paid on top of it (Hospitality cl 29.3(c); Restaurant cl 24.3(b)).";

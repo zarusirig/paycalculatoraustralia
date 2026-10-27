@@ -12,7 +12,7 @@ export const PAYSLIP_GENERATOR_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What must a payslip include in Australia?",
-    a: "An Australian payslip must include, at minimum, the employer's name and ABN, the employee's name, the date of payment, the pay period, gross and net pay, the hourly rate and hours worked (for hourly employees) or annual salary (for salaried employees), any loadings, allowances or bonuses as separate line items, each deduction with its purpose, and superannuation contributions with the name of the fund. The full list is set out in the Fair Work Regulations 2009 and summarised in the table on this page.",
+    a: "An Australian payslip must include, at minimum, the employer's and employee's names, the employer's ABN (if it has one), the pay period, the date of payment, gross and net pay, the ordinary hourly rate, the hours worked at that rate and the total for those hours (for hourly employees) or the annual salary rate as at the last day the payment covers (for salaried employees), any loadings, allowances, bonuses, incentive payments or penalty rates that can be separated from the ordinary rate, the amount and details of each deduction and the name of the fund or account it was paid into, and the superannuation contributions for the period with the name of the fund. The full list is set out in the Fair Work Regulations 2009 (regulations 3.45 to 3.48) and summarised in the table on this page.",
   },
   {
     q: "How do I make a payslip for an ABN contractor?",

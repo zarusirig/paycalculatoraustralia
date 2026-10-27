@@ -6,7 +6,8 @@ import { STSL_FAQS } from "./stsl-on-payslip-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, HECS_HELP, formatAUD, calculatePayBreakdown, calculateHECS } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, MEDICARE_LEVY, formatAUD, formatPercent, calculatePayBreakdown, calculateHECS } from "@/lib/constants";
+import { STSL_NO_TFT, STSL_TFT } from "@/lib/constants/payg-withholding";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
@@ -21,6 +22,9 @@ const SOURCES_LIST: SourceLink[] = [
 // against the ATO repayment-threshold schedule).
 const STSL_THRESHOLD_2026_27 = HECS_HELP.minimumThreshold;
 const [, BAND_15, BAND_17, BAND_10] = HECS_HELP.bands;
+const CENTS_15 = Math.round(BAND_15.marginalRate * 100);
+const CENTS_17 = Math.round(BAND_17.marginalRate * 100);
+const PCT_10 = formatPercent(BAND_10.marginalRate, 0);
 
 // Worked example from the FY2026-27 engine (resident, tax-free threshold
 // claimed, no MLS). The old hardcoded ≈$630 PAYG predated the 15% rate.
@@ -109,7 +113,7 @@ export default function STSLOnPayslipPage() {
                 Your employer does not calculate your actual HECS repayment. Instead, payroll software looks up your gross earnings for the pay period in the ATO&apos;s <strong>STSL component tax tables</strong>, published alongside the standard <Link href="/payg-withholding-tables/">PAYG withholding tables</Link>, and withholds the listed extra amount on top of normal income tax.
               </p>
               <p>
-                The tables are built from the annual repayment bands. For FY2026-27, compulsory repayments are <strong>15c per dollar of repayment income above {formatAUD(STSL_THRESHOLD_2026_27)}</strong> (rising to 17c above {formatAUD(BAND_15.max)}, and 10% of total repayment income from {formatAUD(BAND_10.min)}). Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your annual figure and weekly impact at any salary.
+                The tables are built from the annual repayment bands. For FY2026-27, compulsory repayments are <strong>{CENTS_15}c per dollar of repayment income above {formatAUD(STSL_THRESHOLD_2026_27)}</strong> (rising to {CENTS_17}c above {formatAUD(BAND_15.max)}, and {PCT_10} of total repayment income from {formatAUD(BAND_10.min)}). Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your annual figure and weekly impact at any salary.
               </p>
             </section>
 
@@ -135,7 +139,7 @@ export default function STSLOnPayslipPage() {
                 </table>
               </div>
               <p className="text-sm">
-                The STSL line tracks the annual repayment: at {formatAUD(80_000)}, the FY2026-27 compulsory repayment is <strong>{formatAUD(EX_HECS)}</strong> a year, which is about <strong>{formatAUD(EX_STSL_FN)} per fortnight</strong>. The PAYG line includes the 2% Medicare levy. Figures are rounded; the exact withholding comes from the ATO STSL tax tables for your pay cycle. Cross-check your own payslip with our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>.
+                The STSL line tracks the annual repayment: at {formatAUD(80_000)}, the FY2026-27 compulsory repayment is <strong>{formatAUD(EX_HECS)}</strong> a year, which is about <strong>{formatAUD(EX_STSL_FN)} per fortnight</strong>. The PAYG line includes the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy. Figures are rounded; the exact withholding comes from the ATO STSL tax tables for your pay cycle. Cross-check your own payslip with our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>.
               </p>
             </section>
 
@@ -145,12 +149,12 @@ export default function STSLOnPayslipPage() {
                 The STSL amounts on your payslip are <strong>estimates held as a credit</strong>: they do not come off your loan balance during the year. When you lodge your tax return, the ATO calculates your real compulsory repayment from your full-year <em>repayment income</em> (taxable income plus reportable super, fringe benefits, net investment losses, and exempt foreign income) and applies the STSL credits against it.
               </p>
               <ul>
-                <li><strong>Too much withheld?</strong> Common if your income varied, you worked part of the year, or you have deductions. The excess comes back in your tax refund.</li>
-                <li><strong>Too little withheld?</strong> Common with second jobs (no STSL withheld if each job is under the threshold), salary sacrifice, or investment income. You will owe the shortfall at assessment.</li>
+                <li><strong>Too much withheld?</strong> Causes include income that varied, working part of the year, and deductions. The excess comes back in your tax refund.</li>
+                <li><strong>Too little withheld?</strong> Causes include second jobs (no STSL is withheld from a job paying under {formatAUD(STSL_TFT[0].lessThan)} a week where you claim the tax-free threshold, or under {formatAUD(STSL_NO_TFT[0].lessThan)} a week where you don&apos;t, even when your jobs add up to more), salary sacrifice, and investment income. You will owe the shortfall at assessment.</li>
                 <li><strong>Timing quirk:</strong> because credits are applied at assessment, your HELP balance is still indexed on 1 June on its full outstanding amount, and the year&apos;s withholding does not reduce it beforehand.</li>
               </ul>
               <p>
-                A second job is the most common cause of an STSL shortfall. If you work two jobs, check our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see your combined position, and read the <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> for repayment strategies.
+                If you work two jobs, check our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see your combined position, and read the <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> for repayment strategies.
               </p>
             </section>
 
@@ -178,7 +182,7 @@ export default function STSLOnPayslipPage() {
               <MethodologyDisclosure>
                 <ol className="list-decimal space-y-1 pl-4">
                   <li>STSL withholding follows the ATO STSL component tax tables for each pay cycle.</li>
-                  <li>Annual figures use the FY2026-27 repayment bands: nil to {formatAUD(STSL_THRESHOLD_2026_27)}; 15c per $1 to {formatAUD(BAND_15.max)}; {formatAUD(BAND_17.base)} + 17c per $1 to {formatAUD(BAND_17.max)}; 10% of total repayment income above that.</li>
+                  <li>Annual figures use the FY2026-27 repayment bands: nil to {formatAUD(STSL_THRESHOLD_2026_27)}; {CENTS_15}c per $1 to {formatAUD(BAND_15.max)}; {formatAUD(BAND_17.base)} + {CENTS_17}c per $1 to {formatAUD(BAND_17.max)}; {PCT_10} of total repayment income above that.</li>
                   <li>Worked-example PAYG figures are rounded estimates for illustration.</li>
                 </ol>
               </MethodologyDisclosure>

@@ -1,0 +1,113 @@
+{
+ "name": "cf-006-tax-return-2025-26",
+ "files": [
+  "lib/constants/tax-return-2025-26.ts",
+  "lib/constants/time-in-lieu.ts",
+  "lib/constants/zone-tax-offset.ts",
+  "lib/data/apprentice-pay/index.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/tax-return-2025-26.ts:127",
+   "file": "lib/constants/tax-return-2025-26.ts",
+   "line": "127",
+   "page": "",
+   "claims": [
+    "31 March 2027 | Tax return for individuals and trusts whose latest return resulted in a tax liability of $20,000 or more (excluding large and medium trusts)."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The text is unchanged and the $20,000 figure is confirmed by the cached ATO page. The fixer's cross-file proposal stands: add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 in lib/constants/tax-return-2025-26.ts, render it in the tax-calendar-2026-27.ts:208 event title, then render {formatAUD(R.agentLargeLiabilityThreshold)} at tax-calendar.tsx:127. After: (unchanged; the figure is correct)"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/tax-return-2025-26.ts:28",
+   "file": "lib/constants/tax-return-2025-26.ts",
+   "line": "28",
+   "page": "",
+   "claims": [
+    "(15 Sep 2026) 'If your laundry expenses ... are $150 or less, you can claim ... without providing written evidence ... This is the case even if your total claim for work-related expenses is more than $300' / standard deduction page (14 Sep 2026): 'From 1 July 2026, the following record keeping exceptions won't apply: $300 deduction limit ...; $150 laundry expense limit'"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The prose change is proven and limited to 2025-26 and earlier years. No constant holds $300 or $150 (I grepped lib/constants). The constant itself is cross-file as the fixer says: add noEvidenceTotalCap 300, laundryNoEvidenceCap 150, laundryPerLoadWorkOnlyCents 100 and laundryPerLoadMixedCents 50 to lib/constants/tax-return-2025-26.ts with these two ATO URLs, then render them in both guide files. After: For 2025-26 and earlier income years, written records are not mandatory below the $300 total work-related threshold. Above $300, you need receipts, invoices, or bank/credit card statements. A laundry claim for eligible work clothing of $150 or less needs no written evidence, even when your total work-related claim is over $300. Both exceptions end from the 2026-27 income year."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/tax-return-2025-26.ts:216",
+   "file": "lib/constants/tax-return-2025-26.ts",
+   "line": "216",
+   "page": "",
+   "claims": [
+    "ATO end-of-year finalisation through STP: \"by 14 July each year\" (cited in lib/constants/tax-calendar-2026-27.ts lines 24-26, verified 23 Sep 2026; the calendar also hard-codes ev(\"2026-07-14\", \"STP finalisation declaration for 2025-26\"))."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Nothing in the diff changed here: lines 216 and 286 still read '14 July 2026' and '(due by 14 July)'. The date is right for the 2025-26 return. The proposed cross-file change is sound: add stpFinalisationDate: \"14 July 2026\" to RETURN_2026 in lib/constants/tax-return-2025-26.ts, then render it in tax-refund-guide.tsx at lines 216 and 286 and in the tax-calendar event."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/time-in-lieu.ts:27-30",
+   "file": "lib/constants/time-in-lieu.ts",
+   "line": "27-30",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The header comment 'Common to all eight: ... paid at the overtime rate applicable when the overtime was worked' contradicts the SCHADS note at lines 24-25 and SCHADS cl 28.2(e)-(f). Proposed change: add '(SCHADS: based on the rates of pay applying when payment is made)'. It is only a comment, so it has no reader impact."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/zone-tax-offset.ts:4-7",
+   "file": "lib/constants/zone-tax-offset.ts",
+   "line": "4-7",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The source header does not list the zone-list pages. Add: '//   Tax offsets: Australian zones, Northern Territory (last updated 1 July 2026, retrieved 27 Oct 2026): Darwin, Palmerston, Humpty Doo, Alice Springs, Katherine, Jabiru = Zone A; Tennant Creek, Nhulunbuy = Zone A special area.' Also add the withholding-declaration note the reviewer asked for: '//   Withholding declaration NAT 3093 Q7 (https://www.ato.gov.au/forms-and-instructions/withholding-declaration): the zone or overseas forces offset can be claimed through reduced withholding.'"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/index.ts:403",
+   "file": "lib/data/apprentice-pay/index.ts",
+   "line": "403",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The cookery tool allowance ($2.03 a day, $9.94 a week) exists only in a prose note, and it is retyped in apprentice-pay-rates-faqs.ts:44. Proposed change: add `export const COOKERY_TOOL_ALLOWANCE = { daily: 2.03, weeklyMax: 9.94 } as const;` and render it in both the note and the FAQ."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

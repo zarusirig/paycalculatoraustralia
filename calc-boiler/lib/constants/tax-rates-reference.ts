@@ -31,10 +31,16 @@
 //    2025.
 //    https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7331
 //  - ATO "Tax rates – working holiday maker" (QC73322, last updated 1 Jun
-//    2026). Latest table published is 2025-26: "0 – $45,000 | 15c for each
-//    $1", "$45,001 – $135,000 | $6,750 plus 30c", "$135,001 – $190,000 |
-//    $33,750 plus 37c", "$190,001 and over | $54,100 plus 45c".
+//    2026) table for 2025-26: "0 – $45,000 | 15c for each $1", "$45,001 –
+//    $135,000 | $6,750 plus 30c", "$135,001 – $190,000 | $33,750 plus 37c",
+//    "$190,001 and over | $54,100 plus 45c".
 //    https://www.ato.gov.au/tax-rates-and-codes/tax-rates-working-holiday-makers
+//  - ATO "Schedule 15 – Tax table for working holiday makers" (QC107133,
+//    published 17 June 2026, re-read 27 Oct 2026): "applies to payments from
+//    1 July 2026"; "Table A: Working holiday makers income tax rates for
+//    2026–27": $0 – $45,000 15%, $45,001 – $135,000 30%, $135,001 – $190,000
+//    37%, $190,001 & over 45%. Same scale as 2025-26.
+//    https://www.ato.gov.au/tax-rates-and-codes/schedule-15-tax-table-for-working-holiday-makers
 //  - ATO "Tax rates – foreign resident" (last updated 1 Jun 2026): latest
 //    table published is 2025-26 — 30c to $135,000, $40,500 + 37c, $60,850 +
 //    45c — matching NON_RESIDENT_TAX_BRACKETS.
@@ -137,7 +143,8 @@ export const LEGISLATED_CUT_2027_28 = {
 
 /**
  * Working holiday maker scale (visa subclass 417 / 462). VERIFIED: ATO
- * QC73322, latest published table 2025-26. Rendered with that year label.
+ * QC73322 (2025-26) and ATO Schedule 15 Table A (published 17 June 2026),
+ * which gives the same scale for 2026-27. Rendered with the 2026-27 label.
  */
 export const WHM_TAX_BRACKETS_2025_26: readonly TaxBracket[] = [
   { min: 0, max: 45_000, rate: 0.15, base: 0, label: "15c for each $1" },
@@ -145,7 +152,9 @@ export const WHM_TAX_BRACKETS_2025_26: readonly TaxBracket[] = [
   { min: 135_001, max: 190_000, rate: 0.37, base: 33_750, label: "$33,750 plus 37c for each $1 over $135,000" },
   { min: 190_001, max: Infinity, rate: 0.45, base: 54_100, label: "$54,100 plus 45c for each $1 over $190,000" },
 ] as const;
-export const WHM_TABLE_YEAR = "2025-26";
+export const WHM_TABLE_YEAR = "2026-27";
+/** Schedule 15 Table A: the 2026-27 scale is unchanged from 2025-26. */
+export const WHM_TAX_BRACKETS_2026_27: readonly TaxBracket[] = WHM_TAX_BRACKETS_2025_26;
 /** The ATO's foreign-resident page also stops at 2025-26 (updated 1 Jun 2026). */
 export const FOREIGN_TABLE_YEAR = "2025-26";
 export { NON_RESIDENT_TAX_BRACKETS };

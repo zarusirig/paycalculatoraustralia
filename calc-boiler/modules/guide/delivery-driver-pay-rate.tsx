@@ -10,7 +10,7 @@ import {
   deliveryFloor,
   deliveryRate,
 } from "@/lib/constants/delivery-minimum-pay";
-import { CENTS_PER_KM_RATES, CURRENT_CPK_YEAR } from "@/lib/constants/cents-per-km";
+import { CENTS_PER_KM_RATES, CPK_KM_CAP, CURRENT_CPK_YEAR } from "@/lib/constants/cents-per-km";
 import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import DeliveryPayCalculator from "@/modules/calculator/delivery-pay-calculator";
 import { DELIVERY_DRIVER_FAQS } from "./delivery-driver-pay-rate-faqs";
@@ -64,8 +64,8 @@ export default function DeliveryDriverPayRatePage() {
         items={[
           { k: "Bike, e-bike, on foot", v: formatAUD(deliveryRate("bicycle-or-none"), 2), s: "An hour of engaged time" },
           { k: "Motorcycle or scooter", v: formatAUD(deliveryRate("motorcycle-or-scooter"), 2), s: "Petrol scooter or motorcycle" },
-          { k: "Car or small van", v: formatAUD(deliveryRate("car-or-van"), 2), s: "Up to 1 tonne capacity" },
-          { k: "In force from", v: DELIVERY_MSO.commences, s: "Rates rise 1 January 2027" },
+          { k: "Car or small van", v: formatAUD(deliveryRate("car-or-van"), 2), s: `Up to ${DELIVERY_MSO.maxCarryingCapacityTonnes} tonne capacity` },
+          { k: "In force from", v: DELIVERY_MSO.commences, s: `Rates rise ${p27.from}` },
         ]}
       />
 
@@ -86,7 +86,7 @@ export default function DeliveryDriverPayRatePage() {
 
           <section>
             <H2 id="rates">Delivery Minimum Rates by Vehicle</H2>
-            <p>The rate depends on how you deliver. The order&rsquo;s own classes are below, with the rate table that applies now and the one that starts on 1 January 2027.</p>
+            <p>The rate depends on how you deliver. The order&rsquo;s own classes are below, with the rate table that applies now and the one that starts on {p27.from}.</p>
             <DataTable
               head={["Class of vehicle", p26.label, p27.label]}
               align={["l", "r", "r"]}
@@ -102,7 +102,7 @@ export default function DeliveryDriverPayRatePage() {
             </p>
             <ul>
               <li><strong>Covered:</strong> food, drink and grocery delivery on an app, on foot, by bike, e-bike, scooter, motorcycle, car or small van.</li>
-              <li><strong>Not covered:</strong> anyone using a vehicle with a carrying capacity of more than 1 tonne.</li>
+              <li><strong>Not covered:</strong> anyone using a vehicle with a carrying capacity of more than {DELIVERY_MSO.maxCarryingCapacityTonnes} tonne.</li>
               <li><strong>Not covered by this order:</strong> passenger rideshare driving and parcel &ldquo;last mile&rdquo; delivery. The Commission is still considering applications for those, and says it will review this order if it publishes a draft for either.</li>
               <li><strong>Employees:</strong> if a restaurant or store employs you directly to deliver, you are an employee under an award or the <Link href="/minimum-wage-australia/">National Minimum Wage</Link>, and this order does not apply to you.</li>
             </ul>
@@ -127,7 +127,7 @@ export default function DeliveryDriverPayRatePage() {
               Non-engaged time is policed in steps. The platform must send you a first notification with its evidence, then a second one for a later engagement. Only after the second can later engagements with non-engaged time be excluded, and the notifications expire after {DELIVERY_MSO.nonEngagedNoticeExpiryMonths} months. If it turns out an engagement did not include non-engaged time, the platform must withdraw the notice. You can dispute exclusions through the platform&rsquo;s process and then the Fair Work Commission.
             </p>
             <p>
-              Time away from the app is your choice and unpaid: you decide whether and when to accept engagements. The platform must give you the hours of engaged time and the amounts paid at the end of each earnings period, and keep the records for 7 years, which is what you check your own numbers against.
+              Time away from the app is your choice and unpaid: you decide whether and when to accept engagements. The platform must give you the hours of engaged time and the amounts paid at the end of each earnings period, and keep the records for {DELIVERY_MSO.recordKeepingYears} years, which is what you check your own numbers against.
             </p>
           </section>
 
@@ -137,7 +137,7 @@ export default function DeliveryDriverPayRatePage() {
               The delivery minimum rate is before your costs: the order makes the worker responsible for their own vehicle. You pay for registration, fuel or charging, maintenance, repairs, compulsory third-party insurance, any licences or checks the platform requires, and fines unless the platform directed you to do what led to the fine. The platform must hold personal accident insurance for you. None of those costs is reimbursed through the floor.
             </p>
             <p>
-              So the figure to compare with a wage is not the {formatAUD(deliveryRate("bicycle-or-none"), 2)} to {formatAUD(deliveryRate("car-or-van"), 2)} hourly rate itself but what is left after those costs and after tax. The ATO&rsquo;s cents-per-kilometre rate for {CURRENT_CPK_YEAR} is {Math.round(CPK * 100)}c a km (capped at 5,000 km under that method), a ready estimate of car running costs; see <Link href="/cents-per-km/">cents per km</Link>. For a full tax view, use the <Link href="/rideshare-delivery-earnings-after-tax/">rideshare and delivery earnings after tax calculator</Link>.
+              So the figure to compare with a wage is not the {formatAUD(deliveryRate("bicycle-or-none"), 2)} to {formatAUD(deliveryRate("car-or-van"), 2)} hourly rate itself but what is left after those costs and after tax. The ATO&rsquo;s cents-per-kilometre rate for {CURRENT_CPK_YEAR} is {Math.round(CPK * 100)}c a km (capped at {CPK_KM_CAP.toLocaleString("en-AU")} km under that method), a ready estimate of car running costs; see <Link href="/cents-per-km/">cents per km</Link>. For a full tax view, use the <Link href="/rideshare-delivery-earnings-after-tax/">rideshare and delivery earnings after tax calculator</Link>.
             </p>
           </section>
 
@@ -183,7 +183,7 @@ export default function DeliveryDriverPayRatePage() {
           <section>
             <H2 id="whats-next">What Happens Next</H2>
             <p>
-              The rates step up on 1 January 2027 ({formatAUD(p27.rates["bicycle-or-none"], 2)}, {formatAUD(p27.rates["motorcycle-or-scooter"], 2)} and {formatAUD(p27.rates["car-or-van"], 2)}). From {DELIVERY_MSO.nextIndexation} they are adjusted every year by the National Minimum Wage increase from the annual wage review. The order is described as interim: the Commission will review it if it publishes a notice of intent and draft order for the TWU&rsquo;s other applications covering employee-like workers and road transport contractors doing &ldquo;last mile&rdquo; delivery. Check the sources below for any change.
+              The rates step up on {p27.from} ({formatAUD(p27.rates["bicycle-or-none"], 2)}, {formatAUD(p27.rates["motorcycle-or-scooter"], 2)} and {formatAUD(p27.rates["car-or-van"], 2)}). From {DELIVERY_MSO.nextIndexation} they are adjusted every year by the National Minimum Wage increase from the annual wage review. The order is described as interim: the Commission will review it if it publishes a notice of intent and draft order for the TWU&rsquo;s other applications covering employee-like workers and road transport contractors doing &ldquo;last mile&rdquo; delivery. Check the sources below for any change.
             </p>
           </section>
 

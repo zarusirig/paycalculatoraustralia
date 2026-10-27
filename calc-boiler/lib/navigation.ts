@@ -356,7 +356,7 @@ export const CALCULATOR_CATEGORIES = [
     calculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator", description: "Calculate your income tax with bracket breakdown" },
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator", description: "See your net pay after all deductions" },
-      { href: "/superannuation-calculator/", label: "Superannuation Calculator", description: "Calculate employer SG contributions at 12%" },
+      { href: "/superannuation-calculator/", label: "Superannuation Calculator", description: "Calculate employer SG contributions" },
       { href: "/salary-sacrifice-calculator/", label: "Salary Sacrifice Calculator", description: "Compare pay before and after sacrifice" },
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator", description: "Marginal repayment system, FY2026-27 thresholds" },
       { href: "/capital-gains-tax-calculator/", label: "Capital Gains Tax Calculator", description: "CGT with the 12-month 50% discount" },

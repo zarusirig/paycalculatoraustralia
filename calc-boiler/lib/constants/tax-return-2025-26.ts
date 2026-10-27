@@ -48,6 +48,25 @@
 //    less; tier 1 $101,001–$118,000 (1%); tier 2 $118,001–$158,000 (1.25%);
 //    tier 3 $158,001+ (1.5%).
 //    https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates
+//
+// Added 27 Oct 2026 (fact-fix pass, read via Firecrawl on 27 Oct 2026):
+//  - Finalising your STP data (QC81849, updated 23 Oct 2026): a finalisation
+//    declaration is "lodged by 14 July each year". For 2025-26 that is
+//    Tuesday 14 July 2026.
+//    https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data
+//  - Records you need to keep: "Total work-related expenses $300 or less" and
+//    "Total laundry expenses $150 or less" exceptions.
+//    https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/records-you-need-to-keep
+//  - Clothing, laundry and dry-cleaning expenses (updated 15 Sep 2026): "$1 per
+//    load if it only contains work clothing ... 50c per load if you mix
+//    personal items"; laundry of $150 or less needs no written evidence "even
+//    if your total claim for work-related expenses is more than $300".
+//    https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/clothes-and-items-you-wear-at-work/clothing-laundry-and-dry-cleaning-expenses
+//  - Standard deduction (updated 14 Sep 2026): "From 1 July 2026, the
+//    following record keeping exceptions won't apply: $300 deduction limit
+//    ...; $150 laundry expense limit". So both caps below are 2025-26 and
+//    earlier only.
+//    https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/standard-deduction-for-work-related-expenses
 // =============================================================================
 
 import {
@@ -65,6 +84,16 @@ export const RETURN_2026 = {
   agentDueDateMostPeople: "15 May 2027",
   agentConcessionDate: "5 June 2027",
   agentDueDateLargeLiability: "31 March 2027",
+  /** Latest-return tax liability at or above which the 31 March due date applies. */
+  agentLargeLiabilityThreshold: 20_000,
+  /** Employers' STP finalisation declaration for 2025-26 ("by 14 July each year"). */
+  stpFinalisationDate: "14 July 2026",
+  /** 2025-26 and earlier only: total work-related claim needing no written evidence. */
+  noEvidenceTotalCap: 300,
+  /** 2025-26 and earlier only: laundry claim needing no written evidence. */
+  laundryNoEvidenceCap: 150,
+  laundryPerLoadWorkOnlyCents: 100,
+  laundryPerLoadMixedCents: 50,
   prefillReady: "late July",
   onlineRefundTypical: "2 weeks",
   onlineProcessingBusinessDays: 12,
@@ -99,6 +128,14 @@ export const RETURN_2026_SOURCES = {
   mls:
     "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates",
   rates: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents",
+  stpFinalisation:
+    "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data",
+  recordsToKeep:
+    "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/records-you-need-to-keep",
+  laundry:
+    "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/clothes-and-items-you-wear-at-work/clothing-laundry-and-dry-cleaning-expenses",
+  standardDeduction:
+    "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/standard-deduction-for-work-related-expenses",
 } as const;
 
 /** 2025-26 MLS tiers, singles (ATO, updated 22 Jun 2026). */

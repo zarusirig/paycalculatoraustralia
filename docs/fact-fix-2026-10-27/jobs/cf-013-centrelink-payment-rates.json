@@ -1,0 +1,114 @@
+{
+ "name": "cf-013-centrelink-payment-rates",
+ "files": [
+  "modules/guide/centrelink-payment-rates-faqs.ts",
+  "modules/guide/concessional-contributions-cap-faqs.ts",
+  "modules/guide/construction-trades-pay-faqs.ts",
+  "modules/guide/delivery-driver-pay-rate.tsx",
+  "modules/guide/division-293-tax.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/centrelink-payment-rates-faqs.ts:166",
+   "file": "modules/guide/centrelink-payment-rates-faqs.ts",
+   "line": "166",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The same hardcoded 'the next change is 20 March 2027' appears here. It is also in modules/guide/centrelink-payment-rates-faqs.ts:37 and modules/guide/centrelink-payment-rates.tsx:263. The date is correct today but will go stale. Proposed fix: add nextIndexation: \"20 March 2027\" to RENT_ASSISTANCE and JOBSEEKER in lib/constants/centrelink-family-payments.ts and render it in all of these places. I did not edit them because they are not my files."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/concessional-contributions-cap-faqs.ts:36",
+   "file": "modules/guide/concessional-contributions-cap-faqs.ts",
+   "line": "36",
+   "page": "",
+   "claims": [
+    "The oldest amounts are used first, and each expires after five years."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The rule is correct today (ATO: unused amounts expire after 5 years), but the word 'five' is not tied to the constant. CARRY_FORWARD is already used in the same string, so it is already imported. After: The oldest amounts are used first, and each expires after ${CARRY_FORWARD.years} years."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/concessional-contributions-cap-faqs.ts:44",
+   "file": "modules/guide/concessional-contributions-cap-faqs.ts",
+   "line": "44",
+   "page": "",
+   "claims": [
+    "less a 15% tax offset for the contributions tax the fund already paid."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Correct today (ATO QC19749: 'less a 15% tax offset'). The change needs ECC_TAX_OFFSET_RATE added to the existing import from @/lib/constants/super-contributions. formatPercent is already used in the same string. After: less a ${formatPercent(ECC_TAX_OFFSET_RATE, 0)} tax offset for the contributions tax the fund already paid."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay-faqs.ts:26 and 46",
+   "file": "modules/guide/construction-trades-pay-faqs.ts",
+   "line": "26 and 46",
+   "page": "",
+   "claims": [
+    "line 26: 'Electricians ($80K to $110K), plumbers ($75K to $105K) and boilermakers ($85K to $120K) are among the highest-paid trades'; line 46: 'Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K to $120K.'"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same unsourced ranges as the page table, and the 'boilermakers highest-paid' claim is contradicted by site JSA data (bricklayers $2,317/wk highest; structural steel and welding $1,688/wk lowest, below the $1,852 all-occupations median). Proposed change: whoever owns the FAQ file should drop the boilermaker 'highest-paid' claim and the hard-coded ranges, or render JSA medians from the occupation data files, consistent with the owner's decision on the page table."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/delivery-driver-pay-rate.tsx:140",
+   "file": "modules/guide/delivery-driver-pay-rate.tsx",
+   "line": "140",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not my file. It types '(capped at 5,000 km under that method)'. Proposed change: replace 5,000 with {CPK_KM_CAP.toLocaleString(\"en-AU\")} imported from @/lib/constants/cents-per-km. All delivery-rate pages also need DELIVERY_RATE_PERIODS[0] / deliveryRate default '2026' moved to the 2027 period on 1 January 2027 (cl 14.2(b))."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax.tsx:66",
+   "file": "modules/guide/division-293-tax.tsx",
+   "line": "66",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Optional: add to DIVISION_293 `paymentDueDays: 21` (ITAA 1997 s 293-65(1); Treasury EM) and `releaseElectionDays: 60` (ATO QC36272, updated 24 Aug 2026), then render them in modules/guide/division-293-tax.tsx and division-293-tax-faqs.ts. Not required for correctness; both pages state the right values today."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

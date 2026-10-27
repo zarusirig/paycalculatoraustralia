@@ -198,6 +198,21 @@ export const SCHADS_ALLOWANCES = {
 } as const;
 
 /**
+ * Sleepover allowance basis. cl 25.7(d): "a sleepover allowance of 4.9% of the
+ * standard rate for each night on which they sleep over". The "standard rate"
+ * (cl 2) is the clause 15.3 minimum wage for SACS level 3 pay point 3, which is
+ * $1,283.10 from 1 July 2026 (pre-ERO; 1,283.10 x 4.9% = $62.87). cl 25.7(e):
+ * work during a sleepover is paid at the overtime rate, minimum one hour.
+ * Source: https://awards.fairwork.gov.au/MA000100.html (read 27 October 2026).
+ */
+export const SCHADS_SLEEPOVER = {
+  pctOfStandardRate: 0.049,
+  standardRateWeekly: 1283.1,
+  clause: "25.7(d)",
+  workDuringSleepoverClause: "25.7(e)",
+} as const;
+
+/**
  * Vehicle allowance (cl 20.7) — date-aware.
  *
  * Verified 23 September 2026 at fwc.gov.au: determination PR813674 (Deputy
@@ -271,6 +286,21 @@ export function schadsVehicleAllowanceWording(on: Date | string = new Date()): s
  *    which the Pay Guide explicitly excludes
  *  - Crisis Accommodation (Schedule C) and Family Day Care (Schedule D) streams
  */
+/**
+ * Schedule G (Classification Translation Arrangements) cut-off. Schedule G
+ * covers Home care employees (aged care) "classified under the previous
+ * classification structure in this award" and "employees covered by the Nurses
+ * Award 2020 on 31 December 2024 who became covered by this award as a result
+ * of PR779152". G.1.2(a): "only applies to an employee classified under this
+ * award on or before 31 December 2024" at aged care level 4 pp2 or level 5 pp2.
+ * Source: https://awards.fairwork.gov.au/MA000100.html (read 27 October 2026).
+ * The translation rates themselves are not extracted (see SCHADS_UNVERIFIED).
+ */
+export const SCHADS_SCHEDULE_G = {
+  cutoffDate: "31 December 2024",
+  nursesAwardVariation: "PR779152",
+} as const;
+
 export const SCHADS_UNVERIFIED = [
   "National Training Wage (Schedule I) trainee rates",
   "Schedule G classification translation rates",

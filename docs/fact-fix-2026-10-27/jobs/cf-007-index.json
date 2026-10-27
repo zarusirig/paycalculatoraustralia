@@ -1,0 +1,114 @@
+{
+ "name": "cf-007-index",
+ "files": [
+  "lib/data/graduate-salary/index.ts",
+  "lib/data/job-pay-rates/boilermaker.ts",
+  "lib/data/job-pay-rates/hospitality-common.ts",
+  "lib/data/public-health-allied-pay/vic.ts",
+  "lib/data/public-holidays/seasonal-pages.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/graduate-salary/index.ts:27, 185",
+   "file": "lib/data/graduate-salary/index.ts",
+   "line": "27, 185",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The data file I do not own still hedges. Line 27 comment: 'so it may have moved since'. Line 185, doctor.published.basis: 'Check NSW Health for any newer rate.' No page renders .basis today. Proposed change for line 185: replace 'an interim increase pending the NSW Industrial Relations Commission's final decision. Check NSW Health for any newer rate.' with 'an interim rate while the NSW Industrial Relations Commission arbitrates the awards; further increases follow the Commission's final decision.' Optionally export NSW_INTERN_ANNUAL (line 104). IB2026_007 is still Active on 27 Oct 2026 (review date 19 January 2027)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/boilermaker.ts:79",
+   "file": "lib/data/job-pay-rates/boilermaker.ts",
+   "line": "79",
+   "page": "",
+   "claims": [
+    "cl 4.9(e) \"ships, boats, barges and marine vessels of all descriptions, and components\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No edit was made. I confirm the proposal: shipbuilding is within MA000010 coverage, so boilermaker.ts:79 and :97 should drop shipbuilding as an 'another award' example and remove the unsourced 'usually'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/hospitality-common.ts:79",
+   "file": "lib/data/job-pay-rates/hospitality-common.ts",
+   "line": "79",
+   "page": "",
+   "claims": [
+    "Where more than one penalty applies only the highest is paid (Hospitality cl 29.3; Restaurant cl 24.3)."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This file is not mine. It states the highest-only rule with no exception. Hospitality cl 29.3(c) pays the clause 16 breaks penalty on top (HOSPITALITY_PENALTIES.highestOnlyException). Proposed change: append the hospitality exception, for example '... only the highest is paid (Hospitality cl 29.3(b); Restaurant cl 24.3). Under the Hospitality Award the clause 16 breaks penalty is paid in addition (cl 29.3(c)).' Check the Restaurant Award cl 24.3 for an equivalent carve-out before generalising."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-health-allied-pay/vic.ts:20-24, 53, 82, 109",
+   "file": "lib/data/public-health-allied-pay/vic.ts",
+   "line": "20-24, 53, 82, 109",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The FWC agreements2026.xlsx has been regenerated ('List of Agreements From 1 January 2026 to 26 October 2026, Report generated on 26 October 2026') and still lists no replacement for AE518208 or AE518146. Proposed change: FWC_2026_LIST.title -> 'Fair Work Commission list of agreements approved from 1 January to 26 October 2026 (no replacement agreement)'; both status strings 'as at 19 October 2026' -> 'as at 26 October 2026'; and the header comment lines 20-24 to match. Alternatively, use 23 October everywhere to match pharmacist.ts. I don't own this file."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:502, 635, 636, 694, 697",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "502, 635, 636, 694, 697",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Agreed. After the tas.ts data change, the Easter 2027 prose that says Tasmania has no Easter Sunday is wrong, so the fixer's proposed replacements should be applied by the owner of seasonal-pages.ts. Until then the matrix data and this prose disagree."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:156, 195, 228, 322, 503",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "156, 195, 228, 322, 503",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Agreed. s 4(i),(ia) make both Saturday 25 and Monday 27 December 2027 Tasmanian holidays. Tasmania's Boxing Day stays Tuesday 28 December only (s 4(j)(ii))."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

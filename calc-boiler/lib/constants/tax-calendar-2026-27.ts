@@ -21,9 +21,16 @@
 //    annual instalment "pay your annual instalment by 21 October" if you use
 //    a tax agent (self-preparers just lodge the return by 31 October).
 //    https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/payg-instalments/when-are-payg-instalments-due
-//  - STP end-of-year finalisation: "by 14 July each year"; closely held payees
-//    of employers with 20+ employees "30 September each year".
-//    https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/start-reporting/end-of-year-finalisation-through-stp
+//  - STP end-of-year finalisation (QC81849, last updated 23 Oct 2026, re-read
+//    27 Oct 2026): "lodged by 14 July each year".
+//    https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data
+//  - STP closely held payees (QC59375, last updated 23 Oct
+//    2026, re-read 27 Oct 2026): "If you have 19 or fewer payees" the closely
+//    held payee arrangements apply; "If you have 20 or more payees, then these
+//    arrangements do not apply". "If you have both closely held payees and
+//    arm's length employees, finalise arm's length employees by 14 July and
+//    closely held payees by 30 September."
+//    https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/concessional-reporting
 //  - Penalty units (last updated 26 Jun 2026): $364 on or after 1 July 2026;
 //    $330 from 7 Nov 2024 to 30 Jun 2026.
 //    https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/penalties/penalty-units
@@ -38,14 +45,16 @@
 //    each payday from 1 July 2026 — see payday-super.ts for its sources.
 // =============================================================================
 
-import { SUPER_GUARANTEE_CHARGE, TAX_BRACKETS_2026_27 } from "./australian-tax";
+import { SUPER_GUARANTEE_CHARGE, TAX_BRACKETS_2026_27, formatAUD } from "./australian-tax";
 import { RETURN_2026, RETURN_2026_SOURCES } from "./tax-return-2025-26";
 
 export const TAX_CALENDAR_SOURCES = {
   bas: "https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/due-dates-for-lodging-and-paying-your-bas",
   paygInstalments:
     "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/payg-instalments/when-are-payg-instalments-due",
-  stp: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/start-reporting/end-of-year-finalisation-through-stp",
+  stp: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data",
+  stpCloselyHeldPayees:
+    "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/concessional-reporting",
   penaltyUnits:
     "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/penalties/penalty-units",
   failureToLodge:
@@ -200,14 +209,14 @@ export const TAX_CALENDAR_2026_27: readonly CalendarEvent[] = [
   ev("2026-07-14", "STP finalisation declaration for 2025-26", "Employers"),
   ev(LEGACY_SUPER_DATES.finalQuarterSG.iso, "Q4 2025-26 BAS and PAYG instalment; last-ever quarterly super guarantee payment (April–June 2026)", "Employers"),
   ev(LEGACY_SUPER_DATES.finalQuarterStatement.iso, "SGC statement due if the April–June 2026 super was paid late", "Employers"),
-  ev("2026-09-30", "STP finalisation for closely held payees (employers with 20 or more employees)", "Employers"),
+  ev("2026-09-30", "STP finalisation for closely held payees (employers with 19 or fewer payees)", "Employers"),
   ev(RETURN_DATES_2026.annualPaygInstalment.iso, "Annual PAYG instalment for 2025-26 (if a tax agent lodges your return)", "PAYG instalment payers"),
   ev(QUARTERS_2026_27[0].iso, "Q1 2026-27 BAS and PAYG instalment (July–September)", "Businesses"),
   ev(RETURN_DATES_2026.selfLodge.iso, `${RETURN_2026.incomeYear} tax return due if you lodge it yourself; annual GST return due`, "Individuals", true),
   ev(QUARTERS_2026_27[1].iso, "Q2 2026-27 BAS and PAYG instalment (October–December)", "Businesses"),
-  ev(RETURN_DATES_2026.agentLargeLiability.iso, `${RETURN_2026.incomeYear} return for agent clients whose latest return had a liability of $20,000 or more`, "Tax agent clients"),
+  ev(RETURN_DATES_2026.agentLargeLiability.iso, `${RETURN_2026.incomeYear} return for agent clients whose latest return had a liability of ${formatAUD(RETURN_2026.agentLargeLiabilityThreshold)} or more`, "Tax agent clients"),
   ev(QUARTERS_2026_27[2].iso, "Q3 2026-27 BAS and PAYG instalment (January–March); 75% for two-instalment payers", "Businesses"),
-  ev(RETURN_DATES_2026.agentMostPeople.iso, `${RETURN_2026.incomeYear} tax return due for most tax agent clients`, "Tax agent clients", true),
+  ev(RETURN_DATES_2026.agentMostPeople.iso, `${RETURN_2026.incomeYear} tax return due for all other tax agent clients`, "Tax agent clients", true),
   ev(RETURN_DATES_2026.agentConcession.iso, "Concession date for 15 May agent returns, if any payment is also made by then", "Tax agent clients"),
   ev("2027-06-30", "2026-27 income year ends: last day for deductible spending, super contributions and donations this year", "Everyone", true, false),
   ev("2027-07-14", "STP finalisation declaration for 2026-27", "Employers"),

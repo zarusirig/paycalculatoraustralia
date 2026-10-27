@@ -9,7 +9,7 @@ import {
   CGT_MINIMUM_OWNERSHIP_MONTHS,
   CGT_REFORM_2027,
 } from "@/lib/constants/capital-gains-tax";
-import { EMPLOYMENT, SUPER_GUARANTEE, formatAUD } from "@/lib/constants/australian-tax";
+import { EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants/australian-tax";
 import { COMPANY_TAX } from "@/lib/constants/company-tax";
 import { DEFAULT_CONTRACTOR_ASSUMPTIONS } from "@/lib/constants/contractor-rate";
 import { CYBER_SECURITY_ATO } from "@/lib/data/job-pay-rates/cyber-security";
@@ -64,7 +64,7 @@ export const TECH_SALARY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I contract through ABN or Pty Ltd?",
-    a: `As a sole trader (ABN), business income is yours and taxed at your personal marginal rates. A company has its own tax rate, ${BASE_RATE_ENTITY_TAX} for a base rate entity in 2025-26, but income earned mainly from your own skills or effort is personal services income (PSI). If the PSI rules apply, the company must attribute that income to you, so it is taxed at your marginal rates anyway. A company also carries its own accounting and reporting costs. Model both in the Entity Structure Comparison on this site.`,
+    a: `As a sole trader (ABN), business income is yours and taxed at your personal marginal rates. A company has its own tax rate, ${BASE_RATE_ENTITY_TAX} for a base rate entity in ${SITE_CONFIG.financialYear} (the ATO rate for every income year from ${COMPANY_TAX.firstYear.replace("–", "-")}), but income earned mainly from your own skills or effort is personal services income (PSI). If the PSI rules apply, the company must attribute that income to you, so it is taxed at your marginal rates anyway. A company also carries its own accounting and reporting costs. Model both in the Entity Structure Comparison on this site.`,
     links: { "Entity Structure Comparison": "/employee-vs-sole-trader-vs-company/" },
   },
   {

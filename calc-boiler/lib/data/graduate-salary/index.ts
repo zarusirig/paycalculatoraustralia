@@ -23,8 +23,9 @@
 //      - Doctor: Medical Practitioners Award intern minimum for national-system
 //        employers (job-pay-rates/doctor.ts) and NSW Health's intern salary
 //        (Information Bulletin IB2026_007, 20 January 2026: $80,638 a year from
-//        the first full pay period on or after 1 July 2025; an interim increase
-//        pending the NSW IRC's final decision, so it may have moved since).
+//        the first full pay period on or after 1 July 2025; an interim rate
+//        while the NSW IRC arbitrates the awards; any further increase will be
+//        consistent with its final decision. Still Active on 27 October 2026).
 //      - Teacher: first qualified step of each state's public-school salary
 //        schedule (lib/data/teacher-pay).
 //      - Nurse: first step of each state's base registered nurse scale
@@ -182,7 +183,7 @@ export const GRADUATE_PROFESSIONS: readonly GraduateProfession[] = [
       label: "NSW Health intern (public hospitals)",
       annual: NSW_INTERN_ANNUAL,
       basis:
-        `NSW Health Information Bulletin IB2026_007 (20 January 2026): $${NSW_INTERN_ANNUAL.toLocaleString("en-AU")} a year from the first full pay period on or after 1 July 2025, an interim increase pending the NSW Industrial Relations Commission's final decision. Check NSW Health for any newer rate.`,
+        `NSW Health Information Bulletin IB2026_007 (20 January 2026): $${NSW_INTERN_ANNUAL.toLocaleString("en-AU")} a year from the first full pay period on or after 1 July 2025, an interim rate while the NSW Industrial Relations Commission arbitrates the awards. Any further increase will be consistent with the Commission's final decision.`,
     },
     howPaid:
       "Public-hospital interns are paid under state medical officer awards or agreements. The Medical Practitioners Award sets a lower national-system minimum for private employers.",

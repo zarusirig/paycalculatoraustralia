@@ -1,7 +1,12 @@
 // Tasmania — Tasmania Prison Service correctional officers (J8, 9 Oct 2026).
 //
-// Source: Correctional Officers Agreement 2023 ([2024] TASIC 2, T15107 of
-// 2024), Tasmanian Industrial Commission. Read in full on 9 October 2026.
+// Source: Correctional Officers Agreement 2023 (No.2) ([2026] TASIC 60, T15393
+// of 2026), Tasmanian Industrial Commission, read in full on 27 October 2026.
+// It cancels and replaces the Correctional Officers Agreement 2023 ([2024]
+// TASIC 2, T15107 of 2024, read on 9 October 2026). The decision (13 October
+// 2026) says it changes only the Superintendent and Chief Superintendent pay
+// arrangements (new Schedule 3 from 15 July 2026); every Schedule 1 and 2 figure
+// below was re-checked in the No.2 text and is unchanged.
 // Clause 4.2: applies from 1 December 2023 "and will remain in force until 30
 // November 2026". Clause 8.1(iii): 3.0% from the first full pay period
 // commencing on or after 1 December 2025 — the last column printed, and the
@@ -18,7 +23,7 @@
 
 import type { ServicePayJurisdiction } from "../types";
 
-const COA = "https://www.tic.tas.gov.au/__data/assets/pdf_file/0011/757973/Correctional-Officers-Agreement-2023.pdf";
+const COA = "https://www.tic.tas.gov.au/__data/assets/pdf_file/0005/950954/Correctional-Officers-Agreement-2023No.-2.pdf";
 
 export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   occupation: "prison-officer",
@@ -27,11 +32,11 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   name: "Tasmania",
   nameInSentence: "Tasmania",
   employer: "Tasmania Prison Service",
-  agreementName: "Correctional Officers Agreement 2023",
+  agreementName: "Correctional Officers Agreement 2023 (No.2)",
   agreementUrl: COA,
   ratesEffectiveFrom: "1 December 2025",
   nextIncrease: null,
-  verifiedOn: "9 October 2026",
+  verifiedOn: "27 October 2026",
   hubNote: "Day-worker base salary; shift workers are paid Schedule 2 salaries with a 1.30 shift multiplier built in.",
 
   scales: [
@@ -93,14 +98,14 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "Shift workers are paid the Schedule 2 salaries, which build in an annual allowance for shift work through a 1.30 multiplier on the base salary from the first full pay period on or after 1 December 2025. A CO Level 1 on shifts earns $96,217 against $74,013 as a day worker.",
   ],
   notices: [
-    "The Correctional Officers Agreement 2023 remains in force until 30 November 2026, and the 1 December 2025 increase is the last one it prints. Any later rise depends on a new agreement.",
+    "The Correctional Officers Agreement 2023 (No.2), approved by the Tasmanian Industrial Commission on 13 October 2026, replaced the Correctional Officers Agreement 2023 without changing these salaries. It remains in force until 30 November 2026, and the 1 December 2025 increase is the last one it prints for these classifications. Any later rise depends on a new agreement.",
   ],
   unverified: [
     "Shift-worker salaries for Correctional Supervisors, and one-off lower income payments under clause 8.4, which are not reproduced here.",
   ],
   sources: [
     {
-      title: "Correctional Officers Agreement 2023 ([2024] TASIC 2, T15107 of 2024), Schedules 1 and 2",
+      title: "Correctional Officers Agreement 2023 (No.2) ([2026] TASIC 60, T15393 of 2026), Schedules 1 and 2",
       publisher: "Tasmanian Industrial Commission",
       url: COA,
     },
@@ -112,7 +117,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a trainee correctional officer earn in Tasmania?",
-      a: "A trainee correctional officer in Tasmania earns $66,520 a year while in training, under Schedule 1 of the Correctional Officers Agreement 2023.",
+      a: "A trainee correctional officer in Tasmania earns $66,520 a year while in training, under Schedule 1 of the Correctional Officers Agreement 2023 (No.2).",
     },
   ],
 };

@@ -41,7 +41,6 @@ import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Business structures", url: "https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business", publisher: SOURCES.ato.name },
   { title: "Changes to company tax rates (base rate entities)", url: COMPANY_TAX.sources.rateChanges, publisher: SOURCES.ato.name },
-  { title: "Company tax rates 2025–26", url: COMPANY_TAX.sources.rates2025_26, publisher: SOURCES.ato.name },
   { title: "Tax rates – Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Super guarantee rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/super-guarantee", publisher: SOURCES.ato.name },
   { title: "Registering for GST", url: GST_REGISTRATION.source, publisher: SOURCES.ato.name },

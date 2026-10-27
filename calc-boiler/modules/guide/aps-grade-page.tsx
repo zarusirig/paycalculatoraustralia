@@ -12,6 +12,7 @@ import {
   type ApsGradeData,
 } from "@/lib/data/public-service-pay/aps-grades";
 import { formatSalary, nearestTakeHomeSalary, takeHomeHref, type PayPoint } from "@/lib/data/public-service-pay/types";
+import { MEDICARE_LEVY, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
 import {
   ARTICLE_CLASS,
   Breadcrumbs,
@@ -169,7 +170,7 @@ export default function ApsGradePage({ data }: { data: ApsGradeData }) {
           <section>
             <H2 id="super">{grade.label} Superannuation: {APS_SUPER_RATE}%</H2>
             <p>
-              APS agencies pay employer super well above the 12% Superannuation Guarantee. The APSC reports a median employer contribution of {APS_SUPER_RATE}% of base salary at every classification in 2025, and the Defence agreement puts it in writing: &ldquo;{DEFENCE_SUPER_CLAUSE}&rdquo; (clause C7.4). On the {grade.label} threshold minimum of {formatSalary(threshold.min)}, {APS_SUPER_RATE}% is {formatSalary((threshold.min * APS_SUPER_RATE) / 100)} a year; on the median of {formatSalary(median)} it is {formatSalary((median * APS_SUPER_RATE) / 100)}. Super is paid on top of salary and is not part of take-home pay.
+              APS agencies pay employer super well above the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee. The APSC reports a median employer contribution of {APS_SUPER_RATE}% of base salary at every classification in 2025, and the Defence agreement puts it in writing: &ldquo;{DEFENCE_SUPER_CLAUSE}&rdquo; (clause C7.4). On the {grade.label} threshold minimum of {formatSalary(threshold.min)}, {APS_SUPER_RATE}% is {formatSalary((threshold.min * APS_SUPER_RATE) / 100)} a year; on the median of {formatSalary(median)} it is {formatSalary((median * APS_SUPER_RATE) / 100)}. Super is paid on top of salary and is not part of take-home pay.
             </p>
             <p>
               To compare an APS offer with a private-sector job quoted as a package, use the <Link href="/salary-package-calculator/">salary package calculator</Link>, and the <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> for extra contributions.
@@ -209,7 +210,7 @@ export default function ApsGradePage({ data }: { data: ApsGradeData }) {
             sources={sources}
             methodology={<>
               <p>APS-wide figures come from the APSC&rsquo;s remuneration data at 31 December 2025 and the salary thresholds in the APS Bargaining Statement of Common Conditions (Year 3, from 12 March 2026). Agency figures are copied from each enterprise agreement&rsquo;s column for 12 March 2026; nothing is averaged or estimated. Where an agreement lifted a figure to the APS-wide threshold, the agreement&rsquo;s figure is shown.</p>
-              <p>Take-home pay uses the same engine as our take-home pay pages: 2026–27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS, salary sacrifice or Medicare levy surcharge. General information, not advice.</p>
+              <p>Take-home pay uses the same engine as our take-home pay pages: 2026–27 resident tax rates, the low income tax offset and the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, with no HECS, salary sacrifice or Medicare levy surcharge. General information, not advice.</p>
             </>}
           />
         </article>

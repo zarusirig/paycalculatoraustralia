@@ -3,7 +3,7 @@
 // app/contractor-vs-employee-calculator/page.tsx, so the structured data
 // cannot drift from the page. Figures come from lib/constants.
 
-import { EMPLOYMENT, formatAUD, formatPercent, GENERAL_INTEREST_CHARGE, MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { calculateIncomeTax, calculateLITO, EMPLOYMENT, formatAUD, formatPercent, GENERAL_INTEREST_CHARGE, MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
 import { GST_RATE } from "@/lib/constants/company-tax";
 import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
@@ -22,6 +22,35 @@ const PERSONAL_LEAVE_PCT = formatPercent(EMPLOYMENT.personalLeaveDays / (EMPLOYM
 // https://www.ato.gov.au/forms-and-instructions/statement-by-supplier-not-quoting-an-abn
 const NO_ABN_PCT = formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate, 0);
 
+// Break-even contract rate: the same model as the page's worked example in
+// contractor-vs-employee-calculator-content.tsx ($100,000 gross, $3,000 of
+// expenses, self-funded super at the SG rate, NES leave lost), so the FAQ and
+// the page print the same figure. Exported so the page can reuse it.
+export const CVE_EX_GROSS = 100_000;
+export const CVE_EX_EXPENSES = 3_000;
+const cveTax = (taxable: number) => Math.max(0, calculateIncomeTax(taxable) - calculateLITO(taxable));
+const CVE_LEAVE =
+  Math.round(CVE_EX_GROSS * (EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear)) +
+  Math.round(CVE_EX_GROSS * (EMPLOYMENT.personalLeaveDays / (EMPLOYMENT.weeksPerYear * 5)));
+const CVE_EMP_TOTAL =
+  CVE_EX_GROSS - cveTax(CVE_EX_GROSS) - Math.round(CVE_EX_GROSS * MEDICARE_LEVY.rate) +
+  Math.round(CVE_EX_GROSS * SUPER_GUARANTEE.rate) + CVE_LEAVE;
+const cveConTotalAt = (gross: number) => {
+  const sup = Math.round(gross * SUPER_GUARANTEE.rate);
+  const taxable = gross - CVE_EX_EXPENSES - sup;
+  return taxable - cveTax(taxable) - Math.round(taxable * MEDICARE_LEVY.rate) + sup;
+};
+/** Contract rate (in $100 steps) at which the contractor's package matches the employee's. */
+export const CVE_EX_MATCH = (() => {
+  let g = CVE_EX_GROSS;
+  while (cveConTotalAt(g) < CVE_EMP_TOTAL) g += 100;
+  return g;
+})();
+const MATCH = formatAUD(CVE_EX_MATCH);
+const MATCH_PCT = `${Math.round((CVE_EX_MATCH / CVE_EX_GROSS - 1) * 100)}%`;
+const EX_GROSS = formatAUD(CVE_EX_GROSS);
+const EX_EXPENSES = formatAUD(CVE_EX_EXPENSES);
+
 // Sham contracting maximums, Fair Work Act ss 357–359, 539: 60 penalty units
 // (individual), 300 (business with fewer than 15 employees), 1,500 (15 or
 // more). FWO "Sham contracting" (updated 6 July 2026) lists $21,840 / $109,200
@@ -34,7 +63,7 @@ export const SHAM_MAX_BUSINESS = formatAUD(1_500 * PENALTY_UNIT.amount);
 export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   {
     q: "Should I be a contractor or employee?",
-    a: "It depends on the rate differential. If contracting pays 30%+ more than the equivalent employee salary, the financial benefit usually outweighs the loss of entitlements. Below that, employment is typically better value. Use the calculator above to compare your specific scenario.",
+    a: `It depends on the rate differential. On a ${EX_GROSS} salary, contracting comes out ahead once the contract rate is more than about ${MATCH_PCT} above the employee salary (${MATCH} before GST, with ${EX_EXPENSES} of business expenses and super paid at the ${SG_PCT} SG rate). Below that, the lost super and paid leave outweigh the higher gross income. Use the calculator above to compare your specific scenario.`,
   },
   {
     q: "Do contractors have to pay super?",
@@ -42,15 +71,15 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to register for GST as a contractor?",
-    a: `You must register for GST if your annual business turnover is ${GST_THRESHOLD} or more. If it's below ${GST_THRESHOLD}, registration is optional. When registered, you charge clients an additional ${GST_PCT} GST on your invoices and remit it to the ATO quarterly via your Business Activity Statement (BAS).`,
+    a: `You must register for GST if your GST turnover (gross business income minus GST) is ${GST_THRESHOLD} or more. If it's below ${GST_THRESHOLD}, registration is optional. When registered, you charge clients an additional ${GST_PCT} GST on your invoices and report and pay it to the ATO on your Business Activity Statement (BAS): quarterly while your GST turnover is under $20 million and the ATO has not told you to report monthly, or annually if you registered voluntarily below ${GST_THRESHOLD}.`,
   },
   {
     q: "Can I just decide to be a contractor?",
-    a: "No. For tax and super, the ATO looks at the legal rights and obligations in your contract as a whole (who controls the work, whether you can delegate it, who bears the commercial risk and who supplies the tools), not the label the contract uses (Taxation Ruling TR 2023/4). For Fair Work purposes, from 26 August 2024 companies use the whole of relationship test, which looks at the real substance, practical reality and true nature of the working relationship. Sham contracting penalties apply to a business that tells an employee they are a contractor, unless it proves it reasonably believed they were one.",
+    a: "No. For tax and super, the ATO looks at the legal rights and obligations in your contract as a whole (who controls the work, whether you can delegate it, who bears the commercial risk and who supplies the tools), not the label the contract uses (Taxation Ruling TR 2023/4). For Fair Work purposes, from 26 August 2024 the Fair Work Act uses the whole of relationship test, which looks at the real substance, practical reality and true nature of the working relationship. Sham contracting penalties apply to a business that tells an employee they are a contractor, unless it proves it reasonably believed they were one.",
   },
   {
     q: "How much more should a contractor charge than an employee salary?",
-    a: `A contractor should charge 30 to 45% above the equivalent employee salary to cover the superannuation guarantee (${SG_PCT}), annual leave (${ANNUAL_LEAVE_PCT}), personal leave (${PERSONAL_LEAVE_PCT}), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately $135,000 to $145,000 before GST.`,
+    a: `On a ${EX_GROSS} employee salary, a contractor needs to charge about ${MATCH} before GST (${MATCH_PCT} more) to match the employee's package. That covers self-funded super at the ${SG_PCT} SG rate, unpaid annual leave (${ANNUAL_LEAVE_PCT} of the year), unpaid personal leave (${PERSONAL_LEAVE_PCT}) and ${EX_EXPENSES} of business expenses. Insurance and admin costs above that push the rate higher.`,
   },
   {
     q: "Do contractors need income protection insurance?",
@@ -82,7 +111,7 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What are the penalties for sham contracting?",
-    a: `Courts can impose maximum penalties of ${SHAM_MAX_INDIVIDUAL} per contravention for individuals, ${SHAM_MAX_SMALL_BUSINESS} for businesses with fewer than 15 employees and ${SHAM_MAX_BUSINESS} for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments, often spanning several years of accumulated liability.`,
+    a: `Courts can impose maximum penalties of ${SHAM_MAX_INDIVIDUAL} per contravention for individuals, ${SHAM_MAX_SMALL_BUSINESS} for businesses with fewer than 15 employees and ${SHAM_MAX_BUSINESS} for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave and any Award underpayments, often spanning several years of accumulated liability.`,
   },
   {
     q: "Can I convert from contractor to employee?",
@@ -91,7 +120,7 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors have to charge GST?",
-    a: `GST registration is mandatory once a contractor's annual turnover reaches ${GST_THRESHOLD}. Below that threshold, registration is optional. Registered contractors charge ${GST_PCT} GST on every invoice and can claim GST credits on business purchases. Employees do not charge GST on their wages.`,
+    a: `GST registration is mandatory once a contractor's GST turnover reaches ${GST_THRESHOLD}. Below that threshold, registration is optional. Registered contractors charge ${GST_PCT} GST on every invoice and can claim GST credits on business purchases. Employees do not charge GST on their wages.`,
   },
   {
     q: "Do contractors pay more tax than employees?",

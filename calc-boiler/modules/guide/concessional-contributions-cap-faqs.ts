@@ -5,6 +5,7 @@ import {
   CONTRIBUTIONS_TAX_RATE,
   DIVISION_293,
   ECC_MAX_RELEASE,
+  ECC_TAX_OFFSET_RATE,
   annualSuperGuarantee,
   carryForwardWindow,
 } from "@/lib/constants/super-contributions";
@@ -33,7 +34,7 @@ export const CONCESSIONAL_CAP_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How does the carry-forward of unused concessional cap work?",
-    a: `If your total super balance was under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous year, you can use unused cap amounts from up to ${CARRY_FORWARD.years} previous years. For ${FY} that is ${W[0].year} to ${W[W.length - 1].year}. The oldest amounts are used first, and each expires after five years. You don't apply for it: the ATO uses it automatically once you go over the general cap.`,
+    a: `If your total super balance was under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous year, you can use unused cap amounts from up to ${CARRY_FORWARD.years} previous years. For ${FY} that is ${W[0].year} to ${W[W.length - 1].year}. The oldest amounts are used first, and each expires after ${CARRY_FORWARD.years} years. You don't apply for it: the ATO uses it automatically once you go over the general cap.`,
   },
   {
     q: "How much tax is paid on concessional super contributions?",
@@ -41,7 +42,7 @@ export const CONCESSIONAL_CAP_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What happens if I go over the concessional cap?",
-    a: `The excess is added to your assessable income and taxed at your marginal rate, less a 15% tax offset for the contributions tax the fund already paid. The old excess concessional contributions charge no longer applies from 1 July 2021. You can ask to release up to ${formatPercent(ECC_MAX_RELEASE, 0)} of the excess from your fund to pay the tax; any excess you don't release counts towards your non-concessional cap.`,
+    a: `The excess is added to your assessable income and taxed at your marginal rate, less a ${formatPercent(ECC_TAX_OFFSET_RATE, 0)} tax offset for the contributions tax the fund already paid. The old excess concessional contributions charge no longer applies from 1 July 2021. You can ask to release up to ${formatPercent(ECC_MAX_RELEASE, 0)} of the excess from your fund to pay the tax; any excess you don't release counts towards your non-concessional cap.`,
   },
   {
     q: "What is the non-concessional contributions cap?",

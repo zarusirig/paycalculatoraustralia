@@ -1,0 +1,1047 @@
+[
+ {
+  "key": "modules/guide/employer-cost-calculator.tsx:32",
+  "status": "cross-file",
+  "file": "modules/guide/employer-cost-calculator.tsx",
+  "line": "31",
+  "quote": "const [workcoverRate, setWorkcoverRate] = useState<number>(1.5); // Default average proxy",
+  "note": "No change in the diff at this line, and the fixer's reasoning holds. A 'use client' component should not import the FAQ module, so a shared constant in lib/constants/payroll-tax.ts is the right route (EMPLOYER_COST_DEFAULT_WORKCOVER = 0.015, imported by both module files). The value matches TABLE_WORKCOVER (0.015) today, so readers see no mismatch.",
+  "verdict": "n/a",
+  "job": "ff-070-employer-cost-calculator",
+  "targets": [
+   "lib/constants/payroll-tax.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/fringe-benefits-tax-faqs.ts:51",
+  "file": "modules/guide/fringe-benefits-tax-faqs.ts",
+  "line": "51",
+  "status": "cross-file",
+  "before": "A minor benefit is one with a notional taxable value of less than $300",
+  "after": "",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/exemptions-concessions-and-other-ways-to-reduce-fbt/minor-benefits-exemption",
+  "quote": "The notional taxable value must be less than $300 for the minor benefit exemption to apply.",
+  "note": "No diff in this file; the text is unchanged. $300 is still correct. The cross-file proposal (add FBT.minorBenefitThreshold: 300 in lib/constants/novated-lease.ts and render it here) stands as written.",
+  "verdict": "n/a",
+  "job": "ff-072-first-job-pay-guide-faqs",
+  "targets": [
+   "lib/constants/novated-lease.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/private-health-insurance-medicare.tsx:206",
+  "file": "modules/guide/private-health-insurance-medicare.tsx",
+  "line": "206-212",
+  "status": "cross-file",
+  "note": "There is no diff at lines 206-212. LHC_PER_YEAR and LHC_MAX are non-exported locals in private-health-insurance-medicare-faqs.ts, and the fixer does not own that file, so cross-file is the right status. The proposed fix is sound: export LHC_PER_YEAR = 2, LHC_MAX = 70 and LHC_REMOVAL_YEARS = 10 from lib/constants/medicare-levy-surcharge.ts, import them in the faqs file and on this page. The 2% levy part is handled at :124.",
+  "verdict": "n/a",
+  "job": "ff-094-payment-in-lieu-of-notic",
+  "targets": [
+   "lib/constants/medicare-levy-surcharge.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/schads-award-faqs.ts:89",
+  "file": "modules/guide/schads-award-faqs.ts",
+  "line": "89",
+  "status": "cross-file",
+  "sourceUrl": "https://awards.fairwork.gov.au/MA000100.html",
+  "quote": "cl 25.7(d) \"sleepover allowance of 4.9% of the standard rate\"; cl 25.7(e) \"the employee will be paid for the time worked at the prescribed overtime rate with a minimum payment as for one hour worked\"; standard rate = L3 pp3 cl 15.3 = 1283.10",
+  "note": "4.9% is confirmed (62.87/1283.10). Making the percentage a constant needs a change in lib/constants/schads-award.ts, which this fixer does not own, so cross-file is the right status. The proposal stands as the fixer gave it. The sleepover work-time rewording in this FAQ and at schads-award-pay-rates.tsx:349 (overtime rate, minimum one hour, cl 25.7(e)) is proven word for word by the cached award text, so I kept it.",
+  "verdict": "kept",
+  "job": "ff-098-salary-vs-hourly",
+  "targets": [
+   "lib/constants/schads-award.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/schads-award-pay-rates.tsx:389",
+  "file": "modules/guide/schads-award-pay-rates.tsx",
+  "line": "389",
+  "status": "cross-file",
+  "sourceUrl": "https://awards.fairwork.gov.au/MA000100.html",
+  "quote": "Schedule G: \"employees covered by the Nurses Award 2020 on 31 December 2024 who became covered by this award as a result of PR779152\"; G.1.2(a) \"classified under this award on or before 31 December 2024\"",
+  "note": "There is no change in the diff for this line. 31 December 2024 is confirmed in the cached award text. A constant for the date belongs in lib/constants/schads-award.ts, a file the fixer does not own, so cross-file is the right status and the fixer's proposal stands.",
+  "verdict": "n/a",
+  "job": "ff-098-salary-vs-hourly",
+  "targets": [
+   "lib/constants/schads-award.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/tax-calendar.tsx:126",
+  "file": "modules/guide/tax-calendar.tsx",
+  "line": "127",
+  "status": "cross-file",
+  "before": "agent clients whose latest return had a tax liability of $20,000 or more",
+  "after": "(unchanged; the figure is correct)",
+  "sourceUrl": "https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/registered-agent-lodgment-program/due-dates-for-tax-returns-by-client-type/individuals-and-trusts",
+  "quote": "31 March 2027 | Tax return for individuals and trusts whose latest return resulted in a tax liability of $20,000 or more (excluding large and medium trusts).",
+  "note": "The text is unchanged and the $20,000 figure is confirmed by the cached ATO page. The fixer's cross-file proposal stands: add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 in lib/constants/tax-return-2025-26.ts, render it in the tax-calendar-2026-27.ts:208 event title, then render {formatAUD(R.agentLargeLiabilityThreshold)} at tax-calendar.tsx:127.",
+  "verdict": "n/a",
+  "job": "ff-102-tax-bracket-history",
+  "targets": [
+   "lib/constants/tax-return-2025-26.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/tax-deductions-guide-faqs.ts:28",
+  "file": "modules/guide/tax-deductions-guide-faqs.ts",
+  "line": "28",
+  "status": "cross-file",
+  "before": "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts... You can claim up to $150 for laundering eligible work clothing without written records.",
+  "after": "For 2025-26 and earlier income years, written records are not mandatory below the $300 total work-related threshold. Above $300, you need receipts, invoices, or bank/credit card statements. A laundry claim for eligible work clothing of $150 or less needs no written evidence, even when your total work-related claim is over $300. Both exceptions end from the 2026-27 income year.",
+  "sourceUrl": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/clothes-and-items-you-wear-at-work/clothing-laundry-and-dry-cleaning-expenses",
+  "quote": "(15 Sep 2026) 'If your laundry expenses ... are $150 or less, you can claim ... without providing written evidence ... This is the case even if your total claim for work-related expenses is more than $300' / standard deduction page (14 Sep 2026): 'From 1 July 2026, the following record keeping exceptions won't apply: $300 deduction limit ...; $150 laundry expense limit'",
+  "note": "The prose change is proven and limited to 2025-26 and earlier years. No constant holds $300 or $150 (I grepped lib/constants). The constant itself is cross-file as the fixer says: add noEvidenceTotalCap 300, laundryNoEvidenceCap 150, laundryPerLoadWorkOnlyCents 100 and laundryPerLoadMixedCents 50 to lib/constants/tax-return-2025-26.ts with these two ATO URLs, then render them in both guide files.",
+  "verdict": "kept",
+  "job": "ff-104-tax-deductions-guide-faq",
+  "targets": [
+   "lib/constants/tax-return-2025-26.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/tax-refund-guide.tsx:216",
+  "file": "modules/guide/tax-refund-guide.tsx",
+  "line": "216",
+  "status": "cross-file",
+  "before": "<td ...>14 July 2026</td> ... and line 286 '(due by 14 July)'",
+  "quote": "ATO end-of-year finalisation through STP: \"by 14 July each year\" (cited in lib/constants/tax-calendar-2026-27.ts lines 24-26, verified 23 Sep 2026; the calendar also hard-codes ev(\"2026-07-14\", \"STP finalisation declaration for 2025-26\")).",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/start-reporting/end-of-year-finalisation-through-stp",
+  "note": "Nothing in the diff changed here: lines 216 and 286 still read '14 July 2026' and '(due by 14 July)'. The date is right for the 2025-26 return. The proposed cross-file change is sound: add stpFinalisationDate: \"14 July 2026\" to RETURN_2026 in lib/constants/tax-return-2025-26.ts, then render it in tax-refund-guide.tsx at lines 216 and 286 and in the tax-calendar event.",
+  "verdict": "n/a",
+  "job": "ff-107-tax-refund-guide",
+  "targets": [
+   "lib/constants/tax-return-2025-26.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/tax-return-2026-faqs.ts:60",
+  "file": "modules/guide/tax-return-2026-faqs.ts",
+  "line": "64",
+  "status": "cross-file",
+  "before": "...tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at 30 June 2026)",
+  "after": "...tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at ${R.incomeYearEnd})",
+  "quote": "tax-return-2025-26.ts header: '31 October 2026 where a prior-year return was outstanding at 30 June 2026; 31 March 2027 where the latest return had a liability of $20,000 or more' (ATO registered agent lodgment program, updated 1 Jul 2026)",
+  "sourceUrl": "https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/registered-agent-lodgment-program/due-dates-for-tax-returns-by-client-type/individuals-and-trusts",
+  "note": "R.incomeYearEnd = \"30 June 2026\" (tax-return-2025-26.ts line 63), so the rendered text is unchanged. The $20,000 is still typed, and the proposal to add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 is correct as a cross-file change.",
+  "verdict": "kept",
+  "job": "ff-107-tax-refund-guide",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/modern-award-content.ts:562",
+  "status": "cross-file",
+  "file": "modules/guide/modern-award-content.ts",
+  "line": "562",
+  "quote": "The cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more.",
+  "sourceUrl": "https://awards.fairwork.gov.au/MA000022.html",
+  "note": "Same omission as the CLEANING_AWARD hoursNotes I fixed: cl 13.5(c)(i) allows the 1-hour minimum only at a small stand-alone location of not more than 300 square metres AND where 'it is not practicable for a longer shift to be worked across 2 or more locations'. Proposed replacement for that sentence: \"The cleaner must be rostered for at least 1 hour if working alone at a small stand-alone site of not more than 300 square metres where a longer shift across 2 or more sites is not practicable, 2 consecutive hours at a site of up to 2,000 square metres, 3 consecutive hours at 2,000 square metres or more up to 5,000, and 4 consecutive hours at 5,000 square metres or more.\"",
+  "job": "ff-005-modern-awards",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/graduate-salary-australia.tsx:120",
+  "status": "cross-file",
+  "file": "modules/guide/graduate-salary-australia.tsx",
+  "line": "120",
+  "note": "This file is not owned by the fixer, and it has no edit. The proposal stands for that file's owner: render {f0(GRADUATE_PROFESSIONS[2].published!.annual)} in place of {f0(68_538)}, and delete the unsourced claim 'Employers commonly pay above the award, which the survey median reflects'.",
+  "verdict": "n/a",
+  "job": "ff-010-index",
+  "targets": []
+ },
+ {
+  "key": "lib/data/public-health-allied-pay/vic.ts:82",
+  "status": "cross-file",
+  "file": "lib/data/public-health-allied-pay/vic.ts",
+  "line": "20-24, 53, 82, 109",
+  "note": "The FWC agreements2026.xlsx has been regenerated ('List of Agreements From 1 January 2026 to 26 October 2026, Report generated on 26 October 2026') and still lists no replacement for AE518208 or AE518146. Proposed change: FWC_2026_LIST.title -> 'Fair Work Commission list of agreements approved from 1 January to 26 October 2026 (no replacement agreement)'; both status strings 'as at 19 October 2026' -> 'as at 26 October 2026'; and the header comment lines 20-24 to match. Alternatively, use 23 October everywhere to match pharmacist.ts. I don't own this file.",
+  "sourceUrl": "https://www.fwc.gov.au/documents/agreements/resources/agreements2026.xlsx",
+  "job": "ff-014-lawyer",
+  "targets": []
+ },
+ {
+  "key": "lib/data/job-pay-rates/boilermaker.ts:79",
+  "file": "lib/data/job-pay-rates/boilermaker.ts",
+  "line": "79",
+  "status": "cross-file",
+  "note": "No edit was made. I confirm the proposal: shipbuilding is within MA000010 coverage, so boilermaker.ts:79 and :97 should drop shipbuilding as an 'another award' example and remove the unsourced 'usually'.",
+  "sourceUrl": "https://awards.fairwork.gov.au/MA000010.html",
+  "verdict": "n/a",
+  "quote": "cl 4.9(e) \"ships, boats, barges and marine vessels of all descriptions, and components\"",
+  "job": "ff-015-plumber",
+  "targets": []
+ },
+ {
+  "key": "lib/data/public-holidays/states/tas.ts:202",
+  "file": "lib/data/public-holidays/states/tas.ts",
+  "line": "202",
+  "status": "cross-file",
+  "quote": "Most private sector employees work it at ordinary rates unless their award or agreement treats it as a holiday.",
+  "sourceUrl": "https://worksafe.tas.gov.au/topics/laws-and-compliance/public-holidays",
+  "note": "This is the same unsourced population claim I removed from seasonal-pages.ts. Proposed replacement for the FAQ answer: 'Easter Tuesday is on Tasmania's public holiday list, which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\". WorkSafe Tasmania says a listed holiday does not by itself give you the day off or a higher rate, so check your award, agreement and the National Employment Standards.' Line 186 ('WorkSafe Tasmania notes it is generally observed by the Tasmanian Public Service only') is attributed and can stay.",
+  "job": "ff-019-seasonal-pages",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/modern-awards.ts:1209",
+  "file": "lib/constants/modern-awards.ts",
+  "line": "1209",
+  "status": "cross-file",
+  "quote": "Christmas Day falling on a weekend attracts an extra 50% loading in businesses that operate 7 days a week (cl 28.2(b)).",
+  "sourceUrl": "https://awards.fairwork.gov.au/MA000034.html",
+  "note": "This note is imprecise under the award text. cl 28.2(b) applies only when 25 December falls on a weekend and, because of substitution, is not an NES public holiday. The 50% (of the minimum hourly rate, or of the casual hourly rate for casuals) is added to the Saturday or Sunday rate. Work on the substitute day gets an additional 50% loading instead of the cl 28.2(a) rate. Proposed text: 'In a business that operates 7 days a week, work on 25 December that falls on a weekend and is not a public holiday because of substitution is paid the Saturday or Sunday rate plus 50% of the minimum hourly rate (50% of the casual hourly rate for casuals); work on the substitute day gets an additional 50% loading instead of the public holiday rate (cl 28.2(b)).'",
+  "job": "ff-019-seasonal-pages",
+  "targets": []
+ },
+ {
+  "key": "lib/data/public-holidays/seasonal-pages.ts:502",
+  "file": "lib/data/public-holidays/seasonal-pages.ts",
+  "line": "502, 635, 636, 694, 697",
+  "status": "cross-file",
+  "sourceUrl": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2000-096",
+  "note": "Agreed. After the tas.ts data change, the Easter 2027 prose that says Tasmania has no Easter Sunday is wrong, so the fixer's proposed replacements should be applied by the owner of seasonal-pages.ts. Until then the matrix data and this prose disagree.",
+  "verdict": "n/a",
+  "job": "ff-020-act",
+  "targets": []
+ },
+ {
+  "key": "lib/data/public-holidays/seasonal-pages.ts:156",
+  "file": "lib/data/public-holidays/seasonal-pages.ts",
+  "line": "156, 195, 228, 322, 503",
+  "status": "cross-file",
+  "sourceUrl": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2000-096",
+  "note": "Agreed. s 4(i),(ia) make both Saturday 25 and Monday 27 December 2027 Tasmanian holidays. Tasmania's Boxing Day stays Tuesday 28 December only (s 4(j)(ii)).",
+  "verdict": "n/a",
+  "job": "ff-020-act",
+  "targets": []
+ },
+ {
+  "key": "lib/data/public-holidays/weekend.ts:75",
+  "file": "lib/data/public-holidays/weekend.ts",
+  "line": "69-80",
+  "status": "cross-file",
+  "sourceUrl": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2000-096",
+  "note": "Agreed. The tas 2027-12-25 override is now redundant but does no harm, because the override and the data both give holiday=true. The note's 'Check your award or agreement' could cite the Act instead. This is optional.",
+  "verdict": "n/a",
+  "job": "ff-020-act",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/aps-grade-page.tsx:172",
+  "status": "cross-file",
+  "file": "modules/guide/aps-grade-page.tsx",
+  "line": "172",
+  "quote": "APS agencies pay employer super well above the 12% Superannuation Guarantee. ... {APS_SUPER_RATE}% is {formatSalary(threshold.min * 0.154)} a year; on the median of {formatSalary(median)} it is {formatSalary(median * 0.154)}.",
+  "note": "This is the same internal mismatch as aps-grades.ts:296, in a file I do not own. Exact change: replace both '* 0.154' with '* (APS_SUPER_RATE / 100)', and replace 'the 12% Superannuation Guarantee' with 'the {SUPER_GUARANTEE.rate * 100}% Superannuation Guarantee', importing SUPER_GUARANTEE from \"@/lib/constants\".",
+  "job": "ff-021-aps-grades",
+  "targets": []
+ },
+ {
+  "key": "lib/data/service-pay/prison-officer/tas.ts:1",
+  "file": "lib/data/service-pay/prison-officer/tas.ts",
+  "line": "1",
+  "status": "cross-file",
+  "sourceUrl": "https://www.tic.tas.gov.au/public_sector_agreements",
+  "quote": "Current Agreements: 'Correctional Officers Agreement 2023 No 2 (PDF, 15.1 MB)' - 'T15393 of 2026' (2026-TASIC-60); the original 'Correctional Officers Agreement 2023' now appears under Retired Agreements.",
+  "note": "Confirmed from today's TIC cache (line 22 is under Current Agreements, line 129 under Retired). The owner of prison-officer/tas.ts needs to read the No 2 agreement PDF and update the agreement name, URL, rates and notices. I made no edit.",
+  "verdict": "n/a",
+  "job": "ff-024-hub",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/payg-withholding.ts:554",
+  "file": "lib/constants/payg-withholding.ts",
+  "line": "554-622",
+  "status": "cross-file",
+  "note": "calculateSchedule5MethodB is labelled 'Method B(ii)', but its steps are the ATO's Method A. It uses the current period's regular gross, divides by the pay periods in the year, takes the difference, multiplies back and caps at 47%. ATO Method B(ii) instead uses 'average total earnings ... over the current financial year to date' and adds earlier B(ii) payments, then subtracts amounts already withheld. The output is a valid ATO method (\"Calculations made using either method are acceptable\"), so the figures are not wrong. Only the name and doc comment are. Proposed change (owner of payg-withholding.ts): change the comment/section header to 'Schedule 5, Method A'. Renaming the function is an engine change that needs a decision. No change made.",
+  "sourceUrl": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments/working-out-the-withholding-amount",
+  "quote": "Method A step 1: \"Work out your payee's gross earnings excluding any additional payments for the current pay period.\" Method B(ii) step 1: \"Calculate the average total earnings paid to your payee over the current financial year to date.\"",
+  "job": "ff-032-bonus-tax-faqs",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/commission-tax-faqs.ts:54",
+  "file": "modules/calculator/commission-tax-faqs.ts",
+  "line": "54",
+  "status": "cross-file",
+  "note": "Optional consistency fix in a file I do not own. The FAQ says 'up to the maximum contribution base.' That is not wrong, but it does not say the base is annual. To match the content section, change it to: 'up to the annual maximum contribution base (${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} in ${SITE_CONFIG.financialYear}).' Both SUPER_GUARANTEE and SITE_CONFIG are already used in that file.",
+  "job": "ff-034-centrelink-h3-faqs",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/gig-tax.ts:79",
+  "file": "lib/constants/gig-tax.ts",
+  "line": "79",
+  "status": "cross-file",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst",
+  "quote": "\"You must register for GST: ... if you earn income through the sharing economy or digital platforms (for example, food delivery services or other platform-based work).\" (last updated 14 September 2026)",
+  "note": "The ATO page now lists sharing-economy/digital-platform income (food delivery given as an example) under 'You must register for GST', while gig-tax.ts says registration is optional for delivery work under $75,000. The ATO bullet is ambiguous (it links to a sharing-economy page), so this needs an owner/researcher check before any change. Not my file.",
+  "job": "ff-036-contractor-pay-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-pay-calculator-content.tsx:247",
+  "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+  "line": "247",
+  "status": "cross-file",
+  "note": "Replace typed 'over 48 working weeks' and 'over 48 weeks' with {BILLABLE_WEEKS} (already imported in that file) so prose cannot drift from DAY_RATE_GROSS.",
+  "job": "ff-037-contractor-pay-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-pay-calculator-content.tsx:129",
+  "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+  "line": "129",
+  "status": "cross-file",
+  "before": "Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST",
+  "after": "Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more a year</strong> must register for GST",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst",
+  "note": "ATO: register at GST turnover of $75,000 or more (gross income minus GST), not 'above'. Import GST_REGISTRATION_THRESHOLD from @/lib/constants/gig-tax. Same fix at line 231 ('turnover exceeding $75,000' -> 'GST turnover of {formatAUD(GST_REGISTRATION_THRESHOLD)} or more'; 'below $75,000' -> render constant) and line 227 ('above the $75,000 threshold' -> 'at or above the {formatAUD(GST_REGISTRATION_THRESHOLD)} threshold'). Line 231 also lists taxi/rideshare but not limousine or fuel tax credits.",
+  "job": "ff-037-contractor-pay-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-pay-calculator-content.tsx:360",
+  "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+  "line": "360",
+  "status": "cross-file",
+  "quote": "ignores the 30\u201340% loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately $56\u2013$64/hr as a contractor.",
+  "note": "Unsourced loading range and derived figures, inconsistent with the site's own floor formula (about 1.21x at 38 hours x 48 weeks with 12% SG) and with the now-removed 1.4 to 1.6 multiplier in the FAQs. Proposed: delete the percentage and dollar range, or compute from the floor formula with constants. Also uses en dashes in prose.",
+  "job": "ff-037-contractor-pay-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-pay-calculator-content.tsx:239",
+  "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+  "line": "239",
+  "status": "cross-file",
+  "note": "Division 293 threshold '$250,000' is typed in prose; render it from the Division 293 constant if one exists in lib/constants. SG labour rule wording on that line is correct per ATO (2 Sep 2026).",
+  "job": "ff-037-contractor-pay-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:43",
+  "status": "cross-file",
+  "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+  "line": "43",
+  "quote": "A contractor should charge 30 to 45% above ... annual leave (7.6%), personal leave (3.8%), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000) ... approximately $135,000 to $1...",
+  "note": "Same unsourced ranges as the content file, and they now conflict with the page's derived values (7.7%, 3.8%, about 30%, $130,300). Proposed change: derive from the same model (export EX_MATCH / AL_SHARE / PL_SHARE from a shared helper) or drop the typed figures. Lines 35 and 84 say 'annual business turnover ... $75,000 or more / reaches $75,000'. The ATO term is 'GST turnover', so use GST_REGISTRATION_THRESHOLD.",
+  "job": "ff-038-contractor-vs-employee-c",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:75",
+  "status": "cross-file",
+  "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+  "line": "75",
+  "quote": "The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments",
+  "note": "Sick/carer's leave is not paid out (FWO final pay page: 'Sick and carer's leave isn't paid out when employment ends'). Proposed change: remove 'sick leave,' from the list. Line 27 also has 'usually/typically' hedging and an unsourced '30%+' threshold.",
+  "job": "ff-038-contractor-vs-employee-c",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/final-pay-calculator.tsx:53",
+  "file": "modules/calculator/final-pay-calculator.tsx",
+  "line": "53, 59-64, 78, 203",
+  "status": "cross-file",
+  "note": "Not my file. (1) Line 53: 0.175 should be COMMON_LEAVE_LOADING, and the line 203 label 'Leave Loading (17.5%)' should use formatPercent(COMMON_LEAVE_LOADING, 1). (2) Lines 59-64: the long service leave engine uses a single national rate (needs-decision, see the final-pay-calculator-content.tsx:36 result). (3) Lines 78 onward put the leave payout into taxableComponents at the effective rate even when reason = redundancy, where ATO Schedule 7 caps unused annual leave at 32%. That is engine logic, so needs-decision.",
+  "job": "ff-040-employment-type-calculat",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/weekly-pay-calculator-content.tsx:164",
+  "file": "modules/calculator/weekly-pay-calculator-content.tsx",
+  "line": "164",
+  "status": "cross-file",
+  "note": "Same unsourced statistic: 'Fortnightly pay is the most common cycle in Australia, used by approximately 45% of employers.' No primary source exists in the code. Proposed: delete that sentence, so the line reads '...which suits employees who manage expenses week to week. Monthly pay is standard for...'. The 'Monthly pay is standard for salaried professionals in corporate, government, and finance sectors' claim is also unsourced; the owner of that file should check it.",
+  "job": "ff-041-final-pay-calculator",
+  "targets": []
+ },
+ {
+  "key": "lib/navigation.ts:359",
+  "file": "lib/navigation.ts",
+  "line": "359",
+  "status": "cross-file",
+  "before": "description: \"Calculate employer SG contributions at 12%\"",
+  "after": "description: `Calculate employer SG contributions at ${Math.round(SUPER_GUARANTEE.rate * 100)}%`",
+  "note": "The same typed 12% sits in the nav menu data, which I do not own. Correct today but it will drift from SUPER_GUARANTEE.rate.",
+  "job": "ff-042-hecs-help-calculator",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/income-tax-calculator-content.tsx:176",
+  "file": "lib/constants/australian-tax.ts",
+  "line": "72",
+  "status": "cross-file",
+  "note": "The fixer made no edit. The cross-file proposal to add a WORKING_HOLIDAY_MAKER_TAX_BRACKETS constant in lib/constants/australian-tax.ts stands. The fixer's caveat also stands: the ATO page lists only 2025-26 WHM rates.",
+  "sourceUrl": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-working-holiday-makers",
+  "quote": "Working holiday makers tax rates for 2025\u201326: 0 \u2013 $45,000 | 15c for each $1",
+  "verdict": "n/a",
+  "job": "ff-043-income-tax-calculator-co",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/leave-calculator.tsx:161",
+  "status": "cross-file",
+  "file": "modules/calculator/leave-calculator.tsx",
+  "line": "161",
+  "quote": "Long service leave may qualify for concessional tax treatment.",
+  "note": "I agree with the fixer's cross-file proposal. It matches Schedule 7 and LSL_TAX. Add 'scheme' if redundancy wording is ever included.",
+  "verdict": "n/a",
+  "job": "ff-045-leave-calculator-content",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/leave-calculator-faqs.ts:80",
+  "status": "cross-file",
+  "file": "modules/calculator/leave-calculator-faqs.ts",
+  "line": "80",
+  "quote": "A part-time employee working 20 hours per week accrues 80 hours (2.1 weeks) of leave per year, calculated as 20/38 \u00d7 152 hours. The accrual rate is 1.538 hours per week ... compared to 2.923 hours per week",
+  "note": "I agree: the same full-time-weeks framing as line 290. The FWO says a part-timer on 20 hours gets 4 weeks of their own hours, which is 80 hours.",
+  "verdict": "n/a",
+  "job": "ff-045-leave-calculator-content",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/leave-calculator-faqs.ts:72",
+  "status": "cross-file",
+  "file": "modules/calculator/leave-calculator-faqs.ts",
+  "line": "72",
+  "quote": "The historical concessional tax treatment for leave loading was removed decades ago.",
+  "note": "I agree: pre-18 August 1993 annual leave loading is still withheld at 32% under Schedule 7 (applies from 1 July 2026), so 'removed decades ago' is misleading.",
+  "verdict": "n/a",
+  "job": "ff-045-leave-calculator-content",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/payslip-generator-faqs.ts:15",
+  "file": "modules/calculator/payslip-generator-faqs.ts",
+  "line": "15",
+  "status": "cross-file",
+  "sourceUrl": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips",
+  "quote": "employer's Australian Business Number (if applicable)",
+  "before": "the employer's name and ABN, the employee's name, ... the hourly rate and hours worked (for hourly employees) or annual salary (for salaried employees), ...",
+  "after": "the employer's name and ABN (if it has one), the employee's name, ... the hourly rate, hours worked at that rate and the total for those hours (for hourly employees), ...",
+  "note": "There are two errors. (1) The ABN is required only if the employer has one. (2) 'or annual salary (for salaried employees)' is not on the FWO or reg 3.46 list. Reg 3.46 requires the ordinary hourly rate, the hours at that rate and the amount at that rate for hourly-paid employees. It also requires the rate on the last day of employment.",
+  "job": "ff-051-parenting-payment-faqs",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/minimum-wage.ts:60",
+  "file": "lib/constants/minimum-wage.ts",
+  "line": "60",
+  "status": "cross-file",
+  "note": "Optional cleanup. Add nmwIncrease (5.97%, [2026] FWCFB 3500, from 1 July 2026) to NMW_DECISION, next to awardIncrease. pay-rise-calculator-faqs.ts could then read it instead of the local derivation EMPLOYMENT.minimumWageHourly / minimumWageHourlyPrevious - 1. Both give 5.97%.",
+  "job": "ff-051-parenting-payment-faqs",
+  "targets": []
+ },
+ {
+  "key": "modules/calculator/jobseeker-payment-calculator.tsx:166",
+  "file": "modules/calculator/jobseeker-payment-calculator.tsx",
+  "line": "166",
+  "status": "cross-file",
+  "note": "The same hardcoded 'the next change is 20 March 2027' appears here. It is also in modules/guide/centrelink-payment-rates-faqs.ts:37 and modules/guide/centrelink-payment-rates.tsx:263. The date is correct today but will go stale. Proposed fix: add nextIndexation: \"20 March 2027\" to RENT_ASSISTANCE and JOBSEEKER in lib/constants/centrelink-family-payments.ts and render it in all of these places. I did not edit them because they are not my files.",
+  "job": "ff-052-redundancy-pay-calculato",
+  "targets": [
+   "modules/guide/centrelink-payment-rates-faqs.ts",
+   "modules/guide/centrelink-payment-rates.tsx",
+   "lib/constants/centrelink-family-payments.ts"
+  ]
+ },
+ {
+  "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:144",
+  "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+  "line": "144",
+  "status": "cross-file",
+  "note": "I made no edit because this file is not owned by this job. The proposal is consistent with salary-sacrifice-calculator-faqs.ts, where SECOND_SAVING includes MEDICARE_LEVY.rate. The correct net saving is 0.30 + 0.02 - 0.15 = $0.17.",
+  "verdict": "n/a",
+  "job": "ff-055-superannuation-calculato",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/annual-leave-guide-faqs.ts:39",
+  "file": "modules/guide/annual-leave-guide-faqs.ts",
+  "line": "39",
+  "status": "cross-file",
+  "before": "Leave continues to accrue during paid leave (annual, personal, long service) and jury duty.",
+  "after": "Leave continues to accrue during paid leave (annual, personal, family and domestic violence, long service) and during community service leave, including jury duty.",
+  "sourceUrl": "https://www.fairwork.gov.au/leave/annual-leave",
+  "quote": "Annual leave accumulates when an employee is on: ... paid family and domestic violence leave; community service leave including jury duty; long service leave.",
+  "note": "The fixer made no edit here, and that was right because they do not own this file. The proposed change is supported by the FWO page. The 'before' text matches the current working copy of the FAQ, which another fixer has already edited.",
+  "verdict": "n/a",
+  "job": "ff-060-annual-leave-guide",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/award-rates.tsx:292",
+  "file": "modules/guide/award-rates.tsx",
+  "line": "292",
+  "status": "cross-file",
+  "note": "Not my file. It says 'the 12% superannuation guarantee must be paid with each pay rather than quarterly', which has the same imprecision as award-rates-faqs.ts:51. Proposed change: 'from {SUPER_GUARANTEE.paydaySuperStart} the {Math.round(SUPER_GUARANTEE.rate*100)}% superannuation guarantee is due each payday rather than quarterly and must reach the fund within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday.' modules/guide/employer-cost-calculator-content.tsx:152 also types 12% and 'paid with each pay'.",
+  "job": "ff-061-apprentice-pay-rates-faq",
+  "targets": [
+   "modules/guide/employer-cost-calculator-content.tsx"
+  ]
+ },
+ {
+  "key": "lib/data/apprentice-pay/index.ts:403",
+  "file": "lib/data/apprentice-pay/index.ts",
+  "line": "403",
+  "status": "cross-file",
+  "note": "The cookery tool allowance ($2.03 a day, $9.94 a week) exists only in a prose note, and it is retyped in apprentice-pay-rates-faqs.ts:44. Proposed change: add `export const COOKERY_TOOL_ALLOWANCE = { daily: 2.03, weeklyMax: 9.94 } as const;` and render it in both the note and the FAQ.",
+  "job": "ff-061-apprentice-pay-rates-faq",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/capital-gains-tax.ts:160-191",
+  "file": "lib/constants/capital-gains-tax.ts",
+  "status": "cross-file",
+  "note": "Not edited, which is correct: the fixer does not own this file. The proposed change matches research-staling.json (add atoReformUrl, update the comment at about line 178, bump verifiedOn to 2026-10-27 and the test pin at capital-gains-tax.test.ts:470).",
+  "verdict": "n/a",
+  "job": "ff-062-award-rates",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/pay-tax-changes-calendar.ts:73",
+  "file": "lib/constants/pay-tax-changes-calendar.ts",
+  "line": "73",
+  "status": "cross-file",
+  "note": "Not edited, which is correct: another job owns this file. The proposed URL change matches research-staling.json.",
+  "verdict": "n/a",
+  "job": "ff-062-award-rates",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/casual-conversion.ts:29-33",
+  "status": "cross-file",
+  "file": "lib/constants/casual-conversion.ts",
+  "line": "57-66",
+  "note": "Proposed: add to EMPLOYEE_CHOICE `firstNoticeDate: \"26 February 2025\"`, `firstNoticeDateSmallBusiness: \"26 August 2025\"`, `oldPathwaysEnd: \"26 August 2025\"` (FWO 'Becoming a permanent employee', scraped 27 Oct 2026, quotes in the :42 result). Then modules/guide/casual-conversion-faqs.ts:42 can render them instead of typing the dates.",
+  "sourceUrl": "https://www.fairwork.gov.au/starting-employment/types-of-employees/casual-employees/becoming-a-permanent-employee",
+  "job": "ff-063-casual-conversion-faqs",
+  "targets": [
+   "modules/guide/casual-conversion-faqs.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/concessional-contributions-cap-faqs.ts:36",
+  "status": "cross-file",
+  "file": "modules/guide/concessional-contributions-cap-faqs.ts",
+  "line": "36",
+  "before": "The oldest amounts are used first, and each expires after five years.",
+  "after": "The oldest amounts are used first, and each expires after ${CARRY_FORWARD.years} years.",
+  "note": "The rule is correct today (ATO: unused amounts expire after 5 years), but the word 'five' is not tied to the constant. CARRY_FORWARD is already used in the same string, so it is already imported.",
+  "job": "ff-065-concessional-contributio",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/concessional-contributions-cap-faqs.ts:44",
+  "status": "cross-file",
+  "file": "modules/guide/concessional-contributions-cap-faqs.ts",
+  "line": "44",
+  "before": "less a 15% tax offset for the contributions tax the fund already paid.",
+  "after": "less a ${formatPercent(ECC_TAX_OFFSET_RATE, 0)} tax offset for the contributions tax the fund already paid.",
+  "note": "Correct today (ATO QC19749: 'less a 15% tax offset'). The change needs ECC_TAX_OFFSET_RATE added to the existing import from @/lib/constants/super-contributions. formatPercent is already used in the same string.",
+  "job": "ff-065-concessional-contributio",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/construction-trades-pay.tsx:81",
+  "status": "cross-file",
+  "file": "modules/guide/construction-trades-pay.tsx",
+  "line": "77-93",
+  "before": "'Salary Range (Annual)' table: Electrician $80,000 \u2013 $110,000, Plumber $75,000 \u2013 $105,000, Carpenter $70,000 \u2013 $95,000, Bricklayer $70,000 \u2013 $90,000, Painter $65,000 \u2013 $85,000, Concreter $70,000 \u2013 $95,000, Boilermaker $85,000 \u2013 $120,000; followed by 'Boilermakers and electricians command the highest rates ... Self-employed tradies ... can earn significa[ntly more]'",
+  "after": "Replace the table with JSA medians rendered from lib/data/job-pay-rates (ELECTRICIAN, PLUMBER, CARPENTER, BRICKLAYER, BOILERMAKER via Occupation.median.medianWeekly, weekly and x52 annual). Drop the Painter and Concreter rows, or show no figure for them, because the site holds no median for those trades. Replace the paragraph after the table with a sourced statement, for example the computed top-ranked trade, as the FAQ now does.",
+  "note": "These are the same unsourced ranges as the FAQ answers I fixed. The site's data contradicts them: bricklayer median $2,317 a week (about $120,484 a year) is above the claimed $70K to $90K, and the boilermaker group median $1,688 a week (about $87,776) is the lowest, not the highest. The page now shows medians in the FAQ that disagree with this table. The column header 'Salary Range (Annual)' would need a new label, which is the owning agent's or the owner's call. The meta DESCRIPTION in app/construction-trades-pay/page.tsx says 'salary ranges by trade'. It is still broadly accurate if medians replace the ranges.",
+  "job": "ff-065-concessional-contributio",
+  "targets": [
+   "app/construction-trades-pay/page.tsx"
+  ]
+ },
+ {
+  "key": "modules/guide/construction-trades-pay-faqs.ts:26",
+  "file": "modules/guide/construction-trades-pay-faqs.ts",
+  "line": "26 and 46",
+  "status": "cross-file",
+  "quote": "line 26: 'Electricians ($80K to $110K), plumbers ($75K to $105K) and boilermakers ($85K to $120K) are among the highest-paid trades'; line 46: 'Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K to $120K.'",
+  "note": "Same unsourced ranges as the page table, and the 'boilermakers highest-paid' claim is contradicted by site JSA data (bricklayers $2,317/wk highest; structural steel and welding $1,688/wk lowest, below the $1,852 all-occupations median). Proposed change: whoever owns the FAQ file should drop the boilermaker 'highest-paid' claim and the hard-coded ranges, or render JSA medians from the occupation data files, consistent with the owner's decision on the page table.",
+  "job": "ff-066-construction-trades-pay",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/delivery-minimum-pay.ts:122",
+  "file": "lib/constants/delivery-minimum-pay.ts",
+  "line": "122",
+  "status": "cross-file",
+  "note": "deliveryRate(vehicle, period = \"2026\") has a fixed default period. On and after 1 January 2027 the delivery page intro, the KeyFigures, the 'from/to' wording, the worked example (deliveryFloor period \"2026\" at delivery-driver-pay-rate.tsx:50) and likely the calculator will keep showing the 2026 rates ($31.30/$31.50/$32.00) as current, while cl 14.2(b) sets $31.80/$32.00/$32.50. Proposed change: switch the default to \"2027\" on 1 January 2027, or derive it from the date. At the same switch: update the locked title, meta and FAQ figures ($31.80), change the KeyFigures 's: \"Rates rise 1 January 2027\"' and the 'What Happens Next' wording, and change EX's period. This is an owner or scheduled task, not provable as a value change today.",
+  "job": "ff-067-delivery-driver-pay-rate",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/delivery-driver-pay-rate.tsx:129",
+  "file": "modules/guide/delivery-driver-pay-rate.tsx",
+  "line": "130",
+  "status": "cross-file",
+  "quote": "7.1 The DLPO must maintain the following records for a period of 7 years",
+  "sourceUrl": "https://www.fwc.gov.au/documents/sites/ms2024-1/ms2024-3-order-mso-11-08-2026.pdf",
+  "note": "The 7 years is correct but typed. Add `recordKeepingYears: 7` to DELIVERY_MSO in lib/constants/delivery-minimum-pay.ts (not my file), then render {DELIVERY_MSO.recordKeepingYears} at line 130.",
+  "job": "ff-067-delivery-driver-pay-rate",
+  "targets": [
+   "lib/constants/delivery-minimum-pay.ts"
+  ]
+ },
+ {
+  "key": "lib/constants/super-contributions.ts:66",
+  "file": "lib/constants/super-contributions.ts",
+  "line": "66",
+  "status": "cross-file",
+  "note": "Optional: add to DIVISION_293 `paymentDueDays: 21` (ITAA 1997 s 293-65(1); Treasury EM) and `releaseElectionDays: 60` (ATO QC36272, updated 24 Aug 2026), then render them in modules/guide/division-293-tax.tsx and division-293-tax-faqs.ts. Not required for correctness; both pages state the right values today.",
+  "job": "ff-068-division-293-tax",
+  "targets": [
+   "modules/guide/division-293-tax.tsx"
+  ]
+ },
+ {
+  "key": "modules/guide/employer-cost-calculator-content.tsx:66",
+  "status": "cross-file",
+  "file": "modules/guide/employer-cost-calculator-content.tsx",
+  "line": "66",
+  "quote": "This multiplier includes the Superannuation Guarantee at 12%, annual leave provisions at 7.69%",
+  "note": "Extra finding, not in this fixer's files. The current working tree shows another agent has already edited employer-cost-calculator-content.tsx: it now imports EMPLOYMENT and SUPER_GUARANTEE_CHARGE and defines SG_PCT and ANNUAL_LEAVE_PCT. That owner should confirm this item.",
+  "verdict": "n/a",
+  "job": "ff-070-employer-cost-calculator",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/employer-cost-calculator-content.tsx:51",
+  "status": "cross-file",
+  "file": "modules/guide/employer-cost-calculator-content.tsx",
+  "line": "51 and 329",
+  "quote": "Workers compensation (professional services at 0.5%)",
+  "note": "Extra finding, not in this fixer's files. The typed 0.5% professional services workers compensation rate has no source. The proposal to reword it as an assumption stands.",
+  "verdict": "n/a",
+  "job": "ff-070-employer-cost-calculator",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/payroll-tax.ts:703",
+  "status": "cross-file",
+  "file": "lib/constants/payroll-tax.ts",
+  "line": "703",
+  "quote": "const leaveProvision = salary * (4 / 52);",
+  "note": "Extra finding about engine code. Typed 4/52 instead of the EMPLOYMENT constants gives the same value today. This is a consistency note only and was not changed.",
+  "verdict": "n/a",
+  "job": "ff-070-employer-cost-calculator",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/gig-economy-pay-guide.tsx:80",
+  "file": "modules/guide/gig-economy-pay-guide.tsx",
+  "line": "80",
+  "status": "cross-file",
+  "quote": "A common approach is to set aside <strong>25-30% of gross income</strong> into a separate bank account for tax. This covers income tax, Medicare levy, and GST (if registered).",
+  "note": "Same false claim as FAQ :24, and it contradicts the table right below it (engine: 4% at $30k, 13% at $50k, 19% at $75k, 23% at $100k, excluding GST). Proposed change: 'No one withholds tax from your gig income, so set aside your own tax in a separate bank account. The share you need rises with your income. The table shows resident income tax and Medicare levy only, so if you are registered for GST, also set aside one-eleventh of every GST-inclusive fare:'",
+  "job": "ff-075-gig-economy-pay-guide-fa",
+  "targets": []
+ },
+ {
+  "key": "lib/data/graduate-salary/index.ts:185",
+  "file": "lib/data/graduate-salary/index.ts",
+  "line": "27, 185",
+  "status": "cross-file",
+  "note": "The data file I do not own still hedges. Line 27 comment: 'so it may have moved since'. Line 185, doctor.published.basis: 'Check NSW Health for any newer rate.' No page renders .basis today. Proposed change for line 185: replace 'an interim increase pending the NSW Industrial Relations Commission's final decision. Check NSW Health for any newer rate.' with 'an interim rate while the NSW Industrial Relations Commission arbitrates the awards; further increases follow the Commission's final decision.' Optionally export NSW_INTERN_ANNUAL (line 104). IB2026_007 is still Active on 27 Oct 2026 (review date 19 January 2027).",
+  "sourceUrl": "https://www1.health.nsw.gov.au/pds/ActivePDSDocuments/IB2026_007.pdf",
+  "job": "ff-077-graduate-salary-australi",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/graduate-salary-australia-faqs.ts:40",
+  "file": "modules/guide/graduate-salary-australia-faqs.ts",
+  "line": "40",
+  "status": "cross-file",
+  "note": "The teacher FAQ and table render Victoria's graduate step as about $79,600 (VGSA 2022). research-staling.json records that VGSA 2026 was approved ([2026] FWCA 2836) and operates from 23 October 2026, with graduate 1-1 at $92,882. The fix belongs in lib/data/teacher-pay/vic.ts, which another job handles. My files render the value from data, so they will update on their own once that file changes.",
+  "job": "ff-077-graduate-salary-australi",
+  "targets": [
+   "lib/data/teacher-pay/vic.ts"
+  ]
+ },
+ {
+  "key": "lib/data/job-pay-rates/hospitality-common.ts:79",
+  "file": "lib/data/job-pay-rates/hospitality-common.ts",
+  "line": "79",
+  "status": "cross-file",
+  "quote": "Where more than one penalty applies only the highest is paid (Hospitality cl 29.3; Restaurant cl 24.3).",
+  "note": "This file is not mine. It states the highest-only rule with no exception. Hospitality cl 29.3(c) pays the clause 16 breaks penalty on top (HOSPITALITY_PENALTIES.highestOnlyException). Proposed change: append the hospitality exception, for example '... only the highest is paid (Hospitality cl 29.3(b); Restaurant cl 24.3). Under the Hospitality Award the clause 16 breaks penalty is paid in addition (cl 29.3(c)).' Check the Restaurant Award cl 24.3 for an equivalent carve-out before generalising.",
+  "job": "ff-078-healthcare-worker-pay",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/late-tax-return-penalty.tsx:107",
+  "file": "modules/guide/late-tax-return-penalty.tsx",
+  "line": "107",
+  "status": "cross-file",
+  "note": "'$20,000 or more' (the large-liability agent threshold) is typed here and again in lib/constants/tax-calendar-2026-27.ts:208. Neither file has a constant for it. Proposed change: add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 in lib/constants/tax-return-2025-26.ts, then render it in both places. Not done because I do not own those files. The value itself was not re-verified in this pass.",
+  "job": "ff-080-junior-pay-rates-faqs",
+  "targets": [
+   "lib/constants/tax-calendar-2026-27.ts",
+   "lib/constants/tax-return-2025-26.ts"
+  ]
+ },
+ {
+  "key": "modules/guide/medicare-levy-surcharge-faqs.ts:40",
+  "file": "modules/guide/medicare-levy-surcharge-faqs.ts",
+  "line": "40",
+  "status": "cross-file",
+  "note": "No edit; the file is not owned. The proposed fix is sound and sourced (QC71228): 'The Medicare levy is ${RATE} of taxable income for every resident who does not qualify for a reduction or exemption, cover or not.' The typed '1% to 1.5%' could render surcharge.tier1.rate and tier3.rate.",
+  "verdict": "n/a",
+  "job": "ff-081-listo-calculator",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/medicare-levy.tsx:172",
+  "file": "modules/guide/medicare-levy.tsx",
+  "line": "172",
+  "status": "cross-file",
+  "note": "No edit; the file is not owned. The proposed fix is sound and sourced by the same QC71228 wording.",
+  "verdict": "n/a",
+  "job": "ff-081-listo-calculator",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/medicare-levy-surcharge-faqs.ts:40",
+  "status": "cross-file",
+  "file": "modules/guide/medicare-levy-surcharge-faqs.ts",
+  "line": "40",
+  "quote": "The Medicare levy is ${RATE} of taxable income and almost every resident pays it, cover or not. The surcharge is an extra 1% to 1.5% ...",
+  "note": "Confirmed by grep: line 40 still says 'almost every resident pays it' and types '1% to 1.5%'. The fixer's proposed wording is sound and matches the change verified on /medicare-levy/: '...is ${RATE} of taxable income and applies whether or not you hold cover. The surcharge is an extra ${formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)} to ${formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}...'. Not edited (file not owned).",
+  "verdict": "n/a",
+  "job": "ff-082-medicare-levy",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/junior-rates.ts:312",
+  "status": "cross-file",
+  "file": "lib/constants/junior-rates.ts",
+  "line": "312",
+  "note": "Confirmed: PENDING_JUNIOR_CHANGE.inForce = false at line 312. research-staling.json schedules the flip to true on 1 Dec 2026, after a status re-check around 17 Nov 2026. The new conditional prose depends on that flip.",
+  "verdict": "n/a",
+  "job": "ff-082-medicare-levy",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/modern-awards-oct.ts:427",
+  "file": "lib/constants/modern-awards-oct.ts",
+  "line": "427",
+  "status": "cross-file",
+  "note": "The allowance name 'Meal allowance (1 hour or more of weekday overtime)' gives only half the cl 18.2(a)(i) condition. The award also requires the overtime to finish 1.5 hours after normal finishing time (or 5 hours after the preceding meal break). The name is a lookup key, now used by my allow() lookup in modern-award-content-oct.ts, so any rename must also change that call. Prefer leaving the name and adding a note field: \"Only when the overtime also finishes 1.5 hours after normal finishing time or 5 hours after the last meal break, whichever is first; a further $16.54 if the overtime exceeds 4 hours.\"",
+  "job": "ff-084-modern-award-content-oct",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/tax-rates-reference.ts:139-150",
+  "file": "lib/constants/tax-rates-reference.ts",
+  "line": "139-150",
+  "status": "cross-file",
+  "before": "/** Working holiday maker scale ... VERIFIED: ATO QC73322, latest published table 2025-26 ... */ export const WHM_TABLE_YEAR = \"2025-26\";",
+  "after": "Comment: 'ATO Schedule 15 (published 17 June 2026) Table A gives the same scale for 2026-27.' Set WHM_TABLE_YEAR = \"2026-27\" or add export const WHM_TAX_BRACKETS_2026_27 = WHM_TAX_BRACKETS_2025_26.",
+  "sourceUrl": "https://www.ato.gov.au/tax-rates-and-codes/schedule-15-tax-table-for-working-holiday-makers",
+  "quote": "This schedule applies to payments from 1 July 2026 ... Table A: Working holiday makers income tax rates for 2026\u201327: $0 \u2013 $45,000 15%; $45,001 \u2013 $135,000 30%; $135,001 \u2013 $190,000 37%; $190,001 & over 45%",
+  "note": "An ATO-published 2026-27 WHM table now exists, so the 'latest published table 2025-26' comment and the WHM_TABLE_YEAR label are stale. Bracket values do not change. Whoever owns tax-rates-reference.ts and its test should make this change.",
+  "job": "ff-086-new-job-checklist",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/overtime-penalty-rates-guide.tsx:219",
+  "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+  "line": "219",
+  "status": "cross-file",
+  "quote": "<td className=\"px-5 py-3 font-semibold\">2.0x - 2.75x</td>",
+  "note": "No edit was made (file not owned). I agree that the typed range '2.0x - 2.75x' and the neighbouring typed ranges are unsourced. Proposed change: render RETAIL_PENALTIES.publicHoliday and casualPublicHoliday with a label naming the award, or drop the column. tsc showed no errors in the changed file.",
+  "verdict": "n/a",
+  "job": "ff-090-overtime-penalty-rates-g",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/delivery-driver-pay-rate.tsx:140",
+  "file": "modules/guide/delivery-driver-pay-rate.tsx",
+  "line": "140",
+  "status": "cross-file",
+  "note": "Not my file. It types '(capped at 5,000 km under that method)'. Proposed change: replace 5,000 with {CPK_KM_CAP.toLocaleString(\"en-AU\")} imported from @/lib/constants/cents-per-km. All delivery-rate pages also need DELIVERY_RATE_PERIODS[0] / deliveryRate default '2026' moved to the 2027 period on 1 January 2027 (cl 14.2(b)).",
+  "job": "ff-095-retail-award-rates",
+  "targets": []
+ },
+ {
+  "key": "app/salary-packaging-guide/page.tsx:16",
+  "file": "app/salary-packaging-guide/page.tsx",
+  "line": "16",
+  "status": "cross-file",
+  "before": "Salary packaging guide: meal entertainment, LAFHA, portable devices and other FBT-exempt items, and how packaging works for not-for-profit and hospital staff.",
+  "note": "The meta description lists LAFHA among 'FBT-exempt items'. LAFHA is not covered anywhere on the page. Portable devices lose the exemption for salary-sacrificed items from 1 April 2027. I did not verify LAFHA's FBT treatment in this pass. Proposed (owner of page.tsx): 'Salary packaging guide: living expense and meal entertainment caps, portable devices and other FBT concessions, and how packaging works for not-for-profit and hospital staff.' (152 chars). The title is locked and was not touched.",
+  "job": "ff-096-salary-packaging-guide-f",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/stsl-on-payslip.tsx:149",
+  "status": "cross-file",
+  "file": "modules/guide/stsl-on-payslip.tsx",
+  "line": "149",
+  "quote": "Common with second jobs (no STSL withheld if each job is under the threshold), salary sacrifice, or investment income.",
+  "note": "This is the same wrong claim as stsl-on-payslip-faqs.ts:39. Under ATO Schedule 8, a job where the tax-free threshold is not claimed withholds STSL from $987 a week (STSL_NO_TFT[0].lessThan), not from the annual threshold. Proposed change: replace '(no STSL withheld if each job is under the threshold)' with '(a job where you do not claim the tax-free threshold withholds STSL only from {formatAUD(STSL_NO_TFT[0].lessThan)} a week)', importing STSL_NO_TFT from @/lib/constants/payg-withholding.",
+  "sourceUrl": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-weekly-tax-table",
+  "job": "ff-099-service-pay-shared",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/super-guarantee-charge-faqs.ts:46",
+  "status": "cross-file",
+  "file": "modules/guide/super-guarantee-charge-faqs.ts",
+  "line": "46",
+  "quote": "A business day excludes weekends and public holidays, and a public holiday anywhere in Australia removes a day nationally.",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-on-payday/payment-deadlines-for-payday-super",
+  "note": "Same wrong claim as question :136. Exact change: replace it with 'A business day excludes weekends and any public holiday that covers the whole of an Australian state or territory, which removes a day nationally. A holiday in only part of a state or territory (such as Royal Hobart Show Day) is still a business day.'",
+  "job": "ff-100-super-guarantee-charge",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/super-guarantee-charge-faqs.ts:86",
+  "status": "cross-file",
+  "file": "modules/guide/super-guarantee-charge-faqs.ts",
+  "line": "86",
+  "quote": "lodge an unpaid super enquiry with the ATO, which can be done anonymously.",
+  "sourceUrl": "https://www.ato.gov.au/calculators-and-tools/super-report-unpaid-super-contributions-from-my-employer",
+  "note": "Same wrong claim as question faqs.ts:67. Exact change: replace it with 'report it with the ATO's \"Report unpaid super contributions from my employer\" online tool. The ATO asks your permission to use your name when it contacts your employer; to keep your identity confidential, use the ATO tip-off form or call 1800 060 062.' The same answer also says 'within roughly a fortnight of each payday', which is loose wording; the rule is 7 business days (C.businessDaysToPay).",
+  "job": "ff-100-super-guarantee-charge",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/superannuation-guide.tsx:382",
+  "status": "cross-file",
+  "file": "modules/guide/superannuation-guide.tsx",
+  "line": "382",
+  "quote": "lodge an &quot;Unpaid super enquiry&quot; through the ATO.",
+  "sourceUrl": "https://www.ato.gov.au/calculators-and-tools/super-report-unpaid-super-contributions-from-my-employer",
+  "note": "This is the old tool name. Exact change: 'report it with the ATO&rsquo;s &quot;Report unpaid super contributions from my employer&quot; online tool.'",
+  "job": "ff-100-super-guarantee-charge",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/tax-calendar-2026-27.ts:203",
+  "file": "lib/constants/tax-calendar-2026-27.ts",
+  "line": "203 (and header comment 24-26, TAX_CALENDAR_SOURCES.stp line 48)",
+  "status": "cross-file",
+  "sourceUrl": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/concessional-reporting",
+  "quote": "If you have 20 or more payees, then these arrangements do not apply and you must report any closely held payees in the same way as your arm's length employees.",
+  "note": "Line 203: the event title 'STP finalisation for closely held payees (employers with 20 or more employees)' should read 'STP finalisation for closely held payees (employers with 19 or fewer payees)'. The header comment repeats the old rule. TAX_CALENDAR_SOURCES.stp (.../single-touch-payroll/start-reporting/end-of-year-finalisation-through-stp) now redirects to the STP hub page. Change it to https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data (updated 23 Oct 2026, '14 July each year').",
+  "job": "ff-102-tax-bracket-history",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/tax-calendar-2026-27.ts:210",
+  "file": "lib/constants/tax-calendar-2026-27.ts",
+  "line": "210",
+  "status": "cross-file",
+  "note": "The event title '${RETURN_2026.incomeYear} tax return due for most tax agent clients' makes a population claim with no source. The ATO wording is 'all remaining individuals and trusts not required earlier'. Proposed: '${RETURN_2026.incomeYear} tax return due for all other tax agent clients'.",
+  "job": "ff-102-tax-bracket-history",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/tax-file-number-declaration-faqs.ts:27",
+  "file": "modules/guide/tax-file-number-declaration-faqs.ts",
+  "status": "cross-file",
+  "note": "I agree with the fixer's proposal, and the NAT 3093 page backs it: 'Give your employer a withholding declaration as soon as possible so HECS is withheld from future pays.' No edit made (file not owned).",
+  "sourceUrl": "https://www.ato.gov.au/forms-and-instructions/withholding-declaration",
+  "verdict": "n/a",
+  "job": "ff-105-tax-file-number-declarat",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/tax-file-number-declaration-faqs.ts:35",
+  "file": "modules/guide/tax-file-number-declaration-faqs.ts",
+  "status": "cross-file",
+  "note": "I agree with the fixer's proposed wording (withholding declaration for changes with the same employer; keep the different-ABN sentence). No edit made.",
+  "sourceUrl": "https://www.ato.gov.au/forms-and-instructions/withholding-declaration",
+  "verdict": "n/a",
+  "job": "ff-105-tax-file-number-declarat",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/australian-tax.ts:85",
+  "file": "lib/constants/australian-tax.ts",
+  "line": "85",
+  "status": "cross-file",
+  "before": "effectiveTaxFreeThreshold: TAX_FREE_THRESHOLD + Math.round(700 / SECOND_BRACKET_RATE)  // comment: at 15% it is $22,867",
+  "note": "Checked the math. Math.round(700/0.15) = 4,667 gives 22,867, and tax at 22,867 is $700.05, which LITO does not fully cancel. Math.floor gives 22,866 at 15% and exactly 22,575 at 16%. The proposed change is Math.round to Math.floor, with the comment changed to $22,866 and any test that pins 22,867 updated. It is sound, but it belongs to the owner of australian-tax.ts. tax-free-threshold.ts:92-97 says that constant is 'rounded ... how it is usually quoted', so the owner should decide. Nothing was edited.",
+  "verdict": "n/a",
+  "job": "ff-106-tax-free-threshold",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/tech-salary-guide-australia-faqs.ts:67",
+  "status": "cross-file",
+  "file": "modules/guide/tech-salary-guide-australia-faqs.ts",
+  "line": "67",
+  "before": "A company has its own tax rate, ${BASE_RATE_ENTITY_TAX} for a base rate entity in 2025-26, but",
+  "after": "A company has its own tax rate, ${BASE_RATE_ENTITY_TAX} for a base rate entity in 2026-27 (the ATO rate for every income year from 2021-22), but",
+  "sourceUrl": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+  "quote": "2021\u201322 and future years | $50m | 25.0% | 30.0%",
+  "note": "Not edited (file not owned). The proposed change is supported by the same ATO page: the 25% rate applies to '2021\u201322 and future years'. Best done by rendering SITE_CONFIG.financialYear and COMPANY_TAX.firstYear with the en dash turned into a hyphen.",
+  "verdict": "n/a",
+  "job": "ff-108-tax-return-2026",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/employee-vs-sole-trader-vs-company.tsx:44",
+  "status": "cross-file",
+  "file": "modules/guide/employee-vs-sole-trader-vs-company.tsx",
+  "line": "44",
+  "before": "{ title: \"Company tax rates 2025\u201326\", url: COMPANY_TAX.sources.rates2025_26, ... }",
+  "after": "{ title: \"Changes to company tax rates\", url: COMPANY_TAX.sources.rateChanges, ... }",
+  "note": "Not edited (file not owned). Swapping to COMPANY_TAX.sources.rateChanges with the title 'Changes to company tax rates' is supported by the same ATO page (last updated 4 September 2026).",
+  "verdict": "n/a",
+  "job": "ff-108-tax-return-2026",
+  "targets": []
+ },
+ {
+  "key": "lib/data/teacher-pay/vic.ts:66",
+  "status": "cross-file",
+  "file": "lib/data/teacher-pay/vic.ts",
+  "line": "66",
+  "note": "Not edited. The VGSA 2026 data update belongs to the vic.ts owner, per research-staling.json. The template needs no change.",
+  "verdict": "n/a",
+  "job": "ff-108-tax-return-2026",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/time-in-lieu.ts:27",
+  "status": "cross-file",
+  "file": "lib/constants/time-in-lieu.ts",
+  "line": "27-30",
+  "note": "The header comment 'Common to all eight: ... paid at the overtime rate applicable when the overtime was worked' contradicts the SCHADS note at lines 24-25 and SCHADS cl 28.2(e)-(f). Proposed change: add '(SCHADS: based on the rates of pay applying when payment is made)'. It is only a comment, so it has no reader impact.",
+  "job": "ff-109-termination-payment-tax",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/zone-tax-offset.tsx:129",
+  "file": "modules/guide/zone-tax-offset.tsx",
+  "line": "129",
+  "status": "cross-file",
+  "quote": "Your employer does not apply the offset through PAYG withholding during the year, so you receive it as a reduced assessment or larger refund when you lodge.",
+  "sourceUrl": "https://www.ato.gov.au/forms-and-instructions/withholding-declaration",
+  "note": "Wrong. NAT 3093 question 7 lets an employee claim the zone or overseas forces offset through reduced withholding. Proposed replacement: 'Your employer reduces your PAYG withholding for the offset only if you give them a Withholding declaration (NAT 3093) and answer yes at question 7. Otherwise you receive it as a reduced assessment or larger refund when you lodge.' (keep the existing PAYG withholding Link).",
+  "job": "ff-113-working-holiday-tax",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/zone-tax-offset.tsx:181",
+  "file": "modules/guide/zone-tax-offset.tsx",
+  "line": "181",
+  "status": "cross-file",
+  "quote": "The zone list changed on 1 July 2026. Locations widely described elsewhere as Zone B (including Darwin, Palmerston and Humpty Doo) are now listed as Zone A.",
+  "sourceUrl": "https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones/northern-territory",
+  "note": "The ATO NT page only shows 'Last updated 1 July 2026'. It does not show that any placement changed, and 'widely described elsewhere' is an unsourced population claim. Proposed: 'The ATO's Northern Territory zone list (last updated 1 July 2026) lists Darwin, Palmerston and Humpty Doo as Zone A. Check the current ATO list rather than an older summary.' Line 197's footnote 'Verified against the ATO Australian zone list, last updated 1 July 2026' should name the Northern Territory page.",
+  "job": "ff-113-working-holiday-tax",
+  "targets": []
+ },
+ {
+  "key": "lib/constants/zone-tax-offset.ts:4",
+  "file": "lib/constants/zone-tax-offset.ts",
+  "line": "4-7",
+  "status": "cross-file",
+  "sourceUrl": "https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones/northern-territory",
+  "note": "The source header does not list the zone-list pages. Add: '//   Tax offsets: Australian zones, Northern Territory (last updated 1 July 2026, retrieved 27 Oct 2026): Darwin, Palmerston, Humpty Doo, Alice Springs, Katherine, Jabiru = Zone A; Tennant Creek, Nhulunbuy = Zone A special area.' Also add the withholding-declaration note the reviewer asked for: '//   Withholding declaration NAT 3093 Q7 (https://www.ato.gov.au/forms-and-instructions/withholding-declaration): the zone or overseas forces offset can be claimed through reduced withholding.'",
+  "job": "ff-113-working-holiday-tax",
+  "targets": []
+ },
+ {
+  "key": "modules/guide/working-holiday-tax-faqs.ts:39",
+  "file": "modules/guide/working-holiday-tax-faqs.ts",
+  "line": "39",
+  "status": "cross-file",
+  "quote": "Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold, regardless of how long they live in Australia.",
+  "sourceUrl": "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/coming-to-australia/taxation-of-australian-resident-whms-from-nda-countries",
+  "note": "Same Addy/NDA exception as line 77 of the guide. A resident WHM from an eligible NDA country pays the lower of WHM tax and resident tax, so in effect they get the tax-free threshold. Proposed: replace 'regardless of how long they live in Australia' with 'unless they are an Australian resident for tax purposes from an eligible NDA country (Chile, Finland, Germany, Israel, Japan, Norway, Turkey or the UK), who can claim resident rates when they lodge'.",
+  "job": "ff-113-working-holiday-tax",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:477",
+  "file": "lib/news.ts",
+  "line": "477, 520",
+  "quote": "Claim it with no receipts from July 2027 ... is claimed on the return lodged from July 2027",
+  "status": "cross-file",
+  "note": "Minor wording issue, not a wrong figure: the ATO applies the standard deduction automatically ('you don't need to do anything to claim the deduction'). Optional change for the FAQ answer at line 520: 'is applied automatically to the return lodged from July 2027'. Not my file, so not edited.",
+  "sourceUrl": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/standard-deduction-for-work-related-expenses",
+  "job": "ff-116-index",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:70",
+  "status": "cross-file",
+  "file": "lib/news.ts",
+  "line": "68-70",
+  "note": "This needs an owner choice, and there was no edit. 6% is the correctly rounded weekly rise, and 5.97% is the hourly rise. The headline and title are locked.",
+  "verdict": "n/a",
+  "job": "ff-117-award-wage-increase-2026",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:624",
+  "status": "cross-file",
+  "file": "lib/news.ts",
+  "line": "624, 627",
+  "before": "624: \"...on the recommendation of the Australian Government Actuary. This ended a multi-year freeze at 0.25% and 2.25% that had applied since May 2020 to support pensioners through low interest rates.\" 627: \"...The Australian Government Actuary recommended lifting rates from their pandemic-era freeze as interest rates on savings accounts rose, though the new rates remain below long-term historical averages.\"",
+  "after": "624: \"...on the recommendation of the Australian Government Actuary. This was the second step in a gradual reset: the rates were frozen at 0.25% and 2.25% from 1 May 2020 to 30 June 2025, then rose to 0.75% and 2.75% on 20 September 2025.\" 627: \"Deeming rates are meant to reflect returns available on standard, low-risk investments such as savings accounts. The Australian Government Actuary recommended 1.25% and 3.25% because they reflect investment returns available to most payment recipients and support the government's plan to reset deeming rates gradually after the freeze ended on 30 June 2025.\"",
+  "sourceUrl": "https://aga.gov.au/publications/deeming-rates/recommendation-march-2026",
+  "note": "I agree with the fixer's proposed change. It matches the AGA quote (freeze ended 30 June 2025, 'majority of payment recipients') and the 20 September 2025 row in DEEMING_HISTORY. Not my file, so not edited.",
+  "verdict": "n/a",
+  "job": "ff-118-centrelink-payment-incre",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:340",
+  "status": "cross-file",
+  "file": "lib/news.ts",
+  "line": "335-340",
+  "before": "Sources list lacks an ATO completion notice; FAQ answer ends: \"Most people received the cut before the end of 2025, with a small number of more complex accounts finalised in early 2026.\"",
+  "after": "Add to sources: { title: \"Study and training loans \u2013 what's new\", url: \"https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/study-and-training-loans-what-s-new\", publisher: \"Australian Taxation Office\" }. Delete the FAQ's last sentence, so the answer ends \"...that existed on 1 June 2025.\"",
+  "sourceUrl": "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/study-and-training-loans-what-s-new",
+  "note": "I agree: add the ATO 'what's new' source (last updated 13 Oct 2026) and delete the unsourced 'end of 2025 / early 2026' FAQ sentence. Not edited.",
+  "verdict": "n/a",
+  "job": "ff-118-centrelink-payment-incre",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:393",
+  "file": "lib/news.ts",
+  "line": "393",
+  "status": "cross-file",
+  "before": "This is the second full financial year the marginal repayment system has applied, but the first where the FY2026-27 threshold, bands and 2.8% indexation all interact in the one assessment.",
+  "after": "Your 2025-26 return is the first one assessed under the marginal repayment system, which started with the 2025-26 income year. The compulsory repayment is worked out only on repayment income above $67,000, the 2025-26 threshold.",
+  "sourceUrl": "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/compulsory-repayments",
+  "note": "I agree with the fixer. The FAQ's 'FY2026-27 threshold' and 'second full financial year' are wrong, because the 2026 return assesses 2025-26 income at $67,000 in the first year of the marginal system (ATO what's new and compulsory repayments pages). The proposed text should get the same top-band condition: '... worked out only on repayment income above $67,000, the 2025-26 threshold, unless your repayment income is $179,286 or more, when it is 10% of your total repayment income.' Not edited (file not owned).",
+  "verdict": "n/a",
+  "job": "ff-121-tax-time-2026-whats-new",
+  "targets": []
+ },
+ {
+  "key": "lib/news.ts:358",
+  "file": "lib/news.ts",
+  "line": "358",
+  "status": "cross-file",
+  "quote": "Millions lodge their first return under the new marginal HECS system this year, with 15% charged only above $69,528.",
+  "note": "I agree with the fixer: returns lodged in 2026 use the 2025-26 $67,000 threshold (HECS_HELP_2025_26.minimumThreshold), and $69,528 is the 2026-27 threshold (HECS_HELP.minimumThreshold). The replacement '$69,528' -> '$67,000' is proven. The 'Millions' claim is unsourced and should be removed. Not edited.",
+  "verdict": "n/a",
+  "job": "ff-121-tax-time-2026-whats-new",
+  "targets": []
+ },
+ {
+  "key": "modules/tax-tables/fortnightly-tax-table-faqs.ts (CSV FAQ)",
+  "file": "modules/tax-tables/fortnightly-tax-table-faqs.ts",
+  "status": "cross-file",
+  "note": "No edit in this job's files. The fortnightly and monthly FAQs are not this fixer's files. The proposed change matches the manifest: fortnightly from 2 to 6800, step 2, 3,400 rows; CSV_TABLE_RANGES.fortnightly is to 10,000, step 2; monthly CSV_TABLE_RANGES is to 21,000, step 1. Route it to the owners of those files. I did not verify the monthly manifest values beyond what the fixer quoted.",
+  "verdict": "n/a",
+  "job": "ff-126-weekly-tax-table-faqs",
+  "targets": []
+ }
+]

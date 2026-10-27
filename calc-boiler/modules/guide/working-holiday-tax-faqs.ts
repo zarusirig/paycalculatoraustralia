@@ -36,7 +36,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can working holiday makers claim the tax-free threshold?",
-    a: `No. Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold, regardless of how long they live in Australia. Tax at ${WHM_RATE} applies from the first $1 you earn. Do not tick "yes" to the tax-free threshold question on your TFN declaration form.`,
+    a: `No, with one exception. Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold unless they are Australian residents for tax purposes and nationals of an eligible non-discrimination article (NDA) country (Chile, Finland, Germany, Israel, Japan, Norway, Turkey or the United Kingdom). Those WHMs pay the lower of the WHM tax and the tax a resident Australian national pays on the same income, and get any difference back when they lodge. For every other WHM, tax at ${WHM_RATE} applies from the first $1 you earn. Your employer withholds at ${WHM_RATE} either way, so do not tick "yes" to the tax-free threshold question on your TFN declaration form.`,
   },
   {
     q: "Do working holiday makers pay the Medicare levy?",

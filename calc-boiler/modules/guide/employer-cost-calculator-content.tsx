@@ -10,7 +10,7 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { EMPLOYER_COST_FAQS, MULT_100K, TABLE_WORKCOVER, costRow, type CostRow, MAX_RATE_STATE, MAX_THRESHOLD_STATE, MIN_RATE_STATE, MIN_THRESHOLD_STATE } from "@/modules/guide/employer-cost-calculator-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, EMPLOYMENT, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, EMPLOYMENT, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent, TAX_BRACKETS, TAX_BRACKETS_2025_26 } from "@/lib/constants";
 import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -52,7 +52,9 @@ export default function EmployerCostCalculatorContent() {
   const WORKED_ANNUAL_LEAVE = Math.round(WORKED_SALARY * (4 / 52));
   const WORKED_PERSONAL_LEAVE = Math.round(WORKED_SALARY * (10 / 260));
   const WORKED_PAYROLL_TAX = Math.round((WORKED_SALARY + WORKED_SUPER) * STATE_PAYROLL_TAX.VIC.rate);
-  const WORKED_WORKCOVER = Math.round(WORKED_SALARY * 0.005);
+  // Assumed premium rate for this example only; the real rate comes from your workers compensation insurer.
+  const WORKED_WORKCOVER_RATE = 0.005;
+  const WORKED_WORKCOVER = Math.round(WORKED_SALARY * WORKED_WORKCOVER_RATE);
   const WORKED_TOTAL = WORKED_SALARY + WORKED_SUPER + WORKED_ANNUAL_LEAVE + WORKED_PERSONAL_LEAVE + WORKED_PAYROLL_TAX + WORKED_WORKCOVER;
   const WORKED_MULTIPLIER = WORKED_TOTAL / WORKED_SALARY;
 
@@ -153,7 +155,7 @@ export default function EmployerCostCalculatorContent() {
       <section id="super-calculated-for-employers">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Superannuation Calculated for Employers?</h2>
         <p>
-          Employers calculate superannuation at <strong>{SG_PCT} of each employee&apos;s qualifying earnings</strong> for FY{SITE_CONFIG.financialYear}, paid with each pay to the employee&apos;s nominated super fund.
+          Employers calculate superannuation at <strong>{SG_PCT} of each employee&apos;s qualifying earnings</strong> for FY{SITE_CONFIG.financialYear}. It is due each payday and must reach the employee&apos;s nominated super fund within {SGC_NOW.businessDaysToPay} business days of payday.
         </p>
         <p>
           Qualifying earnings are ordinary time earnings plus, from 1 July 2026, commissions for work done entirely outside ordinary hours. Ordinary time earnings include base salary, commissions, shift loadings, and allowances that relate to ordinary hours of work, and exclude overtime payments, reimbursements, and lump sum termination payments. The ATO defines the distinction under Superannuation Guarantee Ruling SGR 2009/2.
@@ -330,7 +332,7 @@ export default function EmployerCostCalculatorContent() {
           <li><strong>Annual leave provision (4 weeks / 52 weeks):</strong> {formatAUD(WORKED_SALARY)} x 0.0769 = <strong>{formatAUD(WORKED_ANNUAL_LEAVE)}</strong></li>
           <li><strong>Personal leave provision (10 days / 260 days):</strong> {formatAUD(WORKED_SALARY)} x 0.0385 = <strong>{formatAUD(WORKED_PERSONAL_LEAVE)}</strong></li>
           <li><strong>Payroll tax (VIC: {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)} on wages + super above {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold):</strong> Assuming the business exceeds the threshold, ({formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)}) x {STATE_PAYROLL_TAX.VIC.rate} = <strong>{formatAUD(WORKED_PAYROLL_TAX)}</strong></li>
-          <li><strong>Workers compensation (professional services at 0.5%):</strong> {formatAUD(WORKED_SALARY)} x 0.005 = <strong>{formatAUD(WORKED_WORKCOVER)}</strong></li>
+          <li><strong>Workers compensation (assumed premium rate of {formatPercent(WORKED_WORKCOVER_RATE, 1)}; your insurer sets the real rate):</strong> {formatAUD(WORKED_SALARY)} x {WORKED_WORKCOVER_RATE} = <strong>{formatAUD(WORKED_WORKCOVER)}</strong></li>
         </ol>
         <p>
           Adding these components: {formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)} + {formatAUD(WORKED_ANNUAL_LEAVE)} + {formatAUD(WORKED_PERSONAL_LEAVE)} + {formatAUD(WORKED_PAYROLL_TAX)} + {formatAUD(WORKED_WORKCOVER)} = <strong>{formatAUD(WORKED_TOTAL)}</strong>. The cost multiplier for this role is <strong>{WORKED_MULTIPLIER.toFixed(2)}x</strong>. This excludes recruitment costs, training, equipment, and office space, which push the real total higher.
@@ -370,10 +372,10 @@ export default function EmployerCostCalculatorContent() {
       <section id="fy2026-27-changes">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed in FY{SITE_CONFIG.financialYear}?</h2>
         <p>
-          The biggest change for employers on 1 July 2026 was <strong>Payday Super</strong>: SG is now due with every pay, must be received by the fund within 7 business days, is calculated on qualifying earnings, and is capped by an annual maximum contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}. Late contributions attract a rebuilt, tax-deductible Superannuation Guarantee Charge. The SG rate itself stayed at <strong>{SG_PCT}</strong>, the legislated ceiling it reached on {SUPER_GUARANTEE.effectiveDate}.
+          The biggest change for employers on 1 July 2026 was <strong>Payday Super</strong>: SG is now due with every pay, must be received by the fund within {SGC_NOW.businessDaysToPay} business days, is calculated on qualifying earnings, and is capped by an annual maximum contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}. Late contributions attract a rebuilt, tax-deductible Superannuation Guarantee Charge. The SG rate itself stayed at <strong>{SG_PCT}</strong>, the legislated ceiling it reached on {SUPER_GUARANTEE.effectiveDate}.
         </p>
         <p>
-          That final step in the SG rate schedule lifted the employer cost of superannuation from 11.5% in FY2024-25 to 12% in FY2025-26. For an employee earning $100,000, the annual super cost rose from $11,500 to <strong>$12,000</strong>, where it stays in FY{SITE_CONFIG.financialYear}.
+          That final step in the SG rate schedule lifted the employer cost of superannuation from {formatPercent(SUPER_GUARANTEE.previousRate, 1)} in FY2024-25 to {SG_PCT} in FY2025-26. For an employee earning $100,000, the annual super cost rose from {formatAUD(100_000 * SUPER_GUARANTEE.previousRate)} to <strong>{formatAUD(100_000 * SUPER_GUARANTEE.rate)}</strong>, where it stays in FY{SITE_CONFIG.financialYear}.
         </p>
 
         <h3>SG Rate History</h3>
@@ -421,7 +423,7 @@ export default function EmployerCostCalculatorContent() {
           </table>
         </div>
         <p>
-          Other changes affecting employer costs from 1 July 2026 include new PAYG withholding schedules for the cut from 16% to 15% on income between $18,201 and $45,000, the ACT payroll tax threshold falling to {formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}, and a higher Northern Territory rate for employers with Australia-wide wages of $100m or more. The Medicare Levy Surcharge threshold for singles is {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} in FY{SITE_CONFIG.financialYear}. Use our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> for the current withholding schedule.
+          Other changes affecting employer costs from 1 July 2026 include new PAYG withholding schedules for the cut from {formatPercent(TAX_BRACKETS_2025_26[1].rate, 0)} to {formatPercent(TAX_BRACKETS[1].rate, 0)} on income between {formatAUD(TAX_BRACKETS[1].min)} and {formatAUD(TAX_BRACKETS[1].max)}, the ACT payroll tax threshold falling to {formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}, and a higher Northern Territory rate for employers with Australia-wide wages of $100m or more. The Medicare Levy Surcharge threshold for singles is {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} in FY{SITE_CONFIG.financialYear}. Use our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> for the current withholding schedule.
         </p>
       </section>
 
@@ -527,7 +529,7 @@ export function EmployerCostCalculatorSidebar() {
                 <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
               </Link>
               <Link href="/superannuation-guide/" className="group flex items-center justify-between p-3.5 rounded-xl bg-sandstone/50 border border-sandstone-dark/10 hover:border-eucalyptus/40 hover:bg-white hover:shadow-sm transition-all">
-                <span className="text-sm font-semibold text-navy group-hover:text-eucalyptus-dark">12% Super Guarantee Rules</span>
+                <span className="text-sm font-semibold text-navy group-hover:text-eucalyptus-dark">{SG_PCT} Super Guarantee Rules</span>
                 <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
               </Link>
             </div>

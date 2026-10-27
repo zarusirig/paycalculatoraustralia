@@ -34,6 +34,7 @@ test("every vehicle class has a rate in every period", () => {
   }
   assert.equal(DELIVERY_MSO.commences, "17 August 2026");
   assert.equal(DELIVERY_MSO.maxEarningsPeriodDays, 21);
+  assert.equal(DELIVERY_MSO.recordKeepingYears, 7);
 });
 
 test("engaged time is rounded to the nearest minute", () => {

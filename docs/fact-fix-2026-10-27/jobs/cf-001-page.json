@@ -1,0 +1,96 @@
+{
+ "name": "cf-001-page",
+ "files": [
+  "app/construction-trades-pay/page.tsx",
+  "app/salary-packaging-guide/page.tsx",
+  "lib/constants/australian-tax.ts",
+  "lib/constants/capital-gains-tax.ts"
+ ],
+ "questions": [
+  {
+   "key": "app/construction-trades-pay/page.tsx:77-93",
+   "file": "app/construction-trades-pay/page.tsx",
+   "line": "77-93",
+   "page": "",
+   "claims": [
+    "'Salary Range (Annual)' table: Electrician $80,000 \u2013 $110,000, Plumber $75,000 \u2013 $105,000, Carpenter $70,000 \u2013 $95,000, Bricklayer $70,000 \u2013 $90,000, Painter $65,000 \u2013 $85,000, Concreter $70,000 \u2013 $95,000, Boilermaker $85,000 \u2013 $120,000; followed by 'Boilermakers and electricians command the highest rates ... Self-employed tradies ... can earn significa[ntly more]'"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: These are the same unsourced ranges as the FAQ answers I fixed. The site's data contradicts them: bricklayer median $2,317 a week (about $120,484 a year) is above the claimed $70K to $90K, and the boilermaker group median $1,688 a week (about $87,776) is the lowest, not the highest. The page now shows medians in the FAQ that disagree with this table. The column header 'Salary Range (Annual)' would need a new label, which is the owning agent's or the owner's call. The meta DESCRIPTION in app/construction-trades-pay/page.tsx says 'salary ranges by trade'. It is still broadly accurate if medians replace the ranges. After: Replace the table with JSA medians rendered from lib/data/job-pay-rates (ELECTRICIAN, PLUMBER, CARPENTER, BRICKLAYER, BOILERMAKER via Occupation.median.medianWeekly, weekly and x52 annual). Drop the Painter and Concreter rows, or show no figure for them, because the site holds no median for those trades. Replace the paragraph after the table with a sourced statement, for example the computed top-ranked trade, as the FAQ now does."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "app/salary-packaging-guide/page.tsx:16",
+   "file": "app/salary-packaging-guide/page.tsx",
+   "line": "16",
+   "page": "",
+   "claims": [
+    "Salary packaging guide: meal entertainment, LAFHA, portable devices and other FBT-exempt items, and how packaging works for not-for-profit and hospital staff."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The meta description lists LAFHA among 'FBT-exempt items'. LAFHA is not covered anywhere on the page. Portable devices lose the exemption for salary-sacrificed items from 1 April 2027. I did not verify LAFHA's FBT treatment in this pass. Proposed (owner of page.tsx): 'Salary packaging guide: living expense and meal entertainment caps, portable devices and other FBT concessions, and how packaging works for not-for-profit and hospital staff.' (152 chars). The title is locked and was not touched."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/australian-tax.ts:72",
+   "file": "lib/constants/australian-tax.ts",
+   "line": "72",
+   "page": "",
+   "claims": [
+    "Working holiday makers tax rates for 2025\u201326: 0 \u2013 $45,000 | 15c for each $1"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The fixer made no edit. The cross-file proposal to add a WORKING_HOLIDAY_MAKER_TAX_BRACKETS constant in lib/constants/australian-tax.ts stands. The fixer's caveat also stands: the ATO page lists only 2025-26 WHM rates."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/australian-tax.ts:85",
+   "file": "lib/constants/australian-tax.ts",
+   "line": "85",
+   "page": "",
+   "claims": [
+    "effectiveTaxFreeThreshold: TAX_FREE_THRESHOLD + Math.round(700 / SECOND_BRACKET_RATE)  // comment: at 15% it is $22,867"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Checked the math. Math.round(700/0.15) = 4,667 gives 22,867, and tax at 22,867 is $700.05, which LITO does not fully cancel. Math.floor gives 22,866 at 15% and exactly 22,575 at 16%. The proposed change is Math.round to Math.floor, with the comment changed to $22,866 and any test that pins 22,867 updated. It is sound, but it belongs to the owner of australian-tax.ts. tax-free-threshold.ts:92-97 says that constant is 'rounded ... how it is usually quoted', so the owner should decide. Nothing was edited."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/capital-gains-tax.ts:",
+   "file": "lib/constants/capital-gains-tax.ts",
+   "line": "",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not edited, which is correct: the fixer does not own this file. The proposed change matches research-staling.json (add atoReformUrl, update the comment at about line 178, bump verifiedOn to 2026-10-27 and the test pin at capital-gains-tax.test.ts:470)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "name": "cf-015-medicare-levy-surcharge-",
+ "files": [
+  "modules/guide/medicare-levy-surcharge-faqs.ts",
+  "modules/guide/medicare-levy.tsx",
+  "modules/guide/modern-award-content.ts",
+  "modules/guide/overtime-penalty-rates-guide.tsx",
+  "modules/guide/stsl-on-payslip.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/medicare-levy-surcharge-faqs.ts:40",
+   "file": "modules/guide/medicare-levy-surcharge-faqs.ts",
+   "line": "40",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No edit; the file is not owned. The proposed fix is sound and sourced (QC71228): 'The Medicare levy is ${RATE} of taxable income for every resident who does not qualify for a reduction or exemption, cover or not.' The typed '1% to 1.5%' could render surcharge.tier1.rate and tier3.rate."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/medicare-levy-surcharge-faqs.ts:40",
+   "file": "modules/guide/medicare-levy-surcharge-faqs.ts",
+   "line": "40",
+   "page": "",
+   "claims": [
+    "The Medicare levy is ${RATE} of taxable income and almost every resident pays it, cover or not. The surcharge is an extra 1% to 1.5% ..."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Confirmed by grep: line 40 still says 'almost every resident pays it' and types '1% to 1.5%'. The fixer's proposed wording is sound and matches the change verified on /medicare-levy/: '...is ${RATE} of taxable income and applies whether or not you hold cover. The surcharge is an extra ${formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)} to ${formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}...'. Not edited (file not owned)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/medicare-levy.tsx:172",
+   "file": "modules/guide/medicare-levy.tsx",
+   "line": "172",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No edit; the file is not owned. The proposed fix is sound and sourced by the same QC71228 wording."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content.ts:562",
+   "file": "modules/guide/modern-award-content.ts",
+   "line": "562",
+   "page": "",
+   "claims": [
+    "The cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same omission as the CLEANING_AWARD hoursNotes I fixed: cl 13.5(c)(i) allows the 1-hour minimum only at a small stand-alone location of not more than 300 square metres AND where 'it is not practicable for a longer shift to be worked across 2 or more locations'. Proposed replacement for that sentence: \"The cleaner must be rostered for at least 1 hour if working alone at a small stand-alone site of not more than 300 square metres where a longer shift across 2 or more sites is not practicable, 2 consecutive hours at a site of up to 2,000 square metres, 3 consecutive hours at 2,000 square metres or more up to 5,000, and 4 consecutive hours at 5,000 square metres or more.\""
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:219",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "219",
+   "page": "",
+   "claims": [
+    "<td className=\"px-5 py-3 font-semibold\">2.0x - 2.75x</td>"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No edit was made (file not owned). I agree that the typed range '2.0x - 2.75x' and the neighbouring typed ranges are unsourced. Proposed change: render RETAIL_PENALTIES.publicHoliday and casualPublicHoliday with a label naming the award, or drop the column. tsc showed no errors in the changed file."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/stsl-on-payslip.tsx:149",
+   "file": "modules/guide/stsl-on-payslip.tsx",
+   "line": "149",
+   "page": "",
+   "claims": [
+    "Common with second jobs (no STSL withheld if each job is under the threshold), salary sacrifice, or investment income."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This is the same wrong claim as stsl-on-payslip-faqs.ts:39. Under ATO Schedule 8, a job where the tax-free threshold is not claimed withholds STSL from $987 a week (STSL_NO_TFT[0].lessThan), not from the annual threshold. Proposed change: replace '(no STSL withheld if each job is under the threshold)' with '(a job where you do not claim the tax-free threshold withholds STSL only from {formatAUD(STSL_NO_TFT[0].lessThan)} a week)', importing STSL_NO_TFT from @/lib/constants/payg-withholding."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

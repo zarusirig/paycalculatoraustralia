@@ -17,11 +17,11 @@
 //    rise it sets.
 //
 // Both agreements keep operating after their nominal expiry until replaced.
-// The FWC's list of agreements approved from 1 January to 19 October 2026
-// (agreements2026.xlsx, generated 19 October 2026) has no replacement for
+// The FWC's list of agreements approved from 1 January to 26 October 2026
+// (agreements2026.xlsx, generated 26 October 2026) has no replacement for
 // either. The Victorian Government announced a new deal for HSU Victoria No. 4
 // members (hospital pharmacists, psychologists and others) on 20 August 2026;
-// it was not approved as at 19 October 2026, so its rates are not shown.
+// it was not approved as at 26 October 2026, so its rates are not shown.
 //
 // The full text was read on 23 October 2026 from the copy hosted by Western
 // Health, a covered Victorian public health service (the same approach as
@@ -50,7 +50,7 @@ const FWC_2022_LIST = {
 };
 
 const FWC_2026_LIST = {
-  title: "Fair Work Commission list of agreements approved from 1 January to 19 October 2026 (no replacement agreement)",
+  title: "Fair Work Commission list of agreements approved from 1 January to 26 October 2026 (no replacement agreement)",
   publisher: "Fair Work Commission",
   url: "https://www.fwc.gov.au/documents/agreements/resources/agreements2026.xlsx",
 };
@@ -79,7 +79,7 @@ export const VIC_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       verifiedOn: VERIFIED,
       nextIncrease: null,
       status:
-        "The agreement passed its nominal expiry date on 28 February 2026 and keeps operating until it is replaced. No replacement had been approved by the Fair Work Commission as at 19 October 2026.",
+        "The agreement passed its nominal expiry date on 28 February 2026 and keeps operating until it is replaced. No replacement had been approved by the Fair Work Commission as at 26 October 2026.",
       proof:
         "FWC decision [6]: \"The Agreement is approved and, in accordance with s.54 of the Act, will operate from 18 November 2022. The nominal expiry date of the Agreement is 28 February 2026.\" <AE518146 PR747842>. Clause 28.1(d): \"2% effective from FFPPOA 1 March 2025.\" Appendix 2 Part A header \"1-MAR-25\"; row \"Grade 1 | 2 | $1,254.10 | $1,279.20 | 2 1 | $1,279.20 | $1,304.80 | $1,330.90 | $1,357.50\".",
     },
@@ -106,7 +106,7 @@ export const VIC_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       verifiedOn: VERIFIED,
       nextIncrease: null,
       status:
-        "The agreement passed its nominal expiry date on 30 November 2025 and keeps operating until it is replaced. The Victorian Government announced a new deal on 20 August 2026 that covers hospital pharmacists and psychologists, but it had not been approved by the Fair Work Commission as at 19 October 2026, so these are still the rates in force.",
+        "The agreement passed its nominal expiry date on 30 November 2025 and keeps operating until it is replaced. The Victorian Government announced a new deal on 20 August 2026 that covers hospital pharmacists and psychologists, but it had not been approved by the Fair Work Commission as at 26 October 2026, so these are still the rates in force.",
       proof:
         "FWC decision [5]: \"The Agreement is approved and, in accordance with s.54 of the Act, will operate from 28 November 2022. The nominal expiry date of the Agreement is 30 November 2025.\" <AE518208 PR748024>. Clause 51.1(e)(iv): \"2% effective first full pay period on or after (FFPPOA) 1 December 2024.\" Schedule 2 header \"FFPPOA 1-Dec-24\"; row \"SW5 | Pharmacists | 1 | 1 | $1,212.50 | $1,236.80 | $1,261.50 | $1,286.70 | $1,312.40\". Premier of Victoria, 20 August 2026: \"The agreement covers medical scientists, hospital pharmacists, psychologists, dietitians, medical physicists, genetic counsellors, perfusionists and audiologists.\"",
     },

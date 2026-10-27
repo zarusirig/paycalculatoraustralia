@@ -1206,7 +1206,7 @@ export const NURSES_AWARD: ModernAwardData = {
   penaltyNotes: [
     "Casual shift loadings are worked out on the minimum hourly rate and the 25% casual loading is then added (cl 11.4). A casual afternoon shift is 137.5% and a night shift 140%. Weekend and public holiday rates are the other way round: they are a percentage of the casual hourly rate (cl 21, 28.2). A casual Saturday is 150% of the casual rate (187.5% of the minimum rate).",
     "Shift loadings do not apply on a Saturday, Sunday or public holiday, where the weekend or public holiday rate is paid instead (cl 20.2(d)). Shift loadings also do not apply to registered nurse levels 4 and 5 (cl 20.2(e)).",
-    "Christmas Day falling on a weekend attracts an extra 50% loading in businesses that operate 7 days a week (cl 28.2(b)).",
+    "In a business that operates 7 days a week, work on 25 December that falls on a Saturday or Sunday and is not a public holiday because of substitution is paid the Saturday or Sunday rate plus 50% of the minimum hourly rate (50% of the casual hourly rate for casuals). Work on the substitute day is paid that extra 50% loading instead of the public holiday rate (cl 28.2(b)).",
   ],
   // cl 19.1 (full-time and part-time) and 19.2 (casuals: % of the casual hourly rate).
   overtime: [

@@ -36,7 +36,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does annual leave accrue during unpaid leave?",
-    a: "No. Annual leave does not accrue during periods of unpaid leave, including unpaid parental leave and unpaid personal leave. Leave continues to accrue during paid leave (annual, personal, long service) and jury duty. Whether it accrues during workers' compensation depends on the workers' compensation law that applies to you.",
+    a: "No. Annual leave does not accrue during periods of unpaid leave, including unpaid parental leave and unpaid personal leave. Leave continues to accrue during paid leave (annual, sick and carer's, family and domestic violence, long service) and during community service leave, including jury duty. Whether it accrues during workers' compensation depends on the workers' compensation law that applies to you.",
   },
   {
     q: "What happens if I get sick while on annual leave?",

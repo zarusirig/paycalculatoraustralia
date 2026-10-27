@@ -88,6 +88,13 @@ test("sleepover allowance is 4.9% of the standard rate", () => {
   assert.equal(SCHADS_ALLOWANCES.sleepover, 62.87);
 });
 
+test("SCHADS_SLEEPOVER basis matches the allowance (cl 25.7(d))", () => {
+  assert.equal(SCHADS_SLEEPOVER.pctOfStandardRate, 0.049);
+  assert.equal(SCHADS_SLEEPOVER.standardRateWeekly, 1_283.1);
+  assert.ok(Math.abs(SCHADS_SLEEPOVER.standardRateWeekly * SCHADS_SLEEPOVER.pctOfStandardRate - SCHADS_ALLOWANCES.sleepover) < 0.01);
+  assert.equal(SCHADS_SCHEDULE_G.cutoffDate, "31 December 2024");
+});
+
 test("SCHADS has no junior rates — any age table for this award is fabricated", () => {
   // An automated extraction returned "cl 10.5: under 16 = 60%..." for this
   // award. Clause 10.5 is not a junior rates clause and no such table exists.
@@ -167,7 +174,7 @@ test("vehicle allowance wording names the rate in force and the other one", () =
 });
 
 // --- G6: Schedule E interim increase from 1 Dec 2026 (PR814259) ---
-import { SCHADS_HOME_CARE_DISABILITY_DEC_2026, SCHADS_SCHEDULE_E_INCREASE } from "../schads-award";
+import { SCHADS_HOME_CARE_DISABILITY_DEC_2026, SCHADS_SCHEDULE_E_INCREASE, SCHADS_SLEEPOVER, SCHADS_SCHEDULE_G } from "../schads-award";
 
 test("G6: every Schedule E Dec 2026 rate is the current rate x the interim increase, to 10c", () => {
   assert.equal(SCHADS_HOME_CARE_DISABILITY_DEC_2026.length, SCHADS_HOME_CARE_DISABILITY.length);

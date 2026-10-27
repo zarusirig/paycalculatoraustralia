@@ -44,7 +44,7 @@ export const COMMISSION_TAX_FAQS: readonly CommissionTaxFaq[] = [
   },
   {
     q: "Why was so much tax taken out of my commission?",
-    a: `Tax withheld from a commission is an estimate made from one pay period, while your real tax is assessed on the whole year. The two usually differ by a small amount, and the difference is settled when you lodge: over-withholding comes back as part of your refund, under-withholding is added to your bill. Schedule 5 also caps withholding on any commission at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the payment.`,
+    a: `Tax withheld from a commission is an estimate made from one pay period, while your real tax is assessed on the whole year. The two can differ, and the difference is settled when you lodge: over-withholding comes back as part of your refund, under-withholding is added to your bill. Schedule 5 also caps withholding on any commission at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the payment.`,
   },
   {
     q: "Are commissions taxed differently from bonuses?",
@@ -52,7 +52,7 @@ export const COMMISSION_TAX_FAQS: readonly CommissionTaxFaq[] = [
   },
   {
     q: "Is superannuation paid on commission?",
-    a: `Yes. Commission earned for work performed is ordinary time earnings, so your employer must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on it in addition to the commission itself. A ${formatAUD(EX_COMMISSION)} commission attracts ${formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} of super, up to the maximum contribution base.`,
+    a: `Yes. Commission earned for work performed is ordinary time earnings, so your employer must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on it in addition to the commission itself. A ${formatAUD(EX_COMMISSION)} commission attracts ${formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} of super, up to the annual maximum contribution base (${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} in ${SITE_CONFIG.financialYear}).`,
   },
   {
     q: "How is commission taxed if I am commission-only?",

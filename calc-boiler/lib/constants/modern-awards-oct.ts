@@ -424,7 +424,7 @@ Level 6 — Law clerk|1369.20|36.03
   juniorPhaseIn: null,
   // cl 18.
   allowances: [
-    { name: "Meal allowance (1 hour or more of weekday overtime)", amount: 20.75, unit: "per occasion", clause: "cl 18.2(a)(i)" },
+    { name: "Meal allowance (1 hour or more of weekday overtime)", amount: 20.75, unit: "per occasion", clause: "cl 18.2(a)(i)", note: "Paid only when the overtime also finishes 1.5 hours after your normal finishing time or 5 hours after your last meal break, whichever comes first. A shiftworker gets it when overtime on a shift is more than 1 hour. A further meal allowance is paid when the overtime is more than 4 hours." },
     { name: "Meal allowance (more than 5 hours on a Saturday or Sunday)", amount: 20.75, unit: "per occasion", clause: "cl 18.2(a)(ii)" },
     { name: "Further meal allowance (more than 9 hours on such a day)", amount: 16.54, unit: "per occasion", clause: "cl 18.2(a)(ii)" },
     { name: "Uniform allowance", amount: 3.75, unit: "per week", clause: "cl 18.3" },

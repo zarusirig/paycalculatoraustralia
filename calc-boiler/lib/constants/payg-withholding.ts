@@ -551,7 +551,7 @@ export function calculatePAYGWithholding(
   };
 }
 
-// ---------- Schedule 5: back payments, commissions, bonuses (Method B(ii)) ----------
+// ---------- Schedule 5: back payments, commissions, bonuses (Method A) ----------
 export interface Schedule5Result {
   /** Withholding on the regular pay alone, per period. */
   regularWithholding: number;
@@ -592,9 +592,15 @@ export interface Schedule5Result {
 export const SCHEDULE_5_WITHHOLDING_LIMIT = 0.47;
 
 /**
- * ATO Schedule 5, Method B(ii): apportion the additional payment across the
- * number of pay periods in the year, work out the withholding difference on
- * one period, then multiply back by the number of periods.
+ * ATO Schedule 5, Method A: apportion the additional payment across the
+ * number of pay periods in the year, add the slice to the current period's
+ * regular gross, work out the withholding difference on that one period, then
+ * multiply back by the number of periods and cap at 47%. The function name says
+ * "MethodB" for historical reasons; the steps are Method A (ATO "Working out
+ * the withholding amount", Method A steps 1 to 9). Method B(ii) instead uses
+ * average total earnings for the financial year to date and nets off earlier
+ * B(ii) withholding, so the two give the same figure only when pay has been
+ * even all year and there were no earlier additional payments.
  */
 export function calculateSchedule5MethodB(
   regularGrossPerPeriod: number,

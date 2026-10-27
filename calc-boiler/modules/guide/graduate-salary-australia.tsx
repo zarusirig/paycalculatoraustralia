@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
-import { formatAUD } from "@/lib/constants";
+import { SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import {
   GRADUATE_PROFESSIONS,
   GRADUATE_SALARY_VERIFIED_ON,
@@ -152,7 +152,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="first-payslip">What Your First Payslip Looks Like</H2>
             <p>
-              Your first payslip shows gross pay, tax withheld, and super paid on top (12% if the offer is salary plus super; inside the package if it is a total remuneration offer). For a graduate on {f0(80_000)} a year, the 2026-27 resident rates give about {f0(80_000 - th80.net)} of tax and Medicare, leaving {f0(th80.net)} a year or {f2(th80.netWeekly)} a week. With a HELP debt the compulsory repayment is about {f0(th80.helpRepayment)} a year, taking the weekly figure to {f2(th80.netAfterHelpWeekly)}.
+              Your first payslip shows gross pay, tax withheld, and super paid on top ({Math.round(SUPER_GUARANTEE.rate * 100)}% if the offer is salary plus super; inside the package if it is a total remuneration offer). For a graduate on {f0(80_000)} a year, the 2026-27 resident rates give about {f0(80_000 - th80.net)} of tax and Medicare, leaving {f0(th80.net)} a year or {f2(th80.netWeekly)} a week. With a HELP debt the compulsory repayment is about {f0(th80.helpRepayment)} a year, taking the weekly figure to {f2(th80.netAfterHelpWeekly)}.
             </p>
             <p>Look up the nearest salary to your offer on the take-home pay pages:</p>
             <ul>

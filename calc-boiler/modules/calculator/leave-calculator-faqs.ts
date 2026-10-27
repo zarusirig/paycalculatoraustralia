@@ -49,6 +49,13 @@ const LSL = LSL_JURISDICTIONS;
 const wk = (n: number) => String(Number(n.toFixed(2)));
 const SHIFT_WEEKS = ANNUAL_LEAVE.shiftworkerWeeksPerYear;
 
+// Pro-rata example: the NES gives a part-timer the same 4 weeks of their own
+// ordinary hours (FWO), accruing evenly over a 52-week year.
+const PT_HOURS = 20;
+const PT_LEAVE_HOURS = PT_HOURS * WEEKS; // 80 hours
+const accrualPerWeek = (hours: number) => ((hours * WEEKS) / EMPLOYMENT.weeksPerYear).toFixed(3);
+const PERSONAL_LEAVE_HOURS = (EMPLOYMENT.personalLeaveDays * EMPLOYMENT.standardWeeklyHours) / 5; // 76 hours
+
 export interface LeaveFaq {
   q: string;
   a: string;
@@ -69,7 +76,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "Is leave loading taxed?",
-    a: `Yes. Leave loading is ordinary income, taxed at your marginal rate with PAYG withholding applied by your employer the same way as salary. The historical concessional tax treatment for leave loading was removed decades ago. Loading paid out on termination is taxed with the unused annual leave it comes with: at your marginal rate on a normal termination, or withheld at a flat ${FLAT_32} if the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or if the loading accrued on or before ${CUTOVER_1993}.`,
+    a: `Yes. Leave loading is ordinary income, taxed at your marginal rate with PAYG withholding applied by your employer the same way as salary. Loading paid out on termination is taxed with the unused annual leave it comes with: at your marginal rate on a normal termination, or withheld at a flat ${FLAT_32} if the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or if the loading accrued on or before ${CUTOVER_1993}.`,
   },
   {
     q: "How much annual leave do I get in Australia?",
@@ -77,7 +84,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "How is annual leave calculated pro-rata?",
-    a: `Leave accrues progressively throughout the year based on ordinary hours worked. A part-time employee working 20 hours per week accrues 80 hours (2.1 weeks) of leave per year, calculated as 20/${EMPLOYMENT.standardWeeklyHours} × ${LEAVE_HOURS} hours. The accrual rate is 1.538 hours per week for that employee, compared to 2.923 hours per week for a full-time worker.`,
+    a: `Leave accrues progressively throughout the year based on ordinary hours worked. A part-time employee working ${PT_HOURS} hours per week gets ${WEEKS} weeks of their own ordinary hours each year: ${PT_LEAVE_HOURS} hours (${PT_HOURS} × ${WEEKS}), the same as ${PT_HOURS}/${EMPLOYMENT.standardWeeklyHours} × ${LEAVE_HOURS} hours. The accrual rate is ${accrualPerWeek(PT_HOURS)} hours per week for that employee, compared to ${accrualPerWeek(EMPLOYMENT.standardWeeklyHours)} hours per week for a full-time worker.`,
   },
   {
     q: "How is leave payout taxed?",
@@ -97,7 +104,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "Can I cash out sick leave?",
-    a: `No. Personal/carer's leave (sick leave) cannot be cashed out and has no payout value on termination. Employees accrue ${EMPLOYMENT.personalLeaveDays} days (76 hours) per year, and unused days carry over indefinitely, but the balance has zero cash value. Only annual leave and long service leave are paid out when employment ends.`,
+    a: `No. Personal/carer's leave (sick leave) cannot be cashed out and has no payout value on termination. Full-time employees accrue ${EMPLOYMENT.personalLeaveDays} days (${PERSONAL_LEAVE_HOURS} hours) per year, and unused days carry over indefinitely, but the balance has zero cash value. Only annual leave and long service leave are paid out when employment ends.`,
   },
   {
     q: "When do I qualify for long service leave?",

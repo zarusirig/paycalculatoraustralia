@@ -1,0 +1,77 @@
+{
+ "name": "cf-005-tax-calendar-2026-27",
+ "files": [
+  "lib/constants/tax-calendar-2026-27.ts",
+  "lib/constants/tax-rates-reference.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/tax-calendar-2026-27.ts:107",
+   "file": "lib/constants/tax-calendar-2026-27.ts",
+   "line": "107",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: '$20,000 or more' (the large-liability agent threshold) is typed here and again in lib/constants/tax-calendar-2026-27.ts:208. Neither file has a constant for it. Proposed change: add agentLargeLiabilityThreshold: 20_000 to RETURN_2026 in lib/constants/tax-return-2025-26.ts, then render it in both places. Not done because I do not own those files. The value itself was not re-verified in this pass."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/tax-calendar-2026-27.ts:203 (and header comment 24-26, TAX_CALENDAR_SOURCES.stp line 48)",
+   "file": "lib/constants/tax-calendar-2026-27.ts",
+   "line": "203 (and header comment 24-26, TAX_CALENDAR_SOURCES.stp line 48)",
+   "page": "",
+   "claims": [
+    "If you have 20 or more payees, then these arrangements do not apply and you must report any closely held payees in the same way as your arm's length employees."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Line 203: the event title 'STP finalisation for closely held payees (employers with 20 or more employees)' should read 'STP finalisation for closely held payees (employers with 19 or fewer payees)'. The header comment repeats the old rule. TAX_CALENDAR_SOURCES.stp (.../single-touch-payroll/start-reporting/end-of-year-finalisation-through-stp) now redirects to the STP hub page. Change it to https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/finalising-your-stp-data (updated 23 Oct 2026, '14 July each year')."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/tax-calendar-2026-27.ts:210",
+   "file": "lib/constants/tax-calendar-2026-27.ts",
+   "line": "210",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The event title '${RETURN_2026.incomeYear} tax return due for most tax agent clients' makes a population claim with no source. The ATO wording is 'all remaining individuals and trusts not required earlier'. Proposed: '${RETURN_2026.incomeYear} tax return due for all other tax agent clients'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/tax-rates-reference.ts:139-150",
+   "file": "lib/constants/tax-rates-reference.ts",
+   "line": "139-150",
+   "page": "",
+   "claims": [
+    "This schedule applies to payments from 1 July 2026 ... Table A: Working holiday makers income tax rates for 2026\u201327: $0 \u2013 $45,000 15%; $45,001 \u2013 $135,000 30%; $135,001 \u2013 $190,000 37%; $190,001 & over 45%"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: An ATO-published 2026-27 WHM table now exists, so the 'latest published table 2025-26' comment and the WHM_TABLE_YEAR label are stale. Bracket values do not change. Whoever owns tax-rates-reference.ts and its test should make this change. After: Comment: 'ATO Schedule 15 (published 17 June 2026) Table A gives the same scale for 2026-27.' Set WHM_TABLE_YEAR = \"2026-27\" or add export const WHM_TAX_BRACKETS_2026_27 = WHM_TAX_BRACKETS_2025_26."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

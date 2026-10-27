@@ -467,7 +467,8 @@ test("the reform cites the Act, not just the bill page", () => {
 // =============================================================================
 
 test("both Acts are recorded, with a verifiedOn date", () => {
-  assert.equal(CGT_REFORM_2027.verifiedOn, "2026-10-22");
+  assert.equal(CGT_REFORM_2027.verifiedOn, "2026-10-27");
+  assert.match(CGT_REFORM_2027.atoReformUrl, /capital-gains-tax-reform$/);
   assert.equal(CGT_REFORM_2027.impositionActNumber, "Act No. 50 of 2026");
   assert.match(CGT_REFORM_2027.impositionActName, /Income Tax Rates Amendment \(Tax Reform No\. 1\) Act 2026/);
   assert.equal(CGT_REFORM_2027.indexationMinimumMonths, 12);

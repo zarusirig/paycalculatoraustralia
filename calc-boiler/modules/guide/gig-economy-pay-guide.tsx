@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, SUPER_GUARANTEE, TAX_BRACKETS, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
+import { GST_RATE } from "@/lib/constants/company-tax";
 
 // Tax + Medicare on net gig income from the FY2026-27 engine (resident, LITO
 // and Medicare low-income shading applied, no HECS/MLS). The old hardcoded
@@ -84,7 +85,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Getting an ABN</h3>
               <p>
-                Apply for an ABN for free at <a href="https://www.abr.gov.au" target="_blank" rel="noopener noreferrer">abr.gov.au</a>. Processing is usually immediate for straightforward applications. You need your TFN, personal details, and a description of your business activity. Your ABN is used on invoices, tax returns, and when registering for GST. Without an ABN, payers must withhold <strong>47%</strong> from your payments.
+                Apply for an ABN for free at <a href="https://www.abr.gov.au" target="_blank" rel="noopener noreferrer">abr.gov.au</a>. Processing is usually immediate for straightforward applications. You need your TFN, personal details, and a description of your business activity. Your ABN is used on invoices, tax returns, and when registering for GST. Without an ABN, payers must withhold <strong>{pctOf(TOP_RATE + MEDICARE_LEVY.rate)}</strong> from your payments.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>GST Registration</h3>
@@ -92,7 +93,7 @@ export default function GigEconomyPayGuidePage() {
                 GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. Uber, DiDi, Ola and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches {GST_THRESHOLD}</strong>.
               </p>
               <p>
-                When registered for GST, you charge GST (10%) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
+                When registered for GST, you charge GST ({pctOf(GST_RATE)}) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Setting Aside for Tax</h3>
@@ -141,7 +142,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Quarterly BAS (Business Activity Statements)</h3>
               <p>
-                If you are registered for GST, you must lodge a <strong>quarterly BAS</strong> reporting your GST collected and GST credits claimed. BAS is due on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July. Late lodgment attracts penalties.
+                If you are registered for GST, you must lodge a <strong>quarterly BAS</strong> reporting your GST collected and GST credits claimed. BAS is due on 28 October (July to September), 28 February (October to December), 28 April (January to March) and 28 July (April to June). Late lodgment attracts penalties.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>PAYG Instalments</h3>

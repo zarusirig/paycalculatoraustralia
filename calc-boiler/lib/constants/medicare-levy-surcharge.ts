@@ -53,6 +53,19 @@ export const MLS_APPROPRIATE_COVER_MAX_EXCESS = { single: 750, family: 1_500 } a
  */
 export const MLS_SPOUSE_LOW_INCOME = { amount: 27_222, incomeYear: "2025-26" } as const;
 
+/**
+ * Lifetime Health Cover (LHC) loading, in percentage points of the hospital
+ * premium. privatehealth.gov.au "Lifetime Health Cover" (read 27 October 2026):
+ * "you will pay a 2% loading on top of your hospital premium for every year
+ * you are aged over 30"; "The maximum LHC loading that anyone can pay is 70%";
+ * loading increases "stop after 10 years of continuous hospital cover".
+ */
+export const LHC_FROM_AGE = 30;
+export const LHC_PER_YEAR = 2;
+export const LHC_MAX = 70;
+export const LHC_REMOVAL_YEARS = 10;
+export const LHC_SOURCE = "https://privatehealth.gov.au/health_insurance/surcharges_incentives/lifetime_health_cover.htm";
+
 export type PhiAgeBracket = "under65" | "age65to69" | "age70plus";
 
 /**

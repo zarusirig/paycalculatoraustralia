@@ -26,7 +26,9 @@ import {
   formatAUD,
   formatNegAUD,
   formatPercent,
+  MEDICARE_LEVY,
   SUPER_GUARANTEE,
+  TAX_BRACKETS,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
@@ -34,6 +36,7 @@ import {
 import { CALENDAR_YEAR, PENALTY_UNIT, QUARTERS_2026_27, formatIso } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 
 // Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
 // 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
@@ -42,7 +45,7 @@ const CC_CAP = SUPER_GUARANTEE.concessionalCap;
 // Saving from a full concessional contribution at $100k: marginal 30% + 2%
 // Medicare levy avoided, less 15% contributions tax (taxable income stays in
 // the 30% bracket after the contribution).
-const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
+const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * CONTRIBUTIONS_TAX_RATE);
 
 // Worked example and comparison table: $50/hr × 38 hrs × 48 weeks, rate
 // entered GST-inclusive, super not included (the calculator's defaults).
@@ -83,6 +86,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
   { title: "GST registration", url: "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst", publisher: SOURCES.ato.name },
+  { title: "Working arrangements, August 2025", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/working-arrangements/aug-2025", publisher: SOURCES.abs.name },
 ];
 
 function ResultCard({ title, desc }: { title: string; desc: string }) {
@@ -124,7 +128,7 @@ export default function ContractorPayCalculatorContent() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Understanding Your Contractor Results</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
-            <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
+            <ResultCard title="Tax" desc={`Estimated using ATO progressive brackets applicable to contractors, including the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy.`} />
             <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income. You remit it to the ATO." />
             <ResultCard title="Superannuation" desc={`Voluntary or employer-provided super shown separately. The default rate is ${formatPercent(SUPER_GUARANTEE.rate, 0)} from ${SUPER_GUARANTEE.effectiveDate}.`} />
             <ResultCard title="Net Pay" desc="Final contractor take-home pay after tax, Medicare, and contributions. This is what you actually keep." />
@@ -138,7 +142,7 @@ export default function ContractorPayCalculatorContent() {
               <li>If super is included, strip {formatPercent(SUPER_GUARANTEE.rate, 0)} (÷ {(1 + SUPER_GUARANTEE.rate).toFixed(2)}) to find base salary</li>
               <li>Apply ATO resident tax brackets to taxable income</li>
               <li>Apply LITO offset where eligible</li>
-              <li>Add 2% Medicare levy</li>
+              <li>Add {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy</li>
               <li>Take-home = taxable income − income tax − Medicare levy</li>
             </ol>
           </MethodologyDisclosure>
@@ -148,7 +152,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">How Is Contractor Pay Calculated in Australia?</h2>
           <p className="mb-3 text-warmgray">
-            Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>2% Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Employees have PAYG withholding taken out of each pay. ABN contractors invoice clients for the gross amount and pay their own income tax through PAYG instalments.
+            Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>{formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Employees have PAYG withholding taken out of each pay. ABN contractors invoice clients for the gross amount and pay their own income tax through PAYG instalments.
           </p>
           <p className="mb-4 text-warmgray">
             The Australian Taxation Office (ATO) requires every contractor operating under an ABN to lodge a tax return. Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more</strong> must register for GST within 21 days. Once registered, you add <strong>10%</strong> GST to your price (1/11 of the GST-inclusive invoice total) and pay it to the ATO with your Business Activity Statement (BAS), lodged monthly or quarterly. Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
@@ -160,7 +164,7 @@ export default function ContractorPayCalculatorContent() {
             <li><strong>Work out super:</strong> {formatAUD(EXAMPLE_EX_GST)} × {formatPercent(SUPER_GUARANTEE.rate, 0)} = <strong>{formatAUD(EXAMPLE_SUPER)}</strong>, the super you would fund yourself at the Super Guarantee rate. It is shown separately, and this example does not claim it as a tax deduction. If your rate already includes super, tick &quot;Includes Superannuation&quot; and the calculator takes it out first (÷ {(1 + SUPER_GUARANTEE.rate).toFixed(2)}).</li>
             <li><strong>Calculate income tax:</strong> Apply ATO progressive marginal tax brackets to your taxable income of {formatAUD(EXAMPLE_EX_GST)}</li>
             <li><strong>Apply LITO:</strong> Subtract the Low Income Tax Offset if your taxable income falls below {formatAUD(LITO.nilOffsetIncome)}</li>
-            <li><strong>Add Medicare levy:</strong> {formatAUD(EXAMPLE_EX_GST)} × 2% = <strong>{formatAUD(calculateMedicareLevy(EXAMPLE_EX_GST))}</strong></li>
+            <li><strong>Add Medicare levy:</strong> {formatAUD(EXAMPLE_EX_GST)} × {formatPercent(MEDICARE_LEVY.rate, 0)} = <strong>{formatAUD(calculateMedicareLevy(EXAMPLE_EX_GST))}</strong></li>
             <li><strong>Determine take-home pay:</strong> Gross income minus income tax minus Medicare levy equals your net contractor earnings</li>
           </ol>
           <p className="mt-3 text-sm text-warmgray-light">
@@ -172,7 +176,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">How Does Contractor Take-Home Pay Compare to Employee Pay?</h2>
           <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$50/hour</strong> earns a higher gross figure than an equivalent employee but loses access to paid leave, employer super, and workers&apos; compensation insurance. The table below compares identical gross earnings of $91,200 for a contractor versus an employee for FY{SITE_CONFIG.financialYear}.
+            A contractor charging <strong>$50/hour</strong> earns a higher gross figure than an equivalent employee but loses access to paid leave, employer super, and workers&apos; compensation insurance. The table below compares identical gross earnings of {formatAUD(EXAMPLE_GROSS)} for a contractor versus an employee for FY{SITE_CONFIG.financialYear}.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -186,11 +190,11 @@ export default function ContractorPayCalculatorContent() {
               <tbody className="divide-y divide-sandstone-dark/10">
                 <tr>
                   <td className="px-4 py-3 text-navy">Gross Annual Income</td>
-                  <td className="px-4 py-3 text-right text-navy">$91,200</td>
-                  <td className="px-4 py-3 text-right text-navy">$91,200</td>
+                  <td className="px-4 py-3 text-right text-navy">{formatAUD(EXAMPLE_GROSS)}</td>
+                  <td className="px-4 py-3 text-right text-navy">{formatAUD(EXAMPLE_GROSS)}</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-navy">Paid Leave (4 weeks)</td>
+                  <td className="px-4 py-3 text-navy">Paid Leave ({EMPLOYMENT.annualLeaveWeeks} weeks)</td>
                   <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
                   <td className="px-4 py-3 text-right text-eucalyptus-dark">{formatAUD(EMPLOYEE_LEAVE)} (included)</td>
                 </tr>
@@ -210,7 +214,7 @@ export default function ContractorPayCalculatorContent() {
                   <td className="px-4 py-3 text-right text-eucalyptus-dark">N/A</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 text-navy">Sick Leave (10 days)</td>
+                  <td className="px-4 py-3 text-navy">Sick Leave ({EMPLOYMENT.personalLeaveDays} days)</td>
                   <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
                   <td className="px-4 py-3 text-right text-eucalyptus-dark">{formatAUD(EMPLOYEE_SICK)} (included)</td>
                 </tr>
@@ -231,7 +235,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Who Uses This Contractor Pay Calculator?</h2>
           <p className="mb-4 text-warmgray">
-            Over <strong>1 million</strong> independent contractors operate in Australia across construction, IT, healthcare, creative industries, and transport. This contractor pay calculator is built for 5 user groups.
+            Australia had <strong>1.1 million</strong> independent contractors in August 2025, 7.6% of all employed people (ABS). Construction, health care, and professional, scientific and technical services had the most. This contractor pay calculator is built for 5 user groups.
           </p>
           <ul className="list-disc space-y-2 pl-6 text-warmgray">
             <li><strong>Freelancers and sole traders</strong>: graphic designers, copywriters, and web developers who invoice multiple clients and need to estimate quarterly tax obligations before each BAS lodgement</li>
@@ -253,15 +257,15 @@ export default function ContractorPayCalculatorContent() {
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">GST Registration and BAS Lodgement</h3>
           <p className="mb-3 text-warmgray">
-            Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more</strong> must register for GST within 21 days. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and pay it to the ATO with your BAS. Taxi drivers and rideshare drivers (including Uber drivers) must register for GST regardless of turnover. Voluntary GST registration below {formatAUD(GST_REGISTRATION_THRESHOLD)} allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
+            Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more</strong> must register for GST within 21 days. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and pay it to the ATO with your BAS. Taxi, limousine and rideshare drivers (including Uber drivers) must register for GST regardless of turnover. Voluntary GST registration below {formatAUD(GST_REGISTRATION_THRESHOLD)} allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">PAYG Instalments and Income Tax</h3>
           <p className="mb-3 text-warmgray">
-            The ATO assesses contractors on their net business income using the same progressive income tax brackets as employees. The tax-free threshold remains <strong>$18,200</strong> for FY{SITE_CONFIG.financialYear}. Contractors pay tax through quarterly PAYG instalments rather than having tax withheld each pay. The income tax brackets apply at marginal rates of <strong>{bracketRateList()}</strong>. Use our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the exact tax amount at any income level.
+            The ATO assesses contractors on their net business income using the same progressive income tax brackets as employees. The tax-free threshold remains <strong>{formatAUD(TAX_BRACKETS[0].max)}</strong> for FY{SITE_CONFIG.financialYear}. Contractors pay tax through quarterly PAYG instalments rather than having tax withheld each pay. The income tax brackets apply at marginal rates of <strong>{bracketRateList()}</strong>. Use our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the exact tax amount at any income level.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Superannuation for Contractors</h3>
           <p className="text-warmgray">
-            Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>{formatAUD(CC_CAP)} per year</strong> (FY{SITE_CONFIG.financialYear}) reduce taxable income and are taxed at just <strong>15%</strong> inside the fund. Contractors earning above <strong>$250,000</strong> pay an additional <strong>15% Division 293 tax</strong> on super contributions. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
+            Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>{formatAUD(CC_CAP)} per year</strong> (FY{SITE_CONFIG.financialYear}) reduce taxable income and are taxed at just <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> inside the fund. If your income plus concessional contributions for Division 293 purposes is more than <strong>{formatAUD(DIVISION_293.threshold)}</strong>, you pay an extra <strong>{formatPercent(DIVISION_293.rate, 0)} Division 293 tax</strong> on the amount over that threshold or on your concessional contributions, whichever is less. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
           </p>
         </section>
 
@@ -269,14 +273,14 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Take-Home by Daily Rate (FY{SITE_CONFIG.financialYear})</h2>
           <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over 48 working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and the Medicare levy. The table below shows annual and per-day take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
+            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over {BILLABLE_WEEKS} working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and the Medicare levy. The table below shows annual and per-day take-home pay at 6 common contractor day rates, assuming 5 working days per week over {BILLABLE_WEEKS} weeks and excluding GST.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
               <thead className="bg-sandstone">
                 <tr>
                   <th className="px-4 py-3 text-left font-semibold text-navy">Daily Rate</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual (48 wks × 5 days)</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual ({BILLABLE_WEEKS} wks × 5 days)</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Income Tax + Medicare</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Annual Take-Home</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Net Per Day</th>
@@ -284,14 +288,14 @@ export default function ContractorPayCalculatorContent() {
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
                 {[500, 750, 1000, 1200, 1500, 2000].map((dailyRate) => {
-                  const gross = dailyRate * 5 * 48;
+                  const gross = dailyRate * 5 * BILLABLE_WEEKS;
                   const tax = calculateIncomeTax(gross, true);
                   const lito = calculateLITO(gross);
                   const netTax = Math.max(0, Math.round(tax - lito));
                   const medicare = calculateMedicareLevy(gross);
                   const totalTax = netTax + medicare;
                   const takeHome = gross - totalTax;
-                  const netPerDay = takeHome / (5 * 48);
+                  const netPerDay = takeHome / (5 * BILLABLE_WEEKS);
                   return (
                     <tr key={dailyRate} className="hover:bg-sandstone">
                       <td className="px-4 py-3 font-medium text-navy">${dailyRate}/day</td>
@@ -388,7 +392,7 @@ export default function ContractorPayCalculatorContent() {
               <strong>Missing legitimate deductions:</strong> Contractors overlook deductible expenses including home office costs ({RETURN_2026.wfhFixedRateCents} cents per work hour under the fixed-rate method for {RETURN_2026.incomeYear}), vehicle logbook expenses, professional development courses, accounting software subscriptions, and professional indemnity insurance premiums.
             </li>
             <li>
-              <strong>Skipping voluntary super contributions:</strong> Concessional super contributions of up to <strong>{formatAUD(CC_CAP)}/year</strong> are taxed at 15% inside the fund instead of your marginal rate. A contractor on $100,000 saves about <strong>{formatAUD(CC_SAVING_100K)}</strong> by contributing {formatAUD(CC_CAP)} to super versus taking it as income taxed at the 30% marginal rate plus the 2% Medicare levy.
+              <strong>Skipping voluntary super contributions:</strong> Concessional super contributions of up to <strong>{formatAUD(CC_CAP)}/year</strong> are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} inside the fund instead of your marginal rate. A contractor on $100,000 saves about <strong>{formatAUD(CC_SAVING_100K)}</strong> by contributing {formatAUD(CC_CAP)} to super versus taking it as income taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy.
             </li>
           </ol>
         </section>
@@ -419,7 +423,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Related Australian Tax Calculators</h2>
           <p className="mb-4 text-warmgray">
-            Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 5 calculators cover the most common related scenarios.
+            Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 6 calculators cover the most common related scenarios.
           </p>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[

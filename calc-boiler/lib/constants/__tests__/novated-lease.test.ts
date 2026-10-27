@@ -204,6 +204,10 @@ test("PHEV: the calculator charges FBT on a new plug-in hybrid lease", () => {
   assert.equal(grandfathered.fbt, 0);
 });
 
+test("minor benefits exemption threshold is less than $300 (ATO, read 27 October 2026)", () => {
+  assert.equal(FBT.minorBenefitThreshold, 300);
+});
+
 // ---------- reportable fringe benefits ----------
 
 test("RFBA is grossed up at the type 2 rate, only above $2,000", () => {

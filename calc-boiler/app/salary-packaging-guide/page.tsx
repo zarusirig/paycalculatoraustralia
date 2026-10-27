@@ -13,7 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-packaging-guide/`;
 const TITLE = "Salary Packaging Guide Australia - FBT-Exempt Benefits";
-const DESCRIPTION = "Salary packaging guide: meal entertainment, LAFHA, portable devices and other FBT-exempt items, and how packaging works for not-for-profit and hospital staff.";
+const DESCRIPTION = "Salary packaging guide: living expense and meal entertainment caps, portable devices and other FBT concessions, and packaging for not-for-profit and hospital staff.";
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

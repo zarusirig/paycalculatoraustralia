@@ -21,7 +21,7 @@
 // left to the revenue office's own portal.
 // =============================================================================
 
-import { calculateSuper } from "./australian-tax";
+import { EMPLOYMENT, calculateSuper } from "./australian-tax";
 
 export type PayrollTaxStateCode = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
@@ -674,6 +674,15 @@ export const EXAMPLE_WAGE_BILLS = [1_500_000, 3_000_000, 5_000_000, 10_000_000] 
 // negative cost, or an Infinity multiplier (QA 24 Sep 2026).
 // ---------------------------------------------------------------------------
 
+/**
+ * Default workers compensation premium on /employer-cost-calculator/, as a
+ * fraction of salary (1.5%). This is the page's own assumption, not a published
+ * rate: premiums are set per employer by each state or territory scheme and
+ * depend on industry risk. One value for the calculator input's default and
+ * the guide table (TABLE_WORKCOVER in modules/guide/employer-cost-calculator-faqs.ts).
+ */
+export const EMPLOYER_COST_DEFAULT_WORKCOVER = 0.015;
+
 export interface EmployerOnCostsInput {
   baseSalary: number;
   /** Payroll tax as a percentage, e.g. 4.85. */
@@ -699,7 +708,7 @@ export function employerOnCosts(input: EmployerOnCostsInput): EmployerOnCosts {
   const salary = clampFinite(input.baseSalary, 100_000_000);
   // 12% SG, capped at the annual maximum contribution base (Payday Super).
   const superAmt = calculateSuper(salary);
-  const leaveProvision = salary * (4 / 52); // 4 weeks' annual leave ≈ 7.69%
+  const leaveProvision = salary * (EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear); // 4 weeks' annual leave ÷ 52 ≈ 7.69%
   const payrollTaxAmt = (salary + superAmt) * (clampFinite(input.payrollTaxPct, 100) / 100);
   const workcoverAmt = salary * (clampFinite(input.workcoverPct, 100) / 100);
   const trueCost = salary + superAmt + leaveProvision + payrollTaxAmt + workcoverAmt;

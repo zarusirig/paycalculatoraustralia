@@ -159,7 +159,7 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
                   </div>
 
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-xs text-navy">
-                    <strong>Tax Note:</strong> Unused annual leave paid out on a normal termination is taxed at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. If the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or the leave accrued on or before {LSL_TAX.aug1993Cutover}, it is withheld at a flat {formatPercent(TERMINATION_LOADING_WITHHOLDING.flatRate, 0)}. Long service leave may qualify for concessional tax treatment.
+                    <strong>Tax Note:</strong> Unused annual leave paid out on a normal termination is taxed at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. If the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or the leave accrued on or before {LSL_TAX.aug1993Cutover}, it is withheld at a flat {formatPercent(TERMINATION_LOADING_WITHHOLDING.flatRate, 0)}. Unused long service leave follows the same Schedule 7 rules for service after {LSL_TAX.aug1993Cutover}. Service from {LSL_TAX.preAug1978Cutover} to {LSL_TAX.aug1993Cutover} is withheld at {formatPercent(LSL_TAX.flatRate, 0)}, and only {formatPercent(LSL_TAX.pre1978IncludedProportion, 0)} of the amount for service before {LSL_TAX.preAug1978Cutover} is taxed.
                   </div>
                 </div>
               </div>

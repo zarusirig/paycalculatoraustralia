@@ -36,8 +36,20 @@ import {
 } from "@/lib/constants/cents-per-km";
 // --- end G6 ---
 import { LISTO_2027_28, LISTO_CURRENT, LISTO_SOURCES } from "@/lib/constants/listo";
-import { formatAUD } from "@/lib/constants/australian-tax";
+import { formatAUD, HECS_HELP_2025_26 } from "@/lib/constants/australian-tax";
+import { DEEMING_HISTORY } from "@/lib/constants/centrelink-means-test";
 import { fitDescription, fitTitle } from "@/lib/seo-title";
+
+// Figures the older (literal) articles quote, rendered from the constants.
+const HECS_2526_MIN = formatAUD(HECS_HELP_2025_26.minimumThreshold);
+const HECS_2526_FIRST_RATE = `${Math.round(HECS_HELP_2025_26.bands[1].marginalRate * 100)}%`;
+const HECS_2526_TOP = HECS_HELP_2025_26.bands[HECS_HELP_2025_26.bands.length - 1];
+const HECS_2526_TOP_MIN = formatAUD(HECS_2526_TOP.min);
+const HECS_2526_TOP_RATE = `${Math.round(HECS_2526_TOP.marginalRate * 100)}%`;
+const deemPct = (rate: number) => `${+(rate * 100).toFixed(2)}%`;
+const DEEM_FREEZE = DEEMING_HISTORY.find((r) => r.from === "1 May 2020")!;
+const DEEM_SEP_2025 = DEEMING_HISTORY.find((r) => r.from === "20 September 2025")!;
+const DEEM_MAR_2026 = DEEMING_HISTORY.find((r) => r.from === "20 March 2026")!;
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -335,9 +347,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "20% reduction of HELP debts", url: "https://www.studyassist.gov.au/news/20-reduction-help-debts", publisher: "Study Assist, Australian Government" },
       { title: "FAQs, 20% reduction off all outstanding HELP loan debt", url: "https://www.education.gov.au/higher-education-loan-program/20-reduction-student-loan-debt/faqs-20-reduction-all-outstanding-help-loan-debt", publisher: "Department of Education, Australian Government" },
       { title: "More than 3.2 million Australians' student debt now cut by 20 per cent", url: "https://ministers.education.gov.au/clare/more-32-million-australians-student-debt-now-cut-20-cent", publisher: "Ministers' Media Centre, Department of Education" },
+      { title: "Study and training loans, what's new", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/study-and-training-loans-what-s-new", publisher: "Australian Taxation Office" },
     ],
     faq: [
-      { question: "Has the 20% HECS debt cut been applied yet?", answer: "Yes. The ATO has completed processing the one-off 20% reduction for every HELP and other student loan balance that existed on 1 June 2025. Most people received the cut before the end of 2025, with a small number of more complex accounts finalised in early 2026." },
+      { question: "Has the 20% HECS debt cut been applied yet?", answer: "Yes. The ATO has completed processing the one-off 20% reduction for every HELP and other student loan balance that existed on 1 June 2025." },
       { question: "How much was cut from the average HECS debt?", answer: "The average HELP debt of $27,600 was reduced by around $5,520: 20% off the balance as it stood on 1 June 2025, before that year's indexation was applied. Your own reduction depends on your exact balance on that date." },
       { question: "Do I need to apply for the 20% HECS reduction?", answer: "No. The reduction was applied automatically by the ATO to every eligible HELP, VET Student Loan and other study loan balance; there was no application process. If your loan existed on 1 June 2025, the cut should already be reflected in your account." },
       { question: "How do I check the 20% cut applied to my HECS debt?", answer: "Log in to the ATO app or ATO online services through myGov and check your study loan account balance and transaction history under 'Tax > Study and training loans'. The reduction shows as a credit transaction dated against your 1 June 2025 balance." },
@@ -375,7 +388,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "hecs-marginal-repayment-first-tax-time",
     headline: "Your First Tax Return Under the New HECS Repayment System",
     title: "Your First Tax Return Under the New HECS System",
-    description: "Millions lodge their first return under the new marginal HECS system this year, with 15% charged only above $69,528. Here's how it changes your refund.",
+    description: `Your 2025-26 return is the first under the new marginal HECS system, with ${HECS_2526_FIRST_RATE} charged only on income above ${HECS_2526_MIN}. Here's how it changes your refund.`,
     category: "HECS",
     datePublished: "2026-07-02",
     dateModified: "2026-07-02",
@@ -390,10 +403,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Study and training loan repayment thresholds and rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "Australian Taxation Office" },
     ],
     faq: [
-      { question: "Why is this tax time different for HECS debtors?", answer: "This is the second full financial year the marginal repayment system has applied, but the first where the FY2026-27 threshold, bands and 2.8% indexation all interact in the one assessment. Your notice of assessment reconciles what your employer withheld against your actual compulsory repayment." },
-      { question: "Will I get a refund if too much STSL was withheld?", answer: "Yes. If your employer withheld more STSL than your compulsory repayment for the year (common if you had irregular income or multiple jobs), the ATO refunds the difference as part of your tax return, or nets it against your HECS balance instead." },
-      { question: "Do I owe extra HECS if I had two jobs under the threshold?", answer: "Possibly. STSL withholding is calculated separately per employer, so two jobs each paying under $69,528 might trigger no withholding individually, but your combined repayment income at tax time can still exceed the threshold, leaving you with an unexpected compulsory repayment on your notice of assessment." },
-      { question: "How does the 20% debt cut show up on this tax return?", answer: "The 20% reduction was applied directly to your loan balance by the ATO during 2025, not through your tax return, so it doesn't appear as a line item on your notice of assessment. Your compulsory repayment for the year is calculated as usual on your reduced balance." },
+      { question: "Why is this tax time different for HECS debtors?", answer: `Your 2025-26 return is the first one assessed under the marginal repayment system, which started with the 2025-26 income year. The compulsory repayment is worked out only on repayment income above ${HECS_2526_MIN}, the 2025-26 threshold, unless your repayment income is ${HECS_2526_TOP_MIN} or more, when it is ${HECS_2526_TOP_RATE} of your total repayment income. Your notice of assessment reconciles what your employer withheld against your actual compulsory repayment.` },
+      { question: "Will I get a refund if too much STSL was withheld?", answer: "Yes. If your employer withheld more STSL than your compulsory repayment for the year, the ATO refunds the difference when you lodge your tax return, provided you have no outstanding tax or other Commonwealth debts." },
+      { question: "Do I owe extra HECS if I had two jobs under the threshold?", answer: `Possibly. STSL withholding is calculated separately per employer, so two jobs each paying under ${HECS_2526_MIN} might trigger no withholding individually, but your combined repayment income at tax time can still exceed the threshold, leaving you with an unexpected compulsory repayment on your notice of assessment.` },
+      { question: "How does the 20% debt cut show up on this tax return?", answer: "The 20% reduction was applied directly to your loan balance by the ATO, not through your tax return, so it doesn't appear as a line item on your notice of assessment. Your compulsory repayment is still worked out on your repayment income, not on your loan balance." },
     ],
   },
   {
@@ -474,7 +487,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "1000-dollar-instant-tax-deduction",
     headline: "The $1,000 Instant Tax Deduction: No Receipts, One Tick",
     title: "$1,000 Instant Tax Deduction: How It Works for 2026-27",
-    description: "The $1,000 instant work-related deduction is now law for 2026-27. Claim it with no receipts from July 2027, saving workers an average $205.",
+    description: "The $1,000 instant work-related deduction is law for 2026-27. The ATO applies it automatically, no receipts, on returns lodged from July 2027. Average saving $205.",
     category: "Tax",
     datePublished: "2026-07-01",
     dateModified: "2026-07-02",
@@ -490,7 +503,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "Is the $1,000 instant tax deduction law yet?", answer: "Yes. It's now law under the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026. It applies to the 2026-27 income year: the financial year that started on 1 July 2026, not the return most people are lodging right now." },
-      { question: "When can I actually claim the $1,000 deduction?", answer: "You claim it on your 2026-27 tax return, which you lodge from 1 July 2027. It doesn't apply to the 2025-26 return most workers lodge between July and October 2026. That return still uses the normal substantiation rules for work-related expenses." },
+      { question: "When can I actually claim the $1,000 deduction?", answer: "The ATO applies it automatically to your 2026-27 tax return, which you lodge from 1 July 2027. It doesn't apply to the 2025-26 return most workers lodge between July and October 2026. That return still uses the normal substantiation rules for work-related expenses." },
       { question: "Do I need receipts for the $1,000 deduction?", answer: "No. You can deduct up to $1,000 for work-related expenses with no receipts and no substantiation at all. If your actual work expenses are higher than $1,000, you can still claim the full, itemised amount the usual way instead. You choose whichever gives the better outcome." },
       { question: "Can I claim other deductions on top of the $1,000?", answer: "Yes. Non-work deductions such as charitable donations, union or professional association fees, income protection premiums and investment expenses aren't capped by the instant deduction and remain fully claimable alongside it, using your normal records and receipts as you would in any other year." },
     ],
@@ -517,7 +530,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { question: "When is the 2026 tax return deadline?", answer: "If you lodge your own 2025-26 tax return, it's due by 31 October 2026. If you engage a registered tax agent before that date, your deadline can extend to 15 May 2027, provided you're on their client list before 31 October." },
       { question: "What is the work-from-home deduction rate for 2025-26?", answer: "The fixed rate method stays at 70 cents per work hour for 2025-26, unchanged from 2024-25. You can still separately claim depreciation on assets over $300, work-related purchases up to $300, and home office cleaning and repair costs on top of the fixed rate." },
       { question: "Did the $2 minimum for gift deductions change?", answer: "Yes. The $2 minimum donation threshold for deductible gift recipients has been removed, backdated to gifts made from 1 July 2024, so you can now claim a deduction for any eligible gift or donation regardless of size, provided you keep a valid receipt. Political donations still need to be $2 or more." },
-      { question: "Does the $1,000 instant deduction apply to this year's return?", answer: "No, not yet. The $1,000 instant work-related deduction applies to the 2026-27 income year and is claimed on the return lodged from July 2027. The return you lodge this tax time, for 2025-26, still uses the normal substantiation rules for work expenses." },
+      { question: "Does the $1,000 instant deduction apply to this year's return?", answer: "No, not yet. The $1,000 instant work-related deduction applies to the 2026-27 income year and is applied automatically to the return lodged from July 2027. The return you lodge this tax time, for 2025-26, still uses the normal substantiation rules for work expenses." },
     ],
   },
   {
@@ -621,10 +634,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Deeming, Age Pension", url: "https://www.servicesaustralia.gov.au/deeming?context=22526", publisher: "Services Australia" },
     ],
     faq: [
-      { question: "What are the new deeming rates from 20 March 2026?", answer: "The lower deeming rate rose to 1.25% and the upper rate to 3.25% from 20 March 2026, on the recommendation of the Australian Government Actuary. This ended a multi-year freeze at 0.25% and 2.25% that had applied since May 2020 to support pensioners through low interest rates." },
+      { question: "What are the new deeming rates from 20 March 2026?", answer: `The lower deeming rate rose to 1.25% and the upper rate to 3.25% from 20 March 2026, on the recommendation of the Australian Government Actuary. This was the second step in a gradual reset: the rates were frozen at ${deemPct(DEEM_FREEZE.lower)} and ${deemPct(DEEM_FREEZE.upper)} from ${DEEM_FREEZE.from} to 30 June 2025, then rose to ${deemPct(DEEM_SEP_2025.lower)} and ${deemPct(DEEM_SEP_2025.upper)} on ${DEEM_SEP_2025.from}.` },
       { question: "What are the deeming thresholds for singles and couples?", answer: "The 1.25% lower rate applies to financial assets up to $64,200 for a single person, or $106,200 combined for a couple with at least one member on a pension. Financial assets above those thresholds are deemed to earn income at the higher 3.25% rate." },
       { question: "What counts as a financial asset for deeming?", answer: "Financial assets include bank accounts, term deposits, shares, managed funds and superannuation balances for people who have reached Age Pension age. Centrelink assumes these assets earn the deemed rate of income regardless of what they actually earn, and counts that toward your income test." },
-      { question: "Why did deeming rates go up in 2026?", answer: "Deeming rates are meant to reflect returns available on standard, low-risk investments such as savings accounts. The Australian Government Actuary recommended lifting rates from their pandemic-era freeze as interest rates on savings accounts rose, though the new rates remain below long-term historical averages." },
+      { question: "Why did deeming rates go up in 2026?", answer: `Deeming rates are meant to reflect returns available on standard, low-risk investments such as savings accounts. The Australian Government Actuary recommended ${deemPct(DEEM_MAR_2026.lower)} and ${deemPct(DEEM_MAR_2026.upper)} because they reflect investment returns available to most payment recipients and support the government's plan to reset deeming rates gradually after the freeze ended on 30 June 2025.` },
     ],
   },
   {

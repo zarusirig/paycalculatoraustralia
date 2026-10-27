@@ -1,0 +1,113 @@
+{
+ "name": "cf-011-contractor-vs-employee-c",
+ "files": [
+  "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+  "modules/calculator/final-pay-calculator.tsx",
+  "modules/calculator/leave-calculator-faqs.ts",
+  "modules/calculator/leave-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:43",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "43",
+   "page": "",
+   "claims": [
+    "A contractor should charge 30 to 45% above ... annual leave (7.6%), personal leave (3.8%), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000) ... approximately $135,000 to $1..."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same unsourced ranges as the content file, and they now conflict with the page's derived values (7.7%, 3.8%, about 30%, $130,300). Proposed change: derive from the same model (export EX_MATCH / AL_SHARE / PL_SHARE from a shared helper) or drop the typed figures. Lines 35 and 84 say 'annual business turnover ... $75,000 or more / reaches $75,000'. The ATO term is 'GST turnover', so use GST_REGISTRATION_THRESHOLD."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:75",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "75",
+   "page": "",
+   "claims": [
+    "The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Sick/carer's leave is not paid out (FWO final pay page: 'Sick and carer's leave isn't paid out when employment ends'). Proposed change: remove 'sick leave,' from the list. Line 27 also has 'usually/typically' hedging and an unsourced '30%+' threshold."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/final-pay-calculator.tsx:53, 59-64, 78, 203",
+   "file": "modules/calculator/final-pay-calculator.tsx",
+   "line": "53, 59-64, 78, 203",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not my file. (1) Line 53: 0.175 should be COMMON_LEAVE_LOADING, and the line 203 label 'Leave Loading (17.5%)' should use formatPercent(COMMON_LEAVE_LOADING, 1). (2) Lines 59-64: the long service leave engine uses a single national rate (needs-decision, see the final-pay-calculator-content.tsx:36 result). (3) Lines 78 onward put the leave payout into taxableComponents at the effective rate even when reason = redundancy, where ATO Schedule 7 caps unused annual leave at 32%. That is engine logic, so needs-decision."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:80",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "80",
+   "page": "",
+   "claims": [
+    "A part-time employee working 20 hours per week accrues 80 hours (2.1 weeks) of leave per year, calculated as 20/38 \u00d7 152 hours. The accrual rate is 1.538 hours per week ... compared to 2.923 hours per week"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree: the same full-time-weeks framing as line 290. The FWO says a part-timer on 20 hours gets 4 weeks of their own hours, which is 80 hours."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:72",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "72",
+   "page": "",
+   "claims": [
+    "The historical concessional tax treatment for leave loading was removed decades ago."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree: pre-18 August 1993 annual leave loading is still withheld at 32% under Schedule 7 (applies from 1 July 2026), so 'removed decades ago' is misleading."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator.tsx:161",
+   "file": "modules/calculator/leave-calculator.tsx",
+   "line": "161",
+   "page": "",
+   "claims": [
+    "Long service leave may qualify for concessional tax treatment."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: I agree with the fixer's cross-file proposal. It matches Schedule 7 and LSL_TAX. Add 'scheme' if redundancy wording is ever included."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

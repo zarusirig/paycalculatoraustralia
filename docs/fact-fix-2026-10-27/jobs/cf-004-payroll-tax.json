@@ -1,0 +1,77 @@
+{
+ "name": "cf-004-payroll-tax",
+ "files": [
+  "lib/constants/payroll-tax.ts",
+  "lib/constants/schads-award.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/payroll-tax.ts:31",
+   "file": "lib/constants/payroll-tax.ts",
+   "line": "31",
+   "page": "",
+   "claims": [
+    "const [workcoverRate, setWorkcoverRate] = useState<number>(1.5); // Default average proxy"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No change in the diff at this line, and the fixer's reasoning holds. A 'use client' component should not import the FAQ module, so a shared constant in lib/constants/payroll-tax.ts is the right route (EMPLOYER_COST_DEFAULT_WORKCOVER = 0.015, imported by both module files). The value matches TABLE_WORKCOVER (0.015) today, so readers see no mismatch."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/payroll-tax.ts:703",
+   "file": "lib/constants/payroll-tax.ts",
+   "line": "703",
+   "page": "",
+   "claims": [
+    "const leaveProvision = salary * (4 / 52);"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Extra finding about engine code. Typed 4/52 instead of the EMPLOYMENT constants gives the same value today. This is a consistency note only and was not changed."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/schads-award.ts:89",
+   "file": "lib/constants/schads-award.ts",
+   "line": "89",
+   "page": "",
+   "claims": [
+    "cl 25.7(d) \"sleepover allowance of 4.9% of the standard rate\"; cl 25.7(e) \"the employee will be paid for the time worked at the prescribed overtime rate with a minimum payment as for one hour worked\"; standard rate = L3 pp3 cl 15.3 = 1283.10"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: 4.9% is confirmed (62.87/1283.10). Making the percentage a constant needs a change in lib/constants/schads-award.ts, which this fixer does not own, so cross-file is the right status. The proposal stands as the fixer gave it. The sleepover work-time rewording in this FAQ and at schads-award-pay-rates.tsx:349 (overtime rate, minimum one hour, cl 25.7(e)) is proven word for word by the cached award text, so I kept it."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/schads-award.ts:389",
+   "file": "lib/constants/schads-award.ts",
+   "line": "389",
+   "page": "",
+   "claims": [
+    "Schedule G: \"employees covered by the Nurses Award 2020 on 31 December 2024 who became covered by this award as a result of PR779152\"; G.1.2(a) \"classified under this award on or before 31 December 2024\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: There is no change in the diff for this line. 31 December 2024 is confirmed in the cached award text. A constant for the date belongs in lib/constants/schads-award.ts, a file the fixer does not own, so cross-file is the right status and the fixer's proposal stands."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

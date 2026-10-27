@@ -126,7 +126,7 @@ export default function ZoneTaxOffsetPage() {
               <li><strong>Subtract any remote area allowance</strong> you received from Centrelink or the Department of Veterans&rsquo; Affairs.</li>
               <li><strong>Lodge</strong>: by 31 October if you self-lodge, or by your tax agent&rsquo;s extended date.</li>
             </ol>
-            <p>Your employer does not apply the offset through <Link href="/payg-withholding-tables/">PAYG withholding</Link> during the year, so you receive it as a reduced assessment or larger refund when you lodge.</p>
+            <p>Your employer reduces your <Link href="/payg-withholding-tables/">PAYG withholding</Link> for the offset only if you give them a Withholding declaration (NAT 3093) and answer yes at question 7. Otherwise you receive it as a reduced assessment or larger refund when you lodge.</p>
             <p>If you qualify for both a zone tax offset and an overseas forces tax offset, you can claim <strong>only one</strong>: take whichever is greater.</p>
           </section>
 
@@ -178,7 +178,7 @@ export default function ZoneTaxOffsetPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Towns Are in Each Zone?</h2>
             <p>Zone boundaries are defined in tax law and published by the ATO as a per-state list of locations. A <strong>special area</strong> is one more than 250 km, by the shortest practicable surface route, from the nearest population centre of 2,500 or more people.</p>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy">The zone list changed on <strong>1 July 2026</strong>. Locations widely described elsewhere as Zone B (including <strong>Darwin, Palmerston and Humpty Doo</strong>) are now listed as <strong>Zone A</strong>. Check the current ATO list rather than an older summary.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy">The ATO&rsquo;s Northern Territory zone list (last updated <strong>1 July 2026</strong>) lists <strong>Darwin, Palmerston and Humpty Doo</strong> as <strong>Zone A</strong>. Check the current ATO list rather than an older summary.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Verified examples</h3>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Location</th><th className="px-5 py-3">State</th><th className="px-5 py-3">Zone</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -194,7 +194,7 @@ export default function ZoneTaxOffsetPage() {
               <tr><td className="px-5 py-3 font-medium">Atherton</td><td className="px-5 py-3">QLD</td><td className="px-5 py-3">Zone B</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3 font-medium">Normanton</td><td className="px-5 py-3">QLD</td><td className="px-5 py-3">Zone A (special area)</td></tr>
               <tr><td className="px-5 py-3 font-medium">Thursday Island</td><td className="px-5 py-3">QLD</td><td className="px-5 py-3">Zone A (special area)</td></tr>
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Verified against the ATO <a href={ZONE_LIST_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Australian zone list</a>, last updated 1 July 2026.</p></div>
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Verified against the ATO <a href={ZONE_LIST_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Australian zone list</a>: the Northern Territory page (last updated 1 July 2026) and the Queensland page (last updated 28 September 2026).</p></div>
 
             <p>There are no zone locations in the Australian Capital Territory or Victoria. For every other state, check the ATO list directly: <a href={`${ZONE_LIST_URL}/new-south-wales`} target="_blank" rel="noopener noreferrer">New South Wales</a>, <a href={`${ZONE_LIST_URL}/northern-territory`} target="_blank" rel="noopener noreferrer">Northern Territory</a>, <a href={`${ZONE_LIST_URL}/queensland`} target="_blank" rel="noopener noreferrer">Queensland</a>, <a href={`${ZONE_LIST_URL}/south-australia`} target="_blank" rel="noopener noreferrer">South Australia</a>, <a href={`${ZONE_LIST_URL}/tasmania`} target="_blank" rel="noopener noreferrer">Tasmania</a> and <a href={`${ZONE_LIST_URL}/western-australia`} target="_blank" rel="noopener noreferrer">Western Australia</a>. Work out take-home pay for these regions with our <Link href="/pay-calculator-nt/">NT</Link>, <Link href="/pay-calculator-wa/">WA</Link> and <Link href="/pay-calculator-qld/">QLD</Link> pay calculators.</p>
           </section>

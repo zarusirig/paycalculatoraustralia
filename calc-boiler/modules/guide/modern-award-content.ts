@@ -559,7 +559,7 @@ function cleaning(): AwardPageCopy {
       },
       {
         q: "What is the minimum shift for a cleaner?",
-        a: "The Cleaning Services Award sets a part-time or casual cleaner's minimum shift by the size of the site. The cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more. The cleaner must be paid for the minimum even if the job finishes early.",
+        a: "The Cleaning Services Award sets a part-time or casual cleaner's minimum shift by the size of the site. The cleaner must be rostered for at least 1 hour if working alone at a small stand-alone site of not more than 300 square metres where a longer shift across 2 or more sites is not practicable, 2 consecutive hours at a site of up to 2,000 square metres, 3 consecutive hours at 2,000 square metres or more up to 5,000, and 4 consecutive hours at 5,000 square metres or more. The cleaner must be paid for the minimum even if the job finishes early.",
       },
       {
         q: "Is there a toilet cleaning allowance?",

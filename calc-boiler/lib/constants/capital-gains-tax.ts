@@ -4,7 +4,7 @@
 // SOURCES (all retrieved via firecrawl 28 July 2026, raw markdown read directly):
 //
 //   [1] ATO "CGT discount" QC66019, last updated 29 June 2026
-//       https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cgt-discount
+//       https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/calculating-your-cgt/cgt-discount
 //   [2] ATO "How to calculate your CGT" QC104071, last updated 29 June 2026
 //       .../capital-gains-tax/calculating-your-cgt/how-to-calculate-your-cgt
 //   [3] ATO "Cost base of assets" QC66022, last updated 29 June 2026
@@ -157,7 +157,7 @@ export const CGT_FOREIGN_RESIDENT_CUTOFF = "8 May 2012";
  * individual from a CGT event happening before 1 July 2027".
  */
 export const CGT_REFORM_2027 = {
-  verifiedOn: "2026-10-22",
+  verifiedOn: "2026-10-27",
   actName: "Treasury Laws Amendment (Tax Reform No. 1) Act 2026",
   actNumber: "Act No. 49 of 2026",
   impositionActName: "Income Tax Rates Amendment (Tax Reform No. 1) Act 2026",
@@ -176,9 +176,10 @@ export const CGT_REFORM_2027 = {
   indexationMinimumMonths: 12,
   /**
    * The Act as made, on the Federal Register of Legislation. Cite this rather
-   * than the bill page: the ATO's CGT discount page (last updated 29 June 2026)
-   * still says the changes were "announced in the 2026–27 Federal Budget",
-   * which reads as though they were only a proposal.
+   * than the bill page. The ATO's CGT discount page (last updated 29 June 2026)
+   * still says the changes were "announced in the 2026–27 Federal Budget", but
+   * its Capital gains tax reform page (QC108170, published 13 October 2026)
+   * says the first stage "is now law".
    */
   actUrl: "https://www.legislation.gov.au/C2026A00049/asmade/text",
   impositionActUrl: "https://www.legislation.gov.au/C2026A00050/asmade/text",
@@ -189,6 +190,9 @@ export const CGT_REFORM_2027 = {
   billsDigestUrl:
     "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd2526/26bd067",
   budgetUrl: "https://budget.gov.au/content/04-tax-reform.htm",
+  /** ATO guidance on the reform, QC108170, published 13 October 2026. */
+  atoReformUrl:
+    "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/capital-gains-tax-reform",
   /**
    * Where a discount keeps working after 1 July 2027. Act No. 49, s 115-1: "a
    * discount of at least 50% continues to be available if the CGT event

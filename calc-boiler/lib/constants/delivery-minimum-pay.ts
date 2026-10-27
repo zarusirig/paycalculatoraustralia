@@ -14,6 +14,7 @@
 //                with a carrying capacity over 1 tonne)
 //       cl 3.1(h) engaged time; cl 3.1(n) non-engaged time
 //       cl 4     vehicle, running costs, licences are the worker's own expense
+//       cl 7.1   "The DLPO must maintain the following records for a period of 7 years"
 //       cl 7.4   the platform must give hours and amounts paid at the end of each period
 //       cl 11    right to time away (unpaid)
 //       cl 14.1  safety net: "paid no less overall than the earnings floor over any
@@ -50,6 +51,8 @@ export const DELIVERY_MSO = {
   nonEngagedNoticeExpiryMonths: 6,
   nextIndexation: "1 January 2028",
   maxCarryingCapacityTonnes: 1,
+  /** cl 7.1: the platform keeps the worker's pay and engaged-time records for 7 years. */
+  recordKeepingYears: 7,
 } as const;
 
 export const DELIVERY_MSO_SOURCES = {

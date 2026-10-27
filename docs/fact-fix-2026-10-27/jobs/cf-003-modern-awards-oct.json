@@ -1,0 +1,97 @@
+{
+ "name": "cf-003-modern-awards-oct",
+ "files": [
+  "lib/constants/modern-awards-oct.ts",
+  "lib/constants/modern-awards.ts",
+  "lib/constants/novated-lease.ts",
+  "lib/constants/pay-tax-changes-calendar.ts",
+  "lib/constants/payg-withholding.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/modern-awards-oct.ts:427",
+   "file": "lib/constants/modern-awards-oct.ts",
+   "line": "427",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The allowance name 'Meal allowance (1 hour or more of weekday overtime)' gives only half the cl 18.2(a)(i) condition. The award also requires the overtime to finish 1.5 hours after normal finishing time (or 5 hours after the preceding meal break). The name is a lookup key, now used by my allow() lookup in modern-award-content-oct.ts, so any rename must also change that call. Prefer leaving the name and adding a note field: \"Only when the overtime also finishes 1.5 hours after normal finishing time or 5 hours after the last meal break, whichever is first; a further $16.54 if the overtime exceeds 4 hours.\""
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards.ts:1209",
+   "file": "lib/constants/modern-awards.ts",
+   "line": "1209",
+   "page": "",
+   "claims": [
+    "Christmas Day falling on a weekend attracts an extra 50% loading in businesses that operate 7 days a week (cl 28.2(b))."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This note is imprecise under the award text. cl 28.2(b) applies only when 25 December falls on a weekend and, because of substitution, is not an NES public holiday. The 50% (of the minimum hourly rate, or of the casual hourly rate for casuals) is added to the Saturday or Sunday rate. Work on the substitute day gets an additional 50% loading instead of the cl 28.2(a) rate. Proposed text: 'In a business that operates 7 days a week, work on 25 December that falls on a weekend and is not a public holiday because of substitution is paid the Saturday or Sunday rate plus 50% of the minimum hourly rate (50% of the casual hourly rate for casuals); work on the substitute day gets an additional 50% loading instead of the public holiday rate (cl 28.2(b)).'"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/novated-lease.ts:51",
+   "file": "lib/constants/novated-lease.ts",
+   "line": "51",
+   "page": "",
+   "claims": [
+    "The notional taxable value must be less than $300 for the minor benefit exemption to apply."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: No diff in this file; the text is unchanged. $300 is still correct. The cross-file proposal (add FBT.minorBenefitThreshold: 300 in lib/constants/novated-lease.ts and render it here) stands as written."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/pay-tax-changes-calendar.ts:73",
+   "file": "lib/constants/pay-tax-changes-calendar.ts",
+   "line": "73",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not edited, which is correct: another job owns this file. The proposed URL change matches research-staling.json."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/payg-withholding.ts:554-622",
+   "file": "lib/constants/payg-withholding.ts",
+   "line": "554-622",
+   "page": "",
+   "claims": [
+    "Method A step 1: \"Work out your payee's gross earnings excluding any additional payments for the current pay period.\" Method B(ii) step 1: \"Calculate the average total earnings paid to your payee over the current financial year to date.\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: calculateSchedule5MethodB is labelled 'Method B(ii)', but its steps are the ATO's Method A. It uses the current period's regular gross, divides by the pay periods in the year, takes the difference, multiplies back and caps at 47%. ATO Method B(ii) instead uses 'average total earnings ... over the current financial year to date' and adds earlier B(ii) payments, then subtracts amounts already withheld. The output is a valid ATO method (\"Calculations made using either method are acceptable\"), so the figures are not wrong. Only the name and doc comment are. Proposed change (owner of payg-withholding.ts): change the comment/section header to 'Schedule 5, Method A'. Renaming the function is an engine change that needs a decision. No change made."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

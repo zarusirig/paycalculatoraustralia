@@ -113,6 +113,14 @@ export const FBT = {
   reportableMinimumGrossedUp: 3_773,
   /** PCG 2024/2 shortcut, FBT year ending 31 March 2027 (4.20c before that). */
   evHomeChargingCentsPerKm: 5.47,
+  /**
+   * Minor benefits exemption: the notional taxable value must be LESS THAN this
+   * (ATO "Minor benefits exemption", read 27 October 2026:
+   * https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/exemptions-concessions-and-other-ways-to-reduce-fbt/minor-benefits-exemption
+   * "The notional taxable value must be less than $300 for the minor benefit
+   * exemption to apply."). Not indexed; not tied to one FBT year.
+   */
+  minorBenefitThreshold: 300,
 } as const;
 
 /** Cost of $1 of taxable value: gross up at type 1, tax at 47%. */

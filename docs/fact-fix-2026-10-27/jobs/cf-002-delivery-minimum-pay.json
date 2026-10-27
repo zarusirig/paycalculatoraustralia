@@ -1,0 +1,114 @@
+{
+ "name": "cf-002-delivery-minimum-pay",
+ "files": [
+  "lib/constants/delivery-minimum-pay.ts",
+  "lib/constants/gig-tax.ts",
+  "lib/constants/junior-rates.ts",
+  "lib/constants/medicare-levy-surcharge.ts",
+  "lib/constants/minimum-wage.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/delivery-minimum-pay.ts:122",
+   "file": "lib/constants/delivery-minimum-pay.ts",
+   "line": "122",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: deliveryRate(vehicle, period = \"2026\") has a fixed default period. On and after 1 January 2027 the delivery page intro, the KeyFigures, the 'from/to' wording, the worked example (deliveryFloor period \"2026\" at delivery-driver-pay-rate.tsx:50) and likely the calculator will keep showing the 2026 rates ($31.30/$31.50/$32.00) as current, while cl 14.2(b) sets $31.80/$32.00/$32.50. Proposed change: switch the default to \"2027\" on 1 January 2027, or derive it from the date. At the same switch: update the locked title, meta and FAQ figures ($31.80), change the KeyFigures 's: \"Rates rise 1 January 2027\"' and the 'What Happens Next' wording, and change EX's period. This is an owner or scheduled task, not provable as a value change today."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/delivery-minimum-pay.ts:130",
+   "file": "lib/constants/delivery-minimum-pay.ts",
+   "line": "130",
+   "page": "",
+   "claims": [
+    "7.1 The DLPO must maintain the following records for a period of 7 years"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The 7 years is correct but typed. Add `recordKeepingYears: 7` to DELIVERY_MSO in lib/constants/delivery-minimum-pay.ts (not my file), then render {DELIVERY_MSO.recordKeepingYears} at line 130."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/gig-tax.ts:79",
+   "file": "lib/constants/gig-tax.ts",
+   "line": "79",
+   "page": "",
+   "claims": [
+    "\"You must register for GST: ... if you earn income through the sharing economy or digital platforms (for example, food delivery services or other platform-based work).\" (last updated 14 September 2026)"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The ATO page now lists sharing-economy/digital-platform income (food delivery given as an example) under 'You must register for GST', while gig-tax.ts says registration is optional for delivery work under $75,000. The ATO bullet is ambiguous (it links to a sharing-economy page), so this needs an owner/researcher check before any change. Not my file."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/junior-rates.ts:312",
+   "file": "lib/constants/junior-rates.ts",
+   "line": "312",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Confirmed: PENDING_JUNIOR_CHANGE.inForce = false at line 312. research-staling.json schedules the flip to true on 1 Dec 2026, after a status re-check around 17 Nov 2026. The new conditional prose depends on that flip."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/medicare-levy-surcharge.ts:206-212",
+   "file": "lib/constants/medicare-levy-surcharge.ts",
+   "line": "206-212",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: There is no diff at lines 206-212. LHC_PER_YEAR and LHC_MAX are non-exported locals in private-health-insurance-medicare-faqs.ts, and the fixer does not own that file, so cross-file is the right status. The proposed fix is sound: export LHC_PER_YEAR = 2, LHC_MAX = 70 and LHC_REMOVAL_YEARS = 10 from lib/constants/medicare-levy-surcharge.ts, import them in the faqs file and on this page. The 2% levy part is handled at :124."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/minimum-wage.ts:60",
+   "file": "lib/constants/minimum-wage.ts",
+   "line": "60",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Optional cleanup. Add nmwIncrease (5.97%, [2026] FWCFB 3500, from 1 July 2026) to NMW_DECISION, next to awardIncrease. pay-rise-calculator-faqs.ts could then read it instead of the local derivation EMPLOYMENT.minimumWageHourly / minimumWageHourlyPrevious - 1. Both give 5.97%."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

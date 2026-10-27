@@ -21,6 +21,10 @@ import {
   estimateMls,
   familyBaseThreshold,
   incomeForMlsPurposes,
+  LHC_FROM_AGE,
+  LHC_MAX,
+  LHC_PER_YEAR,
+  LHC_REMOVAL_YEARS,
   mlsChargeBase,
   phiRebateRate,
 } from "../medicare-levy-surcharge";
@@ -109,4 +113,13 @@ test("PHI rebate rates and cover comparison", () => {
   assert.equal(c.coverIsCheaper, false);
   assert.equal(MLS_APPROPRIATE_COVER_MAX_EXCESS.single, 750);
   assert.equal(MLS_APPROPRIATE_COVER_MAX_EXCESS.family, 1_500);
+});
+
+test("Lifetime Health Cover loading matches privatehealth.gov.au", () => {
+  assert.equal(LHC_FROM_AGE, 30);
+  assert.equal(LHC_PER_YEAR, 2);
+  assert.equal(LHC_MAX, 70);
+  assert.equal(LHC_REMOVAL_YEARS, 10);
+  // Lukas, 41, never held hospital cover: 22% (2% x 11 years over 30).
+  assert.equal(Math.min(LHC_MAX, (41 - LHC_FROM_AGE) * LHC_PER_YEAR), 22);
 });

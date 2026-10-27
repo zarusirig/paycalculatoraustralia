@@ -1,0 +1,114 @@
+{
+ "name": "cf-008-tas",
+ "files": [
+  "lib/data/public-holidays/states/tas.ts",
+  "lib/data/public-holidays/weekend.ts",
+  "lib/data/service-pay/prison-officer/tas.ts",
+  "lib/data/teacher-pay/vic.ts",
+  "lib/navigation.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/public-holidays/states/tas.ts:202",
+   "file": "lib/data/public-holidays/states/tas.ts",
+   "line": "202",
+   "page": "",
+   "claims": [
+    "Most private sector employees work it at ordinary rates unless their award or agreement treats it as a holiday."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This is the same unsourced population claim I removed from seasonal-pages.ts. Proposed replacement for the FAQ answer: 'Easter Tuesday is on Tasmania's public holiday list, which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\". WorkSafe Tasmania says a listed holiday does not by itself give you the day off or a higher rate, so check your award, agreement and the National Employment Standards.' Line 186 ('WorkSafe Tasmania notes it is generally observed by the Tasmanian Public Service only') is attributed and can stay."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/weekend.ts:69-80",
+   "file": "lib/data/public-holidays/weekend.ts",
+   "line": "69-80",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Agreed. The tas 2027-12-25 override is now redundant but does no harm, because the override and the data both give holiday=true. The note's 'Check your award or agreement' could cite the Act instead. This is optional."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/prison-officer/tas.ts:1",
+   "file": "lib/data/service-pay/prison-officer/tas.ts",
+   "line": "1",
+   "page": "",
+   "claims": [
+    "Current Agreements: 'Correctional Officers Agreement 2023 No 2 (PDF, 15.1 MB)' - 'T15393 of 2026' (2026-TASIC-60); the original 'Correctional Officers Agreement 2023' now appears under Retired Agreements."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Confirmed from today's TIC cache (line 22 is under Current Agreements, line 129 under Retired). The owner of prison-officer/tas.ts needs to read the No 2 agreement PDF and update the agreement name, URL, rates and notices. I made no edit."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/vic.ts:40",
+   "file": "lib/data/teacher-pay/vic.ts",
+   "line": "40",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The teacher FAQ and table render Victoria's graduate step as about $79,600 (VGSA 2022). research-staling.json records that VGSA 2026 was approved ([2026] FWCA 2836) and operates from 23 October 2026, with graduate 1-1 at $92,882. The fix belongs in lib/data/teacher-pay/vic.ts, which another job handles. My files render the value from data, so they will update on their own once that file changes."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/vic.ts:66",
+   "file": "lib/data/teacher-pay/vic.ts",
+   "line": "66",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not edited. The VGSA 2026 data update belongs to the vic.ts owner, per research-staling.json. The template needs no change."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/navigation.ts:359",
+   "file": "lib/navigation.ts",
+   "line": "359",
+   "page": "",
+   "claims": [
+    "description: \"Calculate employer SG contributions at 12%\""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: The same typed 12% sits in the nav menu data, which I do not own. Correct today but it will drift from SUPER_GUARANTEE.rate. After: description: `Calculate employer SG contributions at ${Math.round(SUPER_GUARANTEE.rate * 100)}%`"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

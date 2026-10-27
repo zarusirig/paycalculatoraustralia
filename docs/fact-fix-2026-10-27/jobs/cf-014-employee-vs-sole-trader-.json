@@ -1,0 +1,113 @@
+{
+ "name": "cf-014-employee-vs-sole-trader-",
+ "files": [
+  "modules/guide/employee-vs-sole-trader-vs-company.tsx",
+  "modules/guide/employer-cost-calculator-content.tsx",
+  "modules/guide/gig-economy-pay-guide.tsx",
+  "modules/guide/graduate-salary-australia.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/employee-vs-sole-trader-vs-company.tsx:44",
+   "file": "modules/guide/employee-vs-sole-trader-vs-company.tsx",
+   "line": "44",
+   "page": "",
+   "claims": [
+    "{ title: \"Company tax rates 2025\u201326\", url: COMPANY_TAX.sources.rates2025_26, ... }"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not edited (file not owned). Swapping to COMPANY_TAX.sources.rateChanges with the title 'Changes to company tax rates' is supported by the same ATO page (last updated 4 September 2026). After: { title: \"Changes to company tax rates\", url: COMPANY_TAX.sources.rateChanges, ... }"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:292",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "292",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Not my file. It says 'the 12% superannuation guarantee must be paid with each pay rather than quarterly', which has the same imprecision as award-rates-faqs.ts:51. Proposed change: 'from {SUPER_GUARANTEE.paydaySuperStart} the {Math.round(SUPER_GUARANTEE.rate*100)}% superannuation guarantee is due each payday rather than quarterly and must reach the fund within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday.' modules/guide/employer-cost-calculator-content.tsx:152 also types 12% and 'paid with each pay'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:66",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "66",
+   "page": "",
+   "claims": [
+    "This multiplier includes the Superannuation Guarantee at 12%, annual leave provisions at 7.69%"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Extra finding, not in this fixer's files. The current working tree shows another agent has already edited employer-cost-calculator-content.tsx: it now imports EMPLOYMENT and SUPER_GUARANTEE_CHARGE and defines SG_PCT and ANNUAL_LEAVE_PCT. That owner should confirm this item."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:51 and 329",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "51 and 329",
+   "page": "",
+   "claims": [
+    "Workers compensation (professional services at 0.5%)"
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Extra finding, not in this fixer's files. The typed 0.5% professional services workers compensation rate has no source. The proposal to reword it as an assumption stands."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:80",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "80",
+   "page": "",
+   "claims": [
+    "A common approach is to set aside <strong>25-30% of gross income</strong> into a separate bank account for tax. This covers income tax, Medicare levy, and GST (if registered)."
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: Same false claim as FAQ :24, and it contradicts the table right below it (engine: 4% at $30k, 13% at $50k, 19% at $75k, 23% at $100k, excluding GST). Proposed change: 'No one withholds tax from your gig income, so set aside your own tax in a separate bank account. The share you need rises with your income. The table shows resident income tax and Medicare levy only, so if you are registered for GST, also set aside one-eleventh of every GST-inclusive fare:'"
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia.tsx:120",
+   "file": "modules/guide/graduate-salary-australia.tsx",
+   "line": "120",
+   "page": "",
+   "claims": [
+    ""
+   ],
+   "whys": [
+    "Cross-file fix proposed (and checked by a verifier) in the first fact-fix round. Proposal: This file is not owned by the fixer, and it has no edit. The proposal stands for that file's owner: render {f0(GRADUATE_PROFESSIONS[2].published!.annual)} in place of {f0(68_538)}, and delete the unsourced claim 'Employers commonly pay above the award, which the survey median reflects'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "cross-file",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

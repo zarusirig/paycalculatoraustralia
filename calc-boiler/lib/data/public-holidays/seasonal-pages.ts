@@ -153,7 +153,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         intro:
           "Christmas Day keeps its date in every state, but the holidays around it change. Queensland, South Australia and the Northern Territory make the evening of Christmas Eve a part-day public holiday, and when Christmas Day lands on a weekend most states add the next weekday as an extra holiday. Every date below comes from the state government's own list and matches the Fair Work Ombudsman's 2026 and 2027 pages.",
         footnote:
-          "Tasmania, 2027: WorkSafe Tasmania's table lists Monday 27 December as the Christmas Day holiday, while the Fair Work Ombudsman's 2027 list shows both Saturday 25 December and Monday 27 December. If you work in Tasmania on Saturday 25 December 2027, check your award or agreement, or ask the Fair Work Infoline on 13 13 94, before assuming the Saturday is an ordinary day.",
+          "Tasmania, 2027: the Statutory Holidays Act 2000 (Tas) makes both Saturday 25 December and Monday 27 December public holidays when Christmas Day falls on a Saturday (s 4(i), (ia)). WorkSafe Tasmania's table lists only the Monday, but the Act decides: a Saturday 25 December 2027 shift in Tasmania is a public holiday shift.",
       },
     ],
     sectionsBeforeCalculator: [
@@ -192,7 +192,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         heading: "When Christmas Day falls on a weekend (2027)",
         paragraphs: [
           "Christmas Day 2027 is a Saturday and Boxing Day a Sunday. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory keep Saturday 25 December as a public holiday and add Monday 27 December as an additional public holiday for Christmas Day, with Tuesday 28 December as the additional day for Boxing Day. Both extra days are real public holidays for pay: work either and the public holiday rate applies, and a full-time or part-time employee who normally works that Monday or Tuesday is paid for it if they have the day off.",
-          "Tasmania handles it differently, and the Boxing Day side of that is covered in the Boxing Day guide. If you work in Tasmania, check which of the Saturday and the Monday your award or agreement treats as the Christmas Day public holiday.",
+          "Tasmania keeps both Saturday 25 and Monday 27 December 2027 as Christmas Day public holidays (Statutory Holidays Act 2000, s 4(i), (ia)). Its Boxing Day differs: the holiday is Tuesday 28 December only, not Sunday 26 December, as the Boxing Day guide explains.",
         ],
       },
       {
@@ -225,7 +225,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
       { q: "Is Christmas Eve a public holiday?", a: "Christmas Eve is a part-day public holiday in Queensland, South Australia and the Northern Territory only. The holiday runs from 6pm to midnight in Queensland and from 7pm to midnight in South Australia and the Northern Territory. In New South Wales, Victoria, Western Australia, Tasmania and the ACT Christmas Eve is an ordinary day, although your award may still pay evening or weekend rates." },
       { q: "Do I get paid if Christmas Day is a day I don't work?", a: NOT_WORKING_ANSWER },
       { q: "Do casuals get paid extra on Christmas Day?", a: `Casuals who work Christmas Day are paid the public holiday rate, ${RETAIL_C} of the base rate under the Retail and Hospitality awards, and that figure already includes the ${CASUAL_LOADING} casual loading. They are not paid for Christmas Day if they don't work.` },
-      { q: "When is Christmas Day in 2027 and is there an extra public holiday?", a: "Christmas Day 2027 is Saturday 25 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December as an additional public holiday for Christmas Day, and Tuesday 28 December for Boxing Day. Tasmania's list shows Monday 27 December and Tuesday 28 December." },
+      { q: "When is Christmas Day in 2027 and is there an extra public holiday?", a: "Christmas Day 2027 is Saturday 25 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December as an additional public holiday for Christmas Day, and Tuesday 28 December for Boxing Day. Tasmania has Saturday 25 and Monday 27 December for Christmas Day, and Tuesday 28 December (not Sunday 26 December) for Boxing Day." },
       { q: "Can my employer make me work on Christmas Day?", a: "Your employer can ask, but the request has to be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. Factors include your role, your personal and caring circumstances, the notice you were given and the penalty rates on offer." },
     ],
     related: [
@@ -496,11 +496,11 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
       },
     ],
     faqs: [
-      { q: "What are the public holidays in 2027?", a: "The public holidays common to every state are New Year's Day (Friday 1 January), Australia Day (Tuesday 26 January), Good Friday (26 March), Easter Monday (29 March), Christmas Day (Saturday 25 December) and Boxing Day (Sunday 26 December) with additional weekdays in most states. Anzac Day is Sunday 25 April, with a Monday holiday in some states. Each state also has its own days such as Labour Day and the King's Birthday." },
+      { q: "What are the public holidays in 2027?", a: "The public holidays common to every state are New Year's Day (Friday 1 January), Australia Day (Tuesday 26 January), Good Friday (26 March), Easter Sunday (28 March), Easter Monday (29 March), Christmas Day (Saturday 25 December) and Boxing Day (Sunday 26 December, or Tuesday 28 December in Tasmania), with additional weekdays in most states. Anzac Day is Sunday 25 April, with a Monday holiday in some states. Each state also has its own days such as Labour Day and the King's Birthday." },
       { q: "How much do you get paid on a public holiday in 2027?", a: `Your award or agreement sets the rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Across 14 awards the permanent range is ${RANGE_PERM} and the casual range is ${RANGE_CASUAL}.` },
       { q: "Do I get paid for a public holiday I don't work in 2027?", a: NOT_WORKING_ANSWER },
-      { q: "When is Easter in 2027?", a: "Good Friday is 26 March 2027, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Which of the four days are public holidays depends on the state: Western Australia has no Easter Saturday and Tasmania has only Good Friday and Easter Monday." },
-      { q: "Is Christmas Day 2027 on a weekend, and is there an extra public holiday?", a: "Yes. Christmas Day is Saturday 25 December 2027 and Boxing Day is Sunday 26 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December for Christmas Day and Tuesday 28 December for Boxing Day. Tasmania's list shows Monday 27 and Tuesday 28 December." },
+      { q: "When is Easter in 2027?", a: "Good Friday is 26 March 2027, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Which of the four days are public holidays depends on the state: Easter Saturday is not a public holiday in Western Australia or Tasmania, and the other three days are public holidays in every state and territory." },
+      { q: "Is Christmas Day 2027 on a weekend, and is there an extra public holiday?", a: "Yes. Christmas Day is Saturday 25 December 2027 and Boxing Day is Sunday 26 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December for Christmas Day and Tuesday 28 December for Boxing Day. Tasmania has Saturday 25 and Monday 27 December for Christmas Day, and Tuesday 28 December (not Sunday 26 December) for Boxing Day." },
       { q: "Which state's public holidays apply if I work interstate?", a: "The public holidays of the place where your job is based apply, not those of the place you happen to work that day. The Fair Work Ombudsman's example is a Melbourne-based employee working in Sydney on Melbourne Cup Day, who still gets the Victorian holiday entitlement." },
     ],
     related: [
@@ -633,7 +633,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     ],
     standfirst:
       "Easter is four days long on the calendar, but the number that are public holidays depends on where you work. In 2027 Good Friday, Easter Sunday and Easter Monday are public holidays in every state and territory, and Easter Saturday is a public holiday in six of the eight.",
-    directAnswer: `Easter 2027 is Good Friday 26 March, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Good Friday and Easter Monday are public holidays in every state, and every hour worked is paid at your award's public holiday rate: ${RETAIL_P} for retail and hospitality staff, ${RETAIL_C} for casuals. Easter Saturday is a holiday in NSW, VIC, QLD, SA, the ACT and the NT, and Easter Sunday in every state except Tasmania.`,
+    directAnswer: `Easter 2027 is Good Friday 26 March, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Good Friday and Easter Monday are public holidays in every state, and every hour worked is paid at your award's public holiday rate: ${RETAIL_P} for retail and hospitality staff, ${RETAIL_C} for casuals. Easter Saturday is a holiday in NSW, VIC, QLD, SA, the ACT and the NT, and Easter Sunday in every state and territory, including Tasmania from 2027.`,
     topics: [
       {
         topic: "easter",
@@ -691,10 +691,10 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     ],
     faqs: [
       { q: "When is Easter in 2027?", a: "Good Friday is Friday 26 March 2027, Easter Saturday is 27 March, Easter Sunday is 28 March and Easter Monday is 29 March." },
-      { q: "Which Easter days are public holidays?", a: "Good Friday and Easter Monday are public holidays in every state and territory. Easter Saturday is a public holiday in New South Wales, Victoria, Queensland, South Australia, the ACT and the Northern Territory but not in Western Australia or Tasmania. Easter Sunday is a public holiday everywhere except Tasmania. Tasmania also lists Easter Tuesday, which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\"." },
+      { q: "Which Easter days are public holidays?", a: "Good Friday and Easter Monday are public holidays in every state and territory. Easter Saturday is a public holiday in New South Wales, Victoria, Queensland, South Australia, the ACT and the Northern Territory but not in Western Australia or Tasmania. Easter Sunday is a public holiday in every state and territory in 2027, including Tasmania, which added it from 9 October 2026 (Statutory Holidays Act 2000, s 4(da)). Tasmania also lists Easter Tuesday, which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\"." },
       { q: "How much do you get paid on Good Friday?", a: `Good Friday is paid at your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Road Transport day workers get a higher rate on Good Friday than on other public holidays.` },
       { q: "Do I get paid for Easter public holidays if I don't work?", a: NOT_WORKING_ANSWER },
-      { q: "Is Easter Sunday paid at public holiday rates?", a: `Where it is a public holiday in your state, yes. Easter Sunday is a public holiday in every state and territory except Tasmania, so an hour worked is paid at your award's public holiday rate (${RETAIL_P} in retail and hospitality, ${RETAIL_C} for casuals).` },
+      { q: "Is Easter Sunday paid at public holiday rates?", a: `Yes. Easter Sunday 2027 (28 March) is a public holiday in every state and territory, including Tasmania from 2027, so an hour worked is paid at your award's public holiday rate (${RETAIL_P} in retail and hospitality, ${RETAIL_C} for casuals).` },
     ],
     related: [
       { href: "/public-holidays-2027/", label: "Public holidays 2027 with pay rates" },

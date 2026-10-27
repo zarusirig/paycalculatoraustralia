@@ -3,7 +3,7 @@
 // Read by BOTH the rendered accordion (plus its sr-only crawlable mirror) and
 // the FAQPage JSON-LD, so the structured data cannot drift from the page.
 
-import { formatAUD, SUPER_GUARANTEE, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27 } from "@/lib/constants";
+import { formatAUD, NON_RESIDENT_TAX_BRACKETS, SUPER_GUARANTEE, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27 } from "@/lib/constants";
 import {
   calculatePAYGWithholding,
   withholdingForPeriod,
@@ -17,6 +17,7 @@ import {
 } from "@/lib/constants/payg-withholding";
 import type { TaxTableFaq } from "./weekly-tax-table-faqs";
 import { ATO_FORTNIGHTLY, ATO_WORKED_EXAMPLES, FORTNIGHTLY_EXTRA_PAY } from "./ato-schedules";
+import downloads from "./downloads-manifest.json";
 
 const ex = ATO_WORKED_EXAMPLES.fortnightly;
 const at2000 = calculatePAYGWithholding(2_000, "fortnightly");
@@ -30,6 +31,13 @@ const cutBandRange = `${formatAUD(cutBand.min)} and ${formatAUD(cutBand.max)}`;
 const rateNow = Math.round(cutBand.rate * 100);
 const ratePrev = Math.round(TAX_BRACKETS_2025_26[1].rate * 100);
 const medicarePct = Math.round(SCALE_2_MEDICARE.rate * 100);
+const csvBuilt = CSV_TABLE_RANGES.fortnightly;
+const csvFile = downloads.files.fortnightly;
+// The ready-made file at the top of the page only renders when it matches the current year (see table-downloads.tsx).
+const csvFileText =
+  downloads.fy === PAYG_FINANCIAL_YEAR
+    ? `The "Download CSV" link at the top of the page is a ready-made ${downloads.fy} file in ${formatAUD(csvFile.step)} steps from ${formatAUD(csvFile.from)} to ${formatAUD(csvFile.to)} a fortnight (${csvFile.rows.toLocaleString("en-AU")} rows). `
+    : "";
 
 export const FORTNIGHTLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
@@ -66,7 +74,7 @@ export const FORTNIGHTLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "How is a foreign resident withheld on a fortnightly pay?",
-    a: `Foreign residents use ATO Scale 3 (no tax-free threshold and no Medicare levy), so withholding starts at 30 cents in the dollar from the first dollar. At ${formatAUD(2_000)} a fortnight that is ${formatAUD(at2000Foreign.totalWithheld)}, well above the resident figure. A foreign resident who has not given you a valid TFN is withheld at a flat ${NO_TFN_RATES.foreignResident * 100}%. Working holiday makers use Schedule 15 (NAT 75531) instead.`,
+    a: `Foreign residents use ATO Scale 3 (no tax-free threshold and no Medicare levy), so withholding starts at ${Math.round(NON_RESIDENT_TAX_BRACKETS[0].rate * 100)} cents in the dollar from the first dollar. At ${formatAUD(2_000)} a fortnight that is ${formatAUD(at2000Foreign.totalWithheld)}, well above the resident figure. A foreign resident who has not given you a valid TFN is withheld at a flat ${NO_TFN_RATES.foreignResident * 100}%. Working holiday makers use Schedule 15 (NAT 75531) instead.`,
   },
   {
     q: "What if the employee has no tax file number?",
@@ -86,6 +94,6 @@ export const FORTNIGHTLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Can I download the fortnightly tax table as a spreadsheet?",
-    a: `Yes. The "Download CSV" button above the table builds the fortnightly tax table in $2 steps (the ATO's fortnightly amounts only change every $2) up to ${formatAUD(CSV_TABLE_RANGES.fortnightly.to)} a fortnight, for whichever financial year is selected. The CSV has columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents. It opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
+    a: `Yes. ${csvFileText}The "Download CSV" button beside the year toggle on the full table builds the fortnightly tax table in your browser in ${formatAUD(csvBuilt.step)} steps (the ATO's fortnightly amounts only change every $2) up to ${formatAUD(csvBuilt.to)} a fortnight, for whichever financial year is selected. Each file has columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents, and opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
   },
 ] as const;

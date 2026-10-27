@@ -55,6 +55,14 @@ const RETAIL_L1 = RETAIL_RATES.find((r) => r.level === "Level 1")!;
 const HOSP_L1 = HOSPITALITY_RATES.find((r) => r.level === "Level 1")!;
 const SCHADS_L4 = SCHADS_SACS.find((r) => r.classification === "Level 4 pay point 1")!;
 const AWR_EFFECTIVE = HOSPITALITY_AWARD.operativeFrom;
+// Low to high across the retail, hospitality and SCHADS rates above, so the
+// summary table cannot drift from the award constants.
+const multRange = (xs: number[]) => {
+  const lo = Math.min(...xs);
+  const hi = Math.max(...xs);
+  return lo === hi ? `${lo}x` : `${lo}x to ${hi}x`;
+};
+const P = [RETAIL_PENALTIES, HOSPITALITY_PENALTIES, SCHADS_PENALTIES] as const;
 // Tax brackets rendered in the prose, so the text follows the constants.
 const LOW_BRACKET = TAX_BRACKETS[1]; // 15% bracket, FY2026-27
 const LOW_BRACKET_PREV = TAX_BRACKETS_2025_26[1]; // 16% bracket, FY2025-26
@@ -216,11 +224,11 @@ export default function OvertimePenaltyRatesGuidePage() {
 
               <h3>Other awards</h3>
               <p>
-                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers. Several differ materially from the three above, and nursing weekend penalties in particular are higher. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
+                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers. Several differ materially from the three above, and nursing weekend penalties are higher than the retail and hospitality rates. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
               </p>
 
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Do Penalty Rates Apply?</h2>
-              <p>Penalty rates apply during weekends, public holidays, evening shifts, night shifts, and early morning hours as defined by each modern award. The trigger times and rates differ between awards.</p>
+              <p>Penalty rates apply during weekends, public holidays, evening shifts, night shifts, and early morning hours as defined by each modern award. The trigger times and rates differ between awards. The multipliers below cover the retail, hospitality and SCHADS awards above.</p>
 
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -233,9 +241,9 @@ export default function OvertimePenaltyRatesGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Saturday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">1.25x - 1.5x</td></tr>
-                      <tr><td className="px-5 py-3">Sunday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">1.5x - 2.0x</td></tr>
-                      <tr><td className="px-5 py-3">Public Holiday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">2.0x - 2.75x</td></tr>
+                      <tr><td className="px-5 py-3">Saturday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">{multRange(P.map((x) => x.saturday))} permanent, {multRange(P.map((x) => x.casualSaturday))} casual</td></tr>
+                      <tr><td className="px-5 py-3">Sunday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">{multRange(P.map((x) => x.sunday))} permanent, {multRange(P.map((x) => x.casualSunday))} casual</td></tr>
+                      <tr><td className="px-5 py-3">Public Holiday</td><td className="px-5 py-3">All day</td><td className="px-5 py-3 font-semibold">{multRange(P.map((x) => x.publicHoliday))} permanent, {multRange(P.map((x) => x.casualPublicHoliday))} casual</td></tr>
                       <tr><td className="px-5 py-3">Evening / Afternoon Shift</td><td className="px-5 py-3">6pm - midnight</td><td className="px-5 py-3 font-semibold">{RETAIL_PENALTIES.eveningAfter6pm}x retail after 6pm; {1 + SCHADS_PENALTIES.afternoonShiftLoading}x SCHADS afternoon shift; hospitality adds a flat {formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)}/hr</td></tr>
                       <tr><td className="px-5 py-3">Night / Early Morning</td><td className="px-5 py-3">Midnight - 7am</td><td className="px-5 py-3 font-semibold">{1 + SCHADS_PENALTIES.nightShiftLoading}x SCHADS night shift; hospitality adds a flat {formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)}/hr</td></tr>
                     </tbody>

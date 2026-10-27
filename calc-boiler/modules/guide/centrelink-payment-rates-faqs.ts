@@ -19,6 +19,12 @@ const JS = JOBSEEKER_RATES[SEPTEMBER_2026];
 const AP = AGE_PENSION_RATES[SEPTEMBER_2026];
 const f2 = (n: number) => formatAUD(n, 2);
 const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
+// Pensions, JobSeeker, Parenting Payment and Rent Assistance index on 20 March
+// and 20 September, so the next change is the one after the current ratesFrom.
+const nextMarSep = (from: string) => {
+  const [, month, year] = from.split(" ");
+  return month === "September" ? `20 March ${Number(year) + 1}` : `20 September ${year}`;
+};
 
 export const CENTRELINK_PAYMENT_RATES_FAQS: Faq[] = [
   {
@@ -35,7 +41,7 @@ export const CENTRELINK_PAYMENT_RATES_FAQS: Faq[] = [
   },
   {
     q: "When do Centrelink payments go up next?",
-    a: `Pensions, JobSeeker, Parenting Payment and Rent Assistance are indexed on 20 March and 20 September, so the next change is 20 March 2027. Austudy, Youth Allowance for students and Carer Allowance are indexed on 1 January, and Family Tax Benefit rates and income limits on 1 July. The amount of each rise depends on inflation figures that are not yet published.`,
+    a: `Pensions, JobSeeker, Parenting Payment and Rent Assistance are indexed on 20 March and 20 September, so the next change is ${nextMarSep(JS.ratesFrom)}. Austudy, Youth Allowance for students and Carer Allowance are indexed on 1 January, and Family Tax Benefit rates and income limits on 1 July. The amount of each rise depends on inflation figures that are not yet published.`,
   },
   {
     q: "Did Youth Allowance and Austudy go up on 20 September 2026?",

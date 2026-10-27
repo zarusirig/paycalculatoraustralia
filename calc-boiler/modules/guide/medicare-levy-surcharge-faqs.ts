@@ -4,6 +4,7 @@ import {
   MLS_INCOME_YEAR,
   estimateMls,
   familyBaseThreshold,
+  formatMlsRate,
 } from "@/lib/constants/medicare-levy-surcharge";
 import { MLS_CHILD_INCREMENT } from "@/lib/constants/medicare-levy-extra";
 
@@ -25,7 +26,7 @@ const eg = estimateMls({
 export const MLS_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What is the Medicare levy surcharge threshold for ${MLS_INCOME_YEAR}?`,
-    a: `The Medicare levy surcharge threshold is ${SINGLE_BASE} for singles and ${FAMILY_BASE} for families, with the family threshold rising ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. At or under the threshold no surcharge applies. Above it, the rate is 1% (singles to ${formatAUD(S.tier1.max)}), 1.25% (to ${formatAUD(S.tier2.max)}) or 1.5% (${formatAUD(S.tier3.min)} and over) if you don't hold private patient hospital cover.`,
+    a: `The Medicare levy surcharge threshold is ${SINGLE_BASE} for singles and ${FAMILY_BASE} for families, with the family threshold rising ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. At or under the threshold no surcharge applies. Above it, the rate is ${formatMlsRate(S.tier1.rate)} (singles to ${formatAUD(S.tier1.max)}), ${formatMlsRate(S.tier2.rate)} (to ${formatAUD(S.tier2.max)}) or ${formatMlsRate(S.tier3.rate)} (${formatAUD(S.tier3.min)} and over) if you don't hold private patient hospital cover.`,
   },
   {
     q: "How is the Medicare levy surcharge calculated?",
@@ -37,7 +38,7 @@ export const MLS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Is the Medicare levy surcharge the same as the Medicare levy?",
-    a: `No. The Medicare levy is ${RATE} of taxable income and almost every resident pays it, cover or not. The surcharge is an extra 1% to 1.5% that applies only above the threshold and only without private patient hospital cover. You can pay both at once.`,
+    a: `No. The Medicare levy is ${RATE} of taxable income unless you qualify for a reduction or exemption, and holding hospital cover does not remove it. The surcharge is an extra ${formatMlsRate(S.tier1.rate)} to ${formatMlsRate(S.tier3.rate)} that applies only above the threshold and only without private patient hospital cover. You can pay both at once.`,
   },
   {
     q: "What hospital cover avoids the Medicare levy surcharge?",

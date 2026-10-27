@@ -14,6 +14,7 @@ import {
   formatPercent,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { COMMON_LEAVE_LOADING } from "@/lib/constants/leave-loading";
 import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
 import StickyResult from "@/components/common/sticky-result";
 import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
@@ -50,7 +51,7 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
 
     // Unused annual leave payout with 17.5% loading
     const leavePayoutBase = Math.round(dailyRate * unusedLeaveDays);
-    const leaveLoading = Math.round(leavePayoutBase * 0.175);
+    const leaveLoading = Math.round(leavePayoutBase * COMMON_LEAVE_LOADING);
     const totalLeavePayout = leavePayoutBase + leaveLoading;
 
     // Notice period pay
@@ -200,7 +201,7 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
                       <div className="p-5 space-y-3 text-sm">
                         <Row label="Outstanding Wages (1 week)" value={formatAUD(result.outstandingWages)} />
                         <Row label={`Annual Leave Payout (${unusedLeaveDays} days)`} value={formatAUD(result.leavePayoutBase)} />
-                        <Row label="Leave Loading (17.5%)" value={formatAUD(result.leaveLoading)} />
+                        <Row label={`Leave Loading (${formatPercent(COMMON_LEAVE_LOADING, 1)})`} value={formatAUD(result.leaveLoading)} />
                         <Row label={`Notice Period Pay (${noticeWeeks} weeks)`} value={formatAUD(result.noticePay)} />
                         {result.longServiceLeave > 0 && <Row label="Long Service Leave" value={formatAUD(result.longServiceLeave)} green />}
                         {result.redundancyPay > 0 && <Row label="Redundancy Pay (NES)" value={formatAUD(result.redundancyPay)} green />}
