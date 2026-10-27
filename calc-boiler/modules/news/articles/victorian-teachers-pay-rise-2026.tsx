@@ -100,33 +100,6 @@ export default function VictorianTeachersPayRise2026() {
         ]}
       />
 
-      <h2>What happens next</h2>
-      <p>
-        The ballot was the Fair Work Act&apos;s employee vote. The department lodged the agreement with the
-        Fair Work Commission on {VIC_2026_AGREEMENT.fwcLodged}, and the government says approval can take
-        up to six weeks. The agreement starts operating on the seventh day after the Commission
-        approves it, and runs to a nominal expiry date of {VIC_2026_AGREEMENT.nominalExpiry}.
-      </p>
-      <p>
-        {reported ? (
-          <>
-            If the union&apos;s report is right, the agreement operates from{" "}
-            {VIC_2026_AGREEMENT.reportedApproval.operativeFrom} and the August and October 2026 increases are
-            back-paid to their own dates. Until the Commission&apos;s decision and the department&apos;s new
-            salary schedule are published, the Victorian Government Schools Agreement 2022&apos;s 1 July 2025
-            rates are the latest official rates.
-          </>
-        ) : (
-          <>
-            Until then the Victorian Government Schools Agreement 2022 still applies, and its 1 July 2025
-            rates are what teachers are paid.
-          </>
-        )}{" "}
-        The{" "}
-        <Link href="/teacher-pay-australia/vic/">Victorian teacher pay scale</Link> shows both: the rates
-        in force now, and the new agreement&apos;s full schedule.
-      </p>
-
       <h2>When each pay rise applies</h2>
       <p>
         Schedule 1 of the proposed agreement sets five increases, each from the first pay period on or
@@ -161,6 +134,33 @@ export default function VictorianTeachersPayRise2026() {
         a graduate&apos;s salary rises from {formatAUD(gradNow)} to {formatAUD(gradEnd)}, about{" "}
         {Math.round((gradEnd / gradNow - 1) * 1000) / 10}%, while the top classroom step rises about{" "}
         {Math.round((topEnd / topNow - 1) * 1000) / 10}%.
+      </p>
+
+      <h2>What happens next</h2>
+      <p>
+        The ballot was the Fair Work Act&apos;s employee vote. The department lodged the agreement with the
+        Fair Work Commission on {VIC_2026_AGREEMENT.fwcLodged}, and the government says approval can take
+        up to six weeks. The agreement starts operating on the seventh day after the Commission
+        approves it, and runs to a nominal expiry date of {VIC_2026_AGREEMENT.nominalExpiry}.
+      </p>
+      <p>
+        {reported ? (
+          <>
+            If the union&apos;s report is right, the agreement operates from{" "}
+            {VIC_2026_AGREEMENT.reportedApproval.operativeFrom} and the August and October 2026 increases are
+            back-paid to their own dates. Until the Commission&apos;s decision and the department&apos;s new
+            salary schedule are published, the Victorian Government Schools Agreement 2022&apos;s 1 July 2025
+            rates are the latest official rates.
+          </>
+        ) : (
+          <>
+            Until then the Victorian Government Schools Agreement 2022 still applies, and its 1 July 2025
+            rates are what teachers are paid.
+          </>
+        )}{" "}
+        The{" "}
+        <Link href="/teacher-pay-australia/vic/">Victorian teacher pay scale</Link> shows both: the rates
+        in force now, and the new agreement&apos;s full schedule.
       </p>
 
       <h2>What else is in the deal</h2>

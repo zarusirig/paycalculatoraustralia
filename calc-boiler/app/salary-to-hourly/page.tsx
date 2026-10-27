@@ -10,9 +10,10 @@ import { withFeaturedImage } from "@/lib/featured-image";
 const first = SALARY_TO_HOURLY_SALARIES[0];
 const last = SALARY_TO_HOURLY_SALARIES[SALARY_TO_HOURLY_SALARIES.length - 1];
 const hours = EMPLOYMENT.hoursPerYear;
+const EXAMPLE_SALARY = 80_000;
 
 const TITLE = `Salary to Hourly Rate Australia ${SITE_CONFIG.financialYear}: ${formatAUD(first)} to ${formatAUD(last)}`;
-const DESCRIPTION = `Hourly rate for ${SALARY_TO_HOURLY_SALARIES.length} annual salaries on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${hours.toLocaleString("en-AU")} hours a year). E.g. $80,000 a year is ${formatAUD(80_000 / hours, 2)} an hour before tax. After-tax hourly rate on each page.`;
+const DESCRIPTION = `Hourly rate for ${SALARY_TO_HOURLY_SALARIES.length} annual salaries on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${hours.toLocaleString("en-AU")} hours a year). E.g. ${formatAUD(EXAMPLE_SALARY)} a year is ${formatAUD(EXAMPLE_SALARY / hours, 2)} an hour before tax. After-tax hourly rate on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/salary-to-hourly/`;
 
 export const metadata: Metadata = withFeaturedImage({
@@ -31,11 +32,13 @@ function SalaryToHourlyHubPage() {
         crumb: "Salary to Hourly",
         intro: (
           <p>
+            {formatAUD(EXAMPLE_SALARY)} a year is {formatAUD(EXAMPLE_SALARY / hours, 2)} an hour before tax.{" "}
             {SALARY_TO_HOURLY_SALARIES.length} annual salaries converted to an hourly rate on a standard {EMPLOYMENT.standardWeeklyHours}-hour week
             ({hours.toLocaleString("en-AU")} hours a year): every $5,000 from $40,000 to $200,000, plus $30,000 and higher salaries to {formatAUD(last)}. Each page adds the after-tax hourly rate, the award classifications whose adult minimum rate is closest to that hourly figure, and a comparison with the minimum wage.
           </p>
         ),
         figure: (s) => `${formatAUD(s / hours, 2)}/hr`,
+        figureHeading: "Hourly rate before tax",
         figureLabel: `gross hourly rate on ${hours.toLocaleString("en-AU")} hours a year`,
         linkLabel: (s) => formatAUD(s),
       }}

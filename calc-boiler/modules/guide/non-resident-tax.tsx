@@ -56,14 +56,6 @@ export default function NonResidentTaxPage() {
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
-            {/* ── Section 1: What Is Non-Resident Tax? ── */}
-            <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Non-Resident Tax in Australia?</h2>
-              <p>Non-resident tax is a separate set of Australian income tax rates that apply to individuals classified as <strong>foreign residents for tax purposes</strong> by the ATO.</p>
-              <p>Foreign residents pay tax from their very first dollar of Australian-sourced income. The tax-free threshold of <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> does not apply, and non-residents cannot claim the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>{formatAUD(LITO.maxOffset)}</strong>. The lowest marginal rate for non-residents is <strong>{formatPercent(NR[0].rate, 0)}</strong>, compared to <strong>0%</strong> for residents on income up to {formatAUD(TAX_FREE_THRESHOLD)} and <strong>{formatPercent(SECOND_BRACKET_RATE, 0)}</strong> for residents on income from {formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)}. Non-residents also cannot access the &quot;Senior Australians and Pensioners Tax Offset&quot; (SAPTO) or the &quot;Zone Tax Offset&quot;.</p>
-              <p>Non-resident taxation applies only to Australian-sourced income, including salary and wages earned in Australia, rental income from Australian property, and dividends from Australian companies. Foreign-sourced income (for example, rental income from a property in the United Kingdom, interest earned in a Singapore bank account, or salary paid by an overseas employer for work performed outside Australia) is not assessable in Australia for non-residents. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> with the non-resident toggle to calculate your exact after-tax income.</p>
-            </section>
-
             {/* ── Section 2: Non-Resident Tax Brackets Table ── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Non-Resident Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
@@ -80,6 +72,40 @@ export default function NonResidentTaxPage() {
                 {TAX_BRACKETS.map((b, i) => (<tr key={i}><td className="px-5 py-3">{formatAUD(b.min)} – {b.max === Infinity ? "∞" : formatAUD(b.max)}</td><td className="px-5 py-3 font-medium">{(b.rate * 100).toFixed(0)}%</td><td className="px-5 py-3 text-right">{b.base > 0 ? `${formatAUD(b.base)} + ` : ""}{b.rate === 0 ? "Nil" : `${(b.rate * 100).toFixed(0)}c per $1${b.min > 0 ? ` over ${formatAUD(b.min)}` : ""}`}</td></tr>))}
               </tbody></table></div></div>
               <p>Non-resident brackets and resident <Link href="/tax-brackets/">income tax brackets</Link> converge at the {formatAUD(NR[1].min)} threshold. Above {formatAUD(NR[0].max)}, both groups pay the same marginal rates of <strong>{formatPercent(NR[1].rate, 0)}</strong> and <strong>{formatPercent(NR[2].rate, 0)}</strong>, though cumulative tax payable remains higher for non-residents due to the flat {formatPercent(NR[0].rate, 0)} applied to the first {formatAUD(NR[0].max)}.</p>
+            </section>
+
+            {/* ── Section 5: Resident vs Non-Resident Tax Comparison ── */}
+            <section>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Non-Resident Tax Compare to Resident Tax?</h2>
+              <p>A non-resident earning $80,000 pays approximately <strong>{formatAUD(NR_TAX_80K - RES_TAX_80K)} more</strong> in income tax than an Australian resident at the same salary.</p>
+              <p>The comparison table below calculates exact tax payable at 5 common salary levels for the {SITE_CONFIG.financialYear} financial year. Resident tax is income tax only. It excludes the LITO offset and the Medicare levy, so the table isolates the bracket difference. The &quot;Extra Cost&quot; column shows how much more income tax a non-resident pays than a resident at each income level.</p>
+              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th><th className="px-5 py-3 text-right">Extra Cost</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                {[30000, 50000, 80000, 100000, 150000].map(income => {
+                  const resTax = Math.round(calculateIncomeTax(income, true));
+                  const nrTax = Math.round(calculateIncomeTax(income, false));
+                  return (<tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right">{formatAUD(resTax)}</td><td className="px-5 py-3 text-right font-medium text-red-600">{formatAUD(nrTax)}</td><td className="px-5 py-3 text-right text-red-500">+{formatAUD(nrTax - resTax)}</td></tr>);
+                })}
+              </tbody></table></div></div>
+
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: $90,000 Salary</h3>
+              <p>Consider an IT employee earning <strong>$90,000</strong> per year in Melbourne. The tax calculation differs significantly based on residency status:</p>
+              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Component</th><th className="px-5 py-3 text-right">Resident</th><th className="px-5 py-3 text-right">Non-Resident</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                <tr><td className="px-5 py-3">Gross Income</td><td className="px-5 py-3 text-right">$90,000</td><td className="px-5 py-3 text-right">$90,000</td></tr>
+                <tr><td className="px-5 py-3">Income Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TAX_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
+                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">{LITO_90K > 0 ? formatNegAUD(LITO_90K) : "$0 (fully phased out)"}</td><td className="px-5 py-3 text-right">$0</td></tr>
+                <tr><td className="px-5 py-3">Medicare Levy ({formatPercent(MEDICARE_LEVY.rate, 0)})</td><td className="px-5 py-3 text-right">{formatAUD(MEDICARE_90K)}</td><td className="px-5 py-3 text-right">$0</td></tr>
+                <tr className="font-bold"><td className="px-5 py-3">Total Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TOTAL_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
+                <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Take-Home Pay</td><td className="px-5 py-3 text-right text-eucalyptus-dark">{formatAUD(RES_TAKE_HOME_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAKE_HOME_90K)}</td></tr>
+              </tbody></table></div></div>
+              <p>The non-resident in this example takes home <strong>{formatAUD(RES_TAKE_HOME_90K - NR_TAKE_HOME_90K)} less</strong> per year, or <strong>{formatAUD(Math.round((RES_TAKE_HOME_90K - NR_TAKE_HOME_90K) / 12))} less per month</strong>, than the resident. Both employees receive superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> ({formatAUD(Math.round(90_000 * SUPER_GUARANTEE.rate))}) on top of their gross salary. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to run your own comparison at any salary level.</p>
+            </section>
+
+            {/* ── Section 1: What Is Non-Resident Tax? ── */}
+            <section>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Non-Resident Tax in Australia?</h2>
+              <p>Non-resident tax is a separate set of Australian income tax rates that apply to individuals classified as <strong>foreign residents for tax purposes</strong> by the ATO.</p>
+              <p>Foreign residents pay tax from their very first dollar of Australian-sourced income. The tax-free threshold of <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> does not apply, and non-residents cannot claim the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>{formatAUD(LITO.maxOffset)}</strong>. The lowest marginal rate for non-residents is <strong>{formatPercent(NR[0].rate, 0)}</strong>, compared to <strong>0%</strong> for residents on income up to {formatAUD(TAX_FREE_THRESHOLD)} and <strong>{formatPercent(SECOND_BRACKET_RATE, 0)}</strong> for residents on income from {formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)}. Non-residents also cannot access the &quot;Senior Australians and Pensioners Tax Offset&quot; (SAPTO) or the &quot;Zone Tax Offset&quot;.</p>
+              <p>Non-resident taxation applies only to Australian-sourced income, including salary and wages earned in Australia, rental income from Australian property, and dividends from Australian companies. Foreign-sourced income (for example, rental income from a property in the United Kingdom, interest earned in a Singapore bank account, or salary paid by an overseas employer for work performed outside Australia) is not assessable in Australia for non-residents. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> with the non-resident toggle to calculate your exact after-tax income.</p>
             </section>
 
             {/* ── Section 3: How Does the ATO Determine Residency? ── */}
@@ -106,42 +132,16 @@ export default function NonResidentTaxPage() {
               <p>Non-residents working in Australia need private health insurance or must pay for medical services out of pocket. Australia has &quot;Reciprocal Health Care Agreements&quot; (RHCAs) with 11 countries including the United Kingdom, Ireland, New Zealand, Sweden, the Netherlands, Finland, Belgium, Norway, Slovenia, Italy, and Malta. Citizens of these countries receive limited Medicare access for essential treatment during temporary stays.</p>
             </section>
 
-            {/* ── Section 5: Resident vs Non-Resident Tax Comparison ── */}
-            <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Non-Resident Tax Compare to Resident Tax?</h2>
-              <p>A non-resident earning $80,000 pays approximately <strong>{formatAUD(NR_TAX_80K - RES_TAX_80K)} more</strong> in income tax than an Australian resident at the same salary.</p>
-              <p>The comparison table below calculates exact tax payable at 5 common salary levels for the {SITE_CONFIG.financialYear} financial year. Resident tax is income tax only. It excludes the LITO offset and the Medicare levy, so the table isolates the bracket difference. The &quot;Extra Cost&quot; column shows how much more income tax a non-resident pays than a resident at each income level.</p>
-              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th><th className="px-5 py-3 text-right">Extra Cost</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                {[30000, 50000, 80000, 100000, 150000].map(income => {
-                  const resTax = Math.round(calculateIncomeTax(income, true));
-                  const nrTax = Math.round(calculateIncomeTax(income, false));
-                  return (<tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right">{formatAUD(resTax)}</td><td className="px-5 py-3 text-right font-medium text-red-600">{formatAUD(nrTax)}</td><td className="px-5 py-3 text-right text-red-500">+{formatAUD(nrTax - resTax)}</td></tr>);
-                })}
-              </tbody></table></div></div>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: $90,000 Salary</h3>
-              <p>Consider an IT employee earning <strong>$90,000</strong> per year in Melbourne. The tax calculation differs significantly based on residency status:</p>
-              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Component</th><th className="px-5 py-3 text-right">Resident</th><th className="px-5 py-3 text-right">Non-Resident</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                <tr><td className="px-5 py-3">Gross Income</td><td className="px-5 py-3 text-right">$90,000</td><td className="px-5 py-3 text-right">$90,000</td></tr>
-                <tr><td className="px-5 py-3">Income Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TAX_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
-                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">{LITO_90K > 0 ? formatNegAUD(LITO_90K) : "$0 (fully phased out)"}</td><td className="px-5 py-3 text-right">$0</td></tr>
-                <tr><td className="px-5 py-3">Medicare Levy (2%)</td><td className="px-5 py-3 text-right">{formatAUD(MEDICARE_90K)}</td><td className="px-5 py-3 text-right">$0</td></tr>
-                <tr className="font-bold"><td className="px-5 py-3">Total Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TOTAL_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
-                <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Take-Home Pay</td><td className="px-5 py-3 text-right text-eucalyptus-dark">{formatAUD(RES_TAKE_HOME_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAKE_HOME_90K)}</td></tr>
-              </tbody></table></div></div>
-              <p>The non-resident in this example takes home <strong>{formatAUD(RES_TAKE_HOME_90K - NR_TAKE_HOME_90K)} less</strong> per year, or <strong>{formatAUD(Math.round((RES_TAKE_HOME_90K - NR_TAKE_HOME_90K) / 12))} less per month</strong>, than the resident. Both employees receive superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> ({formatAUD(Math.round(90_000 * SUPER_GUARANTEE.rate))}) on top of their gross salary. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to run your own comparison at any salary level.</p>
-            </section>
-
             {/* ── Section 6: What You DON'T Get as a Non-Resident ── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Tax Benefits Do Non-Residents Lose?</h2>
               <p>Non-residents lose access to <strong>6 major tax concessions</strong> that reduce the tax burden for Australian residents.</p>
               <ul>
-                <li><strong>No tax-free threshold ($18,200)</strong>: tax applies from the first dollar of income, costing up to <strong>{formatAUD(Math.round(TAX_FREE_THRESHOLD * NR[0].rate))}</strong> in additional tax at the {formatPercent(NR[0].rate, 0)} non-resident rate</li>
+                <li><strong>No tax-free threshold ({formatAUD(TAX_FREE_THRESHOLD)})</strong>: tax applies from the first dollar of income, costing up to <strong>{formatAUD(Math.round(TAX_FREE_THRESHOLD * NR[0].rate))}</strong> in additional tax at the {formatPercent(NR[0].rate, 0)} non-resident rate</li>
                 <li><strong>No Low Income Tax Offset</strong>: residents earning below {formatAUD(LITO.nilOffsetIncome)} receive up to <strong>{formatAUD(LITO.maxOffset)}</strong> in LITO, reducing their effective tax rate. See the <Link href="/low-income-tax-offset/">Low Income Tax Offset guide</Link> for full phase-out details</li>
                 <li><strong>No Senior Australians and Pensioners Tax Offset</strong>: SAPTO provides up to <strong>{formatAUD(SAPTO_BANDS.single.maxOffset)}</strong> for eligible single seniors ({SAPTO_INCOME_YEAR} figures, the latest the ATO has published)</li>
                 <li><strong>No Zone Tax Offset</strong>: residents living in remote or isolated areas (Zone A, Zone B, or special areas) receive base offsets ranging from <strong>{formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)}</strong> (Zone B) to <strong>{formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)}</strong> (special areas) per year, before any dependant amounts ({ZONE_OFFSET_INCOME_YEAR} figures). See the <Link href="/zone-tax-offset/">Zone Tax Offset guide</Link> for eligible locations</li>
-                <li><strong>No Medicare levy exemption</strong>: while non-residents do not pay the 2% levy, they also cannot access bulk-billed GP visits, public hospital treatment, or subsidised prescriptions under the PBS</li>
+                <li><strong>No Medicare levy exemption</strong>: while non-residents do not pay the {formatPercent(MEDICARE_LEVY.rate, 0)} levy, they also cannot access bulk-billed GP visits, public hospital treatment, or subsidised prescriptions under the PBS</li>
                 <li><strong>No CGT main residence exemption</strong>: non-residents pay capital gains tax on the sale of Australian property with no 50% CGT discount (for gains accrued after 8 May 2012) and, since 2020, generally no main residence exemption, even if the property was their home while they were a resident</li>
               </ul>
               <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> into superannuation (subject to the concessional contribution cap of <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>

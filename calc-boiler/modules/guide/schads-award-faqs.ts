@@ -70,7 +70,7 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "Does the SCHADS award have junior rates?",
-    a: "No. The SCHADS award contains no junior rates clause and no age-based percentage scale. The word 'junior' appears in the award only in transitional boilerplate. An employee under 21 covered by SCHADS is paid the full adult rate for their classification. If you have been shown a SCHADS junior percentage table, it is not from this award — check which award actually covers your role.",
+    a: "No. The SCHADS award contains no junior rates clause and no age-based percentage scale. The word 'junior' appears in the award only in transitional boilerplate. An employee under 21 covered by SCHADS is paid the full adult rate for their classification. If you have been shown a SCHADS junior percentage table, it is not from this award. Check which award actually covers your role.",
   },
   {
     q: "Is there a separate SCHADS disability services pay rate?",

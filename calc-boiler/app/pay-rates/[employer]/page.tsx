@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import EmployerPayRatesPage from "@/modules/guide/employer-pay-rates";
+import EmployerPayRatesPage, { bandCovers } from "@/modules/guide/employer-pay-rates";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
@@ -47,18 +47,6 @@ function titleFor(e: EmployerPay) {
     `${TITLE_NAME[e.slug] ?? `${e.name} Pay Rates 2026`} - Hourly Wage by Age & Level`,
     `${e.name} Pay Rates 2026 - Hourly Wage by Age & Level`,
   );
-}
-
-/** Does a junior band label ("Under 16", "16 and under", "17", "20 and over") cover this age? */
-function bandCovers(label: string, age: number): boolean {
-  const under = /^under (\d+)/i.exec(label);
-  if (under) return age < Number(under[1]);
-  const andUnder = /^(\d+) and (?:under|younger)/i.exec(label);
-  if (andUnder) return age <= Number(andUnder[1]);
-  const andOver = /^(\d+) and over/i.exec(label);
-  if (andOver) return age >= Number(andOver[1]);
-  const exact = /^(\d+)\b/.exec(label);
-  return exact ? age === Number(exact[1]) : false;
 }
 
 /**

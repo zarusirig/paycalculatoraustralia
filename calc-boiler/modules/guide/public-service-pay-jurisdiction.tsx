@@ -503,6 +503,21 @@ export default function PublicServicePayJurisdictionPage({
   const lowest = Math.min(...spanOfService.map((b) => b.min));
   const highest = Math.max(...spanOfService.map((b) => b.max));
 
+  // Structure pass 27 Oct 2026: searchers land on these pages looking up a grade
+  // ("clerk grade 3/4 salary nsw", "aso6 salary", "nt gov pay scales"), so the
+  // whole-scale table goes straight after the opening answer, in the slot the
+  // VIC grade x step grid uses. APS and QLD carry three schedules (agency and
+  // nursing tables included) and keep the table below the level sections.
+  const scalesFirst = !jurisdiction.quickTable && jurisdiction.schedules.length <= 2;
+  const payScales = (
+    <section id="pay-scales">
+      <h2 style={HEADING_FONT}>{jurisdiction.shortName} pay scales</h2>
+      {jurisdiction.schedules.map((schedule) => (
+        <ScheduleTable key={schedule.id} schedule={schedule} />
+      ))}
+    </section>
+  );
+
   return (
     <div className="min-h-screen flex-grow bg-white">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -559,6 +574,9 @@ export default function PublicServicePayJurisdictionPage({
               </>
             )}
 
+            {/* Whole-scale table first for single-scale jurisdictions (structure pass 27 Oct 2026) */}
+            {scalesFirst && payScales}
+
             {/* Who sets the rates */}
             <section id="who-sets-the-rates">
               <h2 style={HEADING_FONT}>Who sets these rates</h2>
@@ -576,13 +594,8 @@ export default function PublicServicePayJurisdictionPage({
             {/* One H2 per classification level, built from the schedules below */}
             <LevelGuideSection jurisdiction={jurisdiction} />
 
-            {/* Schedules */}
-            <section id="pay-scales">
-              <h2 style={HEADING_FONT}>{jurisdiction.shortName} pay scales</h2>
-              {jurisdiction.schedules.map((schedule) => (
-                <ScheduleTable key={schedule.id} schedule={schedule} />
-              ))}
-            </section>
+            {/* Schedules (moved to the top when scalesFirst) */}
+            {!scalesFirst && payScales}
 
             {/* Progression */}
             <section id="progression">

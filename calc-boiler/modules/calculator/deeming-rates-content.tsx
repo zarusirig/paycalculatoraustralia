@@ -31,6 +31,7 @@ function source(title: string, url: string): SourceLink {
 const IT = AGE_PENSION_INCOME_TEST;
 const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 const MARCH = DEEMING_HISTORY.find((r) => r.from === "20 March 2026")!;
+const MAY_2020 = DEEMING_HISTORY.find((r) => r.from === "1 May 2020")!;
 const TABLE_BALANCES = [25_000, 50_000, 66_800, 100_000, 150_000, 200_000, 300_000, 500_000];
 
 const SOURCES_LIST = [
@@ -99,7 +100,7 @@ export default function DeemingRatesContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">From the DSS Social Security Guide 4.4.1.10, which lists every change since 1 July 1996. The rates sat at 0.25% / 2.25% from 1 May 2020 until 20 September 2025, then rose in three steps.</p>
+        <p className="mt-2 text-xs text-warmgray-light">From the DSS Social Security Guide 4.4.1.10, which lists every change since 1 July 1996. The rates sat at {pct(MAY_2020.lower)} / {pct(MAY_2020.upper)} from {MAY_2020.from} until 20 September 2025, then rose in three steps.</p>
       </W3Section>
 
       <W3Section title="What Is Deemed, and What Isn't">

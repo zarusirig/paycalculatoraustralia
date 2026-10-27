@@ -154,7 +154,7 @@ export default function HealthcareWorkerPayPage() {
             Nurse Salary Australia 2026 (RN, EN, NP)
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. The page starts with a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then covers doctors, allied health, penalty rates, salary packaging for public hospital employees and take-home pay after tax.
+            What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. After tax, the entry step pays {formatAUD(afterTax(RN_ENTRY.low) / 12)} to {formatAUD(afterTax(RN_ENTRY.high) / 12)} a month. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. The page starts with a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then covers doctors, allied health, penalty rates, salary packaging for public hospital employees and take-home pay after tax.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -293,9 +293,11 @@ export default function HealthcareWorkerPayPage() {
                   );
                 })}
               </div>
-              <p className="text-sm text-warmgray-light">
-                Not published yet: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read, and we would rather publish nothing than a guess.
-              </p>
+              {NURSING_PAY_STATES_NOT_BUILT.length > 0 ? (
+                <p className="text-sm text-warmgray-light">
+                  Not published yet: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read, and we would rather publish nothing than a guess.
+                </p>
+              ) : null}
             </section>
 
             {/* ── The Nurses Award 2020 ── */}
@@ -433,25 +435,27 @@ export default function HealthcareWorkerPayPage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                This table shows take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales and the other rows award minimums. Tap a gross figure to open the full tax breakdown for the nearest round salary.
+                This table shows take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales and the other rows award minimums. Tap a gross figure to open the full tax breakdown for the nearest round salary. Monthly figures divide the year by 12 and fortnightly figures by 26.
               </p>
               <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[44rem] text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th className="px-5 py-3">Role</th>
                         <th className="px-5 py-3 text-right">Gross Salary</th>
                         <th className="px-5 py-3 text-right">Tax + Medicare</th>
                         <th className="px-5 py-3 text-right">Take-Home</th>
+                        <th className="px-5 py-3 text-right">Per month</th>
+                        <th className="px-5 py-3 text-right">Per fortnight</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Aged care worker, award {AGED_CARE_QUALIFIED.level.toLowerCase()}</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))} className="text-eucalyptus-dark hover:underline">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))}</Link></td><td className="px-5 py-3 text-right">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly) - afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td></tr>
-                      <tr><td className="px-5 py-3">Registered nurse, lowest state entry step ({RN_ENTRY.lowState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.low)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.low)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.low - afterTax(RN_ENTRY.low))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.low))}</td></tr>
-                      <tr><td className="px-5 py-3">Registered nurse, highest state entry step ({RN_ENTRY.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.high - afterTax(RN_ENTRY.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.high))}</td></tr>
-                      <tr><td className="px-5 py-3">Registered nurse, highest top-of-scale ({RN_TOP.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_TOP.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_TOP.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_TOP.high - afterTax(RN_TOP.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_TOP.high))}</td></tr>
-                      <tr><td className="px-5 py-3">Specialist, award minimum</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(DR_SPECIALIST_LOW)} className="text-eucalyptus-dark hover:underline">{formatAUD(DR_SPECIALIST_LOW)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(DR_SPECIALIST_LOW - afterTax(DR_SPECIALIST_LOW))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(DR_SPECIALIST_LOW))}</td></tr>
+                      <tr><td className="px-5 py-3">Aged care worker, award {AGED_CARE_QUALIFIED.level.toLowerCase()}</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))} className="text-eucalyptus-dark hover:underline">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))}</Link></td><td className="px-5 py-3 text-right">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly) - afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)) / 12)}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)) / 26)}</td></tr>
+                      <tr><td className="px-5 py-3">Registered nurse, lowest state entry step ({RN_ENTRY.lowState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.low)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.low)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.low - afterTax(RN_ENTRY.low))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.low))}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_ENTRY.low) / 12)}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_ENTRY.low) / 26)}</td></tr>
+                      <tr><td className="px-5 py-3">Registered nurse, highest state entry step ({RN_ENTRY.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.high - afterTax(RN_ENTRY.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.high))}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_ENTRY.high) / 12)}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_ENTRY.high) / 26)}</td></tr>
+                      <tr><td className="px-5 py-3">Registered nurse, highest top-of-scale ({RN_TOP.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_TOP.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_TOP.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_TOP.high - afterTax(RN_TOP.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_TOP.high))}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_TOP.high) / 12)}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(RN_TOP.high) / 26)}</td></tr>
+                      <tr><td className="px-5 py-3">Specialist, award minimum</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(DR_SPECIALIST_LOW)} className="text-eucalyptus-dark hover:underline">{formatAUD(DR_SPECIALIST_LOW)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(DR_SPECIALIST_LOW - afterTax(DR_SPECIALIST_LOW))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(DR_SPECIALIST_LOW))}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(DR_SPECIALIST_LOW) / 12)}</td><td className="px-5 py-3 text-right">{formatAUD(afterTax(DR_SPECIALIST_LOW) / 26)}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -498,9 +502,11 @@ export default function HealthcareWorkerPayPage() {
                       />
                     ))}
                   </div>
-                  <p className="mt-3 text-xs text-warmgray-light">
-                    {NURSING_PAY_STATES_NOT_BUILT.join(" and ")} are not published yet.
-                  </p>
+                  {NURSING_PAY_STATES_NOT_BUILT.length > 0 ? (
+                    <p className="mt-3 text-xs text-warmgray-light">
+                      {NURSING_PAY_STATES_NOT_BUILT.join(" and ")} are not published yet.
+                    </p>
+                  ) : null}
                 </CardContent>
               </Card>
 

@@ -28,6 +28,12 @@ const SACRIFICE_SAVING = (EX110.totalDeductions - EX110_SACRIFICE.totalDeduction
 // "2021–22" in the constant; prose uses a plain hyphen for financial years.
 const COMPANY_RATE_FIRST_YEAR = COMPANY_TAX.firstYear.replace("–", "-");
 
+// Highest and lowest ATO medians for the hero answer, read from the same rows
+// as the first table so the opening cannot drift from it.
+const TOP_ROLE = TECH_ROLE_ROWS[0];
+const LOW_ROLE = TECH_ROLE_ROWS[TECH_ROLE_ROWS.length - 1];
+const TECH_INCOME_YEAR_PLAIN = TECH_INCOME_YEAR.replace("–", "-");
+
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const SG = pct(SUPER_GUARANTEE.rate);
 const [BRACKET_30, BRACKET_37] = [TAX_BRACKETS[2], TAX_BRACKETS[3]];
@@ -70,7 +76,7 @@ export default function TechSalaryGuideAustraliaPage() {
             IT &amp; Tech Salary Guide: What Tech Workers Earn in Australia
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            IT and tech salaries in Australia are set by the employment contract or an enterprise agreement, unless an award applies. The Professional Employees Award covers IT professionals only where the employer is principally in the IT or telecommunications industry. Net pay follows the ATO {SITE_CONFIG.financialYear} brackets: on a {formatAUD(110_000)} base, take-home is {formatAUD(EX110.takeHomePay)} a year after income tax and the Medicare levy. Employees receive {SG} super on top of that salary. The first table lists the ATO median salary for each of the {TECH_ROLE_ROWS.length} tech occupations, highest first. The rest of this guide covers the day rate a contractor needs to match a salary, how RSUs are taxed, and salary sacrifice into super.
+            IT and tech salaries in Australia are set by the employment contract or an enterprise agreement, unless an award applies. The Professional Employees Award covers IT professionals only where the employer is principally in the IT or telecommunications industry. Net pay follows the ATO {SITE_CONFIG.financialYear} brackets: on a {formatAUD(110_000)} base, take-home is {formatAUD(EX110.takeHomePay)} a year after income tax and the Medicare levy. Employees receive {SG} super on top of that salary. The first table lists the ATO median salary for each of the {TECH_ROLE_ROWS.length} tech occupations, highest first: from {formatAUD(TOP_ROLE.medianSalary)} for a {TOP_ROLE.title.toLowerCase()} down to {formatAUD(LOW_ROLE.medianSalary)} for a {LOW_ROLE.title.toLowerCase()} in {TECH_INCOME_YEAR_PLAIN}. The rest of this guide covers the day rate a contractor needs to match a salary, how RSUs are taxed, and salary sacrifice into super.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />

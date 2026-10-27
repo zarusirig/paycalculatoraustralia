@@ -4,7 +4,7 @@
 import { MEDICARE_LEVY, STATE_PAYROLL_TAX, formatAUD, formatPercent } from "@/lib/constants";
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.NT;
 
@@ -15,7 +15,7 @@ export const NT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average NT salary?",
-    a: `Full-time adults in the NT earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows the net figure before any zone tax offset.`,
+    a: `Take-home pay on the average full-time NT salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. Full-time adults in the NT earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows the net figure before any zone tax offset.`,
   },
   {
     q: "Why isn't the zone tax offset in the calculator?",

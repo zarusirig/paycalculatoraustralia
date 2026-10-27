@@ -51,7 +51,7 @@ export default function TaxFileNumberDeclarationPage() {
             Tax File Number Declaration: How to Complete It Correctly
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            A Tax File Number (TFN) declaration is the ATO form you give each new employer when you start a job. Your answers on it set how much PAYG tax your employer withholds from each pay. A wrong answer to the residency, tax-free threshold or study loan question can mean too much or too little tax is withheld. This guide takes you through the form question by question, then covers the common mistakes, the penalty withholding rate and when to submit a new declaration.
+            A Tax File Number (TFN) declaration is the ATO form (NAT 3092) you give each new employer when you start a job. Your answers on it set how much PAYG tax your employer withholds from each pay. A wrong answer to the residency, tax-free threshold or study loan question can mean too much or too little tax is withheld. This guide takes you through the form question by question, then covers the common mistakes, the penalty withholding rate ({RES} for residents who do not quote a TFN) and when to submit a new declaration.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />

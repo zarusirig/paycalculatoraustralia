@@ -223,7 +223,7 @@ export default function Schedule5TaxTablePage() {
             </section>
 
             <section id="withholding-limit">
-              <h2>The 47% Withholding Limit</h2>
+              <h2>The {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% Withholding Limit</h2>
               <p>
                 Under both Method A and Method B(ii), the ATO caps withholding from an additional payment at{" "}
                 <strong>{SCHEDULE_5_WITHHOLDING_LIMIT * 100}% of that payment</strong>. If the calculated amount comes out higher,

@@ -104,7 +104,7 @@ export default function SalaryPackagingGuidePage() {
             Salary Packaging Guide: Benefits Beyond Novated Leases
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Salary packaging lets your employer pay some of your expenses from your pre-tax salary, which lowers your taxable income, and it covers far more than novated car leases. Employees of public benevolent institutions (PBIs), health promotion charities, public and not-for-profit hospitals and public ambulance services can package everyday living expenses free of fringe benefits tax (FBT). The cap depends on the employer type and applies per FBT year. A separate meal entertainment cap sits on top, and rebatable employers can offer it too. Whatever your employer type, you can package a portable electronic device used mainly for work free of FBT until 31 March 2027. Work-related education your employer pays for can have its FBT value reduced to nil under the otherwise deductible rule. The sections below give each cap, a worked take-home pay example, and how your Reportable Fringe Benefits Amount (RFBA) counts in Centrelink, HECS-HELP and Medicare Levy Surcharge income tests.
+            Salary packaging lets your employer pay some of your expenses from your pre-tax salary, which lowers your taxable income, and it covers far more than novated car leases. Employees of public benevolent institutions (PBIs), health promotion charities, public and not-for-profit hospitals and public ambulance services can package everyday living expenses free of fringe benefits tax (FBT). The cap depends on the employer type: {formatAUD(PBI_CAP)} grossed-up (about {formatAUD(PBI_FACE)} of expenses) at a PBI or health promotion charity, and {formatAUD(HOSPITAL_CAP)} grossed-up (about {formatAUD(HOSPITAL_FACE)}) at a hospital or ambulance service. It applies per FBT year. A separate meal entertainment cap sits on top, and rebatable employers can offer it too. Whatever your employer type, you can package a portable electronic device used mainly for work free of FBT until 31 March 2027. Work-related education your employer pays for can have its FBT value reduced to nil under the otherwise deductible rule. The sections below give each cap, a worked take-home pay example, and how your Reportable Fringe Benefits Amount (RFBA) counts in Centrelink, HECS-HELP and Medicare Levy Surcharge income tests.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -114,6 +114,42 @@ export default function SalaryPackagingGuidePage() {
 
           {/* MAIN ARTICLE CONTENT */}
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+
+            {/* Worked example first: the reader wants the saving at their salary. */}
+            <section id="how-it-affects-pay">
+              <h2>How Salary Packaging Affects Your Pay</h2>
+              <p>
+                The worked example below compares two employees earning <strong>{formatAUD(EXAMPLE_SALARY)}</strong> on FY{SITE_CONFIG.financialYear} tax rates. One works at a PBI and packages the full <strong>{formatAUD(PBI_FACE)}</strong> of rent or mortgage covered by the {formatAUD(PBI_CAP)} grossed-up cap. The other works at a public hospital and packages the full <strong>{formatAUD(HOSPITAL_FACE)}</strong> covered by the {formatAUD(HOSPITAL_CAP)} cap. Meal entertainment is left out.
+              </p>
+
+              <div className="overflow-x-auto not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="bg-sandstone">
+                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Component</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Without packaging</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">PBI employee ({formatAUD(PBI_FACE)})</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Public hospital employee ({formatAUD(HOSPITAL_FACE)})</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {EXAMPLE_ROWS.map((row, i) => (
+                        <tr key={row.label} className={row.bold ? "bg-eucalyptus-light/30" : `border-b border-sandstone-dark/10${i % 2 ? " bg-sandstone/30" : ""}`}>
+                          <td className={`p-3 text-navy ${row.bold ? "font-bold" : "font-medium"}`}>{row.label}</td>
+                          {[EX_NONE, EX_PBI, EX_HOSPITAL].map((e, j) => (
+                            <td key={j} className={`p-3 text-navy text-right${row.bold ? " font-bold" : ""}`}>{formatAUD(row.pick(e))}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p>
+                The PBI employee ends up with <strong>{formatAUD(PBI_BENEFIT)}</strong> more to spend each year and the public hospital employee <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong> more, because the packaged amount pays for expenses they would otherwise have paid from after-tax income. The PBI saving is larger because its cap is larger, not because the tax treatment differs. Both figures are before packaging provider fees, and the PBI figure includes the small low income tax offset that applies once taxable income falls to {formatAUD(EX_PBI.taxable)}.
+              </p>
+            </section>
 
             <section id="what-is">
               <h2>What Is Salary Packaging?</h2>
@@ -216,41 +252,6 @@ export default function SalaryPackagingGuidePage() {
                 </div>
               </div>
             </div>
-
-            <section id="how-it-affects-pay">
-              <h2>How Salary Packaging Affects Your Pay</h2>
-              <p>
-                The worked example below compares two employees earning <strong>{formatAUD(EXAMPLE_SALARY)}</strong> on FY{SITE_CONFIG.financialYear} tax rates. One works at a PBI and packages the full <strong>{formatAUD(PBI_FACE)}</strong> of rent or mortgage covered by the {formatAUD(PBI_CAP)} grossed-up cap. The other works at a public hospital and packages the full <strong>{formatAUD(HOSPITAL_FACE)}</strong> covered by the {formatAUD(HOSPITAL_CAP)} cap. Meal entertainment is left out.
-              </p>
-
-              <div className="overflow-x-auto not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="min-w-full text-sm">
-                    <thead>
-                      <tr className="bg-sandstone">
-                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Component</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Without packaging</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">PBI employee ({formatAUD(PBI_FACE)})</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Public hospital employee ({formatAUD(HOSPITAL_FACE)})</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {EXAMPLE_ROWS.map((row, i) => (
-                        <tr key={row.label} className={row.bold ? "bg-eucalyptus-light/30" : `border-b border-sandstone-dark/10${i % 2 ? " bg-sandstone/30" : ""}`}>
-                          <td className={`p-3 text-navy ${row.bold ? "font-bold" : "font-medium"}`}>{row.label}</td>
-                          {[EX_NONE, EX_PBI, EX_HOSPITAL].map((e, j) => (
-                            <td key={j} className={`p-3 text-navy text-right${row.bold ? " font-bold" : ""}`}>{formatAUD(row.pick(e))}</td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <p>
-                The PBI employee ends up with <strong>{formatAUD(PBI_BENEFIT)}</strong> more to spend each year and the public hospital employee <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong> more, because the packaged amount pays for expenses they would otherwise have paid from after-tax income. The PBI saving is larger because its cap is larger, not because the tax treatment differs. Both figures are before packaging provider fees, and the PBI figure includes the small low income tax offset that applies once taxable income falls to {formatAUD(EX_PBI.taxable)}.
-              </p>
-            </section>
 
             <section id="rfba-reporting">
               <h2>RFBA Reporting: How It Affects Other Obligations</h2>

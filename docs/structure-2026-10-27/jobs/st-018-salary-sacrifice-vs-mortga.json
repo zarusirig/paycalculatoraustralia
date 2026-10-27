@@ -1,0 +1,107 @@
+{
+ "name": "st-018-salary-sacrifice-vs-mortga",
+ "files": [
+  "app/casual-conversion/page.tsx",
+  "app/notice-of-assessment/page.tsx",
+  "app/salary-sacrifice-vs-mortgage/page.tsx",
+  "app/tax-refund-guide/page.tsx",
+  "app/work-from-home-deductions/page.tsx",
+  "modules/guide/casual-conversion-faqs.ts",
+  "modules/guide/casual-conversion.tsx",
+  "modules/guide/notice-of-assessment-faqs.ts",
+  "modules/guide/notice-of-assessment.tsx",
+  "modules/guide/salary-sacrifice-vs-mortgage-faqs.ts",
+  "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+  "modules/guide/tax-refund-guide-faqs.ts",
+  "modules/guide/tax-refund-guide.tsx",
+  "modules/guide/work-from-home-deductions-faqs.ts",
+  "modules/guide/work-from-home-deductions.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/salary-sacrifice-vs-mortgage/",
+   "url": "https://pay-calculator-australia.com/salary-sacrifice-vs-mortgage/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.10",
+   "centerpiece": "1.61",
+   "main_query": "7.4%",
+   "pre28_clicks": "3",
+   "pre28_impr": "380",
+   "requests": [
+    "The hero opening has no expressions, so it cannot give a figure answer. It needs {pct(CONTRIBUTIONS_TAX_RATE)}, FY{SITE_CONFIG.financialYear} and {formatAUD(CAP)} rendered in the intro so the opening can state the contributions tax rate, the financial year and the concessional cap directly.",
+    "The page has no calculator of its own (its AUDIT intent is lookup-rate-table). The scenario table is fixed at the 30% bracket. A bracket selector, or extra rows for 37% and 45% computed from TAX_BRACKETS, would answer the query for the brackets the text says matter most.",
+    "Typed figures in JSX prose (15%, 45%, 60, 22 to 32 cents, $12,000, 2c, the 30% bracket range) should come from constants such as TAX_BRACKETS, CONTRIBUTIONS_TAX_RATE, PRESERVATION_AGE_TABLE and MEDICARE_LEVY so they cannot drift."
+   ]
+  },
+  {
+   "path": "/work-from-home-deductions/",
+   "url": "https://pay-calculator-australia.com/work-from-home-deductions/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.96",
+   "centerpiece": "1.74",
+   "main_query": "130k",
+   "pre28_clicks": "2",
+   "pre28_impr": "921",
+   "requests": [
+    "The opening paragraph (line 42) has no expression, so it cannot give the direct figure. Add {WFH_CENTS} cents per hour and {RETURN_2026.incomeYear} to the intro so the centerpiece states the 2025-26 fixed rate in its first two sentences.",
+    "The page has no WFH calculator of its own. The callout links to the Tax Return Estimator, which takes one total 'Estimated Deductions' figure, not WFH hours. An hours x WFH_CENTS input on this page would match the calculate intent."
+   ]
+  },
+  {
+   "path": "/notice-of-assessment/",
+   "url": "https://pay-calculator-australia.com/notice-of-assessment/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "1.94",
+   "centerpiece": "1.85",
+   "main_query": "70863",
+   "pre28_clicks": "2",
+   "pre28_impr": "758",
+   "requests": [
+    "The AUDIT centerpiece score is 1.85, but the page opening is not in this FAQ unit. Rewrite the definition and opening in app/notice-of-assessment (or its module) in a separate unit.",
+    "The opening could state the income year dates (RETURN_2026.incomeYearStart to RETURN_2026.incomeYearEnd), but those expressions are not in the hero text, so they were not added. Add them in code if wanted.",
+    "Replace the hardcoded '2 weeks' at line 74 with {RETURN_2026.onlineRefundTypical} so it matches the hero."
+   ]
+  },
+  {
+   "path": "/casual-conversion/",
+   "url": "https://pay-calculator-australia.com/casual-conversion/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.83",
+   "centerpiece": "2.37",
+   "main_query": "150",
+   "pre28_clicks": "2",
+   "pre28_impr": "202",
+   "requests": [
+    "The top query is 'casual to permanent conversion calculator' but the page has no calculator, only a fixed $30/hr table (format_fit 1.83). Add inputs for base rate, weekly hours and paid weeks that run compareCasualToPermanent, near the top of the page.",
+    "The opening cannot name the start date of the employee choice pathway because {EMPLOYEE_CHOICE.startDate} is not in the PageHeader text. It also cannot give the break-even figure because {c.breakEvenWeeks} is not there either. Add both expressions to the intro paragraph so the centerpiece can state them."
+   ]
+  },
+  {
+   "path": "/tax-refund-guide/",
+   "url": "https://pay-calculator-australia.com/tax-refund-guide/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "1.79",
+   "centerpiece": "1.77",
+   "main_query": "25",
+   "pre28_clicks": "1",
+   "pre28_impr": "288",
+   "requests": [
+    "The intent is lookup-rate-table, but the header intro (line 54) has no rendered figure. To give a direct numeric answer, the opening needs an expression such as {formatAUD(EX_REFUND)} from the worked example or {formatAUD(LITO.maxOffset)}. This needs a code change.",
+    "Em dashes remain because they sit in locked short JSX strings: line 103 (' &mdash; the ' after the EX_REFUND <strong>) and line 225 (both '&mdash;' around the FTL penalty <strong>). These need a code-level edit, using a full stop at line 103 and brackets at line 225."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

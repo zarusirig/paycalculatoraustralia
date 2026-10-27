@@ -44,11 +44,6 @@ const SOURCES_LIST = [
 export default function CarerAllowanceContent() {
   return (
     <>
-      <W3Section title="How Much Is Carer Allowance?">
-        <p className={P}>{formatAUD(CA.fortnightly, 2)} a fortnight. It is a set rate, not reduced by your wages or savings, and it is adjusted on {CA.indexedOn} each year, not in March and September like the pensions. It isn&apos;t part of your taxable income. If you share the care of someone with another carer who is not your partner and they also claim, each of you gets a part payment based on the percentage of care you provide.</p>
-        <p className={P}>If you get Carer Allowance for a period that includes 1 July, Services Australia also pays the <strong>{formatAUD(CA.carerSupplementAnnual)} Carer Supplement</strong> automatically, and the Child Disability Assistance Payment if you care for a child with disability or a severe medical condition.</p>
-      </W3Section>
-
       <W3Section title="Carer Allowance Income Limit">
         <p className={P}>Your and your partner&apos;s combined <em>adjusted taxable income</em> must be less than <strong>{formatAUD(CA.incomeLimit)}</strong> per financial year. There is no assets test, and no income test for the person you care for. If you care for someone under 16 you also get a Health Care Card for them.</p>
         <div className={TABLE_WRAP}>
@@ -61,6 +56,11 @@ export default function CarerAllowanceContent() {
             </tbody>
           </table>
         </div>
+      </W3Section>
+
+      <W3Section title="How Much Is Carer Allowance?">
+        <p className={P}>Carer Allowance is {formatAUD(CA.fortnightly, 2)} a fortnight. It is a set rate, not reduced by your wages or savings, and it is adjusted on {CA.indexedOn} each year, not in March and September like the pensions. It isn&apos;t part of your taxable income. If you share the care of someone with another carer who is not your partner and they also claim, each of you gets a part payment based on the percentage of care you provide.</p>
+        <p className={P}>If you get Carer Allowance for a period that includes 1 July, Services Australia also pays the <strong>{formatAUD(CA.carerSupplementAnnual)} Carer Supplement</strong> automatically, and the Child Disability Assistance Payment if you care for a child with disability or a severe medical condition.</p>
       </W3Section>
 
       <W3Section title="Carer Allowance vs Carer Payment">

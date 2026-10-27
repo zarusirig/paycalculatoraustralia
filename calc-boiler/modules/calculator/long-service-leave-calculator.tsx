@@ -200,7 +200,7 @@ export default function LongServiceLeaveCalculator({
                   onChange={() => setStillEmployed(true)}
                   className="accent-eucalyptus"
                 />
-                Yes &mdash; show what I can take as leave
+                Yes: show what I can take as leave
               </label>
               <label className="flex items-center gap-2 text-sm text-warmgray">
                 <input
@@ -210,7 +210,7 @@ export default function LongServiceLeaveCalculator({
                   onChange={() => setStillEmployed(false)}
                   className="accent-eucalyptus"
                 />
-                No &mdash; show what is paid out
+                No: show what is paid out
               </label>
             </fieldset>
 

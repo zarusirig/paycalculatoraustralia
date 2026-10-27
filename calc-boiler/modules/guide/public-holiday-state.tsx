@@ -71,7 +71,6 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
             {stateHeading(s)}
           </h1>
-          <p className="mb-6 text-xl leading-relaxed text-warmgray">{s.standfirst}</p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
               <strong>Direct answer:</strong> {s.code} has {statewideDays(y26).length} whole-day public holidays in 2026 and{" "}
@@ -81,6 +80,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
               the {presetAward.shortName} ({pctLabel(presetAward.casual)} for casuals).
             </p>
           </div>
+          <p className="mb-6 text-xl leading-relaxed text-warmgray">{s.standfirst}</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
@@ -105,7 +105,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
             <section id="dates-2026">
               <h2 style={HEADING_FONT}>{s.code} public holidays 2026</h2>
               <p>
-                Every public holiday {s.inName} for 2026, as published by the {s.sources[0].publisher}.
+                The table lists every public holiday {s.inName} for 2026, as published by the {s.sources[0].publisher}.
                 {firstExtra ? ` Additional days such as ${firstExtra.name} on ${formatHolidayDate(firstExtra.date)} are public holidays for pay too.` : ""}
                 {regionalInList.length ? ` Rows marked "Part of state" apply only where your job is based in that area.` : ""}
               </p>
@@ -156,7 +156,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
                 employment={preset.employment}
                 hours={preset.hours}
                 compactAwardLabels
-                intro={`Prefilled for a ${preset.employment === "casual" ? "casual" : "permanent"} ${presetAward.shortName} employee working ${preset.hours} hours. Change the award, base rate and hours to match your payslip.`}
+                intro={`The calculator is prefilled for a ${preset.employment === "casual" ? "casual" : "permanent"} ${presetAward.shortName} employee working ${preset.hours} hours. Change the award, base rate and hours to match your payslip.`}
                 partDayNote={
                   parts.length
                     ? `For ${Array.from(new Set(parts.map((p) => p.name))).join(" and ")}, enter only the hours worked from ${partHours.join(" / ")}; earlier hours are ordinary hours.`

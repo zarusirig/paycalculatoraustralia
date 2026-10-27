@@ -1,0 +1,105 @@
+{
+ "name": "st-016-minimum-wage-nt",
+ "files": [
+  "app/centrelink-income-test/page.tsx",
+  "app/minimum-wage/[state]/page.tsx",
+  "app/non-resident-tax/page.tsx",
+  "app/novated-lease-guide/page.tsx",
+  "modules/calculator/minimum-wage-state-calculator.tsx",
+  "modules/guide/centrelink-income-test-faqs.ts",
+  "modules/guide/centrelink-income-test.tsx",
+  "modules/guide/minimum-wage-state.tsx",
+  "modules/guide/non-resident-tax-faqs.ts",
+  "modules/guide/non-resident-tax.tsx",
+  "modules/guide/novated-lease-guide-faqs.ts",
+  "modules/guide/novated-lease-guide.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/minimum-wage/nt/",
+   "url": "https://pay-calculator-australia.com/minimum-wage/nt/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.98",
+   "centerpiece": "4.15",
+   "main_query": "minimum wage darwin",
+   "pre28_clicks": "3",
+   "pre28_impr": "129",
+   "requests": [
+    "The page says the same answer four times: answerNote in the direct-answer box, systemSummary, stateWage[0] and FAQ 'Does the Northern Territory have its own minimum wage?'. The NT rules for long service leave, public holidays and payroll tax are also listed three times (systemSummary, stateWage[2], FAQ). Merging these needs a decision on structure, and this pass cannot cut sentences that carry facts."
+   ]
+  },
+  {
+   "path": "/minimum-wage/nsw/",
+   "url": "https://pay-calculator-australia.com/minimum-wage/nsw/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.76",
+   "centerpiece": "4.21",
+   "main_query": "adult minimum wage nsw",
+   "pre28_clicks": "4",
+   "pre28_impr": "1412",
+   "requests": [
+    "(applies to all 8 /minimum-wage/{state}/ pages) The template answer in mwStateFaqs starts with a bare figure ('${money(NMW.hourly)} an hour, ...'). The FAQPage answer would stand alone better as 'The minimum wage ${s.inName} is ...', but that adds an expression, which this pass cannot do."
+   ]
+  },
+  {
+   "path": "/centrelink-income-test/",
+   "url": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.87",
+   "centerpiece": "3.82",
+   "main_query": "centrelink payment calculator when working",
+   "pre28_clicks": "73",
+   "pre28_impr": "10991",
+   "requests": [
+    "Lines 94, 98 and 170 type figures by hand inside <strong> tags ($150, $256, $226, $202.60, $3.00 per $1,000, $1.50). Render them from JOBSEEKER.incomeTest, AGE_PENSION.incomeTest, ppsFreeArea(1) and PENSION_ASSETS_TEST so they cannot drift. $202.60 has already drifted.",
+    "The page's AUDIT intent is calculate and the top queries ask for a calculator ('centrelink payment calculator when working', 'jobseeker payment calculator australia'), but the hub has no calculator. Add an embedded JobSeeker income test calculator, or a payment chooser, near the top of the page (format_fit 1.64).",
+    "The 'Work Out Your Own Payment' link list (lines 61-81) still uses em dashes. Five of its descriptions are locked short strings (lines 64, 69, 78, 80, 81), so the dash cannot be replaced across the whole list. A code-side change to a colon in all items would make it match the Related Resources list, which now uses colons.",
+    "The deeming FAQ (centrelink-income-test-faqs.ts line 42) hard-codes the previous rates ('1.25% and 3.25% from 20 March to 19 September 2026'). These match DEEMING_HISTORY in lib/constants/centrelink-means-test.ts (line 201) but do not come from it, so they will go stale at the next rate change. Render them from the second-last DEEMING_HISTORY row."
+   ]
+  },
+  {
+   "path": "/non-resident-tax/",
+   "url": "https://pay-calculator-australia.com/non-resident-tax/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "2.40",
+   "centerpiece": "4.42",
+   "main_query": "australian tax for non residents calculator",
+   "pre28_clicks": "18",
+   "pre28_impr": "1641",
+   "requests": [
+    "The top query is 'australian tax for non residents calculator' (AUDIT intent=calculate, format_fit 2.81), but the page has no calculator. It only links to /income-tax-calculator/. Embed the income tax calculator with the non-resident toggle preset (or a small non-resident calculator) above the fold, under the opening paragraph.",
+    "Many figures in prose are hard-coded instead of coming from constants: $18,200, $700, 30%, $135,000, 2%, $2,000, 12% and $10,800 on lines 62, 69, 81, 103-104, 131, 192 and 201. They should be wired to TAX_FREE_THRESHOLD, NR[*], MEDICARE_LEVY, SUPER_GUARANTEE and calculateMedicareLevy so a rate change cannot strand them."
+   ]
+  },
+  {
+   "path": "/novated-lease-guide/",
+   "url": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.72",
+   "centerpiece": "2.05",
+   "main_query": "$40k",
+   "pre28_clicks": "15",
+   "pre28_impr": "2181",
+   "requests": [
+    "Locked table cells still contain em/en dashes (lines 88, 93, 152, 162, 163, 167, 182, 187). They need a code-level edit to replace them with a colon or comma, and 'to' for the 20 to 30% range.",
+    "Link text at line 267 says 'Contractor vs Employee Guide' but the href is /contractor-vs-employee-calculator/. The locked link text should say Calculator, or point to the guide URL if one exists.",
+    "The centerpiece intro cannot state the FBT year (1 April to 31 March), the 47% FBT rate or the 20% statutory fraction without adding numbers. Consider rendering FBT.rate and FBT.statutoryRate as expressions in the header intro.",
+    "Step-by-step list items use a bold label followed by a sentence. The em dashes were replaced with full stops and colons. A reviewer may prefer a consistent visual separator handled in markup.",
+    "This page's AUDIT centerpiece score is 2.05, but these units contain only the FAQ copy, not the opening, so the centerpiece needs the unit that holds the page header prose (app/novated-lease-guide or its guide module)."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

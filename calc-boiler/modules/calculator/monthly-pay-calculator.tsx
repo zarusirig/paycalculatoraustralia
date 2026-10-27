@@ -154,19 +154,19 @@ export default function MonthlyPayCalculatorPage({ intro, children, afterCalcula
                     <td className="px-4 py-3 text-navy font-medium">Weekly</td>
                     <td className="px-4 py-3 text-right text-warmgray">52</td>
                     <td className="px-4 py-3 text-right text-warmgray">{formatAUD(80000 / 52, 2)}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(result.weekly, 2)}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(LEAD.weekly, 2)}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 text-navy font-medium">Fortnightly</td>
                     <td className="px-4 py-3 text-right text-warmgray">26</td>
                     <td className="px-4 py-3 text-right text-warmgray">{formatAUD(80000 / 26, 2)}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(result.fortnightly, 2)}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(LEAD.fortnightly, 2)}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 text-navy font-medium">Monthly</td>
                     <td className="px-4 py-3 text-right text-warmgray">12</td>
                     <td className="px-4 py-3 text-right text-warmgray">{formatAUD(80000 / 12, 2)}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(result.monthly, 2)}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(LEAD.monthly, 2)}</td>
                   </tr>
                 </tbody>
               </table>

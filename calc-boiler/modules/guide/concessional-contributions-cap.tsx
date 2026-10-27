@@ -70,7 +70,7 @@ export default function ConcessionalContributionsCapPage() {
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Concessional Contributions Cap {FY}: {formatAUD(CAP)}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
-          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])} the year before. The cap applies per person, across all your super funds combined. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, you can carry forward unused cap from the last {CARRY_FORWARD.years} years. The calculator below totals your concessional contributions, shows the room left under the cap and works out what salary sacrifice saves in tax. The rest of the page covers what counts towards the cap, the cap by year, the room left after employer super, carry-forward, salary sacrifice examples and the tax on contributions.
+          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> for {FY}, from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])} in {PREV_FY}. The cap applies per person, across all your super funds combined. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, you can carry forward unused cap from the last {CARRY_FORWARD.years} years. The calculator below totals your concessional contributions, shows the room left under the cap and works out what salary sacrifice saves in tax. The rest of the page covers the cap by year, what counts towards the cap, the room left after employer super, carry-forward, salary sacrifice examples and the tax on contributions.
         </p>
         <TrustBar className="!max-w-none" />
       </header>
@@ -97,6 +97,15 @@ export default function ConcessionalContributionsCapPage() {
           <FeaturedImage placement="content" className="mt-0" />
 
           <section>
+            <H2 id="history">Concessional Cap by Year</H2>
+            <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Income year</th><th className="px-4 py-3 text-right">Concessional cap</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+              {HISTORY.map(([year, cap], i) => (
+                <tr key={year} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{year}{year === FY ? " (current)" : ""}</td><td className="px-4 py-3 text-right tabular-nums">{formatAUD(cap)}</td></tr>
+              ))}
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_CAPS_TABLE} target="_blank" rel="noopener noreferrer" className="hover:underline">contributions caps</a>. The cap is indexed to average weekly ordinary time earnings in $2,500 steps.</p></div>
+          </section>
+
+          <section>
             <H2 id="what-counts">What Counts Towards the Concessional Cap</H2>
             <p>Concessional contributions are the ones made from before-tax money. Everything below is added together across all your super funds:</p>
             <ul>
@@ -106,15 +115,6 @@ export default function ConcessionalContributionsCapPage() {
               <li><strong>Other employer contributions</strong>, including any super above the {SG} minimum and fund costs your employer pays for you, such as administration fees and insurance premiums.</li>
             </ul>
             <p>Contributions count in the year your fund <em>receives</em> them, not the year they were earned. That matters around 30 June: a sacrifice from your last June pay that reaches the fund in July counts in the next year.</p>
-          </section>
-
-          <section>
-            <H2 id="history">Concessional Cap by Year</H2>
-            <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Income year</th><th className="px-4 py-3 text-right">Concessional cap</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-              {HISTORY.map(([year, cap], i) => (
-                <tr key={year} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{year}{year === FY ? " (current)" : ""}</td><td className="px-4 py-3 text-right tabular-nums">{formatAUD(cap)}</td></tr>
-              ))}
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_CAPS_TABLE} target="_blank" rel="noopener noreferrer" className="hover:underline">contributions caps</a>. The cap is indexed to average weekly ordinary time earnings in $2,500 steps.</p></div>
           </section>
 
           <section>

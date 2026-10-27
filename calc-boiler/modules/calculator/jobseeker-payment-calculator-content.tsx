@@ -186,7 +186,7 @@ export default function JobseekerPaymentCalculatorContent() {
 
       <section>
         <h2 style={FONT} className={H2}>Working Credits</h2>
-        <p className={P}>In fortnights when your income is under {formatAUD(T.workingCreditThreshold)}, you build working credits. Services Australia uses them first in a fortnight when you earn more, which can keep some payment flowing above the published cut-off. The calculator does not include them because the balance is individual — check yours in your Centrelink online account before relying on a figure here.</p>
+        <p className={P}>In fortnights when your income is under {formatAUD(T.workingCreditThreshold)}, you build working credits. Services Australia uses them first in a fortnight when you earn more, which can keep some payment flowing above the published cut-off. The calculator does not include them because the balance is individual. Check yours in your Centrelink online account before relying on a figure here.</p>
       </section>
 
       <section>

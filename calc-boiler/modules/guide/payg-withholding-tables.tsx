@@ -142,6 +142,50 @@ export default function PAYGTablesGuidePage() {
           {/* MAIN ARTICLE CONTENT */}
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
+            <section id="withholding-at-a-glance">
+              <h2>PAYG Withholding at a Glance, {PAYG_FINANCIAL_YEAR}</h2>
+              <p>
+                The table below gives one example per pay cycle for an Australian resident with no study loan. Each tax table page has the full
+                table in both threshold columns, a {PAYG_FINANCIAL_YEAR} / 2025-26 toggle and a lookup for your exact pay.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-navy">
+                    <caption className="sr-only">Example PAYG withholding by pay cycle, {PAYG_FINANCIAL_YEAR}</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-4 py-3">Pay cycle</th>
+                        <th scope="col" className="px-4 py-3">Earnings</th>
+                        <th scope="col" className="px-4 py-3">Tax-free threshold claimed</th>
+                        <th scope="col" className="px-4 py-3">Not claimed</th>
+                        <th scope="col" className="px-4 py-3">Full table</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {GLANCE.map((g) => (
+                        <tr key={g.frequency}>
+                          <th scope="row" className="px-4 py-3 font-semibold">{g.label}</th>
+                          <td className="px-4 py-3">{formatAUD(g.gross)}</td>
+                          <td className="px-4 py-3">{formatAUD(withholdingForPeriod(g.gross, g.frequency, "tft"))}</td>
+                          <td className="px-4 py-3">{formatAUD(withholdingForPeriod(g.gross, g.frequency, "noTft"))}</td>
+                          <td className="px-4 py-3">
+                            <Link href={g.href} className="font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
+                              {g.label} tax table {PAYG_FINANCIAL_YEAR}
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p className="text-sm text-warmgray-light">
+                For an exact figure use the lookup on the <Link href="/weekly-tax-table/">weekly tax table</Link>,{" "}
+                <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or{" "}
+                <Link href="/monthly-tax-table/">monthly tax table</Link> page.
+              </p>
+            </section>
+
             <section id="sample-tax-table-rows">
               <h2>Sample Rows From Each ATO Pay-Cycle Table, {PAYG_FINANCIAL_YEAR}</h2>
               <p>
@@ -228,50 +272,6 @@ export default function PAYGTablesGuidePage() {
               </ol>
               <p>
                 The withholding tables assume you earn the same gross amount in every pay period for the full 52 weeks (or 26 fortnights, or 12 months). Employees with irregular income, multiple jobs, or mid-year start dates frequently receive a refund because the annualised projection overestimates their total taxable income. Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> to estimate whether you are likely to receive a refund or owe additional tax.
-              </p>
-            </section>
-
-            <section id="withholding-at-a-glance">
-              <h2>PAYG Withholding at a Glance, {PAYG_FINANCIAL_YEAR}</h2>
-              <p>
-                The table below gives one example per pay cycle for an Australian resident with no study loan. Each tax table page has the full
-                table in both threshold columns, a {PAYG_FINANCIAL_YEAR} / 2025-26 toggle and a lookup for your exact pay.
-              </p>
-              <div className="not-prose my-6">
-                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <caption className="sr-only">Example PAYG withholding by pay cycle, {PAYG_FINANCIAL_YEAR}</caption>
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th scope="col" className="px-4 py-3">Pay cycle</th>
-                        <th scope="col" className="px-4 py-3">Earnings</th>
-                        <th scope="col" className="px-4 py-3">Tax-free threshold claimed</th>
-                        <th scope="col" className="px-4 py-3">Not claimed</th>
-                        <th scope="col" className="px-4 py-3">Full table</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      {GLANCE.map((g) => (
-                        <tr key={g.frequency}>
-                          <th scope="row" className="px-4 py-3 font-semibold">{g.label}</th>
-                          <td className="px-4 py-3">{formatAUD(g.gross)}</td>
-                          <td className="px-4 py-3">{formatAUD(withholdingForPeriod(g.gross, g.frequency, "tft"))}</td>
-                          <td className="px-4 py-3">{formatAUD(withholdingForPeriod(g.gross, g.frequency, "noTft"))}</td>
-                          <td className="px-4 py-3">
-                            <Link href={g.href} className="font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
-                              {g.label} tax table {PAYG_FINANCIAL_YEAR}
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <p className="text-sm text-warmgray-light">
-                For an exact figure use the lookup on the <Link href="/weekly-tax-table/">weekly tax table</Link>,{" "}
-                <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or{" "}
-                <Link href="/monthly-tax-table/">monthly tax table</Link> page.
               </p>
             </section>
 

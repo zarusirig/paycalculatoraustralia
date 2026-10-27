@@ -188,9 +188,9 @@ export default function WeeklyPayCalculatorContent() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 text-navy font-medium">Gross per period ($80k salary)</td>
-                    <td className="px-4 py-3 text-center text-warmgray">$1,538</td>
-                    <td className="px-4 py-3 text-center text-warmgray">$3,077</td>
-                    <td className="px-4 py-3 text-center text-warmgray">$6,667</td>
+                    <td className="px-4 py-3 text-center text-warmgray">{formatAUD(80_000 / 52)}</td>
+                    <td className="px-4 py-3 text-center text-warmgray">{formatAUD(80_000 / 26)}</td>
+                    <td className="px-4 py-3 text-center text-warmgray">{formatAUD(80_000 / 12)}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 text-navy font-medium">Best suited for</td>

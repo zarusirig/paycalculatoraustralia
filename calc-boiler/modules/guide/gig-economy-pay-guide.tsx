@@ -61,6 +61,44 @@ export default function GigEconomyPayGuidePage() {
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
+            {/* ───── SECTION 0: Setting Aside for Tax (moved up 27 Oct 2026: the
+                 intro points to this table and the top query is a tax calculator one) ───── */}
+            <section id="setting-aside-for-tax">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Setting Aside for Tax</h2>
+              <p>
+                No one withholds tax from your gig income, so move money for tax into a separate bank account as you are paid. The percentage you need depends on your total annual income: for resident income tax and the Medicare levy, it is about <strong>{pctOf(GIG_FIRST.pct)} at {formatAUD(GIG_FIRST.income)}</strong> and about <strong>{pctOf(GIG_LAST.pct)} at {formatAUD(GIG_LAST.income)}</strong>. The table shows income tax and Medicare levy only, so add GST on top if you are registered:
+              </p>
+
+              <div className="not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-warmgray">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr><th className="px-5 py-3">Annual Gig Income</th><th className="px-5 py-3 text-right">Approx. Tax + Medicare</th><th className="px-5 py-3 text-right">Set Aside %</th><th className="px-5 py-3 text-right">Set Aside per $1,000</th></tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr><td className="px-5 py-3">$18,200 or less</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">0%</td><td className="px-5 py-3 text-right">$0</td></tr>
+                      {GIG_ROWS.map((r) => (
+                        <tr key={r.income}><td className="px-5 py-3">{formatAUD(r.income)}</td><td className="px-5 py-3 text-right">{formatAUD(r.tax)}</td><td className="px-5 py-3 text-right">~{Math.round(r.pct * 100)}%</td><td className="px-5 py-3 text-right">{formatAUD(r.pct * 1000)}</td></tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
+                <div className="flex items-start gap-4">
+                  <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-base font-bold text-navy mb-1">Calculate Your Tax as a Gig Worker</h3>
+                    <p className="text-navy text-sm mb-3">Enter your expected gig income to see your tax bill, Medicare levy, and take-home amount.</p>
+                    <Link href="/income-tax-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
+                      Use our Income Tax Calculator <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* ───── SECTION 1: Employee or Contractor? ───── */}
             <section id="employee-or-contractor">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Employee or Contractor?</h2>
@@ -95,40 +133,6 @@ export default function GigEconomyPayGuidePage() {
               <p>
                 When registered for GST, you charge GST ({pctOf(GST_RATE)}) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
               </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Setting Aside for Tax</h3>
-              <p>
-                No one withholds tax from your gig income, so move money for tax into a separate bank account as you are paid. The percentage you need depends on your total annual income: for resident income tax and the Medicare levy, it is about <strong>{pctOf(GIG_FIRST.pct)} at {formatAUD(GIG_FIRST.income)}</strong> and about <strong>{pctOf(GIG_LAST.pct)} at {formatAUD(GIG_LAST.income)}</strong>. The table shows income tax and Medicare levy only, so add GST on top if you are registered:
-              </p>
-
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Annual Gig Income</th><th className="px-5 py-3 text-right">Approx. Tax + Medicare</th><th className="px-5 py-3 text-right">Set Aside %</th><th className="px-5 py-3 text-right">Set Aside per $1,000</th></tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">$18,200 or less</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">0%</td><td className="px-5 py-3 text-right">$0</td></tr>
-                      {GIG_ROWS.map((r) => (
-                        <tr key={r.income}><td className="px-5 py-3">{formatAUD(r.income)}</td><td className="px-5 py-3 text-right">{formatAUD(r.tax)}</td><td className="px-5 py-3 text-right">~{Math.round(r.pct * 100)}%</td><td className="px-5 py-3 text-right">{formatAUD(r.pct * 1000)}</td></tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
-                <div className="flex items-start gap-4">
-                  <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-base font-bold text-navy mb-1">Calculate Your Tax as a Gig Worker</h3>
-                    <p className="text-navy text-sm mb-3">Enter your expected gig income to see your tax bill, Medicare levy, and take-home amount.</p>
-                    <Link href="/income-tax-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
-                      Use our Income Tax Calculator <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
             </section>
 
             {/* ───── SECTION 3: How Tax Works ───── */}

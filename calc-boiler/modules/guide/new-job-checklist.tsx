@@ -22,6 +22,9 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Pay slips", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips", publisher: SOURCES.fwo.name },
 ];
 
+/** Cash salary inside a $100,000 package that includes super at the SG rate. */
+const PKG_CASH = Math.round(100_000 / (1 + SUPER_GUARANTEE.rate));
+
 export default function NewJobChecklistPage() {
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -29,7 +32,13 @@ export default function NewJobChecklistPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">New Job Checklist</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>New Job Pay Checklist: Set Up Your Pay Correctly From Day One</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">This new job pay checklist covers what an Australian employee should check and complete when starting a new job. Before your first day, you confirm your salary package, the award or enterprise agreement that covers the role, and your contract terms. In your first week, you complete the TFN declaration and give your employer your super fund and bank details. On your first payslip, you check gross pay, PAYG withholding, super and leave against your contract. The Pay Calculator linked in that section shows the PAYG withholding you should expect for your salary. The guide ends with a total package value table and answers to common new job pay questions.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-4">This new job pay checklist covers what an Australian employee should check and complete when starting a new job.</p>
+          <ol className="list-decimal pl-6 space-y-2 text-lg text-warmgray leading-relaxed mb-4">
+            <li><a href="#before-first-day" className="font-semibold text-navy hover:text-eucalyptus-dark hover:underline">Before your first day</a>, you confirm your salary package, the award or enterprise agreement that covers the role, and your contract terms.</li>
+            <li><a href="#first-week-paperwork" className="font-semibold text-navy hover:text-eucalyptus-dark hover:underline">In your first week</a>, you complete the TFN declaration and give your employer your super fund and bank details.</li>
+            <li><a href="#first-pay-checks" className="font-semibold text-navy hover:text-eucalyptus-dark hover:underline">On your first payslip</a>, you check gross pay, PAYG withholding, super and leave against your contract. The Pay Calculator linked in that section shows the PAYG withholding you should expect for your salary.</li>
+          </ol>
+          <p className="text-lg text-warmgray leading-relaxed mb-6">The guide ends with a total package value table and answers to common new job pay questions.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -45,7 +54,7 @@ export default function NewJobChecklistPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Understand Your Salary Package</h3>
               <ul>
-                <li>{"✅"} <strong>Confirm total package vs base salary.</strong> Some offers quote a &quot;total remuneration package&quot; that includes super. A $100,000 total package means your cash salary is approximately <strong>$89,286</strong> with $10,714 going to super (12%). A $100,000 base salary plus super means you receive $100,000 in cash and $12,000 in super, a total value of $112,000.</li>
+                <li>{"✅"} <strong>Confirm total package vs base salary.</strong> Some offers quote a &quot;total remuneration package&quot; that includes super. A $100,000 total package means your cash salary is approximately <strong>{formatAUD(PKG_CASH)}</strong> with {formatAUD(100_000 - PKG_CASH)} going to super ({formatPercent(SUPER_GUARANTEE.rate, 0)}). A $100,000 base salary plus super means you receive $100,000 in cash and {formatAUD(100_000 * SUPER_GUARANTEE.rate)} in super, a total value of {formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))}.</li>
                 <li>{"✅"} <strong>Check for salary sacrifice availability.</strong> Ask whether your new employer offers salary sacrifice into super or a novated lease. Pre-tax salary sacrifice reduces your taxable income and the income tax you pay on it. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings.</li>
                 <li>{"✅"} <strong>Verify the applicable award or enterprise agreement.</strong> If your role is covered by a modern award, check the minimum pay rates for your classification level. Use our <Link href="/award-rates/">Award Rates Guide</Link> to confirm your offer meets or exceeds the award minimum.</li>
               </ul>
@@ -139,11 +148,11 @@ export default function NewJobChecklistPage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3 font-medium">Base salary</td><td className="px-5 py-3">$90,000</td><td className="px-5 py-3">Cash salary before tax</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Superannuation (12%)</td><td className="px-5 py-3">$10,800</td><td className="px-5 py-3">Paid by employer into your super fund</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)})</td><td className="px-5 py-3">{formatAUD(90_000 * SUPER_GUARANTEE.rate)}</td><td className="px-5 py-3">Paid by employer into your super fund</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Salary sacrifice (if available)</td><td className="px-5 py-3">$5,000 – $15,000</td><td className="px-5 py-3">Pre-tax contributions reduce taxable income</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Leave entitlements</td><td className="px-5 py-3">~$6,923</td><td className="px-5 py-3">4 weeks paid annual leave (4/52 of base) &mdash; already inside the base salary, not extra cash</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Other benefits</td><td className="px-5 py-3">Varies</td><td className="px-5 py-3">Parking, health insurance, bonuses, WFH equipment</td></tr>
-                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">$100,800+</td><td className="px-5 py-3">Base salary plus super, before other benefits</td></tr>
+                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">{formatAUD(90_000 * (1 + SUPER_GUARANTEE.rate))}+</td><td className="px-5 py-3">Base salary plus super, before other benefits</td></tr>
                     </tbody>
                   </table>
                 </div>

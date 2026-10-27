@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
-import { formatAUD, formatPercent } from "@/lib/constants/australian-tax";
+import { EMPLOYMENT, HECS_HELP, formatAUD, formatPercent } from "@/lib/constants/australian-tax";
+import { FTB_A, FTB_B } from "@/lib/constants/centrelink-family-payments";
 import { DIVISION_296 } from "@/lib/constants/super-contributions";
 import { RATE_SET_LABELS, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 
@@ -9,7 +10,8 @@ export default function July12026MoneyChanges() {
     <>
       <p className="lead">
         On 1 July 2026 Australian pay, super, tax, HECS and family payment rules all changed at
-        once: the national minimum wage rose <strong>6%</strong>, payday super began, the tax rate
+        once: the national minimum wage rose <strong>6%</strong> to{" "}
+        {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour, payday super began, the tax rate
         on the second income tax bracket dropped to <strong>15%</strong>, the HECS repayment
         threshold rose, and Family Tax Benefit was indexed. Each section below gives the new figure
         and links to the calculator or guide that checks your own numbers.
@@ -22,6 +24,7 @@ export default function July12026MoneyChanges() {
           { label: "Payday super", after: "Super paid within 7 business days of payday" },
           { label: "Income tax (16% bracket)", before: "16%", after: "15%" },
           { label: "HECS repayment threshold", before: "$67,000", after: "$69,528" },
+          { label: "Family Tax Benefit Part A (per child under 13)", after: `${formatAUD(FTB_A.maxFortnightly.age0to12, 2)}/fortnight` },
         ]}
       />
 
@@ -68,7 +71,7 @@ export default function July12026MoneyChanges() {
       <h2>HECS: repayment threshold and indexation both moved</h2>
       <p>
         The compulsory repayment threshold for 2026-27 rose to $69,528, and HECS balances were
-        indexed 2.8% back on 1 June. Under the marginal repayment system, you now pay 15c for
+        indexed {formatPercent(HECS_HELP.indexationRate)} back on 1 June. Under the marginal repayment system, you now pay 15c for
         every dollar of repayment income above that threshold in the first band, rather than a flat percentage of
         your total income. See{" "}
         <Link href="/news/hecs-repayment-threshold-2026-27/">
@@ -82,8 +85,8 @@ export default function July12026MoneyChanges() {
       <p>
         Family Tax Benefit rose from 1 July 2026 under the family assistance indexation cycle,
         which runs on the financial year rather than the calendar dates used for pensions. Part A
-        rose to $235.48 a fortnight per child under 13, and the Part B primary earner income limit
-        lifted to $124,327. Pension-type payments like Age Pension, JobSeeker and Carer Payment
+        rose to {formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child under 13, and the Part B primary earner income limit
+        lifted to {formatAUD(FTB_B.primaryEarnerLimit)}. Pension-type payments like Age Pension, JobSeeker and Carer Payment
         instead index every 20 March and 20 September. The Age Pension&apos;s latest rise was on{" "}
         {RATE_SET_LABELS[SEPTEMBER_2026]}. See{" "}
         <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from July 2026</Link>{" "}

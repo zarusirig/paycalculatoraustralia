@@ -11,7 +11,7 @@ import {
   type AllowanceRow,
 } from "@/lib/constants/allowances-guide";
 import { raiseOutcome } from "@/lib/constants/marginal-rates";
-import { ALLOWANCES_GUIDE_FAQS } from "./allowances-guide-faqs";
+import { ALLOWANCES_GUIDE_FAQS, firstDollar } from "./allowances-guide-faqs";
 import {
   ARTICLE_CLASS,
   Breadcrumbs,
@@ -72,12 +72,6 @@ function kindTable(kind: AllowanceKind) {
       caption={<>Amounts as printed in each award, consolidated to {rows[0]?.consolidatedTo ?? "1 July 2026"} and read on {JOB_PAY_VERIFIED_ON}. Clause numbers are in the &ldquo;when it applies&rdquo; column. Awards are reviewed each year; check the current amount in your award or pay guide.</>}
     />
   );
-}
-
-/** The first dollar figure in a row's amount, e.g. "$16.79 per week" gives 16.79. */
-function firstDollar(r: AllowanceRow | undefined): number {
-  const m = r?.amount.match(/\$([\d,]+(?:\.\d+)?)/);
-  return m ? Number(m[1].replace(/,/g, "")) : 0;
 }
 
 /** Lowest and highest headline (first) dollar figure across a set of rows. */

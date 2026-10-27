@@ -92,6 +92,10 @@ export function LongServiceLeaveHub() {
   const exampleWeeks = accruedWeeks("nsw", serviceFromParts(10));
   const examplePayout = exampleWeeks * exampleWeekly;
   const exampleTarget = takeHomeSalaryStep(exampleWeekly * 52 + examplePayout);
+  // SA/NT comparison, derived from the same table as the opening paragraph.
+  const otherRate = LSL_OTHER_RATE[0];
+  const otherWeeks = Number(accruedWeeks(otherRate.code, serviceFromParts(10)).toFixed(2));
+  const otherPayout = otherWeeks * exampleWeekly;
 
   return (
     <div className="min-h-screen flex-grow">
@@ -239,12 +243,12 @@ export function LongServiceLeaveHub() {
               South Australia and the NT pay half as much again
             </h3>
             <p className={P}>
-              The single biggest difference is the rate. Six jurisdictions accrue{" "}
-              <strong>0.8667 weeks a year</strong>, two months of leave for 10 years of service.
-              South Australia and the Northern Territory accrue <strong>1.3 weeks a year</strong>, so
-              the same 10 years earns 13 weeks. On {formatAUD(exampleWeekly)} a week that is{" "}
-              {formatAUD(13 * exampleWeekly)} instead of {formatAUD(examplePayout)}, a gap of{" "}
-              {formatAUD(13 * exampleWeekly - examplePayout)} for identical service.
+              The single biggest difference is the rate: {LSL_COMMON_RATE_COUNT} jurisdictions accrue{" "}
+              <strong>{LSL_COMMON_RATE} weeks a year</strong>, two months of leave for 10 years of service.
+              South Australia and the Northern Territory accrue <strong>{rateLabel(otherRate.weeksPerYear)} weeks a year</strong>, so
+              the same 10 years earns {otherWeeks} weeks. On {formatAUD(exampleWeekly)} a week that is{" "}
+              {formatAUD(otherPayout)} instead of {formatAUD(examplePayout)}, a gap of{" "}
+              {formatAUD(otherPayout - examplePayout)} for identical service.
             </p>
             <p className={P}>
               The catch is at the other end: SA and the NT pay on{" "}

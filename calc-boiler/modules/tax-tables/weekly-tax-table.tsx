@@ -93,14 +93,6 @@ export default function WeeklyTaxTablePage() {
 
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            <section id="weekly-tax-table-coefficients">
-              <h2>Weekly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>
-              <p>
-                From {PAYG_TABLES_UPDATED} the ATO weekly tax table (ATO {ATO_WEEKLY.nat}) is built from the two coefficient tables below, one for payees who claim the tax-free threshold and one for those who do not. Use them to check a payroll system, or jump to the full weekly table further down, the ATO PDF and spreadsheet <a href="#ato-downloads">download links</a>, or the {PAYG_PREVIOUS_FINANCIAL_YEAR} table for pay dates before 1 July 2026.
-              </p>
-              <CoefficientTables frequency="weekly" fy={PAYG_FINANCIAL_YEAR} />
-            </section>
-
             <section id="weekly-tax-table-2026-27">
               <h2>Full Weekly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
@@ -119,6 +111,14 @@ export default function WeeklyTaxTablePage() {
                 sample amounts exactly.{" "}
                 To skip the lookup, the <Link href="/weekly-pay-calculator/">weekly tax calculator</Link> works out your exact weekly pay.
               </p>
+            </section>
+
+            <section id="weekly-tax-table-coefficients">
+              <h2>Weekly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>
+              <p>
+                From {PAYG_TABLES_UPDATED} the ATO weekly tax table (ATO {ATO_WEEKLY.nat}) is built from the two coefficient tables below, one for payees who claim the tax-free threshold and one for those who do not. Use them to check a payroll system, or use the full weekly table above, the ATO PDF and spreadsheet <a href="#ato-downloads">download links</a>, or the {PAYG_PREVIOUS_FINANCIAL_YEAR} table for pay dates before 1 July 2026.
+              </p>
+              <CoefficientTables frequency="weekly" fy={PAYG_FINANCIAL_YEAR} />
             </section>
 
             <section id="how-to-read">

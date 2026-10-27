@@ -1,0 +1,106 @@
+{
+ "name": "st-024-new-job-checklist",
+ "files": [
+  "app/commission-tax-calculator/page.tsx",
+  "app/listo-calculator/page.tsx",
+  "app/new-job-checklist/page.tsx",
+  "app/termination-payment-tax-calculator/page.tsx",
+  "app/travel-allowance/page.tsx",
+  "modules/calculator/commission-tax-calculator-content.tsx",
+  "modules/calculator/commission-tax-calculator.tsx",
+  "modules/calculator/commission-tax-faqs.ts",
+  "modules/calculator/listo-calculator.tsx",
+  "modules/calculator/termination-payment-tax-calculator.tsx",
+  "modules/calculator/travel-allowance-calculator.tsx",
+  "modules/guide/listo-calculator-faqs.ts",
+  "modules/guide/listo-calculator.tsx",
+  "modules/guide/new-job-checklist-faqs.ts",
+  "modules/guide/new-job-checklist.tsx",
+  "modules/guide/termination-payment-tax-faqs.ts",
+  "modules/guide/termination-payment-tax.tsx",
+  "modules/guide/travel-allowance-faqs.ts",
+  "modules/guide/travel-allowance.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/new-job-checklist/",
+   "url": "https://pay-calculator-australia.com/new-job-checklist/",
+   "inPlan": false,
+   "intent": "how-to-steps",
+   "format_fit": "3.28",
+   "centerpiece": "2.42",
+   "main_query": "new job pay checklist",
+   "pre28_clicks": "2",
+   "pre28_impr": "118",
+   "requests": [
+    "The opening has no figure because none is rendered there. If the owner wants the centerpiece to lead with a number, add expressions for SUPER_GUARANTEE.rate and TAX_FREE_THRESHOLD. The HELP threshold ($69,528, line 70) and the 12% SG rate (line 84) are also typed by hand and should be rendered from HECS_HELP.minimumThreshold and SUPER_GUARANTEE.rate.",
+    "The centerpiece score is 2.42, but this unit holds only the FAQs. The page opening lives in another file and was not touched in this job."
+   ]
+  },
+  {
+   "path": "/listo-calculator/",
+   "url": "https://pay-calculator-australia.com/listo-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.81",
+   "centerpiece": "4.24",
+   "main_query": "listo calculator",
+   "pre28_clicks": "0",
+   "pre28_impr": "20",
+   "requests": [
+    "The H2 'The 1 July 2027 Boost: $37,000 to $45,000, $500 to $810' has hard-coded figures in a locked heading. It should be built from LISTO_CURRENT and LISTO_2027_28 so it cannot disagree with the body.",
+    "The 'What is the lowest salary that gets the full LISTO?' FAQ answer should use salaryForFullListo(NOW) and SUPER_GUARANTEE.rate instead of typed 12% and $27,778."
+   ]
+  },
+  {
+   "path": "/commission-tax-calculator/",
+   "url": "https://pay-calculator-australia.com/commission-tax-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.37",
+   "centerpiece": "3.89",
+   "main_query": "commission tax calculator",
+   "pre28_clicks": "41",
+   "pre28_impr": "1723",
+   "requests": [
+    "The hero opens with what the calculator does, but the top queries ask 'is commission taxed / does commission get taxed'. A direct first sentence above the calculator (for example 'Commission is taxed in Australia as ordinary income at your marginal rate') would answer them. It is not added here because the hero is not a centerpiece unit (score 3.89) and the first sentence is protected."
+   ]
+  },
+  {
+   "path": "/travel-allowance/",
+   "url": "https://pay-calculator-australia.com/travel-allowance/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.92",
+   "centerpiece": "4.32",
+   "main_query": "site:pay-calculator-australia.com",
+   "pre28_clicks": "65",
+   "pre28_impr": "4022",
+   "requests": [
+    "Render the salary band cut-off in the FAQ answer and the page body from SALARY_BANDS[1].max (and [2].max) instead of the typed $153,210 and $272,680."
+   ]
+  },
+  {
+   "path": "/termination-payment-tax-calculator/",
+   "url": "https://pay-calculator-australia.com/termination-payment-tax-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.75",
+   "centerpiece": "4.04",
+   "main_query": "termination payment tax calculator",
+   "pre28_clicks": "3",
+   "pre28_impr": "208",
+   "requests": [
+    "Use {PRESERVATION_AGE} in place of the typed 60 in the 'Check your age cut-offs' tip and in the ETP rates table caption."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

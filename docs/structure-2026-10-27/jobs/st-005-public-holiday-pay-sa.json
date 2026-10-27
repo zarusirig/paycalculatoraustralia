@@ -1,0 +1,257 @@
+{
+ "name": "st-005-public-holiday-pay-sa",
+ "files": [
+  "app/fitness-industry-award-rates/page.tsx",
+  "app/hospitality-award-rates/page.tsx",
+  "app/pay-calculator-act/page.tsx",
+  "app/pay-calculator-nt/page.tsx",
+  "app/pay-calculator-qld/page.tsx",
+  "app/pay-calculator-sa/page.tsx",
+  "app/pay-calculator-tas/page.tsx",
+  "app/pay-calculator-vic/page.tsx",
+  "app/pay-calculator-wa/page.tsx",
+  "app/public-holiday-pay/[state]/page.tsx",
+  "app/public-holiday-pay/page.tsx",
+  "app/schads-award-pay-rates/page.tsx",
+  "modules/calculator/public-holiday-pay-calculator.tsx",
+  "modules/guide/award-page-parts.tsx",
+  "modules/guide/award-rate-table.tsx",
+  "modules/guide/hospitality-award-faqs.ts",
+  "modules/guide/hospitality-award-rates.tsx",
+  "modules/guide/modern-award-content-oct.ts",
+  "modules/guide/modern-award-content-oct2.ts",
+  "modules/guide/modern-award-content.ts",
+  "modules/guide/modern-award-rates.tsx",
+  "modules/guide/modern-award-seo.ts",
+  "modules/guide/print-button.tsx",
+  "modules/guide/public-holiday-hub.tsx",
+  "modules/guide/public-holiday-routes.tsx",
+  "modules/guide/public-holiday-shared.tsx",
+  "modules/guide/public-holiday-state.tsx",
+  "modules/guide/schads-award-faqs.ts",
+  "modules/guide/schads-award-pay-rates.tsx",
+  "modules/state/pay-calculator-act-faqs.ts",
+  "modules/state/pay-calculator-act.tsx",
+  "modules/state/pay-calculator-nt-faqs.ts",
+  "modules/state/pay-calculator-nt.tsx",
+  "modules/state/pay-calculator-qld-faqs.ts",
+  "modules/state/pay-calculator-qld.tsx",
+  "modules/state/pay-calculator-sa-faqs.ts",
+  "modules/state/pay-calculator-sa.tsx",
+  "modules/state/pay-calculator-tas-faqs.ts",
+  "modules/state/pay-calculator-tas.tsx",
+  "modules/state/pay-calculator-vic-faqs.ts",
+  "modules/state/pay-calculator-vic.tsx",
+  "modules/state/pay-calculator-wa-faqs.ts",
+  "modules/state/pay-calculator-wa.tsx",
+  "modules/state/state-faqs-shared.ts",
+  "modules/state/state-minimum-wage.tsx",
+  "modules/state/state-sections.tsx",
+  "modules/state/state-take-home-calculator.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/public-holiday-pay/sa/",
+   "url": "https://pay-calculator-australia.com/public-holiday-pay/sa/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "2.36",
+   "centerpiece": "2.57",
+   "main_query": "adelaide",
+   "pre28_clicks": "1",
+   "pre28_impr": "707",
+   "requests": []
+  },
+  {
+   "path": "/hospitality-award-rates/",
+   "url": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.95",
+   "centerpiece": "2.54",
+   "main_query": "level 2 food and beverage attendant pay rate casual",
+   "pre28_clicks": "88",
+   "pre28_impr": "13105",
+   "requests": [
+    "Centerpiece 2.77. The opening (standfirst and directAnswer) comes from getAwardPageCopy in modules/guide/modern-award-content, not from modern-award-rates.tsx, so this unit cannot change it. The main query is 'level 2 food and beverage attendant pay rate casual', so the direct answer should give the Level 2 casual hourly rate from the constants.",
+    "In the opening (line 97), the strings 'at level 1 and' and 'level 6' are lowercase, while the rest of the page writes 'Level 1'. The 'at level 1 and' string is locked as a short string. It needs a code-side change to 'Level' so the entity name matches the H1, the tables and the top queries ('level 1 hospitality pay rate casual').",
+    "The opening has no casual Level 1 rate. The top queries are casual-rate lookups, so it should show casualHourly(L1.hourly, LOADING), which today appears only in the Direct answer box. Adding it needs a new expression in the line 97 paragraph."
+   ]
+  },
+  {
+   "path": "/public-holiday-pay/wa/",
+   "url": "https://pay-calculator-australia.com/public-holiday-pay/wa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.47",
+   "centerpiece": "2.39",
+   "main_query": "2 march public holiday",
+   "pre28_clicks": "6",
+   "pre28_impr": "1409",
+   "requests": [
+    "The standfirst cannot carry the penalty-rate answer because it is a plain data string with no expressions. The figure only appears in the 'Direct answer' box below it. If the opening should lead with the pay rate, the page module would need to pass a rate expression into the standfirst, or the Direct answer box would need to move above it."
+   ]
+  },
+  {
+   "path": "/fitness-industry-award-rates/",
+   "url": "https://pay-calculator-australia.com/fitness-industry-award-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.01",
+   "centerpiece": "4.02",
+   "main_query": "fitness industry award pay rates 2026-27",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "Move the Level 6 below Level 5 note out of hoursNotes, which renders under 'Minimum Shifts and Hours', and put it next to the rates or classification list. That needs a new field or a component change."
+   ]
+  },
+  {
+   "path": "/pay-calculator-sa/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-sa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.52",
+   "centerpiece": "1.70",
+   "main_query": "average salary in south australia",
+   "pre28_clicks": "6",
+   "pre28_impr": "1801",
+   "requests": [
+    "The top query is 'average salary in south australia', but the hero opening has no figure. Add {formatAUD(typicalSalary(PROFILE))} and {formatAUD(PROFILE.awote.personsFullTime, 2)} a week (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}) to the hero paragraph so the opening can answer it directly. The rewritten hero currently says the calculator opens on the ABS average full-time salary, but gives no number.",
+    "FAQ 'What is the take-home pay on the average SA salary?' (pay-calculator-sa-faqs.ts line 19) answers with gross earnings only. Add a calculatePayBreakdown({ grossSalary: typicalSalary(PROFILE) }) weekly/fortnightly net expression so the first sentence gives the take-home figure.",
+    "pay-calculator-sa.tsx line 148 hard-codes '$1.5m and $1.7m'. Replace them with expressions from SA_PAYROLL_TAX.threshold / fullRateFrom (the FAQ already uses millions(...)) so the page and the FAQ cannot drift apart."
+   ]
+  },
+  {
+   "path": "/pay-calculator-tas/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-tas/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.37",
+   "centerpiece": "2.60",
+   "main_query": "pay calculator tas",
+   "pre28_clicks": "1",
+   "pre28_impr": "454",
+   "requests": [
+    "FAQ 'What is the take-home pay on the average Tasmanian salary?' (pay-calculator-tas-faqs.ts line 17) has the same gap: it gives gross AWOTE and not net pay. It needs a take-home expression.",
+    "The hero opening has no take-home figure. The only expression in it is the financial year. To give a direct answer, the opening needs an expression for the take-home pay on typicalSalary(PROFILE), e.g. calculatePayBreakdown(...).takeHomePay or its weekly/fortnightly value."
+   ]
+  },
+  {
+   "path": "/pay-calculator-act/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-act/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.51",
+   "centerpiece": "2.58",
+   "main_query": "pay calculator canberra",
+   "pre28_clicks": "6",
+   "pre28_impr": "441",
+   "requests": [
+    "The centerpiece opening has no figure expression, so it cannot give the direct answer. Add {formatAUD(typicalSalary(PROFILE))} (or awoteLine(PROFILE)) and the matching take-home figure from the federal engine to the hero <p>. The opening could then state something like 'on the average Canberra full-time salary of X you take home Y a year'."
+   ]
+  },
+  {
+   "path": "/pay-calculator-wa/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-wa/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.82",
+   "centerpiece": "2.54",
+   "main_query": "90000 52",
+   "pre28_clicks": "15",
+   "pre28_impr": "1806",
+   "requests": [
+    "The hero intro cannot end with the 'what the rest of the page covers' sentence, because its last JSX segment (' a week (ABS, ...).') is locked. The AWOTE figure sentence stays last. A code change could move it if wanted.",
+    "The FAQ 'What is the take-home pay on the average WA salary?' gives only gross AWOTE. It needs a take-home expression in the answer."
+   ]
+  },
+  {
+   "path": "/schads-award-pay-rates/",
+   "url": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.85",
+   "centerpiece": "3.90",
+   "main_query": "schads award 2026",
+   "pre28_clicks": "86",
+   "pre28_impr": "7340",
+   "requests": [
+    "The FAQ 'When did the new SCHADS rates start?' opens with SCHADS_AWARD.effectiveNote (lib/constants/schads-award.ts line 46-47). That is a fragment with no subject: 'Applies from the first full pay period starting on or after 1 July 2026, not universally 1 July.' Please reword the constant as a full sentence with the entity as subject, for example 'The new SCHADS rates apply from the first full pay period starting on or after 1 July 2026, not on 1 July itself.' Check that no other consumer depends on the current wording.",
+    "The FAQ 'Does the SCHADS award have junior rates?' (schads-award-faqs.ts line 73) contains an em dash ('it is not from this award \u2014 check which award...'). The checker locks this string as a dash-key, so I could not fix it. Please change it by hand to a full stop: '...it is not from this award. Check which award actually covers your role.'",
+    "Top queries include 'schads award level 8 annual salary', but the annual table only covers Levels 2 to 5 (LEVELS_2_TO_5). Extending the annual column to every Schedule B level (or adding Level 8 pay point 3 annual to the direct-answer box) needs code. The figure cannot be added in prose.",
+    "Line 163 still renders an em dash: the short ' &mdash; ' JSX text between two <strong> elements is locked. Replace it in code with ', which is ' or similar.",
+    "Locked h3 headings ('Home care &mdash; disability care (Schedule E)', '{s.title} &mdash; full-time and part-time', '&mdash; casual') and the matrix label 'Mon\u2013Fri' still render em and en dashes. A code-level heading change is needed to meet the no-dash rule."
+   ]
+  },
+  {
+   "path": "/pay-calculator-vic/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-vic/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.38",
+   "centerpiece": "2.96",
+   "main_query": "$130k salary after taxes",
+   "pre28_clicks": "8",
+   "pre28_impr": "1267",
+   "requests": [
+    "The hero opening gives the Medicare levy, super, LSL and payroll-tax figures but no take-home figure for a Victorian salary. Add an expression for take-home pay on typicalSalary(PROFILE) so the opening answers 'how much do I keep'.",
+    "The FAQ 'What is the take-home pay on the average Victorian salary?' gives only gross AWOTE and defers to the worked example. It needs a take-home expression (annual and per fortnight) in the answer.",
+    "(applies to /pay-calculator-vic/, /pay-calculator-qld/, /pay-calculator-sa/, /pay-calculator-tas/, /pay-calculator-nt/) There is a code bug in AbsEarningsTable (state-sections.tsx lines 243-248). When vsNational < 0 it renders a minus sign and also 'less than', giving 'earn -2.0% less than the national average'. Every state below ABS_NATIONAL_AWOTE_WEEKLY 2,083.70 shows the double negative (VIC, QLD, SA, TAS, NT). Drop the minus prefix. This pass cannot change the short code strings."
+   ]
+  },
+  {
+   "path": "/pay-calculator-nt/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-nt/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.41",
+   "centerpiece": "3.45",
+   "main_query": "pay calculator nt",
+   "pre28_clicks": "11",
+   "pre28_impr": "501",
+   "requests": [
+    "The FAQ 'What is the take-home pay on the average NT salary?' (pay-calculator-nt-faqs.ts:18) gives only the gross AWOTE figure and points to the worked example. It needs a computed net figure (for example calculatePayBreakdown on typicalSalary(PROFILE)) in the answer string to answer the question directly.",
+    "Under the H2 'How much of a Northern Territory salary do you actually keep?', the first sentence ('The Territory levies no income tax.') does not answer the heading. It needs the net take-home figure for typicalSalary(PROFILE) as an expression so the opening can lead with the number."
+   ]
+  },
+  {
+   "path": "/pay-calculator-qld/",
+   "url": "https://pay-calculator-australia.com/pay-calculator-qld/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.55",
+   "centerpiece": "3.62",
+   "main_query": "pay calculator qld",
+   "pre28_clicks": "13",
+   "pre28_impr": "2415",
+   "requests": [
+    "The FAQ 'What is the take-home pay on the average Queensland salary?' (pay-calculator-qld-faqs.ts:18) gives the gross weekly figures only. It needs a computed net take-home expression to answer the question in the first sentence."
+   ]
+  },
+  {
+   "path": "/public-holiday-pay/",
+   "url": "https://pay-calculator-australia.com/public-holiday-pay/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.08",
+   "centerpiece": "3.90",
+   "main_query": "public holiday pay calculator",
+   "pre28_clicks": "54",
+   "pre28_impr": "12474",
+   "requests": [
+    "(applies to /public-holiday-pay/vic/, /wa/, /sa/, /tas/ (centerpiece <= 3)) The opening is s.standfirst (data, another unit) plus the Direct answer box. The box cannot say what the calculator does or what the rest of the page covers, because its closing text node ' for casuals).' is locked as short. Allow one more sentence there, for example 'The calculator below works out your pay for a shift on any of these days, and the tables list each year's dates and weekend rules.', or add it to each state's standfirst.",
+    "(applies to /public-holiday-pay/{state}/ (all 8)) Line 108 'Every public holiday {s.inName} for 2026, as published by the ...' is a fragment that renders as its own paragraph. The opening text node is locked as short, so it cannot become a sentence ('The table lists every public holiday ...'). Unlock it or change it by hand.",
+    "(applies to /public-holiday-pay/{state}/ (all 8)) The calculator intro prop (line 159, 'Prefilled for a ...') is a fragment, but it is a JSX attribute and so locked. Suggested wording: 'The calculator is prefilled for a ...'."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

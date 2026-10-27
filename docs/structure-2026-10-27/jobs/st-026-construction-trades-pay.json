@@ -1,0 +1,108 @@
+{
+ "name": "st-026-construction-trades-pay",
+ "files": [
+  "app/construction-trades-pay/page.tsx",
+  "app/employment-type-calculator/page.tsx",
+  "app/retail-hospitality-pay-guide/page.tsx",
+  "app/rideshare-delivery-earnings-after-tax/page.tsx",
+  "app/tax-bracket-history/page.tsx",
+  "modules/calculator/employment-type-calculator-content.tsx",
+  "modules/calculator/employment-type-calculator-faqs.ts",
+  "modules/calculator/employment-type-calculator.tsx",
+  "modules/calculator/gig-tax-calculator.tsx",
+  "modules/guide/construction-trades-pay-faqs.ts",
+  "modules/guide/construction-trades-pay.tsx",
+  "modules/guide/retail-hospitality-pay-guide-faqs.ts",
+  "modules/guide/retail-hospitality-pay-guide.tsx",
+  "modules/guide/rideshare-delivery-earnings-after-tax-faqs.ts",
+  "modules/guide/rideshare-delivery-earnings-after-tax.tsx",
+  "modules/guide/tax-bracket-history-faqs.ts",
+  "modules/guide/tax-bracket-history.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/construction-trades-pay/",
+   "url": "https://pay-calculator-australia.com/construction-trades-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.66",
+   "centerpiece": "2.33",
+   "main_query": "1st year plumbing apprenticeship wages",
+   "pre28_clicks": "11",
+   "pre28_impr": "2847",
+   "requests": [
+    "The top queries are 'apprentice wage/pay calculator', but the page has no calculator. It only links to /apprentice-pay-rates/ in the middle of Section 2. Add an apprentice wage calculator, or a visible calculator link, near the opening.",
+    "The opening names the Electrical award but not its code (MA000025). The hourly figures are based on a 38-hour week, but the 38 appears only in the table header. A rendered '38-hour week' expression would let the opening state the pay period.",
+    "The adult apprentice paragraph (line 124) should render its two rates from ADULT_APPRENTICE_Y1 and the year-2 adult row, not from hard-coded numbers.",
+    "The page's pre-crash queries are all 'apprentice wage/pay calculator' (AUDIT serp_answered=no), but the only apprentice figures in this unit are in one FAQ answer. The page needs an apprentice rate table or calculator near the top, or those queries belong to /apprentice-pay/ or /apprentice-pay-rates/."
+   ]
+  },
+  {
+   "path": "/rideshare-delivery-earnings-after-tax/",
+   "url": "https://pay-calculator-australia.com/rideshare-delivery-earnings-after-tax/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.98",
+   "centerpiece": "2.62",
+   "main_query": "after taxes",
+   "pre28_clicks": "2",
+   "pre28_impr": "272",
+   "requests": [
+    "The centerpiece opening has no financial-year expression. Add a CURRENT_FY-style expression (for example '2026-27 resident rates') so the opening states the year. The H1 is locked and the year could not be typed in this pass.",
+    "Build the FAQ answer figures (tax rates, Medicare 2%, $75,000, $82.50, 5,000 km) from constants with template literals, as salary-packaging-guide-faqs.ts already does. Then the FAQ text and its FAQPage JSON-LD update on 1 July 2027."
+   ]
+  },
+  {
+   "path": "/tax-bracket-history/",
+   "url": "https://pay-calculator-australia.com/tax-bracket-history/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.87",
+   "centerpiece": "2.88",
+   "main_query": "2020 australian tax brackets",
+   "pre28_clicks": "23",
+   "pre28_impr": "1321",
+   "requests": [
+    "The opening (line 56) cannot answer the top query 'when were tax brackets last changed' because it may not add numbers. It needs '1 July 2026', 'FY2026-27' and the 15% second rate (from TAX_BRACKETS_2026_27) as expressions, so it can say the last change was the cut from 16% to 15% on 1 July 2026.",
+    "The year-by-year comparison table (section #master-comparison) and the H1 stop at FY2025-26. Add an FY2026-27 column driven from TAX_BRACKETS_2026_27 (the $80,000 table already has an FY2026-27 row).",
+    "The two bracket tables (PRE_STAGE3 / POST_STAGE3) and the year-by-year table are hard-coded strings. Drive POST_STAGE3 from lib/constants so the next change cannot leave the page stale."
+   ]
+  },
+  {
+   "path": "/retail-hospitality-pay-guide/",
+   "url": "https://pay-calculator-australia.com/retail-hospitality-pay-guide/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.88",
+   "centerpiece": "4.60",
+   "main_query": "hospitality award rates qld",
+   "pre28_clicks": "15",
+   "pre28_impr": "4062",
+   "requests": [
+    "The Breaks item in 'Your Rights' (line 162) lists four shift-length thresholds across two awards in prose. A small two-column table (shift length to break, retail vs hospitality) would read faster."
+   ]
+  },
+  {
+   "path": "/employment-type-calculator/",
+   "url": "https://pay-calculator-australia.com/employment-type-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.45",
+   "centerpiece": "3.13",
+   "main_query": "casual pay calculator",
+   "pre28_clicks": "94",
+   "pre28_impr": "6799",
+   "requests": [
+    "The top queries are 'casual loading rate calculator' and 'casual pay calculator', but the hero does not show the casual loading figure. Add {formatPercent(EMPLOYMENT.casualLoading)} as an expression in the hero paragraph so the opening can lead with the number. Today the 25% only appears, typed by hand, in the disclaimer below the table."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

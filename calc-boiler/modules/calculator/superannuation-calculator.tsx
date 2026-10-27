@@ -126,10 +126,17 @@ export default function SuperannuationCalculatorPage({
 
           {intro}
 
+          {/* --- Salary Sacrifice Into Super: what it is and the cap space left after SG (merged 27 Oct 2026 with the repeated paragraphs from the comparison section) --- */}
+          <section>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Sacrifice Into Super</h2>
+            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at a concessional rate of <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> inside the fund instead of at your marginal rate, which can be as high as {formatPercent(TOP_RATE, 0)} depending on income.</p>
+            <p className="mb-3 text-warmgray">Your salary sacrifice counts towards the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap along with your employer&apos;s SG contributions. On a salary of {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in mandatory SG, leaving you <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in concessional cap space for voluntary contributions. Each dollar you sacrifice saves tax at your marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax ({formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} on any part caught by Division 293).</p>
+            <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
+          </section>
+
           {/* --- Superannuation vs Salary Sacrifice --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Salary Sacrifice Into Super Compare to Standard SG?</h2>
-            <p className="mb-4 text-warmgray">Salary sacrifice redirects pre-tax salary into your super fund at a concessional tax rate of <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> instead of your marginal tax rate, which can be as high as {formatPercent(TOP_RATE, 0)} depending on income.</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Feature</th><th className="px-4 py-3 text-left font-semibold text-navy">Employer SG (Mandatory)</th><th className="px-4 py-3 text-left font-semibold text-navy">Salary Sacrifice (Voluntary)</th></tr></thead>
@@ -143,19 +150,10 @@ export default function SuperannuationCalculatorPage({
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray mb-3">On a salary of {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in mandatory SG, leaving <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in concessional cap space. Each dollar you sacrifice saves tax at your marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax ({formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} on any part caught by Division 293).</p>
             <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link>: model exact take-home pay differences before and after sacrifice.</p>
           </section>
 
           {middle}
-
-          {/* --- Salary Sacrifice Into Super (existing, preserved) --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Sacrifice Into Super</h2>
-            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} inside the fund instead of at your marginal rate (up to {formatPercent(TOP_RATE, 0)}).</p>
-            <p className="mb-3 text-warmgray">Your salary sacrifice counts towards the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap along with your employer&apos;s SG contributions. On {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in SG, leaving you <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in cap space for voluntary contributions.</p>
-            <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
-          </section>
 
           {afterCalculator}
           {children}

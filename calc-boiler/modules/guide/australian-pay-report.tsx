@@ -162,7 +162,8 @@ export default function AustralianPayReport() {
             teachers, nurses and public servants earn in each state. Every figure is computed from ATO tax rates, Fair Work
             Commission decisions, ABS earnings releases and published state pay scales, and every table downloads as CSV.
           </p>
-          <div className="not-prose mb-6 grid gap-3 sm:grid-cols-3">
+          <div className="not-prose mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Stat label="Average full-time weekly earnings (AWOTE)" value={aud(avg.weekly, 2)} sub={`a week, ABS ${AWE_RELEASE.referencePeriod} (${aud(avg.annual)} a year)`} />
             <Stat label="Most the 2026 tax cut is worth" value={aud(cut.perYear)} sub={`a year (${aud(cut.perWeek, 2)} a week), from ${aud(cut.fromIncome)}`} />
             <Stat label="Minimum wage take-home" value={aud(nmw.takeHome)} sub={`a year on ${aud(nmw.annual)} full-time, ${fy}`} />
             <Stat label="Average full-time take-home" value={aud(avg.takeHome)} sub={`a year on ${aud(avg.annual)} (ABS ${AWE_RELEASE.referencePeriod})`} />
@@ -184,6 +185,36 @@ export default function AustralianPayReport() {
               <ol>
                 {findings.map((f) => <li key={f}>{f}</li>)}
               </ol>
+            </section>
+
+            <section id="minimum-median-average">
+              <h2 style={HEADING_FONT}>Minimum wage vs median vs average earnings</h2>
+              <p>
+                The National Minimum Wage rose {nmwRise} on 1 July 2026 to {aud(nmw.weekly, 2)} a week. Average full-time earnings (ABS AWOTE) are{" "}
+                {avg.timesMinimum.toFixed(2)} times that. The median sits between the two because the average is lifted by a small
+                number of very high earners, and the all-employee figures include part-time workers.
+              </p>
+              <Bars rows={bench.map((b) => ({ label: b.label, value: b.annual }))} format={(n) => aud(n)} highlight={(l) => l.startsWith("National")} />
+              <Table caption="Minimum, median and average earnings, with take-home pay" head={["Measure", "Weekly", "Yearly", "Hourly", `Take-home ${fy}`, "× minimum wage", "Source"]} minWidth={860}>
+                {bench.map((b) => (
+                  <tr key={b.id}>
+                    <th scope="row" className={`${td} font-medium`}>{b.label}</th>
+                    <td className={td}>{aud(b.weekly, 2)}</td>
+                    <td className={`${td} font-semibold`}>{aud(b.annual)}</td>
+                    <td className={td}>{b.hourly === null ? "—" : aud(b.hourly, 2)}</td>
+                    <td className={td}>{aud(b.takeHome)}</td>
+                    <td className={td}>{b.timesMinimum.toFixed(2)}</td>
+                    <td className={`${td} text-xs text-warmgray`}>{b.source}</td>
+                  </tr>
+                ))}
+              </Table>
+              <p className="text-sm">
+                Yearly = weekly × 52. Hourly for full-time measures = yearly ÷ 1,976 (38 × 52); the all-employee median hourly figure is
+                the ABS&apos;s own. Take-home applies the {fy} resident engine to the yearly figure. More on{" "}
+                <Link href="/minimum-wage-australia/">the minimum wage</Link> and{" "}
+                <Link href="/average-salary-australia/">average salary by state, industry and age</Link>.
+              </p>
+              <CsvLink file="minimum-vs-median-vs-average-wage.csv" />
             </section>
 
             <section id="take-home">
@@ -217,36 +248,6 @@ export default function AustralianPayReport() {
                 <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
               </p>
               <CsvLink file="take-home-pay-by-salary-2025-26-vs-2026-27.csv" />
-            </section>
-
-            <section id="minimum-median-average">
-              <h2 style={HEADING_FONT}>Minimum wage vs median vs average earnings</h2>
-              <p>
-                The National Minimum Wage rose {nmwRise} on 1 July 2026 to {aud(nmw.weekly, 2)} a week. Average full-time earnings (ABS AWOTE) are{" "}
-                {avg.timesMinimum.toFixed(2)} times that. The median sits between the two because the average is lifted by a small
-                number of very high earners, and the all-employee figures include part-time workers.
-              </p>
-              <Bars rows={bench.map((b) => ({ label: b.label, value: b.annual }))} format={(n) => aud(n)} highlight={(l) => l.startsWith("National")} />
-              <Table caption="Minimum, median and average earnings, with take-home pay" head={["Measure", "Weekly", "Yearly", "Hourly", `Take-home ${fy}`, "× minimum wage", "Source"]} minWidth={860}>
-                {bench.map((b) => (
-                  <tr key={b.id}>
-                    <th scope="row" className={`${td} font-medium`}>{b.label}</th>
-                    <td className={td}>{aud(b.weekly, 2)}</td>
-                    <td className={`${td} font-semibold`}>{aud(b.annual)}</td>
-                    <td className={td}>{b.hourly === null ? "—" : aud(b.hourly, 2)}</td>
-                    <td className={td}>{aud(b.takeHome)}</td>
-                    <td className={td}>{b.timesMinimum.toFixed(2)}</td>
-                    <td className={`${td} text-xs text-warmgray`}>{b.source}</td>
-                  </tr>
-                ))}
-              </Table>
-              <p className="text-sm">
-                Yearly = weekly × 52. Hourly for full-time measures = yearly ÷ 1,976 (38 × 52); the all-employee median hourly figure is
-                the ABS&apos;s own. Take-home applies the {fy} resident engine to the yearly figure. More on{" "}
-                <Link href="/minimum-wage-australia/">the minimum wage</Link> and{" "}
-                <Link href="/average-salary-australia/">average salary by state, industry and age</Link>.
-              </p>
-              <CsvLink file="minimum-vs-median-vs-average-wage.csv" />
             </section>
 
             <section id="award-minimums">
@@ -389,8 +390,8 @@ export default function AustralianPayReport() {
                   <div className="space-y-2 text-sm">
                     {[
                       ["#key-findings", "Key findings"],
-                      ["#take-home", `Take-home pay ${prev} vs ${fy}`],
                       ["#minimum-median-average", "Minimum vs median vs average"],
+                      ["#take-home", `Take-home pay ${prev} vs ${fy}`],
                       ["#award-minimums", "Award minimums ranked"],
                       ["#public-sector", "Public-sector pay by state"],
                       ["#hours-to-earn", "Hours to earn $1,000"],

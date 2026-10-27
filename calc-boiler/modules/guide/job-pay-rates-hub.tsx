@@ -42,6 +42,12 @@ const SECTORS_WITH_JOBS = JOB_SECTORS.map((sector) => ({
   jobs: OCCUPATIONS.filter((o) => OCCUPATION_SECTOR[o.slug] === sector.id).sort((a, b) => a.name.localeCompare(b.name)),
 })).filter((sector) => sector.jobs.length > 0);
 
+/** The minimum hourly rate the hub table shows for a job: its headline classification, else the first row. */
+const hubHourly = (occ: Occupation) => headlineRow(occ)?.hourly ?? occ.tables[0].rows[0].hourly;
+const HUB_HOURLY = OCCUPATIONS.map(hubHourly);
+const HUB_HOURLY_MIN = Math.min(...HUB_HOURLY);
+const HUB_HOURLY_MAX = Math.max(...HUB_HOURLY);
+
 function JobRow({ occ }: { occ: Occupation }) {
   const r = headlineRow(occ);
   const casual = r ? r.casualHourly : occ.tables[0].rows[0].casualHourly;
@@ -68,7 +74,7 @@ function JobRow({ occ }: { occ: Occupation }) {
         )}
       </td>
       <td className="px-4 py-3 text-right font-semibold text-navy">
-        {r ? formatAUD(r.hourly, 2) : formatAUD(occ.tables[0].rows[0].hourly, 2)}
+        {formatAUD(hubHourly(occ), 2)}
       </td>
       <td className="px-4 py-3 text-right">{casual === null ? "—" : formatAUD(casual, 2)}</td>
       <td className="px-4 py-3 text-right">{occ.median ? formatAUD(occ.median.medianWeekly) : "—"}</td>
@@ -96,7 +102,7 @@ export default function JobPayRatesHubPage() {
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             The award minimum hourly, casual and weekly pay for {OCCUPATIONS.length} common Australian jobs is listed
-            below. Each rate is read from the job&rsquo;s modern award (jobs with no award show the National Minimum Wage) and applies from {JOB_PAY_RATES_FROM}. The tables group
+            below, with minimum hourly rates from {formatAUD(HUB_HOURLY_MIN, 2)} to {formatAUD(HUB_HOURLY_MAX, 2)}. Each rate is read from the job&rsquo;s modern award (jobs with no award show the National Minimum Wage) and applies from {JOB_PAY_RATES_FROM}. The tables group
             the jobs by sector and give each job&rsquo;s award and classification (or award-free status), minimum hourly
             rate, casual hourly rate and median full-time weekly earnings. Each job page adds penalty rates, overtime,
             take-home pay and what people in the job actually earn. Below the tables are doctor and dentist taxable

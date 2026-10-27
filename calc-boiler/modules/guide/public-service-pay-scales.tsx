@@ -32,6 +32,40 @@ function summarise(jurisdiction: Jurisdiction) {
   };
 }
 
+/** One band from a service's primary schedule, by its code. Throws if the code is missing. */
+function primaryBand(slug: string, code: string) {
+  const jurisdiction = getJurisdiction(slug);
+  const schedule = jurisdiction?.schedules[0];
+  const band = schedule?.streams.flatMap((s) => s.bands).find((b) => b.code === code);
+  if (!jurisdiction || !schedule || !band) throw new Error(`public service hub: ${slug} band "${code}" not found`);
+  return { jurisdiction, schedule, band };
+}
+
+const range = (min: number, max: number) => `${formatSalary(min)} to ${formatSalary(max)}`;
+
+const APS6 = primaryBand("aps", "APS 6");
+const APS6_MEDIAN = APS6.band.median ?? 0;
+const VPS3_LOW = primaryBand("vic", "VPS 3.1");
+const VPS3_HIGH = primaryBand("vic", "VPS 3.2");
+
+/** The opening's one-level-per-service comparison, rendered from each service's primary schedule. */
+const SNAPSHOT: { slug: string; service: string; level: string; salary: string; date: string }[] = [
+  { slug: "aps", service: APS6.jurisdiction.name, level: "APS 6, median base salary", salary: formatSalary(APS6_MEDIAN), date: APS6.schedule.effectiveFrom },
+  { slug: "vic", service: VPS3_LOW.jurisdiction.name, level: "VPS Grade 3", salary: range(VPS3_LOW.band.min, VPS3_HIGH.band.max), date: VPS3_LOW.schedule.effectiveFrom },
+  ...([
+    ["qld", "AO3", "AO3, state award"],
+    ["nsw", "Clerk Grade 5", "Clerk Grade 5"],
+    ["wa", "Level 5", "Level 5"],
+    ["sa", "ASO-4", "ASO-4"],
+    ["tas", "Band 4", "General Stream Band 4"],
+    ["act", "ASO 6", "ASO 6"],
+    ["nt", "AO5", "AO5"],
+  ] as const).map(([slug, code, level]) => {
+    const { jurisdiction, schedule, band } = primaryBand(slug, code);
+    return { slug, service: jurisdiction.name, level, salary: range(band.min, band.max), date: schedule.effectiveFrom };
+  }),
+];
+
 export default function PublicServicePayScalesPage() {
   const sources: SourceLink[] = JURISDICTIONS.flatMap((jurisdiction) =>
     jurisdiction.sources.slice(0, 3).map((source) => ({
@@ -75,21 +109,12 @@ export default function PublicServicePayScalesPage() {
             Australia has nine public services, and each sets its own classification system and
             pay scale. The federal Australian Public Service (APS) runs APS 1 to 6, EL 1, EL 2 and
             SES Bands 1 to 3 with a median APS 6 base salary of{" "}
-            <strong className="text-navy">$108,092</strong>; Victoria runs grades 1 to 7 with value
+            <strong className="text-navy">{formatSalary(APS6_MEDIAN)}</strong>; Victoria runs grades 1 to 7 with value
             ranges and progression steps (every grade and step is on the{" "}
             <Link href="/public-service-pay-scales/vic/" className="font-medium text-eucalyptus-dark hover:underline">VPS salary 2026</Link>{" "}
             page); Queensland
-            runs AO, PO, TO and OO streams, with an AO3 on{" "}
-            <strong className="text-navy">$81,032 to $89,903</strong> under the state award from 1
-            September 2026. NSW pays a
-            Clerk Grade 5 <strong className="text-navy">$102,936 to $106,182</strong> from July 2026, WA a
-            Level 5 <strong className="text-navy">$108,848 to $118,961</strong> from 13 June 2026, and
-            South Australia an ASO-4 <strong className="text-navy">$82,212 to $86,180</strong> from July
-            2026. Tasmania pays a General Stream Band 4{" "}
-            <strong className="text-navy">$86,325 to $99,237</strong> from December 2025, the ACT an ASO 6{" "}
-            <strong className="text-navy">$102,657 to $116,592</strong> from 4 December 2025, and the
-            Northern Territory an AO5 <strong className="text-navy">$93,674 to $98,332</strong> from 13
-            August 2026. Every figure on these pages is transcribed from the agreement, award,
+            runs AO, PO, TO and OO streams. The table below sets one level from each service side by side.
+            Every figure on these pages is transcribed from the agreement, award,
             determination or official remuneration release that sets or reports it.
           </p>
           <TrustBar className="!max-w-none" />
@@ -101,6 +126,32 @@ export default function PublicServicePayScalesPage() {
             {/* Jurisdiction cards */}
             <section id="jurisdictions">
               <h2 style={HEADING_FONT}>Pay scales by service</h2>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-left text-sm text-warmgray">
+                  <caption className="sr-only">One classification from each Australian public service and its annual salary</caption>
+                  <thead className="bg-sandstone font-semibold text-navy">
+                    <tr>
+                      <th scope="col" className="px-4 py-3">Service</th>
+                      <th scope="col" className="px-4 py-3">Level</th>
+                      <th scope="col" className="px-4 py-3 text-right">Annual salary</th>
+                      <th scope="col" className="px-4 py-3">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {SNAPSHOT.map((row) => (
+                      <tr key={row.slug}>
+                        <th scope="row" className="px-4 py-3 text-left font-medium text-navy">{row.service}</th>
+                        <td className="px-4 py-3">{row.level}</td>
+                        <td className="whitespace-nowrap px-4 py-3 text-right">{row.salary}</td>
+                        <td className="px-4 py-3">{row.date}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Each card below opens that service&rsquo;s full pay scale.
+              </p>
               <div className="not-prose my-6 grid gap-4">
                 {JURISDICTIONS.map((jurisdiction) => {
                   const stats = summarise(jurisdiction);

@@ -101,7 +101,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
-                Enter a base hourly rate and weekly hours to compare full-time, part-time and casual pay side by side. The table shows annual earnings, super, take-home pay after tax and the dollar value of paid annual and personal leave. Casuals get the casual loading instead of that paid leave.
+                Enter a base hourly rate and weekly hours to compare full-time, part-time and casual pay side by side. The table shows annual earnings, super, take-home pay after tax and the dollar value of paid annual and personal leave. Casuals get the {formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading instead of that paid leave.
               </p>
               <TrustBar className="mt-4" />
             </div>

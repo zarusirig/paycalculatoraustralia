@@ -1,0 +1,110 @@
+{
+ "name": "st-029-leave-calculator",
+ "files": [
+  "app/delivery-driver-pay-rate/page.tsx",
+  "app/employee-vs-sole-trader-vs-company/page.tsx",
+  "app/leave-calculator/page.tsx",
+  "app/salary-vs-hourly/page.tsx",
+  "app/tax-changes-2026-27/page.tsx",
+  "modules/calculator/delivery-pay-calculator.tsx",
+  "modules/calculator/leave-calculator-content.tsx",
+  "modules/calculator/leave-calculator-faqs.ts",
+  "modules/calculator/leave-calculator.tsx",
+  "modules/guide/delivery-driver-pay-rate-faqs.ts",
+  "modules/guide/delivery-driver-pay-rate.tsx",
+  "modules/guide/employee-vs-sole-trader-vs-company-faqs.ts",
+  "modules/guide/employee-vs-sole-trader-vs-company.tsx",
+  "modules/guide/salary-vs-hourly-faqs.ts",
+  "modules/guide/salary-vs-hourly.tsx",
+  "modules/guide/tax-changes-2026-27-faqs.ts",
+  "modules/guide/tax-changes-2026-27.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/leave-calculator/",
+   "url": "https://pay-calculator-australia.com/leave-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.21",
+   "centerpiece": "3.53",
+   "main_query": "annual leave payout calculator",
+   "pre28_clicks": "93",
+   "pre28_impr": "7892",
+   "requests": [
+    "The hero used to say the calculator 'shows the tax on the lump sum', but the calculator shows gross before tax only, with a static Tax Note. I corrected the copy. If the tax line is wanted, the calculator needs a withholding row (for example Schedule 7 / marginal-rate estimate) like the leave loading and LSL calculators have.",
+    "The '17.5%' in the calculator checkbox and Row labels (leave-calculator.tsx lines 112 and 150) and the leave-loading-calculator NOTE strings are typed literals. They should read LEAVE_LOADING_RATE / COMMON_LEAVE_LOADING.",
+    "The 17.5% leave loading rate and the 12% SG rate are typed into many prose strings and headings in leave-calculator-content.tsx. They should render from LEAVE_LOADING_RATE and SUPER_GUARANTEE.rate expressions.",
+    "The tax section needs an ATO-sourced line on the capped rate for unused leave paid in a genuine redundancy or accrued before 18 Aug 1993. The current text has no figure or constant for this, so this pass could not write it."
+   ]
+  },
+  {
+   "path": "/tax-changes-2026-27/",
+   "url": "https://pay-calculator-australia.com/tax-changes-2026-27/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "2.82",
+   "centerpiece": "3.87",
+   "main_query": "2026 tax changes",
+   "pre28_clicks": "1",
+   "pre28_impr": "183",
+   "requests": [
+    "Line 142: the 'HECS-HELP Guide' link points to /hecs-help-calculator/, the same URL as the 'HECS-HELP Calculator' link in the same sentence. Point it to a real guide URL or remove the duplicate link.",
+    "The bracket table cells ($0 to $18,200 and so on) and the Living Document 'Last updated: 5 August 2026' line are hard-coded. Drive them from TAX_BRACKETS and a date constant so they stay in step with the engine."
+   ]
+  },
+  {
+   "path": "/salary-vs-hourly/",
+   "url": "https://pay-calculator-australia.com/salary-vs-hourly/",
+   "inPlan": false,
+   "intent": "comparison",
+   "format_fit": "3.82",
+   "centerpiece": "2.20",
+   "main_query": "salary or hourly rate",
+   "pre28_clicks": "4",
+   "pre28_impr": "723",
+   "requests": [
+    "The hero opening has no figure or expression, so the centerpiece cannot give a numeric answer. It needs an expression such as the $16,220 total package gap or FY{SITE_CONFIG.financialYear} added to the intro paragraph (line 55) so the opening can lead with the number.",
+    "The total package table and its example figures ($75,000, $38.50/hr, $15,015, $91,091, $100,220) are hard-coded. Only the tax figures come from calculatePayBreakdown. Derive the rest from constants or a calculation so they cannot drift."
+   ]
+  },
+  {
+   "path": "/employee-vs-sole-trader-vs-company/",
+   "url": "https://pay-calculator-australia.com/employee-vs-sole-trader-vs-company/",
+   "inPlan": false,
+   "intent": "comparison",
+   "format_fit": "3.95",
+   "centerpiece": "1.99",
+   "main_query": "employee vs sole trader vs company",
+   "pre28_clicks": "5",
+   "pre28_impr": "428",
+   "requests": [
+    "The H1 asks \"Which Structure Pays More?\", but the opening has no figure to answer with. The tables sit mid-page, below the disclaimer, the quick comparison table and three prose sections. Add an expression to the hero, for example cash in hand for employee, sole trader and company at the {formatAUD(150_000)} COMPARISONS row, or a short summary row near the top, so the opening can give a direct numeric answer.",
+    "The top pre-crash query is \"payroll for sole trader with employees\" (13 of 428 impressions), and the page does not cover it. A short section is needed on a sole trader employing staff: PAYG withholding for employees, SG on employees' wages, Single Touch Payroll, workers' compensation. This pass cannot add sections.",
+    "Below the H1 the page has no calculator, only static tables at three fixed incomes. Consider an input (income, director salary) that drives the COMPARISONS tables, or move the Take-Home Pay Comparison section above the per-structure prose.",
+    "Add an FAQ or paragraph saying sole traders must pay SG for their employees (payroll for sole traders with employees is the top query), using the SUPER_GUARANTEE.rate expression."
+   ]
+  },
+  {
+   "path": "/delivery-driver-pay-rate/",
+   "url": "https://pay-calculator-australia.com/delivery-driver-pay-rate/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.72",
+   "centerpiece": "4.48",
+   "main_query": "delivery driver pay rate in australia",
+   "pre28_clicks": "3",
+   "pre28_impr": "529",
+   "requests": [
+    "Bind the H1 figure ($31.30) and the KeyFigures note \"Rates rise 1 January 2027\" to the DELIVERY_RATE_PERIODS constants so both update when the 2027 rates start."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

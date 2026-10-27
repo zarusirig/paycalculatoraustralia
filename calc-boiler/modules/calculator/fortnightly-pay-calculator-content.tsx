@@ -201,6 +201,7 @@ export default function FortnightlyPayCalculatorContent() {
                   <ComparisonRow salary={100000} />
                   <ComparisonRow salary={120000} />
                   <ComparisonRow salary={150000} />
+                  <ComparisonRow salary={200000} />
                 </tbody>
               </table>
             </div>

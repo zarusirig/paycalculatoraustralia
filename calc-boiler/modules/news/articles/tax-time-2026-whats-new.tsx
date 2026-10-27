@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
 import { HECS_HELP, HECS_HELP_2025_26, formatAUD, formatPercent } from "@/lib/constants";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 
 export default function TaxTime2026WhatsNew() {
   return (
@@ -8,9 +9,11 @@ export default function TaxTime2026WhatsNew() {
       <p className="lead">
         On the 2025-26 tax return you lodge this tax time, the Medicare levy low-income thresholds
         are higher, the <strong>$2 minimum</strong> for gift deductions has been removed, and the
-        work-from-home fixed rate stays at <strong>70 cents an hour</strong>. This page covers the
+        work-from-home fixed rate stays at <strong>70 cents an hour</strong>. If you lodge your own
+        return, it is due by <strong>{RETURN_2026.selfLodgeDueDate}</strong>; with a registered tax agent
+        engaged before then, it can be as late as {RETURN_2026.agentDueDateMostPeople}. This page covers the
         lodgment deadlines, each change in detail, and how the changes reach your refund or tax bill.
-        The tax return calculator linked below estimates that refund.
+        The <Link href="/tax-return-calculator/">tax return calculator</Link> estimates that refund.
       </p>
 
       <NewsKeyFacts

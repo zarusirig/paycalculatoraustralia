@@ -46,6 +46,8 @@ export interface HubCopy {
   /** The figure printed beside each salary link. */
   figure: (salary: number) => string;
   figureLabel: string;
+  /** Column heading for the figure in each band's table. */
+  figureHeading: string;
   linkLabel: (salary: number) => string;
 }
 
@@ -125,16 +127,27 @@ export function SalaryHub({ copy, related }: { copy: HubCopy; related: { href: s
             <section key={band.id} id={band.id} aria-labelledby={`${band.id}-h`}>
               <h2 id={`${band.id}-h`} style={H} className="text-2xl font-bold text-navy mb-2">{band.title}</h2>
               <p className="text-sm text-warmgray mb-4">{bandSummary(family, salaries)}</p>
-              <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                {salaries.map((s) => (
-                  <li key={s}>
-                    <a href={salaryHref(family, s)} className="flex items-baseline justify-between gap-2 rounded-md border border-sandstone-dark/20 px-3 py-2 text-sm hover:border-eucalyptus hover:bg-sandstone/40">
-                      <span className="font-medium text-navy">{copy.linkLabel(s)}</span>
-                      <span className="text-warmgray" title={copy.figureLabel}>{copy.figure(s)}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <div className="max-w-xl overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <caption className="sr-only">{copy.figureLabel}</caption>
+                  <thead className="bg-sandstone font-semibold text-navy">
+                    <tr>
+                      <th className="px-4 py-3" scope="col">Salary</th>
+                      <th className="px-4 py-3 text-right" scope="col">{copy.figureHeading}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {salaries.map((s) => (
+                      <tr key={s}>
+                        <th scope="row" className="px-4 py-3 font-normal">
+                          <a href={salaryHref(family, s)} className={LINK}>{copy.linkLabel(s)}</a>
+                        </th>
+                        <td className="px-4 py-3 text-right tabular-nums text-navy">{copy.figure(s)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           ))}
 

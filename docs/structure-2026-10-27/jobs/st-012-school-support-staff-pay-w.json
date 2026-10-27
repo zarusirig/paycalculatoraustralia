@@ -1,0 +1,60 @@
+{
+ "name": "st-012-school-support-staff-pay-w",
+ "files": [
+  "app/school-support-staff-pay/[state]/page.tsx",
+  "app/school-support-staff-pay/page.tsx",
+  "modules/guide/school-support-pay.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/school-support-staff-pay/wa/",
+   "url": "https://pay-calculator-australia.com/school-support-staff-pay/wa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.90",
+   "centerpiece": "4.46",
+   "main_query": "how much do education assistants get paid in wa",
+   "pre28_clicks": "108",
+   "pre28_impr": "3444",
+   "requests": [
+    "The FAQ 'What do casual Education Assistants get paid in WA?' (line 547) gives the 25% loading but no dollar figure. A computed casual rate (for example level 1.1 hourly \u00d7 1.25 from WA_RATES) would answer the query directly. It cannot be typed in this pass."
+   ]
+  },
+  {
+   "path": "/school-support-staff-pay/sa/",
+   "url": "https://pay-calculator-australia.com/school-support-staff-pay/sa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.01",
+   "centerpiece": "4.68",
+   "main_query": "sso pay rates",
+   "pre28_clicks": "50",
+   "pre28_impr": "3065",
+   "requests": [
+    "hoursNote (line 577) says 'a version with a 16% loading, the same spread over 52 weeks, and casual rates'. This is ambiguous: it could mean two or three other rate sheets. The owner should confirm which sheets the department publishes so the sentence can be made exact."
+   ]
+  },
+  {
+   "path": "/school-support-staff-pay/",
+   "url": "https://pay-calculator-australia.com/school-support-staff-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.91",
+   "centerpiece": "3.96",
+   "main_query": "qld teacher aide pay scale 2026",
+   "pre28_clicks": "41",
+   "pre28_impr": "3786",
+   "requests": [
+    "The hub lede (school-support-pay.tsx line 175) types eight entry figures by hand ($38.33, $36.28, $34.75, $31.69, $51,622, $58,360, $59,725, $58,817). They match SCHOOL_SUPPORT_STATES[].entry today, but they should be built from that data so they cannot drift when rates change."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

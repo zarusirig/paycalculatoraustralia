@@ -419,8 +419,8 @@ export default function CgtCalculator() {
               <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">
                 tax brackets
               </Link>{" "}
-              and include the 2% Medicare levy, but not the Medicare levy surcharge, HECS-HELP or
-              other offsets. For your full position see the{" "}
+              and include the 2% Medicare levy, but not the Medicare levy surcharge, HELP repayments or
+              tax offsets. For your full position see the{" "}
               <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">
                 income tax calculator
               </Link>

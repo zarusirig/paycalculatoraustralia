@@ -6,7 +6,8 @@ import { FBT_FAQS } from "./fringe-benefits-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD, formatPercent, MEDICARE_LEVY, HECS_HELP } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatPercent, MEDICARE_LEVY, HECS_HELP, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { DIVISION_293 } from "@/lib/constants/super-contributions";
 import { FBT, FBT_CAPS, capFaceValue, LUXURY_CAR_TAX, reportableFringeBenefitsAmount } from "@/lib/constants/novated-lease";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
@@ -37,10 +38,35 @@ export default function FringeBenefitsTaxPage() {
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
+          {/* ===== SECTION 4 ===== */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the FBT Rates and Thresholds for {FBT.yearShort}?</h2>
+            <p>The FBT rate is <strong>{formatPercent(FBT.rate, 0)}</strong> for the FBT year ending {FBT.yearEnding} ({FBT.yearLabel}), equal to the top marginal income tax rate of {formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate, 0)} plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy.</p>
+            <div className="not-prose overflow-x-auto my-6">
+              <table className="w-full text-sm border-collapse border border-sandstone-dark/30">
+                <thead><tr className="bg-sandstone">
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Item</th>
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Value (FBT Year Ending {FBT.yearEnding})</th>
+                </tr></thead>
+                <tbody>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">FBT rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{formatPercent(FBT.rate, 0)}</strong></td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Type 1 gross-up rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{FBT.grossUpType1}</strong></td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Type 2 gross-up rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{FBT.grossUpType2}</strong></td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Car parking threshold</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{PARKING}</strong> per day</td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Minor benefit exemption</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Under <strong>{formatAUD(FBT.minorBenefitThreshold)}</strong> per benefit (infrequent &amp; irregular)</td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Statutory car rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{formatPercent(FBT.statutoryRate, 0)}</strong> of base value (flat rate)</td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Benchmark interest rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{BENCH}</strong></td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Reportable fringe benefits threshold</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Total taxable value over <strong>{RFB_THRESHOLD}</strong> (reported grossed up at Type 2, so at least {formatAUD(FBT.reportableMinimumGrossedUp)})</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The FBT rate has stayed at {formatPercent(FBT.rate, 0)} since 1 April 2017. The benchmark interest rate and car parking threshold are reset for each FBT year: for the year ending {FBT.prevYearEnding} they were {BENCH_PREV} and {PARKING_PREV} a day. For a full picture of Australian income tax brackets and how your marginal rate compares to the FBT rate, refer to our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
+          </section>
+
           {/* ===== SECTION 1 ===== */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Fringe Benefits Tax (FBT)?</h2>
-            <p>Fringe Benefits Tax is a <strong>47% tax paid by employers</strong> on the taxable value of non-cash benefits provided to current, former, or future employees in connection with their employment.</p>
+            <p>Fringe Benefits Tax is a <strong>{formatPercent(FBT.rate, 0)} tax paid by employers</strong> on the taxable value of non-cash benefits provided to current, former, or future employees in connection with their employment.</p>
             <p>FBT is a separate tax from income tax. The employer, not the employee, lodges the FBT return and pays the liability directly to the ATO. The FBT year runs from <strong>1 April to 31 March</strong>, which differs from the standard income tax year of 1 July to 30 June. Employers lodge FBT returns and remit payment by <strong>21 May</strong> each year (or 25 June if lodged through a registered tax agent).</p>
             <p>A &quot;fringe benefit&quot; is any non-salary benefit provided to an employee. Common examples include company cars, private health insurance premiums paid by the employer, gym memberships, and discounted loans. Even benefits provided to an employee&apos;s associate, such as a spouse or child, attract FBT if the benefit arises from the employment relationship. An employer must register for FBT once it provides benefits that create an FBT liability. Separately, once an employee&apos;s taxable fringe benefits exceed <strong>{formatAUD(FBT.reportableThreshold)}</strong> in an FBT year, the grossed-up amount must go on their income statement. Fringe benefits are not part of your cash wages, so use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your cash salary after tax.</p>
           </section>
@@ -48,17 +74,17 @@ export default function FringeBenefitsTaxPage() {
           {/* ===== SECTION 2 ===== */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is FBT Calculated?</h2>
-            <p>FBT is calculated by &quot;grossing up&quot; the taxable value of a fringe benefit to its pre-tax equivalent, then applying the <strong>47% FBT rate</strong> to that grossed-up amount.</p>
+            <p>FBT is calculated by &quot;grossing up&quot; the taxable value of a fringe benefit to its pre-tax equivalent, then applying the <strong>{formatPercent(FBT.rate, 0)} FBT rate</strong> to that grossed-up amount.</p>
             <p>Grossing up converts the benefit&apos;s value into the gross salary an employee would need to earn to purchase the same benefit after tax. The ATO uses two grossing-up methods depending on whether the employer claims GST credits.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Type 1: Benefits Where the Employer Claims a GST Credit</h3>
-            <p>Type 1 grossing up applies when the employer is entitled to a GST credit on the benefit. The Type 1 gross-up rate for the FBT year ending {FBT.yearEnding} is <strong>2.0802</strong>, unchanged from the year before. The formula is:</p>
-            <p><strong>FBT payable = Taxable value x 2.0802 x 47%</strong></p>
+            <p>Type 1 grossing up applies when the employer is entitled to a GST credit on the benefit. The Type 1 gross-up rate for the FBT year ending {FBT.yearEnding} is <strong>{FBT.grossUpType1}</strong>, unchanged from the year before. The formula is:</p>
+            <p><strong>FBT payable = Taxable value x {FBT.grossUpType1} x {formatPercent(FBT.rate, 0)}</strong></p>
             <p>A benefit with a taxable value of $1,000 results in a grossed-up value of $2,080.20 and FBT of <strong>$977.69</strong>.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Type 2: Benefits Where No GST Credit Is Available</h3>
-            <p>Type 2 grossing up applies when the employer cannot claim a GST credit (for example, GST-free or input-taxed supplies such as residential accommodation). The Type 2 gross-up rate is <strong>1.8868</strong>. The formula is:</p>
-            <p><strong>FBT payable = Taxable value x 1.8868 x 47%</strong></p>
+            <p>Type 2 grossing up applies when the employer cannot claim a GST credit (for example, GST-free or input-taxed supplies such as residential accommodation). The Type 2 gross-up rate is <strong>{FBT.grossUpType2}</strong>. The formula is:</p>
+            <p><strong>FBT payable = Taxable value x {FBT.grossUpType2} x {formatPercent(FBT.rate, 0)}</strong></p>
             <p>The same $1,000 benefit under Type 2 produces a grossed-up value of $1,886.80 and FBT of <strong>$886.80</strong>. Employers calculating the true cost of employee benefits, including FBT, can model figures using our <Link href="/employer-cost-calculator/">Employer Cost Calculator</Link>.</p>
           </section>
 
@@ -124,41 +150,16 @@ export default function FringeBenefitsTaxPage() {
             <p>For a Type 2 benefit (no GST credit), Step 2 would use the lower 1.8868 factor: $5,000 × 1.8868 = $9,434, and the FBT would be $9,434 × 47% = <strong>$4,433.98</strong>, about $454 less than the Type 1 equivalent for the same underlying benefit value.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FBT vs Income Tax: Who Pays?</h3>
-            <p>FBT and income tax are two separate Australian tax regimes. <strong>The employer pays FBT</strong> on the grossed-up taxable value of non-cash benefits at the 47% rate. The <strong>employee pays income tax</strong> only on cash wages and salary at their <Link href="/income-tax-calculator/">marginal income tax rate</Link>, with the 2% <Link href="/medicare-levy/">Medicare levy</Link> on top.</p>
+            <p>FBT and income tax are two separate Australian tax regimes. <strong>The employer pays FBT</strong> on the grossed-up taxable value of non-cash benefits at the {formatPercent(FBT.rate, 0)} rate. The <strong>employee pays income tax</strong> only on cash wages and salary at their <Link href="/income-tax-calculator/">marginal income tax rate</Link>, with the 2% <Link href="/medicare-levy/">Medicare levy</Link> on top.</p>
             <p>However, the employee may still see fringe benefits reported on their PAYG income statement as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong>. The RFBA is the taxable value grossed up at the lower Type 2 rate ({FBT.grossUpType2}), even for a Type 1 benefit, and while it is not taxed again, it is added to your adjusted taxable income for the purpose of:</p>
             <ul>
               <li><strong>HECS-HELP repayments</strong>: RFBA counts toward the {HELP_THRESHOLD} marginal-system threshold; model the impact with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</li>
               <li><strong>Medicare Levy Surcharge (MLS)</strong>: RFBA can push your income above the {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1, 0)} singles threshold, triggering 1% to 1.5% MLS unless you hold appropriate <Link href="/private-health-insurance-medicare/">private hospital cover</Link>.</li>
               <li><strong>Super co-contribution</strong>: RFBA reduces eligibility for the government super co-contribution on after-tax personal contributions.</li>
               <li><strong>Family Tax Benefit and Centrelink income tests</strong>: RFBA counts toward income-tested family assistance entitlements.</li>
-              <li><strong>Division 293 tax</strong>: for high-income earners with combined income plus low-tax super above $250,000.</li>
+              <li><strong>Division 293 tax</strong>: for high-income earners with combined income plus low-tax super above {formatAUD(DIVISION_293.threshold)}.</li>
             </ul>
             <p>This is why a salary packaging quote needs to model the <em>combined</em> impact on take-home pay <em>and</em> RFBA, not just the headline tax saving.</p>
-          </section>
-
-          {/* ===== SECTION 4 ===== */}
-          <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the FBT Rates and Thresholds for {FBT.yearShort}?</h2>
-            <p>The FBT rate is <strong>47%</strong> for the FBT year ending {FBT.yearEnding} ({FBT.yearLabel}), equal to the top marginal income tax rate of 45% plus the 2% Medicare levy.</p>
-            <div className="not-prose overflow-x-auto my-6">
-              <table className="w-full text-sm border-collapse border border-sandstone-dark/30">
-                <thead><tr className="bg-sandstone">
-                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Item</th>
-                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Value (FBT Year Ending {FBT.yearEnding})</th>
-                </tr></thead>
-                <tbody>
-                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">FBT rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>47%</strong></td></tr>
-                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Type 1 gross-up rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>2.0802</strong></td></tr>
-                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Type 2 gross-up rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>1.8868</strong></td></tr>
-                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Car parking threshold</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{PARKING}</strong> per day</td></tr>
-                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Minor benefit exemption</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Under <strong>$300</strong> per benefit (infrequent &amp; irregular)</td></tr>
-                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Statutory car rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>20%</strong> of base value (flat rate)</td></tr>
-                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Benchmark interest rate</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray"><strong>{BENCH}</strong></td></tr>
-                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Reportable fringe benefits threshold</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Total taxable value over <strong>{RFB_THRESHOLD}</strong> (reported grossed up at Type 2, so at least {formatAUD(FBT.reportableMinimumGrossedUp)})</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p>The FBT rate has stayed at 47% since 1 April 2017. The benchmark interest rate and car parking threshold are reset for each FBT year: for the year ending {FBT.prevYearEnding} they were {BENCH_PREV} and {PARKING_PREV} a day. For a full picture of Australian income tax brackets and how your marginal rate compares to the FBT rate, refer to our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
           </section>
 
           {/* ===== SECTION 5 ===== */}
@@ -177,7 +178,7 @@ export default function FringeBenefitsTaxPage() {
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fully Exempt Benefits</h3>
             <ul>
               <li><strong>Portable electronic devices</strong> primarily for work: one laptop, one tablet, and one phone per FBT year</li>
-              <li><strong>Minor benefits</strong> under $300 that are infrequent and irregular (e.g., a Christmas ham, occasional taxi fares)</li>
+              <li><strong>Minor benefits</strong> under {formatAUD(FBT.minorBenefitThreshold)} that are infrequent and irregular (e.g., a Christmas ham, occasional taxi fares)</li>
               <li><strong>Eligible electric vehicles</strong> under the Electric Car Discount: battery electric vehicles first held and used on or after 1 July 2022 (plug-in hybrids only under arrangements entered into before 1 April 2025), with a value at first retail sale below the luxury car tax limit for fuel-efficient vehicles (<strong>{formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</strong> for FY{LUXURY_CAR_TAX.financialYear})</li>
               <li><strong>Work-related items</strong> including protective clothing, tools of trade, briefcases, and software</li>
               <li><strong>Employer contributions to complying super funds</strong> (these are taxed under the superannuation regime, not FBT)</li>
@@ -219,7 +220,7 @@ export default function FringeBenefitsTaxPage() {
               <li><strong>Medicare Levy Surcharge (MLS)</strong> liability: RFBA can push your adjusted taxable income above the <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1, 0)}</strong> singles threshold, triggering a 1%, 1.25%, or 1.5% surcharge if you lack private hospital cover</li>
               <li><strong>HECS-HELP repayment</strong> obligations: RFBA counts toward the <strong>{HELP_THRESHOLD}</strong> compulsory repayment threshold for FY2026-27</li>
               <li><strong>Centrelink income test</strong>: RFBA is included in the income test for Family Tax Benefit, child care subsidy, and other income-tested payments</li>
-              <li><strong>Division 293 tax</strong>: high-income earners with combined income and low-tax super contributions above <strong>$250,000</strong> pay an additional 15% tax on concessional super contributions</li>
+              <li><strong>Division 293 tax</strong>: high-income earners with combined income and low-tax super contributions above <strong>{formatAUD(DIVISION_293.threshold)}</strong> pay an additional 15% tax on concessional super contributions</li>
             </ul>
             <p>The RFBA itself is <strong>not taxed again</strong> in the employee&apos;s hands. It is used only as a measure of adjusted taxable income. For details on how HECS repayments interact with your adjusted taxable income, use our <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</p>
           </section>
@@ -236,7 +237,7 @@ export default function FringeBenefitsTaxPage() {
               <li><strong>Car parking threshold {FBT.carParkingThreshold > FBT.carParkingThresholdPrevYear ? "rose" : "fell"} to {PARKING}</strong> per day, from {PARKING_PREV}. Employer-provided parking generally only attracts FBT where a commercial parking station within 1 km charges more than this for all-day parking</li>
               <li><strong>EV home charging rate rose to {FBT.evHomeChargingCentsPerKm} cents per km</strong> under PCG 2024/2, up from 4.20 cents for earlier FBT years</li>
               <li><strong>Income tax cuts do not affect FBT</strong>: the 1 July 2026 cut lowered the 16% rate to 15%, not the top rate, so FBT stays pegged at the top marginal rate (45%) plus the Medicare levy (2%), unchanged since 2017</li>
-              <li><strong>Gross-up rates unchanged</strong>: Type 1 stays at 2.0802 and Type 2 at 1.8868 because the FBT rate has not changed</li>
+              <li><strong>Gross-up rates unchanged</strong>: Type 1 stays at {FBT.grossUpType1} and Type 2 at {FBT.grossUpType2} because the FBT rate has not changed</li>
             </ul>
             <p>The ATO publishes a new benchmark interest rate and car parking threshold for each FBT year. Employers who provide low-interest loans or car parking apply the new figures from the start of each FBT year.</p>
           </section>
@@ -273,7 +274,7 @@ export default function FringeBenefitsTaxPage() {
               <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: salary packaging strategies for super contributions, cars, and other benefits</li>
               <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: model the tax savings from salary sacrificing into super or other benefits</li>
               <li><Link href="/employer-cost-calculator/">Employer Cost Calculator</Link>: calculate the total cost of employing someone, including superannuation, payroll tax, WorkCover, and FBT</li>
-              <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: understand how the 12% SG rate interacts with salary sacrifice and fringe benefits</li>
+              <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: understand how the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate interacts with salary sacrifice and fringe benefits</li>
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: see how Australian income tax brackets and the Medicare levy affect your take-home pay</li>
             </ul>
           </section>

@@ -70,10 +70,10 @@ export function spokeFaqs(spoke: ApprenticeSpoke): Faq[] {
   const fourth: Faq = {
     q: `How much does a fourth-year apprentice ${label} earn?`,
     a: pg
-      ? `The minimum in fourth year is ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week) on a general building site and ${f2(headlineRate(spoke, 4, "completed", "residential").hourly)} an hour on residential work, from 1 July 2026, with or without Year 12. Both include the tool and industry allowances.`
+      ? `The minimum for a fourth-year apprentice ${label} is ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week) on a general building site and ${f2(headlineRate(spoke, 4, "completed", "residential").hourly)} an hour on residential work, from 1 July 2026, with or without Year 12. Both include the tool and industry allowances.`
       : split && y4n.hourly !== y4y.hourly
-        ? `The award minimum in fourth year is ${f2(y4n.hourly)} an hour (${f2(y4n.weekly)} a week) without Year 12 and ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week) with it, from 1 July 2026. That is before any allowances that sit outside the rate.`
-        : `The award minimum in fourth year is ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week, about ${formatAUD(Math.round(y4y.hourly * 38 * 52), 0)} a year for 38 hours), from 1 July 2026. ${trade.includesAllowances ? "That rate already includes the all-purpose allowances." : "That is before any allowances that sit outside the rate."}`,
+        ? `The award minimum for a fourth-year apprentice ${label} is ${f2(y4n.hourly)} an hour (${f2(y4n.weekly)} a week) without Year 12 and ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week) with it, from 1 July 2026. That is before any allowances that sit outside the rate.`
+        : `The award minimum for a fourth-year apprentice ${label} is ${f2(y4y.hourly)} an hour (${f2(y4y.weekly)} a week, about ${formatAUD(Math.round(y4y.hourly * 38 * 52), 0)} a year for 38 hours), from 1 July 2026. ${trade.includesAllowances ? "That rate already includes the all-purpose allowances." : "That is before any allowances that sit outside the rate."}`,
   };
 
   const afterTax: Faq = {
@@ -91,7 +91,7 @@ export function spokeFaqs(spoke: ApprenticeSpoke): Faq[] {
 
   const rise: Faq = {
     q: `When does an apprentice ${label}'s pay go up?`,
-    a: `Apprentice pay goes up at each new stage of the apprenticeship and again every 1 July. The stage step usually comes each year, and earlier where the award lets an apprentice move up after completing enough of the training plan for the ${spoke.qualification.title}. The yearly rise is the Fair Work Commission's Annual Wage Review, which lifts every award minimum from the first full pay period starting on or after that date.`,
+    a: `An apprentice ${label}'s pay goes up at each new stage of the apprenticeship and again every 1 July. The stage step usually comes each year, and earlier where the award lets an apprentice move up after completing enough of the training plan for the ${spoke.qualification.title}. The yearly rise is the Fair Work Commission's Annual Wage Review, which lifts every award minimum from the first full pay period starting on or after that date.`,
   };
 
   return [first, fourth, afterTax, adult, ...spoke.faqs, rise];

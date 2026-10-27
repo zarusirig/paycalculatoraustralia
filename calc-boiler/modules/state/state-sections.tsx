@@ -243,7 +243,6 @@ export function AbsEarningsTable({ profile }: { profile: StateEmployeeProfile })
       <p className="text-sm text-warmgray">
         Full-time adults {profile.inName} earn{" "}
         <strong>
-          {vsNational >= 0 ? "" : "−"}
           {formatPercent(Math.abs(vsNational))}
         </strong>{" "}
         {vsNational >= 0 ? "more than" : "less than"} the national average of{" "}

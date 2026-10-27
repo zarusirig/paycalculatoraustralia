@@ -39,7 +39,7 @@ export default function WorkFromHomeDeductionsPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Work From Home Deductions</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work From Home Tax Deductions: What You Can Claim in 2025-26</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">A work from home tax deduction lets you claim the running expenses of working from home, even if you work from home only one day a week. The ATO accepts two methods: the revised fixed rate method, a set rate per hour worked from home, and the actual cost method, where you work out each expense. This guide compares both methods, lists what the fixed rate covers and what you claim separately, and sets out the records the ATO requires. The savings table shows your annual deduction and the tax it saves at each marginal rate, by the number of days a week you work from home.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">A work from home tax deduction lets you claim the running expenses of working from home, even if you work from home only one day a week. The ATO accepts two methods: the revised fixed rate method, a set rate of {WFH_CENTS} cents per hour worked from home for {RETURN_2026.incomeYear}, and the actual cost method, where you work out each expense. This guide compares both methods, lists what the fixed rate covers and what you claim separately, and sets out the records the ATO requires. The savings table shows your annual deduction and the tax it saves at each marginal rate, by the number of days a week you work from home.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -85,60 +85,7 @@ export default function WorkFromHomeDeductionsPage() {
               </div>
             </section>
 
-            {/* ───── SECTION 2: What Fixed Rate Covers ───── */}
-            <section id="fixed-rate-covers">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What the Fixed Rate Covers</h2>
-              <p>
-                The {WFH_CENTS} cents per hour fixed rate is a single rate that bundles the running costs of working from home. You <strong>cannot claim separate deductions</strong> for any of these expenses if you use the fixed rate method:
-              </p>
-              <ul>
-                <li><strong>Electricity and gas</strong>: for heating, cooling, and lighting your workspace</li>
-                <li><strong>Phone usage</strong>: work-related calls and data on your personal phone plan</li>
-                <li><strong>Internet usage</strong>: your home broadband used for work activities</li>
-                <li><strong>Stationery and computer consumables</strong>: printer ink, paper, pens, USB drives</li>
-              </ul>
-              <p>
-                The rate was revised from the former 52 cents per hour (which covered a narrower range of expenses) to 67 cents per hour from 1 July 2022, and rose to {WFH_CENTS} cents per hour for the 2024-25 and 2025-26 income years. The higher rate since 2022 reflects the inclusion of phone and internet costs, which were previously claimed separately. The ATO has not yet published the rate for 2026-27.
-              </p>
-            </section>
-
-            {/* ───── SECTION 3: What You Claim Separately ───── */}
-            <section id="claim-separately">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What You Claim Separately (Under Either Method)</h2>
-              <p>
-                Certain WFH expenses are <strong>not included</strong> in the fixed rate and can be claimed as separate deductions regardless of which method you choose:
-              </p>
-              <ul>
-                <li><strong>Office furniture:</strong> Desks, chairs, bookshelves. Items costing $300 or less are an immediate deduction (work-use %). Items over $300 are depreciated over their effective life.</li>
-                <li><strong>Technology and equipment:</strong> Monitors, keyboards, webcams, headsets, printers. Same $300 threshold for immediate vs depreciation.</li>
-                <li><strong>Computer software and subscriptions:</strong> Microsoft 365, Adobe Creative Cloud, antivirus. Claim the work-use percentage of the annual subscription.</li>
-                <li><strong>Repairs to home office equipment:</strong> Repair costs for work-related equipment are immediately deductible at the work-use percentage.</li>
-              </ul>
-              <p>
-                <strong>Occupancy expenses</strong> (rent, mortgage interest, house insurance, land tax, council and water rates) are deductible only if an area of your home is set aside as a place of business. As an employee, you must show that your work requires a place of business, that your employer gives you no other place to work, and that the area is used exclusively or almost exclusively for work and cannot readily be used for anything else. If your employer provides a place to work, you cannot claim occupancy expenses, even if you choose to work from home.
-              </p>
-            </section>
-
-            {/* ───── SECTION 4: Record-Keeping Requirements ───── */}
-            <section id="record-keeping">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Record-Keeping Requirements</h2>
-              <p>
-                The ATO sets different record-keeping requirements for the fixed rate method and the actual cost method. Without adequate records, the ATO can disallow your entire WFH claim.
-              </p>
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fixed Rate Method Records</h3>
-              <ul>
-                <li>A record of the <strong>total number of hours</strong> you worked from home during the income year. Acceptable records include timesheets, rosters, time-tracking apps, or a diary maintained for the entire year.</li>
-                <li>A record for each <strong>separate expense</strong> you claim on top of the fixed rate (e.g., receipts for furniture, equipment purchases).</li>
-              </ul>
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Actual Cost Method Records</h3>
-              <ul>
-                <li><strong>All bills and receipts</strong> for expenses you are claiming (electricity, gas, internet, phone bills).</li>
-                <li>A <strong>reasonable basis</strong> for apportioning work-use vs personal-use percentage. For electricity, this could be based on floor area of your workspace relative to the whole house, or the wattage and usage hours of work-related appliances.</li>
-                <li>A <strong>4-week representative diary</strong> for phone and internet to establish your work-use percentage, which you then apply to the full year.</li>
-              </ul>
-            </section>
-
-            {/* ───── SECTION 5: How Much Will You Save ───── */}
+            {/* ───── SECTION 2: How Much Will You Save (moved up: the figure answer) ───── */}
             <section id="wfh-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will You Save?</h2>
               <p>
@@ -162,6 +109,59 @@ export default function WorkFromHomeDeductionsPage() {
               <p>
                 These figures use the fixed rate method only. If you also claim office furniture, a monitor, or other separately deductible items, your total WFH deduction and tax savings will be higher. A $600 office chair depreciated over 10 years adds <strong>$60 per year</strong> in deductions (at 100% work use). Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your total deductions against your income.
               </p>
+            </section>
+
+            {/* ───── SECTION 3: What Fixed Rate Covers ───── */}
+            <section id="fixed-rate-covers">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What the Fixed Rate Covers</h2>
+              <p>
+                The {WFH_CENTS} cents per hour fixed rate is a single rate that bundles the running costs of working from home. You <strong>cannot claim separate deductions</strong> for any of these expenses if you use the fixed rate method:
+              </p>
+              <ul>
+                <li><strong>Electricity and gas</strong>: for heating, cooling, and lighting your workspace</li>
+                <li><strong>Phone usage</strong>: work-related calls and data on your personal phone plan</li>
+                <li><strong>Internet usage</strong>: your home broadband used for work activities</li>
+                <li><strong>Stationery and computer consumables</strong>: printer ink, paper, pens, USB drives</li>
+              </ul>
+              <p>
+                The rate was revised from the former 52 cents per hour (which covered a narrower range of expenses) to 67 cents per hour from 1 July 2022, and rose to {WFH_CENTS} cents per hour for the 2024-25 and 2025-26 income years. The higher rate since 2022 reflects the inclusion of phone and internet costs, which were previously claimed separately. The ATO has not yet published the rate for 2026-27.
+              </p>
+            </section>
+
+            {/* ───── SECTION 4: What You Claim Separately ───── */}
+            <section id="claim-separately">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What You Claim Separately (Under Either Method)</h2>
+              <p>
+                Certain WFH expenses are <strong>not included</strong> in the fixed rate and can be claimed as separate deductions regardless of which method you choose:
+              </p>
+              <ul>
+                <li><strong>Office furniture:</strong> Desks, chairs, bookshelves. Items costing $300 or less are an immediate deduction (work-use %). Items over $300 are depreciated over their effective life.</li>
+                <li><strong>Technology and equipment:</strong> Monitors, keyboards, webcams, headsets, printers. Same $300 threshold for immediate vs depreciation.</li>
+                <li><strong>Computer software and subscriptions:</strong> Microsoft 365, Adobe Creative Cloud, antivirus. Claim the work-use percentage of the annual subscription.</li>
+                <li><strong>Repairs to home office equipment:</strong> Repair costs for work-related equipment are immediately deductible at the work-use percentage.</li>
+              </ul>
+              <p>
+                <strong>Occupancy expenses</strong> (rent, mortgage interest, house insurance, land tax, council and water rates) are deductible only if an area of your home is set aside as a place of business. As an employee, you must show that your work requires a place of business, that your employer gives you no other place to work, and that the area is used exclusively or almost exclusively for work and cannot readily be used for anything else. If your employer provides a place to work, you cannot claim occupancy expenses, even if you choose to work from home.
+              </p>
+            </section>
+
+            {/* ───── SECTION 5: Record-Keeping Requirements ───── */}
+            <section id="record-keeping">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Record-Keeping Requirements</h2>
+              <p>
+                The ATO sets different record-keeping requirements for the fixed rate method and the actual cost method. Without adequate records, the ATO can disallow your entire WFH claim.
+              </p>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fixed Rate Method Records</h3>
+              <ul>
+                <li>A record of the <strong>total number of hours</strong> you worked from home during the income year. Acceptable records include timesheets, rosters, time-tracking apps, or a diary maintained for the entire year.</li>
+                <li>A record for each <strong>separate expense</strong> you claim on top of the fixed rate (e.g., receipts for furniture, equipment purchases).</li>
+              </ul>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Actual Cost Method Records</h3>
+              <ul>
+                <li><strong>All bills and receipts</strong> for expenses you are claiming (electricity, gas, internet, phone bills).</li>
+                <li>A <strong>reasonable basis</strong> for apportioning work-use vs personal-use percentage. For electricity, this could be based on floor area of your workspace relative to the whole house, or the wattage and usage hours of work-related appliances.</li>
+                <li>A <strong>4-week representative diary</strong> for phone and internet to establish your work-use percentage, which you then apply to the full year.</li>
+              </ul>
             </section>
 
             {/* ───── SECTION 6: Common WFH Mistakes ───── */}

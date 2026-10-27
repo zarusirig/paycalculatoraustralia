@@ -1,0 +1,66 @@
+{
+ "name": "st-011-salary-to-hourly",
+ "files": [
+  "app/salary-to-hourly/page.tsx",
+  "app/take-home-pay-on/page.tsx",
+  "app/tax-on/page.tsx",
+  "modules/programmatic/salary-hub.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/salary-to-hourly/",
+   "url": "https://pay-calculator-australia.com/salary-to-hourly/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "2.45",
+   "centerpiece": "2.97",
+   "main_query": "annual salary to hourly rate",
+   "pre28_clicks": "8",
+   "pre28_impr": "2487",
+   "requests": [
+    "(applies to /salary-to-hourly/[amount]/ (all 38 pages)) Meta description (locked) builds the salary as `$${salaryAmount/1000}k`, so a non-round grid amount would render as \"$75.5k\". The title code comment says that form reads as an error. Reuse the existing kSalary variable in the description. All current slugs may be round thousands, but the code does not guarantee it."
+   ]
+  },
+  {
+   "path": "/tax-on/",
+   "url": "https://pay-calculator-australia.com/tax-on/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.85",
+   "centerpiece": "3.55",
+   "main_query": "site:pay-calculator-australia.com",
+   "pre28_clicks": "1",
+   "pre28_impr": "38",
+   "requests": [
+    "(applies to /tax-on/[salary]/ (all 41)) modules/programmatic/tax-on-salary.tsx line 379: the percentile range is built in a nested template literal as `${floor}\u2013${ceiling}%` with an en dash. The checker locks it as code. A developer should change it to `${floor} to ${ceiling}%`. The bracket table cells at lines 179 and 182 also use spaced en dashes (`$0 \u2013 $X`), but those cells are locked.",
+    "(applies to /tax-on/[salary]/ (all 41 pages), app/tax-on/[salary]/page.tsx line 138) The hero answer bolds only the income tax figure ({formatAUD(breakdown.netIncomeTax)} income tax), but the query 'tax on $X australia' and the page title and description answer with the total, {formatAUD(totalTax)} (income tax plus Medicare levy). Consider moving the <strong> to the total and making 'Tax on {formattedSalary} in {financialYear}' the subject of the sentence, matching the meta description: 'Tax on {formattedSalary} in {FY} is {totalTax}: {netIncomeTax} income tax plus {medicareLevy} Medicare levy ({totalRate}% of salary), leaving {takeHomePay} take-home.' This needs a JSX/tag change, so this pass cannot make it."
+   ]
+  },
+  {
+   "path": "/take-home-pay-on/",
+   "url": "https://pay-calculator-australia.com/take-home-pay-on/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.73",
+   "centerpiece": "2.00",
+   "main_query": "$120 000 after tax australia weekly",
+   "pre28_clicks": "0",
+   "pre28_impr": "305",
+   "requests": [
+    "The centerpiece scores 2.00 and serp_answered=no, but the intro <p> is passed as the SalaryHub copy.intro prop, so the checker locks it as a jsx-attribute and this pass cannot edit it. To fix the opening, a developer should change the intro so it: (1) gives a direct example answer using the existing `example` constant (formatAUD(example.takeHomePay) for $100,000, already used in DESCRIPTION); (2) names what the figures assume: Australian resident, tax-free threshold claimed, income tax plus Medicare levy (as figureLabel says) and the offsets the engine applies; (3) derives '$5,000' and '$200,000' from the grid instead of typing them.",
+    "The only string the checker classes as editable is the canonical URL template on line 17, which is not prose. To bring hub intros into future authorship passes, SalaryHub intro props should be classed as editable prose (or moved to a data field).",
+    "(applies to /take-home-pay-on/ , /tax-on/ , /salary-to-hourly/) These hub pages score centerpiece 2.00, 3.55 and 2.97, but their opening (copy.intro) is not in salary-hub.tsx. It comes from each hub's own page file, so the centerpiece rewrite has to happen in the unit that holds those intros. This unit only holds the shared band summaries and the footnote.",
+    "(applies to /take-home-pay-on/, /tax-on/, /salary-to-hourly/ hubs) SALARY_BANDS titles in lib/data/salary-pages/index.ts (lines ~187-194, e.g. \"$20,000 \u2013 $39,999\") use a spaced en dash and render as hub group headings. They are locked titles in this pass. A code change to \"$20,000 to $39,999\" would match the no-dash house style.",
+    "(applies to /take-home-pay-on/[salary]/ (all 41)) modules/programmatic/take-home-sections.tsx lines 76, 279 and 282 type figures straight into the copy: '1c less' and 'a flat 10% of income' / 'as 10% of all income'. They match the constants today (16% to 15% bracket rate, HECS top band marginalRate 0.10 at australian-tax.ts:482). They should still come from TAX_BRACKETS and HECS_HELP.bands so they cannot go stale."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

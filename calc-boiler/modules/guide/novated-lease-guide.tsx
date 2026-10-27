@@ -155,7 +155,7 @@ export default function NovatedLeaseGuidePage() {
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
                     <td className="p-3 font-medium text-navy">Income tax saving</td>
-                    <td className="p-3">Yes &mdash; reduces taxable income</td>
+                    <td className="p-3">Yes: reduces taxable income</td>
                     <td className="p-3">No tax benefit</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20">
@@ -165,12 +165,12 @@ export default function NovatedLeaseGuidePage() {
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
                     <td className="p-3 font-medium text-navy">Running costs included</td>
-                    <td className="p-3">Yes &mdash; fuel, rego, insurance, servicing, tyres</td>
-                    <td className="p-3">No &mdash; managed separately</td>
+                    <td className="p-3">Yes: fuel, rego, insurance, servicing, tyres</td>
+                    <td className="p-3">No: managed separately</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20">
                     <td className="p-3 font-medium text-navy">FBT liability</td>
-                    <td className="p-3">Yes &mdash; unless EV-exempt</td>
+                    <td className="p-3">Yes, unless EV-exempt</td>
                     <td className="p-3">No FBT applies</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
@@ -185,12 +185,12 @@ export default function NovatedLeaseGuidePage() {
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
                     <td className="p-3 font-medium text-navy">Employer involvement</td>
-                    <td className="p-3">Required &mdash; employer makes deductions</td>
+                    <td className="p-3">Required: employer makes deductions</td>
                     <td className="p-3">None</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20">
                     <td className="p-3 font-medium text-navy">Reportable fringe benefit</td>
-                    <td className="p-3">Yes &mdash; counts in the HECS-HELP, Medicare levy surcharge and Division 293 income tests</td>
+                    <td className="p-3">Yes: counts in the HECS-HELP, Medicare levy surcharge and Division 293 income tests</td>
                     <td className="p-3">None</td>
                   </tr>
                   <tr>
@@ -270,7 +270,7 @@ export default function NovatedLeaseGuidePage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Not Eligible for a Novated Lease?</h3>
             <p>A novated lease saves the least income tax for employees earning <strong>{formatAUD(LOW.max)}</strong> or less, where the marginal rate is {cents(LOW.rate)} in the dollar or lower. It is a poor fit for casual employees without a guaranteed salary to deduct from. Self-employed workers and sole traders are ineligible because the arrangement requires an employer-employee relationship. Contractors on ABN-only arrangements cannot access novated leasing. Employees on fixed-term contracts shorter than the proposed lease term face additional risk, because the novation ends when the job does (see below).</p>
-            <p>Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare your current after-tax pay with and without salary packaging. The <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> explains the employment classification requirements for accessing salary packaging benefits including novated leases.</p>
+            <p>Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare your current after-tax pay with and without salary packaging. The <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> explains the employment classification requirements for accessing salary packaging benefits including novated leases.</p>
           </section>
 
           {/* ============================================================ */}

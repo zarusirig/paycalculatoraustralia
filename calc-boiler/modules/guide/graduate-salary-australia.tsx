@@ -52,6 +52,17 @@ const NURSES = nurseStarts();
 const SUMMARY = GRADUATE_PROFESSIONS.map((p) => ({ p, th: graduateTakeHome(p.qiltMedian) }));
 const th80 = graduateTakeHome(80_000);
 
+const range = (xs: number[]) => `${f0(Math.min(...xs))} to ${f0(Math.max(...xs))}`;
+/** The "Published start" cell: the profession's published figure, or the state range for nurses and teachers, from the same data as the sections below. */
+function publishedStart(slug: string): string {
+  if (slug === "nurse") return range(NURSES.map((n) => n.annual));
+  if (slug === "teacher") return range(TEACHERS.map((t) => t.annual));
+  if (slug === "lawyer") return `${f0(GRADUATE_PROFESSIONS[0].published!.annual)} (before admission)`;
+  if (slug === "doctor") return `${f0(NSW_INTERN.annual)} (NSW)`;
+  const pub = GRADUATE_PROFESSIONS.find((p) => p.slug === slug)?.published;
+  return pub ? f0(pub.annual) : "Award-free (minimum wage floor)";
+}
+
 export default function GraduateSalaryAustraliaPage() {
   return (
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
@@ -80,15 +91,16 @@ export default function GraduateSalaryAustraliaPage() {
               Two kinds of number are in the table, and they answer different questions. The <strong>survey median</strong> is what graduates who had a full-time job reported earning (QILT, 2025). The <strong>published start</strong> is a minimum or a scale step that an award, bulletin or agreement sets, which is what you can be sure of being paid. Take-home figures use the 2026-27 resident tax rates and Medicare levy with no HELP debt, and the HELP column shows the repayment at that income.
             </p>
             <DataTable
-              head={["Graduate", "Survey median (QILT 2025)", "Take-home a week", "HELP repayment a year"]}
-              align={["l", "r", "r", "r"]}
+              head={["Graduate", "Survey median (QILT 2025)", "Published start", "Take-home a week", "HELP repayment a year"]}
+              align={["l", "r", "r", "r", "r"]}
               rows={SUMMARY.map(({ p, th }) => [
                 <Link key={p.slug} href={`#${p.slug}`}>{p.title}</Link>,
                 f0(p.qiltMedian),
+                publishedStart(p.slug),
                 f2(th.netWeekly),
                 f0(th.helpRepayment),
               ])}
-              caption={<>QILT figures are the median annual full-time salary of undergraduate graduates in the matching study area (accounting sits inside business and management). Take-home is on the survey median, before any HELP repayment, from the site&rsquo;s tax engine. Read {GRADUATE_SALARY_VERIFIED_ON}.</>}
+              caption={<>QILT figures are the median annual full-time salary of undergraduate graduates in the matching study area (accounting sits inside business and management). Take-home is on the survey median, before any HELP repayment, from the site&rsquo;s tax engine. Published starts are the award, bulletin or agreement figures in each section below; nurse and teacher ranges run from the lowest to the highest state first step. Read {GRADUATE_SALARY_VERIFIED_ON}.</>}
             />
             <p>
               A survey median is not a rate anyone has to pay. It only counts graduates in full-time work, it was taken a few months after graduating, and it can&rsquo;t say whether super is included. Treat it as a market reference and check the offer in front of you against the award or agreement minimum below.

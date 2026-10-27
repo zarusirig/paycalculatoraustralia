@@ -1,0 +1,285 @@
+{
+ "name": "st-002-news-victorian-teachers-pa",
+ "files": [
+  "app/news/[slug]/page.tsx",
+  "modules/news/articles/award-wage-increase-2026-industries.tsx",
+  "modules/news/articles/centrelink-changes-july-2026.tsx",
+  "modules/news/articles/deeming-rates-change-2026.tsx",
+  "modules/news/articles/division-296-super-tax-starts.tsx",
+  "modules/news/articles/federal-budget-2026-27-your-pay.tsx",
+  "modules/news/articles/hecs-20-percent-cut-status.tsx",
+  "modules/news/articles/hecs-indexation-2026.tsx",
+  "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx",
+  "modules/news/articles/hecs-repayment-threshold-2026-27.tsx",
+  "modules/news/articles/july-1-2026-money-changes.tsx",
+  "modules/news/articles/medicare-levy-thresholds-2026.tsx",
+  "modules/news/articles/minimum-wage-increase-july-2026.tsx",
+  "modules/news/articles/new-minimum-wage-take-home-pay.tsx",
+  "modules/news/articles/payday-super-starts-july-2026.tsx",
+  "modules/news/articles/schads-home-care-disability-pay-rise-december-2026.tsx",
+  "modules/news/articles/tax-cut-july-2026.tsx",
+  "modules/news/articles/tax-time-2026-whats-new.tsx",
+  "modules/news/articles/victorian-teachers-pay-rise-2026.tsx",
+  "modules/news/layout.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/news/victorian-teachers-pay-rise-2026/",
+   "url": "https://pay-calculator-australia.com/news/victorian-teachers-pay-rise-2026/",
+   "inPlan": true,
+   "intent": "news-update",
+   "format_fit": "2.45",
+   "centerpiece": "3.54",
+   "main_query": "yes please",
+   "pre28_clicks": "177",
+   "pre28_impr": "8028",
+   "requests": []
+  },
+  {
+   "path": "/news/award-wage-increase-2026-industries/",
+   "url": "https://pay-calculator-australia.com/news/award-wage-increase-2026-industries/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.02",
+   "centerpiece": "2.80",
+   "main_query": "adf pay scales",
+   "pre28_clicks": "3",
+   "pre28_impr": "164",
+   "requests": [
+    "The AUDIT says lookup-rate-table (format_fit 2.91), but the page has no rate table. Add a table of old and new base rates for the named awards (Hospitality, Retail, Fast Food, Restaurant, Aged Care), taken from the award constants. The worked example (\"$28 to $29.33\") is hard-coded and should be computed from AWR_2026_FLOORS.increase.",
+    "The NMW increase % (6%) and $26.44 are hard-coded in prose. Render them from the EMPLOYMENT constants."
+   ]
+  },
+  {
+   "path": "/news/medicare-levy-thresholds-2026/",
+   "url": "https://pay-calculator-australia.com/news/medicare-levy-thresholds-2026/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "2.42",
+   "centerpiece": "2.39",
+   "main_query": "3 dependent",
+   "pre28_clicks": "2",
+   "pre28_impr": "162",
+   "requests": [
+    "The centerpiece names the reduced-rate band but cannot give its upper bound in the lead without retyping $35,013. Consider a key-facts row for the singles shade-in range ($28,011 to $35,013)."
+   ]
+  },
+  {
+   "path": "/news/hecs-20-percent-cut-status/",
+   "url": "https://pay-calculator-australia.com/news/hecs-20-percent-cut-status/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.73",
+   "centerpiece": "2.73",
+   "main_query": "130 20 percent off",
+   "pre28_clicks": "1",
+   "pre28_impr": "127",
+   "requests": []
+  },
+  {
+   "path": "/news/hecs-indexation-2026/",
+   "url": "https://pay-calculator-australia.com/news/hecs-indexation-2026/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "2.19",
+   "centerpiece": "3.01",
+   "main_query": "17000.00",
+   "pre28_clicks": "0",
+   "pre28_impr": "323",
+   "requests": []
+  },
+  {
+   "path": "/news/tax-cut-july-2026/",
+   "url": "https://pay-calculator-australia.com/news/tax-cut-july-2026/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.50",
+   "centerpiece": "1.50",
+   "main_query": "adf pay scales 2025",
+   "pre28_clicks": "0",
+   "pre28_impr": "157",
+   "requests": [
+    "The opening has the annual saving ($268) but no per-pay figure. The weekly saving ($5.15) is only in the body, and there is no fortnightly figure. A computed weekly and fortnightly saving expression in the lead would answer the 'tax cut july 2026 per pay' intent. The article has no calculator on the page, so the opening can only point to the key facts table."
+   ]
+  },
+  {
+   "path": "/news/tax-time-2026-whats-new/",
+   "url": "https://pay-calculator-australia.com/news/tax-time-2026-whats-new/",
+   "inPlan": true,
+   "intent": "news-update",
+   "format_fit": "2.46",
+   "centerpiece": "1.53",
+   "main_query": "$1000 tax return 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "211",
+   "requests": [
+    "The opening (centerpiece 1.90) has no self-lodge deadline (31 October 2026) and no tax agent deadline, though these answer the main tax-time query. Both appear only in the key facts box and the next section. Adding them to the lead needs a figure the lead string does not hold, so it is left for a structural edit.",
+    "Intent is 'calculate' but the page has no calculator, only a link to /tax-return-calculator/ in the last paragraph. Consider placing a refund estimator or a prominent calculator link near the top."
+   ]
+  },
+  {
+   "path": "/news/july-1-2026-money-changes/",
+   "url": "https://pay-calculator-australia.com/news/july-1-2026-money-changes/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.36",
+   "centerpiece": "2.22",
+   "main_query": "2026 18",
+   "pre28_clicks": "0",
+   "pre28_impr": "37",
+   "requests": [
+    "The FTB Part A rate $235.48, the Part B limit $124,327 and HECS indexation 2.8% are hard-coded. They match lib/constants/centrelink-family-payments.ts:197,236 and australian-tax.ts:466, so render them from those constants. The opening would also be stronger with the financial year (FY2026-27) and the $26.44 minimum wage figure rendered from constants, but this pass could not add either.",
+    "The Division 296 sentence needs the very large balance tier (extra 10% above $10 million) from DIVISION_296. This pass could not add those figures."
+   ]
+  },
+  {
+   "path": "/news/centrelink-changes-july-2026/",
+   "url": "https://pay-calculator-australia.com/news/centrelink-changes-july-2026/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "3.82",
+   "centerpiece": "4.14",
+   "main_query": "centrelink changes from 1 july",
+   "pre28_clicks": "1",
+   "pre28_impr": "344",
+   "requests": [
+    "NewsKeyFacts rows have no 'before' values for the FTB rates or the Part B limit, so 'up a few dollars on last year's rates' can't be shown as a figure. Add the 2025-26 rates from constants."
+   ]
+  },
+  {
+   "path": "/news/deeming-rates-change-2026/",
+   "url": "https://pay-calculator-australia.com/news/deeming-rates-change-2026/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "4.01",
+   "centerpiece": "4.24",
+   "main_query": "deeming rates change",
+   "pre28_clicks": "0",
+   "pre28_impr": "78",
+   "requests": [
+    "Since 20 September 2026 the deeming rates are 1.75%/3.75% (DEEMING_SEPTEMBER_2026). This March article doesn't link forward to the newer rates. Consider a dated 'superseded' note or a link to the Sep 2026 story."
+   ]
+  },
+  {
+   "path": "/news/hecs-marginal-repayment-first-tax-time/",
+   "url": "https://pay-calculator-australia.com/news/hecs-marginal-repayment-first-tax-time/",
+   "inPlan": false,
+   "intent": "how-to-steps",
+   "format_fit": "3.60",
+   "centerpiece": "4.22",
+   "main_query": "your first tax return under the new hecs repayment system",
+   "pre28_clicks": "0",
+   "pre28_impr": "29",
+   "requests": [
+    "The article needs a content fix that this pass cannot make: rebase the lead, key facts, worked example and two-jobs section on FY2025-26 figures (the $67,000 threshold from HECS_HELP_2025_26). Otherwise reframe it as a guide to the FY2026-27 return lodged in 2027. Either change adds or replaces figures."
+   ]
+  },
+  {
+   "path": "/news/payday-super-starts-july-2026/",
+   "url": "https://pay-calculator-australia.com/news/payday-super-starts-july-2026/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "3.91",
+   "centerpiece": "4.29",
+   "main_query": "payday super is live",
+   "pre28_clicks": "0",
+   "pre28_impr": "57",
+   "requests": [
+    "The 'What this means for your pay' paragraph (source line 75) still has two em dashes ('rate \u2014 it stays at 12% ... 2026-27 \u2014 only how quickly'). The checker locks the string as a dash key, so this pass could not fix it. Suggested text: 'Payday super doesn't change your super guarantee rate, which stays at 12% of qualifying earnings for 2026-27. It changes only how quickly that money reaches your fund.'"
+   ]
+  },
+  {
+   "path": "/news/schads-home-care-disability-pay-rise-december-2026/",
+   "url": "https://pay-calculator-australia.com/news/schads-home-care-disability-pay-rise-december-2026/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "4.00",
+   "centerpiece": "4.28",
+   "main_query": "home care disability workers get a 15 pay rise from 1 december 2026 un",
+   "pre28_clicks": "8",
+   "pre28_impr": "406",
+   "requests": [
+    "The Schedule E definition paragraph (source line 54) is a 44-word sentence. The checker locks it as a dash key because it quotes the award title with an em dash, so it could not be split. Suggested split after 'in the home care sector.' then 'It does not include disability support work, ...'."
+   ]
+  },
+  {
+   "path": "/news/hecs-repayment-threshold-2026-27/",
+   "url": "https://pay-calculator-australia.com/news/hecs-repayment-threshold-2026-27/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.07",
+   "centerpiece": "4.44",
+   "main_query": "2026 hecs repayment threshold",
+   "pre28_clicks": "0",
+   "pre28_impr": "365",
+   "requests": [
+    "Every HECS figure in this article is hard-coded: $69,528, $129,717, $186,050, $9,028, $67,000, $125,000, $179,285, $54,435 and the worked-example results. They all match HECS_HELP in lib/constants/australian-tax.ts:462-470 today, but they will not follow the constant when it is updated. Render them from HECS_HELP.repaymentBands and minimumThreshold."
+   ]
+  },
+  {
+   "path": "/news/federal-budget-2026-27-your-pay/",
+   "url": "https://pay-calculator-australia.com/news/federal-budget-2026-27-your-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.59",
+   "centerpiece": "2.83",
+   "main_query": "2026 to 2027 tax brackets",
+   "pre28_clicks": "0",
+   "pre28_impr": "54",
+   "requests": [
+    "The opening says '1 July tax cut' with no year and no rate. The direct answer needs the 1 July 2026 date and the 16% to 15% rate change ($18,201 to $45,000) in the lead, drawn from code or constants. Those figures appear in the body but not in the lead string, so this pass could not move them there."
+   ]
+  },
+  {
+   "path": "/news/division-296-super-tax-starts/",
+   "url": "https://pay-calculator-australia.com/news/division-296-super-tax-starts/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "3.99",
+   "centerpiece": "4.59",
+   "main_query": "division 296 super tax starts",
+   "pre28_clicks": "0",
+   "pre28_impr": "38",
+   "requests": [
+    "Add a figure for the number or share of members affected (Treasury estimate) from a constant, so the lead's 'small share of super members' becomes a checkable answer."
+   ]
+  },
+  {
+   "path": "/news/new-minimum-wage-take-home-pay/",
+   "url": "https://pay-calculator-australia.com/news/new-minimum-wage-take-home-pay/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.40",
+   "centerpiece": "3.65",
+   "main_query": "$26.44",
+   "pre28_clicks": "1",
+   "pre28_impr": "661",
+   "requests": [
+    "The lead paragraph (intent lookup-rate-table) should state the answer figure, about $869.90 a week take-home. It is only in the key facts and the table, and this pass cannot add a figure to the lead.",
+    "The link text 'weekly tax table {SITE_CONFIG.financialYear}' points to /payg-withholding-tables/, while an earlier link with the same 'weekly tax table' text points to /weekly-tax-table/. Point it to /weekly-tax-table/ or change the anchor text."
+   ]
+  },
+  {
+   "path": "/news/minimum-wage-increase-july-2026/",
+   "url": "https://pay-calculator-australia.com/news/minimum-wage-increase-july-2026/",
+   "inPlan": false,
+   "intent": "news-update",
+   "format_fit": "4.02",
+   "centerpiece": "4.53",
+   "main_query": "minimum wage rises 6 to $26.44 an hour from 1 july 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "36",
+   "requests": [
+    "(applies to /news/super-contribution-caps-2026-27/ and /news/super-tax-changes-explained/) The cap figures ($32,500, $130,000, $2.1m, $390,000) are typed into the prose and the key facts rows, not taken from SUPER_GUARANTEE.concessionalCap and the super-contributions constants. Wire them to the constants so these two articles cannot drift from the calculators."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

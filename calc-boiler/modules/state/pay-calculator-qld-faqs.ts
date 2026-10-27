@@ -5,7 +5,7 @@ import { formatAUD } from "@/lib/constants";
 import { QLD_PAYROLL_TAX } from "@/lib/constants/payroll-tax";
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine, millions } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, millions, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.QLD;
 
@@ -16,7 +16,7 @@ export const QLD_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average Queensland salary?",
-    a: `Full-time adults in Queensland earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). Including overtime the figure rises to ${formatAUD(PROFILE.awote.personsFullTimeTotal, 2)} a week. The worked example above shows the net result.`,
+    a: `Take-home pay on the average full-time Queensland salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. Full-time adults in Queensland earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). Including overtime the figure rises to ${formatAUD(PROFILE.awote.personsFullTimeTotal, 2)} a week. The worked example above shows the net result.`,
   },
   {
     q: "Is the Ekka a public holiday for the whole of Queensland?",

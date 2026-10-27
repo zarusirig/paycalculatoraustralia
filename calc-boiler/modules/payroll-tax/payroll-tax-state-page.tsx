@@ -6,6 +6,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import {
+  ACT_PAYROLL_TAX,
   PAYROLL_TAX_FY,
   PAYROLL_TAX_STATES,
   calculatePayrollTax,
@@ -81,6 +82,32 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
             <section id="rate">
               <h2 style={H2_STYLE}>{s.abbr} Payroll Tax Rate {PAYROLL_TAX_FY}</h2>
               <p>{s.rateSummary}</p>
+              {code === "act" && (
+                <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-left text-sm text-navy">
+                    <caption className="sr-only">ACT payroll tax rate bands by Australia-wide wages, {PAYROLL_TAX_FY}</caption>
+                    <thead className="bg-sandstone font-semibold">
+                      <tr>
+                        <th scope="col" className="px-4 py-3">Australia-wide wages</th>
+                        <th scope="col" className="px-4 py-3 text-right">Rate on ACT wages above the threshold</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {ACT_PAYROLL_TAX.bands.map((b, i) => {
+                        const from = i === 0 ? ACT_PAYROLL_TAX.threshold : ACT_PAYROLL_TAX.bands[i - 1].upTo;
+                        return (
+                          <tr key={b.upTo}>
+                            <th scope="row" className="px-4 py-3 text-left font-medium">
+                              {b.upTo === Infinity ? `Above ${formatAUD(from)}` : `Over ${formatAUD(from)} up to ${formatAUD(b.upTo)}`}
+                            </th>
+                            <td className="px-4 py-3 text-right tabular-nums">{pctTrim(b.rate, 2)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
               {s.changeFrom2025_26 && <p><strong>What changed on 1 July 2026:</strong> {s.changeFrom2025_26}</p>}
             </section>
 

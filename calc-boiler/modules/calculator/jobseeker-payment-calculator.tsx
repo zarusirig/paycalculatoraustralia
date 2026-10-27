@@ -145,27 +145,6 @@ export default function JobseekerPaymentCalculatorPage({ children, afterCalculat
           <TrustBar className="mt-4" />
         </section>
 
-        <section className="max-w-4xl mx-auto" aria-labelledby="how-much-jobseeker">
-          <h2 id="how-much-jobseeker" style={FONT} className={H2}>How Much Is JobSeeker Payment?</h2>
-          <p className={P}>These are the maximum fortnightly rates from {active.ratesFrom}, before any reduction for income. JobSeeker Payment is paid every two weeks, and Energy Supplement is paid on top.</p>
-          <div className={TABLE_WRAP}>
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your situation</th><th scope="col" className={TH + " text-right"}>Per fortnight</th><th scope="col" className={TH + " text-right"}>Per week</th><th scope="col" className={TH + " text-right"}>Income cut-off (fortnight)</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {SITUATIONS.map((s, i) => (
-                  <tr key={s.key} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
-                    <td className={TD}>{s.label}</td>
-                    <td className={TD + " text-right font-semibold"}>{formatAUD(rateFor(active, s), 2)}</td>
-                    <td className={TD + " text-right"}>{formatAUD(rateFor(active, s) / 2, 2)}</td>
-                    <td className={TD + " text-right"}>{s.partnered ? "depends on partner income" : formatAUD(cutOffFor(active, s)!, 2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-2 text-xs text-warmgray-light">These JobSeeker rates are Services Australia&apos;s figures, indexed on {JOBSEEKER.indexedOn}; the next change is 20 March 2027. The single rate with a dependent child also applies if you are 55 or older after 9 continuous months on payment, or have a partial capacity to work of less than 15 hours a week.</p>
-        </section>
-
         <section className="max-w-4xl mx-auto space-y-6">
           <RateChangeNote activeKey={activeKey} payment="JobSeeker" />
           <Card className="shadow-md">
@@ -238,6 +217,27 @@ export default function JobseekerPaymentCalculatorPage({ children, afterCalculat
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        <section className="max-w-4xl mx-auto" aria-labelledby="how-much-jobseeker">
+          <h2 id="how-much-jobseeker" style={FONT} className={H2}>How Much Is JobSeeker Payment?</h2>
+          <p className={P}>These are the maximum fortnightly rates from {active.ratesFrom}, before any reduction for income. JobSeeker Payment is paid every two weeks, and Energy Supplement is paid on top.</p>
+          <div className={TABLE_WRAP}>
+            <table className="w-full text-sm">
+              <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your situation</th><th scope="col" className={TH + " text-right"}>Per fortnight</th><th scope="col" className={TH + " text-right"}>Per week</th><th scope="col" className={TH + " text-right"}>Income cut-off (fortnight)</th></tr></thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                {SITUATIONS.map((s, i) => (
+                  <tr key={s.key} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                    <td className={TD}>{s.label}</td>
+                    <td className={TD + " text-right font-semibold"}>{formatAUD(rateFor(active, s), 2)}</td>
+                    <td className={TD + " text-right"}>{formatAUD(rateFor(active, s) / 2, 2)}</td>
+                    <td className={TD + " text-right"}>{s.partnered ? "depends on partner income" : formatAUD(cutOffFor(active, s)!, 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-warmgray-light">These JobSeeker rates are Services Australia&apos;s figures, indexed on {JOBSEEKER.indexedOn}; the next change is 20 March 2027. The single rate with a dependent child also applies if you are 55 or older after 9 continuous months on payment, or have a partial capacity to work of less than 15 hours a week.</p>
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">

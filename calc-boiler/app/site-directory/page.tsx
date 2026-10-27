@@ -368,10 +368,8 @@ const SECTIONS: { heading: string; groups: readonly Group[] }[] = extraItems.len
   : BASE_SECTIONS;
 
 function Page() {
-  const total = SECTIONS.reduce(
-    (sum, s) => sum + s.groups.reduce((g, group) => g + group.items.length, 0),
-    0
-  );
+  // Unique hrefs: a page listed under two sections counts once.
+  const total = new Set(SECTIONS.flatMap((s) => s.groups.flatMap((group) => group.items.map((item) => item.href)))).size;
 
   return (
     <>

@@ -247,24 +247,24 @@ export default function PayRiseCalculatorContent() {
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Negotiate a Pay Rise</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
+            <ol className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 list-none p-0">
+              <li className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">1. Build Your Case</h3>
                 <p className="text-sm">Base the request on your results, not on inflation alone. List your achievements over the last 6-12 months, such as money you saved the company, new revenue you brought in, or duties you took on outside your job description.</p>
-              </div>
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
+              </li>
+              <li className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">2. Research the Market</h3>
                 <p className="text-sm">Check current job listings and recruitment agency salary guides for your exact role and location. Knowing the &quot;market rate&quot; turns an emotional request into an objective business conversation.</p>
-              </div>
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
+              </li>
+              <li className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">3. Timing is Everything</h3>
                 <p className="text-sm">The best time to ask is either 3-4 months before the end of the financial year (when budgets are being set) or immediately after successfully completing a major project.</p>
-              </div>
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
+              </li>
+              <li className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">4. Focus on the Gross</h3>
                 <p className="text-sm">Negotiate in terms of the Total Package or Base Gross Salary, not the amount you want to take home each week. Your employer does not control the tax rates, so a take-home figure can change even when your salary does not.</p>
-              </div>
-            </div>
+              </li>
+            </ol>
           </section>
 
           <section>

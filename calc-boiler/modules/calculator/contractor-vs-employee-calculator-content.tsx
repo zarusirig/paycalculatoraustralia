@@ -194,11 +194,11 @@ export default function ContractorVsEmployeeCalculatorContent() {
               Contractors operating under an ABN manage their own taxation. Key obligations include:
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>PAYG instalments</strong> &mdash; quarterly income tax pre-payments to the ATO, calculated on estimated annual income.</li>
-              <li><strong>GST registration</strong> &mdash; mandatory once your GST turnover reaches <strong>{GST_THRESHOLD}</strong>. The contractor charges clients 10% GST and remits it quarterly via a &quot;Business Activity Statement&quot; (BAS).</li>
-              <li><strong>Medicare levy</strong> &mdash; <strong>{MEDICARE_PCT}</strong> of taxable income, paid at tax time. The &quot;Medicare Levy Surcharge&quot; of 1%&ndash;1.5% applies to contractors whose income for MLS purposes is above <strong>{MLS_SINGLE}</strong> (singles) or <strong>{MLS_FAMILY}</strong> (families) in {FY} without private hospital cover.</li>
-              <li><strong>Superannuation</strong> &mdash; voluntary personal contributions are tax-deductible up to the <strong>{CC_CAP}</strong> concessional cap for FY{FY} (employer contributions count towards it too).</li>
-              <li><strong>Annual tax return</strong> &mdash; includes a business schedule reporting all income, expenses, and deductions.</li>
+              <li><strong>PAYG instalments</strong>: quarterly income tax pre-payments to the ATO, calculated on estimated annual income.</li>
+              <li><strong>GST registration</strong>: mandatory once your GST turnover reaches <strong>{GST_THRESHOLD}</strong>. The contractor charges clients 10% GST and remits it quarterly via a &quot;Business Activity Statement&quot; (BAS).</li>
+              <li><strong>Medicare levy</strong>: <strong>{MEDICARE_PCT}</strong> of taxable income, paid at tax time. The &quot;Medicare Levy Surcharge&quot; of 1%&ndash;1.5% applies to contractors whose income for MLS purposes is above <strong>{MLS_SINGLE}</strong> (singles) or <strong>{MLS_FAMILY}</strong> (families) in {FY} without private hospital cover.</li>
+              <li><strong>Superannuation</strong>: voluntary personal contributions are tax-deductible up to the <strong>{CC_CAP}</strong> concessional cap for FY{FY} (employer contributions count towards it too).</li>
+              <li><strong>Annual tax return</strong>: includes a business schedule reporting all income, expenses, and deductions.</li>
             </ol>
 
             <h3 className="text-lg font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY{FY} Income Tax Brackets for Both</h3>
@@ -321,12 +321,12 @@ export default function ContractorVsEmployeeCalculatorContent() {
               Contractors bear <strong>6 additional costs</strong> that an employer covers for employees at no charge. These hidden costs reduce the contractor&apos;s effective hourly rate and total compensation value.
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Superannuation ({SG_PCT} SG)</strong> &mdash; Employer pays this in addition to base salary. Self-funding costs <strong>{formatAUD(EX_SUPER)}</strong> on a $100,000 income.</li>
-              <li><strong>Annual leave (4 weeks)</strong> &mdash; About {formatPercent(AL_SHARE, 1)} of your yearly working value, equivalent to <strong>{formatAUD(EX_AL)}</strong> on a $100,000 salary.</li>
-              <li><strong>Personal/sick leave (10 days)</strong> &mdash; About {formatPercent(PL_SHARE, 1)} of your yearly working value, equivalent to <strong>{formatAUD(EX_PL)}</strong> on a $100,000 salary.</li>
-              <li><strong>Injury and illness cover</strong> &mdash; An employer&apos;s workers compensation policy covers its employees. In NSW a sole trader cannot cover themselves under a workers compensation policy, so you pay for your own personal accident or income protection insurance.</li>
-              <li><strong>Professional indemnity / public liability</strong> &mdash; Premiums range from <strong>$400&ndash;$2,500</strong> per year for most professional services contractors.</li>
-              <li><strong>Accounting and software</strong> &mdash; Bookkeeping, BAS lodgment, and accounting software cost <strong>$1,500&ndash;$4,000</strong> per year.</li>
+              <li><strong>Superannuation ({SG_PCT} SG)</strong>: Employer pays this in addition to base salary. Self-funding costs <strong>{formatAUD(EX_SUPER)}</strong> on a $100,000 income.</li>
+              <li><strong>Annual leave (4 weeks)</strong>: About {formatPercent(AL_SHARE, 1)} of your yearly working value, equivalent to <strong>{formatAUD(EX_AL)}</strong> on a $100,000 salary.</li>
+              <li><strong>Personal/sick leave (10 days)</strong>: About {formatPercent(PL_SHARE, 1)} of your yearly working value, equivalent to <strong>{formatAUD(EX_PL)}</strong> on a $100,000 salary.</li>
+              <li><strong>Injury and illness cover</strong>: An employer&apos;s workers compensation policy covers its employees. In NSW a sole trader cannot cover themselves under a workers compensation policy, so you pay for your own personal accident or income protection insurance.</li>
+              <li><strong>Professional indemnity / public liability</strong>: Premiums range from <strong>$400&ndash;$2,500</strong> per year for most professional services contractors.</li>
+              <li><strong>Accounting and software</strong>: Bookkeeping, BAS lodgment, and accounting software cost <strong>$1,500&ndash;$4,000</strong> per year.</li>
             </ul>
             <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4">
               <p className="text-navy font-medium">

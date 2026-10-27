@@ -69,6 +69,68 @@ export default function ExtraSuperVsHecsRepaymentPage() {
           {/* MAIN ARTICLE CONTENT */}
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
+            {/* SECTION 5: The Maths */}
+            <section id="the-maths">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Maths &mdash; $200/Month Over 10 Years</h2>
+              <p>
+                The table below models directing <strong>$200 per month</strong> ($2,400/year) to either extra super contributions (via salary sacrifice) or voluntary HECS repayments, for a worker in the <strong>30% tax bracket</strong>.
+              </p>
+              <div className="not-prose my-8">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-navy">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th className="px-6 py-4">Metric</th>
+                        <th className="px-6 py-4 border-l text-right">Extra Super</th>
+                        <th className="px-6 py-4 border-l text-right">Voluntary HECS</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Monthly pre-tax salary used</td>
+                        <td className="px-6 py-4 border-l text-right">$200</td>
+                        <td className="px-6 py-4 border-l text-right">$200</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax on contribution</td>
+                        <td className="px-6 py-4 border-l text-right">15% contributions tax ($30/mo)</td>
+                        <td className="px-6 py-4 border-l text-right">30% + 2% Medicare levy ({formatAUD(MONTHLY * MARGINAL)}/mo)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Net amount working for you</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * 0.85)}/mo into super</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * (1 - MARGINAL))}/mo off HECS</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Growth rate assumption</td>
+                        <td className="px-6 py-4 border-l text-right">~{(SUPER_NET * 100).toFixed(1)}% net after tax/fees</td>
+                        <td className="px-6 py-4 border-l text-right">{(HECS_HELP.indexationRate * 100).toFixed(1)}% (indexation avoided, {HECS_HELP.indexationDate} rate)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">10-year value created</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">~{formatAUD(Math.round(SUPER_10Y / 100) * 100)}</td>
+                        <td className="px-6 py-4 border-l text-right">~{formatAUD(Math.round(HECS_10Y / 100) * 100)} (debt reduced + indexation saved)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Accessible before 60?</td>
+                        <td className="px-6 py-4 border-l text-right">No</td>
+                        <td className="px-6 py-4 border-l text-right">Yes (higher take-home pay)</td>
+                      </tr>
+                      <tr className="bg-eucalyptus/5">
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax saving (annual)</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">{formatAUD(MONTHLY * 12 * (MARGINAL - 0.15))}/yr</td>
+                        <td className="px-6 py-4 border-l text-right">$0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {INDEX_PCT} applied on {HECS_HELP.indexationDate}. Figures are approximate illustrations.</p>
+              </div>
+              <p>
+                At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: once the HECS debt is cleared, compulsory repayments stop and your take-home pay rises, while the super balance stays locked until preservation age. At higher tax brackets (37% or 45%), super pulls further ahead because the tax saving on each dollar is larger.
+              </p>
+            </section>
+
             {/* SECTION 1: The Core Question */}
             <section id="core-question">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Core Question</h2>
@@ -131,68 +193,6 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                 <li><strong>Paying before 1 June:</strong> Indexation applies on 1 June to the part of your balance unpaid for more than 11 months. A voluntary repayment the ATO has received and processed before 1 June is not indexed that year. Electronic payments can take up to 4 business days to reach your ATO account, so allow enough time for the payment to be processed before 1 June.</li>
                 <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches your 15% rate, so the super tax saving is at most the 2c Medicare levy per dollar, which barely justifies locking money away when you could eliminate a debt that grows with indexation each year.</li>
               </ul>
-            </section>
-
-            {/* SECTION 5: The Maths */}
-            <section id="the-maths">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Maths &mdash; $200/Month Over 10 Years</h2>
-              <p>
-                The table below models directing <strong>$200 per month</strong> ($2,400/year) to either extra super contributions (via salary sacrifice) or voluntary HECS repayments, for a worker in the <strong>30% tax bracket</strong>.
-              </p>
-              <div className="not-prose my-8">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-6 py-4">Metric</th>
-                        <th className="px-6 py-4 border-l text-right">Extra Super</th>
-                        <th className="px-6 py-4 border-l text-right">Voluntary HECS</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Monthly pre-tax salary used</td>
-                        <td className="px-6 py-4 border-l text-right">$200</td>
-                        <td className="px-6 py-4 border-l text-right">$200</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax on contribution</td>
-                        <td className="px-6 py-4 border-l text-right">15% contributions tax ($30/mo)</td>
-                        <td className="px-6 py-4 border-l text-right">30% + 2% Medicare levy ({formatAUD(MONTHLY * MARGINAL)}/mo)</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Net amount working for you</td>
-                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * 0.85)}/mo into super</td>
-                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * (1 - MARGINAL))}/mo off HECS</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Growth rate assumption</td>
-                        <td className="px-6 py-4 border-l text-right">~{(SUPER_NET * 100).toFixed(1)}% net after tax/fees</td>
-                        <td className="px-6 py-4 border-l text-right">{(HECS_HELP.indexationRate * 100).toFixed(1)}% (indexation avoided, {HECS_HELP.indexationDate} rate)</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">10-year value created</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">~{formatAUD(Math.round(SUPER_10Y / 100) * 100)}</td>
-                        <td className="px-6 py-4 border-l text-right">~{formatAUD(Math.round(HECS_10Y / 100) * 100)} (debt reduced + indexation saved)</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Accessible before 60?</td>
-                        <td className="px-6 py-4 border-l text-right">No</td>
-                        <td className="px-6 py-4 border-l text-right">Yes (higher take-home pay)</td>
-                      </tr>
-                      <tr className="bg-eucalyptus/5">
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax saving (annual)</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">{formatAUD(MONTHLY * 12 * (MARGINAL - 0.15))}/yr</td>
-                        <td className="px-6 py-4 border-l text-right">$0</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {INDEX_PCT} applied on {HECS_HELP.indexationDate}. Figures are approximate illustrations.</p>
-              </div>
-              <p>
-                At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: once the HECS debt is cleared, compulsory repayments stop and your take-home pay rises, while the super balance stays locked until preservation age. At higher tax brackets (37% or 45%), super pulls further ahead because the tax saving on each dollar is larger.
-              </p>
             </section>
 
             {/* SECTION 6: FAQ */}

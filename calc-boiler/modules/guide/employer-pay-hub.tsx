@@ -41,7 +41,8 @@ export default function EmployerPayHubPage() {
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
             This page compares hourly pay rates at Australia&rsquo;s biggest retail, fast food and other
             large employers, including Coles, Woolworths, Bunnings and McDonald&rsquo;s. Each rate is read from the
-            employer&rsquo;s own enterprise agreement or, where staff are award-covered, from the modern award.
+            employer&rsquo;s own enterprise agreement or, where staff are award-covered, from the modern award.{" "}
+            {byEntry[0].name} pays the highest adult entry-level rate, {money(entryRate(byEntry[0]).hourly)} an hour.
             The table below sets each employer&rsquo;s adult entry-level rate beside its casual rate and top
             rate. Every employer page then lists rates by level and by age, penalty rates and weekly pay.
           </p>

@@ -5,7 +5,7 @@ import { formatAUD, formatPercent } from "@/lib/constants";
 import { SA_PAYROLL_TAX } from "@/lib/constants/payroll-tax";
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine, millions } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, millions, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.SA;
 const SA_RATE = formatPercent(SA_PAYROLL_TAX.rate, 2);
@@ -17,7 +17,7 @@ export const SA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average SA salary?",
-    a: `Full-time adults in SA earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows the weekly, fortnightly and monthly net figures.`,
+    a: `Take-home pay on the average full-time SA salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. Full-time adults in SA earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows the weekly, fortnightly and monthly net figures.`,
   },
   {
     q: "Are Christmas Eve and New Year's Eve public holidays in SA?",

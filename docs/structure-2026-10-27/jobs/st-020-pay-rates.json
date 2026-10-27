@@ -1,0 +1,111 @@
+{
+ "name": "st-020-pay-rates",
+ "files": [
+  "app/healthcare-worker-pay/page.tsx",
+  "app/hecs-help-calculator/page.tsx",
+  "app/pay-rates/page.tsx",
+  "app/public-service-pay-scales/[jurisdiction]/[grade]/page.tsx",
+  "app/public-service-pay-scales/page.tsx",
+  "modules/calculator/hecs-help-calculator-content.tsx",
+  "modules/calculator/hecs-help-calculator.tsx",
+  "modules/guide/aps-grade-page.tsx",
+  "modules/guide/employer-pay-hub-faqs.ts",
+  "modules/guide/employer-pay-hub.tsx",
+  "modules/guide/healthcare-worker-pay-faqs.ts",
+  "modules/guide/healthcare-worker-pay.tsx",
+  "modules/guide/public-service-pay-scales.tsx",
+  "modules/guide/state-level-page.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/pay-rates/",
+   "url": "https://pay-calculator-australia.com/pay-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.94",
+   "centerpiece": "1.85",
+   "main_query": "woolworths pay rates 2026",
+   "pre28_clicks": "22",
+   "pre28_impr": "1555",
+   "requests": [
+    "Centerpiece (AUDIT 1.93): the opening paragraph has no figure. It needs an expression giving the direct answer, for example the highest entry-level adult rate and its employer (highest.name and money(entryRate(highest).hourly), as the first FAQ computes), plus the effective date range of the rates.",
+    "(applies to /pay-rates/bws/, /pay-rates/dan-murphys/, /pay-rates/coles/, /pay-rates/chemist-warehouse/) The instrument.coverage string is locked, but it renders as its own paragraph after the facts list. Its subject is a bare \"It\" (BWS, Coles) or \"The award\" (Chemist Warehouse), with no antecedent in prose. It should name the instrument as subject (\"The Endeavour Group agreement covers...\", \"The Coles agreement covers...\", \"The Pharmacy Industry Award covers...\") and use \"General Retail Industry Award\" instead of \"the retail award\". Note that BWS coverage also renders on the Dan Murphy's page, so it must stay brand-neutral.",
+    "(applies to /pay-rates/priceline/, /pay-rates/qantas/, /pay-rates/rebel/) instrument.coverage is locked (prop:instrument) and renders as its own paragraph starting 'It covers ...' / 'One agreement covers ...' straight after the facts list. A manual edit should name the instrument as the subject, e.g. 'The Priceline Retail Employees Enterprise Agreement 2026 covers ...'."
+   ]
+  },
+  {
+   "path": "/public-service-pay-scales/aps/aps-6/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/aps/aps-6/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.85",
+   "centerpiece": "4.22",
+   "main_query": "aps6 salary 2026",
+   "pre28_clicks": "77",
+   "pre28_impr": "4068",
+   "requests": [
+    "Code fix, not prose: replace the hard-coded 0.154 multipliers in the super paragraph (aps-grade-page.tsx line 172) with APS_SUPER_RATE / 100."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.07",
+   "centerpiece": "3.56",
+   "main_query": "nurse salary australia 2026",
+   "pre28_clicks": "5",
+   "pre28_impr": "936",
+   "requests": [
+    "The top pre-crash query is 'salary of nurse in australia per month after tax', but the page shows only annual take-home. Add a monthly (and fortnightly) take-home column to the Take-Home Pay Examples table, and a monthly after-tax figure for the RN entry range in the opening, both computed from afterTax(RN_ENTRY.*).",
+    "The text 'Not published yet: {states}.' (line 260) is a fragment, and the checker locks it as a short string. It should be a full sentence such as 'Nurse pay for {states} is not published yet.'",
+    "The opening has no direct state-by-state answer to 'how much do nurses get paid in australia' beyond the range. Consider adding the national median RN figure (if JSA data exists for ANZSCO 2544) as an expression in the intro.",
+    "(applies to /healthcare-worker-pay/tas/ (also /wa/, /act/, /sa/, /nt/)) calc-boiler/lib/data/nursing-pay/faqs.ts line 105: the no-hourly-rate FAQ answer is locked (call-arg:push), so I could not edit it. It renders on the 5 states whose derivation.hourly starts with 'not shown'. Its first sentence, 'The {shortName} pay scale does not set one.', only makes sense next to the question. In FAQPage schema or an AI citation it reads as a fragment. Suggested wording, with the same expressions and no new numbers: 'The {shortName} pay scale does not set an hourly rate for registered nurses. It lists annual salaries with no hourly column, so this page does not print an hourly number the source never set. The full-time week is {ordinaryHoursPerWeek} hours.'",
+    "(applies to /healthcare-worker-pay/act/ and /healthcare-worker-pay/nt/) faqs.ts line ~152 renders ', with the next change due ${primary.nextIncrease}'. For ACT and NT, nextIncrease begins 'none scheduled: ...' / 'none in force: ...', so the FAQ reads 'with the next change due none scheduled: the agreement passed...'. The same field also renders after 'Next scheduled change:'. The code needs a separate branch (or field) for 'no increase scheduled' rather than a prose workaround in the data string."
+   ]
+  },
+  {
+   "path": "/hecs-help-calculator/",
+   "url": "https://pay-calculator-australia.com/hecs-help-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.36",
+   "centerpiece": "3.85",
+   "main_query": "hecs calculator",
+   "pre28_clicks": "118",
+   "pre28_impr": "14913",
+   "requests": [
+    "The hero sentence should say the top repayment band is charged on total repayment income. That needs the top-band rate expression (B3.marginalRate) in the hero text, which this pass cannot add.",
+    "The FAQS array has duplicate questions. 'Is HECS interest free?' appears at lines 76 and 124, and 'How much HECS do I have to pay?' at lines 72 and 128. 'Does a HECS-HELP debt charge interest?' (line 136) answers the same question a third time. Each duplicate renders twice in the accordion and in the FAQPage JSON-LD. The content component also uses key={f.q}, so the duplicates give duplicate React keys. Merge each pair into one entry. The questions are locked, so this pass cannot do it.",
+    "The FAQ at line 145 ('Is it worth paying off HECS early?') contains unlabelled advice ('Higher-cost debt like credit cards and car loans should come first', 'The strongest cases for paying early are...'). The AUDIT is factual-structured, not 'needs labelled editorial judgment', so this pass left it as it was. The owner should decide whether to label it as guidance or keep it."
+   ]
+  },
+  {
+   "path": "/public-service-pay-scales/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.72",
+   "centerpiece": "3.49",
+   "main_query": "aps salary",
+   "pre28_clicks": "182",
+   "pre28_impr": "17252",
+   "requests": [
+    "The opening paragraph (source lines 76-90) types every headline figure and date as a literal ($108,092, $81,032 to $89,903, 13 June 2026, etc.) instead of rendering them from JURISDICTIONS / aps.ts data. All match the data today, but they will drift on the next agreement update. Render them from the data files.",
+    "The opening does not say what the page's tools do for the reader (the service cards link to each jurisdiction's full pay scale, and each band links to the nearest take-home page). Adding that needs a sentence that points at components, which this pass cannot add.",
+    "The hub FAQ 'What does a public service band pay after tax?' (lib/data/public-service-pay/index.ts line 240) never gives an after-tax figure. It needs a computed take-home amount for the median APS 6 salary ($108,092), for example a per-fortnight figure from the tax engine, so the answer actually answers the question.",
+    "(applies to /public-service-pay-scales/{jurisdiction}/{level}/ (26 pages)) state-level-page.tsx line 128 opens with the fragment 'Every {stepWord} in {label}, from {effective}.' The checker locks the leading 'Every ' as a short string, so it cannot become a full sentence in this pass. Suggest 'The table lists every {stepWord} in {label}, from {effective}.'",
+    "(applies to /public-service-pay-scales/aps/{aps-3..el2}/) The FAQ 'Which agency pays {grade} the most?' (aps-grades.ts line 292) never names an agency. It gives only the overall spread and Treasury's range. The answer needs a computed expression for the agency with the highest max (and ideally the highest min) from d.agencies plus Treasury, so that the first sentence answers the question directly."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

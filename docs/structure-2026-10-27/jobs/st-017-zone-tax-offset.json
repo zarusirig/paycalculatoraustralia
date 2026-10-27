@@ -1,0 +1,113 @@
+{
+ "name": "st-017-zone-tax-offset",
+ "files": [
+  "app/overtime-penalty-rates-guide/page.tsx",
+  "app/salary-packaging-guide/page.tsx",
+  "app/tax-file-number-declaration/page.tsx",
+  "app/tech-salary-guide-australia/page.tsx",
+  "app/zone-tax-offset/page.tsx",
+  "modules/calculator/zone-tax-offset-calculator.tsx",
+  "modules/guide/overtime-penalty-rates-guide-faqs.ts",
+  "modules/guide/overtime-penalty-rates-guide.tsx",
+  "modules/guide/salary-packaging-guide-faqs.ts",
+  "modules/guide/salary-packaging-guide.tsx",
+  "modules/guide/tax-file-number-declaration-faqs.ts",
+  "modules/guide/tax-file-number-declaration.tsx",
+  "modules/guide/tech-salary-guide-australia-data.ts",
+  "modules/guide/tech-salary-guide-australia-faqs.ts",
+  "modules/guide/tech-salary-guide-australia.tsx",
+  "modules/guide/zone-tax-offset-faqs.ts",
+  "modules/guide/zone-tax-offset.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/zone-tax-offset/",
+   "url": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.14",
+   "centerpiece": "2.50",
+   "main_query": "6536",
+   "pre28_clicks": "13",
+   "pre28_impr": "3301",
+   "requests": [
+    "AUDIT centerpiece is 2.50, but the page opening sits in modules/guide/zone-tax-offset (another unit), not in the calculator card. The centerpiece rewrite needs to happen in that unit."
+   ]
+  },
+  {
+   "path": "/overtime-penalty-rates-guide/",
+   "url": "https://pay-calculator-australia.com/overtime-penalty-rates-guide/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.48",
+   "centerpiece": "3.20",
+   "main_query": "14",
+   "pre28_clicks": "12",
+   "pre28_impr": "4471",
+   "requests": [
+    "The AUDIT intent is lookup-rate-table but format_fit is 2.85: the verified retail, hospitality and SCHADS penalty tables (section 3) sit below two prose sections. Move them up to sit straight after the intro.",
+    "Rebuild or remove the generic 'Penalty Period / Common Multiplier Range' table (lines 206-225) from the award constants. Its evening and night multiplier rows contradict the hospitality flat-cash callout on the same page.",
+    "The $30/hr worked example (line 123) and the overtime multiplier table (lines 138-140) hard-code 1.5x, 2.0x and 2.5x and the dollar results. Drive them from RETAIL_OVERTIME and HOSPITALITY_OVERTIME the way the intro already does.",
+    "Make the reasonable-overtime factor list (lines 312-318) and the '5 key factors' count match Fair Work Act s62(3) in full.",
+    "The hospitality FAQ ends with 'The retail award does use a percentage for evening work after 6pm' but gives no figure. Rendering pct(RETAIL_PENALTIES.eveningAfter6pm) there would answer the comparison. That would add a new figure, so it is out of scope for this pass."
+   ]
+  },
+  {
+   "path": "/salary-packaging-guide/",
+   "url": "https://pay-calculator-australia.com/salary-packaging-guide/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.74",
+   "centerpiece": "1.61",
+   "main_query": "185k",
+   "pre28_clicks": "9",
+   "pre28_impr": "636",
+   "requests": [
+    "The page centerpiece score is low (1.61) and format_fit is low (1.74), but this unit holds only the FAQs. The page opening needs its own centerpiece rewrite in the unit that holds it.",
+    "The AUDIT intent is 'calculate', but the page has no salary packaging calculator, only a fixed worked example and a link to the salary sacrifice (super) calculator. Add a packaging calculator by employer type (PBI, hospital, rebatable) so the reader can enter their own salary.",
+    "The hero opening cannot give the direct answer figures because it has no expressions. Add {formatAUD(PBI_FACE)} / {formatAUD(PBI_CAP)} and {formatAUD(HOSPITAL_FACE)} / {formatAUD(HOSPITAL_CAP)}, plus {formatAUD(PBI_BENEFIT)} at {formatAUD(EXAMPLE_SALARY)}, to the hero paragraph so the opening states the caps and the saving.",
+    "In Related Resources, the 'Salary Sacrifice Guide' link and the sidebar 'Salary Sacrifice Guide' link both go to /salary-sacrifice-calculator/, the same URL as the calculator link. Point one at a real guide or remove the duplicate."
+   ]
+  },
+  {
+   "path": "/tech-salary-guide-australia/",
+   "url": "https://pay-calculator-australia.com/tech-salary-guide-australia/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "1.81",
+   "centerpiece": "2.16",
+   "main_query": "15 years",
+   "pre28_clicks": "6",
+   "pre28_impr": "1335",
+   "requests": [
+    "The intent is a definition ('what tech workers earn in Australia'), but the opening has no salary figure for a tech occupation, only the take-home on a $110,000 example. Add an expression from TECH_ROLE_ROWS to the hero paragraph (for example the highest and lowest ATO median, or the software engineer median with TECH_INCOME_YEAR) so the first sentences give the direct answer. This pass cannot add expressions."
+   ]
+  },
+  {
+   "path": "/tax-file-number-declaration/",
+   "url": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "1.91",
+   "centerpiece": "1.80",
+   "main_query": "1 000000000",
+   "pre28_clicks": "3",
+   "pre28_impr": "590",
+   "requests": [
+    "The hero opening (line 44) has no figure. A definition answer would be stronger with the form number (NAT 3092) and the no-TFN withholding rate rendered from a constant. This pass cannot add numbers.",
+    "There is no calculator on the page. The only take-home tool is a sidebar link to /income-tax-calculator/. Consider an inline 'with vs without tax-free threshold / HELP' withholding example near Question 9 or 10.",
+    "The 'When to Submit a New TFN Declaration' list items mix fragments ('If you start studying...') with imperatives ('Submit a new declaration...'). Once the NAT 3093 question is settled, the list needs parallel grammar and the right form name.",
+    "AUDIT centerpiece is 1.80, but this unit is only the route wrapper (metadata, JSON-LD, page component). The opening prose lives in calc-boiler/modules/guide/tax-file-number-declaration.tsx, so the centerpiece rewrite has to happen in whichever unit holds that file. That opening should name the TFN declaration (ATO form NAT 3092 only if the page already cites it), give a direct definition, and say who completes it and when (new employer, before the first pay).",
+    "The locked DESCRIPTION (page.tsx line 16) says 'HECS debt notification'. The ATO's current umbrella term is 'study and training support loans' (HELP and others), and the lexical map may prefer 'HELP debt'. Metadata is out of scope for this pass, so an owner should decide whether to update it."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

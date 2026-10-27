@@ -37,25 +37,6 @@ const SOURCES_LIST = [
 export default function CentrelinkAdvancePaymentContent() {
   return (
     <>
-      <W3Section title="How Much Advance Can You Get?">
-        <div className={TABLE_WRAP}>
-          <table className="w-full text-sm">
-            <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Payment</th><th scope="col" className={TH + " text-right"}>Lowest</th><th scope="col" className={TH + " text-right"}>Highest</th><th scope="col" className={TH + " text-right"}>Repayment on highest</th></tr></thead>
-            <tbody className="divide-y divide-sandstone-dark/10">
-              {(["allowance", "pensionSingle", "pensionCouple", "specialEmployment", "ftb"] as AdvanceKind[]).map((k, i) => (
-                <tr key={k} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
-                  <td className={TD}>{ADVANCE_LIMITS[k].label}</td>
-                  <td className={TD + " text-right"}>{ADVANCE_LIMITS[k].min !== null ? formatAUD(ADVANCE_LIMITS[k].min as number, 2) : "—"}</td>
-                  <td className={TD + " text-right"}>{formatAUD(ADVANCE_LIMITS[k].max, 2)}</td>
-                  <td className={TD + " text-right"}>{formatAUD(advanceRepayment(ADVANCE_LIMITS[k].max), 2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; the table shows the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. A Farm Household Allowance advance has the same {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)} range as JobSeeker, paid all at once. On FTB Part A, a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
-      </W3Section>
-
       <W3Section title="Who Can Get an Advance Payment?">
         <ul className="list-disc pl-6 space-y-1 text-warmgray">
           <li><strong>After at least {ADVANCE_RULES.monthsOnPaymentBeforeApplying} months on:</strong> Age Pension, Carer Payment, Disability Support Pension, Farm Household Allowance, JobSeeker Payment, Parenting Payment or Youth Allowance (job seeker).</li>
@@ -95,5 +76,29 @@ export default function CentrelinkAdvancePaymentContent() {
       <W3Faqs faqs={ADVANCE_FAQS} topic="Centrelink advance payment" />
       <W3Footer sources={SOURCES_LIST} lastVerified={SRC.verifiedOn} authorKey="centrelink-advance-payment" />
     </>
+  );
+}
+
+/** The "How much" amounts table, rendered above the calculator card. */
+export function CentrelinkAdvanceAmounts() {
+  return (
+    <W3Section title="How Much Advance Can You Get?">
+      <div className={TABLE_WRAP}>
+        <table className="w-full text-sm">
+          <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Payment</th><th scope="col" className={TH + " text-right"}>Lowest</th><th scope="col" className={TH + " text-right"}>Highest</th><th scope="col" className={TH + " text-right"}>Repayment on highest</th></tr></thead>
+          <tbody className="divide-y divide-sandstone-dark/10">
+            {(["allowance", "pensionSingle", "pensionCouple", "specialEmployment", "ftb"] as AdvanceKind[]).map((k, i) => (
+              <tr key={k} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                <td className={TD}>{ADVANCE_LIMITS[k].label}</td>
+                <td className={TD + " text-right"}>{ADVANCE_LIMITS[k].min !== null ? formatAUD(ADVANCE_LIMITS[k].min as number, 2) : "—"}</td>
+                <td className={TD + " text-right"}>{formatAUD(ADVANCE_LIMITS[k].max, 2)}</td>
+                <td className={TD + " text-right"}>{formatAUD(advanceRepayment(ADVANCE_LIMITS[k].max), 2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; the table shows the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. A Farm Household Allowance advance has the same {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)} range as JobSeeker, paid all at once. On FTB Part A, a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
+    </W3Section>
   );
 }

@@ -24,6 +24,12 @@ import { MoneyInput, W3Hero, W3Section } from "./centrelink-w3-shared";
 
 const JS_MAX = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single;
 const T = JOBSEEKER_INCOME_TEST;
+/**
+ * Debt values where the Resolution Scheme payment steps up. The payment in each
+ * row of the band table comes from resolutionSchemePayment() at these edges, so
+ * the table and the estimator cannot disagree on the amounts.
+ */
+const BAND_EDGES = [200, 2_000, 5_000] as const;
 
 export default function CentrelinkDebtPage({ intro, children, afterCalculator }: { intro: ReactNode; children: ReactNode; afterCalculator?: ReactNode }) {
   const [reported, setReported] = useState(600);
@@ -54,10 +60,10 @@ export default function CentrelinkDebtPage({ intro, children, afterCalculator }:
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Debt value on {RESOLUTION_SCHEME.valuedAt}</th><th scope="col" className={TH + " text-right"}>Payment</th></tr></thead>
                   <tbody className="divide-y divide-sandstone-dark/10">
-                    <tr><td className={TD}>Less than $200</td><td className={TD + " text-right"}>Full debt amount</td></tr>
-                    <tr className="bg-eucalyptus-light/30"><td className={TD}>$200 – $1,999</td><td className={TD + " text-right"}>$200</td></tr>
-                    <tr><td className={TD}>$2,000 – $4,999</td><td className={TD + " text-right"}>$400</td></tr>
-                    <tr className="bg-eucalyptus-light/30"><td className={TD}>$5,000 or more</td><td className={TD + " text-right"}>$600</td></tr>
+                    <tr><td className={TD}>Less than {formatAUD(BAND_EDGES[0])}</td><td className={TD + " text-right"}>Full debt amount</td></tr>
+                    <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(BAND_EDGES[0])} to {formatAUD(BAND_EDGES[1] - 1)}</td><td className={TD + " text-right"}>{formatAUD(resolutionSchemePayment(BAND_EDGES[0]))}</td></tr>
+                    <tr><td className={TD}>{formatAUD(BAND_EDGES[1])} to {formatAUD(BAND_EDGES[2] - 1)}</td><td className={TD + " text-right"}>{formatAUD(resolutionSchemePayment(BAND_EDGES[1]))}</td></tr>
+                    <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(BAND_EDGES[2])} or more</td><td className={TD + " text-right"}>{formatAUD(resolutionSchemePayment(BAND_EDGES[2]))}</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -94,7 +100,7 @@ export default function CentrelinkDebtPage({ intro, children, afterCalculator }:
                 </div>
               </CardContent>
             </Card>
-            <p className={P + " mt-4"}>The same overpayment arithmetic applies to every income-tested Centrelink payment, using that payment&apos;s own free area and taper. See how your pay changes each one in the<Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Austudy and Youth Allowance</Link>, <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link> and <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment</Link> calculators. The <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link> gives the gross fortnightly figure to report.</p>
+            <p className={P + " mt-4"}>The same overpayment arithmetic applies to every income-tested Centrelink payment, using that payment&apos;s own free area and taper. See how your pay changes each one in the{" "}<Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Austudy and Youth Allowance</Link>, <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link> and <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment</Link> calculators. The <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link> gives the gross fortnightly figure to report.</p>
             <ul className="list-disc pl-6 space-y-1 text-warmgray">
               <li>Report your <strong>gross</strong> income, not the amount paid into your bank.</li>
               <li>Tell Services Australia about changes to your circumstances within <strong>14 days</strong>.</li>

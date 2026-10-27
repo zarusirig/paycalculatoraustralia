@@ -1,0 +1,111 @@
+{
+ "name": "st-030-work-hours-calculator",
+ "files": [
+  "app/full-time-vs-part-time-vs-casual/page.tsx",
+  "app/overtime-pay-calculator/page.tsx",
+  "app/payroll-tax/[state]/page.tsx",
+  "app/salary-package-calculator/page.tsx",
+  "app/work-hours-calculator/page.tsx",
+  "modules/calculator/overtime-pay-calculator-content.tsx",
+  "modules/calculator/overtime-pay-calculator-faqs.ts",
+  "modules/calculator/overtime-pay-calculator.tsx",
+  "modules/calculator/salary-package-calculator-content.tsx",
+  "modules/calculator/salary-package-calculator.tsx",
+  "modules/calculator/salary-package-faqs.ts",
+  "modules/calculator/work-hours-calculator.tsx",
+  "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+  "modules/guide/full-time-vs-part-time-vs-casual.tsx",
+  "modules/guide/work-hours-calculator-page.tsx",
+  "modules/guide/work-hours-faqs.ts",
+  "modules/payroll-tax/content.ts",
+  "modules/payroll-tax/format.ts",
+  "modules/payroll-tax/payroll-tax-calculator.tsx",
+  "modules/payroll-tax/payroll-tax-state-page.tsx",
+  "modules/payroll-tax/sections.tsx",
+  "modules/payroll-tax/state-detail.ts"
+ ],
+ "pages": [
+  {
+   "path": "/work-hours-calculator/",
+   "url": "https://pay-calculator-australia.com/work-hours-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.87",
+   "centerpiece": "1.94",
+   "main_query": "7.6 hour day start and finish calculator",
+   "pre28_clicks": "65",
+   "pre28_impr": "22410",
+   "requests": [
+    "The opening has no single answer figure. If the page should lead with one, it needs an expression such as {formatDecimalHours(NINE_TO_FIVE.paidHours)} for a 9 to 5 shift with a 30-minute break in the header paragraph. The checker blocks adding expressions in this pass.",
+    "The centerpiece score is 1.94, but the page opening (H1 and intro) lives in modules/guide/work-hours-calculator-page, not in this unit, so the opening rewrite has to be assigned to that unit."
+   ]
+  },
+  {
+   "path": "/salary-package-calculator/",
+   "url": "https://pay-calculator-australia.com/salary-package-calculator/",
+   "inPlan": false,
+   "intent": "how-to-steps",
+   "format_fit": "4.26",
+   "centerpiece": "3.17",
+   "main_query": "how to calculate base salary from package including super",
+   "pre28_clicks": "67",
+   "pre28_impr": "16539",
+   "requests": [
+    "The hero opening needs the divisor ({DIVISOR}, 1 + SUPER_GUARANTEE.rate) and the worked base figure (splitPackage(112_000).base) so the top query 'how to calculate base salary from package including super' gets its number in the first sentences. The hero has neither expression, so it says 'divide the package' without the divisor.",
+    "The Related Calculators list still uses &mdash; separators (content lines 195-199). The checker locks the short ' &mdash; check the ' text on line 196, so I could not replace all five consistently. I left all five as they are so the list stays parallel. A code-level pass should change every separator to a colon at once."
+   ]
+  },
+  {
+   "path": "/payroll-tax/act/",
+   "url": "https://pay-calculator-australia.com/payroll-tax/act/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.00",
+   "centerpiece": "4.48",
+   "main_query": "act payroll tax",
+   "pre28_clicks": "2",
+   "pre28_impr": "1165",
+   "requests": [
+    "ACT_PAYROLL_TAX.bands (five rate bands, $20m/$50m/$100m/$150m/above) are listed inline in one long rateSummary sentence (over 30 words), which is both the Rate section paragraph and the first FAQ answer. Render the bands as a small table or <ul> from ACT_PAYROLL_TAX.bands in payroll-tax-state-page.tsx, and keep rateSummary to the 6.75% headline plus the 'rate for your band applies to all ACT wages above the threshold' rule."
+   ]
+  },
+  {
+   "path": "/overtime-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/overtime-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.18",
+   "centerpiece": "3.72",
+   "main_query": "double time and a half calculator",
+   "pre28_clicks": "56",
+   "pre28_impr": "9938",
+   "requests": [
+    "The 'Penalty Rates by Award Type' table needs a basis label (ordinary hours or overtime) on the Sunday and Public Holiday columns, and per-award figures from lib/constants/modern-awards.ts instead of five identical hard-coded rows. As written, every award shows the same 1.5/2.0/2.0/2.5 values, so the comparison does not show any real difference between awards.",
+    "Top queries include 'double time and a half calculator' and 'overtime calculator nsw', but the prose never says 'double time and a half' next to the 2.5x public holiday rate, and nothing mentions NSW or state public holidays. Adding a short line about the 2.5x (double time and a half) public holiday rate would need a heading or table change, which this pass cannot make."
+   ]
+  },
+  {
+   "path": "/full-time-vs-part-time-vs-casual/",
+   "url": "https://pay-calculator-australia.com/full-time-vs-part-time-vs-casual/",
+   "inPlan": false,
+   "intent": "comparison",
+   "format_fit": "4.01",
+   "centerpiece": "3.27",
+   "main_query": "full-time vs part-time vs casual",
+   "pre28_clicks": "2",
+   "pre28_impr": "618",
+   "requests": [
+    "serp_answered=no and the top queries are 'part time vs casual' and 'difference between casual and part time'. Add a two-to-three sentence direct answer block on part-time vs casual under the H1. It should state the guaranteed hours, the pro-rata paid leave, and the casual loading from EMPLOYMENT.casualLoading. The hero opening holds no expression for the part-time side.",
+    "The cost-comparison example ($30/hr base) is a static table. Driving it from EMPLOYMENT.casualLoading and the SG constant would keep it in step with the rates."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

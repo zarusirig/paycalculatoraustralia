@@ -110,24 +110,6 @@ export default function CentrelinkPaymentDatesPage() {
         <article className={ARTICLE_CLASS}>
           <FeaturedImage placement="content" className="mt-0" />
           <section>
-            <H2 id="how">How Centrelink Payment Dates Work</H2>
-            <p>Most Centrelink payments, including JobSeeker Payment, Youth Allowance, Parenting Payment and Age Pension, are paid every 2 weeks. Each person is on their own fortnightly cycle, so your payment day is the same weekday every fortnight but can differ from someone else&rsquo;s. That is why there is no national &ldquo;Centrelink payday&rdquo;. Some people can ask to be paid <a href={CENTRELINK_DATES_SOURCES.weeklyPaymentOption} target="_blank" rel="noopener noreferrer">weekly</a> instead.</p>
-            <p>You can see your future payments and reporting dates in your <a href={CENTRELINK_DATES_SOURCES.onlineAccount} target="_blank" rel="noopener noreferrer">Centrelink online account</a> through myGov or the Express Plus Centrelink app, including your reporting dates for the next 12 weeks.</p>
-          </section>
-
-          <section>
-            <H2 id="reporting">Centrelink Reporting Dates</H2>
-            <p>If you get an income support payment and earn wages, you have <strong>scheduled reporting</strong>: you tell Centrelink your gross employment income for a reporting period, usually 14 days, on your reporting date (<a href={CENTRELINK_DATES_SOURCES.whenToReport} target="_blank" rel="noopener noreferrer">Services Australia</a>).</p>
-            <ul>
-              <li>Report by <strong>5 pm on your reporting date</strong> so you&rsquo;re paid on time. Each time you report, you&rsquo;re told your next date, and you get an SMS reminder on the day.</li>
-              <li>You can&rsquo;t report before your reporting date unless a public holiday moves it.</li>
-              <li>If you report late, your payment is late. You can still report online for up to 14 days after your reporting date; after that you have to call.</li>
-              <li>If you get a pension or a student payment and aren&rsquo;t working, you generally don&rsquo;t have scheduled reporting. If you start or stop work, tell Centrelink so it can start or stop.</li>
-            </ul>
-            <p>Report your <strong>gross</strong> pay (before tax), not what lands in your bank. <Link href="/gross-vs-net-pay/">Gross vs net pay</Link> explains the difference, and the <Link href="/centrelink-income-test/">Centrelink income test</Link> shows how that income changes your payment.</p>
-          </section>
-
-          <section>
             <H2 id="christmas-2026">Centrelink Christmas Payment Dates 2026</H2>
             {NEW ? (
               <>
@@ -163,6 +145,24 @@ export default function CentrelinkPaymentDatesPage() {
               <li><strong>It isn&rsquo;t extra money.</strong> An early payment is your regular payment paid early. Your next payment is on your normal date, so the early one has to stretch further. If you&rsquo;re short, you may be able to get an <Link href="/centrelink-advance-payment/">advance payment</Link>.</li>
               <li><strong>Reporting on a holiday:</strong> you can still report when offices are closed, but if you report on a public holiday you&rsquo;re paid after it.</li>
             </ul>
+          </section>
+
+          <section>
+            <H2 id="how">How Centrelink Payment Dates Work</H2>
+            <p>Most Centrelink payments, including JobSeeker Payment, Youth Allowance, Parenting Payment and Age Pension, are paid every 2 weeks. Each person is on their own fortnightly cycle, so your payment day is the same weekday every fortnight but can differ from someone else&rsquo;s. That is why there is no national &ldquo;Centrelink payday&rdquo;. Some people can ask to be paid <a href={CENTRELINK_DATES_SOURCES.weeklyPaymentOption} target="_blank" rel="noopener noreferrer">weekly</a> instead.</p>
+            <p>You can see your future payments and reporting dates in your <a href={CENTRELINK_DATES_SOURCES.onlineAccount} target="_blank" rel="noopener noreferrer">Centrelink online account</a> through myGov or the Express Plus Centrelink app, including your reporting dates for the next 12 weeks.</p>
+          </section>
+
+          <section>
+            <H2 id="reporting">Centrelink Reporting Dates</H2>
+            <p>If you get an income support payment and earn wages, you have <strong>scheduled reporting</strong>: you tell Centrelink your gross employment income for a reporting period, usually 14 days, on your reporting date (<a href={CENTRELINK_DATES_SOURCES.whenToReport} target="_blank" rel="noopener noreferrer">Services Australia</a>).</p>
+            <ul>
+              <li>Report by <strong>5 pm on your reporting date</strong> so you&rsquo;re paid on time. Each time you report, you&rsquo;re told your next date, and you get an SMS reminder on the day.</li>
+              <li>You can&rsquo;t report before your reporting date unless a public holiday moves it.</li>
+              <li>If you report late, your payment is late. You can still report online for up to 14 days after your reporting date; after that you have to call.</li>
+              <li>If you get a pension or a student payment and aren&rsquo;t working, you generally don&rsquo;t have scheduled reporting. If you start or stop work, tell Centrelink so it can start or stop.</li>
+            </ul>
+            <p>Report your <strong>gross</strong> pay (before tax), not what lands in your bank. <Link href="/gross-vs-net-pay/">Gross vs net pay</Link> explains the difference, and the <Link href="/centrelink-income-test/">Centrelink income test</Link> shows how that income changes your payment.</p>
           </section>
 
           <section>

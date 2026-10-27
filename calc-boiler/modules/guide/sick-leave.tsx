@@ -44,7 +44,7 @@ export default function SickLeavePage() {
 
       <PageHeader title="Sick Leave Calculator: Personal/Carer's Leave in Australia">
         <p>
-          <strong>Full-time employees get 10 days of paid sick and carer&rsquo;s leave a year; part-time employees get the same pro rata.</strong> Personal/carer&rsquo;s leave under the National Employment Standards builds up at 1/26 of your ordinary hours from your first day. A 38-hour week earns {FT_HOURS} hours a year and a 19-hour week earns {annualSickLeaveHours(19)}. Carer&rsquo;s leave comes out of the same balance as your own sick days. Casuals get no paid sick leave but can take unpaid carer&rsquo;s leave. Unused sick leave rolls over every year and is not paid out when you leave. Enter your ordinary hours, years of service, leave already taken and base hourly rate in the calculator below to see hours earned, your balance and its value. The rest of this page covers carer&rsquo;s leave, how a sick day is paid, medical certificates, when leave accrues and the rules on payout and cashing out.
+          <strong>Full-time employees get 10 days of paid sick and carer&rsquo;s leave a year; part-time employees get the same pro rata.</strong> Personal/carer&rsquo;s leave under the National Employment Standards builds up at 1/26 of your ordinary hours from your first day. A 38-hour week earns {FT_HOURS} hours a year and a 19-hour week earns {annualSickLeaveHours(19)}. Enter your ordinary hours, years of service, leave already taken and base hourly rate in the calculator below to see hours earned, your balance and its value.
         </p>
       </PageHeader>
 
@@ -62,6 +62,9 @@ export default function SickLeavePage() {
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
           <FeaturedImage placement="content" className="mt-0" />
+          <p>
+            Carer&rsquo;s leave comes out of the same balance as your own sick days. Casuals get no paid sick leave but can take unpaid carer&rsquo;s leave. Unused sick leave rolls over every year and is not paid out when you leave. The rest of this page covers carer&rsquo;s leave, how a sick day is paid, medical certificates, when leave accrues and the rules on payout and cashing out.
+          </p>
           <section>
             <H2 id="how-much">How Much Sick Leave Do You Get?</H2>
             <p>

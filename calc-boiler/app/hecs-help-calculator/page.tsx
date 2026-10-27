@@ -72,11 +72,11 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "How much HECS do I have to pay?",
-    a: `Your HECS repayment is set by your repayment income, not the size of your debt. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}, then 15c for each dollar above it. The middle band is ${formatAUD(B2.base)} plus 17c per dollar over ${formatAUD(B2.min - 1)}, and ${B3.marginalRate * 100}% of total repayment income applies from ${formatAUD(B3.min)}. On ${formatAUD(90_000)} that is ${formatAUD(calculateHECS(90_000))} a year. Repayments stop when the balance reaches zero.`,
+    a: `Your HECS repayment is set by your repayment income, not the size of your debt. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}, then 15c for each dollar above it: ${formatAUD(calculateHECS(80_000))} on ${formatAUD(80_000)}, ${formatAUD(calculateHECS(90_000))} on ${formatAUD(90_000)} and ${formatAUD(calculateHECS(100_000))} on ${formatAUD(100_000)}. The middle band is ${formatAUD(B2.base)} plus 17c per dollar over ${formatAUD(B2.min - 1)}, and ${B3.marginalRate * 100}% of total repayment income applies from ${formatAUD(B3.min)}. Repayments stop when the balance reaches zero. See the repayment table on this page, or enter your income in the calculator.`,
   },
   {
     q: "Is HECS interest free?",
-    a: `Yes. No interest is charged on a HECS-HELP debt. Instead the ATO applies indexation each 1 June to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. The ${HECS_HELP.indexationDate} rate was ${IDX}, so a balance of ${formatAUD(30_000)} carried over 11 months rose by ${formatAUD(30_000 * HECS_HELP.indexationRate)}.`,
+    a: `Yes. The government charges no interest on a HECS-HELP debt or any other study and training support loan. Instead the ATO applies indexation each 1 June to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index, which stops the debt losing value rather than adding a profit margin. The ${HECS_HELP.indexationDate} rate was ${IDX}, so a balance of ${formatAUD(30_000)} carried over 11 months rose by ${formatAUD(30_000 * HECS_HELP.indexationRate)}.`,
   },
   {
     q: "How do I calculate my HECS repayment?",
@@ -121,14 +121,6 @@ const FAQS: readonly CalculatorFaq[] = [
   {
     q: "How much do I repay just over the threshold?",
     a: `Very little. At ${formatAUD(75_000)} the repayment is ${formatAUD(calculateHECS(75_000))} for the year. The marginal system charges 15c only on income above ${formatAUD(T)}, so crossing the line no longer triggers a repayment on your whole income.`,
-  },
-  {
-    q: "Is HECS interest free?",
-    a: `Yes, in the sense that there is no interest rate. The government charges no interest on study and training support loans. What it does apply is indexation each 1 June, at the lower of CPI or the Wage Price Index, which stops the debt losing value rather than adding a profit margin. The indexation applied on ${HECS_HELP.indexationDate} was ${IDX}.`,
-  },
-  {
-    q: "How much HECS do I have to pay?",
-    a: `Your HECS repayment is worked out from your repayment income. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}. Above that you pay 15c for each $1 over ${formatAUD(T)}, so ${formatAUD(calculateHECS(80_000))} on ${formatAUD(80_000)} and ${formatAUD(calculateHECS(100_000))} on ${formatAUD(100_000)}. See the repayment table on this page, or enter your income in the calculator.`,
   },
   {
     q: "What is the STSL line on my payslip?",

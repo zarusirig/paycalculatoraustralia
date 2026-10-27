@@ -1,0 +1,108 @@
+{
+ "name": "st-028-gig-economy-pay-guide",
+ "files": [
+  "app/concessional-contributions-cap/page.tsx",
+  "app/gig-economy-pay-guide/page.tsx",
+  "app/novated-lease-calculator/page.tsx",
+  "app/ote-salary/page.tsx",
+  "app/tax-calendar/page.tsx",
+  "modules/calculator/concessional-cap-calculator.tsx",
+  "modules/calculator/novated-lease-calculator-content.tsx",
+  "modules/calculator/novated-lease-calculator.tsx",
+  "modules/calculator/novated-lease-faqs.ts",
+  "modules/calculator/ote-salary-calculator.tsx",
+  "modules/guide/concessional-contributions-cap-faqs.ts",
+  "modules/guide/concessional-contributions-cap.tsx",
+  "modules/guide/gig-economy-pay-guide-faqs.ts",
+  "modules/guide/gig-economy-pay-guide.tsx",
+  "modules/guide/ote-salary-faqs.ts",
+  "modules/guide/ote-salary.tsx",
+  "modules/guide/tax-calendar-faqs.ts",
+  "modules/guide/tax-calendar.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/gig-economy-pay-guide/",
+   "url": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "2.83",
+   "centerpiece": "1.95",
+   "main_query": "gig economy pay guide",
+   "pre28_clicks": "3",
+   "pre28_impr": "187",
+   "requests": [
+    "The opening (line 36) has no figure. The top query is 'uber eats tax calculator australia' (intent=calculate). The opening needs an expression-rendered answer, for example the set-aside % from GIG_ROWS at a typical income, plus FY{SITE_CONFIG.financialYear}. There is also no calculator on the page, only a link to /income-tax-calculator/. Consider embedding the income tax calculator, or a gig set-aside widget, above the fold.",
+    "Line 57 and the sidebar have two links, 'Contractor vs Employee Guide' and 'Contractor vs Employee Calculator', that both go to /contractor-vs-employee-calculator/. Either point the 'Guide' link at a real guide URL or drop the duplicate.",
+    "The 'Set Aside %' table covers income tax and Medicare levy only. The prose now says to add GST on top if registered. A GST column or note in the table itself would make this clear.",
+    "Metadata and schema only, not prose. The WebPage schema name at calc-boiler/app/gig-economy-pay-guide/page.tsx line 18 still says \"Gig Economy Tax Guide Australia\". The 23 Oct meta pass changed TITLE to \"Gig Economy Pay Guide Australia: Uber, Delivery & Freelance Tax\" and the breadcrumb to \"Gig Economy Pay Guide\". Align the schema name in a code pass. The centerpiece opening (score 1.95) lives in modules/guide/gig-economy-pay-guide, not in this unit."
+   ]
+  },
+  {
+   "path": "/novated-lease-calculator/",
+   "url": "https://pay-calculator-australia.com/novated-lease-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.17",
+   "centerpiece": "1.82",
+   "main_query": "$65k",
+   "pre28_clicks": "8",
+   "pre28_impr": "1532",
+   "requests": [
+    "The hero opening has no figure to give as a direct answer. An expression for the default example result (for example FBT or the cost after tax on the default $60,000 car at a $100,000 salary, or the statutory 20% rate) would let the opening lead with a number. This pass cannot add one."
+   ]
+  },
+  {
+   "path": "/concessional-contributions-cap/",
+   "url": "https://pay-calculator-australia.com/concessional-contributions-cap/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.03",
+   "centerpiece": "2.33",
+   "main_query": "2024 concessional contributions cap",
+   "pre28_clicks": "1",
+   "pre28_impr": "374",
+   "requests": [
+    "The opening paragraph says 'from 1 July 2026, up from {prev} the year before' but has no {FY} or {PREV_FY} expression. Add both to the intro so the opening names the 2026-27 financial year and the 2025-26 comparison year directly; the H1 is the only place FY appears near the top.",
+    "The AUDIT centerpiece score is 2.33, but this unit only holds the calculator card. The page opening (H1 plus the first sentences) lives in another file, and that opening needs the centerpiece rewrite: the general cap figure, FY and carry-forward."
+   ]
+  },
+  {
+   "path": "/ote-salary/",
+   "url": "https://pay-calculator-australia.com/ote-salary/",
+   "inPlan": false,
+   "intent": "definition",
+   "format_fit": "3.71",
+   "centerpiece": "3.36",
+   "main_query": "120k ote",
+   "pre28_clicks": "3",
+   "pre28_impr": "1869",
+   "requests": [
+    "Two figures in OTE_SALARY_FAQS are typed in by hand: $190,100 (line 29) and 12% (line 21). Build these answers from HIGH_INCOME_THRESHOLD.current and SUPER_GUARANTEE.rate, as ote-salary.tsx does, so the FAQ and the FAQPage JSON-LD cannot drift from the body. The worked $80,000/$120,000 example in FAQ line 9/17 and the page opening could also read EXAMPLE."
+   ]
+  },
+  {
+   "path": "/tax-calendar/",
+   "url": "https://pay-calculator-australia.com/tax-calendar/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.09",
+   "centerpiece": "4.17",
+   "main_query": "tax calendar",
+   "pre28_clicks": "14",
+   "pre28_impr": "1471",
+   "requests": [
+    "The DateCard desc props on lines 96-98 render as their own paragraphs but are fragments ('Deadline if you lodge your own return.', 'Usual due date for ... returns', 'Last day for deductible spending...'). They are JSX attributes, which the checker locks. Suggested source edits: 'This is the deadline if you lodge your own return.', 'It is also the last day to get on a tax agent's client list.', 'This is the usual due date for ...', 'This is the last day for deductible spending...', and on line 95 'The ${Y.incomeYear} income year starts.'",
+    "The page targets 'tax calendar 2026', but the opening sentence of the H1 intro (line 85) defines 'a tax week'. Consider leading with 'The Australian tax calendar for {Y.incomeYear} ...' (centerpiece score is 4.17, so this pass left it alone)."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

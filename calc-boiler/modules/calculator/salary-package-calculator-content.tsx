@@ -48,6 +48,24 @@ export default function SalaryPackageCalculatorContent() {
   return (
     <>
       <section>
+        <h2 style={FONT} className={H2}>How to Work Out Base Salary From a Package Including Super</h2>
+        <p className={P}>
+          Divide the package by {DIVISOR}. Super is {RATE_PCT} <em>of the base</em>, so a package is 1 + {SUPER_GUARANTEE.rate} times the base, not base plus {RATE_PCT} of the package. Taking {RATE_PCT} off the top of the package understates your base.
+        </p>
+        <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 text-sm text-navy mb-4">
+          <p className="font-medium mb-2">Worked example: {formatAUD(112_000)} package including super</p>
+          <ol className="list-decimal pl-6 space-y-1">
+            <li>{formatAUD(112_000)} ÷ {DIVISOR} = <strong>{formatAUD(ex112.base)}</strong> base salary</li>
+            <li>{formatAUD(112_000)} − {formatAUD(ex112.base)} = <strong>{formatAUD(ex112.superAmount)}</strong> super ({RATE_PCT} of the base)</li>
+          </ol>
+          <p className="text-warmgray mt-2">Wrong way: {formatAUD(112_000)} × {RATE_PCT} = {formatAUD(112_000 * SUPER_GUARANTEE.rate)} super and {formatAUD(112_000 - 112_000 * SUPER_GUARANTEE.rate)} base, {formatAUD(ex112.base - (112_000 - 112_000 * SUPER_GUARANTEE.rate))} short.</p>
+        </div>
+        <p className={P}>
+          To go the other way (base to package), multiply the base by {DIVISOR}, or add {RATE_PCT} of it. The tables below do both for common amounts.
+        </p>
+      </section>
+
+      <section>
         <h2 style={FONT} className={H2}>Package, Plus Super, Including Super: What Each One Means</h2>
         <p className={P}>Australian offers use three phrasings for the same {RATE_PCT} of employer super, and they are not interchangeable:</p>
         <div className={TABLE_WRAP}>
@@ -88,22 +106,6 @@ export default function SalaryPackageCalculatorContent() {
         </div>
         <p className={P + " mt-4"}>
           Your tax, your HECS repayment and your take-home pay are all worked out on the <strong>base</strong>. The super goes to your super fund, not your bank account. So with any offer, find the base salary first (the calculator above does this), then put it through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.
-        </p>
-      </section>
-
-      <section>
-        <h2 style={FONT} className={H2}>How to Work Out Base Salary From a Package Including Super</h2>
-        <p className={P}>
-          Divide the package by {DIVISOR}. Super is {RATE_PCT} <em>of the base</em>, so a package is 1 + {SUPER_GUARANTEE.rate} times the base, not base plus {RATE_PCT} of the package. Taking {RATE_PCT} off the top of the package understates your base.
-        </p>
-        <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 text-sm text-navy mb-4">
-          <p className="font-medium mb-2">Worked example: {formatAUD(112_000)} package including super</p>
-          <p>{formatAUD(112_000)} ÷ {DIVISOR} = <strong>{formatAUD(ex112.base)}</strong> base salary</p>
-          <p>{formatAUD(112_000)} − {formatAUD(ex112.base)} = <strong>{formatAUD(ex112.superAmount)}</strong> super ({RATE_PCT} of the base)</p>
-          <p className="text-warmgray mt-2">Wrong way: {formatAUD(112_000)} × {RATE_PCT} = {formatAUD(112_000 * SUPER_GUARANTEE.rate)} super and {formatAUD(112_000 - 112_000 * SUPER_GUARANTEE.rate)} base, {formatAUD(ex112.base - (112_000 - 112_000 * SUPER_GUARANTEE.rate))} short.</p>
-        </div>
-        <p className={P}>
-          To go the other way (base to package), multiply the base by {DIVISOR}, or add {RATE_PCT} of it. The tables below do both for common amounts.
         </p>
       </section>
 
@@ -192,11 +194,11 @@ export default function SalaryPackageCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>Related Calculators</h2>
         <ul className="space-y-2 text-warmgray">
-          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-home pay calculator</Link> &mdash; put the base through the full tax, Medicare and HECS calculation.</li>
-          <li><Link href="/superannuation-calculator/" className={LINK}>Super guarantee calculator</Link> &mdash; check the {RATE_PCT} your employer should be paying.</li>
-          <li><Link href="/gross-pay-calculator/" className={LINK}>Gross pay calculator</Link> &mdash; net to gross and gross to net.</li>
-          <li><Link href="/pay-rise-calculator/" className={LINK}>Pay rise calculator</Link> &mdash; compare an offer against what you earn now.</li>
-          <li><Link href="/salary-to-hourly/100000/" className={LINK}>{formatAUD(100_000)} salary as an hourly rate</Link> &mdash; the same base by the hour.</li>
+          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-home pay calculator</Link>: put the base through the full tax, Medicare and HECS calculation.</li>
+          <li><Link href="/superannuation-calculator/" className={LINK}>Super guarantee calculator</Link>: check the {RATE_PCT} your employer should be paying.</li>
+          <li><Link href="/gross-pay-calculator/" className={LINK}>Gross pay calculator</Link>: net to gross and gross to net.</li>
+          <li><Link href="/pay-rise-calculator/" className={LINK}>Pay rise calculator</Link>: compare an offer against what you earn now.</li>
+          <li><Link href="/salary-to-hourly/100000/" className={LINK}>{formatAUD(100_000)} salary as an hourly rate</Link>: the same base by the hour.</li>
         </ul>
       </section>
 

@@ -10,10 +10,11 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // 2026 prune). Every figure is computed from the tax engine at build time.
 const first = TAKE_HOME_SALARIES[0];
 const last = TAKE_HOME_SALARIES[TAKE_HOME_SALARIES.length - 1];
-const example = calculatePayBreakdown({ grossSalary: 100_000 });
+const EXAMPLE_SALARY = 100_000;
+const example = calculatePayBreakdown({ grossSalary: EXAMPLE_SALARY });
 
 const TITLE = `Salary After Tax Australia ${SITE_CONFIG.financialYear}: Take-Home Pay on ${TAKE_HOME_SALARIES.length} Salaries`;
-const DESCRIPTION = `Take-home pay after tax for every salary from ${formatAUD(first)} to ${formatAUD(last)} in ${SITE_CONFIG.financialYear}. E.g. $100,000 after tax is ${formatAUD(example.takeHomePay)}. Weekly, fortnightly and monthly on each page.`;
+const DESCRIPTION = `Take-home pay after tax for every salary from ${formatAUD(first)} to ${formatAUD(last)} in ${SITE_CONFIG.financialYear}. E.g. ${formatAUD(EXAMPLE_SALARY)} after tax is ${formatAUD(example.takeHomePay)}. Weekly, fortnightly and monthly on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/take-home-pay-on/`;
 
 export const metadata: Metadata = withFeaturedImage({
@@ -32,6 +33,7 @@ function TakeHomePayHubPage() {
         crumb: "Take-Home Pay by Salary",
         intro: (
           <p>
+            {formatAUD(EXAMPLE_SALARY)} after tax is {formatAUD(example.takeHomePay)} a year.{" "}
             Take-home pay for {TAKE_HOME_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} on {SITE_CONFIG.financialYear} rates: every
             $5,000 up to $200,000, then wider steps. Pick a salary for the weekly, fortnightly and monthly figures, the HECS-HELP case, super and the
             jobs whose median full-time pay is closest to it. For a figure between two pages, use the{" "}
@@ -39,6 +41,7 @@ function TakeHomePayHubPage() {
           </p>
         ),
         figure: (s) => formatAUD(calculatePayBreakdown({ grossSalary: s }).takeHomePay),
+        figureHeading: "Take-home pay a year",
         figureLabel: "take-home pay a year after income tax and Medicare levy",
         linkLabel: (s) => formatAUD(s),
       }}

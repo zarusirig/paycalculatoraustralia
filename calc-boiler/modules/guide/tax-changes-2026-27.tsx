@@ -119,10 +119,10 @@ export default function TaxChanges202627Page() {
             <section id="overview">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2026-27 Tax Year Overview</h2>
               <p>
-                The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. The legislated rate cut took effect on 1 July 2026, and the ATO has published the 2026-27 HELP repayment thresholds and super contribution caps. Two settings on this page are still pending: the 2026-27 Medicare levy low-income thresholds and the Payday Super cap relief (both covered below). The CGT and negative gearing changes from the 12 May 2026 federal budget are law and start on {CGT_REFORM_2027.startDate}.
+                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>{SECOND_RATE_OLD} to {SECOND_RATE_NEW}</strong> on 1 July 2026 (and to {pct(RATE_2027_28)} from {RATE_CUT_EFFECTIVE}). For anyone earning {SECOND_BRACKET_TO} or more, that is a tax cut of <strong>{formatAUD(RATE_CUT_MAX_SAVING)} per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26. For the dates of every change through 1 July 2027, see the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>. The {pct(RATE_2027_28)} rate arrives with a new {formatAUD(WATO.maxOffset)} offset in {WATO.firstIncomeYear}: see the <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>.
               </p>
               <p>
-                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>{SECOND_RATE_OLD} to {SECOND_RATE_NEW}</strong> on 1 July 2026 (and to {pct(RATE_2027_28)} from {RATE_CUT_EFFECTIVE}). For anyone earning {SECOND_BRACKET_TO} or more, that is a tax cut of <strong>{formatAUD(RATE_CUT_MAX_SAVING)} per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26. For the dates of every change through 1 July 2027, see the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>. The {pct(RATE_2027_28)} rate arrives with a new {formatAUD(WATO.maxOffset)} offset in {WATO.firstIncomeYear}: see the <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>.
+                The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. The legislated rate cut took effect on 1 July 2026, and the ATO has published the 2026-27 HELP repayment thresholds and super contribution caps. Two settings on this page are still pending: the 2026-27 Medicare levy low-income thresholds and the Payday Super cap relief (both covered below). The CGT and negative gearing changes from the 12 May 2026 federal budget are law and start on {CGT_REFORM_2027.startDate}.
               </p>
             </section>
 
@@ -194,11 +194,15 @@ export default function TaxChanges202627Page() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4">$0 &ndash; $18,200</td><td className="px-6 py-4">0%</td></tr>
-                      <tr><td className="px-6 py-4">$18,201 &ndash; $45,000</td><td className="px-6 py-4">15% <span className="text-warmgray">(was 16%)</span></td></tr>
-                      <tr><td className="px-6 py-4">$45,001 &ndash; $135,000</td><td className="px-6 py-4">30%</td></tr>
-                      <tr><td className="px-6 py-4">$135,001 &ndash; $190,000</td><td className="px-6 py-4">37%</td></tr>
-                      <tr><td className="px-6 py-4">$190,001+</td><td className="px-6 py-4">45%</td></tr>
+                      {TAX_BRACKETS.map((b, i) => {
+                        const previousRate = TAX_BRACKETS_2025_26[i]?.rate;
+                        return (
+                          <tr key={b.min}>
+                            <td className="px-6 py-4">{b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)} to ${formatAUD(b.max)}`}</td>
+                            <td className="px-6 py-4">{pct(b.rate)}{previousRate !== undefined && previousRate !== b.rate && <> <span className="text-warmgray">(was {pct(previousRate)})</span></>}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

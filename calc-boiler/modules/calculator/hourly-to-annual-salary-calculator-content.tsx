@@ -58,6 +58,28 @@ const HOURS_WORKED_EXCL_LEAVE =
 /** Same example rate as HEADLINE_RATE in hourly-to-annual-salary-calculator.tsx and app/hourly-to-annual-salary-calculator/page.tsx — keep all three in step. */
 const HEADLINE_RATE = 30;
 
+// Worked figures in the prose (27 Oct 2026). The example rates stay as typed
+// in the headings; every result is computed from EMPLOYMENT so it cannot drift
+// from the 38 x 52 basis.
+const HOURS = EMPLOYMENT.standardWeeklyHours;
+const WEEKS = EMPLOYMENT.weeksPerYear;
+const CONTRACT_HOURS = 40;
+const RATE_TABLE_LOW = 30;
+const RATE_TABLE_HIGH = 60;
+const BRACKET_EXAMPLE_RATE = 35;
+const WORKED_RATE = 45.5;
+const WORKED_WEEKLY = WORKED_RATE * HOURS;
+const WORKED_ANNUAL = annualFromHourly(WORKED_RATE);
+const TWO_HOURS_DIFF = WORKED_RATE * (CONTRACT_HOURS - HOURS) * WEEKS;
+const HOURS_PER_DAY = HOURS / 5;
+const CONTRACT_HOURS_PER_YEAR = CONTRACT_HOURS * WEEKS;
+const PT_RATE = 40;
+const PT_HOURS = 20;
+const CASUAL_WEEKS = WEEKS - EMPLOYMENT.annualLeaveWeeks;
+const CASUAL_ANNUAL = PT_RATE * HOURS * CASUAL_WEEKS;
+const PERMANENT_ANNUAL = annualFromHourly(PT_RATE);
+const CASUAL_EQUIVALENT_RATE = PT_RATE * (1 + EMPLOYMENT.casualLoading);
+
 // Google AU "related searches" for "hourly to annual salary calculator" and
 // "hourly rate to salary calculator" (Sept 2026), each pointed at the page that answers it.
 const RELATED_SEARCHES: readonly RelatedSearch[] = [
@@ -86,6 +108,75 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
             to get your annual salary. Enter your own rate and hours in the calculator above to see your annual salary and what you take home after ATO
             income tax and the Medicare levy.
           </p>
+
+          {/* Moved up 27 Oct 2026: "$40 an hour is how much a year" style lookups get the rate table first. */}
+          {/* H2: Hourly to Annual Conversion Table */}
+          <section>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Annual Salary for Common Hourly Rates?</h2>
+            <p className="mb-4 text-warmgray">
+              An hourly rate of <strong>${RATE_TABLE_LOW} produces {formatAUD(annualFromHourly(RATE_TABLE_LOW))}</strong> per year, while <strong>${RATE_TABLE_HIGH} per hour equals {formatAUD(annualFromHourly(RATE_TABLE_HIGH))}</strong>, both based on a standard 38-hour week across 52 weeks in FY{SITE_CONFIG.financialYear}.
+            </p>
+            <p className="mb-4 text-warmgray">
+              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of {SG_PCT}. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications whose adult minimum rate is closest to it.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Hourly Rate</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Weekly Gross</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Annual Salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Super ({SG_PCT})</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {FEATURED_HOURLY_RATES.map((rate) => {
+                    const weekly = rate * HOURS;
+                    const annual = weekly * WEEKS;
+                    const superAmt = annual * SUPER_GUARANTEE.rate;
+                    return (
+                      <tr key={rate} className="hover:bg-sandstone/50">
+                        <td className="px-4 py-2.5 font-medium text-gray-700">
+                          <Link href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`} className="text-eucalyptus-dark hover:underline">
+                            ${rate} an hour is how much a year
+                          </Link>
+                        </td>
+                        <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(weekly)}</td>
+                        <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(annual)}</td>
+                        <td className="px-4 py-2.5 text-right text-eucalyptus-dark">{formatAUD(superAmt)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray-light">
+              All figures assume 38 ordinary hours per week, 52 weeks per year. Overtime, penalty rates, and casual loading are excluded. The superannuation guarantee rate of {SG_PCT} applies from {SUPER_GUARANTEE.effectiveDate}.
+            </p>
+
+            <h3 className="text-xl font-semibold text-navy mb-3 mt-8" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Hourly Rate From $20 to $100 as an Annual Salary</h3>
+            <p className="mb-4 text-warmgray">
+              Each whole-dollar rate below has its own page: gross and after-tax pay per week, fortnight, month and year, the same rate at 20 to 50 hours a week, and the award classifications whose adult minimum rate is closest to it.
+            </p>
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-sm">
+              {HOURLY_RATE_PAGES.map((rate) => (
+                <li key={rate}>
+                  <Link
+                    href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`}
+                    className="block rounded-lg border border-sandstone-dark/20 bg-white px-3 py-2 hover:border-eucalyptus hover:shadow-sm transition-all"
+                    title={`${formatAUD(rate, 2)} an hour is how much a year`}
+                  >
+                    <span className="font-medium text-navy">{formatAUD(rate, 2)} an hour</span>
+                    <span className="block text-xs text-warmgray">{formatAUD(annualFromHourly(rate))} a year</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {/* T6: hub for the reverse direction, every /salary-to-hourly/ page */}
+            <p className="mt-4 text-sm text-warmgray">
+              Starting from a salary instead? The <Link href="/salary-to-hourly/" className="text-eucalyptus-dark hover:underline font-medium">annual salary to hourly rate table</Link> converts every salary from $30,000 to $500,000.
+            </p>
+          </section>
 
           {/* H2: How Many Hours in a Year? */}
           <section id="hours-in-a-year">
@@ -144,7 +235,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               The formula applies to permanent full-time and part-time employees paid a fixed hourly rate. The 52-week multiplier counts the paid leave those employees receive under the National Employment Standards, including 4 weeks of annual leave, 10 days of personal leave, and paid public holidays.
             </p>
             <p className="mb-4 text-warmgray">
-              A worker earning <strong>$35 per hour</strong> at 38 hours per week has an annual gross salary of <strong>$69,160</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays the <strong>{SG_PCT} superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
+              A worker earning <strong>${BRACKET_EXAMPLE_RATE} per hour</strong> at {HOURS} hours per week has an annual gross salary of <strong>{formatAUD(annualFromHourly(BRACKET_EXAMPLE_RATE))}</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays the <strong>{SG_PCT} superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: $45.50 per Hour at 38 Hours</h3>
@@ -152,12 +243,12 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               The calculation follows 3 steps:
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li>Multiply the hourly rate by weekly hours: $45.50 &times; 38 = <strong>$1,729.00 per week</strong></li>
-              <li>Multiply the weekly amount by 52 weeks: $1,729.00 &times; 52 = <strong>$89,908 per year</strong></li>
-              <li>Calculate employer super at {SG_PCT}: $89,908 &times; {SUPER_GUARANTEE.rate} = <strong>{formatAUD(Math.round(89_908 * SUPER_GUARANTEE.rate))} paid into your super fund</strong></li>
+              <li>Multiply the hourly rate by weekly hours: {formatAUD(WORKED_RATE, 2)} &times; {HOURS} = <strong>{formatAUD(WORKED_WEEKLY, 2)} per week</strong></li>
+              <li>Multiply the weekly amount by {WEEKS} weeks: {formatAUD(WORKED_WEEKLY, 2)} &times; {WEEKS} = <strong>{formatAUD(WORKED_ANNUAL)} per year</strong></li>
+              <li>Calculate employer super at {SG_PCT}: {formatAUD(WORKED_ANNUAL)} &times; {SUPER_GUARANTEE.rate} = <strong>{formatAUD(Math.round(WORKED_ANNUAL * SUPER_GUARANTEE.rate))} paid into your super fund</strong></li>
             </ol>
             <p className="text-warmgray">
-              The gross salary of <strong>$89,908</strong> is the figure used to calculate your income tax, Medicare levy, and any HECS-HELP repayments. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Take-Home Pay Calculator</Link> to see the net amount deposited into your bank account each pay cycle.
+              The gross salary of <strong>{formatAUD(WORKED_ANNUAL)}</strong> is the figure used to calculate your income tax, Medicare levy, and any HECS-HELP repayments. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Take-Home Pay Calculator</Link> to see the net amount deposited into your bank account each pay cycle.
             </p>
           </section>
 
@@ -191,102 +282,34 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
             </div>
           </section>
 
-          {/* H2: Hourly to Annual Conversion Table */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Annual Salary for Common Hourly Rates?</h2>
-            <p className="mb-4 text-warmgray">
-              An hourly rate of <strong>$30 produces $59,280</strong> per year, while <strong>$60 per hour equals $118,560</strong>, both based on a standard 38-hour week across 52 weeks in FY{SITE_CONFIG.financialYear}.
-            </p>
-            <p className="mb-4 text-warmgray">
-              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of {SG_PCT}. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications whose adult minimum rate is closest to it.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-navy">Hourly Rate</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Weekly Gross</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Annual Salary</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Super ({SG_PCT})</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  {FEATURED_HOURLY_RATES.map((rate) => {
-                    const weekly = rate * 38;
-                    const annual = weekly * 52;
-                    const superAmt = annual * SUPER_GUARANTEE.rate;
-                    return (
-                      <tr key={rate} className="hover:bg-sandstone/50">
-                        <td className="px-4 py-2.5 font-medium text-gray-700">
-                          <Link href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`} className="text-eucalyptus-dark hover:underline">
-                            ${rate} an hour is how much a year
-                          </Link>
-                        </td>
-                        <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(weekly)}</td>
-                        <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(annual)}</td>
-                        <td className="px-4 py-2.5 text-right text-eucalyptus-dark">{formatAUD(superAmt)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-warmgray-light">
-              All figures assume 38 ordinary hours per week, 52 weeks per year. Overtime, penalty rates, and casual loading are excluded. The superannuation guarantee rate of {SG_PCT} applies from {SUPER_GUARANTEE.effectiveDate}.
-            </p>
-
-            <h3 className="text-xl font-semibold text-navy mb-3 mt-8" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Hourly Rate From $20 to $100 as an Annual Salary</h3>
-            <p className="mb-4 text-warmgray">
-              Each whole-dollar rate below has its own page: gross and after-tax pay per week, fortnight, month and year, the same rate at 20 to 50 hours a week, and the award classifications whose adult minimum rate is closest to it.
-            </p>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-sm">
-              {HOURLY_RATE_PAGES.map((rate) => (
-                <li key={rate}>
-                  <Link
-                    href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`}
-                    className="block rounded-lg border border-sandstone-dark/20 bg-white px-3 py-2 hover:border-eucalyptus hover:shadow-sm transition-all"
-                    title={`${formatAUD(rate, 2)} an hour is how much a year`}
-                  >
-                    <span className="font-medium text-navy">{formatAUD(rate, 2)} an hour</span>
-                    <span className="block text-xs text-warmgray">{formatAUD(annualFromHourly(rate))} a year</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {/* T6: hub for the reverse direction, every /salary-to-hourly/ page */}
-            <p className="mt-4 text-sm text-warmgray">
-              Starting from a salary instead? The <Link href="/salary-to-hourly/" className="text-eucalyptus-dark hover:underline font-medium">annual salary to hourly rate table</Link> converts every salary from $30,000 to $500,000.
-            </p>
-          </section>
-
           {/* H2: Standard Working Hours */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do Hours Per Week Affect Annual Salary?</h2>
             <p className="mb-4 text-warmgray">
-              Annual salary moves in direct proportion to weekly hours, so a difference of 2 hours per week changes gross salary by<strong>$4,732</strong> at $45.50/hr.
+              Annual salary moves in direct proportion to weekly hours, so a difference of 2 hours per week changes gross salary by <strong>{formatAUD(TWO_HOURS_DIFF)}</strong> at $45.50/hr.
             </p>
             <p className="mb-4 text-warmgray">
-              Under the National Employment Standards (NES), the maximum ordinary hours for a full-time employee is <strong>38 hours per week</strong>, equal to 7.6 hours per day across a 5-day working week. Some Enterprise Agreements and older contracts specify 40 hours, producing 2,080 annual hours instead of the standard 1,976 hours.
+              Under the National Employment Standards (NES), the maximum ordinary hours for a full-time employee is <strong>38 hours per week</strong>, equal to {HOURS_PER_DAY} hours per day across a 5-day working week. Some Enterprise Agreements and older contracts specify {CONTRACT_HOURS} hours, producing {CONTRACT_HOURS_PER_YEAR.toLocaleString("en-AU")} annual hours instead of the standard {EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
               <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm text-center">
-                <div className="text-3xl font-bold text-navy mb-1">38</div>
+                <div className="text-3xl font-bold text-navy mb-1">{HOURS}</div>
                 <div className="text-sm font-semibold text-eucalyptus-dark uppercase">Hours / Week</div>
                 <div className="text-xs text-warmgray-light mt-2">NES standard</div>
               </div>
               <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm text-center">
-                <div className="text-3xl font-bold text-navy mb-1">7.6</div>
+                <div className="text-3xl font-bold text-navy mb-1">{HOURS_PER_DAY}</div>
                 <div className="text-sm font-semibold text-eucalyptus-dark uppercase">Hours / Day</div>
                 <div className="text-xs text-warmgray-light mt-2">Standard 5-day week</div>
               </div>
               <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm text-center">
-                <div className="text-3xl font-bold text-navy mb-1">1,976</div>
+                <div className="text-3xl font-bold text-navy mb-1">{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}</div>
                 <div className="text-sm font-semibold text-eucalyptus-dark uppercase">Hours / Year</div>
                 <div className="text-xs text-warmgray-light mt-2">Equivalent annual hours</div>
               </div>
             </div>
             <p className="mb-4 text-warmgray">
-              Part-time employees typically work between 15 and 30 hours per week. The hourly rate itself does not change between part-time and full-time, but the annual salary falls in proportion to the hours worked. A worker at $40/hr working 20 hours per week earns <strong>$41,600</strong> annually, compared to <strong>$79,040</strong> at 38 hours. Use our <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Weekly Pay Calculator</Link> to compare different weekly hour arrangements side by side.
+              Part-time employees typically work between 15 and 30 hours per week. The hourly rate itself does not change between part-time and full-time, but the annual salary falls in proportion to the hours worked. A worker at ${PT_RATE}/hr working {PT_HOURS} hours per week earns <strong>{formatAUD(annualFromHourly(PT_RATE, PT_HOURS))}</strong> annually, compared to <strong>{formatAUD(PERMANENT_ANNUAL)}</strong> at {HOURS} hours. Use our <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Weekly Pay Calculator</Link> to compare different weekly hour arrangements side by side.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hours Per Week Comparison at $45.50/hr</h3>
@@ -310,7 +333,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
                   ].map((row) => (
                     <tr key={row.hrs} className="hover:bg-sandstone/50">
                       <td className="px-4 py-2.5 font-medium text-gray-700">{row.hrs} hrs</td>
-                      <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(45.50 * row.hrs * 52)}</td>
+                      <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(annualFromHourly(WORKED_RATE, row.hrs))}</td>
                       <td className="px-4 py-2.5 text-right text-warmgray">{row.type}</td>
                     </tr>
                   ))}
@@ -423,7 +446,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </div>
             </div>
             <p className="mt-4 text-warmgray">
-              A casual employee at $40/hr working 38 hours for 48 weeks earns <strong>$72,960</strong> per year, not the $79,040 that a permanent employee on the same rate receives for 52 weeks. The <strong>$6,080 difference</strong> is the cost of 4 weeks of unpaid leave. With the 25% casual loading added, a fair comparison is $50/hr casual against $40/hr permanent. Use the<Link href="/leave-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Leave Calculator</Link> to estimate the dollar value of your leave entitlements.
+              A casual employee at ${PT_RATE}/hr working {HOURS} hours for {CASUAL_WEEKS} weeks earns <strong>{formatAUD(CASUAL_ANNUAL)}</strong> per year, not the {formatAUD(PERMANENT_ANNUAL)} that a permanent employee on the same rate receives for {WEEKS} weeks. The <strong>{formatAUD(PERMANENT_ANNUAL - CASUAL_ANNUAL)} difference</strong> is the cost of {EMPLOYMENT.annualLeaveWeeks} weeks of unpaid leave. With the {CASUAL_PCT} casual loading added, a fair comparison is ${CASUAL_EQUIVALENT_RATE}/hr casual against ${PT_RATE}/hr permanent. Use the <Link href="/leave-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Leave Calculator</Link> to estimate the dollar value of your leave entitlements.
             </p>
           </section>
 
@@ -433,7 +456,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Common Mistakes When Converting Hourly to Annual?</h2>
             <p className="mb-4 text-warmgray">
-              The most common mistake is using 40 hours instead of 38 hours, which overstates the annual salary by <strong>$4,732</strong> at a rate of $45.50/hr.
+              The most common mistake is using 40 hours instead of 38 hours, which overstates the annual salary by <strong>{formatAUD(TWO_HOURS_DIFF)}</strong> at a rate of $45.50/hr.
             </p>
             <ul className="space-y-3 text-warmgray mb-4">
               <li className="flex gap-3">

@@ -73,7 +73,7 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: "What is the 6-year rule for capital gains tax?",
-    a: `If you move out of your home you can keep treating it as your main residence for CGT purposes: indefinitely if you leave it vacant or let a relative use it rent-free, but only for ${ABSENCE_RULE.incomeProducingYears} years if you use it to produce income such as rent. While the choice applies you cannot treat any other property as your main residence, except for up to ${ABSENCE_RULE.overlapMonths} months when you are moving house. The ${ABSENCE_RULE.incomeProducingYears}-year limit applies separately to each period of absence, so moving back in and later leaving again resets the clock.`,
+    a: `The ${ABSENCE_RULE.incomeProducingYears}-year rule lets you keep treating your home as your main residence for CGT purposes after you move out: indefinitely if you leave it vacant or let a relative use it rent-free, but only for ${ABSENCE_RULE.incomeProducingYears} years if you use it to produce income such as rent. While the choice applies you cannot treat any other property as your main residence, except for up to ${ABSENCE_RULE.overlapMonths} months when you are moving house. The ${ABSENCE_RULE.incomeProducingYears}-year limit applies separately to each period of absence, so moving back in and later leaving again resets the clock.`,
   },
   {
     q: "Can capital losses reduce the tax on my salary?",

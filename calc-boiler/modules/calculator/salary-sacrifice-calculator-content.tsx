@@ -42,6 +42,13 @@ const SECOND_SAVING = `$${Math.max(0, SECOND_RATE - CONTRIBUTIONS_TAX_RATE).toFi
 const RATES_ABOVE_SUPER_TAX = TAX_BRACKETS.filter((b) => b.rate > CONTRIBUTIONS_TAX_RATE).map((b) => `${Math.round(b.rate * 1000) / 10}%`);
 const RATES_ABOVE_SUPER_TAX_LIST = `${RATES_ABOVE_SUPER_TAX.slice(0, -1).join(", ")} and ${RATES_ABOVE_SUPER_TAX[RATES_ABOVE_SUPER_TAX.length - 1]}`;
 const MEDICARE_CENTS = Math.round(MEDICARE_LEVY.rate * 100);
+// Bracket rates, thresholds and per-dollar savings for the two bracket tables
+// and the prose around them, so they follow TAX_BRACKETS.
+const TB = TAX_BRACKETS;
+const RATE_PCT = (rate: number) => `${Math.round(rate * 1000) / 10}%`;
+const NET_SAVING = (rate: number) => `$${(rate - CONTRIBUTIONS_TAX_RATE).toFixed(2)}`;
+const SAVING_CENTS = (rate: number) => Math.round((rate - CONTRIBUTIONS_TAX_RATE) * 100);
+const SUPER_TAX_PCT = formatPercent(CONTRIBUTIONS_TAX_RATE, 0);
 // Lead example ($100,000 less $10,000) sits wholly in the third bracket, where the full Medicare levy applies.
 const THIRD_RATE = TAX_BRACKETS[2].rate;
 const THIRD_NET_SAVING = `$${(THIRD_RATE + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX_RATE).toFixed(2)}`;
@@ -77,7 +84,7 @@ export default function SalarySacrificeCalculatorContent() {
           Salary sacrifice redirects a portion of your pre-tax gross salary into superannuation, reducing your taxable income and the income tax you pay in FY{SITE_CONFIG.financialYear}.
         </p>
         <p className="mb-4 text-warmgray">
-          The sacrificed amount is taxed at <strong>15%</strong> inside your super fund as a concessional contribution, instead of your marginal tax rate of <strong>30%</strong>, <strong>37%</strong>, or <strong>45%</strong>. The difference between those two rates is your tax saving. Use our{" "}
+          The sacrificed amount is taxed at <strong>{SUPER_TAX_PCT}</strong> inside your super fund as a concessional contribution, instead of your marginal tax rate of <strong>{RATE_PCT(TB[2].rate)}</strong>, <strong>{RATE_PCT(TB[3].rate)}</strong>, or <strong>{RATE_PCT(TB[4].rate)}</strong>. The difference between those two rates is your tax saving. Use our{" "}
           <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>{" "}
           to confirm your marginal rate before setting up a salary sacrifice arrangement.
         </p>
@@ -162,7 +169,7 @@ export default function SalarySacrificeCalculatorContent() {
           Salary sacrifice saves tax because concessional super contributions are taxed at <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong>, which is lower than the {RATES_ABOVE_SUPER_TAX_LIST} income tax rates in FY{SITE_CONFIG.financialYear}.
         </p>
         <p className="mb-4 text-warmgray">
-          The tax benefit increases with your marginal tax rate. An employee earning <strong>$80,000</strong> in the 30% bracket saves <strong>15 cents per dollar</strong> sacrificed. An employee earning <strong>$150,000</strong> in the 37% bracket saves <strong>22 cents per dollar</strong>. High-income earners above <strong>$190,000</strong> in the 45% bracket save <strong>30 cents per dollar</strong> while their income plus concessional contributions stays at or below the {formatAUD(DIVISION_293.threshold)} Division 293 threshold. These savings are before the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, which adds {MEDICARE_CENTS} cents per dollar. Use our{" "}
+          The tax benefit increases with your marginal tax rate. An employee earning <strong>$80,000</strong> in the {RATE_PCT(TB[2].rate)} bracket saves <strong>{SAVING_CENTS(TB[2].rate)} cents per dollar</strong> sacrificed. An employee earning <strong>$150,000</strong> in the {RATE_PCT(TB[3].rate)} bracket saves <strong>{SAVING_CENTS(TB[3].rate)} cents per dollar</strong>. High-income earners above <strong>{formatAUD(TB[3].max)}</strong> in the {RATE_PCT(TB[4].rate)} bracket save <strong>{SAVING_CENTS(TB[4].rate)} cents per dollar</strong> while their income plus concessional contributions stays at or below the {formatAUD(DIVISION_293.threshold)} Division 293 threshold. These savings are before the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, which adds {MEDICARE_CENTS} cents per dollar. Use our{" "}
           <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>{" "}
           to see your after-tax income with and without a sacrifice arrangement.
         </p>
@@ -179,34 +186,34 @@ export default function SalarySacrificeCalculatorContent() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="hover:bg-sandstone">
-                <td className="px-4 py-3 text-navy">$18,201 – $45,000</td>
+                <td className="px-4 py-3 text-navy">{formatAUD(TB[1].min)} – {formatAUD(TB[1].max)}</td>
                 <td className="px-4 py-3 text-right text-navy">{SECOND_RATE_PCT}</td>
-                <td className="px-4 py-3 text-right text-navy">15%</td>
+                <td className="px-4 py-3 text-right text-navy">{SUPER_TAX_PCT}</td>
                 <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{SECOND_SAVING}</td>
               </tr>
               <tr className="hover:bg-sandstone">
-                <td className="px-4 py-3 text-navy">$45,001 – $135,000</td>
-                <td className="px-4 py-3 text-right text-navy">30%</td>
-                <td className="px-4 py-3 text-right text-navy">15%</td>
-                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">$0.15</td>
+                <td className="px-4 py-3 text-navy">{formatAUD(TB[2].min)} – {formatAUD(TB[2].max)}</td>
+                <td className="px-4 py-3 text-right text-navy">{RATE_PCT(TB[2].rate)}</td>
+                <td className="px-4 py-3 text-right text-navy">{SUPER_TAX_PCT}</td>
+                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{NET_SAVING(TB[2].rate)}</td>
               </tr>
               <tr className="hover:bg-sandstone">
-                <td className="px-4 py-3 text-navy">$135,001 – $190,000</td>
-                <td className="px-4 py-3 text-right text-navy">37%</td>
-                <td className="px-4 py-3 text-right text-navy">15%</td>
-                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">$0.22</td>
+                <td className="px-4 py-3 text-navy">{formatAUD(TB[3].min)} – {formatAUD(TB[3].max)}</td>
+                <td className="px-4 py-3 text-right text-navy">{RATE_PCT(TB[3].rate)}</td>
+                <td className="px-4 py-3 text-right text-navy">{SUPER_TAX_PCT}</td>
+                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{NET_SAVING(TB[3].rate)}</td>
               </tr>
               <tr className="hover:bg-sandstone">
-                <td className="px-4 py-3 text-navy">$190,001+</td>
-                <td className="px-4 py-3 text-right text-navy">45%</td>
-                <td className="px-4 py-3 text-right text-navy">15%</td>
-                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">$0.30</td>
+                <td className="px-4 py-3 text-navy">{formatAUD(TB[4].min)}+</td>
+                <td className="px-4 py-3 text-right text-navy">{RATE_PCT(TB[4].rate)}</td>
+                <td className="px-4 py-3 text-right text-navy">{SUPER_TAX_PCT}</td>
+                <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{NET_SAVING(TB[4].rate)}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          Savings shown are the marginal rate minus the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy adds a further {MEDICARE_CENTS} cents per dollar once your taxable income is above {formatAUD(MEDICARE_LEVY.shadeInThreshold)} (the ATO&apos;s {MEDICARE_LEVY_INCOME_YEAR} threshold), where the full levy applies. Earners in the 15% bracket gain minimal benefit from salary sacrifice into super.
+          Savings shown are the marginal rate minus the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy adds a further {MEDICARE_CENTS} cents per dollar once your taxable income is above {formatAUD(MEDICARE_LEVY.shadeInThreshold)} (the ATO&apos;s {MEDICARE_LEVY_INCOME_YEAR} threshold), where the full levy applies. Earners in the {SECOND_RATE_PCT} bracket gain minimal benefit from salary sacrifice into super.
         </p>
       </section>
 
@@ -214,12 +221,12 @@ export default function SalarySacrificeCalculatorContent() {
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Salary Sacrifice Calculator?</h2>
         <p className="mb-4 text-warmgray">
-          Australian employees earning above <strong>$45,000</strong> per year benefit most from salary sacrifice, as their marginal tax rate exceeds the 15% super contributions tax rate.
+          Australian employees earning above <strong>{formatAUD(TB[1].max)}</strong> per year benefit most from salary sacrifice, as their marginal tax rate exceeds the {SUPER_TAX_PCT} super contributions tax rate.
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
           <li><strong>Full-time employees</strong> earning $60,000 to $200,000 who want to maximise retirement savings while minimising taxation</li>
           <li><strong>Employees approaching retirement</strong> (aged 50+) who want to accelerate super growth before accessing their balance at preservation age</li>
-          <li><strong>High-income earners</strong> above $135,000 in the 37% or 45% income tax brackets, where the tax saving per dollar sacrificed is largest</li>
+          <li><strong>High-income earners</strong> above {formatAUD(TB[2].max)} in the {RATE_PCT(TB[3].rate)} or {RATE_PCT(TB[4].rate)} income tax brackets, where the tax saving per dollar sacrificed is largest</li>
           <li><strong>HR and payroll professionals</strong> advising staff on salary packaging options and concessional contribution limits</li>
           <li><strong>Victorian public-sector and health workers</strong> who salary package through their employer and want to see the result against state-specific pay: the{" "}
             <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">pay calculator vic</Link>{" "}
@@ -328,7 +335,7 @@ export default function SalarySacrificeCalculatorContent() {
           <li><strong>Ignoring the HECS-HELP impact</strong>: Reportable super contributions are added back to &quot;repayment income&quot; when calculating HECS-HELP repayments. Salary sacrifice does not reduce your{" "}
             <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link>{" "}
             obligation.</li>
-          <li><strong>Sacrificing on a low marginal rate</strong>: Employees in the {SECOND_RATE_PCT} income tax bracket ($18,201 to $45,000) gain nothing at that rate from salary sacrifice into super in FY{FY}, because the {SECOND_RATE_PCT} income tax saved equals the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. Any gain or loss comes only from the Medicare levy and the Low Income Tax Offset at your income, and the sacrificed money stays in super until you meet a condition of release.</li>
+          <li><strong>Sacrificing on a low marginal rate</strong>: Employees in the {SECOND_RATE_PCT} income tax bracket ({formatAUD(TB[1].min)} to {formatAUD(TB[1].max)}) gain nothing at that rate from salary sacrifice into super in FY{FY}, because the {SECOND_RATE_PCT} income tax saved equals the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. Any gain or loss comes only from the Medicare levy and the Low Income Tax Offset at your income, and the sacrificed money stays in super until you meet a condition of release.</li>
           <li><strong>Reducing borrowing capacity</strong>: Lenders assess income after salary sacrifice deductions. A large annual sacrifice lowers the income a lender counts, which can reduce how much you can borrow.</li>
           <li><strong>Not using carry-forward unused cap amounts</strong>: Since 1 July 2018, unused concessional cap amounts carry forward for up to 5 years if your total super balance is below <strong>$500,000</strong>. Employees who do not use carried-forward amounts give up that extra concessional tax saving.</li>
         </ol>
@@ -428,7 +435,7 @@ export default function SalarySacrificeCalculatorContent() {
         <section id="who-benefits">
           <h2>Who Benefits Most from Salary Sacrifice?</h2>
           <p>
-            Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 15% bracket saves nothing on income tax (15% in, 15% contributions tax out), apart from any Medicare levy and Low Income Tax Offset change at their income.
+            Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the {SUPER_TAX_PCT} super contributions tax rate is largest. A taxpayer in the {RATE_PCT(TB[4].rate)} bracket saves <strong>{NET_SAVING(TB[4].rate)} per dollar</strong> sacrificed, while a taxpayer in the {SECOND_RATE_PCT} bracket saves nothing on income tax ({SECOND_RATE_PCT} in, {SUPER_TAX_PCT} contributions tax out), apart from any Medicare levy and Low Income Tax Offset change at their income.
           </p>
 
           <div className="overflow-x-auto not-prose my-6">
@@ -443,33 +450,33 @@ export default function SalarySacrificeCalculatorContent() {
               </thead>
               <tbody>
                 <tr className="border-b border-sandstone-dark/10">
-                  <td className="p-3 text-navy">$0–$18,200</td>
-                  <td className="p-3 text-right text-navy">0%</td>
-                  <td className="p-3 text-right text-navy">−$0.15 (worse off)</td>
+                  <td className="p-3 text-navy">{formatAUD(TB[0].min)}–{formatAUD(TB[0].max)}</td>
+                  <td className="p-3 text-right text-navy">{RATE_PCT(TB[0].rate)}</td>
+                  <td className="p-3 text-right text-navy">−${(CONTRIBUTIONS_TAX_RATE - TB[0].rate).toFixed(2)} (worse off)</td>
                   <td className="p-3 text-ochre font-medium">Not recommended</td>
                 </tr>
                 <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                  <td className="p-3 text-navy">$18,201–$45,000</td>
+                  <td className="p-3 text-navy">{formatAUD(TB[1].min)}–{formatAUD(TB[1].max)}</td>
                   <td className="p-3 text-right text-navy">{SECOND_RATE_PCT}</td>
                   <td className="p-3 text-right text-navy">{SECOND_SAVING}</td>
                   <td className="p-3 text-ochre font-medium">Minimal benefit</td>
                 </tr>
                 <tr className="border-b border-sandstone-dark/10">
-                  <td className="p-3 text-navy">$45,001–$135,000</td>
-                  <td className="p-3 text-right text-navy">30%</td>
-                  <td className="p-3 text-right text-navy">$0.15</td>
+                  <td className="p-3 text-navy">{formatAUD(TB[2].min)}–{formatAUD(TB[2].max)}</td>
+                  <td className="p-3 text-right text-navy">{RATE_PCT(TB[2].rate)}</td>
+                  <td className="p-3 text-right text-navy">{NET_SAVING(TB[2].rate)}</td>
                   <td className="p-3 text-eucalyptus-dark font-medium">Worthwhile</td>
                 </tr>
                 <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                  <td className="p-3 text-navy">$135,001–$190,000</td>
-                  <td className="p-3 text-right text-navy">37%</td>
-                  <td className="p-3 text-right text-navy">$0.22</td>
+                  <td className="p-3 text-navy">{formatAUD(TB[3].min)}–{formatAUD(TB[3].max)}</td>
+                  <td className="p-3 text-right text-navy">{RATE_PCT(TB[3].rate)}</td>
+                  <td className="p-3 text-right text-navy">{NET_SAVING(TB[3].rate)}</td>
                   <td className="p-3 text-eucalyptus-dark font-medium">Highly beneficial</td>
                 </tr>
                 <tr>
-                  <td className="p-3 text-navy">$190,001+</td>
-                  <td className="p-3 text-right text-navy">45%</td>
-                  <td className="p-3 text-right text-navy">$0.30</td>
+                  <td className="p-3 text-navy">{formatAUD(TB[4].min)}+</td>
+                  <td className="p-3 text-right text-navy">{RATE_PCT(TB[4].rate)}</td>
+                  <td className="p-3 text-right text-navy">{NET_SAVING(TB[4].rate)}</td>
                   <td className="p-3 text-eucalyptus-dark font-medium">Maximum benefit</td>
                 </tr>
               </tbody>
@@ -480,12 +487,12 @@ export default function SalarySacrificeCalculatorContent() {
             Three groups benefit the most from salary sacrifice arrangements:
           </p>
           <ul>
-            <li><strong>High-income earners ($135,000+)</strong>: The 37% and 45% marginal rates create the largest gap above the 15% super tax rate, producing savings of $2,200 to $3,000 per $10,000 sacrificed</li>
+            <li><strong>High-income earners ({formatAUD(TB[2].max)}+)</strong>: The {RATE_PCT(TB[3].rate)} and {RATE_PCT(TB[4].rate)} marginal rates create the largest gap above the {SUPER_TAX_PCT} super tax rate, producing savings of {formatAUD((TB[3].rate - CONTRIBUTIONS_TAX_RATE) * 10_000)} to {formatAUD((TB[4].rate - CONTRIBUTIONS_TAX_RATE) * 10_000)} per $10,000 sacrificed</li>
             <li><strong>Employees approaching retirement (age 50–67)</strong>: Carry-forward rules allow lump-sum catch-up contributions to build super balances before retirement</li>
             <li><strong>Not-for-profit sector workers</strong>: Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) of about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} a year at PBIs and health promotion charities, or about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} at public hospitals, produces savings even at lower income levels</li>
           </ul>
           <p>
-            Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. In the {SECOND_RATE_PCT} bracket ($18,201 to $45,000) the income tax saved equals the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax, so any gain or loss comes from the Medicare levy and the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> at your income. You do not claim the offset: the ATO works it out when you lodge your tax return. The calculator above includes both.
+            Employees earning below the tax-free threshold of <strong>{formatAUD(TB[0].max)}</strong> are worse off salary sacrificing into super because the {SUPER_TAX_PCT} contributions tax exceeds their {RATE_PCT(TB[0].rate)} income tax rate. In the {SECOND_RATE_PCT} bracket ({formatAUD(TB[1].min)} to {formatAUD(TB[1].max)}) the income tax saved equals the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax, so any gain or loss comes from the Medicare levy and the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> at your income. You do not claim the offset: the ATO works it out when you lodge your tax return. The calculator above includes both.
           </p>
         </section>
         <section id="risks-downsides">

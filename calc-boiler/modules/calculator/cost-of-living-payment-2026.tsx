@@ -54,7 +54,7 @@ export default function CostOfLivingPayment2026Page({ featuredImage }: { feature
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Payment</th><th scope="col" className={TH}>Status</th><th scope="col" className={TH}>Source</th></tr></thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
                   <tr><td className={TD + " font-medium"}>Cost of Living Payment (Commonwealth)</td><td className={TD}>Stopped from {COL.cwthCostOfLivingPaymentEnded}. It was not taxable.</td><td className={TD}>Services Australia</td></tr>
-                  <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Energy Bill Relief Fund, 2025 extension</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2025Extension)} per household, two $75 instalments, 1 July – 31 December 2025. Ended {COL.energyBillReliefEnded}.</td><td className={TD}>energy.gov.au</td></tr>
+                  <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Energy Bill Relief Fund, 2025 extension</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2025Extension)} per household, two $75 instalments, 1 July to 31 December 2025. Ended {COL.energyBillReliefEnded}.</td><td className={TD}>energy.gov.au</td></tr>
                   <tr><td className={TD + " font-medium"}>Energy Bill Relief Fund, 2024-25</td><td className={TD}>Up to {formatAUD(COL.energyBillRelief2024_25)} per household</td><td className={TD}>energy.gov.au</td></tr>
                 </tbody>
               </table>
@@ -84,7 +84,10 @@ export default function CostOfLivingPayment2026Page({ featuredImage }: { feature
             <p className={P}>States run their own rebates for concession card holders. One that is paid as cash is South Australia&apos;s <strong>Cost of Living Concession</strong>: {formatAUD(COL.saCostOfLivingConcession2026_27, 2)} for 2026-27, paid between August and December to eligible tenants and homeowners on low or fixed incomes (apply by 31 December). For your state&apos;s energy rebates, use the <a href={SRC.energyRebates} className={LINK} target="_blank" rel="noopener noreferrer">energy.gov.au rebates finder</a>.</p>
 
             <h3 className="font-semibold text-navy mt-6 mb-2">4. One-off help if something goes wrong</h3>
-            <p className={P}>A <Link href="/centrelink-crisis-payment/" className={LINK}>Crisis Payment</Link> (one week of your payment&apos;s basic rate) after an extreme circumstance, or an <Link href="/centrelink-advance-payment/" className={LINK}>advance</Link> of part of your payment, repaid over 13 fortnights.</p>
+            <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
+              <li>A <Link href="/centrelink-crisis-payment/" className={LINK}>Crisis Payment</Link> (one week of your payment&apos;s basic rate) after an extreme circumstance.</li>
+              <li>An <Link href="/centrelink-advance-payment/" className={LINK}>advance</Link> of part of your payment, repaid over 13 fortnights.</li>
+            </ul>
           </W3Section>
 
           <W3Section title="Related Calculators and Guides">

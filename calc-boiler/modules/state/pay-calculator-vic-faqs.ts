@@ -5,7 +5,7 @@ import { formatAUD, formatPercent } from "@/lib/constants";
 import { VIC_PAYROLL_TAX } from "@/lib/constants/payroll-tax";
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine, millions } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, millions, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.VIC;
 
@@ -16,7 +16,7 @@ export const VIC_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average Victorian salary?",
-    a: `A full-time adult in Victoria earns ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows exactly what is left after income tax and the Medicare levy, per week, fortnight and month.`,
+    a: `Take-home pay on the average full-time Victorian salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. A full-time adult in Victoria earns ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}). The worked example above shows exactly what is left after income tax and the Medicare levy, per week, fortnight and month.`,
   },
   {
     q: "Which public holidays are unique to Victoria?",

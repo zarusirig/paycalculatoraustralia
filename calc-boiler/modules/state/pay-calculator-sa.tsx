@@ -9,7 +9,8 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
-import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+import { PAYROLL_TAX_STATES, SA_PAYROLL_TAX } from "@/lib/constants/payroll-tax";
+import { millions } from "./state-faqs-shared";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
@@ -65,8 +66,9 @@ export default function PayCalculatorSAPage() {
           <p className="text-lg text-warmgray">
             This South Australia pay calculator turns your gross salary into take-home pay per week,
             fortnight and month, using ATO {SITE_CONFIG.financialYear} resident tax rates and the Medicare
-            levy. It opens on the ABS average full-time salary in South Australia; type your own salary to
-            replace it. Below the result are the three things SA does differently. Its calendar has four
+            levy. It opens on the ABS average full-time salary in South Australia,{" "}
+            {formatAUD(typicalSalary(PROFILE))} a year ({formatAUD(PROFILE.awote.personsFullTime, 2)} a week, ABS,{" "}
+            {STATE_EMPLOYEE_SOURCES.absReferencePeriod}); type your own salary to replace it. Below the result are the three things SA does differently. Its calendar has four
             state-specific holidays around Christmas and New Year: the Christmas Eve and New Year&apos;s Eve
             part-days, Proclamation Day and its substitute day. SA has the most generous long service
             leave entitlement in the country. SA payroll tax is paid by employers, not employees.
@@ -148,7 +150,8 @@ export default function PayCalculatorSAPage() {
             <H2>Does SA payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              SA payroll tax also has a variable rate between $1.5m and $1.7m of wages. That sliding
+              SA payroll tax also has a variable rate between {millions(SA_PAYROLL_TAX.threshold)} and{" "}
+              {millions(SA_PAYROLL_TAX.fullRateFrom)} of wages. That sliding
               rate applies to the employer&apos;s wage bill and is not a deduction from employee pay. Employers can
               see how it works on the{" "}
               <Link href="/payroll-tax/sa/" className="text-eucalyptus-dark hover:underline">SA payroll tax</Link> page.

@@ -95,39 +95,7 @@ export default function ConstructionTradesPayPage() {
           {/* MAIN ARTICLE CONTENT */}
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            {/* ── Section 1: Qualified Trade Rates ── */}
-            <section id="trade-rates">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Qualified Trade Rates</h2>
-              <p>
-                The table below shows typical annual salary ranges for qualified electricians, plumbers, carpenters, bricklayers, painters, concreters and boilermakers, including base salary and common overtime. Your actual earnings depend on your state, your employer, and whether you are paid under an enterprise agreement or the Building and Construction General On-site Award.
-              </p>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-5 py-3">Trade</th>
-                        <th className="px-5 py-3 text-right">Salary Range (Annual)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Electrician</td><td className="px-5 py-3 text-right font-medium">$80,000 – $110,000</td></tr>
-                      <tr><td className="px-5 py-3">Plumber</td><td className="px-5 py-3 text-right font-medium">$75,000 – $105,000</td></tr>
-                      <tr><td className="px-5 py-3">Carpenter</td><td className="px-5 py-3 text-right font-medium">$70,000 – $95,000</td></tr>
-                      <tr><td className="px-5 py-3">Bricklayer</td><td className="px-5 py-3 text-right font-medium">$70,000 – $90,000</td></tr>
-                      <tr><td className="px-5 py-3">Painter</td><td className="px-5 py-3 text-right font-medium">$65,000 – $85,000</td></tr>
-                      <tr><td className="px-5 py-3">Concreter</td><td className="px-5 py-3 text-right font-medium">$70,000 – $95,000</td></tr>
-                      <tr><td className="px-5 py-3">Boilermaker</td><td className="px-5 py-3 text-right font-medium">$85,000 – $120,000</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <p>
-                Self-employed tradies running their own business can earn significantly more: an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
-              </p>
-            </section>
-
-            {/* ── Section 2: Apprentice Pay Rates ── */}
+            {/* ── Section 1: Apprentice Pay Rates (first: the opening answers apprentice wage queries and points to this table) ── */}
             <section id="apprentice-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Apprentice Pay Rates</h2>
               <p>
@@ -160,6 +128,38 @@ export default function ConstructionTradesPayPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Government Incentives</h3>
               <p>
                 The Australian Government pays apprenticeship incentives through the <strong>Australian Apprenticeships Incentive System</strong>, which makes payments to eligible employers and apprentices. A full-time apprentice doing a Certificate III or above in an occupation on the Australian Apprenticeships Priority List who started on or after {AATSP_FULL_TIME.from} can get the Australian Apprentice Training Support Payment of up to <strong>{formatAUD(AATSP_FULL_TIME.total)}</strong> ({formatAUD(AATSP_FULL_TIME.instalment)} at 6, 12, 18 and 24 months). A full-time apprentice in a Priority List qualification for housing construction or clean energy who started on or after {KAP_APPRENTICE_FULL_TIME.from} can claim the Key Apprenticeship Program Apprentice Incentive of up to <strong>{formatAUD(KAP_APPRENTICE_FULL_TIME.total)}</strong> ({formatAUD(KAP_APPRENTICE_FULL_TIME.instalment)} at 6, 12, 24 and 36 months and on completion). Part-time apprentices get half these amounts. Tools and equipment purchased for an apprenticeship are <strong>tax-deductible</strong> for the apprentice.
+              </p>
+            </section>
+
+            {/* ── Section 2: Qualified Trade Rates ── */}
+            <section id="trade-rates">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Qualified Trade Rates</h2>
+              <p>
+                The table below shows typical annual salary ranges for qualified electricians, plumbers, carpenters, bricklayers, painters, concreters and boilermakers, including base salary and common overtime. Your actual earnings depend on your state, your employer, and whether you are paid under an enterprise agreement or the Building and Construction General On-site Award.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-warmgray">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th className="px-5 py-3">Trade</th>
+                        <th className="px-5 py-3 text-right">Salary Range (Annual)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr><td className="px-5 py-3">Electrician</td><td className="px-5 py-3 text-right font-medium">$80,000 – $110,000</td></tr>
+                      <tr><td className="px-5 py-3">Plumber</td><td className="px-5 py-3 text-right font-medium">$75,000 – $105,000</td></tr>
+                      <tr><td className="px-5 py-3">Carpenter</td><td className="px-5 py-3 text-right font-medium">$70,000 – $95,000</td></tr>
+                      <tr><td className="px-5 py-3">Bricklayer</td><td className="px-5 py-3 text-right font-medium">$70,000 – $90,000</td></tr>
+                      <tr><td className="px-5 py-3">Painter</td><td className="px-5 py-3 text-right font-medium">$65,000 – $85,000</td></tr>
+                      <tr><td className="px-5 py-3">Concreter</td><td className="px-5 py-3 text-right font-medium">$70,000 – $95,000</td></tr>
+                      <tr><td className="px-5 py-3">Boilermaker</td><td className="px-5 py-3 text-right font-medium">$85,000 – $120,000</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p>
+                Self-employed tradies running their own business can earn significantly more: an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
               </p>
             </section>
 

@@ -1,0 +1,60 @@
+{
+ "name": "st-010-teacher-pay-australia-nt",
+ "files": [
+  "app/teacher-pay-australia/[state]/page.tsx",
+  "modules/guide/teacher-pay-print-button.tsx",
+  "modules/guide/teacher-pay-state.tsx",
+  "modules/guide/teacher-pay-vic-2026.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/teacher-pay-australia/nt/",
+   "url": "https://pay-calculator-australia.com/teacher-pay-australia/nt/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.42",
+   "centerpiece": "3.80",
+   "main_query": "2027",
+   "pre28_clicks": "9",
+   "pre28_impr": "1273",
+   "requests": []
+  },
+  {
+   "path": "/teacher-pay-australia/vic/",
+   "url": "https://pay-calculator-australia.com/teacher-pay-australia/vic/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.63",
+   "centerpiece": "4.34",
+   "main_query": "teacher pay scale victoria 2026",
+   "pre28_clicks": "547",
+   "pre28_impr": "23348",
+   "requests": [
+    "Two FAQs are near-duplicates: 'When do Victorian teachers get a pay rise?' and 'When will Victorian teachers get the pay rise?' (vic.ts faqs[5] and faqs[6]). Merge them or give each a distinct question (amounts compared with start date and back pay). The questions are locked in this pass.",
+    "The page opening (centerpiece) lives in modules/guide/teacher-pay-state.tsx, not in this data unit, so it was not rewritten here."
+   ]
+  },
+  {
+   "path": "/teacher-pay-australia/wa/",
+   "url": "https://pay-calculator-australia.com/teacher-pay-australia/wa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.21",
+   "centerpiece": "4.29",
+   "main_query": "wa teacher salary 2026 pdf",
+   "pre28_clicks": "23",
+   "pre28_impr": "4115",
+   "requests": [
+    "The page opening (hero in modules/guide/teacher-pay-state.tsx) is template copy outside this unit. For WA it should name the WA Department of Education table and the 6 December 2025 effective date as the source of the figures, not the agreement."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

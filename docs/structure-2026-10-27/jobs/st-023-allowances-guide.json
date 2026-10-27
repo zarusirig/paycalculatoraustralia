@@ -1,0 +1,106 @@
+{
+ "name": "st-023-allowances-guide",
+ "files": [
+  "app/allowances-guide/page.tsx",
+  "app/first-job-pay-guide/page.tsx",
+  "app/medicare-levy/page.tsx",
+  "app/payslip-generator/page.tsx",
+  "app/working-holiday-tax/page.tsx",
+  "modules/calculator/medicare-levy-calculator.tsx",
+  "modules/calculator/payslip-generator-content.tsx",
+  "modules/calculator/payslip-generator-faqs.ts",
+  "modules/calculator/payslip-generator.tsx",
+  "modules/guide/allowances-guide-faqs.ts",
+  "modules/guide/allowances-guide.tsx",
+  "modules/guide/first-job-pay-guide-faqs.ts",
+  "modules/guide/first-job-pay-guide.tsx",
+  "modules/guide/medicare-levy-faqs.ts",
+  "modules/guide/medicare-levy.tsx",
+  "modules/guide/working-holiday-tax-faqs.ts",
+  "modules/guide/working-holiday-tax.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/allowances-guide/",
+   "url": "https://pay-calculator-australia.com/allowances-guide/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.18",
+   "centerpiece": "3.05",
+   "main_query": "award allowances guide",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "Several FAQ answers in modules/guide/allowances-guide-faqs.ts have dollar amounts typed straight into the text: first aid $13.43, $14.55 and $16.79 on line 18, and split or broken shift $3.69, $5.60 and $21.38 on line 26. They match lib/data/job-pay-rates and lib/constants/__tests__/allowances-guide.test.ts today. They will go stale at the next award variation because the tables update and the FAQ will not. Build these answers from allowanceRows() / firstDollar() so the FAQ and the FAQPage JSON-LD stay in step with the tables."
+   ]
+  },
+  {
+   "path": "/first-job-pay-guide/",
+   "url": "https://pay-calculator-australia.com/first-job-pay-guide/",
+   "inPlan": false,
+   "intent": "how-to-steps",
+   "format_fit": "3.08",
+   "centerpiece": "2.11",
+   "main_query": "first job pay guide",
+   "pre28_clicks": "2",
+   "pre28_impr": "132",
+   "requests": [
+    "The opening (line 42) cannot give a direct figure because the intro has no expression. Add {formatAUD(TAX_FREE_THRESHOLD)} and/or the worked example ({formatAUD(EX_TAX, 2)} withheld from a {formatAUD(EX_GROSS)} week) to the header paragraph so the first answer leads with a number.",
+    "The page has no calculator, only a callout that links to /. For a query like 'do you get taxed on your first paycheck', embed the take-home pay calculator (hourly rate + hours, tax-free threshold toggle) near the top.",
+    "The 'Before You Start' items (TFN, super fund, TFN Declaration) are three H3 sections. They would fit a numbered <ol> checklist above the detail sections, to suit the how-to-steps intent."
+   ]
+  },
+  {
+   "path": "/payslip-generator/",
+   "url": "https://pay-calculator-australia.com/payslip-generator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.34",
+   "centerpiece": "3.49",
+   "main_query": "payslip generator",
+   "pre28_clicks": "12",
+   "pre28_impr": "3746",
+   "requests": [
+    "The hero intro (payslip-generator.tsx line 181) is locked by the checker's dash-key rule because it contains 'Fair Work-compliant' and an em dash. It still has promotional wording ('professional', 'in seconds') and an em dash before 'then print it'. It needs a manual edit, for example: 'This payslip generator builds an Australian payslip with the fields Fair Work requires, including the employer's ABN, the pay period, gross and net pay, and the super fund name. Enter employer, employee and earnings details below to build a payslip with PAYG withholding, superannuation and year-to-date totals, then print it or save it as a PDF.'"
+   ]
+  },
+  {
+   "path": "/medicare-levy/",
+   "url": "https://pay-calculator-australia.com/medicare-levy/",
+   "inPlan": false,
+   "intent": "eligibility-check",
+   "format_fit": "3.62",
+   "centerpiece": "4.08",
+   "main_query": "medicare levy reduction for low-income earners",
+   "pre28_clicks": "9",
+   "pre28_impr": "1941",
+   "requests": [
+    "The calculator intro at medicare-levy-calculator.tsx line 129 starts with the fragment 'Works out the {rate} Medicare levy...'. The checker locks it as a short string, so this pass could not turn it into a full sentence ('This calculator works out...').",
+    "The FAQ answer 'Is the Medicare levy the same as the Medicare levy surcharge?' (modules/guide/medicare-levy-faqs.ts:75) still has an em dash ('hospital cover \u2014 above ${MLS_BASE}'). The checker locks this string as a dash key, so this pass cannot fix it. Suggested fix by hand: 'cover, with income above ${MLS_BASE} for singles and ${MLS_FAMILY_BASE} for families in ${MLS_INCOME_YEAR}.' Also change 'changes the levy by nothing at all' to 'leaves the Medicare levy unchanged'."
+   ]
+  },
+  {
+   "path": "/working-holiday-tax/",
+   "url": "https://pay-calculator-australia.com/working-holiday-tax/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.72",
+   "centerpiece": "3.53",
+   "main_query": "417 visa tax",
+   "pre28_clicks": "9",
+   "pre28_impr": "2182",
+   "requests": [
+    "The table figures at lines 65-68 (cumulative $6,750 / $33,750 / $54,100), WHM_TAX at lines 23-29 and the $4,288 prior-year resident figure at line 199 are typed in, not taken from the tax constants. Derive them from the non-resident bracket constants so they update when the brackets change.",
+    "The opening under the H1 has no direct-answer figure line ($6,750 on $45,000, take-home). It could use a computed WHM_TAKE_HOME_45K expression if a centerpiece rewrite is wanted later (AUDIT centerpiece 3.53, so not required this pass)."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

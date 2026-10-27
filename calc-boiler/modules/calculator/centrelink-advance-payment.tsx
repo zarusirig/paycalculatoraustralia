@@ -19,7 +19,9 @@ import { MoneyInput, Note, W3Hero } from "./centrelink-w3-shared";
 // advance → repayment per fortnight → what lands in your account.
 //
 // The static long-form content is server-rendered
-// (centrelink-advance-payment-content.tsx) and passed in as `children`.
+// (centrelink-advance-payment-content.tsx) and passed in as `children`; the
+// "How much" amounts table comes in as `intro`, above the calculator, because
+// "how much is the centrelink advance payment" is the page's top query.
 
 const KINDS: AdvanceKind[] = ["allowance", "pensionSingle", "pensionCouple", "ftb"];
 
@@ -32,7 +34,7 @@ const DEFAULT_PAYMENT: Record<AdvanceKind, number> = {
   specialEmployment: JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single,
 };
 
-export default function CentrelinkAdvancePaymentPage({ children, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
+export default function CentrelinkAdvancePaymentPage({ intro, children, afterCalculator }: { intro?: ReactNode; children: ReactNode; afterCalculator?: ReactNode }) {
   const [kind, setKind] = useState<AdvanceKind>("allowance");
   const [advance, setAdvance] = useState(500);
   const [payment, setPayment] = useState(DEFAULT_PAYMENT.allowance);
@@ -55,9 +57,11 @@ export default function CentrelinkAdvancePaymentPage({ children, afterCalculator
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Centrelink Advance Payment" title="Centrelink Advance Payment Calculator: How Much and What You Repay">
           <p>
-            A Centrelink advance payment is part of your regular Centrelink payment paid early as a lump sum. You repay it automatically: the advance divided by {ADVANCE_RULES.repaymentFortnights} comes out of each of your next {ADVANCE_RULES.repaymentFortnights} payments. On JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY the advance is {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)}; on a pension, up to {formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} single.
+            A Centrelink advance payment is part of your regular Centrelink payment paid early as a lump sum. On JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY the advance is {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)}; on a pension, up to {formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} single. You repay it automatically: the advance divided by {ADVANCE_RULES.repaymentFortnights} comes out of each of your next {ADVANCE_RULES.repaymentFortnights} payments.
           </p>
         </W3Hero>
+
+        {intro && <div className="max-w-4xl mx-auto space-y-10">{intro}</div>}
 
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">

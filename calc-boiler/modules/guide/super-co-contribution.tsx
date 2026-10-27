@@ -7,7 +7,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
-import { CO_CONTRIBUTION, maxCoContribution } from "@/lib/constants/super-contributions";
+import { CO_CONTRIBUTION, SPOUSE_OFFSET, maxCoContribution } from "@/lib/constants/super-contributions";
 
 const LOWER = CO_CONTRIBUTION.lowerThreshold;
 const HIGHER = CO_CONTRIBUTION.higherThreshold;
@@ -15,6 +15,24 @@ const CO_ROWS = [
   { label: `${formatAUD(LOWER)} or less`, max: maxCoContribution(LOWER) },
   ...[52_000, 55_000, 60_000].map((income) => ({ label: formatAUD(income), max: maxCoContribution(income) })),
   { label: `${formatAUD(HIGHER)} or more`, max: 0 },
+];
+const CO_MAX = formatAUD(CO_CONTRIBUTION.maxEntitlement);
+const CO_FOR_MAX = formatAUD(CO_CONTRIBUTION.contributionForMax);
+// Spouse offset (s 290-230): the rate times the lesser of the contribution and
+// the maximum contribution reduced by spouse income above the lower threshold.
+const SO_MAX = formatAUD(SPOUSE_OFFSET.maxOffset);
+const SO_CONTRIB = formatAUD(SPOUSE_OFFSET.maxContribution);
+const SO_LOWER = formatAUD(SPOUSE_OFFSET.spouseIncomeLower);
+const SO_CUTOFF = formatAUD(SPOUSE_OFFSET.spouseIncomeCutOff);
+const SO_RATE = `${Math.round(SPOUSE_OFFSET.rate * 100)}%`;
+const spouseOffset = (spouseIncome: number, contribution: number = SPOUSE_OFFSET.maxContribution) =>
+  spouseIncome >= SPOUSE_OFFSET.spouseIncomeCutOff
+    ? 0
+    : Math.round(SPOUSE_OFFSET.rate * Math.min(contribution, Math.max(0, SPOUSE_OFFSET.maxContribution - Math.max(0, spouseIncome - SPOUSE_OFFSET.spouseIncomeLower))));
+const SO_ROWS = [
+  { label: `${SO_LOWER} or less`, max: spouseOffset(SPOUSE_OFFSET.spouseIncomeLower) },
+  ...[38_000, 39_000].map((income) => ({ label: formatAUD(income), max: spouseOffset(income) })),
+  { label: `${SO_CUTOFF} or more`, max: 0 },
 ];
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -56,7 +74,7 @@ export default function SuperCoContributionPage() {
             Super Co-Contribution & Spouse Contribution Tax Offset
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The government super co-contribution adds up to $500 a year to your super when you make personal (after-tax) contributions and you are a low-to-middle income earner. The spouse super contribution tax offset is a separate scheme. Put after-tax money into your spouse&apos;s super and you can claim a tax offset of up to $540 on your own tax return. Below are the eligibility rules for each scheme, the income thresholds that reduce them, and a worked example of a couple claiming both.
+            The government super co-contribution adds up to {CO_MAX} a year to your super when you make personal (after-tax) contributions and you are a low-to-middle income earner (total income below {formatAUD(HIGHER)} in FY{CO_CONTRIBUTION.incomeYear}). The spouse super contribution tax offset is a separate scheme. Put after-tax money into your spouse&apos;s super and you can claim a tax offset of up to {SO_MAX} on your own tax return. Below are the eligibility rules for each scheme, the income thresholds that reduce them, and a worked example of a couple claiming both.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -70,31 +88,11 @@ export default function SuperCoContributionPage() {
             <section id="government-co-contribution">
               <h2>Government Super Co-Contribution</h2>
               <p>
-                The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund, up to a maximum of <strong>$500 per financial year</strong>.
+                The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>{formatAUD(CO_CONTRIBUTION.matchRate, 2)}</strong> to your super fund, up to a maximum of <strong>{CO_MAX} per financial year</strong>.
               </p>
               <p>
-                To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold. Low-income earners may also get the <Link href="/listo-calculator/">low income super tax offset (LISTO)</Link> on their employer&rsquo;s before-tax contributions.
+                To receive the full {CO_MAX} co-contribution, you need to make <strong>{CO_FOR_MAX}</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold. Low-income earners may also get the <Link href="/listo-calculator/">low income super tax offset (LISTO)</Link> on their employer&rsquo;s before-tax contributions.
               </p>
-
-              <h3>How It Works</h3>
-              <ol>
-                <li><strong>Make a personal super contribution</strong>: deposit after-tax money into your super fund (not salary sacrifice; it must be a non-concessional contribution from your own bank account)</li>
-                <li><strong>Lodge your tax return</strong>: the ATO automatically checks your eligibility after processing your return</li>
-                <li><strong>Receive the co-contribution</strong>: if eligible, the ATO pays the matching amount directly into your super fund. The ATO makes most payments between November and January for personal contributions made in the previous financial year</li>
-              </ol>
-              <p>
-                You do <strong>not</strong> need to apply separately. The process is entirely automatic once your tax return is lodged and your super fund details are up to date with the ATO.
-              </p>
-
-              <h3>Eligibility Requirements</h3>
-              <ul>
-                <li>Total income (assessable income + reportable fringe benefits + reportable employer super) of less than <strong>{formatAUD(HIGHER)}</strong> in FY{CO_CONTRIBUTION.incomeYear}</li>
-                <li>At least <strong>10% of total income</strong> must come from employment, business, or a combination of both</li>
-                <li>Lodge an income tax return for the relevant financial year</li>
-                <li>Be under <strong>age 71</strong> at the end of the financial year</li>
-                <li>Not hold a temporary visa at any time during the year (unless you are a New Zealand citizen or holder of a prescribed visa)</li>
-                <li>Total super balance must be below the general transfer balance cap (<strong>{formatAUD(SUPER_GUARANTEE.transferBalanceCap)}</strong> in FY{SITE_CONFIG.financialYear}) on 30 June of the previous year, and personal contributions must not exceed the non-concessional cap</li>
-              </ul>
 
               <h3>Income Thresholds & Reduction</h3>
               <div className="overflow-x-auto not-prose my-6">
@@ -122,6 +120,26 @@ export default function SuperCoContributionPage() {
               <p>
                 The reduction formula is: maximum co-contribution is reduced by <strong>${CO_CONTRIBUTION.reductionPerDollar}</strong> for every $1.00 of total income above {formatAUD(LOWER)}. This produces a linear phase-out from {formatAUD(CO_CONTRIBUTION.maxEntitlement)} to $0 across the {formatAUD(HIGHER - LOWER)} income range.
               </p>
+
+              <h3>How It Works</h3>
+              <ol>
+                <li><strong>Make a personal super contribution</strong>: deposit after-tax money into your super fund (not salary sacrifice; it must be a non-concessional contribution from your own bank account)</li>
+                <li><strong>Lodge your tax return</strong>: the ATO automatically checks your eligibility after processing your return</li>
+                <li><strong>Receive the co-contribution</strong>: if eligible, the ATO pays the matching amount directly into your super fund. The ATO makes most payments between November and January for personal contributions made in the previous financial year</li>
+              </ol>
+              <p>
+                You do <strong>not</strong> need to apply separately. The process is entirely automatic once your tax return is lodged and your super fund details are up to date with the ATO.
+              </p>
+
+              <h3>Eligibility Requirements</h3>
+              <ul>
+                <li>Total income (assessable income + reportable fringe benefits + reportable employer super) of less than <strong>{formatAUD(HIGHER)}</strong> in FY{CO_CONTRIBUTION.incomeYear}</li>
+                <li>At least <strong>{Math.round(CO_CONTRIBUTION.eligibleIncomeShare * 100)}% of total income</strong> must come from employment, business, or a combination of both</li>
+                <li>Lodge an income tax return for the relevant financial year</li>
+                <li>Be under <strong>age 71</strong> at the end of the financial year</li>
+                <li>Not hold a temporary visa at any time during the year (unless you are a New Zealand citizen or holder of a prescribed visa)</li>
+                <li>Total super balance must be below the general transfer balance cap (<strong>{formatAUD(SUPER_GUARANTEE.transferBalanceCap)}</strong> in FY{SITE_CONFIG.financialYear}) on 30 June of the previous year, and personal contributions must not exceed the non-concessional cap</li>
+              </ul>
             </section>
 
             <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -140,7 +158,7 @@ export default function SuperCoContributionPage() {
             <section id="spouse-offset">
               <h2>Spouse Super Contribution Tax Offset</h2>
               <p>
-                If you make a super contribution to your <strong>spouse&apos;s</strong> super fund, you may be eligible for a tax offset of up to <strong>$540</strong>. This is a separate scheme from the government co-contribution and is claimed by the contributing spouse (not the receiving spouse) on their tax return.
+                If you make a super contribution to your <strong>spouse&apos;s</strong> super fund, you may be eligible for a tax offset of up to <strong>{SO_MAX}</strong>. This is a separate scheme from the government co-contribution and is claimed by the contributing spouse (not the receiving spouse) on their tax return.
               </p>
 
               <h3>How It Works</h3>
@@ -150,9 +168,9 @@ export default function SuperCoContributionPage() {
 
               <h3>Eligibility & Thresholds</h3>
               <ul>
-                <li>Your spouse&apos;s total income (assessable income + reportable fringe benefits + reportable employer super) must be <strong>below $40,000</strong></li>
-                <li>Maximum offset of <strong>$540</strong> applies when you contribute at least $3,000 and your spouse earns <strong>$37,000 or less</strong></li>
-                <li>The offset phases out between $37,000 and $40,000 spouse income</li>
+                <li>Your spouse&apos;s total income (assessable income + reportable fringe benefits + reportable employer super) must be <strong>below {SO_CUTOFF}</strong></li>
+                <li>Maximum offset of <strong>{SO_MAX}</strong> applies when you contribute at least {SO_CONTRIB} and your spouse earns <strong>{SO_LOWER} or less</strong></li>
+                <li>The offset phases out between {SO_LOWER} and {SO_CUTOFF} spouse income</li>
                 <li>Your spouse must be under <strong>age 75</strong> at the time of the contribution</li>
                 <li>You and your spouse must be Australian residents for tax purposes</li>
               </ul>
@@ -168,39 +186,26 @@ export default function SuperCoContributionPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">$37,000 or less</td>
-                        <td className="p-3 text-navy text-right">$540</td>
-                        <td className="p-3 text-navy">$3,000 into spouse&apos;s super</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">$38,000</td>
-                        <td className="p-3 text-navy text-right">$360</td>
-                        <td className="p-3 text-navy">$3,000 into spouse&apos;s super</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">$39,000</td>
-                        <td className="p-3 text-navy text-right">$180</td>
-                        <td className="p-3 text-navy">$3,000 into spouse&apos;s super</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-navy font-medium">$40,000 or more</td>
-                        <td className="p-3 text-navy text-right">$0</td>
-                        <td className="p-3 text-navy">Not eligible</td>
-                      </tr>
+                      {SO_ROWS.map((r, i) => (
+                        <tr key={r.label} className={`${i < SO_ROWS.length - 1 ? "border-b border-sandstone-dark/10" : ""} ${i % 2 === 1 ? "bg-sandstone/30" : ""}`}>
+                          <td className="p-3 text-navy font-medium">{r.label}</td>
+                          <td className="p-3 text-navy text-right">{formatAUD(r.max)}</td>
+                          <td className="p-3 text-navy">{r.max > 0 ? <>{SO_CONTRIB} into spouse&apos;s super</> : "Not eligible"}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The offset is calculated as 18% of the lesser of: (a) $3,000 minus the amount by which spouse income exceeds $37,000, or (b) the actual contribution amount. For a spouse earning $37,000 or less, contributing $3,000 gives 18% x $3,000 = <strong>$540</strong>.
+                The offset is calculated as {SO_RATE} of the lesser of: (a) {SO_CONTRIB} minus the amount by which spouse income exceeds {SO_LOWER}, or (b) the actual contribution amount. For a spouse earning {SO_LOWER} or less, contributing {SO_CONTRIB} gives {SO_RATE} x {SO_CONTRIB} = <strong>{formatAUD(spouseOffset(SPOUSE_OFFSET.spouseIncomeLower))}</strong>.
               </p>
             </section>
 
             <section id="combined-example">
               <h2>Both Combined: Worked Example</h2>
               <p>
-                Consider a couple where <strong>Partner A</strong> earns $90,000 and <strong>Partner B</strong> earns $36,000, mostly from a part-time job. Partner B is eligible for the full government co-contribution, and because Partner B earns $37,000 or less, Partner A can claim the full spouse offset.
+                Consider a couple where <strong>Partner A</strong> earns $90,000 and <strong>Partner B</strong> earns $36,000, mostly from a part-time job. Partner B is eligible for the full government co-contribution, and because Partner B earns {SO_LOWER} or less, Partner A can claim the full spouse offset.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -227,19 +232,19 @@ export default function SuperCoContributionPage() {
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Partner A claims spouse offset on tax return</td>
                         <td className="p-3 text-navy text-right">$0</td>
-                        <td className="p-3 text-navy text-right">$540 tax offset for Partner A</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(spouseOffset(36_000))} tax offset for Partner A</td>
                       </tr>
                       <tr className="bg-eucalyptus-light/30">
                         <td className="p-3 text-navy font-bold">Total outcome</td>
                         <td className="p-3 text-navy text-right font-bold">$4,000 contributed</td>
-                        <td className="p-3 text-navy text-right font-bold">{formatAUD(4_000 + maxCoContribution(36_000))} in super + $540 tax offset</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(4_000 + maxCoContribution(36_000))} in super + {formatAUD(spouseOffset(36_000))} tax offset</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The couple contributes $4,000 from after-tax income and receives <strong>{formatAUD(maxCoContribution(36_000))} of government money</strong> into Partner B&apos;s super plus a <strong>$540 tax reduction</strong> for Partner A, a combined benefit of<strong>{formatAUD(maxCoContribution(36_000) + 540)}</strong> for a $4,000 outlay. If Partner B earned $40,000 or more, the spouse offset would be nil, although the co-contribution would still be available up to {formatAUD(HIGHER)}.
+                The couple contributes $4,000 from after-tax income and receives <strong>{formatAUD(maxCoContribution(36_000))} of government money</strong> into Partner B&apos;s super plus a <strong>{formatAUD(spouseOffset(36_000))} tax reduction</strong> for Partner A, a combined benefit of <strong>{formatAUD(maxCoContribution(36_000) + spouseOffset(36_000))}</strong> for a $4,000 outlay. If Partner B earned {SO_CUTOFF} or more, the spouse offset would be nil, although the co-contribution would still be available up to {formatAUD(HIGHER)}.
               </p>
             </section>
 
@@ -260,7 +265,7 @@ export default function SuperCoContributionPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Co-contribution thresholds and rates reflect FY{CO_CONTRIBUTION.incomeYear} values as published by the ATO (key superannuation rates and thresholds, government contributions). The spouse contribution tax offset is calculated under section 290-230 of the Income Tax Assessment Act 1997. Income thresholds are indexed annually. All figures assume the contributor meets all eligibility criteria including the 10% employment income test.</p>
+                <p>Co-contribution thresholds and rates reflect FY{CO_CONTRIBUTION.incomeYear} values as published by the ATO (key superannuation rates and thresholds, government contributions). The spouse contribution tax offset is calculated under section 290-230 of the Income Tax Assessment Act 1997. Income thresholds are indexed annually. All figures assume the contributor meets all eligibility criteria including the {Math.round(CO_CONTRIBUTION.eligibleIncomeShare * 100)}% employment income test.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("super-co-contribution"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

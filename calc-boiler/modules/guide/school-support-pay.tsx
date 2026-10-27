@@ -163,6 +163,11 @@ export function SchoolSupportStatePage({ state }: { state: SchoolSupportState })
   );
 }
 
+/** Hub lede figures, built from SCHOOL_SUPPORT_STATES[].entry so they cannot drift from the tables. */
+const entryOf = (slug: string) => SCHOOL_SUPPORT_STATES.find((s) => s.slug === slug)!.entry;
+const entryHourly = (slug: string) => `$${entryOf(slug).hourly!.toFixed(2)}`;
+const entryAnnual = (slug: string) => formatSalary(entryOf(slug).annual);
+
 export function SchoolSupportHubPage() {
   const faqs = [...SCHOOL_SUPPORT_HUB_FAQS];
   const sources: SourceLink[] = SCHOOL_SUPPORT_STATES.flatMap(stateSources);
@@ -172,7 +177,7 @@ export function SchoolSupportHubPage() {
 
       <PageHeader featuredImage title="Teacher Aide Pay by State 2026: School Support Staff Pay Rates">
         <p>
-          <strong>A teacher aide in a government school starts on $38.33 an hour in NSW (SLSO 1), $36.28 in Tasmania (Teacher Assistant, Band 2), $34.75 in WA (Education Assistant 1.1), $31.69 in Queensland (OO2), $51,622 a year full-time in Victoria (ES 1-1), $58,360 in South Australia (SSO-1), $59,725 in the ACT (School Assistant 2/3) and $58,817 in the Northern Territory (school-based AO2 at 92%).</strong> Every state and territory pays its school support staff under its own award or agreement, with different job titles, hours and pay dates. Private and Catholic school teacher aides are covered by a federal award instead, on our <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
+          <strong>A teacher aide in a government school starts on {entryHourly("nsw")} an hour in NSW (SLSO 1), {entryHourly("tas")} in Tasmania (Teacher Assistant, Band 2), {entryHourly("wa")} in WA (Education Assistant 1.1), {entryHourly("qld")} in Queensland (OO2), {entryAnnual("vic")} a year full-time in Victoria (ES 1-1), {entryAnnual("sa")} in South Australia (SSO-1), {entryAnnual("act")} in the ACT (School Assistant 2/3) and {entryAnnual("nt")} in the Northern Territory (school-based AO2 at 92%).</strong> Every state and territory pays its school support staff under its own award or agreement, with different job titles, hours and pay dates. Private and Catholic school teacher aides are covered by a federal award instead, on our <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
         </p>
       </PageHeader>
 

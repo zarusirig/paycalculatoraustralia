@@ -1,6 +1,6 @@
 import CentrelinkAdvancePaymentPage from "@/modules/calculator/centrelink-advance-payment";
 import WhatsNextInline from "@/components/common/whats-next-inline";
-import CentrelinkAdvancePaymentContent from "@/modules/calculator/centrelink-advance-payment-content";
+import CentrelinkAdvancePaymentContent, { CentrelinkAdvanceAmounts } from "@/modules/calculator/centrelink-advance-payment-content";
 import { ADVANCE_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -20,7 +20,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Centrelink Advance Payment Calculator", description: DESCRIPTION, faqs: ADVANCE_FAQS, calculator: true, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
-      <CentrelinkAdvancePaymentPage afterCalculator={<WhatsNextInline route="/centrelink-advance-payment/" />}><CentrelinkAdvancePaymentContent /></CentrelinkAdvancePaymentPage>
+      <CentrelinkAdvancePaymentPage intro={<CentrelinkAdvanceAmounts />} afterCalculator={<WhatsNextInline route="/centrelink-advance-payment/" />}><CentrelinkAdvancePaymentContent /></CentrelinkAdvancePaymentPage>
     </>
   );
 }

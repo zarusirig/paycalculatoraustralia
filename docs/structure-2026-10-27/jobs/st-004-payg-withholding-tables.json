@@ -1,0 +1,344 @@
+{
+ "name": "st-004-payg-withholding-tables",
+ "files": [
+  "app/annual-pay-calculator/page.tsx",
+  "app/centrelink-payment-dates/page.tsx",
+  "app/contractor-pay-calculator/page.tsx",
+  "app/fortnightly-pay-calculator/page.tsx",
+  "app/fortnightly-tax-table/page.tsx",
+  "app/gross-pay-calculator/page.tsx",
+  "app/income-tax-calculator/page.tsx",
+  "app/monthly-pay-calculator/page.tsx",
+  "app/monthly-tax-table/page.tsx",
+  "app/page.tsx",
+  "app/pay-rise-calculator/page.tsx",
+  "app/payg-withholding-tables/page.tsx",
+  "app/schedule-5-tax-table/page.tsx",
+  "app/take-home-pay-calculator/page.tsx",
+  "app/weekly-pay-calculator/page.tsx",
+  "app/weekly-tax-table/page.tsx",
+  "modules/calculator/annual-pay-calculator-content.tsx",
+  "modules/calculator/annual-pay-calculator-faqs.ts",
+  "modules/calculator/annual-pay-calculator.tsx",
+  "modules/calculator/centrelink-dates-calculator.tsx",
+  "modules/calculator/contractor-pay-calculator-content.tsx",
+  "modules/calculator/contractor-pay-calculator-faqs.ts",
+  "modules/calculator/contractor-pay-calculator.tsx",
+  "modules/calculator/fortnightly-pay-calculator-content.tsx",
+  "modules/calculator/fortnightly-pay-calculator-faqs.ts",
+  "modules/calculator/fortnightly-pay-calculator.tsx",
+  "modules/calculator/fy-rate-copy.ts",
+  "modules/calculator/gross-for-net.ts",
+  "modules/calculator/gross-pay-calculator-content.tsx",
+  "modules/calculator/gross-pay-calculator-faqs.ts",
+  "modules/calculator/gross-pay-calculator.tsx",
+  "modules/calculator/head-term-primary.ts",
+  "modules/calculator/head-term-ui.tsx",
+  "modules/calculator/income-tax-calculator-content.tsx",
+  "modules/calculator/income-tax-calculator.tsx",
+  "modules/calculator/monthly-pay-calculator-content.tsx",
+  "modules/calculator/monthly-pay-calculator-faqs.ts",
+  "modules/calculator/monthly-pay-calculator.tsx",
+  "modules/calculator/pay-rise-calculator-content.tsx",
+  "modules/calculator/pay-rise-calculator-faqs.ts",
+  "modules/calculator/pay-rise-calculator.tsx",
+  "modules/calculator/period-pay-table.tsx",
+  "modules/calculator/take-home-pay-calculator-content.tsx",
+  "modules/calculator/take-home-pay-calculator-faqs.ts",
+  "modules/calculator/take-home-pay-calculator.tsx",
+  "modules/calculator/weekly-pay-calculator-content.tsx",
+  "modules/calculator/weekly-pay-calculator-faqs.ts",
+  "modules/calculator/weekly-pay-calculator.tsx",
+  "modules/guide/centrelink-payment-dates-faqs.ts",
+  "modules/guide/centrelink-payment-dates.tsx",
+  "modules/guide/payg-withholding-tables-faqs.ts",
+  "modules/guide/payg-withholding-tables.tsx",
+  "modules/home/home-faqs.ts",
+  "modules/home/templates/home-adsterra-banner.tsx",
+  "modules/home/templates/home-calculator.tsx",
+  "modules/home/templates/home-link.tsx",
+  "modules/home/templates/home-native-banner.tsx",
+  "modules/home/templates/index.tsx",
+  "modules/home/templates/source-badge.tsx",
+  "modules/tax-tables/ato-downloads.tsx",
+  "modules/tax-tables/ato-schedules.ts",
+  "modules/tax-tables/coefficient-tables.tsx",
+  "modules/tax-tables/downloads-manifest.json",
+  "modules/tax-tables/extra-pay-table.tsx",
+  "modules/tax-tables/faq-section.tsx",
+  "modules/tax-tables/foreign-resident-table.tsx",
+  "modules/tax-tables/fortnightly-tax-table-faqs.ts",
+  "modules/tax-tables/fortnightly-tax-table.tsx",
+  "modules/tax-tables/full-tax-table.tsx",
+  "modules/tax-tables/fy-links.tsx",
+  "modules/tax-tables/fy-tax-table-data.ts",
+  "modules/tax-tables/lookup-widget.tsx",
+  "modules/tax-tables/monthly-tax-table-faqs.ts",
+  "modules/tax-tables/monthly-tax-table.tsx",
+  "modules/tax-tables/schedule-5-table.tsx",
+  "modules/tax-tables/schedule-5-tax-table-faqs.ts",
+  "modules/tax-tables/schedule-5-tax-table.tsx",
+  "modules/tax-tables/schedule-5-widget.tsx",
+  "modules/tax-tables/sidebar.tsx",
+  "modules/tax-tables/table-downloads.tsx",
+  "modules/tax-tables/weekly-tax-table-faqs.ts",
+  "modules/tax-tables/weekly-tax-table.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/payg-withholding-tables/",
+   "url": "https://pay-calculator-australia.com/payg-withholding-tables/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.95",
+   "centerpiece": "2.89",
+   "main_query": "2026 monthly tax tables",
+   "pre28_clicks": "12",
+   "pre28_impr": "1116",
+   "requests": [
+    "The hero opening (line 110) has no figure. To give a direct answer it needs a representative figure rendered there, for example formatAUD(example1500.totalWithheld) withheld on formatAUD(1_500) a week with the tax-free threshold claimed in {PAYG_FINANCIAL_YEAR}. That needs a new expression in the hero, which this pass cannot add.",
+    "The 'Withheld, tax-free threshold claimed' figures are only in tables lower down the page. Move the GLANCE table (one row per pay cycle) up to sit straight after the hero pay-cycle links, so the lookup intent ('tax tables 2026/27') is answered above the fold.",
+    "Several withholding figures are typed into prose ($67 at line 406, $1,500 and $78,000 at line 505, $10,800 on $90,000 at line 493, $25,000 at line 220). Render them from the engine and constants."
+   ]
+  },
+  {
+   "path": "/fortnightly-tax-table/",
+   "url": "https://pay-calculator-australia.com/fortnightly-tax-table/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.24",
+   "centerpiece": "4.36",
+   "main_query": "fortnightly tax table 2026",
+   "pre28_clicks": "74",
+   "pre28_impr": "15186",
+   "requests": [
+    "Six JSX texts still contain an em dash, and the checker locks them all as short strings: line 189 (column 3 list item, ' &mdash; ' before the difference figure), line 290 ('The pay cycle differs &mdash; use the'), lines 291-294 (left as dashes so all five list items stay parallel with 290) and lines 348-353 (related-resources items). They need a code-level change to ': ' or ', which is '."
+   ]
+  },
+  {
+   "path": "/weekly-tax-table/",
+   "url": "https://pay-calculator-australia.com/weekly-tax-table/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.74",
+   "centerpiece": "3.84",
+   "main_query": "weekly tax table 2026",
+   "pre28_clicks": "35",
+   "pre28_impr": "7897",
+   "requests": [
+    "The 'Use a different schedule when' list (source lines 278-282) and the three worked-example bullets (lines 295-297) still contain em dashes. Each of those lists has a locked short JSX text ('&mdash; use the', '&mdash;'), so they cannot be fixed one item at a time without leaving the list punctuated two different ways. Replace the dashes with colons across both lists in a code pass.",
+    "Body prose types out '2026-27', '2025-26', '1 July 2026', '30 June 2026' and '1 July 2027' (lines 96, 289-291, 309-318, 326) instead of using PAYG_FINANCIAL_YEAR, PAYG_PREVIOUS_FINANCIAL_YEAR and PAYG_TABLES_UPDATED. The query set includes 'weekly tax table 2027' (163 + 152 pdf). These hard-coded years will go stale at the 2027-28 rollover.",
+    "Line 115 says 'Every figure is computed from the ATO Schedule 1 coefficients', but the table's study-loan total column comes from Schedule 8. Narrowing the sentence correctly needs the Schedule 8 reference (ATO_SCHEDULE_8.nat), which is not in that string. Add it in a code pass.",
+    "There are two 'Download CSV' buttons on the page (TableDownloads and FullTaxTable) with different ranges and year behaviour. Give them different labels, or merge them, so the CSV FAQ points to one button. The fortnightly and monthly pages have the same problem.",
+    "The foreign resident FAQ (weekly-tax-table-faqs.ts:56) says foreign resident withholding is 'noticeably more than a resident on the same pay'. The resident figure, at1000.totalWithheld, is already computed in the same file. Adding it would turn this vague line into a direct comparison. That needs a new expression in the string, which this pass does not allow."
+   ]
+  },
+  {
+   "path": "/monthly-tax-table/",
+   "url": "https://pay-calculator-australia.com/monthly-tax-table/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.69",
+   "centerpiece": "3.56",
+   "main_query": "monthly tax table 2027",
+   "pre28_clicks": "32",
+   "pre28_impr": "3085",
+   "requests": [
+    "Several em dashes are left in short locked strings that need a code-level fix. They are in the times-four paragraph (' &mdash; roughly ', line 171), the column 3 list item (' &mdash; ', line 190), the monthly salary paragraph (' &mdash; roughly ', line 297), the 'When to Use' list items, the Related Tax Tables list items and the FyTableLinks list items. Replace each with a comma or colon.",
+    "The hero opening has no NAT 1007 reference in its prose ({ATO_MONTHLY.nat} appears only in the H1). Adding the expression to the first sentence would tie the 'nat1007' query to the direct answer."
+   ]
+  },
+  {
+   "path": "/schedule-5-tax-table/",
+   "url": "https://pay-calculator-australia.com/schedule-5-tax-table/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.94",
+   "centerpiece": "4.38",
+   "main_query": "payg on schedule 5",
+   "pre28_clicks": "36",
+   "pre28_impr": "3028",
+   "requests": [
+    "Build the H2 'The 47% Withholding Limit' (line 217) and the table caption (line 124) from SCHEDULE_5_WITHHOLDING_LIMIT, formatAUD(2_000) and SITE_CONFIG.financialYear instead of typed figures.",
+    "Build the bracket list in 'Why Does Your Bonus Look So Heavily Taxed?' (line 276) from the 2026-27 bracket constants, so it includes the lowest taxed bracket."
+   ]
+  },
+  {
+   "path": "/",
+   "url": "https://pay-calculator-australia.com/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.57",
+   "centerpiece": "3.21",
+   "main_query": "pay calculator",
+   "pre28_clicks": "151",
+   "pre28_impr": "32511",
+   "requests": [
+    "Line 267 penalty-rate ranges and the HECS table and MLS tier ranges still render en dashes (\"125%\u2013150%\"). These are locked as dash-key strings. Change them to \" to \" in code.",
+    "The hero intro (line 122) has no direct figure, such as the take-home pay on a reference salary like BD80.takeHomePay. The fold budget keeps the intro to one sentence. If the centerpiece is revisited, add a short engine-derived example after the calculator, or put it into the first content section."
+   ]
+  },
+  {
+   "path": "/pay-rise-calculator/",
+   "url": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.59",
+   "centerpiece": "3.89",
+   "main_query": "payrise calculator",
+   "pre28_clicks": "161",
+   "pre28_impr": "14740",
+   "requests": [
+    "The 'Who Uses This Calculator?' intro should say 5 groups, not 3, to match the list (needs a number change).",
+    "The four numbered negotiation tips ('1. Build Your Case' to '4. Focus on the Gross') are a grid of cards with the numbers in the h3 headings. As a sequence they would read better as an <ol>."
+   ]
+  },
+  {
+   "path": "/fortnightly-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/fortnightly-pay-calculator/",
+   "inPlan": false,
+   "intent": "definition",
+   "format_fit": "3.68",
+   "centerpiece": "3.02",
+   "main_query": "how many fortnights in a year",
+   "pre28_clicks": "398",
+   "pre28_impr": "55301",
+   "requests": [
+    "Add a $200,000 ComparisonRow to the 'What Is the Fortnightly Pay for Each Annual Salary?' table. The opening sentence quotes $200,000 and the copy says 8 salary levels, but only 7 rows render.",
+    "The 'Who Uses a Fortnightly Pay Calculator?' section leads with an unsourced 45% figure. Either add a cited source (ABS) to SOURCES_LIST or drop the figure. The prose cannot fix this without a source."
+   ]
+  },
+  {
+   "path": "/weekly-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.43",
+   "centerpiece": "3.93",
+   "main_query": "weekly tax calculator",
+   "pre28_clicks": "110",
+   "pre28_impr": "33439",
+   "requests": [
+    "The 'Gross per period ($80k salary)' row in the weekly/fortnightly/monthly comparison table ($1,538 / $3,077 / $6,667) is hard-coded. Compute it from 80_000/52, /26, /12 so it cannot drift.",
+    "The opening paragraph gives only the divide-by-52 rule. A computed weekly take-home figure (for example formatAUD(EX.weekly) at $80,000) in the opening would answer 'weekly tax calculator' directly. That needs a new expression, which this pass cannot add."
+   ]
+  },
+  {
+   "path": "/centrelink-payment-dates/",
+   "url": "https://pay-calculator-australia.com/centrelink-payment-dates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.64",
+   "centerpiece": "2.53",
+   "main_query": "centrelink christmas payment dates",
+   "pre28_clicks": "36",
+   "pre28_impr": "1420",
+   "requests": [
+    "The opening has no expression for where Christmas Day 2026 and the Boxing Day additional holiday fall. Feeding HOLIDAYS_2026_27 (Friday 25 December, Monday 28 December) into the PageHeader paragraph would let the opening answer 'centrelink christmas payment dates 2026' directly, before the reader reaches the holiday table.",
+    "The strong first sentence of the opening is generic (fortnightly cycle). A KeyFigures item or opening sentence that renders the Christmas 2025 'up to {maxEarly} days early' figure next to the 2026 status would give the Christmas query its number above the fold."
+   ]
+  },
+  {
+   "path": "/annual-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.96",
+   "centerpiece": "2.12",
+   "main_query": "1500 per week annual salary",
+   "pre28_clicks": "22",
+   "pre28_impr": "6146",
+   "requests": [
+    "The hero answer paragraph (line 57) is made of short locked JSX fragments around the figures. The assumptions behind its $80k/$100k/$120k figures (no HECS-HELP debt, private hospital cover so no MLS, resident rates) can only go in the second paragraph. A short assumption clause inside the first paragraph, next to the figures, would make the centerpiece complete."
+   ]
+  },
+  {
+   "path": "/income-tax-calculator/",
+   "url": "https://pay-calculator-australia.com/income-tax-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.39",
+   "centerpiece": "2.45",
+   "main_query": "$70k a year is how much a week after tax",
+   "pre28_clicks": "8",
+   "pre28_impr": "1759",
+   "requests": [
+    "Centerpiece is 2.45, but this unit's hero has only one sentence and its H1 is locked. To meet the brief, the opening needs the {FY} expression and a direct answer figure, for example tax on a typical salary from calculateIncomeTax. It also needs a sentence naming the resident tax rates, the Medicare levy and LITO as the defining attributes, plus a 'rest of page' line. That copy lives in income-tax-calculator-content.tsx or needs new expressions.",
+    "The first paragraph after the calculator (line 109) must start with the PREV_FY scale (OLD_SCALE) because the order of its expressions is locked. The centerpiece should start with the current FY scale and figure (e.g. tax on a stated salary for FY2026-27) and give the 2025-26 scale second. That needs a reorder of expressions or a new current-scale expression at the start of the paragraph.",
+    "The hero sentence (income-tax-calculator.tsx line 121) and the line-109 paragraph both repeat '16% bracket became 15%, adds the 2% Medicare levy and up to $700 LITO'. Merge them or make them different so the opening does not say the same thing twice.",
+    "Centerpiece (AUDIT 2.45) lives in modules/calculator/income-tax-calculator.tsx (unit modules_calculator_income_tax_calculator__01), not in this unit. The H1 subtitle paragraph gives no direct figure answer. It should render the $80k answer (S80.net + S80.medicare), which this file already computes for DESCRIPTION, so the opening can lead with a number."
+   ]
+  },
+  {
+   "path": "/contractor-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.35",
+   "centerpiece": "2.40",
+   "main_query": "abn to wages calculator",
+   "pre28_clicks": "49",
+   "pre28_impr": "6279",
+   "requests": [
+    "Line 142 still holds two em dashes (&mdash;) around the penalty-unit figure. The second one sits in a short locked JSX string (' &mdash; for each '), so this pass cannot replace it. Change both to brackets in the source.",
+    "Lines 133-139 (step-by-step), 150-201 (comparison table) and 354-360 hard-type every figure ($91,200, $82,909, $9,949, $1,658, $10,944, $7,015, $3,508, $22,267, $9,091). Derive them from constants the way the day-rate and rate-to-salary tables already do.",
+    "The page centerpiece (AUDIT centerpiece 2.40) is the hero intro in modules/calculator/contractor-pay-calculator.tsx (line ~131). That file is outside this unit, so the opening was not rewritten here.",
+    "The hero opening has no worked figure. The meta description already has one ($50 an hour x 38 h x 48 weeks gross), but the hero text holds only the FY expression, so the centerpiece cannot give a direct take-home answer. Add an expression to the hero, for example the default-rate take-home or DAY_RATE_NET from contractor-pay-calculator-faqs.ts. Also, any text after the {FY} expression is a locked short node, so the FY now ends the paragraph.",
+    "The summary table footnote prints Math.floor(weeksPerYear / 2) fortnights, but SummaryRow divides by weeks / 2 without flooring. With an odd number of weeks (e.g. 47), the note says 23 periods while the code uses 23.5. Fix the expression or the maths."
+   ]
+  },
+  {
+   "path": "/take-home-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.67",
+   "centerpiece": "4.42",
+   "main_query": "80000 take home pay",
+   "pre28_clicks": "27",
+   "pre28_impr": "3788",
+   "requests": [
+    "The 'Who Uses This Take-Home Pay Calculator?' list (line 198) is a <ul> with hand-typed '1.' to '5.' spans. It should be an <ol>.",
+    "The methodology step on line 389 ('is calculated separately &mdash; employer-paid') and the table cells on lines 135, 347, 353 and 359 still contain em dashes. The checker locks them (dash or table cell), so a code edit is needed to replace them."
+   ]
+  },
+  {
+   "path": "/monthly-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/monthly-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.45",
+   "centerpiece": "4.07",
+   "main_query": "monthly pay calculator",
+   "pre28_clicks": "18",
+   "pre28_impr": "6418",
+   "requests": [
+    "In monthly-pay-calculator.tsx (lines 153-170) the pay-frequency table's 'Gross Per Period' column is hard-coded to 80000/52, 80000/26 and 80000/12, but 'Net Per Period' uses result.weekly/fortnightly/monthly from the calculator input. Once a user changes the salary, gross and net rows describe different salaries and the lead-in line ('for an $80,000 salary') is wrong. Either drive gross from `salary` and change the lead-in to name the salary entered, or compute net from a fixed 80,000 breakdown. Prose left as is until the code is fixed."
+   ]
+  },
+  {
+   "path": "/gross-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/gross-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.52",
+   "centerpiece": "4.09",
+   "main_query": "net to gross calculator australia",
+   "pre28_clicks": "98",
+   "pre28_impr": "13239",
+   "requests": [
+    "Replace the literal 'FY25-26' in the Example Gross Salary Calculations intro (line 238) with FY{SITE_CONFIG.financialYear}. This pass cannot add expressions.",
+    "The 'Example Gross Salary Calculations' cards (lines 234-267) repeat the net-target-to-gross job of the 'What Gross Salary Do You Need for Common Net Pay Targets?' table (lines 158-195), and the $1,500/week card repeats the lead example. Consider merging the cards into the table, with weekly and monthly rows added, so the page has one answer block for each question.",
+    "Swap the hard-coded '2%' (lines 79, 193, 228) for {MEDICARE_PCT} and '12%' (line 279) for {SG_PCT}."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

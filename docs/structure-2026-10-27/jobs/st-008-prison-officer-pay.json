@@ -1,0 +1,97 @@
+{
+ "name": "st-008-prison-officer-pay",
+ "files": [
+  "app/air-traffic-controller-salary/page.tsx",
+  "app/firefighter-pay/page.tsx",
+  "app/paramedic-pay/page.tsx",
+  "app/pilot-salary/page.tsx",
+  "app/prison-officer-pay/page.tsx",
+  "modules/guide/aviation-pay-route.tsx",
+  "modules/guide/aviation-pay.tsx",
+  "modules/guide/service-pay-hub.tsx",
+  "modules/guide/service-pay-routes.tsx",
+  "modules/guide/service-pay-shared.tsx",
+  "modules/guide/service-pay-state.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/prison-officer-pay/",
+   "url": "https://pay-calculator-australia.com/prison-officer-pay/",
+   "inPlan": true,
+   "intent": "how-to-steps",
+   "format_fit": "1.36",
+   "centerpiece": "2.61",
+   "main_query": "add overtime",
+   "pre28_clicks": "5",
+   "pre28_impr": "1222",
+   "requests": []
+  },
+  {
+   "path": "/air-traffic-controller-salary/",
+   "url": "https://pay-calculator-australia.com/air-traffic-controller-salary/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.03",
+   "centerpiece": "4.85",
+   "main_query": "air traffic controller salary",
+   "pre28_clicks": "31",
+   "pre28_impr": "4171",
+   "requests": [
+    "The opening (hero) paragraph comes from modules/guide/aviation-pay.tsx, not from this data unit. It builds 'Under {instrument.name}, {scales[0].title.toLowerCase()} runs from ...', which renders as 'air traffic controller classification and base salary (attachment 1) runs from $64,398 to $243,589'. The lowercased table title reads badly, and 'attachment 1' loses its capital. The centerpiece needs a clean entity phrase such as 'an Airservices Australia air traffic controller's base salary'. It should also say that the table covers 'Ab Initio Trainee' to 'Level 10', and it should name the calculator or take-home link.",
+    "instrument.status is locked but renders as a sentence fragment after the instrument link ('. Approved by the Fair Work Commission on 30 September 2024 (...); operates from 7 October 2024; nominal expiry date 7 October 2027.'). It needs a subject ('The agreement was approved ...'), either in the data or in the template sentence."
+   ]
+  },
+  {
+   "path": "/pilot-salary/",
+   "url": "https://pay-calculator-australia.com/pilot-salary/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.21",
+   "centerpiece": "4.55",
+   "main_query": "pilot salary australia",
+   "pre28_clicks": "37",
+   "pre28_impr": "5177",
+   "requests": [
+    "The H1 lead paragraph in modules/guide/aviation-pay.tsx (line ~93) builds its sentence from scales[0].title.toLowerCase(). It renders as 'Under Air Pilots Award 2020 [MA000046], captain: airline and general aviation minimum salaries (clause a.1.1) runs from...'. The grammar breaks and the clause number comes out lower case. The centerpiece needs its own subject phrase, such as 'the minimum full-time captain salary in general aviation'. It also needs a sentence on what the pay tables and the take-home links do. The opening is not in this unit.",
+    "instrument.status (locked) renders after 'The figures on this page come from the Air Pilots Award 2020 [MA000046].' as a fragment: 'Modern award in operation since 1 January 2010; ...'. It should be a full sentence with the award as subject. The date also needs checking (see factQuestions)."
+   ]
+  },
+  {
+   "path": "/paramedic-pay/",
+   "url": "https://pay-calculator-australia.com/paramedic-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.04",
+   "centerpiece": "4.21",
+   "main_query": "paramedic salary australia",
+   "pre28_clicks": "27",
+   "pre28_impr": "5894",
+   "requests": [
+    "(applies to /paramedic-pay/{state}/ (and police, firefighter, prison-officer state pages)) The methodology line 'Read from the {agreementName} on {verifiedOn}.' is a sentence fragment. The checker locks it as a short string, so it needs a code-side change to something like 'The figures on this page were read from ...'.",
+    "(applies to /paramedic-pay/ (and the police, firefighter and prison-officer hubs)) The checker locks the hub FAQ answers in serviceHubFaqs (built with faqs.push). Three of them should change. (1) 'How much do X earn' opens with a hedge ('It depends on the state.') and its second sentence runs past 40 words. It should lead with the entry-rate range and split the top-of-scale range into its own sentence. (2) 'Which state pays the most' should say 'states and territories' and drop the stock phrase 'only part of the picture'. (3) 'Why are some states missing figures' should open with the direct answer: a state has no figures when its current table could not be verified from a primary source. These need someone who can edit them by hand."
+   ]
+  },
+  {
+   "path": "/firefighter-pay/",
+   "url": "https://pay-calculator-australia.com/firefighter-pay/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.01",
+   "centerpiece": "4.11",
+   "main_query": "firefighter salary",
+   "pre28_clicks": "23",
+   "pre28_impr": "7827",
+   "requests": [
+    "(applies to /firefighter-pay/act/, /firefighter-pay/nsw/, /firefighter-pay/nt/) The page opening (centerpiece) comes from the shared template modules/guide/service-pay-state.tsx, not these data files, and is one sentence (instrument, date, entry and top rate). It does not say what the table shows, what the composite or base salary includes, or what the rest of the page covers. That template unit needs the centerpiece pass. These data files have no opening field to carry it."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

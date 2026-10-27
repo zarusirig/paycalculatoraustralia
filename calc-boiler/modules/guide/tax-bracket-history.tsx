@@ -128,7 +128,7 @@ export default function TaxBracketHistoryPage() {
             <section id="master-comparison">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Year-Over-Year Master Comparison</h2>
               <p>
-                The table below places all six financial years side by side so you can see exactly when each rate and threshold changed. The shaded columns highlight the FY2024-25 shift.
+                The table below places all seven financial years side by side so you can see exactly when each rate and threshold changed. The shaded columns highlight the FY2024-25 shift and the FY2026-27 cut.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-x-auto overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -142,6 +142,7 @@ export default function TaxBracketHistoryPage() {
                         <th className="px-4 py-4 border-l text-center">23-24</th>
                         <th className="px-4 py-4 border-l text-center bg-eucalyptus/10">24-25</th>
                         <th className="px-4 py-4 border-l text-center bg-eucalyptus/10">25-26</th>
+                        <th className="px-4 py-4 border-l text-center bg-eucalyptus/10">26-27</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -153,6 +154,7 @@ export default function TaxBracketHistoryPage() {
                         <td className="px-4 py-3 border-l text-center">0%</td>
                         <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">0%</td>
                         <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">0%</td>
+                        <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">{pct(NOW[0].rate)}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$18,201 &ndash; $45,000</td>
@@ -162,6 +164,7 @@ export default function TaxBracketHistoryPage() {
                         <td className="px-4 py-3 border-l text-center">19%</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">16%</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">16%</td>
+                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">{pct(NOW[1].rate)}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$45,001 &ndash; $120,000</td>
@@ -169,13 +172,14 @@ export default function TaxBracketHistoryPage() {
                         <td className="px-4 py-3 border-l text-center">32.5%</td>
                         <td className="px-4 py-3 border-l text-center">32.5%</td>
                         <td className="px-4 py-3 border-l text-center">32.5%</td>
-                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10" colSpan={2}>See below</td>
+                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10" colSpan={3}>See below</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$45,001 &ndash; $135,000</td>
                         <td className="px-4 py-3 border-l text-center text-warmgray-light" colSpan={4}>&mdash;</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">30%</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">30%</td>
+                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">{pct(NOW[2].rate)}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$120,001 &ndash; $180,000</td>
@@ -183,13 +187,14 @@ export default function TaxBracketHistoryPage() {
                         <td className="px-4 py-3 border-l text-center">37%</td>
                         <td className="px-4 py-3 border-l text-center">37%</td>
                         <td className="px-4 py-3 border-l text-center">37%</td>
-                        <td className="px-4 py-3 border-l text-center text-warmgray-light bg-eucalyptus/10" colSpan={2}>Replaced</td>
+                        <td className="px-4 py-3 border-l text-center text-warmgray-light bg-eucalyptus/10" colSpan={3}>Replaced</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$135,001 &ndash; $190,000</td>
                         <td className="px-4 py-3 border-l text-center text-warmgray-light" colSpan={4}>&mdash;</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">37%</td>
                         <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">37%</td>
+                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark bg-eucalyptus/10">{pct(NOW[3].rate)}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">$180,001+ / $190,001+</td>
@@ -199,6 +204,7 @@ export default function TaxBracketHistoryPage() {
                         <td className="px-4 py-3 border-l text-center">45%</td>
                         <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">45%</td>
                         <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">45%</td>
+                        <td className="px-4 py-3 border-l text-center bg-eucalyptus/10">{pct(NOW[4].rate)}</td>
                       </tr>
                     </tbody>
                   </table>

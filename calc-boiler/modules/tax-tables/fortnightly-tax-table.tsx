@@ -99,14 +99,6 @@ export default function FortnightlyTaxTablePage() {
 
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            <section id="fortnightly-tax-table-coefficients">
-              <h2>Fortnightly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>
-              <p>
-                From {PAYG_TABLES_UPDATED} the ATO fortnightly tax table (ATO {ATO_FORTNIGHTLY.nat}) is built from the two coefficient tables below, one for payees who claim the tax-free threshold and one for those who do not. Use them to check a payroll system, or jump to the full fortnightly table further down, the ATO PDF and spreadsheet <a href="#ato-downloads">download links</a>, or the {PAYG_PREVIOUS_FINANCIAL_YEAR} table for pay dates before 1 July 2026.
-              </p>
-              <CoefficientTables frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} />
-            </section>
-
             <section id="fortnightly-tax-table-2026-27">
               <h2>Full Fortnightly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
@@ -127,6 +119,14 @@ export default function FortnightlyTaxTablePage() {
                 dollars.{" "}
                 To skip the lookup, the <Link href="/fortnightly-pay-calculator/">fortnightly tax calculator</Link> works out your exact fortnightly pay.
               </p>
+            </section>
+
+            <section id="fortnightly-tax-table-coefficients">
+              <h2>Fortnightly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>
+              <p>
+                From {PAYG_TABLES_UPDATED} the ATO fortnightly tax table (ATO {ATO_FORTNIGHTLY.nat}) is built from the two coefficient tables below, one for payees who claim the tax-free threshold and one for those who do not. Use them to check a payroll system, or use the full fortnightly table above, the ATO PDF and spreadsheet <a href="#ato-downloads">download links</a>, or the {PAYG_PREVIOUS_FINANCIAL_YEAR} table for pay dates before 1 July 2026.
+              </p>
+              <CoefficientTables frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} />
             </section>
 
             <section id="how-to-read">

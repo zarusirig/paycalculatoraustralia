@@ -162,7 +162,7 @@ export function SuperannuationCalculatorIntro() {
   );
 }
 
-/** Sections between the salary-sacrifice comparison and "Salary Sacrifice Into Super". */
+/** Sections after the two salary-sacrifice sections ("Salary Sacrifice Into Super" and the SG comparison). */
 export function SuperannuationCalculatorMiddle() {
   return (
     <>

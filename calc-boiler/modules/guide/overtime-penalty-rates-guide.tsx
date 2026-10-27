@@ -71,6 +71,14 @@ const OLD_MID_RATE = TAX_BRACKETS_2023_24[2].rate; // 32.5%, before Stage 3
 const STD_HOURS = EMPLOYMENT.standardWeeklyHours;
 const CASUAL_LOADING = EMPLOYMENT.casualLoading;
 
+// Overtime worked example: multipliers read from the retail award constants,
+// matching the hero sentence, so the table and the prose cannot drift.
+const OT_BASE = 30;
+const OT_FIRST = RETAIL_OVERTIME.weekdayFirst3Hours;
+const OT_AFTER = RETAIL_OVERTIME.weekdayAfter3Hours;
+const OT_PH = RETAIL_OVERTIME.publicHoliday;
+const mx = (v: number) => `${v.toFixed(1)}x`;
+
 const pctLabel = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
 
 /** Penalty table shared by the three verified awards on this page. */
@@ -134,46 +142,7 @@ export default function OvertimePenaltyRatesGuidePage() {
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            {/* ───────── SECTION 1: What Are Penalty Rates ───────── */}
-            <section id="what-are-penalty-rates">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Penalty Rates in Australia?</h2>
-              <p>Penalty rates are higher pay rates that Australian employees receive for working outside standard weekday hours, including weekends, public holidays, late nights, and early mornings. The Fair Work Commission sets these rates through modern awards, which set minimum pay and conditions for the employees they cover.</p>
-              <p>The penalty rate system compensates employees for the social and personal cost of working unsociable hours. A retail worker on the level 1 rate of <strong>{formatAUD(RETAIL_L1.hourly, 2)} per hour</strong> under the General Retail Industry Award receives <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.saturday, 2)} per hour</strong> ({RETAIL_PENALTIES.saturday}x) on Saturdays and <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.sunday, 2)} per hour</strong> ({RETAIL_PENALTIES.sunday}x) on Sundays. These loadings directly increase your assessable income for the financial year.</p>
-              <p>Penalty rates operate separately from overtime rates in most awards. Overtime compensates for hours worked beyond the standard <strong>{STD_HOURS}-hour week</strong>, while penalty rates compensate for <em>when</em> the work occurs. Some shifts meet both triggers at once. Under most modern awards, overtime worked on a public holiday is paid at the higher of the two applicable rates.</p>
-              <p>To see how penalty rates affect your take-home pay and income tax brackets, use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> with your specific base rate and penalty multiplier.</p>
-            </section>
-
-            {/* ───────── SECTION 2: How Are Overtime Rates Calculated ───────── */}
-            <section id="how-overtime-calculated">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Are Overtime Rates Calculated?</h2>
-              <p>Overtime rates are calculated by multiplying your ordinary base hourly rate by a penalty multiplier, typically <strong>1.5x (time-and-a-half)</strong> for the first 2-3 hours and <strong>2.0x (double time)</strong> for subsequent hours. The exact multiplier depends on your modern award or enterprise agreement.</p>
-              <p>The formula is: <strong>Overtime Pay = Base Hourly Rate x Penalty Multiplier x Hours Worked</strong>. For a full-time employee earning $30.00 per hour, 3 hours of time-and-a-half overtime equals <strong>$135.00</strong> ($30 x 1.5 x 3). An additional 2 hours at double time adds <strong>$120.00</strong> ($30 x 2.0 x 2), bringing total overtime earnings for that shift to <strong>$255.00</strong> before tax.</p>
-
-              <h3>Standard Overtime Multiplier Table</h3>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-5 py-3">Overtime Type</th>
-                        <th className="px-5 py-3">Multiplier</th>
-                        <th className="px-5 py-3">Example ($30/hr base)</th>
-                        <th className="px-5 py-3">When It Applies</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Time-and-a-half</td><td className="px-5 py-3 font-semibold">1.5x</td><td className="px-5 py-3">$45.00/hr</td><td className="px-5 py-3">First 2-3 hours of overtime (weekdays)</td></tr>
-                      <tr><td className="px-5 py-3">Double time</td><td className="px-5 py-3 font-semibold">2.0x</td><td className="px-5 py-3">$60.00/hr</td><td className="px-5 py-3">After first 2-3 hours; all Sunday overtime in some awards</td></tr>
-                      <tr><td className="px-5 py-3">Double-time-and-a-half</td><td className="px-5 py-3 font-semibold">2.5x</td><td className="px-5 py-3">$75.00/hr</td><td className="px-5 py-3">Public holiday overtime (most awards)</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <p>Overtime is triggered when a full-time employee works more than <strong>{STD_HOURS} ordinary hours per week</strong>, or beyond the daily limit or span of ordinary hours set by their award. A {(STD_HOURS / 5).toFixed(1)}-hour day is only the average of a {STD_HOURS}-hour, 5-day week, not a daily trigger: the General Retail Industry Award allows up to <strong>9 ordinary hours</strong> on any day and up to 11 on one day a week (clauses 15.4 and 15.5). Part-time employees earn overtime when they exceed their agreed contracted hours. Use the <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> to convert your base hourly rate for comparison purposes.</p>
-            </section>
-
-            {/* ───────── SECTION 3: Penalty Rates Table by Award Type ───────── */}
+            {/* ───────── SECTION 3: Penalty Rates Table by Award Type (first: lookup intent) ───────── */}
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Penalty Rates by Award Type?</h2>
               <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each table links to a full classification-by-classification breakdown. The Fair Work Ombudsman&apos;s tool applies the same percentages to a roster under any award; see our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide.</p>
@@ -226,7 +195,49 @@ export default function OvertimePenaltyRatesGuidePage() {
               <p>
                 We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers. Several differ materially from the three above, and nursing weekend penalties are higher than the retail and hospitality rates. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
               </p>
+            </section>
 
+            {/* ───────── SECTION 1: What Are Penalty Rates ───────── */}
+            <section id="what-are-penalty-rates">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Penalty Rates in Australia?</h2>
+              <p>Penalty rates are higher pay rates that Australian employees receive for working outside standard weekday hours, including weekends, public holidays, late nights, and early mornings. The Fair Work Commission sets these rates through modern awards, which set minimum pay and conditions for the employees they cover.</p>
+              <p>The penalty rate system compensates employees for the social and personal cost of working unsociable hours. A retail worker on the level 1 rate of <strong>{formatAUD(RETAIL_L1.hourly, 2)} per hour</strong> under the General Retail Industry Award receives <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.saturday, 2)} per hour</strong> ({RETAIL_PENALTIES.saturday}x) on Saturdays and <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.sunday, 2)} per hour</strong> ({RETAIL_PENALTIES.sunday}x) on Sundays. These loadings directly increase your assessable income for the financial year.</p>
+              <p>Penalty rates operate separately from overtime rates in most awards. Overtime compensates for hours worked beyond the standard <strong>{STD_HOURS}-hour week</strong>, while penalty rates compensate for <em>when</em> the work occurs. Some shifts meet both triggers at once. Under most modern awards, overtime worked on a public holiday is paid at the higher of the two applicable rates.</p>
+              <p>To see how penalty rates affect your take-home pay and income tax brackets, use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> with your specific base rate and penalty multiplier.</p>
+            </section>
+
+            {/* ───────── SECTION 2: How Are Overtime Rates Calculated ───────── */}
+            <section id="how-overtime-calculated">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Are Overtime Rates Calculated?</h2>
+              <p>Overtime rates are calculated by multiplying your ordinary base hourly rate by a penalty multiplier, typically <strong>{mx(OT_FIRST)} (time-and-a-half)</strong> for the first 2-3 hours and <strong>{mx(OT_AFTER)} (double time)</strong> for subsequent hours. The exact multiplier depends on your modern award or enterprise agreement.</p>
+              <p>The formula is: <strong>Overtime Pay = Base Hourly Rate x Penalty Multiplier x Hours Worked</strong>. For a full-time employee earning {formatAUD(OT_BASE, 2)} per hour, 3 hours of time-and-a-half overtime equals <strong>{formatAUD(OT_BASE * OT_FIRST * 3, 2)}</strong> ({formatAUD(OT_BASE)} x {OT_FIRST.toFixed(1)} x 3). An additional 2 hours at double time adds <strong>{formatAUD(OT_BASE * OT_AFTER * 2, 2)}</strong> ({formatAUD(OT_BASE)} x {OT_AFTER.toFixed(1)} x 2), bringing total overtime earnings for that shift to <strong>{formatAUD(OT_BASE * OT_FIRST * 3 + OT_BASE * OT_AFTER * 2, 2)}</strong> before tax.</p>
+
+              <h3>Standard Overtime Multiplier Table</h3>
+              <div className="not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-warmgray">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th className="px-5 py-3">Overtime Type</th>
+                        <th className="px-5 py-3">Multiplier</th>
+                        <th className="px-5 py-3">Example ({formatAUD(OT_BASE)}/hr base)</th>
+                        <th className="px-5 py-3">When It Applies</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr><td className="px-5 py-3">Time-and-a-half</td><td className="px-5 py-3 font-semibold">{mx(OT_FIRST)}</td><td className="px-5 py-3">{formatAUD(OT_BASE * OT_FIRST, 2)}/hr</td><td className="px-5 py-3">First 2-3 hours of overtime (weekdays)</td></tr>
+                      <tr><td className="px-5 py-3">Double time</td><td className="px-5 py-3 font-semibold">{mx(OT_AFTER)}</td><td className="px-5 py-3">{formatAUD(OT_BASE * OT_AFTER, 2)}/hr</td><td className="px-5 py-3">After first 2-3 hours; all Sunday overtime in some awards</td></tr>
+                      <tr><td className="px-5 py-3">Double-time-and-a-half</td><td className="px-5 py-3 font-semibold">{mx(OT_PH)}</td><td className="px-5 py-3">{formatAUD(OT_BASE * OT_PH, 2)}/hr</td><td className="px-5 py-3">Public holiday overtime (most awards)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <p>Overtime is triggered when a full-time employee works more than <strong>{STD_HOURS} ordinary hours per week</strong>, or beyond the daily limit or span of ordinary hours set by their award. A {(STD_HOURS / 5).toFixed(1)}-hour day is only the average of a {STD_HOURS}-hour, 5-day week, not a daily trigger: the General Retail Industry Award allows up to <strong>9 ordinary hours</strong> on any day and up to 11 on one day a week (clauses 15.4 and 15.5). Part-time employees earn overtime when they exceed their agreed contracted hours. Use the <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> to convert your base hourly rate for comparison purposes.</p>
+            </section>
+
+            {/* ───────── SECTION 4: When Do Penalty Rates Apply ───────── */}
+            <section id="when-penalty-rates-apply">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Do Penalty Rates Apply?</h2>
               <p>Penalty rates apply during weekends, public holidays, evening shifts, night shifts, and early morning hours as defined by each modern award. The trigger times and rates differ between awards. The multipliers below cover the retail, hospitality and SCHADS awards above.</p>
 

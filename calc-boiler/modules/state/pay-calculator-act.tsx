@@ -66,7 +66,7 @@ export default function PayCalculatorACTPage() {
           <p className="text-lg text-warmgray">
             Canberra take-home pay is your gross salary minus federal income tax and the Medicare
             levy: the Australian Capital Territory (ACT) sets no income tax of its own. Canberra has the highest
-            earnings in the country and, with Victoria, the shortest wait for long service leave. This salary
+            earnings in the country ({formatAUD(typicalSalary(PROFILE))} a year for full-time adults, ABS) and, with Victoria, the shortest wait for long service leave. This salary
             calculator applies the ATO {SITE_CONFIG.financialYear} rates to your gross pay and shows
             your weekly, fortnightly and monthly take-home pay. The sections below cover the ACT-only
             parts: Canberra Day, Reconciliation Day, 7-year long service leave, and the public service

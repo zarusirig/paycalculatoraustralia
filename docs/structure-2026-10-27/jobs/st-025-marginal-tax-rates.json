@@ -1,0 +1,112 @@
+{
+ "name": "st-025-marginal-tax-rates",
+ "files": [
+  "app/capital-gains-tax-calculator/page.tsx",
+  "app/employer-cost-calculator/page.tsx",
+  "app/job-pay-rates/page.tsx",
+  "app/marginal-tax-rates/page.tsx",
+  "app/redundancy-pay-calculator/page.tsx",
+  "modules/calculator/cgt-calculator.tsx",
+  "modules/calculator/marginal-rate-calculator.tsx",
+  "modules/calculator/redundancy-pay-calculator-content.tsx",
+  "modules/calculator/redundancy-pay-calculator.tsx",
+  "modules/calculator/redundancy-pay-faqs.ts",
+  "modules/guide/capital-gains-tax-faqs.ts",
+  "modules/guide/capital-gains-tax.tsx",
+  "modules/guide/employer-cost-calculator-content.tsx",
+  "modules/guide/employer-cost-calculator-faqs.ts",
+  "modules/guide/employer-cost-calculator.tsx",
+  "modules/guide/job-pay-rates-hub.tsx",
+  "modules/guide/marginal-tax-rates-faqs.ts",
+  "modules/guide/marginal-tax-rates.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/marginal-tax-rates/",
+   "url": "https://pay-calculator-australia.com/marginal-tax-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.60",
+   "centerpiece": "2.15",
+   "main_query": "2025 tax thresholds",
+   "pre28_clicks": "0",
+   "pre28_impr": "594",
+   "requests": [
+    "The intent is lookup-rate-table, but the page has no plain 2026-27 resident scale table (the five brackets and rates) above the fold. Add a compact table or KeyFigures row rendered from TAX_BRACKETS_2026_27 above the calculator, so the opening can state the scale from code.",
+    "The opening sentence's '$10,000 raise on $85,000 ... 30% ... 2% Medicare' is typed text. Drive it from example.raise, example.salary, the bracket rate and MEDICARE_LEVY.rate so it cannot drift from the computed {example.netGain}."
+   ]
+  },
+  {
+   "path": "/redundancy-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.19",
+   "centerpiece": "4.11",
+   "main_query": "redundancy payment table australia",
+   "pre28_clicks": "96",
+   "pre28_impr": "8727",
+   "requests": [
+    "FAQ 'What makes a redundancy genuine for tax?' (redundancy-pay-faqs.ts line 62) packs the ATO's genuine redundancy conditions into one sentence of about 50 words: dismissed because the position is redundant, under pension age, arm's length amount, no arrangement to re-employ. It reads better as a short lead sentence followed by a list, which this pass cannot add."
+   ]
+  },
+  {
+   "path": "/employer-cost-calculator/",
+   "url": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.01",
+   "centerpiece": "3.14",
+   "main_query": "true cost of employee calculator australia",
+   "pre28_clicks": "31",
+   "pre28_impr": "3193",
+   "requests": [
+    "The centerpiece opening sits in the client module (employer-cost-calculator.tsx hero), not in this unit. It should name the cost multiplier and the FY, and say what the calculator does. Check it in that module's unit.",
+    "Line 105 hard-codes '1.5% workers compensation premium'. It should render formatPercent(TABLE_WORKCOVER, 1) like the table row does.",
+    "The hero paragraph (employer-cost-calculator.tsx line 62) has no SG rate or multiplier expression, so the opening cannot give the direct answer figure. Add {formatPercent(SUPER_GUARANTEE.rate, 0)} and a computed $100,000 true-cost or multiplier expression (MULT_100K) so the first sentences answer 'how much does an employee cost'.",
+    "The badge text 'Owed required' next to Superannuation (line 163) is locked as a short string but reads as an error. A human should replace it, for example with 'Required by law'."
+   ]
+  },
+  {
+   "path": "/capital-gains-tax-calculator/",
+   "url": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.01",
+   "centerpiece": "2.49",
+   "main_query": "+site:ato.gov.au \"companies cannot use the cgt discount",
+   "pre28_clicks": "2",
+   "pre28_impr": "588",
+   "requests": [
+    "The hero opening (line 132) has no {CGT_INCOME_YEAR} expression, so it cannot name the income year the calculator uses (2026-27 rates). Please add {CGT_INCOME_YEAR} to the opening, for example: \"Rates are for the {CGT_INCOME_YEAR} income year.\"",
+    "The opening cannot give a dollar answer for the top query \"how much capital gains tax do i pay on $100000\". The RATE_ROWS table already computes it. A one-line summary in the opening that uses a RATE_ROWS expression would answer it directly. That needs a code change.",
+    "The footnote at cgt-calculator.tsx line 422 says the figures exclude the 'Medicare levy surcharge, HECS-HELP or other offsets'. HECS-HELP is a compulsory repayment, not a tax offset. The string is locked because it contains a hyphen. It should read something like 'the Medicare levy surcharge, HELP repayments or tax offsets'.",
+    "FAQ 'What is the 6-year rule for capital gains tax?' (capital-gains-tax-faqs.ts line 74): the first answer sentence never names the rule. To open with 'The ${ABSENCE_RULE.incomeProducingYears}-year rule lets you...', the answer needs one more ABSENCE_RULE.incomeProducingYears expression at the start. This pass cannot add expressions."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.90",
+   "centerpiece": "1.88",
+   "main_query": "1st year electrical apprentice wage",
+   "pre28_clicks": "9",
+   "pre28_impr": "1667",
+   "requests": [
+    "The hub opening (centerpiece 1.88) has no headline figure, because the only expressions in it are the job count and the effective date. A direct answer needs a code expression such as the lowest and highest minimum hourly rate across OCCUPATIONS (headlineRow), or the National Minimum Wage floor from constants. With that, the first sentence could say \"from $X to $Y an hour\".",
+    "(applies to /job-pay-rates/dentist/ (and radiologist, anaesthetist, optometrist, gp, surgeon)) The hero paragraph in job-pay-rates-health-salary.tsx line 202 still has an em dash (\"on their tax return \u2014 the latest figures the ATO has published\") and an en dash in \"2026\u201327\". The checker locks that string as a dash-key, so it needs a source edit: replace with \"...on their tax return. These are the latest figures the ATO has published. At 2026-27 tax rates...\". 2026-27 should also come from SITE_CONFIG.financialYear rather than be hard-coded.",
+    "(applies to /job-pay-rates/flight-attendant/ and /job-pay-rates/forklift-operator/ (and siblings)) The opening sentence in modules/guide/job-pay-rates-occupation.tsx renders 'The award minimum for {occ.headline.why} is ...'. On these two pages headline.why ends in a comma appositive ('a flight attendant, the award's only non-supervisory cabin crew classification'), so the H1 opening reads '...classification is $28.88 an hour' with no closing comma. headline.why is locked (prop:headline). Either unlock it so the appositive can go in brackets, or change the template. Several siblings (bartender, audiologist, dental-hygienist, chef) have the same problem."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { HECS_HELP, formatAUD, formatPercent } from "@/lib/constants";
+
+// Example balances for the indexation table; the rate is HECS_HELP.indexationRate.
+const EXAMPLE_BALANCES = [20_000, 30_000, 50_000] as const;
 
 export default function HecsIndexation2026() {
   return (
@@ -22,6 +26,42 @@ export default function HecsIndexation2026() {
         ]}
       />
 
+      <h2>What 2.8% adds to a real balance</h2>
+      <p>
+        Indexation applies to whatever balance had remained unpaid for more than 11 months. At{" "}
+        {formatPercent(HECS_HELP.indexationRate)}, indexation on {HECS_HELP.indexationDate} added these
+        amounts:
+      </p>
+      <div className="overflow-x-auto not-prose my-8 rounded-xl border border-eucalyptus/30 bg-eucalyptus/5 p-1">
+        <table className="min-w-full text-sm">
+          <thead>
+            <tr className="text-left text-navy/60">
+              <th className="px-4 py-2 font-semibold">Balance indexed</th>
+              <th className="px-4 py-2 font-semibold">Indexation added</th>
+              <th className="px-4 py-2 font-semibold">New balance</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-eucalyptus/10 text-navy">
+            {EXAMPLE_BALANCES.map((balance) => (
+              <tr key={balance}>
+                <td className="px-4 py-2.5 font-medium">{formatAUD(balance)}</td>
+                <td className="px-4 py-2.5">{formatAUD(balance * HECS_HELP.indexationRate)}</td>
+                <td className="px-4 py-2.5 font-semibold">{formatAUD(balance * (1 + HECS_HELP.indexationRate))}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The ATO adds indexation to your study loan account automatically. Nothing changes on your
+        payslip, and your employer is not notified.
+      </p>
+      <p>
+        Because compulsory repayments made through the year sit as a credit with the ATO until
+        your tax return is assessed, they do not reduce the balance that gets indexed on 1 June.
+        Only voluntary repayments, paid directly to the ATO, reduce the balance mid-year.
+      </p>
+
       <h2>Why 2.8% and not the headline CPI figure</h2>
       <p>
         Since 1 June 2023, HELP indexation has been capped at the lower of CPI or WPI, both
@@ -37,20 +77,6 @@ export default function HecsIndexation2026() {
         Index, so your student debt does not grow faster than wages. HECS carries no commercial
         interest, so indexation is the only way the balance rises. It now follows the slower of
         CPI and WPI rather than tracking inflation alone.
-      </p>
-
-      <h2>What 2.8% adds to a real balance</h2>
-      <p>
-        Indexation applies to whatever balance had remained unpaid for more than 11 months. A
-        graduate with a $30,000 debt saw roughly $840 added on 1 June 2026; someone with $50,000
-        owing picked up around $1,400, while a smaller $20,000 balance grew by about $560. The
-        ATO adds indexation to your study loan account automatically. Nothing changes on your
-        payslip, and your employer is not notified.
-      </p>
-      <p>
-        Because compulsory repayments made through the year sit as a credit with the ATO until
-        your tax return is assessed, they do not reduce the balance that gets indexed on 1 June.
-        Only voluntary repayments, paid directly to the ATO, reduce the balance mid-year.
       </p>
 
       <h2>The 1 June deadline and voluntary repayment timing</h2>

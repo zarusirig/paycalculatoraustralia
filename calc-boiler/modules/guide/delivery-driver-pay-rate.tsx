@@ -75,16 +75,6 @@ export default function DeliveryDriverPayRatePage() {
         <article className={ARTICLE_CLASS}>
           <FeaturedImage placement="content" className="mt-0" />
           <section>
-            <H2 id="what-changed">What the Minimum Standards Order Changed</H2>
-            <p>
-              The Fair Work Commission made the Interim On-Demand Delivery Employee-like Worker Minimum Standards Order on {DELIVERY_MSO.made} and it started on {DELIVERY_MSO.commences}. It is the first order of its kind. It sets a minimum hourly rate for delivery workers on apps and puts a floor under the whole earnings period, so what you are paid across the period has to reach the rate for the time you were engaged.
-            </p>
-            <p>
-              The mechanism is a top-up. The platform adds up your hours of engaged time in an earnings period (which it sets, up to {DELIVERY_MSO.maxEarningsPeriodDays} days), multiplies them by the hourly rate for your vehicle, and compares the result to what it paid you. If you were paid less, it owes you the difference in the next earnings period or within {DELIVERY_MSO.topUpDueDays} days after it. If you were paid more, nothing changes.
-            </p>
-          </section>
-
-          <section>
             <H2 id="rates">Delivery Minimum Rates by Vehicle</H2>
             <p>The rate depends on how you deliver. The order&rsquo;s own classes are below, with the rate table that applies now and the one that starts on {p27.from}.</p>
             <DataTable
@@ -93,6 +83,16 @@ export default function DeliveryDriverPayRatePage() {
               rows={DELIVERY_VEHICLES.map((v) => [v.label, `${formatAUD(p26.rates[v.id], 2)} an hour`, `${formatAUD(p27.rates[v.id], 2)} an hour`])}
               caption={<>Fair Work Commission, Minimum Standards Order clause 14.2 ({p26.clause} and {p27.clause}), read {DELIVERY_MSO_VERIFIED_ON}. From {DELIVERY_MSO.nextIndexation} the rates move each year by the percentage the Commission adds to the National Minimum Wage.</>}
             />
+          </section>
+
+          <section>
+            <H2 id="what-changed">What the Minimum Standards Order Changed</H2>
+            <p>
+              The Fair Work Commission made the Interim On-Demand Delivery Employee-like Worker Minimum Standards Order on {DELIVERY_MSO.made} and it started on {DELIVERY_MSO.commences}. It is the first order of its kind. It sets a minimum hourly rate for delivery workers on apps and puts a floor under the whole earnings period, so what you are paid across the period has to reach the rate for the time you were engaged.
+            </p>
+            <p>
+              The mechanism is a top-up. The platform adds up your hours of engaged time in an earnings period (which it sets, up to {DELIVERY_MSO.maxEarningsPeriodDays} days), multiplies them by the hourly rate for your vehicle, and compares the result to what it paid you. If you were paid less, it owes you the difference in the next earnings period or within {DELIVERY_MSO.topUpDueDays} days after it. If you were paid more, nothing changes.
+            </p>
           </section>
 
           <section>

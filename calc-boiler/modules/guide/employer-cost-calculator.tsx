@@ -6,7 +6,8 @@ import { ChevronRight, Briefcase } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import TrustBar from "@/components/common/trust-bar";
-import { STATE_PAYROLL_TAX, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, STATE_PAYROLL_TAX, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
+import { MULT_100K, TABLE_WORKCOVER } from "@/modules/guide/employer-cost-calculator-faqs";
 import { employerOnCosts } from "@/lib/constants/payroll-tax"; // T2
 
 // Display order for the state-by-state payroll tax table (matches the previous hand-written order).
@@ -59,7 +60,7 @@ export default function EmployerCostCalculatorPage({
             Employer Cost Calculator: The True Cost of Hiring
           </h1>
           <p className="text-xl text-warmgray leading-relaxed max-w-3xl">
-            An employee on a $100,000 salary costs a business far more than $100,000. This calculator adds superannuation, state payroll tax, the WorkCover premium and the annual leave provision to the base salary to show the true cost of an employee.
+            An employee on a $100,000 salary costs a business far more than $100,000: about {formatAUD(MULT_100K * 100_000)}, or {MULT_100K.toFixed(2)}x the salary, in FY{SITE_CONFIG.financialYear} with super at {formatPercent(SUPER_GUARANTEE.rate, 0)}, the leave provision, Victorian payroll tax and a {formatPercent(TABLE_WORKCOVER, 1)} WorkCover premium. This calculator adds superannuation, state payroll tax, the WorkCover premium and the annual leave provision to the base salary to show the true cost of an employee.
           </p>
           <TrustBar className="mt-8 !max-w-none" variant="light" />
         </header>

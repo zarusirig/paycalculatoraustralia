@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD } from "@/lib/constants";
+import { WHM_TAX_BRACKETS_2026_27, taxOnScale } from "@/lib/constants/tax-rates-reference";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
@@ -16,17 +17,16 @@ import FeaturedImage from "@/components/common/featured-image";
 const RES_TAX_45K = Math.round(calculateIncomeTax(45_000)); // income tax before offsets
 const RES_LITO_45K = Math.round(calculateLITO(45_000));
 const RES_MEDICARE_45K = calculateMedicareLevy(45_000);
-const WHM_TAKE_HOME_45K = 45_000 - 6_750; // flat 15% WHM schedule
+// WHM schedule: 15% to $45,000, then non-resident marginal rates. Read from
+// the verified ATO scale (WHM_TAX_BRACKETS_2026_27) so the brackets table and
+// the comparison table move with it.
+const WHM = WHM_TAX_BRACKETS_2026_27;
+const whmTax = (income: number) => Math.round(taxOnScale(income, WHM));
+const WHM_TAKE_HOME_45K = 45_000 - whmTax(45_000);
 const RES_TAKE_HOME_45K = 45_000 - (RES_TAX_45K - RES_LITO_45K) - RES_MEDICARE_45K;
-
-// WHM schedule: 15% to $45,000, then non-resident marginal rates.
-const WHM_TAX: Record<number, number> = {
-  20_000: 3_000,
-  40_000: 6_000,
-  45_000: 6_750,
-  60_000: 11_250,
-  80_000: 17_250,
-};
+// Resident income tax on $45,000 in the previous income year, for the "what changed" note.
+const PREV_RES_TAX_45K = Math.round(taxOnScale(45_000, TAX_BRACKETS_2025_26));
+const cents = (rate: number) => `${Math.round(rate * 100)}c`;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Working holiday makers", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/coming-to-australia/working-holiday-makers", publisher: SOURCES.ato.name },
@@ -62,10 +62,13 @@ export default function WorkingHolidayTaxPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Working Holiday Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
               <p>Working holiday maker income tax brackets use a <strong>4-tier structure</strong> starting at 15% on the first $45,000 and escalating to 45% above $190,000.</p>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable Income</th><th className="px-5 py-3">Tax Rate</th><th className="px-5 py-3">Tax Payable</th><th className="px-5 py-3 text-right">Cumulative Tax</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                <tr className="bg-orange-50"><td className="px-5 py-3 font-medium">$0 &ndash; $45,000</td><td className="px-5 py-3 font-bold text-orange-700">15%</td><td className="px-5 py-3">15c per $1</td><td className="px-5 py-3 text-right">$6,750</td></tr>
-                <tr><td className="px-5 py-3">$45,001 &ndash; $135,000</td><td className="px-5 py-3">30%</td><td className="px-5 py-3">$6,750 + 30c per $1 over $45,000</td><td className="px-5 py-3 text-right">$33,750</td></tr>
-                <tr><td className="px-5 py-3">$135,001 &ndash; $190,000</td><td className="px-5 py-3">37%</td><td className="px-5 py-3">$33,750 + 37c per $1 over $135,000</td><td className="px-5 py-3 text-right">$54,100</td></tr>
-                <tr><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3">45%</td><td className="px-5 py-3">$54,100 + 45c per $1 over $190,000</td><td className="px-5 py-3 text-right">&mdash;</td></tr>
+                {WHM.map((b, i) => {
+                  const first = i === 0;
+                  const range = Number.isFinite(b.max) ? <>{formatAUD(b.min)} &ndash; {formatAUD(b.max)}</> : <>{formatAUD(b.min)}+</>;
+                  return (
+                    <tr key={b.min} className={first ? "bg-orange-50" : undefined}><td className={first ? "px-5 py-3 font-medium" : "px-5 py-3"}>{range}</td><td className={first ? "px-5 py-3 font-bold text-orange-700" : "px-5 py-3"}>{Math.round(b.rate * 100)}%</td><td className="px-5 py-3">{first ? `${cents(b.rate)} per $1` : `${formatAUD(b.base)} + ${cents(b.rate)} per $1 over ${formatAUD(b.min - 1)}`}</td><td className="px-5 py-3 text-right">{Number.isFinite(b.max) ? formatAUD(whmTax(b.max)) : <>&mdash;</>}</td></tr>
+                  );
+                })}
               </tbody></table></div></div>
               <p>The first bracket aligns with the resident $45,000 threshold where the 30% marginal rate begins. From $45,001 onwards, WHM rates mirror <Link href="/non-resident-tax/">non-resident tax rates</Link> exactly. For a full breakdown of how Australian income tax brackets work for all residency types, see our <Link href="/tax-brackets/">Tax Brackets Guide</Link>.</p>
             </section>
@@ -120,7 +123,7 @@ export default function WorkingHolidayTaxPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>WHM vs Resident vs Non-Resident Tax Comparison</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">WHM Tax</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 {[20_000, 40_000, 45_000, 60_000, 80_000].map((income) => (
-                  <tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right font-medium">{formatAUD(WHM_TAX[income])}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, true)))}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, false)))}</td></tr>
+                  <tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right font-medium">{formatAUD(whmTax(income))}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, true)))}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, false)))}</td></tr>
                 ))}
               </tbody></table></div><p className="text-xs text-warmgray-light mt-2">Income tax only. Excludes Medicare levy and tax offsets.</p></div>
               <p>WHMs pay more income tax than residents at every income level. With the resident second-bracket rate now matching the WHM 15% rate, the gap is the 15% applied to the $18,200 tax-free threshold that WHMs do not get: a constant {formatAUD(Math.round(18_200 * 0.15))} once income passes $18,200. Against standard non-residents (30% from the first dollar), WHMs pay less at every income level. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare scenarios at your specific salary.</p>
@@ -196,7 +199,7 @@ export default function WorkingHolidayTaxPage() {
                 <tr><td className="px-5 py-3">Resident tax-free threshold</td><td className="px-5 py-3">$18,200</td><td className="px-5 py-3 font-bold">$18,200</td><td className="px-5 py-3 text-warmgray-light">No change (WHMs ineligible)</td></tr>
                 <tr><td className="px-5 py-3">Resident 2nd bracket rate</td><td className="px-5 py-3">16%</td><td className="px-5 py-3 font-bold">15%</td><td className="px-5 py-3 text-green-600">-1%</td></tr>
               </tbody></table></div></div>
-              <p>A backpacker earning $45,000 still accumulates <strong>$5,400</strong> in super contributions. The SG rate reached its legislated 12% ceiling on 1 July 2025 and no further increases are scheduled. The resident second-bracket cut from 16% to 15% does not change WHM rates, but it narrows the resident comparison: resident income tax on $45,000 fell from $4,288 in FY{SITE_CONFIG.previousFinancialYear} to {formatAUD(RES_TAX_45K)} in FY{SITE_CONFIG.financialYear}, while a WHM still pays $6,750. The 15% flat rate operates independently of the standard income tax bracket structure.</p>
+              <p>A backpacker earning $45,000 still accumulates <strong>$5,400</strong> in super contributions. The SG rate reached its legislated 12% ceiling on 1 July 2025 and no further increases are scheduled. The resident second-bracket cut from 16% to 15% does not change WHM rates, but it narrows the resident comparison: resident income tax on $45,000 fell from {formatAUD(PREV_RES_TAX_45K)} in FY{SITE_CONFIG.previousFinancialYear} to {formatAUD(RES_TAX_45K)} in FY{SITE_CONFIG.financialYear}, while a WHM still pays $6,750. The 15% flat rate operates independently of the standard income tax bracket structure.</p>
             </section>
 
             {/* ───────── SECTION 10: Common Mistakes ───────── */}

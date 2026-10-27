@@ -1,0 +1,76 @@
+{
+ "name": "st-009-public-service-pay-scales-",
+ "files": [
+  "app/public-service-pay-scales/[jurisdiction]/page.tsx",
+  "modules/guide/public-service-pay-jurisdiction.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/public-service-pay-scales/nsw/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/nsw/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.57",
+   "centerpiece": "4.35",
+   "main_query": "clerk grade 3/4 salary nsw",
+   "pre28_clicks": "79",
+   "pre28_impr": "5812",
+   "requests": [
+    "The top pre-crash query is 'clerk grade 3/4 salary nsw' (27 clicks), but the FAQs cover only Grade 5/6 and Grade 9/10. Add a 'What is a Clerk Grade 3/4 salary?' FAQ built from the band data: Grade 3 1st year $87,199 to Grade 4 thereafter $95,482. FAQ questions are locked, so this pass cannot add it.",
+    "progression[2] (nsw.ts line 348) contains an em dash ('within their level \u2014 five at Level 1...'), which locks the string as dash-key. Replace the dash with a colon by hand."
+   ]
+  },
+  {
+   "path": "/public-service-pay-scales/nt/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/nt/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.59",
+   "centerpiece": "4.47",
+   "main_query": "nt gov pay scales",
+   "pre28_clicks": "14",
+   "pre28_impr": "2154",
+   "requests": [
+    "'sao1' is the second pre-crash query (10 clicks) and has no FAQ. Add 'What does an NT SAO1 earn?' from the band data ($136,380, $143,896, $152,357; progression by high-performance assessment under clause 37).",
+    "jurisdiction.instrument (nt.ts line 51) opens with a fragment that has no verb: 'The Northern Territory Public Sector 2025\u20132029 Enterprise Agreement, a single-enterprise agreement approved by...'. It is the first paragraph under 'Who sets these rates', but prop:instrument is locked. Suggested fix: 'The Northern Territory Public Sector 2025-2029 Enterprise Agreement sets these salaries. It is a single-enterprise agreement, approved by the Fair Work Commission on 30 January 2026 (AG2025/4592).' The headline (line 44) and the instrument also keep the en dash in '2025\u20132029' because they are locked."
+   ]
+  },
+  {
+   "path": "/public-service-pay-scales/vic/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/vic/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.20",
+   "centerpiece": "4.28",
+   "main_query": "vps salary 2026",
+   "pre28_clicks": "165",
+   "pre28_impr": "19188",
+   "requests": [
+    "The H1 and metaTitle say 'VPS1\u2013VPS6', but the page also publishes Grade 7 and the STS structure (to $263,771). These fields are locked; the owner should decide whether to name VPS 7 in the title and H1."
+   ]
+  },
+  {
+   "path": "/public-service-pay-scales/act/",
+   "url": "https://pay-calculator-australia.com/public-service-pay-scales/act/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.41",
+   "centerpiece": "4.47",
+   "main_query": "aso6 salary",
+   "pre28_clicks": "49",
+   "pre28_impr": "1811",
+   "requests": [
+    "jurisdiction.instrument (act.ts line 62) renders as its own paragraph but opens with a verbless fragment ('The ACT Public Sector ... Enterprise Agreement 2023\u20132026, a single-enterprise agreement ...'). The checker locks the instrument field. It should become a sentence with the agreement as subject, e.g. 'ACT public servants are paid under ...'.",
+    "stream.description (act.ts line 84) renders as a paragraph and opens with the fragment 'Six Administrative Services Officer classes, then Senior Officer Grades C, B and A.' The description field is locked, so it needs a manual fix to make it a full sentence."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

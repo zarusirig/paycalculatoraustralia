@@ -195,7 +195,7 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
       </h2>
       <p className="text-warmgray mb-4">
         {label} an hour after tax is{" "}
-        <strong className="text-navy">{formatAUD(ft.perWeek, 2)} a week</strong> on a {ft.hoursPerWeek}-hour week:
+        <strong className="text-navy">{formatAUD(ft.perWeek, 2)} a week</strong> in {SITE_CONFIG.financialYear} on a {ft.hoursPerWeek}-hour week:
         you keep {formatAUD(ft.perHour, 2)} of every hour. With the Medicare levy included, the effective tax rate is{" "}
         {formatPercent(breakdown.effectiveTaxRate)}, and each extra dollar is taxed at{" "}
         {formatPercent(breakdown.marginalTaxRate, 0)}.
@@ -341,7 +341,7 @@ function HourlyHoursSection({ rate }: { rate: number }) {
           </>
         ) : (
           <>
-            Dropping to {pt25.hoursPerWeek} hours a week cuts gross pay by {pct0(grossCut)} but take-home by only{" "}
+            Dropping from {ft.hoursPerWeek} to {pt25.hoursPerWeek} hours a week cuts gross pay by {pct0(grossCut)} but take-home by only{" "}
             {pct0(netCut)}, {netCutReason}: you keep {formatAUD(pt25.perHour, 2)} of each hour, against{" "}
             {formatAUD(ft.perHour, 2)} full time.
           </>

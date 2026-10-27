@@ -1,0 +1,65 @@
+{
+ "name": "st-013-apprentice-pay-bricklayer",
+ "files": [
+  "app/apprentice-pay-rates/page.tsx",
+  "app/apprentice-pay/[trade]/page.tsx",
+  "modules/calculator/apprentice-pay-calculator.tsx",
+  "modules/guide/apprentice-pay-rates-faqs.ts",
+  "modules/guide/apprentice-pay-rates.tsx",
+  "modules/guide/apprentice-pay-trade-faqs.ts",
+  "modules/guide/apprentice-pay-trade.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/apprentice-pay/bricklayer/",
+   "url": "https://pay-calculator-australia.com/apprentice-pay/bricklayer/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.63",
+   "centerpiece": "4.44",
+   "main_query": "apprentice bricklayer pay in australia",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "The clause 14.9 conditions for moving up a stage early (competency proportion, apprenticeship authority and training package requirements, then agreement or RTO written advice) would read better as an <ol> than as a paragraph."
+   ]
+  },
+  {
+   "path": "/apprentice-pay-rates/",
+   "url": "https://pay-calculator-australia.com/apprentice-pay-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.79",
+   "centerpiece": "2.42",
+   "main_query": "4th year apprentice carpenter wage",
+   "pre28_clicks": "40",
+   "pre28_impr": "8122",
+   "requests": [
+    "The opening could name the financial year (2026-27) and the 4-year, post-1 January 2014 scope. Those figures are only in the H1 and the methodology, and this pass may not add or move numbers. Please add an expression or constant (for example a FY label) the opening can use."
+   ]
+  },
+  {
+   "path": "/apprentice-pay/carpenter/",
+   "url": "https://pay-calculator-australia.com/apprentice-pay/carpenter/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.84",
+   "centerpiece": "4.39",
+   "main_query": "apprentice carpenter pay in australia",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "(applies to /apprentice-pay/{trade}/ FAQ 'How much does a fourth-year apprentice X earn?') The fourth-year FAQ answers open with 'The minimum in fourth year is...' and do not name the trade, because the answer string holds no ${label} expression and this pass cannot add one. Add ${label} to these answers so the trade is the subject (e.g. 'The minimum for a fourth-year apprentice ${label} is...').",
+    "(applies to /apprentice-pay/{trade}/ FAQ 'When does an apprentice X's pay go up?') The answer cannot name the trade either, since it has no ${label} expression. It now opens 'Apprentice pay goes up...'. Adding ${label} would let it read 'An apprentice ${label}'s pay goes up...'."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

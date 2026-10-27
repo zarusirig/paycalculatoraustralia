@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { HECS_HELP_2025_26, MEDICARE_LEVY, SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { HECS_HELP_2025_26, MEDICARE_LEVY, SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, formatAUD } from "@/lib/constants";
 // Cents-per-km and WFH fixed rates per ATO pages cited in tax-return-2025-26.ts
 // (verified 23 Sep 2026): 88c/km for 2024-25 and 2025-26, 91c/km for 2026-27;
 // WFH 70c/hour for 2024-25 and 2025-26.
@@ -14,6 +14,12 @@ import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TAX_DEDUCTIONS_FAQS } from "./tax-deductions-guide-faqs";
 import FeaturedImage from "@/components/common/featured-image";
+
+// Savings table: the FY2025-26 brackets above the tax-free threshold, so the
+// cells are the deduction times each bracket rate rather than typed figures.
+const SAVINGS_BRACKETS = TAX_BRACKETS_2025_26.filter((b) => b.rate > 0);
+const SAVINGS_AMOUNTS = [500, 1_000, 2_000, 5_000];
+const NO_EVIDENCE_CAP = formatAUD(RETURN_2026.noEvidenceTotalCap);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Deductions you can claim", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim", publisher: SOURCES.ato.name },
@@ -48,7 +54,7 @@ export default function TaxDeductionsGuidePage() {
               <ol>
                 <li><strong>You must have spent the money yourself</strong> and not been reimbursed by your employer. If your employer paid for the expense or reimbursed you, it is not deductible.</li>
                 <li><strong>The expense must be directly related to earning your assessable income.</strong> There must be a clear connection between the expense and your work duties. Private or domestic expenses are not deductible.</li>
-                <li><strong>You must have a record to prove it.</strong> The ATO requires written evidence such as receipts, invoices, bank statements or diary entries. For 2025-26 and earlier income years, if your total work-related expenses are <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount. This exception ends from the 2026-27 income year.</li>
+                <li><strong>You must have a record to prove it.</strong> The ATO requires written evidence such as receipts, invoices, bank statements or diary entries. For 2025-26 and earlier income years, if your total work-related expenses are <strong>{NO_EVIDENCE_CAP} or less</strong>, you do not need written evidence but must be able to show how you calculated the amount. This exception ends from the 2026-27 income year.</li>
               </ol>
               <p>
                 You claim deductions in your annual tax return. Your employer does not approve them, because the claim is between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
@@ -86,7 +92,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Clothing and Laundry</h3>
               <p>
-                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing, even if you only wear it for work, is not deductible. Laundry of eligible work clothing can be claimed at <strong>$1 per load</strong> (work clothing only) or <strong>50c per load</strong> (mixed with other clothes). For 2025-26 and earlier years, a laundry claim of <strong>$150</strong> or less needs no written evidence, even if your total work-related claim is over $300. From the 2026-27 income year that exception ends: if you claim at these per-load rates, keep a record of the number of loads, whether each was work-only or mixed, and evidence that you had laundry costs.
+                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing, even if you only wear it for work, is not deductible. Laundry of eligible work clothing can be claimed at <strong>{formatAUD(RETURN_2026.laundryPerLoadWorkOnlyCents / 100)} per load</strong> (work clothing only) or <strong>{RETURN_2026.laundryPerLoadMixedCents}c per load</strong> (mixed with other clothes). For 2025-26 and earlier years, a laundry claim of <strong>{formatAUD(RETURN_2026.laundryNoEvidenceCap)}</strong> or less needs no written evidence, even if your total work-related claim is over {NO_EVIDENCE_CAP}. From the 2026-27 income year that exception ends: if you claim at these per-load rates, keep a record of the number of loads, whether each was work-only or mixed, and evidence that you had laundry costs.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tools, Equipment and Technology</h3>
@@ -126,13 +132,12 @@ export default function TaxDeductionsGuidePage() {
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Deduction Amount</th><th className="px-5 py-3 text-right">16% bracket ($18,201–$45,000)</th><th className="px-5 py-3 text-right">30% bracket ($45,001–$135,000)</th><th className="px-5 py-3 text-right">37% bracket ($135,001–$190,000)</th><th className="px-5 py-3 text-right">45% bracket ($190,001+)</th></tr>
+                      <tr><th className="px-5 py-3">Deduction Amount</th>{SAVINGS_BRACKETS.map((b) => (<th key={b.min} className="px-5 py-3 text-right">{Math.round(b.rate * 100)}% bracket ({b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)}–${formatAUD(b.max)}`})</th>))}</tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">$500</td><td className="px-5 py-3 text-right">$80</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">$185</td><td className="px-5 py-3 text-right">$225</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$1,000</td><td className="px-5 py-3 text-right">$160</td><td className="px-5 py-3 text-right">$300</td><td className="px-5 py-3 text-right">$370</td><td className="px-5 py-3 text-right">$450</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$2,000</td><td className="px-5 py-3 text-right">$320</td><td className="px-5 py-3 text-right">$600</td><td className="px-5 py-3 text-right">$740</td><td className="px-5 py-3 text-right">$900</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$5,000</td><td className="px-5 py-3 text-right">$800</td><td className="px-5 py-3 text-right">$1,500</td><td className="px-5 py-3 text-right">$1,850</td><td className="px-5 py-3 text-right">$2,250</td></tr>
+                      {SAVINGS_AMOUNTS.map((amount) => (
+                        <tr key={amount}><td className="px-5 py-3 font-medium">{formatAUD(amount)}</td>{SAVINGS_BRACKETS.map((b) => (<td key={b.min} className="px-5 py-3 text-right">{formatAUD(amount * b.rate)}</td>))}</tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

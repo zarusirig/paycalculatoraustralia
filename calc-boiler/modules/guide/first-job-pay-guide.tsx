@@ -44,7 +44,7 @@ export default function FirstJobPayGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">First Job Pay Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Job Pay Guide: Everything You Need to Know About Your First Pay</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Your first pay in Australia is taxable income: your employer withholds PAYG income tax from your gross pay for the pay period before paying you. How much is withheld depends on your gross pay for the period, whether you gave your employer a tax file number (TFN) and whether you claimed the tax-free threshold on your TFN Declaration. Any superannuation your employer pays goes into your super fund on top of your wages, not out of them. The tables below show a worked example payslip and the tax and weekly take-home pay on part-time, casual and entry-level full-time earnings. The rest of this guide covers what to set up before your first shift, each line on your payslip, and your first tax return.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Your first pay in Australia is taxable income: your employer withholds PAYG income tax from your gross pay for the pay period before paying you ({formatAUD(EX_TAX, 2)} from a {formatAUD(EX_GROSS)} week, for example, when you claim the {TFT} tax-free threshold). How much is withheld depends on your gross pay for the period, whether you gave your employer a tax file number (TFN) and whether you claimed the tax-free threshold on your TFN Declaration. Any superannuation your employer pays goes into your super fund on top of your wages, not out of them. The tables below show a worked example payslip and the tax and weekly take-home pay on part-time, casual and entry-level full-time earnings. The rest of this guide covers what to set up before your first shift, each line on your payslip, and your first tax return.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -54,11 +54,17 @@ export default function FirstJobPayGuidePage() {
             {/* ───── SECTION 1: Before You Start ───── */}
             <section id="before-you-start">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before You Start: Three Things You Need</h2>
+              <p>Organise three things before your first shift:</p>
+              <ol>
+                <li><a href="#tfn">A TFN</a></li>
+                <li><a href="#super-fund">A super fund</a></li>
+                <li><a href="#tfn-declaration">Your TFN Declaration</a></li>
+              </ol>
               <p>
-                Organise three things before your first shift: a TFN, a super fund and your TFN Declaration. With these in place, your employer withholds the right amount of tax and pays super to the right fund, so you don&apos;t overpay tax.
+                With these in place, your employer withholds the right amount of tax and pays super to the right fund, so you don&apos;t overpay tax.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Tax File Number (TFN)</h3>
+              <h3 id="tfn" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Tax File Number (TFN)</h3>
               <p>
                 A Tax File Number is your unique identifier with the Australian Taxation Office. You give it to your employer after you start work, on your TFN Declaration. If you don&apos;t give your TFN and haven&apos;t told your employer you have applied for one, your employer must withhold tax at <strong>{formatPercent(NO_TFN_RATES.resident, 0)}</strong> (the top marginal rate of {formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate, 0)} plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy), meaning almost half your pay goes to tax. If you are an Australian citizen aged 15 or older, apply online with a Strong Digital ID such as myID. Otherwise, fill in the online form and finish your application at a participating Australia Post outlet with your identity documents. Allow up to <strong>28 days</strong> for your TFN to arrive.
               </p>
@@ -66,12 +72,12 @@ export default function FirstJobPayGuidePage() {
                 If you start work before your TFN arrives, mark on your TFN Declaration that you have applied for one. You then have <strong>28 days</strong> to give your TFN to your employer, who withholds tax at the standard rate during that time. After 28 days without your TFN, your employer withholds at the no-TFN rate until you provide it. Any excess tax withheld is refunded when you lodge your first tax return. Learn more in our <Link href="/tax-file-number-declaration/">TFN Declaration Guide</Link>.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Superannuation Fund</h3>
+              <h3 id="super-fund" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Superannuation Fund</h3>
               <p>
                 Your employer must pay <strong>{SG} of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages. It does not come out of your pay. You can choose your own super fund. If you don&apos;t, your employer must ask the ATO for your stapled super fund (an existing account that follows you from job to job) and pay into it. Your employer uses its default fund only when the ATO advises you have no stapled fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
+              <h3 id="tfn-declaration" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
               <p>
                 Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>{TFT} tax-free threshold</strong>, and whether you have a study or training support loan (HELP, VSL, FS, SSL or AASL) debt. If this is your first and only job and you are an Australian resident for tax purposes, you should <strong>claim the tax-free threshold</strong>. This means you pay no tax on the first {TFT} you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
               </p>

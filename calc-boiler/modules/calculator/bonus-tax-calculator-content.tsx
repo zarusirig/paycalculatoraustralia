@@ -395,55 +395,55 @@ export default function BonusTaxCalculatorContent() {
             </section>
 
 {/* Merged from /bonus-tax-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
-                      <section id="tax-back-on-bonus">
-              <h2>Do You Get Tax Back on Bonuses?</h2>
-              <p>
+          <section id="tax-back-on-bonus">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Do You Get Tax Back on Bonuses?</h2>
+              <p className="mb-4 text-warmgray">
                 You receive a tax refund on your bonus only if your employer withheld more tax than your actual liability. The Schedule 5 method minimises this gap, so most refunds on bonus withholding are <strong>small or zero</strong>.
               </p>
-              <p>
+              <p className="mb-4 text-warmgray">
                 Over-withholding happens in 3 common scenarios:
               </p>
-              <ul>
+              <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
                 <li><strong>Bonus paid early in the financial year</strong>: the employer projects a full year of income, but you change jobs or reduce hours mid-year, lowering your actual taxable income</li>
                 <li><strong>Employer uses flat-rate annualisation</strong> instead of Schedule 5. Some payroll systems annualise the pay period containing the bonus, producing a higher withholding rate</li>
                 <li><strong>Significant tax deductions</strong>: work-related expenses and other deductions you claim in your return reduce your taxable income below the income your employer&apos;s withholding was based on</li>
               </ul>
-              <p>
-                When you lodge your tax return, the ATO calculates your actual tax liability on total income (salary plus bonus) and compares it to total PAYG withholding throughout the year. The difference is your refund or balance owing. See our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for a full explanation of how refunds are calculated.
+              <p className="mb-4 text-warmgray">
+                When you lodge your tax return, the ATO calculates your actual tax liability on total income (salary plus bonus) and compares it to total PAYG withholding throughout the year. The difference is your refund or balance owing. See our <Link href="/tax-refund-guide/" className="text-eucalyptus-dark hover:underline">Tax Refund Guide</Link> for a full explanation of how refunds are calculated.
               </p>
             </section>
             <section id="reduce-bonus-tax">
-              <h2>How to Reduce Tax on Your Bonus</h2>
-              <p>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How to Reduce Tax on Your Bonus</h2>
+              <p className="mb-4 text-warmgray">
                 The most effective way to reduce tax on a bonus is to salary sacrifice it into superannuation, converting a marginal rate of up to <strong>{formatPercent(allIn(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate), 0)}</strong> (including the Medicare levy) into <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> contributions tax.
               </p>
-              <h3>Strategy 1: Salary Sacrifice Into Super</h3>
-              <p>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Strategy 1: Salary Sacrifice Into Super</h3>
+              <p className="mb-4 text-warmgray">
                 Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The arrangement must be in place before you accrue the bonus: the ATO says an effective salary sacrifice arrangement can&apos;t include bonuses you accrue before you enter it. The contribution is taxed at <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> inside the super fund, compared to {formatPercent(allIn(TAX_BRACKETS[2].rate), 0)} to {formatPercent(allIn(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate), 0)} (marginal rate plus Medicare levy) on income over {formatAUD(TAX_BRACKETS[1].max)} outside super. If your income plus concessional contributions is over {formatAUD(DIVISION_293.threshold)}, Division 293 tax adds another {formatPercent(DIVISION_293.rate, 0)} on some or all of the contributions. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>{formatAUD(SS_SAVING_120K)}</strong> in tax ({formatAUD(DEFER_HIGH)} at the marginal rate plus Medicare levy, minus {formatAUD(SS_CONTRIB_TAX)} in super contributions tax).
               </p>
-              <p>
-                The concessional contribution cap for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year, including employer SG contributions of {SG_PCT}. A worker earning $120,000 receives {formatAUD(SG_ON_120K)} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SG_ON_120K)}</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their total super balance was below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year) can carry forward up to {CARRY_FORWARD.years} years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to compare the tax you pay with and without sacrificing part of your bonus.
+              <p className="mb-4 text-warmgray">
+                The concessional contribution cap for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year, including employer SG contributions of {SG_PCT}. A worker earning $120,000 receives {formatAUD(SG_ON_120K)} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SG_ON_120K)}</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their total super balance was below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year) can carry forward up to {CARRY_FORWARD.years} years of unused amounts. See our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Guide</Link> to compare the tax you pay with and without sacrificing part of your bonus.
               </p>
 
-              <h3>Strategy 2: Time the Bonus Payment</h3>
-              <p>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Strategy 2: Time the Bonus Payment</h3>
+              <p className="mb-4 text-warmgray">
                 A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year (due to parental leave, career break, or part-time work), ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if your total income including the bonus is {formatAUD(TAX_BRACKETS[1].max)} or less) costs about <strong>{formatAUD(DEFER_LOW)}</strong>, a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
               </p>
 
-              <h3>Strategy 3: Maximise Deductions</h3>
-              <p>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Strategy 3: Maximise Deductions</h3>
+              <p className="mb-4 text-warmgray">
                 Work-related deductions reduce your taxable income, and a large enough deduction can pull part of your bonus down into a lower tax bracket. Common deductions that offset tax on a bonus include self-education expenses, home office costs, professional memberships, and income protection insurance premiums. Every $1,000 in deductions at the {formatPercent(TAX_BRACKETS[3].rate, 0)} marginal rate reduces your tax and Medicare levy by <strong>{formatAUD(Math.round(1_000 * allIn(TAX_BRACKETS[3].rate)))}</strong>.
               </p>
             </section>
             <section id="super-on-bonus">
-              <h2>Is Superannuation Paid on Bonuses?</h2>
-              <p>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Is Superannuation Paid on Bonuses?</h2>
+              <p className="mb-4 text-warmgray">
                 Bonuses for work performed are generally &quot;Ordinary Time Earnings&quot; (OTE), which makes them qualifying earnings under Payday Super, and they attract the <strong>{SG_PCT} Superannuation Guarantee</strong> for FY{FY}.
               </p>
-              <p>
+              <p className="mb-4 text-warmgray">
                 Your employer pays SG at {SG_PCT} on top of your bonus and deposits it into your super fund. A $10,000 performance bonus generates <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> in additional super contributions. The ATO&apos;s qualifying earnings table (Table 10) treats bonuses this way:
               </p>
-              <ul>
+              <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
                 {/* ATO "What payments are qualifying earnings", Table 10 (verified 24 Sep 2026):
                     performance, Christmas, sign-on, referral and return-to-work bonuses are included;
                     only a bonus solely for work entirely outside ordinary hours is excluded. */}
@@ -452,8 +452,8 @@ export default function BonusTaxCalculatorContent() {
                 <li><strong>Referral bonuses</strong>: included</li>
                 <li><strong>Bonus solely for work performed entirely outside ordinary hours</strong>: excluded (treated as overtime)</li>
               </ul>
-              <p>
-                Since Payday Super began, the maximum super contribution base has been an annual figure: <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for FY{FY}. Employers are not required to pay SG on qualifying earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+              <p className="mb-4 text-warmgray">
+                Since Payday Super began, the maximum super contribution base has been an annual figure: <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for FY{FY}. Employers are not required to pay SG on qualifying earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline">Superannuation Guide</Link>.
               </p>
             </section>
             <section id="lump-sum-e">
@@ -466,15 +466,15 @@ export default function BonusTaxCalculatorContent() {
                   ATO considers a LSPIA tax offset, Medicare levy exemption (from 1 Jul 2024) and MLS offset.
                   https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare/lump-sum-payment-in-arrears
                   Lump sum B is unused long service leave, not back pay. */}
-              <h2>What Is Lump Sum E (Back Pay From Earlier Years)?</h2>
-              <p>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is Lump Sum E (Back Pay From Earlier Years)?</h2>
+              <p className="mb-4 text-warmgray">
                 &quot;Lump Sum E&quot; is back pay for wages that accrued more than 12 months before you were paid. It is taxed in the year you receive it, but the ATO considers you for a tax offset, a Medicare levy exemption and a Medicare levy surcharge offset so you are not taxed more heavily just because the money arrived late.
               </p>
-              <p>
+              <p className="mb-4 text-warmgray">
                 Your employer reports it separately as Lump Sum E on your income statement. Since 1 July 2025 there is no minimum amount. When you lodge, you enter the breakdown of which years it relates to and the ATO works out the offset; the myTax estimate does not show it. Back pay for the last 12 months is part of your normal income. &quot;Lump Sum B&quot; is unused long service leave, not back pay.
               </p>
-              <p>
-                Retrospective pay rises under enterprise agreements, back-paid award rate increases and underpayment settlements are Lump Sum E when they cover wages from those earlier years. Use the <Link href="/backpay-calculator/">back pay calculator</Link> to estimate how much you are owed.
+              <p className="mb-4 text-warmgray">
+                Retrospective pay rises under enterprise agreements, back-paid award rate increases and underpayment settlements are Lump Sum E when they cover wages from those earlier years. Use the <Link href="/backpay-calculator/" className="text-eucalyptus-dark hover:underline">back pay calculator</Link> to estimate how much you are owed.
               </p>
             </section>
 

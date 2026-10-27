@@ -46,6 +46,7 @@ function scaleRange(scale: PayScale | undefined): { entry: number; top: number }
 /**
  * Quotable opening paragraphs (seo-brain 2026-09-25, citation_lead). Only the
  * states listed here change; every other state keeps its data-file intro.
+ * NT, ACT and WA lead with the salary and then keep their data-file intro.
  * Every figure is rendered from the state's own scale data.
  */
 const STATE_LEADS: Partial<Record<NursingStateSlug, (state: NursingStateData) => React.ReactNode>> = {
@@ -108,6 +109,60 @@ const STATE_LEADS: Partial<Record<NursingStateSlug, (state: NursingStateData) =>
         {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}. Midwives get the same pay. These rates apply from the{" "}
         {primary.effectiveFrom}, under the 2024-2028 public sector agreement.
         {next ? ` The next rise is on ${next.effectiveFrom}.` : ""}
+      </>
+    );
+  },
+  // NT, ACT and WA (structure pass, 27 Oct 2026): the registered nurse salary,
+  // rendered from the scale data, goes first. The data-file intro follows in
+  // full, so no fact moves off the page.
+  nt: (state) => {
+    const rn = registeredNurseRange(state);
+    const base = state.scales.find((s) => s.family === "registered");
+    return (
+      <>
+        {rn
+          ? `A registered nurse or midwife with NT Health (${base?.gradeCode ?? "Nurse 2"}) earns ${formatAUD(
+              rn.entry,
+            )} a year at pay point ${rn.entryLabel} and ${formatAUD(rn.top)} at pay point ${rn.topLabel}. `
+          : ""}
+        {state.intro}
+      </>
+    );
+  },
+  act: (state) => {
+    const rn = registeredNurseRange(state);
+    const base = state.scales.find((s) => s.family === "registered");
+    return (
+      <>
+        {rn
+          ? `A ${base?.classification ?? "registered nurse"} in the ACT public sector earns ${formatAUD(
+              rn.entry,
+            )} a year at ${rn.entryLabel.toLowerCase()} and ${formatAUD(rn.top)} at ${rn.topLabel.toLowerCase()}. `
+          : ""}
+        {state.intro}
+      </>
+    );
+  },
+  wa: (state) => {
+    const rn = registeredNurseRange(state);
+    const primary = state.instruments[0];
+    const en = scalesInFamily(state, "enrolled").find((s) => s.points.some((p) => typeof p.weekly === "number"));
+    const enWeekly = en?.points.map((p) => p.weekly).filter((w): w is number => typeof w === "number") ?? [];
+    const enInst = en ? instrumentFor(state, en.instrumentId) : undefined;
+    return (
+      <>
+        {rn
+          ? `A registered nurse or midwife in WA earns ${formatAUD(rn.entry)} a year at ${rn.entryLabel} and ${formatAUD(
+              rn.top,
+            )} at ${rn.topLabel} under the ANF agreement, from ${primary.effectiveFrom}. `
+          : ""}
+        {enWeekly.length > 0
+          ? `An enrolled nurse earns ${formatAUD(Math.min(...enWeekly), 2)} to ${formatAUD(
+              Math.max(...enWeekly),
+              2,
+            )} a week under the United Workers Union agreement${enInst ? `, from ${enInst.effectiveFrom}` : ""}. `
+          : ""}
+        {state.intro}
       </>
     );
   },

@@ -1,0 +1,324 @@
+{
+ "name": "st-001-job-pay-rates-lawyer",
+ "files": [
+  "app/job-pay-rates/[occupation]/page.tsx",
+  "modules/guide/job-pay-public-hospital.tsx",
+  "modules/guide/job-pay-rates-occupation.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/job-pay-rates/lawyer/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/lawyer/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.33",
+   "centerpiece": "2.77",
+   "main_query": "adf pay scales",
+   "pre28_clicks": "26",
+   "pre28_impr": "1830",
+   "requests": []
+  },
+  {
+   "path": "/job-pay-rates/receptionist/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/receptionist/",
+   "inPlan": true,
+   "intent": "definition",
+   "format_fit": "1.97",
+   "centerpiece": "3.59",
+   "main_query": "19 yrs",
+   "pre28_clicks": "12",
+   "pre28_impr": "2214",
+   "requests": [
+    "The rates-table intro (receptionist.ts line 66) is dash-locked because 'Clerks\u2014Private' contains an em dash. It renders as a fragment paragraph. Suggested text: 'Receptionist minimums come from Clerks\u2014Private Sector Award cl 16.1, Table 3, and apply from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading.'"
+   ]
+  },
+  {
+   "path": "/job-pay-rates/barista/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/barista/",
+   "inPlan": true,
+   "intent": "experience/opinion",
+   "format_fit": "2.30",
+   "centerpiece": "3.80",
+   "main_query": "4 to 5 days a week",
+   "pre28_clicks": "9",
+   "pre28_impr": "2021",
+   "requests": []
+  },
+  {
+   "path": "/job-pay-rates/nurse/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/nurse/",
+   "inPlan": true,
+   "intent": "eligibility-check",
+   "format_fit": "2.25",
+   "centerpiece": "3.41",
+   "main_query": "1 year experience",
+   "pre28_clicks": "8",
+   "pre28_impr": "2194",
+   "requests": [
+    "Two table intros are the fragment 'Clause 15.1, general stream.' (lines 184 and 193). The checker locks them as short strings. They render as their own paragraph and should be full sentences, for example 'Nursing assistants and enrolled nurses are paid the Nurses Award general stream rates in clause 15.1.'"
+   ]
+  },
+  {
+   "path": "/job-pay-rates/architect/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/architect/",
+   "inPlan": true,
+   "intent": "experience/opinion",
+   "format_fit": "2.21",
+   "centerpiece": "2.92",
+   "main_query": "small practice",
+   "pre28_clicks": "3",
+   "pre28_impr": "675",
+   "requests": []
+  },
+  {
+   "path": "/job-pay-rates/dental-assistant/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/dental-assistant/",
+   "inPlan": true,
+   "intent": "how-to-steps",
+   "format_fit": "1.98",
+   "centerpiece": "3.48",
+   "main_query": "3 days a week",
+   "pre28_clicks": "2",
+   "pre28_impr": "274",
+   "requests": [
+    "The table intro (line 69) and notice (line 93) are locked as dash-key strings. The intro is a fragment ('Clause 16.2(b) of the award, ...') and the notice has a spaced em dash ('1 January 2027 \u2014 we will update'). They need a manual fix: write the intro as a full sentence and replace the dash with a full stop."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/cleaner/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/cleaner/",
+   "inPlan": true,
+   "intent": "calculate",
+   "format_fit": "1.58",
+   "centerpiece": "2.69",
+   "main_query": "2pm to 10pm",
+   "pre28_clicks": "0",
+   "pre28_impr": "105",
+   "requests": []
+  },
+  {
+   "path": "/job-pay-rates/hairdresser/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/hairdresser/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.64",
+   "centerpiece": "2.57",
+   "main_query": "3rd year apprentice hairdresser wage",
+   "pre28_clicks": "16",
+   "pre28_impr": "2274",
+   "requests": [
+    "Centerpiece 2.73. The top query is '3rd year apprentice hairdresser wage', but hairdresser.ts lists hairdressing apprentice rates (cl 18.1, Tables 6 and 7) under notShown. The template opening already names the award, the headline figure and the date. Apprentice-year rates would need a new verified data table before the opening can answer the query.",
+    "The FAQ answer 'How much do hairdressers get paid on a Saturday?' (hairdresser.ts line 138) still has an em dash ('6 pm \u2014 $39.17'). The checker locks it as a dash-key, so this pass could not change it. Replace it by hand with a comma or full stop."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/sonographer/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/sonographer/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.83",
+   "centerpiece": "2.37",
+   "main_query": "casual hourly rate",
+   "pre28_clicks": "11",
+   "pre28_impr": "1874",
+   "requests": [
+    "Centerpiece 2.40. The opening comes from the lede in lib/data/job-pay-rates/sonographer.ts, not from the template. The main query is 'casual hourly rate', but the lede gives no casual hourly figure."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/disability-support-worker/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/disability-support-worker/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.92",
+   "centerpiece": "4.62",
+   "main_query": "aged care and disability support worker salary",
+   "pre28_clicks": "29",
+   "pre28_impr": "5549",
+   "requests": [
+    "The support-worker section paragraph 'Home care \u2014 disability rates are about to rise' (line 110) is time-anchored to before 1 December 2026, and it is dash-key locked so I could not rewrite it. After 1 December the Schedule E table and FAQs need to switch to the December rates, and the paragraph needs past-tense wording.",
+    "The Schedule E table intro (line 164) is a dash-key locked fragment ('SCHADS Award Schedule E (Home care \u2014 disability).'). It should be a full sentence like the Schedule B intro, which this pass rewrote."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/pathology-collector/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/pathology-collector/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.86",
+   "centerpiece": "4.83",
+   "main_query": "pathology collector pay",
+   "pre28_clicks": "4",
+   "pre28_impr": "616",
+   "requests": [
+    "The rates table intro (pathology-collector.ts line 68) is a fragment with no verb: 'Clause 16.2(c) of the award, which ... headed ..., from the first full pay period ...'. It is locked as a dash-key string because the quoted FWC heading has an em dash, so this pass cannot fix it. A human should rewrite it as a full sentence, for example 'These pathology collector rates are clause 16.2(c) of the award ... and apply from ...'. The notice on line 83 has the same lock and still contains an em dash ('1 January 2027 \u2014 we will update'), which should become a full stop."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/early-childhood-teacher/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/early-childhood-teacher/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.88",
+   "centerpiece": "4.69",
+   "main_query": "early childhood teacher pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "105",
+   "requests": [
+    "The preschool table row label at source line 101 reads \"Level 1 \u2014 preschool\" (with an em dash), while the other four rows read \"Level N (preschool)\". The label is locked, so it should be changed to \"Level 1 (preschool)\" in code, after checking that no test or lookup matches the old label."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/electrician/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/electrician/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.82",
+   "centerpiece": "4.82",
+   "main_query": "electrician award rate",
+   "pre28_clicks": "26",
+   "pre28_impr": "4133",
+   "requests": [
+    "notShown item at source line 112 sends readers to 'the construction and trades pay guide' for apprentice rates, but /job-pay-rates/apprentice-electrician/ exists (in AUDIT). Consider pointing that item and the related links at the apprentice electrician page instead. This is a link and target change, so it is out of scope for this pass."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/paralegal/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/paralegal/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.65",
+   "centerpiece": "4.73",
+   "main_query": "paralegal salary australia 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "The lede (line 125) uses em dashes, so the checker locks it. It needs a dash-free rewrite: 'at least X an hour (Y a week, Z a year full-time)'."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/retail-manager/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/retail-manager/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.90",
+   "centerpiece": "4.83",
+   "main_query": "retail manager pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "headline.why (retail-manager.ts line 123) is dash-locked but renders inside the template opening as 'The award minimum for a department manager with 5 or more staff, or the manager or duty manager of a shop without departments \u2014 the award's own indicative Level 6 titles is $X an hour'. The em dash leaves the sentence hard to read. Swap the em dash for brackets: '(the award's own indicative Level 6 titles)'.",
+    "STORE_MANAGER_SECTION table note (line 104) is dash-locked. It starts with a fragment ('Full-time minimums from ...') and uses an en dash in '2026\u201327' plus an em dash before 'the same engine as the take-home pay calculator'. Suggested text: 'These are full-time minimums from the first full pay period on or after 1 July 2026. Annual is weekly x 52. Take-home uses 2026-27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS, through the same engine as the take-home pay calculator.'"
+   ]
+  },
+  {
+   "path": "/job-pay-rates/bartender/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/bartender/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.89",
+   "centerpiece": "4.75",
+   "main_query": "bartender award rate",
+   "pre28_clicks": "5",
+   "pre28_impr": "1128",
+   "requests": [
+    "headline.why is locked, but it renders inside the H1 lede and reads badly: 'The award minimum for a bartender pouring, dispensing and mixing drinks, work the award lists at Food and beverage attendant grade 2 is $27.08 an hour'. Proposed text: 'a bartender pouring, dispensing and mixing drinks at Food and beverage attendant grade 2' (bartender.ts line 59)."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/bookkeeper/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/bookkeeper/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.89",
+   "centerpiece": "4.79",
+   "main_query": "bookkeeper pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "29",
+   "requests": [
+    "headline.why is locked, but it renders inside the H1 lede as '...maintaining wage records: duties the award lists at Level 3 is $31.11 an hour', which does not read as a sentence. Proposed text: 'a bookkeeper doing Level 3 work (posting journals to ledgers, preparing bank statements and maintaining wage records)' (bookkeeper.ts line 53).",
+    "The table intro at bookkeeper.ts line 66 is a fragment ('Clerks\u2014Private Sector Award cl 16.1, Table 3, from ...'). The checker locks it as a dash-key because of the em dash in the award name. Proposed text: 'These are the bookkeeper minimum rates in Clerks\u2014Private Sector Award cl 16.1, Table 3, from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading.'"
+   ]
+  },
+  {
+   "path": "/job-pay-rates/veterinarian/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/veterinarian/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.91",
+   "centerpiece": "4.66",
+   "main_query": "animal care and veterinary services award pay guide 2026",
+   "pre28_clicks": "8",
+   "pre28_impr": "831",
+   "requests": [
+    "The opening sentence reads 'The award minimum for a graduate veterinary surgeon, who starts at Level 1A and moves to Level 1B within 6 months is $34.20 an hour'. It needs a closing comma after '6 months'. The text is headline.why (veterinarian.ts line 77), which the checker locks. Add the trailing comma there, or drop the clause and leave only 'a graduate veterinary surgeon at Level 1A'."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/psychologist/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/psychologist/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.46",
+   "centerpiece": "4.27",
+   "main_query": "psychologist wages australia",
+   "pre28_clicks": "10",
+   "pre28_impr": "382",
+   "requests": [
+    "The prose inside the hpssOct2026Occupation(...) call (coverage, notices, FAQ answers) is locked as call arguments. Coverage[1] still has en-dash ranges ('2nd\u20133rd year, 4th\u20136th year') and the clinical psychologist FAQ still hedges with 'would typically fit'. Unlock call-arg prose for this file, or fix it in a code pass: write 'to' instead of the en dash, and state the Level 2/Level 3 classification without the hedge."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/boilermaker/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/boilermaker/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.75",
+   "centerpiece": "4.61",
+   "main_query": "boilermaker pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "headline.why (line 35) and coverage[1] (line 39) contain an em dash in 'Certificate III in Engineering \u2014 Fabrication Trade'. The checker locks these strings, so a code-level edit is needed to change the dash to a comma or brackets. Also, sections.definition paragraph 1 opens with a sentence of about 65 words that paraphrases the Schedule B definition. It was left whole to avoid changing a legal definition. Consider showing it as a quoted definition block."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/welder/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/welder/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.71",
+   "centerpiece": "3.97",
+   "main_query": "welder pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "Build the allowance FAQ answer and the median earnings FAQ/notice from METAL_ALLOWANCES and METAL_MEDIAN expressions rather than typed dollar figures, so a wage review updates them.",
+    "The JSA task list in trade-route paragraph 2 is a single sentence of about 70 words; it would read better as a <ul> of tasks (couldn't split the sentence in this pass because the checker counts '3223,' as a number token)."
+   ]
+  },
+  {
+   "path": "/job-pay-rates/youth-worker/",
+   "url": "https://pay-calculator-australia.com/job-pay-rates/youth-worker/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.80",
+   "centerpiece": "4.82",
+   "main_query": "youth worker pay rates australia 2026 - award hourly wage",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "The H1 lede reads 'The award minimum for a youth worker with a Certificate IV or a diploma in youth work or community services, the common entry qualification for the role is $X an hour'. The comma starts an aside that never closes, so the sentence is hard to read. The checker locks headline.why (line 91), so I could not fix it. Suggested fix: put the aside in brackets, '(the common entry qualification for youth work)', or drop it.",
+    "The sleepover ($62.87) and broken shift ($21.81 / $28.87) allowance amounts are typed into the data file (lines 123-124) and also exist as SCHADS constants (lib/constants/schads-award.ts lines 180-182). They match today. Building them from the constants would stop them drifting apart."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

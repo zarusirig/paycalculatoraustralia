@@ -1,0 +1,102 @@
+{
+ "name": "st-007-healthcare-worker-pay-nt",
+ "files": [
+  "app/healthcare-worker-pay/[state]/page.tsx",
+  "modules/guide/nursing-pay-state.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/healthcare-worker-pay/nt/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/nt/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.50",
+   "centerpiece": "2.28",
+   "main_query": "3 years experience",
+   "pre28_clicks": "12",
+   "pre28_impr": "1034",
+   "requests": [
+    "Centerpiece 2.28. The NT opening comes from state.intro in lib/data/nursing-pay/nt.ts, not from this template. STATE_LEADS in modules/guide/nursing-pay-state.tsx covers only nsw, qld, sa and vic. NT needs either a STATE_LEADS entry (new code) or an intro rewrite in the data file that names the NT instrument, gives the RN entry-to-top range from the scale data, the effective date and the hourly rate. Same gap for wa, tas and act (centerpiece 3.45, 3.76, 3.65).",
+    "Centerpiece (AUDIT 2.28): the NT opening is the data-file intro and has no salary figure, and NT has no keyGrades answer box. Add an NT entry to STATE_LEADS in modules/guide/nursing-pay-state.tsx (as nsw/qld/vic/sa have) that renders the Nurse 2 entry and top annual figures from registeredNurseRange(), or add keyGrades for NT, so the first sentence leads with the RN salary."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/qld/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/qld/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.94",
+   "centerpiece": "4.24",
+   "main_query": "qld health pay rates 2026",
+   "pre28_clicks": "21",
+   "pre28_impr": "6791",
+   "requests": [
+    "The qld and sa data-file `intro` strings never render, because STATE_LEADS in modules/guide/nursing-pay-state.tsx overrides them. Any change to the QLD or SA opening (centerpiece) has to be made in STATE_LEADS, which is outside this job. Either delete the dead intros or note in the data file that they are unused."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/act/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/act/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.01",
+   "centerpiece": "3.64",
+   "main_query": "act nurses award",
+   "pre28_clicks": "16",
+   "pre28_impr": "810",
+   "requests": [
+    "The ACT opening (data-file intro) has no salary figure either. A STATE_LEADS entry rendering the Registered Nurse Level 1 entry and top annual salary from code would let the first sentence answer 'act nurse pay' with the number."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/nsw/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/nsw/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.85",
+   "centerpiece": "4.26",
+   "main_query": "nsw health rn pay 2026",
+   "pre28_clicks": "42",
+   "pre28_impr": "8987",
+   "requests": [
+    "The NSW `intro` field never renders because STATE_LEADS.nsw overrides it on the only page that reads intro. I left it unchanged. Either delete it or reuse its instrument and ladder sentences in the lead."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/wa/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/wa/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "4.03",
+   "centerpiece": "3.36",
+   "main_query": "anf nursing pay rates wa 2026",
+   "pre28_clicks": "77",
+   "pre28_impr": "4069",
+   "requests": [
+    "WA has no entry in STATE_LEADS (modules/guide/nursing-pay-state.tsx), so the data-file intro is the opening. It has no figure and no effective date for the main query \"anf nursing pay rates wa 2026\". Add a wa lead like the nsw/qld/sa/vic ones, built from the state data: RN/M Level 1.1 and Level 2.4 annual rates, effective from instruments[0].effectiveFrom (12 October 2026), the ANF agreement named, and the enrolled nurse weekly rate under the UWU agreement."
+   ]
+  },
+  {
+   "path": "/healthcare-worker-pay/vic/",
+   "url": "https://pay-calculator-australia.com/healthcare-worker-pay/vic/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.80",
+   "centerpiece": "4.18",
+   "main_query": "yes",
+   "pre28_clicks": "34",
+   "pre28_impr": "3742",
+   "requests": [
+    "VIC_NURSING_PAY.intro is dead copy: STATE_LEADS.vic overrides it on the state page and nothing else renders it. Either remove it or use it as a second paragraph. I fixed one overclaim in it (\"nothing below has to be worked out\", although annual figures are weekly x 52)."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

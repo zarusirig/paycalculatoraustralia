@@ -4,7 +4,7 @@
 import { STATE_PAYROLL_TAX, formatAUD } from "@/lib/constants";
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.TAS;
 
@@ -15,7 +15,7 @@ export const TAS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average Tasmanian salary?",
-    a: `Full-time adults in Tasmania earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}), the lowest of any state or territory. The worked example above shows the net result per week, fortnight and month.`,
+    a: `Take-home pay on the average full-time Tasmanian salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. Full-time adults in Tasmania earn ${awoteLine(PROFILE)} (ABS, ${ABS_PERIOD}), the lowest of any state or territory. The worked example above shows the net result per week, fortnight and month.`,
   },
   {
     q: "Do I get Royal Hobart Regatta or Recreation Day?",

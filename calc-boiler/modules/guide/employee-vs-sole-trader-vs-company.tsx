@@ -162,6 +162,59 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </div>
             </section>
 
+            <section id="take-home-comparison">
+              <h2>Take-Home Pay Comparison</h2>
+              <p>
+                The following tables are our calculation of approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super at {SG}, claimed as a tax deduction. The company column assumes paying a {formatAUD(DIRECTOR_SALARY)} salary (our assumption) plus {SG} super and retaining the rest in the company.
+              </p>
+
+              {COMPARISONS.map((c) => (
+              <div key={c.income} className="overflow-x-auto not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="bg-sandstone">
+                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At {formatAUD(c.income)} Income</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Employee</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Sole Trader</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Company</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-sandstone-dark/10">
+                        <td className="p-3 text-navy font-medium">Gross income</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
+                      </tr>
+                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                        <td className="p-3 text-navy font-medium">Income tax + Medicare</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.employeeTax)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderTax)}</td>
+                        <td className="p-3 text-navy text-right">~{formatAUD(c.companyTax)}*</td>
+                      </tr>
+                      <tr className="border-b border-sandstone-dark/10">
+                        <td className="p-3 text-navy font-medium">Super cost</td>
+                        <td className="p-3 text-navy text-right">$0 (employer pays)</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderSuper)} (self-funded, deducted)</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.companySuper)} (on {formatAUD(DIRECTOR_SALARY)} salary)</td>
+                      </tr>
+                      <tr className="bg-eucalyptus-light/30">
+                        <td className="p-3 text-navy font-bold">Cash in hand</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.employeeTax)}</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.soleTraderSuper - c.soleTraderTax)}</td>
+                        <td className="p-3 text-navy text-right font-bold">~{formatAUD(c.income - c.companySuper - c.companyTax)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              ))}
+              <p className="text-sm text-warmgray">
+                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with {COMPANY_RATE} company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. They assume the PSI rules do not apply. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays {pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates, leave out accounting and ASIC costs, and are simplified illustrations. Consult an accountant for precise modelling.
+              </p>
+            </section>
+
             <section id="employee">
               <h2>Employee</h2>
               <p>
@@ -236,59 +289,6 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </ul>
               <p>
                 <strong>Best for:</strong> Businesses that want asset protection, the ability to retain profits at {COMPANY_RATE}, and a separate legal entity for clients and contracts, where the income is not personal services income caught by the PSI rules.
-              </p>
-            </section>
-
-            <section id="take-home-comparison">
-              <h2>Take-Home Pay Comparison</h2>
-              <p>
-                The following tables are our calculation of approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super at {SG}, claimed as a tax deduction. The company column assumes paying a {formatAUD(DIRECTOR_SALARY)} salary (our assumption) plus {SG} super and retaining the rest in the company.
-              </p>
-
-              {COMPARISONS.map((c) => (
-              <div key={c.income} className="overflow-x-auto not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="min-w-full text-sm">
-                    <thead>
-                      <tr className="bg-sandstone">
-                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At {formatAUD(c.income)} Income</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Employee</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Sole Trader</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Company</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Gross income</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">Income tax + Medicare</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.employeeTax)}</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderTax)}</td>
-                        <td className="p-3 text-navy text-right">~{formatAUD(c.companyTax)}*</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super cost</td>
-                        <td className="p-3 text-navy text-right">$0 (employer pays)</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderSuper)} (self-funded, deducted)</td>
-                        <td className="p-3 text-navy text-right">{formatAUD(c.companySuper)} (on {formatAUD(DIRECTOR_SALARY)} salary)</td>
-                      </tr>
-                      <tr className="bg-eucalyptus-light/30">
-                        <td className="p-3 text-navy font-bold">Cash in hand</td>
-                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.employeeTax)}</td>
-                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.soleTraderSuper - c.soleTraderTax)}</td>
-                        <td className="p-3 text-navy text-right font-bold">~{formatAUD(c.income - c.companySuper - c.companyTax)}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              ))}
-              <p className="text-sm text-warmgray">
-                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with {COMPANY_RATE} company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. They assume the PSI rules do not apply. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays {pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates, leave out accounting and ASIC costs, and are simplified illustrations. Consult an accountant for precise modelling.
               </p>
             </section>
 

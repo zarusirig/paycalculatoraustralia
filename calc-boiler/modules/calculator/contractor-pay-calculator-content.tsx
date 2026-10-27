@@ -380,7 +380,7 @@ export default function ContractorPayCalculatorContent() {
           </p>
           <ol className="list-decimal space-y-3 pl-6 text-warmgray">
             <li>
-              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO. If you spend it, you are short when your BAS is due.
+              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>{formatAUD(100_000 - 100_000 / 1.1)}</strong> is GST owed to the ATO. If you spend it, you are short when your BAS is due.
             </li>
             <li>
               <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong>, a difficult amount to pay at once.

@@ -75,10 +75,10 @@ function millions(n: number): string {
   return `$${(n / 1_000_000).toLocaleString("en-AU", { maximumFractionDigits: 2 })} million`;
 }
 
-/** "FY2024-25" -> "1 July 2024 – 30 June 2025". */
+/** "FY2024-25" -> "1 July 2024 to 30 June 2025". */
 function fyRange(label: string): string {
   const start = Number(label.slice(2, 6));
-  return `1 July ${start} \u2013 30 June ${start + 1}`;
+  return `1 July ${start} to 30 June ${start + 1}`;
 }
 
 export default function SuperannuationGuidePage() {
@@ -111,31 +111,6 @@ export default function SuperannuationGuidePage() {
 
           {/* MAIN ARTICLE CONTENT */}
           <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
-
-            <section id="what-is-super">
-              <h2>What Is Superannuation?</h2>
-              <p>
-                Superannuation is Australia&apos;s compulsory retirement savings system, and every employer must pay <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} of an employee&apos;s qualifying earnings</strong> into a complying super fund for the {SITE_CONFIG.financialYear} financial year. Since {SUPER_GUARANTEE.paydaySuperStart}, that money must be paid every payday rather than quarterly.
-              </p>
-              <p>
-                Commonly called &quot;super,&quot; the system was introduced under the Superannuation Guarantee (Administration) Act 1992 by the Keating Government. Employers pay contributions on top of gross salary, and the money is invested by the fund across asset classes including Australian equities, international shares, fixed interest, and property. The balance grows through a combination of employer contributions, voluntary contributions, and investment returns until the member reaches preservation age and retires.
-              </p>
-              <p>
-                Concessional contributions (employer SG, salary sacrifice and personal contributions you claim as a tax deduction) are taxed at a flat <strong>{CTAX}</strong> inside the fund instead of at your marginal rate. Salary sacrifice and deductible personal contributions also lower your taxable income, so they cut the income tax you pay today. Employer SG is paid on top of your salary and does not change your income tax. Above {formatAUD(SECOND_BRACKET)} your marginal rate is {orList(RATES_ABOVE_CTAX.map((b) => formatPercent(b.rate, 0)))}, plus the {LEVY} Medicare levy. In the {formatPercent(SECOND_RATE, 0)} bracket the income tax rate is the same as the {CTAX} contributions tax, so there is no rate gap. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how your marginal rate compares to the {CTAX} super rate.
-              </p>
-              <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
-                <div className="flex items-start gap-4">
-                  <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-base font-bold text-navy mb-1">Interactive Calculation</h3>
-                    <p className="text-navy text-sm mb-3">Want to see exactly how much super your employer must pay you based on your current salary?</p>
-                    <Link href="/superannuation-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
-                      Use our Superannuation Calculator <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
 
             <section id="sg-rate">
               <h2>How Much Super Does Your Employer Pay?</h2>
@@ -176,6 +151,31 @@ export default function SuperannuationGuidePage() {
               <p>
                 Since {SUPER_GUARANTEE.paydaySuperStart} the SG is calculated on &quot;qualifying earnings&quot;, not total earnings. Qualifying earnings are the old ordinary time earnings (OTE) base with a single addition: the ATO says the only additional payment type is {QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime, expense reimbursements, and termination payouts remain excluded. The distinction matters most for workers with significant overtime hours, so use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to separate ordinary and overtime components, and see our <Link href="/payday-super/">Payday Super guide</Link> for how the per-pay rules work.
               </p>
+            </section>
+
+            <section id="what-is-super">
+              <h2>What Is Superannuation?</h2>
+              <p>
+                Superannuation is Australia&apos;s compulsory retirement savings system, and every employer must pay <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} of an employee&apos;s qualifying earnings</strong> into a complying super fund for the {SITE_CONFIG.financialYear} financial year. Since {SUPER_GUARANTEE.paydaySuperStart}, that money must be paid every payday rather than quarterly.
+              </p>
+              <p>
+                Commonly called &quot;super,&quot; the system was introduced under the Superannuation Guarantee (Administration) Act 1992 by the Keating Government. Employers pay contributions on top of gross salary, and the money is invested by the fund across asset classes including Australian equities, international shares, fixed interest, and property. The balance grows through a combination of employer contributions, voluntary contributions, and investment returns until the member reaches preservation age and retires.
+              </p>
+              <p>
+                Concessional contributions (employer SG, salary sacrifice and personal contributions you claim as a tax deduction) are taxed at a flat <strong>{CTAX}</strong> inside the fund instead of at your marginal rate. Salary sacrifice and deductible personal contributions also lower your taxable income, so they cut the income tax you pay today. Employer SG is paid on top of your salary and does not change your income tax. Above {formatAUD(SECOND_BRACKET)} your marginal rate is {orList(RATES_ABOVE_CTAX.map((b) => formatPercent(b.rate, 0)))}, plus the {LEVY} Medicare levy. In the {formatPercent(SECOND_RATE, 0)} bracket the income tax rate is the same as the {CTAX} contributions tax, so there is no rate gap. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how your marginal rate compares to the {CTAX} super rate.
+              </p>
+              <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
+                <div className="flex items-start gap-4">
+                  <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-base font-bold text-navy mb-1">Interactive Calculation</h3>
+                    <p className="text-navy text-sm mb-3">Want to see exactly how much super your employer must pay you based on your current salary?</p>
+                    <Link href="/superannuation-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
+                      Use our Superannuation Calculator <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section id="who-pays">
@@ -588,31 +588,31 @@ export default function SuperannuationGuidePage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-medium">Industry fund</td>
-                        <td className="px-6 py-4">0.5%&ndash;1.0%</td>
+                        <td className="px-6 py-4">0.5% to 1.0%</td>
                         <td className="px-6 py-4">Pre-mixed and single-sector options</td>
                         <td className="px-6 py-4">Most employees; lower fees, profit-to-member</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Retail fund</td>
-                        <td className="px-6 py-4">0.8%&ndash;1.5%</td>
+                        <td className="px-6 py-4">0.8% to 1.5%</td>
                         <td className="px-6 py-4">Wide range including managed funds and shares</td>
                         <td className="px-6 py-4">Active investors wanting specific fund managers</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Corporate fund</td>
-                        <td className="px-6 py-4">0.3%&ndash;0.7%</td>
+                        <td className="px-6 py-4">0.3% to 0.7%</td>
                         <td className="px-6 py-4">Tailored options negotiated by employer</td>
                         <td className="px-6 py-4">Employees of large corporations with in-house funds</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Public sector fund</td>
-                        <td className="px-6 py-4">0.3%&ndash;0.6%</td>
+                        <td className="px-6 py-4">0.3% to 0.6%</td>
                         <td className="px-6 py-4">Pre-mixed options, some defined benefit schemes</td>
                         <td className="px-6 py-4">Federal, state, and local government employees</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">SMSF</td>
-                        <td className="px-6 py-4">$2,000&ndash;$5,000 fixed</td>
+                        <td className="px-6 py-4">$2,000 to $5,000 fixed</td>
                         <td className="px-6 py-4">Direct shares, property, crypto, collectibles</td>
                         <td className="px-6 py-4">Balances above $500K; experienced investors</td>
                       </tr>
@@ -663,7 +663,7 @@ export default function SuperannuationGuidePage() {
                         <td className="px-6 py-4 font-bold">Within {SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days of payday</td>
                       </tr>
                       <tr>
-                        <td className="px-6 py-4">1 April &ndash; 30 June 2026 (last quarter)</td>
+                        <td className="px-6 py-4">1 April to 30 June 2026 (last quarter)</td>
                         <td className="px-6 py-4">Old quarterly system</td>
                         <td className="px-6 py-4 font-bold">{SUPER_GUARANTEE_CHARGE.legacy.finalQuarterSGDue} (SGC statement for a late payment due {SUPER_GUARANTEE_CHARGE.legacy.finalQuarterStatementDue})</td>
                       </tr>

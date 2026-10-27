@@ -32,8 +32,9 @@ export default function NewMinimumWageTakeHomePay() {
     <>
       <p className="lead">
         The national minimum wage is now <strong>$26.44 an hour</strong>: $1,004.90 for a
-        38-hour week, or about $52,255 a year full-time, before tax. The tables below show a
-        full-time minimum-wage worker&apos;s weekly, fortnightly and annual take-home pay after tax.
+        38-hour week, or about $52,255 a year full-time, before tax. After tax is withheld, a full-time
+        minimum-wage worker takes home about <strong>{formatAUD(WEEKLY.netPerPeriod, 2)} a week</strong>.
+        The tables below show the weekly, fortnightly and annual take-home pay.
       </p>
 
       <NewsKeyFacts
@@ -99,7 +100,7 @@ export default function NewMinimumWageTakeHomePay() {
         {formatAUD(WEEKLY_WITHHELD_FOR_YEAR - ANNUAL_TAX)} more than the annual tax of{" "}
         {formatAUD(ANNUAL_TAX)}. You get the difference back when you lodge your tax return. The ATO publishes the exact amounts, and you can
         look them up in our{" "}
-        <Link href="/payg-withholding-tables/">weekly tax table {SITE_CONFIG.financialYear}</Link> and{" "}
+        <Link href="/payg-withholding-tables/">PAYG withholding tables {SITE_CONFIG.financialYear}</Link> and{" "}
         <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>. On a $52,254.80 annual income, the Low Income Tax
         Offset trims about {formatAUD(calculateLITO(ANNUAL_GROSS))} off the tax bill. The Medicare
         levy applies in full at {formatPercent(MEDICARE_LEVY.rate, 0)}, because this income is well above the low-income range where

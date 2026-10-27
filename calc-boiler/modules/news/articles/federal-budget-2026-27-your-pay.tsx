@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27, formatAUD, formatPercent } from "@/lib/constants/australian-tax";
+
+const BRACKET_OLD = TAX_BRACKETS_2025_26[1];
+const BRACKET_NEW = TAX_BRACKETS_2026_27[1];
 
 export default function FederalBudget202627YourPay() {
   return (
@@ -8,8 +12,9 @@ export default function FederalBudget202627YourPay() {
         The <strong>2026-27 Federal Budget</strong> was handed down by Treasurer Jim Chalmers on
         12 May 2026. It added one new tax measure for workers:
         a <strong>$250 Working Australians Tax Offset</strong> from the 2027-28 income year. It did
-        not cut tax rates again. The offset comes on top of the 1 July tax cut, which was already
-        legislated, and the $1,000 instant work-related deduction, which the Budget confirmed. The
+        not cut tax rates again. The offset comes on top of the 1 July 2026 tax cut (
+        {formatPercent(BRACKET_OLD.rate, 0)} to {formatPercent(BRACKET_NEW.rate, 0)} on income between{" "}
+        {formatAUD(BRACKET_NEW.min)} and {formatAUD(BRACKET_NEW.max)}), which was already legislated, and the $1,000 instant work-related deduction, which the Budget confirmed. The
         rest of this page covers what the measures are worth combined, how the offset reduces your
         tax and what the Budget left unchanged.
       </p>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
-import { EMPLOYMENT, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, SITE_CONFIG, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import {
   APPRENTICE_PAY_VERIFIED_ON,
   APPRENTICE_RATES_FROM,
@@ -108,7 +108,7 @@ export default function ApprenticePayRatesPage() {
 
       <PageHeader title="Apprentice Pay Rates in Australia, by Trade and Year (2026-27)">
         <p>
-          <strong>An apprentice&rsquo;s minimum wage is a percentage of the qualified tradesperson&rsquo;s rate that rises each year of the apprenticeship.</strong> From {APPRENTICE_RATES_FROM}, a first-year carpentry apprentice who completed Year 12 must be paid at least {f2(b1.hourly)} an hour before allowances under the Building and Construction General On-site Award. Across the trades on this page, first-year apprentice minimums run from {f2(Math.min(...FIRST_YEAR.flatMap((x) => [x.y.hourly, x.n.hourly])))} to {f2(Math.max(...FIRST_YEAR.flatMap((x) => [x.y.hourly, x.n.hourly])))} an hour. These figures are junior apprentice minimums from each trade&rsquo;s modern award, read from the Fair Work Commission&rsquo;s consolidated awards. The apprentice wages calculator below takes your trade, year of apprenticeship, schooling and weekly hours, then shows your award minimum per hour and per week and your estimated take-home pay. Enter the hourly rate from your payslip and it shows any shortfall. Further down, the page sets out first-year pay by trade, a year-by-year table for each trade, take-home pay and when an apprentice&rsquo;s pay goes up.
+          <strong>An apprentice&rsquo;s minimum wage is a percentage of the qualified tradesperson&rsquo;s rate that rises each year of the apprenticeship.</strong> From {APPRENTICE_RATES_FROM}, a first-year carpentry apprentice who completed Year 12 must be paid at least {f2(b1.hourly)} an hour before allowances under the Building and Construction General On-site Award. Across the trades on this page, first-year apprentice minimums run from {f2(Math.min(...FIRST_YEAR.flatMap((x) => [x.y.hourly, x.n.hourly])))} to {f2(Math.max(...FIRST_YEAR.flatMap((x) => [x.y.hourly, x.n.hourly])))} an hour. These figures are {SITE_CONFIG.financialYear} junior apprentice minimums for a {STAGES.length}-year apprenticeship, from each trade&rsquo;s modern award, read from the Fair Work Commission&rsquo;s consolidated awards. The apprentice wages calculator below takes your trade, year of apprenticeship, schooling and weekly hours, then shows your award minimum per hour and per week and your estimated take-home pay. Enter the hourly rate from your payslip and it shows any shortfall. Further down, the page sets out first-year pay by trade, a year-by-year table for each trade, take-home pay and when an apprentice&rsquo;s pay goes up.
         </p>
       </PageHeader>
 
@@ -127,16 +127,6 @@ export default function ApprenticePayRatesPage() {
         <article className={ARTICLE_CLASS}>
           <FeaturedImage placement="content" className="mt-0" />
           <section>
-            <H2 id="how-it-works">How Apprentice Wages Are Set</H2>
-            <p>
-              Apprentices are not paid the adult minimum wage. Each modern award sets an apprentice wage as a percentage of its tradesperson rate, usually {f2(STANDARD_WEEKLY_RATE)} a week (for 2026-27), and the percentage steps up each year. In most trades on this page, a first-year apprentice is on 50% (55% if they finished Year 12), and by fourth year it is 82% to 95%, depending on the trade. Because the National Minimum Wage order does not bind apprentice rates under a training contract, a first-year apprentice can lawfully earn less than {f2(EMPLOYMENT.minimumWageHourly)} an hour. These are minimums: an employer or an enterprise agreement can pay more.
-            </p>
-            <p>
-              Three details change the number on a payslip. <strong>Year 12</strong> matters in most trades: finishing it lifts the first two years by five percentage points. <strong>Allowances</strong> matter too: electrical and plumbing apprentice rates already include them, but in building and construction, automotive, hairdressing and cookery the tables show the wage only, with tool and industry allowances added on top. And <strong>stage progression</strong> can be by calendar year or, where the award allows, by completing training competencies earlier.
-            </p>
-          </section>
-
-          <section>
             <H2 id="first-year">First-Year Apprentice Pay by Trade</H2>
             <DataTable
               head={["Trade", "Year 12: hourly", "No Year 12: hourly", "Allowances"]}
@@ -149,6 +139,16 @@ export default function ApprenticePayRatesPage() {
               ])}
               caption={<>Award minimums in force from {APPRENTICE_RATES_FROM}, read from the Fair Work Commission&rsquo;s consolidated awards on {APPRENTICE_PAY_VERIFIED_ON}. &ldquo;Included&rdquo; means the hourly rate already contains the all-purpose allowances; &ldquo;Extra&rdquo; means they are payable on top. Do not compare the two groups like for like.</>}
             />
+          </section>
+
+          <section>
+            <H2 id="how-it-works">How Apprentice Wages Are Set</H2>
+            <p>
+              Apprentices are not paid the adult minimum wage. Each modern award sets an apprentice wage as a percentage of its tradesperson rate, usually {f2(STANDARD_WEEKLY_RATE)} a week (for 2026-27), and the percentage steps up each year. In most trades on this page, a first-year apprentice is on 50% (55% if they finished Year 12), and by fourth year it is 82% to 95%, depending on the trade. Because the National Minimum Wage order does not bind apprentice rates under a training contract, a first-year apprentice can lawfully earn less than {f2(EMPLOYMENT.minimumWageHourly)} an hour. These are minimums: an employer or an enterprise agreement can pay more.
+            </p>
+            <p>
+              Three details change the number on a payslip. <strong>Year 12</strong> matters in most trades: finishing it lifts the first two years by five percentage points. <strong>Allowances</strong> matter too: electrical and plumbing apprentice rates already include them, but in building and construction, automotive, hairdressing and cookery the tables show the wage only, with tool and industry allowances added on top. And <strong>stage progression</strong> can be by calendar year or, where the award allows, by completing training competencies earlier.
+            </p>
           </section>
 
           {APPRENTICE_TRADES.map((t) => (

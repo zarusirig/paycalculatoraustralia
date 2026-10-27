@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { MEDICARE_LEVY, formatAUD } from "@/lib/constants";
 
 export default function MedicareLevyThresholds2026() {
   return (
@@ -23,6 +24,10 @@ export default function MedicareLevyThresholds2026() {
       <NewsKeyFacts
         rows={[
           { label: "Singles threshold", before: "$27,222", after: "$28,011" },
+          {
+            label: `Singles reduced-rate band (${Math.round(MEDICARE_LEVY.shadeInRate * 100)}c per $1 over the threshold)`,
+            after: `${formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} to ${formatAUD(MEDICARE_LEVY.shadeInThreshold)}`,
+          },
           { label: "Family threshold", before: "$45,907", after: "$47,238" },
           { label: "Single seniors & pensioners threshold", before: "$43,020", after: "$44,268" },
           { label: "Senior & pensioner family threshold", before: "$59,886", after: "$61,623" },

@@ -3,7 +3,7 @@
 
 import { STATE_PROFILES } from "@/lib/data/state-employee";
 import type { FaqItem } from "@/lib/faq";
-import { ABS_PERIOD, awoteLine } from "./state-faqs-shared";
+import { ABS_PERIOD, awoteLine, takeHomeLine } from "./state-faqs-shared";
 
 const PROFILE = STATE_PROFILES.WA;
 
@@ -15,7 +15,7 @@ export const WA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average WA salary?",
-    a: `Full-time adults in WA earn ${awoteLine(PROFILE)}, the highest of any state (ABS, ${ABS_PERIOD}). The worked example above takes income tax and the Medicare levy off the WA average and shows the take-home pay per week, fortnight and month.`,
+    a: `Take-home pay on the average full-time WA salary is ${takeHomeLine(PROFILE)} after income tax and the Medicare levy. Full-time adults in WA earn ${awoteLine(PROFILE)}, the highest of any state (ABS, ${ABS_PERIOD}). The worked example above takes income tax and the Medicare levy off the WA average and shows the take-home pay per week, fortnight and month.`,
   },
   {
     q: "Am I covered by WA state awards or federal awards?",

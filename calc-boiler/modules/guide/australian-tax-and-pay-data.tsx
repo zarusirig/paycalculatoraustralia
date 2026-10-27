@@ -107,7 +107,7 @@ export default function AustralianTaxAndPayData() {
             <section id="downloads">
               <h2 style={H}>Download the data</h2>
               <p>
-                The data comes as six CSV files and one combined JSON file. The files are plain: a header row, one row per line of the table, dollar
+                The data comes as {DATA_FILES.length} CSV files and one combined JSON file. The files are plain: a header row, one row per line of the table, dollar
                 amounts as numbers without symbols, and rates as decimals (0.15 means 15%). A blank cell means &ldquo;no upper
                 limit&rdquo; or &ldquo;not applicable&rdquo;.
               </p>

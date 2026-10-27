@@ -1,0 +1,106 @@
+{
+ "name": "st-027-final-pay-calculator",
+ "files": [
+  "app/final-pay-calculator/page.tsx",
+  "app/graduate-salary-australia/page.tsx",
+  "app/sick-leave-calculator/page.tsx",
+  "app/stage-3-tax-cuts/page.tsx",
+  "app/superannuation-calculator/page.tsx",
+  "modules/calculator/final-pay-calculator-content.tsx",
+  "modules/calculator/final-pay-calculator-faqs.ts",
+  "modules/calculator/final-pay-calculator.tsx",
+  "modules/calculator/sick-leave-calculator.tsx",
+  "modules/calculator/superannuation-calculator-content.tsx",
+  "modules/calculator/superannuation-calculator.tsx",
+  "modules/calculator/superannuation-faqs.ts",
+  "modules/guide/graduate-salary-australia-faqs.ts",
+  "modules/guide/graduate-salary-australia.tsx",
+  "modules/guide/sick-leave-faqs.ts",
+  "modules/guide/sick-leave.tsx",
+  "modules/guide/stage-3-tax-cuts-faqs.ts",
+  "modules/guide/stage-3-tax-cuts.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/final-pay-calculator/",
+   "url": "https://pay-calculator-australia.com/final-pay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.26",
+   "centerpiece": "3.91",
+   "main_query": "final pay calculator australia",
+   "pre28_clicks": "59",
+   "pre28_impr": "2247",
+   "requests": [
+    "List item 4 (long service leave) and methodology item 3 apply one national accrual rate. They need a per-state long service leave table or constant, with qualifying years and weeks per 10 years, built from code.",
+    "The intro claims marginal-rate tax, but the calculator applies the effective rate and does not tax redundancy pay. Either change the tax logic (ETP and genuine redundancy rules) or let the intro describe the effective-rate method once that is confirmed."
+   ]
+  },
+  {
+   "path": "/stage-3-tax-cuts/",
+   "url": "https://pay-calculator-australia.com/stage-3-tax-cuts/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.86",
+   "centerpiece": "4.05",
+   "main_query": "stage 3 tax cuts",
+   "pre28_clicks": "0",
+   "pre28_impr": "58",
+   "requests": [
+    "The H1 says 'How Much More You Take Home', but the before/after savings table uses FY2024-25/FY2025-26 rates (16%). For FY2026-27 (15% rate) the opening and table have no current-year figure; only a prose note says '+ up to $268'. Add a FY2026-27 column or figure driven from the tax-bracket constants so the opening can state the current saving."
+   ]
+  },
+  {
+   "path": "/sick-leave-calculator/",
+   "url": "https://pay-calculator-australia.com/sick-leave-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "2.67",
+   "centerpiece": "2.61",
+   "main_query": "40 hours per week",
+   "pre28_clicks": "3",
+   "pre28_impr": "2672",
+   "requests": [
+    "The opening could name the Fair Work Act s 96 and the date the rules were read (SICK_LEAVE_VERIFIED_ON) as attributes, but both need expressions that are not in the PageHeader text yet. Consider adding {SICK_LEAVE_VERIFIED_ON} to the intro."
+   ]
+  },
+  {
+   "path": "/superannuation-calculator/",
+   "url": "https://pay-calculator-australia.com/superannuation-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.10",
+   "centerpiece": "3.93",
+   "main_query": "85000 plus super",
+   "pre28_clicks": "13",
+   "pre28_impr": "10407",
+   "requests": [
+    "Two sections ('How Does Salary Sacrifice Into Super Compare to Standard SG?' and 'Salary Sacrifice Into Super') repeat the same cap-space sentence with the same live figures (employer SG, cap remaining) and both link to /salary-sacrifice-calculator/. Merge them into one section.",
+    "Several figures are typed in by hand instead of coming from the constants. Step 2 at line 41 has '0.12 (12%)', line 135 has '12% SG contribution', and the worked example table and examples at lines 50-54, 115, 144 and 205 use 12%. The Division 293 $250,000 threshold at line 208 is also typed in. These should come from SUPER_GUARANTEE.rate (and a Div 293 constant) so they cannot drift when rates change."
+   ]
+  },
+  {
+   "path": "/graduate-salary-australia/",
+   "url": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.22",
+   "centerpiece": "2.64",
+   "main_query": "it includes super",
+   "pre28_clicks": "9",
+   "pre28_impr": "1146",
+   "requests": [
+    "The opening does not name the financial year the take-home and HELP figures in the table use (2026-27). This pass cannot add a year to the opening. Consider adding the FY expression (for example SITE_CONFIG.financialYear) to the intro so the centerpiece states it.",
+    "modules/guide/graduate-salary-australia.tsx line 120 types the engineer figures as literals (f0(68_538), f2(34.57), $69,688, $72,590, $76,267, $66,825). Line 147 does the same for the NSW intern rate (f0(80_638)). These should come from engineerRow or job-pay-rates/engineer.ts and from GRADUATE_PROFESSIONS[5].published.annual, so that a future rate change updates the page."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

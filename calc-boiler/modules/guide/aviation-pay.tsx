@@ -103,22 +103,9 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="mv-content prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
-            <NoticeList notices={page.notices} />
-
-            <section id="how-pay-works">
-              <h2 style={HEADING_FONT}>How {copy.noun} pay is set</h2>
-              {copy.howPayWorks.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-              <p>
-                The figures on this page come from the{" "}
-                <a href={page.instrument.url} target="_blank" rel="noreferrer noopener">
-                  {page.instrument.name}
-                </a>
-                . {page.instrument.status}
-              </p>
-            </section>
-
+            {/* Structure pass, 27 Oct 2026: lookup intent ("air traffic controller salary",
+                "pilot salary australia"). The pay tables now follow the opening answer; the
+                notices and "How pay is set" follow the tables unchanged. */}
             {page.scales.length > 0 ? (
               <section id="pay-scale">
                 <h2 style={HEADING_FONT}>
@@ -143,6 +130,22 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
                 ) : null}
               </section>
             ) : null}
+
+            <NoticeList notices={page.notices} />
+
+            <section id="how-pay-works">
+              <h2 style={HEADING_FONT}>How {copy.noun} pay is set</h2>
+              {copy.howPayWorks.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+              <p>
+                The figures on this page come from the{" "}
+                <a href={page.instrument.url} target="_blank" rel="noreferrer noopener">
+                  {page.instrument.name}
+                </a>
+                . {page.instrument.status}
+              </p>
+            </section>
 
             {page.traineePay.length > 0 ? (
               <section id="trainee-pay">

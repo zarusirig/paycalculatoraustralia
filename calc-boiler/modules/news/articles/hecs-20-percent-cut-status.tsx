@@ -22,6 +22,36 @@ export default function Hecs20PercentCutStatus() {
         ]}
       />
 
+      <h2>How to check it landed on your account</h2>
+      <ol>
+        <li>
+          Log in to the ATO app or ATO online services through myGov and open &ldquo;Tax &gt; Study
+          and training loans&rdquo; to view your balance and transaction history.
+        </li>
+        <li>
+          The reduction shows as a credit transaction dated against your 1 June 2025 balance. Look
+          for it alongside that year&apos;s recalculated indexation entry and any compulsory
+          repayments credited after your 2024-25 return was assessed.
+        </li>
+        <li>
+          If you held more than one loan type, such as a HECS-HELP debt and a SA-HELP debt, the 20%
+          applied across your combined study loan balances, so check each account listed.
+        </li>
+        <li>
+          If the balance looks wrong (the reduction is missing entirely, or the amount doesn&apos;t
+          match 20% of what you owed on 1 June 2025), check the transaction dates first.
+          Repayments credited after that date change the balance without affecting the cut.
+        </li>
+        <li>
+          If it still doesn&apos;t reconcile, contact the ATO through myGov or by phone with your
+          loan account details handy.
+        </li>
+      </ol>
+      <p>
+        For a full breakdown of how your loan balance, indexation and repayments fit together, see
+        our <Link href="/hecs-help-calculator/">HECS-HELP guide</Link>.
+      </p>
+
       <h2>What the 20% cut actually did</h2>
       <p>
         The Universities Accord (Cutting Student Debt by 20 Per Cent) Act 2025 became law on 2
@@ -47,26 +77,6 @@ export default function Hecs20PercentCutStatus() {
         and loans first drawn down after it were never in scope. The ATO confirms it has completed
         processing of the 20% reduction for all study and training support debts that existed on
         1 June 2025.
-      </p>
-
-      <h2>How to check it landed on your account</h2>
-      <p>
-        Log in to the ATO app or ATO online services through myGov and open &ldquo;Tax &gt; Study
-        and training loans&rdquo; to view your balance and transaction history. The reduction
-        shows as a credit transaction dated against your 1 June 2025 balance. Look for it
-        alongside that year&apos;s recalculated indexation entry and any compulsory repayments
-        credited after your 2024-25 return was assessed. If you held more than one loan type, such
-        as a HECS-HELP debt and a SA-HELP debt, the 20% applied across your combined study loan
-        balances, so check each account listed. For a full breakdown of how your loan balance,
-        indexation and repayments fit together, see our{" "}
-        <Link href="/hecs-help-calculator/">HECS-HELP guide</Link>.
-      </p>
-      <p>
-        If the balance looks wrong (the reduction is missing entirely, or the amount doesn&apos;t
-        match 20% of what you owed on 1 June 2025), check the transaction dates first.
-        Repayments credited after that date change the balance without affecting the cut. If it
-        still doesn&apos;t reconcile, contact the ATO through myGov or by phone with your loan
-        account details handy.
       </p>
 
       <h2>What this means for your pay</h2>

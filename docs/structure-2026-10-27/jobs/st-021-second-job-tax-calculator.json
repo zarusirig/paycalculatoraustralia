@@ -1,0 +1,107 @@
+{
+ "name": "st-021-second-job-tax-calculator",
+ "files": [
+  "app/backpay-calculator/page.tsx",
+  "app/junior-pay-rates/page.tsx",
+  "app/second-job-tax-calculator/page.tsx",
+  "app/superannuation-guide/page.tsx",
+  "app/teacher-pay-australia/page.tsx",
+  "modules/calculator/backpay-calculator-content.tsx",
+  "modules/calculator/backpay-calculator-faqs.ts",
+  "modules/calculator/backpay-calculator.tsx",
+  "modules/calculator/second-job-tax-calculator-content.tsx",
+  "modules/calculator/second-job-tax-calculator-faqs.ts",
+  "modules/calculator/second-job-tax-calculator.tsx",
+  "modules/guide/junior-pay-rates-faqs.ts",
+  "modules/guide/junior-pay-rates.tsx",
+  "modules/guide/minimum-wage-by-age-data.ts",
+  "modules/guide/superannuation-guide-faqs.ts",
+  "modules/guide/superannuation-guide.tsx",
+  "modules/guide/teacher-pay-australia.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/second-job-tax-calculator/",
+   "url": "https://pay-calculator-australia.com/second-job-tax-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.14",
+   "centerpiece": "3.66",
+   "main_query": "second job tax rate",
+   "pre28_clicks": "337",
+   "pre28_impr": "9940",
+   "requests": [
+    "The content file (second-job-tax-calculator-content.tsx line 134, not in this job) tells readers to 'Put 30% of your second job income' aside. That is a typed figure that does not come from code, and it conflicts with the no-tax-free-threshold scale the page computes. It should be derived from the scale or removed."
+   ]
+  },
+  {
+   "path": "/backpay-calculator/",
+   "url": "https://pay-calculator-australia.com/backpay-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.61",
+   "centerpiece": "2.55",
+   "main_query": "backpay calculator",
+   "pre28_clicks": "200",
+   "pre28_impr": "2897",
+   "requests": [
+    "The centerpiece opening (content intro under the calculator) has no rendered figure. To lead with a number, it needs an expression such as formatAUD(EXAMPLE.shortfall) or the worked-example super figure, which this pass cannot add.",
+    "Swap the hard-coded '12%' strings in backpay-calculator-content.tsx (super li, the super shortfall li, the methodology, the Related card) for formatPercent(SUPER_GUARANTEE.rate, 0)."
+   ]
+  },
+  {
+   "path": "/junior-pay-rates/",
+   "url": "https://pay-calculator-australia.com/junior-pay-rates/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.92",
+   "centerpiece": "3.13",
+   "main_query": "minimum wage australia 14 year old",
+   "pre28_clicks": "327",
+   "pre28_impr": "83958",
+   "requests": [
+    "Top pre-crash queries include 'minimum australia 17 year old' (198 impr) but the FAQ has no 17-year-old question. Add a 17-year-old FAQ built from the existing A17 expressions (pctOf(A17.percentage), A17.hourly, A17.casualHourly); this pass cannot add FAQs.",
+    "Replace the typed award percentages and phase-in steps in FAQ answers (lines 82, 86, 106, 114) with expressions from AWARD_JUNIOR_SCALES and JUNIOR_TRANSITION_SCHEDULES so the FAQ and FAQPage JSON-LD cannot go stale on 1 December 2026."
+   ]
+  },
+  {
+   "path": "/teacher-pay-australia/",
+   "url": "https://pay-calculator-australia.com/teacher-pay-australia/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.60",
+   "centerpiece": "3.18",
+   "main_query": "ag2026/2746",
+   "pre28_clicks": "38",
+   "pre28_impr": "10047",
+   "requests": [
+    "The 'Do private and Catholic school teachers earn the same?' answer at hub.ts:100 opens with the fragment 'Not necessarily.' and is locked (faqs.push call arg). Suggested opening: 'Private and Catholic school teachers are not necessarily paid the same as public school teachers.' Someone with source access should apply it.",
+    "(applies to /teacher-pay-australia/*/ (all 8 states)) The 'Which step am I on?' and after-tax paragraphs open with a hook ('This is the part most teachers get wrong...', 'Gross salary is not what lands in your account.') instead of a direct answer. The checker locks the text pieces split around {state.nameInSentence} and {formatAUD(grad)}, so the sentences cannot be reordered in this pass. The JSX needs restructuring so the answer comes first.",
+    "(applies to /teacher-pay-australia/*/ (all 8 states)) The salary-packaging paragraph needs a per-state sentence built from topOfClassroomScale() and the tax brackets in constants, in place of the hard-coded '30% and 37% brackets' claim."
+   ]
+  },
+  {
+   "path": "/superannuation-guide/",
+   "url": "https://pay-calculator-australia.com/superannuation-guide/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.84",
+   "centerpiece": "1.88",
+   "main_query": "450 super threshold",
+   "pre28_clicks": "2",
+   "pre28_impr": "1075",
+   "requests": [
+    "The fyRange() helper (line 45-48) builds the 'Financial Year' cells with an en dash (\u2013). The fund-type table cells (lines 557-581) and the key-dates row 'Effective from 1 April &ndash; 30 June 2026' (line 632) also use en dashes. These are code and table cells, so this pass could not change them; replace them with 'to'.",
+    "The opening could state the date the 12% rate took effect, but {SUPER_GUARANTEE.effectiveDate} is not in the hero paragraph. Add the expression if the opening should carry it."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

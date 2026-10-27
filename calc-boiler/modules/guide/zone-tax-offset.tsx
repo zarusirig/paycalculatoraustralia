@@ -61,15 +61,7 @@ export default function ZoneTaxOffsetPage() {
         <article className="mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
           <FeaturedImage placement="content" className="mt-0" />
 
-          {/* ── SECTION 1 ── */}
-          <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Zone Tax Offset?</h2>
-            <p>The zone tax offset (ZTO) is a non-refundable tax offset for Australian residents whose usual place of residence is in a <strong>remote or isolated area</strong> for {ZONE_QUALIFYING_DAYS} days or more in an income year. The ATO classifies eligible locations as Zone A or Zone B, with <em>special areas</em> designated inside either zone.</p>
-            <p>The zone tax offset recognises the higher cost of living and the isolation of these areas. It does not apply to an offshore oil or gas rig.</p>
-            <p>Because the ZTO is non-refundable, it reduces your tax liability to a minimum of zero but does not generate a refund on its own. Use our <Link href="/income-tax-calculator/">income tax calculator</Link> to see how it sits against your marginal rate, and the <Link href="/low-income-tax-offset/">Low Income Tax Offset (LITO)</Link> guide for another non-refundable offset that stacks with the zone tax offset.</p>
-          </section>
-
-          {/* ── SECTION 2 ── */}
+          {/* ── SECTION 1: rates table first (lookup intent) ── */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Is the Zone Tax Offset?</h2>
             <p>The offset has two parts: a <strong>fixed amount</strong> set by your zone, and a <strong>percentage of your base amount</strong> if you maintained dependants. The maximum with no dependants is <strong>{formatAUD(SPECIAL)}</strong>, for a special area.</p>
@@ -92,6 +84,14 @@ export default function ZoneTaxOffsetPage() {
             </ul>
             <p>Add those together, then apply your zone&rsquo;s percentage. A Zone A resident with one student dependant claims {formatAUD(A)} + 50% of {formatAUD(DEPENDANT_BASE_AMOUNTS.studentUnder25)} = <strong>{formatAUD(A + DEPENDANT_BASE_AMOUNTS.studentUnder25 * 0.5)}</strong>. The same person in Zone B claims {formatAUD(B)} + 20% = <strong>{formatAUD(B + DEPENDANT_BASE_AMOUNTS.studentUnder25 * 0.2, 2)}</strong>.</p>
             <p>A dependant&rsquo;s base amount reduces by $1 for every $4 of their adjusted taxable income over <strong>{formatAUD(DEPENDANT_ATI.reductionThreshold)}</strong>. If their income is under {formatAUD(DEPENDANT_ATI.fullClaimCeiling)} you claim the base amount in full.</p>
+          </section>
+
+          {/* ── SECTION 2: definition ── */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Zone Tax Offset?</h2>
+            <p>The zone tax offset (ZTO) is a non-refundable tax offset for Australian residents whose usual place of residence is in a <strong>remote or isolated area</strong> for {ZONE_QUALIFYING_DAYS} days or more in an income year. The ATO classifies eligible locations as Zone A or Zone B, with <em>special areas</em> designated inside either zone.</p>
+            <p>The zone tax offset recognises the higher cost of living and the isolation of these areas. It does not apply to an offshore oil or gas rig.</p>
+            <p>Because the ZTO is non-refundable, it reduces your tax liability to a minimum of zero but does not generate a refund on its own. Use our <Link href="/income-tax-calculator/">income tax calculator</Link> to see how it sits against your marginal rate, and the <Link href="/low-income-tax-offset/">Low Income Tax Offset (LITO)</Link> guide for another non-refundable offset that stacks with the zone tax offset.</p>
           </section>
 
           {/* ── SECTION 3 ── */}

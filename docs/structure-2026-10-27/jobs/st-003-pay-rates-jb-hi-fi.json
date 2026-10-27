@@ -1,0 +1,247 @@
+{
+ "name": "st-003-pay-rates-jb-hi-fi",
+ "files": [
+  "app/pay-rates/[employer]/page.tsx",
+  "modules/guide/employer-pay-rates.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/pay-rates/jb-hi-fi/",
+   "url": "https://pay-calculator-australia.com/pay-rates/jb-hi-fi/",
+   "inPlan": true,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.11",
+   "centerpiece": "2.16",
+   "main_query": "does jb hi fi pay weekly or fortnightly",
+   "pre28_clicks": "74",
+   "pre28_impr": "2859",
+   "requests": [
+    "The top pre-crash query is 'does jb hi fi pay weekly or fortnightly' (17 of 74 clicks), and nothing on the page answers it. Pay frequency needs a researched, sourced data field (for example payFrequency) and a sentence in the template. This pass cannot add a fact."
+   ]
+  },
+  {
+   "path": "/pay-rates/zambrero/",
+   "url": "https://pay-calculator-australia.com/pay-rates/zambrero/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.99",
+   "centerpiece": "2.28",
+   "main_query": "zambrero pay rate 15 year old",
+   "pre28_clicks": "62",
+   "pre28_impr": "1807",
+   "requests": [
+    "instrument.coverage (zambrero.ts line 30) is locked by the checker as part of the instrument prop, but it renders as the first paragraph under 'Which award sets Zambrero pay'. It is one 42-word sentence that opens with 'We found no...'. Suggested split, with the entity as subject and no figure changes: 'Zambrero crew fall under the Fast Food Industry Award unless the business that runs their restaurant has its own enterprise agreement. We found no Zambrero agreement on the Fair Work Commission's lists of agreements approved since 2016. A restaurant owner's own agreement still cannot pay a base rate below the award.'",
+    "The page opening (H1 + intro) comes from the shared template modules/guide/employer-pay-rates.tsx, not from this data file, so the centerpiece (AUDIT 2.24) cannot be rewritten in this unit. Top queries are by age ('zambrero pay rate 15 year old', '14 year old', '18 year old'). The opening states only the adult Level 1 rate, so the template should also surface a junior rate line, or a pointer to the junior table, in the first paragraph."
+   ]
+  },
+  {
+   "path": "/pay-rates/virgin-australia/",
+   "url": "https://pay-calculator-australia.com/pay-rates/virgin-australia/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.13",
+   "centerpiece": "3.81",
+   "main_query": "virgin australia pay rates 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "32",
+   "requests": [
+    "instrument.coverage (virgin-australia.ts line 60) is locked as part of the instrument prop. It renders as its own paragraph after the facts list and opens with a bare 'It covers...'. Suggested opening: 'The Virgin Australia cabin crew agreement covers Virgin Australia Airlines employees working as Cabin Crew or Cabin Managers...'"
+   ]
+  },
+  {
+   "path": "/pay-rates/priceline/",
+   "url": "https://pay-calculator-australia.com/pay-rates/priceline/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.94",
+   "centerpiece": "2.23",
+   "main_query": "priceline pay rate 15 year old",
+   "pre28_clicks": "36",
+   "pre28_impr": "1323",
+   "requests": [
+    "The top pre-crash query is 'priceline pay rate 15 year old', but the junior row is labelled '16 and younger' and no string names age 15. A data or template change that says the 16-and-younger rate covers 15-year-olds (from code, not typed) would answer the query directly.",
+    "notices[0] (priceline.ts line 99) still has an em dash ('... own agreement) \u2014 check the award ...') but the checker locks it as a dash-key string. It needs a manual fix to a full stop: '... own agreement). Check the award or agreement named on your payslip.'"
+   ]
+  },
+  {
+   "path": "/pay-rates/red-rooster/",
+   "url": "https://pay-calculator-australia.com/pay-rates/red-rooster/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.14",
+   "centerpiece": "3.76",
+   "main_query": "red rooster pay",
+   "pre28_clicks": "31",
+   "pre28_impr": "2034",
+   "requests": [
+    "instrument.coverage is the first paragraph under 'Which award sets Red Rooster pay', but the checker locks it (prop:instrument). It opens with the 2022 termination of the old agreement, and the answer (the Fast Food Industry Award applies) only comes in sentence 2. Swap the two sentences in red-rooster.ts line 32 so the paragraph opens with the answer."
+   ]
+  },
+  {
+   "path": "/pay-rates/reject-shop/",
+   "url": "https://pay-calculator-australia.com/pay-rates/reject-shop/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.10",
+   "centerpiece": "3.87",
+   "main_query": "the reject shop pay rates 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "instrument.coverage (reject-shop.ts line 44) is locked and renders as its own paragraph starting with the pronoun 'It covers...'. Change it to 'The Reject Shop Agreement 2023 covers Team Members and Team Leaders...' so the paragraph has the entity as its subject."
+   ]
+  },
+  {
+   "path": "/pay-rates/costco/",
+   "url": "https://pay-calculator-australia.com/pay-rates/costco/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.03",
+   "centerpiece": "3.63",
+   "main_query": "costco pay rate",
+   "pre28_clicks": "9",
+   "pre28_impr": "434",
+   "requests": [
+    "instrument.coverage is locked to the checker, but it renders as its own paragraph and opens with a vague 'It covers Costco employees...'. Suggested source edit: 'The Costco agreement covers employees in every state and territory: ...'.",
+    "The casual FAQ answer and penaltyNotes[2] need the time windows (weekdays 6pm to 11pm, Saturdays 7am to 11pm) to be precise. That means adding figures, which this pass cannot do."
+   ]
+  },
+  {
+   "path": "/pay-rates/dan-murphys/",
+   "url": "https://pay-calculator-australia.com/pay-rates/dan-murphys/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.10",
+   "centerpiece": "3.71",
+   "main_query": "dan murphy's pay rate casual",
+   "pre28_clicks": "84",
+   "pre28_impr": "3226",
+   "requests": [
+    "notices[1] lists '($28.45, $29.45 and $31.11)' without saying which Retail Award level each figure is (it appears to be Level 2, Level 4 and Level 6). Adding the level numbers is a number change, which the checker blocks. Please add them in the source."
+   ]
+  },
+  {
+   "path": "/pay-rates/boost-juice/",
+   "url": "https://pay-calculator-australia.com/pay-rates/boost-juice/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.08",
+   "centerpiece": "3.79",
+   "main_query": "boost juice pay rates 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "The FAQ 'How much does Boost Juice pay an hour in 2026?' (boost-juice.ts line 96) gives Level 3 as '$29.91 or $30.27' and never says which applies when. The page needs the Fast Food Award condition for each Level 3 rate (store manager in charge of fewer staff or more staff), taken from the subway.ts data."
+   ]
+  },
+  {
+   "path": "/pay-rates/mcdonalds/",
+   "url": "https://pay-calculator-australia.com/pay-rates/mcdonalds/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.11",
+   "centerpiece": "2.25",
+   "main_query": "how much does a 15 year old get paid at maccas",
+   "pre28_clicks": "229",
+   "pre28_impr": "36196",
+   "requests": [
+    "The top pre-crash queries are 'how much does maccas pay 14 year olds' and 'how much does a 15 year old get paid at maccas'. The junior table and FAQ only say 'Under 16' and never name 14 or 15 year olds, or the informal name 'Maccas'. A FAQ question about 14 and 15 year olds (questions are locked) or an age label naming them needs a data change outside this pass.",
+    "The opening (centerpiece 2.39) is in the shared template modules/guide/employer-pay-rates.tsx, not in this data unit. A centerpiece rewrite (instrument, effective date, who it covers, what the table does, what the rest of the page covers) has to happen in that template unit."
+   ]
+  },
+  {
+   "path": "/pay-rates/officeworks/",
+   "url": "https://pay-calculator-australia.com/pay-rates/officeworks/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.12",
+   "centerpiece": "3.79",
+   "main_query": "officeworks pay",
+   "pre28_clicks": "80",
+   "pre28_impr": "3292",
+   "requests": [
+    "Same as McDonald's: the opening paragraph is in the shared template modules/guide/employer-pay-rates.tsx, so this data unit cannot rewrite the centerpiece."
+   ]
+  },
+  {
+   "path": "/pay-rates/kmart/",
+   "url": "https://pay-calculator-australia.com/pay-rates/kmart/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.07",
+   "centerpiece": "2.06",
+   "main_query": "how much does kmart pay 15 year olds",
+   "pre28_clicks": "143",
+   "pre28_impr": "9393",
+   "requests": [
+    "Most top queries ask about 15 and 16 year olds ('how much does kmart pay 15 year olds', 'kmart pay rates 16 year old'). The template's opening paragraph in modules/guide/employer-pay-rates.tsx gives only the adult Retail Assistant rate. For employers with a juniorScale, the opening could also render the under-16 figure from code (base x 0.45). That is a template change, outside this unit.",
+    "kmart.ts line 47 (instrument.coverage) opens with 'It covers...' and renders as its own paragraph after the facts list, so 'It' has nothing to refer to. The checker locks it as prop:instrument. A human should change the opening to 'The Kmart National Agreement 2024 covers...'."
+   ]
+  },
+  {
+   "path": "/pay-rates/liquorland/",
+   "url": "https://pay-calculator-australia.com/pay-rates/liquorland/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.09",
+   "centerpiece": "3.54",
+   "main_query": "liquorland pay rate",
+   "pre28_clicks": "32",
+   "pre28_impr": "1300",
+   "requests": [
+    "liquorland.ts line 64 (notices[0]) still contains an em dash ('4.75% in 2026 \u2014 so your payslip may differ by a cent'). The checker locks this string as dash-key, so a human edit is needed: replace ' \u2014 so' with ', so'."
+   ]
+  },
+  {
+   "path": "/pay-rates/subway/",
+   "url": "https://pay-calculator-australia.com/pay-rates/subway/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.05",
+   "centerpiece": "3.69",
+   "main_query": "subway pay rate",
+   "pre28_clicks": "115",
+   "pre28_impr": "4259",
+   "requests": [
+    "3 of the top 5 pre-crash queries are age-specific ('subway pay rate 15 year old australia', 'how much does subway pay 15/16 year olds'). The opening, from the template modules/guide/employer-pay-rates.tsx, gives only the adult Level 1 rate. The under-16 figure ($11.12, or $13.90 casual) only appears in the junior table and the FAQ further down. Consider adding a junior-rate sentence or a jump link in the header for employers that have publishedJuniorRates."
+   ]
+  },
+  {
+   "path": "/pay-rates/aldi/",
+   "url": "https://pay-calculator-australia.com/pay-rates/aldi/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.06",
+   "centerpiece": "3.80",
+   "main_query": "aldi pay rates 2026",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "instrument.coverage (aldi.ts line 54) is locked by the checker, but it renders as its own paragraph after the facts <dl> and opens with \"It covers...\", so the pronoun has nothing to refer to. It should open with \"The ALDI Prestons agreement covers...\". This needs an unlock or a source edit."
+   ]
+  },
+  {
+   "path": "/pay-rates/bunnings/",
+   "url": "https://pay-calculator-australia.com/pay-rates/bunnings/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.13",
+   "centerpiece": "3.71",
+   "main_query": "bunnings eba 2026",
+   "pre28_clicks": "257",
+   "pre28_impr": "16060",
+   "requests": [
+    "The page opening is the shared template in modules/guide/employer-pay-rates.tsx, not this unit, so I could not rewrite the centerpiece. The top pre-crash queries are 'bunnings eba 2026' and 'bunnings retail enterprise agreement 2026'. The opening sentence names only the 2023 agreement and the September 2025 rate. It needs a template field, for example an opening status line, that says the 2026 agreement was voted up and is waiting for FWC approval, and gives the proposed $29.86 Team Member rate.",
+    "nextIncrease.detail is never rendered on this page. When an enterpriseAgreement object exists, the template shows only nextIncrease.date. That leaves the 4.25% rise, $29.86 and the back-pay detail to the EA section and FAQs further down the page. Consider rendering it near the top."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

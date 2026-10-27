@@ -94,6 +94,19 @@ export function PublicHospitalAnswerBox({ occ }: { occ: Occupation }) {
             </dd>
           </div>
         ) : null}
+        {headline && occ.award && headline.casualHourly !== null ? (
+          <div className="border-b border-sandstone-dark/20 pb-2">
+            <dt className="text-sm text-warmgray">
+              <a href="#pay-rates" className="hover:text-eucalyptus-dark hover:underline">
+                Casual award minimum, private employers
+              </a>
+            </dt>
+            <dd className="text-base font-semibold text-navy">
+              {money(headline.casualHourly)} an hour{" "}
+              <span className="text-sm font-normal text-warmgray">({occ.award.code})</span>
+            </dd>
+          </div>
+        ) : null}
       </dl>
       <h3 className="mb-2 mt-5 text-base font-bold text-navy">Public hospital pay by state</h3>
       <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">

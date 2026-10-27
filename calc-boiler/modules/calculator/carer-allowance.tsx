@@ -78,7 +78,7 @@ export default function CarerAllowancePage({ children, afterCalculator }: { chil
                     <Row label="Carer Supplement (once a year)" value={formatAUD(r.supplements, 2)} />
                     <Row label="Total over a year (26 fortnights + supplements)" value={formatAUD(r.yearly, 2)} bold highlight />
                   </div>
-                  <p className="text-xs text-warmgray-light">Carer Supplement is paid if you get the payment for a period that includes 1 July. Carer Payment is estimated with the single pension income test only — use the <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment calculator</Link> for couples, the Work Bonus and the hours check.</p>
+                  <p className="text-xs text-warmgray-light">Carer Supplement is paid if you get the payment for a period that includes 1 July. Carer Payment is estimated with the single pension income test only. Use the <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment calculator</Link> for couples, the Work Bonus and the hours check.</p>
                 </div>
               </div>
             </CardContent>

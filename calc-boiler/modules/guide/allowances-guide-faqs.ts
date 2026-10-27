@@ -1,8 +1,32 @@
+import { formatAUD } from "@/lib/constants";
+import { allowanceRows, type AllowanceKind, type AllowanceRow } from "@/lib/constants/allowances-guide";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Definitions are from the
 // Fair Work Ombudsman "Allowances" page (read 5 October 2026); amounts live in
-// the award tables on the page, which come from lib/data/job-pay-rates/.
+// the award tables on the page, which come from lib/data/job-pay-rates/. The
+// amounts quoted in the answers below are read from the same rows, so the FAQ
+// and its JSON-LD move with the tables at each award variation.
+
+/** The first dollar figure in a row's amount, e.g. "$16.79 per week" gives 16.79. */
+export function firstDollar(r: AllowanceRow | undefined): number {
+  const m = r?.amount.match(/\$([\d,]+(?:\.\d+)?)/);
+  return m ? Number(m[1].replace(/,/g, "")) : 0;
+}
+
+function row(kind: AllowanceKind, awardCode: string, allowance: string): AllowanceRow | undefined {
+  return allowanceRows(kind).find((r) => r.awardCode === awardCode && r.allowance === allowance);
+}
+
+const amt = (r: AllowanceRow | undefined) => formatAUD(firstDollar(r), 2);
+
+const FIRST_AID_HOSPITALITY = row("first-aid", "MA000009", "First aid allowance");
+const FIRST_AID_RETAIL = row("first-aid", "MA000004", "First aid allowance");
+const FIRST_AID_CLERKS = row("first-aid", "MA000002", "First aid allowance");
+const SPLIT_HOSPITALITY = row("split-shift", "MA000009", "Split shift allowance");
+// The Hospitality Award's rate for a break of more than 3 hours sits in the same row's note.
+const SPLIT_HOSPITALITY_LONG = Number(SPLIT_HOSPITALITY?.note.match(/\$([\d.]+) for more than 3 hours/)?.[1] ?? 0);
+const BROKEN_CHILDRENS = row("split-shift", "MA000120", "Broken shift allowance");
 
 export const ALLOWANCES_GUIDE_FAQS: Faq[] = [
   {
@@ -15,7 +39,7 @@ export const ALLOWANCES_GUIDE_FAQS: Faq[] = [
   },
   {
     q: "How much is the first aid allowance?",
-    a: "The first aid allowance varies by award: for example $13.43 a week for full-time hospitality staff, $14.55 a week under the General Retail Industry Award and $16.79 a week under the Clerks Award. You are paid it if you hold a current first aid qualification and your employer appoints you to perform first aid duty. See the table on this page for each award.",
+    a: `The first aid allowance varies by award: for example ${amt(FIRST_AID_HOSPITALITY)} a week for full-time hospitality staff, ${amt(FIRST_AID_RETAIL)} a week under the General Retail Industry Award and ${amt(FIRST_AID_CLERKS)} a week under the Clerks Award. You are paid it if you hold a current first aid qualification and your employer appoints you to perform first aid duty. See the table on this page for each award.`,
   },
   {
     q: "Is a tool allowance paid if my employer supplies the tools?",
@@ -23,7 +47,7 @@ export const ALLOWANCES_GUIDE_FAQS: Faq[] = [
   },
   {
     q: "What is a split shift or broken shift allowance?",
-    a: "A split shift or broken shift allowance is an extra payment made when your shift is split into two or more periods with an unpaid break between them. For example, the Hospitality Industry (General) Award pays $3.69 a day for a break of 2 to 3 hours and $5.60 for a longer break, while the Children's Services Award pays $21.38 for each day you work two separate shifts.",
+    a: `A split shift or broken shift allowance is an extra payment made when your shift is split into two or more periods with an unpaid break between them. For example, the Hospitality Industry (General) Award pays ${amt(SPLIT_HOSPITALITY)} a day for a break of 2 to 3 hours and ${formatAUD(SPLIT_HOSPITALITY_LONG, 2)} for a longer break, while the Children's Services Award pays ${amt(BROKEN_CHILDRENS)} for each day you work two separate shifts.`,
   },
   {
     q: "Is an allowance taxed?",

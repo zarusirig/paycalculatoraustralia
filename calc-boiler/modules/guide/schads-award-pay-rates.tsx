@@ -158,7 +158,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                       If you open the SCHADS award text and read clause 15, Level 4 pay point 1 says <strong>{formatAUD(CLAUSE_15_LEVEL_4, 2)}</strong> a week. That is not the rate you are owed. Equal Remuneration Order <strong>{SCHADS_AWARD.eroReference}</strong> applies on top for social and community services and crisis accommodation classifications, and the award&rsquo;s own note confirms the ERO rates &ldquo;form employees&rsquo; ordinary rates of pay for all purposes&rdquo;.
                     </p>
                     <p className="mb-2 text-sm leading-relaxed text-navy">
-                      The operative rate is <strong>{formatAUD(L4.weekly, 2)}</strong> &mdash; <strong>{ERO_UPLIFT_PCT}% higher</strong>, a difference of {formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week or about {formatAUD((L4.weekly - CLAUSE_15_LEVEL_4) * 52, 0)} a year.
+                      The operative rate is <strong>{formatAUD(L4.weekly, 2)}</strong>, <strong>{ERO_UPLIFT_PCT}% higher</strong>, a difference of {formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week or about {formatAUD((L4.weekly - CLAUSE_15_LEVEL_4) * 52, 0)} a year.
                     </p>
                     <p className="text-sm leading-relaxed text-navy">
                       <strong>The ERO tables begin at Level {SCHADS_AWARD.eroLowestLevel}.</strong> Level 1 has no ERO row and receives no uplift, so its rates below are the plain clause 15 minimums, and those minimums are also the operative rates. Levels {SCHADS_AWARD.eroLowestLevel} to 8 are ERO-inclusive.

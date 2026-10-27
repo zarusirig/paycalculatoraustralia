@@ -125,7 +125,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
           <section>
             <H2 id="pay-points">{label} Pay Points and Take-Home Pay</H2>
             <p>
-              Every {config.stepWord} in {label}, from {config.effective}. Fortnightly figures divide the annual salary by 26. Take-home pay uses 2026-27 resident tax rates, the Medicare levy and no HECS.
+              The table lists every {config.stepWord} in {label}, from {config.effective}. Fortnightly figures divide the annual salary by 26. Take-home pay uses 2026-27 resident tax rates, the Medicare levy and no HECS.
             </p>
             <DataTable
               head={[...(multiBand ? ["Value range"] : []), "Step", "Salary", "Gross per fortnight", "Take-home a year", "Take-home per fortnight", "Full breakdown"]}

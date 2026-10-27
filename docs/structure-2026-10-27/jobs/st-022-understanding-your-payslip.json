@@ -1,0 +1,112 @@
+{
+ "name": "st-022-understanding-your-payslip",
+ "files": [
+  "app/annual-leave-guide/page.tsx",
+  "app/contractor-vs-employee-calculator/page.tsx",
+  "app/fringe-benefits-tax/page.tsx",
+  "app/salary-sacrifice-calculator/page.tsx",
+  "app/understanding-your-payslip/page.tsx",
+  "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+  "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+  "modules/calculator/contractor-vs-employee-calculator.tsx",
+  "modules/calculator/salary-sacrifice-calculator-content.tsx",
+  "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+  "modules/calculator/salary-sacrifice-calculator.tsx",
+  "modules/guide/annual-leave-guide-faqs.ts",
+  "modules/guide/annual-leave-guide.tsx",
+  "modules/guide/fringe-benefits-tax-faqs.ts",
+  "modules/guide/fringe-benefits-tax.tsx",
+  "modules/guide/understanding-your-payslip-faqs.ts",
+  "modules/guide/understanding-your-payslip.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/understanding-your-payslip/",
+   "url": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "inPlan": false,
+   "intent": "definition",
+   "format_fit": "3.90",
+   "centerpiece": "3.62",
+   "main_query": "understanding your payslip",
+   "pre28_clicks": "2",
+   "pre28_impr": "1484",
+   "requests": [
+    "The 'What Changed for Payslips' intro (line 355) and its 4-item list (lines 358-361) should name the same 4 changes. Either add a maximum super contribution base item to the list or change the intro. This is a content and structure decision, not something this pass can make.",
+    "Lines 260, 273, 276 and 310 type their figures ($1,700, $65.38, $3,269.23, $392.31, $10,200). They should be expressions from EX85, fn() and SUPER_GUARANTEE so they stay in sync with the tax engine.",
+    "The 'What must be legally included on an Australian payslip?' answer is a list of eight or more mandatory items written as prose. It would work better as a <ul> in the FAQ, but the FAQ structure locks that this pass. I split it into three sentences instead."
+   ]
+  },
+  {
+   "path": "/salary-sacrifice-calculator/",
+   "url": "https://pay-calculator-australia.com/salary-sacrifice-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.37",
+   "centerpiece": "3.81",
+   "main_query": "salary sacrifice calculator",
+   "pre28_clicks": "23",
+   "pre28_impr": "3002",
+   "requests": [
+    "The comparison table (lines 233-258) has a 'Net Benefit' column that repeats 'Tax Saved'. It needs a real net-benefit formula or the column should be removed.",
+    "Several bracket figures are hard-coded in prose and table cells while the second rate is pulled from TAX_BRACKETS: 30%, 37%, 45%, $45,000, $135,000, $190,000, $0.15/$0.22/$0.30, and '15% bracket' at lines 199 and 478. These should come from TAX_BRACKETS so the page cannot drift. The '15% bracket' wording only holds while TAX_BRACKETS[1].rate is 15%.",
+    "The result note uses three bold values in one passage. The JSX text around them is short and locked, so the comma splice could only be partly fixed ('a difference of'). A reword in code would let the note say the gap is the income tax and Medicare levy saved."
+   ]
+  },
+  {
+   "path": "/fringe-benefits-tax/",
+   "url": "https://pay-calculator-australia.com/fringe-benefits-tax/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.92",
+   "centerpiece": "3.81",
+   "main_query": "fbt gross up rates",
+   "pre28_clicks": "4",
+   "pre28_impr": "2049",
+   "requests": [
+    "Top queries are 'fbt rate', 'fbt gross up rates', 'fbt interest rate' and 'fbt benchmark interest rate' (lookup-rate-table intent). The opening gives the rate and gross-up rates but not the benchmark interest rate, and the rates table is in section 4. The opening paragraph needs a {BENCH} expression (and {PARKING}), or the rates and thresholds table should move directly under the header.",
+    "Hard-coded figures in prose and tables (47%, 2.0802, 1.8868, $2,000, $300, $69,528, $250,000, 12% SG) should render from constants (FBT.rate, FBT.grossUpType1/2, FBT.reportableThreshold, HECS_HELP.minimumThreshold, etc.) so they cannot drift from lib/constants."
+   ]
+  },
+  {
+   "path": "/annual-leave-guide/",
+   "url": "https://pay-calculator-australia.com/annual-leave-guide/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "2.73",
+   "centerpiece": "3.02",
+   "main_query": "annual leave pay rate",
+   "pre28_clicks": "2",
+   "pre28_impr": "708",
+   "requests": [
+    "Top queries include \"is 4 weeks annual leave 28 days\" and \"25 days annual leave\". The page says 4 weeks = 20 days and 5 weeks = 25 days, but has no sentence on working days vs calendar days (4 weeks = 28 calendar days = 20 working days for a 5-day week). That needs a new sentence with figures, which this pass cannot add.",
+    "Line 46 links \"Leave Calculator\" (/leave-calculator/) for the accrued balance, but that tool is the payout calculator (annual base salary + years of service, full-time NES weeks). The balance and accrual tool with ordinary hours is /annual-leave-calculator/. Consider retargeting the link or adding one, especially for part-time readers.",
+    "Lines 108 and 110 link to /christmas-shutdown-annual-leave/ in consecutive paragraphs. The line 110 paragraph exists only to repeat the link and could be merged or removed."
+   ]
+  },
+  {
+   "path": "/contractor-vs-employee-calculator/",
+   "url": "https://pay-calculator-australia.com/contractor-vs-employee-calculator/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "4.39",
+   "centerpiece": "3.35",
+   "main_query": "contractor vs employee calculator australia",
+   "pre28_clicks": "18",
+   "pre28_impr": "1299",
+   "requests": [
+    "Replace the hand-typed match-the-package ranges ($138,000-$145,000 at line 286, $135,000 to $145,000 at line 310, 30-45% at line 217) with one computed expression, ideally the same formula the calculator uses for 'Value Equivalent required approx.', so the prose, the worked example and the tool agree.",
+    "The em dashes in the label separators of the two lists at lines 174-178 and 301-306 could not be changed. Items 176 and 304 hold short locked JSX strings between <strong> tags, so I left both lists as they were to keep the punctuation parallel. A code edit to turn them into colons would make them match the other lists, which now use colons.",
+    "The checkbox label at contractor-vs-employee-calculator.tsx line 101 hard-codes 'Self-fund 12% Superannuation'. It should render formatPercent(SUPER_GUARANTEE.rate) so it cannot drift from the constant.",
+    "The 'Value Equivalent required approx.' box uses an undisclosed 1.15 rule-of-thumb multiplier (line 44). It needs a one-line method note, or alignment with the FAQ's 30 to 45% markup."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

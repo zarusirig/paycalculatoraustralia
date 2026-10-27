@@ -51,6 +51,63 @@ export default function AnnualLeaveGuidePage() {
               <p>Part-time employees receive the same 4-week entitlement on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours</strong> of annual leave per year instead of the 152 hours a full-time employee on a 38-hour week accumulates. Casual employees do not accrue annual leave at all; their <strong>25% casual loading</strong> compensates for the absence of leave entitlements, redundancy pay, and notice periods. Use our <Link href="/leave-calculator/">Leave Calculator</Link> to see your accrued balance and its payout value from your annual base salary and years of service.</p>
             </section>
 
+            {/* ── H2 6: Annual Leave Entitlements Table ── */}
+            <section id="entitlements-table">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Annual Leave Entitlements for Each Employment Type?</h2>
+              <p>Annual leave entitlements differ based on employment type, with <strong>casual employees receiving no annual leave</strong> and shift workers receiving an extra week compared to standard full-time employees.</p>
+              <div className="not-prose overflow-x-auto my-6">
+                <table className="min-w-full text-sm border border-gray-200 rounded-lg">
+                  <thead className="bg-navy text-white">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-semibold">Employment Type</th>
+                      <th className="px-4 py-3 text-left font-semibold">Annual Leave (Weeks)</th>
+                      <th className="px-4 py-3 text-left font-semibold">Hours/Year (38hr week)</th>
+                      <th className="px-4 py-3 text-left font-semibold">Leave Loading</th>
+                      <th className="px-4 py-3 text-left font-semibold">Paid Out on Termination</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-warmgray">
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-medium text-navy">Full-time</td>
+                      <td className="px-4 py-3"><strong>4 weeks</strong></td>
+                      <td className="px-4 py-3">152 hours</td>
+                      <td className="px-4 py-3">17.5% (if Award applies)</td>
+                      <td className="px-4 py-3">Yes</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-medium text-navy">Part-time</td>
+                      <td className="px-4 py-3"><strong>4 weeks (pro-rata)</strong></td>
+                      <td className="px-4 py-3">Pro-rata (e.g., 80 hrs at 20hr/wk)</td>
+                      <td className="px-4 py-3">17.5% (if Award applies)</td>
+                      <td className="px-4 py-3">Yes</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-medium text-navy">Shift worker</td>
+                      <td className="px-4 py-3"><strong>5 weeks</strong></td>
+                      <td className="px-4 py-3">190 hours</td>
+                      <td className="px-4 py-3">17.5% or penalty rate comparison</td>
+                      <td className="px-4 py-3">Yes</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-medium text-navy">Casual</td>
+                      <td className="px-4 py-3"><strong>0 weeks</strong></td>
+                      <td className="px-4 py-3">0 hours</td>
+                      <td className="px-4 py-3">N/A (25% casual loading instead)</td>
+                      <td className="px-4 py-3">No</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-medium text-navy">Fixed-term contract</td>
+                      <td className="px-4 py-3"><strong>4 weeks</strong></td>
+                      <td className="px-4 py-3">152 hours</td>
+                      <td className="px-4 py-3">Per contract/Award</td>
+                      <td className="px-4 py-3">Yes (at contract end)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Fixed-term contract employees accrue leave identically to permanent employees. If the contract ends and is not renewed, all accrued leave is paid out in the final pay. Employees transitioning from casual to permanent begin accruing annual leave from the date of conversion. Prior casual service does not count toward leave accrual, but it may count toward long service leave in some states.</p>
+            </section>
+
             {/* ── H2 2: How Is Annual Leave Calculated? ── */}
             <section id="accrual">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Annual Leave Calculated?</h2>
@@ -114,63 +171,6 @@ export default function AnnualLeaveGuidePage() {
               <p>Excessive leave provisions apply when an employee&apos;s balance exceeds <strong>8 weeks (304 hours for full-time)</strong> or <strong>10 weeks for shift workers</strong>. The employer must first genuinely attempt to reach agreement on reducing the balance. If agreement cannot be reached within a reasonable period, the employer can issue a written direction requiring the employee to take a specified amount of leave. The direction must not reduce the balance below <strong>6 weeks</strong>, must provide at least <strong>8 weeks&apos; notice</strong>, and must not require the employee to take fewer than <strong>1 week</strong> at a time.</p>
               <p>For a worked example of how many days a Christmas closure uses, and how public holidays inside it are treated, see the <Link href="/christmas-shutdown-annual-leave/">Christmas shutdown and annual leave guide</Link>.</p>
               <p>Outside these situations, an employer cannot unreasonably refuse a leave request. The Fair Work Act requires that requests and refusals be &quot;reasonable,&quot; considering business needs, the employee&apos;s personal circumstances, and the amount of notice given.</p>
-            </section>
-
-            {/* ── H2 6: Annual Leave Entitlements Table ── */}
-            <section id="entitlements-table">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Annual Leave Entitlements for Each Employment Type?</h2>
-              <p>Annual leave entitlements differ based on employment type, with <strong>casual employees receiving no annual leave</strong> and shift workers receiving an extra week compared to standard full-time employees.</p>
-              <div className="not-prose overflow-x-auto my-6">
-                <table className="min-w-full text-sm border border-gray-200 rounded-lg">
-                  <thead className="bg-navy text-white">
-                    <tr>
-                      <th className="px-4 py-3 text-left font-semibold">Employment Type</th>
-                      <th className="px-4 py-3 text-left font-semibold">Annual Leave (Weeks)</th>
-                      <th className="px-4 py-3 text-left font-semibold">Hours/Year (38hr week)</th>
-                      <th className="px-4 py-3 text-left font-semibold">Leave Loading</th>
-                      <th className="px-4 py-3 text-left font-semibold">Paid Out on Termination</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-warmgray">
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-medium text-navy">Full-time</td>
-                      <td className="px-4 py-3"><strong>4 weeks</strong></td>
-                      <td className="px-4 py-3">152 hours</td>
-                      <td className="px-4 py-3">17.5% (if Award applies)</td>
-                      <td className="px-4 py-3">Yes</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-navy">Part-time</td>
-                      <td className="px-4 py-3"><strong>4 weeks (pro-rata)</strong></td>
-                      <td className="px-4 py-3">Pro-rata (e.g., 80 hrs at 20hr/wk)</td>
-                      <td className="px-4 py-3">17.5% (if Award applies)</td>
-                      <td className="px-4 py-3">Yes</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-medium text-navy">Shift worker</td>
-                      <td className="px-4 py-3"><strong>5 weeks</strong></td>
-                      <td className="px-4 py-3">190 hours</td>
-                      <td className="px-4 py-3">17.5% or penalty rate comparison</td>
-                      <td className="px-4 py-3">Yes</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-navy">Casual</td>
-                      <td className="px-4 py-3"><strong>0 weeks</strong></td>
-                      <td className="px-4 py-3">0 hours</td>
-                      <td className="px-4 py-3">N/A (25% casual loading instead)</td>
-                      <td className="px-4 py-3">No</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-medium text-navy">Fixed-term contract</td>
-                      <td className="px-4 py-3"><strong>4 weeks</strong></td>
-                      <td className="px-4 py-3">152 hours</td>
-                      <td className="px-4 py-3">Per contract/Award</td>
-                      <td className="px-4 py-3">Yes (at contract end)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p>Fixed-term contract employees accrue leave identically to permanent employees. If the contract ends and is not renewed, all accrued leave is paid out in the final pay. Employees transitioning from casual to permanent begin accruing annual leave from the date of conversion. Prior casual service does not count toward leave accrual, but it may count toward long service leave in some states.</p>
             </section>
 
             {/* ── H2 7: What Is the Difference Between Annual Leave and Personal Leave? ── */}

@@ -48,6 +48,8 @@ export default function MarginalTaxRatesPage() {
   const noPhi = raiseOutcome({ salary: 100_000, raise: 10_000, noPrivateHealth: true });
   const withPhi = raiseOutcome({ salary: 100_000, raise: 10_000 });
   const topBand = bands[bands.length - 1];
+  // The band the worked example's salary sits in, so the opening's scale rate comes from the constants.
+  const exampleBand = bands.find((b) => example.salary > b.from && example.salary <= b.to) ?? topBand;
 
   return (
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
@@ -55,7 +57,7 @@ export default function MarginalTaxRatesPage() {
 
       <PageHeader title="Marginal Tax Rates Australia 2026-27: What a Raise or Bonus Really Nets">
         <p>
-          <strong>Your marginal tax rate is the tax on your next dollar, not on all of your income.</strong> For an Australian resident, a $10,000 raise on $85,000 is taxed at the 30% scale rate plus the 2% Medicare levy, so you keep {formatAUD(example.netGain)} of it at 2026-27 rates. Your average tax rate (total tax divided by total income) is lower than your marginal rate, and crossing into a higher bracket never lowers your take-home pay. The exception is the Medicare levy surcharge: without private hospital cover, a single who goes over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} pays it on their whole income, so a small raise across that line lowers take-home pay. Enter your current taxable income and the extra income in the calculator below to see what a raise, bonus or overtime adds after tax, each year and each fortnight. Below it, the page shows the all-in marginal rate at every income on the ATO resident scale and what a raise nets at different salaries. It then covers how a HELP debt, the Medicare levy surcharge and bonus withholding change the result.
+          <strong>Your marginal tax rate is the tax on your next dollar, not on all of your income.</strong> For an Australian resident, a {formatAUD(example.raise)} raise on {formatAUD(example.salary)} is taxed at the {formatPercent(exampleBand.scaleRate, 0)} scale rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, so you keep {formatAUD(example.netGain)} of it at 2026-27 rates. Your average tax rate (total tax divided by total income) is lower than your marginal rate, and crossing into a higher bracket never lowers your take-home pay. The exception is the Medicare levy surcharge: without private hospital cover, a single who goes over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} pays it on their whole income, so a small raise across that line lowers take-home pay. Enter your current taxable income and the extra income in the calculator below to see what a raise, bonus or overtime adds after tax, each year and each fortnight. Below it, the page shows the all-in marginal rate at every income on the ATO resident scale and what a raise nets at different salaries. It then covers how a HELP debt, the Medicare levy surcharge and bonus withholding change the result.
         </p>
       </PageHeader>
 
@@ -74,16 +76,6 @@ export default function MarginalTaxRatesPage() {
         <article className={ARTICLE_CLASS}>
           <FeaturedImage placement="content" className="mt-0" />
           <section>
-            <H2 id="marginal-vs-average">Marginal vs Average Tax Rate</H2>
-            <p>
-              The Australian resident tax scale taxes income in slices. The first $18,200 is tax-free, the next slice up to $45,000 is taxed at 15%, and so on up to 45% above $190,000. Your <strong>marginal tax rate</strong> is the rate on the slice your next dollar lands in. Your <strong>average tax rate</strong> is your total tax divided by your total income. Because the lower slices are taxed at lower rates, your average rate sits below your marginal rate.
-            </p>
-            <p>
-              The distinction matters whenever your income changes at the edge: a pay rise, a bonus, overtime, a second job, a salary sacrifice, or a deduction. The edge dollar is taxed at the marginal rate, so that is the rate to use. If you want the scale itself, with the tax payable at every threshold and how 2026-27 compares with 2025-26, see the <Link href="/tax-brackets/">tax brackets page</Link>. This page starts where that one stops: what the scale means for the money you are about to earn.
-            </p>
-          </section>
-
-          <section>
             <H2 id="all-in-bands">The All-In Marginal Rate at Every Income</H2>
             <p>
               The scale rate is not always what the next dollar costs. The Medicare levy and the low income tax offset (LITO) change the real rate in the lower bands. Here is the all-in marginal rate for a resident single taxpayer with no HELP debt, in ten bands:
@@ -101,6 +93,16 @@ export default function MarginalTaxRatesPage() {
             />
             <p>
               Two bands catch people out. Between {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} and {formatAUD(MEDICARE_LEVY.shadeInThreshold)}, the Medicare levy phases in at 10c per dollar, so the all-in rate is 25%, not 15%. And from $37,500 to $66,667 the LITO is withdrawn, which adds 5c per dollar to $45,000 and 1.5c per dollar after it. That is why a raise at $50,000 can cost more than a raise at $90,000, as the table below shows. For the offset itself, see the <Link href="/low-income-tax-offset/">low income tax offset page</Link>.
+            </p>
+          </section>
+
+          <section>
+            <H2 id="marginal-vs-average">Marginal vs Average Tax Rate</H2>
+            <p>
+              The Australian resident tax scale taxes income in slices. The first $18,200 is tax-free, the next slice up to $45,000 is taxed at 15%, and so on up to 45% above $190,000. Your <strong>marginal tax rate</strong> is the rate on the slice your next dollar lands in. Your <strong>average tax rate</strong> is your total tax divided by your total income. Because the lower slices are taxed at lower rates, your average rate sits below your marginal rate.
+            </p>
+            <p>
+              The distinction matters whenever your income changes at the edge: a pay rise, a bonus, overtime, a second job, a salary sacrifice, or a deduction. The edge dollar is taxed at the marginal rate, so that is the rate to use. If you want the scale itself, with the tax payable at every threshold and how 2026-27 compares with 2025-26, see the <Link href="/tax-brackets/">tax brackets page</Link>. This page starts where that one stops: what the scale means for the money you are about to earn.
             </p>
           </section>
 

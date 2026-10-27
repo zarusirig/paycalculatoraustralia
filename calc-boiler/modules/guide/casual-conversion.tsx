@@ -45,7 +45,7 @@ export default function CasualConversionPage() {
 
       <PageHeader featuredImage title="Casual Conversion in Australia: How to Become Permanent and What It Does to Your Pay">
         <p>
-          <strong>If you have been a casual for 6 months (12 months in a small business) and no longer fit the definition of casual employment, you can give your employer written notice that you want to become permanent.</strong> Casual conversion now works through the employee choice pathway in the National Employment Standards. Your employer must consult you and answer in writing within {EMPLOYEE_CHOICE.responseDays} days, and can refuse only for the reasons listed below. Becoming permanent ends your {loading} casual loading and starts paid annual leave, paid sick and carer&rsquo;s leave and paid public holidays you would have worked. The pay comparison below sets casual against permanent gross pay on the same base rate and shows how many paid weeks a casual needs to break even. The rest of the page covers what makes you a casual, each step of the notice process and what changes on your payslip.
+          <strong>If you have been a casual for 6 months (12 months in a small business) and no longer fit the definition of casual employment, you can give your employer written notice that you want to become permanent.</strong> Casual conversion now works through the employee choice pathway in the National Employment Standards, which replaced the old rules on {EMPLOYEE_CHOICE.startDate}. Your employer must consult you and answer in writing within {EMPLOYEE_CHOICE.responseDays} days, and can refuse only for the reasons listed below. Becoming permanent ends your {loading} casual loading and starts paid annual leave, paid sick and carer&rsquo;s leave and paid public holidays you would have worked. The pay comparison below sets casual against permanent gross pay on the same base rate and shows how many paid weeks a casual needs to break even ({c.breakEvenWeeks} weeks for a full-time casual). The rest of the page covers what makes you a casual, each step of the notice process and what changes on your payslip.
         </p>
       </PageHeader>
 
@@ -60,6 +60,28 @@ export default function CasualConversionPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <section>
+            <H2 id="pay-comparison">What Happens to Your Pay</H2>
+            <p>
+              A casual&rsquo;s hourly rate is the base rate plus the {loading} casual loading. Becoming permanent removes the loading and adds paid annual leave, paid sick and carer&rsquo;s leave, paid public holidays you would have worked, and notice and redundancy entitlements. So the same base rate pays a permanent employee for all 52 weeks, with leave inside it, while a casual is paid only for the weeks worked.
+            </p>
+            <p>
+              Take a {formatAUD(base)} an hour base rate, 38 hours a week. A casual is paid {formatAUD(c.casualRate, 2)} an hour. A permanent employee is paid {formatAUD(c.permanentAnnual)} a year for 52 weeks. The casual would need to be paid for <strong>{c.breakEvenWeeks} weeks</strong> (52 ÷ {(1 + EMPLOYMENT.casualLoading).toFixed(2)}) to earn the same.
+            </p>
+            <DataTable
+              head={["Paid weeks in the year", "Casual gross", "Permanent gross", "Casual ahead or behind"]}
+              align={["l", "r", "r", "r"]}
+              rows={WEEKS.map((w) => {
+                const r = compareCasualToPermanent(base, 38, w);
+                return [`${w} weeks`, formatAUD(r.casualAnnualAtWeeks), formatAUD(r.permanentAnnual), `${r.difference >= 0 ? "+" : "−"}${formatAUD(Math.abs(r.difference))}`];
+              })}
+              caption={`${formatAUD(base)} an hour base, 38 hours a week, ${loading} casual loading. Gross pay only: both receive super and are taxed on the same scale. The permanent figure includes paid leave and public holidays.`}
+            />
+            <p>
+              The comparison counts only pay. It ignores paid sick leave, which a casual does not get, notice, redundancy pay, and the security of regular hours, which have value but are hard to price. To see the loading and what it would be worth against permanent pay for your own rate, use the <Link href="/casual-loading-calculator/">casual loading calculator</Link>, and see <Link href="/full-time-vs-part-time-vs-casual/">full-time vs part-time vs casual</Link> for the entitlements side by side.
+            </p>
+          </section>
+
           <section>
             <H2 id="what-is-casual">What Makes You a Casual Employee</H2>
             <p>
@@ -90,28 +112,6 @@ export default function CasualConversionPage() {
             />
             <p>
               The employee choice pathway replaced the old &ldquo;casual conversion&rdquo; rules on {EMPLOYEE_CHOICE.startDate}. Employment before that date is not counted towards the {EMPLOYEE_CHOICE.minMonths} or {EMPLOYEE_CHOICE.minMonthsSmallBusiness} months. You can also become permanent at any time if you and your employer simply agree. Your employer cannot reduce your hours, change your pattern of work or end your employment to avoid your right, and you are protected from adverse action for exercising it.
-            </p>
-          </section>
-
-          <section>
-            <H2 id="pay-comparison">What Happens to Your Pay</H2>
-            <p>
-              A casual&rsquo;s hourly rate is the base rate plus the {loading} casual loading. Becoming permanent removes the loading and adds paid annual leave, paid sick and carer&rsquo;s leave, paid public holidays you would have worked, and notice and redundancy entitlements. So the same base rate pays a permanent employee for all 52 weeks, with leave inside it, while a casual is paid only for the weeks worked.
-            </p>
-            <p>
-              Take a {formatAUD(base)} an hour base rate, 38 hours a week. A casual is paid {formatAUD(c.casualRate, 2)} an hour. A permanent employee is paid {formatAUD(c.permanentAnnual)} a year for 52 weeks. The casual would need to be paid for <strong>{c.breakEvenWeeks} weeks</strong> (52 ÷ {(1 + EMPLOYMENT.casualLoading).toFixed(2)}) to earn the same.
-            </p>
-            <DataTable
-              head={["Paid weeks in the year", "Casual gross", "Permanent gross", "Casual ahead or behind"]}
-              align={["l", "r", "r", "r"]}
-              rows={WEEKS.map((w) => {
-                const r = compareCasualToPermanent(base, 38, w);
-                return [`${w} weeks`, formatAUD(r.casualAnnualAtWeeks), formatAUD(r.permanentAnnual), `${r.difference >= 0 ? "+" : "−"}${formatAUD(Math.abs(r.difference))}`];
-              })}
-              caption={`${formatAUD(base)} an hour base, 38 hours a week, ${loading} casual loading. Gross pay only: both receive super and are taxed on the same scale. The permanent figure includes paid leave and public holidays.`}
-            />
-            <p>
-              The comparison counts only pay. It ignores paid sick leave, which a casual does not get, notice, redundancy pay, and the security of regular hours, which have value but are hard to price. To see the loading and what it would be worth against permanent pay for your own rate, use the <Link href="/casual-loading-calculator/">casual loading calculator</Link>, and see <Link href="/full-time-vs-part-time-vs-casual/">full-time vs part-time vs casual</Link> for the entitlements side by side.
             </p>
           </section>
 

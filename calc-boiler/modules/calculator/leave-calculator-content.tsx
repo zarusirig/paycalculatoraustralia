@@ -21,6 +21,8 @@ import { LEAVE_FAQS, LEAVE_LOADING_RATE } from "./leave-calculator-faqs";
 
 // Figures rendered in the prose below, all from lib/constants.
 const SG_RATE = formatPercent(SUPER_GUARANTEE.rate, 0);
+/** Common award leave loading rate, rendered as "17.5%". */
+const LOADING_PCT = formatPercent(LEAVE_LOADING_RATE, 1);
 /** ATO Schedule 7 flat withholding rate on unused annual leave and loading. */
 const FLAT_RATE = formatPercent(TERMINATION_LOADING_WITHHOLDING.flatRate, 0);
 const LSL_FLAT_RATE = formatPercent(LSL_TAX.flatRate, 0);
@@ -45,12 +47,12 @@ export default function LeaveCalculatorContent() {
     <>
       {/* H2: How Is 17.5% Annual Leave Loading Calculated? */}
       <section>
-        <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is 17.5% Annual Leave Loading Calculated?</h2>
+        <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is {LOADING_PCT} Annual Leave Loading Calculated?</h2>
         <p className="mb-4 text-warmgray">
-          Annual leave loading is an extra <strong>17.5% of your base weekly pay</strong>, paid on top of the ordinary rate for each week of annual leave taken or paid out. This annual leave loading calculator applies the same formula an employer uses: <strong>{EMPLOYMENT.annualLeaveWeeks} weeks × weekly pay × 17.5%</strong> for a full year of accrued leave.
+          Annual leave loading is an extra <strong>{LOADING_PCT} of your base weekly pay</strong>, paid on top of the ordinary rate for each week of annual leave taken or paid out. This annual leave loading calculator applies the same formula an employer uses: <strong>{EMPLOYMENT.annualLeaveWeeks} weeks × weekly pay × {LOADING_PCT}</strong> for a full year of accrued leave.
         </p>
         <p className="mb-4 text-warmgray">
-          The 17.5% rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during annual leave than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
+          The {LOADING_PCT} rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during annual leave than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Worked Example: Leave Loading at $80,000 Salary</h3>
@@ -59,11 +61,11 @@ export default function LeaveCalculatorContent() {
         </p>
         <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
           <li>Weekly pay: $80,000 / 52 = <strong>{formatAUD(80000 / 52)}</strong></li>
-          <li>Leave loading per week: {formatAUD(80000 / 52)} x 17.5% = <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE)}</strong></li>
+          <li>Leave loading per week: {formatAUD(80000 / 52)} x {LOADING_PCT} = <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE)}</strong></li>
           <li>Total loading for {EMPLOYMENT.annualLeaveWeeks} weeks of leave: {formatAUD((80000 / 52) * LEAVE_LOADING_RATE)} x {EMPLOYMENT.annualLeaveWeeks} = <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong></li>
         </ol>
         <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-sm text-navy mb-4">
-          <strong>Award comparison clause:</strong> Some Awards require employers to pay the <em>higher of</em> 17.5% leave loading or the penalty rates/shift allowances the employee would have earned. The employer compares both amounts and pays whichever is greater.
+          <strong>Award comparison clause:</strong> Some Awards require employers to pay the <em>higher of</em> {LOADING_PCT} leave loading or the penalty rates/shift allowances the employee would have earned. The employer compares both amounts and pays whichever is greater.
         </div>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Who Gets Leave Loading?</h3>
@@ -174,7 +176,7 @@ export default function LeaveCalculatorContent() {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">4-Week Annual Leave Value at Common Salaries (FY{SITE_CONFIG.financialYear})</h2>
         <p className="mb-4 text-warmgray">
-          The gross value of <strong>4 weeks of accrued annual leave</strong> ranges from approximately <strong>{formatAUD((50000 / 52) * 4)}</strong> at a $50,000 salary to <strong>{formatAUD((120000 / 52) * 4)}</strong> at a $120,000 salary, before leave loading or tax. The table below shows the base payout, the 17.5% leave loading where applicable, and the total gross payout (pre-tax) at 6 common salary levels.
+          The gross value of <strong>4 weeks of accrued annual leave</strong> ranges from approximately <strong>{formatAUD((50000 / 52) * 4)}</strong> at a $50,000 salary to <strong>{formatAUD((120000 / 52) * 4)}</strong> at a $120,000 salary, before leave loading or tax. The table below shows the base payout, the {LOADING_PCT} leave loading where applicable, and the total gross payout (pre-tax) at 6 common salary levels.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
           <table className="w-full text-sm">
@@ -183,7 +185,7 @@ export default function LeaveCalculatorContent() {
                 <th className="px-4 py-3 text-left font-semibold text-navy">Annual Salary</th>
                 <th className="px-4 py-3 text-right font-semibold text-navy">Weekly Base Pay</th>
                 <th className="px-4 py-3 text-right font-semibold text-navy">Base Payout (4 wks)</th>
-                <th className="px-4 py-3 text-right font-semibold text-navy">Leave Loading (17.5%)</th>
+                <th className="px-4 py-3 text-right font-semibold text-navy">Leave Loading ({LOADING_PCT})</th>
                 <th className="px-4 py-3 text-right font-semibold text-navy">Total Gross Payout</th>
               </tr>
             </thead>
@@ -339,7 +341,7 @@ export default function LeaveCalculatorContent() {
         <p className="mb-2 text-sm">Leave calculations are based on:</p>
         <ul className="list-disc pl-4 space-y-1">
           <li>NES minimum: 4 weeks (152 hours) annual leave per year of service for full-time employees</li>
-          <li>Leave loading at 17.5% of base weekly pay (where applicable)</li>
+          <li>Leave loading at {LOADING_PCT} of base weekly pay (where applicable)</li>
           <li>Assumes no leave has been taken, showing maximum accrued entitlement</li>
           <li>Tax on payout is not calculated here. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">take-home pay calculator</Link> for that</li>
         </ul>

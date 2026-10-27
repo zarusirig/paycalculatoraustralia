@@ -44,6 +44,18 @@ const TBODY = "divide-y divide-sandstone-dark/20 bg-white";
 
 const money = (v: number) => formatAUD(v, 2);
 
+/** Does a junior band label ("Under 16", "16 and under", "17", "20 and over") cover this age? */
+export function bandCovers(label: string, age: number): boolean {
+  const under = /^under (\d+)/i.exec(label);
+  if (under) return age < Number(under[1]);
+  const andUnder = /^(\d+) and (?:under|younger)/i.exec(label);
+  if (andUnder) return age <= Number(andUnder[1]);
+  const andOver = /^(\d+) and over/i.exec(label);
+  if (andOver) return age >= Number(andOver[1]);
+  const exact = /^(\d+)\b/.exec(label);
+  return exact ? age === Number(exact[1]) : false;
+}
+
 function PenaltyTable({ rows, caption }: { rows: PenaltyRow[]; caption: string }) {
   return (
     <div className={TABLE_WRAP}>
@@ -78,6 +90,19 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   const entry = entryRate(e);
   const juniors = juniorRates(e);
   const anyDerivedJunior = juniors.some((j) => !j.published);
+  // Structure pass (27 Oct 2026): most employer queries ask what a 15 or 16
+  // year old gets, so the opening gives those two rows of the junior table.
+  const junior15 = juniors.find((j) => bandCovers(j.age, 15));
+  const junior16 = juniors.find((j) => bandCovers(j.age, 16));
+  const juniorLead = junior15 ?? junior16;
+  const junior16Separate = junior15 && junior16 && junior15 !== junior16 ? junior16 : undefined;
+  const juniorLeadAge = junior15 ? (junior16 && !junior16Separate ? "15 and 16" : "15") : "16";
+  const juniorCasual = (v: number) =>
+    entry.noCasual ? null : (
+      <>
+        {" "}(<strong className="text-navy">{money(v)}</strong> casual)
+      </>
+    );
   // J7: salaried instruments (cabin crew, Australia Post) carry their own annual salary.
   const entryAnnual = annualFor(e, entry);
   const takeHome = takeHomeHrefForAnnual(entryAnnual);
@@ -92,7 +117,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   const allowances = e.allowances ?? [];
   // 22 Oct 2026: the "{Employer} enterprise agreement 2026" section. When it is
   // present the agreement's lifecycle rows (approved, expiry, next rise) live
-  // there instead of in the table at the top, so nothing is said twice.
+  // there instead of in the "Which agreement" facts table, so nothing is said twice.
   const ea = e.enterpriseAgreement;
   const noAgreement = ea?.status === "no-agreement";
 
@@ -162,7 +187,30 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 , or <strong className="text-navy">{money(entry.casualHourly)}</strong> as a casual.
               </>
             )}
+            {juniorLead && (
+              <>
+                {" "}At {juniorLeadAge} the {isAward ? "minimum" : "rate"} is{" "}
+                <strong className="text-navy">{money(juniorLead.hourly)}</strong>
+                {juniorCasual(juniorLead.casualHourly)}
+                {junior16Separate && (
+                  <>
+                    {" "}and at 16 <strong className="text-navy">{money(junior16Separate.hourly)}</strong>
+                    {juniorCasual(junior16Separate.casualHourly)}
+                  </>
+                )}
+                ; every age is in the{" "}
+                <a href="#junior-rates" className="font-medium text-eucalyptus-dark underline hover:text-navy">
+                  junior rates table
+                </a>
+                .
+              </>
+            )}
           </p>
+          {/* Structure pass (27 Oct 2026): a replacement agreement voted up but not yet approved
+              (Bunnings) is what "{employer} eba 2026" searchers want first. */}
+          {ea?.status === "replacement-before-fwc" && e.nextIncrease && (
+            <p className="mb-4 text-lg leading-relaxed text-warmgray">{e.nextIncrease.detail}</p>
+          )}
           <p className="text-sm text-warmgray">
             Pay Calculator Australia is independent and not affiliated with, endorsed by or sponsored
             by {e.name}.
@@ -172,42 +220,6 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="mv-content prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
-            <section id="agreement">
-              <h2 style={HEADING_FONT}>
-                Which {instrumentWord} sets {e.name} pay
-              </h2>
-              <dl className="not-prose my-6 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl border border-sandstone-dark/20 bg-sandstone/40 p-5 text-sm sm:grid-cols-[minmax(0,12rem)_1fr]">
-                {facts.map((f) => (
-                  <div key={f.label} className="contents">
-                    <dt className="font-semibold text-navy">{f.label}</dt>
-                    <dd className="text-warmgray [&_a]:font-medium [&_a]:text-eucalyptus-dark [&_a]:underline">{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p>{e.instrument.coverage}</p>
-              {ea ? (
-                <p>
-                  <strong>Next scheduled increase:</strong>{" "}
-                  {e.nextIncrease ? e.nextIncrease.date : "none scheduled"}. The dates, the pay-rise
-                  schedule and the award comparison are in{" "}
-                  <a href="#enterprise-agreement">{e.name} enterprise agreement 2026</a> below.
-                </p>
-              ) : (
-                e.nextIncrease && (
-                  <p>
-                    <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
-                  </p>
-                )
-              )}
-              {e.awardHref && e.awardLabel && (
-                <p className="text-base">
-                  {isAward ? "Every level: " : "Award floor: "}
-                  <Link href={e.awardHref}>{e.awardLabel}</Link>
-                  {isAward ? "." : <> (<Link href="/enterprise-agreement/">how agreements work</Link>).</>}
-                </p>
-              )}
-            </section>
-
             {e.notices.length > 0 && (
               <div className="not-prose mb-8 space-y-3">
                 {e.notices.map((notice) => (
@@ -308,6 +320,43 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 </section>
               )
             )}
+
+            {/* Structure pass (27 Oct 2026): the rate tables come first; which instrument sets the pay follows them. */}
+            <section id="agreement">
+              <h2 style={HEADING_FONT}>
+                Which {instrumentWord} sets {e.name} pay
+              </h2>
+              <dl className="not-prose my-6 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl border border-sandstone-dark/20 bg-sandstone/40 p-5 text-sm sm:grid-cols-[minmax(0,12rem)_1fr]">
+                {facts.map((f) => (
+                  <div key={f.label} className="contents">
+                    <dt className="font-semibold text-navy">{f.label}</dt>
+                    <dd className="text-warmgray [&_a]:font-medium [&_a]:text-eucalyptus-dark [&_a]:underline">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p>{e.instrument.coverage}</p>
+              {ea ? (
+                <p>
+                  <strong>Next scheduled increase:</strong>{" "}
+                  {e.nextIncrease ? e.nextIncrease.date : "none scheduled"}. The dates, the pay-rise
+                  schedule and the award comparison are in{" "}
+                  <a href="#enterprise-agreement">{e.name} enterprise agreement 2026</a> below.
+                </p>
+              ) : (
+                e.nextIncrease && (
+                  <p>
+                    <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
+                  </p>
+                )
+              )}
+              {e.awardHref && e.awardLabel && (
+                <p className="text-base">
+                  {isAward ? "Every level: " : "Award floor: "}
+                  <Link href={e.awardHref}>{e.awardLabel}</Link>
+                  {isAward ? "." : <> (<Link href="/enterprise-agreement/">how agreements work</Link>).</>}
+                </p>
+              )}
+            </section>
 
             <section id="penalty-rates">
               <h2 style={HEADING_FONT}>{e.name} penalty rates: evenings, weekends and public holidays</h2>

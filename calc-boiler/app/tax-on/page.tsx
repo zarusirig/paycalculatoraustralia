@@ -9,10 +9,11 @@ import { withFeaturedImage } from "@/lib/featured-image";
 // tax engine at build time.
 const first = TAX_ON_SALARIES[0];
 const last = TAX_ON_SALARIES[TAX_ON_SALARIES.length - 1];
-const example = calculatePayBreakdown({ grossSalary: 80_000 });
+const EXAMPLE_SALARY = 80_000;
+const example = calculatePayBreakdown({ grossSalary: EXAMPLE_SALARY });
 
 const TITLE = `Tax on Every Salary in Australia: ${formatAUD(first)} to ${formatAUD(last)} (${SITE_CONFIG.financialYear})`;
-const DESCRIPTION = `Income tax and Medicare levy on ${TAX_ON_SALARIES.length} salaries from ${formatAUD(first)} to ${formatAUD(last)} for ${SITE_CONFIG.financialYear}. E.g. tax on $80,000 is ${formatAUD(example.netIncomeTax)} plus ${formatAUD(example.medicareLevy)} Medicare. Bracket by bracket.`;
+const DESCRIPTION = `Income tax and Medicare levy on ${TAX_ON_SALARIES.length} salaries from ${formatAUD(first)} to ${formatAUD(last)} for ${SITE_CONFIG.financialYear}. E.g. tax on ${formatAUD(EXAMPLE_SALARY)} is ${formatAUD(example.netIncomeTax)} plus ${formatAUD(example.medicareLevy)} Medicare. Bracket by bracket.`;
 const URL = `${SITE_CONFIG.baseUrl}/tax-on/`;
 
 export const metadata: Metadata = withFeaturedImage({
@@ -31,6 +32,7 @@ function TaxOnHubPage() {
         crumb: "Tax on Salary",
         intro: (
           <p>
+            Tax on {formatAUD(EXAMPLE_SALARY)} is {formatAUD(example.netIncomeTax)} income tax plus {formatAUD(example.medicareLevy)} Medicare levy.{" "}
             Income tax on {TAX_ON_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} at {SITE_CONFIG.financialYear} resident rates, in $5,000
             steps. Each page splits the bill bracket by bracket, compares it with earlier years, lists the tax, levy and super thresholds within $15,000 and
             places the salary among Australian earners (ABS). For any other figure, use the{" "}
@@ -38,6 +40,7 @@ function TaxOnHubPage() {
           </p>
         ),
         figure: (s) => formatAUD(calculatePayBreakdown({ grossSalary: s }).netIncomeTax),
+        figureHeading: "Income tax a year",
         figureLabel: "income tax a year after LITO (Medicare levy shown on each page)",
         linkLabel: (s) => formatAUD(s),
       }}

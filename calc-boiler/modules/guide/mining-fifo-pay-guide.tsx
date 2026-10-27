@@ -57,7 +57,7 @@ export default function MiningFIFOPayGuidePage() {
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             FIFO (fly-in, fly-out) jobs pay a base salary plus roster loadings and allowances: the ABS puts{" "}
             <a href={ABS_AWE_LATEST} target="_blank" rel="noopener" className="text-eucalyptus-dark hover:underline">average full-time ordinary earnings</a>{" "}
-            in mining at {formatAUD(MINING_WEEKLY, 2)} a week, about {formatAUD(MINING_AVG)} a year ({AWE_RELEASE.referencePeriod}), against a national average of {formatAUD(NATIONAL_AVG)}. FIFO packages for {SITE_CONFIG.financialYear} vary with role and roster and are taxed on the normal ATO scale; this guide covers mining salaries, rosters, allowances and take-home pay.
+            in mining at {formatAUD(MINING_WEEKLY, 2)} a week, about {formatAUD(MINING_AVG)} a year or {formatAUD(MINING_AVG / 12)} a month ({AWE_RELEASE.referencePeriod}), against a national average of {formatAUD(NATIONAL_AVG)}. FIFO packages for {SITE_CONFIG.financialYear} vary with role and roster and are taxed on the normal ATO scale; this guide covers mining salaries, rosters, allowances and take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -166,7 +166,7 @@ export default function MiningFIFOPayGuidePage() {
             <section id="take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay on a Mining Salary</h2>
               <p>
-                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX.totalDeductions)}</strong> in income tax (including the Medicare levy) for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX.takeHomePay)}</strong> per year, or <strong>{formatAUD(EX.takeHomePay / 26)} per fortnight</strong>. If you are paid a LAFHA, it is on top of this and is not part of your assessable income, so it adds to your take-home pay in full.
+                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX.totalDeductions)}</strong> in income tax (including the Medicare levy) for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX.takeHomePay)}</strong> per year, <strong>{formatAUD(EX.takeHomePay / 12)} per month</strong> or <strong>{formatAUD(EX.takeHomePay / 26)} per fortnight</strong>. If you are paid a LAFHA, it is on top of this and is not part of your assessable income, so it adds to your take-home pay in full.
               </p>
               <p>
                 Superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> adds another <strong>{formatAUD(150_000 * SUPER_GUARANTEE.rate)}</strong> on top of the $150,000 gross salary, bringing the total remuneration package to <strong>{formatAUD(150_000 * (1 + SUPER_GUARANTEE.rate))}</strong>. Use the <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your exact mining salary, including overtime and allowances, and see your after-tax position for FY{SITE_CONFIG.financialYear}.

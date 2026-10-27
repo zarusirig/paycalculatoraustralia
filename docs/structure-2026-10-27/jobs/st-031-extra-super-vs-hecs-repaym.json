@@ -1,0 +1,73 @@
+{
+ "name": "st-031-extra-super-vs-hecs-repaym",
+ "files": [
+  "app/extra-super-vs-hecs-repayment/page.tsx",
+  "app/mining-fifo-pay-guide/page.tsx",
+  "app/working-australians-tax-offset/page.tsx",
+  "modules/calculator/working-australians-tax-offset-calculator.tsx",
+  "modules/guide/extra-super-vs-hecs-repayment-faqs.ts",
+  "modules/guide/extra-super-vs-hecs-repayment.tsx",
+  "modules/guide/mining-fifo-pay-guide-faqs.ts",
+  "modules/guide/mining-fifo-pay-guide.tsx",
+  "modules/guide/working-australians-tax-offset-faqs.ts",
+  "modules/guide/working-australians-tax-offset.tsx"
+ ],
+ "pages": [
+  {
+   "path": "/extra-super-vs-hecs-repayment/",
+   "url": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "inPlan": false,
+   "intent": "comparison",
+   "format_fit": "2.73",
+   "centerpiece": "2.67",
+   "main_query": "extra super vs paying off hecs faster",
+   "pre28_clicks": "4",
+   "pre28_impr": "246",
+   "requests": [
+    "The opening (line 53) has no figure expression. To lead with the number it needs the 10-year results ({formatAUD(SUPER_10Y)} against {formatAUD(HECS_10Y)} at the 30% bracket) and the {(HECS_HELP.indexationRate*100).toFixed(1)}% indexation rate placed in the intro, which this pass cannot add.",
+    "Replace the hand-typed '1 June 2026' strings (lines 92, 168, 188, 203) with {HECS_HELP.indexationDate}.",
+    "The page has no on-page tool. A small input for HECS balance and marginal rate, linked to the $200/month model, would answer 'voluntary hecs repayment worth it' directly. Today the only tool is a sidebar link to /hecs-help-calculator/.",
+    "The top query 'can i use my super to pay my hecs debt' is not answered anywhere in the page body. The answer needs a short section or FAQ (in the FAQ data file, outside this unit).",
+    "This unit is only the route wrapper. The opening prose (centerpiece 2.67) and the FAQ answers are in calc-boiler/modules/guide/extra-super-vs-hecs-repayment(.tsx) and extra-super-vs-hecs-repayment-faqs. The centerpiece rewrite belongs in the units for those files. The AUDIT says 'needs labelled editorial judgment', so the opening should give a labelled 'Our view: ... because ...' answer that names the HECS-HELP indexation rate, the concessional contribution tax rate and the marginal tax rate. The top pre-crash query was 'can i use my super to pay my hecs debt', and the opening should answer it directly if the module's text supports that."
+   ]
+  },
+  {
+   "path": "/mining-fifo-pay-guide/",
+   "url": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "inPlan": false,
+   "intent": "lookup-rate-table",
+   "format_fit": "3.92",
+   "centerpiece": "4.29",
+   "main_query": "fifo average salary",
+   "pre28_clicks": "81",
+   "pre28_impr": "11651",
+   "requests": [
+    "The query \"fifo salary australia per month\" (21 clicks) gets no monthly figure. Add EX.takeHomePay / 12 next to the per-fortnight figure in the take-home section (line 164), and add MINING_AVG / 12 to the intro.",
+    "The query \"fifo pay calculator\" (35 clicks) has no calculator on this page. The only link to /fifo-pay-calculator/ is in the body of the roster section. Add a FIFO Pay Calculator card to the sidebar (it currently lists Take-Home, Overtime, Zone, WA and Average Salary), or link it in the intro.",
+    "Line 167 hard-codes \"12%\" and \"FY2025-26\". Render them from SUPER_GUARANTEE.rate and SITE_CONFIG.financialYear."
+   ]
+  },
+  {
+   "path": "/working-australians-tax-offset/",
+   "url": "https://pay-calculator-australia.com/working-australians-tax-offset/",
+   "inPlan": false,
+   "intent": "calculate",
+   "format_fit": "3.98",
+   "centerpiece": "4.06",
+   "main_query": "working australians tax offset calculator",
+   "pre28_clicks": "0",
+   "pre28_impr": "0",
+   "requests": [
+    "Low priority. In app/working-australians-tax-offset/page.tsx, DESCRIPTION (line 16), the jsonLd headline (line 30) and the app description (line 33) type out \"$250\" and \"14%\". They should read them from the WATO maxOffset and RATE_2027_28 constants in lib/constants/tax-2027-28.ts (lines 52 and 56). The figures match the constants today, but they will drift if a later Budget changes them."
+   ]
+  }
+ ],
+ "lockedSharedFiles": [
+  "modules/calculator/t3-calc-shared.tsx",
+  "modules/guide/job-pay-shared.tsx",
+  "modules/guide/t3-seo.tsx",
+  "modules/guide/t3-shared.tsx",
+  "modules/seo/json-ld.tsx",
+  "modules/seo/related-searches.tsx"
+ ]
+}

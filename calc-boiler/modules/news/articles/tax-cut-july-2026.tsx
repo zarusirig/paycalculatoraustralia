@@ -1,7 +1,26 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
-import { formatAUD } from "@/lib/constants/australian-tax";
+import {
+  EMPLOYMENT,
+  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS_2026_27,
+  TAX_FREE_THRESHOLD,
+  formatAUD,
+} from "@/lib/constants/australian-tax";
 import { WATO } from "@/lib/constants/tax-2027-28";
+
+// The saving is the one-point rate cut on income inside the second bracket.
+const BRACKET_OLD = TAX_BRACKETS_2025_26[1];
+const BRACKET_NEW = TAX_BRACKETS_2026_27[1];
+const RATE_CUT = BRACKET_OLD.rate - BRACKET_NEW.rate;
+const inBracket = (income: number) => Math.max(0, Math.min(income, BRACKET_NEW.max) - TAX_FREE_THRESHOLD);
+const annualSaving = (income: number) => Math.round(inBracket(income) * RATE_CUT);
+const MAX_SAVING = annualSaving(BRACKET_NEW.max);
+const perWeek = (annual: number) => formatAUD(annual / EMPLOYMENT.weeksPerYear, 2);
+const perFortnight = (annual: number) => formatAUD(annual / (EMPLOYMENT.weeksPerYear / 2), 2);
+
+/** Incomes used in the examples below. */
+const EXAMPLE_INCOMES = [22_000, 30_000, 45_000, 60_000] as const;
 
 export default function TaxCutJuly2026() {
   return (
@@ -9,7 +28,8 @@ export default function TaxCutJuly2026() {
       <p className="lead">
         From 1 July 2026, the tax rate for Australian residents on income between $18,201 and $45,000 dropped from{" "}
         <strong>16% to 15%</strong>. This tax cut is the first of two further rate cuts legislated after the March 2025 Budget.
-        Every taxpayer earning above $45,000 saves the full <strong>$268 a year</strong>, applied
+        Every taxpayer earning above $45,000 saves the full <strong>$268 a year</strong> (
+        {perWeek(MAX_SAVING)} a week or {perFortnight(MAX_SAVING)} a fortnight), applied
         automatically through lower PAYG withholding in every pay run. The key facts table below sets out the
         bracket, the old and new rate, the maximum saving and the next scheduled cut. The rest of this page works through the saving at
         lower incomes, the second scheduled cut and how the cut shows in your take-home pay.
@@ -25,20 +45,32 @@ export default function TaxCutJuly2026() {
         ]}
       />
 
-      <h2>What actually changed</h2>
-      <p>
-        The second marginal tax rate (the rate applied to every dollar earned between $18,201
-        and $45,000) fell by one percentage point, from 16% to 15%, from 1 July 2026. It&apos;s the
-        first of two further cuts announced in the March 2025 Federal Budget, building on the
-        revised Stage 3 cuts that took effect from 1 July 2024.
-      </p>
-      <p>
-        Because the change only affects that middle bracket, the dollar saving is capped: once
-        your income exceeds $45,000, you&apos;ve captured the full $26,800 of income taxed at the
-        lower rate, and the saving stops growing.
-      </p>
-
       <h2>How much you actually save</h2>
+      <p>The saving at four taxable incomes:</p>
+      <div className="overflow-x-auto not-prose my-8 rounded-xl border border-eucalyptus/30 bg-eucalyptus/5 p-1">
+        <table className="min-w-full text-sm">
+          <thead>
+            <tr className="text-left text-navy/60">
+              <th className="px-4 py-2 font-semibold">Taxable income</th>
+              <th className="px-4 py-2 font-semibold">Income in the affected bracket</th>
+              <th className="px-4 py-2 font-semibold">Saving a year</th>
+              <th className="px-4 py-2 font-semibold">A week</th>
+              <th className="px-4 py-2 font-semibold">A fortnight</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-eucalyptus/10 text-navy">
+            {EXAMPLE_INCOMES.map((income) => (
+              <tr key={income}>
+                <td className="px-4 py-2.5 font-medium">{formatAUD(income)}</td>
+                <td className="px-4 py-2.5">{formatAUD(inBracket(income))}</td>
+                <td className="px-4 py-2.5 font-semibold">{formatAUD(annualSaving(income))}</td>
+                <td className="px-4 py-2.5">{perWeek(annualSaving(income))}</td>
+                <td className="px-4 py-2.5">{perFortnight(annualSaving(income))}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <p>
         Someone earning $45,000 or more saves the maximum $268 a year, about $5.15 a week.
         Someone earning $30,000 has only $11,800 of their income in the affected bracket, so
@@ -52,6 +84,19 @@ export default function TaxCutJuly2026() {
         a $22,000 part-time wage, only $3,800 of income sits in the bracket, so the saving is
         closer to $38 a year: small, but automatic and stacked on top of any award or minimum
         wage increase you also received on 1 July.
+      </p>
+
+      <h2>What actually changed</h2>
+      <p>
+        The second marginal tax rate (the rate applied to every dollar earned between $18,201
+        and $45,000) fell by one percentage point, from 16% to 15%, from 1 July 2026. It&apos;s the
+        first of two further cuts announced in the March 2025 Federal Budget, building on the
+        revised Stage 3 cuts that took effect from 1 July 2024.
+      </p>
+      <p>
+        Because the change only affects that middle bracket, the dollar saving is capped: once
+        your income exceeds $45,000, you&apos;ve captured the full $26,800 of income taxed at the
+        lower rate, and the saving stops growing.
       </p>
 
       <h2>Where the tax cuts go next</h2>
