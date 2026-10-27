@@ -53,7 +53,7 @@ export default function CentrelinkAdvancePaymentContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; these are the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. Farm Household Allowance: {formatAUD(250)} to {formatAUD(500)}. FTB Part A: a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
+        <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; the table shows the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. A Farm Household Allowance advance is {formatAUD(250)} to {formatAUD(500)}. On FTB Part A, a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
       </W3Section>
 
       <W3Section title="Who Can Get an Advance Payment?">
@@ -63,11 +63,11 @@ export default function CentrelinkAdvancePaymentContent() {
           <li><strong>Once in 12 months</strong> on ABSTUDY, Austudy, Farm Household Allowance, Mobility Allowance, JobSeeker, Parenting Payment (unless you became single in the past 28 days) and Youth Allowance.</li>
           <li><strong>Pensions:</strong> in any 6 months or 13 fortnights, one advance at the highest amount, up to two smaller advances, or three at the lowest amount. You can take it all at once or in 2 instalments.</li>
         </ul>
-        <p className={P + " mt-4"}>You can&apos;t get one if you&apos;re still repaying an advance from more than 12 months ago, owe a debt to the Australian Government, can&apos;t afford to repay it within 6 months, have less than the lowest advance available, or are outside Australia. When you apply you&apos;ll be asked how much you have left each fortnight after regular expenses.</p>
+        <p className={P + " mt-4"}>You can&apos;t get an advance payment if you&apos;re still repaying an advance from more than 12 months ago, owe a debt to the Australian Government, can&apos;t afford to repay it within 6 months, have less than the lowest advance available, or are outside Australia. When you apply you&apos;ll be asked how much you have left each fortnight after regular expenses.</p>
       </W3Section>
 
       <W3Section title="Special Employment Advance">
-        <p className={P}>A separate advance of {formatAUD(ADVANCE_LIMITS.specialEmployment.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.specialEmployment.max)} for people who have been on Austudy, Carer Payment, Disability Support Pension, JobSeeker, Parenting Payment Single or Youth Allowance for at least 3 months and get a job of at least 6 weeks that will cut their payment by at least 50% (to buy things needed to start, such as work boots, tools or hi-vis), or whose employer hasn&apos;t paid them yet and won&apos;t for another 2 days. It is claimed with a form rather than online. Starting work will reduce your payment through the income test: see the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker payment calculator</Link>.</p>
+        <p className={P}>The Special Employment Advance is a separate advance of {formatAUD(ADVANCE_LIMITS.specialEmployment.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.specialEmployment.max)} for people who have been on Austudy, Carer Payment, Disability Support Pension, JobSeeker, Parenting Payment Single or Youth Allowance for at least 3 months and get a job of at least 6 weeks that will cut their payment by at least 50% (to buy things needed to start, such as work boots, tools or hi-vis), or whose employer hasn&apos;t paid them yet and won&apos;t for another 2 days. It is claimed with a form rather than online. Starting work will reduce your payment through the income test: see the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker payment calculator</Link>.</p>
       </W3Section>
 
       <W3Section title="How to Apply">

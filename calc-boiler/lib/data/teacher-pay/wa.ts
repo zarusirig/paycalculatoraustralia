@@ -50,7 +50,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Teachers, Level 2.1 to 2.9",
       intro:
-        "The incremental scale every qualified WA public school teacher is paid on. The department's own wording: provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9.",
+        "Every qualified WA public school teacher is paid on this incremental scale. In the department's own wording, provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9.",
       stepHeading: "Level",
       steps: [
         { label: "Level 2.1", salary: 88_178, note: "Qualified teacher starting salary" },
@@ -68,7 +68,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
       id: "senior-and-level-3",
       title: "Senior teachers and Level 3 classroom teachers",
       intro:
-        "The two classifications above the incremental scale that keep you in the classroom. Level 3 Classroom Teacher is WA's distinctive senior classroom role.",
+        "Senior Teacher and Level 3 Classroom Teacher are the two WA classifications above the incremental scale that keep you in the classroom.",
       stepHeading: "Classification",
       steps: [
         { label: "Senior Teacher 1", salary: 132_557 },
@@ -90,41 +90,41 @@ export const WA_TEACHER_PAY: TeacherPayState = {
     {
       heading: "An annual increment to 2.9, subject to satisfactory teaching",
       body: [
-        "The department states it plainly: provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9. That is nine levels from 2.1 to the top of the incremental scale.",
-        "The single largest jumps are early: 2.1 to 2.2 is $7,449 and 2.2 to 2.3 is $7,941, both well above the roughly $4,000 steps that follow.",
+        "The WA Department of Education states that, provided you teach to a satisfactory standard, you receive an annual increment each year until you reach level 2.9. That is nine levels from 2.1 to the top of the incremental scale.",
+        "The largest jumps on the WA scale come early: 2.1 to 2.2 is $7,449 and 2.2 to 2.3 is $7,941, both well above the roughly $4,000 steps that follow.",
       ],
     },
     {
       heading: "Your starting level is not always 2.1",
       body: [
-        "The department says it takes your work experience and qualifications into account when determining your starting salary, and it publishes a separate process for applying for a higher salary based on prior teaching experience or as a five-year trained teacher.",
+        "The WA Department of Education takes your work experience and qualifications into account when it sets your starting salary. It also publishes a separate process for applying for a higher salary based on prior teaching experience or as a five-year trained teacher.",
         "If you came into WA teaching with prior experience and were placed at 2.1 anyway, that is the process to check.",
       ],
     },
     {
       heading: "Above 2.9: Senior Teacher and Level 3 Classroom Teacher",
       body: [
-        "Neither is an increment. Senior Teacher has two points, at $132,557 and $134,165, and Level 3 Classroom Teacher has three, from $137,567 to $147,077.",
+        "Neither classification is reached by annual increment. Senior Teacher has two points, at $132,557 and $134,165, and Level 3 Classroom Teacher has three, from $137,567 to $147,077.",
         "Level 3 Classroom Teacher is the one worth knowing about: it is WA's way of paying a teacher near deputy-principal money for staying in the classroom rather than moving into administration.",
       ],
     },
     {
       heading: "Senior Teacher and Level 3 are applications, not appointments you wait for",
       body: [
-        "The department is explicit that both are competitive: current teachers who meet the eligibility criteria can apply to become a senior teacher, and outstanding teachers can apply to become a level 3 classroom teacher, which the department describes as recognising outstanding teaching practice.",
+        "The WA Department of Education is explicit that both are competitive. Current teachers who meet the eligibility criteria can apply to become a senior teacher, and outstanding teachers can apply to become a level 3 classroom teacher, a classification the department describes as recognising outstanding teaching practice.",
         "Leadership is a separate route again: the department runs a Leadership Institute with programs intended to prepare teachers before they apply for deputy principal or principal roles.",
       ],
     },
     {
       heading: "Regional and remote loadings sit on top",
       body: [
-        "Teachers in rural, regional and remote WA locations may receive extra benefits on top of these salaries, and the amounts vary by school. The department publishes an allowances and benefits calculator that resolves it school by school. They are not part of the scale above.",
+        "Teachers in rural, regional and remote WA locations may receive extra benefits on top of these salaries, and the amounts vary by school. The department publishes an allowances and benefits calculator that shows the amount for each school. These benefits are not part of the salary scale above.",
       ],
     },
   ],
 
   notices: [
-    "These are the rates the WA Department of Education publishes as \"Teacher salaries by level as of December 2025\". They come from the third and final increase under the 2023 general agreement, which delivered 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025.",
+    "The salaries on this page are the rates the WA Department of Education publishes as \"Teacher salaries by level as of December 2025\". They come from the third and final increase under the 2023 general agreement, which delivered 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025.",
     "The WA Industrial Relations Commission's document server was unreachable on 28 August 2026, so the general agreement itself could not be read. Deputy principal and principal salaries live in that document and are therefore not shown here. We would rather leave a gap than estimate a principal's salary.",
   ],
 
@@ -177,11 +177,11 @@ export const WA_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "When do WA teachers get a pay rise?",
-      a: "There is no further scheduled increase on the department's current salary page. Under the 2023 general agreement, WA teachers received 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025, and the December 2025 rise was the last of the three. We could not verify a successor agreement or any new increase date, so check the WA Department of Education's teacher salaries page and the SSTUWA for news. Teachers below Level 2.9 also receive an annual increment each year, provided they teach to a satisfactory standard.",
+      a: "The WA Department of Education's current salary page lists no further scheduled pay increase for WA teachers. Under the 2023 general agreement, WA teachers received 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025, and the December 2025 rise was the last of the three. We could not verify a successor agreement or any new increase date, so check the WA Department of Education's teacher salaries page and the SSTUWA for news. Teachers below Level 2.9 also receive an annual increment each year, provided they teach to a satisfactory standard.",
     },
     {
       q: "What is the starting teacher salary in WA?",
-      a: "$88,178 a year at level 2.1 for a qualified teacher, on the department's scale as at 6 December 2025. The department takes prior work experience and qualifications into account, so a teacher with recognised experience or five years of training can start higher.",
+      a: "A qualified WA public school teacher starts on $88,178 a year at level 2.1, on the department's scale as at 6 December 2025. The department takes prior work experience and qualifications into account, so a teacher with recognised experience or five years of training can start higher.",
     },
     {
       q: "What is the top of the WA teacher pay scale?",
@@ -189,11 +189,11 @@ export const WA_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How long does it take to reach the top of the WA teacher scale?",
-      a: "Nine levels, so eight annual increments from 2.1 to 2.9, provided you teach to a satisfactory standard each year. The department describes the increment as annual rather than something you apply for.",
+      a: "Reaching the top of the WA teacher scale takes eight annual increments across nine levels, from 2.1 to 2.9, provided you teach to a satisfactory standard each year. The department describes the increment as annual rather than something you apply for.",
     },
     {
       q: "What is a Level 3 Classroom Teacher in WA?",
-      a: "A senior classroom classification that pays $137,567 to $147,077 without moving into administration. It is WA's mechanism for paying an experienced teacher well above the top of the ordinary scale while keeping them teaching.",
+      a: "It is a WA senior classroom classification that pays $137,567 to $147,077 without moving into administration. WA uses it to pay an experienced teacher well above the top of the ordinary scale while keeping them teaching.",
     },
     {
       q: "What is a senior teacher paid in WA?",
@@ -201,7 +201,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What does a WA principal earn?",
-      a: "We have not published a figure. WA school administrator salaries sit in the general agreement rather than on the department's salary page, and the WA Industrial Relations Commission's document server did not respond when we tried to read it, so we have left it blank rather than estimate. Check the department's awards and agreements page.",
+      a: "We have not published a WA principal salary. WA school administrator salaries sit in the general agreement rather than on the department's salary page, and the WA Industrial Relations Commission's document server did not respond when we tried to read it, so we have left it blank rather than estimate. Check the department's awards and agreements page.",
     },
   ],
 };

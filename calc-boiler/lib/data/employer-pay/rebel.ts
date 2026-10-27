@@ -105,19 +105,19 @@ export const REBEL_PAY: EmployerPay = {
     },
     {
       q: "What agreement covers Rebel staff?",
-      a: "The Super Retail Group Retail & CCC Enterprise Agreement 2024 (AE524487). It covers rebel, Supercheap Auto, BCF and Macpac store team members, started on 14 July 2024 and has a nominal expiry date of 30 June 2027.",
+      a: "Rebel staff are covered by the Super Retail Group Retail & CCC Enterprise Agreement 2024 (AE524487). It covers rebel, Supercheap Auto, BCF and Macpac store team members, started on 14 July 2024 and has a nominal expiry date of 30 June 2027.",
     },
     {
       q: "How much does Rebel pay a 16 or 17 year old?",
-      a: "The agreement prints $14.10 an hour for a 16-year-old Level 1 team member ($17.62 casual) and $16.92 for a 17-year-old ($21.15 casual). At 18 it is $19.74 and at 19 $22.56; adults are paid from 20.",
+      a: "The Super Retail Group agreement prints $14.10 an hour for a 16-year-old Level 1 team member at rebel ($17.62 casual) and $16.92 for a 17-year-old ($21.15 casual). At 18 the rate is $19.74 and at 19 it is $22.56; the adult rate starts at 20.",
     },
     {
       q: "What does Rebel pay on Sundays and public holidays?",
-      a: "An adult Level 1 team member gets $41.45 an hour on a Sunday ($48.50 casual) and $62.60 on a public holiday ($69.65 casual). Weeknights after 6pm and Saturdays pay $34.40 ($41.45 casual).",
+      a: "An adult Level 1 team member at rebel gets $41.45 an hour on a Sunday ($48.50 casual) and $62.60 on a public holiday ($69.65 casual). Weeknights after 6pm and Saturdays pay $34.40 ($41.45 casual).",
     },
     {
       q: "Is Supercheap Auto or BCF pay the same as Rebel?",
-      a: "Yes, for waged store team members. rebel, Supercheap Auto, BCF and Macpac are all parties to the same Super Retail Group agreement, with the same classifications and rates.",
+      a: "Yes, for waged store team members: rebel, Supercheap Auto, BCF and Macpac are all parties to the same Super Retail Group agreement, with the same classifications and rates.",
     },
   ],
 };

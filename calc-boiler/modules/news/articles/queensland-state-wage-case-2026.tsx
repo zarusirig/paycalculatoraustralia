@@ -49,9 +49,8 @@ export default function QueenslandStateWageCase2026() {
 
       <h2>Who it covers</h2>
       <p>
-        Award rates in the national Fair Work system rose {(NMW_DECISION.awardIncrease * 100).toFixed(2)}% from{" "}
-        {NMW_DECISION.operativeFrom}. The State Wage Case covers
-        Queensland employers outside that system, chiefly the state public sector and local government. The parties&apos; agreed statistics in the decision put that group at an estimated{" "}
+        The State Wage Case covers Queensland employers outside the national Fair Work system (where award rates rose {(NMW_DECISION.awardIncrease * 100).toFixed(2)}% from{" "}
+        {NMW_DECISION.operativeFrom}), chiefly the state public sector and local government. The parties&apos; agreed statistics in the decision put that group at an estimated{" "}
         {Q.qldSystemWorkers.toLocaleString("en-AU")} workers, including {Q.qldPublicSector.toLocaleString("en-AU")} in
         the Queensland public sector, where {Math.round(Q.qldPublicSectorAgreementCoverage * 100)}% are covered by an
         agreement and {Q.qldPublicSectorAwardReliant.toLocaleString("en-AU")} rely on the award alone.

@@ -45,7 +45,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period on or after 1 July 2027",
     detail:
-      "The margin over the award rises to 24 cents (Levels 1 and 2) and 28 cents (Levels 3 and 4) on top of the 2027 Annual Wage Review rates (cl 8.2(c)).",
+      "The David Jones margin over the Retail Award rises to 24 cents (Levels 1 and 2) and 28 cents (Levels 3 and 4) on top of the 2027 Annual Wage Review rates (cl 8.2(c)).",
   },
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
@@ -83,7 +83,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
   ],
   notices: [
     "David Jones' agreement sets each level a fixed number of cents above a General Retail Industry Award rate, so the 2026 dollars here are the 1 July 2026 award rates plus the agreement's margins (17 or 20 cents). The agreement does not print a 2026 dollar table.",
-    "From the first full pay period on or after 1 December 2026, the Retail Award pays 18- and 19-year-olds with more than 6 months' service 75% and 85% of the award rate ($20.86 and $23.64). That is more than David Jones' 70% and 80% of $27.98 ($19.59 and $22.38), and an agreement cannot pay a base rate below the award, so those staff must get at least the award figure.",
+    "From the first full pay period on or after 1 December 2026, the Retail Award pays 18- and 19-year-olds with more than 6 months' service 75% and 85% of the award rate ($20.86 and $23.64). That is more than David Jones' 70% and 80% of $27.98 ($19.59 and $22.38). An agreement cannot pay a base rate below the award, so those David Jones staff must get at least the award figure.",
   ],
   unverified: [
     "David Jones' own 2026 pay table is not public; the dollars are the agreement's formula.",
@@ -104,7 +104,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
     },
     {
       q: "What is the David Jones enterprise agreement?",
-      a: "The David Jones Enterprise Agreement 2024 (AE524326), approved by the Fair Work Commission on 22 April 2024 and operating from 29 April 2024. It runs to a nominal expiry of 22 April 2028 and ties pay to the Retail Award plus a margin that grows each July.",
+      a: "The David Jones enterprise agreement is the David Jones Enterprise Agreement 2024 (AE524326), approved by the Fair Work Commission on 22 April 2024 and operating from 29 April 2024. It runs to a nominal expiry of 22 April 2028 and ties pay to the Retail Award plus a margin that grows each July.",
     },
     {
       q: "How much does David Jones pay a 16 or 17 year old?",
@@ -112,7 +112,7 @@ export const DAVID_JONES_PAY: EmployerPay = {
     },
     {
       q: "What does David Jones pay on Sundays and public holidays?",
-      a: "Sundays pay base + 50% (casuals + 75%), about $41.97 an hour for a permanent Level 1 team member. Public holidays pay base + 125% (casuals + 150%), and public holiday work is voluntary.",
+      a: "David Jones pays base + 50% on Sundays (casuals base + 75%), about $41.97 an hour for a permanent Level 1 team member. Public holidays pay base + 125% (casuals base + 150%), and public holiday work at David Jones is voluntary.",
     },
     {
       q: "Does David Jones pay more than the award?",

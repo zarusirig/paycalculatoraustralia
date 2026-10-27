@@ -67,7 +67,7 @@ export default function SuperannuationGuidePage() {
             Superannuation Guide: How Super Works in Australia ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The superannuation rate for {SITE_CONFIG.financialYear} is {formatPercent(SUPER_GUARANTEE.rate, 0)}, the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year. Under Payday Super, in force since {SUPER_GUARANTEE.paydaySuperStart}, it is due within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of each pay rather than quarterly. Contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in the fund. This guide covers the caps and how super affects your take-home pay.
+            The superannuation rate for {SITE_CONFIG.financialYear} is {formatPercent(SUPER_GUARANTEE.rate, 0)}, the legislated ceiling of the Super Guarantee (SG). Employers pay the SG on top of salary, on qualifying earnings up to {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year. Under Payday Super, in force since {SUPER_GUARANTEE.paydaySuperStart}, your super fund must receive each SG contribution within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday rather than quarterly. SG contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} inside the fund. The tables below set out the SG rate history, the contribution caps and a worked salary example. The guide then covers how super is taxed and how it affects your take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -81,7 +81,7 @@ export default function SuperannuationGuidePage() {
             <section id="what-is-super">
               <h2>What Is Superannuation?</h2>
               <p>
-                Superannuation is Australia&apos;s compulsory retirement savings system, requiring every employer to pay <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} of an employee&apos;s qualifying earnings</strong> into a complying super fund for the {SITE_CONFIG.financialYear} financial year. Since {SUPER_GUARANTEE.paydaySuperStart}, that money must be paid every payday rather than quarterly.
+                Superannuation is Australia&apos;s compulsory retirement savings system, and every employer must pay <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} of an employee&apos;s qualifying earnings</strong> into a complying super fund for the {SITE_CONFIG.financialYear} financial year. Since {SUPER_GUARANTEE.paydaySuperStart}, that money must be paid every payday rather than quarterly.
               </p>
               <p>
                 Commonly called &quot;super,&quot; the system was introduced under the Superannuation Guarantee (Administration) Act 1992 by the Keating Government. Employers pay contributions on top of gross salary, and the money is invested by the fund across asset classes including Australian equities, international shares, fixed interest, and property. The balance grows through a combination of employer contributions, voluntary contributions, and investment returns until the member reaches preservation age and retires.
@@ -140,14 +140,14 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                Since {SUPER_GUARANTEE.paydaySuperStart} the SG is calculated on &quot;qualifying earnings&quot;, not total earnings. Qualifying earnings are essentially the old ordinary time earnings (OTE) base; the ATO says the only additional payment type is {QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime, expense reimbursements, and termination payouts remain excluded. The distinction matters most for workers with significant overtime hours, so use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to separate ordinary and overtime components, and see our <Link href="/payday-super/">Payday Super guide</Link> for how the per-pay rules work.
+                Since {SUPER_GUARANTEE.paydaySuperStart} the SG is calculated on &quot;qualifying earnings&quot;, not total earnings. Qualifying earnings are the old ordinary time earnings (OTE) base with a single addition: the ATO says the only additional payment type is {QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime, expense reimbursements, and termination payouts remain excluded. The distinction matters most for workers with significant overtime hours, so use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to separate ordinary and overtime components, and see our <Link href="/payday-super/">Payday Super guide</Link> for how the per-pay rules work.
               </p>
             </section>
 
             <section id="who-pays">
               <h2>Who Has to Pay Super?</h2>
               <p>
-                Every Australian employer must pay the 12% SG for <strong>all employees regardless of earnings level</strong>, employment type, or hours worked. The previous $450-per-month minimum threshold was abolished on 1 July 2022, extending super coverage to low-income and part-time workers.
+                Every Australian employer must pay the 12% SG for <strong>all employees regardless of earnings level</strong>, employment type, or hours worked. The previous $450-per-month minimum threshold was abolished on 1 July 2022, so low-income and part-time workers now receive super too.
               </p>
               <ul>
                 <li><strong>Full-time, part-time, and casual workers:</strong> Entitled to super on every dollar of qualifying earnings, with no minimum monthly income requirement.</li>
@@ -201,7 +201,7 @@ export default function SuperannuationGuidePage() {
             <section id="contribution-caps">
               <h2>What Are the Super Contribution Caps?</h2>
               <p>
-                The ATO limits how much you can contribute to super at concessional tax rates each financial year. The concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> for FY{SITE_CONFIG.financialYear}. Exceeding either cap triggers additional tax on the excess amount.
+                The ATO caps super contributions each financial year. The concessional (before-tax) cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> and the non-concessional (after-tax) cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> for FY{SITE_CONFIG.financialYear}. Exceeding either cap triggers additional tax on the excess amount.
               </p>
 
               <div className="not-prose my-8">
@@ -244,7 +244,7 @@ export default function SuperannuationGuidePage() {
                 The {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap includes three contribution types: employer SG payments, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> amounts, and personal contributions for which you claim a tax deduction. All three count toward the single cap. On an {formatAUD(EX_SALARY)} salary, the employer SG of {formatAUD(EX_SG)} leaves <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - EX_SG)}</strong> of unused cap space for voluntary concessional contributions. Our <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide has a calculator for your own salary, including carry-forward.
               </p>
               <p>
-                These contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year, for example after receiving a bonus or inheritance.
+                Concessional contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year, for example after receiving a bonus or inheritance.
               </p>
 
               <h3>Non-Concessional Contributions Cap ({formatAUD(SUPER_GUARANTEE.nonConcessionalCap)})</h3>
@@ -257,7 +257,7 @@ export default function SuperannuationGuidePage() {
 
               <h3>Division 293 Tax for High-Income Earners</h3>
               <p>
-                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the total tax on super contributions to <strong>30%</strong> for high earners, reducing the tax advantage of superannuation. The ATO issues Division 293 assessments automatically after tax returns are lodged. You can pay the assessment from your super fund or from personal funds.
+                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the tax on those concessional contributions to <strong>30%</strong> for people above the threshold, so super gives them a smaller tax advantage. The ATO issues Division 293 assessments automatically after tax returns are lodged. You can pay the assessment from your super fund or from personal funds.
               </p>
 
               <h3>Division 296 Tax on Large Super Balances</h3>
@@ -269,7 +269,7 @@ export default function SuperannuationGuidePage() {
             <section id="how-super-taxed">
               <h2>How Is Super Taxed?</h2>
               <p>
-                Super is taxed at 3 distinct stages: contributions, investment earnings, and withdrawals. The combined tax treatment makes super the most tax-effective savings vehicle in Australia for retirement purposes, with rates of <strong>15% or less</strong> at each stage compared to marginal rates up to 47%.
+                Super is taxed at 3 distinct stages: contributions, investment earnings, and withdrawals. The combined tax treatment makes super a lower-tax way to save for retirement than saving outside it, with rates of <strong>15% or less</strong> at each stage compared to marginal rates up to 47%.
               </p>
 
               <div className="not-prose my-8">
@@ -318,7 +318,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                The &quot;Transfer Balance Cap&quot; limits how much super you can move into the tax-free pension phase. The general cap is <strong>{millions(SUPER_GUARANTEE.transferBalanceCap)}</strong> for FY{SITE_CONFIG.financialYear}, up from {millions(TRANSFER_BALANCE_CAP_PREVIOUS)} in FY{SITE_CONFIG.previousFinancialYear}, and is indexed in $100,000 increments in line with CPI. Amounts above this cap remain in the accumulation phase where earnings are taxed at 15%. Understanding how super taxation interacts with your income tax brackets is critical. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your total after-tax position.
+                The &quot;Transfer Balance Cap&quot; limits how much super you can move into the tax-free pension phase. The general cap is <strong>{millions(SUPER_GUARANTEE.transferBalanceCap)}</strong> for FY{SITE_CONFIG.financialYear}, up from {millions(TRANSFER_BALANCE_CAP_PREVIOUS)} in FY{SITE_CONFIG.previousFinancialYear}, and is indexed in $100,000 increments in line with CPI. Amounts above this cap remain in the accumulation phase where earnings are taxed at 15%. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your total after-tax position.
               </p>
             </section>
 
@@ -338,7 +338,7 @@ export default function SuperannuationGuidePage() {
             <section id="check-super-balance">
               <h2>Step-by-Step: How to Check Your Super Balance</h2>
               <p>
-                Every Australian with a super account can check their balance through <strong>myGov linked to the ATO</strong>, through their super fund&apos;s app or website, or by calling the fund directly. The ATO consolidates information from all funds, making myGov the single best tool for finding lost super across multiple accounts.
+                Every Australian with a super account can check their balance through <strong>myGov linked to the ATO</strong>, through their super fund&apos;s app or website, or by calling the fund directly. The ATO receives account information from every fund, so myGov lists all your super accounts together, including lost super.
               </p>
               <ol>
                 <li><strong>Log in to myGov</strong> at <a href="https://my.gov.au" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">my.gov.au</a> using your credentials and link the ATO service if you have not already done so.</li>
@@ -348,14 +348,14 @@ export default function SuperannuationGuidePage() {
                 <li><strong>Check for unpaid super.</strong> Compare your payslips against the &quot;Contributions&quot; section. If employer SG payments are missing or short, lodge an &quot;Unpaid super enquiry&quot; through the ATO.</li>
               </ol>
               <p>
-                Employers must report super contributions through Single Touch Payroll (STP), which feeds directly into the ATO&apos;s system. Checking your payslips against your fund&apos;s contribution history regularly confirms contributions are being paid on time and at the correct rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}.
+                Employers must report super contributions through Single Touch Payroll (STP), which feeds directly into the ATO&apos;s system. Compare each payslip with your fund&apos;s contribution history to confirm the SG arrives on time and at the correct rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}.
               </p>
             </section>
 
             <section id="worked-example">
               <h2>Worked Example: Super on an {formatAUD(EX_SALARY)} Salary</h2>
               <p>
-                An employee earning <strong>{formatAUD(EX_SALARY)} per year</strong> in base salary (base + super structure) receives SG contributions of <strong>{formatAUD(EX_SG)}</strong> for FY{SITE_CONFIG.financialYear}, bringing the total package to <strong>{formatAUD(EX_SALARY + EX_SG)}</strong>. Here is the complete breakdown of how super interacts with tax, take-home pay, and contribution caps.
+                An employee earning <strong>{formatAUD(EX_SALARY)} per year</strong> in base salary (base + super structure) receives SG contributions of <strong>{formatAUD(EX_SG)}</strong> for FY{SITE_CONFIG.financialYear}, bringing the total package to <strong>{formatAUD(EX_SALARY + EX_SG)}</strong>. The table below breaks down the SG, the contributions tax, the remaining concessional cap, income tax, the Medicare Levy and take-home pay on this salary.
               </p>
 
               <div className="not-prose my-8">
@@ -419,14 +419,14 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                If this employee salary sacrifices $5,000 into super, taxable income drops to {formatAUD(EX_SALARY - 5_000)}, reducing income tax by approximately <strong>$1,500</strong> (the $5,000 at the 30% marginal rate). The $5,000 is taxed at 15% inside super ($750), producing a net tax saving of <strong>$750</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>.
+                If this employee salary sacrifices $5,000 into super, taxable income drops to {formatAUD(EX_SALARY - 5_000)} and income tax falls by approximately <strong>$1,500</strong> (the $5,000 at the 30% marginal rate). The $5,000 is taxed at 15% inside super ($750), so the net tax saving is <strong>$750</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>.
               </p>
             </section>
 
             <section id="salary-sacrifice">
               <h2>How Does Salary Sacrifice Into Super Work?</h2>
               <p>
-                Salary sacrifice redirects a portion of your pre-tax salary into your super fund, where it is taxed at <strong>15%</strong> instead of your marginal rate. The tax saving ranges from <strong>$150 per $1,000 sacrificed</strong> (at the 30% bracket) to <strong>$300 per $1,000</strong> (at the 45% bracket), making it one of the most effective legal tax-reduction strategies in Australia.
+                Salary sacrifice redirects a portion of your pre-tax salary into your super fund, where it is taxed at <strong>15%</strong> instead of your marginal rate. The tax saving ranges from <strong>$150 per $1,000 sacrificed</strong> (at the 30% bracket) to <strong>$300 per $1,000</strong> (at the 45% bracket), so the saving grows with your marginal rate.
               </p>
               <p>
                 Salary sacrifice contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap alongside employer SG payments. Exceeding the cap triggers additional tax at your marginal rate on the excess amount. Before arranging salary sacrifice with your employer, calculate your available cap space by subtracting your annual SG from {formatAUD(SUPER_GUARANTEE.concessionalCap)}, or use the <Link href="/concessional-contributions-cap/">concessional cap calculator</Link>.
@@ -589,7 +589,7 @@ export default function SuperannuationGuidePage() {
 
               <h3>Stapled Super Funds</h3>
               <p>
-                Since 1 November 2021, when you start a new job without nominating a fund, your employer must request your &quot;stapled fund&quot; details from the ATO. This is your existing super fund that follows you from job to job, preventing the creation of duplicate accounts with unnecessary fees.
+                Since 1 November 2021, when you start a new job without nominating a fund, your employer must request your &quot;stapled fund&quot; details from the ATO. Your stapled fund is your existing super account, which follows you from job to job so you do not open a duplicate account that charges its own fees.
               </p>
               <h3>Default Funds (MySuper)</h3>
               <p>
@@ -597,7 +597,7 @@ export default function SuperannuationGuidePage() {
               </p>
               <h3>Comparing Funds</h3>
               <p>
-                When choosing a fund, compare investment fees (target under 1% p.a.), insurance premiums, investment performance over 5&ndash;10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/calculators-and-tools/super-yoursuper-comparison-tool" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> compares MySuper products on fees and net returns.
+                When choosing a fund, compare investment fees (target under 1% p.a.), insurance premiums, investment performance over 5 to 10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/calculators-and-tools/super-yoursuper-comparison-tool" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> compares MySuper products on fees and net returns.
               </p>
             </section>
 
@@ -639,14 +639,14 @@ export default function SuperannuationGuidePage() {
               </div>
 
               <p>
-                Other super dates for FY{SITE_CONFIG.financialYear}: <strong>{SITE_CONFIG.financialYearEnd}</strong> is the last day for a personal deductible contribution to be received by your fund for the year; your total super balance at <strong>30 June {FY_START_YEAR}</strong> decides whether you can use carry-forward concessional cap amounts and the bring-forward rule this year; and <strong>31 October {FY_END_YEAR}</strong> is the lodgement due date for your {SITE_CONFIG.financialYear} tax return if you lodge yourself (later if you use a registered tax agent). The <Link href="/tax-calendar/">Australian Tax Calendar</Link> lists all key dates across the financial year, and our <Link href="/payday-super/">Payday Super guide</Link> explains the per-pay deadlines in detail.
+                Other super dates for FY{SITE_CONFIG.financialYear}: <strong>{SITE_CONFIG.financialYearEnd}</strong> is the last day for a personal deductible contribution to be received by your fund for the year. Your total super balance at <strong>30 June {FY_START_YEAR}</strong> decides whether you can use carry-forward concessional cap amounts and the bring-forward rule this year. <strong>31 October {FY_END_YEAR}</strong> is the lodgement due date for your {SITE_CONFIG.financialYear} tax return if you lodge yourself (later if you use a registered tax agent). The <Link href="/tax-calendar/">Australian Tax Calendar</Link> lists all key dates across the financial year, and our <Link href="/payday-super/">Payday Super guide</Link> explains the per-pay deadlines in detail.
               </p>
             </section>
 
             <section id="related-resources">
               <h2>Related Resources</h2>
               <p>
-                The superannuation system intersects with income tax brackets, salary packaging, and overall take-home pay calculations. These related tools and guides provide deeper analysis on specific aspects of Australian tax and payroll.
+                These calculators and guides cover the SG amount, salary sacrifice, the concessional cap, Payday Super timing, take-home pay, income tax brackets and HECS-HELP.
               </p>
               <ul>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: Calculate the exact SG amount your employer must pay based on your salary, including the maximum contribution base cap.</li>
@@ -668,7 +668,7 @@ export default function SuperannuationGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Information on this page is based on current ATO legislation and Superannuation Guarantee Administration Act parameters for the {SITE_CONFIG.financialYear} Australian financial year, including Payday Super from {SUPER_GUARANTEE.paydaySuperStart}. Caps and thresholds were checked against the ATO&apos;s key superannuation rates and thresholds pages on 23 September 2026. Rules surrounding superannuation are subject to frequent federal updates.</p>
+                <p>Information on this page is based on current ATO legislation and Superannuation Guarantee Administration Act parameters for the {SITE_CONFIG.financialYear} Australian financial year, including Payday Super from {SUPER_GUARANTEE.paydaySuperStart}. Caps and thresholds were checked against the ATO&apos;s key superannuation rates and thresholds pages on 23 September 2026. Federal super rules change often, so check each figure against the ATO sources listed below.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("superannuation-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -702,7 +702,7 @@ export default function SuperannuationGuidePage() {
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-bold mb-2">Need a tailored breakdown?</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">Calculate how your super impacts your total package instantly.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">Enter your annual salary to see your employer super and total package.</p>
                   <Link href="/superannuation-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Go to Calculator
                   </Link>

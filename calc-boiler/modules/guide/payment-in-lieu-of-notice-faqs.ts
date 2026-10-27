@@ -12,15 +12,15 @@ export const PILON_FAQS: Faq[] = [
   },
   {
     q: "How much notice must an employer give in Australia?",
-    a: "Under the National Employment Standards: 1 week if you have 1 year of continuous service or less; 2 weeks for more than 1 year and up to 3 years; 3 weeks for more than 3 years and up to 5 years; and 4 weeks for more than 5 years. Employees over 45 with at least 2 years of continuous service get an extra week. An award, agreement or contract can require longer notice.",
+    a: "The National Employment Standards set the minimum notice an employer must give: 1 week if you have 1 year of continuous service or less; 2 weeks for more than 1 year and up to 3 years; 3 weeks for more than 3 years and up to 5 years; and 4 weeks for more than 5 years. Employees over 45 with at least 2 years of continuous service get an extra week. An award, agreement or contract can require longer notice.",
   },
   {
     q: "What must a payment in lieu of notice include?",
-    a: "It must equal the full amount you would have been paid if you had worked the notice period. That includes incentive-based payments and bonuses, loadings, monetary allowances, overtime, penalty rates and any other separately identifiable amounts you would normally have earned, not just base pay.",
+    a: "A payment in lieu of notice must equal the full amount you would have been paid if you had worked the notice period. That includes incentive-based payments and bonuses, loadings, monetary allowances, overtime, penalty rates and any other separately identifiable amounts you would normally have earned, not just base pay.",
   },
   {
     q: "How is payment in lieu of notice taxed?",
-    a: "The ATO treats a payment in lieu of notice as a non-excluded employment termination payment (ETP). It is taxed at a concessional rate up to the smaller of the ETP cap and the whole-of-income cap ($180,000, reduced by your other taxable income in the year): 17% if you have reached preservation age and 32% if you have not, including the Medicare levy. Amounts above the cap are taxed at the top rate of 45% plus 2% Medicare levy.",
+    a: "The ATO treats a payment in lieu of notice as a non-excluded employment termination payment (ETP). It is taxed at a concessional rate up to the smaller of the ETP cap and the whole-of-income cap ($180,000, reduced by your other taxable income in the year). The concessional rate, including the Medicare levy, is 17% if you have reached preservation age and 32% if you have not. Amounts above the cap are taxed at the top rate of 45% plus 2% Medicare levy.",
   },
   {
     q: "Is super paid on a payment in lieu of notice?",
@@ -36,7 +36,7 @@ export const PILON_FAQS: Faq[] = [
   },
   {
     q: "Do casual employees get notice or payment in lieu?",
-    a: "Not under the NES in the same way. Certain employees, including casuals, are not entitled to written notice of termination under the National Employment Standards, and time worked as a casual usually does not count towards continuous service for notice. Employees dismissed for serious misconduct are also not entitled to notice. Check your award or agreement.",
+    a: "Casual employees do not get notice under the NES in the same way as other employees. Certain employees, including casuals, are not entitled to written notice of termination under the National Employment Standards, and time worked as a casual usually does not count towards continuous service for notice. Employees dismissed for serious misconduct are also not entitled to notice. Check your award or agreement.",
   },
   {
     q: "Does the over-45 extra week change the amount?",

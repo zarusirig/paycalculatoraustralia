@@ -82,7 +82,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             Employee vs Sole Trader vs Company: Which Structure Pays More?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Your business structure determines how much tax you pay, whether you need to manage GST, how super works, and the level of personal liability you carry. Here is a real-numbers comparison at different income levels to help you choose the right structure.
+            Working as an employee, a sole trader with an ABN or through a Pty Ltd company sets how your income is taxed and who pays your super. It also decides whether you register for GST and how much personal liability you carry. A company pays a flat tax rate below the top individual marginal rate, but any saving is on profit you leave in the company. Profit paid out later as franked dividends is topped up to your marginal rate, and where the personal services income (PSI) rules apply there is no saving on that income. Our take-home tables further down use ATO resident rates to show income tax, super and cash in hand for each structure at sample incomes. The rest of the page explains each structure, the cost of running a company, and when switching from sole trader to company makes sense.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -100,7 +100,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="quick-comparison">
               <h2>Quick Comparison Table</h2>
               <p>
-                The three most common structures in Australia each have distinct characteristics across tax, super, liability, and administration:
+                The table compares the three structures (employee, sole trader with an ABN, and Pty Ltd company) on tax rates, super, liability, admin, GST, insurance and asset protection:
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -185,8 +185,8 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 Sole traders pay individual income tax at the same marginal rates as employees. Business income is reported on the individual tax return, and deductions for business expenses reduce taxable income. The key differences from employment are:
               </p>
               <ul>
-                <li><strong>No employer super</strong>: Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
-                <li><strong>GST registration</strong>: Required within {GST_REGISTRATION.daysToRegister} days once GST turnover reaches <strong>{formatAUD(GST_REGISTRATION.threshold)}</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
+                <li><strong>No employer super</strong>: Super contributions are optional for a sole trader, because no employer pays SG for you. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
+                <li><strong>GST registration</strong>: Required within {GST_REGISTRATION.daysToRegister} days once GST turnover reaches <strong>{formatAUD(GST_REGISTRATION.threshold)}</strong>. Below this threshold, registration is optional, and registering lets you claim GST credits on business purchases</li>
                 <li><strong>BAS lodgment</strong>: Quarterly (or monthly) Business Activity Statements reporting GST collected and paid, plus PAYG instalments on expected income tax</li>
                 <li><strong>No leave entitlements</strong>: Time off means no income. An employee is paid for {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave, {EMPLOYMENT.personalLeaveDays} days&apos; personal leave and public holidays; a sole trader has to fund those days from the days they bill. The <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> prices them in</li>
                 <li><strong>Business deductions</strong>: Home office, vehicle, tools, equipment, professional development, and other business-related expenses reduce taxable income</li>

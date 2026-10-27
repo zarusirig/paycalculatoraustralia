@@ -91,11 +91,11 @@ export default function CommissionTaxCalculatorPage({ children, afterCalculator 
             Commission Tax Calculator Australia
           </h1>
           <p className="text-lg text-warmgray">
-            A commission tax calculator separates two figures: the tax a commission adds to the year&apos;s assessment,
-            and the PAYG amount the employer withholds from the commission pay under ATO Schedule 5. Both use the{" "}
+            This commission tax calculator separates two figures: the tax a commission adds to your year&apos;s assessment,
+            and the PAYG amount your employer withholds from the commission pay under ATO Schedule 5. Both use the{" "}
             {SITE_CONFIG.financialYear} rates; for example, {formatAUD(LEAD_COMMISSION)} of commission on an{" "}
-            {formatAUD(LEAD_BASE)} salary adds {formatAUD(Math.round(LEAD_TAX))} of tax and Medicare levy for the year,
-            and any difference from the withheld amount is settled as a refund or bill.
+            {formatAUD(LEAD_BASE)} salary adds {formatAUD(Math.round(LEAD_TAX))} of tax and Medicare levy for the year.
+            Any difference between that and the withheld amount is settled at tax time as a refund or a bill.
           </p>
           <TrustBar className="mt-4" />
         </section>

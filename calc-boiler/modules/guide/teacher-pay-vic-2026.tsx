@@ -65,13 +65,13 @@ export default function VicPayRise2026() {
                 that the Commission approved the agreement with effect from{" "}
                 {VIC_2026_AGREEMENT.reportedApproval.operativeFrom}. The Commission&apos;s decision and the
                 department&apos;s new salary schedule had not been published when we checked, so the VGSA 2022
-                rates further down this page remain the latest official rates until they are.
+                rates in this page&apos;s pay scale tables remain the latest official rates until they are.
               </>
             ) : (
               <>
                 It was at {VIC_2026_AGREEMENT.fwcStage} when checked on {VIC_2026_AGREEMENT.fwcCheckedOn}. It
                 starts operating seven days after the Commission approves it. Until then the VGSA 2022 rates
-                further down this page are what is paid.
+                in this page&apos;s pay scale tables are what is paid.
               </>
             )}
           </p>
@@ -205,7 +205,7 @@ export default function VicPayRise2026() {
           assessment and collaboration.
         </li>
         <li>
-          <strong>Professional practice days.</strong> One in 2026, then four a year from 2027 (pro rata
+          <strong>Professional practice days.</strong> Teachers get one in 2026, then four a year from 2027 (pro rata
           for part-time), taken on student-free days. Education support staff get four a year from
           2027 for the first time.
         </li>

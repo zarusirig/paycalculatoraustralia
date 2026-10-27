@@ -68,7 +68,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     ],
     contractorsHeading: "Contractors and Owner-Drivers",
     contractors: [
-      "Payments under a “relevant contract” (any arrangement where a contractor supplies the services of a worker) are taxable unless one of seven contractor exemptions applies, and if one does, every payment to that contractor is exempt. Only the labour component is taxed: materials, tools, equipment, a vehicle and GST are not, and where an invoice does not split them you can deduct the percentage for the trade in Revenue Ruling PTA 018. Keep the evidence (ABN, contracts, invoices, days worked, proof of services to the public) for at least five years.",
+      "Payments under a relevant contract (any arrangement where a contractor supplies the services of a worker) are taxable unless one of seven contractor exemptions applies, and if one does, every payment to that contractor is exempt. Only the labour component is taxed: materials, tools, equipment, a vehicle and GST are not, and where an invoice does not split them you can deduct the percentage for the trade in Revenue Ruling PTA 018. Keep the evidence (ABN, contracts, invoices, days worked, proof of services to the public) for at least five years.",
       "From 21 April 2026 the Fair Work Commission's Road Transport Contractual Chain Order makes transport businesses pay owner-drivers more for fuel. Revenue NSW says those fuel contributions do not affect the owner-driver exemption in section 32(2)(d) of the Payroll Tax Act 2007.",
     ],
     lodgement: [
@@ -82,7 +82,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       },
       {
         q: "What is the NSW payroll tax estimate method?",
-        a: "A way for monthly lodgers with an annual liability under $150,000 to pay a fixed estimate each month instead of calculating actual wages: last year's tax × 1.03, divided by the days employed, times 365 ÷ 12. The annual return then trues it up. Above $150,000 you must use actual wages.",
+        a: "The NSW estimate method lets monthly lodgers with an annual liability under $150,000 pay a fixed estimate each month instead of calculating actual wages: last year's tax × 1.03, divided by the days employed, times 365 ÷ 12. The annual return then trues it up. Above $150,000 you must use actual wages.",
       },
       {
         q: "Are payments to contractors subject to NSW payroll tax?",
@@ -128,11 +128,11 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     faqs: [
       {
         q: "What are the Victorian payroll tax surcharges?",
-        a: "The mental health and wellbeing surcharge (since 1 January 2022) and the COVID-19 debt temporary surcharge (1 July 2023 to 30 June 2033). Each is 0.5% on Victorian wages above an apportioned $10 million of Australian wages, plus another 0.5% each above $100 million: 1% combined from $10 million, 2% from $100 million.",
+        a: "Victoria's payroll tax surcharges are the mental health and wellbeing surcharge (since 1 January 2022) and the COVID-19 debt temporary surcharge (1 July 2023 to 30 June 2033). Each is 0.5% on Victorian wages above an apportioned $10 million of Australian wages, plus another 0.5% each above $100 million: 1% combined from $10 million, 2% from $100 million.",
       },
       {
         q: "Who qualifies for the regional payroll tax rate in Victoria?",
-        a: "Employers that pay at least 85% of their Victorian taxable wages to regional employees, meaning employees who do more than half of their Victorian work for the employer in regional Victoria. They pay 1.2125% instead of 4.85%. The test applies monthly and for the full year, and each member of a group is assessed separately.",
+        a: "Victoria's regional rate goes to employers that pay at least 85% of their Victorian taxable wages to regional employees, meaning employees who do more than half of their Victorian work for the employer in regional Victoria. They pay 1.2125% instead of 4.85%. The test applies monthly and for the full year, and each member of a group is assessed separately.",
       },
       {
         q: "Is GP income exempt from Victorian payroll tax?",
@@ -160,7 +160,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     leviesHeading: "Mental Health Levy, Regional Discount and Apprentice Rebate",
     levies: [
       "The mental health levy is charged on Queensland wages above the apportioned thresholds once Australian wages pass $10 million: 0.25%, plus a further 0.5% above $100 million. Thresholds are adjusted for groups, interstate wages, part years and periodic returns, and in a group only the designated group employer reconciles the levy in its annual return.",
-      "Regional employers get 1 percentage point off (3.75% or 3.95%) until 30 June 2030, unless Australian wages exceed $350 million. You qualify if your principal place of employment (your ABN business address) is in regional Queensland and at least 85% of your Queensland wages go to employees whose principal place of residence is there: the Cairns, Central Queensland, Darling Downs–Maranoa, Mackay–Isaac–Whitsunday, Queensland–Outback, Townsville and Wide Bay regions. Working holiday makers and PALM scheme workers in temporary accommodation generally do not count. Eligibility is tested at every return.",
+      "Regional employers get 1 percentage point off (3.75% or 3.95%) until 30 June 2030, unless Australian wages exceed $350 million. You qualify if your principal place of employment (your ABN business address) is in regional Queensland and at least 85% of your Queensland wages go to employees whose principal place of residence is there: the Cairns, Central Queensland, Darling Downs-Maranoa, Mackay-Isaac-Whitsunday, Queensland-Outback, Townsville and Wide Bay regions. Working holiday makers and PALM scheme workers in temporary accommodation generally do not count. Eligibility is tested at every return.",
       "Apprentice and trainee wages are exempt, and a 50% rebate applies on top for each year from 1 July 2016 to 30 June 2027: half of those wages × your rate comes off your liability. QRO's example: $50,000 of apprentice wages in a month cuts a $10,000 liability by $1,187.50.",
     ],
     grouping: [
@@ -174,16 +174,16 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     ],
     lodgement: [
       "Register within 7 days of the first month in which Australian wages, yours or your group's, exceed $25,000 a week, even if you expect to stay under $1.3 million for the year.",
-      "Monthly and half-yearly lodgers file periodic returns 7 days after the period ends; the July–December half-year and the December month are both due 14 January 2027. There is no June return: June goes into the annual return due 21 July 2027. A final return is due within 21 days of a change of status.",
+      "Monthly and half-yearly lodgers file periodic returns 7 days after the period ends; the July to December half-year and the December month are both due 14 January 2027. There is no June return: June goes into the annual return due 21 July 2027. A final return is due within 21 days of a change of status.",
     ],
     faqs: [
       {
         q: "What is the Queensland mental health levy?",
-        a: "A levy on top of payroll tax for employers and groups with more than $10 million of Australian taxable wages: 0.25% on Queensland wages above the apportioned $10 million, plus 0.5% above an apportioned $100 million. A non-grouped Queensland-only employer paying $112 million pays $255,000 + $60,000 = $315,000.",
+        a: "The Queensland mental health levy is charged on top of payroll tax for employers and groups with more than $10 million of Australian taxable wages: 0.25% on Queensland wages above the apportioned $10 million, plus 0.5% above an apportioned $100 million. A non-grouped Queensland-only employer paying $112 million pays $255,000 + $60,000 = $315,000.",
       },
       {
         q: "Who gets the Queensland regional payroll tax discount?",
-        a: "Employers whose ABN business address is in regional Queensland and who pay at least 85% of their Queensland taxable wages to employees who usually live there. They pay 3.75% (or 3.95% above $6.5 million) until 30 June 2030, but not if Australian wages exceed $350 million.",
+        a: "The Queensland regional discount goes to employers whose ABN business address is in regional Queensland and who pay at least 85% of their Queensland taxable wages to employees who usually live there. They pay 3.75% (or 3.95% above $6.5 million) until 30 June 2030, but not if Australian wages exceed $350 million.",
       },
       {
         q: "Is there a payroll tax rebate for apprentices in Queensland?",
@@ -221,7 +221,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     contractorsHeading: "Contractors: WA Is Not Harmonised",
     contractors: [
       "WA is the one jurisdiction that has not harmonised its contractor rules. It has no relevant-contract provisions: payments to a contractor are taxable only where the relationship is akin to employment under the common law tests (control, integration, the power to delegate, whether the contractor runs an independent business), judged on the totality of the relationship. If it is, every payment is taxable apart from the GST.",
-      "If you are unsure, RevenueWA will make a determination: complete form FPRT6 “Questionnaire: Contractor Payments” and it may interview both you and the contractor. Employment agents are deemed the employer of workers they place: a temp paid $140 a day from a $200 daily fee is taxed on the $140.",
+      "If you are unsure, RevenueWA will make a determination: complete form FPRT6 'Questionnaire: Contractor Payments' and it may interview both you and the contractor. Employment agents are deemed the employer of workers they place: a temp paid $140 a day from a $200 daily fee is taxed on the $140.",
     ],
     lodgement: [
       "Register within seven days after the end of the month in which you pay wages in WA or the Indian Ocean Territories and your Australian wages pass $83,333.",
@@ -230,7 +230,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     faqs: [
       {
         q: "Are contractors subject to payroll tax in WA?",
-        a: "Only if the relationship is effectively employment under the common law tests. Unlike the other states and territories, WA has no relevant-contract provisions. Where a contractor is in substance an employee, all payments are taxable except the GST. RevenueWA will make a determination if you lodge form FPRT6.",
+        a: "A contractor is subject to WA payroll tax only if the relationship is effectively employment under the common law tests. Unlike the other states and territories, WA has no relevant-contract provisions. Where a contractor is in substance an employee, all payments are taxable except the GST. RevenueWA will make a determination if you lodge form FPRT6.",
       },
       {
         q: "Can I lodge WA payroll tax returns quarterly or annually?",
@@ -280,11 +280,11 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     faqs: [
       {
         q: "Why does my SA payroll tax rate change at the annual reconciliation?",
-        a: "Because SA's rate depends on your full-year Australian wages (0% to 4.95% between $1.5 million and $1.7 million). Monthly returns use an estimated rate based on the annual wages you declare at the start of the year; the actual rate is set at the July annual reconciliation, with a refund or a shortfall to pay.",
+        a: "Your SA payroll tax rate changes because it depends on your full-year Australian wages (0% to 4.95% between $1.5 million and $1.7 million). Monthly returns use an estimated rate based on the annual wages you declare at the start of the year; the actual rate is set at the July annual reconciliation, with a refund or a shortfall to pay.",
       },
       {
         q: "Are apprentice wages exempt from SA payroll tax?",
-        a: "Not for new contracts. Wages under training contracts started on or after 1 July 2022 are taxable. Contracts started between 10 November 2020 and 30 June 2022 were exempt for their first 12 months.",
+        a: "Apprentice and trainee wages are taxable in SA under training contracts started on or after 1 July 2022. Contracts started between 10 November 2020 and 30 June 2022 were exempt for their first 12 months.",
       },
       {
         q: "Can a group share an unused SA payroll tax deduction?",
@@ -313,12 +313,12 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       "Monthly thresholds are the days in the month ÷ days in the year × $1.25 million (and × $2 million), rounded to the nearest dollar. If Australia-wide wages cannot be obtained each month, one twelfth of last year's can be used. Wages paid by non-profit group training organisations registered with the Tasmanian Traineeships and Apprenticeships Committee are exempt.",
     ],
     grouping: [
-      "Part 5 of the Payroll Tax Act 2008 groups related corporations, an employer whose employees work solely or mainly for another business (section 71), and commonly controlled businesses. A “business” includes carrying on a trust, even a dormant one, and holding money or property used by another business. Group members are jointly and severally liable for each other's payroll tax.",
+      "Part 5 of the Payroll Tax Act 2008 groups related corporations, an employer whose employees work solely or mainly for another business (section 71), and commonly controlled businesses. A 'business' includes carrying on a trust, even a dormant one, and holding money or property used by another business. Group members are jointly and severally liable for each other's payroll tax.",
       "Under section 79 the Commissioner can de-group a member whose business is carried on independently of, and is not connected with, the rest of the group. SRO Tasmania weighs who makes day-to-day decisions, common customers, whether activities are complementary, shared resources, financial dependence, and whether loans between members are on commercial terms.",
     ],
     contractorsHeading: "Contractors",
     contractors: [
-      "“Employee” is not defined in the Payroll Tax Act 2008, so the common law tests decide it: control and direction, the contract and the working relationship, contracts for a given result, an independent business, the power to delegate, risk, and who provides tools and equipment. A worker who passes as a contractor can still be caught: amounts paid under the contractor provisions are wages unless one of the relevant contract exclusions applies.",
+      "The term 'employee' is not defined in the Payroll Tax Act 2008, so the common law tests decide it: control and direction, the contract and the working relationship, contracts for a given result, an independent business, the power to delegate, risk, and who provides tools and equipment. A worker who passes as a contractor can still be caught: amounts paid under the contractor provisions are wages unless one of the relevant contract exclusions applies.",
     ],
     lodgement: [
       "You are liable once your or your group's Australian wages exceed $1.25 million a year, or $24,038 a week during a month, and you pay wages in Tasmania. Tasmanian Revenue Online (TRO) calculates the tax from your registration and grouping details, and sets your lodgement frequency from the information in your returns.",
@@ -335,7 +335,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       },
       {
         q: "What is the Tasmanian annual adjustment return?",
-        a: "The reconciliation every Tasmanian payroll tax payer must lodge by 21 July. It works out whether a refund is due or more tax is payable for the year, and for monthly lodgers it replaces the June return.",
+        a: "The annual adjustment return is the reconciliation every Tasmanian payroll tax payer must lodge by 21 July. It works out whether a refund is due or more tax is payable for the year, and for monthly lodgers it replaces the June return.",
       },
     ],
     sources: [
@@ -359,12 +359,12 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       "ACT exempt wages include new starters receiving eligible training, paid maternity, adoption and primary carer leave, Commonwealth Paid Parental Leave, the tax-free part of a genuine redundancy and workers compensation; there is also a GP wages exemption scheme. Wages for an overseas assignment of more than six continuous months are not taxable, including the first six months.",
     ],
     grouping: [
-      "Part 5 of the Payroll Tax Act 2011 groups related corporations, businesses sharing employees, businesses under common control, tracing of interests and people in two or more groups, and an Australian business can be grouped with an overseas one. A “business” includes running a trust, even a dormant one. Each member employing in the ACT must register, and the ACT Revenue Office must be told promptly in writing when an entity joins or leaves.",
+      "Part 5 of the Payroll Tax Act 2011 groups related corporations, businesses sharing employees, businesses under common control, tracing of interests and people in two or more groups. An Australian business can be grouped with an overseas one. A 'business' includes running a trust, even a dormant one. Each member employing in the ACT must register, and the ACT Revenue Office must be told promptly in writing when an entity joins or leaves.",
       "Only one member claims the threshold. With the Commissioner's approval one member can lodge a single return for all — a Joint Return Lodger — nominated on the same form as the designated group employer.",
     ],
     contractorsHeading: "Contractors and Employment Agents",
     contractors: [
-      "Payments under a relevant contract are taxable unless the contract is exempt, and a flat deduction for materials or equipment may apply by trade (circular PTA018). The ACT's exemptions cover contracts where labour is secondary to supplying goods, services not ordinarily required that the contractor offers to the public, owner-drivers carrying goods in their own vehicle, and genuine independent businesses serving the public, the last only if you apply to the Commissioner for ACT Revenue. A contract that includes any non-exempt work, or that was set up to avoid payroll tax, gets no exemption.",
+      "In the ACT, payments under a relevant contract are taxable unless the contract is exempt, and a flat deduction for materials or equipment may apply by trade (circular PTA018). The ACT's exemptions cover contracts where labour is secondary to supplying goods, services not ordinarily required that the contractor offers to the public, owner-drivers carrying goods in their own vehicle, and genuine independent businesses serving the public, the last only if you apply to the Commissioner for ACT Revenue. A contract that includes any non-exempt work, or that was set up to avoid payroll tax, gets no exemption.",
       "Employment agencies pay the payroll tax on wages of the workers they hire out, whoever actually pays them, but in some circumstances can exclude payments to independent contractors. GST is never part of the taxable amount.",
     ],
     lodgement: [
@@ -374,7 +374,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
     faqs: [
       {
         q: "What changed in ACT payroll tax on 1 July 2026?",
-        a: "The threshold fell from $2 million to $1.75 million, and the flat 6.85% rate with surcharges for larger groups was replaced by five bands based on Australia-wide wages: 6.75% up to $20 million, 6.85% to $50 million, 7.35% to $100 million, 7.85% to $150 million and 8.75% above $150 million.",
+        a: "The ACT payroll tax threshold fell from $2 million to $1.75 million, and the flat 6.85% rate with surcharges for larger groups was replaced by five bands based on Australia-wide wages: 6.75% up to $20 million, 6.85% to $50 million, 7.35% to $100 million, 7.85% to $150 million and 8.75% above $150 million.",
       },
       {
         q: "Do ACT payroll tax bands work like income tax brackets?",
@@ -382,7 +382,7 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       },
       {
         q: "Are contractors exempt from ACT payroll tax?",
-        a: "Only if the contract fits an exemption: labour secondary to supplying goods, services not ordinarily required from a contractor who serves the public, owner-drivers carrying goods in their own vehicle, or a genuine independent business serving the public (which needs the Commissioner's approval). Otherwise relevant contract payments are taxable, less any allowed deduction for materials.",
+        a: "Contractor payments are exempt from ACT payroll tax only if the contract fits an exemption: labour secondary to supplying goods, services not ordinarily required from a contractor who serves the public, owner-drivers carrying goods in their own vehicle, or a genuine independent business serving the public (which needs the Commissioner's approval). Otherwise relevant contract payments are taxable, less any allowed deduction for materials.",
       },
     ],
     sources: [
@@ -398,15 +398,15 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
   nt: {
     legislation: "Payroll Tax Act 2009 (NT)",
     workedExample: [
-      "The Territory Revenue Office's guide: an employer paying $2.4 million is under the $2.5 million threshold and pays nothing. At $2.9 million the annual deductible amount (ADA) falls to $2.5 million − ($400,000 ÷ 2) = $2.3 million, leaving $600,000 taxed at 5.5%, which is $33,000. An employer with $2.7 million in the NT out of $10.4 million Australia-wide has no tax-free amount at all and pays $148,500.",
+      "In the Territory Revenue Office's guide, an employer paying $2.4 million is under the $2.5 million threshold and pays nothing. At $2.9 million the annual deductible amount (ADA) falls to $2.5 million − ($400,000 ÷ 2) = $2.3 million, leaving $600,000 taxed at 5.5%, which is $33,000. An employer with $2.7 million in the NT out of $10.4 million Australia-wide has no tax-free amount at all and pays $148,500.",
     ],
     leviesHeading: "A 6.5% Rate for $100 Million Employers",
     levies: [
-      "From 1 July 2026 an amendment to the Payroll Tax Act 2009 adds a 6.5% rate for employers and groups with Australia-wide wages of $100 million or more; the $2.5 million threshold, the deduction settings and the 5.5% rate are unchanged for everyone else. The rate test is separate from the deduction: a large group still gets its ADA worked out in the usual way, then pays 6.5% on its net NT wages. Monthly returns should use 6.5% if the employer or group expects to reach $100 million for the year, using last year's wages as the starting point; the annual return corrects any difference.",
+      "From 1 July 2026 an amendment to the Payroll Tax Act 2009 adds a 6.5% rate for employers and groups with Australia-wide wages of $100 million or more. The $2.5 million threshold, the deduction settings and the 5.5% rate are unchanged for everyone else. The rate test is separate from the deduction: a large group still gets its ADA worked out in the usual way, then pays 6.5% on its net NT wages. Monthly returns should use 6.5% if the employer or group expects to reach $100 million for the year, using last year's wages as the starting point. The NT annual return corrects any difference.",
       "Non-profit charities, public benevolent institutions, religious institutions, non-profit non-government schools, public and non-profit private hospitals and local governing bodies can be exempt for wages of staff working exclusively in their charitable activities. There is no form: apply to TRO by email or letter for a determination.",
     ],
     grouping: [
-      "Grouping is automatic, and smaller groups are subsumed into a single master group. A group of NT taxpayers can apply (form F-PRT-003) for its designated group employer to lodge one consolidated return and make one payment for every member; members stay jointly and severally liable, but their liabilities are treated as met once the DGE pays.",
+      "NT payroll tax grouping is automatic, and smaller groups are subsumed into a single master group. A group of NT taxpayers can apply (form F-PRT-003) for its designated group employer to lodge one consolidated return and make one payment for every member. Members stay jointly and severally liable, but their liabilities are treated as met once the DGE pays.",
       "Each month's deduction is fixed in advance: when the annual adjustment return is lodged, INTRA divides the year's ADA by 12 to set the monthly deductable amount (MDA) for the next year.",
     ],
     contractorsHeading: "When Contractor Payments Are Taxable",
@@ -415,21 +415,21 @@ export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxSta
       "For fly-in fly-out workers, wages for a month worked entirely in one state are taxed there; if a FIFO worker works in two or more states in the same month, the payroll tax goes to the state or territory where they normally live.",
     ],
     lodgement: [
-      "NT payroll tax is due by the 21st of the following month, not the 7th: tax for July 2026 must be received by Friday 21 August 2026, and for October 2026 by Monday 23 November 2026 because 21 November is a Saturday. Returns are lodged in INTRA, and you register within 21 days of the end of the first month your Australian wages pass $208,333.",
+      "NT payroll tax is due by the 21st of the following month, not the 7th. Tax for July 2026 must be received by Friday 21 August 2026, and for October 2026 by Monday 23 November 2026 because 21 November is a Saturday. Returns are lodged in INTRA, and you register within 21 days of the end of the first month your Australian wages pass $208,333.",
       "Employers whose estimated tax for the year is under the annual-lodgement threshold can lodge just an annual return; that threshold rises to $20,000 from 1 September 2026. TRO warns against paying June twice — pay only the amount in the annual return, by 21 July.",
     ],
     faqs: [
       {
         q: "When is NT payroll tax due?",
-        a: "By the 21st of the month after the return period, later than the 7th used in most states. If the 21st is a weekend or public holiday, TRO must receive payment by the next NT business day. The annual return and any balance are due by 21 July.",
+        a: "NT payroll tax is due by the 21st of the month after the return period, later than the 7th used in most states. If the 21st is a weekend or public holiday, TRO must receive payment by the next NT business day. The annual return and any balance are due by 21 July.",
       },
       {
         q: "Who pays the 6.5% NT payroll tax rate?",
-        a: "From 1 July 2026, employers and payroll tax groups whose Australia-wide wages are $100 million or more. They still get the usual annual deductible amount (which is nil at that size); the 6.5% applies to their net NT taxable wages. Everyone else pays 5.5%.",
+        a: "From 1 July 2026, employers and payroll tax groups whose Australia-wide wages are $100 million or more pay 6.5% on their net NT taxable wages. They still get the usual annual deductible amount, which is nil at that size. Everyone else pays 5.5%.",
       },
       {
         q: "When are contractor payments taxable in the NT?",
-        a: "Signs include services that are a normal part of your business for most of the year, a contractor with no employees, invoices for more than 90 days' work in the year, more than 10 days' work a month on average, or labour making up more than half the contract value. A company or trust structure, own tools or a signed 'not an employee' agreement do not change the answer.",
+        a: "In the NT, the signs that contractor payments are taxable include services that are a normal part of your business for most of the year, a contractor with no employees, invoices for more than 90 days' work in the year, more than 10 days' work a month on average, or labour making up more than half the contract value. A company or trust structure, own tools or a signed 'not an employee' agreement do not change the answer.",
       },
     ],
     sources: [

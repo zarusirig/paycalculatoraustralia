@@ -73,14 +73,14 @@ export const ENGINEER: Occupation = {
     "Employees doing professional engineering work are covered by the Professional Employees Award 2020 [MA000065], whichever industry their employer is in. The award covers graduate and experienced engineers, as well as scientists, IT professionals and quality auditors.",
     "A graduate engineer (someone with a 4 or 5-year degree recognised by Engineers Australia) starts at Level 1 pay point 1.1 and moves through pay points 1.2 to 1.4. An experienced engineer (a member of Engineers Australia, or 4 years' professional experience after qualifying) is Level 2, and Levels 3 and 4 cover engineers with greater independence, responsibility and seniority (Schedule A).",
     "The award sets annual salaries. It does not cover engineers in industries with their own award that excludes it, for example electricity, water, rail, black coal mining or state government agencies (cl 4.2), nor engineers in state or local government covered by another award.",
-    "Engineering technicians and draftspersons are not professional engineers and are usually covered by the Manufacturing award or an industry award instead.",
+    "Engineering technicians and draftspersons are not professional engineers and are usually covered by the Manufacturing Award or an industry award instead.",
   ],
   tables: [
     {
       id: "professional",
       title: "Engineer pay rates by level, 2026–27",
       intro:
-        "Annual wages from clause 14.1. Weekly is the award's own conversion (annual x 6/313); hourly and casual rates are exactly as published in Schedule C.",
+        "Annual wages are from clause 14.1 of the Professional Employees Award. Weekly is the award's own conversion (annual x 6/313); hourly and casual rates are exactly as published in Schedule C.",
       rows: [
         pro("Level 1 Graduate professional — pay point 1.1 (3 year degree)", 66_825, 33.71, 42.14),
         pro("Level 1 Graduate professional — pay point 1.1 (4 or 5 year degree)", 68_538, 34.57, 43.21, "Graduate engineer"),
@@ -99,7 +99,7 @@ export const ENGINEER: Occupation = {
     { when: "Public holiday", permanent: "150%", casual: "175%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate for hours worked at the employer's direction (cl 18.4, Schedule C). There is no Saturday daytime penalty under this award.",
+    "Engineer penalty rates are percentages of the minimum hourly rate for hours worked at the employer's direction (cl 18.4, Schedule C). There is no Saturday daytime penalty under this award.",
   overtime: [
     "Hours beyond 38 a week (or an agreed average) are paid at the minimum hourly rate, not time and a half (cl 18.2(a)). Casuals likewise get their casual hourly rate.",
     "Overtime includes call-backs and work done remotely on electronic devices, which must be recorded on a timesheet (cl 18.2).",
@@ -117,7 +117,7 @@ export const ENGINEER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a graduate engineer in 2026?",
-      a: "A graduate engineer with a 4 or 5-year degree recognised by Engineers Australia must be paid at least $68,538 a year ($34.57 an hour) under the Professional Employees Award from the first full pay period on or after 1 July 2026. A 3-year degree graduate professional starts at $66,825.",
+      a: "A graduate engineer with a 4 or 5-year degree recognised by Engineers Australia must be paid at least $68,538 a year ($34.57 an hour) under the Professional Employees Award from the first full pay period on or after 1 July 2026. A graduate professional with a 3-year degree starts at $66,825 a year.",
     },
     {
       q: "What is the minimum salary for an experienced engineer?",

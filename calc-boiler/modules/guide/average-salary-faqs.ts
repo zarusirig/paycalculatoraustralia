@@ -47,7 +47,7 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Why is the average salary higher than the median?",
-    a: `Because earnings are skewed: a minority of very high earners pull the mean up, while the median is simply the middle person. The full-time average of ${dollars(HEADLINE.averageAnnual)} is about ${dollars(HEADLINE.averageAnnual - HEADLINE.medianFullTimeAnnual)} above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)}. The two figures also come from different ABS surveys and dates: the average from employers in ${AWE_RELEASE.referencePeriod}, the median from households in ${EE_RELEASE.referencePeriod}.`,
+    a: `The average salary is higher than the median because earnings are skewed: a minority of very high earners pull the mean up, while the median is the middle earner. The full-time average of ${dollars(HEADLINE.averageAnnual)} is about ${dollars(HEADLINE.averageAnnual - HEADLINE.medianFullTimeAnnual)} above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)}. The two figures also come from different ABS surveys and dates: the average from employers in ${AWE_RELEASE.referencePeriod}, the median from households in ${EE_RELEASE.referencePeriod}.`,
   },
   {
     q: "What is the average salary in Australia after tax?",
@@ -55,7 +55,7 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What is a good salary in Australia?",
-    a: `Measured against every employee, a salary of ${dollars(annualise(p75.weekly))} a year (${dollars(p75.weekly)} a week) put you in the top 25% in ${EE_RELEASE.referencePeriod}, and ${dollars(annualise(p90.weekly))} (${dollars(p90.weekly)} a week) put you in the top 10%. Anything above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)} is more than half of full-time workers earn.`,
+    a: `A salary of ${dollars(annualise(p75.weekly))} a year (${dollars(p75.weekly)} a week) put you in the top 25% of all employees in ${EE_RELEASE.referencePeriod}, and ${dollars(annualise(p90.weekly))} (${dollars(p90.weekly)} a week) put you in the top 10%. Any salary above the full-time median of ${dollars(HEADLINE.medianFullTimeAnnual)} is higher than what half of full-time workers earn.`,
   },
   {
     q: "Which state has the highest average salary?",
@@ -63,7 +63,7 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What is the highest-paying industry in Australia?",
-    a: `${topIndustry.label}: full-time adults average ${dollarsCents(topIndustry.weekly)} a week, or ${dollars(annualise(topIndustry.weekly))} a year. ${lowIndustry.label} is the lowest at ${dollarsCents(lowIndustry.weekly)} a week (${dollars(annualise(lowIndustry.weekly))}). Source: ABS Average Weekly Earnings, ${AWE_RELEASE.referencePeriod}.`,
+    a: `${topIndustry.label} is the highest-paying industry: full-time adults in it average ${dollarsCents(topIndustry.weekly)} a week, or ${dollars(annualise(topIndustry.weekly))} a year. ${lowIndustry.label} is the lowest at ${dollarsCents(lowIndustry.weekly)} a week (${dollars(annualise(lowIndustry.weekly))}). Source: ABS Average Weekly Earnings, ${AWE_RELEASE.referencePeriod}.`,
   },
   {
     q: "What is the average salary for men and women in Australia?",
@@ -75,6 +75,6 @@ export const AVERAGE_SALARY_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What is the average weekly wage in Australia?",
-    a: `${dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week for full-time adults (ordinary time, ${AWE_RELEASE.referencePeriod}). The median weekly wage is ${dollars(EE_MEDIAN.fullTime)} for full-time employees and ${dollars(EE_MEDIAN.allEmployees)} across all employees, and the median hourly rate is $${EE_MEDIAN.hourlyAll.toFixed(2)} (${EE_RELEASE.referencePeriod}).`,
+    a: `The average weekly wage in Australia is ${dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} for full-time adults (ABS ordinary time earnings, ${AWE_RELEASE.referencePeriod}). The median weekly wage is ${dollars(EE_MEDIAN.fullTime)} for full-time employees and ${dollars(EE_MEDIAN.allEmployees)} across all employees, and the median hourly rate is $${EE_MEDIAN.hourlyAll.toFixed(2)} (${EE_RELEASE.referencePeriod}).`,
   },
 ];

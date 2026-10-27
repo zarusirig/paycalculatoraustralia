@@ -50,7 +50,7 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   WEEKLY_TAX_ANSWER,
   {
     q: "How much tax do I pay if I earn $1,500 a week?",
-    a: `${formatAUD(WH(1_500).withheld)} a week if you claim the tax-free threshold, so you take home ${formatAUD(WH(1_500).net)} (ATO weekly tax table, ${FY}). On ${formatAUD(750)} a week the figure is ${formatAUD(WH(750).withheld)}, and on ${formatAUD(2_000)} it is ${formatAUD(WH(2_000).withheld)}. Without the threshold, for example at a second job, more is withheld.`,
+    a: `${formatAUD(WH(1_500).withheld)} a week is withheld if you claim the tax-free threshold, so you take home ${formatAUD(WH(1_500).net)} (ATO weekly tax table, ${FY}). On ${formatAUD(750)} a week the figure is ${formatAUD(WH(750).withheld)}, and on ${formatAUD(2_000)} it is ${formatAUD(WH(2_000).withheld)}. Without the threshold, for example at a second job, more is withheld.`,
   },
   {
     q: "Is $1,200 a week good in Australia?",
@@ -74,7 +74,7 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why do we divide by 52 and not 48?",
-    a: `Full-time employees in Australia receive ${EMPLOYMENT.annualLeaveWeeks} weeks of paid annual leave and ${EMPLOYMENT.personalLeaveDays} days of paid personal leave per year. These paid leave entitlements are included in the annual salary, which covers all 52 weeks. Dividing by 48 would overstate weekly pay by approximately ${((52 / 48 - 1) * 100).toFixed(1)}%.`,
+    a: `An annual salary covers all 52 weeks of the year, including weeks of paid leave. Full-time employees in Australia receive ${EMPLOYMENT.annualLeaveWeeks} weeks of paid annual leave and ${EMPLOYMENT.personalLeaveDays} days of paid personal leave per year, all paid from that salary. Dividing by 48 would overstate weekly pay by about ${((52 / 48 - 1) * 100).toFixed(1)}%.`,
   },
   {
     q: "Are there 52 or 53 weekly pays in a year?",
@@ -87,10 +87,10 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: `Do I pay tax if my weekly pay is below ${formatAUD(THRESHOLD_WEEKLY)}?`,
-    a: `Earning ${formatAUD(THRESHOLD_WEEKLY)} per week is equivalent to ${formatAUD(TAX_FREE_THRESHOLD)} per year, which is the tax-free threshold. If your total annual income from all sources stays at or below ${formatAUD(TAX_FREE_THRESHOLD)}, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold, so your second job is taxed from the first dollar.`,
+    a: `Not if that weekly pay is your only income. Earning ${formatAUD(THRESHOLD_WEEKLY)} per week is equivalent to ${formatAUD(TAX_FREE_THRESHOLD)} per year, which is the tax-free threshold. If your total annual income from all sources stays at or below ${formatAUD(TAX_FREE_THRESHOLD)}, no income tax is payable. If you hold multiple jobs and your combined income exceeds the threshold, tax applies to the combined total. Only one employer can apply the tax-free threshold, so your second job has tax withheld from the first dollar.`,
   },
   {
     q: "How should I budget on weekly pay?",
-    a: `Financial advisors typically recommend the 50/30/20 rule: allocate 50% of your after-tax weekly pay to needs (rent, groceries, transport), 30% to wants (dining out, entertainment), and 20% to savings and debt repayment. On a net weekly income of ${formatAUD(EX.weekly)} (from an ${formatAUD(EX_SALARY)} salary), that equals ${formatAUD(EX.weekly * 0.5)} for needs, ${formatAUD(EX.weekly * 0.3)} for wants, and ${formatAUD(EX.weekly * 0.2)} for savings.`,
+    a: `The 50/30/20 rule is a budgeting method: allocate 50% of your after-tax weekly pay to needs (rent, groceries, transport), 30% to wants (dining out, entertainment), and 20% to savings and debt repayment. On a net weekly income of ${formatAUD(EX.weekly)} (from an ${formatAUD(EX_SALARY)} salary), that equals ${formatAUD(EX.weekly * 0.5)} for needs, ${formatAUD(EX.weekly * 0.3)} for wants, and ${formatAUD(EX.weekly * 0.2)} for savings.`,
   },
 ];

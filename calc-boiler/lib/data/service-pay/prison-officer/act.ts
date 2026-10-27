@@ -39,7 +39,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       id: "correctional-officer-class-1",
       title: "Correctional Officer Class 1",
       intro:
-        "Annex A, the \"1% + $1,000 from 4/12/2025\" column. Pay points above the first are tied to the Certificate III and Certificate IV in Correctional Practice, as the agreement labels them.",
+        "The ACT agreement prints these salaries in Annex A, in the column headed \"1% + $1,000 from 4/12/2025\". Pay points above the first are tied to the Certificate III and Certificate IV in Correctional Practice, as the agreement labels them.",
       stepHeading: "Pay point",
       steps: [
         { label: "Class 1, entry", salary: 79_546 },
@@ -51,7 +51,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer-class-2",
       title: "Correctional Officer Class 2",
-      intro: "Annex A, from 4 December 2025.",
+      intro: "The ACT agreement sets these salaries in Annex A, and they apply from 4 December 2025.",
       stepHeading: "Pay point",
       steps: [
         { label: "Class 2, pay point 1", salary: 97_903 },
@@ -62,7 +62,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer-class-3-4",
       title: "Correctional Officer Class 3 and Class 4",
-      intro: "Annex A, from 4 December 2025.",
+      intro: "Both classes in this table are paid from the same Annex A column of the ACT agreement, from 4 December 2025.",
       stepHeading: "Pay point",
       steps: [
         { label: "Class 3, pay point 1", salary: 111_366 },
@@ -81,8 +81,8 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "A Correctional Officer Trainee is paid $65,146 a year while on the course, from the first full pay period on or after 1 December 2025 (Annex A).",
   ],
   penalties: [
-    "Shift workers get an extra 15% of the ordinary hourly rate for a shift any part of which falls between 6 pm and 6.30 am, or 30% when working continuously for more than 4 weeks on shifts wholly between 6 pm and 8 am (clause C8.1–C8.2).",
-    "Rostered ordinary duty on a Saturday attracts an extra 50%, on a Sunday 100%, and on a public holiday 150% of the ordinary hourly rate (clause C8.5–C8.7). These replace the shift penalty for that shift (C8.3).",
+    "ACT correctional officers on shift work get an extra 15% of the ordinary hourly rate for a shift any part of which falls between 6 pm and 6.30 am, or 30% when working continuously for more than 4 weeks on shifts wholly between 6 pm and 8 am (clauses C8.1 to C8.2).",
+    "Rostered ordinary duty on a Saturday attracts an extra 50%, on a Sunday 100%, and on a public holiday 150% of the ordinary hourly rate (clauses C8.5 to C8.7). These replace the shift penalty for that shift (C8.3).",
   ],
   notices: [
     "The agreement passed its nominal expiry date on 31 March 2026 but continues to apply until it is replaced. The ACT Government says 17 of its 18 public sector agreements are under negotiation, so a new agreement could change these rates.",
@@ -109,7 +109,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What do ACT correctional officer trainees earn?",
-      a: "$65,146 a year while on the trainee course, under Annex A of the agreement.",
+      a: "An ACT Correctional Officer Trainee earns $65,146 a year while on the trainee course, under Annex A of the ACT agreement.",
     },
   ],
 };

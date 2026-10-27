@@ -44,7 +44,7 @@ export const HOSPITALITY_AWARD = {
   code: "MA000009",
   operativeFrom: "1 July 2026",
   effectiveNote:
-    "Applies from the first full pay period starting on or after 1 July 2026.",
+    "Hospitality Award rates apply from the first full pay period starting on or after 1 July 2026.",
   casualLoading: 0.25,
   /** Clause 2: excludes the casual loading, which is why casual OT matches full-time. */
   casualLoadingOnOvertime: false,
@@ -304,7 +304,7 @@ export interface FixedAllowance {
 }
 
 export const HOSPITALITY_ALLOWANCES: readonly FixedAllowance[] = [
-  { name: "Meal allowance (overtime of more than 2 hours, not advised the previous day)", amount: 17.42, unit: "per occasion", clause: "cl 26.4(b)(i)", note: "Full-time and part-time employees. Or the employer supplies a meal." },
+  { name: "Meal allowance (overtime of more than 2 hours, not advised the previous day)", amount: 17.42, unit: "per occasion", clause: "cl 26.4(b)(i)", note: "Full-time and part-time employees, unless the employer supplies a meal." },
   { name: "Tool and equipment allowance (cook or apprentice cook using their own tools)", amount: 2.03, unit: "per day", clause: "cl 26.5(a)", note: "Up to a maximum of $9.94 per week." },
   { name: "First aid allowance (full-time)", amount: 13.43, unit: "per week", clause: "cl 26.12(b)(i)" },
   { name: "First aid allowance (part-time or casual)", amount: 2.69, unit: "per day", clause: "cl 26.12(b)(ii)", note: "Up to a maximum of $13.43 per week." },
@@ -316,7 +316,7 @@ export const HOSPITALITY_ALLOWANCES: readonly FixedAllowance[] = [
 ] as const;
 
 export const RETAIL_ALLOWANCES: readonly FixedAllowance[] = [
-  { name: "Meal allowance (overtime of more than 1 hour without 24 hours' notice)", amount: 24.56, unit: "per occasion", clause: "cl 19.2(b)(i)", note: "Or the employer supplies a meal." },
+  { name: "Meal allowance (overtime of more than 1 hour without 24 hours' notice)", amount: 24.56, unit: "per occasion", clause: "cl 19.2(b)(i)", note: "Not paid if the employer supplies a meal." },
   { name: "Further meal allowance (that overtime exceeds 4 hours)", amount: 22.27, unit: "per occasion", clause: "cl 19.2(c)" },
   { name: "Laundry of special clothing — full-time", amount: 6.42, unit: "per week", clause: "cl 19.3(c)(i)" },
   { name: "Laundry of special clothing — part-time or casual", amount: 1.28, unit: "per shift", clause: "cl 19.3(c)(ii)" },

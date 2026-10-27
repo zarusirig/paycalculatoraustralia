@@ -1,0 +1,175 @@
+  sa: {
+    slug: "sa",
+    code: "SA",
+    name: "South Australia",
+    inName: "in South Australia",
+    uniqueAngle: "SA has no minimum working age, and its public sector and councils stay in the state system",
+    answerNote: "There is no separate South Australian minimum wage for private-sector work; SA public sector and council employees have their own state safety net, the minimum standard of remuneration, reviewed each year by the SA Employment Tribunal.",
+    systemFwo: "State public sector and local government employees aren't covered by the national system and remain under the state system.",
+    systemSummary:
+      "SafeWork SA states that all South Australian private-sector businesses, including the non-government community services sector, private schools and universities, are in the national system, so the National Minimum Wage and modern awards apply. The SA public sector, including almost all Government Business Enterprises, and SA local government are in the state system.",
+    coverage: {
+      national: ["All private-sector businesses", "Non-government community services organisations", "Private schools and universities"],
+      state: ["SA public sector employees", "Almost all Government Business Enterprises", "SA local government employees"],
+    },
+    hasStateWageSetting: true,
+    stateWageHeading: "South Australia's state safety net: the minimum standard of remuneration",
+    stateWage: [
+      `No separate South Australian minimum wage applies to private-sector employees. South Australia referred its private-sector industrial relations powers to the Commonwealth, so the Fair Work Commission's ${NMW_HOURLY} floor and its modern awards apply, and SafeWork SA sends private-sector pay claims to the Fair Work Ombudsman (13 13 94).`,
+      "South Australia's state system has its own wage floor. Under section 100A of the Fair Work Act 1994 (SA), a Full Bench of the South Australian Employment Tribunal must review each year the minimum standard of remuneration (section 69), the minimum wage rates in state awards and their work-related allowances and loadings. SafeWork SA says this State Wage Case safety net cannot be overridden by an award or agreement, and that most state-system staff have their pay set by enterprise agreements or state awards.",
+      `For 2026 the Tribunal gave notice on 22 June 2026 (ET-26-02424) that, unless someone objected by 14 July 2026, it could adopt the Fair Work Commission's outcome: a minimum standard of remuneration of $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages, allowances and loadings. We have not read the final declaration, so treat those figures as the proposal. If you are unsure whether a South Australian state award or agreement covers you, ring the SafeWork SA Help Centre on 1300 365 255.`,
+    ],
+    youngWorkers: [
+      "South Australia has no minimum working age, so a child of any age may do paid work. SafeWork SA's own example is a newsagent employing a 12-year-old to deliver newspapers before school. Some businesses set their own minimum age, and liquor licensing and mining laws restrict some duties for younger workers.",
+      "The limit is schooling: a child of compulsory school age (6 to 16) cannot be employed during the hours they must attend school or an approved learning program, or at times, such as late at night or early in the morning, likely to leave them unfit for school (Education and Children's Services Act 2019, s 74). Students aged 15 and 16 can apply for a permanent exemption from school for employment.",
+      "Under-21 and apprentice pay in South Australia follows the national junior percentages or the scales in your modern award, the same as in every national-system state.",
+    ],
+    regulators: [
+      { title: "SafeWork SA Help Centre (1300 365 255)", publisher: "Government of South Australia", url: "https://www.safework.sa.gov.au/" },
+      { title: "Current notices, including the State Wage Case", publisher: "South Australian Employment Tribunal", url: "https://www.saet.sa.gov.au/resources/current-notices-2/" },
+    ],
+    sources: [FWO_SYSTEM, SA_IR_SYSTEM, SAET_SWC_2026_NOTICE, SA_MIN_AGE],
+    faqs: [
+      {
+        q: "Is there a minimum working age in South Australia?",
+        a: "No. SafeWork SA states there is no minimum working age in South Australia, so a child of any age may do paid work. A child of compulsory school age (6 to 16) cannot work during the hours they must attend school, or at times likely to leave them unfit for school, and students aged 15 and 16 can apply for a permanent exemption from school for employment.",
+      },
+      {
+        q: "Is there a state minimum wage for South Australian public sector and council workers?",
+        a: `Yes, within the state system: the minimum standard of remuneration under section 69 of the Fair Work Act 1994 (SA), which the South Australian Employment Tribunal reviews every year. Its 22 June 2026 notice proposed adopting the national $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages if no objection was lodged by 14 July 2026.`,
+      },
+      {
+        q: "Who handles minimum wage complaints in South Australia?",
+        a: "For private-sector jobs, the Fair Work Ombudsman on 13 13 94: SafeWork SA states that every South Australian private-sector business is in the national system. SafeWork SA takes pay claims from the state system, which covers the SA public sector, almost all Government Business Enterprises and local government.",
+      },
+    ],
+  },
+  tas: {
+    slug: "tas",
+    code: "TAS",
+    name: "Tasmania",
+    inName: "in Tasmania",
+    uniqueAngle: "Tasmanian councils are in the national system, State Service staff are not",
+    answerNote: "There is no separate Tasmanian minimum wage for private-sector or council work; Tasmanian State Service pay is set by state awards and agreements.",
+    systemFwo: "State public sector employees remain under the state system. Local government employees are covered by the national system.",
+    systemSummary:
+      "Tasmania splits the public sector in two: Tasmanian State Service employees remain in the state system, while local government employees are in the national system. Private-sector employees are in the national system.",
+    coverage: {
+      national: ["Private-sector employers and their employees", "Tasmanian local government (council) employees"],
+      state: ["Tasmanian State Service employees"],
+    },
+    hasStateWageSetting: true,
+    stateWageHeading: "Tasmanian State Service pay and the Tasmanian minimum wage",
+    stateWage: [
+      `No separate Tasmanian minimum wage applies to private-sector employees, and Tasmanian local government employees are also in the national system, so the ${NMW_HOURLY} National Minimum Wage and modern awards apply to them.`,
+      "Tasmanian State Service pay comes from State Service awards and from agreements registered with the Tasmanian Industrial Commission. The Head of the State Service reported in 2026 that agencies had begun adjusting salaries, with back pay to the first full pay in December 2025, under seven State Service agreements including the Public Sector Unions Wages Agreement and the Allied Health Professionals Public Sector Unions Wages Agreement. Most State Service awards were also varied to add reproductive leave, pregnancy loss leave and a right to disconnect, after a Commission hearing on 1 June 2026.",
+      `The Commission also determines a Tasmanian minimum wage for public sector awards (s 47AB). Its state wage case page lists the most recent decision as ${TAS_LAST_MINIMUM.decided}: ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. We have not found a later decision, so we do not quote a current Tasmanian state-system minimum.`,
+    ],
+    youngWorkers: [
+      "Junior and apprentice pay for Tasmanian private-sector employees follows the national junior percentages or the scale in the relevant modern award.",
+      "Because Tasmanian councils are national-system employers, a junior or apprentice working for a council is also paid under national rules: the junior or apprentice scale in the award or agreement that covers the job.",
+    ],
+    regulators: [
+      { title: "Wages and conditions update for State Service agreements", publisher: "Tasmanian Department of Premier and Cabinet", url: TAS_SSMO_UPDATE.url },
+      { title: "State wage cases", publisher: "Tasmanian Industrial Commission", url: TAS_TIC_WAGE_CASES.url },
+    ],
+    sources: [FWO_SYSTEM, TAS_SSMO_UPDATE, TAS_TIC_WAGE_CASES],
+    faqs: [
+      {
+        q: "Are Tasmanian council workers in the state or national system?",
+        a: "The national system. The Fair Work Ombudsman states that Tasmanian local government employees are covered by the national system, while State Service employees remain in the state system. In NSW, Queensland, South Australia and Western Australia councils are in the state system instead.",
+      },
+      {
+        q: "Does the Tasmanian Industrial Commission set a state minimum wage?",
+        a: `For public sector awards, yes (s 47AB). Its state wage case page lists the latest decision as ${TAS_LAST_MINIMUM.decided}, setting ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. Private-sector and council employees in Tasmania get the National Minimum Wage of ${NMW_HOURLY} an hour instead.`,
+      },
+    ],
+  },
+  qld: {
+    slug: "qld",
+    code: "QLD",
+    name: "Queensland",
+    inName: "in Queensland",
+    uniqueAngle: "QLD set its own state minimum from 1 September 2026",
+    answerNote: `Queensland state-system employees have a Queensland minimum wage of ${money(QLD_STATE_WAGE_CASE_2026.qmwWeekly)} a week from ${QLD_STATE_WAGE_CASE_2026.operativeFrom}.`,
+    systemFwo: "State public sector and local government employees aren't covered by the national system and remain under the state system.",
+    systemSummary:
+      "Queensland private-sector employees are in the national system, but state public sector and local government employees remain under the Queensland system, which has its own minimum wage and state awards.",
+    coverage: {
+      national: ["Private-sector employers and their employees"],
+      state: ["Queensland public sector employees", "Queensland local government employees"],
+    },
+    hasStateWageSetting: true,
+    stateWageHeading: "Queensland minimum wage 2026",
+    stateWage: [
+      `The Queensland Industrial Relations Commission's State Wage Case ${QLD_STATE_WAGE_CASE_2026.citation} (delivered ${QLD_STATE_WAGE_CASE_2026.deliveredOn}) increased wages in state awards by ${(QLD_STATE_WAGE_CASE_2026.increase * 100).toFixed(2)}%, increased monetary allowances by the same amount, and set the Queensland minimum wage for full-time employees at $${QLD_STATE_WAGE_CASE_2026.qmwWeekly.toFixed(2)} a week, operative from ${QLD_STATE_WAGE_CASE_2026.operativeFrom}.`,
+      `That is the same weekly figure as the National Minimum Wage ($${NMW.weekly.toFixed(2)}), but the Queensland minimum applies to employees in the Queensland state system (the Commission estimates about ${QLD_STATE_WAGE_CASE_2026.qldSystemWorkers.toLocaleString("en-AU")} workers, of whom ${QLD_STATE_WAGE_CASE_2026.qldPublicSector.toLocaleString("en-AU")} are in the Queensland public sector, which has ${Math.round(QLD_STATE_WAGE_CASE_2026.qldPublicSectorAgreementCoverage * 100)}% enterprise agreement coverage). The operative date is 1 September 2026, not 1 July, for the state award and Queensland minimum wage increases.`,
+      "The Commission noted that employees under 21 who are covered by a Queensland modern award get that award's junior rates rather than the Queensland minimum wage.",
+      "Some Queensland law reaches national-system workplaces too. The Queensland Government states that its legislation on private employment agents, trading hours, public holidays and child employment continues to apply to all businesses and employees in Queensland.",
+    ],
+    youngWorkers: [
+      "The Child Employment Act 2006 sets a general minimum working age of 13 in Queensland, lowered to 11 for supervised delivery of newspapers or advertising material between 6am and 6pm. A school-aged child can work at most 4 hours on a school day and 12 hours in a school week, or 8 hours a day and 38 hours in a non-school week, never between 10pm and 6am, with a one-hour break after the fourth hour unless an award provides otherwise.",
+      `In the Queensland state system, an employee under 21 under a Queensland modern award is paid that award's junior rates, not the Queensland minimum wage (State Wage Case 2026, [81]). Private-sector juniors are in the national system: the junior percentages of ${NMW_HOURLY} apply when no award does.`,
+    ],
+    regulators: [
+      { title: "State wage cases", publisher: "Queensland Industrial Relations Commission", url: "https://www.qirc.qld.gov.au/state-wage-cases" },
+      { title: "State Wage Case 2026 decision (B/2026/59 and B/2026/60)", publisher: "Queensland Industrial Relations Commission", url: QLD_STATE_WAGE_CASE_2026.url },
+      { title: "Queensland Government employment information", publisher: "Queensland Government", url: "https://www.forgov.qld.gov.au/" },
+    ],
+    sources: [
+      FWO_SYSTEM,
+      { title: "State Wage Case 2026 reasons for decision [2026] QIRC 280", publisher: "Queensland Industrial Relations Commission", url: QLD_STATE_WAGE_CASE_2026.url },
+      QLD_CHILD_RULES,
+    ],
+    faqs: [
+      {
+        q: "How old do you have to be to work in Queensland?",
+        a: "The general minimum working age in Queensland is 13. Children from 11 can do supervised delivery of newspapers or advertising material between 6am and 6pm. Under the Child Employment Act 2006 a school-aged child can work at most 4 hours on a school day and 12 hours in a school week, and no child can work between 10pm and 6am.",
+      },
+      {
+        q: "Who is in the Queensland state industrial relations system?",
+        a: `State public sector and local government employees. The Queensland Industrial Relations Commission estimates about ${QLD_STATE_WAGE_CASE_2026.qldSystemWorkers.toLocaleString("en-AU")} workers are in the Queensland system, ${QLD_STATE_WAGE_CASE_2026.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector, where ${Math.round(QLD_STATE_WAGE_CASE_2026.qldPublicSectorAgreementCoverage * 100)}% are covered by enterprise agreements. Private-sector employees are in the national system.`,
+      },
+    ],
+  },
+  act: {
+    slug: "act",
+    code: "ACT",
+    name: "Australian Capital Territory",
+    inName: "in the ACT",
+    uniqueAngle: "The ACT is wholly in the national system and caps children at 10 hours of light work a week",
+    answerNote: "There is no ACT minimum wage: generally every employee and employer in the ACT is in the national system.",
+    systemFwo: "Generally, all employees and employers in the Australian Capital Territory and Northern Territory are covered by the national system.",
+    systemSummary:
+      "Generally all employees and employers in the ACT are in the national system, so the ACT has no territory minimum wage and no territory wage case. The ACT's own rules matter for young workers, payroll tax, long service leave and public holidays.",
+    coverage: {
+      national: ["Generally all employees and employers in the ACT"],
+      state: [],
+    },
+    hasStateWageSetting: false,
+    stateWageHeading: "Is there an ACT minimum wage?",
+    stateWage: [
+      `No. The Fair Work Ombudsman states that generally all employees and employers in the Australian Capital Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern award rates are the only wage floors.`,
+      "Where the ACT does differ is around the wage: the ACT has its own long service leave scheme, its own public holiday list (including Canberra Day and Reconciliation Day) and a payroll tax threshold that was cut from $2 million to $1.75 million on 1 July 2026.",
+    ],
+    youngWorkers: [
+      "The ACT Government's guidance for young workers sets the limits: the work must be light work, can total up to 10 hours a week, cannot be during school hours, and needs a parent's agreement, given in writing for a child under 15. The same rules apply to volunteering or helping in a family business without pay.",
+      "Supervision depends on age. Children under 12 must be supervised by a parent or a responsible adult the parent approves, including for letterbox delivery and door-to-door or charity work, and 12 to 14-year-olds must be supervised by a responsible adult.",
+      "Under-21 and apprentice pay in the ACT follows the national junior percentages or the scale in the modern award for the job.",
+    ],
+    regulators: [
+      { title: "Access Canberra", publisher: "ACT Government", url: "https://www.accesscanberra.act.gov.au/" },
+      { title: "Your rights as a young worker", publisher: "ACT Government", url: ACT_YOUNG_WORKER.url },
+    ],
+    sources: [FWO_SYSTEM, ACT_YOUNG_WORKER],
+    faqs: [
+      {
+        q: "How many hours can a child work in the ACT?",
+        a: "Up to 10 hours a week, according to the ACT Government's young worker guidance. The work must be light work, cannot be during school hours and needs a parent's agreement, in writing for a child under 15. Children under 12 must be supervised by a parent or a responsible adult the parent approves.",
+      },
+      {
+        q: "Do ACT Government employees get the national minimum wage protections?",
+        a: "Yes. The Fair Work Ombudsman states that generally all employees and employers in the ACT are covered by the national system, so the National Minimum Wage and Fair Work rules set the floor for ACT public servants as well as private-sector staff.",
+      },
+    ],
+  },

@@ -68,7 +68,7 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     superText:
       "The VPS agreement sets no employer super rate above the legal minimum. Clause 41.2 only requires enough to avoid the superannuation guarantee charge, so the Superannuation Guarantee rate applies. APS agencies pay a median of 15.4%, so compare total pay, not just salary, if you are weighing a federal job.",
     progression:
-      "Moving up a progression step is not automatic. Under clause 31 you are considered once a year, at the end of the performance cycle, if you have 12 months at your current step and a current performance and development plan. On the top step, a successful cycle pays a lump sum of 1.5% of salary instead. Moving from one value range to the next (3.1 to 3.2, say) needs a job resizing review, not time served.",
+      "Moving up a VPS progression step is not automatic. Under clause 31 of the VPS agreement you are considered once a year, at the end of the performance cycle. To be considered, you need 12 months at your current step and a current performance and development plan. On the top step, a successful cycle pays a lump sum of 1.5% of salary instead. Moving from one value range to the next (3.1 to 3.2, say) needs a job resizing review, not time served.",
     stepWord: "progression step",
     metaWhere: "in the Victorian Public Service",
     metaEffective: "1 May 2026",
@@ -78,7 +78,7 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     alsoCalled: (label) => `${label.replace("AO", "AO ")}, Administrative Officer Level ${label.slice(2)}`,
     effective: "1 September 2026",
     nextRise:
-      "Award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case and next move when the Queensland Industrial Relations Commission decides the 2027 case. The State Government Entities Certified Agreement 2023 nominally expired on 30 June 2026 and keeps applying until a replacement is certified.",
+      "Queensland award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case and next move when the Queensland Industrial Relations Commission decides the 2027 case. The State Government Entities Certified Agreement 2023 nominally expired on 30 June 2026 and keeps applying until a replacement is certified.",
     superRate: 12.75,
     superText:
       "The Queensland Government pays 12.75% employer super for employees under 75, above the Superannuation Guarantee. It is paid on ordinary time earnings, including paid leave and ordinary-time allowances such as shift and weekend penalties.",
@@ -90,7 +90,7 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     metaEffective: "1 September 2026",
     metaNote: " (award rates)",
     caveat:
-      "These are the award rates, the legal minimum. Most Queensland departments pay under the State Government Entities Certified Agreement 2023 (the core agreement). We have not reproduced its wage schedule, so check your department's schedule. The Department of Education rates further down are one agency's agreement, shown for comparison. Where any agreement rate is below the award, the award rate is paid.",
+      "The rates on this page are the Queensland award rates, the legal minimum. Most Queensland departments pay under the State Government Entities Certified Agreement 2023 (the core agreement). We have not reproduced its wage schedule, so check your department's schedule. The Department of Education rates further down are one agency's agreement, shown for comparison. Where any agreement rate is below the award, the award rate is paid.",
   },
   sa: {
     levels: ["aso-2", "aso-3", "aso-4", "aso-5", "aso-6", "aso-7", "aso-8"],
@@ -102,7 +102,7 @@ export const STATE_LEVEL_CONFIG: Record<StateLevelJurisdiction, StateLevelConfig
     superText:
       "The Salaried 2026 agreement does not state an employer super rate. Super is paid to Super SA by default, and you can choose your own fund. Treat the Superannuation Guarantee as the floor and check your agency's arrangement.",
     progression:
-      "Each ASO level has a few numbered increments. You move up increments within your level; a move to the next level happens by appointment to a job classified at that level, not by time served. ASO levels do not overlap, so the top of one level is always below the bottom of the next.",
+      "Each ASO level is split into numbered increments. You move up increments within your level; a move to the next level happens by appointment to a job classified at that level, not by time served. ASO levels do not overlap, so the top of one level is always below the bottom of the next.",
     stepWord: "increment",
     titlePlace: "SA Government",
     metaWhere: "in the SA public sector",

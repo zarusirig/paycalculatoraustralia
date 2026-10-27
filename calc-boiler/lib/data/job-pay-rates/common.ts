@@ -71,7 +71,7 @@ export const ATO_TABLE_15: OccupationSource = {
  * counted) on the average salary guide.
  */
 export const ATO_DEFINITION =
-  "Tax-return figures count everyone who gave the occupation, part-time and part-year workers included, so neither is a full-time rate or a legal minimum.";
+  "The ATO tax-return figures count everyone who gave the occupation, part-time and part-year workers included, so neither the median nor the average is a full-time rate or a legal minimum.";
 
 export function jsaUrl(codeAndSlug: string): string {
   return `https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/${codeAndSlug}`;
@@ -83,14 +83,14 @@ export function jsaUrl(codeAndSlug: string): string {
  * before tax and salary sacrificed amounts".
  */
 export const MEDIAN_DEFINITION =
-  "Median weekly pay of full-time, non-managerial adult employees before tax and salary sacrifice, from the ABS Survey of Employee Earnings and Hours (May 2025) as published by Jobs and Skills Australia. It reflects what employers actually pay, including people on enterprise agreements or above-award salaries, so it is a market figure, not a legal minimum.";
+  "The median is the weekly pay of full-time, non-managerial adult employees before tax and salary sacrifice, from the ABS Survey of Employee Earnings and Hours (May 2025) as published by Jobs and Skills Australia. It reflects what employers actually pay, including people on enterprise agreements or above-award salaries, so it is a market figure, not a legal minimum.";
 
 /**
  * MEDIAN_DEFINITION in one line, for the occupation and health salary pages,
  * which link the full average-vs-median explanation instead of repeating it.
  */
 export const MEDIAN_NOTE =
-  "Full-time, non-managerial adults before tax (ABS, May 2025): a market figure, not a legal minimum.";
+  "The Jobs and Skills Australia median is pay before tax for full-time, non-managerial adults only (ABS, May 2025), so it is a market figure, not a legal minimum.";
 
 /**
  * A rate row read from the shared award constants in

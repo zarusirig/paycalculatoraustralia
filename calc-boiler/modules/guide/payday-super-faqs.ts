@@ -36,7 +36,7 @@ export const PAYDAY_SUPER_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Does super now get paid on overtime?",
-    a: `Generally, no. Under Payday Super, super is calculated on "qualifying earnings", which are basically ordinary time earnings with one addition: ${QUALIFYING_EARNINGS.onlyChangeFromOTE}. Overtime is still excluded where your award or agreement clearly sets out your ordinary hours.`,
+    a: `No, overtime is still excluded where your award or agreement clearly sets out your ordinary hours. Under Payday Super, super is calculated on "qualifying earnings", which are ordinary time earnings with one addition: ${QUALIFYING_EARNINGS.onlyChangeFromOTE}.`,
   },
   {
     q: "Is the super guarantee rate still 12%?",

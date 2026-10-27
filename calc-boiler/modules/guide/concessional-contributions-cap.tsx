@@ -69,7 +69,7 @@ export default function ConcessionalContributionsCapPage() {
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Concessional Contributions Cap {FY}: {formatAUD(CAP)}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
-          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])}. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, unused cap from the last five years can be carried forward.
+          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])} the year before. The cap applies per person, across all your super funds combined. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, you can carry forward unused cap from the last five years. The calculator below totals your concessional contributions, shows the room left under the cap and works out what salary sacrifice saves in tax. The rest of the page covers what counts towards the cap, the cap by year, the room left after employer super, carry-forward, salary sacrifice examples and the tax on contributions.
         </p>
         <TrustBar className="!max-w-none" />
       </header>
@@ -132,7 +132,7 @@ export default function ConcessionalContributionsCapPage() {
 
           <section>
             <H2 id="carry-forward">Carry-Forward: Using Unused Cap From Past Years</H2>
-            <p>If you contributed less than the cap in earlier years, you may be able to use the difference now. You need both:</p>
+            <p>If you contributed less than the cap in earlier years, you can use the difference now when you meet both conditions:</p>
             <ul>
               <li>a <strong>total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}</strong> at 30 June of the previous year (30 June 2026 for {FY}), and</li>
               <li><strong>unused cap amounts from up to {CARRY_FORWARD.years} previous years</strong>, counting from {CARRY_FORWARD.firstYear}.</li>

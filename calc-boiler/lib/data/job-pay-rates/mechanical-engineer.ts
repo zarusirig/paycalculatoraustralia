@@ -96,7 +96,7 @@ export const MECHANICAL_ENGINEER: Occupation = {
   },
   coverage: [
     "A mechanical engineer doing professional engineering duties (work that needs qualifications at least equal to a graduate member of Engineers Australia, cl 2.2) is covered by the Professional Employees Award 2020 [MA000065] in any industry (cl 4.1(a)).",
-    "Mechanical engineering technicians and draftspersons are not doing professional engineering duties as the award defines them, so these classifications and minimums are not theirs; which award covers them, if any, depends on the employer's industry.",
+    "Mechanical engineering technicians and draftspersons are not doing professional engineering duties as the award defines them, so the Professional Employees Award classifications and minimums do not apply to them. Which award covers them, if any, depends on the employer's industry.",
     "The award does not cover employees who are covered by the Black Coal Mining Industry, Airport Employees, Rail Industry, Electrical Power Industry, Water Industry, Port Authorities or State Government Agencies awards (cl 4.2).",
     "A graduate engineer enters at Level 1 pay point 1.1 and moves up one pay point each anniversary to 1.4 (Schedule A.1.3); Level 2 is an experienced engineer.",
   ],
@@ -105,7 +105,7 @@ export const MECHANICAL_ENGINEER: Occupation = {
       id: "mechanical-professional",
       title: "Mechanical engineer minimum salaries by level, 2026–27",
       intro:
-        "Annual wages from clause 14.1, the award's weekly conversion (annual x 6/313), and Schedule C hourly and casual rates. The 3-year degree rate is left out because a graduate engineer holds a 4 or 5-year degree.",
+        "The annual wages are from clause 14.1, the weekly figures use the award's conversion (annual x 6/313), and the hourly and casual rates are from Schedule C. The 3-year degree rate is left out because a graduate engineer holds a 4 or 5-year degree.",
       rows: [GRAD, peaRow(PEA.pp12), peaRow(PEA.pp13), PP14, L2, peaRow(PEA.level3), peaRow(PEA.level4)],
     },
   ],

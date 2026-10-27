@@ -12,7 +12,7 @@ export const NEW_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I claim the tax-free threshold at my new job?",
-    a: "If this is your only job, always claim the tax-free threshold. If you are transitioning from one job to another with no overlap, claim it at your new employer and your old employer's withholding stops when you leave. If you are keeping two jobs simultaneously, only claim the threshold at the highest-paying one.",
+    a: "If this is your only job, claim the tax-free threshold. If you are moving from one job to another with no overlap, claim it at your new employer and your old employer's withholding stops when you leave. If you are keeping two jobs at the same time, only claim the threshold at the highest-paying one.",
   },
   {
     q: "Should I use my existing super fund or the employer's default?",
@@ -20,11 +20,11 @@ export const NEW_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How long until I receive my first pay?",
-    a: "This depends on when you start relative to the pay cycle. If you start on Monday and the pay cycle ends Friday, your first pay arrives the following pay day. In the worst case, you may wait up to 3-4 weeks for your first pay if you start just after a pay cycle ends and the employer processes the next full cycle before paying you.",
+    a: "Your first pay date depends on where your start date falls in your employer's pay cycle. If you start on a Monday and the pay cycle ends that Friday, your first pay arrives on the following pay day. In the worst case, you may wait up to 3-4 weeks for your first pay if you start just after a pay cycle ends and the employer processes the next full cycle before paying you.",
   },
   {
     q: "What happens to unused leave from my old job?",
-    a: "Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Sick/personal leave is not paid out, as it has no cash value when you leave.",
+    a: "Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Unused sick/personal leave is not paid out when you leave.",
   },
   {
     q: "Does probation affect my pay or entitlements?",

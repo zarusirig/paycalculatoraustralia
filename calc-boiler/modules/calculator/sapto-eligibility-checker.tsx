@@ -85,8 +85,8 @@ export default function SaptoEligibilityChecker() {
           SAPTO Eligibility Checker
         </h2>
         <p className="text-sm text-warmgray mb-6">
-          Three questions, in the order the ATO applies them: the payment condition, the income
-          condition, and the jail exclusion.
+          The checker asks three questions in the order the ATO applies them: the payment
+          condition, the income condition and the jail exclusion.
         </p>
         <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
           <fieldset>

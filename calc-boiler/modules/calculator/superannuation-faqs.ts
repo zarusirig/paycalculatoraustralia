@@ -39,15 +39,15 @@ export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   },
   {
     q: "Can my employer pay super less than 12%?",
-    a: `No. ${RATE} SG is the legal minimum. Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}, and unlike the old quarterly charge it is now tax-deductible.`,
+    a: `No. ${RATE} SG is the legal minimum. Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart}, the SGC is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}. Unlike the old quarterly charge, the SGC is now tax-deductible.`,
   },
   {
     q: "How much super should I have at 30?",
-    a: `A common benchmark is 1x your annual salary by age 30. The ABS's Employee earnings survey (reference period August 2025) put median full-time earnings at ${formatAUD(MEDIAN_FULL_TIME_SALARY)} a year (${formatAUD(MEDIAN_FULL_TIME_WEEKLY_EARNINGS)} a week), so that target is roughly ${formatAUD(MEDIAN_FULL_TIME_SALARY)} in super by age 30. If you're behind, salary sacrifice and voluntary contributions can help you catch up using the carry-forward unused cap rule for balances under ${formatAUD(500_000)}.`,
+    a: `A common benchmark is 1x your annual salary by age 30. The ABS's Employee earnings survey (reference period August 2025) put median full-time earnings at ${formatAUD(MEDIAN_FULL_TIME_SALARY)} a year (${formatAUD(MEDIAN_FULL_TIME_WEEKLY_EARNINGS)} a week), so that target is roughly ${formatAUD(MEDIAN_FULL_TIME_SALARY)} in super by age 30. If you're behind, salary sacrifice and other concessional contributions can help you catch up. The carry-forward rule lets you use unused concessional cap amounts when your total super balance is under ${formatAUD(500_000)}.`,
   },
   {
     q: "Is super paid on overtime?",
-    a: `No. Overtime is excluded from Ordinary Time Earnings (OTE), so your employer doesn't have to pay super on overtime hours, a rule Payday Super kept. Super is calculated on your base hourly rate for ordinary hours only. Shift loadings for ordinary hours are included in OTE.`,
+    a: `No. Overtime is excluded from Ordinary Time Earnings (OTE), so your employer doesn't have to pay super on overtime hours, a rule Payday Super kept. Super is calculated on your earnings for ordinary hours only, and shift loadings paid for ordinary hours count as OTE.`,
   },
   {
     q: "What is the maximum super contribution base?",
@@ -59,6 +59,6 @@ export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   },
   {
     q: "What is Division 293 tax on super?",
-    a: `Division 293 is an additional 15% tax on concessional super contributions for individuals with combined income and contributions above ${formatAUD(250_000)}. This brings the total tax on super contributions to 30% for high-income earners. The ATO issues a Division 293 assessment after you lodge your tax return.`,
+    a: `Division 293 is an additional 15% tax on concessional super contributions for individuals with combined income and contributions above ${formatAUD(250_000)}. This brings the total tax on those concessional contributions to 30%. The ATO issues a Division 293 assessment after you lodge your tax return.`,
   },
 ];

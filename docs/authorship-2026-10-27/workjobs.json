@@ -1,0 +1,5432 @@
+[
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/payg-withholding-tables.tsx"
+  ],
+  "units": [
+   "modules_guide_payg_withholding_tables__01"
+  ],
+  "chars": 15490,
+  "name": "t1-001-payg-withholding-tables"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/apprentice-pay/spokes.ts"
+  ],
+  "units": [
+   "lib_data_apprentice_pay_spokes__02"
+  ],
+  "chars": 12299,
+  "name": "t1-002-spokes"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content-oct2.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content_oct2__01"
+  ],
+  "chars": 12247,
+  "name": "t1-003-modern-award-content-oct2"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content__01"
+  ],
+  "chars": 12241,
+  "name": "t1-004-modern-award-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/school-support-pay/index.ts"
+  ],
+  "units": [
+   "lib_data_school_support_pay_index__01"
+  ],
+  "chars": 12172,
+  "name": "t1-005-index"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content-oct2.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content_oct2__02"
+  ],
+  "chars": 12169,
+  "name": "t1-006-modern-award-content-oct2"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content-oct.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content_oct__01"
+  ],
+  "chars": 12143,
+  "name": "t1-007-modern-award-content-oct"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/bonus-tax-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_bonus_tax_calculator_content__01"
+  ],
+  "chars": 12135,
+  "name": "t1-008-bonus-tax-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/apprentice-pay/spokes.ts"
+  ],
+  "units": [
+   "lib_data_apprentice_pay_spokes__01"
+  ],
+  "chars": 12108,
+  "name": "t1-009-spokes"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/fortnightly-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_fortnightly_tax_table__01"
+  ],
+  "chars": 12099,
+  "name": "t1-010-fortnightly-tax-table"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/apprentice-pay/spokes.ts"
+  ],
+  "units": [
+   "lib_data_apprentice_pay_spokes__03"
+  ],
+  "chars": 12049,
+  "name": "t1-011-spokes"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/weekly-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_weekly_tax_table__01"
+  ],
+  "chars": 12022,
+  "name": "t1-012-weekly-tax-table"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/bws.ts",
+   "lib/data/employer-pay/chemist-warehouse.ts",
+   "lib/data/employer-pay/coles.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_bws__01",
+   "lib_data_employer_pay_chemist_warehouse__01",
+   "lib_data_employer_pay_coles__01"
+  ],
+  "chars": 11977,
+  "name": "t1-013-bws"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/super-contribution-caps-2026-27.tsx",
+   "modules/news/articles/super-tax-changes-explained.tsx",
+   "modules/news/articles/tax-cut-july-2026.tsx",
+   "modules/news/articles/tax-return-deadline-october-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_super_contribution_caps_2026_27__01",
+   "modules_news_articles_super_tax_changes_explained__01",
+   "modules_news_articles_tax_cut_july_2026__01",
+   "modules_news_articles_tax_return_deadline_october_2026__01"
+  ],
+  "chars": 11919,
+  "name": "t1-014-super-contribution-caps-2026-27"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/centrelink-changes-july-2026.tsx",
+   "modules/news/articles/centrelink-payment-increase-january-2026.tsx",
+   "modules/news/articles/deeming-rates-change-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_centrelink_changes_july_2026__01",
+   "modules_news_articles_centrelink_payment_increase_january_2026__01",
+   "modules_news_articles_deeming_rates_change_2026__01"
+  ],
+  "chars": 11667,
+  "name": "t1-015-centrelink-changes-july-2026"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/hoyts.ts",
+   "lib/data/employer-pay/hungry-jacks.ts",
+   "lib/data/employer-pay/iga.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_hoyts__01",
+   "lib_data_employer_pay_hungry_jacks__01",
+   "lib_data_employer_pay_iga__01"
+  ],
+  "chars": 11508,
+  "name": "t1-016-hoyts"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/virgin-australia.ts",
+   "lib/data/employer-pay/woolworths.ts",
+   "lib/data/employer-pay/zambrero.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_virgin_australia__01",
+   "lib_data_employer_pay_woolworths__01",
+   "lib_data_employer_pay_zambrero__01"
+  ],
+  "chars": 11483,
+  "name": "t1-017-virgin-australia"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/tax-time-2026-whats-new.tsx",
+   "modules/news/articles/transfer-balance-cap-increase-2026.tsx",
+   "modules/news/articles/victorian-teachers-pay-rise-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_tax_time_2026_whats_new__01",
+   "modules_news_articles_transfer_balance_cap_increase_2026__01",
+   "modules_news_articles_victorian_teachers_pay_rise_2026__01"
+  ],
+  "chars": 11458,
+  "name": "t1-018-tax-time-2026-whats-new"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/monthly-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_monthly_tax_table__01"
+  ],
+  "chars": 11436,
+  "name": "t1-019-monthly-tax-table"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-holidays/states/act.ts",
+   "lib/data/public-holidays/states/nsw.ts",
+   "lib/data/public-holidays/states/nt.ts",
+   "lib/data/public-holidays/states/qld.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_states_act__01",
+   "lib_data_public_holidays_states_nsw__01",
+   "lib_data_public_holidays_states_nt__01",
+   "lib_data_public_holidays_states_qld__01"
+  ],
+  "chars": 11435,
+  "name": "t1-020-act"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/1000-dollar-instant-tax-deduction.tsx",
+   "modules/news/articles/age-pension-increase-march-2026.tsx",
+   "modules/news/articles/age-pension-increase-september-2026.tsx",
+   "modules/news/articles/air-traffic-controller-pay-rise-october-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_1000_dollar_instant_tax_deduction__01",
+   "modules_news_articles_age_pension_increase_march_2026__01",
+   "modules_news_articles_age_pension_increase_september_2026__01",
+   "modules_news_articles_air_traffic_controller_pay_rise_october_2026__01"
+  ],
+  "chars": 11404,
+  "name": "t1-021-1000-dollar-instant-tax-deduction"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-holidays/states/sa.ts",
+   "lib/data/public-holidays/states/tas.ts",
+   "lib/data/public-holidays/states/vic.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_states_sa__01",
+   "lib_data_public_holidays_states_tas__01",
+   "lib_data_public_holidays_states_vic__01"
+  ],
+  "chars": 11399,
+  "name": "t1-022-sa"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/fifo-pay-faqs.ts",
+   "modules/guide/healthcare-worker-pay-faqs.ts",
+   "modules/guide/hospitality-award-faqs.ts",
+   "modules/guide/job-pay-public-hospital.tsx"
+  ],
+  "units": [
+   "modules_guide_fifo_pay_faqs__01",
+   "modules_guide_healthcare_worker_pay_faqs__01",
+   "modules_guide_hospitality_award_faqs__01",
+   "modules_guide_job_pay_public_hospital__01"
+  ],
+  "chars": 11371,
+  "name": "t1-023-fifo-pay-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/hourly-to-annual-salary-calculator-faqs.ts",
+   "modules/calculator/hourly-to-annual-salary-calculator.tsx",
+   "modules/calculator/pay-rise-calculator-faqs.ts",
+   "modules/calculator/pay-rise-calculator.tsx",
+   "modules/calculator/period-pay-table.tsx",
+   "modules/calculator/second-job-tax-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_hourly_to_annual_salary_calculator_faqs__01",
+   "modules_calculator_hourly_to_annual_salary_calculator__01",
+   "modules_calculator_pay_rise_calculator_faqs__01",
+   "modules_calculator_pay_rise_calculator__01",
+   "modules_calculator_period_pay_table__01",
+   "modules_calculator_second_job_tax_calculator_content__01"
+  ],
+  "chars": 11356,
+  "name": "t1-024-hourly-to-annual-salary-calculator-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/schedule-5-tax-table-faqs.ts",
+   "modules/tax-tables/schedule-5-widget.tsx",
+   "modules/tax-tables/sidebar.tsx",
+   "modules/tax-tables/table-downloads.tsx",
+   "modules/tax-tables/weekly-tax-table-faqs.ts"
+  ],
+  "units": [
+   "modules_tax_tables_schedule_5_tax_table_faqs__01",
+   "modules_tax_tables_schedule_5_widget__01",
+   "modules_tax_tables_sidebar__01",
+   "modules_tax_tables_table_downloads__01",
+   "modules_tax_tables_weekly_tax_table_faqs__01"
+  ],
+  "chars": 11224,
+  "name": "t1-025-schedule-5-tax-table-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/schedule-5-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_schedule_5_tax_table__01"
+  ],
+  "chars": 11204,
+  "name": "t1-026-schedule-5-tax-table"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/priceline.ts",
+   "lib/data/employer-pay/qantas.ts",
+   "lib/data/employer-pay/rebel.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_priceline__01",
+   "lib_data_employer_pay_qantas__01",
+   "lib_data_employer_pay_rebel__01"
+  ],
+  "chars": 11186,
+  "name": "t1-027-priceline"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/payg-withholding-tables-faqs.ts",
+   "modules/guide/print-button.tsx",
+   "modules/guide/public-holiday-shared.tsx",
+   "modules/guide/public-service-pay-jurisdiction.tsx",
+   "modules/guide/school-support-pay.tsx",
+   "modules/guide/state-level-page.tsx"
+  ],
+  "units": [
+   "modules_guide_payg_withholding_tables_faqs__01",
+   "modules_guide_print_button__01",
+   "modules_guide_public_holiday_shared__01",
+   "modules_guide_public_service_pay_jurisdiction__01",
+   "modules_guide_school_support_pay__01",
+   "modules_guide_state_level_page__01"
+  ],
+  "chars": 11065,
+  "name": "t1-028-payg-withholding-tables-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/fy-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_fy_tax_table__01"
+  ],
+  "chars": 11028,
+  "name": "t1-029-fy-tax-table"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/hecs-20-percent-cut-status.tsx",
+   "modules/news/articles/hecs-indexation-2026.tsx",
+   "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx"
+  ],
+  "units": [
+   "modules_news_articles_hecs_20_percent_cut_status__01",
+   "modules_news_articles_hecs_indexation_2026__01",
+   "modules_news_articles_hecs_marginal_repayment_first_tax_time__01"
+  ],
+  "chars": 11012,
+  "name": "t1-030-hecs-20-percent-cut-status"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/aps-grade-page.tsx",
+   "modules/guide/award-page-parts.tsx",
+   "modules/guide/employer-pay-hub-faqs.ts",
+   "modules/guide/employer-pay-hub.tsx",
+   "modules/guide/employer-pay-rates.tsx",
+   "modules/guide/fifo-pay-calculator.tsx"
+  ],
+  "units": [
+   "modules_guide_aps_grade_page__01",
+   "modules_guide_award_page_parts__01",
+   "modules_guide_employer_pay_hub_faqs__01",
+   "modules_guide_employer_pay_hub__01",
+   "modules_guide_employer_pay_rates__01",
+   "modules_guide_fifo_pay_calculator__01"
+  ],
+  "chars": 11008,
+  "name": "t1-031-aps-grade-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/healthcare-worker-pay.tsx"
+  ],
+  "units": [
+   "modules_guide_healthcare_worker_pay__01"
+  ],
+  "chars": 10768,
+  "name": "t1-032-healthcare-worker-pay"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/bonus-tax-faqs.ts",
+   "modules/calculator/fifo-pay-calculator.tsx",
+   "modules/calculator/fortnightly-pay-calculator-faqs.ts",
+   "modules/calculator/fortnightly-pay-calculator.tsx",
+   "modules/calculator/hecs-help-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_bonus_tax_faqs__01",
+   "modules_calculator_fifo_pay_calculator__01",
+   "modules_calculator_fortnightly_pay_calculator_faqs__01",
+   "modules_calculator_fortnightly_pay_calculator__01",
+   "modules_calculator_hecs_help_calculator__01"
+  ],
+  "chars": 10753,
+  "name": "t1-033-bonus-tax-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/school-support-pay/index.ts"
+  ],
+  "units": [
+   "lib_data_school_support_pay_index__02"
+  ],
+  "chars": 10744,
+  "name": "t1-034-index"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/payday-super-employees-payslip.tsx",
+   "modules/news/articles/payday-super-starts-july-2026.tsx",
+   "modules/news/articles/queensland-state-wage-case-2026.tsx",
+   "modules/news/articles/schads-home-care-disability-pay-rise-december-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_payday_super_employees_payslip__01",
+   "modules_news_articles_payday_super_starts_july_2026__01",
+   "modules_news_articles_queensland_state_wage_case_2026__01",
+   "modules_news_articles_schads_home_care_disability_pay_rise_december_2026__01"
+  ],
+  "chars": 10711,
+  "name": "t1-035-payday-super-employees-payslip"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/red-rooster.ts",
+   "lib/data/employer-pay/reject-shop.ts",
+   "lib/data/employer-pay/spotlight.ts",
+   "lib/data/employer-pay/starbucks.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_red_rooster__01",
+   "lib_data_employer_pay_reject_shop__01",
+   "lib_data_employer_pay_spotlight__01",
+   "lib_data_employer_pay_starbucks__01"
+  ],
+  "chars": 10592,
+  "name": "t1-036-red-rooster"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/david-jones.ts",
+   "lib/data/employer-pay/dominos.ts",
+   "lib/data/employer-pay/event-cinemas.ts",
+   "lib/data/employer-pay/guzman-y-gomez.ts",
+   "lib/data/employer-pay/harvey-norman.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_david_jones__01",
+   "lib_data_employer_pay_dominos__01",
+   "lib_data_employer_pay_event_cinemas__01",
+   "lib_data_employer_pay_guzman_y_gomez__01",
+   "lib_data_employer_pay_harvey_norman__01"
+  ],
+  "chars": 10349,
+  "name": "t1-037-david-jones"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/t3-shared.tsx",
+   "modules/guide/teacher-pay-australia.tsx",
+   "modules/guide/teacher-pay-state.tsx"
+  ],
+  "units": [
+   "modules_guide_t3_shared__01",
+   "modules_guide_teacher_pay_australia__01",
+   "modules_guide_teacher_pay_state__01"
+  ],
+  "chars": 10340,
+  "name": "t1-038-t3-shared"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/anaconda.ts",
+   "lib/data/employer-pay/australia-post.ts",
+   "lib/data/employer-pay/bakers-delight.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_anaconda__01",
+   "lib_data_employer_pay_australia_post__01",
+   "lib_data_employer_pay_bakers_delight__01"
+  ],
+  "chars": 10099,
+  "name": "t1-039-anaconda"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/hecs-repayment-threshold-2026-27.tsx",
+   "modules/news/articles/july-1-2026-money-changes.tsx",
+   "modules/news/articles/junior-pay-rates-december-2026.tsx",
+   "modules/news/articles/listo-boost-from-july-2027.tsx"
+  ],
+  "units": [
+   "modules_news_articles_hecs_repayment_threshold_2026_27__01",
+   "modules_news_articles_july_1_2026_money_changes__01",
+   "modules_news_articles_junior_pay_rates_december_2026__01",
+   "modules_news_articles_listo_boost_from_july_2027__01"
+  ],
+  "chars": 10014,
+  "name": "t1-040-hecs-repayment-threshold-2026-27"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/award-transport-payments-withholding-october-2026.tsx",
+   "modules/news/articles/award-wage-increase-2026-industries.tsx",
+   "modules/news/articles/c13-classification-phase-out.tsx"
+  ],
+  "units": [
+   "modules_news_articles_award_transport_payments_withholding_october_2026__01",
+   "modules_news_articles_award_wage_increase_2026_industries__01",
+   "modules_news_articles_c13_classification_phase_out__01"
+  ],
+  "chars": 9924,
+  "name": "t1-041-award-transport-payments-withholding-october-2026"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/division-296-super-tax-starts.tsx",
+   "modules/news/articles/federal-budget-2026-27-your-pay.tsx",
+   "modules/news/articles/health-professionals-award-changes-october-2026.tsx"
+  ],
+  "units": [
+   "modules_news_articles_division_296_super_tax_starts__01",
+   "modules_news_articles_federal_budget_2026_27_your_pay__01",
+   "modules_news_articles_health_professionals_award_changes_october_2026__01"
+  ],
+  "chars": 9874,
+  "name": "t1-042-division-296-super-tax-starts"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-service-pay/state-level-facts.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_state_level_facts__01"
+  ],
+  "chars": 9657,
+  "name": "t1-043-state-level-facts"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/costco.ts",
+   "lib/data/employer-pay/cotton-on.ts",
+   "lib/data/employer-pay/dan-murphys.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_costco__01",
+   "lib_data_employer_pay_cotton_on__01",
+   "lib_data_employer_pay_dan_murphys__01"
+  ],
+  "chars": 9648,
+  "name": "t1-044-costco"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/articles/medicare-levy-thresholds-2026.tsx",
+   "modules/news/articles/minimum-wage-increase-july-2026.tsx",
+   "modules/news/articles/new-minimum-wage-take-home-pay.tsx"
+  ],
+  "units": [
+   "modules_news_articles_medicare_levy_thresholds_2026__01",
+   "modules_news_articles_minimum_wage_increase_july_2026__01",
+   "modules_news_articles_new_minimum_wage_take_home_pay__01"
+  ],
+  "chars": 9519,
+  "name": "t1-045-medicare-levy-thresholds-2026"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/fy-links.tsx",
+   "modules/tax-tables/fy-tax-table-faqs.ts",
+   "modules/tax-tables/lookup-widget.tsx",
+   "modules/tax-tables/monthly-tax-table-faqs.ts",
+   "modules/tax-tables/pay-date-finder.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_fy_links__01",
+   "modules_tax_tables_fy_tax_table_faqs__01",
+   "modules_tax_tables_lookup_widget__01",
+   "modules_tax_tables_monthly_tax_table_faqs__01",
+   "modules_tax_tables_pay_date_finder__01"
+  ],
+  "chars": 9381,
+  "name": "t1-046-fy-links"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/hecs-help-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_hecs_help_calculator_content__01"
+  ],
+  "chars": 9379,
+  "name": "t1-047-hecs-help-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/big-w.ts",
+   "lib/data/employer-pay/boost-juice.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_big_w__01",
+   "lib_data_employer_pay_boost_juice__01"
+  ],
+  "chars": 9231,
+  "name": "t1-048-big-w"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/hourly-to-annual-salary-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_hourly_to_annual_salary_calculator_content__01"
+  ],
+  "chars": 9204,
+  "name": "t1-049-hourly-to-annual-salary-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/home/templates/index.tsx"
+  ],
+  "units": [
+   "modules_home_templates_index__01"
+  ],
+  "chars": 9158,
+  "name": "t1-050-index"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/junior-pay-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_junior_pay_rates__01"
+  ],
+  "chars": 9083,
+  "name": "t1-051-junior-pay-rates"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/apprentice-pay/spokes.ts"
+  ],
+  "units": [
+   "lib_data_apprentice_pay_spokes__04"
+  ],
+  "chars": 9018,
+  "name": "t1-052-spokes"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/mcdonalds.ts",
+   "lib/data/employer-pay/officeworks.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_mcdonalds__01",
+   "lib_data_employer_pay_officeworks__01"
+  ],
+  "chars": 8738,
+  "name": "t1-053-mcdonalds"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/jb-hi-fi.ts",
+   "lib/data/employer-pay/kmart.ts",
+   "lib/data/employer-pay/liquorland.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_jb_hi_fi__01",
+   "lib_data_employer_pay_kmart__01",
+   "lib_data_employer_pay_liquorland__01"
+  ],
+  "chars": 8721,
+  "name": "t1-054-jb-hi-fi"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/job-pay-rates-occupation.tsx",
+   "modules/guide/modern-award-rates.tsx",
+   "modules/guide/nursing-pay-state.tsx"
+  ],
+  "units": [
+   "modules_guide_job_pay_rates_occupation__01",
+   "modules_guide_modern_award_rates__01",
+   "modules_guide_nursing_pay_state__01"
+  ],
+  "chars": 8571,
+  "name": "t1-055-job-pay-rates-occupation"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content-oct.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content_oct__02"
+  ],
+  "chars": 8498,
+  "name": "t1-056-modern-award-content-oct"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/subway.ts",
+   "lib/data/employer-pay/target.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_subway__01",
+   "lib_data_employer_pay_target__01"
+  ],
+  "chars": 8433,
+  "name": "t1-057-subway"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/pay-rise-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_pay_rise_calculator_content__01"
+  ],
+  "chars": 8198,
+  "name": "t1-058-pay-rise-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/public-service-pay-scales.tsx"
+  ],
+  "units": [
+   "modules_guide_public_service_pay_scales__01"
+  ],
+  "chars": 8004,
+  "name": "t1-059-public-service-pay-scales"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/tax-tables/ato-downloads.tsx",
+   "modules/tax-tables/ato-schedules.ts",
+   "modules/tax-tables/coefficient-tables.tsx",
+   "modules/tax-tables/downloads-manifest.json",
+   "modules/tax-tables/fortnightly-tax-table-faqs.ts",
+   "modules/tax-tables/full-tax-table.tsx"
+  ],
+  "units": [
+   "modules_tax_tables_ato_downloads__01",
+   "modules_tax_tables_ato_schedules__01",
+   "modules_tax_tables_coefficient_tables__01",
+   "modules_tax_tables_downloads_manifest_json__01",
+   "modules_tax_tables_fortnightly_tax_table_faqs__01",
+   "modules_tax_tables_full_tax_table__01"
+  ],
+  "chars": 7999,
+  "name": "t1-060-ato-downloads"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/aldi.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_aldi__01"
+  ],
+  "chars": 7930,
+  "name": "t1-061-aldi"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content__02"
+  ],
+  "chars": 7796,
+  "name": "t1-062-modern-award-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/constants/junior-age-facts.ts"
+  ],
+  "units": [
+   "lib_constants_junior_age_facts__01"
+  ],
+  "chars": 7773,
+  "name": "t1-063-junior-age-facts"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/second-job-tax-calculator-faqs.ts",
+   "modules/calculator/second-job-tax-calculator.tsx",
+   "modules/calculator/t3-calc-shared.tsx",
+   "modules/calculator/weekly-pay-calculator-faqs.ts",
+   "modules/calculator/weekly-pay-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_second_job_tax_calculator_faqs__01",
+   "modules_calculator_second_job_tax_calculator__01",
+   "modules_calculator_t3_calc_shared__01",
+   "modules_calculator_weekly_pay_calculator_faqs__01",
+   "modules_calculator_weekly_pay_calculator__01"
+  ],
+  "chars": 7736,
+  "name": "t1-064-second-job-tax-calculator-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/fortnightly-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_fortnightly_pay_calculator_content__01"
+  ],
+  "chars": 7462,
+  "name": "t1-065-fortnightly-pay-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/kfc.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_kfc__01"
+  ],
+  "chars": 7371,
+  "name": "t1-066-kfc"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/backpay-calculator-content.tsx",
+   "modules/calculator/backpay-calculator-faqs.ts",
+   "modules/calculator/backpay-calculator.tsx",
+   "modules/calculator/bonus-tax-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_backpay_calculator_content__01",
+   "modules_calculator_backpay_calculator_faqs__01",
+   "modules_calculator_backpay_calculator__01",
+   "modules_calculator_bonus_tax_calculator__01"
+  ],
+  "chars": 7300,
+  "name": "t1-067-backpay-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/hecs-help-calculator/page.tsx"
+  ],
+  "units": [
+   "app_hecs_help_calculator_page__01"
+  ],
+  "chars": 7159,
+  "name": "t1-068-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/adf-pay-scales.tsx"
+  ],
+  "units": [
+   "modules_guide_adf_pay_scales__01"
+  ],
+  "chars": 6982,
+  "name": "t1-069-adf-pay-scales"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/constants/award-directory.ts",
+   "lib/constants/centrelink-income-test.ts",
+   "lib/constants/cents-per-km.ts",
+   "lib/constants/fifo-pay.ts",
+   "lib/constants/tax-calendar-2026-27.ts",
+   "lib/constants/tax-return-2025-26.ts"
+  ],
+  "units": [
+   "lib_constants_award_directory__01",
+   "lib_constants_centrelink_income_test__01",
+   "lib_constants_cents_per_km__01",
+   "lib_constants_fifo_pay__01",
+   "lib_constants_tax_calendar_2026_27__01",
+   "lib_constants_tax_return_2025_26__01"
+  ],
+  "chars": 6903,
+  "name": "t1-070-award-directory"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/junior-pay-rates-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_junior_pay_rates_faqs__01"
+  ],
+  "chars": 6467,
+  "name": "t1-071-junior-pay-rates-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/weekly-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_weekly_pay_calculator_content__01"
+  ],
+  "chars": 6441,
+  "name": "t1-072-weekly-pay-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/minimum-wage-by-age-data.ts"
+  ],
+  "units": [
+   "modules_guide_minimum_wage_by_age_data__01"
+  ],
+  "chars": 6392,
+  "name": "t1-073-minimum-wage-by-age-data"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/employer-pay/bunnings.ts"
+  ],
+  "units": [
+   "lib_data_employer_pay_bunnings__01"
+  ],
+  "chars": 6387,
+  "name": "t1-074-bunnings"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-service-pay/aps-grades.ts",
+   "lib/data/public-service-pay/state-levels.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_aps_grades__01",
+   "lib_data_public_service_pay_state_levels__01"
+  ],
+  "chars": 5533,
+  "name": "t1-075-aps-grades"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/home/home-faqs.ts"
+  ],
+  "units": [
+   "modules_home_home_faqs__01"
+  ],
+  "chars": 5407,
+  "name": "t1-076-home-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/calculator/bonus-tax-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_bonus_tax_calculator_content__02"
+  ],
+  "chars": 4841,
+  "name": "t1-077-bonus-tax-calculator-content"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-holidays/states/wa.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_states_wa__01"
+  ],
+  "chars": 4209,
+  "name": "t1-078-wa"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/teacher-pay-vic-2026.tsx"
+  ],
+  "units": [
+   "modules_guide_teacher_pay_vic_2026__01"
+  ],
+  "chars": 2848,
+  "name": "t1-079-teacher-pay-vic-2026"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/modern-award-content-oct2.ts"
+  ],
+  "units": [
+   "modules_guide_modern_award_content_oct2__03"
+  ],
+  "chars": 2376,
+  "name": "t1-080-modern-award-content-oct2"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/public-holidays/award-rates.ts",
+   "lib/data/public-holidays/calc.ts",
+   "lib/data/public-holidays/index.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_award_rates__01",
+   "lib_data_public_holidays_calc__01",
+   "lib_data_public_holidays_index__01"
+  ],
+  "chars": 1643,
+  "name": "t1-081-award-rates"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/programmatic/hourly-to-salary.tsx"
+  ],
+  "units": [
+   "modules_programmatic_hourly_to_salary__01"
+  ],
+  "chars": 1119,
+  "name": "t1-082-hourly-to-salary"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/teacher-pay/hub.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_hub__01"
+  ],
+  "chars": 980,
+  "name": "t1-083-hub"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/home/templates/home-calculator.tsx"
+  ],
+  "units": [
+   "modules_home_templates_home_calculator__01"
+  ],
+  "chars": 561,
+  "name": "t1-084-home-calculator"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "lib/data/nursing-pay/faqs.ts"
+  ],
+  "units": [
+   "lib_data_nursing_pay_faqs__01"
+  ],
+  "chars": 289,
+  "name": "t1-085-faqs"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/news/index-page.tsx"
+  ],
+  "units": [
+   "modules_news_index_page__01"
+  ],
+  "chars": 250,
+  "name": "t1-086-index-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/pay-rates/[employer]/page.tsx"
+  ],
+  "units": [
+   "app_pay_rates_employer_page__01"
+  ],
+  "chars": 116,
+  "name": "t1-087-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "modules/guide/payg-withholding-tables.tsx"
+  ],
+  "units": [
+   "modules_guide_payg_withholding_tables__02"
+  ],
+  "chars": 73,
+  "name": "t1-088-payg-withholding-tables"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/school-support-staff-pay/page.tsx"
+  ],
+  "units": [
+   "app_school_support_staff_pay_page__01"
+  ],
+  "chars": 65,
+  "name": "t1-089-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/hourly-to-annual-salary-calculator/page.tsx"
+  ],
+  "units": [
+   "app_hourly_to_annual_salary_calculator_page__01"
+  ],
+  "chars": 39,
+  "name": "t1-090-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/public-service-pay-scales/[jurisdiction]/page.tsx"
+  ],
+  "units": [
+   "app_public_service_pay_scales_jurisdiction_page__01"
+  ],
+  "chars": 34,
+  "name": "t1-091-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/public-service-pay-scales/[jurisdiction]/[grade]/page.tsx"
+  ],
+  "units": [
+   "app_public_service_pay_scales_jurisdiction_grade_page__01"
+  ],
+  "chars": 33,
+  "name": "t1-092-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/public-service-pay-scales/page.tsx"
+  ],
+  "units": [
+   "app_public_service_pay_scales_page__01"
+  ],
+  "chars": 30,
+  "name": "t1-093-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/second-job-tax-calculator/page.tsx"
+  ],
+  "units": [
+   "app_second_job_tax_calculator_page__01"
+  ],
+  "chars": 30,
+  "name": "t1-094-page"
+ },
+ {
+  "tier": 1,
+  "files": [
+   "app/school-support-staff-pay/[state]/page.tsx"
+  ],
+  "units": [
+   "app_school_support_staff_pay_state_page__01"
+  ],
+  "chars": 28,
+  "name": "t1-095-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/novated-lease-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_novated_lease_guide__01"
+  ],
+  "chars": 19240,
+  "name": "t2-096-novated-lease-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/superannuation-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_superannuation_guide__01"
+  ],
+  "chars": 16507,
+  "name": "t2-097-superannuation-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/understanding-your-payslip.tsx"
+  ],
+  "units": [
+   "modules_guide_understanding_your_payslip__01"
+  ],
+  "chars": 15187,
+  "name": "t2-098-understanding-your-payslip"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/non-resident-tax.tsx"
+  ],
+  "units": [
+   "modules_guide_non_resident_tax__01",
+   "modules_guide_non_resident_tax__02"
+  ],
+  "chars": 13664,
+  "name": "t2-099-non-resident-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/centrelink-income-test.tsx"
+  ],
+  "units": [
+   "modules_guide_centrelink_income_test__01"
+  ],
+  "chars": 13631,
+  "name": "t2-100-centrelink-income-test"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/salary-sacrifice-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_salary_sacrifice_calculator_content__01",
+   "modules_calculator_salary_sacrifice_calculator_content__02"
+  ],
+  "chars": 13605,
+  "name": "t2-101-salary-sacrifice-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/fringe-benefits-tax.tsx"
+  ],
+  "units": [
+   "modules_guide_fringe_benefits_tax__01"
+  ],
+  "chars": 13459,
+  "name": "t2-102-fringe-benefits-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-refund-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_refund_guide__01",
+   "modules_guide_tax_refund_guide__02"
+  ],
+  "chars": 13130,
+  "name": "t2-103-tax-refund-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/long-service-leave-state-detail.ts"
+  ],
+  "units": [
+   "modules_calculator_long_service_leave_state_detail__01"
+  ],
+  "chars": 12864,
+  "name": "t2-104-long-service-leave-state-detail"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/payroll-tax/state-detail.ts"
+  ],
+  "units": [
+   "modules_payroll_tax_state_detail__02"
+  ],
+  "chars": 12824,
+  "name": "t2-105-state-detail"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/payroll-tax/state-detail.ts"
+  ],
+  "units": [
+   "modules_payroll_tax_state_detail__01"
+  ],
+  "chars": 12798,
+  "name": "t2-106-state-detail"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/overtime-penalty-rates-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_overtime_penalty_rates_guide__01",
+   "modules_guide_overtime_penalty_rates_guide__02"
+  ],
+  "chars": 12786,
+  "name": "t2-107-overtime-penalty-rates-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/minimum-wage-state/index.ts"
+  ],
+  "units": [
+   "lib_data_minimum_wage_state_index__01"
+  ],
+  "chars": 12598,
+  "name": "t2-108-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-holidays/seasonal-pages.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_seasonal_pages__01"
+  ],
+  "chars": 12329,
+  "name": "t2-109-seasonal-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/minimum-wage-state/index.ts"
+  ],
+  "units": [
+   "lib_data_minimum_wage_state_index__02"
+  ],
+  "chars": 12326,
+  "name": "t2-110-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-holidays/seasonal-pages.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_seasonal_pages__02"
+  ],
+  "chars": 12306,
+  "name": "t2-111-seasonal-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/annual-leave-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_annual_leave_guide__01",
+   "modules_guide_annual_leave_guide__02"
+  ],
+  "chars": 12266,
+  "name": "t2-112-annual-leave-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/long-service-leave-state-detail.ts"
+  ],
+  "units": [
+   "modules_calculator_long_service_leave_state_detail__02"
+  ],
+  "chars": 12254,
+  "name": "t2-113-long-service-leave-state-detail"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-holidays/seasonal-pages.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_seasonal_pages__03"
+  ],
+  "chars": 12215,
+  "name": "t2-114-seasonal-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/long-service-leave.ts"
+  ],
+  "units": [
+   "lib_constants_long_service_leave__01"
+  ],
+  "chars": 12170,
+  "name": "t2-115-long-service-leave"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/contractor-vs-employee-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_contractor_vs_employee_calculator_content__01"
+  ],
+  "chars": 12088,
+  "name": "t2-116-contractor-vs-employee-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards-oct2.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards_oct2__01"
+  ],
+  "chars": 12058,
+  "name": "t2-117-modern-awards-oct2"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/health-salary/pages.ts"
+  ],
+  "units": [
+   "lib_data_health_salary_pages__01"
+  ],
+  "chars": 12028,
+  "name": "t2-118-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards-oct.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards_oct__01"
+  ],
+  "chars": 12003,
+  "name": "t2-119-modern-awards-oct"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/age-pension-assets-test-calculator-content.tsx",
+   "modules/calculator/age-pension-assets-test-calculator.tsx",
+   "modules/calculator/age-pension-income-test-calculator-content.tsx",
+   "modules/calculator/age-pension-income-test-calculator.tsx",
+   "modules/calculator/age-pension-income-test-faqs.ts",
+   "modules/calculator/annual-leave-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_age_pension_assets_test_calculator_content__01",
+   "modules_calculator_age_pension_assets_test_calculator__01",
+   "modules_calculator_age_pension_income_test_calculator_content__01",
+   "modules_calculator_age_pension_income_test_calculator__01",
+   "modules_calculator_age_pension_income_test_faqs__01",
+   "modules_calculator_annual_leave_calculator__01"
+  ],
+  "chars": 11993,
+  "name": "t2-120-age-pension-assets-test-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/data-analyst.ts",
+   "lib/data/job-pay-rates/dental-assistant.ts",
+   "lib/data/job-pay-rates/dental-hygienist.ts",
+   "lib/data/job-pay-rates/disability-support-worker.ts",
+   "lib/data/job-pay-rates/doctor.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_data_analyst__01",
+   "lib_data_job_pay_rates_dental_assistant__01",
+   "lib_data_job_pay_rates_dental_hygienist__01",
+   "lib_data_job_pay_rates_disability_support_worker__01",
+   "lib_data_job_pay_rates_doctor__01"
+  ],
+  "chars": 11984,
+  "name": "t2-121-data-analyst"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/chef.ts",
+   "lib/data/job-pay-rates/childcare-worker.ts",
+   "lib/data/job-pay-rates/civil-engineer.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_chef__01",
+   "lib_data_job_pay_rates_childcare_worker__01",
+   "lib_data_job_pay_rates_civil_engineer__01"
+  ],
+  "chars": 11957,
+  "name": "t2-122-chef"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/allowances-guide-faqs.ts",
+   "modules/guide/allowances-guide.tsx",
+   "modules/guide/annual-leave-calculator-faqs.ts",
+   "modules/guide/annual-leave-calculator.tsx"
+  ],
+  "units": [
+   "modules_guide_allowances_guide_faqs__01",
+   "modules_guide_allowances_guide__01",
+   "modules_guide_annual_leave_calculator_faqs__01",
+   "modules_guide_annual_leave_calculator__01"
+  ],
+  "chars": 11939,
+  "name": "t2-123-allowances-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/annual-leave-guide-faqs.ts",
+   "modules/guide/apprentice-pay-rates-faqs.ts",
+   "modules/guide/apprentice-pay-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_annual_leave_guide_faqs__01",
+   "modules_guide_apprentice_pay_rates_faqs__01",
+   "modules_guide_apprentice_pay_rates__01"
+  ],
+  "chars": 11926,
+  "name": "t2-124-annual-leave-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/casual-loading.tsx",
+   "modules/guide/centrelink-payment-dates-faqs.ts",
+   "modules/guide/centrelink-payment-dates.tsx",
+   "modules/guide/centrelink-payment-rates-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_casual_loading__01",
+   "modules_guide_centrelink_payment_dates_faqs__01",
+   "modules_guide_centrelink_payment_dates__01",
+   "modules_guide_centrelink_payment_rates_faqs__01"
+  ],
+  "chars": 11920,
+  "name": "t2-125-casual-loading"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/cleaner.ts",
+   "lib/data/job-pay-rates/clerks-common.ts",
+   "lib/data/job-pay-rates/common.ts",
+   "lib/data/job-pay-rates/crane-operator.ts",
+   "lib/data/job-pay-rates/cyber-security.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_cleaner__01",
+   "lib_data_job_pay_rates_clerks_common__01",
+   "lib_data_job_pay_rates_common__01",
+   "lib_data_job_pay_rates_crane_operator__01",
+   "lib_data_job_pay_rates_cyber_security__01"
+  ],
+  "chars": 11920,
+  "name": "t2-126-cleaner"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/pathology-collector.ts",
+   "lib/data/job-pay-rates/personal-trainer.ts",
+   "lib/data/job-pay-rates/pharmacist.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_pathology_collector__01",
+   "lib_data_job_pay_rates_personal_trainer__01",
+   "lib_data_job_pay_rates_pharmacist__01"
+  ],
+  "chars": 11892,
+  "name": "t2-127-pathology-collector"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/minimum-wage-australia.tsx",
+   "modules/guide/minimum-wage-by-age.tsx",
+   "modules/guide/minimum-wage-history-australia.tsx",
+   "modules/guide/minimum-wage-history-faqs.ts",
+   "modules/guide/minimum-wage-state.tsx"
+  ],
+  "units": [
+   "modules_guide_minimum_wage_australia__01",
+   "modules_guide_minimum_wage_by_age__01",
+   "modules_guide_minimum_wage_history_australia__01",
+   "modules_guide_minimum_wage_history_faqs__01",
+   "modules_guide_minimum_wage_state__01"
+  ],
+  "chars": 11842,
+  "name": "t2-128-minimum-wage-australia"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/work-from-home-deductions.tsx",
+   "modules/guide/work-hours-faqs.ts",
+   "modules/guide/working-australians-tax-offset-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_work_from_home_deductions__01",
+   "modules_guide_work_hours_faqs__01",
+   "modules_guide_working_australians_tax_offset_faqs__01"
+  ],
+  "chars": 11795,
+  "name": "t2-129-work-from-home-deductions"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/police/qld.ts",
+   "lib/data/service-pay/police/sa.ts",
+   "lib/data/service-pay/police/tas.ts",
+   "lib/data/service-pay/police/vic.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_police_qld__01",
+   "lib_data_service_pay_police_sa__01",
+   "lib_data_service_pay_police_tas__01",
+   "lib_data_service_pay_police_vic__01"
+  ],
+  "chars": 11770,
+  "name": "t2-130-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/novated-lease-faqs.ts",
+   "modules/calculator/ote-salary-calculator.tsx",
+   "modules/calculator/overtime-pay-calculator-faqs.ts",
+   "modules/calculator/overtime-pay-calculator.tsx",
+   "modules/calculator/parenting-payment-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_novated_lease_faqs__01",
+   "modules_calculator_ote_salary_calculator__01",
+   "modules_calculator_overtime_pay_calculator_faqs__01",
+   "modules_calculator_overtime_pay_calculator__01",
+   "modules_calculator_parenting_payment_calculator_content__01"
+  ],
+  "chars": 11762,
+  "name": "t2-131-novated-lease-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/fair-work-pay-calculator.tsx",
+   "modules/guide/first-job-pay-guide-faqs.ts",
+   "modules/guide/first-job-pay-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_fair_work_pay_calculator__01",
+   "modules_guide_first_job_pay_guide_faqs__01",
+   "modules_guide_first_job_pay_guide__01"
+  ],
+  "chars": 11715,
+  "name": "t2-132-fair-work-pay-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/security-guard.ts",
+   "lib/data/job-pay-rates/social-worker.ts",
+   "lib/data/job-pay-rates/software-engineer.ts",
+   "lib/data/job-pay-rates/sonographer.ts",
+   "lib/data/job-pay-rates/speech-pathologist.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_security_guard__01",
+   "lib_data_job_pay_rates_social_worker__01",
+   "lib_data_job_pay_rates_software_engineer__01",
+   "lib_data_job_pay_rates_sonographer__01",
+   "lib_data_job_pay_rates_speech_pathologist__01"
+  ],
+  "chars": 11690,
+  "name": "t2-133-security-guard"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/parenting-payment-calculator.tsx",
+   "modules/calculator/parenting-payment-faqs.ts",
+   "modules/calculator/pay-dates-calculator.tsx",
+   "modules/calculator/payslip-generator-content.tsx",
+   "modules/calculator/payslip-generator-faqs.ts",
+   "modules/calculator/payslip-generator.tsx"
+  ],
+  "units": [
+   "modules_calculator_parenting_payment_calculator__01",
+   "modules_calculator_parenting_payment_faqs__01",
+   "modules_calculator_pay_dates_calculator__01",
+   "modules_calculator_payslip_generator_content__01",
+   "modules_calculator_payslip_generator_faqs__01",
+   "modules_calculator_payslip_generator__01"
+  ],
+  "chars": 11648,
+  "name": "t2-134-parenting-payment-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/state/pay-calculator-qld.tsx",
+   "modules/state/pay-calculator-sa-faqs.ts",
+   "modules/state/pay-calculator-sa.tsx",
+   "modules/state/pay-calculator-tas-faqs.ts"
+  ],
+  "units": [
+   "modules_state_pay_calculator_qld__01",
+   "modules_state_pay_calculator_sa_faqs__01",
+   "modules_state_pay_calculator_sa__01",
+   "modules_state_pay_calculator_tas_faqs__01"
+  ],
+  "chars": 11647,
+  "name": "t2-135-pay-calculator-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/long-service-leave-faqs.ts",
+   "modules/calculator/long-service-leave-shared.tsx",
+   "modules/calculator/marginal-rate-calculator.tsx",
+   "modules/calculator/medicare-levy-calculator.tsx",
+   "modules/calculator/medicare-levy-surcharge-calculator.tsx",
+   "modules/calculator/minimum-wage-state-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_long_service_leave_faqs__01",
+   "modules_calculator_long_service_leave_shared__01",
+   "modules_calculator_marginal_rate_calculator__01",
+   "modules_calculator_medicare_levy_calculator__01",
+   "modules_calculator_medicare_levy_surcharge_calculator__01",
+   "modules_calculator_minimum_wage_state_calculator__01"
+  ],
+  "chars": 11646,
+  "name": "t2-136-long-service-leave-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/private-health-insurance-medicare-faqs.ts",
+   "modules/guide/private-health-insurance-medicare.tsx",
+   "modules/guide/pro-rata-salary-faqs.ts",
+   "modules/guide/pro-rata-salary.tsx",
+   "modules/guide/public-holiday-state.tsx"
+  ],
+  "units": [
+   "modules_guide_private_health_insurance_medicare_faqs__01",
+   "modules_guide_private_health_insurance_medicare__01",
+   "modules_guide_pro_rata_salary_faqs__01",
+   "modules_guide_pro_rata_salary__01",
+   "modules_guide_public_holiday_state__01"
+  ],
+  "chars": 11631,
+  "name": "t2-137-private-health-insurance-medicare-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/casual-loading-calculator.tsx",
+   "modules/calculator/centrelink-advance-payment-content.tsx",
+   "modules/calculator/centrelink-advance-payment.tsx",
+   "modules/calculator/centrelink-crisis-payment.tsx",
+   "modules/calculator/centrelink-dates-calculator.tsx",
+   "modules/calculator/centrelink-debt-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_casual_loading_calculator__01",
+   "modules_calculator_centrelink_advance_payment_content__01",
+   "modules_calculator_centrelink_advance_payment__01",
+   "modules_calculator_centrelink_crisis_payment__01",
+   "modules_calculator_centrelink_dates_calculator__01",
+   "modules_calculator_centrelink_debt_content__01"
+  ],
+  "chars": 11627,
+  "name": "t2-138-casual-loading-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/working-australians-tax-offset-calculator.tsx",
+   "modules/calculator/working-credit-calculator.tsx",
+   "modules/calculator/ytd-income-calculator-content.tsx",
+   "modules/calculator/ytd-income-calculator-faqs.ts",
+   "modules/calculator/ytd-income-calculator.tsx",
+   "modules/calculator/zone-tax-offset-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_working_australians_tax_offset_calculator__01",
+   "modules_calculator_working_credit_calculator__01",
+   "modules_calculator_ytd_income_calculator_content__01",
+   "modules_calculator_ytd_income_calculator_faqs__01",
+   "modules_calculator_ytd_income_calculator__01",
+   "modules_calculator_zone_tax_offset_calculator__01"
+  ],
+  "chars": 11625,
+  "name": "t2-139-working-australians-tax-offset-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/working-holiday-tax.tsx"
+  ],
+  "units": [
+   "modules_guide_working_holiday_tax__01"
+  ],
+  "chars": 11603,
+  "name": "t2-140-working-holiday-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/new-job-checklist.tsx",
+   "modules/guide/non-resident-tax-faqs.ts",
+   "modules/guide/notice-of-assessment-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_new_job_checklist__01",
+   "modules_guide_non_resident_tax_faqs__01",
+   "modules_guide_notice_of_assessment_faqs__01"
+  ],
+  "chars": 11572,
+  "name": "t2-141-new-job-checklist"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/working-australians-tax-offset.tsx",
+   "modules/guide/working-credit-faqs.ts",
+   "modules/guide/working-credit.tsx",
+   "modules/guide/working-holiday-tax-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_working_australians_tax_offset__01",
+   "modules_guide_working_credit_faqs__01",
+   "modules_guide_working_credit__01",
+   "modules_guide_working_holiday_tax_faqs__01"
+  ],
+  "chars": 11567,
+  "name": "t2-142-working-australians-tax-offset"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/payment-in-lieu-of-notice.tsx",
+   "modules/guide/pension-age-australia-faqs.ts",
+   "modules/guide/pension-age-australia.tsx",
+   "modules/guide/pension-age-calculator.tsx"
+  ],
+  "units": [
+   "modules_guide_payment_in_lieu_of_notice__01",
+   "modules_guide_pension_age_australia_faqs__01",
+   "modules_guide_pension_age_australia__01",
+   "modules_guide_pension_age_calculator__01"
+  ],
+  "chars": 11524,
+  "name": "t2-143-payment-in-lieu-of-notice"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "modules/calculator/contractor-vs-employee-calculator.tsx",
+   "modules/calculator/cost-of-living-payment-2026.tsx",
+   "modules/calculator/deeming-rates-content.tsx",
+   "modules/calculator/deeming-rates.tsx"
+  ],
+  "units": [
+   "modules_calculator_contractor_vs_employee_calculator_faqs__01",
+   "modules_calculator_contractor_vs_employee_calculator__01",
+   "modules_calculator_cost_of_living_payment_2026__01",
+   "modules_calculator_deeming_rates_content__01",
+   "modules_calculator_deeming_rates__01"
+  ],
+  "chars": 11488,
+  "name": "t2-144-contractor-vs-employee-calculator-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/state/pay-calculator-act-faqs.ts",
+   "modules/state/pay-calculator-act.tsx",
+   "modules/state/pay-calculator-nsw-faqs.ts",
+   "modules/state/pay-calculator-nsw.tsx"
+  ],
+  "units": [
+   "modules_state_pay_calculator_act_faqs__01",
+   "modules_state_pay_calculator_act__01",
+   "modules_state_pay_calculator_nsw_faqs__01",
+   "modules_state_pay_calculator_nsw__01"
+  ],
+  "chars": 11487,
+  "name": "t2-145-pay-calculator-act-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/paramedic/qld.ts",
+   "lib/data/service-pay/paramedic/sa.ts",
+   "lib/data/service-pay/paramedic/tas.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_paramedic_qld__01",
+   "lib_data_service_pay_paramedic_sa__01",
+   "lib_data_service_pay_paramedic_tas__01"
+  ],
+  "chars": 11458,
+  "name": "t2-146-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/leave-loading.tsx",
+   "modules/guide/listo-calculator-faqs.ts",
+   "modules/guide/listo-calculator.tsx",
+   "modules/guide/low-income-tax-offset-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_leave_loading__01",
+   "modules_guide_listo_calculator_faqs__01",
+   "modules_guide_listo_calculator__01",
+   "modules_guide_low_income_tax_offset_faqs__01"
+  ],
+  "chars": 11448,
+  "name": "t2-147-leave-loading"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/centrelink-payment-rates.tsx",
+   "modules/guide/cents-per-km-faqs.ts",
+   "modules/guide/cents-per-km.tsx",
+   "modules/guide/compassionate-leave-faqs.ts",
+   "modules/guide/compassionate-leave.tsx"
+  ],
+  "units": [
+   "modules_guide_centrelink_payment_rates__01",
+   "modules_guide_cents_per_km_faqs__01",
+   "modules_guide_cents_per_km__01",
+   "modules_guide_compassionate_leave_faqs__01",
+   "modules_guide_compassionate_leave__01"
+  ],
+  "chars": 11382,
+  "name": "t2-148-centrelink-payment-rates"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/child-care-subsidy-calculator.tsx",
+   "modules/calculator/commission-tax-calculator-content.tsx",
+   "modules/calculator/commission-tax-calculator.tsx",
+   "modules/calculator/commission-tax-faqs.ts",
+   "modules/calculator/commonwealth-seniors-health-card-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_child_care_subsidy_calculator__01",
+   "modules_calculator_commission_tax_calculator_content__01",
+   "modules_calculator_commission_tax_calculator__01",
+   "modules_calculator_commission_tax_faqs__01",
+   "modules_calculator_commonwealth_seniors_health_card_content__01"
+  ],
+  "chars": 11333,
+  "name": "t2-149-child-care-subsidy-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/payroll-tax/content.ts",
+   "modules/payroll-tax/payroll-tax-calculator-page.tsx",
+   "modules/payroll-tax/payroll-tax-calculator.tsx",
+   "modules/payroll-tax/payroll-tax-hub-page.tsx",
+   "modules/payroll-tax/payroll-tax-state-page.tsx"
+  ],
+  "units": [
+   "modules_payroll_tax_content__01",
+   "modules_payroll_tax_payroll_tax_calculator_page__01",
+   "modules_payroll_tax_payroll_tax_calculator__01",
+   "modules_payroll_tax_payroll_tax_hub_page__01",
+   "modules_payroll_tax_payroll_tax_state_page__01"
+  ],
+  "chars": 11327,
+  "name": "t2-150-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/nursing-pay/qld.ts",
+   "lib/data/nursing-pay/sa.ts",
+   "lib/data/nursing-pay/tas.ts",
+   "lib/data/nursing-pay/types.ts"
+  ],
+  "units": [
+   "lib_data_nursing_pay_qld__01",
+   "lib_data_nursing_pay_sa__01",
+   "lib_data_nursing_pay_tas__01",
+   "lib_data_nursing_pay_types__01"
+  ],
+  "chars": 11308,
+  "name": "t2-151-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/apprentice-electrician.ts",
+   "lib/data/job-pay-rates/architect.ts",
+   "lib/data/job-pay-rates/audiologist.ts",
+   "lib/data/job-pay-rates/barista.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_apprentice_electrician__01",
+   "lib_data_job_pay_rates_architect__01",
+   "lib_data_job_pay_rates_audiologist__01",
+   "lib_data_job_pay_rates_barista__01"
+  ],
+  "chars": 11303,
+  "name": "t2-152-apprentice-electrician"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/mechanic.ts",
+   "lib/data/job-pay-rates/mechanical-engineer.ts",
+   "lib/data/job-pay-rates/medical-receptionist.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_mechanic__01",
+   "lib_data_job_pay_rates_mechanical_engineer__01",
+   "lib_data_job_pay_rates_medical_receptionist__01"
+  ],
+  "chars": 11297,
+  "name": "t2-153-mechanic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/termination-payment-tax.tsx",
+   "modules/guide/time-in-lieu-faqs.ts",
+   "modules/guide/time-in-lieu.tsx",
+   "modules/guide/train-driver-salary.tsx",
+   "modules/guide/travel-allowance-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_termination_payment_tax__01",
+   "modules_guide_time_in_lieu_faqs__01",
+   "modules_guide_time_in_lieu__01",
+   "modules_guide_train_driver_salary__01",
+   "modules_guide_travel_allowance_faqs__01"
+  ],
+  "chars": 11285,
+  "name": "t2-154-termination-payment-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-refund-guide-faqs.ts",
+   "modules/guide/tax-return-2026-estimator.tsx",
+   "modules/guide/tax-return-2026-faqs.ts",
+   "modules/guide/tax-withheld-calculator-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_tax_refund_guide_faqs__01",
+   "modules_guide_tax_return_2026_estimator__01",
+   "modules_guide_tax_return_2026_faqs__01",
+   "modules_guide_tax_withheld_calculator_faqs__01"
+  ],
+  "chars": 11269,
+  "name": "t2-155-tax-refund-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/average-salary-faqs.ts",
+   "modules/guide/aviation-pay.tsx",
+   "modules/guide/award-rates-faqs.ts",
+   "modules/guide/carry-forward-concessional-contributions.tsx"
+  ],
+  "units": [
+   "modules_guide_average_salary_faqs__01",
+   "modules_guide_aviation_pay__01",
+   "modules_guide_award_rates_faqs__01",
+   "modules_guide_carry_forward_concessional_contributions__01"
+  ],
+  "chars": 11266,
+  "name": "t2-156-average-salary-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/pay-and-tax-changes-calendar-faqs.ts",
+   "modules/guide/pay-and-tax-changes-calendar.tsx",
+   "modules/guide/pay-periods-faqs.ts",
+   "modules/guide/pay-periods.tsx",
+   "modules/guide/payday-super-calculator.tsx",
+   "modules/guide/payday-super-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_pay_and_tax_changes_calendar_faqs__01",
+   "modules_guide_pay_and_tax_changes_calendar__01",
+   "modules_guide_pay_periods_faqs__01",
+   "modules_guide_pay_periods__01",
+   "modules_guide_payday_super_calculator__01",
+   "modules_guide_payday_super_faqs__01"
+  ],
+  "chars": 11253,
+  "name": "t2-157-pay-and-tax-changes-calendar-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/hospitality-award-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_hospitality_award_rates__01"
+  ],
+  "chars": 11241,
+  "name": "t2-158-hospitality-award-rates"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/low-income-tax-offset.tsx",
+   "modules/guide/marginal-tax-rates-faqs.ts",
+   "modules/guide/marginal-tax-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_low_income_tax_offset__01",
+   "modules_guide_marginal_tax_rates_faqs__01",
+   "modules_guide_marginal_tax_rates__01"
+  ],
+  "chars": 11240,
+  "name": "t2-159-low-income-tax-offset"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/delivery-pay-calculator.tsx",
+   "modules/calculator/disability-support-pension-calculator-content.tsx",
+   "modules/calculator/disability-support-pension-calculator.tsx",
+   "modules/calculator/ea-award-floor-checker.tsx",
+   "modules/calculator/employment-type-calculator-content.tsx",
+   "modules/calculator/employment-type-calculator-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_delivery_pay_calculator__01",
+   "modules_calculator_disability_support_pension_calculator_content__01",
+   "modules_calculator_disability_support_pension_calculator__01",
+   "modules_calculator_ea_award_floor_checker__01",
+   "modules_calculator_employment_type_calculator_content__01",
+   "modules_calculator_employment_type_calculator_faqs__01"
+  ],
+  "chars": 11221,
+  "name": "t2-160-delivery-pay-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/overtime-penalty-rates-guide-faqs.ts",
+   "modules/guide/parental-leave-pay-content.tsx",
+   "modules/guide/parental-leave-pay.tsx"
+  ],
+  "units": [
+   "modules_guide_overtime_penalty_rates_guide_faqs__01",
+   "modules_guide_parental_leave_pay_content__01",
+   "modules_guide_parental_leave_pay__01"
+  ],
+  "chars": 11192,
+  "name": "t2-161-overtime-penalty-rates-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/act.ts",
+   "lib/data/teacher-pay/index.ts",
+   "lib/data/teacher-pay/nsw.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_act__01",
+   "lib_data_teacher_pay_index__01",
+   "lib_data_teacher_pay_nsw__01"
+  ],
+  "chars": 11179,
+  "name": "t2-162-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/pilon-calculator.tsx",
+   "modules/calculator/pro-rata-salary-calculator.tsx",
+   "modules/calculator/public-holiday-pay-calculator.tsx",
+   "modules/calculator/redundancy-pay-calculator.tsx",
+   "modules/calculator/redundancy-pay-faqs.ts",
+   "modules/calculator/rent-assistance-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_pilon_calculator__01",
+   "modules_calculator_pro_rata_salary_calculator__01",
+   "modules_calculator_public_holiday_pay_calculator__01",
+   "modules_calculator_redundancy_pay_calculator__01",
+   "modules_calculator_redundancy_pay_faqs__01",
+   "modules_calculator_rent_assistance_calculator_content__01"
+  ],
+  "chars": 11095,
+  "name": "t2-163-pilon-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/carry-forward-concessional-faqs.ts",
+   "modules/guide/casual-conversion-faqs.ts",
+   "modules/guide/casual-conversion.tsx",
+   "modules/guide/casual-loading-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_carry_forward_concessional_faqs__01",
+   "modules_guide_casual_conversion_faqs__01",
+   "modules_guide_casual_conversion__01",
+   "modules_guide_casual_loading_faqs__01"
+  ],
+  "chars": 11041,
+  "name": "t2-164-carry-forward-concessional-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/surveyor.ts",
+   "lib/data/job-pay-rates/teacher-aide.ts",
+   "lib/data/job-pay-rates/truck-driver.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_surveyor__01",
+   "lib_data_job_pay_rates_teacher_aide__01",
+   "lib_data_job_pay_rates_truck_driver__01"
+  ],
+  "chars": 11031,
+  "name": "t2-165-surveyor"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/employer-cost-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_guide_employer_cost_calculator_content__01"
+  ],
+  "chars": 11004,
+  "name": "t2-166-employer-cost-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/state/pay-calculator-wa.tsx",
+   "modules/state/state-faqs-shared.ts",
+   "modules/state/state-minimum-wage.tsx",
+   "modules/state/state-sections.tsx",
+   "modules/state/state-take-home-calculator.tsx"
+  ],
+  "units": [
+   "modules_state_pay_calculator_wa__01",
+   "modules_state_state_faqs_shared__01",
+   "modules_state_state_minimum_wage__01",
+   "modules_state_state_sections__01",
+   "modules_state_state_take_home_calculator__01"
+  ],
+  "chars": 10985,
+  "name": "t2-167-pay-calculator-wa"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/super-co-contribution-faqs.ts",
+   "modules/guide/super-co-contribution.tsx",
+   "modules/guide/super-guarantee-rate-faqs.ts",
+   "modules/guide/super-guarantee-rate-history.tsx"
+  ],
+  "units": [
+   "modules_guide_super_co_contribution_faqs__01",
+   "modules_guide_super_co_contribution__01",
+   "modules_guide_super_guarantee_rate_faqs__01",
+   "modules_guide_super_guarantee_rate_history__01"
+  ],
+  "chars": 10979,
+  "name": "t2-168-super-co-contribution-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/capital-gains-tax.tsx"
+  ],
+  "units": [
+   "modules_guide_capital_gains_tax__01"
+  ],
+  "chars": 10977,
+  "name": "t2-169-capital-gains-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/firefighter/qld.ts",
+   "lib/data/service-pay/firefighter/sa.ts",
+   "lib/data/service-pay/firefighter/tas.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_firefighter_qld__01",
+   "lib_data_service_pay_firefighter_sa__01",
+   "lib_data_service_pay_firefighter_tas__01"
+  ],
+  "chars": 10955,
+  "name": "t2-170-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/highest-paying-jobs-australia.tsx",
+   "modules/guide/job-pay-rates-health-salary.tsx",
+   "modules/guide/job-pay-rates-hub.tsx",
+   "modules/guide/job-pay-shared.tsx",
+   "modules/guide/jury-duty-pay-faqs.ts",
+   "modules/guide/jury-duty-pay.tsx"
+  ],
+  "units": [
+   "modules_guide_highest_paying_jobs_australia__01",
+   "modules_guide_job_pay_rates_health_salary__01",
+   "modules_guide_job_pay_rates_hub__01",
+   "modules_guide_job_pay_shared__01",
+   "modules_guide_jury_duty_pay_faqs__01",
+   "modules_guide_jury_duty_pay__01"
+  ],
+  "chars": 10953,
+  "name": "t2-171-highest-paying-jobs-australia"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/australian-pay-report.tsx",
+   "modules/guide/australian-tax-and-pay-data-faqs.ts",
+   "modules/guide/australian-tax-and-pay-data.tsx",
+   "modules/guide/average-salary-checker.tsx"
+  ],
+  "units": [
+   "modules_guide_australian_pay_report__01",
+   "modules_guide_australian_tax_and_pay_data_faqs__01",
+   "modules_guide_australian_tax_and_pay_data__01",
+   "modules_guide_average_salary_checker__01"
+  ],
+  "chars": 10898,
+  "name": "t2-172-australian-pay-report"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/travel-allowance.tsx",
+   "modules/guide/understanding-your-payslip-faqs.ts",
+   "modules/guide/work-from-home-deductions-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_travel_allowance__01",
+   "modules_guide_understanding_your_payslip_faqs__01",
+   "modules_guide_work_from_home_deductions_faqs__01"
+  ],
+  "chars": 10884,
+  "name": "t2-173-travel-allowance"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/construction-trades-pay.tsx",
+   "modules/guide/delivery-driver-pay-rate-faqs.ts",
+   "modules/guide/division-293-tax-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_construction_trades_pay__01",
+   "modules_guide_delivery_driver_pay_rate_faqs__01",
+   "modules_guide_division_293_tax_faqs__01"
+  ],
+  "chars": 10863,
+  "name": "t2-174-construction-trades-pay"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/sapto.tsx",
+   "modules/guide/schads-award-faqs.ts",
+   "modules/guide/seasonal-holiday-page.tsx"
+  ],
+  "units": [
+   "modules_guide_sapto__01",
+   "modules_guide_schads_award_faqs__01",
+   "modules_guide_seasonal_holiday_page__01"
+  ],
+  "chars": 10844,
+  "name": "t2-175-sapto"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/superannuation-faqs.ts",
+   "modules/calculator/take-home-pay-calculator-faqs.ts",
+   "modules/calculator/take-home-pay-calculator.tsx",
+   "modules/calculator/tax-brackets-lookup.tsx",
+   "modules/calculator/tax-free-threshold-helper.tsx",
+   "modules/calculator/tax-return-calculator-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_superannuation_faqs__01",
+   "modules_calculator_take_home_pay_calculator_faqs__01",
+   "modules_calculator_take_home_pay_calculator__01",
+   "modules_calculator_tax_brackets_lookup__01",
+   "modules_calculator_tax_free_threshold_helper__01",
+   "modules_calculator_tax_return_calculator_faqs__01"
+  ],
+  "chars": 10836,
+  "name": "t2-176-superannuation-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/state/pay-calculator-tas.tsx",
+   "modules/state/pay-calculator-vic-faqs.ts",
+   "modules/state/pay-calculator-vic.tsx",
+   "modules/state/pay-calculator-wa-faqs.ts"
+  ],
+  "units": [
+   "modules_state_pay_calculator_tas__01",
+   "modules_state_pay_calculator_vic_faqs__01",
+   "modules_state_pay_calculator_vic__01",
+   "modules_state_pay_calculator_wa_faqs__01"
+  ],
+  "chars": 10835,
+  "name": "t2-177-pay-calculator-tas"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/early-childhood-teacher.ts",
+   "lib/data/job-pay-rates/electrical-engineer.ts",
+   "lib/data/job-pay-rates/electrician.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_early_childhood_teacher__01",
+   "lib_data_job_pay_rates_electrical_engineer__01",
+   "lib_data_job_pay_rates_electrician__01"
+  ],
+  "chars": 10787,
+  "name": "t2-178-early-childhood-teacher"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/paramedic/act.ts",
+   "lib/data/service-pay/paramedic/nsw.ts",
+   "lib/data/service-pay/paramedic/nt.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_paramedic_act__01",
+   "lib_data_service_pay_paramedic_nsw__01",
+   "lib_data_service_pay_paramedic_nt__01"
+  ],
+  "chars": 10628,
+  "name": "t2-179-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/rideshare-delivery-earnings-after-tax-faqs.ts",
+   "modules/guide/rideshare-delivery-earnings-after-tax.tsx",
+   "modules/guide/salary-packaging-guide-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_rideshare_delivery_earnings_after_tax_faqs__01",
+   "modules_guide_rideshare_delivery_earnings_after_tax__01",
+   "modules_guide_salary_packaging_guide_faqs__01"
+  ],
+  "chars": 10625,
+  "name": "t2-180-rideshare-delivery-earnings-after-tax-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/superannuation-guide-faqs.ts",
+   "modules/guide/tax-bracket-history-faqs.ts",
+   "modules/guide/tax-bracket-history.tsx"
+  ],
+  "units": [
+   "modules_guide_superannuation_guide_faqs__01",
+   "modules_guide_tax_bracket_history_faqs__01",
+   "modules_guide_tax_bracket_history__01"
+  ],
+  "chars": 10595,
+  "name": "t2-181-superannuation-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/nurse.ts",
+   "lib/data/job-pay-rates/occupational-therapist.ts",
+   "lib/data/job-pay-rates/paralegal.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_nurse__01",
+   "lib_data_job_pay_rates_occupational_therapist__01",
+   "lib_data_job_pay_rates_paralegal__01"
+  ],
+  "chars": 10569,
+  "name": "t2-182-nurse"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/receptionist.ts",
+   "lib/data/job-pay-rates/retail-manager.ts",
+   "lib/data/job-pay-rates/retail-worker.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_receptionist__01",
+   "lib_data_job_pay_rates_retail_manager__01",
+   "lib_data_job_pay_rates_retail_worker__01"
+  ],
+  "chars": 10557,
+  "name": "t2-183-receptionist"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/pharmacy-assistant.ts",
+   "lib/data/job-pay-rates/physiotherapist.ts",
+   "lib/data/job-pay-rates/plumber.ts",
+   "lib/data/job-pay-rates/professional-common.ts",
+   "lib/data/job-pay-rates/project-manager.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_pharmacy_assistant__01",
+   "lib_data_job_pay_rates_physiotherapist__01",
+   "lib_data_job_pay_rates_plumber__01",
+   "lib_data_job_pay_rates_professional_common__01",
+   "lib_data_job_pay_rates_project_manager__01"
+  ],
+  "chars": 10510,
+  "name": "t2-184-pharmacy-assistant"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/retail-award-faqs.ts",
+   "modules/guide/retail-hospitality-pay-guide-faqs.ts",
+   "modules/guide/retail-hospitality-pay-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_retail_award_faqs__01",
+   "modules_guide_retail_hospitality_pay_guide_faqs__01",
+   "modules_guide_retail_hospitality_pay_guide__01"
+  ],
+  "chars": 10489,
+  "name": "t2-185-retail-award-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/accountant.ts",
+   "lib/data/job-pay-rates/actuary.ts",
+   "lib/data/job-pay-rates/aged-care-worker.ts",
+   "lib/data/job-pay-rates/allied-health-g3.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_accountant__01",
+   "lib_data_job_pay_rates_actuary__01",
+   "lib_data_job_pay_rates_aged_care_worker__01",
+   "lib_data_job_pay_rates_allied_health_g3__01"
+  ],
+  "chars": 10483,
+  "name": "t2-186-accountant"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/prison-officer/act.ts",
+   "lib/data/service-pay/prison-officer/nsw.ts",
+   "lib/data/service-pay/prison-officer/nt.ts",
+   "lib/data/service-pay/prison-officer/qld.ts",
+   "lib/data/service-pay/prison-officer/sa.ts",
+   "lib/data/service-pay/prison-officer/tas.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_prison_officer_act__01",
+   "lib_data_service_pay_prison_officer_nsw__01",
+   "lib_data_service_pay_prison_officer_nt__01",
+   "lib_data_service_pay_prison_officer_qld__01",
+   "lib_data_service_pay_prison_officer_sa__01",
+   "lib_data_service_pay_prison_officer_tas__01"
+  ],
+  "chars": 10481,
+  "name": "t2-187-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/centrelink-w3-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_centrelink_w3_faqs__01"
+  ],
+  "chars": 10477,
+  "name": "t2-188-centrelink-w3-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/police/act.ts",
+   "lib/data/service-pay/police/nsw.ts",
+   "lib/data/service-pay/police/nt.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_police_act__01",
+   "lib_data_service_pay_police_nsw__01",
+   "lib_data_service_pay_police_nt__01"
+  ],
+  "chars": 10444,
+  "name": "t2-189-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards-oct2.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards_oct2__02"
+  ],
+  "chars": 10357,
+  "name": "t2-190-modern-awards-oct2"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/austudy-youth-allowance-faqs.ts",
+   "modules/calculator/carer-allowance-content.tsx",
+   "modules/calculator/carer-allowance.tsx",
+   "modules/calculator/carer-payment-calculator-content.tsx",
+   "modules/calculator/carer-payment-calculator.tsx",
+   "modules/calculator/carry-forward-concessional-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_austudy_youth_allowance_faqs__01",
+   "modules_calculator_carer_allowance_content__01",
+   "modules_calculator_carer_allowance__01",
+   "modules_calculator_carer_payment_calculator_content__01",
+   "modules_calculator_carer_payment_calculator__01",
+   "modules_calculator_carry_forward_concessional_calculator__01"
+  ],
+  "chars": 10297,
+  "name": "t2-191-austudy-youth-allowance-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/hairdresser.ts",
+   "lib/data/job-pay-rates/health-professionals-common.ts",
+   "lib/data/job-pay-rates/health-professionals-oct-2026.ts",
+   "lib/data/job-pay-rates/hospitality-common.ts",
+   "lib/data/job-pay-rates/lab-technician.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_hairdresser__01",
+   "lib_data_job_pay_rates_health_professionals_common__01",
+   "lib_data_job_pay_rates_health_professionals_oct_2026__01",
+   "lib_data_job_pay_rates_hospitality_common__01",
+   "lib_data_job_pay_rates_lab_technician__01"
+  ],
+  "chars": 10233,
+  "name": "t2-192-hairdresser"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/flight-attendant.ts",
+   "lib/data/job-pay-rates/forklift-operator.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_flight_attendant__01",
+   "lib_data_job_pay_rates_forklift_operator__01"
+  ],
+  "chars": 10230,
+  "name": "t2-193-flight-attendant"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/employment-type-calculator.tsx",
+   "modules/calculator/family-tax-benefit-calculator-content.tsx",
+   "modules/calculator/family-tax-benefit-calculator.tsx",
+   "modules/calculator/family-tax-benefit-faqs.ts",
+   "modules/calculator/final-pay-calculator-content.tsx",
+   "modules/calculator/final-pay-calculator-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_employment_type_calculator__01",
+   "modules_calculator_family_tax_benefit_calculator_content__01",
+   "modules_calculator_family_tax_benefit_calculator__01",
+   "modules_calculator_family_tax_benefit_faqs__01",
+   "modules_calculator_final_pay_calculator_content__01",
+   "modules_calculator_final_pay_calculator_faqs__01"
+  ],
+  "chars": 10214,
+  "name": "t2-194-employment-type-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/stage-3-tax-cuts.tsx",
+   "modules/guide/stsl-on-payslip-faqs.ts",
+   "modules/guide/stsl-on-payslip.tsx"
+  ],
+  "units": [
+   "modules_guide_stage_3_tax_cuts__01",
+   "modules_guide_stsl_on_payslip_faqs__01",
+   "modules_guide_stsl_on_payslip__01"
+  ],
+  "chars": 10166,
+  "name": "t2-195-stage-3-tax-cuts"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/service-pay-hub.tsx",
+   "modules/guide/service-pay-shared.tsx",
+   "modules/guide/service-pay-state.tsx",
+   "modules/guide/sick-leave-faqs.ts",
+   "modules/guide/sick-leave.tsx",
+   "modules/guide/stage-3-tax-cuts-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_service_pay_hub__01",
+   "modules_guide_service_pay_shared__01",
+   "modules_guide_service_pay_state__01",
+   "modules_guide_sick_leave_faqs__01",
+   "modules_guide_sick_leave__01",
+   "modules_guide_stage_3_tax_cuts_faqs__01"
+  ],
+  "chars": 10123,
+  "name": "t2-196-service-pay-hub"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-calendar-faqs.ts",
+   "modules/guide/tax-changes-2026-27-faqs.ts",
+   "modules/guide/tax-deductions-guide-faqs.ts",
+   "modules/guide/tax-file-number-declaration-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_tax_calendar_faqs__01",
+   "modules_guide_tax_changes_2026_27_faqs__01",
+   "modules_guide_tax_deductions_guide_faqs__01",
+   "modules_guide_tax_file_number_declaration_faqs__01"
+  ],
+  "chars": 10048,
+  "name": "t2-197-tax-calendar-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/schads-award-pay-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_schads_award_pay_rates__01"
+  ],
+  "chars": 10046,
+  "name": "t2-198-schads-award-pay-rates"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/fringe-benefits-tax-faqs.ts",
+   "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+   "modules/guide/gig-economy-pay-guide-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_fringe_benefits_tax_faqs__01",
+   "modules_guide_full_time_vs_part_time_vs_casual_faqs__01",
+   "modules_guide_gig_economy_pay_guide_faqs__01"
+  ],
+  "chars": 9918,
+  "name": "t2-199-fringe-benefits-tax-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "modules/calculator/salary-sacrifice-calculator.tsx",
+   "modules/calculator/sapto-calculator.tsx",
+   "modules/calculator/sapto-eligibility-checker.tsx",
+   "modules/calculator/sick-leave-calculator.tsx",
+   "modules/calculator/superannuation-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_salary_sacrifice_calculator_faqs__01",
+   "modules_calculator_salary_sacrifice_calculator__01",
+   "modules_calculator_sapto_calculator__01",
+   "modules_calculator_sapto_eligibility_checker__01",
+   "modules_calculator_sick_leave_calculator__01",
+   "modules_calculator_superannuation_calculator__01"
+  ],
+  "chars": 9865,
+  "name": "t2-200-salary-sacrifice-calculator-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards__02"
+  ],
+  "chars": 9837,
+  "name": "t2-201-modern-awards"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/bartender.ts",
+   "lib/data/job-pay-rates/bookkeeper.ts",
+   "lib/data/job-pay-rates/bricklayer.ts",
+   "lib/data/job-pay-rates/building-construction-common.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_bartender__01",
+   "lib_data_job_pay_rates_bookkeeper__01",
+   "lib_data_job_pay_rates_bricklayer__01",
+   "lib_data_job_pay_rates_building_construction_common__01"
+  ],
+  "chars": 9794,
+  "name": "t2-202-bartender"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/graduate-salary-australia.tsx",
+   "modules/guide/gross-vs-net-pay-faqs.ts",
+   "modules/guide/gross-vs-net-pay.tsx",
+   "modules/guide/highest-paying-jobs-australia-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_graduate_salary_australia__01",
+   "modules_guide_gross_vs_net_pay_faqs__01",
+   "modules_guide_gross_vs_net_pay__01",
+   "modules_guide_highest_paying_jobs_australia_faqs__01"
+  ],
+  "chars": 9735,
+  "name": "t2-203-graduate-salary-australia"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/annual-pay-calculator-faqs.ts",
+   "modules/calculator/annual-pay-calculator.tsx",
+   "modules/calculator/apprentice-pay-calculator.tsx",
+   "modules/calculator/austudy-youth-allowance-calculator-content.tsx",
+   "modules/calculator/austudy-youth-allowance-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_annual_pay_calculator_faqs__01",
+   "modules_calculator_annual_pay_calculator__01",
+   "modules_calculator_apprentice_pay_calculator__01",
+   "modules_calculator_austudy_youth_allowance_calculator_content__01",
+   "modules_calculator_austudy_youth_allowance_calculator__01"
+  ],
+  "chars": 9679,
+  "name": "t2-204-annual-pay-calculator-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/income-tax-calculator.tsx",
+   "modules/calculator/jobseeker-payment-calculator-content.tsx",
+   "modules/calculator/jobseeker-payment-calculator.tsx",
+   "modules/calculator/jobseeker-payment-faqs.ts",
+   "modules/calculator/jury-duty-pay-calculator.tsx",
+   "modules/calculator/late-tax-return-penalty-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_income_tax_calculator__01",
+   "modules_calculator_jobseeker_payment_calculator_content__01",
+   "modules_calculator_jobseeker_payment_calculator__01",
+   "modules_calculator_jobseeker_payment_faqs__01",
+   "modules_calculator_jury_duty_pay_calculator__01",
+   "modules_calculator_late_tax_return_penalty_calculator__01"
+  ],
+  "chars": 9656,
+  "name": "t2-205-income-tax-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/mining-fifo-pay-guide-faqs.ts",
+   "modules/guide/net-pay-calculator-faqs.ts",
+   "modules/guide/net-pay-calculator.tsx",
+   "modules/guide/new-job-checklist-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_mining_fifo_pay_guide_faqs__01",
+   "modules_guide_net_pay_calculator_faqs__01",
+   "modules_guide_net_pay_calculator__01",
+   "modules_guide_new_job_checklist_faqs__01"
+  ],
+  "chars": 9650,
+  "name": "t2-206-mining-fifo-pay-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/long-service-leave-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_long_service_leave_content__01"
+  ],
+  "chars": 9644,
+  "name": "t2-207-long-service-leave-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/final-pay-calculator.tsx",
+   "modules/calculator/gig-tax-calculator.tsx",
+   "modules/calculator/gross-pay-calculator-faqs.ts",
+   "modules/calculator/gross-pay-calculator.tsx",
+   "modules/calculator/gross-vs-net-calculator.tsx",
+   "modules/calculator/income-tax-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_final_pay_calculator__01",
+   "modules_calculator_gig_tax_calculator__01",
+   "modules_calculator_gross_pay_calculator_faqs__01",
+   "modules_calculator_gross_pay_calculator__01",
+   "modules_calculator_gross_vs_net_calculator__01",
+   "modules_calculator_income_tax_calculator_content__01"
+  ],
+  "chars": 9634,
+  "name": "t2-208-final-pay-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/enterprise-agreement.tsx",
+   "modules/guide/extra-super-vs-hecs-repayment-faqs.ts",
+   "modules/guide/fair-work-pay-calculator-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_enterprise_agreement__01",
+   "modules_guide_extra_super_vs_hecs_repayment_faqs__01",
+   "modules_guide_fair_work_pay_calculator_faqs__01"
+  ],
+  "chars": 9595,
+  "name": "t2-209-enterprise-agreement"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-holidays/seasonal-pages.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_seasonal_pages__04"
+  ],
+  "chars": 9488,
+  "name": "t2-210-seasonal-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/allowances-guide.ts",
+   "lib/constants/annual-leave.ts",
+   "lib/constants/australian-tax.ts",
+   "lib/constants/capital-gains-tax.ts",
+   "lib/constants/casual-conversion.ts",
+   "lib/constants/centrelink-carer-and-support.ts"
+  ],
+  "units": [
+   "lib_constants_allowances_guide__01",
+   "lib_constants_annual_leave__01",
+   "lib_constants_australian_tax__01",
+   "lib_constants_capital_gains_tax__01",
+   "lib_constants_casual_conversion__01",
+   "lib_constants_centrelink_carer_and_support__01"
+  ],
+  "chars": 9433,
+  "name": "t2-211-allowances-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/aps.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_aps__01"
+  ],
+  "chars": 9391,
+  "name": "t2-212-aps"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/gig-economy-pay-guide.tsx",
+   "modules/guide/graduate-salary-australia-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_gig_economy_pay_guide__01",
+   "modules_guide_graduate_salary_australia_faqs__01"
+  ],
+  "chars": 9273,
+  "name": "t2-213-gig-economy-pay-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/late-tax-return-penalty-faqs.ts",
+   "modules/guide/late-tax-return-penalty.tsx",
+   "modules/guide/leave-loading-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_late_tax_return_penalty_faqs__01",
+   "modules_guide_late_tax_return_penalty__01",
+   "modules_guide_leave_loading_faqs__01"
+  ],
+  "chars": 9237,
+  "name": "t2-214-late-tax-return-penalty-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-health-allied-pay/index.ts",
+   "lib/data/public-health-allied-pay/nsw.ts",
+   "lib/data/public-health-allied-pay/qld.ts",
+   "lib/data/public-health-allied-pay/sa.ts",
+   "lib/data/public-health-allied-pay/vic.ts",
+   "lib/data/public-health-allied-pay/wa.ts"
+  ],
+  "units": [
+   "lib_data_public_health_allied_pay_index__01",
+   "lib_data_public_health_allied_pay_nsw__01",
+   "lib_data_public_health_allied_pay_qld__01",
+   "lib_data_public_health_allied_pay_sa__01",
+   "lib_data_public_health_allied_pay_vic__01",
+   "lib_data_public_health_allied_pay_wa__01"
+  ],
+  "chars": 9210,
+  "name": "t2-215-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/salary-sacrifice-vs-mortgage-faqs.ts",
+   "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+   "modules/guide/salary-vs-hourly-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_salary_sacrifice_vs_mortgage_faqs__01",
+   "modules_guide_salary_sacrifice_vs_mortgage__01",
+   "modules_guide_salary_vs_hourly_faqs__01"
+  ],
+  "chars": 9158,
+  "name": "t2-216-salary-sacrifice-vs-mortgage-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/contractor-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_contractor_pay_calculator_content__01"
+  ],
+  "chars": 9153,
+  "name": "t2-217-contractor-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/engineer.ts",
+   "lib/data/job-pay-rates/excavator-operator.ts",
+   "lib/data/job-pay-rates/fitter-and-turner.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_engineer__01",
+   "lib_data_job_pay_rates_excavator_operator__01",
+   "lib_data_job_pay_rates_fitter_and_turner__01"
+  ],
+  "chars": 9149,
+  "name": "t2-218-engineer"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/novated-lease-calculator-content.tsx",
+   "modules/calculator/novated-lease-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_novated_lease_calculator_content__01",
+   "modules_calculator_novated_lease_calculator__01"
+  ],
+  "chars": 9080,
+  "name": "t2-219-novated-lease-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/centrelink-h3-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_centrelink_h3_faqs__01"
+  ],
+  "chars": 9078,
+  "name": "t2-220-centrelink-h3-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/concessional-contributions-cap-faqs.ts",
+   "modules/guide/concessional-contributions-cap.tsx",
+   "modules/guide/construction-trades-pay-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_concessional_contributions_cap_faqs__01",
+   "modules_guide_concessional_contributions_cap__01",
+   "modules_guide_construction_trades_pay_faqs__01"
+  ],
+  "chars": 9039,
+  "name": "t2-221-concessional-contributions-cap-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/health-salary/pages.ts"
+  ],
+  "units": [
+   "lib_data_health_salary_pages__02"
+  ],
+  "chars": 9031,
+  "name": "t2-222-pages"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/novated-lease-guide-faqs.ts",
+   "modules/guide/ote-salary-faqs.ts",
+   "modules/guide/ote-salary.tsx"
+  ],
+  "units": [
+   "modules_guide_novated_lease_guide_faqs__01",
+   "modules_guide_ote_salary_faqs__01",
+   "modules_guide_ote_salary__01"
+  ],
+  "chars": 8979,
+  "name": "t2-223-novated-lease-guide-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-calendar.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_calendar__01"
+  ],
+  "chars": 8900,
+  "name": "t2-224-tax-calendar"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/leave-calculator-faqs.ts",
+   "modules/calculator/leave-calculator.tsx",
+   "modules/calculator/leave-loading-calculator.tsx",
+   "modules/calculator/listo-calculator.tsx",
+   "modules/calculator/lito-calculator.tsx",
+   "modules/calculator/long-service-leave-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_leave_calculator_faqs__01",
+   "modules_calculator_leave_calculator__01",
+   "modules_calculator_leave_loading_calculator__01",
+   "modules_calculator_listo_calculator__01",
+   "modules_calculator_lito_calculator__01",
+   "modules_calculator_long_service_leave_calculator__01"
+  ],
+  "chars": 8839,
+  "name": "t2-225-leave-calculator-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/centrelink-debt.tsx",
+   "modules/calculator/centrelink-shared.tsx",
+   "modules/calculator/centrelink-w3-shared.tsx",
+   "modules/calculator/cents-per-km-calculator.tsx",
+   "modules/calculator/cgt-calculator.tsx",
+   "modules/calculator/child-care-subsidy-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_centrelink_debt__01",
+   "modules_calculator_centrelink_shared__01",
+   "modules_calculator_centrelink_w3_shared__01",
+   "modules_calculator_cents_per_km_calculator__01",
+   "modules_calculator_cgt_calculator__01",
+   "modules_calculator_child_care_subsidy_calculator_content__01"
+  ],
+  "chars": 8828,
+  "name": "t2-226-centrelink-debt"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/nsw.ts",
+   "lib/data/public-service-pay/nt.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_nsw__01",
+   "lib_data_public_service_pay_nt__01"
+  ],
+  "chars": 8812,
+  "name": "t2-227-nsw"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/qld.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_qld__01"
+  ],
+  "chars": 8793,
+  "name": "t2-228-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/vic.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_vic__01"
+  ],
+  "chars": 8779,
+  "name": "t2-229-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-withheld-calculator.tsx",
+   "modules/guide/tech-salary-guide-australia-faqs.ts",
+   "modules/guide/termination-payment-tax-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_tax_withheld_calculator__01",
+   "modules_guide_tech_salary_guide_australia_faqs__01",
+   "modules_guide_termination_payment_tax_faqs__01"
+  ],
+  "chars": 8749,
+  "name": "t2-230-tax-withheld-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-changes-2026-27.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_changes_2026_27__01"
+  ],
+  "chars": 8645,
+  "name": "t2-231-tax-changes-2026-27"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/salary-packaging-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_salary_packaging_guide__01"
+  ],
+  "chars": 8583,
+  "name": "t2-232-salary-packaging-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/salary-vs-hourly.tsx",
+   "modules/guide/sapto-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_salary_vs_hourly__01",
+   "modules_guide_sapto_faqs__01"
+  ],
+  "chars": 8546,
+  "name": "t2-233-salary-vs-hourly"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/leave-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_leave_calculator_content__01"
+  ],
+  "chars": 8509,
+  "name": "t2-234-leave-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/public-holiday-hub.tsx"
+  ],
+  "units": [
+   "modules_guide_public_holiday_hub__01"
+  ],
+  "chars": 8473,
+  "name": "t2-235-public-holiday-hub"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/zone-tax-offset.tsx"
+  ],
+  "units": [
+   "modules_guide_zone_tax_offset__01"
+  ],
+  "chars": 8423,
+  "name": "t2-236-zone-tax-offset"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/employee-vs-sole-trader-vs-company.tsx"
+  ],
+  "units": [
+   "modules_guide_employee_vs_sole_trader_vs_company__01"
+  ],
+  "chars": 8374,
+  "name": "t2-237-employee-vs-sole-trader-vs-company"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/bus-driver.ts",
+   "lib/data/job-pay-rates/business-analyst.ts",
+   "lib/data/job-pay-rates/carpenter.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_bus_driver__01",
+   "lib_data_job_pay_rates_business_analyst__01",
+   "lib_data_job_pay_rates_carpenter__01"
+  ],
+  "chars": 8320,
+  "name": "t2-238-bus-driver"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/redundancy-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_redundancy_pay_calculator_content__01"
+  ],
+  "chars": 8303,
+  "name": "t2-239-redundancy-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/landscaper.ts",
+   "lib/data/job-pay-rates/lawyer.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_landscaper__01",
+   "lib_data_job_pay_rates_lawyer__01"
+  ],
+  "chars": 8300,
+  "name": "t2-240-landscaper"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/division-293-tax.tsx",
+   "modules/guide/employee-vs-sole-trader-vs-company-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_division_293_tax__01",
+   "modules_guide_employee_vs_sole_trader_vs_company_faqs__01"
+  ],
+  "chars": 8287,
+  "name": "t2-241-division-293-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/take-home-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_take_home_pay_calculator_content__01"
+  ],
+  "chars": 8217,
+  "name": "t2-242-take-home-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-deductions-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_deductions_guide__01"
+  ],
+  "chars": 8184,
+  "name": "t2-243-tax-deductions-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/nursing-pay/act.ts",
+   "lib/data/nursing-pay/index.ts",
+   "lib/data/nursing-pay/nsw.ts",
+   "lib/data/nursing-pay/nt.ts",
+   "lib/data/nursing-pay/nurses-award-2020.ts"
+  ],
+  "units": [
+   "lib_data_nursing_pay_act__01",
+   "lib_data_nursing_pay_index__01",
+   "lib_data_nursing_pay_nsw__01",
+   "lib_data_nursing_pay_nt__01",
+   "lib_data_nursing_pay_nurses_award_2020__01"
+  ],
+  "chars": 8169,
+  "name": "t2-244-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/firefighter/act.ts",
+   "lib/data/service-pay/firefighter/nsw.ts",
+   "lib/data/service-pay/firefighter/nt.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_firefighter_act__01",
+   "lib_data_service_pay_firefighter_nsw__01",
+   "lib_data_service_pay_firefighter_nt__01"
+  ],
+  "chars": 8104,
+  "name": "t2-245-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/monthly-pay-calculator-content.tsx",
+   "modules/calculator/monthly-pay-calculator-faqs.ts",
+   "modules/calculator/monthly-pay-calculator.tsx",
+   "modules/calculator/net-pay-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_monthly_pay_calculator_content__01",
+   "modules_calculator_monthly_pay_calculator_faqs__01",
+   "modules_calculator_monthly_pay_calculator__01",
+   "modules_calculator_net_pay_calculator__01"
+  ],
+  "chars": 8035,
+  "name": "t2-246-monthly-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/state/pay-calculator-nt-faqs.ts",
+   "modules/state/pay-calculator-nt.tsx",
+   "modules/state/pay-calculator-qld-faqs.ts"
+  ],
+  "units": [
+   "modules_state_pay_calculator_nt_faqs__01",
+   "modules_state_pay_calculator_nt__01",
+   "modules_state_pay_calculator_qld_faqs__01"
+  ],
+  "chars": 8005,
+  "name": "t2-247-pay-calculator-nt-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-free-threshold-faqs.ts",
+   "modules/guide/tax-free-threshold.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_free_threshold_faqs__01",
+   "modules_guide_tax_free_threshold__01"
+  ],
+  "chars": 8000,
+  "name": "t2-248-tax-free-threshold-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/qld.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_qld__01"
+  ],
+  "chars": 7956,
+  "name": "t2-249-qld"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/tas.ts",
+   "lib/data/public-service-pay/types.ts",
+   "lib/data/public-service-pay/wa.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_tas__01",
+   "lib_data_public_service_pay_types__01",
+   "lib_data_public_service_pay_wa__01"
+  ],
+  "chars": 7937,
+  "name": "t2-250-tas"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/delivery-driver-pay-rate.tsx"
+  ],
+  "units": [
+   "modules_guide_delivery_driver_pay_rate__01"
+  ],
+  "chars": 7935,
+  "name": "t2-251-delivery-driver-pay-rate"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/paramedic/vic.ts",
+   "lib/data/service-pay/paramedic/wa.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_paramedic_vic__01",
+   "lib_data_service_pay_paramedic_wa__01"
+  ],
+  "chars": 7925,
+  "name": "t2-252-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/nursing-pay/vic.ts",
+   "lib/data/nursing-pay/wa.ts"
+  ],
+  "units": [
+   "lib_data_nursing_pay_vic__01",
+   "lib_data_nursing_pay_wa__01"
+  ],
+  "chars": 7923,
+  "name": "t2-253-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/vet-nurse.ts",
+   "lib/data/job-pay-rates/veterinarian.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_vet_nurse__01",
+   "lib_data_job_pay_rates_veterinarian__01"
+  ],
+  "chars": 7909,
+  "name": "t2-254-vet-nurse"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/award-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_award_rates__01"
+  ],
+  "chars": 7810,
+  "name": "t2-255-award-rates"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/super-guarantee-charge.tsx"
+  ],
+  "units": [
+   "modules_guide_super_guarantee_charge__01"
+  ],
+  "chars": 7805,
+  "name": "t2-256-super-guarantee-charge"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/medicare-levy-faqs.ts",
+   "modules/guide/medicare-levy-surcharge-faqs.ts",
+   "modules/guide/minimum-wage-australia-data.ts"
+  ],
+  "units": [
+   "modules_guide_medicare_levy_faqs__01",
+   "modules_guide_medicare_levy_surcharge_faqs__01",
+   "modules_guide_minimum_wage_australia_data__01"
+  ],
+  "chars": 7780,
+  "name": "t2-257-medicare-levy-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/apprentice-pay-trade-faqs.ts",
+   "modules/guide/apprentice-pay-trade.tsx"
+  ],
+  "units": [
+   "modules_guide_apprentice_pay_trade_faqs__01",
+   "modules_guide_apprentice_pay_trade__01"
+  ],
+  "chars": 7752,
+  "name": "t2-258-apprentice-pay-trade-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/gross-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_gross_pay_calculator_content__01"
+  ],
+  "chars": 7670,
+  "name": "t2-259-gross-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards__01"
+  ],
+  "chars": 7619,
+  "name": "t2-260-modern-awards"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/metal-trades-common.ts",
+   "lib/data/job-pay-rates/midwife.ts",
+   "lib/data/job-pay-rates/mortgage-broker.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_metal_trades_common__01",
+   "lib_data_job_pay_rates_midwife__01",
+   "lib_data_job_pay_rates_mortgage_broker__01"
+  ],
+  "chars": 7405,
+  "name": "t2-261-metal-trades-common"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/work-hours-calculator-page.tsx"
+  ],
+  "units": [
+   "modules_guide_work_hours_calculator_page__01"
+  ],
+  "chars": 7394,
+  "name": "t2-262-work-hours-calculator-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/zones/nt.ts"
+  ],
+  "units": [
+   "lib_data_zones_nt__01"
+  ],
+  "chars": 7366,
+  "name": "t2-263-nt"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/rent-assistance-calculator.tsx",
+   "modules/calculator/rent-assistance-faqs.ts",
+   "modules/calculator/salary-package-calculator-content.tsx",
+   "modules/calculator/salary-package-calculator.tsx",
+   "modules/calculator/salary-package-faqs.ts"
+  ],
+  "units": [
+   "modules_calculator_rent_assistance_calculator__01",
+   "modules_calculator_rent_assistance_faqs__01",
+   "modules_calculator_salary_package_calculator_content__01",
+   "modules_calculator_salary_package_calculator__01",
+   "modules_calculator_salary_package_faqs__01"
+  ],
+  "chars": 7357,
+  "name": "t2-264-rent-assistance-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/property-manager.ts",
+   "lib/data/job-pay-rates/psychologist.ts",
+   "lib/data/job-pay-rates/public-hospital-common.ts",
+   "lib/data/job-pay-rates/radiographer.ts",
+   "lib/data/job-pay-rates/real-estate-agent.ts",
+   "lib/data/job-pay-rates/real-estate-common.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_property_manager__01",
+   "lib_data_job_pay_rates_psychologist__01",
+   "lib_data_job_pay_rates_public_hospital_common__01",
+   "lib_data_job_pay_rates_radiographer__01",
+   "lib_data_job_pay_rates_real_estate_agent__01",
+   "lib_data_job_pay_rates_real_estate_common__01"
+  ],
+  "chars": 7343,
+  "name": "t2-265-property-manager"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/payroll-tax.ts"
+  ],
+  "units": [
+   "lib_constants_payroll_tax__01"
+  ],
+  "chars": 7331,
+  "name": "t2-266-payroll-tax"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tech-salary-guide-australia.tsx"
+  ],
+  "units": [
+   "modules_guide_tech_salary_guide_australia__01"
+  ],
+  "chars": 7320,
+  "name": "t2-267-tech-salary-guide-australia"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/retail-award-rates.tsx"
+  ],
+  "units": [
+   "modules_guide_retail_award_rates__01"
+  ],
+  "chars": 7303,
+  "name": "t2-268-retail-award-rates"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/privacy/page.tsx"
+  ],
+  "units": [
+   "app_privacy_page__01"
+  ],
+  "chars": 7272,
+  "name": "t2-269-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/capital-gains-tax-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_capital_gains_tax_faqs__01"
+  ],
+  "chars": 7241,
+  "name": "t2-270-capital-gains-tax-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/medicare-levy.tsx"
+  ],
+  "units": [
+   "modules_guide_medicare_levy__01"
+  ],
+  "chars": 7221,
+  "name": "t2-271-medicare-levy"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/payday-super.tsx",
+   "modules/guide/payment-in-lieu-of-notice-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_payday_super__01",
+   "modules_guide_payment_in_lieu_of_notice_faqs__01"
+  ],
+  "chars": 7183,
+  "name": "t2-272-payday-super"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/boilermaker.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_boilermaker__01"
+  ],
+  "chars": 7105,
+  "name": "t2-273-boilermaker"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/aviation-pay/air-traffic-controller.ts"
+  ],
+  "units": [
+   "lib_data_aviation_pay_air_traffic_controller__01"
+  ],
+  "chars": 7011,
+  "name": "t2-274-air-traffic-controller"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/super-guarantee-charge-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_super_guarantee_charge_faqs__01"
+  ],
+  "chars": 7001,
+  "name": "t2-275-super-guarantee-charge-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/welder.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_welder__01"
+  ],
+  "chars": 6967,
+  "name": "t2-276-welder"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/contractor-vs-employee-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_contractor_vs_employee_calculator_content__02"
+  ],
+  "chars": 6947,
+  "name": "t2-277-contractor-vs-employee-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/payroll-officer.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_payroll_officer__01"
+  ],
+  "chars": 6933,
+  "name": "t2-278-payroll-officer"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/delivery-minimum-pay.ts",
+   "lib/constants/gig-tax.ts",
+   "lib/constants/hospitality-award.ts",
+   "lib/constants/junior-rates.ts",
+   "lib/constants/jury-duty.ts",
+   "lib/constants/leave-loading.ts"
+  ],
+  "units": [
+   "lib_constants_delivery_minimum_pay__01",
+   "lib_constants_gig_tax__01",
+   "lib_constants_hospitality_award__01",
+   "lib_constants_junior_rates__01",
+   "lib_constants_jury_duty__01",
+   "lib_constants_leave_loading__01"
+  ],
+  "chars": 6925,
+  "name": "t2-279-delivery-minimum-pay"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/medicare-levy-surcharge.tsx"
+  ],
+  "units": [
+   "modules_guide_medicare_levy_surcharge__01"
+  ],
+  "chars": 6825,
+  "name": "t2-280-medicare-levy-surcharge"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/employer-cost-calculator-faqs.ts",
+   "modules/guide/employer-cost-calculator.tsx",
+   "modules/guide/enterprise-agreement-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_employer_cost_calculator_faqs__01",
+   "modules_guide_employer_cost_calculator__01",
+   "modules_guide_enterprise_agreement_faqs__01"
+  ],
+  "chars": 6821,
+  "name": "t2-281-employer-cost-calculator-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/programmatic/award-rates-near.tsx",
+   "modules/programmatic/hourly-rate-context.tsx",
+   "modules/programmatic/hourly-to-salary-faqs.ts",
+   "modules/programmatic/pay-scale-faq.ts",
+   "modules/programmatic/salary-hub.tsx"
+  ],
+  "units": [
+   "modules_programmatic_award_rates_near__01",
+   "modules_programmatic_hourly_rate_context__01",
+   "modules_programmatic_hourly_to_salary_faqs__01",
+   "modules_programmatic_pay_scale_faq__01",
+   "modules_programmatic_salary_hub__01"
+  ],
+  "chars": 6801,
+  "name": "t2-282-award-rates-near"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/notice-of-assessment.tsx"
+  ],
+  "units": [
+   "modules_guide_notice_of_assessment__01"
+  ],
+  "chars": 6746,
+  "name": "t2-283-notice-of-assessment"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/aviation-pay/pilot.ts"
+  ],
+  "units": [
+   "lib_data_aviation_pay_pilot__01"
+  ],
+  "chars": 6735,
+  "name": "t2-284-pilot"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/payroll-tax/state-detail.ts"
+  ],
+  "units": [
+   "modules_payroll_tax_state_detail__03"
+  ],
+  "chars": 6690,
+  "name": "t2-285-state-detail"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/tax-return-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_tax_return_calculator_content__01"
+  ],
+  "chars": 6650,
+  "name": "t2-286-tax-return-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/sa.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_sa__01"
+  ],
+  "chars": 6614,
+  "name": "t2-287-sa"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/vic.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_vic__01"
+  ],
+  "chars": 6553,
+  "name": "t2-288-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/commonwealth-seniors-health-card.tsx",
+   "modules/calculator/compassionate-leave-calculator.tsx",
+   "modules/calculator/concessional-cap-calculator.tsx",
+   "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "modules/calculator/contractor-pay-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_commonwealth_seniors_health_card__01",
+   "modules_calculator_compassionate_leave_calculator__01",
+   "modules_calculator_concessional_cap_calculator__01",
+   "modules_calculator_contractor_pay_calculator_faqs__01",
+   "modules_calculator_contractor_pay_calculator__01"
+  ],
+  "chars": 6545,
+  "name": "t2-289-commonwealth-seniors-health-card"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/overtime-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_overtime_pay_calculator_content__01"
+  ],
+  "chars": 6489,
+  "name": "t2-290-overtime-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/superannuation-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_superannuation_calculator_content__01"
+  ],
+  "chars": 6430,
+  "name": "t2-291-superannuation-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/centrelink-income-test-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_centrelink_income_test_faqs__01"
+  ],
+  "chars": 6408,
+  "name": "t2-292-centrelink-income-test-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/full-time-vs-part-time-vs-casual.tsx"
+  ],
+  "units": [
+   "modules_guide_full_time_vs_part_time_vs_casual__01"
+  ],
+  "chars": 6364,
+  "name": "t2-293-full-time-vs-part-time-vs-casual"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-file-number-declaration.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_file_number_declaration__01"
+  ],
+  "chars": 6338,
+  "name": "t2-294-tax-file-number-declaration"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/extra-super-vs-hecs-repayment.tsx"
+  ],
+  "units": [
+   "modules_guide_extra_super_vs_hecs_repayment__01"
+  ],
+  "chars": 6330,
+  "name": "t2-295-extra-super-vs-hecs-repayment"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/nt.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_nt__01"
+  ],
+  "chars": 6289,
+  "name": "t2-296-nt"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/ote-salary.ts",
+   "lib/constants/paid-parental-leave.ts",
+   "lib/constants/pay-tax-changes-calendar.ts",
+   "lib/constants/payday-super.ts",
+   "lib/constants/payg-withholding.ts",
+   "lib/constants/pension-age.ts"
+  ],
+  "units": [
+   "lib_constants_ote_salary__01",
+   "lib_constants_paid_parental_leave__01",
+   "lib_constants_pay_tax_changes_calendar__01",
+   "lib_constants_payday_super__01",
+   "lib_constants_payg_withholding__01",
+   "lib_constants_pension_age__01"
+  ],
+  "chars": 6274,
+  "name": "t2-297-ote-salary"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/act.ts",
+   "lib/data/public-service-pay/index.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_act__01",
+   "lib_data_public_service_pay_index__01"
+  ],
+  "chars": 6250,
+  "name": "t2-298-act"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/mining-fifo-pay-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_mining_fifo_pay_guide__01"
+  ],
+  "chars": 6222,
+  "name": "t2-299-mining-fifo-pay-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/annual-pay-calculator-content.tsx"
+  ],
+  "units": [
+   "modules_calculator_annual_pay_calculator_content__01"
+  ],
+  "chars": 6199,
+  "name": "t2-300-annual-pay-calculator-content"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-service-pay/sa.ts"
+  ],
+  "units": [
+   "lib_data_public_service_pay_sa__01"
+  ],
+  "chars": 6191,
+  "name": "t2-301-sa"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/calculator/tax-return-calculator.tsx",
+   "modules/calculator/tax-withheld-calculator.tsx",
+   "modules/calculator/termination-payment-tax-calculator.tsx",
+   "modules/calculator/time-in-lieu-calculator.tsx",
+   "modules/calculator/travel-allowance-calculator.tsx",
+   "modules/calculator/work-hours-calculator.tsx"
+  ],
+  "units": [
+   "modules_calculator_tax_return_calculator__01",
+   "modules_calculator_tax_withheld_calculator__01",
+   "modules_calculator_termination_payment_tax_calculator__01",
+   "modules_calculator_time_in_lieu_calculator__01",
+   "modules_calculator_travel_allowance_calculator__01",
+   "modules_calculator_work_hours_calculator__01"
+  ],
+  "chars": 6154,
+  "name": "t2-302-tax-return-calculator"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/wa.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_wa__01"
+  ],
+  "chars": 6121,
+  "name": "t2-303-wa"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/state-employee/index.ts"
+  ],
+  "units": [
+   "lib_data_state_employee_index__01"
+  ],
+  "chars": 6080,
+  "name": "t2-304-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/average-salary-australia.tsx"
+  ],
+  "units": [
+   "modules_guide_average_salary_australia__01"
+  ],
+  "chars": 6079,
+  "name": "t2-305-average-salary-australia"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/tax-return-2026.tsx"
+  ],
+  "units": [
+   "modules_guide_tax_return_2026__01"
+  ],
+  "chars": 6042,
+  "name": "t2-306-tax-return-2026"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guides/tax-brackets.tsx"
+  ],
+  "units": [
+   "modules_guides_tax_brackets__01"
+  ],
+  "chars": 6029,
+  "name": "t2-307-tax-brackets"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/teacher-pay/tas.ts",
+   "lib/data/teacher-pay/vic-2026-agreement.ts"
+  ],
+  "units": [
+   "lib_data_teacher_pay_tas__01",
+   "lib_data_teacher_pay_vic_2026_agreement__01"
+  ],
+  "chars": 5894,
+  "name": "t2-308-tas"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/listo.ts",
+   "lib/constants/marginal-rates.ts",
+   "lib/constants/medicare-levy-extra.ts",
+   "lib/constants/minimum-wage.ts",
+   "lib/constants/notice-pilon.ts",
+   "lib/constants/novated-lease.ts"
+  ],
+  "units": [
+   "lib_constants_listo__01",
+   "lib_constants_marginal_rates__01",
+   "lib_constants_medicare_levy_extra__01",
+   "lib_constants_minimum_wage__01",
+   "lib_constants_notice_pilon__01",
+   "lib_constants_novated_lease__01"
+  ],
+  "chars": 5838,
+  "name": "t2-309-listo"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/apprentice-pay/index.ts"
+  ],
+  "units": [
+   "lib_data_apprentice_pay_index__01"
+  ],
+  "chars": 5649,
+  "name": "t2-310-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/schads-award.ts",
+   "lib/constants/sick-leave.ts",
+   "lib/constants/tax-2027-28.ts",
+   "lib/constants/tax-rates-reference.ts",
+   "lib/constants/tax-return-estimator.ts",
+   "lib/constants/termination-tax.ts"
+  ],
+  "units": [
+   "lib_constants_schads_award__01",
+   "lib_constants_sick_leave__01",
+   "lib_constants_tax_2027_28__01",
+   "lib_constants_tax_rates_reference__01",
+   "lib_constants_tax_return_estimator__01",
+   "lib_constants_termination_tax__01"
+  ],
+  "chars": 5250,
+  "name": "t2-311-schads-award"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/modern-awards-oct.ts"
+  ],
+  "units": [
+   "lib_constants_modern_awards_oct__02"
+  ],
+  "chars": 5191,
+  "name": "t2-312-modern-awards-oct"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/centrelink-family-payments.ts",
+   "lib/constants/centrelink-means-test.ts",
+   "lib/constants/centrelink-payment-dates.ts",
+   "lib/constants/child-care-subsidy.ts",
+   "lib/constants/company-tax.ts",
+   "lib/constants/compassionate-leave.ts"
+  ],
+  "units": [
+   "lib_constants_centrelink_family_payments__01",
+   "lib_constants_centrelink_means_test__01",
+   "lib_constants_centrelink_payment_dates__01",
+   "lib_constants_child_care_subsidy__01",
+   "lib_constants_company_tax__01",
+   "lib_constants_compassionate_leave__01"
+  ],
+  "chars": 4772,
+  "name": "t2-313-centrelink-family-payments"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/job-pay-rates/youth-worker.ts"
+  ],
+  "units": [
+   "lib_data_job_pay_rates_youth_worker__01"
+  ],
+  "chars": 4503,
+  "name": "t2-314-youth-worker"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/firefighter/vic.ts",
+   "lib/data/service-pay/firefighter/wa.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_firefighter_vic__01",
+   "lib_data_service_pay_firefighter_wa__01"
+  ],
+  "chars": 4445,
+  "name": "t2-315-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/prison-officer/vic.ts",
+   "lib/data/service-pay/prison-officer/wa.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_prison_officer_vic__01",
+   "lib_data_service_pay_prison_officer_wa__01"
+  ],
+  "chars": 4225,
+  "name": "t2-316-vic"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/income-tax-calculator/page.tsx"
+  ],
+  "units": [
+   "app_income_tax_calculator_page__01"
+  ],
+  "chars": 4042,
+  "name": "t2-317-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/terms/page.tsx"
+  ],
+  "units": [
+   "app_terms_page__01"
+  ],
+  "chars": 4002,
+  "name": "t2-318-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/long-service-leave.ts"
+  ],
+  "units": [
+   "lib_constants_long_service_leave__02"
+  ],
+  "chars": 3951,
+  "name": "t2-319-long-service-leave"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/about/page.tsx"
+  ],
+  "units": [
+   "app_about_page__01"
+  ],
+  "chars": 3779,
+  "name": "t2-320-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/public-holidays/hub.ts",
+   "lib/data/public-holidays/weekend.ts"
+  ],
+  "units": [
+   "lib_data_public_holidays_hub__01",
+   "lib_data_public_holidays_weekend__01"
+  ],
+  "chars": 3133,
+  "name": "t2-321-hub"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/zone-tax-offset-faqs.ts"
+  ],
+  "units": [
+   "modules_guide_zone_tax_offset_faqs__01"
+  ],
+  "chars": 3122,
+  "name": "t2-322-zone-tax-offset-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/hub.ts",
+   "lib/data/service-pay/index.ts",
+   "lib/data/service-pay/occupations.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_hub__01",
+   "lib_data_service_pay_index__01",
+   "lib_data_service_pay_occupations__01"
+  ],
+  "chars": 3115,
+  "name": "t2-323-hub"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guides/tax-brackets-faqs.ts"
+  ],
+  "units": [
+   "modules_guides_tax_brackets_faqs__01"
+  ],
+  "chars": 2582,
+  "name": "t2-324-tax-brackets-faqs"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/service-pay/police/wa.ts"
+  ],
+  "units": [
+   "lib_data_service_pay_police_wa__01"
+  ],
+  "chars": 2498,
+  "name": "t2-325-wa"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/train-driver-pay/index.ts"
+  ],
+  "units": [
+   "lib_data_train_driver_pay_index__01"
+  ],
+  "chars": 2357,
+  "name": "t2-326-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/embed/page.tsx"
+  ],
+  "units": [
+   "app_embed_page__01"
+  ],
+  "chars": 2332,
+  "name": "t2-327-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/minimum-wage-state/index.ts"
+  ],
+  "units": [
+   "lib_data_minimum_wage_state_index__03"
+  ],
+  "chars": 2285,
+  "name": "t2-328-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/disclaimer/page.tsx"
+  ],
+  "units": [
+   "app_disclaimer_page__01"
+  ],
+  "chars": 2221,
+  "name": "t2-329-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/health-salary/ato-2023-24.ts",
+   "lib/data/health-salary/staff-specialists.ts"
+  ],
+  "units": [
+   "lib_data_health_salary_ato_2023_24__01",
+   "lib_data_health_salary_staff_specialists__01"
+  ],
+  "chars": 1985,
+  "name": "t2-330-ato-2023-24"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/zones/ext.ts",
+   "lib/data/zones/tas.ts",
+   "lib/data/zones/types.ts"
+  ],
+  "units": [
+   "lib_data_zones_ext__01",
+   "lib_data_zones_tas__01",
+   "lib_data_zones_types__01"
+  ],
+  "chars": 1849,
+  "name": "t2-331-ext"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/graduate-salary/index.ts"
+  ],
+  "units": [
+   "lib_data_graduate_salary_index__01"
+  ],
+  "chars": 1564,
+  "name": "t2-332-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/pay-report/index.ts"
+  ],
+  "units": [
+   "lib_data_pay_report_index__01"
+  ],
+  "chars": 1257,
+  "name": "t2-333-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/constants/time-in-lieu.ts",
+   "lib/constants/travel-allowance.ts",
+   "lib/constants/working-credit.ts"
+  ],
+  "units": [
+   "lib_constants_time_in_lieu__01",
+   "lib_constants_travel_allowance__01",
+   "lib_constants_working_credit__01"
+  ],
+  "chars": 1222,
+  "name": "t2-334-time-in-lieu"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/payroll-tax/sections.tsx"
+  ],
+  "units": [
+   "modules_payroll_tax_sections__01"
+  ],
+  "chars": 1151,
+  "name": "t2-335-sections"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/adf-pay/index.ts",
+   "lib/data/adf-pay/salaries.ts"
+  ],
+  "units": [
+   "lib_data_adf_pay_index__01",
+   "lib_data_adf_pay_salaries__01"
+  ],
+  "chars": 1105,
+  "name": "t2-336-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/contact/page.tsx"
+  ],
+  "units": [
+   "app_contact_page__01"
+  ],
+  "chars": 1042,
+  "name": "t2-337-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/open-data/index.ts"
+  ],
+  "units": [
+   "lib_data_open_data_index__01"
+  ],
+  "chars": 843,
+  "name": "t2-338-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/minimum-wage-state/calc.ts"
+  ],
+  "units": [
+   "lib_data_minimum_wage_state_calc__01"
+  ],
+  "chars": 353,
+  "name": "t2-339-calc"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/site-directory/page.tsx"
+  ],
+  "units": [
+   "app_site_directory_page__01"
+  ],
+  "chars": 168,
+  "name": "t2-340-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/understanding-your-payslip.tsx"
+  ],
+  "units": [
+   "modules_guide_understanding_your_payslip__02"
+  ],
+  "chars": 151,
+  "name": "t2-341-understanding-your-payslip"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "modules/guide/superannuation-guide.tsx"
+  ],
+  "units": [
+   "modules_guide_superannuation_guide__02"
+  ],
+  "chars": 62,
+  "name": "t2-342-superannuation-guide"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/carry-forward-concessional-contributions-calculator/page.tsx"
+  ],
+  "units": [
+   "app_carry_forward_concessional_contributions_calculator_page__01"
+  ],
+  "chars": 51,
+  "name": "t2-343-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/centrelink-payment-rates/page.tsx"
+  ],
+  "units": [
+   "app_centrelink_payment_rates_page__01"
+  ],
+  "chars": 41,
+  "name": "t2-344-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/train-driver-salary/page.tsx"
+  ],
+  "units": [
+   "app_train_driver_salary_page__01"
+  ],
+  "chars": 41,
+  "name": "t2-345-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/age-pension-income-test-calculator/page.tsx"
+  ],
+  "units": [
+   "app_age_pension_income_test_calculator_page__01"
+  ],
+  "chars": 39,
+  "name": "t2-346-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/austudy-youth-allowance-calculator/page.tsx"
+  ],
+  "units": [
+   "app_austudy_youth_allowance_calculator_page__01"
+  ],
+  "chars": 39,
+  "name": "t2-347-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/employee-vs-sole-trader-vs-company/page.tsx"
+  ],
+  "units": [
+   "app_employee_vs_sole_trader_vs_company_page__01"
+  ],
+  "chars": 39,
+  "name": "t2-348-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/medicare-levy-surcharge-calculator/page.tsx"
+  ],
+  "units": [
+   "app_medicare_levy_surcharge_calculator_page__01"
+  ],
+  "chars": 39,
+  "name": "t2-349-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/contractor-vs-employee-calculator/page.tsx"
+  ],
+  "units": [
+   "app_contractor_vs_employee_calculator_page__01"
+  ],
+  "chars": 38,
+  "name": "t2-350-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/long-service-leave-calculator/[state]/page.tsx"
+  ],
+  "units": [
+   "app_long_service_leave_calculator_state_page__01"
+  ],
+  "chars": 38,
+  "name": "t2-351-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/private-health-insurance-medicare/page.tsx"
+  ],
+  "units": [
+   "app_private_health_insurance_medicare_page__01"
+  ],
+  "chars": 38,
+  "name": "t2-352-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/disability-support-pension-calculator/page.tsx"
+  ],
+  "units": [
+   "app_disability_support_pension_calculator_page__01"
+  ],
+  "chars": 37,
+  "name": "t2-353-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/full-time-vs-part-time-vs-casual/page.tsx"
+  ],
+  "units": [
+   "app_full_time_vs_part_time_vs_casual_page__01"
+  ],
+  "chars": 37,
+  "name": "t2-354-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/rideshare-delivery-earnings-after-tax/page.tsx"
+  ],
+  "units": [
+   "app_rideshare_delivery_earnings_after_tax_page__01"
+  ],
+  "chars": 37,
+  "name": "t2-355-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/centrelink-working-credit-calculator/page.tsx"
+  ],
+  "units": [
+   "app_centrelink_working_credit_calculator_page__01"
+  ],
+  "chars": 36,
+  "name": "t2-356-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/minimum-wage-history-australia/page.tsx"
+  ],
+  "units": [
+   "app_minimum_wage_history_australia_page__01"
+  ],
+  "chars": 35,
+  "name": "t2-357-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/age-pension-assets-test-calculator/page.tsx"
+  ],
+  "units": [
+   "app_age_pension_assets_test_calculator_page__01"
+  ],
+  "chars": 34,
+  "name": "t2-358-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/extra-super-vs-hecs-repayment/page.tsx"
+  ],
+  "units": [
+   "app_extra_super_vs_hecs_repayment_page__01"
+  ],
+  "chars": 34,
+  "name": "t2-359-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/family-tax-benefit-calculator/page.tsx"
+  ],
+  "units": [
+   "app_family_tax_benefit_calculator_page__01"
+  ],
+  "chars": 34,
+  "name": "t2-360-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/long-service-leave-calculator/page.tsx"
+  ],
+  "units": [
+   "app_long_service_leave_calculator_page__01"
+  ],
+  "chars": 34,
+  "name": "t2-361-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/termination-payment-tax-calculator/page.tsx"
+  ],
+  "units": [
+   "app_termination_payment_tax_calculator_page__01"
+  ],
+  "chars": 34,
+  "name": "t2-362-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/pay-scale-index.ts"
+  ],
+  "units": [
+   "lib_data_pay_scale_index__01"
+  ],
+  "chars": 34,
+  "name": "t2-363-pay-scale-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/capital-gains-tax-calculator/page.tsx"
+  ],
+  "units": [
+   "app_capital_gains_tax_calculator_page__01"
+  ],
+  "chars": 33,
+  "name": "t2-364-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/overtime-penalty-rates-guide/page.tsx"
+  ],
+  "units": [
+   "app_overtime_penalty_rates_guide_page__01"
+  ],
+  "chars": 33,
+  "name": "t2-365-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/retail-hospitality-pay-guide/page.tsx"
+  ],
+  "units": [
+   "app_retail_hospitality_pay_guide_page__01"
+  ],
+  "chars": 33,
+  "name": "t2-366-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/salary-sacrifice-vs-mortgage/page.tsx"
+  ],
+  "units": [
+   "app_salary_sacrifice_vs_mortgage_page__01"
+  ],
+  "chars": 33,
+  "name": "t2-367-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/super-guarantee-rate-history/page.tsx"
+  ],
+  "units": [
+   "app_super_guarantee_rate_history_page__01"
+  ],
+  "chars": 33,
+  "name": "t2-368-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/commonwealth-seniors-health-card/page.tsx"
+  ],
+  "units": [
+   "app_commonwealth_seniors_health_card_page__01"
+  ],
+  "chars": 32,
+  "name": "t2-369-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/tax-file-number-declaration/page.tsx"
+  ],
+  "units": [
+   "app_tax_file_number_declaration_page__01"
+  ],
+  "chars": 32,
+  "name": "t2-370-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/tech-salary-guide-australia/page.tsx"
+  ],
+  "units": [
+   "app_tech_salary_guide_australia_page__01"
+  ],
+  "chars": 32,
+  "name": "t2-371-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/pro-rata-salary-calculator/page.tsx"
+  ],
+  "units": [
+   "app_pro_rata_salary_calculator_page__01"
+  ],
+  "chars": 31,
+  "name": "t2-372-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/work-from-home-deductions/page.tsx"
+  ],
+  "units": [
+   "app_work_from_home_deductions_page__01"
+  ],
+  "chars": 30,
+  "name": "t2-373-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/working-australians-tax-offset/page.tsx"
+  ],
+  "units": [
+   "app_working_australians_tax_offset_page__01"
+  ],
+  "chars": 30,
+  "name": "t2-374-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/child-care-subsidy-calculator/page.tsx"
+  ],
+  "units": [
+   "app_child_care_subsidy_calculator_page__01"
+  ],
+  "chars": 29,
+  "name": "t2-375-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/highest-paying-jobs-australia/page.tsx"
+  ],
+  "units": [
+   "app_highest_paying_jobs_australia_page__01"
+  ],
+  "chars": 29,
+  "name": "t2-376-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/take-home-pay-calculator/page.tsx"
+  ],
+  "units": [
+   "app_take_home_pay_calculator_page__01"
+  ],
+  "chars": 29,
+  "name": "t2-377-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/minimum-wage-by-age/[age]/page.tsx"
+  ],
+  "units": [
+   "app_minimum_wage_by_age_age_page__01"
+  ],
+  "chars": 28,
+  "name": "t2-378-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/cost-of-living-payment-2026/page.tsx"
+  ],
+  "units": [
+   "app_cost_of_living_payment_2026_page__01"
+  ],
+  "chars": 27,
+  "name": "t2-379-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/schads-award-pay-rates/page.tsx"
+  ],
+  "units": [
+   "app_schads_award_pay_rates_page__01"
+  ],
+  "chars": 27,
+  "name": "t2-380-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/gig-economy-pay-guide/page.tsx"
+  ],
+  "units": [
+   "app_gig_economy_pay_guide_page__01"
+  ],
+  "chars": 26,
+  "name": "t2-381-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/low-income-tax-offset/page.tsx"
+  ],
+  "units": [
+   "app_low_income_tax_offset_page__01"
+  ],
+  "chars": 26,
+  "name": "t2-382-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/mining-fifo-pay-guide/page.tsx"
+  ],
+  "units": [
+   "app_mining_fifo_pay_guide_page__01"
+  ],
+  "chars": 26,
+  "name": "t2-383-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/payment-in-lieu-of-notice/page.tsx"
+  ],
+  "units": [
+   "app_payment_in_lieu_of_notice_page__01"
+  ],
+  "chars": 25,
+  "name": "t2-384-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/delivery-driver-pay-rate/page.tsx"
+  ],
+  "units": [
+   "app_delivery_driver_pay_rate_page__01"
+  ],
+  "chars": 24,
+  "name": "t2-385-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/fair-work-pay-calculator/page.tsx"
+  ],
+  "units": [
+   "app_fair_work_pay_calculator_page__01"
+  ],
+  "chars": 24,
+  "name": "t2-386-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/first-job-pay-guide/page.tsx"
+  ],
+  "units": [
+   "app_first_job_pay_guide_page__01"
+  ],
+  "chars": 24,
+  "name": "t2-387-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/late-tax-return-penalty/page.tsx"
+  ],
+  "units": [
+   "app_late_tax_return_penalty_page__01"
+  ],
+  "chars": 23,
+  "name": "t2-388-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/take-home-pay-on/page.tsx"
+  ],
+  "units": [
+   "app_take_home_pay_on_page__01"
+  ],
+  "chars": 21,
+  "name": "t2-389-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/fortnights-in-a-year/page.tsx"
+  ],
+  "units": [
+   "app_fortnights_in_a_year_page__01"
+  ],
+  "chars": 20,
+  "name": "t2-390-page"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "lib/data/salary-pages/index.ts"
+  ],
+  "units": [
+   "lib_data_salary_pages_index__01"
+  ],
+  "chars": 18,
+  "name": "t2-391-index"
+ },
+ {
+  "tier": 2,
+  "files": [
+   "app/gross-vs-net-pay/page.tsx"
+  ],
+  "units": [
+   "app_gross_vs_net_pay_page__01"
+  ],
+  "chars": 16,
+  "name": "t2-392-page"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "modules/programmatic/take-home-sections.tsx",
+   "modules/programmatic/tax-on-salary-copy.ts",
+   "modules/programmatic/tax-on-salary-faqs.ts",
+   "modules/programmatic/tax-on-salary-range-copy.ts",
+   "modules/programmatic/tax-on-salary-ranges.tsx",
+   "modules/programmatic/tax-on-salary.tsx"
+  ],
+  "units": [
+   "modules_programmatic_take_home_sections__01",
+   "modules_programmatic_tax_on_salary_copy__01",
+   "modules_programmatic_tax_on_salary_faqs__01",
+   "modules_programmatic_tax_on_salary_range_copy__01",
+   "modules_programmatic_tax_on_salary_ranges__01",
+   "modules_programmatic_tax_on_salary__01"
+  ],
+  "chars": 10404,
+  "name": "t3-393-take-home-sections"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "modules/programmatic/jobs-near-salary.tsx",
+   "modules/programmatic/salary-page-sections.tsx",
+   "modules/programmatic/salary-to-hourly-faqs.ts",
+   "modules/programmatic/salary-to-hourly.tsx",
+   "modules/programmatic/take-home-pay-on-salary-faqs.ts",
+   "modules/programmatic/take-home-pay-on-salary.tsx"
+  ],
+  "units": [
+   "modules_programmatic_jobs_near_salary__01",
+   "modules_programmatic_salary_page_sections__01",
+   "modules_programmatic_salary_to_hourly_faqs__01",
+   "modules_programmatic_salary_to_hourly__01",
+   "modules_programmatic_take_home_pay_on_salary_faqs__01",
+   "modules_programmatic_take_home_pay_on_salary__01"
+  ],
+  "chars": 7519,
+  "name": "t3-394-jobs-near-salary"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "lib/data/salary-pages/take-home-sections.ts",
+   "lib/data/salary-pages/tax-on-published-pay.ts",
+   "lib/data/salary-pages/tax-on-thresholds.ts"
+  ],
+  "units": [
+   "lib_data_salary_pages_take_home_sections__01",
+   "lib_data_salary_pages_tax_on_published_pay__01",
+   "lib_data_salary_pages_tax_on_thresholds__01"
+  ],
+  "chars": 2698,
+  "name": "t3-395-take-home-sections"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "app/take-home-pay-on/[salary]/page.tsx"
+  ],
+  "units": [
+   "app_take_home_pay_on_salary_page__01"
+  ],
+  "chars": 117,
+  "name": "t3-396-page"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "lib/data/average-salary/abs-benchmarks.ts"
+  ],
+  "units": [
+   "lib_data_average_salary_abs_benchmarks__01"
+  ],
+  "chars": 81,
+  "name": "t3-397-abs-benchmarks"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "lib/data/occupation-medians/index.ts"
+  ],
+  "units": [
+   "lib_data_occupation_medians_index__01"
+  ],
+  "chars": 66,
+  "name": "t3-398-index"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "app/hourly-to-salary/[rate]/page.tsx"
+  ],
+  "units": [
+   "app_hourly_to_salary_rate_page__01"
+  ],
+  "chars": 35,
+  "name": "t3-399-page"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "app/salary-to-hourly/[amount]/page.tsx"
+  ],
+  "units": [
+   "app_salary_to_hourly_amount_page__01"
+  ],
+  "chars": 20,
+  "name": "t3-400-page"
+ },
+ {
+  "tier": 3,
+  "files": [
+   "app/tax-on/[salary]/page.tsx"
+  ],
+  "units": [
+   "app_tax_on_salary_page__01"
+  ],
+  "chars": 20,
+  "name": "t3-401-page"
+ }
+]

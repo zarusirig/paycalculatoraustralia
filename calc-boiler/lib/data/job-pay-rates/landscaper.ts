@@ -79,7 +79,7 @@ export const LANDSCAPER: Occupation = {
   },
   coverage: [
     "Landscapers and gardeners employed by gardening and landscaping businesses are covered by the Gardening and Landscaping Services Award 2020 [MA000101]. The award covers designing, preparing and installing pavements, landscape features, lawns and gardens; maintenance after practical completion; gardens at private houses; landscape rehabilitation; and sports field turf work (cl 4.2).",
-    "A Level 4 employee has completed a horticulture apprenticeship with a trade qualification, holds a Landscaping, Parks and Gardens or Greenkeeping Certificate III (or equivalent), or has at least 3 years' practical horticulture experience with the skills for the level (Schedule A.5.1). That is where a qualified landscaper sits. Level 5 is a trade-qualified employee with post-trade training at Certificate IV or Diploma level, who may be in charge of gardens or specialised horticultural construction work (A.6).",
+    "A Level 4 employee has completed a horticulture apprenticeship with a trade qualification, holds a Landscaping, Parks and Gardens or Greenkeeping Certificate III (or equivalent), or has at least 3 years' practical horticulture experience with the skills for the level (Schedule A.5.1). A qualified landscaper is graded at this level. Level 5 is a trade-qualified employee with post-trade training at Certificate IV or Diploma level, who may be in charge of gardens or specialised horticultural construction work (A.6).",
     "Level 3 needs a completed horticulture course and demonstrated competence in plant and lawn maintenance, tree and shrub identification and the use of mowers, edgers and rotary hoes (A.4). Levels 1 and 2 are general gardening and landscaping work under direct supervision.",
     "The award does not apply where the employer is covered by one of the awards listed in clause 4.3, which include the Building and Construction General On-site Award and the Local Government Industry Award. A landscaper employed by a builder or a council is paid under that award or the council's enterprise agreement instead.",
   ],
@@ -88,7 +88,7 @@ export const LANDSCAPER: Occupation = {
       id: "landscaper",
       title: "Landscaper pay rates by level, 2026–27",
       intro:
-        "Gardening and Landscaping Services Award cl 15.1, from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule B.3.1 column: the hourly rate plus the 25% casual loading (cl 11.2). A tradesperson who supplies their own tools also gets the all-purpose tool allowance, which is not included here.",
+        "These are the Gardening and Landscaping Services Award minimum rates (cl 15.1), from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule B.3.1 column: the hourly rate plus the 25% casual loading (cl 11.2). A tradesperson who supplies their own tools also gets the all-purpose tool allowance, which is not included here.",
       rows: [LS_L1, LS_L2, LS_L3, LS_L4, LS_L5],
     },
   ],
@@ -101,7 +101,7 @@ export const LANDSCAPER: Occupation = {
     { when: "Working through a meal break", permanent: "150%", casual: "175%" },
   ],
   penaltiesNote:
-    "Percentages of the ordinary hourly rate (cl 13.2, 13.5, 14.1, 19 and 25.2; Schedule B.2–B.3). This award has no separate weekend penalty: Saturday between 6 am and noon is ordinary time, and work outside the span of ordinary hours (Saturday afternoon, Sunday, or before 6 am or after 6 pm on a weekday) is overtime. An all-purpose allowance such as the tool or leading hand allowance is added to the hourly rate before these percentages apply (Schedule B.1.1).",
+    "These rates are percentages of the ordinary hourly rate (cl 13.2, 13.5, 14.1, 19 and 25.2; Schedule B.2 to B.3). This award has no separate weekend penalty: Saturday between 6 am and noon is ordinary time, and work outside the span of ordinary hours (Saturday afternoon, Sunday, or before 6 am or after 6 pm on a weekday) is overtime. An all-purpose allowance such as the tool or leading hand allowance is added to the hourly rate before these percentages apply (Schedule B.1.1).",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours, then 200%, for time over 38 ordinary hours a week, over 10 hours a day, or outside the span of ordinary hours (cl 19.1).",
     "Casual: 175% for the first 2 hours, then 225%; the casual loading is included (cl 19.2).",

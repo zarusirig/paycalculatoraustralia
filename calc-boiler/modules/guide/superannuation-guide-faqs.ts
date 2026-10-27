@@ -36,15 +36,15 @@ const MAX_PRESERVATION = PRESERVATION_AGE_TABLE[PRESERVATION_AGE_TABLE.length - 
 export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   {
     q: `What is the Super Guarantee rate for FY${SITE_CONFIG.financialYear}?`,
-    a: `The Superannuation Guarantee rate is ${SG}, unchanged since ${SUPER_GUARANTEE.effectiveDate}. This is the legislated peak rate after annual 0.5% increases since FY2021-22. Since ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay ${SG} of an employee's qualifying earnings into their fund every payday, received within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days.`,
+    a: `The Superannuation Guarantee rate is ${SG}, unchanged since ${SUPER_GUARANTEE.effectiveDate}. This is the legislated peak rate after annual 0.5% increases since FY2021-22. Since ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay ${SG} of an employee's qualifying earnings into their fund every payday, and the fund must receive it within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days.`,
   },
   {
     q: "Do you pay tax on super?",
-    a: `Employer super paid on top of your wages is not deducted from your take-home pay, and no tax on it shows on your payslip. The fund pays ${CONTRIB} contributions tax on concessional contributions, plus Division 293 if your income is high. Salary sacrifice into super lowers your taxable pay, so less income tax is withheld on your payslip.`,
+    a: `Employer super paid on top of your wages is not deducted from your take-home pay, and no tax on it shows on your payslip. The fund pays ${CONTRIB} contributions tax on concessional contributions, plus Division 293 tax if your income plus concessional contributions exceeds the threshold for that tax. Salary sacrifice into super lowers your taxable pay, so less income tax is withheld on your payslip.`,
   },
   {
     q: "Does superannuation come out of my salary?",
-    a: `It depends on your contract structure. A "Base Salary + Super" contract means the employer pays ${SG} on top of your base pay, with no reduction to your salary. A "Total Remuneration Package" (TRP) contract includes super within the total figure, so ${SG} is deducted from the package to determine your base salary. On a ${formatAUD(TRP)} TRP, your base salary is approximately ${formatAUD(TRP_BASE)} and super is ${formatAUD(TRP - TRP_BASE)}.`,
+    a: `Whether super comes out of your salary depends on how your employment contract is structured. On a "Base Salary + Super" contract, the employer pays ${SG} on top of your base pay and your salary is not reduced. On a "Total Remuneration Package" (TRP) contract, super sits inside the total figure, so super at ${SG} of your base salary is taken out of the package. On a ${formatAUD(TRP)} TRP, your base salary is approximately ${formatAUD(TRP_BASE)} and super is ${formatAUD(TRP - TRP_BASE)}.`,
   },
   {
     q: "Can I choose my own super fund?",
@@ -76,11 +76,11 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is super paid on bonuses?",
-    a: "Usually, yes. The ATO lists performance, Christmas, sign-on and referral bonuses as part of qualifying earnings, so they attract SG. The exception is a bonus paid solely for work performed entirely outside ordinary hours (for example, one tied only to overtime), which is excluded. The classification depends on what the bonus is paid for, not its label.",
+    a: "Yes, SG is paid on most bonuses. The ATO lists performance, Christmas, sign-on and referral bonuses as part of qualifying earnings, so they attract SG. The exception is a bonus paid solely for work performed entirely outside ordinary hours (for example, one tied only to overtime), which is excluded. The classification depends on what the bonus is paid for, not its label.",
   },
   {
     q: "Is salary sacrifice into super better than personal contributions?",
-    a: `Both methods receive the same ${CONTRIB} concessional tax rate inside super, and both count toward the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. Salary sacrifice reduces your assessable income before PAYG withholding, giving you the tax benefit in every pay cycle. Personal deductible contributions require you to wait until you lodge your tax return to claim the deduction. Neither lowers your income for the Medicare levy surcharge: salary sacrificed amounts and personal deductible contributions are both reportable super contributions, which are added back when the MLS income test is applied.`,
+    a: `Both methods receive the same ${CONTRIB} concessional tax rate inside super, and both count toward the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. Salary sacrifice reduces your assessable income before PAYG withholding, so you get the tax benefit in every pay cycle. With personal deductible contributions, you wait until you lodge your tax return to claim the deduction. Neither lowers your income for the Medicare levy surcharge. Salary sacrificed amounts and personal deductible contributions are both reportable super contributions, and the MLS income test adds them back.`,
   },
   {
     q: "What is my preservation age?",

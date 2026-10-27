@@ -47,11 +47,11 @@ export interface CgtFaq {
 export const CGT_FAQS: readonly CgtFaq[] = [
   {
     q: "How much is capital gains tax in Australia?",
-    a: `There is no fixed amount and no separate capital gains tax rate. The ATO is explicit that although it is called capital gains tax, "it's part of your income tax. It's not a separate tax." Your net capital gain is added to your taxable income and taxed at your marginal rate, so two people making the identical gain pay very different amounts. If you owned the asset for at least ${CGT_MINIMUM_OWNERSHIP_MONTHS} months you are generally taxed on only ${PCT(1 - CGT_DISCOUNT_RATES.individual)} of the gain. On a ${formatAUD(EXAMPLE.grossGain)} gain with ${formatAUD(100_000)} of other income, ${formatAUD(EXAMPLE.netCapitalGain)} is added to taxable income and the tax and Medicare levy come to about ${formatAUD(EXAMPLE.totalTaxOnGain)}.`,
+    a: `There is no fixed amount and no separate capital gains tax rate. The ATO is explicit that although it is called capital gains tax, "it's part of your income tax. It's not a separate tax." Your net capital gain is added to your taxable income and taxed at your marginal rate, so two people with the same gain pay different amounts when their other income differs. If you are an Australian resident and owned the asset for at least ${CGT_MINIMUM_OWNERSHIP_MONTHS} months, you are taxed on only ${PCT(1 - CGT_DISCOUNT_RATES.individual)} of the gain. On a ${formatAUD(EXAMPLE.grossGain)} gain with ${formatAUD(100_000)} of other income, ${formatAUD(EXAMPLE.netCapitalGain)} is added to taxable income and the tax and Medicare levy come to about ${formatAUD(EXAMPLE.totalTaxOnGain)}.`,
   },
   {
     q: "What is the capital gains tax rate in Australia?",
-    a: `There isn't one. This is the most common misconception about CGT. The gain is taxed at whatever marginal rate applies once it is stacked on top of your other income, which for ${CGT_INCOME_YEAR} means anywhere from 0% to 45% plus the 2% Medicare levy. Because the ${PCT(CGT_DISCOUNT_RATES.individual)} discount halves the taxable portion, the effective rate on the full gain for a top-bracket taxpayer works out at roughly ${PCT(0.45 * (1 - CGT_DISCOUNT_RATES.individual) + 0.02 * (1 - CGT_DISCOUNT_RATES.individual))}, but that is an outcome of the marginal rates, not a rate the ATO publishes. From ${CGT_REFORM_2027.firstAffectedYear} there is also a floor: Australian resident individuals pay at least ${PCT(CGT_REFORM_2027.minimumTaxRate)} on gains that build up from ${CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year.`,
+    a: `Australia has no separate capital gains tax rate. The gain is taxed at whatever marginal rate applies once it is stacked on top of your other income, which for ${CGT_INCOME_YEAR} means anywhere from 0% to 45% plus the 2% Medicare levy. Because the ${PCT(CGT_DISCOUNT_RATES.individual)} discount halves the taxable portion, the effective rate on the full gain for a top-bracket taxpayer works out at roughly ${PCT(0.45 * (1 - CGT_DISCOUNT_RATES.individual) + 0.02 * (1 - CGT_DISCOUNT_RATES.individual))}, but that is an outcome of the marginal rates, not a rate the ATO publishes. From ${CGT_REFORM_2027.firstAffectedYear} there is also a floor: Australian resident individuals pay at least ${PCT(CGT_REFORM_2027.minimumTaxRate)} on gains that build up from ${CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year.`,
   },
   {
     q: "How does the 50% CGT discount work?",
@@ -59,11 +59,11 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: `Do I pay capital gains tax if I sell within ${CGT_MINIMUM_OWNERSHIP_MONTHS} months?`,
-    a: `Yes, and you get no discount at all. The ${PCT(CGT_DISCOUNT_RATES.individual)} discount is unavailable for any asset held less than ${CGT_MINIMUM_OWNERSHIP_MONTHS} months, so the entire gain is added to your taxable income. There is no partial or pro-rata discount for holding an asset for eleven months. On the same ${formatAUD(EXAMPLE.grossGain)} gain used above, selling early takes the tax from about ${formatAUD(EXAMPLE.totalTaxOnGain)} to about ${formatAUD(SHORT_HOLD.totalTaxOnGain)}, a difference of roughly ${formatAUD(SHORT_HOLD.totalTaxOnGain - EXAMPLE.totalTaxOnGain)} for the sake of the settlement date.`,
+    a: `Yes, and you get no discount at all. The ${PCT(CGT_DISCOUNT_RATES.individual)} discount is unavailable for any asset held less than ${CGT_MINIMUM_OWNERSHIP_MONTHS} months, so the entire gain is added to your taxable income. There is no partial or pro-rata discount for holding an asset for eleven months. On the same ${formatAUD(EXAMPLE.grossGain)} gain used above, selling early takes the tax from about ${formatAUD(EXAMPLE.totalTaxOnGain)} to about ${formatAUD(SHORT_HOLD.totalTaxOnGain)}, a difference of roughly ${formatAUD(SHORT_HOLD.totalTaxOnGain - EXAMPLE.totalTaxOnGain)} from signing the sale contract too early.`,
   },
   {
     q: "What can I include in the cost base?",
-    a: "The cost base has five elements: what you paid for the asset; incidental costs of buying or selling it such as stamp duty, conveyancing, legal fees and agent's commission; costs of owning it such as rates, land tax, insurance and non-deductible interest; capital costs that increase or preserve its value, such as improvements; and capital costs of defending your title. The critical exclusion is that you cannot include anything you have claimed or can claim as a tax deduction. Capital works deductions in particular reduce your cost base rather than adding to it, which increases your gain.",
+    a: "The cost base has five elements: what you paid for the asset; incidental costs of buying or selling it such as stamp duty, conveyancing, legal fees and agent's commission; costs of owning it such as rates, land tax, insurance and non-deductible interest; capital costs that increase or preserve its value, such as improvements; and capital costs of defending your title. The cost base excludes anything you have claimed or can claim as a tax deduction. Capital works deductions in particular reduce your cost base rather than adding to it, which increases your gain.",
   },
   {
     q: "Is my home exempt from capital gains tax?",
@@ -83,7 +83,7 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: "Do companies get the CGT discount?",
-    a: `No. Companies cannot use the CGT discount at all, however long they held the asset. Individuals and Australian trusts discount an eligible gain by ${PCT(CGT_DISCOUNT_RATES.individual)}, and complying super funds by ${PCT(CGT_DISCOUNT_RATES.superFund)}. This is one reason holding an appreciating asset in a company is often less tax-effective than holding it personally, though there are many other considerations.`,
+    a: `No. Companies cannot use the CGT discount at all, however long they held the asset. Individuals and Australian trusts discount an eligible gain by ${PCT(CGT_DISCOUNT_RATES.individual)}, and complying super funds by ${PCT(CGT_DISCOUNT_RATES.superFund)}. A company is therefore taxed on its whole capital gain, while an eligible individual is taxed on only the discounted amount.`,
   },
   {
     q: "When does the CGT event happen: contract date or settlement?",
@@ -91,14 +91,14 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: "How is CGT calculated on shares?",
-    a: "Exactly the same way as on property. Your capital proceeds are what you sold the shares for; your cost base is what you paid plus brokerage and stamp duty on both the purchase and the sale. Subtract the cost base from the proceeds to get the gain, subtract any capital losses, then apply the discount if you held the shares at least 12 months. Because shares are usually bought in parcels at different times, you need to track each parcel separately, because parcels bought at different times have different costs and different holding periods.",
+    a: "CGT on shares is calculated exactly the same way as on property. Your capital proceeds are what you sold the shares for; your cost base is what you paid plus brokerage and stamp duty on both the purchase and the sale. Subtract the cost base from the proceeds to get the gain, subtract any capital losses, then apply the discount if you held the shares at least 12 months. Shares are usually bought in parcels at different times, so you need to track each parcel separately: each parcel has its own cost base and its own holding period.",
   },
   {
     q: "Do I get a bigger discount for affordable housing?",
-    a: `Yes. Australian-resident individuals who provide affordable rental housing to people on low to moderate incomes can qualify for an additional CGT discount of up to ${PCT(CGT_AFFORDABLE_HOUSING.extraDiscount)}, which lifts the total discount to as much as ${PCT(CGT_AFFORDABLE_HOUSING.maxDiscount)} on that residential rental property. Conditions apply about how long and through whom the housing is provided.`,
+    a: `Yes. Australian-resident individuals who provide affordable rental housing to people on low to moderate incomes can qualify for an additional CGT discount of up to ${PCT(CGT_AFFORDABLE_HOUSING.extraDiscount)}, which lifts the total discount to as much as ${PCT(CGT_AFFORDABLE_HOUSING.maxDiscount)} on that residential rental property. The extra discount has conditions on how long the housing is provided and through whom.`,
   },
   {
     q: "Which assets are exempt from capital gains tax?",
-    a: `Assets acquired before ${CGT_START_DATE} are pre-CGT and exempt, but only until ${CGT_REFORM_2027.preCgtAssetsEndOn}: growth after that date is taxed when you sell. Your main residence is exempt if you meet all the conditions. Your car and motorcycle are exempt, as are depreciating assets used solely for taxable purposes, and collectables acquired for ${formatAUD(CGT_EXEMPT_THRESHOLDS.collectable)} or less. A personal use asset such as a boat or furniture is only subject to CGT if it cost more than ${formatAUD(CGT_EXEMPT_THRESHOLDS.personalUse)}. Note that exemption cuts both ways: if an asset is exempt from CGT you also cannot claim a capital loss on it.`,
+    a: `Assets acquired before ${CGT_START_DATE} are pre-CGT and exempt, but only until ${CGT_REFORM_2027.preCgtAssetsEndOn}: growth after that date is taxed when you sell. Your main residence is exempt if you meet all the conditions. Your car and motorcycle are exempt, as are depreciating assets used solely for taxable purposes, and collectables acquired for ${formatAUD(CGT_EXEMPT_THRESHOLDS.collectable)} or less. A personal use asset such as a boat or furniture is only subject to CGT if it cost more than ${formatAUD(CGT_EXEMPT_THRESHOLDS.personalUse)}. Exemption cuts both ways: if an asset is exempt from CGT you also cannot claim a capital loss on it.`,
   },
 ] as const;

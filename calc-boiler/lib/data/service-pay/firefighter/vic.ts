@@ -41,7 +41,7 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Recruit to Qualified Firefighter (FRV published rates)",
       intro:
-        "FRV's current weekly rates for a career firefighter from the 20-week recruit course to Qualified Firefighter, which takes 36 months' service and a certificate of proficiency.",
+        "Fire Rescue Victoria publishes these current weekly rates for a career firefighter, from the 20-week recruit course to Qualified Firefighter, which takes 36 months' service and a certificate of proficiency.",
       stepHeading: "Position level",
       steps: [
         {
@@ -78,15 +78,15 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   traineePay: [
     "Recruit Firefighters are paid $1,113.60 per week during the 20-week FRV Recruit Course at the FRV Training Academy in Craigieburn (about $58,066 a year).",
     "On finishing the recruit course, firefighters move to Firefighter Level 1 at $1,552.63 per week and keep training on station for three years to become a Qualified Firefighter.",
-    "A probationary period applies from the start of the recruit course.",
+    "FRV recruits serve a probationary period from the start of the recruit course.",
   ],
   penalties: [
-    "FRV firefighters work the 10/14 shift system: two day shifts (8am–6pm), then two night shifts (6pm–8am), then four days off, over an eight-day cycle.",
+    "FRV firefighters work the 10/14 shift system: two day shifts (8am to 6pm), then two night shifts (6pm to 8am), then four days off, over an eight-day cycle.",
     "Firefighters receive nine weeks' rostered annual leave a year, taken in two blocks.",
   ],
   notices: [
     "FRV operational employees are still covered by the Fire Rescue Victoria Operational Employees Interim Enterprise Agreement 2020, which is past its nominal expiry. The agreement's own wage table ends with the 1 May 2019 increase.",
-    "A replacement operational agreement has not been made. The United Firefighters' Union applied to the Fair Work Commission for an intractable bargaining declaration in July 2023 (matter B2023/771) and the declaration was made on 4 October 2023; the Commission's case page, last updated 1 May 2026, shows no workplace determination has been published yet.",
+    "A replacement FRV operational agreement has not been made. The United Firefighters' Union applied to the Fair Work Commission for an intractable bargaining declaration in July 2023 (matter B2023/771), and the Commission made the declaration on 4 October 2023. The Commission's case page, last updated 1 May 2026, shows no workplace determination has been published yet.",
     "When a new agreement or determination is made, pay could rise and may be back-dated. The rates here are FRV's own published current rates, not a forecast.",
   ],
   unverified: [

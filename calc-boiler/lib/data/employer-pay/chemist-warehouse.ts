@@ -96,7 +96,7 @@ export const CHEMIST_WAREHOUSE_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Percentages are of the minimum hourly rate for your classification (award cl 22, Table 6). Casual figures include the 25% loading, added rather than multiplied: Saturday casual is 150%, not 156.25%.",
-    "The weekday evening penalty starts at 7pm, not 6pm as in the retail award.",
+    "Under the Pharmacy Industry Award, the weekday evening penalty starts at 7pm, not 6pm as in the General Retail Industry Award.",
     "Ordinary hours can be worked between 7am and midnight on any day.",
   ],
   overtime: [
@@ -125,19 +125,19 @@ export const CHEMIST_WAREHOUSE_PAY: EmployerPay = {
     },
     {
       q: "Does Chemist Warehouse have an enterprise agreement?",
-      a: "Not for store staff. Stores pay the Pharmacy Industry Award 2020. In South Australia the SDA union has an order requiring six Chemist Warehouse franchise employers to bargain for a first agreement, but none had been approved by September 2026.",
+      a: "Not for store staff. Chemist Warehouse stores pay the Pharmacy Industry Award 2020. In South Australia the SDA union has an order requiring six Chemist Warehouse franchise employers to bargain for a first agreement, but none had been approved by September 2026.",
     },
     {
       q: "How much does Chemist Warehouse pay a 15 or 16 year old?",
-      a: "A pharmacy assistant level 1 under 16 is paid 45% of the adult rate, $12.51 an hour ($15.64 casual). At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
+      a: "A Chemist Warehouse pharmacy assistant level 1 under 16 is paid 45% of the adult rate, $12.51 an hour ($15.64 casual). At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
     },
     {
       q: "What are Chemist Warehouse penalty rates on weekends?",
-      a: "Saturday between 8am and 6pm pays 125% (casual 150%), rising to 150% after 6pm and 175% after 9pm. Sunday between 7am and 9pm pays 150% (casual 175%). Public holidays pay 225% (casual 250%).",
+      a: "Chemist Warehouse pays 125% (casual 150%) on Saturdays between 8am and 6pm, rising to 150% after 6pm and 175% after 9pm. Sunday between 7am and 9pm pays 150% (casual 175%). Public holidays pay 225% (casual 250%).",
     },
     {
       q: "How much does a Chemist Warehouse pharmacist earn?",
-      a: "The award minimum for a pharmacist is $1,586.30 a week ($41.74 an hour) from 1 July 2026. An experienced pharmacist earns at least $45.72, a pharmacist in charge $46.80 and a pharmacist manager $52.15 an hour.",
+      a: "The Pharmacy Industry Award minimum for a Chemist Warehouse pharmacist is $1,586.30 a week ($41.74 an hour) from 1 July 2026. An experienced pharmacist earns at least $45.72, a pharmacist in charge $46.80 and a pharmacist manager $52.15 an hour.",
     },
   ],
 };

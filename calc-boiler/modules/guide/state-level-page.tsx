@@ -125,7 +125,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
           <section>
             <H2 id="pay-points">{label} Pay Points and Take-Home Pay</H2>
             <p>
-              Every {config.stepWord} in {label}, from {config.effective}. Fortnightly figures divide the year by 26. Take-home pay uses 2026–27 resident tax rates, the Medicare levy and no HECS.
+              Every {config.stepWord} in {label}, from {config.effective}. Fortnightly figures divide the annual salary by 26. Take-home pay uses 2026-27 resident tax rates, the Medicare levy and no HECS.
             </p>
             <DataTable
               head={[...(multiBand ? ["Value range"] : []), "Step", "Salary", "Gross per fortnight", "Take-home a year", "Take-home per fortnight", "Full breakdown"]}
@@ -172,7 +172,7 @@ export default function StateLevelPage({ data }: { data: StateLevelData }) {
               {descriptor.titles ? <p>{descriptor.titles}</p> : null}
               {headcount ? <p>{headcountSentence(label, headcount)}</p> : null}
               <p className="text-base">
-                Our summary of the {LEVEL_FACT_SOURCES[descriptor.sourceId].title}, read {FACTS_READ_ON}.
+                This is our summary of the {LEVEL_FACT_SOURCES[descriptor.sourceId].title}, read {FACTS_READ_ON}.
               </p>
             </section>
           ) : null}

@@ -121,14 +121,14 @@ export default function NetPayPage() {
               caption="Each row changes one thing against the first. The tax withheld is an estimate; any over-withholding is refunded when you lodge your return."
             />
             <p>
-              The second-job case is common: only one employer should apply the tax-free threshold. See the <Link href="/second-job-tax-calculator/">second job tax calculator</Link> and the <Link href="/tax-file-number-declaration/">TFN declaration guide</Link>. If a HELP debt is the cause, the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> shows the repayment, and <Link href="/stsl-on-payslip/">STSL on your payslip</Link> explains the line.
+              When you have two jobs, only one employer should apply the tax-free threshold. See the <Link href="/second-job-tax-calculator/">second job tax calculator</Link> and the <Link href="/tax-file-number-declaration/">TFN declaration guide</Link>. If a HELP debt is the cause, the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> shows the repayment, and <Link href="/stsl-on-payslip/">STSL on your payslip</Link> explains the line.
             </p>
           </section>
 
           <section>
             <H2 id="check-payslip">Checking Your Payslip Against the Calculator</H2>
             <p>
-              Work out your gross for the pay period first: hours paid × rate, plus any penalties, overtime or allowances on the payslip. Then compare the tax withheld with the ATO table for that gross. If your payslip shows less net than the calculator, look at the deductions listed between gross and net; if the gross is lower than expected, check the hours and rate, then your award&rsquo;s minimum with the <Link href="/award-rates/">award rates</Link> and <Link href="/overtime-penalty-rates-guide/">penalty rates guide</Link>. For a line-by-line walk through a payslip see <Link href="/understanding-your-payslip/">understanding your payslip</Link>, and to produce a sample payslip use the <Link href="/payslip-generator/">payslip generator</Link>.
+              Work out your gross for the pay period first: hours paid × rate, plus any penalties, overtime or allowances on the payslip. Then compare the tax withheld with the ATO table for that gross. If your payslip shows less net pay than the calculator above, look at the deductions listed between gross and net. If the gross is lower than expected, check the hours and rate, then your award&rsquo;s minimum with the <Link href="/award-rates/">award rates</Link> and <Link href="/overtime-penalty-rates-guide/">penalty rates guide</Link>. For a line-by-line walk through a payslip see <Link href="/understanding-your-payslip/">understanding your payslip</Link>, and to produce a sample payslip use the <Link href="/payslip-generator/">payslip generator</Link>.
             </p>
           </section>
 

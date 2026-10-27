@@ -67,7 +67,7 @@ function EmbedPage() {
               Add a free take-home pay calculator to your website
             </h1>
             <p className="lead text-warmgray">
-              A small, fast Australian take-home pay calculator you can put on any page with one line of code. It uses the same{" "}
+              This free Australian take-home pay calculator widget goes on any page of your website with one line of code. It uses the same{" "}
               {EMBED_DATA.fy} ATO tax engine as our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>, updates
               itself when rates change, and carries no ads, cookies or tracking.
             </p>
@@ -109,8 +109,8 @@ function EmbedPage() {
 
             <h2 id="badges" style={HEADING_FONT}>Live figure badges: minimum wage, super rate and more</h2>
             <p>
-              Need just one number on your page, such as a payroll or HR blog quoting the current minimum wage? These small badges
-              show a single figure with its source. They read the figure from this site, so when a rate changes the badge on your page
+              Each live figure badge shows a single figure, such as the current minimum wage, with its source. The badges suit a
+              payroll or HR blog that quotes one number. They read the figure from this site, so when a rate changes the badge on your page
               changes with it and you never edit the code again. They carry no ads, cookies or tracking.
             </p>
             {FIGURE_BADGES.map((b) => (
@@ -145,13 +145,13 @@ function EmbedPage() {
 
             <h2 style={HEADING_FONT}>What the widget calculates</h2>
             <p>
-              Income tax on the {EMBED_DATA.fy} resident scale, the low income tax offset, the 2% Medicare levy with low-income
+              The widget calculates income tax on the {EMBED_DATA.fy} resident scale, the low income tax offset, the 2% Medicare levy with low-income
               shading, optional HECS/HELP repayment, and employer super at {EMBED_DATA.sg.rate * 100}% (on top of salary, or taken out
               of a super-inclusive package). It assumes no Medicare levy surcharge, no salary sacrifice and no other offsets. For
               those, send visitors to the <Link href="/take-home-pay-calculator/">full calculator</Link>.
             </p>
             <p>
-              Writing about pay? The <Link href="/australian-pay-report-2026/">Australian Pay Report 2026</Link> has citable tables and
+              If you write about pay, the <Link href="/australian-pay-report-2026/">Australian Pay Report 2026</Link> has citable tables and
               CSV downloads.
             </p>
             <p className="text-sm text-warmgray">

@@ -97,7 +97,7 @@ export default function PayCalculatorNSWPage() {
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              Change the number in the calculator above for your own salary. If you are weighing up an
+              Enter your own salary in the calculator above to see your NSW take-home pay. If you are weighing up an
               offer, the{" "}
               <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">pay rise calculator</Link> shows what a
               raise is worth after tax, and the{" "}
@@ -110,14 +110,14 @@ export default function PayCalculatorNSWPage() {
             <H2>Is your NSW salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               NSW is the highest-paying state after Western Australia and the ACT. Full-time adults
-              here take {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings.
+              in NSW earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings.
               Note the gap between the first and last rows of the table: the &quot;all employees&quot;
               figure is dragged down by part-time hours, not by lower hourly rates.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              An average is not a floor. If you suspect you are being underpaid, the floor is your
-              award rate. See the{" "}
+              The ABS average is not a minimum. If you think you are underpaid in NSW, the legal floor
+              is your award rate. See the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link>, or the
               {" "}<Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline">retail</Link> and{" "}
               <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline">hospitality</Link> rates, the two

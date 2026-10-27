@@ -137,7 +137,7 @@ export function NoticeList({ notices }: { notices: string[] }) {
 export function TakeHomeLinkNote() {
   return (
     <p className="text-sm text-warmgray">
-      Every salary links to its take-home figure. Take-home pages exist for every $1,000 up to $150,000 and in wider
+      Each salary in the table links to a take-home pay page. Take-home pages exist for every $1,000 up to $150,000 and in wider
       steps above that, so a salary without a page of its own links to the nearest one.
     </p>
   );

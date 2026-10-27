@@ -1,0 +1,54 @@
+501 queries
+454 to fetch
+10 01:02:37
+20 01:03:44
+30 01:04:54
+retry health professionals award pay rates 2026-27 HTTP Error 429: Too Many Requests
+retry pastoral award pay rates 2026-27 HTTP Error 429: Too Many Requests
+40 01:06:32
+50 01:07:46
+60 01:09:02
+70 01:10:12
+80 01:11:25
+retry minimum wage australia history HTTP Error 429: Too Many Requests
+90 01:12:43
+100 01:14:08
+retry long service leave calculator tasmania HTTP Error 429: Too Many Requests
+retry 8.67 HTTP Error 429: Too Many Requests
+110 01:15:35
+120 01:17:03
+130 01:18:12
+140 01:19:27
+150 01:20:42
+160 01:21:50
+170 01:23:05
+180 01:24:21
+190 01:25:27
+200 01:26:43
+210 01:27:59
+220 01:29:05
+230 01:30:26
+240 01:31:39
+retry cyber security salary australia 2026 - seven roles from tax returns, w <urlopen error [Errno 61] Connection refused>
+250 01:32:59
+260 01:34:14
+270 01:35:26
+280 01:36:38
+290 01:37:54
+300 01:39:06
+310 01:40:16
+320 01:41:32
+330 01:42:44
+340 01:43:54
+350 01:45:10
+360 01:46:22
+370 01:47:31
+380 01:48:53
+390 01:50:07
+400 01:51:26
+410 01:52:37
+420 01:53:48
+430 01:55:12
+440 01:56:23
+450 01:57:51
+finished 454

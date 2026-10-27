@@ -29,7 +29,7 @@ export default function TaxDeductionsGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Deductions Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Deductions Guide: Work-Related Deductions That Reduce Your Tax</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how work-related tax deductions reduce your taxable income and lower your tax bill. From vehicle expenses to working from home, this guide covers every major deduction category for Australian taxpayers in FY2025-26.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">A work-related tax deduction is an expense you paid to earn your salary or wages, claimed in your tax return to lower your taxable income. The income tax you save is the deduction multiplied by your marginal tax rate. This guide sets out the ATO rules for each major deduction category, from vehicle expenses to working from home, that Australian employees claim in FY2025-26. It also covers the records each claim needs, a table of the tax a deduction saves in each bracket, and the expenses the ATO does not allow.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -48,10 +48,10 @@ export default function TaxDeductionsGuidePage() {
               <ol>
                 <li><strong>You must have spent the money yourself</strong> and not been reimbursed by your employer. If your employer paid for the expense or reimbursed you, it is not deductible.</li>
                 <li><strong>The expense must be directly related to earning your assessable income.</strong> There must be a clear connection between the expense and your work duties. Private or domestic expenses are not deductible.</li>
-                <li><strong>You must have a record to prove it.</strong> The ATO requires receipts, invoices, bank statements, or diary entries for all claims. For total work-related expenses of <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount.</li>
+                <li><strong>You must have a record to prove it.</strong> The ATO requires written evidence such as receipts, invoices, bank statements or diary entries. For total work-related expenses of <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount.</li>
               </ol>
               <p>
-                Deductions are claimed in your annual tax return. Your employer does not need to approve your deductions. They are between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
+                You claim deductions in your annual tax return. Your employer does not approve them, because the claim is between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -72,7 +72,7 @@ export default function TaxDeductionsGuidePage() {
             <section id="common-deductions">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common Work-Related Deductions</h2>
               <p>
-                The following categories represent the most frequently claimed work-related deductions by Australian employees. Each category has specific ATO rules about what qualifies and what records you need.
+                The categories below are the work-related deductions Australian employees claim most often. Each category has its own ATO rules on what qualifies and what records you need.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Vehicle and Travel Expenses</h3>
@@ -119,7 +119,7 @@ export default function TaxDeductionsGuidePage() {
             <section id="deduction-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will Deductions Save You?</h2>
               <p>
-                Your tax savings depend on your <strong>marginal tax rate</strong>, the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket (the year covered by returns lodged in 2026) for common deduction amounts. From 1 July 2026 the lowest band is 15%, so on your 2026-27 return a $1,000 deduction saves $150 in that band.
+                Your tax savings depend on your <strong>marginal tax rate</strong>, the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket (the year covered by returns lodged in 2026) above the tax-free threshold for common deduction amounts. From 1 July 2026 the lowest band is 15%, so on your 2026-27 return a $1,000 deduction saves $150 in that band.
               </p>
 
               <div className="not-prose my-6">
@@ -146,7 +146,7 @@ export default function TaxDeductionsGuidePage() {
             <section id="cannot-claim">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Deductions You Cannot Claim</h2>
               <p>
-                The ATO specifically disallows these common claims that taxpayers frequently attempt:
+                The ATO does not allow employees to claim these expenses as work-related deductions:
               </p>
               <ul>
                 <li><strong>Home-to-work commuting:</strong> The cost of travelling between your home and your regular workplace is a private expense, regardless of the distance or whether you work irregular hours.</li>
@@ -159,7 +159,7 @@ export default function TaxDeductionsGuidePage() {
                 <li><strong>Study for a new career:</strong> Self-education expenses are only deductible when the course is directly related to your <strong>current</strong> employment, not to enable a career change.</li>
               </ul>
               <p>
-                The ATO uses sophisticated data matching to compare your claims against others in the same occupation and income bracket. Claims that are significantly higher than the norm trigger automated reviews. Use our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for guidance on how deductions flow through to your refund.
+                The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Claims that are significantly higher than the norm trigger automated reviews. Use our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for guidance on how deductions flow through to your refund.
               </p>
             </section>
 
@@ -169,7 +169,7 @@ export default function TaxDeductionsGuidePage() {
               <FaqAccordion faqs={TAX_DEDUCTIONS_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax deduction information is sourced from the Australian Taxation Office (ATO). Savings calculations use FY2025-26 resident tax brackets. Individual deduction eligibility depends on your specific work circumstances. Use our Australian tax calculator tools for personalised estimates based on your income and deduction amounts.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax deduction information is sourced from the Australian Taxation Office (ATO). The savings table uses FY2025-26 resident tax brackets. Whether you can claim an expense depends on your own work duties, whether your employer reimbursed you and whether you keep the records the ATO requires. Use the Income Tax Calculator or Tax Return Estimator for an estimate based on your own income and deduction amounts.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-deductions-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">

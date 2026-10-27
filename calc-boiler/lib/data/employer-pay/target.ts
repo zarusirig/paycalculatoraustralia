@@ -65,7 +65,7 @@ export const TARGET_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "Junior rates (cl 17.1) apply to Customer Service Assistants only; a junior working as a Team Leader gets the adult rate (cl 17.2). Adult rates start at 20.",
+    "Target pays junior rates (cl 17.1) to Customer Service Assistants only; a junior working as a Team Leader gets the adult rate (cl 17.2). Target pays the full adult rate from age 20.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "100%", casual: "125%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "125%", casual: "150%" },
@@ -108,15 +108,15 @@ export const TARGET_PAY: EmployerPay = {
     },
     {
       q: "What agreement covers Target staff?",
-      a: "The Target Australia Retail Agreement 2022 (AE519106). It started on 15 February 2023 and has a nominal expiry date of 7 February 2027, after which it keeps applying until a new agreement replaces it.",
+      a: "The Target Australia Retail Agreement 2022 (AE519106) covers Customer Service Assistants and Team Leaders in Target's stores. It started on 15 February 2023 and has a nominal expiry date of 7 February 2027, after which it keeps applying until a new agreement replaces it.",
     },
     {
       q: "How much does Target pay a 16 or 17 year old?",
-      a: "Customer Service Assistants aged 16 and under get 50% of the adult rate, about $13.93 an hour ($17.41 casual), and 17-year-olds 60%, about $16.72 ($20.90 casual). At 18 it is 70% and at 19 80%. These are our arithmetic from the agreement's percentages.",
+      a: "Target Customer Service Assistants aged 16 and under get 50% of the adult rate, about $13.93 an hour ($17.41 casual), and 17-year-olds 60%, about $16.72 ($20.90 casual). At 18 it is 70% and at 19 80%. These are our arithmetic from the agreement's percentages.",
     },
     {
       q: "What does Target pay on Sundays and public holidays?",
-      a: "Sundays from 9am pay 150% for permanent staff and 175% for casuals (about $41.79 and $48.76 an hour for an adult Customer Service Assistant). Public holidays pay 225% and 250% (about $62.69 and $69.65).",
+      a: "Target pays permanent staff 150% and casuals 175% on Sundays from 9am (about $41.79 and $48.76 an hour for an adult Customer Service Assistant). Public holidays pay 225% and 250% (about $62.69 and $69.65).",
     },
     {
       q: "Is Target paid above the award?",
@@ -124,7 +124,7 @@ export const TARGET_PAY: EmployerPay = {
     },
     {
       q: "When is the next Target pay rise?",
-      a: "From the first full pay period on or after 1 July 2027, when the Retail Award rises. Customer Service Assistants go to the new award Level 1 rate plus 5 cents. Before that, from 1 December 2026, 18- and 19-year-olds with more than 6 months' service must get at least the higher Retail Award junior rates.",
+      a: "Target's next pay rise is from the first full pay period on or after 1 July 2027, when the Retail Award rises. Customer Service Assistants go to the new award Level 1 rate plus 5 cents. Before that, from 1 December 2026, 18- and 19-year-olds with more than 6 months' service must get at least the higher Retail Award junior rates.",
     },
   ],
   // 22 Oct 2026: read from the approval decision PR750306 at the front of the
@@ -134,7 +134,7 @@ export const TARGET_PAY: EmployerPay = {
     commencedOn: "15 February 2023",
     status: "in-term",
     statusNote:
-      "Inside its nominal term, which ends on 7 February 2027. After that date it keeps applying until a new agreement replaces it. On 22 October 2026 we found no replacement application or decision on the Fair Work Commission's site.",
+      "The Target agreement is inside its nominal term, which ends on 7 February 2027. After that date it keeps applying until a new agreement replaces it. On 22 October 2026 we found no replacement application or decision on the Fair Work Commission's site.",
     payRises: [
       { date: "First full pay period on or after 1 July 2026", amount: "Retail Award Level 1 rate plus 5 cents (Customer Service Assistant $27.86); Team Leader 112% of that ($31.20)", source: "Agreement cl 19.1", paid: true },
       { date: "First full pay period on or after 1 July 2027", amount: "The new Retail Award Level 1 rate plus 5 cents, and 112% of that for Team Leaders", source: "Agreement cl 19.1" },

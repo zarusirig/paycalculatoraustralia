@@ -48,7 +48,7 @@ export const SALARY_PACKAGE_FAQS: readonly SalaryPackageFaq[] = [
   },
   {
     q: "Does the super guarantee rate apply to the package or the base?",
-    a: `To the base. The ${RATE} is calculated on ordinary time earnings, and the package is simply base plus that super. That is why splitting a package uses ÷${(1 + SUPER_GUARANTEE.rate).toFixed(2)} rather than taking ${RATE} off the top.`,
+    a: `To the base. The ${RATE} is calculated on ordinary time earnings, and the package is the base plus that super. That is why splitting a package uses ÷${(1 + SUPER_GUARANTEE.rate).toFixed(2)} rather than taking ${RATE} off the top.`,
   },
   {
     q: "Does the super cap change the split for high packages?",

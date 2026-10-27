@@ -69,7 +69,7 @@ export default function SaptoPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is SAPTO?</h2>
             <p>SAPTO is a non-refundable tax offset for Australians who receive an Australian Government pension or allowance, or who qualify for the age pension without claiming it. It reduces the income tax you pay, and the ATO applies it automatically when it assesses your return.</p>
             <p>Because it is non-refundable it can reduce your tax to zero but cannot produce a refund by itself. It stacks with the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> and the <Link href="/zone-tax-offset/">zone tax offset</Link>.</p>
-            <p>One extra benefit is easy to miss: if you are entitled to <strong>at least $1</strong> of SAPTO, you also qualify for a higher <Link href="/medicare-levy/">Medicare levy</Link> low-income threshold. If your income reduces your SAPTO to zero, you lose that too.</p>
+            <p>SAPTO has a second effect, on the Medicare levy. If you are entitled to <strong>at least $1</strong> of SAPTO, you also qualify for a higher <Link href="/medicare-levy/">Medicare levy</Link> low-income threshold. If your income reduces your SAPTO to zero, you lose that too.</p>
           </section>
 
           <section>
@@ -87,7 +87,7 @@ export default function SaptoPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: {formatAUD(39_000)} Rebate Income, Single</h2>
-            <p>The ATO&rsquo;s own example. A single age pensioner with rebate income of {formatAUD(39_000)} is above the {formatAUD(S.shadingOutThreshold)} shading-out threshold but below the {formatAUD(S.cutOutThreshold)} cut-out, so the offset tapers:</p>
+            <p>This is the ATO&rsquo;s own example. A single age pensioner with rebate income of {formatAUD(39_000)} is above the {formatAUD(S.shadingOutThreshold)} shading-out threshold but below the {formatAUD(S.cutOutThreshold)} cut-out, so the offset tapers:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Rebate income above the threshold</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(39_000)} − {formatAUD(S.shadingOutThreshold)} = {formatAUD(39_000 - S.shadingOutThreshold)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Reduction at {SAPTO_REDUCTION_RATE * 100}c per $1</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(JOSE.reduction, 2, "−")}</td></tr>
@@ -98,8 +98,8 @@ export default function SaptoPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How SAPTO Works for Couples</h2>
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>Two different incomes drive the calculation, and mixing them up is the most common error.</strong> Your <em>eligibility</em> is tested on <strong>half your combined</strong> rebate income. Your <em>offset amount</em> is then worked out on <strong>your own</strong> rebate income.</p>
-            <p>The practical consequence is that a couple can pass the eligibility test while one partner still receives nothing. In the ATO&rsquo;s example, a couple with rebate incomes of {formatAUD(54_020)} and {formatAUD(25_677)} have a combined {formatAUD(79_697)}. Half of that is {formatAUD(39_848.5, 2)}, comfortably under the {formatAUD(C.cutOutThreshold)} cut-out, so the couple qualifies. But the higher earner&rsquo;s own {formatAUD(54_020)} is well past the cut-out, so their offset is nil, while their partner receives the full {formatAUD(C.maxOffset)}.</p>
-            <p>It also works in your favour. A single-income couple where one partner earns {formatAUD(33_650)} and the other nothing is assessed at {formatAUD(16_825)} each, so the earner stays eligible and receives {formatAUD(calculateSAPTO({ status: "couple", rebateIncome: 33_650, spouseRebateIncome: 0 }).offset)}.</p>
+            <p>So a couple can pass the SAPTO eligibility test while one partner still receives nothing. In the ATO&rsquo;s example, a couple with rebate incomes of {formatAUD(54_020)} and {formatAUD(25_677)} have a combined {formatAUD(79_697)}. Half of that is {formatAUD(39_848.5, 2)}, comfortably under the {formatAUD(C.cutOutThreshold)} cut-out, so the couple qualifies. But the higher earner&rsquo;s own {formatAUD(54_020)} is well past the cut-out, so their offset is nil, while their partner receives the full {formatAUD(C.maxOffset)}.</p>
+            <p>The same eligibility test also helps a single-income couple. Where one partner earns {formatAUD(33_650)} and the other nothing, the couple is assessed at{formatAUD(16_825)} each, so the earner stays eligible and receives {formatAUD(calculateSAPTO({ status: "couple", rebateIncome: 33_650, spouseRebateIncome: 0 }).offset)}.</p>
           </section>
 
           <section>
@@ -138,7 +138,7 @@ export default function SaptoPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <ul>
-              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: the offset most SAPTO recipients also claim</li>
+              <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: it stacks with SAPTO on the same return</li>
               <li><Link href="/zone-tax-offset/">Zone Tax Offset Calculator</Link>: for remote-area residents, and it stacks with SAPTO</li>
               <li><Link href="/medicare-levy/">Medicare Levy Calculator</Link>, including the higher SAPTO low-income threshold</li>
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: your liability before offsets</li>

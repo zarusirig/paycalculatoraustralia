@@ -45,7 +45,7 @@ export const HARVEY_NORMAN_PAY: EmployerPay = {
   })),
   notices: [
     "Your employer is the franchisee that owns your store, not Harvey Norman Holdings. These are the General Retail Industry Award minimums; franchisees can pay more, and many sales roles add commission on top.",
-    "If your franchisee has its own approved enterprise agreement, that sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "If your Harvey Norman franchisee has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
     "Commission cannot replace the minimum: whatever the commission arrangement, your pay for each pay period must be at least the award rate for the hours you worked, including penalty rates.",
   ],
   unverified: [
@@ -62,11 +62,11 @@ export const HARVEY_NORMAN_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does Harvey Norman pay an hour in 2026?",
-      a: "Unless your franchisee has its own agreement, an adult Harvey Norman store employee at Retail Level 1 must be paid at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. Commission, where offered, is on top of that minimum.",
+      a: "An adult Harvey Norman store employee at Retail Level 1 must be paid at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. This General Retail Industry Award minimum applies unless your franchisee has its own agreement, and commission, where offered, is on top of it.",
     },
     {
       q: "Who is my employer at Harvey Norman?",
-      a: "The franchisee that owns your store. Harvey Norman Holdings grants franchises to independent franchisees, and each franchisee owns and controls its own business, including employing the staff. Your payslip names your employer.",
+      a: "Your employer at Harvey Norman is the franchisee that owns your store. Harvey Norman Holdings grants franchises to independent franchisees, and each franchisee owns and controls its own business, including employing the staff. Your payslip names your employer.",
     },
     {
       q: "Does Harvey Norman have an enterprise agreement?",

@@ -87,7 +87,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
                 {cfg.singular} salary by state
               </h2>
               <p>
-                Base salary, full time, before tax, shift penalties and super. &ldquo;{cfg.entryLabel}&rdquo; is the
+                The table shows full-time base salary before tax, shift penalties and super. &ldquo;{cfg.entryLabel}&rdquo; is the
                 first qualified or entry row of each state&rsquo;s table and &ldquo;{cfg.topLabel}&rdquo; the top of its
                 core scale; supervisory and specialist rows are on the state pages.
               </p>
@@ -199,9 +199,10 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
                 {cfg.singular} pay after tax
               </h2>
               <p>
-                Each salary in the table links to its take-home page. Shift penalties, overtime and allowances are taxed
-                as ordinary income on top of base salary, so for your real pay enter your expected total in the{" "}
-                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>. Overtime is covered by the{" "}
+                Each salary in the table links to the take-home page for that salary, or to the nearest one. Shift
+                penalties, overtime and allowances are taxed as ordinary income on top of base salary, so to see your real
+                pay after tax, enter your expected yearly total in the{" "}
+                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>. For overtime hours, use the{" "}
                 <Link href="/overtime-pay-calculator/">overtime pay calculator</Link>.
               </p>
             </section>

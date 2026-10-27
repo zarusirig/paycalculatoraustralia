@@ -89,14 +89,14 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
       id: "junior-year-12",
       title: "Apprentice electrician pay rates: completed Year 12 (started on or after 1 January 2014)",
       intro:
-        "Weekly = percentage of the $1,119.10 grade 5 wage + $22.31 tool allowance + the same percentage of the industry and licence allowances. Hourly rates are exactly as published in Schedule B.4.5. The award sets no casual apprentice rate.",
+        "The weekly rate is the apprentice's percentage of the $1,119.10 grade 5 wage, plus the $22.31 tool allowance and the same percentage of the industry and licence allowances. Hourly rates are exactly as published in Schedule B.4.5. The award sets no casual apprentice rate.",
       belowMinimumWage: NOT_NMW,
       rows: YEAR_12_ROWS,
     },
     {
       id: "junior-no-year-12",
       title: "Apprentice electrician pay rates: did not complete Year 12",
-      intro: "Same formula at 50%, 60%, 70% and 82% of grade 5. Hourly rates are Schedule B.4.5 exactly.",
+      intro: "These apprentice electrician rates use the same formula at 50%, 60%, 70% and 82% of grade 5. Hourly rates are Schedule B.4.5 exactly.",
       belowMinimumWage: NOT_NMW,
       rows: [
         junior("1st year — not completed Year 12", 0.5, 16.39, "50% of grade 5"),
@@ -109,7 +109,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
       id: "adult",
       title: "Adult apprentice electrician pay rates (started on or after 1 January 2014)",
       intro:
-        "Year 1: 80% of grade 5, plus the tool allowance and 80% of the industry and licence allowances. Years 2–4: the grade 1 minimum ($1,004.90), plus the tool allowance and 87% of those allowances. Hourly rates are Schedule B.4.1 exactly.",
+        "An adult apprentice in year 1 gets 80% of grade 5, plus the tool allowance and 80% of the industry and licence allowances. In years 2 to 4 an adult apprentice gets the grade 1 minimum ($1,004.90), plus the tool allowance and 87% of those allowances. Hourly rates are Schedule B.4.1 exactly.",
       belowMinimumWage: NOT_NMW,
       rows: [
         { label: "Adult apprentice — 1st year", weekly: apprenticeWeekly(0.8 * I.grade5, 0.8), hourly: 25.87, casualHourly: null, note: "80% of grade 5" },
@@ -122,7 +122,7 @@ export const APPRENTICE_ELECTRICIAN: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "—" },
   ],
   penaltiesNote:
-    "Percentages of the apprentice's all-purpose hourly rate (Schedule B.4). Ordinary hours for day workers are Monday to Friday, so weekend work is overtime.",
+    "These apprentice electrician penalty rates are percentages of the apprentice's all-purpose hourly rate (Schedule B.4). Ordinary hours for day workers are Monday to Friday, so weekend work is overtime.",
   overtime: [
     "Overtime is paid on the apprentice's all-purpose hourly rate: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250% (Schedule B.4).",
     "An apprentice under 18 cannot be required to work overtime or shiftwork unless they want to, and no apprentice may be rostered for overtime that stops them attending training (cl 12.11).",

@@ -28,7 +28,7 @@ export default function ListoCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>LISTO Calculator</h2>
         <p className="text-sm text-warmgray mb-6">
-          LISTO is 15% of the before-tax super contributions paid for you, up to {formatAUD(LISTO_CURRENT.maxPayment)} if your income is {formatAUD(LISTO_CURRENT.incomeThreshold)} or less. From 1 July 2027 the limits rise to {formatAUD(LISTO_2027_28.maxPayment)} and {formatAUD(LISTO_2027_28.incomeThreshold)}.
+          The low income super tax offset (LISTO) is 15% of the before-tax super contributions paid for you, up to {formatAUD(LISTO_CURRENT.maxPayment)} if your adjusted taxable income is {formatAUD(LISTO_CURRENT.incomeThreshold)} or less. From 1 July 2027 the limits rise to {formatAUD(LISTO_2027_28.maxPayment)} and {formatAUD(LISTO_2027_28.incomeThreshold)}.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">

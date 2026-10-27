@@ -70,7 +70,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "How much HECS do I have to pay?",
-    a: `It depends on your repayment income, not the size of your debt. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}, then 15c for each dollar above it, up to ${formatAUD(B2.base)} plus 17c per dollar over ${formatAUD(B2.min - 1)} in the middle band and ${B3.marginalRate * 100}% of total repayment income from ${formatAUD(B3.min)}. On ${formatAUD(90_000)} that is ${formatAUD(calculateHECS(90_000))} a year. Repayments stop when the balance reaches zero.`,
+    a: `Your HECS repayment is set by your repayment income, not the size of your debt. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}, then 15c for each dollar above it. The middle band is ${formatAUD(B2.base)} plus 17c per dollar over ${formatAUD(B2.min - 1)}, and ${B3.marginalRate * 100}% of total repayment income applies from ${formatAUD(B3.min)}. On ${formatAUD(90_000)} that is ${formatAUD(calculateHECS(90_000))} a year. Repayments stop when the balance reaches zero.`,
   },
   {
     q: "Is HECS interest free?",
@@ -98,7 +98,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "What counts as repayment income?",
-    a: `Taxable income plus reportable fringe benefits, total net investment loss, reportable super contributions and exempt foreign employment income. It is wider than salary, so a wage below ${formatAUD(T)} can still produce a compulsory repayment.`,
+    a: `Repayment income is your taxable income plus reportable fringe benefits, total net investment loss, reportable super contributions and exempt foreign employment income. It is wider than salary, so a wage below ${formatAUD(T)} can still produce a compulsory repayment.`,
   },
   {
     q: "Can salary sacrifice reduce my HECS repayment?",
@@ -110,11 +110,11 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "What was the indexation rate in 2026?",
-    a: `${HECS_HELP.indexationRate * 100}%, applied on ${HECS_HELP.indexationDate} to the part of the balance unpaid for more than 11 months. Indexation is the lower of CPI or the Wage Price Index, so a study loan cannot grow faster than wages.`,
+    a: `The HELP indexation rate was ${HECS_HELP.indexationRate * 100}%, applied on ${HECS_HELP.indexationDate} to the part of the balance unpaid for more than 11 months. Indexation is the lower of CPI or the Wage Price Index, so a study loan cannot grow faster than wages.`,
   },
   {
     q: `What is the HECS repayment threshold for ${SITE_CONFIG.financialYear}?`,
-    a: `${formatAUD(T)}. Repayment income at or below ${formatAUD(T)} attracts no compulsory repayment. Above it you repay 15c for each $1 over ${formatAUD(T)}, rising to ${formatAUD(B2.base)} plus 17c per $1 over ${formatAUD(B2.min - 1)}, then ${B3.marginalRate * 100}% of total repayment income from ${formatAUD(B3.min)}.`,
+    a: `The HECS repayment threshold is ${formatAUD(T)}. Repayment income at or below ${formatAUD(T)} attracts no compulsory repayment. Above it you repay 15c for each $1 over ${formatAUD(T)}, rising to ${formatAUD(B2.base)} plus 17c per $1 over ${formatAUD(B2.min - 1)}, then ${B3.marginalRate * 100}% of total repayment income from ${formatAUD(B3.min)}.`,
   },
   {
     q: "How much do I repay just over the threshold?",
@@ -126,7 +126,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "How much HECS do I have to pay?",
-    a: `It depends on your repayment income. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}. Above that you pay 15c for each $1 over ${formatAUD(T)}, so ${formatAUD(calculateHECS(80_000))} on ${formatAUD(80_000)} and ${formatAUD(calculateHECS(100_000))} on ${formatAUD(100_000)}. See the repayment table on this page, or enter your income in the calculator.`,
+    a: `Your HECS repayment is worked out from your repayment income. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}. Above that you pay 15c for each $1 over ${formatAUD(T)}, so ${formatAUD(calculateHECS(80_000))} on ${formatAUD(80_000)} and ${formatAUD(calculateHECS(100_000))} on ${formatAUD(100_000)}. See the repayment table on this page, or enter your income in the calculator.`,
   },
   {
     q: "What is the STSL line on my payslip?",

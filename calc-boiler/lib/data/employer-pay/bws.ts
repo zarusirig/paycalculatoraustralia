@@ -103,7 +103,7 @@ export const BWS_PAY: EmployerPay = {
   notices: [
     "The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage: 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
     "When it approved the agreement, the Fair Work Commission compared Team Member with Retail Award Levels 1 and 2 and Senior Team Member with Levels 3 and 4. In 2026 both stay above those award rates ($28.45 and $29.45).",
-    "Some staff who were paid the higher Level 2 rate under the old BWS or Dan Murphy's 2019 agreements keep it (undertakings 5–7): about $29.21 (ex-BWS) or $28.81 (ex-Dan Murphy's) an hour in 2026, by the same formula.",
+    "Some staff who were paid the higher Level 2 rate under the old BWS or Dan Murphy's 2019 agreements keep it (undertakings 5 to 7): about $29.21 (ex-BWS) or $28.81 (ex-Dan Murphy's) an hour in 2026, by the same formula.",
   ],
   allowances: [
     { name: "In-charge allowance", amount: "$5.20 a shift when the agreement was made, rising with the award each July", when: "BWS Team Members put in charge of a store (undertaking 1 and cl 5.2)" },
@@ -127,7 +127,7 @@ export const BWS_PAY: EmployerPay = {
     },
     {
       q: "What agreement covers BWS staff?",
-      a: "The Endeavour Group Retail Agreement 2025 (AE531119), approved by the Fair Work Commission on 14 November 2025 and operating from 21 November 2025. It covers BWS and Dan Murphy's, replaced their separate 2019 agreements and runs to a nominal expiry of 30 June 2029.",
+      a: "BWS staff are covered by the Endeavour Group Retail Agreement 2025 (AE531119), approved by the Fair Work Commission on 14 November 2025 and operating from 21 November 2025. It covers BWS and Dan Murphy's, replaced their separate 2019 agreements and runs to a nominal expiry of 30 June 2029.",
     },
     {
       q: "Does BWS pay junior rates?",
@@ -139,7 +139,7 @@ export const BWS_PAY: EmployerPay = {
     },
     {
       q: "When is the next BWS pay rise?",
-      a: "From the first full pay period on or after 1 July 2027, by the same percentage the Fair Work Commission's 2027 Annual Wage Review gives the General Retail Industry Award.",
+      a: "The next BWS pay rise is from the first full pay period on or after 1 July 2027, by the same percentage the Fair Work Commission's 2027 Annual Wage Review gives the General Retail Industry Award.",
     },
   ],
 };

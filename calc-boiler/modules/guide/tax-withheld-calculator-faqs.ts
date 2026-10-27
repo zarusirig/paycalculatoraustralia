@@ -55,6 +55,6 @@ export const TAX_WITHHELD_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: `Which tax tables are used for ${FY}?`,
-    a: `The ATO's Schedule 1 statement of formulas (NAT 1004) for payments made from 1 July 2026, and Schedule 8 for study and training loans. The weekly, fortnightly and monthly tax tables are printed from the same formulas. This calculator uses the ${PAYG_FINANCIAL_YEAR} coefficients.`,
+    a: `The tax tables used are the ATO's Schedule 1 statement of formulas (NAT 1004) for payments made from 1 July 2026, and Schedule 8 for study and training loans. The weekly, fortnightly and monthly tax tables are printed from the same formulas. This calculator uses the ${PAYG_FINANCIAL_YEAR} coefficients.`,
   },
 ];

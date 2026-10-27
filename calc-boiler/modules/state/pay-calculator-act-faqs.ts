@@ -12,19 +12,19 @@ const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
 export const ACT_FAQS: readonly FaqItem[] = [
   {
     q: "Is income tax different in the ACT?",
-    a: "No. Your income tax, Medicare levy, and HECS-HELP obligations are determined by the ATO at the federal level and do not change based on your residential address. Cross-border commuters from Queanbeyan, Yass, or Bungendore pay the same taxation as Canberra residents.",
+    a: "No. Income tax, the Medicare levy and HECS-HELP repayments are federal, so the ATO applies the same rates in the ACT as everywhere else in Australia, whatever your home address. Cross-border commuters from Queanbeyan, Yass or Bungendore pay the same tax as Canberra residents.",
   },
   {
     q: "What is the take-home pay on the average Canberra salary?",
-    a: `Full-time adults in the ACT earn ${awoteLine(PROFILE)}, the highest in Australia (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
+    a: `Full-time adults in the ACT earn ${awoteLine(PROFILE)}, the highest in Australia (ABS, ${ABS_PERIOD}). The worked example above takes that salary through income tax and the Medicare levy to take-home pay, and the calculator shows it weekly, fortnightly and monthly.`,
   },
   {
     q: "Which public holidays are unique to the ACT?",
-    a: "Canberra Day, held on the second Monday in March, and Reconciliation Day, held on the first Monday on or after 27 May. Neither is observed in NSW, so a worker based in Canberra gets two penalty-rate days a Queanbeyan colleague does not.",
+    a: "Canberra Day (the second Monday in March) and Reconciliation Day (the first Monday on or after 27 May) are the public holidays unique to the ACT. Neither is observed in NSW, so a worker based in Canberra gets two penalty-rate days a Queanbeyan colleague does not.",
   },
   {
     q: "I live in Queanbeyan but work in Canberra. Which public holidays do I get?",
-    a: "The ones where you are based for work. Public holiday entitlements follow the location your job is based in, not where you live or where you happen to be on the day, so an ACT-based role gets the ACT calendar.",
+    a: "You get the public holidays of the place where your job is based, so a Canberra-based role gets the ACT calendar. Public holiday entitlements follow your work base, not where you live or where you happen to be on the day.",
   },
   {
     q: "When do I get long service leave in the ACT?",
@@ -36,6 +36,6 @@ export const ACT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do ACT employees pay payroll tax?",
-    a: `No. It is charged to employers whose Australia-wide wages exceed ${formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}. It is never deducted from wages and never appears on a payslip.`,
+    a: `No. ACT payroll tax is charged to employers whose Australia-wide wages exceed ${formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}. It is not deducted from wages and does not appear on a payslip.`,
   },
 ];

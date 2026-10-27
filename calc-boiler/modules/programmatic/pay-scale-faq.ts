@@ -12,7 +12,7 @@ export function payScaleFaq(points: readonly PayScaleMatch[], annual: number, ha
   const a = formatAUD(annual);
   return {
     q: `Which published pay scales pay about ${a} a year?`,
-    a: `Within ${formatAUD(halfWindow)} of ${a}, one point per employer: ${points
+    a: `The published pay scale points within ${formatAUD(halfWindow)} of ${a}, one per employer, are: ${points
       .map((p) => `${p.group}, ${p.label}, ${formatAUD(p.annual)}`)
       .join("; ")}. These are full-time base salaries; hours, allowances and super differ between employers.`,
   };

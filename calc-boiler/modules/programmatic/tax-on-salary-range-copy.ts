@@ -135,16 +135,16 @@ export function edgeParagraphs(salary: number): string[] {
   if (e.status === "below") {
     const up = salary + 10_000;
     return [
-      `${s} is ${formatAUD(e.distance)} below ${E}, where the rate on each extra dollar rises from ${pct(e.lowerRate)} to ${pct(e.upperRate)} (${fy}). Only dollars above ${E} pay ${pct(e.upperRate)}, so a rise past it never lowers take-home: ${formatAUD(up)} takes home ${formatAUD(takeHome(up))}, ${formatAUD(takeHome(up) - takeHome(salary))} more.${litoSlows ? ` The offset phase-out also slows there, from ${cents(LITO.phaseOut1.rate)} to ${cents(LITO.phaseOut2.rate)} per dollar.` : ""}`,
+      `${s} is ${formatAUD(e.distance)} below ${E}, where the rate on each extra dollar rises from ${pct(e.lowerRate)} to ${pct(e.upperRate)} (${fy}). Only dollars above ${E} pay ${pct(e.upperRate)}, so a rise past it does not lower take-home pay: ${formatAUD(up)} takes home ${formatAUD(takeHome(up))}, ${formatAUD(takeHome(up) - takeHome(salary))} more.${litoSlows ? ` The Low Income Tax Offset phase-out also slows there, from ${cents(LITO.phaseOut1.rate)} to ${cents(LITO.phaseOut2.rate)} per dollar.` : ""}`,
     ];
   }
   if (e.status === "at") {
     return [
-      `${s} is the last dollar at ${pct(e.lowerRate)}: every dollar of a rise is taxed at ${pct(e.upperRate)} (${fy}) plus the ${pct(MEDICARE_LEVY.rate)} levy, while the ${s} already earned is taxed as before. A $5,000 rise adds ${formatAUD(takeHome(salary + 5_000) - takeHome(salary))} of take-home.${litoSlows ? ` The offset phase-out slows here too, to ${cents(LITO.phaseOut2.rate)} per dollar.` : ""}`,
+      `${s} is the last dollar at ${pct(e.lowerRate)}: every dollar of a rise is taxed at ${pct(e.upperRate)} (${fy}) plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy, while the ${s} already earned is taxed as before. A $5,000 rise adds ${formatAUD(takeHome(salary + 5_000) - takeHome(salary))} of take-home pay.${litoSlows ? ` The Low Income Tax Offset phase-out slows here too, to ${cents(LITO.phaseOut2.rate)} per dollar.` : ""}`,
     ];
   }
   return [
-    `${formatAUD(e.distance)} of ${s} is above ${E} and taxed at ${pct(e.upperRate)}: ${formatAUD(e.distance * e.upperRate)}, or ${formatAUD(e.distance * (e.upperRate - e.lowerRate))} more than at ${pct(e.lowerRate)} (${fy}). The first ${E} is taxed as before, so take-home is ${formatAUD(takeHome(salary) - takeHome(e.edge))} higher than at ${E}.${litoSlows ? ` The offset also shrinks ${cents(LITO.phaseOut2.rate)} per dollar above ${E}: ${formatAUD(e.distance * LITO.phaseOut2.rate)} less here.` : ""}`,
+    `${formatAUD(e.distance)} of ${s} is above ${E} and taxed at ${pct(e.upperRate)}: ${formatAUD(e.distance * e.upperRate)}, or ${formatAUD(e.distance * (e.upperRate - e.lowerRate))} more than at ${pct(e.lowerRate)} (${fy}). The first ${E} is taxed as before, so take-home pay is ${formatAUD(takeHome(salary) - takeHome(e.edge))} higher than at ${E}.${litoSlows ? ` The Low Income Tax Offset also shrinks ${cents(LITO.phaseOut2.rate)} per dollar above ${E}: ${formatAUD(e.distance * LITO.phaseOut2.rate)} less here.` : ""}`,
   ];
 }
 
@@ -216,9 +216,9 @@ export function hecsParagraph(salary: number): string {
     return `No compulsory repayment on ${s}: it is under the ${min} repayment threshold for ${fy}. Repayments are marginal, ${cents(HECS_HELP.bands[1].marginalRate)} per dollar of repayment income over ${min} and nothing below it.`;
   }
   if (f.hecsBandIndex === HECS_HELP.bands.length - 1) {
-    return `The repayment is a flat ${pct(band.marginalRate)} of all repayment income (${fy}): ${formatAUD(w.hecsRepayment)} a year, leaving ${formatAUD(w.takeHomePay)} take-home.`;
+    return `The repayment is a flat ${pct(band.marginalRate)} of all repayment income (${fy}): ${formatAUD(w.hecsRepayment)} a year, leaving ${formatAUD(w.takeHomePay)} take-home pay.`;
   }
-  return `Compulsory repayment: ${formatAUD(w.hecsRepayment)} a year (${band.label}, ${fy}), leaving ${formatAUD(w.takeHomePay)} take-home. With the loan, ${(f.nextThousand.effectiveMarginalWithHecs * 100).toFixed(1)}% of a pay rise goes in tax, Medicare and repayments.`;
+  return `The compulsory HECS-HELP repayment is ${formatAUD(w.hecsRepayment)} a year (${band.label}, ${fy}), leaving ${formatAUD(w.takeHomePay)} take-home pay. With a HECS-HELP debt, ${(f.nextThousand.effectiveMarginalWithHecs * 100).toFixed(1)}% of a pay rise goes in income tax, the Medicare levy and repayments.`;
 }
 
 export function hecsFaqAnswer(salary: number): string {
@@ -275,7 +275,7 @@ export function taxByYearLine(salary: number): string {
   const now = incomeTaxAfterLitoOnScale(salary, TAX_BRACKETS);
   const y27 = compareTakeHome(salary).y2027_28.incomeTaxPayable;
   if (y23 === 0 && y25 === 0 && now === 0 && y27 === 0) {
-    return `No income tax is payable on ${s} in any year from 2023-24 to 2027-28: the offset cancels it each year.`;
+    return `No income tax is payable on ${s} in any year from 2023-24 to 2027-28: the Low Income Tax Offset cancels it each year.`;
   }
   return `Income tax by year: ${formatAUD(y23)} in 2023-24, ${formatAUD(y25)} in 2025-26, ${formatAUD(now)} now, ${formatAUD(y27)} in 2027-28 (after the ${formatAUD(WATO.maxOffset)} Working Australians Tax Offset).`;
 }

@@ -85,8 +85,8 @@ function OutsideTheScale({ jurisdiction }: { jurisdiction: Jurisdiction }) {
       {roles.length > 0 ? (
         <>
           <p>
-            Many public servants do a job that also exists in the private sector. These pages show what that job pays across every employer,
-            from award minimums and ATO tax-return data, so a classification can be compared with the wider market:
+            The public service roles below also exist in the private sector. Each page shows what that job pays across every employer,
+            from award minimums and ATO tax-return data, so you can compare a classification with the wider market:
           </p>
           <ul>
             {roles.map((r) => (

@@ -45,7 +45,7 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer",
       title: "Correctional Officer (CO) and First Class",
-      intro: "Schedule 1, salary from the first pay period commencing on or after 2 December 2024, the last increase in the agreement.",
+      intro: "The NT agreement sets these salaries in Schedule 1, from the first pay period commencing on or after 2 December 2024, which is the last increase it prints.",
       stepHeading: "Classification",
       steps: [
         { label: "CO (1)", salary: 69_074 },
@@ -60,7 +60,7 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "senior-correctional-officer",
       title: "Senior Correctional Officer (SCO)",
-      intro: "Schedule 1, from the first pay period on or after 2 December 2024.",
+      intro: "Senior Correctional Officer salaries are also in Schedule 1, from the first pay period on or after 2 December 2024.",
       stepHeading: "Classification",
       steps: [
         { label: "SCO (1)", salary: 87_323 },
@@ -80,7 +80,7 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "Correctional officers are paid a consolidated allowance of 40% of salary instead of leave loading, penalty rates for shift work (including Saturdays, Sundays and public holidays) and days off in lieu for rostered days falling on public holidays (clause 14.1). It counts for all forms of leave but not for overtime (clause 14.3).",
   ],
   notices: [
-    "The agreement passed its nominal expiry date on 2 December 2025, and the 2 December 2024 rates are the last it prints. After the Fair Work Commission's intractable bargaining declaration of 4 September 2026, the Commissioner for Public Employment said on 23 September 2026 that the existing 2021–2025 agreement remains in place.",
+    "The agreement passed its nominal expiry date on 2 December 2025, and the 2 December 2024 rates are the last it prints. After the Fair Work Commission's intractable bargaining declaration of 4 September 2026, the Commissioner for Public Employment said on 23 September 2026 that the existing 2021-2025 agreement remains in place.",
   ],
   unverified: [
     "Senior Industry Officer and other non-custodial rows in Schedule 1, which are not reproduced here.",
@@ -105,7 +105,7 @@ export const NT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "Has the NT correctional officer agreement expired?",
-      a: "It passed its nominal expiry on 2 December 2025, but it still applies until it is replaced. Bargaining for a new agreement went to the Fair Work Commission's intractable bargaining process in September 2026, so the 2 December 2024 rates are still current.",
+      a: "The NT correctional officer agreement passed its nominal expiry on 2 December 2025, but it still applies until it is replaced. Bargaining for a new agreement went to the Fair Work Commission's intractable bargaining process in September 2026, so the 2 December 2024 rates are still current.",
     },
   ],
 };

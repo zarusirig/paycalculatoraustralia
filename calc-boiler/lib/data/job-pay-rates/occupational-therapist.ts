@@ -118,13 +118,13 @@ export const OCCUPATIONAL_THERAPIST: Occupation = {
   metaTitle: hospitalSalaryTitle("Occupational Therapist", MEDIAN),
   heading: "Occupational Therapist Salary Australia 2026: Hospital Pay by State",
   metaDescription: hospitalMetaDescription("Occupational therapist", "occupational-therapist", MEDIAN),
-  lede: `Full-time occupational therapists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year, or ${aud(MEDIAN.medianHourly)} an hour (Jobs and Skills Australia). In public hospitals each state sets the pay, on scales that start ${startRangeWords("occupational-therapist")}. The award minimum in private practice is $34.44 an hour.`,
+  lede: `Full-time occupational therapists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year, or ${aud(MEDIAN.medianHourly)} an hour (Jobs and Skills Australia). In public hospitals each state sets the pay, on scales that start ${startRangeWords("occupational-therapist")}. The Health Professionals and Support Services Award minimum for a first-year occupational therapist in private practice is $34.44 an hour.`,
   answerQuestion: "How much does an occupational therapist earn in Australia?",
   ato: OCCUPATIONAL_THERAPIST_ATO,
   publicHospital: {
     profession: "occupational-therapist",
     intro:
-      "Occupational therapists in public hospitals are paid under their state's allied health award or agreement, not the federal award further down this page. These are the rates in force on 23 October 2026.",
+      "Occupational therapists in public hospitals are paid under their state's allied health award or agreement, not the Health Professionals and Support Services Award further down this page. These are the rates in force on 23 October 2026.",
   },
   sources: [...BASE.sources, ATO_TABLE_15],
   dateModified: HOSPITAL_PAGES_MODIFIED,

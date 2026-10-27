@@ -57,7 +57,7 @@ export const AVIATION_COPY: Readonly<Record<AviationPageSlug, AviationCopy>> = {
     plural: "pilots",
     employerPhrase: "the Air Pilots Award",
     howPayWorks: [
-      "Pilots are covered by the Air Pilots Award 2020 [MA000046], a modern award that sets minimum annual salaries. Unlike most awards, it sets pay as annual salaries by type of flying and aircraft rather than as hourly rates.",
+      "Pilots are covered by the Air Pilots Award 2020 [MA000046], a modern award that sets minimum annual salaries. Unlike most awards, the Air Pilots Award sets pay as annual salaries by type of flying and aircraft rather than as hourly rates.",
       "The award is a floor. Most airline pilots (at Qantas, Virgin Australia, Jetstar, Rex and regional carriers) are paid under their airline's enterprise agreement, which pays well above these minimums and has its own seniority scales. The award rates matter most in general aviation: charter, aerial work, flight instruction and smaller operators.",
     ],
     traineeHeading: "Cadet and trainee pilot pay",
@@ -94,7 +94,7 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
               Under {page.instrument.name}, {page.scales[0].title.toLowerCase()} runs from{" "}
               <strong className="text-navy">{formatAUD(entry)}</strong> to{" "}
               <strong className="text-navy">{formatAUD(top)}</strong> a year in base salary, from{" "}
-              {page.ratesEffectiveFrom}. Every figure below is read from the instrument itself.
+              {page.ratesEffectiveFrom}. Every salary in the tables below is read from the instrument itself.
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
@@ -124,7 +124,7 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
                 <h2 style={HEADING_FONT}>
                   {copy.noun.charAt(0).toUpperCase() + copy.noun.slice(1)} pay scale {year}
                 </h2>
-                <p>Annual full-time base salary before tax and before superannuation.</p>
+                <p>The tables show annual full-time base salary, before tax and before superannuation.</p>
                 {page.scales.map((scale) => (
                   <ScaleTable key={scale.id} scale={scale} caption={scale.title} />
                 ))}
@@ -184,7 +184,7 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
               <h2 style={HEADING_FONT}>What a {copy.noun} salary is worth after tax</h2>
               {entry !== null && top !== null ? (
                 <p>
-                  Every salary in the tables links to its take-home figure, for example{" "}
+                  Every salary in the tables links to the take-home page for that salary or the nearest one, for example{" "}
                   <Link href={takeHomeHref(entry)}>take-home pay on {formatAUD(nearestTakeHome(entry))}</Link> and{" "}
                   <Link href={takeHomeHref(top)}>take-home pay on {formatAUD(nearestTakeHome(top))}</Link>. Allowances
                   and loadings are taxed as ordinary income on top of base salary.

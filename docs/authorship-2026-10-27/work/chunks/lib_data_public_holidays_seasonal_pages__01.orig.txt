@@ -1,0 +1,292 @@
+// Copy and configuration for the eight holiday-specific pay pages (Oct 2026):
+// Christmas Day, Boxing Day, New Year, 2027 holidays, Melbourne Cup Day,
+// Easter, Australia Day and the Christmas shutdown. One generic component
+// (modules/guide/seasonal-holiday-page.tsx) renders every page from this file,
+// so the dates, rates and examples all come from the same tested data.
+//
+// Rates are never typed here: they are read from the award data via
+// getAwardPublicHolidayRate (which reads lib/constants). Dates come from
+// ./seasonal (which picks them out of the eight state files).
+//
+// Sources read 5 Oct 2026 (Firecrawl): Fair Work Ombudsman "2026 public
+// holidays" and "2027 public holidays", "Rules and entitlements during the
+// end-of-year holiday season" (published 13 Oct 2025, updated 17 Dec 2025) and
+// "Direction to take annual leave during a shutdown".
+
+import { getAwardPublicHolidayRate } from "./award-rates";
+import { multipleWords, pctLabel } from "./calc";
+import { publicHolidayRateRange } from "./award-rates";
+import { MODERN_AWARDS } from "../../constants/modern-awards";
+import type { PhSource } from "./types";
+import type { SeasonalTopic } from "./seasonal";
+
+export const SEASONAL_VERIFIED_ON = "5 October 2026";
+
+export const FW_2026: PhSource = {
+  title: "2026 public holidays",
+  url: "https://www.fairwork.gov.au/employment-conditions/public-holidays/2026-public-holidays",
+  publisher: "Fair Work Ombudsman",
+};
+export const FW_2027: PhSource = {
+  title: "2027 public holidays",
+  url: "https://www.fairwork.gov.au/employment-conditions/public-holidays/2027-public-holidays",
+  publisher: "Fair Work Ombudsman",
+};
+export const FW_END_OF_YEAR: PhSource = {
+  title: "Rules and entitlements during the end-of-year holiday season",
+  url: "https://www.fairwork.gov.au/newsroom/news/rules-and-entitlements-during-end-year-holiday-season",
+  publisher: "Fair Work Ombudsman",
+};
+export const FW_SHUTDOWN: PhSource = {
+  title: "Direction to take annual leave during a shutdown",
+  url: "https://www.fairwork.gov.au/leave/annual-leave/directing-an-employee-to-take-annual-leave/direction-to-take-annual-leave-during-a-shut-down",
+  publisher: "Fair Work Ombudsman",
+};
+
+export interface SeasonalSection {
+  id: string;
+  heading: string;
+  paragraphs: readonly string[];
+  bullets?: readonly string[];
+}
+
+export interface SeasonalTopicBlock {
+  topic: SeasonalTopic;
+  id: string;
+  heading: string;
+  intro: string;
+  footnote?: string;
+}
+
+export interface SeasonalPage {
+  slug: string;
+  /** Key in GUIDE_AUTHORSHIP. */
+  guideKey: string;
+  /** <title> forms, fullest first (lib/seo-title fitTitle). */
+  titles: readonly string[];
+  h1: string;
+  /** Meta description forms, fullest first (lib/seo-title fitDescription). */
+  descriptions: readonly string[];
+  standfirst: string;
+  directAnswer: string;
+  /** Short label for breadcrumbs and "other holiday guides" links. */
+  shortName: string;
+  topics: readonly SeasonalTopicBlock[];
+  /** Renders the 2027 matrix + state-only list instead of topic tables. */
+  matrix2027?: boolean;
+  /** Renders Victoria's regional Melbourne Cup replacement table. */
+  vicRegional?: boolean;
+  sectionsBeforeCalculator: readonly SeasonalSection[];
+  calculator: { holidayName?: string; stateCode?: string; awardKey: string; employment: "permanent" | "casual"; hours: number; partDayNote?: string };
+  example: { heading: string; intro: string; awardKeys: readonly string[]; hours: number; shiftNote: string };
+  /** A shift that straddles a part-day holiday window. */
+  partDayExample?: { heading: string; awardKey: string; employment: "permanent" | "casual"; shiftText: string; ordinaryHours: number; holidayHours: number; explanation: string };
+  /** Renders the shutdown leave worked example. */
+  shutdownExample?: boolean;
+  sectionsAfterCalculator: readonly SeasonalSection[];
+  faqs: readonly { q: string; a: string }[];
+  /** Other pages to link to, beyond the standard set. */
+  related: readonly { href: string; label: string }[];
+  sources: readonly PhSource[];
+}
+
+function pc(awardKey: string, which: "permanent" | "casual"): string {
+  const a = getAwardPublicHolidayRate(awardKey);
+  if (!a) throw new Error(`unknown award ${awardKey}`);
+  return pctLabel(a[which]);
+}
+
+const range = publicHolidayRateRange();
+const RANGE_PERM = `${pctLabel(range.permanentMin)} to ${pctLabel(range.permanentMax)}`;
+const RANGE_CASUAL = `${pctLabel(range.casualMin)} to ${pctLabel(range.casualMax)}`;
+const RETAIL_P = pc("retail", "permanent");
+const RETAIL_C = pc("retail", "casual");
+const HOSP_P = pc("hospitality", "permanent");
+const HOSP_C = pc("hospitality", "casual");
+// "double time and a half": the wording searchers use for the casual rate.
+const RETAIL_C_WORDS = multipleWords(getAwardPublicHolidayRate("retail")!.casual);
+const RETAIL_C_NAMED = RETAIL_C_WORDS ? `${RETAIL_C} (${RETAIL_C_WORDS})` : RETAIL_C;
+
+// Road Transport's Good Friday / Christmas Day rows, read from the award data.
+const ROAD = MODERN_AWARDS["road-transport"];
+const ROAD_GF_XMAS = ROAD.penalties.find((p) => /Good Friday and Christmas Day/.test(p.label));
+if (!ROAD_GF_XMAS) throw new Error("road transport Good Friday/Christmas Day row missing");
+// "paid in addition to the weekly wage" for full-time/part-time day workers: total = 1 + row.
+const ROAD_GF_XMAS_PERM = pctLabel(1 + ROAD_GF_XMAS.fullTime);
+const ROAD_GF_XMAS_CASUAL = pctLabel(ROAD_GF_XMAS.casual ?? 0);
+
+const NOT_WORKING_ANSWER =
+  "Yes, if you are full-time or part-time and the day falls on a day you would normally work. You are paid your base pay rate for the ordinary hours you would have worked, without penalty rates, loadings, overtime or allowances (Fair Work Act s 116). Casuals are not paid for a public holiday they don't work, and a part-timer who doesn't normally work that weekday gets nothing for it.";
+
+export const SEASONAL_PAGES: readonly SeasonalPage[] = [
+  // ---------------------------------------------------------------------------
+  // Christmas Day
+  // ---------------------------------------------------------------------------
+  {
+    slug: "christmas-day-pay-rates",
+    guideKey: "christmas-day-pay-rates",
+    shortName: "Christmas Day pay",
+    titles: ["Christmas Day Pay Rates 2026: Public Holiday Rates by State", "Christmas Day Pay Rates 2026 by State & Award"],
+    h1: "Christmas Day pay rates 2026 and 2027: what you earn by state and award",
+    descriptions: [
+      `Christmas Day 2026 is Friday 25 December. Retail and hospitality pay ${RETAIL_P}, and casuals ${RETAIL_C_NAMED}. Dates by state and a pay calculator.`,
+      `Christmas Day is Friday 25 December 2026. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Dates by state, Christmas Eve part-day rules and a pay calculator.`,
+      `Christmas Day 2026 is Friday 25 December. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Dates by state, Christmas Eve rules and a calculator.`,
+    ],
+    standfirst:
+      "Christmas Day is a public holiday in every state and territory, so every hour you work is paid at your award's public holiday rate. The date, the extra weekday holidays and the Christmas Eve evening rules are what change from state to state.",
+    directAnswer: `Christmas Day 2026 is Friday 25 December in every state and territory. Work it and your award pays ${RANGE_PERM} of your base rate (${RANGE_CASUAL} for casuals), which is ${RETAIL_P} (casual ${RETAIL_C}) under the General Retail and Hospitality awards. Stay home on a day you normally work and a full-time or part-time employee is still paid their base rate for their ordinary hours. In 2027 Christmas Day is a Saturday, so most states add Monday 27 December as an extra public holiday.`,
+    topics: [
+      {
+        topic: "christmas",
+        id: "dates",
+        heading: "Christmas Eve and Christmas Day by state, 2026 and 2027",
+        intro:
+          "Christmas Day itself never moves, but what surrounds it does. Queensland, South Australia and the Northern Territory make the evening of Christmas Eve a part-day public holiday, and when Christmas Day lands on a weekend most states add the next weekday as an extra holiday. Every date below comes from the state government's own list and matches the Fair Work Ombudsman's 2026 and 2027 pages.",
+        footnote:
+          "Tasmania, 2027: WorkSafe Tasmania's table lists Monday 27 December as the Christmas Day holiday, while the Fair Work Ombudsman's 2027 list shows both Saturday 25 December and Monday 27 December. If you work in Tasmania on Saturday 25 December 2027, check your award or agreement, or ask the Fair Work Infoline on 13 13 94, before assuming the Saturday is an ordinary day.",
+      },
+    ],
+    sectionsBeforeCalculator: [
+      {
+        id: "rates",
+        heading: "What Christmas Day pays under the main awards",
+        paragraphs: [
+          `Christmas Day is paid at the same public holiday rate as any other public holiday under most awards. The General Retail Award and the Hospitality Award both pay ${RETAIL_P} of the minimum hourly rate to full-time and part-time staff and ${RETAIL_C} to casuals, and the casual figure already contains the 25% casual loading, so nothing more is added. Across the 14 awards this site publishes the permanent range is ${RANGE_PERM}, and the casual range ${RANGE_CASUAL}.`,
+          `Two awards single Christmas Day out. The Road Transport and Distribution Award's day-work rates are higher on Good Friday and Christmas Day than on other public holidays: ${ROAD_GF_XMAS_PERM} of the weekly wage rate for full-time and part-time day workers and ${ROAD_GF_XMAS_CASUAL} for casual day workers. Under the Nurses Award, Christmas Day falling on a weekend adds an extra 50% in businesses that operate seven days a week (cl 28.2(b)), which is relevant in 2027 when Christmas Day is a Saturday.`,
+          "If an enterprise agreement covers you, its rate replaces the award's. Pick the enterprise agreement option in the calculator and type in the percentage from your agreement. The full 14-award table is on the public holiday pay guide.",
+        ],
+      },
+    ],
+    calculator: { holidayName: "Christmas Day", awardKey: "hospitality", employment: "casual", hours: 8 },
+    example: {
+      heading: "Worked example: an 8-hour shift on Christmas Day 2026",
+      intro:
+        "The table uses each award's entry-level adult rate from 1 July 2026 as the base hourly rate, 8 hours worked, and compares the public holiday pay with the same hours on an ordinary weekday. Your own rate will differ, so use the calculator above for your payslip.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and any minimum shift length your award sets.",
+    },
+    partDayExample: {
+      heading: "Christmas Eve in SA, the NT and Queensland: a shift that changes rate",
+      awardKey: "hospitality",
+      employment: "casual",
+      shiftText: "5pm to midnight on Thursday 24 December 2026 in Adelaide or Darwin",
+      ordinaryHours: 2,
+      holidayHours: 5,
+      explanation:
+        "South Australia and the Northern Territory make Christmas Eve a public holiday from 7pm to midnight, and Queensland from 6pm. Only the hours inside that window are paid at the public holiday rate, so a 5pm start has two ordinary hours followed by five public holiday hours. The two earlier hours are paid at whatever your award sets for that time on a weekday evening.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "weekend",
+        heading: "When Christmas Day falls on a weekend (2027)",
+        paragraphs: [
+          "Christmas Day 2027 is a Saturday and Boxing Day a Sunday. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory keep Saturday 25 December as a public holiday and add Monday 27 December as an additional public holiday for Christmas Day, with Tuesday 28 December as the additional day for Boxing Day. Both extra days are real public holidays for pay: work either and the public holiday rate applies, and a full-time or part-time employee who normally works that Monday or Tuesday is paid for it if they have the day off.",
+          "Tasmania handles it differently, and the Boxing Day side of that is covered in the Boxing Day guide. For Christmas Day, the practical point is to check which of the Saturday and the Monday your award or agreement treats as the public holiday if you work in Tasmania.",
+        ],
+      },
+      {
+        id: "not-working",
+        heading: "Paid for Christmas Day when you don't work it",
+        paragraphs: [
+          "Every employee can be absent from work on a public holiday. A full-time or part-time employee whose roster includes Friday 25 December 2026 is paid their base rate for the ordinary hours they would have worked. Penalty rates, loadings, bonuses and overtime are not included, and your employer can't change your roster to avoid the payment. Casuals are not paid for Christmas Day if they don't work.",
+          "If you are on annual leave over Christmas, a public holiday that falls on one of your normal working days is paid as a public holiday and is not deducted from your leave balance. The Christmas shutdown guide walks through exactly how many days of leave a shutdown costs.",
+        ],
+      },
+      {
+        id: "asked-to-work",
+        heading: "Can you refuse to work Christmas Day?",
+        paragraphs: [
+          "Your employer can ask you to work, but the request must be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. The Fair Work Ombudsman lists the relevant factors: the nature of the workplace and your role, your personal circumstances including family or caring responsibilities, how much notice you were given, whether you could expect to be asked, and any penalty rates or other payment on offer.",
+          "The type of workplace is one of the factors, so a request to work Christmas Day can be more reasonable in a hospital, hotel or restaurant than in an office. If the request is reasonable and your refusal is not, you can be required to work, and the public holiday rate then applies to every hour.",
+        ],
+      },
+      {
+        id: "payslip",
+        heading: "Checking your Christmas pay on the payslip",
+        paragraphs: [
+          "Hours worked on Christmas Day should appear as their own line, marked public holiday or paid at a multiple of your base rate such as 2.25 or 2.5 times, rather than inside ordinary hours. Multiply those hours by your base rate and the percentage for your award to check the line. Casuals should see a single rate with the loading already inside it. If the numbers don't match, raise it with payroll first, then use the back pay calculator to total what you are owed.",
+          "Public holiday pay is ordinary income and is taxed through PAYG with the rest of your pay, so a big Christmas week can look smaller after tax than you expect. The take-home pay calculator shows the after-tax figure.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is the Christmas Day pay rate in Australia?", a: `It depends on your award or agreement. Retail and hospitality workers are paid ${RETAIL_P} of the base rate on a public holiday if they are full-time or part-time and ${RETAIL_C} if they are casual. Across 14 modern awards the permanent range is ${RANGE_PERM}. Road Transport day workers get a higher rate on Christmas Day than on other public holidays.` },
+      { q: "Is Christmas Eve a public holiday?", a: "Only in part, and only in some places. Queensland makes Christmas Eve a public holiday from 6pm to midnight, and South Australia and the Northern Territory from 7pm to midnight. In New South Wales, Victoria, Western Australia, Tasmania and the ACT Christmas Eve is an ordinary day, although your award may still pay evening or weekend rates." },
+      { q: "Do I get paid if Christmas Day is a day I don't work?", a: NOT_WORKING_ANSWER },
+      { q: "Do casuals get paid extra on Christmas Day?", a: `Casuals who work Christmas Day are paid the public holiday rate, ${RETAIL_C} of the base rate under the Retail and Hospitality awards, and that figure already includes the 25% casual loading. They are not paid for Christmas Day if they don't work.` },
+      { q: "When is Christmas Day in 2027 and is there an extra public holiday?", a: "Christmas Day 2027 is Saturday 25 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December as an additional public holiday for Christmas Day, and Tuesday 28 December for Boxing Day. Tasmania's list shows Monday 27 December and Tuesday 28 December." },
+      { q: "Can my employer make me work on Christmas Day?", a: "Your employer can ask, but the request has to be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. Factors include your role, your personal and caring circumstances, the notice you were given and the penalty rates on offer." },
+    ],
+    related: [
+      { href: "/boxing-day-pay-rates/", label: "Boxing Day pay rates" },
+      { href: "/new-years-day-pay-rates/", label: "New Year's Day and Eve pay" },
+      { href: "/christmas-shutdown-annual-leave/", label: "Christmas shutdown and annual leave" },
+      { href: "/public-holidays-2027/", label: "Public holidays 2027 with pay rates" },
+    ],
+    sources: [FW_2026, FW_2027, FW_END_OF_YEAR],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Boxing Day
+  // ---------------------------------------------------------------------------
+  {
+    slug: "boxing-day-pay-rates",
+    guideKey: "boxing-day-pay-rates",
+    shortName: "Boxing Day pay",
+    titles: ["Boxing Day Pay Rates 2026: Saturday 26 & Monday 28 December", "Boxing Day Pay Rates 2026: Dates and Rates by State"],
+    h1: "Boxing Day pay rates 2026: Saturday 26 and Monday 28 December",
+    descriptions: [
+      `Boxing Day 2026 is Saturday 26 December, plus Monday 28 December in most states. Retail pays ${RETAIL_P}, and casuals ${RETAIL_C_NAMED}. Calculator inside.`,
+      `Boxing Day 2026 is Saturday 26 December, with an extra public holiday on Monday 28 December in most states. Pay is ${RETAIL_P} in retail (casual ${RETAIL_C}). Calculator inside.`,
+      `Boxing Day 2026 is Saturday 26 December, with Monday 28 December added in most states. Retail pays ${RETAIL_P} (casual ${RETAIL_C}). Calculator inside.`,
+    ],
+    standfirst:
+      "In 2026 Boxing Day falls on a Saturday, which gives most of the country two public holidays: the Saturday itself and an additional Monday. Tasmania is the exception, and South Australia calls its holiday Proclamation Day.",
+    directAnswer: `Boxing Day 2026 is Saturday 26 December, and Monday 28 December is an additional public holiday in every state and territory except Tasmania, where only the Monday counts. Work either day and a retail or hospitality worker is paid ${RETAIL_P} of their base rate (casuals ${RETAIL_C}). In 2027 Boxing Day is a Sunday and the additional holiday is Tuesday 28 December.`,
+    topics: [
+      {
+        topic: "boxing",
+        id: "dates",
+        heading: "Boxing Day public holiday dates by state, 2026 and 2027",
+        intro:
+          "Boxing Day is 26 December, but the day you actually get depends on the state. Most states keep the 26th as a public holiday and add a weekday when it lands on a weekend. South Australia observes the same holiday as Proclamation Day. Tasmania moves the public holiday to the weekday and does not treat the weekend day as one.",
+      },
+    ],
+    sectionsBeforeCalculator: [
+      {
+        id: "which-day",
+        heading: "Which Boxing Day gets the public holiday rate in 2026?",
+        paragraphs: [
+          "In New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory, Saturday 26 December 2026 is a public holiday and Monday 28 December is an additional public holiday. Both are public holidays for pay, so a shift on either is paid at the public holiday rate. You do not choose between them, and working the Saturday does not use up the Monday.",
+          "Tasmania is different. WorkSafe Tasmania's list does not include Saturday 26 December 2026. The public holiday is Monday 28 December, so a Saturday shift in Tasmania is paid at the ordinary Saturday rate in your award and the public holiday rate applies on the Monday. In 2027, with Boxing Day on a Sunday, the Tuesday 28 December is the holiday there as well.",
+        ],
+      },
+      {
+        id: "rates",
+        heading: "Boxing Day pay rates",
+        paragraphs: [
+          `The rate is your award's public holiday rate. Under the General Retail Award it is ${RETAIL_P} for full-time and part-time employees and ${RETAIL_C} for casuals, and the same under the Hospitality Award. Across the 14 awards on this site the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}. The Fair Work Ombudsman's own example is a retail store manager who agrees to work Boxing Day for a promotion: she is paid public holiday rates for every hour.`,
+          "Boxing Day sales mean a lot of retail staff work it. Your award's public holiday row is the rate to check for hours worked on the day. SCHADS says in terms that public holiday pay replaces weekend rates and shift loadings (cl 34.2(b)); for any other award, read its public holiday clause if the Saturday and public holiday rates are close.",
+        ],
+      },
+    ],
+    calculator: { holidayName: "Boxing Day", awardKey: "retail", employment: "casual", hours: 8 },
+    example: {
+      heading: "Worked example: an 8-hour shift on Monday 28 December 2026",
+      intro:
+        "Entry-level adult rates from 1 July 2026, 8 hours, compared with the same hours on an ordinary weekday. The retail row is the typical Boxing Day sales shift.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "not-working",
+        heading: "If you don't work Boxing Day",
+        paragraphs: [
+          "A full-time or part-time employee who would normally work on the day is paid their base rate for their ordinary hours, whichever of the Saturday and the Monday applies to them. A Monday-to-Friday worker is paid for Monday 28 December 2026 even though they would not have worked the Saturday. A part-timer who works Tuesday to Thursday is paid for neither, and the Fair Work Ombudsman's example makes the same point for a Friday Boxing Day.",
+          "Casuals are paid only for the hours they work, at the casual public holiday rate. Check your roster for the 28th as well as the 26th, because both are public holidays in most states.",
+        ],
+      },

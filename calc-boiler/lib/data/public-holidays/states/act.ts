@@ -79,7 +79,7 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       id: "cross-border",
       heading: "Living in NSW, working in Canberra",
       paragraphs: [
-        "Public holiday entitlements follow where your job is based, not where you live. Someone who lives in Queanbeyan and works for a Canberra-based employer gets the ACT holidays, including Canberra Day and Reconciliation Day. Someone who lives in Canberra but works from a NSW base gets the NSW list. It pays to check which calendar your roster was built on, especially around the two ACT-only Mondays.",
+        "Public holiday entitlements follow where your job is based, not where you live. Someone who lives in Queanbeyan and works for a Canberra-based employer gets the ACT holidays, including Canberra Day and Reconciliation Day. Someone who lives in Canberra but works from a NSW base gets the NSW list. Check which calendar your roster was built on, especially for Canberra Day and Reconciliation Day, the two ACT-only Mondays.",
       ],
     },
     {
@@ -101,7 +101,7 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   faqs: [
     {
       q: "When is Reconciliation Day in the ACT?",
-      a: "Monday 1 June 2026 and Monday 31 May 2027. It is an ACT-only public holiday, so ACT-based employees who work it are paid public holiday rates under their award.",
+      a: "Reconciliation Day in the ACT is Monday 1 June 2026 and Monday 31 May 2027. It is an ACT-only public holiday, so ACT-based employees who work it are paid public holiday rates under their award.",
     },
     {
       q: "Is there a public holiday on Monday 27 April 2026 in the ACT?",

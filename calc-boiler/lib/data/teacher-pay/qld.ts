@@ -74,7 +74,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Classroom teachers — Stream 1",
       intro:
-        "The main scale. A beginning teacher with a four-year degree starts at Band 2, Step 1; Band 1 is for teachers on a Permission to Teach or working as an intern.",
+        "This is the main Queensland classroom teacher scale. A beginning teacher with a four-year degree starts at Band 2, Step 1; Band 1 is for teachers on a Permission to Teach or working as an intern.",
       stepHeading: "Classification and step",
       effectiveFrom: "1 September 2026 (Highly Accomplished and Lead Teacher: 7 September 2026)",
       steps: [
@@ -99,7 +99,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       id: "heads-of-program",
       title: "Promotional teaching positions: Heads of Program (Stream 2)",
       intro:
-        "Head of Department, Head of Department (Curriculum), Guidance Officer, Senior Guidance Officer and Head of Special Education Services.",
+        "The Heads of Program scale covers Head of Department, Head of Department (Curriculum), Guidance Officer, Senior Guidance Officer and Head of Special Education Services.",
       stepHeading: "Level and pay point",
       effectiveFrom: "7 September 2026 (Level 1, Paypoint 3: 1 September 2026)",
       steps: [
@@ -112,7 +112,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     {
       id: "deputy-principals",
       title: "Deputy principals (School Leaders Stream 3)",
-      intro: "Deputy principals, including Head of Special Education Services 4.",
+      intro: "The Queensland deputy principal scale covers deputy principals, including Head of Special Education Services 4.",
       stepHeading: "Pay point",
       effectiveFrom: "7 September 2026",
       steps: [
@@ -124,7 +124,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       id: "principals",
       title: "Principals (School Leaders Stream 3)",
       intro:
-        "Ten principal levels, each with published pay points. The bracketed labels are the previous band and school leader numbering, which still appears on some payslips.",
+        "The Queensland principal scale has ten levels, each with published pay points. The bracketed labels are the previous band and school leader numbering, which still appears on some payslips.",
       stepHeading: "Level and pay point",
       effectiveFrom: "7 September 2026",
       steps: [
@@ -154,7 +154,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       id: "assistant-and-community-teachers",
       title: "Assistant teachers and community teachers",
       intro:
-        "Separate classifications used in Aboriginal and Torres Strait Islander community schools.",
+        "Assistant teacher and community teacher are separate classifications used in Aboriginal and Torres Strait Islander community schools.",
       stepHeading: "Classification and step",
       effectiveFrom: "1 September 2026 (community teachers: 7 September 2026)",
       steps: [
@@ -203,36 +203,36 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Above Band 3 you apply, and you stay in the classroom",
       body: [
-        "Senior Teacher, Experienced Senior Teacher, and Highly Accomplished and Lead Teacher are all things you apply for rather than age into, and all of them keep you teaching. That is the distinguishing feature of the Queensland structure: there are four paid classifications above the incremental scale that do not require leaving the classroom.",
+        "Senior Teacher, Experienced Senior Teacher, and Highly Accomplished and Lead Teacher are classifications you apply for rather than reach by annual increment, and all of them keep you teaching. In the Queensland structure, four paid classifications sit above the incremental scale and none of them requires leaving the classroom.",
         "If you want a leadership role instead, the pathway runs from Head of Department (Curriculum) through to Principal, on the separate Stream 2 and Stream 3 scales above.",
       ],
     },
     {
       heading: "What the agreement says about increments",
       body: [
-        "Clause 5.11.2: progression from one salary step to the next by increment is subject to satisfactory performance. Clause 5.11.1 adds something part-timers should know: incremental progression is not affected by your part-time employment fraction, so a 0.5 load still moves you a step a year.",
+        "Clause 5.11.2 of the certified agreement makes progression from one salary step to the next by increment subject to satisfactory performance. Clause 5.11.1 covers part-time teachers: incremental progression is not affected by your part-time employment fraction, so a 0.5 load still moves you a step a year.",
         "Clause 5.11.3 is the exception: an employee subject to a Managing Unsatisfactory Performance process at Stage 2 or beyond at the time of their increment does not progress.",
       ],
     },
     {
       heading: "Senior Teacher, Experienced Senior Teacher and certification",
       body: [
-        "Clause 5.4.3.1: three months before becoming eligible for Senior Teacher you complete an undertaking and personal action plan as part of the annual performance review process.",
-        "Clause 5.4.4.1: Experienced Senior Teacher is available to any teacher with two or more years of satisfactory service as a Senior Teacher.",
+        "Under clause 5.4.3.1, you complete an undertaking and personal action plan three months before becoming eligible for Senior Teacher, as part of the annual performance review process.",
+        "Under clause 5.4.4.1, Experienced Senior Teacher is available to any teacher with two or more years of satisfactory service as a Senior Teacher.",
         "Clause 5.5.5.1 sets the gate for Highly Accomplished and Lead Teacher: full teacher registration, a minimum of five years of registered recognised teaching experience at the next portfolio submission date, and at least two completed annual performance reviews in the preceding two years for HAT, or three in three years for Lead. Certification has to be renewed every five years.",
       ],
     },
     {
       heading: "The deferred salary scheme",
       body: [
-        "Permanent state school teachers can defer part of their annual salary over four years, then be paid that deferred salary during a fifth year while taking a pre-approved period of leave. It changes what your payslip shows for four years, so it is worth knowing about when you are reconciling gross pay against the scale.",
+        "Permanent state school teachers can defer part of their annual salary over four years, then be paid that deferred salary during a fifth year while taking a pre-approved period of leave. It changes what your payslip shows for those four years, so allow for the deferral when you reconcile your gross pay against the scale.",
       ],
     },
   ],
 
   notices: [
     "Queensland's certified agreement expired on 30 June 2025 and the replacement went to arbitration on 31 December 2025. No new agreement has been certified: the Queensland Industrial Relations Commission's agreements page (updated 2 October 2026) still lists the 2022 agreement, so it remains the instrument in force. The rates below are what the department's own salary schedule publishes, read on 14 October 2026.",
-    "The department has now published the September 2026 increases. From 7 September 2026 teachers are paid a 3% interim increase ([2026] QIRC 267) or the award rate where that is higher, and award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). Classroom teacher Bands 1 to 3, Senior Teacher, Experienced Senior Teacher, assistant teachers, supply teachers and Head of Program Level 1 Paypoint 3 are on the award rate, the same figures as the QIRC's award reprint operative 1 September 2026. Highly Accomplished and Lead Teacher, the other Head of Program rows, deputy principals, principals and community teachers are on the 3% interim rate.",
+    "The department's salary schedule includes the September 2026 increases. From 7 September 2026 teachers are paid a 3% interim increase ([2026] QIRC 267) or the award rate where that is higher, and award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). Classroom teacher Bands 1 to 3, Senior Teacher, Experienced Senior Teacher, assistant teachers, supply teachers and Head of Program Level 1 Paypoint 3 are on the award rate, the same figures as the QIRC's award reprint operative 1 September 2026. Highly Accomplished and Lead Teacher, the other Head of Program rows, deputy principals, principals and community teachers are on the 3% interim rate.",
     "The department's workbook no longer dates its columns, and its cover still reads \"Updated 1 September 2026\". Each table below gives the date its rates apply from: 1 September 2026 for award rates, and 7 September 2026, the operative date of the interim order, for the rest.",
     "Teach Queensland's summary pay page (updated 1 October 2026) quotes a beginning-teacher salary of \"approximately $86,601\", below the $90,164 the department's salary schedule prints for Band 2 Step 1. This page follows the salary schedule.",
   ],
@@ -294,7 +294,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How many steps are there in the Queensland teacher pay scale?",
-      a: "Eight incremental steps between the four-year-degree entry point and the top: four in Band 2 and four in Band 3. Everything above Band 3 Step 4 is applied for rather than incremented into.",
+      a: "The Queensland teacher pay scale has eight incremental steps between the four-year-degree entry point and the top: four in Band 2 and four in Band 3. Everything above Band 3 Step 4 is applied for rather than incremented into.",
     },
     {
       q: "What is a principal paid in Queensland?",
@@ -306,7 +306,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "When do Queensland teachers get a pay rise?",
-      a: "The latest rise has already been paid. From 7 September 2026 Queensland state school teachers are paid a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267), or the award rate where that is higher; award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The department's salary schedule now prints those rates, and this page tables them. The interim increase applies until the QIRC decides the replacement agreement, which is still in arbitration, so no further rise has a date yet.",
+      a: "Queensland state school teachers have already been paid the latest rise. From 7 September 2026 they are paid a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267), or the award rate where that is higher; award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The department's salary schedule now prints those rates, and this page tables them. The interim increase applies until the QIRC decides the replacement agreement, which is still in arbitration, so no further rise has a date yet.",
     },
   ],
 };

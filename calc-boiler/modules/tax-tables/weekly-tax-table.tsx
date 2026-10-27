@@ -80,7 +80,7 @@ export default function WeeklyTaxTablePage() {
           <TableDownloads frequency="weekly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_WEEKLY} className="mb-6" />
           <TaxTableLookupWidget frequency="weekly" defaultGross={1_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
-            {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
+            {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage placement="content" className="mb-0 mt-6" />
@@ -102,9 +102,9 @@ export default function WeeklyTaxTablePage() {
               <h2>Full Weekly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
                 The table lists the amount to withhold from weekly earnings in {formatAUD(50)} steps, in the two
-                {" "}{ATO_WEEKLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
+                {" "}{ATO_WEEKLY.nat} columns every employer uses: tax-free threshold claimed (column 2 of the ATO
                 table) and not claimed (column 3, typical for a{" "}
-                <Link href="/second-job-tax-calculator/">second job</Link>) &mdash; plus the total with a study loan.
+                <Link href="/second-job-tax-calculator/">second job</Link>), plus the total with a study loan.
                 Switch to {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an older pay run, or download every dollar as a CSV.
               </p>
               <FullTaxTable
@@ -141,8 +141,8 @@ export default function WeeklyTaxTablePage() {
               </p>
               <p>
                 &quot;Gross earnings&quot; means your ordinary weekly pay before tax, including taxable allowances,
-                casual loading and overtime paid in that run &mdash; but excluding employer superannuation, which is
-                paid on top of your wage and never withheld from it. If your payslip shows a different figure from
+                casual loading and overtime paid in that run. It excludes employer superannuation, which is
+                paid on top of your wage and is not withheld from it. If your payslip shows a different figure from
                 this table, our guide to <Link href="/understanding-your-payslip/">understanding your payslip</Link>{" "}
                 walks through the usual causes.
               </p>
@@ -172,14 +172,14 @@ export default function WeeklyTaxTablePage() {
                 income across your pays, which is why column 2 is so much lower than column 3.
               </p>
               <ul>
-                <li><strong>Column 2 &mdash; tax-free threshold claimed.</strong> Use this for your main job. Withholding does not start until your weekly earnings pass about {formatAUD(362)}, and it builds in the Medicare levy with low-income shading.</li>
-                <li><strong>Column 3 &mdash; no tax-free threshold.</strong> Use this for a second or subsequent job, or where the payee has not claimed the threshold. Withholding starts at the very first dollar. At {formatAUD(800)} a week, column 2 withholds {formatAUD(example800tft.totalWithheld)} while column 3 withholds {formatAUD(example800noTft.totalWithheld)} &mdash; a difference of {formatAUD(example800noTft.totalWithheld - example800tft.totalWithheld)} a week.</li>
+                <li><strong>Column 2: tax-free threshold claimed.</strong> Use this for your main job. Withholding does not start until your weekly earnings pass about {formatAUD(362)}, and it builds in the Medicare levy with low-income shading.</li>
+                <li><strong>Column 3: no tax-free threshold.</strong> Use this for a second or subsequent job, or where the payee has not claimed the threshold. Withholding starts at the very first dollar. At {formatAUD(800)} a week, column 2 withholds {formatAUD(example800tft.totalWithheld)} while column 3 withholds {formatAUD(example800noTft.totalWithheld)}, a difference of {formatAUD(example800noTft.totalWithheld - example800tft.totalWithheld)} a week.</li>
               </ul>
               <p>
                 Claiming the threshold on two jobs at once is the classic way to end up with a tax bill: each employer
                 withholds as though the other did not exist, so between them they under-withhold by thousands across the
                 year. Our <Link href="/second-job-tax-calculator/">second job tax calculator</Link> shows the size of the gap.
-                Note also that when you use column 3, the ATO says to allow <em>no</em> tax offsets and make <em>no</em> Medicare
+                When you use column 3, the ATO says to allow <em>no</em> tax offsets and make <em>no</em> Medicare
                 levy adjustment.
               </p>
             </section>
@@ -220,7 +220,7 @@ export default function WeeklyTaxTablePage() {
               <p>
                 At {formatAUD(1_000)} a week a foreign resident has {formatAUD(example1000Foreign.totalWithheld)} withheld
                 against a resident&apos;s {formatAUD(example1000.totalWithheld)}. Foreign residents cannot claim tax offsets to
-                reduce withholding &mdash; if one is claimed on a <em>Withholding declaration</em>, the employer ignores it.
+                reduce withholding. If one is claimed on a <em>Withholding declaration</em>, the employer ignores it.
                 A foreign resident who has not provided a valid TFN is withheld at a flat {NO_TFN_RATES.foreignResident * 100}%
                 instead. Workers on a working holiday maker visa are a separate case again and use Schedule 15 (NAT 75531)
                 for every payment, including lump sums.
@@ -233,7 +233,7 @@ export default function WeeklyTaxTablePage() {
                 A payee who has not quoted a tax file number, has not claimed an exemption from quoting one, and has not
                 told you they have applied for one must be withheld at the penalty rates: <strong>{NO_TFN_RATES.resident * 100}%</strong> for
                 a resident and <strong>{NO_TFN_RATES.foreignResident * 100}%</strong> for a foreign resident, ignoring cents. There is no
-                threshold and no graduated scale &mdash; it is a flat rate on every dollar.
+                threshold and no graduated scale: it is a flat rate on every dollar.
               </p>
               <p>
                 If the payee states on their <em>Tax file number declaration</em> that they have applied for a TFN or made an
@@ -249,9 +249,9 @@ export default function WeeklyTaxTablePage() {
               <p>
                 {ATO_WEEKLY.nat} is built on <strong>{WEEKLY_EXTRA_PAY.standardPayCount} pays a year</strong>. Depending on which day
                 of the week you are paid, a financial year occasionally contains{" "}
-                <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. The table has no way of knowing, so the extra pay is
-                withheld exactly like an ordinary week &mdash; and across the year slightly too little tax is collected. The
-                shortfall does not disappear; it appears as a smaller refund or an unexpected bill on the tax assessment.
+                <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. The weekly table does not adjust for the extra pay day, so the extra pay is
+                withheld exactly like an ordinary week. Across the year, slightly too little tax is collected. The
+                shortfall shows up on the tax assessment as a smaller refund or an unexpected bill.
               </p>
               <p>
                 Employers should tell payees when a 53-pay year is coming. A payee who would rather not be caught out can ask
@@ -259,7 +259,7 @@ export default function WeeklyTaxTablePage() {
               </p>
               <ExtraPayTable frequency="weekly" schedule={WEEKLY_EXTRA_PAY} />
               <p>
-                This is voluntary and requested by the payee &mdash; the employer cannot impose it. Fortnightly payroll has the same
+                The extra withholding is voluntary: the payee requests it and the employer cannot impose it. Fortnightly payroll has the same
                 issue in a <Link href="/fortnightly-tax-table/">27-pay year</Link>; monthly payroll never does, because twelve calendar
                 months always means twelve pays.
               </p>
@@ -310,7 +310,7 @@ export default function WeeklyTaxTablePage() {
                 <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts. The ATO reissued all 15 withholding
                 schedules and 12 tax tables to match, and also lifted the Medicare levy low-income thresholds and re-indexed the
                 study and training loan repayment thresholds. The 2026-27 weekly table therefore withholds slightly less than the
-                2025-26 version &mdash; up to about <strong>$5 a week</strong> ({formatAUD(268)} a year) for anyone earning $45,000 or more.
+                2025-26 version: up to about <strong>$5 a week</strong> ({formatAUD(268)} a year) for anyone earning $45,000 or more.
                 A further cut to 14% is legislated for 1 July 2027. See the full timeline in our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
@@ -332,9 +332,9 @@ export default function WeeklyTaxTablePage() {
               <h2>Official ATO Weekly Tax Table PDF and Spreadsheet</h2>
               <p>
                 The ATO publishes {ATO_WEEKLY.nat} both as a printable PDF look-up table and as a spreadsheet look-up tool where
-                you type in weekly earnings and read off both columns. Most people searching for the PDF only need one or two
-                amounts &mdash; the calculator at the top of this page gives the same answer instantly &mdash; but the source documents
-                are linked directly below.
+                you type in weekly earnings and read off both columns. If you only need one or two amounts from the PDF, the
+                calculator at the top of this page gives the same figures instantly. The ATO source documents are linked
+                directly below.
               </p>
               <AtoDownloads doc={ATO_WEEKLY} also={[ATO_SCHEDULE_1, ATO_SCHEDULE_8]} />
             </section>
@@ -344,12 +344,12 @@ export default function WeeklyTaxTablePage() {
             <section id="related-resources">
               <h2>Related Tax Tables and Calculators</h2>
               <ul>
-                <li><Link href="/payg-withholding-tables/">PAYG withholding tables hub</Link> &mdash; how the whole schedule system works, including no-TFN and working holiday rates.</li>
-                <li><Link href="/fortnightly-tax-table/">Fortnightly tax table (NAT 1006)</Link> &mdash; withholding amounts for 26-pay cycles.</li>
-                <li><Link href="/monthly-tax-table/">Monthly tax table (NAT 1007)</Link> &mdash; withholding amounts for 12-pay cycles.</li>
-                <li><Link href="/schedule-5-tax-table/">Schedule 5 tax table (NAT 3348)</Link> &mdash; bonuses, commissions, and back payments.</li>
-                <li><Link href="/weekly-pay-calculator/">Weekly pay calculator</Link> &mdash; your full weekly take-home breakdown from an annual salary.</li>
-                <li><Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> &mdash; how the STSL column affects your repayments.</li>
+                <li><Link href="/payg-withholding-tables/">PAYG withholding tables hub</Link>: how the whole schedule system works, including no-TFN and working holiday rates.</li>
+                <li><Link href="/fortnightly-tax-table/">Fortnightly tax table (NAT 1006)</Link>: withholding amounts for 26-pay cycles.</li>
+                <li><Link href="/monthly-tax-table/">Monthly tax table (NAT 1007)</Link>: withholding amounts for 12-pay cycles.</li>
+                <li><Link href="/schedule-5-tax-table/">Schedule 5 tax table (NAT 3348)</Link>: bonuses, commissions, and back payments.</li>
+                <li><Link href="/weekly-pay-calculator/">Weekly pay calculator</Link>: your full weekly take-home breakdown from an annual salary.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>: how the STSL column affects your repayments.</li>
               </ul>
             </section>
 

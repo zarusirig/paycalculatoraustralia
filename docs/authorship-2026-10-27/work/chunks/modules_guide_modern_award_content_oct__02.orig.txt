@@ -1,0 +1,205 @@
+    workedExample: {
+      heading: "Worked example: a casual and a permanent employee on a Sunday",
+      intro: `Both Alex (casual) and Jo (permanent) are Level 3 employees (${$(l3.hourly)} an hour) and each works 4 ordinary hours on a Sunday.`,
+      steps: [
+        `Alex, casual: the loading on a Sunday is 30%, so ${$(l3.hourly)} × 130% = ${$(sunCas)} an hour → ${$(roundCents(sunCas * 4))}.`,
+        `Jo, permanent: Sunday is 150%, so ${$(l3.hourly)} × 150% = ${$(sunPerm)} an hour → ${$(roundCents(sunPerm * 4))}.`,
+        `Alex is paid ${$(roundCents(sunPerm * 4 - sunCas * 4))} less for the same 4 hours, because the casual loading is the only extra a casual receives and it replaces the leave and notice entitlements they do not get.`,
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "What is the Fitness Industry Award Saturday and Sunday rate?",
+        a: `Permanent and part-time staff are paid 125% on a Saturday and 150% on a Sunday for ordinary hours: ${$(x(l1.hourly, 1.25))} and ${$(x(l1.hourly, 1.5))} at Level 1. Casuals are paid 130% on both days (${$(x(l1.hourly, 1.3))} at Level 1). Public holidays are 250% for permanent staff (${$(x(l1.hourly, 2.5))} at Level 1).`,
+      },
+      {
+        q: "What casual rate applies on a public holiday?",
+        a: "The award sends casuals working a public holiday to the 30% casual loading in cl 12.1(b) (cl 26.3(c)), and Schedule B.2 lists 130% for Saturday, Sunday and public holidays together. That is far below the 250% permanent rate, so confirm the figure with your pay guide or the Fair Work Infoline before relying on it. We do not print a public holiday dollar rate for casuals.",
+      },
+      {
+        q: "What are overtime rates in the Fitness Industry Award?",
+        a: `Overtime is 150% for the first 2 hours Monday to Saturday and 200% after that, 200% on Sunday and 250% on a public holiday: ${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 2))} at Level 1. Overtime is anything outside 5.00 am to 11.00 pm Monday to Friday and 6.00 am to 9.00 pm on weekends, over 10 hours a day, or over an average of 38 a week over 4 weeks.`,
+      },
+      {
+        q: "Which level is a swimming teacher, lifeguard or personal trainer?",
+        a: "A swim and water safety teacher with a qualification is at least Level 2, rising to Level 3 and 4 with teaching hours and further qualifications; a pool lifeguard is Level 3 and a senior pool lifeguard Level 4; a fitness trainer or fitness specialist holding an AQF Diploma is Level 5 (Schedule A). Disputes about swimming teacher or coach classification can go to the Fair Work Commission.",
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function realEstate(): AwardPageCopy {
+  const a = MODERN_AWARDS["real-estate"];
+  const l1a = level("real-estate", "Level 1 (Associate) — first 12 months");
+  const l1b = level("real-estate", "Level 1 (Associate) — after 12 months");
+  const l2 = level("real-estate", "Level 2 (Representative)");
+  const l4 = level("real-estate", "Level 4 (In-Charge)");
+  const ph = x(l2.hourly, 2);
+  return {
+    slug: "real-estate-award-rates",
+    crumb: "Real Estate Award Rates",
+    title: `Real Estate Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–4`,
+    description: fitDescription(
+      `Real Estate Industry Award (MA000106) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1a.hourly)}/hr to Level 4 ${$(l4.hourly)}/hr. Casual, public holiday, overtime and junior rates, and the no-weekend-penalty rule.`,
+      `Real Estate Industry Award MA000106 rates from ${a.meta.operativeFrom}: ${$(l1a.hourly)} to ${$(l4.hourly)} an hour, casual, public holiday and junior rates.`,
+    ),
+    h1: `Real Estate Award Pay Rates ${FY}`,
+    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}) (property managers, sales and leasing staff, assistants and administrators in real estate agencies), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 (Associate) employee earns at least ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week) in their first 12 months and ${$(l1b.hourly)} after that; a casual earns 25% more. Level 2 is ${$(l2.hourly)}, Level 3 ${$(level("real-estate", "Level 3 (Supervisory)").hourly)} and Level 4 ${$(l4.hourly)}. There are no Saturday or Sunday penalty rates for ordinary hours; a public holiday is 200% (casuals 200% of their casual rate).`,
+    trap: {
+      heading: "No weekend penalty rates, but a rostered day off is paid at overtime rates",
+      body: "Ordinary hours under the Real Estate Industry Award are 38 a week and can be worked on any day, so Saturday and Sunday open homes inside the week are paid at the ordinary rate. Only a public holiday (200%) or work on a rostered day off (150% for 2 hours, then 200%) pays more. And overtime is only payable for hours the employer specifically directed you to work. Hours worked on your own initiative are not (cl 19.1(b)–(c)). Commission-only salespeople are outside these weekly rates entirely.",
+    },
+    workedExample: {
+      heading: "Worked example: a Level 2 employee working a public holiday",
+      intro: `Chris is a permanent Level 2 (Representative) employee (${$(l2.hourly)} an hour) who is directed to work a 4-hour shift on a public holiday.`,
+      steps: [
+        `Public holiday work is 200% of the minimum hourly rate: ${$(l2.hourly)} × 2 = ${$(ph)} an hour.`,
+        `4 hours × ${$(ph)} = ${$(roundCents(ph * 4))} before tax. The minimum payment on a public holiday is 3 hours.`,
+        `A casual at Level 2 is paid ${$(casual(a, l2.hourly))} an hour on an ordinary day and 200% of that, ${$(roundCents(casual(a, l2.hourly) * 2))}, on a public holiday.`,
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "Does the real estate award have weekend penalty rates?",
+        a: "No. Ordinary hours are 38 a week and may be worked on any day of the week, averaged over up to 8 weeks (cl 13.1–13.2), so ordinary weekend hours are paid at the ordinary rate. Penalty-type rates apply only on public holidays (200%) and for work on a rostered day off (150% for the first 2 hours, 200% after).",
+      },
+      {
+        q: "What is the commission-only rule in the Real Estate Award?",
+        a: "A Level 2 or higher salesperson (property sales or commercial, industrial or retail leasing) who is not casual can agree to commission-only pay if they meet strict conditions: a written agreement, a real estate licence or registration, at least 12 consecutive months in sales or leasing in the past 3 years, aged 21 or over, and having met the minimum income threshold. The minimum commission-only rate is 31.5% of the employer's gross commission, and the weekly minimum rates do not apply (cl 16.7).",
+      },
+      {
+        q: "How much is real estate overtime?",
+        a: `Hours the employer specifically directs you to work beyond the ordinary hours, other than on a rostered day off, are paid at the ordinary hourly rate (100%; casuals 125%), not at a penalty rate. On a rostered day or half day off the rate is 150% for the first 2 hours and 200% after, or ${$(x(l2.hourly, 1.5))} and ${$(x(l2.hourly, 2))} at Level 2.`,
+      },
+      {
+        q: "What allowances do real estate staff get?",
+        a: "Employees who use their own motor vehicle can claim $1.00 a kilometre up to 400 km a week as an alternative to the standing-charge scale, motorcycles are $0.34 a kilometre, and a mobile phone plan can be reimbursed up to $100 a month (cl 17). Engine-size standing charges and per-kilometre rates also apply; check cl 17.2.",
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function localGovernment(): AwardPageCopy {
+  const a = MODERN_AWARDS["local-government"];
+  const l1 = level("local-government", "Level 1");
+  const l3 = level("local-government", "Level 3");
+  const l4 = level("local-government", "Level 4");
+  const l11 = level("local-government", "Level 11");
+  const sun = x(l3.hourly, 1.75);
+  return {
+    slug: "local-government-award-rates",
+    crumb: "Local Government Award Rates",
+    title: `Local Government Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–11`,
+    description: fitDescription(
+      `Local Government Industry Award (MA000112) rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 11 ${$(l11.hourly)}/hr. Casual, weekend, public holiday and overtime rates.`,
+      `Local Government Award MA000112 rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l11.hourly)} an hour, casual, weekend and overtime rates.`,
+    ),
+    h1: `Local Government Award Pay Rates ${FY}`,
+    standfirst: `Every level under the ${a.meta.name} (${a.meta.code}) (council depot, library, customer service, parks, community and childcare staff), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 council employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 4 is ${$(l4.hourly)} and Level 11 ${$(l11.hourly)}. Saturday is 150% and Sunday 175% only for roles with weekend ordinary hours (airports, libraries, customer service, hospitality, cleaning and similar); everyone else's weekend work is overtime. Public holidays are 250%.`,
+    trap: {
+      heading: "Weekend penalty rates depend on your role, and many councils pay under an enterprise agreement",
+      body: "Most council employees work Monday to Friday, 6.00 am to 6.00 pm, and anything outside that is overtime. Saturday 150% and Sunday 175% apply to ordinary hours worked in the specific roles listed in cl 13.1(e) to (g), and community services and recreation centre employees are not paid weekend penalties between 5.00 am and 10.00 pm (cl 22.3). If a council enterprise agreement covers you, it replaces this award, as long as it leaves you better off overall.",
+    },
+    workedExample: {
+      heading: "Worked example: a library assistant on a Sunday",
+      intro: `Nina is a permanent Level 3 library employee (${$(l3.hourly)} an hour) who works 5 ordinary hours on a Sunday. Library ordinary hours can be worked Monday to Sunday, 8.00 am to 9.00 pm (cl 13.1(f)), so the Sunday weekend penalty applies.`,
+      steps: [
+        `Sunday ordinary hours for a library employee are 175% (cl 22.2(a)(ii)): ${$(l3.hourly)} × 1.75 = ${$(sun)} an hour.`,
+        `5 hours × ${$(sun)} = ${$(roundCents(sun * 5))} before tax.`,
+        `A casual in the same role is paid 200% (the 175% plus the 25% loading), which is ${$(x(l3.hourly, 2))} an hour.`,
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "What are the Local Government Award weekend rates?",
+        a: `For employees in the roles with weekend ordinary hours, Saturday is 150% and Sunday 175% for permanent staff (${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 1.75))} at Level 1), and 175% and 200% for casuals. Ordinary hours worked Monday to Friday outside the span for your role are 120% (casuals 145%). Everyone else works weekends as overtime.`,
+      },
+      {
+        q: "What is local government overtime pay?",
+        a: `150% of the minimum rate for the first 2 hours and 200% after that, Monday to Saturday before noon; 200% from noon on Saturday and all day Sunday; and 250% on a public holiday. The casual loading is not paid on overtime. A recalled employee is paid a minimum of 3 hours (cl 21.5).`,
+      },
+      {
+        q: "What is the on-call allowance for council staff?",
+        a: `An employee directed to be on call and who receives the on-call allowance is paid $29.45 a day Monday to Friday, $44.18 on a Saturday and $58.90 on a Sunday or public holiday (cl 19.2(e)), and is paid at overtime rates for time worked.`,
+      },
+      {
+        q: "Is a council worker's casual public holiday rate 275%?",
+        a: "The award's Schedule B does not list a casual public holiday rate, and the clauses leave it unclear whether the 25% casual loading is added. We therefore do not print one. Permanent staff are paid 250% for a public holiday. Check your enterprise agreement or the Fair Work pay guide.",
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function livePerformance(): AwardPageCopy {
+  const a = MODERN_AWARDS["live-performance"];
+  const l1 = level("live-performance", "Level 1 — Production and Support Staff 1 (induction/training)");
+  const l3 = level("live-performance", "Level 3 — Production and Support Staff 3");
+  const l10 = level("live-performance", "Level 10 — Production and Support Staff 8");
+  const sunCas = x(l3.hourly, 2.25);
+  return {
+    slug: "live-performance-award-rates",
+    crumb: "Live Performance Award Rates",
+    title: `Live Performance Award Pay Rates ${FY} (${a.meta.code}) - Crew`,
+    description: fitDescription(
+      `Live Performance Award (MA000081) hourly rates for production and support staff from ${a.meta.operativeFrom}: ${$(l1.hourly)}/hr to ${$(l10.hourly)}/hr. Casual, Sunday, midnight and overtime rates.`,
+      `Live Performance Award MA000081 crew rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l10.hourly)} an hour, casual, Sunday and overtime rates.`,
+    ),
+    h1: `Live Performance Award Pay Rates ${FY}`,
+    standfirst: `Hourly rates for production and support staff (stagehands, riggers, lighting, sound and front-of-house crew) under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 production and support employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 4 is ${$(level("live-performance", "Level 4 — Production and Support Staff 4").hourly)} and the top hourly level, Level 10, ${$(l10.hourly)}. Sunday work, work between midnight and 7.00 am and public holidays are all 200% (casuals 225%).`,
+    trap: {
+      heading: "This page covers crew, not performers or musicians",
+      body: "The Live Performance Award pays performers, company dancers and musicians by the week, performance or call (Parts 5 and 6) and publishes no hourly rate for them. Production and support staff are the classifications with hourly rates, and those are what this page tables. If you are an actor, dancer or musician, your rates are in those parts of the award, and an enterprise agreement, if one covers you, replaces the award.",
+    },
+    workedExample: {
+      heading: "Worked example: a casual Level 3 crew member on a Sunday",
+      intro: `Kai is a casual Level 3 production and support employee (${$(l3.hourly)} an hour) who works a 6-hour shift on a Sunday.`,
+      steps: [
+        `A weekly employee starting work on a Sunday is paid 200% for all time worked; a casual's rate is the loading added, so 225% (cl 63.4).`,
+        `${$(l3.hourly)} × 225% = ${$(sunCas)} an hour.`,
+        `6 hours × ${$(sunCas)} = ${$(roundCents(sunCas * 6))} before tax. The minimum payment on a Sunday is 4 hours.`,
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "What is the Live Performance Award Sunday rate?",
+        a: `A full-time or part-time production employee who starts work on a Sunday is paid 200% of the minimum hourly rate for all time worked, including overtime, and a casual 225%, with a minimum payment of 4 hours (cl 63.4). At Level 3 that is ${$(x(l3.hourly, 2))} and ${$(sunCas)} an hour. There is no separate Saturday penalty rate.`,
+      },
+      {
+        q: "What is the late-night rate in the Live Performance Award?",
+        a: `All work between midnight and 7.00 am is paid at 200% for permanent staff and 225% for casuals, unless the employee is a cleaner rostered to those hours (20% loading) (cl 63.3(c), 61.1(c)). Ordinary hours are otherwise Monday to Sunday, 7.00 am to midnight.`,
+      },
+      {
+        q: "How much is overtime for theatre crew?",
+        a: `Weekly staff are paid 150% for the first 2 hours beyond their rostered daily hours and 200% after (${$(x(l3.hourly, 1.5))} and ${$(x(l3.hourly, 2))} at Level 3), 150% for the first 4 hours on a rostered day off and 200% after. Casuals working over 8 ordinary hours in a day are paid 175% then 225%. Touring sound and lighting crew get a flat 17.5% loading instead.`,
+      },
+      {
+        q: "What is the minimum engagement for casual crew?",
+        a: "A casual may be engaged for a minimum of 3 consecutive hours and cannot be paid per performance. Work on a public holiday or a Sunday carries a minimum payment of 4 hours (cl 57.1, 61.2, 21.5, 63.4).",
+      },
+    ],
+  };
+}
+
+export const OCT_BUILDERS = {
+  miscellaneous,
+  "building-construction": buildingConstruction,
+  "legal-services": legalServices,
+  electrical,
+  fitness,
+  "real-estate": realEstate,
+  "local-government": localGovernment,
+  "live-performance": livePerformance,
+} as const;

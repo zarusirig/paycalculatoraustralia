@@ -70,7 +70,7 @@ export const DOCTOR: Occupation = {
     {
       id: "doctors-in-training",
       title: "Doctors in training: intern, resident, registrar",
-      intro: "Clause 16.1(a)–(d): annual, weekly and hourly minimums exactly as published. Casual is the hourly rate plus the 25% loading (cl 11.1).",
+      intro: "This table gives the annual, weekly and hourly minimums for doctors in training in clause 16.1(a) to (d) of the Medical Practitioners Award, exactly as published. Casual is the hourly rate plus the 25% loading (cl 11.1).",
       rows: [
         dr("Intern", 66_432, 1277.54, 33.62, "First postgraduate year"),
         dr("Resident medical practitioner pay point 1", 70_529, 1356.33, 35.69, "Second postgraduate year onwards"),
@@ -87,7 +87,7 @@ export const DOCTOR: Occupation = {
     {
       id: "career",
       title: "Career medical practitioners",
-      intro: "Clause 16.1(e)–(f). A career medical practitioner has at least 4 years' postgraduate clinical experience; a senior career medical practitioner at least 10 (cl 12.5–12.6).",
+      intro: "Career medical practitioner rates are set by clause 16.1(e) to (f). A career medical practitioner has at least 4 years' postgraduate clinical experience; a senior career medical practitioner at least 10 (cl 12.5 to 12.6).",
       rows: [
         dr("Career medical practitioner pay point 1", 105_951, 2037.52, 53.62),
         dr("Career medical practitioner pay point 2", 109_884, 2113.15, 55.61),
@@ -102,7 +102,7 @@ export const DOCTOR: Occupation = {
     {
       id: "specialists",
       title: "Specialists",
-      intro: "Clause 16.1(h)–(k). A specialist has completed a recognised specialist training program and been admitted as a fellow of the college (cl 12.8).",
+      intro: "Specialist rates are set by clause 16.1(h) to (k). A specialist has completed a recognised specialist training program and been admitted as a fellow of the college (cl 12.8).",
       rows: [
         dr("Specialist", 121_535, 2337.21, 61.51),
         dr("Senior specialist pay point 1", 129_953, 2499.1, 65.77),
@@ -125,7 +125,7 @@ export const DOCTOR: Occupation = {
   penaltiesNote:
     "Penalty rates differ by classification (cl 21.1). Doctors in training instead get 2.5% of their minimum weekly rate for each rostered ordinary shift that starts or ends between 9 pm and 6 am. Only the higher penalty applies where two overlap, including overtime (cl 21.1(e)).",
   overtime: [
-    "All doctors except senior doctors: hours beyond 38 a week are overtime: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250%. Casuals: 175%, 225% and 275% (cl 20.2).",
+    "All doctors except senior doctors: hours beyond 38 a week are overtime, paid at 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250%. Casuals: 175%, 225% and 275% (cl 20.2).",
     "On-call: 10% of the daily rate for each day on call (cl 20.3(a)). Recall: one hour's pay for travel plus at least 3 hours at 150% (weekdays) or 200% (weekends and public holidays) (cl 20.4).",
     "Sleepover for doctors in training: $103.96 per sleepover, covering up to an hour of work (cl 20.5).",
   ],
@@ -135,7 +135,7 @@ export const DOCTOR: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Work in a state public hospital? These award rates are not your pay scale. State medical officer agreements pay considerably more. The award applies to private hospitals and other national-system employers.",
+    "Doctors in state public hospitals are not paid these award rates: their pay scale is the state medical officer agreement, which pays considerably more. The Medical Practitioners Award applies to private hospitals and other national-system employers.",
   ],
   notShown: [
     "State public hospital medical officer scales (NSW, Victoria, Queensland, WA, SA, Tasmania, ACT, NT), which are set by state instruments.",

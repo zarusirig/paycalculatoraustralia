@@ -39,7 +39,7 @@ export default function Division293TaxPage() {
             Division 293 Tax: The Extra Super Tax for High Income Earners
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            If your income plus super contributions exceed $250,000, you may owe an additional 15% tax on your super. Here&apos;s how Division 293 works, how to calculate it, and what strategies can help you manage it.
+            If your income plus concessional super contributions exceed $250,000, Division 293 adds an extra 15% tax to some or all of those contributions. The sections below show how the ATO calculates the tax, with worked examples, how to pay the assessment, and how to manage it.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -67,7 +67,7 @@ export default function Division293TaxPage() {
                 <p className="text-navy text-sm font-medium">
                   <strong>Who Is Affected?</strong>
                   <br />
-                  Division 293 primarily impacts high-income professionals, executives, and business owners. An employee earning $230,000 with $30,000 in concessional contributions (12% employer SG of $27,600 plus $2,400 salary sacrifice) has a combined income of $260,000 &mdash; triggering Division 293 on $10,000 of their super contributions.
+                  Division 293 primarily impacts high-income professionals, executives, and business owners. An employee earning $230,000 with $30,000 in concessional contributions (12% employer SG of $27,600 plus $2,400 salary sacrifice) has a combined income of $260,000 and pays Division 293 tax on $10,000 of their super contributions.
                 </p>
               </div>
             </section>
@@ -76,11 +76,11 @@ export default function Division293TaxPage() {
             <section id="how-calculated">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Division 293 Tax Calculated?</h2>
               <p>
-                The ATO calculates Division 293 tax after you lodge your tax return. The formula considers two key amounts:
+                The ATO calculates Division 293 tax after you lodge your tax return. The formula uses two amounts:
               </p>
               <ol>
-                <li><strong>Income for Division 293 purposes</strong> &mdash; This includes your taxable income, reportable fringe benefits, and total net investment losses (similar to MLS income).</li>
-                <li><strong>Low-tax contributed amounts</strong> &mdash; Your concessional (before-tax) super contributions, including employer SG, salary sacrifice, and personal deductible contributions.</li>
+                <li><strong>Income for Division 293 purposes</strong>: your taxable income, reportable fringe benefits and total net investment losses (similar to income for Medicare levy surcharge (MLS) purposes).</li>
+                <li><strong>Low-tax contributed amounts</strong>: your concessional (before-tax) super contributions, including employer SG, salary sacrifice, and personal deductible contributions.</li>
               </ol>
               <p>
                 The additional 15% tax applies to the <strong>lesser of</strong>:
@@ -174,7 +174,7 @@ export default function Division293TaxPage() {
             <section id="strategies">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Strategies to Manage Division 293</h2>
               <p>
-                While Division 293 cannot be avoided if your income exceeds the threshold, there are strategies to manage its impact:
+                Division 293 cannot be avoided if your income alone exceeds the threshold. These strategies manage its impact:
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Reduce Concessional Contributions</h3>
@@ -194,7 +194,7 @@ export default function Division293TaxPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Despite Division 293, Super Is Still Tax-Effective</h3>
               <p>
-                Even with Division 293, the total tax on super contributions is <strong>30%</strong> &mdash; still lower than the top marginal rate of <strong>45%</strong> (plus 2% Medicare levy = 47%). For someone in the top tax bracket, super contributions still save 17% compared to taking the money as salary. Use our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the net benefit.
+                Even with Division 293, the total tax on super contributions is <strong>30%</strong>, still lower than the top marginal rate of <strong>45%</strong> (plus 2% Medicare levy = 47%). For someone in the top tax bracket, super contributions still save 17% compared to taking the money as salary. Use our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to see the income tax a salary sacrifice saves (it does not apply the extra super tax).
               </p>
             </section>
 
@@ -206,7 +206,7 @@ export default function Division293TaxPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Division 293 thresholds and calculations are sourced from the Australian Taxation Office. Worked examples assume $30,000 of concessional contributions, within the FY{SITE_CONFIG.financialYear} cap of {formatAUD(SUPER_GUARANTEE.concessionalCap)}, and the 12% SG rate. Individual circumstances vary based on reportable fringe benefits, investment losses, and multiple super fund arrangements. Consult a qualified tax adviser for personalised Division 293 planning.</p>
+                <p>Division 293 thresholds and calculations are sourced from the Australian Taxation Office. Worked examples assume $30,000 of concessional contributions, within the FY{SITE_CONFIG.financialYear} cap of {formatAUD(SUPER_GUARANTEE.concessionalCap)}, and the 12% SG rate. Your own result also depends on your reportable fringe benefits, net investment losses and contributions across multiple super funds. Consult a qualified tax adviser for personalised Division 293 planning.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("division-293-tax"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -232,7 +232,7 @@ export default function Division293TaxPage() {
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-bold mb-2">Model your super tax</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">See how salary sacrifice and SG contributions affect your overall tax position, including Division 293.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">Compare your take-home pay, income tax and total super with and without salary sacrifice. The calculator does not apply Division 293. Use the worked examples on this page for that tax.</p>
                   <Link href="/salary-sacrifice-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Salary Sacrifice Calculator <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>

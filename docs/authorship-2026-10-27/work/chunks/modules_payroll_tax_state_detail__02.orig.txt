@@ -1,0 +1,168 @@
+    sources: [
+      { title: "Payroll tax deductions", url: "https://qro.qld.gov.au/payroll-tax/calculate/deductions/", publisher: QLD },
+      { title: "Payroll tax discount for regional businesses", url: "https://qro.qld.gov.au/payroll-tax/calculate/regional-discount/", publisher: QLD },
+      { title: "Calculating the mental health levy", url: "https://qro.qld.gov.au/payroll-tax/mental-health-levy/calculating/", publisher: QLD },
+      { title: "Apprentice and trainee rebate", url: "https://qro.qld.gov.au/payroll-tax/exemptions/apprentice-rebate/", publisher: QLD },
+      { title: "Relevant contracts and payroll tax", url: "https://qro.qld.gov.au/payroll-tax/liability/contractor-payments/relevant-contracts/", publisher: QLD },
+      { title: "Payroll tax amnesty for contracted general practitioners", url: "https://qro.qld.gov.au/payroll-tax/liability/contractor-payments/amnesty-general-practitioners/", publisher: QLD },
+      { title: "Register for payroll tax", url: "https://qro.qld.gov.au/payroll-tax/register/", publisher: QLD },
+      { title: "Payroll tax due dates", url: "https://qro.qld.gov.au/payroll-tax/returns/due-dates/", publisher: QLD },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  wa: {
+    legislation: "Pay-roll Tax Act 2002 and Pay-roll Tax Assessment Act 2002 (WA)",
+    workedExample: [
+      "RevenueWA's examples: $1.2 million of annual wages gives a deductable amount of $1,000,000 − ($200,000 × 2/13) = $969,231 and tax of $12,692.30. Monthly wages of $92,000 ($1,104,000 for the year) give $6,600 for the year. An interstate employer with $1 million in WA out of $4 million Australia-wide gets a deductable amount of $134,616 and pays $47,596.12.",
+      "Under an arrangement with the Commonwealth, WA also collects payroll tax in the Indian Ocean Territories (Christmas Island and the Cocos (Keeling) Islands): Australian wages decide whether you are liable, but you pay only on wages paid in WA or the IOT.",
+    ],
+    leviesHeading: "One Rate, No Levy, and Two Exemptions to Know",
+    levies: [
+      "WA charges a single 5.5% with no surcharge. The higher tiers for very large employers (6% above $100 million and 6.5% above $1.5 billion of Australian wages) no longer apply; RevenueWA lists them as previous rates that ended on 30 June 2023.",
+      "Apprentices' wages under a registered training contract are exempt for the life of the contract (not while it is suspended), but trainees under contracts registered from 1 July 2019 are taxable. Section 41C of the Pay-roll Tax Assessment Act exempts the wages of new employees with a disability for their first two years.",
+    ],
+    grouping: [
+      "Only the designated group employer claims the deductable amount during the year. If a group does not nominate one, RevenueWA may (in most cases the member with the highest share of WA wages), and a business that is the only group member employing in WA is automatically its DGE. Every member still registers and lodges its own return, and the group's tax is worked out on its combined wages.",
+      "Group members other than the DGE get no estimated monthly deductable amount. RevenueWA completes the annual reconciliation itself in mid-August, once all members have submitted their wages by 21 July, and raises a debit or credit for the gap between the estimated and actual deductable amount. Exclusion from a group is possible for common-employee and tracing groups, but never for a related corporation.",
+    ],
+    contractorsHeading: "Contractors: WA Is Not Harmonised",
+    contractors: [
+      "WA is the one jurisdiction that has not harmonised its contractor rules. It has no relevant-contract provisions: payments to a contractor are taxable only where the relationship is akin to employment under the common law tests (control, integration, the power to delegate, whether the contractor runs an independent business), judged on the totality of the relationship. If it is, every payment is taxable apart from the GST.",
+      "If you are unsure, RevenueWA will make a determination: complete form FPRT6 “Questionnaire: Contractor Payments” and it may interview both you and the contractor. Employment agents are deemed the employer of workers they place: a temp paid $140 a day from a $200 daily fee is taxed on the $140.",
+    ],
+    lodgement: [
+      "Register within seven days after the end of the month in which you pay wages in WA or the Indian Ocean Territories and your Australian wages pass $83,333.",
+      "Returns are monthly unless you ask for less often: quarterly if your estimated annual liability is under $150,000, annually if it is under $20,000. Monthly and quarterly returns are due 7 days after the period; annual returns and the annual reconciliation (with June) are due 21 days after the year ends, on 21 July.",
+    ],
+    faqs: [
+      {
+        q: "Are contractors subject to payroll tax in WA?",
+        a: "Only if the relationship is effectively employment under the common law tests. Unlike the other states and territories, WA has no relevant-contract provisions. Where a contractor is in substance an employee, all payments are taxable except the GST. RevenueWA will make a determination if you lodge form FPRT6.",
+      },
+      {
+        q: "Can I lodge WA payroll tax returns quarterly or annually?",
+        a: "Yes, on request. RevenueWA allows quarterly returns where the estimated annual liability is under $150,000 and annual returns where it is under $20,000. Quarterly returns are due 7 days after the quarter; annual returns 21 days after the year ends.",
+      },
+      {
+        q: "Are apprentice and trainee wages exempt from WA payroll tax?",
+        a: "Apprentices' wages are exempt for the duration of a registered training contract, except while it is suspended. Trainees under contracts registered from 1 July 2019 are not exempt.",
+      },
+    ],
+    sources: [
+      { title: "Registration: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/registration-payroll-tax-employer-guide", publisher: WA },
+      { title: "Returns: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/returns-payroll-tax-employer-guide", publisher: WA },
+      { title: "Annual reconciliation: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/annual-reconciliation-payroll-tax-employer-guide", publisher: WA },
+      { title: "Grouping: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/grouping-payroll-tax-employer-guide", publisher: WA },
+      { title: "Exemptions: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/exemptions-payroll-tax-employer-guide", publisher: WA },
+      { title: "Contractor payments: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/wages-payroll-tax-employer-guide/taxable-wages-payroll-tax-employer-guide/contractor-payments-payroll-tax-employer-guide", publisher: WA },
+      { title: "About payroll tax", url: "https://www.wa.gov.au/organisation/department-of-treasury-and-finance/about-payroll-tax", publisher: WA },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  sa: {
+    legislation: "Payroll Tax Act 2009 (SA) and Payroll Tax Regulations 2025",
+    workedExample: [
+      "RevenueSA's example: Business ABC employs only in South Australia and pays $1.6 million. Its deduction is $600,000, so tax is charged on $1 million, at the variable rate for $1.6 million of Australian wages, 2.475% (RevenueSA's rate table shows it truncated to 2.47%), which is $24,750.",
+      "A part-year employer's wages are annualised to find the rate. RevenueSA's Business Pty Ltd traded for 211 days and paid $1 million: $1 million ÷ 211 × 365 = $1,729,857, which is over $1.7 million, so the full 4.95% applies.",
+    ],
+    leviesHeading: "No Levy, but a Rate That Is Only Final in July",
+    levies: [
+      "SA has no surcharge. Its quirk is the variable rate: because the rate depends on the full year's Australian wages, monthly returns use an estimated rate that RevenueSA Online sets from the annual wages you declare at the start of the year. The true rate is only fixed at the annual reconciliation in July, when you get a refund or pay the shortfall, so RevenueSA asks employers to keep their estimate up to date during the year.",
+      "Apprentice and trainee wages are taxable for training contracts started on or after 1 July 2022 (and on or before 9 November 2020); contracts begun between 10 November 2020 and 30 June 2022 were exempt for their first 12 months. Motor vehicle and accommodation allowances are exempt up to 88 cents a kilometre and $328.85 a night in 2026-27.",
+    ],
+    grouping: [
+      "RevenueSA groups employers in four ways: related bodies corporate, common employees, commonly controlled businesses and tracing of interests. The designated group employer must employ in South Australia and claims the group's deduction of up to $600,000; if the group nominates no one, the Commissioner can designate a member. The DGE does not have to be the same member in every state.",
+      "If the DGE has not used the group's full deduction by the end of the year, it can allocate the unused part to other members at the annual reconciliation. RevenueSA suggests the DGE lodges its reconciliation first. Each registered member lodges its own return, and businesses operating under one ABN must combine their wages.",
+    ],
+    contractorsHeading: "Contractors: Six Exemptions",
+    contractors: [
+      "A relevant contract in SA is one for being supplied with services, supplying services, or giving out goods for re-supply. Payments under it are not taxable if the services are one of three types the legislation exempts, or if any one of six exemptions in the Act applies; otherwise they are wages.",
+      "Where a contract mixes labour with equipment or materials and does not split them, the Commissioner allows a set percentage deduction for the non-labour part by trade, listed in Revenue Ruling PTA018.",
+    ],
+    lodgement: [
+      "Register once Australia-wide wages, yours or your group's, exceed $1.5 million a year ($125,000 a month or $28,846 a week) and you pay wages in South Australia. The Commissioner sets whether you lodge monthly or annually.",
+      "Monthly payroll tax is due by the 7th of the following month. The annual reconciliation is due 28 July (Wednesday 28 July 2027 for 2026-27), and RevenueSA accepts it on the next business day if 28 July falls on a weekend or public holiday.",
+    ],
+    faqs: [
+      {
+        q: "Why does my SA payroll tax rate change at the annual reconciliation?",
+        a: "Because SA's rate depends on your full-year Australian wages (0% to 4.95% between $1.5 million and $1.7 million). Monthly returns use an estimated rate based on the annual wages you declare at the start of the year; the actual rate is set at the July annual reconciliation, with a refund or a shortfall to pay.",
+      },
+      {
+        q: "Are apprentice wages exempt from SA payroll tax?",
+        a: "Not for new contracts. Wages under training contracts started on or after 1 July 2022 are taxable. Contracts started between 10 November 2020 and 30 June 2022 were exempt for their first 12 months.",
+      },
+      {
+        q: "Can a group share an unused SA payroll tax deduction?",
+        a: "Yes. If the designated group employer has not used the group's full deduction (up to $600,000) by the end of the financial year, it can allocate the unused amount to one or more other group members at the annual reconciliation.",
+      },
+    ],
+    sources: [
+      { title: "How is payroll tax calculated?", url: "https://www.revenuesa.sa.gov.au/payrolltax/how-is-payroll-tax-calculated", publisher: SA },
+      { title: "Payroll Tax Rate Table (from 1 January 2019)", url: "https://www.revenuesa.sa.gov.au/__data/assets/pdf_file/0007/205459/PRT-Rate-Table.pdf", publisher: SA },
+      { title: "Grouping of employers", url: "https://www.revenuesa.sa.gov.au/payrolltax/grouping-of-employers", publisher: SA },
+      { title: "Contractors", url: "https://www.revenuesa.sa.gov.au/payrolltax/contractors", publisher: SA },
+      { title: "Wages", url: "https://www.revenuesa.sa.gov.au/payrolltax/wages", publisher: SA },
+      { title: "Returns and annual reconciliation", url: "https://www.revenuesa.sa.gov.au/payrolltax/returns-and-annual-reconciliation", publisher: SA },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  tas: {
+    legislation: "Payroll Tax Act 2008 (Tas)",
+    workedExample: [
+      "SRO Tasmania's annual adjustment return guideline: $2.4 million paid only in Tasmania is taxed 4% on the $750,000 between $1.25 million and $2 million plus 6.1% on the $400,000 above: $54,400. If the same $2.4 million is paid in Tasmania out of $3 million Australia-wide, both thresholds shrink to 80% ($1 million and $1.6 million), and the tax is 4% × $600,000 + 6.1% × $800,000 = $72,800.",
+    ],
+    leviesHeading: "Two Rates, No Levy",
+    levies: [
+      "Tasmania is the only jurisdiction with two marginal rates: 4% on wages between $1.25 million and $2 million and 6.1% above $2 million, unchanged since 1 July 2018 (before then it was a flat 6.1% above $1.25 million). An employer can choose not to claim a threshold, in which case it pays 6.1% on all Tasmanian wages for the month.",
+      "Monthly thresholds are the days in the month ÷ days in the year × $1.25 million (and × $2 million), rounded to the nearest dollar. If Australia-wide wages cannot be obtained each month, one twelfth of last year's can be used. Wages paid by non-profit group training organisations registered with the Tasmanian Traineeships and Apprenticeships Committee are exempt.",
+    ],
+    grouping: [
+      "Part 5 of the Payroll Tax Act 2008 groups related corporations, an employer whose employees work solely or mainly for another business (section 71), and commonly controlled businesses. A “business” includes carrying on a trust, even a dormant one, and holding money or property used by another business. Group members are jointly and severally liable for each other's payroll tax.",
+      "Under section 79 the Commissioner can de-group a member whose business is carried on independently of, and is not connected with, the rest of the group. SRO Tasmania weighs who makes day-to-day decisions, common customers, whether activities are complementary, shared resources, financial dependence, and whether loans between members are on commercial terms.",
+    ],
+    contractorsHeading: "Contractors",
+    contractors: [
+      "“Employee” is not defined in the Payroll Tax Act 2008, so the common law tests decide it: control and direction, the contract and the working relationship, contracts for a given result, an independent business, the power to delegate, risk, and who provides tools and equipment. A worker who passes as a contractor can still be caught: amounts paid under the contractor provisions are wages unless one of the relevant contract exclusions applies.",
+    ],
+    lodgement: [
+      "You are liable once your or your group's Australian wages exceed $1.25 million a year, or $24,038 a week during a month, and you pay wages in Tasmania. Tasmanian Revenue Online (TRO) calculates the tax from your registration and grouping details, and sets your lodgement frequency from the information in your returns.",
+      "Monthly returns are due by the 7th of the following month. Every taxpayer lodges an Annual Adjustment Return by 21 July, which replaces the June monthly return. Late returns attract interest, and if you do not lodge you receive an estimated assessment.",
+    ],
+    faqs: [
+      {
+        q: "Why does Tasmania have two payroll tax rates?",
+        a: "Since 1 July 2018 Tasmania has charged 4% on wages between $1.25 million and $2 million and 6.1% above $2 million, both thresholds apportioned by your Tasmanian share of Australian wages. Before that it was a single 6.1% rate above $1.25 million.",
+      },
+      {
+        q: "Can a business be excluded from a payroll tax group in Tasmania?",
+        a: "Yes, at the Commissioner's discretion under section 79 of the Payroll Tax Act 2008, if its business is carried on independently of and is not connected with the other members. Day-to-day management, shared customers and resources, financial dependence and the terms of any loans are all weighed.",
+      },
+      {
+        q: "What is the Tasmanian annual adjustment return?",
+        a: "The reconciliation every Tasmanian payroll tax payer must lodge by 21 July. It works out whether a refund is due or more tax is payable for the year, and for monthly lodgers it replaces the June return.",
+      },
+    ],
+    sources: [
+      { title: "Lodge your return", url: "https://www.sro.tas.gov.au/payroll-tax/lodge-your-return", publisher: TAS },
+      { title: "Payroll tax annual adjustment return guideline", url: "https://www.sro.tas.gov.au/Documents/Annual-Adjustment-Return-Guideline.pdf", publisher: TAS },
+      { title: "Grouping and de-grouping", url: "https://sro.tas.gov.au/payroll-tax/grouping-de-grouping", publisher: TAS },
+      { title: "Taxable and exempt wages", url: "https://sro.tas.gov.au/payroll-tax/taxable-exempt-wages", publisher: TAS },
+      { title: "Contractors", url: "https://sro.tas.gov.au/payroll-tax/taxable-exempt-wages/contractors", publisher: TAS },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  act: {
+    legislation: "Payroll Tax Act 2011 (ACT)",
+    workedExample: [
+      "A business paying $3 million, all in the ACT, deducts the $1.75 million threshold and pays 6.75% on the remaining $1.25 million: $84,375. The band works on total Australia-wide wages and then applies to every ACT dollar above the threshold, not just the slice above a band boundary. A group with $25 million Australia-wide and $5 million in the ACT gets 20% of the threshold ($350,000) and pays 6.85% on $4.65 million.",
+    ],
+    leviesHeading: "Banded Rates From 1 July 2026, and ACT Exemptions",
+    levies: [
+      "Until 30 June 2026 the ACT threshold was $2 million and the general rate 6.85%, with a surcharge of 0.5% for groups with $50 million to $100 million of Australian wages and 1% above $100 million; from 1 January 2026 wages above $150 million were taxed at 8.75% with no surcharge. From 1 July 2026 the threshold is $1.75 million and the rate depends on the band: 6.75% to $20 million, 6.85% to $50 million, 7.35% to $100 million, 7.85% to $150 million and 8.75% above. Eligible universities are capped at 6.85%.",
+      "ACT exempt wages include new starters receiving eligible training, paid maternity, adoption and primary carer leave, Commonwealth Paid Parental Leave, the tax-free part of a genuine redundancy and workers compensation; there is also a GP wages exemption scheme. Wages for an overseas assignment of more than six continuous months are not taxable, including the first six months.",
+    ],

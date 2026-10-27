@@ -86,7 +86,7 @@ export const MCDONALDS_PAY: EmployerPay = {
   penaltyNotes: [
     "Percentages are of the minimum hourly rate for your level (award cl 21, Table 6). Casual figures add the 25% loading rather than multiply it: Saturday casual is 150%, not 156.25%.",
     "There is no evening penalty before 10pm on weekdays.",
-    "For an adult Level 1 crew member that is $34.76 an hour on a Saturday or Sunday ($41.72 casual) and $62.57 on a public holiday ($69.53 casual).",
+    "An adult Level 1 McDonald's crew member is paid $34.76 an hour on a Saturday or Sunday ($41.72 casual) and $62.57 on a public holiday ($69.53 casual).",
   ],
   overtime: [
     { when: "Monday to Saturday, first 2 hours", permanent: "150%", casual: "175%" },
@@ -95,7 +95,7 @@ export const MCDONALDS_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   notices: [
-    "McDonald's crew are paid under the Fast Food Industry Award, not an enterprise agreement. Some licensees pay above it; these are the legal minimums.",
+    "McDonald's crew are paid under the Fast Food Industry Award, not an enterprise agreement. Some licensees pay above it; the rates on this page are the legal minimums.",
     "A class action over paid rest breaks at McDonald's, filed in the Federal Court in December 2021, was still running when we checked. It does not change the rates on this page.",
   ],
   unverified: [
@@ -116,7 +116,7 @@ export const MCDONALDS_PAY: EmployerPay = {
     },
     {
       q: "How much does McDonald's pay a 15 year old?",
-      a: "Crew under 16 are paid 40% of the adult rate: $11.12 an hour, or $13.90 as a casual. At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
+      a: "McDonald's crew under 16 are paid 40% of the adult rate: $11.12 an hour, or $13.90 as a casual. At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
     },
     {
       q: "Does McDonald's have an enterprise agreement?",
@@ -156,7 +156,7 @@ export const MCDONALDS_PAY: EmployerPay = {
     aboveAward:
       "There is no above-award margin to report. With no agreement in force, the Fast Food Industry Award rates are the legal minimum for McDonald's crew; the 2013 agreement's termination took effect on 3 February 2020 ([2019] FWCA 8563) and the award has applied since. Some licensees choose to pay above the award, but nothing requires them to.",
     whatItMeans: [
-      "Your pay is set by the Fast Food Industry Award, so every figure on this page is the award rate for your level and age.",
+      "Your pay is set by the Fast Food Industry Award, so each pay rate on this page is the award minimum for your level and age.",
       "Pay rises come from the Fair Work Commission's Annual Wage Review each July, not from a negotiated agreement.",
       "If the SDA and McDonald's reach an agreement, it would need a yes vote and Commission approval before it changed anyone's pay, and it would have to leave every employee better off overall than the award.",
     ],

@@ -118,7 +118,7 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
                 <span className="block text-base font-semibold text-warmgray md:inline md:text-3xl md:font-bold md:text-navy">Simple Tax Calculator</span>
               </h1>
               <p className="text-base md:text-lg text-warmgray">
-                From {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}; this calculator adds the {MEDICARE_PCT} Medicare levy and up to {formatAUD(LITO.maxOffset)} of LITO.
+                From {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}. This income tax calculator applies the new scale to your taxable income, then adds the {MEDICARE_PCT} Medicare levy and up to {formatAUD(LITO.maxOffset)} of LITO.
               </p>
               <TrustBar className="mt-2" />
             </div>

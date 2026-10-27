@@ -55,7 +55,7 @@ export default function MarginalTaxRatesPage() {
 
       <PageHeader title="Marginal Tax Rates Australia 2026-27: What a Raise or Bonus Really Nets">
         <p>
-          <strong>Your marginal tax rate is the tax on your next dollar, not on all of your income.</strong> A $10,000 raise on $85,000 is taxed at 30% plus 2% Medicare, so you keep {formatAUD(example.netGain)} of it. Your average rate is lower than your marginal rate, and a raise never lowers your take-home pay. Use the calculator below to see what any raise, bonus or extra overtime is worth after tax, using 2026-27 resident rates.
+          <strong>Your marginal tax rate is the tax on your next dollar, not on all of your income.</strong> For an Australian resident, a $10,000 raise on $85,000 is taxed at the 30% scale rate plus the 2% Medicare levy, so you keep {formatAUD(example.netGain)} of it at 2026-27 rates. Your average tax rate (total tax divided by total income) is lower than your marginal rate, and a raise never lowers your take-home pay. Enter your current taxable income and the extra income in the calculator below to see what a raise, bonus or overtime adds after tax, each year and each fortnight. Below it, the page shows the all-in marginal rate at every income on the ATO resident scale and what a raise nets at different salaries. It then covers how a HELP debt, the Medicare levy surcharge and bonus withholding change the result.
         </p>
       </PageHeader>
 
@@ -76,7 +76,7 @@ export default function MarginalTaxRatesPage() {
           <section>
             <H2 id="marginal-vs-average">Marginal vs Average Tax Rate</H2>
             <p>
-              Australia taxes income in slices. The first $18,200 is tax-free, the next slice up to $45,000 is taxed at 15%, and so on up to 45% above $190,000. Your <strong>marginal tax rate</strong> is the rate on the slice your next dollar lands in. Your <strong>average tax rate</strong> is your total tax divided by your total income. Because most of your income sits in the lower slices, the average is always below the marginal rate.
+              The Australian resident tax scale taxes income in slices. The first $18,200 is tax-free, the next slice up to $45,000 is taxed at 15%, and so on up to 45% above $190,000. Your <strong>marginal tax rate</strong> is the rate on the slice your next dollar lands in. Your <strong>average tax rate</strong> is your total tax divided by your total income. Because the lower slices are taxed at lower rates, your average rate sits below your marginal rate.
             </p>
             <p>
               The distinction matters whenever your income changes at the edge: a pay rise, a bonus, overtime, a second job, a salary sacrifice, or a deduction. The edge dollar is taxed at the marginal rate, so that is the rate to use. If you want the scale itself, with the tax payable at every threshold and how 2026-27 compares with 2025-26, see the <Link href="/tax-brackets/">tax brackets page</Link>. This page starts where that one stops: what the scale means for the money you are about to earn.

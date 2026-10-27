@@ -41,7 +41,7 @@ export default function TaxFileNumberDeclarationPage() {
             Tax File Number Declaration: How to Complete It Correctly
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Every new job requires a TFN declaration. Getting it wrong can mean too much or too little tax withheld from your pay. Here&apos;s a step-by-step guide to filling it in correctly and avoiding costly mistakes.
+            A Tax File Number (TFN) declaration is the ATO form you give each new employer when you start a job. Your answers on it set how much PAYG tax your employer withholds from each pay. A wrong answer to the residency, tax-free threshold or study loan question can mean too much or too little tax is withheld. This guide takes you through the form question by question, then covers the common mistakes, the penalty withholding rate and when to submit a new declaration.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -56,7 +56,7 @@ export default function TaxFileNumberDeclarationPage() {
             <section id="what-is-tfn-declaration">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is a TFN Declaration?</h2>
               <p>
-                A Tax File Number (TFN) declaration is an official ATO form (NAT 3092) that you must provide to each new employer when you start a job. It tells your employer your TFN, whether to claim the tax-free threshold, and whether you have any study or training loan debts (HECS-HELP, VET Student Loan, etc.).
+                A Tax File Number (TFN) declaration is an official ATO form (NAT 3092) that you must provide to each new employer when you start a job. It tells your employer your TFN, your residency status for tax purposes, whether you claim the tax-free threshold, and whether you have a study or training loan debt such as HECS-HELP or a VET Student Loan.
               </p>
               <p>
                 Your employer uses the information on your TFN declaration to calculate the correct amount of <strong>PAYG tax withholding</strong> from each pay. Without a correctly completed TFN declaration, your employer must withhold tax at the <strong>highest marginal rate of 47%</strong> from every dollar you earn.
@@ -95,12 +95,12 @@ export default function TaxFileNumberDeclarationPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 8: Residency Status</h3>
               <p>
-                Select whether you are an Australian resident for tax purposes, a foreign resident, or a working holiday maker. This affects your tax rates and entitlement to the tax-free threshold. Residency for tax purposes is different from visa status: you can be a tax resident even on a temporary visa if you meet the residency tests. Working holiday makers (subclass 417 and 462 visas) tick the working holiday maker box, and special tax rates apply (see our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link>). Foreign residents do not receive the tax-free threshold and are taxed at different rates. See our <Link href="/non-resident-tax/">Non-Resident Tax Guide</Link> if you are unsure.
+                Select whether you are an Australian resident for tax purposes, a foreign resident, or a working holiday maker. Your residency status sets your tax rates and whether you can claim the tax-free threshold. Residency for tax purposes is different from visa status: you can be a tax resident even on a temporary visa if you meet the residency tests. Working holiday makers (subclass 417 and 462 visas) tick the working holiday maker box, and special tax rates apply (see our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link>). Foreign residents do not receive the tax-free threshold and are taxed at foreign resident rates. See our <Link href="/non-resident-tax/">Non-Resident Tax Guide</Link> if you are unsure which residency status applies to you.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 9: Tax-Free Threshold</h3>
               <p>
-                This is the most important question on the form. The tax-free threshold means the first <strong>${TAX_FREE_THRESHOLD.toLocaleString("en-AU")}</strong> of your annual income is tax-free. Answering &ldquo;Yes&rdquo; tells your employer to factor this into your PAYG withholding, reducing the tax deducted from each pay. See our <Link href="/tax-free-threshold/">Tax-Free Threshold Guide</Link> for more detail.
+                This question asks whether you claim the tax-free threshold from this employer. The tax-free threshold means the first <strong>${TAX_FREE_THRESHOLD.toLocaleString("en-AU")}</strong> of your annual income is tax-free. Answering &ldquo;Yes&rdquo; tells your employer to apply the threshold in your PAYG withholding, so less tax is deducted from each pay. See our <Link href="/tax-free-threshold/">Tax-Free Threshold Guide</Link> for more detail.
               </p>
               <p>
                 <strong>Rules for claiming the tax-free threshold:</strong>
@@ -124,7 +124,7 @@ export default function TaxFileNumberDeclarationPage() {
                 <li>Australian Apprenticeship Support Loan (AASL), formerly Trade Support Loan</li>
               </ul>
               <p>
-                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory repayment. If you do not declare your debt here, you will likely owe a lump sum when you lodge your tax return. Once your debt is fully repaid, give your employer a withholding declaration so the extra withholding stops. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for repayment thresholds and rates.
+                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory repayment. If you do not declare your debt here and earn above the compulsory repayment threshold, you will owe the repayment as a lump sum when you lodge your tax return. Once your debt is fully repaid, give your employer a withholding declaration so the extra withholding stops. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for repayment thresholds and rates.
               </p>
             </section>
 
@@ -177,7 +177,7 @@ export default function TaxFileNumberDeclarationPage() {
                 <p className="text-navy text-sm font-medium">
                   <strong>The 47% Penalty Rate</strong>
                   <br />
-                  If you don&apos;t provide your TFN within 28 days, your employer <strong>must</strong> withhold tax at 47% (the top marginal rate plus Medicare levy) from every dollar you earn. This is not optional. It is a legal obligation on your employer. You can recover the excess tax when you lodge your annual tax return, but it means reduced pay in the meantime.
+                  If you don&apos;t provide your TFN within 28 days, your employer <strong>must</strong> withhold tax at 47% (the top marginal rate plus Medicare levy) from every dollar you earn. This withholding is a legal obligation on your employer, not a choice. You can recover the excess tax when you lodge your annual tax return, but it means reduced pay in the meantime.
                 </p>
               </div>
             </section>
@@ -189,7 +189,7 @@ export default function TaxFileNumberDeclarationPage() {
                 You need to submit a new TFN declaration to your employer in the following situations:
               </p>
               <ul>
-                <li><strong>Starting a new job</strong>: Always required, even if you have worked for the same employer group before.</li>
+                <li><strong>Starting a new job</strong>: Required for every new job, even if you have worked for the same employer group before.</li>
                 <li><strong>Acquiring a HECS-HELP debt</strong>: If you start studying and take on a HECS loan while employed.</li>
                 <li><strong>Paying off your HECS debt</strong>: Submit a new declaration to stop the additional withholding.</li>
                 <li><strong>Changing your tax-free threshold claim</strong>: If you get a second job or leave a job and want to move the threshold to a different employer.</li>
@@ -200,7 +200,7 @@ export default function TaxFileNumberDeclarationPage() {
                 You do <strong>not</strong> need to submit a new TFN declaration each financial year or if your salary changes with the same employer. The declaration remains in effect until you submit a replacement or leave the employer.
               </p>
               <p>
-                For a comprehensive checklist when starting a new job, see our <Link href="/new-job-checklist/">New Job Checklist</Link>. If this is your first ever job, our <Link href="/first-job-pay-guide/">First Job Pay Guide</Link> walks through everything you need to know.
+                For a checklist of the forms and details to sort out when you start a new job, see our <Link href="/new-job-checklist/">New Job Checklist</Link>. If this is your first ever job, our <Link href="/first-job-pay-guide/">First Job Pay Guide</Link> explains tax, super and each line on your first payslip.
               </p>
             </section>
 
@@ -212,7 +212,7 @@ export default function TaxFileNumberDeclarationPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092) and PAYG withholding guidelines. Tax rates and thresholds are for FY{SITE_CONFIG.financialYear}. The 47% penalty withholding rate comprises the 45% top marginal rate plus 2% Medicare levy. Individual circumstances may vary, so contact the ATO on 13 28 61 for specific queries about your TFN declaration.</p>
+                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092) and PAYG withholding guidelines. Tax rates and thresholds are for FY{SITE_CONFIG.financialYear}. The 47% penalty withholding rate comprises the 45% top marginal rate plus 2% Medicare levy. For a question about your own TFN declaration, contact the ATO on 13 28 61.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-file-number-declaration"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

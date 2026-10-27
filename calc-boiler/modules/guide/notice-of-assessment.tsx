@@ -53,7 +53,7 @@ export default function NoticeOfAssessmentPage() {
             Notice of Assessment: Understanding Your ATO Tax Assessment
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the {RETURN_2026.incomeYear} return, most online lodgements are assessed within {RETURN_2026.onlineRefundTypical} and paper returns within {RETURN_2026.paperRefundBusinessDays} business days. This guide explains each line and what to do if something looks wrong.
+            A notice of assessment (NOA) is the document the Australian Taxation Office (ATO) issues after it processes your income tax return. Your NOA sets out your taxable income, the tax on that income, the PAYG credits for tax already withheld and the resulting refund or amount owing. For the {RETURN_2026.incomeYear} return, most online lodgements are assessed within {RETURN_2026.onlineRefundTypical} and paper returns within {RETURN_2026.paperRefundBusinessDays} business days. You can view every NOA in your myGov account linked to the ATO. The table below works through each NOA line for an example return, from taxable income to the final refund. The rest of this guide covers the amendment and objection deadlines if your NOA looks wrong, and the common reasons for a tax debt or a smaller refund.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -68,13 +68,13 @@ export default function NoticeOfAssessmentPage() {
             <section id="what-is-noa">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is a Notice of Assessment?</h2>
               <p>
-                A Notice of Assessment (NOA) is an official document the Australian Taxation Office issues after processing your income tax return. It is the ATO&apos;s formal calculation of your tax position for the financial year, showing exactly how much tax you owe, any credits you are entitled to, and whether you receive a refund or have an amount owing.
+                A Notice of Assessment (NOA) is an official document the Australian Taxation Office issues after processing your income tax return. It is the ATO&apos;s formal calculation of your tax position for the financial year: how much tax you owe, the credits you are entitled to, and whether you receive a refund or have an amount owing.
               </p>
               <p>
                 The NOA is issued for every tax return lodged, whether you lodge through myTax, a registered tax agent, or on paper. It is typically available within <strong>2 weeks</strong> of electronic lodgement; for paper returns the ATO says most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>.
               </p>
               <p>
-                Your NOA is an important document. You may need it when applying for loans, government benefits, or rental applications as proof of income. Keep a copy of each year&apos;s NOA for at least <strong>5 years</strong> (the standard ATO record-keeping period). You can access all your past NOAs through your myGov account linked to the ATO.
+                Your NOA is proof of income. You may need it when applying for a loan, a government benefit or a rental property. Keep a copy of each year&apos;s NOA for at least <strong>5 years</strong> (the standard ATO record-keeping period). You can access all your past NOAs through your myGov account linked to the ATO.
               </p>
             </section>
 
@@ -82,7 +82,7 @@ export default function NoticeOfAssessmentPage() {
             <section id="how-to-read">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Read Your Notice of Assessment</h2>
               <p>
-                Your NOA follows a structured calculation. Each line builds on the previous one to arrive at your final refund or debt. Here&apos;s what each section means:
+                Your NOA starts at taxable income and works down, line by line, to a final refund or amount owing. The table below explains each line, with figures for an example return:
               </p>
 
               <div className="not-prose my-6">
@@ -150,17 +150,17 @@ export default function NoticeOfAssessmentPage() {
 
               <p><strong>Taxable Income</strong> is your total assessable income (salary, wages, interest, dividends, capital gains, rental income) minus allowable deductions (work-related expenses, self-education, working from home, etc.). This is the starting point for your tax calculation.</p>
 
-              <p><strong>Tax on Taxable Income</strong> is calculated using the <Link href="/tax-brackets/">progressive tax brackets</Link>. For a 2025-26 return, the first $18,200 is tax-free, $18,201&ndash;$45,000 is taxed at 16%, $45,001&ndash;$135,000 at 30%, and so on (the 16% rate fell to 15% from 1 July 2026, so your 2026-27 return will use 15%). The ATO applies each bracket sequentially to your taxable income.</p>
+              <p><strong>Tax on Taxable Income</strong> is calculated using the <Link href="/tax-brackets/">progressive tax brackets</Link>. For a 2025-26 return, the first $18,200 is tax-free, $18,201 to $45,000 is taxed at 16%, $45,001 to $135,000 at 30%, and so on (the 16% rate fell to 15% from 1 July 2026, so your 2026-27 return will use 15%). The ATO applies each bracket sequentially to your taxable income.</p>
 
               <p><strong>Tax Offsets</strong> reduce the tax calculated above. The most common offset is the <Link href="/low-income-tax-offset/">Low Income Tax Offset (LITO)</Link>, which provides up to {formatAUD(LITO.maxOffset)} and phases out completely at {formatAUD(LITO.nilOffsetIncome)}. Other offsets include the private health insurance rebate, senior and pensioner tax offset, and zone tax offset. Non-refundable offsets can reduce tax to zero but not below.</p>
 
               <p><strong>Medicare Levy</strong> is a flat 2% of your taxable income. No levy is payable at or below the low-income threshold ({formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} for singles in 2025-26), and a reduced levy applies up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. See our <Link href="/medicare-levy/">Medicare Levy Guide</Link> for the full details, including exemptions for foreign residents and certain visa holders.</p>
 
-              <p><strong>Medicare Levy Surcharge</strong> applies on a 2025-26 return if your income for MLS purposes is over {formatAUD(MLS_SINGLE_2025_26)} (singles) or {formatAUD(MLS_SINGLE_2025_26 * 2)} (families) and do not hold eligible private hospital cover. The surcharge is 1%&ndash;1.5% depending on your income tier. See our <Link href="/private-health-insurance-medicare/">Private Health Insurance &amp; Medicare guide</Link>.</p>
+              <p><strong>Medicare Levy Surcharge</strong> applies on a 2025-26 return if your income for MLS purposes is over {formatAUD(MLS_SINGLE_2025_26)} (singles) or {formatAUD(MLS_SINGLE_2025_26 * 2)} (families) and you do not hold eligible private hospital cover. The surcharge is 1% to 1.5%, depending on your income tier. See our <Link href="/private-health-insurance-medicare/">Private Health Insurance &amp; Medicare guide</Link>.</p>
 
               <p><strong>HECS-HELP Repayment</strong> is your compulsory student loan repayment, calculated on your Repayment Income. Under the marginal system introduced for 2025-26, you only pay on income above the threshold: {formatAUD(HECS_HELP_2025_26.minimumThreshold)} on a 2025-26 return, rising to {formatAUD(HECS_HELP.minimumThreshold)} for 2026-27. The amount shown on your NOA is the total compulsory repayment for the year.</p>
 
-              <p><strong>PAYG Credits</strong> represent the tax your employer(s) withheld from your pay during the year. If your employer withheld more than your total tax liability, you receive a refund. If they withheld less, you owe the difference.</p>
+              <p><strong>PAYG Credits</strong> are the tax your employer(s) withheld from your pay during the year. If your employer withheld more than your total tax liability, you receive a refund. If they withheld less, you owe the difference.</p>
             </section>
 
             {/* SECTION 3: What to Do If You Disagree */}
@@ -230,7 +230,7 @@ export default function NoticeOfAssessmentPage() {
                 <li><strong>Child support obligations</strong>: Refunds may be redirected to cover child support debts.</li>
               </ul>
               <p>
-                Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> before lodging to estimate your expected outcome and identify any discrepancies early.
+                Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> before you lodge to estimate your refund or amount owing, so you have a figure to check your NOA against.
               </p>
             </section>
 

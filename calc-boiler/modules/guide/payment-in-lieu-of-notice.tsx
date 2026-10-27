@@ -133,7 +133,7 @@ export default function PilonPage() {
               caption={<>ATO, <a href={SRC.atoEtpComponents} target="_blank" rel="noopener noreferrer">How ETP components are taxed</a> (last updated 5 June 2026), read {NOTICE_VERIFIED_ON}. The whole-of-income cap applies to non-excluded ETPs like a payment in lieu. Preservation age is 60 for people born after 30 June 1964.</>}
             />
             <p>
-              The effect depends on your income. Someone on {formatAUD(90_000)} gets the 32% rate on a payment in lieu, similar to the 32% marginal rate on salary at that level. Someone already above $180,000 for the year has no concessional cap left, so the whole payment is taxed at the top rate. The <Link href="/termination-payment-tax-calculator/">termination payment tax calculator</Link> covers redundancy, severance and other ETPs in full. The tax your employer withholds is an estimate and the final tax is settled in your return.
+              Your other taxable income for the year sets how much of the payment gets the concessional rate. Someone on {formatAUD(90_000)} gets the 32% rate on a payment in lieu, similar to the 32% marginal rate on salary at that level. Someone already above $180,000 for the year has no concessional cap left, so the whole payment is taxed at the top rate. The <Link href="/termination-payment-tax-calculator/">termination payment tax calculator</Link> covers redundancy, severance and other ETPs in full. The tax your employer withholds is an estimate and the final tax is settled in your return.
             </p>
           </section>
 

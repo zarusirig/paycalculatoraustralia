@@ -24,7 +24,7 @@ export const VIC_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When do I get long service leave in Victoria?",
-    a: "After 7 years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past 7 years the accrued balance is paid out however the employment ends, including resignation.",
+    a: "Victorian employees are entitled to long service leave after 7 years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past 7 years the accrued balance is paid out however the employment ends, including resignation.",
   },
   {
     q: "Do employees pay VIC payroll tax?",

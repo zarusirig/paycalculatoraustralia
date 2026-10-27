@@ -124,13 +124,13 @@ export const PHYSIOTHERAPIST: Occupation = {
   metaTitle: hospitalSalaryTitle("Physiotherapist", MEDIAN),
   heading: "Physiotherapist Salary Australia 2026: Hospital Pay by State and Award Rates",
   metaDescription: hospitalMetaDescription("Physiotherapist", "physiotherapist", MEDIAN),
-  lede: `Full-time physiotherapists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year, or ${aud(MEDIAN.medianHourly)} an hour (Jobs and Skills Australia). In public hospitals each state sets the pay, on scales that start ${startRangeWords("physiotherapist")} and rise through senior clinician and manager grades. The award minimum in private practice is $34.44 an hour.`,
+  lede: `Full-time physiotherapists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year, or ${aud(MEDIAN.medianHourly)} an hour (Jobs and Skills Australia). In public hospitals each state sets the pay, on scales that start ${startRangeWords("physiotherapist")} and rise through senior clinician and manager grades. The Health Professionals and Support Services Award minimum for a first-year physiotherapist in private practice is $34.44 an hour.`,
   answerQuestion: "How much does a physiotherapist earn in Australia?",
   ato: PHYSIOTHERAPIST_ATO,
   publicHospital: {
     profession: "physiotherapist",
     intro:
-      "Physiotherapists in public hospitals are paid under their state's allied health award or agreement, not the federal award further down this page. These are the rates in force on 23 October 2026.",
+      "Physiotherapists in public hospitals are paid under their state's allied health award or agreement, not the Health Professionals and Support Services Award further down this page. These are the rates in force on 23 October 2026.",
   },
   sources: [...BASE.sources, ATO_TABLE_15],
   dateModified: HOSPITAL_PAGES_MODIFIED,

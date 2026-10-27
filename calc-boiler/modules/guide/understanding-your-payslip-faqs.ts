@@ -37,11 +37,11 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What must be legally included on an Australian payslip?",
-    a: "Under the Fair Work Regulations, a payslip must include the employer's name and ABN, the employee's name, the pay period and date of payment, gross and net pay, the ordinary hourly rate and hours for hourly workers, any loadings, allowances, bonuses or penalty rates, each deduction (including PAYG tax), and the superannuation contribution with the name of the fund it was paid to.",
+    a: "Under the Fair Work Regulations, a payslip must include the employer's name and ABN, the employee's name, the pay period and date of payment, and gross and net pay. It must also show the ordinary hourly rate and hours for hourly workers, any loadings, allowances, bonuses or penalty rates, and each deduction (including PAYG tax). For super, it must show the superannuation contribution and the name of the fund it was paid to.",
   },
   {
     q: "What is PAYG Withholding?",
-    a: "Pay As You Go (PAYG) withholding is the amount of income tax your employer legally deducts from your gross salary and sends directly to the ATO on your behalf. This ensures you gradually pay your income tax throughout the year rather than facing a massive bill at tax time.",
+    a: "Pay As You Go (PAYG) withholding is the income tax (including the Medicare Levy) your employer deducts from your gross pay each pay period and sends to the ATO on your behalf. You pay your income tax in each pay across the year, rather than as a lump sum when you lodge your tax return.",
   },
   {
     q: "When must my employer give me my payslip?",
@@ -58,7 +58,7 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should overtime appear separately on my payslip?",
-    a: "Yes. The Fair Work Act requires employers to itemise each component of pay separately, including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. This is especially important for verifying Award Rates compliance and correct penalty rate calculations.",
+    a: "Yes. The Fair Work Act requires employers to itemise each component of pay separately, including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. An itemised payslip lets you check your overtime and penalty rates against the Award Rates for your job.",
     links: { "Award Rates": "/award-rates/" },
   },
   {
@@ -79,11 +79,11 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need payslips to lodge my tax return?",
-    a: "No. Since the introduction of Single Touch Payroll (STP), your employer reports your income and tax data directly to the ATO each pay cycle, and must finalise it by 14 July each year so your income statement in myGov is marked tax ready. Payslips serve as a backup verification tool rather than a primary lodgement document. Cross-check your final YTD payslip figures against your Income Statement before lodging.",
+    a: "No. Since the introduction of Single Touch Payroll (STP), your employer reports your income and tax data directly to the ATO each pay cycle, and must finalise it by 14 July each year so your income statement in myGov is marked tax ready. Your payslips are a backup check on those figures, not a lodgement document. Cross-check your final YTD payslip figures against your Income Statement before lodging.",
   },
   {
     q: "How does salary sacrifice appear on a payslip?",
-    a: `Salary sacrifice amounts appear as a pre-tax deduction between gross pay and taxable income. The payslip shows your gross salary, then subtracts the salary sacrifice amount, resulting in a lower taxable income. PAYG withholding is then calculated on this reduced figure. For example, sacrificing ${formatAUD(SACRIFICE)} per fortnight into super on an ${formatAUD(EX_SALARY)} salary reduces fortnightly taxable income from ${formatAUD(fortnightly)} to ${formatAUD(fortnightly - SACRIFICE)}, lowering the PAYG withholding accordingly.`,
+    a: `Salary sacrifice amounts appear as a pre-tax deduction between gross pay and taxable income. The payslip shows your gross salary, subtracts the salary sacrifice amount, then shows the lower taxable income. PAYG withholding is then calculated on this reduced figure. For example, sacrificing ${formatAUD(SACRIFICE)} per fortnight into super on an ${formatAUD(EX_SALARY)} salary reduces fortnightly taxable income from ${formatAUD(fortnightly)} to ${formatAUD(fortnightly - SACRIFICE)}, and the PAYG withholding falls with it.`,
   },
   {
     q: "How do I compare payslips before and after a pay rise?",

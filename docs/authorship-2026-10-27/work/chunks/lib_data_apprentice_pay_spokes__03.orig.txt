@@ -1,0 +1,205 @@
+      {
+        heading: "Where the Penalty Percentages Come From",
+        paragraphs: [
+          "Schedule B of the award prints three separate tables for junior apprentices: B.5.1 for ordinary hours and weekend and public holiday penalties, B.5.2 for shiftwork and B.5.3 for overtime, each expressed as a percentage of the junior apprentice hourly rate. Adult apprentices have their own set at B.6.1 to B.6.3, worked as a percentage of the adult apprentice hourly rate. The penalty table above is B.5.1 applied to the Year 12 rates; an apprentice on afternoon or night shift, or working overtime, should read the B.5.2 and B.5.3 percentages instead.",
+          "Progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year, so a mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Are panel beater and auto electrician apprentices paid the same as apprentice mechanics?",
+        a: "Yes, under the Vehicle Repair, Services and Retail Award 2020. Clause 13.2 lists 21 apprenticeship trades, including motor mechanic, panel beater, automotive electrician, painter and brake mechanic, and clause 16.9 pays every junior apprentice in them from one table: $559.55 a week ($615.51 with Year 12) in first year, rising to $984.81 in fourth year, from 1 July 2026.",
+      },
+      {
+        q: "Does my employer pay my TAFE fees as an apprentice mechanic?",
+        a: "Yes. Clause 13.3 of the award requires the costs of fees for prescribed courses and prescribed textbooks to be reimbursed to the apprentice, or paid directly to the training provider within six months of the start of the apprenticeship or stage. Excess travel costs for block release training that needs an overnight stay are also the employer's (cl 13.4).",
+      },
+      {
+        q: "What is the penalty rate for an apprentice mechanic on a Saturday?",
+        a: "Under Schedule B.5.1 of the Vehicle Repair, Services and Retail Award 2020, a junior apprentice is paid 150% of their hourly rate on a Saturday, 200% on a Sunday and 250% on a public holiday. A first-year junior apprentice who completed Year 12 is on $16.20 an hour, so $24.30 on a Saturday.",
+      },
+      {
+        q: "Do apprentice mechanics get a tool allowance?",
+        a: "Yes, where the employer requires them to supply their own tools. Clause 19.6(b) sets it by year of apprenticeship at $5.88, $7.59, $10.46 and $12.14 a week. It is not subject to overtime, shift premium or other penalties, and it is not in the hourly minimums on this page.",
+      },
+    ],
+  },
+  {
+    slug: "hairdresser",
+    label: "Hairdresser",
+    trade: "hairdressing",
+    tradeSlug: "hairdressing",
+    h1: "Apprentice Hairdresser Pay",
+    lead:
+      "Hairdressing apprentices are paid under the Hair and Beauty Industry Award 2020, which has a 77% third year, a separate 30-month scale for pre-apprentices, a $10.52 weekly tool allowance when the salon makes you bring your own scissors, and a Saturday rate of 133% between 7am and 6pm.",
+    job: { href: "/job-pay-rates/hairdresser/", label: "Hairdresser pay rates (qualified)" },
+    extraLinks: [{ href: "/hair-and-beauty-award-rates/", label: "Hair and Beauty Award rates", blurb: "Every level, plus casual and weekend rates." }],
+    allowances: [
+      {
+        id: "tools",
+        label: "If the salon requires you to use your own tools",
+        lines: [{ label: "Tool allowance", clause: "cl 20.8(a)", byStage: ST(10.52) }],
+        condition: "Payable when the employer requires you to provide and use your own tools, including scissors and other cutting instruments. The same flat amount applies to apprentices and qualified staff",
+        allPurpose: false,
+      },
+    ],
+    penalty: {
+      heading: "Saturday, Sunday and Public Holiday Rates",
+      intro:
+        "Table 14 in clause 23.1 of the Hair and Beauty Industry Award sets the rates for full-time and part-time employees, apprentices included: 133% of the hourly rate for ordinary hours on a Saturday between 7am and 6pm, 200% on a Sunday between 10am and 5pm, and 250% on a public holiday. Applied to the Year 12 rates in the first table:",
+      columns: [
+        { label: "Saturday 7am to 6pm", pct: 133 },
+        { label: "Sunday 10am to 5pm", pct: 200 },
+        { label: "Public holiday", pct: 250 },
+      ],
+      caption: "Hourly dollars, matching the Fair Work Ombudsman pay guide. Casual apprentices have different percentages that include the casual loading (cl 23.2).",
+    },
+    qualification: {
+      code: "SHB30416",
+      title: "Certificate III in Hairdressing",
+      url: tgaUrl("SHB30416"),
+      detail: "It is current on training.gov.au: 28 units, 21 core and 7 elective.",
+    },
+    facts: [
+      "The junior rates come from Table 6 (has not completed Year 12) and Table 7 (has completed Year 12) in clause 18.1. The percentages apply to the Level 3 standard weekly rate of $1,119.10. The 3rd-year rate is 77% and the 4th-year rate is 90%, which makes hairdressing slightly different from the building trades (75% in 3rd year) and from beauty therapy (80%).",
+      "Pre-apprentices have their own tables (cl 18.3, Tables 10 and 11), which the Fair Work Ombudsman pay guide applies to an apprentice who has completed a pre-apprenticeship. They step up every six months: 50%, 55%, 60% and then 77% for the last 12 months without Year 12, or 55%, 55%, 65% and 77% with Year 12, 30 months in all.",
+      "If the salon requires you to provide and use your own tools, including scissors, it must pay $10.52 a week on top of the wage (cl 20.8(a)). Electrical equipment you have to buy for the job, such as a hair dryer, is reimbursed instead (cl 20.8(b)).",
+    ],
+    faqs: [
+      {
+        q: "How much does a first-year apprentice hairdresser earn?",
+        a: "From 1 July 2026 the Hair and Beauty Industry Award 2020 sets a minimum of $14.73 an hour ($559.55 a week) in the first year for an apprentice who did not complete Year 12, and $16.20 an hour ($615.51 a week) for one who did. Many salons pay more.",
+      },
+      {
+        q: "Do apprentice hairdressers get paid more on Saturdays?",
+        a: "Yes. For ordinary hours on a Saturday between 7am and 6pm the award pays 133% of the hourly rate (cl 23.1), so a first-year apprentice with Year 12 gets $21.55 an hour instead of $16.20. Sunday work between 10am and 5pm is 200% and public holidays 250%.",
+      },
+      {
+        q: "Do apprentice hairdressers get a tool allowance?",
+        a: "Yes, if the employer requires them to provide and use their own tools, including scissors and other cutting instruments. Clause 20.8(a) of the Hair and Beauty Industry Award sets it at $10.52 a week, the same amount as for qualified staff. It is not in the hourly rates on this page.",
+      },
+    ],
+  },
+  {
+    slug: "chef",
+    label: "Chef",
+    trade: "cookery",
+    tradeSlug: "cookery",
+    h1: "Apprentice Chef Pay",
+    lead:
+      "Cookery apprentices in hotels, pubs and clubs are paid under the Hospitality Industry (General) Award 2020, which does not split rates by Year 12, pays 95% of the standard rate in 4th year, adds a loading for evening and early-morning hours, and can lift a 4th-year apprentice to the full standard hourly rate early through proficiency pay.",
+    job: { href: "/job-pay-rates/chef/", label: "Chef pay rates (qualified)" },
+    extraLinks: [
+      { href: "/hospitality-award-rates/", label: "Hospitality Award rates", blurb: "The award these cookery apprentice rates come from." },
+      { href: "/restaurant-award-rates/", label: "Restaurant Award rates", blurb: "The separate award for many restaurants and cafes." },
+    ],
+    allowances: [
+      {
+        id: "tools",
+        label: "If you must supply your own knives and tools",
+        lines: [{ label: "Tool and equipment allowance (weekly maximum)", clause: "cl 26.5(a)", byStage: ST(9.94) }],
+        condition: "$2.03 a day or part day, capped at $9.94 a week, so the cap is reached on the fifth day",
+        allPurpose: false,
+      },
+    ],
+    penalty: {
+      heading: "Weekend, Public Holiday and Evening Rates",
+      intro:
+        "Table 14 in clause 29.2 of the Hospitality Industry (General) Award sets the rates for full-time and part-time employees, apprentices included: 125% of the hourly rate on a Saturday, 150% on a Sunday and 225% on a public holiday. Monday to Friday hours between 7pm and midnight attract an extra $2.95 an hour, and between midnight and 7am an extra $4.42 an hour. Applied to the rates in the first table:",
+      columns: [
+        { label: "Saturday", pct: 125 },
+        { label: "Sunday", pct: 150 },
+        { label: "Public holiday", pct: 225 },
+      ],
+      caption: "Hourly dollars, matching the Fair Work Ombudsman pay guide. Casual apprentices have different percentages that include the casual loading.",
+    },
+    qualification: {
+      code: "SIT30821",
+      title: "Certificate III in Commercial Cookery",
+      url: tgaUrl("SIT30821"),
+      detail: "It is current on training.gov.au: 25 units, 20 core and 5 elective.",
+    },
+    facts: [
+      "The rates here come from the Hospitality Industry (General) Award 2020, which covers hotels, pubs, clubs and similar venues. An apprentice cook in a restaurant or cafe may instead be under the Restaurant Industry Award 2020, which has its own apprentice rates that are not tabulated on this page. Check which award your employer says applies.",
+      "The hospitality award does not split cookery apprentice rates by Year 12. The first year is 55% of the $1,119.10 standard weekly rate, then 65%, 80% and 95%. That makes the first-year minimum the same for everyone and a little higher than the 50% some other trades pay a first-year apprentice who did not finish Year 12.",
+      "Proficiency pay (cl 19.3) applies to an apprentice who has completed their schooling in a given year. Reaching the standard of proficiency on one occasion earns the standard hourly rate of $29.45 for the last 3 months of 4th year, on two occasions for the last 6 months, and on all three for the whole of 4th year, instead of $27.98.",
+      "A cook or apprentice cook who has to supply their own tools is entitled to $2.03 a day, up to $9.94 a week (cl 26.5(a)). Knives, utensils and other items you must provide that this allowance does not cover are reimbursed (cl 26.5(b)).",
+    ],
+    faqs: [
+      {
+        q: "What does an apprentice chef earn in the first year?",
+        a: "Under the Hospitality Industry (General) Award 2020, a first-year cookery apprentice earns at least $16.20 an hour, which is 55% of the standard rate, and $615.51 for a 38-hour week from 1 July 2026. Cooks in restaurants and cafes may be covered by the Restaurant Industry Award instead.",
+      },
+      {
+        q: "Do apprentice chefs get a knife or tool allowance?",
+        a: "A cook or apprentice cook who is required to supply their own tools gets $2.03 a day, up to $9.94 a week, under clause 26.5(a) of the Hospitality Industry (General) Award 2020. It is not included in the hourly rates on this page.",
+      },
+      {
+        q: "What do apprentice chefs get paid on weekends and late nights?",
+        a: "The award pays 125% of the hourly rate on a Saturday, 150% on a Sunday and 225% on a public holiday (cl 29.2). A first-year apprentice on $16.20 gets $20.25 on a Saturday and $24.30 on a Sunday. Monday to Friday work between 7pm and midnight adds $2.95 an hour, and between midnight and 7am $4.42 an hour.",
+      },
+    ],
+  },
+  {
+    slug: "boilermaker",
+    label: "Boilermaker",
+    trade: "boilermaking and fabrication",
+    tradeSlug: "manufacturing",
+    h1: "Apprentice Boilermaker Pay",
+    lead:
+      "Boilermaking apprentices under the Manufacturing and Associated Industries and Occupations Award 2020 are the only apprentices on these pages whose 4th-year rate depends on Year 12: completing it moves the 4th year from 88% of the C10 trade rate to the C12 classification rate. Their tool allowance is a share of the tradesperson amount and is paid for all purposes.",
+    job: { href: "/job-pay-rates/boilermaker/", label: "Boilermaker pay rates (qualified)" },
+    extraLinks: [{ href: "/manufacturing-award-rates/", label: "Manufacturing Award rates", blurb: "Every C-level, from the trade rate upwards." }],
+    allowances: [
+      {
+        id: "tools",
+        label: "Unless your employer provides all your tools",
+        lines: [BOILERMAKER_TOOL],
+        condition:
+          "Not payable where the employer has provided all tools since before 5 November 1979, or has agreed with you to provide all the tools you need (cl 30.2(c)(iii), (iv)). Tools from the Tools for your trade scheme do not count as the employer providing them (cl 30.2(c)(viii))",
+        allPurpose: true,
+      },
+    ],
+    qualification: {
+      code: "MEM31925",
+      title: "Certificate III in Engineering - Fabrication Trade",
+      url: tgaUrl("MEM31925"),
+      detail:
+        "training.gov.au released it on 4 September 2025, superseding MEM31922 (listed as equivalent). It has a Boilermaking specialisation, and every version needs units worth 96 points.",
+    },
+    facts: [
+      "A boilermaker apprentice is normally doing the Engineering / Vehicle Tradesperson (Fabrication) apprenticeship that clause 12.4 of the Manufacturing and Associated Industries and Occupations Award 2020 names. The rates come from clause 21.6 for apprentices who started on or after 1 January 2014. The finished tradesperson is C10, $1,119.10 a week or $29.45 an hour, and the award lists the Certificate III in Engineering - Fabrication Trade as a C10 qualification.",
+      "Year 12 matters in the first two years and in the 4th. An apprentice who has not completed Year 12 is paid 88% of C10 in 4th year ($984.81), but one who has completed Year 12 is paid the C12/V3 rate of $1,029.10 a week, $44.29 a week more.",
+      "Progression counts Competency Points (cl 21.7(b)): stage 2 at 25% of the points for the Certificate III in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever is earlier. On a 96-point fabrication plan that is 24, 48 and 72 points (our arithmetic). The probationary period cannot be more than three months (cl 12.10), and an apprentice under 18 does not have to work overtime or shiftwork (cl 12.15).",
+      "The tool allowance is $17.90 a week for a tradesperson (cl 30.2(c)(ii)), and an apprentice gets the column 1 percentage of clause 21.6: 50%, 60%, 75% and 88% (cl 30.2(c)(v)). The weekly dollar amounts in the allowance table above are our arithmetic; the Fair Work Ombudsman pay guide shows the same allowance per hour as 24, 28, 35 and 41 cents. It is paid for all purposes (cl 30.2(c)(ix)), so it counts in overtime and penalty rates.",
+      "Not every boilermaker is under this award. The Building and Construction General On-site Award 2020 names a boilermaker and/or structural steel tradesperson classification, so a boilermaker working on a building site may be covered by that award instead, with its own percentages and allowances. Check your contract or pay guide.",
+    ],
+    faqs: [
+      {
+        q: "Why is a 4th-year boilermaker apprentice paid more if they finished Year 12?",
+        a: "Under clause 21.6 of the Manufacturing and Associated Industries and Occupations Award 2020, 4th-year pay for an apprentice who has completed Year 12 is the C12/V3 rate of $1,029.10 a week ($27.08 an hour). For one who has not, it is 88% of C10, which is $984.81 a week ($25.92 an hour).",
+      },
+      {
+        q: "How much is the tool allowance for an apprentice boilermaker?",
+        a: "Clause 30.2(c) pays a tradesperson $17.90 a week and an apprentice the same percentage as their wage column: 50% in stage 1, 60% in stage 2, 75% in stage 3 and 88% in stage 4. By our arithmetic that is $8.95, $10.74, $13.43 and $15.75 a week; the Fair Work Ombudsman pay guide shows it per hour as $0.24, $0.28, $0.35 and $0.41. It is paid for all purposes unless your employer provides all your tools.",
+      },
+    ],
+  },
+  {
+    slug: "butcher",
+    label: "Butcher",
+    trade: "butchery",
+    tradeSlug: "meat",
+    h1: "Apprentice Butcher Pay",
+    lead:
+      "Butchery apprentices are paid under the Meat Industry Award 2020, which has the steepest third-year step of the trades on these pages: 85% of the MI 7 rate, against 70% to 80% in the others. In a butcher shop the award also sets its own Saturday and Sunday rates, and a cold temperature allowance applies to work in freezers.",
+    extraLinks: [
+      { href: "/meat-industry-award-rates/", label: "Meat Industry Award rates", blurb: "Every MI level, with the weekend rates by establishment type." },
+      { href: "/junior-pay-rates/", label: "Junior Pay Rates", blurb: "Age-based rates for workers who are not apprentices." },
+    ],
+    allowances: [],
+    penalty: {
+      heading: "Weekend Rates in a Butcher Shop",
+      intro:
+        "Clause 24.3 of the Meat Industry Award sets the weekend rates for meat retail establishments: 125% of the minimum hourly rate for ordinary hours on a Saturday between 4am and 6pm, and 150% on a Sunday between 8am and 6pm. Applied to the Year 12 rates in the first table:",

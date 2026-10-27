@@ -60,15 +60,15 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "What income do you start paying the Medicare levy at?",
-    a: `${LOWER} of taxable income for most people. Between ${LOWER} and ${UPPER} you pay a reduced levy; the full ${RATE} only applies above ${UPPER}. If you are entitled to the seniors and pensioners tax offset the thresholds are ${SENIOR_SINGLE} and ${SENIOR_SINGLE_UPPER}. Families are tested on combined taxable income against ${FAMILY}, plus ${CHILD} for each dependent child.`,
+    a: `The Medicare levy starts at ${LOWER} of taxable income for most people. Between ${LOWER} and ${UPPER} you pay a reduced levy; the full ${RATE} only applies above ${UPPER}. If you are entitled to the seniors and pensioners tax offset the thresholds are ${SENIOR_SINGLE} and ${SENIOR_SINGLE_UPPER}. Families are tested on combined taxable income against ${FAMILY}, plus ${CHILD} for each dependent child.`,
   },
   {
     q: "What is the Medicare levy family threshold?",
-    a: `${FAMILY} of combined family taxable income, rising by ${CHILD} for each dependent child. Below it no levy is payable by either partner. Between ${FAMILY} and ${FAMILY_UPPER} a family reduction cuts the levy, and it is applied on top of any low-income reduction you already qualify for individually. A family with two children has a threshold of ${formatAUD(familyLowerThreshold(2, false))}.`,
+    a: `The Medicare levy family threshold is ${FAMILY} of combined family taxable income, rising by ${CHILD} for each dependent child. Below it no levy is payable by either partner. Between ${FAMILY} and ${FAMILY_UPPER} a family reduction cuts the levy, and it is applied on top of any low-income reduction you already qualify for individually. A family with two children has a threshold of ${formatAUD(familyLowerThreshold(2, false))}.`,
   },
   {
     q: "Do pensioners pay the Medicare levy?",
-    a: `Often not. If you are entitled to at least $1 of the seniors and pensioners tax offset (SAPTO), your Medicare levy threshold rises to ${SENIOR_SINGLE} single or ${SENIOR_FAMILY} for a family, well above the ${LOWER} that applies to everyone else. The catch is that the concession follows SAPTO entitlement, not age: SAPTO for singles cuts out at ${formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, and once your entitlement reaches zero you fall back to the ordinary thresholds.`,
+    a: `Often not. If you are entitled to at least $1 of the seniors and pensioners tax offset (SAPTO), your Medicare levy threshold rises to ${SENIOR_SINGLE} single or ${SENIOR_FAMILY} for a family, well above the ${LOWER} that applies to everyone else. The concession follows SAPTO entitlement, not age: SAPTO for singles cuts out at ${formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, and once your entitlement reaches zero you fall back to the ordinary thresholds.`,
   },
   {
     q: "Is the Medicare levy the same as the Medicare levy surcharge?",
@@ -76,7 +76,7 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "Who is exempt from the Medicare levy?",
-    a: `Three groups. Blind pensioners and holders of a DVA Gold Card or equivalent Defence Force entitlement claim a Category 1 medical exemption. Foreign residents pay nothing for any period they were not an Australian resident for tax purposes. Temporary residents not entitled to Medicare benefits can get a Medicare Entitlement Statement from Services Australia and claim an exemption. People from reciprocal health care agreement countries such as the UK, New Zealand and Ireland are entitled to Medicare and do pay the levy.`,
+    a: `Three groups are exempt from the Medicare levy. Blind pensioners and holders of a DVA Gold Card or equivalent Defence Force entitlement claim a Category 1 medical exemption. Foreign residents pay nothing for any period they were not an Australian resident for tax purposes. Temporary residents not entitled to Medicare benefits can get a Medicare Entitlement Statement from Services Australia and claim an exemption. People from reciprocal health care agreement countries such as the UK, New Zealand and Ireland are entitled to Medicare and do pay the levy.`,
   },
   {
     q: "What is a half Medicare levy exemption?",

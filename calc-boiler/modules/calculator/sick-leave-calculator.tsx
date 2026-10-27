@@ -71,13 +71,13 @@ export default function SickLeaveCalculator() {
                 </dl>
                 <p className={r.takenHours > r.accruedHours ? NOTE_WARN : NOTE_OK} role="status" aria-live="polite">
                   {r.takenHours > r.accruedHours
-                    ? `You've taken more than you've earned. The NES only pays leave you have accumulated; once paid leave runs out, you can take ${SICK_LEAVE.unpaidCarersDaysPerOccasion} days of unpaid carer's leave per occasion to care for family.`
+                    ? `You've taken more than you've earned. The NES only pays leave you have accumulated; once paid leave runs out, you can take ${SICK_LEAVE.unpaidCarersDaysPerOccasion} days of unpaid carer's leave per occasion to care for a family or household member.`
                     : `You earn 1 hour of paid sick and carer's leave for every 26 ordinary hours you work: ${h(r.annualHours)} a year at ${hoursPerWeek} hours a week. Unused leave carries over each year but isn't paid out when you leave.`}
                 </p>
               </>
             )}
             <p className="text-xs text-warmgray-light">
-              National Employment Standards minimum (Fair Work Act ss 95–96). Your award, enterprise agreement or contract can give more, never less. Leave keeps accruing while you&rsquo;re on paid leave or community service leave, but not on unpaid leave.
+              This calculator uses the National Employment Standards minimum (Fair Work Act ss 95 and 96). Your award, enterprise agreement or contract can give more, never less. Leave keeps accruing while you&rsquo;re on paid leave or community service leave, but not on unpaid leave.
             </p>
           </div>
         </div>

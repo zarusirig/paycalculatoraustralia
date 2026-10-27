@@ -50,7 +50,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             Extra Super vs Paying Off HECS Faster &mdash; Which Should You Prioritise?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            With spare cash, should you boost your super balance through voluntary contributions or make voluntary HECS-HELP repayments to eliminate your student debt? This guide compares the tax benefits, growth potential, and practical trade-offs to help you decide.
+            Choosing between extra super and paying off HECS faster comes down to your marginal tax rate, your HECS-HELP balance and when you need the money. Our view: voluntary super contributions build more value if your marginal rate is well above the contributions tax and the money can stay locked until preservation age. The reason is that each concessional contribution is then taxed inside super at a lower rate than your marginal rate. Voluntary HECS-HELP repayments win when your balance is large or a lump sum would clear the debt and end compulsory repayments. They also win when your marginal rate is no higher than the contributions tax. Each voluntary repayment avoids the June indexation on the amount repaid. The worked example below puts the same pre-tax salary into each option and compares the value after a decade. The rest of this page covers HECS indexation against super returns, when each option wins, and common questions.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -70,14 +70,14 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="core-question">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Core Question</h2>
               <p>
-                Both options use your surplus income productively, but they serve different financial goals:
+                Extra super and voluntary HECS repayments both put your surplus income to work, but they serve different financial goals:
               </p>
               <ul>
                 <li><strong>Voluntary super contributions:</strong> Salary sacrifice or personal deductible contributions are taxed at just <strong>15%</strong> inside super (vs your marginal rate of up to 45%). Super then grows with compound returns over decades. The trade-off: the money is <strong>locked until preservation age</strong> (currently 60).</li>
-                <li><strong>Voluntary HECS repayments:</strong> Extra payments reduce your outstanding HECS-HELP balance, eliminating future indexation on that portion and bringing you closer to a $0 balance. Once the debt is cleared, your compulsory repayments stop, increasing your take-home pay. The &ldquo;return&rdquo; on voluntary HECS repayments equals the <strong>indexation rate avoided</strong> (typically 3&ndash;4% under the CPI/WPI cap).</li>
+                <li><strong>Voluntary HECS repayments:</strong> Extra payments reduce your outstanding HECS-HELP balance, so no future indexation applies to the amount you repay and you reach a $0 balance sooner. Once the debt is cleared, compulsory repayments stop and your take-home pay rises. The return on voluntary HECS repayments equals the <strong>indexation rate avoided</strong> (typically 3 to 4% under the CPI/WPI cap).</li>
               </ul>
               <p>
-                The fundamental comparison: super offers a <strong>larger tax benefit and higher expected returns</strong> but locks your money away. HECS repayment offers a <strong>modest guaranteed return</strong> (avoiding indexation) and frees up future cash flow once the debt is cleared.
+                Side by side, extra super offers a <strong>larger tax benefit and higher expected returns</strong> but locks your money away. HECS repayment offers a <strong>modest guaranteed return</strong> (avoiding indexation) and frees up future cash flow once the debt is cleared.
               </p>
             </section>
 
@@ -85,25 +85,25 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="indexation-vs-returns">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Indexation vs Super Returns</h2>
               <p>
-                Understanding the &ldquo;cost&rdquo; of HECS and the &ldquo;return&rdquo; of super is essential to this comparison.
+                The comparison turns on the indexation added to your HECS-HELP debt and the net return your super fund earns.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Indexation</h3>
               <p>
                 HECS-HELP debt is indexed on <strong>1 June each year</strong> to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024 after the 7.1% indexation of June 2023, and applied retrospectively from 1 June 2023. The rate applied on 1 June 2026 was {(HECS_HELP.indexationRate * 100).toFixed(1)}%.
               </p>
               <p>
-                Recent rates have been around <strong>3% to 4%</strong> or lower ({(HECS_HELP.indexationRate * 100).toFixed(1)}% in 2026). Your HECS debt grows by that rate on the balance as at 1 June &mdash; but it does not compound monthly like a mortgage. It is applied as a single annual adjustment.
+                Recent rates have been around <strong>3% to 4%</strong> or lower ({(HECS_HELP.indexationRate * 100).toFixed(1)}% in 2026). Your HECS debt grows by that rate on the balance as at 1 June. It does not compound monthly like a mortgage: indexation is a single annual adjustment.
               </p>
               <p>
-                Crucially, HECS is an <strong>interest-free loan</strong> &mdash; indexation maintains the real value of the debt but does not add a profit margin. There is no benefit to paying it off early beyond avoiding the indexation amount.
+                HECS-HELP is an <strong>interest-free loan</strong>. Indexation maintains the real value of the debt but does not add a profit margin. The financial gain from paying it off early is the indexation you avoid on the amount repaid.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Fund Returns</h3>
               <p>
-                Balanced and growth super options have historically returned around <strong>7&ndash;8% per year</strong> before fees over long periods, though past returns are not guaranteed. After fees (typically 0.5&ndash;1.0%) and the 15% earnings tax inside super, the net return is closer to <strong>5.5&ndash;6.5%</strong> for a growth or balanced option.
+                Balanced and growth super options have historically returned around <strong>7&ndash;8% per year</strong> before fees over long periods, though past returns do not predict future returns. After fees (typically 0.5 to 1.0%) and the 15% earnings tax inside super, the net return is closer to <strong>5.5&ndash;6.5%</strong> for a growth or balanced option.
               </p>
               <p>
-                This comfortably exceeds the 3&ndash;4% HECS indexation rate in most years. However, super returns are <strong>not guaranteed</strong> &mdash; in any given year, returns could be negative. HECS indexation, by contrast, is a known cost that you can eliminate with certainty by making voluntary repayments.
+                That net super return is above the 3 to 4% HECS indexation rate in most years. However, super returns are <strong>not guaranteed</strong>. In any given year, returns could be negative. HECS indexation, by contrast, is a known cost: each voluntary repayment removes it on the amount repaid.
               </p>
             </section>
 
@@ -112,9 +112,9 @@ export default function ExtraSuperVsHecsRepaymentPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Extra Super Wins</h2>
               <ul>
                 <li><strong>Young with a long time to retirement (25+ years):</strong> More time means more compounding. A $200/month contribution starting at age 25 could grow to over <strong>$200,000</strong> by age 60 at 7% gross returns, while indexation avoided on a HECS balance stops as soon as the debt is cleared.</li>
-                <li><strong>Higher marginal tax rate (30%+):</strong> The tax saving of 15&ndash;30 cents per dollar (17&ndash;32 cents with the Medicare levy) contributed to super significantly outweighs the indexation saving on HECS.</li>
-                <li><strong>Small HECS balance relative to income:</strong> If your HECS is under $20,000 and your compulsory repayments will clear it within 3&ndash;5 years anyway, the indexation cost is minimal and super contributions provide far more long-term value.</li>
-                <li><strong>Unused concessional cap space:</strong> If you have carry-forward cap amounts from previous years (available when total super is under $500,000), the tax benefit is especially compelling.</li>
+                <li><strong>Higher marginal tax rate (30%+):</strong> Each dollar contributed to super saves 15 to 30 cents in tax (17 to 32 cents with the Medicare levy), which outweighs the indexation saving on HECS.</li>
+                <li><strong>Small HECS balance relative to income:</strong> If your HECS is under $20,000 and your compulsory repayments will clear it within 3 to 5 years anyway, the indexation cost is minimal and super contributions provide far more long-term value.</li>
+                <li><strong>Unused concessional cap space:</strong> If you have unused carry-forward cap amounts from previous years (available when your total super balance is under $500,000), you can make larger concessional contributions this year and get the tax saving on all of them.</li>
               </ul>
             </section>
 
@@ -122,9 +122,9 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="when-hecs-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Paying HECS Faster Wins</h2>
               <ul>
-                <li><strong>Large HECS balance ($50,000+):</strong> A $60,000 HECS debt indexed at 4% costs $2,400 per year in indexation alone. Reducing the balance by $10,000 saves $400/year in indexation &mdash; a guaranteed, risk-free return.</li>
-                <li><strong>High indexation environment:</strong> If CPI or WPI is running above 4%, the guaranteed return from avoiding indexation becomes more attractive relative to the uncertainty of super returns.</li>
-                <li><strong>Close to paying off HECS:</strong> If you owe $5,000&ndash;$15,000 and a lump-sum payment would clear the debt entirely, eliminating the compulsory repayment from your payslip immediately boosts your take-home pay. Under the marginal system that is {formatAUD(HECS_AT_90K)} a year at a $90,000 income in FY{SITE_CONFIG.financialYear}, and up to 10% of repayment income at the top band.</li>
+                <li><strong>Large HECS balance ($50,000+):</strong> A $60,000 HECS debt indexed at 4% costs $2,400 per year in indexation alone. Reducing the balance by $10,000 saves $400/year in indexation, a risk-free return.</li>
+                <li><strong>High indexation environment:</strong> If CPI or WPI is running above 4%, the known return from avoiding indexation becomes more attractive relative to the uncertainty of super returns.</li>
+                <li><strong>Close to paying off HECS:</strong> If you owe $5,000 to $15,000 and a lump-sum payment would clear the debt entirely, the compulsory repayment stops and your take-home pay rises straight away. Under the marginal repayment system that repayment is {formatAUD(HECS_AT_90K)} a year at a $90,000 income in FY{SITE_CONFIG.financialYear}, and up to 10% of repayment income at the top band.</li>
                 <li><strong>About to cross a repayment threshold:</strong> If your income is close to a higher HECS repayment band, paying down the debt before 1 June can reduce the indexation amount applied that year.</li>
                 <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches your 15% rate, so the super tax saving is at most the 2c Medicare levy per dollar, which barely justifies locking money away when you could eliminate a debt that grows with indexation each year.</li>
               </ul>
@@ -188,7 +188,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                 <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {(HECS_HELP.indexationRate * 100).toFixed(1)}% applied on 1 June 2026. Figures are approximate illustrations.</p>
               </div>
               <p>
-                At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: the HECS reduction immediately benefits your cash flow once the debt is cleared, while the super balance remains locked. At higher tax brackets (37% or 45%), the super option pulls ahead more decisively due to the larger tax saving.
+                At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: once the HECS debt is cleared, compulsory repayments stop and your take-home pay rises, while the super balance stays locked until preservation age. At higher tax brackets (37% or 45%), super pulls further ahead because the tax saving on each dollar is larger.
               </p>
             </section>
 

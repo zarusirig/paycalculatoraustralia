@@ -24,7 +24,7 @@ export const ANNUAL_LEAVE_CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "Do shiftworkers get 5 weeks of annual leave?",
-    a: "Some do. Shiftworkers are entitled to more than 4 weeks if their award or enterprise agreement includes shiftwork provisions and defines them as employees who receive the additional week under the NES. If that applies to you, you get 5 weeks, or 190 hours on a 38-hour week. Check your award or agreement.",
+    a: "Some shiftworkers do. They are entitled to more than 4 weeks if their award or enterprise agreement includes shiftwork provisions and defines them as employees who receive the additional week under the NES. If that applies to you, you get 5 weeks, or 190 hours on a 38-hour week. Check your award or agreement.",
   },
   {
     q: "Does annual leave keep building while I am on other leave?",

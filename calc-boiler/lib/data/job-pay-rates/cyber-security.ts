@@ -64,7 +64,7 @@ const MEDIAN: MedianEarnings = {
 export const CYBER_SECURITY_ATO: AtoOccupationStats = {
   incomeYear: ATO_TAXSTATS_INCOME_YEAR,
   intro:
-    "The ATO's 2023–24 coding splits cyber security into seven occupations, from analysts to architects. Analysts are the largest group, so the page leads with them; all seven are below.",
+    "The ATO's 2023-24 coding splits cyber security into seven occupations, from analysts to architects. Cyber security analysts are the largest group, so the page leads with them; the table below lists all seven.",
   rows: [
     { code: "262116", title: "Cyber security analyst", individuals: 4_070, avgTaxableIncome: 113_408, medianTaxableIncome: 100_511, avgSalary: 108_663, medianSalary: 99_733 },
     { code: "261315", title: "Cyber security engineer", individuals: 2_003, avgTaxableIncome: 145_753, medianTaxableIncome: 132_485, avgSalary: 135_653, medianSalary: 133_128 },
@@ -99,7 +99,7 @@ export const CYBER_SECURITY: Occupation = {
   heading: "Cyber Security Salary Australia 2026 - Seven Roles From Tax Returns, With Take-Home",
   metaTitle: `Cyber Security Salary 2026 - ${aud(ANALYST.medianSalary)}–${aud(ARCHITECT.medianSalary)} Median, ${aud2(GRAD3.hourly)}/hr`,
   metaDescription: `Cyber security salaries from 2023–24 tax returns: analysts ${aud(ANALYST.medianSalary)} median, engineers ${aud(ENGINEER_ROW.medianSalary)}, architects ${aud(ARCHITECT.medianSalary)}. Award floor and take-home pay on each.`,
-  lede: `Cyber security pay depends heavily on the role. On 2023–24 tax returns the median salary was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO). At an employer principally in the IT industry, the Professional Employees Award sets a graduate floor of ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). An analyst on the median takes home about ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight after tax.`,
+  lede: `Cyber security pay depends heavily on the role. On 2023-24 tax returns the median salary was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO). At an employer principally in the IT industry, the Professional Employees Award sets a graduate floor of ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). An analyst on the median takes home about ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight after tax.`,
   coverage: [
     "No award names cyber security roles. Their award coverage, if any, comes through the information technology stream of the Professional Employees Award 2020 [MA000065], which applies only where the employer is principally engaged in the IT, telecommunications services or quality auditing industry (cl 4.1(b)), and only to work needing an ACS-accredited degree or equivalent standing as an ACS Certified Professional (cl 2.3).",
     "A security analyst at a bank, an insurer, a hospital or a government department is outside that stream. Check the award for the employer's industry or your enterprise agreement; if none applies, the National Minimum Wage and the National Employment Standards are the legal floor.",
@@ -110,7 +110,7 @@ export const CYBER_SECURITY: Occupation = {
       id: "cyber-it-professional",
       title: "Cyber security award minimums (IT-industry employers), 2026–27",
       intro:
-        "Professional Employees Award clause 14.1 annual wages, the award's weekly conversion (annual x 6/313), and Schedule C hourly and casual rates. They apply only where the award covers you.",
+        "The table shows Professional Employees Award clause 14.1 annual wages, the award's weekly conversion (annual x 6/313), and Schedule C hourly and casual rates. These minimums apply only where the award covers you.",
       rows: [GRAD3, peaRow(PEA.grad45), peaRow(PEA.pp12), peaRow(PEA.pp13), peaRow(PEA.pp14), L2, L3, peaRow(PEA.level4)],
     },
   ],
@@ -124,7 +124,7 @@ export const CYBER_SECURITY: Occupation = {
   median: MEDIAN,
   ato: CYBER_SECURITY_ATO,
   notices: [
-    `The ATO figures cover ${PEOPLE.toLocaleString("en-AU")} people across seven cyber security occupations in 2023–24. Jobs and Skills Australia's median is for a wider group that also includes database and systems administrators.`,
+    `The ATO figures cover ${PEOPLE.toLocaleString("en-AU")} people across seven cyber security occupations in 2023-24. Jobs and Skills Australia's median is for a wider group that also includes database and systems administrators.`,
   ],
   payslipNotes: [
     "Night and weekend incident work: below the cl 18.6 salary line, hours worked at your employer's direction before 6 am or after 10 pm Monday to Saturday are paid at 125% ($42.14 an hour for a graduate on the 3-year rate) and Sundays and public holidays at 150%, $50.57 (cl 18.4, Schedule C.1). They must be shown separately from your ordinary pay (Fair Work Ombudsman, pay slips).",
@@ -138,23 +138,23 @@ export const CYBER_SECURITY: Occupation = {
   faqs: [
     {
       q: "How much do cyber security professionals earn in Australia?",
-      a: `It depends on the role. On 2023–24 tax returns the median salary or wage income was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers, $147,590 for advice and assessment specialists and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO Taxation statistics 2023–24).`,
+      a: `Cyber security pay in Australia depends on the role. On 2023-24 tax returns the median salary or wage income was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers, $147,590 for advice and assessment specialists and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO Taxation statistics 2023-24).`,
     },
     {
       q: "What is a cyber security analyst's salary?",
-      a: `The 4,070 cyber security analysts on 2023–24 tax returns had a median salary or wage income of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)}. On the median, take-home pay is about ${aud(netAnnual(ANALYST.medianSalary))} a year after 2026–27 income tax and the Medicare levy.`,
+      a: `The 4,070 cyber security analysts on 2023-24 tax returns had a median salary or wage income of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)}. On the median, take-home pay is about ${aud(netAnnual(ANALYST.medianSalary))} a year after 2026-27 income tax and the Medicare levy.`,
     },
     {
       q: "Is there an award for cyber security jobs?",
-      a: "Only at some employers. The Professional Employees Award covers IT professionals at businesses principally in the IT or telecommunications services industry, for work needing an ACS-accredited degree or equivalent. Elsewhere, check the award for your employer's industry or your enterprise agreement.",
+      a: "The Professional Employees Award covers cyber security jobs only at some employers. It applies to IT professionals at businesses principally in the IT or telecommunications services industry, for work needing an ACS-accredited degree or equivalent. Elsewhere, check the award for your employer's industry or your enterprise agreement.",
     },
     {
       q: "What is the minimum salary for a graduate in cyber security?",
-      a: `Where the award applies, ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour) for a graduate with a 3-year accredited degree, at Level 1 pay point 1.1 from 1 July 2026. If no award covers the role, the legal minimum is the National Minimum Wage.`,
+      a: `Where the award applies, a graduate with a 3-year accredited degree earns at least ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour) at Level 1 pay point 1.1 from 1 July 2026. If no award covers the role, the legal minimum is the National Minimum Wage.`,
     },
     {
       q: "What does a cyber security engineer take home?",
-      a: `On the ${aud(ENGINEER_ROW.medianSalary)} median salary, about ${aud(netAnnual(ENGINEER_ROW.medianSalary))} a year or ${aud(netFortnightly(ENGINEER_ROW.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
+      a: `A cyber security engineer on the ${aud(ENGINEER_ROW.medianSalary)} median salary takes home about ${aud(netAnnual(ENGINEER_ROW.medianSalary))} a year or ${aud(netFortnightly(ENGINEER_ROW.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP debt and with private hospital cover.`,
     },
     {
       q: "Are cyber security staff paid for after-hours incidents?",

@@ -23,11 +23,11 @@ const annual = (hourly: number) => formatAUD(hourly * EMPLOYMENT.hoursPerYear);
 export const CONSTRUCTION_TRADES_FAQS: readonly FaqItem[] = [
   {
     q: "How much do tradies earn in Australia?",
-    a: "Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K–$110K), plumbers ($75K–$105K) and boilermakers ($85K–$120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K–$250K+ but have higher business costs.",
+    a: "Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K to $110K), plumbers ($75K to $105K) and boilermakers ($85K to $120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K to $250K+ but have higher business costs.",
   },
   {
     q: "How much do apprentices get paid?",
-    a: `Apprentice wages are a percentage of the qualified trade rate that rises each year, and each award sets its own scale. Under the Electrical award, an apprentice electrician who completed Year 12 gets ${pctList.slice(0, -1).join(", ")} and ${pctList[pctList.length - 1]} of the qualified rate: about ${annual(APPRENTICE_ELECTRICIAN[0].hourly)} a year in Year 1, rising to ${annual(APPRENTICE_ELECTRICIAN[APPRENTICE_ELECTRICIAN.length - 1].hourly)} in Year 4 at the award minimum. Adult apprentices receive higher minimum rates.`,
+    a: `Apprentice wages are a percentage of the qualified trade rate that rises each year, and each award sets its own scale. Under the Electrical, Electronic and Communications Contracting Award, an apprentice electrician who completed Year 12 gets ${pctList.slice(0, -1).join(", ")} and ${pctList[pctList.length - 1]} of the qualified rate. That is about ${annual(APPRENTICE_ELECTRICIAN[0].hourly)} a year in Year 1, rising to ${annual(APPRENTICE_ELECTRICIAN[APPRENTICE_ELECTRICIAN.length - 1].hourly)} in Year 4 at the award minimum. Adult apprentices receive higher minimum rates.`,
   },
   {
     q: "What are the overtime rates in construction?",
@@ -43,6 +43,6 @@ export const CONSTRUCTION_TRADES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the highest-paid trade in Australia?",
-    a: "Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K–$120K. Electricians working in mining or oil and gas can earn $130K–$170K+. Crane operators, while not a traditional trade, can earn $100K–$150K+ on major construction projects due to their specialised skills and the high demand for certified operators.",
+    a: "Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K to $120K. Electricians working in mining or oil and gas can earn $130K to $170K+. Crane operators are not a traditional trade, but they can earn $100K to $150K+ on major construction projects.",
   },
 ];

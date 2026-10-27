@@ -50,7 +50,7 @@ export const SA: Jurisdiction = {
     year: "2026",
     title: "SA public sector salary by level: ASO-1 to ASO-8 and SSO-1 to SSO-6",
     intro:
-      "Administrative Services Officers (ASO) and School Services Officers (SSO) are the two South Australian classifications people search for most, so each level has its own section. ASO rates are from the Salaried 2026 agreement from the first full pay period on or after 1 July 2026; SSO rates are from the separate education staff agreement from the first full pay period on or after 1 May 2026. Every salary links to the nearest take-home pay page.",
+      "Each Administrative Services Officer (ASO) and School Services Officer (SSO) level in the South Australian public sector has its own section below, with the annual salary at every increment. ASO rates come from the Salaried 2026 agreement and apply from the first full pay period on or after 1 July 2026. SSO rates come from the separate education staff agreement and apply from the first full pay period on or after 1 May 2026. Each salary in the tables links to the take-home pay page for the nearest salary.",
   },
 
   headline:
@@ -64,18 +64,18 @@ export const SA: Jurisdiction = {
     "Most South Australian public servants are paid under the South Australian Public Sector Enterprise Agreement: Salaried 2026, approved by the South Australian Employment Tribunal on 4 March 2026. It sets the Administrative Services (ASO), Operational Services (OPS), Professional Officer (PO) and other salaried streams in Appendix 2. School Services Officers in government schools and preschools are covered instead by the South Australian School and Preschool Education Staff Enterprise Agreement 2024.",
 
   payRise:
-    "The Salaried 2026 agreement sets three increases, each from the first full pay period on or after the date: 1 August 2025, 1 July 2026 and 1 July 2027 (clause 7.2). The rates on this page are the 1 July 2026 column; the next increase is from the first full pay period on or after 1 July 2027. SSO rates last moved from the first full pay period on or after 1 May 2026, which is the final increase in the 2024 education staff agreement; that agreement's nominal life runs about 36 months from 25 March 2024, and no later SSO rate is published.",
+    "The Salaried 2026 agreement sets three increases, each from the first full pay period on or after the date: 1 August 2025, 1 July 2026 and 1 July 2027 (clause 7.2). The rates on this page are the 1 July 2026 column; the next increase is from the first full pay period on or after 1 July 2027. SSO rates last moved from the first full pay period on or after 1 May 2026, the final increase in the 2024 education staff agreement. That agreement's nominal life runs about 36 months from 25 March 2024, and no later SSO rate is published.",
 
   schedules: [
     {
       id: "sa-salaried-2026",
       title: "SA Public Sector Enterprise Agreement: Salaried 2026, from 1 July 2026",
       coverage:
-        "Salaried employees of South Australian public sector agencies covered by the agreement, including the administrative, operational and professional streams.",
+        "This schedule applies to salaried employees of South Australian public sector agencies covered by the agreement, including the administrative, operational and professional streams.",
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 July 2026",
       rangeMeaning:
-        "First and last increment of the level. Annual salary only; superannuation is paid on top.",
+        "Each range runs from the first to the last increment of the level. The figures are annual salary only; superannuation is paid on top.",
       sourceId: "sa-salaried-2026",
       streams: [
         {
@@ -281,11 +281,11 @@ export const SA: Jurisdiction = {
       id: "sa-sso-2026",
       title: "School Services Officers, Education Staff Enterprise Agreement 2024, from 1 May 2026",
       coverage:
-        "School Services Officers in South Australian government schools and preschools, employed by the Department for Education. Not covered by the Salaried 2026 agreement.",
+        "This schedule applies to School Services Officers in South Australian government schools and preschools, employed by the Department for Education. School Services Officers are not covered by the Salaried 2026 agreement.",
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 May 2026",
       rangeMeaning:
-        "First and last increment of the level. The top increment of each SSO level is criteria-based: the department's rate sheet says it is \"only applicable to those with relevant qualifications who have completed the top tier increment process\".",
+        "Each range runs from the first to the last increment of the level. The top increment of each SSO level is criteria-based: the department's rate sheet says it is \"only applicable to those with relevant qualifications who have completed the top tier increment process\".",
       sourceId: "sa-education-2024",
       note:
         "These are the standard per-annum rates for School Services Officers with leave conditions. The department also publishes loaded variants (a 16% loading version, the same spread over 52 weeks, and a casual rate), which are not reproduced here.",
@@ -393,7 +393,7 @@ export const SA: Jurisdiction = {
 
   progression: [
     "Each ASO level has between three and six increments. ASO-1 is the only level labelled by year of service (1st to 6th year adult); every other level numbers its increments. The gap between increments varies from $404 (the last ASO-4 step) to $3,527 (ASO-5 increment 2 to 3), so the bigger movement is between levels, which in South Australia happens by appointment to a position classified at the higher level rather than by time served.",
-    "Because the ASO levels do not overlap, the top of one level is always below the bottom of the next: the top of ASO-4 is $86,180 and the bottom of ASO-5 is $92,122, a gap of $5,942. The same holds between ASO-5 ($102,456) and ASO-6 ($105,747).",
+    "The ASO levels do not overlap: the top of each level is below the bottom of the next. The top of ASO-4 is $86,180 and the bottom of ASO-5 is $92,122, a gap of $5,942. The same holds between ASO-5 ($102,456) and ASO-6 ($105,747).",
     "School Services Officers progress through numbered increments, but the top increment of every SSO level is not automatic. The Department for Education's rate sheet says the top tier is only applicable to those with relevant qualifications who have completed the top tier increment process.",
     "The age-based ASO-1 rates for employees aged 20 and under were removed from the first full pay period on or after 1 August 2025 (clause 7.17 of the Salaried 2026 agreement); the ASO-1 table now starts at the 1st year adult increment.",
   ],
@@ -465,11 +465,11 @@ export const SA: Jurisdiction = {
     },
     {
       q: "What is an ASO6 salary in the SA government?",
-      a: "ASO-6 pays $105,747, $108,800 and $111,854 across three increments from the first full pay period on or after 1 July 2026.",
+      a: "An ASO-6 in the South Australian public sector is paid $105,747, $108,800 and $111,854 across its three increments from the first full pay period on or after 1 July 2026.",
     },
     {
       q: "When is the next SA public sector pay rise?",
-      a: "For ASO, OPS and PO employees, from the first full pay period on or after 1 July 2027 (clause 7.2.3 of the Salaried 2026 agreement). The 1 May 2026 SSO increase was the last one in the 2024 education staff agreement, so the next SSO rise depends on a replacement agreement.",
+      a: "The next pay rise for ASO, OPS and PO employees is from the first full pay period on or after 1 July 2027 (clause 7.2.3 of the Salaried 2026 agreement). The 1 May 2026 SSO increase was the last one in the 2024 education staff agreement, so the next SSO rise depends on a replacement agreement.",
     },
     {
       q: "Are School Services Officers on the same agreement as ASOs?",

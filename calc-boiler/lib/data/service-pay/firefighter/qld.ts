@@ -44,7 +44,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "1 August 2027",
     detail:
-      "A further 2.5% under CA25 clause 23, already printed in QFD's wage table: Recruit $2,297.67, Firefighter $2,744.59, Senior Firefighter PP4 $3,321.90 and Station Officer 3 PP3 $4,125.81 per fortnight (base). A CPI Uplift Adjustment of up to 1% may also be added if Brisbane CPI exceeds 2.5%. Where a future State Wage Case lifts the award minimum above a CA25 rate, the award rate applies instead.",
+      "QFD's CA25 base rates rise a further 2.5% under clause 23, and QFD's wage table already prints the new rates: Recruit $2,297.67, Firefighter $2,744.59, Senior Firefighter PP4 $3,321.90 and Station Officer 3 PP3 $4,125.81 per fortnight (base). A CPI Uplift Adjustment of up to 1% may also be added if Brisbane CPI exceeds 2.5%. Where a future State Wage Case lifts the award minimum above a CA25 rate, the award rate applies instead.",
   },
   verifiedOn: "14 October 2026",
 
@@ -53,7 +53,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (CA25 Schedule 1, base rates)",
       intro:
-        "Career firefighters from recruit to Senior Firefighter. Progression to First Class Firefighter is compulsory; Senior Firefighter is optional. Pay points within each rank are reached by time served (1 year per point, 4 years at Senior Firefighter PP2).",
+        "The QFD firefighter scale runs from Recruit to Senior Firefighter. Progression to First Class Firefighter is compulsory; Senior Firefighter is optional. Pay points within each rank are reached by time served (1 year per point, 4 years at Senior Firefighter PP2).",
       stepHeading: "Classification / pay point",
       steps: [
         {
@@ -117,7 +117,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "leading-firefighters-and-station-officers",
       title: "Leading Firefighters and Station Officers (CA25 Schedule 1, base rates)",
       intro:
-        "Leading Firefighter (reached after the Station Officer training program) and the three Station Officer levels, each with its own pay points.",
+        "This QFD table covers Leading Firefighter (reached after the Station Officer training program) and the three Station Officer levels, each with its own pay points.",
       stepHeading: "Classification / pay point",
       steps: [
         {
@@ -202,11 +202,11 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does a station officer earn in Queensland?",
-      a: "Under CA25 from 1 August 2026, Station Officer base rates run from $3,644.21 a fortnight (Station Officer 1 PP1, about $95,010 a year) to $4,025.18 a fortnight (Station Officer 3 PP3, about $104,942 a year).",
+      a: "Under CA25 from 1 August 2026, QFD Station Officer base rates run from $3,644.21 a fortnight (Station Officer 1 PP1, about $95,010 a year) to $4,025.18 a fortnight (Station Officer 3 PP3, about $104,942 a year).",
     },
     {
       q: "When do Queensland firefighters get their next pay rise?",
-      a: "CA25 gives a further 2.5% from 1 August 2027. For example, the Recruit rate becomes $2,297.67 a fortnight. A CPI top-up of up to 1% can also apply if Brisbane inflation runs above 2.5%.",
+      a: "QFD's CA25 base rates rise a further 2.5% from 1 August 2027. For example, the Recruit rate becomes $2,297.67 a fortnight. A CPI top-up of up to 1% can also apply if Brisbane inflation runs above 2.5%.",
     },
   ],
 };

@@ -72,7 +72,7 @@ export const LAWYER: Occupation = {
     {
       id: "legal-services",
       title: "Law graduate and law clerk award rates, Legal Services Award",
-      intro: "Clause 15.1, from the first full pay period on or after 1 July 2026. Casual rates are Schedule B.2.1 exactly.",
+      intro: "These are the Legal Services Award minimum rates for law graduates and law clerks (clause 15.1), from the first full pay period on or after 1 July 2026. Casual rates are taken directly from Schedule B.2.1.",
       rows: [
         LAW_GRADUATE,
         { label: "Level 6 — Law clerk", weekly: 1369.2, hourly: 36.03, casualHourly: 45.04 },
@@ -82,7 +82,7 @@ export const LAWYER: Occupation = {
       id: "admitted",
       title: "The legal minimum for an admitted lawyer (award-free)",
       intro:
-        "The National Minimum Wage Order 2026 (PR799279) is the only legal floor for an admitted lawyer. It is not a typical lawyer's salary.",
+        "The National Minimum Wage Order 2026 (PR799279) is the only legal floor for an admitted lawyer. The National Minimum Wage is not a typical lawyer's salary.",
       rows: [
         {
           label: "National Minimum Wage (adult)",
@@ -104,7 +104,7 @@ export const LAWYER: Occupation = {
     "These are the Legal Services Award rates for day workers, whose ordinary hours are 7 am to 6.30 pm Monday to Friday (cl 13.1): all other work is overtime (cl 20.2). Admitted, award-free lawyers have no award penalty or overtime rates.",
   overtime: [
     "Law graduates and other Legal Services Award day workers: overtime Monday to Saturday until 12 noon is 150% for the first 3 hours, then 200%; after 12 noon Saturday and Sunday 200%; public holidays 250%, with a 3-hour minimum on weekends and public holidays (cl 20.2).",
-    "Admitted lawyers: no award overtime. The NES allows an employer to require reasonable additional hours; whether they are paid depends on the contract.",
+    "Admitted lawyers: no award overtime. The National Employment Standards allow an employer to require reasonable additional hours; whether they are paid depends on the contract.",
   ],
   allowances: [],
   median: MEDIAN,
@@ -130,7 +130,7 @@ export const LAWYER: Occupation = {
     },
     {
       q: "Do lawyers get paid overtime?",
-      a: "Admitted lawyers have no award overtime entitlement; it depends on the employment contract. Law graduates covered by the Legal Services Award get 150% for the first 3 hours of overtime and 200% after that.",
+      a: "Admitted lawyers have no award overtime entitlement; whether overtime is paid depends on the employment contract. Law graduates covered by the Legal Services Award get 150% for the first 3 hours of overtime and 200% after that.",
     },
     {
       q: "How much do lawyers actually earn in Australia?",

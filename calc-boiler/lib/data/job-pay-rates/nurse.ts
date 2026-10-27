@@ -166,16 +166,16 @@ export const NURSE: Occupation = {
   },
   coverage: [
     "The Nurses Award 2020 [MA000034] is the national minimum for nurses employed by private hospitals, GP and specialist clinics, aged care providers, agencies and other national-system employers. It covers nursing assistants, enrolled nurses, registered nurses and nurse practitioners.",
-    "It is a safety net, not what most nurses are paid. Nurses in state public hospitals are covered by state awards and enterprise agreements that pay well above it. See the state nurse pay pages linked on this page for the rates that actually apply in each state's public health system.",
+    "The Nurses Award is a safety net, not what most nurses are paid. Nurses in state public hospitals are covered by state awards and enterprise agreements that pay well above it. The state nurse pay pages linked on this page give the rates that apply in each state's public health system.",
     "Since the aged care work value case, the award has two rate streams. Aged care nurses are paid under clause 15.3 at materially higher rates than the general stream in clause 15.1; both are shown below.",
-    "A registered nurse at level 1 moves up one pay point a year to pay point 8. A graduate with a 4-year degree starts on a higher rate ($1,273.40 a week) and a masters graduate on $1,317.20, before moving to pay points 4 and 5.",
+    "A registered nurse at level 1 moves up one pay point a year to pay point 8. A graduate with a 4-year degree starts on a higher rate ($1,273.40 a week) and then moves to pay point 4; a masters graduate starts on $1,317.20 and then moves to pay point 5.",
   ],
   tables: [
     {
       id: "registered-nurse-1",
       title: "Registered nurse level 1 pay rates: Nurses Award, general stream",
       intro:
-        "Clause 15.1, from the first full pay period on or after 1 July 2026 (PR799315). Casual is the hourly rate plus the 25% loading, matching Schedule B.1.3.",
+        "These are the Nurses Award general stream rates in clause 15.1, from the first full pay period on or after 1 July 2026 (PR799315). The casual rate is the hourly rate plus the 25% casual loading, matching Schedule B.1.3.",
       rows: nursesAwardRows("Registered nurse — level 1", NURSES_AWARD_GENERAL, "Registered nurse level 1"),
     },
     {
@@ -200,7 +200,7 @@ export const NURSE: Occupation = {
       id: "aged-care",
       title: "Aged care nurse pay rates: Nurses Award aged care stream",
       intro:
-        "Clause 15.3, from the first full pay period on or after 1 August 2026 (PR812118). These apply only to aged care employees.",
+        "These are the Nurses Award aged care stream rates in clause 15.3, from the first full pay period on or after 1 August 2026 (PR812118). They apply only to aged care employees.",
       rows: [
         ...nursesAwardRows("Registered nurse — aged care level 1", NURSES_AWARD_AGED_CARE, "Aged care RN level 1"),
         ...nursesAwardRows("Registered nurse — aged care level 2", NURSES_AWARD_AGED_CARE, "Aged care RN level 2"),
@@ -215,7 +215,7 @@ export const NURSE: Occupation = {
     { when: "Public holiday", permanent: "200%", casual: "250%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate, from Schedule B.1.3. A casual's weekend and public holiday rates are 150%, 175% and 200% of the casual hourly rate, which is why they sit higher than a simple +25%.",
+    "Nurses Award penalty rates are percentages of the minimum hourly rate, from Schedule B.1.3. A casual's weekend and public holiday rates are 150%, 175% and 200% of the casual hourly rate, which is why they sit higher than a simple +25%.",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250% (Schedule B.1.3(b)).",
     "State public hospital nurses have their own overtime rules under their state agreement.",
@@ -223,11 +223,11 @@ export const NURSE: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
-    "Work in a state public hospital? This award is not your pay scale. Use the state nurse pay pages linked in the sidebar, which quote each state's own agreement.",
+    "If you work in a state public hospital, the Nurses Award is not your pay scale. Use the state nurse pay pages linked in the sidebar, which quote each state's own agreement.",
   ],
   notShown: [
     "Registered nurse levels 4 and 5, nurse practitioners and student enrolled nurses: see the healthcare worker pay page for the full award.",
-    "Aged care enrolled nurse and level 3–5 aged care rates.",
+    "Aged care enrolled nurse rates and aged care registered nurse levels 3 to 5.",
     "State public sector registered nurse and midwife scales, which are on the state nurse pay pages.",
   ],
   sections: [ENROLLED_NURSE_SECTION],

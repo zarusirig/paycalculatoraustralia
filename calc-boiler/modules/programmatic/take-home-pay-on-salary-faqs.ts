@@ -88,7 +88,7 @@ function jobsFaq(salary: number): FaqItem | null {
     .map((n) => n.t);
   return {
     q: `What jobs pay about ${s} in Australia?`,
-    a: `The closest published figures are ${list(names)}. More in pay rates by job.`,
+    a: `The closest published figures are ${list(names)}. Compare more occupations in pay rates by job.`,
     links: { "pay rates by job": "/job-pay-rates/" },
   };
 }

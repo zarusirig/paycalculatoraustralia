@@ -64,7 +64,7 @@ export default function TaxReturn2026Page() {
             Tax Return 2026: Deadline, Refund Estimate and 2025-26 Tax Rates
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Your 2026 tax return covers {R.incomeYearStart} to {R.incomeYearEnd}. Here is when it is due, how long the refund takes, what changed this year, and a refund estimator that uses the {R.incomeYear} rates your return is actually assessed on.
+            Your 2026 tax return covers {R.incomeYearStart} to {R.incomeYearEnd}. This page gives the lodgment deadline, how long the refund takes and what changed this year, plus a refund estimator that uses the {R.incomeYear} rates your return is assessed on.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -140,7 +140,7 @@ export default function TaxReturn2026Page() {
             <section id="how-much-tax">
               <h2 style={H}>How much tax will I pay? 2025-26 tax rates</h2>
               <p>
-                Your 2026 return is assessed on the {R.incomeYear} resident tax rates below. The Medicare levy of {pct(MEDICARE_LEVY.rate)} is added on top. People on low incomes pay a reduced levy or none, with the reduction starting at {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} for singles.
+                Your 2026 return is assessed on the {R.incomeYear} resident tax rates below. The Medicare levy of {pct(MEDICARE_LEVY.rate)} is added on top. People on low incomes pay a reduced levy or none, with no levy payable on a taxable income at or below {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} for singles.
               </p>
               <div className="not-prose overflow-x-auto">
                 <table className="w-full border-collapse text-left text-sm">
@@ -212,11 +212,11 @@ export default function TaxReturn2026Page() {
               <div className="not-prose grid gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
                   <div className="mb-2 flex items-center gap-2"><CalendarDays className="h-5 w-5 text-eucalyptus-dark" aria-hidden="true" /><h3 className="font-semibold text-navy">myTax (lodge yourself)</h3></div>
-                  <p className="text-sm text-warmgray">Free and done online through myGov. Most details are pre-filled. It&rsquo;s due {R.selfLodgeDueDate}.</p>
+                  <p className="text-sm text-warmgray">myTax is free and you lodge online through myGov. Most details are pre-filled. A self-lodged return is due {R.selfLodgeDueDate}.</p>
                 </div>
                 <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
                   <div className="mb-2 flex items-center gap-2"><CalendarDays className="h-5 w-5 text-eucalyptus-dark" aria-hidden="true" /><h3 className="font-semibold text-navy">Registered tax agent</h3></div>
-                  <p className="text-sm text-warmgray">Usually due {R.agentDueDateMostPeople} if you are on their list by {R.selfLodgeDueDate}. Registered agents are the only people who can charge a fee to prepare your return, and the fee is deductible in the year you pay it.</p>
+                  <p className="text-sm text-warmgray">Usually due {R.agentDueDateMostPeople} if you are on the agent&rsquo;s client list by {R.selfLodgeDueDate}. Registered agents are the only people who can charge a fee to prepare your return, and the fee is deductible in the year you pay it.</p>
                 </div>
               </div>
               <p>

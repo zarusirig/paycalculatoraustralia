@@ -67,7 +67,7 @@ export default function TimeInLieuPage() {
           <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="ratio">Is Time in Lieu Hour for Hour or Time and a Half?</H2>
-            <p>Each award&rsquo;s &ldquo;time off instead of payment for overtime&rdquo; clause answers this differently. We read the clause in each of the awards below:</p>
+            <p>Each award&rsquo;s &ldquo;time off instead of payment for overtime&rdquo; clause sets the ratio: an hour off for each overtime hour, or time off equal to the overtime payment. We read the clause in each of the awards below:</p>
             <DataTable
               head={["Award", "Clause", "Time off for 2 h at 150%", "Take it within", "In writing?"]}
               rows={TOIL_AWARD_RULES.map((r) => [
@@ -80,7 +80,7 @@ export default function TimeInLieuPage() {
               caption={<>Award text at awards.fairwork.gov.au, read {TOIL_VERIFIED_ON}. The Fair Work Ombudsman&rsquo;s <a href={FWO_OVERTIME_URL} target="_blank" rel="noopener noreferrer">overtime pay page</a> has the clause for other awards.</>}
             />
             <p>
-              The difference is real money. On an hour-for-hour clause, 2 hours of overtime at time and a half buys 2 hours off, worth a third less than the overtime pay. On an overtime-rate clause it buys 3 hours, the same value as the overtime pay.
+              On an hour-for-hour clause, 2 hours of overtime at time and a half buys 2 hours off, worth a third less than the overtime pay. On an overtime-rate clause it buys 3 hours, the same value as the overtime pay.
             </p>
           </section>
 
@@ -131,7 +131,7 @@ export default function TimeInLieuPage() {
           <section>
             <H2 id="payslip">Time in Lieu on Your Payslip</H2>
             <p>
-              Hours taken as TOIL are paid at your ordinary rate, so a TOIL day looks like a normal day on your payslip, often shown as its own line with a running balance. When untaken TOIL is paid out, it should be paid at the overtime rate that applied when you worked it, not your ordinary rate. Check the balance against your own record of hours. The <Link href="/work-hours-calculator/">work hours calculator</Link> can total a timesheet.
+              Hours taken as TOIL are paid at your ordinary rate, so a TOIL day looks like a normal day on your payslip, often shown as its own line with a running balance. When untaken TOIL is paid out, it must be paid at the overtime rate that applied when you worked it, not your ordinary rate. Check the balance against your own record of hours. The <Link href="/work-hours-calculator/">work hours calculator</Link> can total a timesheet.
             </p>
           </section>
 

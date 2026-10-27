@@ -71,7 +71,7 @@ export const ELECTRICIAN: Occupation = {
       id: "electrical-workers",
       title: "Electrician pay rates by grade, 2026–27",
       intro:
-        "Weekly = the clause 16.2 minimum + industry allowance ($41.41) + tool allowance ($22.31, grades 5–10). Hourly and casual rates are exactly as published in the award's Schedule B, which already include those allowances.",
+        "The weekly rate is the clause 16.2 minimum plus the industry allowance ($41.41), and grades 5 to 10 also include the tool allowance ($22.31). Hourly and casual rates are exactly as published in the award's Schedule B, which already include those allowances.",
       rows: [
         { label: "Electrical worker grade 1", weekly: 1046.31, hourly: 27.53, casualHourly: 34.41, note: "Labourer" },
         { label: "Electrical worker grade 2", weekly: 1054.51, hourly: 27.75, casualHourly: 34.69, note: "Assists a tradesperson" },

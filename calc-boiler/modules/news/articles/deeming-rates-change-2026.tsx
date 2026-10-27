@@ -26,7 +26,7 @@ export default function DeemingRatesChange2026() {
         On the recommendation of the Australian Government Actuary, the lower deeming rate rose
         from 0.25% to 1.25% and the upper rate from 2.25% to 3.25%, effective 20 March 2026. The
         rates had been frozen at their pandemic-era levels since May 2020 to shield pensioners
-        from record-low interest rates; the Actuary&apos;s review found current savings rates
+        from record-low interest rates. The Actuary&apos;s review found current savings rates
         justify a partial reset, though the new rates remain well below long-term averages and
         below the returns available on many at-call savings accounts.
       </p>
@@ -57,17 +57,17 @@ export default function DeemingRatesChange2026() {
         rate above it, and counts that assumed income toward your pension income test, whether
         your actual returns are higher, lower, or negative in a given year. Your home and most
         personal assets like your car and household contents aren&apos;t financial assets for
-        deeming purposes, though they can still count toward the separate assets test.
+        deeming purposes. Your car and household contents still count toward the separate assets
+        test.
       </p>
 
       <h2>Why deeming rates matter for the pension income test</h2>
       <p>
         Because deemed income is fixed regardless of actual returns, a higher deeming rate can
         reduce a part-pensioner&apos;s payment even if their real investment income hasn&apos;t
-        changed. Conversely, someone earning less than the deemed rate on a term deposit or
-        savings account effectively gets counted as earning more than they actually receive, while
-        someone earning above the deemed rate effectively keeps the difference without it
-        affecting their pension. Check your own position with the{" "}
+        changed. Someone earning less than the deemed rate on a term deposit or savings account is
+        counted as earning more than they actually receive. Someone earning above the deemed rate
+        keeps the difference without it affecting their pension. Check your own position with the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link>, which explains
         how the income and assets tests interact to determine your actual payment rate.
       </p>
@@ -76,10 +76,9 @@ export default function DeemingRatesChange2026() {
       <p>
         If you&apos;re approaching retirement and weighing up how much to hold in super versus
         other savings, deeming rates are one factor in how Centrelink treats different assets.
-        Someone with a large lump sum in a low-interest savings account, for instance, is deemed
-        to earn the same income as someone whose money is invested in higher-yielding term
-        deposits or shares, so the choice of where to hold your savings doesn&apos;t change your
-        pension assessment, only your actual returns. Model your retirement balance with the{" "}
+        A large lump sum in a low-interest savings account is deemed to earn the same income as the
+        same amount in higher-yielding term deposits or shares. Moving money between deemed
+        financial assets doesn&apos;t change your pension assessment, only your actual returns. Model your retirement balance with the{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link>, and use the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to see how the
         new thresholds interact with any part-time income you&apos;re still earning.

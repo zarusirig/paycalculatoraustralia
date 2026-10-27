@@ -117,7 +117,7 @@ export const SURVEYOR: Occupation = {
   heading: "Surveyor Salary Australia 2026: Surveying Award Rates, Median Pay & Take-Home",
   metaTitle: `Surveyor Salary Australia 2026 - ${aud2(GRAD.hourly)}/hr Award, ${aud(SURV.medianSalary)} Median`,
   metaDescription: `Surveyor pay in Australia: Surveying Award minimums from ${aud2(GRAD.hourly)} an hour for graduates to ${aud2(LICENSED.hourly)} licensed, ${aud(SURV.medianSalary)} median on 2023–24 tax returns, and take-home.`,
-  lede: `Surveyors have their own award. Under the Surveying Award a graduate surveyor starts on at least ${aud2(GRAD.hourly)} an hour (${aud(GRAD_ANNUAL)} a year) with a 3-year degree, and a licensed or registered surveyor at Level 3 on ${aud2(LICENSED.hourly)} (${aud(LICENSED_ANNUAL)} a year), from 1 July 2026. On 2023–24 tax returns surveyors reported a median salary of ${aud(SURV.medianSalary)} (ATO), which leaves about ${aud(netFortnightly(SURV.medianSalary))} a fortnight after tax.`,
+  lede: `Surveyors have their own award. Under the Surveying Award a graduate surveyor starts on at least ${aud2(GRAD.hourly)} an hour (${aud(GRAD_ANNUAL)} a year) with a 3-year degree, and a licensed or registered surveyor at Level 3 on ${aud2(LICENSED.hourly)} (${aud(LICENSED_ANNUAL)} a year), from 1 July 2026. On 2023-24 tax returns surveyors reported a median salary of ${aud(SURV.medianSalary)} (ATO), which leaves about ${aud(netFortnightly(SURV.medianSalary))} a fortnight after tax.`,
   coverage: [
     "The Surveying Award 2020 [MA000066] is an occupational award: it covers any employer who employs professional surveyors and other employees in its classifications, in any industry, to the exclusion of any other modern award (cl 4.1). Professional surveyors include graduate surveyors and licensed or registered surveyors (cl 4.2). It does not cover local government employees covered by another award (cl 4.5).",
     "The award defines surveying as determining the form, contour, position, area, height or depth of the earth's surface, or of features on, below or above it, including mapping and spatial data work by employees in its classifications (Schedule A.1). Quantity surveyors are a different occupation, which the ATO codes with civil engineering professionals; check that definition against your own duties before relying on this award.",
@@ -129,7 +129,7 @@ export const SURVEYOR: Occupation = {
       id: "surveying",
       title: "Surveyor award rates by level, 2026–27",
       intro:
-        "Clause 17.1 minimum weekly and hourly rates from the first full pay period on or after 1 July 2026; annual is the weekly rate x 52. Casual rates are Schedule B.2 (125%) exactly. Level 1 is the most senior.",
+        "The table shows the Surveying Award clause 17.1 minimum weekly and hourly rates from the first full pay period on or after 1 July 2026. Annual is the weekly rate x 52. Casual rates are copied exactly from Schedule B.2 (125%). Level 1 is the most senior.",
       rows: SURVEY_ROWS,
     },
   ],
@@ -140,9 +140,9 @@ export const SURVEYOR: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "312.5%" },
   ],
   penaltiesNote:
-    "Ordinary hours fall between 6 am and 6 pm Monday to Friday (cl 14.1). Work outside that spread, including Saturdays, is overtime (cl 21.1–21.2); Sunday and public holiday rates are in cl 21.4.",
+    "Under the Surveying Award, ordinary hours fall between 6 am and 6 pm Monday to Friday (cl 14.1). Work outside that spread, including Saturdays, is overtime (cl 21.1 and 21.2); Sunday and public holiday rates are in cl 21.4.",
   overtime: [
-    "Overtime is 150% of the minimum hourly rate for the first 3 hours and 200% after that; casuals get 187.5% and then 250% (cl 21.1–21.2).",
+    "Overtime is 150% of the minimum hourly rate for the first 3 hours and 200% after that; casuals get 187.5% and then 250% (cl 21.1 and 21.2).",
     `For a graduate at Level 8 that is $50.66 an hour for the first 3 hours and $67.54 after (Schedule B.1.2).`,
     "Working more than 2 hours past your usual finishing time earns a $16.62 meal allowance, or a meal (cl 19.2).",
   ],
@@ -176,15 +176,15 @@ export const SURVEYOR: Occupation = {
     },
     {
       q: "How much does a licensed surveyor earn?",
-      a: `The award minimum for Level 3, Surveyor Level IV (which includes a licensed or registered surveyor) is ${aud2(LICENSED.hourly)} an hour, ${aud2(LICENSED.weekly)} a week or ${aud(LICENSED_ANNUAL)} a year. On 2023–24 tax returns, surveyors as a whole had a median salary or wage income of ${aud(SURV.medianSalary)} (ATO).`,
+      a: `The award minimum for Level 3, Surveyor Level IV (which includes a licensed or registered surveyor) is ${aud2(LICENSED.hourly)} an hour, ${aud2(LICENSED.weekly)} a week or ${aud(LICENSED_ANNUAL)} a year. On 2023-24 tax returns, surveyors as a whole had a median salary or wage income of ${aud(SURV.medianSalary)} (ATO).`,
     },
     {
       q: "How much do surveyors earn in Australia?",
-      a: `The 9,869 surveyors on 2023–24 tax returns had a median salary or wage income of ${aud(SURV.medianSalary)} and an average of ${aud(SURV.avgSalary)} (ATO). Jobs and Skills Australia's full-time median for surveyors and spatial scientists is $2,300 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
+      a: `The 9,869 surveyors on 2023-24 tax returns had a median salary or wage income of ${aud(SURV.medianSalary)} and an average of ${aud(SURV.avgSalary)} (ATO). Jobs and Skills Australia's full-time median for surveyors and spatial scientists is $2,300 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
     },
     {
       q: "What is a surveyor's take-home pay?",
-      a: `On the ${aud(SURV.medianSalary)} median, about ${aud(netAnnual(SURV.medianSalary))} a year or ${aud(netFortnightly(SURV.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the graduate minimum of ${aud(GRAD_ANNUAL)}, about ${aud(netAnnual(GRAD_ANNUAL))} a year.`,
+      a: `A surveyor on the ${aud(SURV.medianSalary)} median takes home about ${aud(netAnnual(SURV.medianSalary))} a year or ${aud(netFortnightly(SURV.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. A graduate surveyor on the award minimum of ${aud(GRAD_ANNUAL)} takes home about ${aud(netAnnual(GRAD_ANNUAL))} a year.`,
     },
     {
       q: "Do surveyors get paid overtime?",
@@ -192,7 +192,7 @@ export const SURVEYOR: Occupation = {
     },
     {
       q: "Is a quantity surveyor covered by the Surveying Award?",
-      a: "Not just because of the job title. The award's definition of surveying is about determining the form, position and dimensions of the earth's surface and features on it, so compare it with your duties. The ATO codes quantity surveyors as a separate occupation; on 2023–24 tax returns their median salary or wage income was $115,999.",
+      a: "A quantity surveyor is not covered by the Surveying Award just because of the job title. The award's definition of surveying is about determining the form, position and dimensions of the earth's surface and features on it, so compare it with your duties. The ATO codes quantity surveyors as a separate occupation; on 2023-24 tax returns their median salary or wage income was $115,999.",
     },
   ],
   sources: [

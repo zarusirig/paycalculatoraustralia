@@ -17,7 +17,7 @@ export const FINAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I get long service leave in my final pay?",
-    a: "Long service leave entitlements vary by state. In most states, you become eligible after 7-10 years of continuous service with the same employer. Some states provide a pro-rata entitlement if you are terminated after 5-7 years. Use the Leave Calculator to estimate your balance.",
+    a: "Long service leave is paid in your final pay once you have the continuous service your state's long service leave law requires, and that period varies by state. In most states, you become eligible after 7-10 years of continuous service with the same employer. Some states provide a pro-rata entitlement if you are terminated after 5-7 years. Use the Leave Calculator to estimate your balance.",
     links: { "Leave Calculator": "/leave-calculator/" },
   },
   {
@@ -26,7 +26,7 @@ export const FINAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does my employer pay super on my final pay?",
-    a: `Employers must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG on ordinary time earnings up to your last day, and on any payment in lieu of notice. The ATO treats it as ordinary time earnings for every termination reason. Super is not payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the Superannuation Calculator to verify.`,
+    a: `Employers must pay the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG on ordinary time earnings up to your last day, and on any payment in lieu of notice. The ATO treats payment in lieu of notice as ordinary time earnings for every termination reason. Super is not payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the Superannuation Calculator to check the SG on your final wages.`,
     links: { "Superannuation Calculator": "/superannuation-calculator/" },
   },
   {

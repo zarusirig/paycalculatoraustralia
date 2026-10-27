@@ -76,7 +76,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
           <p className="text-warmgray">
             Multiply your hourly rate by <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}</strong> ({EMPLOYMENT.standardWeeklyHours} hours &times; {EMPLOYMENT.weeksPerYear} weeks)
             to get your annual salary. Enter your own rate and hours in the calculator above to see your annual salary and what you take home after ATO
-            income tax and Medicare.
+            income tax and the Medicare levy.
           </p>
 
           {/* H2: How Many Hours in a Year? */}
@@ -133,10 +133,10 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               Annual Salary = Hourly Rate &times; Hours per Week &times; 52
             </div>
             <p className="mb-4 text-warmgray">
-              This Australian tax calculator formula applies to permanent full-time and part-time employees whose take-home pay is based on a fixed hourly wage. The 52-week multiplier accounts for all paid leave entitlements under the National Employment Standards, including 4 weeks of annual leave, 10 days of personal leave, and paid public holidays.
+              The formula applies to permanent full-time and part-time employees paid a fixed hourly rate. The 52-week multiplier counts the paid leave those employees receive under the National Employment Standards, including 4 weeks of annual leave, 10 days of personal leave, and paid public holidays.
             </p>
             <p className="mb-4 text-warmgray">
-              A worker earning <strong>$35 per hour</strong> at 38 hours per week has an annual gross salary of <strong>$69,160</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays an additional <strong>12% superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
+              A worker earning <strong>$35 per hour</strong> at 38 hours per week has an annual gross salary of <strong>$69,160</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays the <strong>12% superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: $45.50 per Hour at 38 Hours</h3>
@@ -190,7 +190,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               An hourly rate of <strong>$30 produces $59,280</strong> per year, while <strong>$60 per hour equals $118,560</strong>, both based on a standard 38-hour week across 52 weeks in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of {SG_PCT}. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications that pay it.
+              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of {SG_PCT}. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications whose adult minimum rate is closest to it.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
               <table className="w-full text-sm">
@@ -255,7 +255,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do Hours Per Week Affect Annual Salary?</h2>
             <p className="mb-4 text-warmgray">
-              Weekly hours are the single largest variable in the hourly-to-annual calculation, and a difference of just 2 hours per week changes gross salary by <strong>$4,732</strong> at $45.50/hr.
+              Annual salary moves in direct proportion to weekly hours, so a difference of 2 hours per week changes gross salary by<strong>$4,732</strong> at $45.50/hr.
             </p>
             <p className="mb-4 text-warmgray">
               Under the National Employment Standards (NES), the maximum ordinary hours for a full-time employee is <strong>38 hours per week</strong>, equal to 7.6 hours per day across a 5-day working week. Some Enterprise Agreements and older contracts specify 40 hours, producing 2,080 annual hours instead of the standard 1,976 hours.
@@ -278,7 +278,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </div>
             </div>
             <p className="mb-4 text-warmgray">
-              Part-time employees typically work between 15 and 30 hours per week. The hourly rate itself does not change between part-time and full-time, but the annual salary differs proportionally. A worker at $40/hr working 20 hours per week earns <strong>$41,600</strong> annually, compared to <strong>$79,040</strong> at 38 hours. Use our <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Weekly Pay Calculator</Link> to compare different weekly hour arrangements side by side.
+              Part-time employees typically work between 15 and 30 hours per week. The hourly rate itself does not change between part-time and full-time, but the annual salary falls in proportion to the hours worked. A worker at $40/hr working 20 hours per week earns <strong>$41,600</strong> annually, compared to <strong>$79,040</strong> at 38 hours. Use our <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Weekly Pay Calculator</Link> to compare different weekly hour arrangements side by side.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hours Per Week Comparison at $45.50/hr</h3>
@@ -320,23 +320,23 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
             <ul className="space-y-3 text-warmgray mb-4">
               <li className="flex gap-3">
                 <span className="text-eucalyptus-dark font-bold mt-0.5">1.</span>
-                <span><strong>Job seekers comparing offers</strong> &mdash; one employer quotes $42/hr casual, another offers $75,000 salary. This calculator converts both to the same annual basis so the comparison accounts for casual loading, leave entitlements, and superannuation.</span>
+                <span><strong>Job seekers comparing offers</strong>: one employer quotes $42/hr casual, another offers $75,000 salary. This calculator turns the hourly rate into an annual salary with employer super, so both offers sit on the same annual basis. Adjust the casual figure for loading and unpaid leave, as the sections below explain.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-eucalyptus-dark font-bold mt-0.5">2.</span>
-                <span><strong>Casual and shift workers</strong> &mdash; hospitality staff, nurses, and warehouse workers paid hourly need an annual figure to estimate their ATO tax return, HECS-HELP repayment threshold, and Medicare levy surcharge eligibility.</span>
+                <span><strong>Casual and shift workers</strong>: hospitality staff, nurses, and warehouse workers paid hourly need an annual figure to estimate their ATO tax return, HECS-HELP repayment threshold, and Medicare levy surcharge eligibility.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-eucalyptus-dark font-bold mt-0.5">3.</span>
-                <span><strong>Part-time employees</strong> &mdash; workers doing 20 or 25 hours per week convert their hourly rate to a pro-rata annual salary for mortgage applications, rental inspections, and Centrelink income reporting.</span>
+                <span><strong>Part-time employees</strong>: workers doing 20 or 25 hours per week convert their hourly rate to a pro-rata annual salary for mortgage applications, rental applications, and Centrelink income reporting.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-eucalyptus-dark font-bold mt-0.5">4.</span>
-                <span><strong>Independent contractors</strong> &mdash; ABN holders comparing their contract rate against a permanent salary equivalent factor in the absence of paid leave, employer super, and workers compensation insurance. Our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Contractor vs Employee Calculator</Link> quantifies this gap.</span>
+                <span><strong>Independent contractors</strong>: ABN holders comparing their contract rate against a permanent salary equivalent factor in the absence of paid leave, employer super, and workers&apos; compensation insurance. Our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Contractor vs Employee Calculator</Link> quantifies this gap.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-eucalyptus-dark font-bold mt-0.5">5.</span>
-                <span><strong>Employers and HR teams</strong> &mdash; hiring managers convert hourly award rates to annual salary packages when drafting employment contracts and calculating total cost of employment.</span>
+                <span><strong>Employers and HR teams</strong>: hiring managers convert hourly award rates to annual salary packages when drafting employment contracts and calculating total cost of employment.</span>
               </li>
             </ul>
           </section>
@@ -399,23 +399,23 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-navy mb-2">Permanent Employees (Full & Part-Time)</h3>
-                <p className="text-sm mb-3">If you are perm on an hourly rate, you get paid for 52 weeks of the year, even when you aren&apos;t working, because you are legally entitled to:</p>
+                <p className="text-sm mb-3">If you are a permanent employee on an hourly rate, you are paid for 52 weeks of the year, including paid time off, because the National Employment Standards entitle you to:</p>
                 <ul className="space-y-1 text-sm pl-4 list-disc">
                   <li>4 weeks of paid annual leave</li>
                   <li>10 days of paid personal/sick leave</li>
                   <li>Paid public holidays</li>
                 </ul>
-                <p className="text-sm mt-3 font-medium text-eucalyptus-dark">The 52-week multiplier exactly maps your rate.</p>
+                <p className="text-sm mt-3 font-medium text-eucalyptus-dark">The 52-week multiplier matches what you are paid.</p>
               </div>
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-navy mb-2">Casual Employees</h3>
-                <p className="text-sm mb-3">Casuals do not get paid annual leave or sick leave. Their hourly rate normally includes a <strong>25% casual loading</strong> to compensate for this lack of security.</p>
+                <p className="text-sm mb-3">Casuals do not get paid annual leave or sick leave. Their hourly rate normally includes a <strong>25% casual loading</strong> to make up for the missing paid leave and notice of termination.</p>
                 <p className="text-sm mb-3">If a casual takes 4 weeks of holiday, they only get paid for 48 weeks of the year.</p>
                 <p className="text-sm font-medium text-ochre">You must adjust your annual salary down based on how much unpaid time off you plan to take.</p>
               </div>
             </div>
             <p className="mt-4 text-warmgray">
-              A casual employee at $40/hr working 38 hours for 48 weeks earns <strong>$72,960</strong> per year, not the $79,040 that a permanent employee on the same rate receives for 52 weeks. The <strong>$6,080 difference</strong> represents the cost of 4 weeks of unpaid leave. Factor in the 25% casual loading, and the real comparison becomes $50/hr casual vs $40/hr permanent. Use the <Link href="/leave-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Leave Calculator</Link> to estimate the dollar value of your leave entitlements.
+              A casual employee at $40/hr working 38 hours for 48 weeks earns <strong>$72,960</strong> per year, not the $79,040 that a permanent employee on the same rate receives for 52 weeks. The <strong>$6,080 difference</strong> is the cost of 4 weeks of unpaid leave. With the 25% casual loading added, a fair comparison is $50/hr casual against $40/hr permanent. Use the<Link href="/leave-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Leave Calculator</Link> to estimate the dollar value of your leave entitlements.
             </p>
           </section>
 
@@ -430,23 +430,23 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
             <ul className="space-y-3 text-warmgray mb-4">
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">1.</span>
-                <span><strong>Using 40 instead of 38 hours</strong> &mdash; the NES standard full-time week is 38 hours, not 40. Using 40 hours inflates the calculated salary by 5.26% and misrepresents the job&apos;s actual value under most modern awards.</span>
+                <span><strong>Using 40 instead of 38 hours</strong>: the NES standard full-time week is 38 hours, not 40. Using 40 hours inflates the calculated salary by 5.26% and misrepresents the job&apos;s actual value under most modern awards.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">2.</span>
-                <span><strong>Including overtime in the base calculation</strong> &mdash; overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed. Calculate ordinary time earnings separately, then add overtime as a separate line item.</span>
+                <span><strong>Including overtime in the base calculation</strong>: overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed. Convert ordinary time earnings first, then add overtime as its own line item.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">3.</span>
-                <span><strong>Forgetting casual loading inflates the comparison</strong> &mdash; a casual rate of $50/hr includes 25% loading. The base-equivalent rate is only $40/hr. Comparing $50/hr casual directly against $40/hr permanent misrepresents which role pays more.</span>
+                <span><strong>Forgetting casual loading inflates the comparison</strong>: a casual rate of $50/hr includes 25% loading. The base-equivalent rate is only $40/hr. Comparing $50/hr casual directly against $40/hr permanent misrepresents which role pays more.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">4.</span>
-                <span><strong>Assuming super is included in the hourly rate</strong> &mdash; for employees, the employer pays the 12% superannuation guarantee on top of ordinary time earnings. Only some contractor arrangements bundle super into the quoted rate.</span>
+                <span><strong>Assuming super is included in the hourly rate</strong>: for employees, the employer pays the 12% superannuation guarantee on top of ordinary time earnings. Only some contractor arrangements bundle super into the quoted rate.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">5.</span>
-                <span><strong>Ignoring tax bracket impacts at the annual level</strong> &mdash; an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is {Math.round(TAX_BRACKETS[2].rate * 100)}% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
+                <span><strong>Ignoring tax bracket impacts at the annual level</strong>: an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is {Math.round(TAX_BRACKETS[2].rate * 100)}% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
               </li>
             </ul>
           </section>
@@ -455,7 +455,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Common Award Hourly Rates Come To in a Year</h2>
             <p className="mb-4 text-warmgray">
-              The same conversion applied to real award minimums. Each hourly figure is the award rate the job page leads with, from the first full pay period on or after {NMW_DECISION.operativeFrom}; the annual column is that rate for 38 hours a week over 52 weeks, before overtime, penalties and allowances.
+              This table applies the same conversion to real award minimums. Each hourly figure is the award rate the job page leads with, from the first full pay period on or after {NMW_DECISION.operativeFrom}; the annual column is that rate for 38 hours a week over 52 weeks, before overtime, penalties and allowances.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
               <table className="w-full text-sm">
@@ -481,14 +481,14 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </table>
             </div>
             <p className="mt-4 mb-4 text-warmgray">
-              Apprentices sit below these figures because their wage is a percentage of the trade rate. First-year minimums with Year 12 completed, as an hourly rate:{" "}
+              Apprentices sit below these figures because their wage is a percentage of the trade rate. The first-year hourly minimums with Year 12 completed are:{" "}
               {APPRENTICE_RATES.map((a, i) => (
                 <span key={a.slug}>
                   {i > 0 ? (i === APPRENTICE_RATES.length - 1 ? " and " : ", ") : ""}
                   <Link href={`/apprentice-pay/${a.slug}/`} className="text-eucalyptus-dark underline hover:text-navy">apprentice {a.label.toLowerCase()} {formatAUD(a.hourly, 2)}</Link>
                 </span>
               ))}
-              . Each page converts every year of the apprenticeship to weekly and annual pay and take-home.
+              . Each page converts every year of the apprenticeship to weekly and annual pay and take-home pay.
             </p>
             <p className="text-warmgray">
               Once you have an annual figure, the ATO <Link href="/weekly-tax-table/2026-27/" className="text-eucalyptus-dark underline hover:text-navy">weekly tax table for 2026-27</Link> shows what is withheld from each week&apos;s pay at that rate, and the <Link href="/highest-paying-jobs-australia/" className="text-eucalyptus-dark underline hover:text-navy">highest paying jobs ranking</Link> sets the median pay of every job we cover side by side.
@@ -531,7 +531,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Have a HECS Debt?</h2>
-            <p className="text-warmgray mb-6 max-w-lg mx-auto">See how your student loan impacts your new equivalent annual salary.</p>
+            <p className="text-warmgray mb-6 max-w-lg mx-auto">See how much of your new annual salary goes to HECS-HELP repayments.</p>
             <Link href="/hecs-help-calculator/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Go to HECS-HELP Calculator &rarr;</Link>
           </section>
 

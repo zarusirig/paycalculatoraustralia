@@ -197,7 +197,7 @@ export default function MinimumWageAustraliaPage() {
               </div>
               <h3>The entry rate in every award we cover</h3>
               <p>
-                The same comparison for all {AWARD_DIRECTORY.length} awards with a full rate table on this site. The entry rate is the adult Level 1 (or first adult) classification, so it shows how far above the {money(NMW.hourly)} National Minimum Wage each award starts; higher classifications are on each award page.
+                This table makes the same comparison for all {AWARD_DIRECTORY.length} awards with a full rate table on this site. The entry rate is the adult Level 1 (or first adult) classification, so it shows how far above the {money(NMW.hourly)} National Minimum Wage each award starts; higher classifications are on each award page.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">

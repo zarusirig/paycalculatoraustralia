@@ -72,7 +72,7 @@ const MEDIAN: MedianEarnings = {
 export const PHARMACIST_ATO: AtoOccupationStats = {
   incomeYear: ATO_TAXSTATS_INCOME_YEAR,
   intro:
-    "The ATO codes hospital, retail and industrial pharmacists separately. Retail pharmacists are the code the ATO calls \"Chemist - pharmacy\".",
+    "The ATO codes hospital, retail and industrial pharmacists separately. Retail pharmacists are listed under the code the ATO calls \"Chemist - pharmacy\".",
   takeHomeRows: 2,
   rows: [
     { code: "251511", title: "Hospital pharmacist", individuals: 6_939, avgTaxableIncome: 97_458, medianTaxableIncome: 96_680, avgSalary: 92_327, medianSalary: 94_928 },
@@ -103,7 +103,7 @@ export const PHARMACIST: Occupation = {
   },
   coverage: [
     "Pharmacists employed in community (retail) pharmacies are covered by the Pharmacy Industry Award 2020 [MA000012]. The award has four pharmacist classifications, and which one you are on depends on experience and responsibility, not on your job title.",
-    "A Pharmacist is registered under the Health Practitioner Regulation National Law. An Experienced pharmacist has at least 4 years' full-time (or part-time equivalent) experience in a community pharmacy. A Pharmacist in charge assumes responsibility for the day-to-day supervision and functioning of the pharmacy, and a Pharmacist manager is responsible to the owner for all aspects of the business (award Schedule A, A.7–A.10).",
+    "A Pharmacist is registered under the Health Practitioner Regulation National Law. An Experienced pharmacist has at least 4 years' full-time (or part-time equivalent) experience in a community pharmacy. A Pharmacist in charge assumes responsibility for the day-to-day supervision and functioning of the pharmacy. A Pharmacist manager is responsible to the owner for all aspects of the business (award Schedule A, A.7 to A.10).",
     "Hospital pharmacists are not covered by this award. Public hospital pharmacists are paid under their state's health award or agreement, which has its own grades and rates; those are in the public hospital section above.",
   ],
   tables: [
@@ -111,7 +111,7 @@ export const PHARMACIST: Occupation = {
       id: "pharmacists",
       title: "Pharmacist minimum pay rates 2026–27",
       intro:
-        "Clause 16.1, Table 3 of the award. Casual rates are the award's own Schedule B figures for ordinary hours between 8 am and 7 pm, Monday to Friday.",
+        "These are the minimum rates in clause 16.1, Table 3 of the Pharmacy Industry Award. Casual rates are the award's own Schedule B figures for ordinary hours between 8 am and 7 pm, Monday to Friday.",
       rows: [
         rowFromModernAward(PHARMACY_AWARD, "Pharmacist", "Pharmacist", "Registered pharmacist"),
         rowFromModernAward(PHARMACY_AWARD, "Experienced pharmacist", "Experienced pharmacist", "4+ years' community pharmacy experience"),
@@ -122,7 +122,7 @@ export const PHARMACIST: Occupation = {
     {
       id: "interns",
       title: "Pharmacy student and intern rates",
-      intro: "The same Table 3 rates for pharmacy students and for interns completing their supervised practice.",
+      intro: "These are the Table 3 rates for pharmacy students and for interns completing their supervised practice.",
       rows: [
         rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 1st year of course"),
         rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 2nd year of course"),
@@ -146,7 +146,7 @@ export const PHARMACIST: Occupation = {
     { when: "Public holiday", permanent: "225%", casual: "250%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (clause 22.3, Table 6). Casual percentages already include the 25% casual loading. Penalty rates are not added on top of overtime rates (cl 22.2).",
+    "The table shows percentages of the minimum hourly rate (clause 22.3, Table 6). Casual percentages already include the 25% casual loading. Penalty rates are not added on top of overtime rates (cl 22.2).",
   overtime: [
     "Monday to Saturday: 150% for the first 2 hours, then 200% (cl 21.4, Table 5).",
     "Sunday: 200% all day. Public holiday: 250% all day.",
@@ -225,7 +225,7 @@ export const PHARMACIST: Occupation = {
   metaTitle: hospitalSalaryTitle("Pharmacist", MEDIAN),
   heading: "Pharmacist Salary Australia 2026: Hospital Pay by State and Award Rates",
   metaDescription: hospitalMetaDescription("Pharmacist", "pharmacist", MEDIAN),
-  lede: `Full-time pharmacists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year (Jobs and Skills Australia). Hospital pharmacists are paid on state scales that start ${startRangeWords("pharmacist")} and rise to director of pharmacy rates. In community pharmacy the award minimum is ${aud2(AWARD_ROW.hourly)} an hour.`,
+  lede: `Full-time pharmacists earn a median of ${aud(MEDIAN.medianWeekly)} a week, about ${aud(MEDIAN_YEAR)} a year (Jobs and Skills Australia). Hospital pharmacists are paid on state scales that start ${startRangeWords("pharmacist")} and rise to director of pharmacy rates. In community pharmacy the Pharmacy Industry Award minimum is ${aud2(AWARD_ROW.hourly)} an hour.`,
   answerQuestion: "How much does a pharmacist earn in Australia?",
   ato: PHARMACIST_ATO,
   publicHospital: {

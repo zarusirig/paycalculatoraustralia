@@ -39,7 +39,7 @@ export default function FirstJobPayGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">First Job Pay Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Job Pay Guide: Everything You Need to Know About Your First Pay</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Starting your first job is exciting, but your first payslip can be confusing. This guide explains what happens to your pay before it reaches your bank account, from tax and superannuation to understanding every line on your payslip.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Your first pay in Australia is taxable income: your employer withholds PAYG income tax from your gross pay for the pay period before paying you. How much is withheld depends on your gross pay for the period, whether you gave your employer a tax file number (TFN) and whether you claimed the tax-free threshold on your TFN Declaration. Any superannuation your employer pays goes into your super fund on top of your wages, not out of them. The tables below show a worked example payslip and the tax and weekly take-home pay on part-time, casual and entry-level full-time earnings. The rest of this guide covers what to set up before your first shift, each line on your payslip, and your first tax return.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -50,7 +50,7 @@ export default function FirstJobPayGuidePage() {
             <section id="before-you-start">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before You Start: Three Things You Need</h2>
               <p>
-                Before your first shift, there are three essential items you need to organise. Getting these right ensures you are paid correctly and don&apos;t overpay tax.
+                Organise three things before your first shift: a TFN, a super fund and your TFN Declaration. With these in place, your employer withholds the right amount of tax and pays super to the right fund, so you don&apos;t overpay tax.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Tax File Number (TFN)</h3>
@@ -68,7 +68,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
               <p>
-                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>$18,200 tax-free threshold</strong>, and whether you have a HECS-HELP debt. For your first and only job, you should <strong>always claim the tax-free threshold</strong>. This means you pay no tax on the first $18,200 you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
+                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>$18,200 tax-free threshold</strong>, and whether you have a HECS-HELP debt. If this is your first and only job and you are an Australian resident for tax purposes, you should <strong>claim the tax-free threshold</strong>. This means you pay no tax on the first $18,200 you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -109,7 +109,7 @@ export default function FirstJobPayGuidePage() {
                 </div>
               </div>
               <p>
-                The key insight is the difference between <strong>gross pay</strong> (what you earn) and <strong>net pay</strong> (what you receive). Tax is the main reason your bank deposit is less than your hourly rate times your hours. For a deeper dive, see our <Link href="/understanding-your-payslip/">Understanding Your Payslip Guide</Link>.
+                The lines to compare first on your payslip are <strong>gross pay</strong> (what you earn) and <strong>net pay</strong> (what you receive). PAYG tax withheld is the main reason your bank deposit is less than your hourly rate times your hours. For more on each payslip line, see our <Link href="/understanding-your-payslip/">Understanding Your Payslip Guide</Link>.
               </p>
             </section>
 
@@ -137,7 +137,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Part-Time and Casual Scenarios</h3>
               <p>
-                Many first jobs are part-time or casual. Here is what you&apos;ll actually take home at common earnings levels:
+                The table shows annual income tax and weekly take-home pay at casual, part-time and entry-level full-time earnings:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -154,12 +154,12 @@ export default function FirstJobPayGuidePage() {
                 </div>
               </div>
               <p>
-                Note: these figures do not include the Medicare levy (2%) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. Most first-job workers earning up to about <strong>{formatAUD(LITO.effectiveTaxFreeThreshold - 1, 0)}</strong> effectively pay zero income tax after LITO. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
+                Note: these figures do not include the Medicare levy (2%) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. If you earn up to about <strong>{formatAUD(LITO.effectiveTaxFreeThreshold - 1, 0)}</strong> a year, LITO reduces your income tax to zero. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your First Tax Return</h3>
               <p>
-                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. Many part-time and casual workers in their first year of employment receive refunds because their annual income falls below $18,200 even though tax was withheld from each pay. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July. It is free and takes about 15 minutes.
+                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. This applies when tax was withheld from each part-time or casual pay but your income for the full financial year ended below $18,200. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July. It is free and takes about 15 minutes.
               </p>
             </section>
 
@@ -174,7 +174,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do I Get Super if I Am Casual?</h3>
               <p>
-                Yes. Since 1 July 2022, <strong>all employees receive super regardless of how much they earn</strong>, when the previous $450/month threshold was removed. Whether you are casual, part-time, or full-time, your employer pays 12% super on your qualifying earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
+                Yes. Since 1 July 2022, <strong>all employees receive super regardless of how much they earn</strong>. That is the date the old $450/month threshold was removed. Whether you are casual, part-time, or full-time, your employer pays 12% super on your qualifying earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What If I Am Under 18?</h3>

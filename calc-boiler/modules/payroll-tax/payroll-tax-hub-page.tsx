@@ -92,15 +92,15 @@ export default function PayrollTaxHubPage() {
             <section id="who-pays">
               <h2 style={H2_STYLE}>Who Has to Pay Payroll Tax</h2>
               <p>
-                An employer pays payroll tax in a state when it pays wages there and its total Australian wages (
-                including the wages of every business it is grouped with) exceed that state&rsquo;s threshold. A
+                An employer pays payroll tax in a state when it pays wages there and its total Australian wages
+                (including the wages of every business it is grouped with) exceed that state&rsquo;s threshold. A
                 business with a $900,000 Victorian payroll that belongs to a group paying $4 million nationally is
                 liable, even though its own wages are under the threshold.
               </p>
               <p>
                 Registration is triggered monthly, not annually. NSW, Queensland, WA and the ACT require you to
                 register within 7 days after the end of the month in which Australian wages first exceed the monthly
-                threshold; the NT allows 21 days. Each state guide below gives its exact rule. Returns are then lodged monthly, usually by the 7th, with an annual reconciliation due 21
+                threshold; the NT allows 21 days. Each state guide above gives its exact rule. Returns are then lodged monthly, usually by the 7th, with an annual reconciliation due 21
                 July (28 July in NSW, the ACT and SA).
               </p>
             </section>
@@ -113,7 +113,7 @@ export default function PayrollTaxHubPage() {
             <section id="employees">
               <h2 style={H2_STYLE}>Does Payroll Tax Affect Employees?</h2>
               <p>
-                Not directly. It is not withheld from pay and never appears on a payslip. If you are an employee, the
+                Payroll tax does not affect employees directly. It is not withheld from pay and does not appear on a payslip. If you are an employee, the
                 state pay calculators (<Link href="/pay-calculator-nsw/">NSW</Link>,{" "}
                 <Link href="/pay-calculator-vic/">VIC</Link>, <Link href="/pay-calculator-qld/">QLD</Link>,{" "}
                 <Link href="/pay-calculator-wa/">WA</Link>) show your take-home pay; if you are an employer, the{" "}

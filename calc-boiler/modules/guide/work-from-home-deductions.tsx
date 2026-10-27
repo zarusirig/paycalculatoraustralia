@@ -39,7 +39,7 @@ export default function WorkFromHomeDeductionsPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Work From Home Deductions</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work From Home Tax Deductions: What You Can Claim in 2025-26</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">If you work from home, even one day a week, you can claim a tax deduction for running expenses. This guide explains the two available methods, what each covers, the records you need, and exactly how much you can expect to save.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">A work from home tax deduction lets you claim the running expenses of working from home, even if you work from home only one day a week. The ATO accepts two methods: the revised fixed rate method, a set rate per hour worked from home, and the actual cost method, where you work out each expense. This guide compares both methods, lists what the fixed rate covers and what you claim separately, and sets out the records the ATO requires. The savings table shows your annual deduction and the tax it saves at each marginal rate, by the number of days a week you work from home.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -76,7 +76,7 @@ export default function WorkFromHomeDeductionsPage() {
                   <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-navy mb-1">Calculate Your WFH Deduction</h3>
-                    <p className="text-navy text-sm mb-3">Enter your income and WFH hours to see the tax impact of claiming work from home deductions.</p>
+                    <p className="text-navy text-sm mb-3">Enter your income, and add your WFH deduction to the Estimated Deductions field, to see how the claim changes your tax refund.</p>
                     <Link href="/tax-return-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
                       Use our Tax Return Estimator <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
@@ -123,7 +123,7 @@ export default function WorkFromHomeDeductionsPage() {
             <section id="record-keeping">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Record-Keeping Requirements</h2>
               <p>
-                The ATO has specific record-keeping requirements for each method. Failure to keep adequate records means the ATO can disallow your entire WFH claim.
+                The ATO sets different record-keeping requirements for the fixed rate method and the actual cost method. Without adequate records, the ATO can disallow your entire WFH claim.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fixed Rate Method Records</h3>
               <ul>
@@ -168,7 +168,7 @@ export default function WorkFromHomeDeductionsPage() {
             <section id="common-mistakes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common WFH Deduction Mistakes</h2>
               <p>
-                The ATO flags WFH claims as a key audit focus area. These are the most common errors that lead to disallowed deductions or penalties:
+                The ATO flags WFH claims as a key audit focus area. These mistakes lead to disallowed deductions or penalties:
               </p>
               <ul>
                 <li><strong>Claiming phone/internet separately under the fixed rate method.</strong> The {WFH_CENTS}c/hr rate already includes phone and internet costs. Claiming them again separately results in double-counting and ATO adjustment.</li>
@@ -185,7 +185,7 @@ export default function WorkFromHomeDeductionsPage() {
               <FaqAccordion faqs={WFH_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Work from home deduction information is sourced from the Australian Taxation Office (ATO). The fixed rate is 70 cents per hour for FY2024-25 and FY2025-26 (67 cents for FY2022-23 and FY2023-24); the ATO has not yet published the FY2026-27 rate. Hours and savings calculations assume a 7.6-hour work day across 48 working weeks. Your individual circumstances, working hours, and marginal tax rate determine your actual savings.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Work from home deduction information is sourced from the Australian Taxation Office (ATO). The fixed rate is 70 cents per hour for FY2024-25 and FY2025-26 (67 cents for FY2022-23 and FY2023-24); the ATO has not yet published the FY2026-27 rate. Hours and savings calculations assume a 7.6-hour work day across 48 working weeks. Your actual saving is set by the hours you work from home, your marginal tax rate, the Medicare levy and any items you claim separately.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("work-from-home-deductions"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">

@@ -164,7 +164,7 @@ export default function LateTaxReturnPenaltyPage() {
               <li><Link href="/tax-return-2026/">Tax Return 2026</Link>: dates, rates and the refund estimator</li>
               <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link>: estimate your refund or bill</li>
               <li><Link href="/tax-calendar/">Tax Calendar</Link>: every ATO deadline for 2026-27</li>
-              <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link>: why refunds are what they are</li>
+              <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link>: how a refund or tax bill is worked out</li>
               <li><Link href="/work-from-home-deductions/">Work From Home Deductions</Link>: what to claim before you lodge</li>
             </ul>
           </section>

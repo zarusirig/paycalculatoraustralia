@@ -47,8 +47,8 @@ export default function AirTrafficControllerPayRiseOctober2026() {
       </p>
       <p>
         The rise applies to every controller classification in the table, from ab initio trainees to the supervisor
-        grades. On top of the pay rise, controllers from Level 1 still move up one level a year to Level 10 if they meet the licence,
-        medical and training conditions in clause 27.3, so a controller who also progresses a level gets both.
+        grades. Controllers from Level 1 also move up one level a year to Level 10 if they meet the licence, medical and
+        training conditions in clause 27.3. A controller who progresses a level in the same year gets both increases.
       </p>
 
       <h2>What it means after tax</h2>

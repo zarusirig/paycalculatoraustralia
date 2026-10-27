@@ -37,7 +37,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "21 October 2026",
     detail:
-      "The agreement's next column applies from the first full pay period on or after 21 October 2026. It takes a Graduate Ambulance Paramedic Level 1 to $1,454.17 a week, an ALS Paramedic Year 11 to $2,004.38 a week and a MICA Paramedic Year 12 to $2,563.01 a week (aggregated base rates).",
+      "The Ambulance Victoria agreement's next pay column applies from the first full pay period on or after 21 October 2026. It takes a Graduate Ambulance Paramedic Level 1 to $1,454.17 a week, an ALS Paramedic Year 11 to $2,004.38 a week and a MICA Paramedic Year 12 to $2,563.01 a week (aggregated base rates).",
   },
   verifiedOn: "24 September 2026",
 
@@ -49,7 +49,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "als-paramedics",
       title: "Graduate and Advanced Life Support (ALS) paramedics (Appendix 1)",
       intro:
-        "Graduate Ambulance Paramedics and ALS Ambulance Paramedics, the main on-road paramedic classification at Ambulance Victoria. Years 10 to 12 were added in Term 2 of the agreement.",
+        "This table covers Graduate Ambulance Paramedics and ALS Ambulance Paramedics, the main on-road paramedic classification at Ambulance Victoria. ALS Years 10 to 12 were added in Term 2 of the agreement.",
       stepHeading: "Classification",
       effectiveFrom: "21 October 2025",
       steps: [
@@ -120,7 +120,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
   ],
 
   traineePay: [
-    "A Graduate Ambulance Paramedic (GAP) is an employee who has completed, or is undertaking, an AHPRA-approved paramedicine program and is employed in AV's Graduate Ambulance Paramedic program.",
+    "A Graduate Ambulance Paramedic (GAP) is an employee who has completed, or is undertaking, an AHPRA-approved paramedicine program and is employed in Ambulance Victoria's Graduate Ambulance Paramedic program.",
     "From the first full pay period on or after 21 October 2025, a Graduate Ambulance Paramedic Level 1 (from commencement, under direct supervision) is paid an aggregated base rate of $1,398.24 a week (about $72,908 a year), and Level 2 (once under indirect supervision) $1,443.45 a week (about $75,266 a year).",
     "Graduates on shift rosters are paid the Appendix 2 rolled-in rate instead: $1,808.49 a week for Level 1 and $1,860.31 a week for Level 2 from 21 October 2025.",
   ],
@@ -133,7 +133,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   notices: [
     "The Ambulance Victoria Enterprise Agreement 2024 runs to 20 October 2028, with increases each October. The 21 October 2026 increase is already written into the agreement.",
-    "Figures are Ambulance Victoria's aggregated base rates. Most on-road paramedics work shift rosters and are paid the higher rolled-in rate, so their actual weekly pay is well above the figures in these tables.",
+    "The figures in these tables are Ambulance Victoria's aggregated base rates. Most on-road paramedics work shift rosters and are paid the higher rolled-in rate, so their actual weekly pay is well above these base rates.",
   ],
 
   unverified: [
@@ -156,7 +156,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a graduate paramedic earn at Ambulance Victoria?",
-      a: "A Graduate Ambulance Paramedic Level 1 is paid $1,398.24 a week (about $72,908 a year) and Level 2 is paid $1,443.45 a week (about $75,266 a year) as an aggregated base rate from 21 October 2025. On a shift roster the rolled-in rate is $1,808.49 and $1,860.31 a week.",
+      a: "A Graduate Ambulance Paramedic Level 1 is paid $1,398.24 a week (about $72,908 a year) and Level 2 is paid $1,443.45 a week (about $75,266 a year) as an aggregated base rate from 21 October 2025. On a shift roster the rolled-in rates are $1,808.49 and $1,860.31 a week respectively.",
     },
     {
       q: "How much does a MICA paramedic earn in Victoria?",
@@ -164,7 +164,7 @@ export const VIC_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When do Victorian paramedics get their next pay rise?",
-      a: "The next increase in the agreement applies from the first full pay period on or after 21 October 2026, with a further increase from 21 October 2027.",
+      a: "Victorian paramedics' next pay rise under the Ambulance Victoria agreement applies from the first full pay period on or after 21 October 2026, with a further increase from 21 October 2027.",
     },
   ],
 };

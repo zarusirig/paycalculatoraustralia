@@ -176,7 +176,7 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
               </div>
 
               <div className="mt-4 bg-sandstone border-l-4 border-eucalyptus/70 p-4 text-sm text-warmgray">
-                <p>You receive <strong>{formatAUD(takeHomeReduction)}</strong> less in take-home pay, but <strong>{formatAUD(sacrifice)}</strong> goes to super, that&apos;s <strong>{formatAUD(taxSaved)}</strong> in tax savings.</p>
+                <p>You receive <strong>{formatAUD(takeHomeReduction)}</strong> less in take-home pay, but <strong>{formatAUD(sacrifice)}</strong> goes to super, a difference of <strong>{formatAUD(taxSaved)}</strong> in tax savings.</p>
               </div>
               <ResultNextSteps links={nextSteps} />
               </div>

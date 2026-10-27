@@ -92,7 +92,7 @@ export default function LeaveLoadingPage() {
               <li>Leave loading: {formatAUD(fourWeeks.basePay)} × {LOADING} = <strong>{formatAUD(fourWeeks.flatLoading)}</strong></li>
               <li>Total before tax: <strong>{formatAUD(fourWeeks.totalLeavePay)}</strong></li>
             </ol>
-            <p>Base pay means your ordinary rate for your ordinary hours. Whether an above-award rate counts depends on the clause: the Hospitality Award calculates the loading on the amount payable under the NES, which includes an above-award base rate, while awards that calculate it on &ldquo;the minimum hourly rate&rdquo; use the award rate.</p>
+            <p>Base pay means your ordinary rate for your ordinary hours. Whether an above-award rate counts depends on the award clause. The Hospitality Award calculates the loading on the amount payable under the NES, which includes an above-award base rate. Awards that calculate it on &ldquo;the minimum hourly rate&rdquo; use the award rate.</p>
           </section>
 
           <section>

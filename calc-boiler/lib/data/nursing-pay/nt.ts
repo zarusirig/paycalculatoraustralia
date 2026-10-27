@@ -67,7 +67,7 @@ export const NT_NURSING_PAY: NursingStateData = {
       reference: "AG2023/2310",
       source: EA_SOURCE,
       note:
-        "Schedule 3, Table 1, column \"Salary Rates Effective 19.08.2025\". Clause 19.1 lists four 3% increases from 9 August 2022 to 9 August 2025.",
+        "The rates on this page are from Schedule 3, Table 1, column \"Salary Rates Effective 19.08.2025\". Clause 19.1 lists four 3% increases from 9 August 2022 to 9 August 2025.",
     },
   ],
 
@@ -88,7 +88,7 @@ export const NT_NURSING_PAY: NursingStateData = {
         { label: "2.8", annual: 107800 },
       ],
       note:
-        "The entry registered nurse and registered midwife classification. The NT pays nurses and midwives on one combined scale.",
+        "This is the NT's entry classification for registered nurses and registered midwives. The NT pays nurses and midwives on one combined scale.",
     },
     {
       classification: "Nurse 1 (Enrolled Nurse)",
@@ -207,7 +207,7 @@ export const NT_NURSING_PAY: NursingStateData = {
   ],
 
   unverified: [
-    "Shift, weekend and public holiday penalty rates, and the income-related allowances in Table 4, not transcribed for this page.",
+    "Shift, weekend and public holiday penalty rates, and the income-related allowances in Table 4, are not transcribed for this page.",
     "An hourly rate for any NT classification: the agreement publishes annual salaries only.",
     "Rates under a replacement agreement. The Commissioner's 6 August 2026 offer (3% a year, first increase from 13 August 2026, and a restructured Nurse 2 scale) depends on a ballot and Fair Work Commission approval, and no new agreement was recorded as approved when this page was checked on 24 September 2026.",
     "Bulletin 4 lists the \"current\" Nurse 2.1 rate as $81,479, while the agreement's Table 1 and the OCPE rates page both show $80,665. We publish $80,665; check your payslip if you are at Nurse 2.1.",
@@ -216,7 +216,7 @@ export const NT_NURSING_PAY: NursingStateData = {
   verifiedOn: "24 September 2026",
 
   intro:
-    "Northern Territory public sector nurses and midwives are paid under the NT Public Sector Nurses and Midwives' 2022–2026 Enterprise Agreement. The rates below took effect on 19 August 2025, the last of four 3% rises. Registered nurses and midwives share one scale, Nurse 2 to Nurse 8, and enrolled nurses are Nurse 1. The agreement passed its nominal expiry on 9 August 2026; the NT Government offered 3% a year for four years on 6 August 2026, but that only takes effect if employees vote for a new agreement and the Fair Work Commission approves it.",
+    "Northern Territory public sector nurses and midwives at NT Health are paid under the NT Public Sector Nurses and Midwives' 2022-2026 Enterprise Agreement, approved by the Fair Work Commission. The NT rates below took effect on 19 August 2025, the last of four 3% rises. The NT agreement publishes annual salaries only, with no hourly rate. Registered nurses and midwives share one scale, Nurse 2 to Nurse 8, and enrolled nurses are Nurse 1. The tables below give the annual salary at each NT pay point shown. The NT agreement passed its nominal expiry on 9 August 2026. On 6 August 2026, the NT Government offered 3% a year for four years. That offer only takes effect if employees vote for a new agreement and the Fair Work Commission approves it.",
 
   highlights: [
     "Nurse 2 (registered nurse or midwife) starts at $80,665 and reaches $107,800 at pay point 2.8, from 19 August 2025.",

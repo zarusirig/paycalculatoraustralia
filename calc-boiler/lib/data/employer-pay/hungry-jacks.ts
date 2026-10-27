@@ -75,7 +75,7 @@ export const HUNGRY_JACKS_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
   casualRateNote:
-    "How the casual rate is worked out: Schedule B pays casuals the Fast Food Award rate for their level × 125.25% (the award's 25% casual loading plus 0.25%), while permanent staff get the award rate × 100.75%. So a casual is paid 25% more than the award rate, not 25% more than the Hungry Jack's permanent rate. Clause 15.2 of the agreement is worded as 25% on top of the full-time rate, which would give a Crew Member $35.03 rather than $34.83; the Fair Work Commission re-made Schedule B with the 125.25% figure in March 2026, with both unions' consent, so the table uses it. If you think clause 15.2 entitles you to more, raise it with your SDA organiser or the Fair Work Ombudsman.",
+    "Under Schedule B, the Hungry Jack's casual rate is the Fast Food Award rate for your level × 125.25% (the award's 25% casual loading plus 0.25%). Permanent staff get the award rate × 100.75%. So a casual is paid 25% more than the award rate, not 25% more than the Hungry Jack's permanent rate. Clause 15.2 of the agreement is worded as 25% on top of the full-time rate, which would give a Crew Member $35.03 rather than $34.83. The Fair Work Commission re-made Schedule B with the 125.25% figure in March 2026, with both unions' consent, so the table uses it. If you think clause 15.2 entitles you to more, raise it with your SDA organiser or the Fair Work Ombudsman.",
   juniorCasualFromAdultCasual: true,
   rates: [
     { level: "Crew Member", description: "Taking orders, cooking, serving and delivering food, including cleaning (award Level 1 × 100.75%)", hourly: 28.02, casualHourly: 34.83 },
@@ -95,7 +95,7 @@ export const HUNGRY_JACKS_PAY: EmployerPay = {
     { age: "21 and over", percentage: 1 },
   ],
   juniorNote:
-    "The percentages are clause 22.1 of the agreement, applied to the Schedule B rate for your level (casual juniors: to the casual rate). Hungry Jack's pays 20-year-olds 95% of the adult rate, more than the Fast Food Award's 90%. The table shows Crew Member rates.",
+    "Hungry Jack's junior percentages come from clause 22.1 of the agreement and apply to the Schedule B rate for your level (casual juniors: to the casual rate). Hungry Jack's pays 20-year-olds 95% of the adult rate, more than the Fast Food Award's 90%. The table shows Crew Member rates.",
   penalties: [
     { when: "Monday to Friday, 6am to 10pm", permanent: "100.75% of award rate ($28.02)", casual: "125.25% ($34.83)", note: "Shift Supervisors: 100% and 125% of award Level 3(a)" },
     { when: "Monday to Friday, 10pm to midnight", permanent: "110.25% ($30.66)", casual: "135.25% ($37.61)" },
@@ -108,7 +108,7 @@ export const HUNGRY_JACKS_PAY: EmployerPay = {
   penaltyNotes: [
     "Every percentage is of the Fast Food Award hourly rate for the award level your classification maps to (Schedule B, as varied on 20 March 2026), not of the Hungry Jack's rate. Dollar figures in brackets are for an adult Crew Member from 1 July 2026 (award Level 1, $27.81), our arithmetic rounded to the cent.",
     "Casual figures already include the casual loading: the 25% is added to the penalty, not multiplied by it.",
-    "There is no evening penalty before 10pm on weekdays, the same as the Fast Food Award.",
+    "The Hungry Jack's agreement has no evening penalty before 10pm on weekdays, the same as the Fast Food Award.",
   ],
   overtime: [
     { when: "Monday to Saturday, first 2 hours", permanent: "150% ($41.72)", casual: "175% ($48.67)" },
@@ -117,7 +117,7 @@ export const HUNGRY_JACKS_PAY: EmployerPay = {
   ],
   notices: [
     "The 2026 dollar rates are calculated from the agreement's formula (the Fast Food Award rate for each level plus a set percentage), because the agreement prints only the 2025 figures. Your payslip may differ by a cent.",
-    "This agreement only covers restaurants run by Hungry Jack's Pty Ltd and the 13 franchisee companies named in it. If your restaurant's owner is not one of them, the Fast Food Industry Award applies instead. See McDonald's or Subway pay rates for those award figures.",
+    "The Hungry Jack's agreement covers only restaurants run by Hungry Jack's Pty Ltd and the 13 franchisee companies named in it. If your restaurant's owner is not one of them, the Fast Food Industry Award applies instead. See McDonald's or Subway pay rates for those award figures.",
     "Casual rates follow Schedule B of the agreement. Clause 15.2 is worded differently and, read literally, would pay casuals slightly more. See the note under the rate table.",
   ],
   unverified: [
@@ -152,7 +152,7 @@ export const HUNGRY_JACKS_PAY: EmployerPay = {
     },
     {
       q: "What is the Hungry Jack's enterprise agreement?",
-      a: "The Hungry Jack's National Enterprise Agreement 2024 (AE531466), approved by the Fair Work Commission on 10 December 2025. It started in March 2026, replaces the 2019 agreement and has a nominal expiry date of 9 December 2029. Its pay rates are tied to the Fast Food Industry Award, so they rise with each Annual Wage Review.",
+      a: "The Hungry Jack's enterprise agreement is the Hungry Jack's National Enterprise Agreement 2024 (AE531466), approved by the Fair Work Commission on 10 December 2025. It started in March 2026, replaces the 2019 agreement and has a nominal expiry date of 9 December 2029. Its pay rates are tied to the Fast Food Industry Award, so they rise with each Annual Wage Review.",
     },
   ],
 };

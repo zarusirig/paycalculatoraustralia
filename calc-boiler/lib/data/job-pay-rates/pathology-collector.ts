@@ -56,7 +56,7 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
   },
   coverage: [
     "Pathology collectors employed by private pathology companies, private hospitals and other national-system health employers are covered by the Health Professionals and Support Services Award 2020 [MA000027], in the Support Services stream.",
-    "Since 1 April 2026 the award classifies pathology collectors by qualification and experience: Level 5 (entry: unqualified, under 12 months' experience); Level 6 (qualified: Certificate III in pathology collection with under 12 months' experience, or unqualified with 12 months to 2 years); and Level 7 (experienced: Certificate III with 12 months or more, or unqualified with 2 years or more).",
+    "Since 1 April 2026 the award classifies pathology collectors by qualification and experience. Level 5 (entry) is an unqualified collector with under 12 months' experience. Level 6 (qualified) is a collector with a Certificate III in pathology collection and under 12 months' experience, or an unqualified collector with 12 months to 2 years. Level 7 (experienced) is a collector with a Certificate III and 12 months or more, or an unqualified collector with 2 years or more.",
     "Until 31 December 2026 pathology collectors are paid from their own table in clause 16.2(c). An unqualified Level 7 collector is paid less than a qualified one unless they were already Support Services Level 6 on 31 March 2026.",
     "Collectors employed by state public health pathology services are paid under state agreements, not this award.",
   ],

@@ -51,7 +51,7 @@ export default function GigTaxCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Rideshare &amp; Delivery Tax Calculator</h2>
         <p className="text-sm text-warmgray mb-6">
-          Enter your own year&rsquo;s payments and expenses. The calculator shows GST, income tax and Medicare on the profit, and what to put aside. The starting numbers are placeholders, not typical earnings.
+          Enter your own year&rsquo;s rideshare or delivery payments and expenses. The calculator shows the GST, income tax and Medicare levy on your profit, and how much to set aside for the ATO. The starting numbers are placeholders, not typical earnings.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -112,7 +112,7 @@ export default function GigTaxCalculator() {
               {registered && work === "delivery" && deliveryReg === "yes" && !status.mustRegister ? " You have chosen to register, so you collect and pay GST on delivery income." : ""}
             </p>
             <p className="text-xs text-warmgray-light">
-              2026-27 resident tax rates, the low income offset and the Medicare levy; no super is paid on a sole trader&rsquo;s own income. This is arithmetic on your numbers, not a forecast of earnings or your tax bill: deductions, offsets and PAYG instalments can change the real result. GST threshold: {formatAUD(GST_REGISTRATION_THRESHOLD, 0)} GST turnover (ATO).
+              The calculator uses 2026-27 resident tax rates, the low income tax offset and the Medicare levy. No super is paid on a sole trader&rsquo;s own income. This is arithmetic on your numbers, not a forecast of earnings or your tax bill: deductions, offsets and PAYG instalments can change the real result. GST threshold: {formatAUD(GST_REGISTRATION_THRESHOLD, 0)} GST turnover (ATO).
             </p>
           </div>
         </div>

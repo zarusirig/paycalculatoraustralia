@@ -85,7 +85,7 @@ export const BUNNINGS_PAY: EmployerPay = {
   penaltyNotes: [
     "Bunnings calls these incentive rates. They are added on top of your Contract Rate, and casual figures already include the 22.5% loading; the two are added, not multiplied.",
     "Where two periods overlap, you get the more beneficial rate, not both.",
-    "Store ordinary hours run 5am to 11pm, seven days. Trade centre spans are shorter: Monday to Friday 5am–9pm, Saturday 6am–6pm, Sunday 7am–6pm.",
+    "Bunnings store ordinary hours run 5am to 11pm, seven days a week. Trade centre spans are shorter: Monday to Friday 5am to 9pm, Saturday 6am to 6pm and Sunday 7am to 6pm.",
     "The weekday evening (+15%) and Saturday (+17.5%) loadings are lower than the Retail Award's +25%. The agreement passed the better-off-overall test in 2023 on its package as a whole.",
   ],
   overtime: [
@@ -96,7 +96,7 @@ export const BUNNINGS_PAY: EmployerPay = {
   ],
   notices: [
     "The Bunnings Retail Enterprise Agreement 2023 reached its nominal expiry date on 31 August 2026 and still applies. Its replacement, the Bunnings Retail Enterprise Agreement 2026, was voted up in October 2026 (68% yes, per the SDA) and now goes to the Fair Work Commission for approval. The rates on this page are the 2023 agreement's, which stay the legal minimum until the new agreement is approved. The enterprise agreement section below has the proposed rates and dates.",
-    "These are minimum base rates. Under the agreement's performance pay system you are paid a Contract Rate that is at least the base rate, so your payslip may show more.",
+    "The Bunnings rates on this page are minimum base rates. Under the agreement's performance pay system you are paid a Contract Rate that is at least the base rate, so your payslip may show more.",
   ],
   unverified: [
     "Approval of the 2026 agreement: on 22 October 2026 the Fair Work Commission had not published an application or decision for the Bunnings Retail Enterprise Agreement 2026. The vote result and the proposed terms come from the SDA's published copy of the agreement and its summary.",
@@ -121,7 +121,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     },
     {
       q: "What is the Bunnings EBA?",
-      a: "The Bunnings Retail Enterprise Agreement 2023 (AE520766), approved by the Fair Work Commission on 14 July 2023. It gave 3% rises in September 2024 and September 2025 and reached its nominal expiry on 31 August 2026, but keeps applying until it is replaced. Its replacement, the Bunnings Retail Enterprise Agreement 2026, was voted up in October 2026 and is before the Commission for approval.",
+      a: "The Bunnings EBA is the Bunnings Retail Enterprise Agreement 2023 (AE520766), approved by the Fair Work Commission on 14 July 2023. It gave 3% rises in September 2024 and September 2025 and reached its nominal expiry on 31 August 2026, but keeps applying until it is replaced. Its replacement, the Bunnings Retail Enterprise Agreement 2026, was voted up in October 2026 and is before the Commission for approval.",
     },
     {
       q: "How much does Bunnings pay a 15, 16 or 17 year old?",
@@ -129,11 +129,11 @@ export const BUNNINGS_PAY: EmployerPay = {
     },
     {
       q: "What is the Bunnings casual loading?",
-      a: "22.5%, not the 25% most awards use. An adult casual Team Member is paid $35.09 an hour on weekdays.",
+      a: "The Bunnings casual loading is 22.5%, not the 25% most awards use. An adult casual Team Member is paid $35.09 an hour for weekday daytime hours.",
     },
     {
       q: "What does Bunnings pay on Sundays and public holidays?",
-      a: "Between 9am and 9pm on a Sunday, permanent staff get base + 50% and casuals + 62.5%. Public holidays pay + 125% for permanent staff and + 147.5% for casuals.",
+      a: "Between 9am and 9pm on a Sunday in Bunnings stores, permanent staff get base + 50% and casuals base + 62.5%. Public holidays pay + 125% for permanent staff and + 147.5% for casuals.",
     },
     {
       q: "Is Bunnings paid above the award?",
@@ -152,7 +152,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     commencedOn: "13 November 2023",
     status: "replacement-before-fwc",
     statusNote:
-      "Past its nominal expiry date of 31 August 2026 but still in force. The replacement Bunnings Retail Enterprise Agreement 2026 was voted up in October 2026 (68% yes, per the SDA on 20 October 2026) and goes to the Fair Work Commission for approval. If approved on or before 26 February 2027 it starts on 26 April 2027, and it nominally expires on 31 July 2029 (proposed cl 16.2).",
+      "The current Bunnings agreement is past its nominal expiry date of 31 August 2026 but still in force. The replacement Bunnings Retail Enterprise Agreement 2026 was voted up in October 2026 (68% yes, per the SDA on 20 October 2026) and goes to the Fair Work Commission for approval. If approved on or before 26 February 2027 it starts on 26 April 2027, and it nominally expires on 31 July 2029 (proposed cl 16.2).",
     payRises: [
       { date: "First full pay cycle after 1 September 2024", amount: "3%", source: "2023 agreement cl 1.5", paid: true },
       { date: "First full pay cycle after 1 September 2025", amount: "3% (Team Member $28.64)", source: "2023 agreement cl 1.5", paid: true },

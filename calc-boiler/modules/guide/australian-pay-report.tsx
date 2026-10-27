@@ -156,10 +156,10 @@ export default function AustralianPayReport() {
             {REPORT.title}: Take-Home Pay, Minimum Wage and Award Rates
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            What Australians actually take home in {fy}, what the 1 July 2026 tax cut changed, how the minimum wage compares with
-            the median and the average, how {awards.length} award minimums rank, and what teachers, nurses and public servants earn
-            in each state. Every figure is computed from ATO rates, Fair Work Commission decisions, ABS earnings releases and
-            published state pay scales, and every table can be downloaded as CSV.
+            This data study sets out what Australians take home in {fy} and what the 1 July 2026 tax cut changed. It compares the
+            minimum wage with ABS median and average weekly earnings, ranks {awards.length} award minimums, and lists what
+            teachers, nurses and public servants earn in each state. Every figure is computed from ATO tax rates, Fair Work
+            Commission decisions, ABS earnings releases and published state pay scales, and every table downloads as CSV.
           </p>
           <div className="not-prose mb-6 grid gap-3 sm:grid-cols-3">
             <Stat label="Most the 2026 tax cut is worth" value={aud(cut.perYear)} sub={`a year (${aud(cut.perWeek, 2)} a week), from ${aud(cut.fromIncome)}`} />
@@ -209,8 +209,8 @@ export default function AustralianPayReport() {
                 ))}
               </Table>
               <p className="text-sm">
-                * 2027-28 uses the legislated 14% rate on the same thresholds; it is law but not yet in force. Australian resident for
-                the full year, no HECS/HELP, no Medicare levy surcharge, no deductions. Medicare levy low-income thresholds are the
+                * 2027-28 uses the legislated 14% rate on the same thresholds; it is law but not yet in force. Every row assumes an Australian
+                resident for the full year with no HECS/HELP debt, no Medicare levy surcharge and no deductions. Medicare levy low-income thresholds are the
                 latest the ATO has published ({prev}) for all three years, so the gain column isolates the rate cut. See any salary in
                 full on <Link href="/take-home-pay-on/">take-home pay by salary</Link> or use the{" "}
                 <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
@@ -221,7 +221,7 @@ export default function AustralianPayReport() {
             <section id="minimum-median-average">
               <h2 style={HEADING_FONT}>Minimum wage vs median vs average earnings</h2>
               <p>
-                The National Minimum Wage rose 4.75% on 1 July 2026 to {aud(nmw.weekly, 2)} a week. The average full-time wage is{" "}
+                The National Minimum Wage rose 4.75% on 1 July 2026 to {aud(nmw.weekly, 2)} a week. Average full-time earnings (ABS AWOTE) are{" "}
                 {avg.timesMinimum.toFixed(2)} times that. The median sits between the two because the average is lifted by a small
                 number of very high earners, and the all-employee figures include part-time workers.
               </p>
@@ -251,9 +251,9 @@ export default function AustralianPayReport() {
             <section id="award-minimums">
               <h2 style={HEADING_FONT}>{awards.length} award minimums, ranked</h2>
               <p>
-                The entry-level adult rate in each modern award we publish verified tables for, from 1 July 2026: the rate a new adult
-                starter is most likely to be on. Most sit a little above the minimum wage; aged care and nursing sit well above it after
-                the Fair Work Commission&apos;s work value decisions.
+                This ranking lists the entry-level adult rate from 1 July 2026 in each modern award we publish verified tables for. That
+                is the rate a new adult starter is most likely to be on. Most of these rates sit a little above the minimum wage; the
+                aged care and nursing award rates sit well above it after the Fair Work Commission&apos;s work value decisions.
               </p>
               <Bars rows={awards.map((a) => ({ label: a.name.replace(/ Award \d{4}$/, ""), value: a.hourly }))} format={(n) => aud(n, 2)} />
               <Table caption="Entry-level award minimum rates from 1 July 2026, highest first" head={["#", "Award", "Classification", "Hourly", "Weekly", "Yearly", "vs minimum wage", `Take-home ${fy}`]} minWidth={900}>
@@ -271,10 +271,11 @@ export default function AustralianPayReport() {
                 ))}
               </Table>
               <p className="text-sm">
-                Full-time adult rates before penalty rates, loadings and allowances. The introductory entry grades some awards set for the
-                first weeks or months of employment (for example Manufacturing C14 (first 38 hours of induction training) and Level 1 in
-                the Miscellaneous, Fitness Industry, Live Performance, Horticulture, Pastoral, Meat Industry and Timber awards) can sit
-                below the National Minimum Wage; the lowest award rate that applies to ongoing employment cannot. Full classification
+                The ranked rates are full-time adult rates before penalty rates, loadings and allowances. Some awards set an introductory
+                entry grade for the first weeks or months of employment, for example Manufacturing C14 (first 38 hours of induction
+                training) and Level 1 in the Miscellaneous, Fitness Industry, Live Performance, Horticulture, Pastoral, Meat Industry and
+                Timber awards. These introductory grades can sit below the National Minimum Wage; the lowest award rate that applies to
+                ongoing employment cannot. Full classification
                 tables are on each award page and on the <Link href="/award-rates/">award rates hub</Link>.
               </p>
               <CsvLink file="award-minimum-rates-ranked.csv" />
@@ -283,9 +284,9 @@ export default function AustralianPayReport() {
             <section id="public-sector">
               <h2 style={HEADING_FONT}>Public-sector pay by state</h2>
               <p>
-                Entry and top-of-scale salaries for classroom teachers, registered nurses and general public servants, read from each
-                state&apos;s current enterprise agreement or award. Public servants run from the bottom of the entry grade to the top of the
-                highest non-executive grade.
+                These tables give entry and top-of-scale salaries for classroom teachers, registered nurses and general public servants,
+                read from each state&apos;s current enterprise agreement or award. The public service rows run from the bottom of the entry
+                grade to the top of the highest non-executive grade.
               </p>
               {GROUPS.map((g) => {
                 const rows = sector.filter((r) => r.group === g);
@@ -316,8 +317,8 @@ export default function AustralianPayReport() {
             <section id="hours-to-earn">
               <h2 style={HEADING_FONT}>Hours of work to earn $1,000</h2>
               <p>
-                How long it takes to earn $1,000 before and after tax at four common rates, assuming the rate is worked 38 hours a week
-                all year. The last columns put the {aud(cut.perYear)} tax cut into hours of work.
+                This table shows how long it takes to earn $1,000 before and after tax at four common rates, assuming the rate is worked
+                38 hours a week all year. The last columns put the {aud(cut.perYear)} tax cut into hours of work.
               </p>
               <Table caption="Hours of work to earn $1,000" head={["Rate", "Gross / hour", "Take-home / hour", "Hours for $1,000 gross", "Hours for $1,000 take-home", `Hours to take home ${aud(cut.perYear)}`, "Weeks to take home $10,000"]} minWidth={880}>
                 {hours.map((h) => (
@@ -347,7 +348,7 @@ export default function AustralianPayReport() {
                 <li><strong>Minimum wage and awards.</strong> {NMW_DECISION.name} ({NMW_DECISION.citation}), operative {NMW_DECISION.operativeFrom}. Award rates from the Fair Work Ombudsman pay guides and the consolidated award text, full-time adult entry classification.</li>
                 <li><strong>Earnings.</strong> ABS Average Weekly Earnings ({AWE_RELEASE.referencePeriod}) for averages; ABS Employee Earnings ({EE_RELEASE.referencePeriod}) for medians. Weekly × 52.</li>
                 <li><strong>Public sector.</strong> Each state&apos;s published enterprise agreement, award or salary schedule, as recorded (with the date verified) on the linked state page.</li>
-                <li><strong>What this is not.</strong> A survey of actual pay. Award and agreement rates are legal minimums or scale points; many people are paid above them.</li>
+                <li><strong>What this is not.</strong> This report is not a survey of actual pay. Award and agreement rates are legal minimums or scale points, and an employer can pay above them.</li>
               </ul>
             </section>
 

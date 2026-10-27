@@ -21,7 +21,7 @@ const SG_100K = annualSuperGuarantee(100_000);
 export const CONCESSIONAL_CAP_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What is the concessional contributions cap for ${FY}?`,
-    a: `${CAP}, up from ${PREV} in ${SITE_CONFIG.previousFinancialYear}. It rose on 1 July 2026 through indexation to average weekly ordinary time earnings, which moves the cap in $2,500 steps. It covers all before-tax contributions to all your funds combined: employer super guarantee, salary sacrifice and personal contributions you claim a deduction for.`,
+    a: `The concessional contributions cap is ${CAP}, up from ${PREV} in ${SITE_CONFIG.previousFinancialYear}. It rose on 1 July 2026 through indexation to average weekly ordinary time earnings, which moves the cap in $2,500 steps. It covers all before-tax contributions to all your funds combined: employer super guarantee, salary sacrifice and personal contributions you claim a deduction for.`,
   },
   {
     q: "Does employer super count towards the concessional cap?",
@@ -37,7 +37,7 @@ export const CONCESSIONAL_CAP_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How much tax is paid on concessional super contributions?",
-    a: `${formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}, paid by your super fund. If your income plus concessional contributions is over ${formatAUD(DIVISION_293.threshold)}, Division 293 adds another ${formatPercent(DIVISION_293.rate, 0)} on the lesser of the contributions and the amount over ${formatAUD(DIVISION_293.threshold)}.`,
+    a: `Concessional contributions are taxed at ${formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}, paid by your super fund. If your income plus concessional contributions is over ${formatAUD(DIVISION_293.threshold)}, Division 293 adds another ${formatPercent(DIVISION_293.rate, 0)} on the lesser of the contributions and the amount over ${formatAUD(DIVISION_293.threshold)}.`,
   },
   {
     q: "What happens if I go over the concessional cap?",
@@ -45,6 +45,6 @@ export const CONCESSIONAL_CAP_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What is the non-concessional contributions cap?",
-    a: `${formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} for ${FY}. That cap is for after-tax contributions you don't claim a deduction for, and it's separate from the ${CAP} concessional cap.`,
+    a: `The non-concessional contributions cap is ${formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} for ${FY}. That cap is for after-tax contributions you don't claim a deduction for, and it's separate from the ${CAP} concessional cap.`,
   },
 ];

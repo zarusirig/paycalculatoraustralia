@@ -222,7 +222,7 @@ const dentist: HealthSalaryPage = {
     "A dentist contracting to a practice is not paid through payroll. No tax is withheld unless the dentist and the practice have a voluntary PAYG withholding agreement, so tax and the Medicare levy are paid through PAYG instalments or at tax time instead.",
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time dentists and practice owners as well as full-time employees, so they are not a salary rate.",
+    "The ATO dentist figures on this page come from tax returns for the 2023-24 income year, the latest the ATO has published. They count part-time dentists and practice owners as well as full-time employees, so they are not a salary rate.",
   ],
   notShown: [
     "An award minimum for dentists: no modern award names them.",
@@ -329,8 +329,8 @@ const radiologist: HealthSalaryPage = {
       heading: "The group the labour statistics put radiologists in",
       paragraphs: [
         "There is no employee median for radiologists on their own. Jobs and Skills Australia publishes its earnings data for unit group 2539, Other Medical Practitioners, which gathers dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, diagnostic and interventional radiologists, radiation oncologists and medical practitioners not covered elsewhere into one profile of 23,400 employed people (ABS Labour Force Survey, 2025 four-quarter average). On the May 2025 Survey of Employee Earnings and Hours that group's median full-time employee earned $5,013 a week, or $101 an hour, against $1,852 and $47 for all occupations. The ATO's occupation code 253917 above is the only published figure that is radiologists alone.",
-        "The group's shape differs from the surgical and anaesthetic workforces. 77% work full-time hours and the part-time share is 23%, the highest of the medical specialties on this site; the average full-time week is 46 hours. Women are 55% of the group, against 48% of all workers, and the median age is 43. By state, 32.6% work in New South Wales and 29.2% in Victoria. Jobs and Skills Australia projects employment in the group to grow by about 1,400 a year. Within that profile the task it assigns to radiologists is to provide diagnostic medical services and manage patients using radiant energy techniques: general radiography, angiography, fluoroscopy, mammography, ultrasound and computed tomography among them.",
-        "For pay, the practical consequence is that a radiologist comparing an offer has three reference points rather than one: the ATO's radiologist-only tax-return figures above, the staff specialist scales below for public hospital employment, and the Other Medical Practitioners employee median as the best available guide to a salaried specialist's weekly pay. None of them is a market rate for private radiology practice, which no primary source publishes.",
+        "The Other Medical Practitioners group works part-time more often than surgeons or anaesthetists do. 77% work full-time hours and the part-time share is 23%, the highest of the medical specialties on this site; the average full-time week is 46 hours. Women are 55% of the group, against 48% of all workers, and the median age is 43. By state, 32.6% work in New South Wales and 29.2% in Victoria. Jobs and Skills Australia projects employment in the group to grow by about 1,400 a year. Within that profile, Jobs and Skills Australia describes the radiologist's task as providing diagnostic medical services and managing patients with radiant energy techniques: general radiography, angiography, fluoroscopy, mammography, ultrasound and computed tomography among them.",
+        "A radiologist comparing a job offer therefore has three pay reference points rather than one: the ATO's radiologist-only tax-return figures above, the staff specialist scales below for public hospital employment, and the Other Medical Practitioners employee median as the best available guide to a salaried specialist's weekly pay. None of them is a market rate for private radiology practice, which no primary source publishes.",
       ],
     },
   ],
@@ -339,7 +339,7 @@ const radiologist: HealthSalaryPage = {
     "A radiologist who reports for a private practice as a contractor, or takes a share of a practice's profit as an owner, is not paid through payroll: tax on that income is paid through PAYG instalments or at tax time.",
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time radiologists and practice owners as well as employees, so they are not a salary rate.",
+    "The radiologist figures from the ATO are what radiologists reported on their 2023-24 tax returns, the latest income year the ATO has published. Part-time radiologists and practice owners are counted with employees, so the figures are not a salary rate.",
   ],
   notShown: [
     "State figures for radiologists alone: the ATO's state table groups them with other specialists.",
@@ -373,7 +373,7 @@ const radiologist: HealthSalaryPage = {
     },
     {
       q: "Does Division 293 tax apply to radiologists?",
-      a: `It applies to anyone whose income plus concessional super contributions passes ${$(DIVISION_293_THRESHOLD)}, and both the ATO's average (${$(RADIOLOGIST.averageTaxableIncome)}) and median (${$(RADIOLOGIST.medianTaxableIncome)}) taxable income for radiologists are above that. It is an extra 15% on super contributions that the ATO assesses after your tax return, so it never appears on a payslip.`,
+      a: `It applies to anyone whose income plus concessional super contributions passes ${$(DIVISION_293_THRESHOLD)}, and both the ATO's average (${$(RADIOLOGIST.averageTaxableIncome)}) and median (${$(RADIOLOGIST.medianTaxableIncome)}) taxable income for radiologists are above that. It is an extra 15% on super contributions that the ATO assesses after your tax return, so it does not appear on a payslip.`,
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_INDIVIDUALS_SOURCE, jsaSource(OTHER_MP_JSA), MA000031_SOURCE, ...STAFF_SPECIALIST_SOURCES],
@@ -450,10 +450,10 @@ const anaesthetist: HealthSalaryPage = {
   ],
   payslip: [
     `At the Jobs and Skills Australia employee median of ${$(ANAESTHETIST_JSA.medianWeekly)} a week, take-home comes to about ${formatAUD(takeHome(ANAESTHETIST_JSA.medianWeekly * 52).fortnightly, 0)} a fortnight after tax and the Medicare levy, with no HELP debt or salary packaging.`,
-    "Private work done outside hospital employment is paid separately and is not on the hospital payslip; tax on it is paid through PAYG instalments or at tax time.",
+    "An anaesthetist's private work outside hospital employment is paid separately and does not appear on the hospital payslip; tax on that income is paid through PAYG instalments or at tax time.",
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time anaesthetists and those in private practice as well as employees, so they are not a salary rate.",
+    "The ATO anaesthetist figures cover tax returns for the 2023-24 income year, the latest the ATO has published. They include part-time anaesthetists and those in private practice as well as employees, so they are not a salary rate.",
   ],
   notShown: [
     STAFF_SPECIALIST_NOT_SHOWN,
@@ -486,7 +486,7 @@ const anaesthetist: HealthSalaryPage = {
     },
     {
       q: "Can a public hospital anaesthetist salary package?",
-      a: `Yes. Public hospital employees can package about ${$(HOSPITAL_PACKAGING.faceValue)} a year of everyday expenses under a ${$(HOSPITAL_PACKAGING.grossedUpCap)} grossed-up fringe benefits tax cap. On a ${$(NSW_Y1.annual)} salary that leaves about ${$(hospitalPackagingBenefit(NSW_Y1.annual))} more to spend each year, before the packaging provider's fees.`,
+      a: `Yes. An anaesthetist employed by a public hospital can package about ${$(HOSPITAL_PACKAGING.faceValue)} a year of everyday expenses under a ${$(HOSPITAL_PACKAGING.grossedUpCap)} grossed-up fringe benefits tax cap. On the ${$(NSW_Y1.annual)} base salary of a first-year NSW staff specialist, that leaves about ${$(hospitalPackagingBenefit(NSW_Y1.annual))} more to spend each year, before the packaging provider's fees.`,
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_INDIVIDUALS_SOURCE, jsaSource(ANAESTHETIST_JSA), MA000031_SOURCE, ...STAFF_SPECIALIST_SOURCES],
@@ -557,10 +557,10 @@ const optometrist: HealthSalaryPage = {
     { label: "Average taxable income", gross: OPTOMETRIST.averageTaxableIncome, source: "ATO 2023–24" },
   ],
   payslip: [
-    `At the ${$(OPTOMETRIST.medianSalaryOrWages)} median salary or wage, an employed optometrist takes home about ${formatAUD(takeHome(OPTOMETRIST.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy with no HELP debt, or about ${formatAUD((takeHome(OPTOMETRIST.medianSalaryOrWages).net - takeHome(OPTOMETRIST.medianSalaryOrWages).help) / 26, 0)} with one, once the compulsory HELP repayment is withheld as well.`,
+    `At the ${$(OPTOMETRIST.medianSalaryOrWages)} median salary or wage, an employed optometrist takes home about ${formatAUD(takeHome(OPTOMETRIST.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy, with no HELP debt. With a HELP debt, the employer withholds the compulsory repayment as well and the optometrist takes home about ${formatAUD((takeHome(OPTOMETRIST.medianSalaryOrWages).net - takeHome(OPTOMETRIST.medianSalaryOrWages).help) / 26, 0)} a fortnight.`,
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time optometrists and practice owners as well as full-time employees, so they are not a salary rate.",
+    "The ATO's optometrist figures come from tax returns for the 2023-24 income year, the latest the ATO has published. They count part-time optometrists and practice owners as well as full-time employees, so they are not a salary rate.",
   ],
   notShown: [
     "An award minimum for optometrists: neither the Health Professionals Award nor the Fair Work Ombudsman's summary confirms that one applies.",
@@ -570,26 +570,26 @@ const optometrist: HealthSalaryPage = {
   faqs: [
     {
       q: "How much does an optometrist earn in Australia?",
-      a: `The ATO's 2023–24 tax statistics put optometrists' average taxable income at ${$(OPTOMETRIST.averageTaxableIncome)}, across ${OPTOMETRIST.individuals.toLocaleString("en-AU")} people, with a median of ${$(OPTOMETRIST.medianTaxableIncome)}. Optometrists paid a salary or wage had a median of ${$(OPTOMETRIST.medianSalaryOrWages)} from it.`,
+      a: `The ATO's 2023-24 tax statistics put optometrists' average taxable income at ${$(OPTOMETRIST.averageTaxableIncome)}, across ${OPTOMETRIST.individuals.toLocaleString("en-AU")} people, with a median of ${$(OPTOMETRIST.medianTaxableIncome)}. Optometrists paid a salary or wage had a median of ${$(OPTOMETRIST.medianSalaryOrWages)} from it.`,
     },
     {
       q: "What is an optometrist's take-home pay?",
       a: (() => {
         const t = th(OPTOMETRIST.medianTaxableIncome);
-        return `On the ${$(OPTOMETRIST.medianTaxableIncome)} median taxable income, an optometrist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. With a HELP debt, a compulsory repayment of about ${t.help} a year comes out as well.`;
+        return `On the ${$(OPTOMETRIST.medianTaxableIncome)} median taxable income, an optometrist keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026-27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy. With a HELP debt, a compulsory repayment of about ${t.help} a year comes out as well.`;
       })(),
     },
     {
       q: "Is there an award for optometrists?",
-      a: "No modern award names optometrists. The Health Professionals and Support Services Award lists orthoptists but not optometrists, and the Fair Work Ombudsman's summary of the award doesn't name them; the award does allow for unlisted professions, so whether it covers an employed optometrist is a question for the Fair Work Ombudsman.",
+      a: "No modern award names optometrists. The Health Professionals and Support Services Award lists orthoptists but not optometrists, and the Fair Work Ombudsman's summary of the award doesn't name them. The award does allow for unlisted professions, so ask the Fair Work Ombudsman whether it covers an employed optometrist.",
     },
     {
       q: "Which state pays optometrists the most?",
-      a: `In the ATO's 2023–24 figures for optometrists and orthoptists together, average taxable income was highest in the Northern Territory (${$(OPTOMETRY_STATES.find((r) => r.label === "NT")!.averageTaxableIncome)}, ${OPTOMETRY_STATES.find((r) => r.label === "NT")!.individuals} people) and the ACT (${$(OPTOMETRY_STATES.find((r) => r.label === "ACT")!.averageTaxableIncome)}), and lowest in Victoria (${$(OPTOMETRY_STATES.find((r) => r.label === "VIC")!.averageTaxableIncome)}).`,
+      a: `In the ATO's 2023-24 figures for optometrists and orthoptists together, average taxable income was highest in the Northern Territory (${$(OPTOMETRY_STATES.find((r) => r.label === "NT")!.averageTaxableIncome)}, ${OPTOMETRY_STATES.find((r) => r.label === "NT")!.individuals} people) and the ACT (${$(OPTOMETRY_STATES.find((r) => r.label === "ACT")!.averageTaxableIncome)}), and lowest in Victoria (${$(OPTOMETRY_STATES.find((r) => r.label === "VIC")!.averageTaxableIncome)}).`,
     },
     {
       q: "How do optometrists' earnings compare with orthoptists'?",
-      a: `Orthoptists reported an average taxable income of ${$(ATO_15A.orthoptist.averageTaxableIncome)} in 2023–24 and a median of ${$(ATO_15A.orthoptist.medianTaxableIncome)}, against ${$(OPTOMETRIST.averageTaxableIncome)} and ${$(OPTOMETRIST.medianTaxableIncome)} for optometrists (ATO). Unlike optometrists, orthoptists are named in the Health Professionals Award.`,
+      a: `Orthoptists reported an average taxable income of ${$(ATO_15A.orthoptist.averageTaxableIncome)} in 2023-24 and a median of ${$(ATO_15A.orthoptist.medianTaxableIncome)}, against ${$(OPTOMETRIST.averageTaxableIncome)} and ${$(OPTOMETRIST.medianTaxableIncome)} for optometrists (ATO). Unlike optometrists, orthoptists are named in the Health Professionals Award.`,
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_INDIVIDUALS_SOURCE, MA000027_SOURCE, FWO_MA000027_SUMMARY, {
@@ -655,7 +655,7 @@ const gp: HealthSalaryPage = {
   awardTable: {
     title: "Award minimum for an employed GP, 2026–27",
     intro:
-      "Medical Practitioners Award clause 16.1(g), community medical practitioner, from the first full pay period on or after 1 July 2026, for a GP employed where the award applies. Annual, weekly and hourly figures exactly as the award prints them.",
+      "The table shows the community medical practitioner minimums in Medical Practitioners Award clause 16.1(g), from the first full pay period on or after 1 July 2026, for a GP employed where the award applies. The annual, weekly and hourly figures are exactly as the award prints them.",
     rows: COMMUNITY_MEDICAL_PRACTITIONER.map((r) => ({ ...r })),
     footnote: "Medical Practitioners Award 2020 [MA000031], consolidated to 1 July 2026. Full-time, 38 ordinary hours a week, before tax and super.",
   },
@@ -667,11 +667,11 @@ const gp: HealthSalaryPage = {
     { label: "Average taxable income", gross: GP.averageTaxableIncome, source: "ATO 2023–24" },
   ],
   payslip: [
-    "That is the payslip a GP gets from a community health centre, an Aboriginal health service or a practice that puts its doctors on payroll.",
+    "A GP gets a payslip when employed by a community health centre, an Aboriginal health service or a practice that puts its doctors on payroll.",
     "A GP who contracts to a practice is not paid through payroll, so no PAYG tax is withheld unless the GP and the practice have a voluntary withholding agreement. Tax and the Medicare levy are then paid through PAYG instalments or at tax time.",
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time GPs and practice owners as well as employees, so they are not a salary rate.",
+    "The ATO's GP figures come from tax returns for the 2023-24 income year, the latest the ATO has published. They count part-time GPs and practice owners as well as employees, so they are not a salary rate.",
   ],
   notShown: [
     "State figures for GPs alone: the ATO's state table counts GPs and resident medical officers together.",
@@ -681,13 +681,13 @@ const gp: HealthSalaryPage = {
   faqs: [
     {
       q: "How much does a GP earn in Australia?",
-      a: `The ATO's 2023–24 tax statistics put GPs' average taxable income at ${$(GP.averageTaxableIncome)}, across ${GP.individuals.toLocaleString("en-AU")} people, with a median of ${$(GP.medianTaxableIncome)}. GPs paid a salary or wage had a median of ${$(GP.medianSalaryOrWages)} from it.`,
+      a: `The ATO's 2023-24 tax statistics put GPs' average taxable income at ${$(GP.averageTaxableIncome)}, across ${GP.individuals.toLocaleString("en-AU")} people, with a median of ${$(GP.medianTaxableIncome)}. GPs paid a salary or wage had a median of ${$(GP.medianSalaryOrWages)} from it.`,
     },
     {
       q: "What is a GP's take-home pay?",
       a: (() => {
         const t = th(GP.medianTaxableIncome);
-        return `On the ${$(GP.medianTaxableIncome)} median taxable income, a GP keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
+        return `On the ${$(GP.medianTaxableIncome)} median taxable income, a GP keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026-27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt. A HELP debt adds a compulsory repayment of about ${t.help} a year at that income.`;
       })(),
     },
     {
@@ -700,7 +700,7 @@ const gp: HealthSalaryPage = {
     },
     {
       q: "Do GPs earn more than hospital resident doctors?",
-      a: `In the ATO's 2023–24 figures, GPs' average taxable income was ${$(GP.averageTaxableIncome)} against ${$(ATO_15A.residentMedicalOfficer.averageTaxableIncome)} for the ${ATO_15A.residentMedicalOfficer.individuals.toLocaleString("en-AU")} resident medical officers; the medians were ${$(GP.medianTaxableIncome)} and ${$(ATO_15A.residentMedicalOfficer.medianTaxableIncome)}.`,
+      a: `In the ATO's 2023-24 figures, GPs' average taxable income was ${$(GP.averageTaxableIncome)} against ${$(ATO_15A.residentMedicalOfficer.averageTaxableIncome)} for the ${ATO_15A.residentMedicalOfficer.individuals.toLocaleString("en-AU")} resident medical officers; the medians were ${$(GP.medianTaxableIncome)} and ${$(ATO_15A.residentMedicalOfficer.medianTaxableIncome)}.`,
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_INDIVIDUALS_SOURCE, MA000031_SOURCE, jsaSource(GP_JSA)],
@@ -744,7 +744,7 @@ const surgeon: HealthSalaryPage = {
       title: "Surgeon income by specialty, 2023–24",
       part: "Table 15A",
       intro:
-        "Each surgical occupation the ATO codes within unit group 2535. Some groups are small (143 cardiothoracic surgeons, 109 paediatric surgeons), so treat their averages with care.",
+        "The table lists each surgical occupation the ATO codes within unit group 2535. Some groups are small (143 cardiothoracic surgeons, 109 paediatric surgeons), so treat their averages with care.",
       rowHeading: "Specialty",
       rows: [...SPECIALTIES],
     },
@@ -752,7 +752,7 @@ const surgeon: HealthSalaryPage = {
       id: "by-state",
       title: "Surgeon income by state, 2023–24",
       part: "Table 15D",
-      intro: "All surgical specialties together. The 37 people who lodged from overseas are left out.",
+      intro: "The state figures combine all surgical specialties. The 37 people who lodged from overseas are left out.",
       rowHeading: "State or territory",
       rows: [...SURGEON_STATES],
     },
@@ -761,7 +761,7 @@ const surgeon: HealthSalaryPage = {
   coverageHeading: "Which award or agreement sets a surgeon's pay?",
   coverage: [
     "Surgeons employed by state public hospitals are staff specialists on their state's specialist scale, which is the same for every specialty. The NSW, Victorian and Queensland scales are below.",
-    `Surgeons employed by private hospitals and the other employers the Medical Practitioners Award covers (cl 4.2) have a specialist minimum of ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026 (cl 16.1(h)); surgical registrars in training are registrars under the same award.`,
+    `Surgeons employed by private hospitals and the other employers the Medical Practitioners Award covers (cl 4.2) have a specialist minimum of ${$(AWARD_SPECIALIST_MINIMUM)} a year from the first full pay period on or after 1 July 2026 (cl 16.1(h)). Surgical registrars in training are registrars under the same award.`,
     "Surgeons in private practice on their own account are not employees. Visiting medical officer arrangements with public hospitals are separate from the staff specialist scales and are not reproduced here.",
   ],
   upLink: {
@@ -783,9 +783,9 @@ const surgeon: HealthSalaryPage = {
       id: "workforce",
       heading: "Why the employee median is so far below the ATO average",
       paragraphs: [
-        "The two figures measure different people. Jobs and Skills Australia's unit group 2535 counts 7,400 employed surgeons and includes medical registrars training as surgeons (ABS Labour Force Survey, 2025 four-quarter average), so its employee median of $3,905 a week, or $80 an hour on the May 2025 Survey of Employee Earnings and Hours, is pulled towards hospital salaries at the start of a surgical career. The ATO figures above are taxable income from every source, dominated by established surgeons in private practice. Both are right; they answer different questions.",
-        "Surgery is the longest working week of any occupation on this site. The average full-time surgeon works 54 hours a week against 44 for all occupations (2021 Census), 93% work full-time hours and the part-time share is 7%. The median age is 43, four years above the all-occupations median of 39, and 26% of surgeons are women against 48% of all workers. The 2021 Census age profile shows 20.1% aged 25 to 34, 28.6% aged 35 to 44, 25.2% aged 45 to 54 and 9.7% aged 65 and over, double the 4.9% share of workers that age across all occupations. Jobs and Skills Australia projects employment in the group to fall by about 800 a year.",
-        "The nine occupations in the group match the ATO specialty table above: general surgeons, cardiothoracic surgeons, neurosurgeons, orthopaedic surgeons, ear, nose and throat specialists, paediatric surgeons, plastic and reconstructive surgeons, urologists and vascular surgeons. By state, Victoria has the largest share of surgeons at 31.9%, then New South Wales at 23.6% and Queensland at 21.3%, with South Australia at 9.1%, Western Australia at 7.9%, Tasmania at 3.0%, the ACT at 1.7% and the Northern Territory at 1.4% (ABS Labour Force Survey, Detailed, February 2026, Jobs and Skills Australia trend data). Tasmania's high ATO average therefore rests on a small number of people.",
+        "The two figures measure different people. Jobs and Skills Australia's unit group 2535 counts 7,400 employed surgeons and includes medical registrars training as surgeons (ABS Labour Force Survey, 2025 four-quarter average). Because registrars are counted, its employee median of $3,905 a week is pulled towards hospital salaries at the start of a surgical career. That median is $80 an hour on the May 2025 Survey of Employee Earnings and Hours. The ATO figures above are taxable income from every source, dominated by established surgeons in private practice. Both are right; they answer different questions.",
+        "Surgeons work the longest week of any occupation on this site. The average full-time surgeon works 54 hours a week against 44 for all occupations (2021 Census), 93% work full-time hours and the part-time share is 7%. The median age is 43, four years above the all-occupations median of 39, and 26% of surgeons are women against 48% of all workers. The 2021 Census age profile shows 20.1% aged 25 to 34, 28.6% aged 35 to 44, 25.2% aged 45 to 54 and 9.7% aged 65 and over, double the 4.9% share of workers that age across all occupations. Jobs and Skills Australia projects employment in the group to fall by about 800 a year.",
+        "The nine occupations in the group match the ATO specialty table above: general surgeons, cardiothoracic surgeons, neurosurgeons, orthopaedic surgeons, ear, nose and throat specialists, paediatric surgeons, plastic and reconstructive surgeons, urologists and vascular surgeons. By state, Victoria has the largest share of surgeons at 31.9%, then New South Wales at 23.6% and Queensland at 21.3%. South Australia has 9.1%, Western Australia 7.9%, Tasmania 3.0%, the ACT 1.7% and the Northern Territory 1.4% (ABS Labour Force Survey, Detailed, February 2026, Jobs and Skills Australia trend data). Tasmania's high ATO average therefore rests on a small number of people.",
       ],
     },
   ],
@@ -793,7 +793,7 @@ const surgeon: HealthSalaryPage = {
     `The ATO's median salary or wage for surgeons, ${$(SURGEON.medianSalaryOrWages)}, works out to about ${formatAUD(takeHome(SURGEON.medianSalaryOrWages).fortnightly, 0)} a fortnight after tax and the Medicare levy. Income from private practice is not on that payslip; tax on it is paid through PAYG instalments or at tax time.`,
   ],
   notices: [
-    "These are tax-return figures for the 2023–24 income year, the latest the ATO has published. They count part-time surgeons and those in private practice as well as employees, so they are not a salary rate.",
+    "The ATO's surgeon figures come from tax returns for the 2023-24 income year, the latest the ATO has published. They count part-time surgeons and those in private practice as well as employees, so they are not a salary rate.",
   ],
   notShown: [
     STAFF_SPECIALIST_NOT_SHOWN,
@@ -803,18 +803,18 @@ const surgeon: HealthSalaryPage = {
   faqs: [
     {
       q: "How much does a surgeon earn in Australia?",
-      a: `The ATO's 2023–24 tax statistics put surgeons' average taxable income at ${$(SURGEON.averageTaxableIncome)}, across ${SURGEON.individuals.toLocaleString("en-AU")} people, with a median of ${$(SURGEON.medianTaxableIncome)}. Surgeons paid a salary or wage had a median of ${$(SURGEON.medianSalaryOrWages)} from it.`,
+      a: `The ATO's 2023-24 tax statistics put surgeons' average taxable income at ${$(SURGEON.averageTaxableIncome)}, across ${SURGEON.individuals.toLocaleString("en-AU")} people, with a median of ${$(SURGEON.medianTaxableIncome)}. Surgeons paid a salary or wage had a median of ${$(SURGEON.medianSalaryOrWages)} from it.`,
     },
     {
       q: "What is a surgeon's take-home pay?",
       a: (() => {
         const t = th(SURGEON.medianTaxableIncome);
-        return `On the ${$(SURGEON.medianTaxableIncome)} median taxable income, a surgeon keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026–27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
+        return `On the ${$(SURGEON.medianTaxableIncome)} median taxable income, a surgeon keeps about ${t.net} a year (${t.fortnight} a fortnight) at 2026-27 rates, after ${t.tax} of income tax and a ${t.medicare} Medicare levy, with no HELP debt.`;
       })(),
     },
     {
       q: "Which type of surgeon earns the most?",
-      a: `In the ATO's 2023–24 figures, neurosurgeons had the highest average taxable income (${$(byAverage("Neurosurgeon").averageTaxableIncome)}, ${byAverage("Neurosurgeon").individuals} people), followed by plastic and reconstructive surgeons (${$(byAverage("Plastic and reconstructive surgeon").averageTaxableIncome)}). General surgeons, the largest group at ${byAverage("Surgeon (general)").individuals.toLocaleString("en-AU")}, averaged ${$(byAverage("Surgeon (general)").averageTaxableIncome)}, and paediatric surgeons ${$(byAverage("Paediatric surgeon").averageTaxableIncome)}.`,
+      a: `In the ATO's 2023-24 figures, neurosurgeons had the highest average taxable income (${$(byAverage("Neurosurgeon").averageTaxableIncome)}, ${byAverage("Neurosurgeon").individuals} people), followed by plastic and reconstructive surgeons (${$(byAverage("Plastic and reconstructive surgeon").averageTaxableIncome)}). General surgeons, the largest group at ${byAverage("Surgeon (general)").individuals.toLocaleString("en-AU")}, averaged ${$(byAverage("Surgeon (general)").averageTaxableIncome)}, and paediatric surgeons ${$(byAverage("Paediatric surgeon").averageTaxableIncome)}.`,
     },
     {
       q: "How many hours a week does a surgeon work?",
@@ -822,11 +822,11 @@ const surgeon: HealthSalaryPage = {
     },
     {
       q: "Are surgeons the highest-paid job in Australia?",
-      a: `In the ATO's figures, yes: its release of the 2023–24 statistics says surgeons have been the highest-paid occupation for the last 15 years, with ${SURGEON.individuals.toLocaleString("en-AU")} people reporting an average taxable income of ${$(SURGEON.averageTaxableIncome)}.`,
+      a: `In the ATO's figures, yes: its release of the 2023-24 statistics says surgeons have been the highest-paid occupation for the last 15 years, with ${SURGEON.individuals.toLocaleString("en-AU")} people reporting an average taxable income of ${$(SURGEON.averageTaxableIncome)}.`,
     },
     {
       q: "Which state pays surgeons the most?",
-      a: `Surgeons' average taxable income in 2023–24 was highest in Tasmania (${$(SURGEON_STATES.find((r) => r.label === "TAS")!.averageTaxableIncome)}, ${SURGEON_STATES.find((r) => r.label === "TAS")!.individuals} people) and Western Australia (${$(SURGEON_STATES.find((r) => r.label === "WA")!.averageTaxableIncome)}), and lowest in NSW (${$(SURGEON_STATES.find((r) => r.label === "NSW")!.averageTaxableIncome)}), according to the ATO.`,
+      a: `Surgeons' average taxable income in 2023-24 was highest in Tasmania (${$(SURGEON_STATES.find((r) => r.label === "TAS")!.averageTaxableIncome)}, ${SURGEON_STATES.find((r) => r.label === "TAS")!.individuals} people) and Western Australia (${$(SURGEON_STATES.find((r) => r.label === "WA")!.averageTaxableIncome)}), and lowest in NSW (${$(SURGEON_STATES.find((r) => r.label === "NSW")!.averageTaxableIncome)}), according to the ATO.`,
     },
   ],
   sources: [ATO_TABLE_15_SOURCE, ATO_RELEASE_SOURCE, ATO_INDIVIDUALS_SOURCE, jsaSource(SURGEON_JSA), MA000031_SOURCE, ...STAFF_SPECIALIST_SOURCES],

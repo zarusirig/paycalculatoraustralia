@@ -65,7 +65,7 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
   casualLoading: 0.25,
   fullTimeWeeklyHours: 36,
   payBasisNote:
-    "Virgin Australia pays cabin crew an annual base salary for a 36-hour week. The hourly figures are the agreement's Base Hourly Rate (full-time salary ÷ 52 ÷ 36), calculated by us from the November 2025 salaries, because the agreement's printed hourly table stops at November 2024. Each level's salary is in its description.",
+    "Virgin Australia pays cabin crew an annual base salary for a 36-hour week. The hourly figures are the agreement's Base Hourly Rate (full-time salary ÷ 52 ÷ 36), calculated by us from the November 2025 salaries, because the agreement's printed hourly table stops at November 2024. Each level's annual salary is shown under its name in the table.",
   rates: [
     row("Cabin Crew 1 (CC1)", "New cabin crew start here: $56,246.04 a year ($1,081.65 a week), the 2024 salary plus the 3.5% award-protected rise", 56246.04, true),
     row("Cabin Crew 2 (CC2)", "$58,409.19 a year, the 2024 salary plus the 3.5% award-protected rise", 58409.19),
@@ -127,15 +127,15 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
     },
     {
       q: "What agreement covers Virgin Australia cabin crew?",
-      a: "The Virgin Australia Cabin Crew Agreement 2023 (EA6), AE523884. It started on 26 March 2024 and reached its nominal expiry date on 31 August 2026, but it keeps applying until a new agreement is approved.",
+      a: "Virgin Australia cabin crew are covered by the Virgin Australia Cabin Crew Agreement 2023 (EA6), AE523884. It started on 26 March 2024 and reached its nominal expiry date on 31 August 2026, but it keeps applying until a new agreement is approved.",
     },
     {
       q: "Is Virgin cabin crew pay below the award?",
-      a: "Hourly rates are above the Aircraft Cabin Crew Award's $28.88, but the Cabin Crew 1 salary of $1,081.65 a week is below the award's full-time minimum of $1,097.40 a week from 1 July 2026. The gap comes from the shorter 36-hour full-time week, not a lower hourly rate. If you think your pay falls short of the award, check with the Fair Work Ombudsman or your union.",
+      a: "Virgin Australia's hourly rates are above the Aircraft Cabin Crew Award's $28.88, but the Cabin Crew 1 salary of $1,081.65 a week is below the award's full-time minimum of $1,097.40 a week from 1 July 2026. The gap comes from the shorter 36-hour full-time week, not a lower hourly rate. If you think your pay falls short of the award, check with the Fair Work Ombudsman or your union.",
     },
     {
       q: "Do Virgin cabin crew get public holiday pay?",
-      a: "The base salary already covers working weekends and public holidays. On top of that, crew who complete a duty on one of 10 listed public holidays get $85 ($115 for Cabin Managers).",
+      a: "Virgin Australia's base salary already covers working weekends and public holidays. On top of that, permanent crew who complete a duty on one of 10 listed public holidays get $85 ($115 for Cabin Managers). The agreement does not say clearly whether casual crew get this payment.",
     },
   ],
 };

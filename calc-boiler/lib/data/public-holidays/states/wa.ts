@@ -11,7 +11,7 @@ export const WA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   name: "Western Australia",
   inName: "in Western Australia",
   standfirst:
-    "Western Australia has 13 state-wide public holidays in 2026 and 14 in 2027. Easter Saturday is not one of them, and WA holds Labour Day in March, WA Day in June and the King's Birthday in late September. Karratha and Port Hedland take the King's Birthday in August instead. WA also runs its own state industrial relations system alongside the national one.",
+    "Western Australia has 13 state-wide public holidays in 2026 and 14 in 2027. Easter Saturday is not one of them, and WA holds Labour Day in March, WA Day in June and the King's Birthday in late September. Karratha and Port Hedland take the King's Birthday in August instead. Pty Ltd companies pay these days under the National Employment Standards and modern awards, while sole traders and unincorporated partnerships are in the WA state system. The calculator below works out your pay for a WA public holiday shift from your modern award, base rate and hours. The rest of the page lists the dates for both years, the regional King's Birthday, the extra Monday for weekend holidays and the WA state system rules.",
   sources: [
     {
       title: "Public holidays in Western Australia",
@@ -91,7 +91,7 @@ export const WA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       id: "regional-kings-birthday",
       title: "Regional King's Birthday public holiday 2026",
       intro:
-        "In these two Pilbara districts the King's Birthday public holiday is held on this date instead of the date used in the rest of WA. Monday 28 September 2026 is not a public holiday there, so it is paid as an ordinary day.",
+        "The City of Karratha and the Town of Port Hedland, both in the Pilbara, hold the King's Birthday public holiday on a different date from the rest of WA. Monday 28 September 2026 is not a public holiday there, so it is paid as an ordinary day.",
       rows: [
         { name: "King's Birthday (regional)", area: "City of Karratha", dates: [{ date: "2026-08-03", source: "Monday 3 August" }] },
         { name: "King's Birthday (regional)", area: "Town of Port Hedland", dates: [{ date: "2026-08-03", source: "Monday 3 August" }] },

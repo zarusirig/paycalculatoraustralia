@@ -62,7 +62,7 @@ export default function CommissionTaxCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>How Is Commission Taxed in Australia?</h2>
         <p className={P}>
-          Commission is ordinary income. It goes into the same assessable-income total as your salary, and the ATO taxes that total through the {SITE_CONFIG.financialYear} brackets. There is no commission tax rate, no flat rate and no separate return. A commission is simply more income in the year it is paid.
+          Commission is taxed in Australia as ordinary income. It goes into the same assessable-income total as your salary, and the ATO taxes that total through the {SITE_CONFIG.financialYear} brackets. There is no commission tax rate, no flat rate and no separate return. A commission is more income in the year it is paid.
         </p>
         <p className={P}>
           What makes commission feel heavily taxed is that it sits on top of your salary, so every dollar of it is taxed at your <em>marginal</em> rate rather than your average rate. On a {formatAUD(EX_BASE_SALARY)} salary, a {formatAUD(EX_COMMISSION)} commission adds <strong>{formatAUD(EX_ANNUAL_TAX)}</strong> to the year&apos;s tax ({formatPercent(EX_ANNUAL_TAX / EX_COMMISSION)} of the commission, including the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy), while the same worker&apos;s average rate on their salary is far lower.
@@ -81,14 +81,14 @@ export default function CommissionTaxCalculatorContent() {
           <li>Cap the result at {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the commission (including any study loan component).</li>
         </ol>
         <p className={P}>
-          Worked example: {formatAUD(EX_COMMISSION)} commission paid in one fortnight on {formatAUD(EX_BASE_SALARY)}. Regular withholding {formatAUD(EX_WITHHOLDING.regularWithholding)} a fortnight; with a {formatAUD(EX_WITHHOLDING.apportionedAmount)} slice added it becomes {formatAUD(EX_WITHHOLDING.combinedWithholding)}; the {formatAUD(EX_WITHHOLDING.perPeriodDifference)} difference × {PAY_PERIODS.fortnightly} = <strong>{formatAUD(EX_WITHHOLDING.withheldFromAdditionalPayment)}</strong> withheld, leaving <strong>{formatAUD(EX_WITHHOLDING.netAdditionalPayment)}</strong> in hand. Against the {formatAUD(EX_ANNUAL_TAX)} the commission really adds to the year, the {formatAUD(Math.abs(EX_WITHHOLDING.withheldFromAdditionalPayment - EX_ANNUAL_TAX))} difference is {EX_WITHHOLDING.withheldFromAdditionalPayment >= EX_ANNUAL_TAX ? "returned in the refund" : "added to the bill"} at tax time.
+          Worked example: {formatAUD(EX_COMMISSION)} commission paid in one fortnight on {formatAUD(EX_BASE_SALARY)}. Regular withholding {formatAUD(EX_WITHHOLDING.regularWithholding)} a fortnight rises, with a {formatAUD(EX_WITHHOLDING.apportionedAmount)} slice added, to {formatAUD(EX_WITHHOLDING.combinedWithholding)}; the {formatAUD(EX_WITHHOLDING.perPeriodDifference)} difference × {PAY_PERIODS.fortnightly} = <strong>{formatAUD(EX_WITHHOLDING.withheldFromAdditionalPayment)}</strong> withheld, leaving <strong>{formatAUD(EX_WITHHOLDING.netAdditionalPayment)}</strong> in hand. The commission adds {formatAUD(EX_ANNUAL_TAX)} to the year&apos;s tax, so the {formatAUD(Math.abs(EX_WITHHOLDING.withheldFromAdditionalPayment - EX_ANNUAL_TAX))} difference is {EX_WITHHOLDING.withheldFromAdditionalPayment >= EX_ANNUAL_TAX ? "returned in the refund" : "added to the bill"} at tax time.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>Commission Paid Every Pay, Quarterly or One-Off</h2>
         <p className={P}>
-          The annual tax does not care how the commission arrives: {formatAUD(EX_COMMISSION)} of commission adds the same {formatAUD(EX_ANNUAL_TAX)} whether it lands in one pay or twelve. Withholding does care, because each payment is worked out on its own:
+          The annual tax on a commission is the same however it is paid: {formatAUD(EX_COMMISSION)} of commission adds the same {formatAUD(EX_ANNUAL_TAX)} whether it lands in one pay or twelve. Withholding differs, because your employer works out each payment on its own:
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
           <li><strong>Retainer plus commission, paid every pay.</strong> Small regular commissions are withheld close to their true annual cost; the settlement at tax time is usually minor.</li>
@@ -99,7 +99,7 @@ export default function CommissionTaxCalculatorContent() {
 
       <section>
         <h2 style={FONT} className={H2}>Tax on Commission at Common Amounts ({SITE_CONFIG.financialYear})</h2>
-        <p className={P}>Tax the commission adds to the year, with the effective rate on the commission in brackets. Resident rates including Medicare, no study loan.</p>
+        <p className={P}>Each cell shows the tax the commission adds to the year, with the effective rate on the commission in brackets. The figures use resident rates, include the Medicare levy and assume no study loan.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone">
@@ -158,16 +158,16 @@ export default function CommissionTaxCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>Related Calculators</h2>
         <ul className="space-y-2 text-warmgray">
-          <li><Link href="/bonus-tax-calculator/" className={LINK}>Bonus tax calculator</Link> &mdash; the same maths for a bonus.</li>
-          <li><Link href="/schedule-5-tax-table/" className={LINK}>Schedule 5 tax table</Link> &mdash; the ATO withholding table this page uses, with every pay frequency.</li>
-          <li><Link href="/backpay-calculator/" className={LINK}>Back pay calculator</Link> &mdash; arrears and Lump Sum B.</li>
-          <li><Link href="/pay-rise-calculator/" className={LINK}>Pay rise calculator</Link> &mdash; what a permanent increase is worth after tax.</li>
-          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-home pay calculator</Link> &mdash; the full year with commission included.</li>
+          <li><Link href="/bonus-tax-calculator/" className={LINK}>Bonus tax calculator</Link>: the same maths for a bonus.</li>
+          <li><Link href="/schedule-5-tax-table/" className={LINK}>Schedule 5 tax table</Link>: the ATO withholding table this page uses, with every pay frequency.</li>
+          <li><Link href="/backpay-calculator/" className={LINK}>Back pay calculator</Link>: arrears and Lump Sum B.</li>
+          <li><Link href="/pay-rise-calculator/" className={LINK}>Pay rise calculator</Link>: what a permanent increase is worth after tax.</li>
+          <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-home pay calculator</Link>: the full year with commission included.</li>
         </ul>
       </section>
 
       <MethodologyDisclosure>
-        <p className="mb-2 text-sm">Two calculations, two engines:</p>
+        <p className="mb-2 text-sm">The commission tax calculator runs two calculations on two engines:</p>
         <ul className="list-disc pl-4 space-y-1">
           <li><strong>Tax added to the year</strong>: full-year liability with and without the commission, using the {SITE_CONFIG.financialYear} resident brackets, LITO and Medicare levy (and the study loan repayment when ticked). The difference is the commission&apos;s real tax cost.</li>
           <li><strong>Withheld from the pay</strong>: ATO Schedule 5, Method B(ii), on the regular pay for the frequency chosen, capped at {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)}. Employers using a different Schedule 5 method will withhold a different amount; the annual figure does not change.</li>

@@ -72,7 +72,7 @@ export const ADF_HUB_FAQS = [
   },
   {
     q: "Is ADF pay taxed?",
-    a: "Yes. ADF salary is taxed at ordinary resident rates. A member who is entitled to full free medical treatment for all conditions under Defence Force arrangements may be exempt from all or half of the Medicare levy, depending on their dependants. Claim it in your tax return. The take-home figures on this page show both cases.",
+    a: "Yes. ADF salary is taxed at ordinary resident rates. A member who is entitled to full free medical treatment for all conditions under Defence Force arrangements may be exempt from all or half of the Medicare levy, depending on their dependants. Claim the exemption in your tax return. The take-home figures on this page show both cases.",
   },
   {
     q: "When did ADF pay last increase?",
@@ -219,7 +219,7 @@ function RankRow({
 function TakeHomeNote() {
   return (
     <p className="text-base">
-      Take-home uses 2026–27 resident tax rates with the low income tax offset and the 2% Medicare levy, and no
+      Take-home uses 2026-27 resident tax rates with the low income tax offset and the 2% Medicare levy, and no
       HECS-HELP. A member entitled to full free medical treatment under Defence arrangements may be{" "}
       <a href={ATO_MEDICARE_DEFENCE_URL} target="_blank" rel="noreferrer noopener">
         exempt from all or half of the Medicare levy
@@ -300,8 +300,8 @@ function Notices() {
     <div className="not-prose mb-8 flex gap-3 rounded-lg border border-sandstone-dark/30 bg-sandstone/50 p-4">
       <Info className="mt-0.5 h-5 w-5 shrink-0 text-eucalyptus-dark" aria-hidden="true" />
       <p className="text-sm text-navy">
-        Permanent Forces salaries effective {ADF_PAY_EFFECTIVE}, from PACMAN. These are base salaries only:
-        allowances such as the ADF Military Factor and location allowances can be paid on top and are not
+        The ADF salaries on this page are Permanent Forces base salaries effective {ADF_PAY_EFFECTIVE}, from PACMAN.
+        Allowances such as the ADF Military Factor and location allowances can be paid on top and are not
         included.
       </p>
     </div>
@@ -422,7 +422,7 @@ export function AdfPayScalesHub() {
 
             <section id="full-tables">
               <h2 style={HEADING_FONT}>Full ADF pay scales by increment and pay grade</h2>
-              <p>Yearly salary, Permanent Forces. Columns are pay grades 1 to 10; rows are increments, highest first.</p>
+              <p>The tables below give yearly Permanent Forces salary by rank. Columns are pay grades 1 to 10; rows are increments, highest first.</p>
               <h3 style={HEADING_FONT}>Warrant Officer Class 1</h3>
               <SalaryGrid table={WO1_SALARIES} />
               <h3 style={HEADING_FONT}>Other ranks</h3>
@@ -450,9 +450,9 @@ export function AdfPayScalesHub() {
             <section id="civilian-comparison">
               <h2 style={HEADING_FONT}>ADF pay compared with the same job outside Defence</h2>
               <p>
-                Many ADF employment categories are civilian professions in uniform. The specialist officer structures above are not on
-                this page, but the pay pages for the same professions across every employer are, each leading with the median people
-                in the job reported to the ATO or the award minimum where one applies:
+                Many ADF employment categories are civilian professions in uniform. The specialist officer structures listed above are
+                not on this page. Each pay page below covers the same profession across every employer and leads with the median
+                salary people in the job reported to the ATO, or the award minimum where one applies:
               </p>
               <ul>
                 {CIVILIAN_COMPARISONS.map((g) => (
@@ -545,8 +545,8 @@ export function AdfServicePage({ service }: { service: AdfService }) {
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             A {pte.names[k]} in the {service.fullName} earns{" "}
             <strong className="text-navy">{formatAUD(pteR.min)} to {formatAUD(pteR.max)}</strong> a year depending on
-            the pay grade of their job. Below: salary by rank, which pay grade every {service.name} employment category
-            sits on, and take-home pay, all from PACMAN, effective {ADF_PAY_EFFECTIVE}.
+            the pay grade of their job. This page sets out salary by rank, the pay grade every {service.name} employment
+            category sits on, and take-home pay, all from PACMAN, effective {ADF_PAY_EFFECTIVE}.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -568,7 +568,7 @@ export function AdfServicePage({ service }: { service: AdfService }) {
             <section id="pay-grades">
               <h2 style={HEADING_FONT}>{service.name} pay grades: which jobs are on which grade</h2>
               <p>
-                From PACMAN Schedule B.11 Part {k === "navy" ? 1 : k === "army" ? 2 : 3}. Where PACMAN gives a grade within a
+                The pay grade of each employment category below is from PACMAN Schedule B.11 Part {k === "navy" ? 1 : k === "army" ? 2 : 3}. Where PACMAN gives a grade within a
                 category (for example &ldquo;Rifleman (Grade 2)&rdquo;), each grade of that category can sit at a
                 different pay grade. The salaries shown are the lowest increment for each rank.
               </p>

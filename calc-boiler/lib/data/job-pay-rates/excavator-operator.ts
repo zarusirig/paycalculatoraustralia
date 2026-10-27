@@ -93,14 +93,14 @@ export const EXCAVATOR_OPERATOR: Occupation = {
       id: "excavator",
       title: "Excavator operator pay rates by machine size, 2026–27 (weekly hire)",
       intro:
-        "Weekly = the cl 19.1 classification rate + the all-purpose industry allowance. Hourly is that weekly amount over 38 hours; casual adds the 25% loading (cl 12.4). From the first full pay period on or after 1 July 2026.",
+        "The weekly rate is the cl 19.1 classification rate plus the all-purpose industry allowance. Hourly is that weekly amount over 38 hours, and the casual rate adds the 25% loading (cl 12.4). These excavator operator rates apply from the first full pay period on or after 1 July 2026.",
       rows: [EX_CW4_RESIDENTIAL, EX_CW4, EX_CW5, EX_CW6],
     },
     {
       id: "in-charge-of-plant",
       title: "Excavator operators in charge of plant, 2026–27 (weekly hire)",
       intro:
-        "The same rows with the $52.60 a week in charge of plant allowance added, as cl 19.3(b) requires for the weekly hire hourly rate. Civil and general building industry allowance.",
+        "These are the same excavator rows with the $52.60 a week in charge of plant allowance added, as cl 19.3(b) requires for the weekly hire hourly rate. Both rows use the civil and general building industry allowance.",
       rows: [EX_CW4_PLANT, EX_CW5_PLANT],
     },
   ],
@@ -133,15 +133,15 @@ export const EXCAVATOR_OPERATOR: Occupation = {
     },
     {
       q: "What does 'in charge of plant' mean for an excavator operator?",
-      a: `It includes being the only operator on the machine who also does its general repair work, or supervising other employees on the plant (cl 2). It adds ${money2(IN_CHARGE_OF_PLANT)} a week, taking a weekly hire operator on an excavator above 0.5 m³ to ${money2(EX_CW5_PLANT.hourly)} an hour.`,
+      a: `For an excavator operator, in charge of plant includes being the only operator on the machine who also does its general repair work, or supervising other employees on the plant (cl 2). It adds ${money2(IN_CHARGE_OF_PLANT)} a week, taking a weekly hire operator on an excavator above 0.5 m³ to ${money2(EX_CW5_PLANT.hourly)} an hour.`,
     },
     {
       q: "Do excavator operators get paid more on weekends?",
-      a: "Yes. Ordinary hours are Monday to Friday, so Saturday work is overtime at 150% for the first 2 hours and 200% after that (200% after 12 noon), Sunday is 200% and a public holiday 250%. Casuals get 175%, 225% and 275%.",
+      a: "Yes. Ordinary hours are Monday to Friday, so Saturday work is overtime at 150% for the first 2 hours and 200% after that, with every hour after 12 noon at 200%. Sunday is 200% and a public holiday 250%. Casuals get 175%, 225% and 275%.",
     },
     {
       q: "What do excavator operators actually earn?",
-      a: `Jobs and Skills Australia reports median full-time earnings of $1,900 a week for earthmoving plant operators (ABS, May 2025), about ${money0(annual52(1_900))} a year before tax. Full-time operators in the group average 50 hours a week, so the median includes overtime and agreement rates.`,
+      a: `Jobs and Skills Australia reports median full-time earnings of $1,900 a week for earthmoving plant operators (ABS, May 2025), about ${money0(annual52(1_900))} a year before tax. Full-time earthmoving plant operators average 50 hours a week, so that median includes overtime and enterprise agreement rates.`,
     },
   ],
   sources: [

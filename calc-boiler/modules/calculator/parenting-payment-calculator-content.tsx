@@ -81,14 +81,14 @@ export default function ParentingPaymentCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>The single free area indexes on 1 July; the 40-cent taper is set in law. Because the taper is gentler than the 50 and 60 cents on JobSeeker, a single parent keeps 60 cents of every extra dollar earned until the payment runs out.</p>
+        <p className={P + " mt-4"}>The single free area indexes on 1 July; the 40-cent taper is set in law. Because the taper is gentler than the 50 and 60 cents on JobSeeker, a single parent past the free area keeps 60 cents of every extra dollar earned until the payment runs out.</p>
         <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Partnered: your income and your partner&apos;s</h3>
         <p className={P}>Your own income is tested like JobSeeker: nothing up to {formatAUD(PT.freeArea)} a fortnight, 50 cents per dollar to {formatAUD(PT.band1End)}, then {formatAUD(53)} plus 60 cents per dollar above. Your partner&apos;s income is tested separately: 60 cents per dollar over {formatAUD(PT.partnerIncomeFreeArea, 2)} a fortnight. If your partner gets a pension, the two incomes are combined instead: 25 cents per dollar from {formatAUD(PT.combined.freeArea)} to {formatAUD(PT.combined.band1End)}, then {formatAUD(53)} plus 30 cents per dollar.</p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>How Extra Hours Change Your Payment</h2>
-        <p className={P}>A single parent with one child, paid {formatAUD(HOURLY)} an hour. Each row adds 10 hours a fortnight:</p>
+        <p className={P}>The table below tracks a single parent with one child, paid {formatAUD(HOURLY)} an hour. Each row adds 10 hours a fortnight:</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Hours a fortnight</th><th scope="col" className={TH + " text-right"}>Wages</th><th scope="col" className={TH + " text-right"}>Parenting Payment</th><th scope="col" className={TH + " text-right"}>Wages + payment</th></tr></thead>

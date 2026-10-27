@@ -37,8 +37,8 @@ export default function SuperTaxChangesExplained() {
         Division 296 tax adds an extra 15% on the share of earnings attributed to super balances
         above $3 million, and a further 10% above $10 million. The original proposal was
         controversial because it would have taxed unrealised gains, but the law as passed uses
-        realised earnings that each super fund calculates and reports to the ATO. It
-        only applies if your balance exceeds $3 million, a small share of super members,
+        realised earnings that each super fund calculates and reports to the ATO. The extra tax
+        applies only if your total super balance exceeds $3 million, which covers a small share of super members,
         concentrated in large self-managed super funds. See our full{" "}
         <Link href="/division-293-tax/">Division 293 tax guide</Link> for how it interacts with
         existing high-income super settings. Both the $3 million and $10 million thresholds are
@@ -50,9 +50,9 @@ export default function SuperTaxChangesExplained() {
       <p>
         Treasurer Jim Chalmers has framed the Better Targeted Superannuation Concessions reforms,
         including Division 296, as making the tax system fairer by targeting concessions that
-        disproportionately benefited a small number of very large balances, while payday super was
-        pitched primarily as a compliance and retirement-adequacy measure to stop unpaid or late
-        super guarantee eroding workers&apos; balances over time. Together, the government has
+        disproportionately benefited a small number of very large balances. Payday super was
+        pitched primarily as a compliance and retirement-adequacy measure, to stop unpaid or late
+        super guarantee eroding workers&apos; balances over time. The government has
         described the package as balancing fairness at the top end of the super system with stronger
         protections and faster contributions for everyday workers further down the balance scale.
       </p>
@@ -69,8 +69,8 @@ export default function SuperTaxChangesExplained() {
 
       <h2>What this means for your pay</h2>
       <p>
-        For most people, the practical impact of the 2026-27 super changes is payday super arriving
-        sooner and more reliably, plus more headroom in the contribution caps if you&apos;re topping
+        For most people, the practical impact of the 2026-27 super changes is employer super
+        reaching your fund sooner and more reliably under payday super, plus more headroom in the contribution caps if you&apos;re topping
         up your balance. Model your position with our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link>, and only worry
         about Division 296 tax if your total super balance is approaching $3 million.

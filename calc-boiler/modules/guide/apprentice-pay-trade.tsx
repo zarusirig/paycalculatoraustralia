@@ -268,7 +268,7 @@ export default function ApprenticePayTradePage({ spoke }: { spoke: ApprenticeSpo
             ) : (
               <>
                 <p>
-                  These are the minimums the award sets for a junior apprentice on a standard four-year term, in dollars, from {APPRENTICE_RATES_FROM}. Your actual rate may be higher if you are on an enterprise agreement or your employer simply pays above the award; it cannot lawfully be lower.
+                  These are the minimums the award sets for a junior apprentice on a standard four-year term, in dollars, from {APPRENTICE_RATES_FROM}. Your rate may be higher if you are on an enterprise agreement or your employer pays above the award; it cannot lawfully be lower.
                 </p>
                 {wageTable}
               </>
@@ -373,11 +373,11 @@ export default function ApprenticePayTradePage({ spoke }: { spoke: ApprenticeSpo
           <section>
             <H2 id="take-home">How Much Do Apprentice {spoke.label}s Earn After Tax?</H2>
             <p>
-              On the {pg ? "general building site minimum, which includes the tool and industry allowances," : "award wage alone"} a first-year apprentice {label} on a full-time 38-hour week is paid about {formatAUD(th1.annual, 0)} a year (Year 12 completed) and takes home about {f2(th1.weekly)} a week. By fourth year the same hours give about {formatAUD(th4.annual, 0)} gross and {f2(th4.weekly)} a week after tax. Apprentices pay the same income tax as everyone else, but the low income offset and the tax-free threshold mean the tax in the early years is small.
+              On the {pg ? "general building site minimum, which includes the tool and industry allowances," : "award wage alone"} a first-year apprentice {label} on a full-time 38-hour week is paid about {formatAUD(th1.annual, 0)} a year (Year 12 completed) and takes home about {f2(th1.weekly)} a week. By fourth year the same hours give about {formatAUD(th4.annual, 0)} gross and {f2(th4.weekly)} a week after tax. Apprentices pay the same resident tax rates as any other employee, but the tax-free threshold and the low income tax offset keep the tax small in the early years.
             </p>
             {takeHomeTable}
             <p>
-              To see your own figure, put your hourly rate and hours into the calculator above, or use the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to add overtime. Your hourly rate to a yearly salary is on the <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link>.
+              To see your own figure, put your hourly rate and hours into the calculator above, or use the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to add overtime. To turn your hourly rate into a yearly salary, use the <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link>.
             </p>
           </section>
 

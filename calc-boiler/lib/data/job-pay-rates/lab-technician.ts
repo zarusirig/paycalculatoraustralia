@@ -67,12 +67,12 @@ const TABLES: RateTable[] = [
     ...hpssOct2026Level1Table(AQF, "medical-lab"),
     title: "Medical laboratory technician pay rates: Health Professional level 1 (AQF Level 5)",
     intro:
-      "Health Professionals and Support Services Award cl 17.1(a) as substituted by determination PR814029, from the first full pay period starting on or after 1 October 2026. Schedule B sets medical laboratory technicians at AQF Level 5; pay rises with years of experience at Level 1. Casual rates are Schedule C.2.3 exactly.",
+      "These rates are from Health Professionals and Support Services Award cl 17.1(a), as substituted by determination PR814029, and apply from the first full pay period starting on or after 1 October 2026. Schedule B sets medical laboratory technicians at AQF Level 5. Pay rises with years of experience at Level 1. Casual rates are exactly as Schedule C.2.3 prints them.",
   },
   {
     id: "lab-assistant",
     title: "Laboratory assistant: Health Professionals and Support Services Award",
-    intro: "Clause 16.2(a), Support Services stream. The award lists laboratory assistant as an indicative role at level 1 and level 3 (Schedule A.1.1, A.1.3).",
+    intro: "These are the Support Services stream rates in clause 16.2(a). The award lists laboratory assistant as an indicative role at level 1 and level 3 (Schedule A.1.1, A.1.3).",
     rows: [
       { label: "Support Services level 1 — laboratory assistant", weekly: 1024.7, hourly: 26.97, casualHourly: casualFromHourly(26.97), note: "Under 3 months' industry experience" },
       { label: "Support Services level 3 — laboratory assistant", weekly: 1106.2, hourly: 29.11, casualHourly: casualFromHourly(29.11) },
@@ -82,7 +82,7 @@ const TABLES: RateTable[] = [
     id: "industrial-lab",
     title: "Laboratory technician pay rates in manufacturing: Manufacturing Award",
     intro:
-      "Manufacturing Award cl 20.1(a), read from the same constants as the Manufacturing Award page. Engineering/Laboratory Technician Levels I to V are C9 to C5 (Schedule A.3.1).",
+      "These rates are from Manufacturing Award cl 20.1(a), the same figures the Manufacturing Award page shows. Engineering/Laboratory Technician Levels I to V are C9 to C5 (Schedule A.3.1).",
     rows: [
       rowFromModernAward(MANUFACTURING_AWARD, "C9 / V6", "C9 — Laboratory Technician Level I"),
       rowFromModernAward(MANUFACTURING_AWARD, "C8 / V7", "C8 — Laboratory Technician Level II"),
@@ -106,7 +106,7 @@ export const LAB_TECHNICIAN: Occupation = {
   },
   coverage: [
     "Which award covers a lab technician depends on the lab. Pathology and medical laboratory technicians employed by private pathology companies, private hospitals and other national-system health employers are covered by the Health Professionals and Support Services Award 2020 [MA000027], which lists \"Medical Laboratory Technician\" among its health professionals (Schedule B).",
-    `From the first full pay period starting on or after 1 October 2026, a health professional's level 1 rate depends on the AQF level Schedule B gives the profession (AQF Level 5 for a medical laboratory technician) and years of experience at Level 1: ${F.hourly} an hour in the 1st year, ${F.later[0]} in the 2nd and 3rd years, ${F.later[1]} in the 4th to 6th years and ${F.later[2]} from the 7th year. An employer that requires a higher qualification must pay at that qualification's AQF level (cl B.2(d)). Laboratory assistants without those qualifications are Support Services employees: the award lists them at level 1 and level 3.`,
+    `From the first full pay period starting on or after 1 October 2026, a health professional's level 1 rate depends on the AQF level Schedule B gives the profession (AQF Level 5 for a medical laboratory technician) and on years of experience at Level 1. The rate for a medical laboratory technician is ${F.hourly} an hour in the 1st year, ${F.later[0]} in the 2nd and 3rd years, ${F.later[1]} in the 4th to 6th years and ${F.later[2]} from the 7th year. An employer that requires a higher qualification must pay at that qualification's AQF level (cl B.2(d)). Laboratory assistants without those qualifications are Support Services employees: the award lists them at level 1 and level 3.`,
     "Laboratory technicians employed by manufacturers covered by the Manufacturing and Associated Industries and Occupations Award 2020 [MA000010] are classified as Engineering/Laboratory Technicians at Levels I to V (wage groups C9 to C5). Some manufacturing sectors, such as food and beverage manufacturing, have their own awards.",
     "Lab technicians in public hospitals, universities, schools and government agencies are paid under state awards, enterprise agreements or public sector agreements rather than these awards.",
   ],

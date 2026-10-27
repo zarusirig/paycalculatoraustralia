@@ -134,8 +134,8 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
         </p>
         <p>
           Effective tax rate <strong>{formatPercent(r.effectiveTaxRate)}</strong>. The next dollar
-          you earn is taxed at <strong>{formatPercent(r.marginalTaxRate, 0)}</strong>, that is the
-          marginal bracket plus the {formatPercent(0.02, 0)} Medicare levy.
+          you earn is taxed at <strong>{formatPercent(r.marginalTaxRate, 0)}</strong>, which is your
+          tax bracket rate plus the {formatPercent(0.02, 0)} Medicare levy.
         </p>
         <p>
           Superannuation of <strong>{formatAUD(r.superContribution)}</strong> at{" "}
@@ -267,8 +267,8 @@ export function PublicHolidayTable({ profile }: { profile: StateEmployeeProfile 
       <p className="mb-4 text-warmgray">
         {profile.name} publishes <strong>{profile.publicHolidays2026.length}</strong> public
         holidays for 2026, and <strong>{stateOnly.length}</strong> of them are not observed
-        Australia-wide. Those are the days a worker one state over does not get paid a penalty rate
-        for. The days marked <em>{profile.shortName} only</em> below are the difference.
+        Australia-wide. A worker one state over is not paid a public holiday penalty rate on those
+        days, which are marked <em>{profile.shortName} only</em> in the table below.
       </p>
       <div className="mb-4 overflow-x-auto">
         <table className="w-full overflow-hidden rounded-lg border border-sandstone-dark/20 text-sm">
@@ -315,7 +315,7 @@ export function PublicHolidayTable({ profile }: { profile: StateEmployeeProfile 
           2026 public holidays
         </a>
         , read {STATE_EMPLOYEE_SOURCES.verifiedOn}. Regional and part-day variations apply, so check
-        with {profile.name} for the list that covers your town.
+        the {profile.name} government list that covers your town.
       </p>
       {/* --- G4 public holiday pay cluster (24 Sep 2026) --- */}
       <p className="mt-2 text-sm text-warmgray">
@@ -459,9 +459,9 @@ export function PayrollTaxForEmployees({ profile }: { profile: StateEmployeeProf
         Does {profile.shortName} payroll tax come out of your pay? No.
       </p>
       <p className="text-sm text-navy">
-        It is a cost of hiring you, not a deduction from you. Once an employer&apos;s Australian
+        Payroll tax is a cost of hiring you, not a deduction from your pay. Once an employer&apos;s Australian
         wage bill passes <strong>{formatAUD(pt.annualThreshold)}</strong> a year it pays{" "}
-        <strong>{pt.headlineRate}</strong> to the {pt.revenueOffice} on top of wages. That never
+        <strong>{pt.headlineRate}</strong> to the {pt.revenueOffice} on top of wages. Payroll tax never
         appears on your payslip and never reduces your gross salary. Employers can find the rates,
         thresholds and due dates on the{" "}
         <Link href={`/payroll-tax/${code}/`} className="text-eucalyptus-dark hover:underline">
@@ -554,7 +554,7 @@ export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
           {stateOnly} of them {profile.shortName}-only. Working one usually attracts{" "}
           {formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMin, 0)}–
           {formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMax, 0)} of your base rate under an award
-          (table above).
+          (dates in the public holiday table below).
         </li>
         <li>
           <strong className="text-navy">Long service leave:</strong> {lsl.weeksAtEntitlement.toFixed(2)} weeks

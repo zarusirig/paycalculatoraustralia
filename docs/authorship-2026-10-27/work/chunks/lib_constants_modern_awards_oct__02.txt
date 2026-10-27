@@ -1,0 +1,248 @@
+  unverified: [
+    "Commission and bonus arrangements (cl 16), including the commission-only minimum rate of 31.5% of gross commission and the minimum income threshold",
+    "Vehicle standing-charge and per-kilometre allowances by engine size (cl 17.2(b)(iii))",
+    "Stand-by and call-out compensation for property management and strata roles (cl 19.3)",
+    "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Local Government Industry Award 2020 (MA000112)
+// Consolidated to 1 July 2026 (PR799280, PR799392 and PR799547).
+// -----------------------------------------------------------------------------
+
+export const LOCAL_GOVERNMENT_AWARD: ModernAwardData = {
+  key: "local-government",
+  meta: {
+    name: "Local Government Industry Award 2020",
+    shortName: "Local Government Award",
+    code: "MA000112",
+    href: "/local-government-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280, PR799392 and PR799547)",
+    determination: "PR799392",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000112.html",
+    summaryUrl: SUMMARY("MA000112"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 11.1",
+    verifiedOn: VERIFIED_ON,
+  },
+  // cl 16.1.
+  rates: parse(`
+Level 1|1030.10|27.11
+Level 2|1062.90|27.97
+Level 3|1103.00|29.03
+Level 4|1119.10|29.45
+Level 5|1189.40|31.30
+Level 6|1287.20|33.87
+Level 7|1309.50|34.46
+Level 8|1415.00|37.24
+Level 9|1513.70|39.83
+Level 10|1654.40|43.54
+Level 11|1865.60|49.09
+`),
+  ratesClause: "cl 16.1",
+  entryLevel: "Level 1",
+  classificationNotes: [
+    { level: "How levels are set", description: "The employer decides the level from the skill level needed for the principal functions of the job, and must tell you your level in writing (cl 12.2–12.3). The full definitions are in Schedule A." },
+  ],
+  matrix: [
+    { label: "Ordinary hours", fullTime: 1, casual: 1.25 },
+    { label: "Mon–Fri outside the span", fullTime: 1.2, casual: 1.45 },
+    { label: "Saturday (listed roles)", fullTime: 1.5, casual: 1.75 },
+    { label: "Sunday (listed roles)", fullTime: 1.75, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5, employment: "permanent" },
+  ],
+  // cl 22 and cl 28; Schedule B.1.2 and B.2.1.
+  penalties: [
+    { label: "Monday to Friday — ordinary hours outside the span of hours", fullTime: 1.2, casual: 1.45, note: "Cl 22.1. Applies to ordinary hours worked outside the span for the role." },
+    { label: "Saturday — roles in cl 13.1(e) to (g)", fullTime: 1.5, casual: 1.75, note: "Cl 22.2(a)(i). Not paid to community services and recreation centre staff between 5.00 am and 10.00 pm." },
+    { label: "Sunday — roles in cl 13.1(e) to (g)", fullTime: 1.75, casual: 2.0, note: "Cl 22.2(a)(ii). Same exclusion for community services and recreation centres." },
+    {
+      label: "Public holiday",
+      fullTime: 2.5,
+      casual: 2.5,
+      employment: "permanent",
+      note: "Cl 28.2. Schedule B does not tabulate a casual public holiday rate, so none is printed.",
+    },
+  ],
+  penaltiesClause: "cl 22, cl 28 and Schedule B.1 / B.2.1",
+  penaltyNotes: [
+    "The Local Government Award's standard span of ordinary hours is Monday to Friday, 6.00 am to 6.00 pm (cl 13.1(d)). Weekend ordinary hours exist only for the roles listed in cl 13.1(e) to (g): airports, caretakers and caravan parks, catering and hospitality, cleaners, community services, garbage and sanitary services, livestock and saleyards, local law enforcement, parking, recreation centres and golf courses, tourism, libraries and customer service centres. Everyone else's weekend work is overtime.",
+    "Under the Local Government Award, a casual's penalty rate is the permanent percentage plus the 25% casual loading: 120% becomes 145%, 150% becomes 175%, and 175% becomes 200% (Schedule B.2.1; cl 11.2).",
+    "Different spans apply by role: 5.00 am to 10.00 pm Monday to Sunday for the cl 13.1(e) roles, 8.00 am to 9.00 pm for libraries, and 6.00 am to 7.00 pm for childcare. Work outside the span for your role attracts the 120% weekday rate (cl 22.1).",
+  ],
+  // cl 21.2; Schedule B.1.4.
+  overtime: [
+    { label: "Monday to Friday — first 2 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Monday to Friday — after 2 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday before 12 noon — first 2 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Saturday before 12 noon — after 2 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday from 12 noon and all of Sunday", fullTime: 2.0, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
+  ],
+  overtimeClause: "cl 21.2 and Schedule B.1.4",
+  overtimeNotes: [
+    "The casual loading is not paid on overtime hours (cl 21.2(c)). A casual's overtime is the same percentage of the minimum rate as a permanent employee's.",
+    "Call-back: an employee recalled to work overtime after leaving is paid for a minimum of 3 hours at the overtime rate (cl 21.5). An employee made to resume work without a 10-hour break is paid 200% until released (cl 21.4(b)(ii)).",
+  ],
+  casualPenaltyBasis: "additive",
+  publicHolidayCasualUnpublished: true,
+  // cl 16.2.
+  junior: {
+    scale: [
+      { age: "Under 17", percentage: 0.55 },
+      { age: "17", percentage: 0.65 },
+      { age: "18", percentage: 0.75 },
+      { age: "19", percentage: 0.85 },
+      { age: "20", percentage: 0.95 },
+      { age: "21 and over", percentage: 1 },
+    ],
+    clause: "cl 16.2",
+    appliesTo: "the minimum rate for the employee's classification",
+    adultAge: 21,
+  },
+  juniorPhaseIn: null,
+  // cl 19; Schedule C.
+  allowances: [
+    { name: "First aid allowance", amount: 20.62, unit: "per week", clause: "cl 19.2(b)(i)" },
+    { name: "Leading hand — supervising 1 to 5 employees (supervisor level 3 or 4)", amount: 32.4, unit: "per week", clause: "cl 19.2(a)" },
+    { name: "Leading hand — supervising 6 to 15 employees (supervisor level 3 or 4)", amount: 44.18, unit: "per week", clause: "cl 19.2(a)" },
+    { name: "Leading hand — supervising over 15 employees (supervisor level 3, 4 or 5)", amount: 55.96, unit: "per week", clause: "cl 19.2(a)" },
+    { name: "On-call allowance — Monday to Friday", amount: 29.45, unit: "per day", clause: "cl 19.2(e)(i)" },
+    { name: "On-call allowance — Saturday", amount: 44.18, unit: "per day", clause: "cl 19.2(e)(ii)" },
+    { name: "On-call allowance — Sunday or public holiday", amount: 58.9, unit: "per day", clause: "cl 19.2(e)(iii)" },
+    { name: "Sleepover (additional to the on-call allowance)", amount: 14.73, unit: "per hour", clause: "cl 21.7(a)" },
+    { name: "Meal allowance (overtime of more than 2 hours)", amount: 20.75, unit: "per occasion", clause: "cl 19.3(a)(i)" },
+    { name: "Tool allowance — tradespersons and apprentices", amount: 22.25, unit: "per week", clause: "cl 19.3(b)(i)" },
+    { name: "Vehicle allowance — motor vehicle", amount: 1.0, unit: "per km", clause: "cl 19.3(c)(i)" },
+  ],
+  allowancesClause: "cl 19",
+  hoursNotes: [
+    "A casual must be engaged and paid for at least 2 consecutive hours each time they attend work (cl 11.3).",
+    "An employee can work up to 10 ordinary hours a day, or 12 by agreement (cl 13.1(k)). Full-time ordinary hours average 38 a week over 28 days (cl 13.1(b)).",
+    "Any employee can work ordinary hours outside the span for their role if they are paid the 120% weekday rate for those hours (cl 13.1(j)).",
+  ],
+  unverified: [
+    "The casual public holiday rate: Schedule B.2.1 has no public holiday column",
+    "Apprentice rates (cl 16.3, percentages of the Level 4 rate) and school-based apprentices (Schedule D)",
+    "Community services and recreation centre weekend rates, beyond the outside-5am-to-10pm exception noted above (Schedule B.1.3)",
+    "Annualised wage arrangements (cl 18) and the remaining allowances in cl 19.2",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Live Performance Award 2020 (MA000081)
+// Consolidated to 1 July 2026 (PR799280, PR799361 and PR799516).
+//
+// ⚠️ SCOPE: PRODUCTION AND SUPPORT STAFF ONLY (Part 8). Performers, company
+// dancers, musicians and striptease artists are paid under separate parts with
+// per-performance and per-call rates (Parts 5 to 7), not by the hour, and are
+// not reproduced. Minimum hourly rates exist only for the Production and
+// Support Staff classifications (cl 11.1 footnote 1).
+// -----------------------------------------------------------------------------
+
+export const LIVE_PERFORMANCE_AWARD: ModernAwardData = {
+  key: "live-performance",
+  meta: {
+    name: "Live Performance Award 2020",
+    shortName: "Live Performance Award",
+    code: "MA000081",
+    href: "/live-performance-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280, PR799361 and PR799516)",
+    determination: "PR799361",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000081.html",
+    summaryUrl: SUMMARY("MA000081"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 57.3",
+    verifiedOn: VERIFIED_ON,
+  },
+  // cl 11.1 — the Production and Support Staff categories only.
+  rates: parse(`
+Level 1 — Production and Support Staff 1 (induction/training)|978.10|25.74
+Level 2 — Production and Support Staff 2|1046.90|27.55
+Level 3 — Production and Support Staff 3|1098.00|28.89
+Level 4 — Production and Support Staff 4|1119.10|29.45
+Level 5 — Production and Support Staff 5|1154.20|30.37
+Level 6 — Production and Support Staff 6|1189.40|31.30
+Level 8 — Production and Support Staff 7|1265.70|33.31
+Level 10 — Production and Support Staff 8|1309.40|34.46
+`),
+  ratesClause: "cl 11.1 (Production and Support Staff categories)",
+  entryLevel: "Level 1 — Production and Support Staff 1 (induction/training)",
+  classificationNotes: [
+    { level: "Award levels 7, 9 and 11 to 15", description: "These levels cover company dancers, performers, musicians, vocalists, the opera principal, technical manager and conductor-leader. They have weekly rates but no hourly rate in the award, and are paid by the performance or call under Parts 5 and 6, so they are not tabled here." },
+    { level: "Weekly rates for those levels", description: "Level 7 $1,221.10; Level 9 $1,283.10; Level 11 $1,350.60; Level 12 $1,396.00; Level 13 $1,446.70; Level 14 $1,506.70; Level 15 $1,635.10 a week (cl 11.1)." },
+  ],
+  matrix: [
+    { label: "Ordinary hours Mon–Sun 7am–midnight", fullTime: 1, casual: 1.25 },
+    { label: "Midnight to 7am", fullTime: 2.0, casual: 2.25 },
+    { label: "Sunday (starting work)", fullTime: 2.0, casual: 2.25 },
+    { label: "Public holiday", fullTime: 2.0, casual: 2.25 },
+  ],
+  // cl 63.3(c), 63.4, 21.5.
+  penalties: [
+    { label: "Work between 12 midnight and 7.00 am", fullTime: 2.0, casual: 2.25, note: "Cl 63.3(c). Cleaners rostered to work ordinary hours in that window get a 20% loading instead (cl 61.1(c))." },
+    { label: "Sunday — all time worked once you start work on a Sunday", fullTime: 2.0, casual: 2.25, note: "Cl 63.4. Minimum payment of 4 hours; includes any overtime." },
+    { label: "Public holiday (minimum 4 hours)", fullTime: 2.0, casual: 2.25, note: "Cl 21.5." },
+  ],
+  penaltiesClause: "cl 21.5, cl 63.3(c) and cl 63.4",
+  penaltyNotes: [
+    "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so evenings and weekend daytime hours inside a normal week carry no loading. Saturday has no penalty rate.",
+    "Live Performance Award casuals get the permanent penalty percentage plus their 25% casual loading, so 200% becomes 225% (notes to cl 21.5 and 63.3).",
+    "Touring sound and lighting employees get a 17.5% loading instead of overtime and penalty rates (cl 63.6(a)), and crewing services employees get a 52.5% loading for work between 11.00 pm and 6.00 am (cl 63.7). Those special arrangements replace the table above.",
+  ],
+  // cl 63.1 and 63.2.
+  overtime: [
+    { label: "Beyond rostered daily hours (casuals: beyond 8 hours a day) — first 2 hours", fullTime: 1.5, casual: 1.75 },
+    { label: "Beyond rostered daily hours (casuals: beyond 8 hours a day) — after 2 hours", fullTime: 2.0, casual: 2.25 },
+    { label: "Rostered day off — first 4 hours", fullTime: 1.5, casual: null },
+    { label: "Rostered day off — after 4 hours", fullTime: 2.0, casual: null },
+    { label: "Over 38 hours in the week — weekly staff, all hours (casuals: first 4 hours)", fullTime: 1.5, casual: 1.75 },
+  ],
+  overtimeClause: "cl 63.1 and 63.2",
+  overtimeNotes: [
+    "Overtime is calculated to the nearest quarter of an hour (cl 63.1, 63.2(a)). A casual's overtime rates are the weekly employee's rates plus the 25% loading (cl 63.2 NOTE). For a casual working over 38 hours in a week the rate steps up to 225% after the first 4 hours (cl 63.2(c)).",
+    "A full-time or part-time employee who works through the break between shifts without a 10-hour rest is paid 200% (casuals 225%) until released (cl 63.3(d)).",
+  ],
+  casualPenaltyBasis: "additive",
+  junior: null,
+  noJuniorNote:
+    "The Live Performance Award has no junior rates scale for production and support staff on the hourly rates above.",
+  juniorPhaseIn: null,
+  // cl 60.
+  allowances: [
+    { name: "Transmission or recording allowance (single payment per performance)", amount: 177.94, unit: "per recorded or transmitted performance", clause: "cl 60.2(a)", note: "Not counted as ordinary pay for overtime and penalties." },
+    { name: "Meal allowance (worked midnight to 8.00 am and beyond, or 2 back-to-back performances)", amount: 24.13, unit: "per meal", clause: "cl 60.3(a)" },
+    { name: "Tools allowance — heads of department supplying their own tools", amount: 11.03, unit: "per week", clause: "cl 60.3(b)(i)" },
+    { name: "Basic tools allowance — other staff supplying basic tools", amount: 1.14, unit: "per day", clause: "cl 60.3(b)(ii)" },
+  ],
+  allowancesClause: "cl 60",
+  hoursNotes: [
+    "Weekly staff are rostered 38 ordinary hours a week, between 4 and 12 hours a day in no more than 2 periods, with two rostered days off in each 7 days (cl 61.1).",
+    "A casual may be engaged for a minimum of 3 consecutive hours (cl 57.1), and cannot be paid per performance (cl 61.2(c)). If a casual works 3 short performances in a day with a gap of 2 hours or more between two of them, they are paid at least 2 hours for each (cl 61.2(e)).",
+    "An employee working more than 5 continuous hours without a meal break is paid 200% (casuals 225%) for the time the break should have been taken (cl 62.3(a)).",
+  ],
+  unverified: [
+    "Performers and company dancers (Part 5), musicians (Part 6) and striptease artists (Part 7) — paid by the performance, call or week, not by an hourly table",
+    "Hourly rates for award levels 7, 9 and 11 to 15, which the award does not publish",
+    "Cyclic rostering arrangements (cl 61.1(g)) and the stage-production preparation meal-break rates (cl 62.3(b))",
+    "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
+  ],
+};
+
+export const OCT_AWARDS = {
+  miscellaneous: MISC_AWARD,
+  "building-construction": CONSTRUCTION_AWARD,
+  "legal-services": LEGAL_AWARD,
+  electrical: ELECTRICAL_AWARD,
+  fitness: FITNESS_AWARD,
+  "real-estate": REAL_ESTATE_AWARD,
+  "local-government": LOCAL_GOVERNMENT_AWARD,
+  "live-performance": LIVE_PERFORMANCE_AWARD,
+} as const;

@@ -79,19 +79,19 @@ export const NOVATED_LEASE_FAQS: readonly NovatedLeaseFaq[] = [
   },
   {
     q: "Can I still get the FBT exemption on a plug-in hybrid?",
-    a: `Only under a pre-existing arrangement. From ${EV_EXEMPTION.phevExcludedFrom} a plug-in hybrid is no longer a zero or low emissions vehicle, so a PHEV novated lease signed today is fully subject to FBT. A PHEV keeps the exemption only where it was used, or available for use, before that date and there is a financially binding commitment to keep providing it, and the ATO has no discretion to extend the date, even for delivery delays. Any change to that commitment, including an optional extension, a change to the lease payments or residual, or a change of employer, ends the exemption from that point.`,
+    a: `A plug-in hybrid keeps the FBT exemption only under a pre-existing arrangement. From ${EV_EXEMPTION.phevExcludedFrom} a plug-in hybrid is no longer a zero or low emissions vehicle, so a PHEV novated lease signed today is fully subject to FBT. A PHEV keeps the exemption only where it was used, or available for use, before that date and there is a financially binding commitment to keep providing it, and the ATO has no discretion to extend the date, even for delivery delays. Any change to that commitment, including an optional extension, a change to the lease payments or residual, or a change of employer, ends the exemption from that point.`,
   },
   {
     q: "Does a novated lease affect my HECS-HELP repayments?",
-    a: `Yes, and in both directions. The pre-tax deduction lowers your taxable income, but the car also creates a reportable fringe benefits amount, and your compulsory repayment is worked out on repayment income: taxable income plus that reportable amount. On the ${formatAUD(60_000)} electric car above, the reportable amount is ${formatAUD(EV_HECS.reportableFringeBenefits)}, which lifts repayment income to ${formatAUD(EV_HECS.after.incomeTestIncome)} and the repayment from ${formatAUD(EV_HECS.before.hecsRepayment)} to ${formatAUD(EV_HECS.after.hecsRepayment)}, ${formatAUD(EV_HECS.after.hecsRepayment - EV_HECS.before.hecsRepayment)} more, on a ${formatAUD(HECS_HELP.minimumThreshold)} threshold. An FBT-exempt car is not exempt from reporting.`,
+    a: `Yes, a novated lease affects your HECS-HELP repayment in both directions. The pre-tax deduction lowers your taxable income, but the car also creates a reportable fringe benefits amount, and your compulsory repayment is worked out on repayment income: taxable income plus that reportable amount. On the ${formatAUD(60_000)} electric car above, the reportable amount is ${formatAUD(EV_HECS.reportableFringeBenefits)}, which lifts repayment income to ${formatAUD(EV_HECS.after.incomeTestIncome)} and the repayment from ${formatAUD(EV_HECS.before.hecsRepayment)} to ${formatAUD(EV_HECS.after.hecsRepayment)}, ${formatAUD(EV_HECS.after.hecsRepayment - EV_HECS.before.hecsRepayment)} more, on a ${formatAUD(HECS_HELP.minimumThreshold)} threshold. An FBT-exempt car is not exempt from reporting.`,
   },
   {
     q: "Does a novated lease change my Medicare levy surcharge?",
-    a: `It can. Your reportable fringe benefits amount is added to income for the Medicare levy surcharge test, so a lease can pull your surcharge income back over a tier threshold even while your taxable income falls below it. The same amount counts for Division 293 tax and the private health insurance rebate. It is never taxed itself. It only sits in the income tests.`,
+    a: `It can. Your reportable fringe benefits amount is added to income for the Medicare levy surcharge test, so a lease can pull your surcharge income back over a tier threshold even while your taxable income falls below it. The same amount counts for Division 293 tax and the private health insurance rebate. The reportable fringe benefits amount is not taxed itself; it only counts in these income tests.`,
   },
   {
     q: "How does a novated lease show up on my payslip?",
-    a: `As two lines, not one. The pre-tax (salary sacrifice) deduction comes off your gross before tax is worked out, so your taxable income and your PAYG withholding both fall. Any employee contribution appears as a separate post-tax deduction after tax. Check that the pre-tax line matches your packaging quote's lease and running-cost budget, that the post-tax line matches the FBT taxable value if you are on ECM, and that your year-to-date gross has fallen by the pre-tax amount.`,
+    a: `A novated lease shows up on your payslip as two lines, not one. The pre-tax (salary sacrifice) deduction comes off your gross before tax is worked out, so your taxable income and your PAYG withholding both fall. Any employee contribution appears as a separate post-tax deduction after tax. Check that the pre-tax line matches your packaging quote's lease and running-cost budget, that the post-tax line matches the FBT taxable value if you are on ECM, and that your year-to-date gross has fallen by the pre-tax amount.`,
   },
   {
     q: "Is the FBT year the same as the financial year?",
@@ -99,11 +99,11 @@ export const NOVATED_LEASE_FAQS: readonly NovatedLeaseFaq[] = [
   },
   {
     q: "Does a novated lease reduce my superannuation?",
-    a: `It should not. Under Payday Super, qualifying earnings include salary sacrificed amounts that would otherwise be qualifying earnings, so your employer's super should still be calculated on your pre-sacrifice salary. Check your payslip: if the super line fell when the lease started, ask payroll which figure they are using.`,
+    a: `A novated lease should not reduce your super. Under Payday Super, qualifying earnings include salary sacrificed amounts that would otherwise be qualifying earnings, so your employer's super should still be calculated on your pre-sacrifice salary. Check your payslip: if the super line fell when the lease started, ask payroll which figure they are using.`,
   },
   {
     q: "What is the residual or balloon payment at the end of a novated lease?",
-    a: `A percentage of the original cost that you pay from after-tax money if you want to keep the car. The ATO's minimum residuals are ${formatPercent(RESIDUAL_MINIMUM_PCT[1], 2)} for a one-year lease, ${formatPercent(RESIDUAL_MINIMUM_PCT[3], 2)} for three years and ${formatPercent(RESIDUAL_MINIMUM_PCT[5], 2)} for five, so a ${formatAUD(60_000)} car on a five-year lease still has ${formatAUD(60_000 * RESIDUAL_MINIMUM_PCT[5])} to pay at the end. The calculator counts the residual in the total, because otherwise the comparison against buying the car is not a fair one.`,
+    a: `The residual (balloon) payment is a percentage of the original cost that you pay from after-tax money if you want to keep the car. The ATO's minimum residuals are ${formatPercent(RESIDUAL_MINIMUM_PCT[1], 2)} for a one-year lease, ${formatPercent(RESIDUAL_MINIMUM_PCT[3], 2)} for three years and ${formatPercent(RESIDUAL_MINIMUM_PCT[5], 2)} for five, so a ${formatAUD(60_000)} car on a five-year lease still has ${formatAUD(60_000 * RESIDUAL_MINIMUM_PCT[5])} to pay at the end. The calculator counts the residual in the total, because otherwise the comparison against buying the car is not a fair one.`,
   },
 ];
 

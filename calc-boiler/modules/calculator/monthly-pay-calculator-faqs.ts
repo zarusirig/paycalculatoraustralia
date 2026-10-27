@@ -11,7 +11,7 @@ const FY = SITE_CONFIG.financialYear;
 export const MONTHLY_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "How is monthly pay calculated in Australia?",
-    a: `Monthly pay is calculated by dividing your gross annual salary by 12, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. The ATO publishes specific monthly withholding tables that employers apply during the FY${FY} financial year.`,
+    a: `Monthly pay is calculated by dividing your gross annual salary by 12, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. Employers work out the PAYG amount from the ATO's monthly tax table for FY${FY}.`,
   },
   {
     q: "Is super deducted from my monthly pay?",
@@ -41,6 +41,6 @@ export const MONTHLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Will I get a tax refund if I'm paid monthly?",
-    a: "A tax refund depends on the difference between PAYG tax withheld during the year and your actual tax liability at lodgement. Monthly PAYG withholding uses the ATO's monthly tax table, which assumes a constant income across all 12 months. Overtime, bonuses, or periods of leave without pay create discrepancies that result in either a refund or a balance owing.",
+    a: "A tax refund depends on the difference between PAYG tax withheld during the year and your actual tax liability at lodgement. Monthly PAYG withholding uses the ATO's monthly tax table, which assumes the same income in all 12 months. Overtime, bonuses or leave without pay break that assumption, and the gap shows up at lodgement as a refund or a balance owing.",
   },
 ];

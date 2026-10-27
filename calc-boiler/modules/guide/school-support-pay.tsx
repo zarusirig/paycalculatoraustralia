@@ -69,7 +69,7 @@ function stateSources(state: SchoolSupportState): SourceLink[] {
   return state.sources.map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
 }
 
-const TAX_NOTE = "Take-home pay uses 2026–27 resident tax rates with the low income tax offset and Medicare levy, no HECS, on the full-time figure; the linked page is the nearest $5,000 salary.";
+const TAX_NOTE = "Take-home pay uses 2026-27 resident tax rates with the low income tax offset and Medicare levy, no HECS, on the full-time figure; the linked page is the nearest $5,000 salary.";
 
 export function SchoolSupportStatePage({ state }: { state: SchoolSupportState }) {
   const faqs = [...state.faqs];
@@ -129,7 +129,7 @@ export function SchoolSupportStatePage({ state }: { state: SchoolSupportState })
           <section>
             <H2 id="other-states">Teacher Aide Pay in Other States</H2>
             <p>
-              Each state sets its own rates. Compare them on the <Link href="/school-support-staff-pay/">school support staff pay</Link> hub, see teacher salaries on the <Link href={state.teacherPayHref}>{state.code} teacher pay</Link> page, and the award minimum for private and Catholic schools on the <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
+              Each state and territory sets its own teacher aide rates under its own award or agreement. Compare them on the <Link href="/school-support-staff-pay/">school support staff pay</Link> hub, see teacher salaries on the <Link href={state.teacherPayHref}>{state.code} teacher pay</Link> page, and the award minimum for private and Catholic schools on the <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
             </p>
             <ul>
               {others.map((s) => (

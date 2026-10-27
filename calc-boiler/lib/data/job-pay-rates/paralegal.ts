@@ -132,7 +132,7 @@ export const PARALEGAL: Occupation = {
     {
       id: "legal-services",
       title: "Paralegal and legal support award rates, Legal Services Award, 2026–27",
-      intro: "Clause 15.1 adult rates from the first full pay period on or after 1 July 2026. Casual rates are Schedule B.2.1 (125%) exactly.",
+      intro: "These are the Legal Services Award clause 15.1 adult rates from the first full pay period on or after 1 July 2026. Casual rates are the Schedule B.2.1 (125%) rates exactly.",
       rows: LEGAL_ROWS,
     },
   ],
@@ -156,7 +156,7 @@ export const PARALEGAL: Occupation = {
     "Jobs and Skills Australia's median ($1,345 a week) covers all court and legal clerks, including court staff who are not on this award.",
   ],
   payslipNotes: [
-    "Annualised salary: if you are paid a salary instead of the award's separate rates, your employer must tell you in writing which clauses it covers and how it was calculated, keep a record of your start and finish times, and each 12 months check it was at least what the award would have paid, paying any shortfall within 14 days (cl 17).",
+    "Annualised salary: if you are paid a salary instead of the award's separate rates, your employer must tell you in writing which clauses it covers and how it was calculated. Your employer must also keep a record of your start and finish times, check each 12 months that the salary was at least what the award would have paid, and pay any shortfall within 14 days (cl 17).",
     "Overtime meal money: a meal allowance of $20.75 for qualifying overtime (cl 18.2) must appear as its own line, as must any uniform or vehicle allowance (Fair Work Regulations reg 3.46(1)(g), noted at cl 16 and cl 18).",
     "Pay cycle: you are paid fortnightly unless you and your employer agree otherwise (cl 16.1).",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
@@ -173,15 +173,15 @@ export const PARALEGAL: Occupation = {
     },
     {
       q: "How much do paralegals earn in Australia?",
-      a: `On 2023–24 tax returns, the 13,221 people coded as law clerks (the occupation that includes paralegals) had a median salary or wage income of ${aud(CLERK.medianSalary)} and an average of ${aud(CLERK.avgSalary)} (ATO). Those figures include part-time and part-year workers.`,
+      a: `On 2023-24 tax returns, the 13,221 people coded as law clerks (the occupation that includes paralegals) had a median salary or wage income of ${aud(CLERK.medianSalary)} and an average of ${aud(CLERK.avgSalary)} (ATO). Those figures include part-time and part-year workers.`,
     },
     {
       q: "What is a paralegal's take-home pay?",
-      a: `On the law clerk award minimum of ${aud(L6_ANNUAL)} a year, about ${aud(netAnnual(L6_ANNUAL))} a year or ${aud(netFortnightly(L6_ANNUAL))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP. On the ${aud(CLERK.medianSalary)} ATO median, about ${aud(netAnnual(CLERK.medianSalary))} a year.`,
+      a: `A paralegal on the law clerk award minimum of ${aud(L6_ANNUAL)} a year takes home about ${aud(netAnnual(L6_ANNUAL))} a year, or ${aud(netFortnightly(L6_ANNUAL))} a fortnight, after 2026-27 income tax and the Medicare levy. On the ${aud(CLERK.medianSalary)} ATO median salary, take-home pay is about ${aud(netAnnual(CLERK.medianSalary))} a year. These figures assume no HECS-HELP debt.`,
     },
     {
       q: "What is the casual rate for a paralegal?",
-      a: `At least ${aud2(L6.casualHourly!)} an hour at Level 6 law clerk, the ${aud2(L6.hourly)} minimum plus the 25% casual loading (Schedule B.2.1). At Levels 1 to 5 the casual minimum is $35.30 to $42.49 an hour.`,
+      a: `A casual paralegal at Level 6 (law clerk) must be paid at least ${aud2(L6.casualHourly!)} an hour, the ${aud2(L6.hourly)} minimum plus the 25% casual loading (Schedule B.2.1). At Levels 1 to 5 the casual minimum is $35.30 to $42.49 an hour.`,
     },
     {
       q: "Do paralegals get paid overtime?",

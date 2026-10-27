@@ -44,7 +44,7 @@ export const BOILERMAKER: Occupation = {
       id: "boilermaker",
       title: "Boilermaker pay rates by classification, 2026–27",
       intro:
-        "Manufacturing Award cl 20.1(a), from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% loading (cl 11.1). Higher classifications depend on skills, competence and training, not job title.",
+        "These are the boilermaker minimum rates in Manufacturing Award cl 20.1(a), payable from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading (cl 11.1). Higher classifications depend on skills, competence and training, not job title.",
       rows: [
         TRADE,
         metalRow("C9 / V6", "C9 — Tradesperson Level II", "Higher trade skills"),
@@ -62,7 +62,7 @@ export const BOILERMAKER: Occupation = {
   median: METAL_MEDIAN,
   notices: [
     "Jobs and Skills Australia publishes no separate median for boilermakers. The $1,688 a week figure is for the group of structural steel and welding trades workers, which includes metal fabricators, pressure welders and first-class welders.",
-    "Fabrication work on construction sites, in mining or in shipbuilding may be paid under an enterprise agreement or another award, so the minimums on this page may not be what applies to you.",
+    "A boilermaker doing fabrication work on a construction site, in mining or in shipbuilding may be paid under an enterprise agreement or another award, so the Manufacturing Award minimums on this page may not be the rates that apply to you.",
   ],
   notShown: METAL_NOT_SHOWN,
   lede: `A trade-qualified boilermaker is a C10 Engineering/Manufacturing Tradesperson Level I under the Manufacturing Award: at least ${money(TRADE.hourly)} an hour or ${money(TRADE.weekly)} a week from 1 July 2026, with C9 and C8 above it for higher trade skills and C6 and C5 for advanced tradespeople. The award is one of the few that defines the job itself: a tradesperson who works from drawings or templates on ships, boilers and pressure vessels.`,
@@ -79,8 +79,8 @@ export const BOILERMAKER: Occupation = {
       id: "workforce",
       heading: "How many boilermakers there are, and where they work",
       paragraphs: [
-        "Jobs and Skills Australia counts boilermakers within unit group 3223, Structural Steel and Welding Trades Workers, which it describes as people who cut, shape, join and repair metal components of iron and steel structures, boilers, pressure vessels and pipes, ships and other vessels. The group had 79,100 people employed on the ABS Labour Force Survey's 2025 four-quarter average, with annual employment growth of about 1,100. It is almost entirely full-time and male: 96% work full-time hours, the part-time share is 4%, women are 1% of the workforce and the median age is 39. The average full-time week is 46 hours against 44 for all occupations, and the median hourly rate on the May 2025 Survey of Employee Earnings and Hours was $44, a dollar below the all-occupations $47.",
-        "Three occupations make up the group: metal fabricators (322311), pressure welders (322312) and first-class welders (322313). Boilermaking sits with metal fabrication, which is why the $1,688 a week median above is for the whole group. The main industries are manufacturing, construction and mining, in that order, and the work is spread across New South Wales (23.1%), Queensland (23.0%) and Victoria (18.6%), with South Australia at 8.7%. Which of those industries employs you decides the award: the Manufacturing Award in a workshop, the Building and Construction General On-site Award for a boilermaker or structural steel tradesperson on a building site, and usually an enterprise agreement on a mine site or in shipbuilding.",
+        "Jobs and Skills Australia counts boilermakers within unit group 3223, Structural Steel and Welding Trades Workers. It describes the group as people who cut, shape, join and repair metal components of iron and steel structures, boilers, pressure vessels and pipes, ships and other vessels. The group had 79,100 people employed on the ABS Labour Force Survey's 2025 four-quarter average, with annual employment growth of about 1,100. It is almost entirely full-time and male: 96% work full-time hours, the part-time share is 4%, women are 1% of the workforce and the median age is 39. The average full-time week is 46 hours against 44 for all occupations, and the median hourly rate on the May 2025 Survey of Employee Earnings and Hours was $44, a dollar below the all-occupations $47.",
+        "Three occupations make up the group: metal fabricators (322311), pressure welders (322312) and first-class welders (322313). Boilermaking sits with metal fabrication, which is why the $1,688 a week median above is for the whole group. The main industries are manufacturing, construction and mining, in that order. The work is spread across New South Wales (23.1%), Queensland (23.0%) and Victoria (18.6%), with South Australia at 8.7%. Which of those industries employs you decides the award: the Manufacturing Award in a workshop, the Building and Construction General On-site Award for a boilermaker or structural steel tradesperson on a building site, and usually an enterprise agreement on a mine site or in shipbuilding.",
       ],
     },
   ],
@@ -91,7 +91,7 @@ export const BOILERMAKER: Occupation = {
     },
     {
       q: "How many boilermakers work in Australia?",
-      a: "Jobs and Skills Australia does not count boilermakers separately. Its unit group 3223, Structural Steel and Welding Trades Workers, which covers metal fabricators, pressure welders and first-class welders, had 79,100 people employed on the 2025 four-quarter average of the ABS Labour Force Survey, 96% of them full-time, with a median age of 39 and main industries of manufacturing, construction and mining.",
+      a: "Jobs and Skills Australia does not count boilermakers separately. Its unit group 3223, Structural Steel and Welding Trades Workers, covers metal fabricators, pressure welders and first-class welders. That group had 79,100 people employed on the 2025 four-quarter average of the ABS Labour Force Survey, 96% of them full-time, with a median age of 39 and main industries of manufacturing, construction and mining.",
     },
     {
       q: "What is the award rate for a boilermaker in 2026?",

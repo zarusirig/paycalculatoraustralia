@@ -33,7 +33,7 @@ export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How many hours can I work on Carer Payment?",
-    a: `Up to ${CP.workHoursLimit} hours of paid work or self-employment in a ${CP.workHoursPeriodWeeks}-week period, an average of 25 hours a week. Travel to and from work, study, training and volunteering do not count towards the ${CP.workHoursLimit} hours. The limit is measured over 4 weeks rather than each week, so the time in any one week can vary. If you sometimes go over, you can use respite days (up to ${CP.respiteDaysPerYear} a calendar year) or have the payment suspended for up to ${CP.suspensionMonths} months.`,
+    a: `On Carer Payment you can do up to ${CP.workHoursLimit} hours of paid work or self-employment in a ${CP.workHoursPeriodWeeks}-week period, an average of 25 hours a week. Travel to and from work, study, training and volunteering do not count towards the ${CP.workHoursLimit} hours. The limit is measured over 4 weeks rather than each week, so the time in any one week can vary. If you sometimes go over, you can use respite days (up to ${CP.respiteDaysPerYear} a calendar year) or have the payment suspended for up to ${CP.suspensionMonths} months.`,
   },
   {
     q: "How much can I earn on Carer Payment?",
@@ -41,7 +41,7 @@ export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Is Carer Payment taxable?",
-    a: "Only if you or the person you care for are Age Pension age or older. Otherwise Carer Payment is not taxable. Services Australia does not deduct tax automatically, but you can ask them to.",
+    a: "Carer Payment is taxable only if you or the person you care for are Age Pension age or older. Otherwise it is not taxable. Services Australia does not deduct tax automatically, but you can ask them to.",
   },
   {
     q: "What are the income and asset limits for the person I care for?",
@@ -53,14 +53,14 @@ export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Does the Work Bonus apply to Carer Payment?",
-    a: "Only if you are Age Pension age. Then the first $300 of employment income each fortnight, and any Work Bonus balance, is taken out of the income test, but you still have to stay within the 100-hour work rule.",
+    a: "The Work Bonus applies to Carer Payment only if you are Age Pension age. Then the first $300 of employment income each fortnight, and any Work Bonus balance, is taken out of the income test, but you still have to stay within the 100-hour work rule.",
   },
 ];
 
 export const CARER_ALLOWANCE_FAQS: readonly W3Faq[] = [
   {
     q: "How much is Carer Allowance?",
-    a: `${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, a set rate, adjusted on ${CARER_ALLOWANCE.indexedOn} each year. If you share care with another carer who is not your partner, each of you may get a part payment based on your percentage of care.`,
+    a: `Carer Allowance is ${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, a set rate, adjusted on ${CARER_ALLOWANCE.indexedOn} each year. If you share care with another carer who is not your partner, each of you may get a part payment based on your percentage of care.`,
   },
   {
     q: "What is the income limit for Carer Allowance?",
@@ -76,18 +76,18 @@ export const CARER_ALLOWANCE_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the Carer Supplement?",
-    a: `An annual payment of up to ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} for each eligible payment, paid automatically if you get Carer Allowance (or Carer Payment) for a period that includes 1 July. Someone on both payments gets it for each.`,
+    a: `The Carer Supplement is an annual payment of up to ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} for each eligible payment, paid automatically if you get Carer Allowance (or Carer Payment) for a period that includes 1 July. Someone on both payments gets it for each.`,
   },
 ];
 
 export const ADVANCE_FAQS: readonly W3Faq[] = [
   {
     q: "How much Centrelink advance can I get?",
-    a: `It depends on the payment. On JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY the advance is between ${formatAUD(250)} and ${formatAUD(500)}. On Age Pension, Carer Payment or Disability Support Pension it is ${formatAUD(ADVANCE_LIMITS.pensionSingle.min ?? 0, 2)} to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} if you are single, or ${formatAUD(ADVANCE_LIMITS.pensionCouple.min ?? 0, 2)} to ${formatAUD(ADVANCE_LIMITS.pensionCouple.max, 2)} if you are a member of a couple. FTB Part A advances can't total more than ${formatAUD(ADVANCE_LIMITS.ftb.max, 2)}.`,
+    a: `The Centrelink advance amount is set by the payment you get. On JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY the advance is between ${formatAUD(250)} and ${formatAUD(500)}. On Age Pension, Carer Payment or Disability Support Pension it is ${formatAUD(ADVANCE_LIMITS.pensionSingle.min ?? 0, 2)} to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} if you are single, or ${formatAUD(ADVANCE_LIMITS.pensionCouple.min ?? 0, 2)} to ${formatAUD(ADVANCE_LIMITS.pensionCouple.max, 2)} if you are a member of a couple. FTB Part A advances can't total more than ${formatAUD(ADVANCE_LIMITS.ftb.max, 2)}.`,
   },
   {
     q: "How do I pay back a Centrelink advance?",
-    a: `Automatically. The advance is divided by ${ADVANCE_RULES.repaymentFortnights} and that amount is taken out of each of your next ${ADVANCE_RULES.repaymentFortnights} payments, starting from your next payday. A ${formatAUD(500)} advance costs ${formatAUD(advanceRepayment(500), 2)} a fortnight. You can choose to repay faster, or repay early.`,
+    a: `A Centrelink advance is repaid automatically. The advance is divided by ${ADVANCE_RULES.repaymentFortnights} and that amount is taken out of each of your next ${ADVANCE_RULES.repaymentFortnights} payments, starting from your next payday. A ${formatAUD(500)} advance costs ${formatAUD(advanceRepayment(500), 2)} a fortnight. You can choose to repay faster, or repay early.`,
   },
   {
     q: "How often can I get an advance?",
@@ -102,7 +102,7 @@ export const ADVANCE_FAQS: readonly W3Faq[] = [
 export const CRISIS_FAQS: readonly W3Faq[] = [
   {
     q: "How much is the Centrelink Crisis Payment?",
-    a: `It equals one week's pay at the maximum basic rate of your income support payment: half the fortnightly basic rate, without supplements. For a single person on JobSeeker (basic rate ${formatAUD(JS.single, 2)} a fortnight from 20 September 2026) that works out at ${formatAUD(crisisPaymentAmount(JS.single), 2)}. Services Australia states the rule, not a dollar figure; the dollar amounts on this page are our calculation from the current basic rates.`,
+    a: `The Centrelink Crisis Payment equals one week's pay at the maximum basic rate of your income support payment: half the fortnightly basic rate, without supplements. For a single person on JobSeeker (basic rate ${formatAUD(JS.single, 2)} a fortnight from 20 September 2026) that works out at ${formatAUD(crisisPaymentAmount(JS.single), 2)}. Services Australia states the rule, not a dollar figure; the dollar amounts on this page are our calculation from the current basic rates.`,
   },
   {
     q: "Who can get a Crisis Payment?",
@@ -114,7 +114,7 @@ export const CRISIS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How many Crisis Payments can I get?",
-    a: `One per incident, with up to ${CRISIS_PAYMENT.maxExtremeCircumstancesPer12Months} extreme-circumstances payments (family and domestic violence plus other extreme circumstances, combined) in any 12 months. Humanitarian entrants can get one. The prison-release payment can be paid each time you are released.`,
+    a: `You can get one Crisis Payment per incident, with up to ${CRISIS_PAYMENT.maxExtremeCircumstancesPer12Months} extreme-circumstances payments (family and domestic violence plus other extreme circumstances, combined) in any 12 months. Humanitarian entrants can get one. The prison-release payment can be paid each time you are released.`,
   },
   {
     q: "Is Crisis Payment taxable?",
@@ -129,7 +129,7 @@ export const DEBT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the Income Apportionment Resolution Scheme?",
-    a: `A one-off payment of up to ${formatAUD(RESOLUTION_SCHEME.maxPayment)} per eligible debt for people whose employment income debts between ${RESOLUTION_SCHEME.debtPeriodFrom} and ${RESOLUTION_SCHEME.debtPeriodTo} were likely affected by income apportionment. Applications opened ${RESOLUTION_SCHEME.opened} and close ${RESOLUTION_SCHEME.closes}. Debts under $200 get the full debt amount; $200–$1,999 gets $200; $2,000–$4,999 gets $400; $5,000 or more gets $600. The payment isn't taxable or counted as income.`,
+    a: `The Income Apportionment Resolution Scheme is a one-off payment of up to ${formatAUD(RESOLUTION_SCHEME.maxPayment)} per eligible debt for people whose employment income debts between ${RESOLUTION_SCHEME.debtPeriodFrom} and ${RESOLUTION_SCHEME.debtPeriodTo} were likely affected by income apportionment. Applications opened ${RESOLUTION_SCHEME.opened} and close ${RESOLUTION_SCHEME.closes}. Debts under $200 get the full debt amount; $200 to $1,999 gets $200; $2,000 to $4,999 gets $400; $5,000 or more gets $600. The payment isn't taxable or counted as income.`,
   },
   {
     q: "Is income apportionment the same as Robodebt?",
@@ -175,11 +175,11 @@ export const PPL_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How much is Paid Parental Leave per week?",
-    a: `${formatAUD(PPL_RATES["2026-27"].daily, 2)} a day, or ${formatAUD(PPL_RATES["2026-27"].weekly, 2)} per 5-day week, before tax, for days taken in 2026-27. The rate is set by the financial year you take each day in, not the birth date. Days taken in 2025-26 were paid ${formatAUD(PPL_RATES["2025-26"].daily, 2)} a day. The full ${PPL_NOW.days} days at the 2026-27 rate is ${formatAUD(pplGross(PPL_NOW.days, "2026-27"), 2)}.`,
+    a: `Paid Parental Leave is ${formatAUD(PPL_RATES["2026-27"].daily, 2)} a day, or ${formatAUD(PPL_RATES["2026-27"].weekly, 2)} per 5-day week, before tax, for days taken in 2026-27. The rate is set by the financial year you take each day in, not the birth date. Days taken in 2025-26 were paid ${formatAUD(PPL_RATES["2025-26"].daily, 2)} a day. The full ${PPL_NOW.days} days at the 2026-27 rate is ${formatAUD(pplGross(PPL_NOW.days, "2026-27"), 2)}.`,
   },
   {
     q: "What is the income limit for Paid Parental Leave?",
-    a: `Individual adjusted taxable income of ${formatAUD(PPL_INCOME_TEST["2025-26"].individual)} or less in 2025-26 (${formatAUD(PPL_INCOME_TEST["2024-25"].individual)} in 2024-25). If you're over that, you can qualify on family income of ${formatAUD(PPL_INCOME_TEST["2025-26"].family)} or less (${formatAUD(PPL_INCOME_TEST["2024-25"].family)} in 2024-25). The year tested is the financial year before the birth or the claim date, whichever is earlier.`,
+    a: `The Paid Parental Leave income limit is individual adjusted taxable income of ${formatAUD(PPL_INCOME_TEST["2025-26"].individual)} or less in 2025-26 (${formatAUD(PPL_INCOME_TEST["2024-25"].individual)} in 2024-25). If you're over that, you can qualify on family income of ${formatAUD(PPL_INCOME_TEST["2025-26"].family)} or less (${formatAUD(PPL_INCOME_TEST["2024-25"].family)} in 2024-25). The year tested is the financial year before the birth or the claim date, whichever is earlier.`,
   },
   {
     q: "What is the Paid Parental Leave work test?",

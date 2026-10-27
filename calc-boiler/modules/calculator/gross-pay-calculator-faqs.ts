@@ -31,11 +31,11 @@ const GROSS_FOR_1000_WK = Math.round(findGrossForNet(WEEKLY_NET * 52));
 export const GROSS_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "What is the difference between gross and net pay?",
-    a: "Gross pay is the total amount you earn before any taxes or deductions are taken out. This is the big number on your employment contract. Net pay (or take-home pay) is the amount that actually lands in your bank account after income tax, Medicare levy, and other deductions are withheld by your employer.",
+    a: "Gross pay is the total amount you earn before any taxes or deductions are taken out. It is the salary figure on your employment contract. Net pay (or take-home pay) is the amount paid into your bank account after your employer withholds income tax, the Medicare levy and other deductions.",
   },
   {
     q: "How do you calculate gross from net in Australia?",
-    a: "Because Australia has a progressive tax system with different marginal rates (increasing as you earn more), you cannot just multiply your net pay by a single fixed percentage. You have to \"reverse engineer\" the calculation by figuring out which tax brackets your required gross income falls into and adding the appropriate tax back on top of your net amount. Our calculator automates this complex math.",
+    a: "You calculate gross from net in Australia by working out which tax brackets your required gross income falls into, then adding that tax back on top of your net pay. Multiplying your net pay by a single fixed percentage does not work, because Australia's progressive tax system has marginal rates that increase as you earn more. Enter your take-home pay in the calculator above and it returns the gross salary you need.",
   },
   {
     q: "Does gross pay include superannuation?",
@@ -48,7 +48,7 @@ export const GROSS_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is a Total Remuneration Package (TRP)?",
-    a: `A TRP includes your base salary plus the employer's ${SG_PCT} superannuation guarantee contribution. So a $100,000 base salary equates to a ${formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))} TRP. Some job ads quote TRP instead of base salary, which can be misleading, so always clarify which figure is being used during salary negotiations.`,
+    a: `A TRP includes your base salary plus the employer's ${SG_PCT} superannuation guarantee contribution. A $100,000 base salary therefore equals a ${formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))} TRP. Some job ads quote the TRP instead of the base salary, so check which figure the employer means before you negotiate.`,
   },
   {
     q: `What is the tax-free threshold in Australia for FY${FY}?`,
@@ -60,6 +60,6 @@ export const GROSS_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Did recent tax changes affect gross pay calculations?",
-    a: `Yes. The Stage 3 tax cuts (effective 1 July 2024) lowered the second bracket rate from 19% to ${STAGE3_RATE} and expanded the 30% bracket ceiling from $120,000 to ${THIRTY_CEILING}, and from 1 July 2026 that rate fell again to ${FIRST_RATE}. These changes mean you now need a slightly lower gross salary to achieve the same net take-home pay than in earlier years. The SG rate reached ${SG_PCT} on ${SUPER_GUARANTEE.effectiveDate}, raising total remuneration packages without affecting your take-home calculation directly.`,
+    a: `Yes. The Stage 3 tax cuts (effective 1 July 2024) lowered the second bracket rate from 19% to ${STAGE3_RATE} and expanded the 30% bracket ceiling from $120,000 to ${THIRTY_CEILING}. From 1 July 2026 the second bracket rate fell again, to ${FIRST_RATE}. You now need a slightly lower gross salary to reach the same net take-home pay than in earlier years. The SG rate reached ${SG_PCT} on ${SUPER_GUARANTEE.effectiveDate}. That raised total remuneration packages but did not change your take-home pay calculation directly.`,
   },
 ];

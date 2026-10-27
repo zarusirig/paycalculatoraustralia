@@ -72,27 +72,27 @@ export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
   },
   {
     q: "What is the hospitality casual rate?",
-    a: `Casuals receive a ${pct(HOSPITALITY_AWARD.casualLoading)} loading, so Level 1 becomes ${formatAUD(casualHourly(L1.hourly, HOSPITALITY_AWARD.casualLoading), 2)} an hour and Level 4 becomes ${formatAUD(casualHourly(L4.hourly, HOSPITALITY_AWARD.casualLoading), 2)}. Weekend and public holiday penalties for casuals are additive rather than compounded. Casual Sunday is ${pct(HOSPITALITY_PENALTIES.casualSunday)} of the base rate, being the ${pct(HOSPITALITY_PENALTIES.sunday)} Sunday rate plus the ${pct(HOSPITALITY_AWARD.casualLoading)} loading, not ${pct(HOSPITALITY_PENALTIES.sunday)} multiplied by the loading.`,
+    a: `Casuals under the Hospitality Award receive a ${pct(HOSPITALITY_AWARD.casualLoading)} loading, so Level 1 becomes ${formatAUD(casualHourly(L1.hourly, HOSPITALITY_AWARD.casualLoading), 2)} an hour and Level 4 becomes ${formatAUD(casualHourly(L4.hourly, HOSPITALITY_AWARD.casualLoading), 2)}. Weekend and public holiday penalties for casuals are additive rather than compounded. Casual Sunday is ${pct(HOSPITALITY_PENALTIES.casualSunday)} of the base rate, being the ${pct(HOSPITALITY_PENALTIES.sunday)} Sunday rate plus the ${pct(HOSPITALITY_AWARD.casualLoading)} loading, not ${pct(HOSPITALITY_PENALTIES.sunday)} multiplied by the loading.`,
   },
   {
     q: "What are the hospitality penalty rates?",
-    a: `For permanent employees: Saturday ${pct(HOSPITALITY_PENALTIES.saturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.sunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.publicHoliday)} of the ordinary rate. For casuals: Saturday ${pct(HOSPITALITY_PENALTIES.casualSaturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.casualSunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)}. Evening and night work are handled differently: see the next question. Where more than one penalty could apply to the same hours, only the highest is paid.`,
+    a: `Hospitality Award penalty rates for permanent employees are Saturday ${pct(HOSPITALITY_PENALTIES.saturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.sunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.publicHoliday)} of the ordinary rate. Casuals are paid Saturday ${pct(HOSPITALITY_PENALTIES.casualSaturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.casualSunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)}. Evening and night work are handled differently: see the next question. Where more than one penalty could apply to the same hours, only the highest is paid.`,
   },
   {
     q: "How do hospitality evening and night rates work?",
-    a: `They are flat cash amounts per hour, not percentage multipliers. This is where most hospitality pay calculators get it wrong. You are paid your ordinary rate plus ${formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour for evening work, or plus ${formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour for night work. On the Level 1 rate of ${formatAUD(L1.hourly, 2)}, an evening hour is ${formatAUD(L1.hourly + HOSPITALITY_PENALTIES.eveningPerHour, 2)} and a night hour is ${formatAUD(L1.hourly + HOSPITALITY_PENALTIES.nightPerHour, 2)}. Because the amount is fixed, it is worth proportionally more on lower classifications. Retail works the opposite way, using a percentage.`,
+    a: `Hospitality evening and night rates are flat cash amounts per hour, not percentage multipliers. You are paid your ordinary rate plus ${formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour for evening work, or plus ${formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour for night work. On the Level 1 rate of ${formatAUD(L1.hourly, 2)}, an evening hour is ${formatAUD(L1.hourly + HOSPITALITY_PENALTIES.eveningPerHour, 2)} and a night hour is ${formatAUD(L1.hourly + HOSPITALITY_PENALTIES.nightPerHour, 2)}. Because the amount is fixed, it is worth proportionally more on lower classifications. The General Retail Industry Award uses a percentage for evening work instead.`,
   },
   {
     q: "Do casuals get the casual loading on overtime in hospitality?",
-    a: `No. In hospitality the overtime clause operates on the "ordinary hourly rate", and the award's definitions clause excludes the casual loading from that term. The practical result is that a casual and a full-time employee on the same classification are paid identical overtime dollars. This is the opposite of the General Retail Industry Award, where the loading is included and casual overtime is ${pct(1.75)} against ${pct(1.5)} for permanents. One payroll rule cannot serve both awards.`,
+    a: `No. In hospitality the overtime clause operates on the "ordinary hourly rate", and the award's definitions clause excludes the casual loading from that term. As a result, a casual and a full-time employee on the same classification are paid identical overtime dollars. This is the opposite of the General Retail Industry Award, where the loading is included and casual overtime is ${pct(1.75)} against ${pct(1.5)} for permanents. One payroll rule cannot serve both awards.`,
   },
   {
     q: "What is the hospitality overtime rate?",
-    a: `${pct(HOSPITALITY_OVERTIME.weekdayFirst2Hours)} for the first two hours on a normal day and ${pct(HOSPITALITY_OVERTIME.weekdayAfter2Hours)} after that. Overtime worked on a weekend is ${pct(HOSPITALITY_OVERTIME.weekend)}, as is overtime on a rostered day off. These percentages apply to the ordinary hourly rate, which for casuals excludes the ${pct(HOSPITALITY_AWARD.casualLoading)} loading.`,
+    a: `Hospitality Award overtime is ${pct(HOSPITALITY_OVERTIME.weekdayFirst2Hours)} for the first two hours on a weekday and ${pct(HOSPITALITY_OVERTIME.weekdayAfter2Hours)} after that. Overtime worked on a weekend is ${pct(HOSPITALITY_OVERTIME.weekend)}, as is overtime on a rostered day off. These percentages apply to the ordinary hourly rate, which for casuals excludes the ${pct(HOSPITALITY_AWARD.casualLoading)} loading.`,
   },
   {
     q: "What are the junior rates in the hospitality award?",
-    a: `Junior rates are a percentage of the adult rate for the classification: ${HOSPITALITY_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. Note that 19-year-olds receive ${pct(age19.percentage)} in hospitality where the retail award pays 80%, and that hospitality reaches the full adult rate at 20 rather than 21. Junior office employees are on a different scale again. Juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the full adult rate regardless of age.`,
+    a: `Junior rates are a percentage of the adult rate for the classification: ${HOSPITALITY_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. In hospitality, 19-year-olds receive ${pct(age19.percentage)} where the retail award pays 80%, and hospitality reaches the full adult rate at 20 rather than 21. Junior office employees are on a different scale again. Juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the full adult rate regardless of age.`,
   },
   {
     q: "Is there a food and beverage attendant grade 5?",
@@ -104,7 +104,7 @@ export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
   },
   {
     q: "What is a cook paid under the hospitality award?",
-    a: `It depends on the grade. A cook grade 1 sits at Level 2, grade 2 at Level 3, a tradesperson cook grade 3 at Level 4 (${formatAUD(L4.hourly, 2)} an hour), grade 4 at Level 5 and grade 5 at Level 6 (${formatAUD(L6.hourly, 2)} an hour). The word "chef" does not appear as a classification. What matters is the grade in the award's classification structure, and whether the role is a trade-qualified one.`,
+    a: `A cook's Hospitality Award rate depends on the cook grade. A cook grade 1 sits at Level 2, grade 2 at Level 3, a tradesperson cook grade 3 at Level 4 (${formatAUD(L4.hourly, 2)} an hour), grade 4 at Level 5 and grade 5 at Level 6 (${formatAUD(L6.hourly, 2)} an hour). The word "chef" does not appear as a classification. What matters is the grade in the award's classification structure, and whether the role is a trade-qualified one.`,
   },
   {
     q: "When did the new hospitality rates take effect?",

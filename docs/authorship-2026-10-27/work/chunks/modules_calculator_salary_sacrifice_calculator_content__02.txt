@@ -1,0 +1,45 @@
+          </p>
+          <p>
+            FBT-exempt items deliver the full tax benefit because no additional tax applies. The 3 most common FBT-exempt salary sacrifice categories are:
+          </p>
+          <ul>
+            <li><strong>Superannuation contributions</strong>: Exempt from FBT, taxed at 15% inside the fund</li>
+            <li><strong>Eligible electric vehicles</strong>: FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</li>
+            <li><strong>Portable electronic devices</strong>: Laptops, tablets, and mobile phones used primarily for employment duties (limited to 1 device per FBT year per category)</li>
+          </ul>
+          <p>
+            Read the full breakdown of FBT categories, rates, and exemptions on our <Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link>.
+          </p>
+        </section>
+
+                {/* --- H2: Related Calculators --- */}
+      <section>
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Australian Tax Calculators</h2>
+        <p className="mb-4 text-warmgray">
+          Salary sacrifice is one component of your total pay package. These calculators model the other components that affect your take-home pay and superannuation balance.
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-warmgray">
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: Project your total super balance at retirement, including employer SG and salary sacrifice contributions.</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: See the full income tax brackets, Low Income Tax Offset (LITO) and Medicare levy for FY{SITE_CONFIG.financialYear}.</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: Calculate your net pay after tax, Medicare, and HECS deductions on any salary.</li>
+          <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link>: Model your HECS-HELP repayment under the new marginal system, including the impact of reportable super contributions.</li>
+          <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link>: Compare the after-tax value of a pay rise versus increasing your salary sacrifice amount.</li>
+        </ul>
+      </section>
+
+      {/* --- H2: Frequently Asked Questions --- */}
+      <section>
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
+        <FaqAccordion faqs={SALARY_SACRIFICE_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
+      </section>
+
+      <section className="bg-sandstone rounded-2xl p-8 text-center">
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See your full pay breakdown</h2>
+        <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super, all in one calculation.</p>
+        <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Pay Calculator →</Link>
+      </section>
+
+      <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+    </div>
+  );
+}

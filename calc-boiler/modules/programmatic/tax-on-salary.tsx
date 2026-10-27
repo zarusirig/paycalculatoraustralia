@@ -470,7 +470,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
 
       <MethodologyDisclosure>
         <p className="text-sm text-warmgray">
-          ATO resident rates for {fy}; headline figures leave out the surcharge and HECS-HELP. <a href="/about/#methodology" className={LINK}>Our methodology</a>.
+          Figures use ATO resident tax rates for {fy}. Headline figures leave out the Medicare levy surcharge and HECS-HELP repayments. <a href="/about/#methodology" className={LINK}>Our methodology</a>.
         </p>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

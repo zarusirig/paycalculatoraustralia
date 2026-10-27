@@ -54,7 +54,7 @@ export const BOOKKEEPER: Occupation = {
   },
   coverage: [
     "Bookkeepers employed by private sector businesses (as distinct from self-employed bookkeepers and BAS agents working for their own clients) are covered by the Clerks—Private Sector Award 2020 [MA000002].",
-    "The award has no bookkeeper classification; it classifies by duties. Initial processing and recording of account reconciliations, invoices, payroll data and petty cash is Level 2 (Schedule A.3.2(f)). Preparing cash payment summaries, banking reports and bank statements, maintaining wage and salary records and posting journals to ledgers is Level 3 (A.4.2(a)). Preparing financial or tax schedules, calculating costings and wage requirements and reconciling accounts to balance is Level 4 (A.6.2(b)).",
+    "The Clerks Award has no bookkeeper classification; it classifies by duties. Initial processing and recording of account reconciliations, invoices, payroll data and petty cash is Level 2 (Schedule A.3.2(f)). Preparing cash payment summaries, banking reports and bank statements, maintaining wage and salary records and posting journals to ledgers is Level 3 (A.4.2(a)). Preparing financial or tax schedules, calculating costings and wage requirements and reconciling accounts to balance is Level 4 (A.6.2(b)).",
     "Level 3 employees work with only general guidance and can train Level 1 and 2 staff; Level 4 employees need only limited guidance and often supervise lower levels (Schedule A.4.1, A.6.1).",
     CLERKS_COVERAGE_EXCLUSION,
   ],
@@ -79,7 +79,7 @@ export const BOOKKEEPER: Occupation = {
   allowances: CLERKS_ALLOWANCES,
   median: MEDIAN,
   notices: [
-    "Self-employed bookkeepers and BAS agents set their own fees; the award applies only to employees.",
+    "Self-employed bookkeepers and BAS agents set their own fees; the Clerks Award applies only to employees.",
   ],
   notShown: [
     "Junior rates (cl 16.4) and annualised wage arrangements (cl 18). See the Clerks Award page.",
@@ -96,7 +96,7 @@ export const BOOKKEEPER: Occupation = {
     },
     {
       q: "Which Clerks Award level is a bookkeeper?",
-      a: "It depends on the duties. Initial processing of invoices, payroll data and reconciliations is Level 2; posting journals to ledgers and preparing bank statements is Level 3; preparing financial or tax schedules and reconciling accounts to balance is Level 4.",
+      a: "The Clerks Award sets a bookkeeper's level by duties, not job title. Initial processing of invoices, payroll data and reconciliations is Level 2; posting journals to ledgers and preparing bank statements is Level 3; preparing financial or tax schedules and reconciling accounts to balance is Level 4.",
     },
     {
       q: "What do bookkeepers actually earn?",

@@ -42,7 +42,7 @@ export default function WorkingHolidayTaxPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Working Holiday Tax</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working Holiday Maker Tax Rate {SITE_CONFIG.financialYear}</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Complete guide to tax rates for 417 and 462 visa holders working in Australia. Understand the 15% flat rate, employer obligations, and how to lodge your departure tax return.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Working holiday makers on subclass 417 and 462 visas pay tax in Australia under their own WHM rates. This guide covers the 15% flat rate, employer obligations, claiming your super through DASP, and how to lodge your tax return after you leave Australia.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -53,8 +53,8 @@ export default function WorkingHolidayTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Working Holiday Maker Tax Rate?</h2>
               <p>Working holiday makers pay a <strong>flat 15% tax rate</strong> on the first $45,000 of assessable income earned in Australia during FY{SITE_CONFIG.financialYear}.</p>
-              <p>This special rate applies to holders of subclass 417 (Working Holiday) and subclass 462 (Work and Holiday) visas. Unlike Australian residents, working holiday makers do not receive the <strong>$18,200 tax-free threshold</strong> or the &quot;Low Income Tax Offset&quot; (LITO). Every dollar earned from $1 is taxable at 15%. Above $45,000, standard non-resident marginal rates apply at 30%, 37%, and 45% depending on the income tax bracket.</p>
-              <p>The 15% flat rate was introduced in January 2017 after the &quot;backpacker tax&quot; debate. The rate was a compromise between the original proposal of 32.5% and the 0% tax-free threshold that residents enjoy. The rate has remained at <strong>15%</strong> since the 2017-18 financial year through to FY{SITE_CONFIG.financialYear}. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your exact take-home pay under the WHM tax schedule.</p>
+              <p>The WHM rate applies to holders of subclass 417 (Working Holiday) and subclass 462 (Work and Holiday) visas. Unlike Australian residents, working holiday makers do not receive the <strong>$18,200 tax-free threshold</strong> or the &quot;Low Income Tax Offset&quot; (LITO). Every dollar earned from $1 is taxable at 15%. Above $45,000, standard non-resident marginal rates apply at 30%, 37%, and 45% depending on the income tax bracket.</p>
+              <p>The 15% flat rate was introduced in January 2017 after the &quot;backpacker tax&quot; debate. The rate was a compromise between the original proposal of 32.5% and the 0% rate residents pay up to the tax-free threshold. The rate has remained at <strong>15%</strong> since the 2017-18 financial year through to FY{SITE_CONFIG.financialYear}. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your exact take-home pay under the WHM tax schedule.</p>
             </section>
 
             {/* ───────── SECTION 2: Working Holiday Tax Brackets Table ───────── */}
@@ -74,7 +74,7 @@ export default function WorkingHolidayTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Classified as a Working Holiday Maker?</h2>
               <p>A &quot;Working Holiday Maker&quot; is any individual holding a subclass <strong>417</strong> or subclass <strong>462</strong> visa, regardless of whether they meet the ATO&apos;s standard residency test.</p>
-              <p>The WHM tax classification overrides the normal resident or non-resident determination. A backpacker who has lived in Australia for 11 months and passes the 183-day residency test still pays 15% on the first $45,000 &mdash; not the resident rates with the tax-free threshold. The classification is determined solely by visa subclass, not by days spent in the country, accommodation arrangements, or intention to remain.</p>
+              <p>The WHM tax classification overrides the normal resident or non-resident determination. A backpacker who has lived in Australia for 11 months and passes the 183-day residency test still pays 15% on the first $45,000 instead of the resident rates with the tax-free threshold. The classification is determined solely by visa subclass, not by days spent in the country, accommodation arrangements, or intention to remain.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Subclass 417 vs 462: What Is the Difference?</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Feature</th><th className="px-5 py-3">Subclass 417</th><th className="px-5 py-3">Subclass 462</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -95,7 +95,7 @@ export default function WorkingHolidayTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do Working Holiday Makers Pay Medicare Levy?</h2>
               <p>Working holiday makers are <strong>exempt from the 2% Medicare levy</strong> because they are classified as non-residents for Medicare purposes.</p>
-              <p>WHM visa holders are not eligible for Medicare benefits under the reciprocal health care agreements (with the exception of those from the United Kingdom, Ireland, Belgium, Finland, Italy, Malta, the Netherlands, New Zealand, Norway, Slovenia, and Sweden). Even backpackers from these 11 reciprocal countries do not pay the Medicare levy &mdash; the exemption applies to all WHMs regardless of country of origin. The &quot;Medicare Levy Surcharge&quot; (MLS) also does not apply to WHMs.</p>
+              <p>WHM visa holders are not eligible for Medicare benefits unless they come from a country with a reciprocal health care agreement: the United Kingdom, Ireland, Belgium, Finland, Italy, Malta, the Netherlands, New Zealand, Norway, Slovenia, and Sweden. Even backpackers from these 11 reciprocal countries do not pay the Medicare levy. The exemption applies to all WHMs regardless of country of origin. The &quot;Medicare Levy Surcharge&quot; (MLS) also does not apply to WHMs.</p>
               <p>This exemption means the effective tax rate on a $45,000 income is exactly <strong>15%</strong> ($6,750), with no additional Medicare levy on top. By comparison, an Australian resident earning $45,000 pays {formatAUD(RES_TAX_45K)} in income tax plus {formatAUD(RES_MEDICARE_45K)} in Medicare levy (before LITO), totalling {formatAUD(RES_TAX_45K + RES_MEDICARE_45K)}. For more detail on how the levy affects residents, see our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
             </section>
 
@@ -115,7 +115,7 @@ export default function WorkingHolidayTaxPage() {
                 <tr><td className="px-5 py-3">Weekly take-home</td><td className="px-5 py-3 text-right font-medium">$736</td></tr>
                 <tr><td className="px-5 py-3">Effective tax rate</td><td className="px-5 py-3 text-right font-medium">15.00%</td></tr>
               </tbody></table></div></div>
-              <p>The employer also pays <strong>$5,400 in superannuation</strong> (12% of $45,000) on top of gross salary. This super is claimable via DASP after departure. For comparison, an Australian resident earning $45,000 takes home approximately <strong>{formatAUD(RES_TAKE_HOME_45K)}</strong> after income tax and Medicare levy (with LITO applied) &mdash; <strong>{formatAUD(RES_TAKE_HOME_45K - WHM_TAKE_HOME_45K)} more</strong> than a WHM at the same salary.</p>
+              <p>The employer also pays <strong>$5,400 in superannuation</strong> (12% of $45,000) on top of gross salary. This super is claimable via DASP after departure. For comparison, an Australian resident earning $45,000 takes home approximately <strong>{formatAUD(RES_TAKE_HOME_45K)}</strong> after income tax and Medicare levy (with LITO applied), which is <strong>{formatAUD(RES_TAKE_HOME_45K - WHM_TAKE_HOME_45K)} more</strong> than a WHM at the same salary.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>WHM vs Resident vs Non-Resident Tax Comparison</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">WHM Tax</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -123,17 +123,17 @@ export default function WorkingHolidayTaxPage() {
                   <tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right font-medium">{formatAUD(WHM_TAX[income])}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, true)))}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, false)))}</td></tr>
                 ))}
               </tbody></table></div><p className="text-xs text-warmgray-light mt-2">Income tax only. Excludes Medicare levy and tax offsets.</p></div>
-              <p>WHMs pay more income tax than residents at every income level: with the resident second-bracket rate now matching the WHM 15% rate, the gap is the 15% applied to the $18,200 tax-free threshold that WHMs miss out on &mdash; a constant {formatAUD(Math.round(18_200 * 0.15))} once income passes $18,200. Against standard non-residents (30% from the first dollar), WHMs always pay less. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare scenarios at your specific salary.</p>
+              <p>WHMs pay more income tax than residents at every income level. With the resident second-bracket rate now matching the WHM 15% rate, the gap is the 15% applied to the $18,200 tax-free threshold that WHMs do not get: a constant {formatAUD(Math.round(18_200 * 0.15))} once income passes $18,200. Against standard non-residents (30% from the first dollar), WHMs pay less at every income level. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare scenarios at your specific salary.</p>
             </section>
 
             {/* ───────── SECTION 6: Super for Working Holiday Makers (DASP) ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Superannuation Work for Working Holiday Makers?</h2>
               <p>Working holiday makers receive superannuation at the standard <strong>12% SG rate</strong> in FY{SITE_CONFIG.financialYear}, and can claim their balance back via a &quot;Departing Australia Superannuation Payment&quot; (DASP) after leaving the country.</p>
-              <p>Employers pay the superannuation guarantee on top of a WHM&apos;s ordinary time earnings, identical to any other employee. There is no minimum earnings threshold &mdash; the $450-per-month threshold was removed on 1 July 2022. A backpacker earning $45,000 accumulates <strong>$5,400 in super</strong> over the year across one or more super funds.</p>
+              <p>Employers pay the superannuation guarantee on top of a WHM&apos;s ordinary time earnings, the same as for any other employee. There is no minimum earnings threshold: the $450-per-month threshold was removed on 1 July 2022. A backpacker earning $45,000 accumulates <strong>$5,400 in super</strong> over the year across one or more super funds.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the DASP Tax Rate?</h3>
-              <p>The DASP tax rate for working holiday makers is <strong>65%</strong> on the taxed element of the super balance. This rate is significantly higher than the 35% rate that applies to the taxed element for other temporary residents (38% applied only while the 2014–17 budget repair levy was in force). On a $5,400 super balance, the DASP payment after tax is <strong>$1,890</strong>. While 65% taxation appears steep, leaving the balance unclaimed does not avoid it: 6 months after your visa ends the fund transfers it to the ATO, and the same DASP tax applies when you claim it from there.</p>
+              <p>The DASP tax rate for working holiday makers is <strong>65%</strong> on the taxed element of the super balance. This rate is higher than the 35% rate on the taxed element for other temporary residents (38% applied only while the 2014-17 budget repair levy was in force). On a $5,400 super balance, the DASP payment after tax is <strong>$1,890</strong>. Leaving the balance unclaimed does not avoid the 65% tax: 6 months after your visa ends the fund transfers it to the ATO, and the same DASP tax applies when you claim it from there.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Apply for DASP</h3>
               <ol>
@@ -154,12 +154,12 @@ export default function WorkingHolidayTaxPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Registration and Withholding Requirements</h3>
               <p>Employers must complete 4 specific obligations when employing WHMs:</p>
               <ul>
-                <li><strong>Register as a WHM employer</strong> through the ATO Business Portal or by phoning 13 28 66 &mdash; registration is free and takes effect immediately</li>
+                <li><strong>Register as a WHM employer</strong> through the ATO Business Portal or by phoning 13 28 66 (registration is free and takes effect immediately)</li>
                 <li><strong>Withhold tax at 15%</strong> on the first $45,000 of income using the WHM PAYG withholding tax tables, not the standard employee tables</li>
                 <li><strong>Verify visa status</strong> through the Visa Entitlement Verification Online (VEVO) system before the employee starts work</li>
                 <li><strong>Pay superannuation</strong> at 12%, with the contribution received by the fund within 7 business days of each payday since Payday Super commenced on 1 July 2026</li>
               </ul>
-              <div className="not-prose bg-red-50 border-l-4 border-red-500 p-4 my-6 text-sm text-warmgray"><strong>Warning:</strong> If the employer is NOT registered as a WHM employer, they must withhold at the <strong>non-resident rate of 30%</strong> from dollar one instead of 15%. This doubles the worker&apos;s tax withholding and reduces their take-home pay by approximately $6,750 on a $45,000 income. The worker can recover the overpaid tax by lodging a tax return, but this creates cash flow issues during the working period.</div>
+              <div className="not-prose bg-red-50 border-l-4 border-red-500 p-4 my-6 text-sm text-warmgray"><strong>Warning:</strong> If the employer is not registered as a WHM employer, they must withhold at the <strong>non-resident rate of 30%</strong> from dollar one instead of 15%. This doubles the worker&apos;s tax withholding and reduces their take-home pay by approximately $6,750 on a $45,000 income. The worker can recover the overpaid tax by lodging a tax return, but this creates cash flow issues during the working period.</div>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalties for Non-Compliance</h3>
               <p>Employers who fail to register or who apply incorrect withholding rates can face administrative penalties under the Taxation Administration Act 1953. The ATO also conducts targeted compliance audits in industries with high WHM employment, including agriculture, hospitality, meat processing, construction, and tourism. Employers in these sectors report each pay to the ATO via Single Touch Payroll (STP), including the WHM income type.</p>
@@ -172,11 +172,11 @@ export default function WorkingHolidayTaxPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Step-by-Step Process</h3>
               <ol>
-                <li><strong>Create a myGov account</strong> and link it to the ATO &mdash; you need your TFN, bank details, and a recent payment summary or income statement from your employer</li>
+                <li><strong>Create a myGov account</strong> and link it to the ATO: you need your TFN, bank details, and a recent payment summary or income statement from your employer</li>
                 <li><strong>Select &quot;non-resident&quot;</strong> as your residency status when prompted (WHMs are treated as non-residents for tax purposes)</li>
-                <li><strong>Verify your income</strong> &mdash; your employer&apos;s STP data pre-fills in myTax from mid-July each year</li>
+                <li><strong>Verify your income</strong>: your employer&apos;s STP data pre-fills in myTax from mid-July each year</li>
                 <li><strong>Claim deductions</strong> for work-related expenses such as protective clothing, tools, travel between work sites, and sun protection for outdoor work</li>
-                <li><strong>Submit the return</strong> &mdash; the ATO processes most WHM returns within <strong>12 business days</strong></li>
+                <li><strong>Submit the return</strong>: the ATO processes most WHM returns within <strong>12 business days</strong></li>
                 <li><strong>Receive your refund</strong> via direct deposit to an Australian bank account or a nominated overseas account</li>
               </ol>
               <p>The deadline for lodging is <strong>31 October</strong> following the end of the financial year (e.g., 31 October 2026 for FY2025-26 income). WHMs who have already left Australia can still lodge online. A registered tax agent can lodge on your behalf with an extended deadline, typically to 15 May of the following year. For general guidance on tax returns, see our <Link href="/tax-refund-guide/">Tax Refund Guide</Link>.</p>
@@ -196,7 +196,7 @@ export default function WorkingHolidayTaxPage() {
                 <tr><td className="px-5 py-3">Resident tax-free threshold</td><td className="px-5 py-3">$18,200</td><td className="px-5 py-3 font-bold">$18,200</td><td className="px-5 py-3 text-warmgray-light">No change (WHMs ineligible)</td></tr>
                 <tr><td className="px-5 py-3">Resident 2nd bracket rate</td><td className="px-5 py-3">16%</td><td className="px-5 py-3 font-bold">15%</td><td className="px-5 py-3 text-green-600">-1%</td></tr>
               </tbody></table></div></div>
-              <p>A backpacker earning $45,000 still accumulates <strong>$5,400</strong> in super contributions &mdash; the SG rate reached its legislated 12% ceiling on 1 July 2025 and no further increases are scheduled. The resident second-bracket cut from 16% to 15% does not change WHM rates, but it narrows the resident comparison: resident income tax on $45,000 fell from $4,288 in FY{SITE_CONFIG.previousFinancialYear} to {formatAUD(RES_TAX_45K)} in FY{SITE_CONFIG.financialYear}, while a WHM still pays $6,750. The 15% flat rate operates independently of the standard income tax bracket structure.</p>
+              <p>A backpacker earning $45,000 still accumulates <strong>$5,400</strong> in super contributions. The SG rate reached its legislated 12% ceiling on 1 July 2025 and no further increases are scheduled. The resident second-bracket cut from 16% to 15% does not change WHM rates, but it narrows the resident comparison: resident income tax on $45,000 fell from $4,288 in FY{SITE_CONFIG.previousFinancialYear} to {formatAUD(RES_TAX_45K)} in FY{SITE_CONFIG.financialYear}, while a WHM still pays $6,750. The 15% flat rate operates independently of the standard income tax bracket structure.</p>
             </section>
 
             {/* ───────── SECTION 10: Common Mistakes ───────── */}
@@ -204,11 +204,11 @@ export default function WorkingHolidayTaxPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Common Mistakes Working Holiday Makers Make?</h2>
               <p>The most common WHM tax mistake is <strong>claiming the tax-free threshold</strong> on the TFN declaration form, which results in under-withholding and a tax debt at lodgement.</p>
               <ul>
-                <li><strong>Ticking &quot;yes&quot; to the tax-free threshold</strong> on the TFN declaration &mdash; WHMs are not entitled to the $18,200 threshold, and selecting it causes the employer to under-withhold tax. The backpacker then owes a lump sum when they lodge their return.</li>
-                <li><strong>Not providing a TFN within 28 days</strong> &mdash; without a TFN, the employer withholds at the top marginal rate of 45% from dollar one. Applying for a TFN at a post office or online takes approximately 10 business days.</li>
-                <li><strong>Failing to lodge a tax return</strong> &mdash; backpackers who leave Australia without lodging may miss out on a refund if their employer over-withheld. The ATO retains overpaid tax until a return is lodged.</li>
-                <li><strong>Not checking employer WHM registration</strong> &mdash; if the employer is unregistered, 30% is withheld instead of 15%. Backpackers can verify registration by asking their employer for their WHM registration number.</li>
-                <li><strong>Waiting too long for DASP</strong> &mdash; unclaimed super is transferred to the ATO&apos;s lost super fund after the visa has been expired for 6 months. While the funds remain claimable, the process becomes slower and more complex.</li>
+                <li><strong>Ticking &quot;yes&quot; to the tax-free threshold</strong> on the TFN declaration: WHMs are not entitled to the $18,200 threshold, and selecting it causes the employer to under-withhold tax. The backpacker then owes a lump sum when they lodge their return.</li>
+                <li><strong>Not providing a TFN within 28 days</strong>: without a TFN, the employer withholds at the top marginal rate of 45% from dollar one. Applying for a TFN at a post office or online takes approximately 10 business days.</li>
+                <li><strong>Failing to lodge a tax return</strong>: backpackers who leave Australia without lodging may miss out on a refund if their employer over-withheld. The ATO retains overpaid tax until a return is lodged.</li>
+                <li><strong>Not checking employer WHM registration</strong>: if the employer is unregistered, 30% is withheld instead of 15%. Backpackers can verify registration by asking their employer for their WHM registration number.</li>
+                <li><strong>Waiting too long for DASP</strong>: unclaimed super is transferred to the ATO&apos;s lost super fund after the visa has been expired for 6 months. While the funds remain claimable, the process becomes slower and more complex.</li>
               </ul>
             </section>
 
@@ -217,7 +217,7 @@ export default function WorkingHolidayTaxPage() {
             {/* ───────── SECTION 11: Related Resources ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
-              <p>These Australian tax calculator tools and guides provide additional context for working holiday makers planning their finances.</p>
+              <p>These calculators and guides cover income tax, non-resident rates, super and tax returns for working holiday makers.</p>
               <ul>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; model your take-home pay under WHM, resident, or non-resident tax schedules</li>
                 <li><Link href="/non-resident-tax/">Non-Resident Tax Rates</Link> &mdash; understand the rates that apply above $45,000 for WHMs and for other temporary visa holders</li>

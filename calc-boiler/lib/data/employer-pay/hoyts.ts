@@ -82,7 +82,7 @@ export const HOYTS_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "There is no Saturday, Sunday or evening penalty for cinema workers. Instead every cinema rate includes an 8% penalty averaging loading, paid on all hours (award cl 13.4 Note 1 and cl 58.1).",
-    "For a Level 2 crew member that is $29.25 an hour at any time between 8am and 1am, $58.50 an hour between 1am and 8am or on a public holiday.",
+    "A permanent Level 2 crew member at Hoyts is paid $29.25 an hour at any time between 8am and 1am, and $58.50 an hour between 1am and 8am or on a public holiday.",
     "A roster changed on short notice for non-operational reasons, or a meal break not given after 5 hours, is paid at 200% for the affected time, or 225% for casuals (cl 59.3, cl 60.2; FWO pay guide).",
   ],
   overtime: [
@@ -111,15 +111,15 @@ export const HOYTS_PAY: EmployerPay = {
     },
     {
       q: "Does Hoyts pay weekend penalty rates?",
-      a: "No separate Saturday or Sunday penalty applies to cinema workers. Instead every cinema rate includes an 8% penalty averaging loading on all hours. Ordinary hours between 1am and 8am are paid at 200%.",
+      a: "Hoyts crew get no separate Saturday or Sunday penalty, because they are cinema workers under the Broadcasting, Recorded Entertainment and Cinemas Award. Instead every cinema rate includes an 8% penalty averaging loading on all hours. For permanent staff, ordinary hours between 1am and 8am are paid at 200%.",
     },
     {
       q: "How much does Hoyts pay a 16 or 17 year old?",
-      a: "Cinema juniors get a percentage of the Level 4 rate: 45% at 16 and under ($14.31 an hour, $17.89 casual) and 55% at 17 ($17.50, $21.88 casual). It is 65% at 18, 75% at 19 and 85% at 20 ($27.04).",
+      a: "Junior crew at Hoyts get a percentage of the Cinema Worker Level 4 rate: 45% at 16 and under ($14.31 an hour, $17.89 casual) and 55% at 17 ($17.50, $21.88 casual). It is 65% at 18, 75% at 19 and 85% at 20 ($27.04).",
     },
     {
       q: "What does Hoyts pay on public holidays?",
-      a: "200% of the minimum hourly rate for both permanent and casual staff: $58.50 an hour for a Level 2 crew member. Casuals do not get an extra loading on top.",
+      a: "Hoyts crew are paid 200% of the minimum hourly rate on public holidays, whether permanent or casual: $58.50 an hour for a Level 2 crew member. Casuals do not get an extra loading on top.",
     },
     {
       q: "Does Hoyts have an enterprise agreement?",

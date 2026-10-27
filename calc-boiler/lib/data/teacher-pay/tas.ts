@@ -38,7 +38,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "1 March 2027",
     detail:
-      "A further 3% from the first full pay period commencing on or after 1 March 2027, then 2.75% from 1 March 2028, both already written into clause 8.1. The 2027 rise takes Band 1 Level 1 to $77,115 and Level 13 to $126,065.",
+      "The Teachers Agreement gives a further 3% from the first full pay period commencing on or after 1 March 2027, then 2.75% from 1 March 2028, both written into clause 8.1. The 2027 rise takes Band 1 Level 1 to $77,115 and Level 13 to $126,065.",
   },
   verifiedOn: "28 August 2026",
 
@@ -47,7 +47,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Teachers: Band 1, Levels 1 to 13",
       intro:
-        "The classroom teacher scale. Four and five year trained teachers do not start at the bottom: the award sets their graduate entry level at Band 1 Level 5.",
+        "This table is the Tasmanian classroom teacher scale. Four and five year trained teachers do not start at the bottom: the award sets their graduate entry level at Band 1 Level 5.",
       stepHeading: "Level",
       steps: [
         { label: "Band 1 Level 1", salary: 74_869, note: "Three year trained entry point" },
@@ -89,7 +89,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
       id: "school-based-principals",
       title: "School-based principals: Levels 1 to 6",
       intro:
-        "Each principal level has four progression points, and the top point of one level is the same salary as the first point of the next. That is where a promotion lands you.",
+        "Each Tasmanian school-based principal level has four progression points, and the top point of one level is the same salary as the first point of the next. A promotion to the next level starts you at that shared salary.",
       stepHeading: "Level and point",
       steps: [
         { label: "Level 1-1", salary: 151_590 },
@@ -116,7 +116,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     {
       id: "non-school-based-principals",
       title: "Band 3 non-school-based principals and Band 4 education managers",
-      intro: "Positions outside a school, on their own Band 3 and Band 4 scales.",
+      intro: "This table covers Tasmanian principal and education manager positions outside a school, which are paid on their own Band 3 and Band 4 scales.",
       stepHeading: "Classification",
       steps: [
         { label: "Band 3 Level 1", salary: 127_961 },
@@ -139,7 +139,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     {
       heading: "You move on your anniversary, not on a common date",
       body: [
-        "Progression within Band 1 occurs on the anniversary date of your appointment, based on an assessment against the requirements set in your performance management plan for the previous 12 months plus certification that performance has been satisfactory.",
+        "Progression within Band 1 occurs on the anniversary date of your appointment. It is based on an assessment against the requirements set in your performance management plan for the previous 12 months, plus certification that your performance has been satisfactory.",
         "Leave without pay, or a break in service of more than three months, does not count toward continuous service, so either will push your increment date out.",
       ],
     },
@@ -153,20 +153,20 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     {
       heading: "The performance management plan is the mechanism",
       body: [
-        "The plan must list the performance outcomes and specific requirements, be reviewed annually with at least one discussion between you and your principal, cover your training and development needs, and include a clear statement of outcomes.",
+        "Your performance management plan must list the performance outcomes and specific requirements, and include a clear statement of outcomes. It must also cover your training and development needs and be reviewed annually, with at least one discussion between you and your principal.",
         "That plan is what your increment is assessed against, so it is worth knowing what is in yours before your anniversary.",
       ],
     },
     {
       heading: "An increment can be deferred, but only after a real process",
       body: [
-        "The employer may defer or refuse to advance a teacher only if the principal has counselled the employee and clearly explained the criteria that must be met, has provided every opportunity through mentoring, guidance and support, and has allowed at least three months before the decision is taken.",
+        "The employer may defer or refuse to advance a teacher only if the principal has met all of the following conditions. The principal must have counselled the employee and clearly explained the criteria that must be met, and provided every opportunity through mentoring, guidance and support. The principal must also have allowed at least three months before the decision is taken.",
       ],
     },
     {
       heading: "Level 13 needs full registration",
       body: [
-        "Clause 9 of the Teachers Agreement 2025: you are eligible for Band 1 Level 13 provided you have been at Level 12 for 12 months or more and hold full teacher registration certified by the Teachers Registration Board.",
+        "Clause 9 of the Teachers Agreement 2025 makes you eligible for Band 1 Level 13 once you have been at Level 12 for 12 months or more. You must also hold full teacher registration certified by the Teachers Registration Board (TRB).",
         "If you have the 12 months at Level 12 but not yet full registration, progression happens from the date the TRB certifies it.",
       ],
     },
@@ -180,7 +180,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
 
   notices: [
     "Check the date on any Tasmanian salary table you are shown. As at 28 August 2026 the department's own web summary table and the consolidated Teaching Service Award both still end at the 1 March 2025 rates. The current rates are in Schedule 2 of the Teachers Agreement 2025, and those are what is published below.",
-    "Band 1 Level 13, Advanced Skills Teacher and Assistant Principal each received a flat structural adjustment ($500, $400 and $250) before the 3% rise was applied on 1 March 2026, so those three rows are not a straight 3% on the previous year.",
+    "Before the 3% rise was applied on 1 March 2026, Band 1 Level 13, Advanced Skills Teacher and Assistant Principal each received a flat structural adjustment ($500, $400 and $250). Those three rows are therefore not a straight 3% on the previous year.",
   ],
 
   unverified: [
@@ -219,11 +219,11 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the top of the Tasmanian teacher pay scale?",
-      a: "Band 1 Level 13, $122,393 a year. Above it, an Advanced Skills Teacher is paid $129,640, an assistant principal $143,334 and a deputy principal $151,590. All are promotion positions rather than steps.",
+      a: "The top of the Tasmanian classroom teacher scale is Band 1 Level 13, $122,393 a year. Above it, an Advanced Skills Teacher is paid $129,640, an assistant principal $143,334 and a deputy principal $151,590. All are promotion positions rather than steps.",
     },
     {
       q: "How do Tasmanian teachers move up a level?",
-      a: "On the anniversary of your appointment, assessed against the requirements in your performance management plan for the previous 12 months plus certification that your performance has been satisfactory. Leave without pay or a break in service over three months pushes the date out.",
+      a: "Tasmanian teachers move up a level on the anniversary of their appointment. Your increment is assessed against the requirements in your performance management plan for the previous 12 months, plus certification that your performance has been satisfactory. Leave without pay or a break in service over three months pushes the date out.",
     },
     {
       q: "How do you get to Band 1 Level 13 in Tasmania?",
@@ -231,11 +231,11 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "When do Tasmanian teachers get their next pay rise?",
-      a: "Two more are already locked in. Clause 8.1 of the Teachers Agreement 2025 provides 3% from the first full pay period on or after 1 March 2027 and 2.75% from 1 March 2028. The agreement runs until 19 September 2028.",
+      a: "The next Tasmanian teacher pay rise is 3% from the first full pay period on or after 1 March 2027. It is the first of two remaining rises the Teachers Agreement 2025 locks in under clause 8.1, and the second is 2.75% from 1 March 2028. The agreement runs until 19 September 2028.",
     },
     {
       q: "Why do Tasmanian teacher salary tables disagree?",
-      a: "Because several official ones are out of date. As at August 2026 the department's web summary table and the consolidated Teaching Service Award both still show the 1 March 2025 rates. The current figures are in Schedule 2 of the Teachers Agreement 2025.",
+      a: "Tasmanian teacher salary tables disagree because several official ones are out of date. As at August 2026 the department's web summary table and the consolidated Teaching Service Award both still show the 1 March 2025 rates. The current figures are in Schedule 2 of the Teachers Agreement 2025.",
     },
   ],
 };

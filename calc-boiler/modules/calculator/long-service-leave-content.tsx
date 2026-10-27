@@ -118,18 +118,20 @@ export function LongServiceLeaveHub() {
             Long Service Leave Calculator Australia: All 8 States and Territories
           </h1>
           <p className="text-lg text-warmgray">
-            A long service leave calculator works out accrued weeks from a start date and ordinary weekly pay under
-            the state or territory Act that covers the job. The rate is {LSL_COMMON_RATE} weeks a year in{" "}
+            Long service leave in Australia is set by the state or territory Act that covers your job, and it
+            accrues for continuous service with the same employer. The rate is {LSL_COMMON_RATE} weeks a year in{" "}
             {LSL_COMMON_RATE_COUNT} jurisdictions
             {LSL_OTHER_RATE.length
               ? ` and ${rateLabel(LSL_OTHER_RATE[0].weeksPerYear)} weeks a year in ${joinNames(LSL_OTHER_RATE.map((j) => j.abbr))}`
               : ""}
-            ; the qualifying period is {LSL_COMMON_YEARS} years everywhere
+            . The qualifying period is {LSL_COMMON_YEARS} years everywhere
             {LSL_OTHER_YEARS.length
               ? ` except ${joinNames(LSL_OTHER_YEARS.map((j) => j.inName.replace(/^in /, "")))}, where it is ${LSL_OTHER_YEARS[0].takeAfterYears} years`
               : ""}
-            . Rules were verified against each Act on {LSL_SOURCES.verifiedOn}; enter your details to see what has
-            accrued, what could be taken now, what would be paid out today, and the tax on it.
+            . Rules were verified against each Act on {LSL_SOURCES.verifiedOn}. Enter your state, start date and
+            ordinary weekly pay in the calculator below to see your accrued weeks, the leave you can take now,
+            today&apos;s payout and its tax. Further down, the page compares the Acts state by state and
+            covers takeable leave, payouts on resignation, tax, casual service and who each Act excludes.
           </p>
           <TrustBar className="mt-4" />
           {/* State spokes, linked with descriptive anchors above the fold. Until
@@ -172,8 +174,8 @@ export function LongServiceLeaveHub() {
             </h2>
             <p className={P}>
               Long service leave is the one major leave entitlement the National Employment Standards
-              do not set. Each state and territory has its own Act, and they differ in three ways that
-              actually change the number: how long you have to serve before you can take leave, how
+              do not set. Each state and territory has its own Act, and the Acts differ in three ways that
+              change the number of weeks: how long you have to serve before you can take leave, how
               many weeks a year you accrue, and how early a payment is owed if you leave.
             </p>
             <div className={TABLE_WRAP}>
@@ -353,11 +355,10 @@ export function LongServiceLeaveHub() {
               Long Service Leave Payout on Resignation
             </h2>
             <p className={P}>
-              This is where the states diverge most, and it is the question that costs people the most
-              money. In <strong>Victoria, WA and South Australia</strong> a plain resignation past 7
+              A long service leave payout on resignation is where the state Acts differ most. In <strong>Victoria, WA and South Australia</strong> a plain resignation past 7
               years pays out the accrued balance. In <strong>NSW, Queensland, Tasmania and the
-              NT</strong> a plain resignation pays nothing until you reach 10 years. Below that you
-              have to fall inside a defined list.
+              NT</strong> a plain resignation pays nothing until you reach 10 years. Below that, each
+              of those Acts pays only on the grounds it lists, such as redundancy or illness.
             </p>
             <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
@@ -421,8 +422,8 @@ export function LongServiceLeaveHub() {
               Tax on a Long Service Leave Payout
             </h2>
             <p className={P}>
-              Tax is federal, so it is identical in all eight jurisdictions. There are two quite
-              different situations:
+              Tax on long service leave is federal, so it is identical in all eight jurisdictions. The
+              ATO treats two situations differently:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
               <li>
@@ -709,7 +710,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
 
         <div className="max-w-4xl mx-auto space-y-10">
           <p className="text-sm text-warmgray">
-            Long service leave is not annual leave: annual leave is the federal four weeks a year in the{" "}
+            Long service leave is separate from annual leave, which is the federal four weeks a year: work that out in the{" "}
             <Link href="/leave-calculator/" className={LINK}>
               annual leave calculator
             </Link>
@@ -874,7 +875,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
               Tax, and How {j.abbr} Compares
             </h2>
             <p className={P}>
-              Tax on a payout is federal, so it is the same {j.inName} as everywhere: the{" "}
+              Tax on a long service leave payout is federal, so it is the same {j.inName} as everywhere: the{" "}
               <Link href="/long-service-leave-calculator/#tax" className={LINK}>
                 ATO unused-leave schedule is set out on the hub
               </Link>
@@ -883,7 +884,8 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
               <Link href={`/take-home-pay-on/${exampleTarget}/`} className={LINK}>
                 take-home pay on {formatAUD(exampleTarget)}
               </Link>{" "}
-              for the year it lands in. For the other seven Acts side by side, see{" "}
+              for roughly what a year of that weekly pay plus the payout leaves after tax. For the other seven
+              Acts side by side, see{" "}
               <Link href="/long-service-leave-calculator/#by-state" className={LINK}>
                 long service leave in every state
               </Link>

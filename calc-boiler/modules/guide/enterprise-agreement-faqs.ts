@@ -24,11 +24,11 @@ export const ENTERPRISE_AGREEMENT_FAQS: Faq[] = [
   },
   {
     q: "What is the better off overall test (BOOT)?",
-    a: "It's the test the Fair Work Commission applies before approving an agreement: each award-covered employee, and each prospective one, must be better off overall under the agreement than under the relevant modern award. It's an overall assessment, not a line-by-line comparison.",
+    a: "The better off overall test (BOOT) is the test the Fair Work Commission applies before approving an enterprise agreement. Each award-covered employee, and each prospective one, must be better off overall under the agreement than under the relevant modern award. The BOOT is an overall assessment, not a line-by-line comparison.",
   },
   {
     q: "How long does an enterprise agreement last?",
-    a: "Its nominal expiry date can be no more than 4 years after the Fair Work Commission approves it. After that it keeps applying until it is replaced or terminated. A replacement agreement starts 7 days after approval unless it names a later date.",
+    a: "An enterprise agreement's nominal expiry date can be no more than 4 years after the Fair Work Commission approves it. After that it keeps applying until it is replaced or terminated. A replacement agreement starts 7 days after approval unless it names a later date.",
   },
   {
     q: "What are the AE and AG numbers on an agreement?",

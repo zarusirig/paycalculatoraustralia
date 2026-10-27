@@ -27,11 +27,11 @@ export const NON_RESIDENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do non-residents pay Medicare levy?",
-    a: `No. Non-residents are exempt from the ${pct(MEDICARE_LEVY.rate)} Medicare levy. However, this also means you cannot access Medicare services. If you need medical care, you'll need private health insurance or pay out of pocket. Citizens of the 11 RHCA countries (including the UK, Ireland, and New Zealand) receive limited Medicare access for essential treatment.`,
+    a: `No. Non-residents are exempt from the ${pct(MEDICARE_LEVY.rate)} Medicare levy. Non-residents are also not eligible for Medicare services, so you pay for medical care through private health insurance or out of pocket. Citizens of the 11 RHCA countries (including the UK, Ireland, and New Zealand) receive limited Medicare access for essential treatment.`,
   },
   {
     q: "Can non-residents claim work-related deductions?",
-    a: "Yes, non-residents can claim work-related deductions in the same way as residents. The deductions reduce your taxable income, which then has non-resident rates applied. Common deductions include uniforms, tools, work-related travel, self-education, and union fees.",
+    a: "Yes, non-residents can claim work-related deductions in the same way as residents. The deductions reduce your taxable income, and non-resident rates apply to the taxable income that remains. Common deductions include uniforms, tools, work-related travel, self-education, and union fees.",
   },
   {
     q: "What if my residency status changes mid-year?",
@@ -51,7 +51,7 @@ export const NON_RESIDENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I avoid double taxation on Australian income?",
-    a: "Yes, if your home country has a Double Tax Agreement (DTA) with Australia. Australia has more than 40 DTAs that allocate taxing rights and provide mechanisms to claim foreign income tax offsets. You can claim a credit for Australian tax paid against your home country tax liability, or vice versa, preventing the same income from being taxed twice.",
+    a: "Yes, if your home country has a Double Tax Agreement (DTA) with Australia. Australia has more than 40 DTAs that allocate taxing rights and provide mechanisms to claim foreign income tax offsets. You can claim a credit for Australian tax paid against your home country tax liability, or the reverse, so the same income is not taxed twice.",
   },
   {
     q: "Do non-residents get the 50% CGT discount?",

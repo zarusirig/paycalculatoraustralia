@@ -442,7 +442,7 @@ export const LEVY_EXEMPTION_CATEGORIES: readonly LevyExemptionCategory[] = [
     category: "Medical (Category 1)",
     relief: "Full or half",
     detail:
-      "Blind pensioners, and anyone entitled to full free medical treatment for all conditions under Defence Force arrangements or a DVA Repatriation Health Card (Gold Card). You get the full exemption if you had no dependants, or if every dependant was itself exempt or paid the levy. It drops to a half exemption if you had at least one dependant (a spouse, typically) who was neither exempt nor liable for the levy.",
+      "The medical exemption covers blind pensioners and anyone entitled to full free medical treatment for all conditions under Defence Force arrangements or a DVA Repatriation Health Card (Gold Card). You get the full exemption if you had no dependants, or if every dependant was itself exempt or paid the levy. It drops to a half exemption if you had at least one dependant (such as a spouse) who was neither exempt nor liable for the levy.",
   },
   {
     category: "Foreign residents",
@@ -460,6 +460,6 @@ export const LEVY_EXEMPTION_CATEGORIES: readonly LevyExemptionCategory[] = [
     category: "Spouse and dependant tests",
     relief: "Full or half",
     detail:
-      "Where both spouses would otherwise be liable and one is in a Category 1 exemption category, a signed family agreement decides which of you claims the full exemption and which claims the half. Shared-care arrangements split by day: half for the days you had care, full for the days you did not.",
+      "Where both spouses would otherwise be liable and one is in a Category 1 exemption category, a signed family agreement decides which of you claims the full exemption and which claims the half. Under a shared-care arrangement the exemption splits by day: half for the days you had care of the dependant, full for the days you did not.",
   },
 ] as const;

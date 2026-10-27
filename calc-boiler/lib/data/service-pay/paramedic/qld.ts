@@ -34,7 +34,7 @@ export const QLD_PARAMEDIC_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "1 September 2027",
     detail:
-      "A further 2.5% from 1 September 2027 is written into the agreement and printed in the updated schedule: Level 2, Band 1, Increment 1 goes to $89,043 and Level 2, Band 2, Increment 7 to $110,201. A CPI Uplift Adjustment of up to 1% may be added if the March 2027 Brisbane CPI exceeds 2.5%.",
+      "A further 2.5% from 1 September 2027 is written into the QAS agreement and printed in the updated schedule: Level 2, Band 1, Increment 1 goes to $89,043 and Level 2, Band 2, Increment 7 to $110,201. A CPI Uplift Adjustment of up to 1% may be added if the March 2027 Brisbane CPI exceeds 2.5%.",
   },
   verifiedOn: "24 September 2026",
 
@@ -98,12 +98,12 @@ export const QLD_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "Graduates with a paramedic science degree start at Level 2, Band 1, Increment 1 while they complete QAS induction and the first half of the internship program: $86,877 a year ($3,330 a fortnight) from 1 September 2026.",
-    "After six months they move to Level 2, Band 1, Increment 2 ($88,808 a year, $3,404 a fortnight) to finish the internship, then to Level 2, Band 2 as a qualified Advanced Care Paramedic ($93,452 a year at Increment 1).",
+    "After six months a QAS graduate moves to Level 2, Band 1, Increment 2 ($88,808 a year, $3,404 a fortnight) to finish the internship, then to Level 2, Band 2 as a qualified Advanced Care Paramedic ($93,452 a year at Increment 1).",
     "Critical Care Paramedic interns (who already hold a Graduate Diploma in Intensive Care Paramedical Practice or equivalent) are paid at Level 3, Band 1, Increment 1: $109,888 a year.",
   ],
 
   penalties: [
-    "Shift allowance: 12.5% of the ordinary base hourly rate for each hour of an afternoon shift and 15% for each hour of a night shift (clause 26.1.1). Not paid for shifts that attract weekend, public holiday or overtime penalties.",
+    "Shift allowance: 12.5% of the ordinary base hourly rate for each hour of an afternoon shift and 15% for each hour of a night shift (clause 26.1.1). The shift allowance is not paid for shifts that attract weekend, public holiday or overtime penalties.",
     "Night coverage allowance from 1 March 2026: 5% of the Level 2, Band 2, Increment 5 ordinary base hourly rate for each full ordinary hour of a night shift worked (clause 26.2).",
     "Ordinary time between midnight Friday and midnight Saturday is paid at time and a half; between midnight Saturday and midnight Sunday at double time (clause 26.10.1).",
   ],
@@ -151,7 +151,7 @@ export const QLD_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When is the next QAS pay rise?",
-      a: "The next scheduled increase is 2.5% from 1 September 2027, plus up to 1% more if the March 2027 Brisbane CPI exceeds 2.5%.",
+      a: "The next scheduled QAS pay rise is 2.5% from 1 September 2027, plus up to 1% more if the March 2027 Brisbane CPI exceeds 2.5%.",
     },
   ],
 };

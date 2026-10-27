@@ -13,7 +13,7 @@ const FOREIGN = `${Math.round(NO_TFN_RATES.foreignResident * 100)}%`;
 export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   {
     q: "What happens if I don't provide my TFN?",
-    a: `Your employer must withhold tax at ${RES} from every dollar you earn (${FOREIGN} if you are a foreign resident). The ${RES} is the 45% top tax rate plus the 2% Medicare levy. If you have told your employer on the declaration that you have applied for a TFN, you have 28 days to provide it before that rate applies. The over-withheld tax is recovered when you lodge your annual tax return, but you will have significantly reduced take-home pay in the meantime.`,
+    a: `Your employer must withhold tax at ${RES} from every dollar you earn (${FOREIGN} if you are a foreign resident). The ${RES} is the 45% top tax rate plus the 2% Medicare levy. If you have told your employer on the declaration that you have applied for a TFN, you have 28 days to provide it before that rate applies. You get the over-withheld tax back when you lodge your annual tax return, but your take-home pay is much lower until then.`,
   },
   {
     q: "Should I claim the tax-free threshold on my TFN declaration?",
@@ -21,7 +21,7 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim the tax-free threshold at two jobs?",
-    a: "You should only claim the tax-free threshold at one job: your main (highest-paying) employer. If you claim it at two jobs, both employers withhold less tax than they should, and you will likely owe money when you lodge your tax return. Use our Second Job Tax Calculator to see the impact.",
+    a: "You should only claim the tax-free threshold at one job: your main (highest-paying) employer. If you claim it at two jobs, both employers withhold less tax than they should, and you will likely owe money when you lodge your tax return. Use our Second Job Tax Calculator to see the tax on your second job's pay.",
     links: { "Second Job Tax Calculator": "/second-job-tax-calculator/" },
   },
   {
@@ -30,19 +30,19 @@ export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How do I find my TFN if I've lost it?",
-    a: "You can find your TFN on previous tax returns, your myGov account (linked to the ATO), or correspondence from the ATO. You can also call the ATO on 13 28 61 to request your TFN. For security, the ATO will post your TFN to your registered address. They will not provide it over the phone or email.",
+    a: "You can find your TFN on previous tax returns, your myGov account (linked to the ATO), or correspondence from the ATO. You can also call the ATO on 13 28 61 to request your TFN. For security, the ATO will post your TFN to your registered address. The ATO will not give out your TFN over the phone or by email.",
   },
   {
     q: "Do I need a new TFN declaration each financial year?",
-    a: "No. Your TFN declaration remains in effect with your current employer until you submit a replacement or leave the job. You only need a new one if your circumstances change (e.g., new HECS debt, change in residency, want to move the tax-free threshold to a different employer).",
+    a: "No. Your TFN declaration remains in effect with your current employer until you submit a replacement or leave the job. You only need a new one if your circumstances change (for example, a new HECS debt, a change in residency, or moving the tax-free threshold to a different employer).",
   },
   {
     q: "Do I need to submit a new TFN declaration if I change roles within the same company?",
-    a: "Generally no, unless your circumstances change (e.g., you acquire a HECS debt, change residency status, or want to change your tax-free threshold claim). If you move to a different employing entity (a different ABN) within the same corporate group, that is a new payer and a new TFN declaration is required.",
+    a: "No, unless your circumstances change (for example, you acquire a HECS debt, change residency status, or want to change your tax-free threshold claim). If you move to a different employing entity (a different ABN) within the same corporate group, that is a new payer and a new TFN declaration is required.",
   },
   {
     q: "Do contractors need to complete a TFN declaration?",
-    a: `Independent contractors operating under their own ABN do not complete a TFN declaration. Instead, they quote their ABN on invoices. If a contractor does not quote an ABN, the payer must withhold ${RES} from the payment. Employees (including casuals) must always provide a TFN declaration. See our Contractor vs Employee Guide for help determining your status.`,
+    a: `Independent contractors operating under their own ABN do not complete a TFN declaration. Instead, they quote their ABN on invoices. If a contractor does not quote an ABN, the payer must withhold ${RES} from the payment. Employees (including casuals) must provide a TFN declaration. See our Contractor vs Employee Guide to see how the ATO decides whether you are a contractor or an employee.`,
     links: { "Contractor vs Employee Guide": "/contractor-vs-employee-calculator/" },
   },
 ];

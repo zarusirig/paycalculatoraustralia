@@ -15,11 +15,11 @@ export const CASUAL_CONVERSION_FAQS: Faq[] = [
   },
   {
     q: "Can my employer refuse to make me permanent?",
-    a: "Only for limited reasons, and they must give the reasons in writing: you still meet the definition of a casual employee; there are fair and reasonable operational grounds, such as substantial changes needed to how work is organised or significant impacts on the business; or accepting would mean not complying with a legally required recruitment or selection process.",
+    a: "Your employer can refuse only for limited reasons, and must give those reasons in writing: you still meet the definition of a casual employee; there are fair and reasonable operational grounds, such as substantial changes needed to how work is organised or significant impacts on the business; or accepting would mean not complying with a legally required recruitment or selection process.",
   },
   {
     q: "When does the change to permanent take effect?",
-    a: "From the first day of your first full pay period starting after your employer gives their response, unless you and your employer agree another day.",
+    a: "The change to permanent takes effect from the first day of your first full pay period starting after your employer gives their response, unless you and your employer agree another day.",
   },
   {
     q: "What am I no longer paid when I become permanent?",
@@ -35,7 +35,7 @@ export const CASUAL_CONVERSION_FAQS: Faq[] = [
   },
   {
     q: "Is it better to stay casual or become permanent?",
-    a: "It depends on how many weeks you are paid in a year. With a 25% loading, a full-time casual needs to be paid for about 41.6 weeks of the year to earn as much as a permanent employee on the same base rate who is paid for all 52 weeks, including leave. If you work steady hours all year, permanent usually gives you more security for similar pay; if you take unpaid time off or your hours vary, casual loading can pay more.",
+    a: "Whether casual or permanent pays more comes down to how many weeks you are paid in a year. With a 25% loading, a full-time casual needs to be paid for about 41.6 weeks of the year to earn as much as a permanent employee on the same base rate who is paid for all 52 weeks, including leave. If you work steady hours all year, permanent usually gives you more security for similar pay; if you take unpaid time off or your hours vary, casual loading can pay more.",
   },
   {
     q: "I started casual before August 2024. Does that count?",

@@ -35,13 +35,13 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ratesEffectiveFrom: "11 June 2026",
   nextIncrease: null,
   verifiedOn: "9 October 2026",
-  hubNote: "Monday–Friday salary; shift officers are on a higher annualised salary that replaces shift penalties.",
+  hubNote: "Monday to Friday salary; shift officers are on a higher annualised salary that replaces shift penalties.",
 
   scales: [
     {
       id: "prison-officer-mon-fri",
       title: "Prison Officer (Monday to Friday)",
-      intro: "Schedule A annualised salaries from the first pay period on or after 11 June 2026, for officers working Monday to Friday.",
+      intro: "From the first pay period on or after 11 June 2026, prison officers working Monday to Friday are paid these Schedule A annualised salaries.",
       stepHeading: "Year of service",
       steps: [
         { label: "Prison Officer 1st Year (Mon–Fri)", salary: 78_881, note: "$3,024.17 a fortnight" },
@@ -56,7 +56,7 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       id: "prison-officer-shift",
       title: "Prison Officer (shift)",
       intro:
-        "Annualised salaries for shift officers, which include a component in lieu of shift penalties, public holidays and accrued days off (clause 39.5).",
+        "Shift officers are paid these annualised salaries, which include a component in lieu of shift penalties, public holidays and accrued days off (clause 39.5).",
       stepHeading: "Year of service",
       steps: [
         { label: "Prison Officer 1st Year (Shift)", salary: 97_610, note: "$3,742.25 a fortnight" },
@@ -70,7 +70,7 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "first-class-officer",
       title: "ASO / First Class Officer",
-      intro: "Schedule A, from the first pay period on or after 11 June 2026.",
+      intro: "ASO / First Class Officer salaries, with separate Monday to Friday and shift rates, come from the same Schedule A and apply from the first pay period on or after 11 June 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "ASO / First Class Officer 1–2 years (Mon–Fri)", salary: 90_330 },
@@ -84,14 +84,14 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   topStep: "Prison Officer Thereafter (Mon–Fri)",
 
   traineePay: [
-    "A Trainee Prison Officer is paid an annualised salary of $75,520 ($2,895.34 a fortnight) on a 38-hour week from the first pay period on or after 11 June 2026, and is not required to work overtime while in the entry-level training program (clause 18.2).",
+    "From the first pay period on or after 11 June 2026, a Trainee Prison Officer is paid an annualised salary of $75,520 ($2,895.34 a fortnight) on a 38-hour week. While in the entry-level training program, a trainee is not required to work overtime (clause 18.2).",
     "Work placement shifts during training attract 15% for weekday afternoon or night shifts, 50% on Saturdays and 75% on Sundays. After completing training, the officer is paid at least the Prison Officer 1st Year rate for the rest of probation (clause 18.4).",
   ],
   penalties: [
-    "Shift officers are not paid separate shift, weekend or public holiday penalties for ordinary hours: their annualised salary already includes a component in lieu of shift penalty payments, public holidays and accrued days off (clause 39.5). That is why the shift scale sits about $18,700 a year above the Monday to Friday scale at the first year.",
+    "Shift officers are not paid separate shift, weekend or public holiday penalties for ordinary hours. Their annualised salary already includes a component in lieu of shift penalty payments, public holidays and accrued days off (clause 39.5). That is why the shift scale sits about $18,700 a year above the Monday to Friday scale in the first year.",
   ],
   notices: [
-    "The 11 June 2026 column is the last increase printed in the agreement, which runs until 10 June 2027 or until a replacement agreement is registered.",
+    "The 11 June 2026 column is the last increase printed in the WA prison officers' agreement, which runs until 10 June 2027 or until a replacement agreement is registered.",
   ],
   unverified: [
     "Senior Officer and Principal Officer rows, and casual rates, which are in the same Schedule A but not reproduced here.",
@@ -110,7 +110,7 @@ export const WA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What do trainee prison officers earn in WA?",
-      a: "$75,520 a year ($2,895.34 a fortnight) on a 38-hour week while in the entry-level training program, then at least the Prison Officer 1st Year rate once training is complete.",
+      a: "A Trainee Prison Officer in WA earns $75,520 a year ($2,895.34 a fortnight) on a 38-hour week while in the entry-level training program, then at least the Prison Officer 1st Year rate once training is complete.",
     },
     {
       q: "Do WA prison officers get shift penalties?",

@@ -91,14 +91,14 @@ export const BRICKLAYER: Occupation = {
     {
       id: "bricklayer",
       title: "Bricklayer pay rates by sector, 2026–27 (weekly hire)",
-      intro: `Weekly = the cl 19.1 classification rate + industry allowance + the ${money2(tool)} bricklayer tool allowance, all paid for all purposes. Hourly is that weekly amount over 38 hours; casual adds the 25% loading (cl 12.4).`,
+      intro: `The weekly bricklayer rate is the cl 19.1 classification rate plus the industry allowance plus the ${money2(tool)} bricklayer tool allowance, all paid for all purposes. The hourly rate is that weekly amount divided by 38 hours, and the casual rate adds the 25% casual loading (cl 12.4).`,
       rows: [BRICK_RESIDENTIAL, BRICK_GENERAL, BRICK_REFRACTORY],
     },
     {
       id: "daily-hire",
       title: "Daily hire bricklayer rates, 2026–27",
       intro:
-        "Clause 19.3(a): the weekly-hire sum above is multiplied by 52/50.4 and rounded to the cent (the weekly figure here), then divided by 38 for the hourly rate. There is no casual daily hire rate.",
+        "Under clause 19.3(a), the weekly-hire sum from the bricklayer table above is multiplied by 52/50.4 and rounded to the cent (the weekly figure here), then divided by 38 for the hourly rate. There is no casual daily hire rate.",
       rows: [BRICK_DAILY_RESIDENTIAL, BRICK_DAILY_GENERAL],
     },
   ],
@@ -133,7 +133,7 @@ export const BRICKLAYER: Occupation = {
     },
     {
       q: "How much is the bricklayer tool allowance?",
-      a: `${money2(tool)} a week from 1 July 2026 (cl 21.1(a)). It is paid for all purposes, so it is added to the hourly rate before overtime and penalties are worked out, and it is already included in the rates on this page.`,
+      a: `The bricklayer tool allowance is ${money2(tool)} a week from 1 July 2026 (cl 21.1(a)). It is paid for all purposes, so it is added to the hourly rate before overtime and penalties are worked out, and it is already included in the rates on this page.`,
     },
     {
       q: "How much does a daily hire bricklayer get paid?",

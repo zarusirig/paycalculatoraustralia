@@ -41,7 +41,7 @@ export default function ProRataSalaryCalculator() {
           Pro-Rata Salary Calculator
         </h2>
         <p className="mb-6 text-sm text-warmgray">
-          Enter the full-time salary and the hours or days you work. The result updates as you type.
+          Enter the full-time salary and the hours or days you work. The calculator shows your pro-rata salary before tax, your weekly, fortnightly and monthly pay, and your take-home pay after tax.
         </p>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

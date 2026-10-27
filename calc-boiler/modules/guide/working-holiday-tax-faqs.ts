@@ -36,7 +36,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can working holiday makers claim the tax-free threshold?",
-    a: `No. Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold, regardless of how long they live in Australia. Every dollar earned from $1 is taxed at ${WHM_RATE}. Do not tick "yes" to the tax-free threshold question on your TFN declaration form.`,
+    a: `No. Working holiday makers are not entitled to the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold, regardless of how long they live in Australia. Tax at ${WHM_RATE} applies from the first $1 you earn. Do not tick "yes" to the tax-free threshold question on your TFN declaration form.`,
   },
   {
     q: "Do working holiday makers pay the Medicare levy?",
@@ -44,7 +44,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if my employer is not registered as a WHM employer?",
-    a: `An unregistered employer must withhold tax at the foreign resident rate of ${FOREIGN_RATE} from dollar one, instead of ${WHM_RATE}. This effectively doubles your tax withholding. You can recover the overpaid amount by lodging a tax return at the end of the financial year, but you experience reduced take-home pay in the meantime. Ask your employer to register with the ATO before you start work.`,
+    a: `An unregistered employer must withhold tax at the foreign resident rate of ${FOREIGN_RATE} from dollar one, instead of ${WHM_RATE}. That doubles the tax withheld from your pay. You can recover the overpaid amount by lodging a tax return at the end of the financial year, but your take-home pay is lower until then. Ask your employer to register with the ATO before you start work.`,
   },
   {
     q: "What happens to my tax rate if I change visa type?",

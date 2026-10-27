@@ -16,7 +16,7 @@ const LSL_ACCRUAL = ((LSL_WEEKS / EMPLOYMENT.weeksPerYear) * WEEKS).toFixed(2);
 export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   {
     q: "How much annual leave do I get?",
-    a: `Full-time employees get ${WEEKS} weeks (${WEEKS * 5} days) of paid annual leave per year under the National Employment Standards. Part-time employees accrue the same ${WEEKS} weeks on a pro-rata basis, and some shift workers get ${WEEKS + 1} weeks. Casual employees do not accrue annual leave.`,
+    a: `Full-time employees get ${WEEKS} weeks (${WEEKS * 5} days) of paid annual leave per year under the National Employment Standards. Part-time employees accrue the same ${WEEKS} weeks on a pro-rata basis, and shift workers as defined in their award or agreement get ${WEEKS + 1} weeks. Casual employees do not accrue annual leave.`,
   },
   {
     q: "Is annual leave paid out when I leave?",
@@ -24,7 +24,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do casual employees get annual leave?",
-    a: `No. Casual employees do not accrue annual leave under the National Employment Standards. They receive a ${CASUAL} casual loading on their hourly rate to compensate for the absence of annual leave, personal leave, and other permanent entitlements. A casual employee who converts to permanent employment begins accruing leave from the date of conversion.`,
+    a: `No. Casual employees do not accrue annual leave under the National Employment Standards. They receive a ${CASUAL} casual loading on their hourly rate in place of annual leave, personal leave and other permanent entitlements. A casual employee who converts to permanent employment begins accruing leave from the date of conversion.`,
   },
   {
     q: "Can my employer force me to take annual leave?",
@@ -32,7 +32,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I cash out annual leave instead of taking it?",
-    a: `Some Awards and enterprise agreements permit cashing out, but only if the employee retains a minimum balance of ${WEEKS} weeks after the cash-out. The arrangement must be a genuine written agreement, and each cash-out requires a separate agreement. Not all Awards allow cashing out, so check your specific Award or agreement.`,
+    a: `Yes, if your award or enterprise agreement permits cashing out, and only if you keep a balance of at least ${WEEKS} weeks after the cash-out. Each cash-out needs its own genuine written agreement. Not every award allows cashing out, so check the cash-out clause in your award or agreement.`,
   },
   {
     q: "Does annual leave accrue during unpaid leave?",
@@ -60,7 +60,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does annual leave continue to accrue during long service leave?",
-    a: `Yes. Annual leave accrues during any period of paid long service leave. An employee taking ${LSL_WEEKS} weeks of long service leave accrues about ${LSL_ACCRUAL} weeks of annual leave during that period (${LSL_WEEKS} ÷ ${EMPLOYMENT.weeksPerYear} × ${WEEKS} = ${LSL_ACCRUAL} weeks). This is because long service leave is a period of paid leave and the NES provides for continuous accrual during paid leave.`,
+    a: `Yes. Annual leave accrues during any period of paid long service leave. An employee taking ${LSL_WEEKS} weeks of long service leave accrues about ${LSL_ACCRUAL} weeks of annual leave during that period (${LSL_WEEKS} ÷ ${EMPLOYMENT.weeksPerYear} × ${WEEKS} = ${LSL_ACCRUAL} weeks). Long service leave is paid leave, and under the NES annual leave keeps accruing during paid leave.`,
   },
   {
     q: "Does my employer pay superannuation on annual leave?",

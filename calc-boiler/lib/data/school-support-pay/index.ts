@@ -162,7 +162,7 @@ const NSW: SchoolSupportState = {
     },
   ],
   notes: [
-    "Other staff on the same award, hourly from 1 July 2026: Aboriginal Education Officer 1 to 4 $45.78, $47.11, $48.44 and $49.82; School Administrative Manager 1 to 4 $48.42, $49.74, $51.15 and $52.71 (SAMs work 33 hours 20 minutes a week full-time).",
+    "Other staff on the same award are paid these hourly rates from 1 July 2026: Aboriginal Education Officer 1 to 4 $45.78, $47.11, $48.44 and $49.82; School Administrative Manager 1 to 4 $48.42, $49.74, $51.15 and $52.71 (SAMs work 33 hours 20 minutes a week full-time).",
     "Pay rose 4% from 1 July 2024, 3% from 1 July 2025 and 3% from the first pay period commencing on or after 1 July 2026 (cl 5.2). The award runs to 30 June 2027 and no later rate is set.",
     "Permanent staff are paid in 26 equal fortnightly pays across the year (cl 5.3), and long-term temporary staff are paid in school vacations at the same rate as in term (cl 5.4).",
     "The Department of Education's public rates page still shows 2022 rates and says it is under review, so the rates here are read from the award itself.",
@@ -185,7 +185,7 @@ const NSW: SchoolSupportState = {
     },
     {
       q: "How much does a full-time SLSO earn a year?",
-      a: `Full-time for an SLSO is 31.25 hours a week, so SLSO 1 at $38.33 an hour works out to about ${formatSalary(derive(38.33, NSW_HOURS))} a year and SLSO 4 to about ${formatSalary(derive(44.53, NSW_HOURS))} (hourly × 31.25 × 52). Many SLSOs work fewer hours, so multiply the hourly rate by your own hours.`,
+      a: `Full-time for an SLSO is 31.25 hours a week, so SLSO 1 at $38.33 an hour works out to about ${formatSalary(derive(38.33, NSW_HOURS))} a year and SLSO 4 to about ${formatSalary(derive(44.53, NSW_HOURS))} (hourly × 31.25 × 52). If you work fewer hours, multiply the SLSO hourly rate by your own weekly hours.`,
     },
     {
       q: "What do temporary SLSOs get paid?",
@@ -429,9 +429,9 @@ const QLD: SchoolSupportState = {
     },
   ],
   notes: [
-    "The agreement adds a CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase, capped at 0.5% for the first period (cl 6.1(b)). The Schedule 1 tables exclude it. The ABS reported Brisbane annual inflation of 4.2% for March 2026, above the 3% increase, but we have not found the department's table with the uplift applied, so the rates shown are before any uplift.",
+    "The agreement adds a CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase, capped at 0.5% for the first period (cl 6.1(b)). The Schedule 1 tables exclude it. The ABS reported Brisbane annual inflation of 4.2% for March 2026, above the 3% increase. We have not found the department's table with the uplift applied, so the rates shown are before any uplift.",
     "Casual teacher aides are paid the hourly rate plus a 25% loading; at OO2 pay point 1 that is $39.62 an hour from 1 November 2025 ($39.6151 as printed).",
-    "Pay rises under the agreement: 3% from 1 November 2025, 2.5% from 1 November 2026 and 2.5% from 1 November 2027, each with the capped CPI uplift where it applies.",
+    "The Teacher Aides' Certified Agreement sets pay rises of 3% from 1 November 2025, 2.5% from 1 November 2026 and 2.5% from 1 November 2027, each with the capped CPI uplift where it applies.",
   ],
   sources: [
     {
@@ -459,7 +459,7 @@ const QLD: SchoolSupportState = {
     },
     {
       q: "When do Queensland teacher aides get a pay rise?",
-      a: "The Teacher Aides' Certified Agreement 2025 gives 2.5% from 1 November 2026, taking OO2 pay point 1 to $32.4842 an hour ($64,409 full-time), and another 2.5% from 1 November 2027. A capped CPI uplift adjustment can be added when Brisbane inflation is higher than the increase.",
+      a: "The Teacher Aides' Certified Agreement 2025 gives 2.5% from 1 November 2026, taking OO2 pay point 1 to $32.4842 an hour ($64,409 full-time), and another 2.5% from 1 November 2027. The agreement also adds a capped CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase.",
     },
     {
       q: "What is the casual teacher aide rate in Queensland?",
@@ -502,8 +502,8 @@ const WA: SchoolSupportState = {
   metaDescription: "WA Education Assistant pay from 1 January 2026: $34.75 to $43.28 an hour, Special Needs and AIEO rates, 32.5-hour full-time salary and take-home pay.",
   h1: "Education Assistant Pay WA 2026: EA and AIEO Hourly Rates",
   fullTimeHours: WA_HOURS,
-  hoursNote: "Full-time ordinary hours are 32.5 a week (cl 22.1). Most EAs are paid for the hours they are rostered, so multiply the hourly rate by your own hours.",
-  startingPoint: "A new mainstream EA starts at level 1.1 and moves to level 2.1 on the increment date unless the principal decides otherwise (cl 25.1–25.3). Special Needs positions start at level 2 or 3 depending on the students' needs, and Aboriginal and Islander Education Officers start at 3.1 (cl 26, 29.1).",
+  hoursNote: "Full-time ordinary hours for an Education Assistant are 32.5 a week (cl 22.1). If you work fewer hours, multiply the EA hourly rate by the hours you are rostered.",
+  startingPoint: "A new mainstream EA starts at level 1.1 and moves to level 2.1 on the increment date unless the principal decides otherwise (cl 25.1 to 25.3). Special Needs positions start at level 2 or 3 depending on the students' needs, and Aboriginal and Islander Education Officers start at 3.1 (cl 26, 29.1).",
   entry: { label: "EA 1.1", hourly: 34.75, annual: derive(34.75, WA_HOURS), annualBasis: "derived" },
   tables: [
     {
@@ -647,7 +647,7 @@ const TAS: SchoolSupportState = {
   h1: "Teacher Assistant Pay Tasmania 2026: Band 2 Hourly Rates and Salary",
   fullTimeHours: TAS_HOURS,
   hoursNote:
-    "Full-time ordinary hours under the award are 36 hours 45 minutes a week (Part VI, clause 1), and the department's hourly rate is the annual salary divided by 36.75 hours and 52.2 weeks. Teacher Assistants are school support staff under Appendix 16: they are paid to work during school terms and not during term breaks (clause 4). By agreement with the principal they can work up to three extra weeks, so employment is at most 43 weeks a year, plus one more week of hours spread across term time. Counting recreation leave, the award's own table comes to 47.42 paid weeks. Multiply the hourly rate by your hours and weeks, or elect in writing to annualise your salary evenly over 52 weeks (clause 2).",
+    "Full-time ordinary hours under the Tasmanian State Service Award are 36 hours 45 minutes a week (Part VI, clause 1). The department's hourly rate is the annual salary divided by 36.75 hours and 52.2 weeks. Teacher Assistants are school support staff under Appendix 16: they are paid to work during school terms and not during term breaks (clause 4). By agreement with the principal, a Teacher Assistant can work up to three extra weeks. Employment is then at most 43 weeks a year, plus one more week of hours spread across term time. Counting recreation leave, the award's own table comes to 47.42 paid weeks. Multiply the hourly rate by your hours and weeks, or elect in writing to annualise your salary evenly over 52 weeks (clause 2).",
   startingPoint:
     "A Teacher Assistant is classified at General Stream Band 2 and starts at Range 1 Level 2, the first salary point in the band; there is no Level 1 in Band 2. Each later level, up to Level 6, is a salary increment within the band. The DECYP schedule prints the same five rates for Teacher Assistant (MDT) and Bus Assistant positions, while Social Trainers run on from Band 2 into Band 3 ($77,850 to $84,084).",
   entry: { label: "Band 2 Range 1 Level 2", hourly: 36.27753, annual: 69_593, annualBasis: "published" },
@@ -678,8 +678,8 @@ const TAS: SchoolSupportState = {
     },
   ],
   notes: [
-    "Pay rises under the agreement: $800 added to base then 3% from the first full pay period on or after 1 December 2025, $800 then 3% from 1 December 2026, and 2.75% from 1 September 2027 (clauses 7.1 to 7.5). The agreement runs to 30 June 2028.",
-    "Appendix 16 allowances for Teacher Assistants: toileting and showering support $33.38 a week (clause 5), meal management plan $44.51 a week (clause 7), specialist programs in speech and language, Auslan or physiotherapy $44.51 a week (clause 8), credentialled health care procedures $44.51 a week (clause 9), aquatic support $10 for each day in the water with a student (clause 12), and 1.35% of base salary while working at a Support School or Tier Four site (clause 10).",
+    "The Public Sector Union Wages Agreement adds $800 to base salary then 3% from the first full pay period on or after 1 December 2025, $800 then 3% from 1 December 2026, and 2.75% from 1 September 2027 (clauses 7.1 to 7.5). The agreement runs to 30 June 2028.",
+    "Appendix 16 sets these allowances for Teacher Assistants: toileting and showering support $33.38 a week (clause 5), meal management plan $44.51 a week (clause 7), specialist programs in speech and language, Auslan or physiotherapy $44.51 a week (clause 8), credentialled health care procedures $44.51 a week (clause 9), aquatic support $10 for each day in the water with a student (clause 12), and 1.35% of base salary while working at a Support School or Tier Four site (clause 10).",
     "Public holidays that fall in a school holiday are still paid at the normal rate, up to 10 a year, and term-only staff are paid for Christmas Day, Boxing Day and New Year's Day when they fall on days they would ordinarily work (clause 4(d) and (g)).",
     "From 2027 a Teacher Assistant can elect two paid training days in the holidays before the school year starts, at the normal rate of pay (clause 11). Every day at work includes a 15 minute paid recess break (clause 6).",
     "Extra hours the employer asks for can be banked by written agreement and paid at ordinary time during the school holidays (clause 3).",
@@ -719,11 +719,11 @@ const TAS: SchoolSupportState = {
     },
     {
       q: "Are Tasmanian teacher assistants paid in the school holidays?",
-      a: "Not for the term breaks themselves. Appendix 16 of the Tasmanian State Service Award says school support staff are paid to work during school terms only, with the option of up to three extra weeks a year agreed with the principal (43 weeks at most) and one more week of hours in term time. Recreation leave and public holidays that fall in the breaks are still paid, which is how the award's table reaches 47.42 paid weeks. You can also elect in writing to spread your pay evenly over 52 weeks.",
+      a: "Not for the term breaks themselves. Appendix 16 of the Tasmanian State Service Award says school support staff are paid to work during school terms only. By agreement with the principal, school support staff can work up to three extra weeks a year (43 weeks at most), plus one more week of hours in term time. Recreation leave and public holidays that fall in the breaks are still paid, which is how the award's table reaches 47.42 paid weeks. You can also elect in writing to spread your pay evenly over 52 weeks.",
     },
     {
       q: "When is the next pay rise for Tasmanian teacher assistants?",
-      a: "From the first full pay period on or after 1 December 2026: $800 is added to the base salary, then 3%. Level 2 goes from $69,593 to $72,505 a year full-time and Level 6 from $74,837 to $77,906. A further 2.75% applies from 1 September 2027, taking Level 2 to $74,499.",
+      a: "Tasmanian Teacher Assistants get their next rise from the first full pay period on or after 1 December 2026: $800 is added to the base salary, then 3%. Level 2 goes from $69,593 to $72,505 a year full-time and Level 6 from $74,837 to $77,906. A further 2.75% applies from 1 September 2027, taking Level 2 to $74,499.",
     },
     {
       q: "What allowances can a Tasmanian teacher assistant get?",
@@ -825,15 +825,15 @@ const ACT: SchoolSupportState = {
     },
     {
       q: "What level does a Learning Support Assistant start on in the ACT?",
-      a: "School Assistant 2/3, pay point 1, at $59,725 a year. The 2/3 broadband was created when the agreement started: every School Assistant 2 moved into it at the matching pay point and the old competency barrier between levels 2 and 3 was removed (clause R17).",
+      a: "A Learning Support Assistant in the ACT starts at School Assistant 2/3, pay point 1, on $59,725 a year. The 2/3 broadband was created when the agreement started: every School Assistant 2 moved into it at the matching pay point and the old competency barrier between levels 2 and 3 was removed (clause R17).",
     },
     {
       q: "Why is an ACT school assistant paid less than an ASO at the same level?",
-      a: "Because the salary is pro rata to the hours. A School Assistant 2/3 works 62.5 hours a fortnight against 73.5 for a full-time ASO, so the pay is the ASO rate times 62.5/73.5 (85.034%); a School Assistant 4 works 67.5 hours and gets 91.836% (clause R16.6). ASO 2 pay point 1 is $70,236, which becomes $59,725 for a School Assistant 2/3.",
+      a: "An ACT School Assistant is paid less because the salary is pro rata to the hours worked. A School Assistant 2/3 works 62.5 hours a fortnight against 73.5 for a full-time ASO, so the pay is the ASO rate times 62.5/73.5 (85.034%); a School Assistant 4 works 67.5 hours and gets 91.836% (clause R16.6). ASO 2 pay point 1 is $70,236, which becomes $59,725 for a School Assistant 2/3.",
     },
     {
       q: "When is the next ACT school assistant pay rise?",
-      a: "None is set. The agreement's last rise was 1% plus $1,000 from 4 December 2025 and it passed its nominal expiry on 31 March 2026. The proposed 2026 to 2029 replacement was voted down in September 2026, so the next increase depends on a new agreement being made and approved by the Fair Work Commission.",
+      a: "No next pay rise is set for ACT School Assistants. The agreement's last rise was 1% plus $1,000 from 4 December 2025 and it passed its nominal expiry on 31 March 2026. The proposed 2026 to 2029 replacement was voted down in September 2026, so the next increase depends on a new agreement being made and approved by the Fair Work Commission.",
     },
   ],
   verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
@@ -966,7 +966,7 @@ const NT: SchoolSupportState = {
     },
     {
       q: "What is the difference between a 92% and a 96% school-based AO in the NT?",
-      a: `Hours per school day. A 92% employee works 6 hours 15 minutes each school day and a 96% employee 7 hours 21 minutes, against 36.75 hours a week for a 100% employee, who also works through the school holidays (clause 7.2). Pay is scaled the same way: AO2 pay point 1 is $58,817, $61,374 or ${formatSalary(ntFullRate("AO2"))}.`,
+      a: `The difference is the hours worked each school day. A 92% employee works 6 hours 15 minutes each school day and a 96% employee 7 hours 21 minutes, against 36.75 hours a week for a 100% employee, who also works through the school holidays (clause 7.2). Pay is scaled the same way: AO2 pay point 1 is $58,817, $61,374 or ${formatSalary(ntFullRate("AO2"))}.`,
     },
     {
       q: "Are NT school-based AOs paid during school holidays?",
@@ -974,7 +974,7 @@ const NT: SchoolSupportState = {
     },
     {
       q: "When is the next pay rise for NT school support staff?",
-      a: "3.5% from the first full pay period on or after 10 August 2027 (12 August 2027), taking AO2 pay point 1 on the 92% arrangement from $58,817 to $60,875. Another 3.5% follows from 10 August 2028, with any Darwin CPI above 3.5% added on.",
+      a: "NT school-based AOs get their next rise of 3.5% from the first full pay period on or after 10 August 2027 (12 August 2027), which takes AO2 pay point 1 on the 92% arrangement from $58,817 to $60,875. Another 3.5% follows from 10 August 2028, with any Darwin CPI above 3.5% added on.",
     },
   ],
   verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
@@ -999,15 +999,15 @@ export { derive as deriveFullTimeAnnual };
 export const SCHOOL_SUPPORT_HUB_FAQS: readonly PayFaq[] = [
   {
     q: "How much do teacher aides get paid in Australia?",
-    a: `It depends on the state and whether the school is government or non-government. In government schools the entry rate is $38.33 an hour for an SLSO 1 in NSW (from 1 July 2026), $36.2775 for a Tasmanian Teacher Assistant at Band 2 Level 2 (from 1 December 2025), $31.6921 for a Queensland OO2 teacher aide (from 1 November 2025), $34.75 for a WA Education Assistant (from 1 January 2026), ${formatSalary(SSO1.min)} a year for a South Australian SSO-1 (from May 2026), $51,622 a year full-time for Victorian ES 1-1, $59,725 for an ACT School Assistant 2/3 (from 4 December 2025) and $58,817 for an NT school-based AO2 on the 92% arrangement (from 13 August 2026). Private and Catholic schools use the Educational Services (Schools) General Staff Award.`,
+    a: `Teacher aide pay in Australia is set state by state for government schools, with a separate award for non-government schools. In government schools the entry rate is $38.33 an hour for an SLSO 1 in NSW (from 1 July 2026), $36.2775 for a Tasmanian Teacher Assistant at Band 2 Level 2 (from 1 December 2025), $31.6921 for a Queensland OO2 teacher aide (from 1 November 2025), $34.75 for a WA Education Assistant (from 1 January 2026), ${formatSalary(SSO1.min)} a year for a South Australian SSO-1 (from May 2026), $51,622 a year full-time for Victorian ES 1-1, $59,725 for an ACT School Assistant 2/3 (from 4 December 2025) and $58,817 for an NT school-based AO2 on the 92% arrangement (from 13 August 2026). Private and Catholic schools use the Educational Services (Schools) General Staff Award.`,
   },
   {
     q: "Are teacher aides paid during school holidays?",
-    a: "It depends on the state and the contract. NSW permanent SLSOs are paid in 26 equal fortnightly pays across the year, and long-term temporaries are paid in school vacations; short-term temporaries get a 15% loading instead of recreation leave. Casual Education Assistants in WA get a 25% loading instead of personal leave and paid student vacation time. Victorian ES staff on a term-time fraction are paid a proportion of the full-time salary. Tasmanian Teacher Assistants are paid for school terms only unless they elect to annualise their pay over 52 weeks. ACT School Assistants are on paid stand-down between terms, with annual leave in the December to January block. NT school-based AOs on the 92% or 96% arrangement are paid at ordinary rates for the days the school is closed.",
+    a: "Teacher aides' pay during school holidays differs by state and by type of contract. NSW permanent SLSOs are paid in 26 equal fortnightly pays across the year, and long-term temporaries are paid in school vacations; short-term temporaries get a 15% loading instead of recreation leave. Casual Education Assistants in WA get a 25% loading instead of personal leave and paid student vacation time. Victorian ES staff on a term-time fraction are paid a proportion of the full-time salary. Tasmanian Teacher Assistants are paid for school terms only unless they elect to annualise their pay over 52 weeks. ACT School Assistants are on paid stand-down between terms, with annual leave in the December to January block. NT school-based AOs on the 92% or 96% arrangement are paid at ordinary rates for the days the school is closed.",
   },
   {
     q: "What is a teacher aide called in each state?",
-    a: "School Learning Support Officer (SLSO) in NSW, Education Support (ES) staff in Victoria, teacher aide in Queensland, Education Assistant (EA) in Western Australia, School Services Officer (SSO) in South Australia, Teacher Assistant in Tasmania, School Assistant (most often a Learning Support Assistant) in the ACT, and school-based Administrative Officer (AO2 to AO4) in the Northern Territory.",
+    a: "The teacher aide role is called School Learning Support Officer (SLSO) in NSW, Education Support (ES) staff in Victoria, teacher aide in Queensland, Education Assistant (EA) in Western Australia, School Services Officer (SSO) in South Australia, Teacher Assistant in Tasmania, School Assistant (most often a Learning Support Assistant) in the ACT, and school-based Administrative Officer (AO2 to AO4) in the Northern Territory.",
   },
   {
     q: "Which states pay teacher aides across the school holidays?",

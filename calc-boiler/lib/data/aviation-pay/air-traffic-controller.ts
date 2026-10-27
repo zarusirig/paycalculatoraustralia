@@ -42,7 +42,7 @@ export const ATC_PAY: AviationPayPage = {
       id: "atc-classification",
       title: "Air traffic controller classification and base salary (Attachment 1)",
       intro:
-        "Base salaries for Airservices air traffic controllers, from ab initio trainee through the licensed Level 1 to Level 10 scale to the supervisor classifications. Figures are the agreement's \"24 months\" column, in force from 7 October 2026.",
+        "The Airservices agreement sets a base salary for each air traffic controller classification, from Ab Initio Trainee through the licensed Level 1 to Level 10 scale to the supervisor classifications. Figures are the agreement's \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "Ab Initio Trainee", salary: 64_398, note: "In initial training, before any ATC licence" },
@@ -75,7 +75,7 @@ export const ATC_PAY: AviationPayPage = {
       id: "fdc-classification",
       title: "Flight Data Co-ordinator (FDC) classification and base salary",
       intro:
-        "Base salaries for Flight Data Co-ordinators covered by the same agreement. Figures are the \"24 months\" column, in force from 7 October 2026.",
+        "Flight Data Co-ordinators are covered by the same Airservices agreement and paid these base salaries. Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "FDC Trainee", salary: 91_854 },
@@ -93,7 +93,7 @@ export const ATC_PAY: AviationPayPage = {
       id: "sso-classification",
       title: "Simulator Support Officer (SSO) classification and base salary",
       intro:
-        "Base salaries for Simulator Support Officers, who support ATC training simulators. Figures are the \"24 months\" column, in force from 7 October 2026.",
+        "Simulator Support Officers support ATC training simulators and are paid these base salaries. Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "Trainee", salary: 87_184 },
@@ -116,7 +116,7 @@ export const ATC_PAY: AviationPayPage = {
       id: "adt-classification",
       title: "Airways Data Team (ADT) classification and base salary",
       intro:
-        "Base salaries for the Airways Data Team (previously the TAAATS Data Management Unit). Figures are the \"24 months\" column, in force from 7 October 2026.",
+        "The Airways Data Team (previously the TAAATS Data Management Unit) is paid these base salaries. Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "ADT Trainee", salary: 84_518 },
@@ -154,18 +154,18 @@ export const ATC_PAY: AviationPayPage = {
       name: "Airservices Australia Enterprise Award 2016 [MA000141]",
       url: "https://awards.fairwork.gov.au/MA000141.html",
       summary:
-        "The award the enterprise agreement was tested against at approval (the better off overall test). It is the safety net for Airservices employees; the enterprise agreement salaries above are what controllers are actually paid.",
+        "This award is the safety net for Airservices employees, and the enterprise agreement was tested against it at approval (the better off overall test). Controllers are actually paid the enterprise agreement salaries above, not the award rates.",
     },
   ],
   notices: [
     "Every salary on this page is the agreement's \"24 months\" column, a 3.4% rise that took effect on 7 October 2026 and the last scheduled under this agreement. Figures re-read from Attachment 1 on 9 October 2026.",
     "The SY TTCU and SY CSS/Supervisor classifications closed to new employees from 1 July 2025 and are grandfathered for existing employees who meet clauses 27.14 to 27.21.",
-    "These are base salaries only. Controllers' actual earnings also include penalty rates, overtime and allowances, which vary by roster and location.",
+    "The salaries on this page are base salaries only. Controllers' actual earnings also include penalty rates, overtime and allowances, which vary by roster and location.",
     "Air traffic controllers in the Australian Defence Force are paid under ADF pay scales, not this agreement.",
     "The agreement reaches its nominal expiry date on 7 October 2027. Salaries after that depend on a replacement agreement.",
   ],
   unverified: [
-    "The agreement's salary table is headed \"On Commencement\", \"12 months\" and \"24 months\" without naming a pay period. The dates on this page (7 October 2025 and 7 October 2026) are 12 and 24 months after the 7 October 2024 commencement date in the FWC decision; the exact pay period in which each rise was or will be paid is not printed in the table.",
+    "The agreement's salary table is headed \"On Commencement\", \"12 months\" and \"24 months\" without naming a pay period. The dates on this page (7 October 2025 and 7 October 2026) are 12 and 24 months after the 7 October 2024 commencement date in the FWC decision; the exact pay period in which each rise was paid is not printed in the table.",
     "Salary-related allowances in clause 24 (for example the workplace responsibility and community language allowances) print their increases from the first full pay period after 18 November 2024 and 18 November 2025. Those allowance dates differ from the salary table's column headings and are not used for salaries here.",
     "Overall earnings figures (base plus penalties and allowances) are not published by Airservices and are not estimated here.",
   ],
@@ -203,7 +203,7 @@ export const ATC_PAY: AviationPayPage = {
     },
     {
       q: "How often do air traffic controllers get a pay rise?",
-      a: "Two ways. The agreement's salary table rose 4% on commencement, 3.8% after 12 months and 3.4% after 24 months (from 7 October 2026, the last scheduled rise). Separately, controllers from Level 1 progress one classification level each year up to Level 10 if their performance is satisfactory and they meet the licence, medical and training conditions in clause 27.3.",
+      a: "Air traffic controllers get pay rises in two ways: scheduled rises in the agreement's salary table and yearly progression through the classification levels. The agreement's salary table rose 4% on commencement, 3.8% after 12 months and 3.4% after 24 months (from 7 October 2026, the last scheduled rise). Separately, controllers from Level 1 progress one classification level each year up to Level 10 if their performance is satisfactory and they meet the licence, medical and training conditions in clause 27.3.",
     },
     {
       q: "Do air traffic controllers get paid overtime?",

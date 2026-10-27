@@ -70,7 +70,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Casual rates include the 25% loading (cl 22.3.2). On public holidays casuals and permanent staff get the same 250%.",
-    "For an adult Level 1 team member ($28.50) that is about $35.63 an hour on a weeknight or Saturday ($42.75 casual), $42.75 on a Sunday ($49.88 casual) and $71.25 on a public holiday. This is our arithmetic on the formula rate.",
+    "An adult Level 1 Officeworks team member ($28.50) gets about $35.63 an hour on a weeknight or Saturday ($42.75 casual), $42.75 on a Sunday ($49.88 casual) and $71.25 on a public holiday. This is our arithmetic on the formula rate.",
     "Staff employed specifically as shiftworkers (shifts starting from 6pm and ending before 5am) get 130% Sunday night to Friday, 150% Saturday and 175% Sunday (casual 155%, 175%, 200%).",
   ],
   overtime: [
@@ -97,7 +97,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does Officeworks pay an hour in 2026?",
-      a: "An adult Team Member Level 1 at Officeworks is paid about $28.50 an hour, or $35.63 as a casual, from the first full pay period on or after 1 July 2026. Level 2 (forklift operators and Specialists) gets about $29.91 and Level 3 about $31.33. These apply the agreement's Annual Wage Review plus 0.25% rule to its printed 2024 rates.",
+      a: "An adult Team Member Level 1 at Officeworks is paid about $28.50 an hour, or $35.63 as a casual, from the first full pay period on or after 1 July 2026. Level 2 (forklift operators and Specialists) gets about $29.91 and Level 3 about $31.33. These figures apply the Officeworks agreement's Annual Wage Review plus 0.25% rule to its printed 2024 rates.",
     },
     {
       q: "What agreement covers Officeworks staff?",
@@ -105,7 +105,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
     },
     {
       q: "How much does Officeworks pay a 16 or 17 year old?",
-      a: "At Level 1, staff under 18 get 60% of the adult rate: about $17.10 an hour. At 18 it is 70% ($19.95) and at 19 it is 85%. Juniors at Level 2 or 3 get the adult rate.",
+      a: "At Level 1, Officeworks staff under 18 get 60% of the adult rate: about $17.10 an hour. At 18 it is 70% ($19.95) and at 19 it is 85%. Juniors at Level 2 or 3 get the adult rate.",
     },
     {
       q: "What does Officeworks pay on Sundays and public holidays?",
@@ -113,7 +113,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
     },
     {
       q: "When is the next Officeworks pay rise?",
-      a: "From the first full pay period on or after 1 July 2027, by the 2027 Annual Wage Review percentage plus 0.25%.",
+      a: "The next Officeworks pay rise is from the first full pay period on or after 1 July 2027, when every level rises by the 2027 Annual Wage Review percentage plus 0.25%.",
     },
   ],
 };

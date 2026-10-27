@@ -115,7 +115,7 @@ export default function ZoneTaxOffsetCalculator() {
           Zone Tax Offset Calculator
         </h2>
         <p className="text-sm text-warmgray mb-6">
-          Works out your zone or overseas forces tax offset for the {ZONE_OFFSET_INCOME_YEAR} income
+          This calculator works out your zone or overseas forces tax offset for the {ZONE_OFFSET_INCOME_YEAR} income
           year, following the ATO&rsquo;s own worksheets. Claim it at question T4 in your tax return.
         </p>
 
@@ -237,8 +237,8 @@ export default function ZoneTaxOffsetCalculator() {
                 aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
-                {ZONE_QUALIFYING_DAYS} days or more claims the full amount. They need not be
-                consecutive.
+                {ZONE_QUALIFYING_DAYS} days or more there claims the full amount. The days need
+                not be consecutive.
               </p>
             </div>
 
@@ -345,7 +345,7 @@ export default function ZoneTaxOffsetCalculator() {
                     className="block w-28 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm"
                   />
                   <p className="text-xs text-warmgray-light mt-1">
-                    Only if you also claim a base amount for that child or student.
+                    Count these days only if you also claim a base amount for that child or student.
                   </p>
                 </div>
                 <div>
@@ -370,7 +370,7 @@ export default function ZoneTaxOffsetCalculator() {
                     />
                   </div>
                   <p className="text-xs text-warmgray-light mt-1">
-                    The amount you claim at T5 label B, up to{" "}
+                    Enter the amount you claim at T5 label B, up to{" "}
                     {formatAUD(INVALID_CARER_OFFSET.fullYearMax)}.
                   </p>
                 </div>
@@ -397,7 +397,7 @@ export default function ZoneTaxOffsetCalculator() {
                     />
                   </div>
                   <p className="text-xs text-warmgray-light mt-1">
-                    From Centrelink or DVA. This reduces your offset dollar for dollar.
+                    Remote area allowance from Centrelink or DVA reduces your offset dollar for dollar.
                   </p>
                 </div>
               </div>

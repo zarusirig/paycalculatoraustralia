@@ -49,7 +49,7 @@ export default function SuperGuaranteeChargePage() {
             Super Guarantee Charge: What Late Super Actually Costs
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} and rebuilt the super guarantee charge from the ground up. Here is what the charge is now made of, when super is actually due, and what changed.
+            Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} and rebuilt the super guarantee charge (SGC) from the ground up, so the charge is now assessed per payday instead of per quarter. The SGC is the amount an employer owes the ATO for super that reaches an employee&rsquo;s fund late or short. This guide covers the charge&rsquo;s components, when super is due, how to reduce the administrative uplift to nil, and what changed from the old quarterly charge.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -123,24 +123,24 @@ export default function SuperGuaranteeChargePage() {
                 </div>
               </div>
               <p>
-                <strong>The late payment penalty is not one of them.</strong> It is widely listed as a fifth component and it is not &mdash; it arises separately and much later. See below.
+                <strong>The late payment penalty is not one of them.</strong> It is widely listed as a fifth component, but the late payment penalty arises separately and much later, as the section below explains.
               </p>
             </section>
 
             <section id="deadlines">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Is Super Actually Due?</h2>
               <p>
-                Within <strong>{C.businessDaysToPay} business days</strong> of payday &mdash; but the test is when the money is <em>received</em> by the employee&rsquo;s fund, not when you send it. Clearing house and fund processing time counts against you, which is the single most common way a compliant-looking payroll still generates a charge.
+                Within <strong>{C.businessDaysToPay} business days</strong> of payday, but the test is when the money is <em>received</em> by the employee&rsquo;s fund, not when you send it. Clearing house and fund processing time counts against you, which is the single most common way a compliant-looking payroll still generates a charge.
               </p>
               <p>
-                A longer <strong>{C.businessDaysNewEmployee} business day</strong> deadline covers two situations, not one: a new employee, and a first contribution to a new complying fund for an existing employee after you stopped contributing to another. And a business day excludes weekends and public holidays &mdash; a public holiday anywhere in Australia removes a day nationally, so a state you do not operate in can still move your deadline.
+                A longer <strong>{C.businessDaysNewEmployee} business day</strong> deadline covers two situations, not one: a new employee, and a first contribution to a new complying fund for an existing employee after you stopped contributing to another. A business day excludes weekends and public holidays. A public holiday anywhere in Australia removes a day nationally, so a state you do not operate in can still move your deadline.
               </p>
             </section>
 
             <section id="administrative-uplift">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Get the Administrative Uplift to Nil</h2>
               <p>
-                This is the largest lever available once a shortfall has happened, and it is routinely described wrongly as a single all-or-nothing test. There are <strong>two independent reductions and they stack</strong>. The uplift starts at {pct(C.administrativeUpliftMax)}:
+                The administrative uplift is the largest lever available once a shortfall has happened, and it is routinely described wrongly as a single all-or-nothing test. There are <strong>two independent reductions and they stack</strong>. The uplift starts at {pct(C.administrativeUpliftMax)}:
               </p>
               <ul>
                 <li><strong>No ATO-initiated assessment</strong> in the two years to that payday removes <strong>20 percentage points</strong>. SGC from before 1 July 2026 is ignored for this test.</li>
@@ -178,7 +178,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="late-payment-penalty">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Late Payment Penalty Is Separate</h2>
               <p>
-                A late payment penalty of <strong>{pct(C.latePayment.penalty)}</strong> of the outstanding charge can be imposed &mdash; rising to <strong>{pct(C.latePayment.penaltyRepeatWithin24Months)}</strong> if you were liable for the same penalty in the previous 24 months. It is <em>not</em> part of the SGC, and it does not arrive automatically. The sequence is: the charge is assessed, it goes unpaid for 28 days, a Notice to Pay issues, and it remains unpaid a further 28 days.
+                A late payment penalty of <strong>{pct(C.latePayment.penalty)}</strong> of the outstanding charge can be imposed, rising to<strong>{pct(C.latePayment.penaltyRepeatWithin24Months)}</strong> if you were liable for the same penalty in the previous 24 months. It is <em>not</em> part of the SGC, and it does not arrive automatically. The sequence is: the charge is assessed, it goes unpaid for 28 days, a Notice to Pay issues, and it remains unpaid a further 28 days.
               </p>
               <p>
                 The ATO says the penalty <strong>cannot be remitted</strong>, so unlike the administrative uplift there is no disclosure route out of it. Two qualifications matter, though: it reduces to nil under an exceptional circumstance determination, and if the ATO reduces the underlying charge the penalty reduces with it.
@@ -188,7 +188,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="deductibility">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Charge Is Now Tax-Deductible &mdash; This Reversed</h2>
               <p>
-                For paydays from {SUPER_GUARANTEE.paydaySuperStart}, all four components of the super guarantee charge are <strong>deductible</strong>. The legacy quarterly SGC was expressly <strong>not</strong>, and that non-deductibility was much of what made it punitive. A great deal of published guidance (and, until recently, this site) still says the SGC cannot be claimed. That is now true only of the old charge.
+                For paydays from {SUPER_GUARANTEE.paydaySuperStart}, all four components of the super guarantee charge are <strong>deductible</strong>. The legacy quarterly SGC was expressly <strong>not</strong>, and that non-deductibility was much of what made it punitive. A great deal of published guidance still says the SGC cannot be claimed, but that is now true only of the old quarterly charge.
               </p>
               <p>Three things attached to the new charge remain non-deductible:</p>
               <ul>
@@ -222,10 +222,10 @@ export default function SuperGuaranteeChargePage() {
             <section id="maximum-contribution-base">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Maximum Contribution Base Became Annual</h2>
               <p>
-                The maximum contribution base caps the earnings on which SG is compulsory. From {SUPER_GUARANTEE.paydaySuperStart} it is an <strong>annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, replacing {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter. That is a change of structure, not just of number: it is now a running year-to-date test that resets each financial year, rather than four separate quarterly caps.
+                The maximum contribution base caps the earnings on which SG is compulsory. From {SUPER_GUARANTEE.paydaySuperStart} it is an <strong>annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, replacing {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter. The structure changed as well as the number: the maximum contribution base is now a running year-to-date test that resets each financial year, instead of four separate quarterly caps.
               </p>
               <p>
-                It is derived from the concessional cap: {formatAUD(SUPER_GUARANTEE.concessionalCap)} × 100 ÷ 12, rounded down to the nearest $10. At {pct(SUPER_GUARANTEE.rate)} that caps compulsory SG at about <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong> a year. Employers can always contribute more voluntarily. See our <Link href="/superannuation-calculator/">superannuation calculator</Link> to model contributions.
+                The maximum contribution base is derived from the concessional cap: {formatAUD(SUPER_GUARANTEE.concessionalCap)} × 100 ÷ 12, rounded down to the nearest $10. At {pct(SUPER_GUARANTEE.rate)} that caps compulsory SG at about <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong> a year. Employers can contribute more voluntarily. See our <Link href="/superannuation-calculator/">superannuation calculator</Link> to model contributions.
               </p>
             </section>
 
@@ -235,17 +235,17 @@ export default function SuperGuaranteeChargePage() {
                 More frequent contributions can shift which financial year some of them land in, which can push an employee over the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap through no fault of their own. Treasury said in February 2026 that it would introduce technical amendments to prevent this.
               </p>
               <p>
-                As at {PAYDAY_SUPER_CAP_RELIEF.verifiedOn}, the ATO&rsquo;s own changeover guidance still states in terms: <strong>&ldquo;{PAYDAY_SUPER_CAP_RELIEF.atoWording}&rdquo;</strong> The relief is now in a bill: {PAYDAY_SUPER_CAP_RELIEF.bill.schedule} of the <a href={PAYDAY_SUPER_CAP_RELIEF.bill.url} target="_blank" rel="noopener noreferrer">{PAYDAY_SUPER_CAP_RELIEF.bill.name}</a>, introduced on {PAYDAY_SUPER_CAP_RELIEF.bill.introduced} and now {PAYDAY_SUPER_CAP_RELIEF.bill.status}; the Senate referred it to the {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.name} on {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.referred}, with a report due {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.reportDue}. Its explanatory memorandum says certain employer contributions relating to the June 2026 quarter &ldquo;are disregarded when working out concessional contributions for the 2026-27 income year&rdquo;, and that it &ldquo;does not apply to sacrificed contributions&rdquo;. The bill has not passed. Until it is legislated the ordinary rules apply, and the existing options are the existing ones &mdash; reduce voluntary contributions, or apply to have contributions disregarded or reallocated. <strong>Do not plan around relief that does not yet exist.</strong> See our <Link href="/division-293-tax/">Division 293</Link> guide for the related high-income charge.
+                As at {PAYDAY_SUPER_CAP_RELIEF.verifiedOn}, the ATO&rsquo;s own changeover guidance still states in terms: <strong>&ldquo;{PAYDAY_SUPER_CAP_RELIEF.atoWording}&rdquo;</strong> The relief is now in a bill: {PAYDAY_SUPER_CAP_RELIEF.bill.schedule} of the <a href={PAYDAY_SUPER_CAP_RELIEF.bill.url} target="_blank" rel="noopener noreferrer">{PAYDAY_SUPER_CAP_RELIEF.bill.name}</a>, introduced on {PAYDAY_SUPER_CAP_RELIEF.bill.introduced} and now {PAYDAY_SUPER_CAP_RELIEF.bill.status}; the Senate referred it to the {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.name} on {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.referred}, with a report due {PAYDAY_SUPER_CAP_RELIEF.senateCommittee.reportDue}. Its explanatory memorandum says certain employer contributions relating to the June 2026 quarter &ldquo;are disregarded when working out concessional contributions for the 2026-27 income year&rdquo;, and that it &ldquo;does not apply to sacrificed contributions&rdquo;. The bill has not passed. Until it is legislated the ordinary rules apply, and the options are the ones that already exist: reduce voluntary contributions, or apply to have contributions disregarded or reallocated. <strong>Do not plan around relief that does not yet exist.</strong> See our <Link href="/division-293-tax/">Division 293</Link> guide for the related high-income charge.
               </p>
             </section>
 
             <section id="legacy-regime">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Old Quarterly Charge, for Earnings up to 30 June 2026</h2>
               <p>
-                Still live, and still governing anything paid before the changeover. Under that regime the charge was:
+                The old quarterly charge is still live and still governs anything paid before the changeover. Under that regime the charge was:
               </p>
               <ul>
-                <li>The shortfall calculated on <strong>total salary and wages including overtime</strong>, not OTE &mdash; so the charge exceeded the super actually owed</li>
+                <li>The shortfall calculated on <strong>total salary and wages including overtime</strong>, not OTE, so the charge exceeded the super actually owed</li>
                 <li>Nominal interest at <strong>{pct(L.nominalInterestRate)} a year</strong>, running from the start of the quarter, which by law could not be reduced or waived</li>
                 <li>An administration fee of <strong>{formatAUD(L.adminFeePerEmployeePerQuarter)} per employee per quarter</strong></li>
                 <li>Choice liability capped at {formatAUD(L.choiceLiabilityCap)}</li>
@@ -265,12 +265,12 @@ export default function SuperGuaranteeChargePage() {
             <section id="related">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; how super works, contributions and caps</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: how super works, contributions and caps</li>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: employer SG at {pct(SUPER_GUARANTEE.rate)} on any salary</li>
-                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; checking super is actually being paid</li>
-                <li><Link href="/employer-cost-calculator/">Employer Cost Calculator</Link> &mdash; the true cost of employing someone</li>
-                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee</Link> &mdash; misclassification is a common source of SGC exposure</li>
-                <li><Link href="/tax-calendar/">Tax Calendar</Link> &mdash; key ATO dates and deadlines</li>
+                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link>: checking super is actually being paid</li>
+                <li><Link href="/employer-cost-calculator/">Employer Cost Calculator</Link>: the true cost of employing someone</li>
+                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee</Link>: misclassification is a common source of SGC exposure</li>
+                <li><Link href="/tax-calendar/">Tax Calendar</Link>: key ATO dates and deadlines</li>
               </ul>
             </section>
 
@@ -297,7 +297,7 @@ export default function SuperGuaranteeChargePage() {
                   Every figure derives from a single constants file checked against ato.gov.au on {SITE_CONFIG.lastVerified}: the charge components and administrative uplift schedule from QC105848, payment deadlines from QC105846, qualifying earnings from QC105843, the general interest charge rate from QC16145, and the legacy quarterly regime from QC33743.
                 </p>
                 <p>
-                  Three things commonly published about this charge are wrong and are corrected here: the late payment penalty is not one of its components, the administrative uplift is two stacking reductions rather than one all-or-nothing test, and the {formatAUD(C.choiceLoadingCap)} choice-loading cap applies per {C.choiceLoadingCapBasis}. The general interest charge rate resets quarterly, so the quarter it belongs to is printed beside it &mdash; the {GENERAL_INTEREST_CHARGE.quarter} rate is current and the next is expected {GENERAL_INTEREST_CHARGE.nextRateDue}.
+                  Three things commonly published about this charge are wrong and are corrected here: the late payment penalty is not one of its components, the administrative uplift is two stacking reductions rather than one all-or-nothing test, and the {formatAUD(C.choiceLoadingCap)} choice-loading cap applies per {C.choiceLoadingCapBasis}. The general interest charge rate resets quarterly, so the quarter it belongs to is printed beside it. The {GENERAL_INTEREST_CHARGE.quarter} rate is current and the next is expected {GENERAL_INTEREST_CHARGE.nextRateDue}.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

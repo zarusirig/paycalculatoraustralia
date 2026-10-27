@@ -106,7 +106,7 @@ export default function STSLOnPayslipPage() {
             <section id="how-is-stsl-calculated">
               <h2>How Is the STSL Amount Calculated?</h2>
               <p>
-                Your employer does not calculate your actual HECS repayment. Instead, payroll software looks up your gross earnings for the pay period in the ATO&apos;s <strong>STSL component tax tables</strong>, published alongside the standard <Link href="/payg-withholding-tables/">PAYG withholding tables</Link>: and withholds the listed extra amount on top of normal income tax.
+                Your employer does not calculate your actual HECS repayment. Instead, payroll software looks up your gross earnings for the pay period in the ATO&apos;s <strong>STSL component tax tables</strong>, published alongside the standard <Link href="/payg-withholding-tables/">PAYG withholding tables</Link>, and withholds the listed extra amount on top of normal income tax.
               </p>
               <p>
                 The tables are built from the annual repayment bands. For FY2026-27, compulsory repayments are <strong>15c per dollar of repayment income above {formatAUD(STSL_THRESHOLD_2026_27)}</strong> (rising to 17c above {formatAUD(BAND_15.max)}, and 10% of total repayment income from {formatAUD(BAND_10.min)}). Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your annual figure and weekly impact at any salary.

@@ -113,11 +113,11 @@ export const PACKAGING_BENEFIT = salaryPackagingBenefit(PACKAGE_SALARY, PACKAGED
 export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   {
     q: "How much do registered nurses earn in Australia?",
-    a: `It depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the eight state and territory pay scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(RN_ENTRY.low)} in ${RN_ENTRY.lowState} to ${formatAUD(RN_ENTRY.high)} in ${RN_ENTRY.highState}, and the top of the base registered nurse scale runs from ${formatAUD(RN_TOP.low)} to ${formatAUD(RN_TOP.high)}. Those are base rates before shift penalties, which for a nurse on a rotating roster add a substantial amount on top. Pick your state above for the full published scale.`,
+    a: `A registered nurse's pay in Australia depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the eight state and territory pay scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(RN_ENTRY.low)} in ${RN_ENTRY.lowState} to ${formatAUD(RN_ENTRY.high)} in ${RN_ENTRY.highState}, and the top of the base registered nurse scale runs from ${formatAUD(RN_TOP.low)} to ${formatAUD(RN_TOP.high)}. Those are base rates, and a nurse on a rotating roster is paid shift penalties on top. Pick your state above for the full published scale.`,
   },
   {
     q: "What is the Nurses Award 2020 and does it apply to me?",
-    a: `The Nurses Award 2020 (MA000034) is the federal modern award for nurses: a legal minimum, not a pay scale. Its registered nurse level 1 pay point 1 rate is ${formatAUD(AWARD_RN1.points[0].weekly, 2)} a week, or ${formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour, from ${NURSES_AWARD.generalRatesFrom}. If you work in a state public hospital you are almost certainly paid under an enterprise or state agreement that pays well above that. The award is what governs private hospital, GP clinic, aged care and some agency work. Note it now has two rate streams: aged care employees are on materially higher minimums than the general stream.`,
+    a: `The Nurses Award 2020 (MA000034) is the federal modern award for nurses: a legal minimum, not a pay scale. Its registered nurse level 1 pay point 1 rate is ${formatAUD(AWARD_RN1.points[0].weekly, 2)} a week, or ${formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour, from ${NURSES_AWARD.generalRatesFrom}. If you work in a state public hospital you are almost certainly paid under an enterprise or state agreement that pays well above that. The Nurses Award governs private hospital, GP clinic, aged care and some agency work. It now has two rate streams: aged care employees are on materially higher minimums than the general stream.`,
   },
   {
     q: "Who is eligible for salary packaging in healthcare?",
@@ -125,7 +125,7 @@ export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What penalty rates do nurses receive?",
-    a: "There is no single national answer, and treating one state's numbers as typical is how payslip checks go wrong. Weekday night shift is +20% in NSW and Queensland, +20.5% in South Australia, +35% in Western Australia, and a flat dollar allowance per shift in Victoria. Weekend ordinary hours are time and a half on Saturday in NSW, Victoria and Queensland, +50% in WA; Sunday is time and three quarters in NSW and Queensland, +75% in WA and time and a half in Victoria. Weekend rates normally replace the shift loading rather than adding to it. The state pages carry the clause references.",
+    a: "Nurse penalty rates differ by state, so there is no single national rate, and you need your own state's rates to check a nurse payslip. Weekday night shift is +20% in NSW and Queensland, +20.5% in South Australia, +35% in Western Australia, and a flat dollar allowance per shift in Victoria. Weekend ordinary hours are time and a half on Saturday in NSW, Victoria and Queensland, +50% in WA; Sunday is time and three quarters in NSW and Queensland, +75% in WA and time and a half in Victoria. Weekend rates normally replace the shift loading rather than adding to it. The state pages carry the clause references.",
   },
   {
     q: "How much do aged care workers earn?",
@@ -138,6 +138,6 @@ export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is public or private healthcare better paid?",
-    a: `It depends on the agreement, so compare the actual scales. What the private sector cannot match is the public hospital salary packaging exemption: on a ${formatAUD(PACKAGE_SALARY)} salary, packaging the full hospital and meal entertainment caps is worth about ${formatAUD(PACKAGING_BENEFIT)} a year in extra take-home pay at FY${SITE_CONFIG.financialYear} rates, before provider fees.`,
+    a: `Public versus private healthcare pay depends on the agreement, so compare the actual scales for your role. What the private sector cannot match is the public hospital salary packaging exemption: on a ${formatAUD(PACKAGE_SALARY)} salary, packaging the full hospital and meal entertainment caps is worth about ${formatAUD(PACKAGING_BENEFIT)} a year in extra take-home pay at FY${SITE_CONFIG.financialYear} rates, before provider fees.`,
   },
 ];

@@ -252,7 +252,7 @@ export interface ModernAwardData {
 const VERIFIED_ON = "23 September 2026";
 const OPERATIVE = "1 July 2026";
 const EFFECTIVE_NOTE =
-  "Applies from the first full pay period starting on or after 1 July 2026, not universally 1 July.";
+  "These award rates apply from the first full pay period starting on or after 1 July 2026, not from 1 July itself for every employee.";
 
 function parse(raw: string): AwardRate[] {
   return raw
@@ -517,7 +517,7 @@ Pharmacist manager|1981.60|52.15
   ],
   allowancesClause: "cl 19",
   hoursNotes: [
-    "Casuals must be rostered for a minimum of 3 consecutive hours (cl 11.1), reduced to 2 hours for a full-time secondary school student working between 3.00 pm and 6.30 pm on a school day where the conditions in cl 11.5 are met.",
+    "Casuals must be rostered for a minimum of 3 consecutive hours (cl 11.1). The minimum is 2 hours for a casual who is a full-time secondary school student working between 3.00 pm and 6.30 pm on a school day, where the conditions in cl 11.5 are met.",
     "The maximum ordinary hours on any day is 12 (cl 13.3).",
   ],
   unverified: [
@@ -578,7 +578,7 @@ Security Officer Level 5|1185.70|31.20
   ],
   penaltiesClause: "cl 20.2, Table 7",
   penaltyNotes: [
-    "Night work is 121.7%, not a round number, and 130% for an employee on permanent night work, meaning more than two-thirds of their ordinary shifts in a roster cycle include the period between midnight and 6.00 am (cl 20.3).",
+    "Night work is paid at 121.7%, not a round number. An employee on permanent night work is paid 130%, meaning more than two-thirds of their ordinary shifts in a roster cycle include the period between midnight and 6.00 am (cl 20.3).",
     "The casual column in Table 7 is inclusive of the 25% casual loading, and cl 11.1(b) confirms the loading is paid in addition to any shift, weekend or public holiday penalty.",
   ],
   // cl 19.3(a), Table 5 — one column.
@@ -590,7 +590,7 @@ Security Officer Level 5|1185.70|31.20
   ],
   overtimeClause: "cl 19.3(a), Table 5",
   overtimeNotes: [
-    "Casuals are paid overtime for time worked beyond 10 hours a shift (12 by agreement) or beyond 38 hours a week, or an average of 38 across a roster of up to 8 weeks (cl 19.2(c)). An employer must not require more than 14 hours of work in a 24-hour period (cl 19.1).",
+    "Under cl 19.2(c), casuals are paid overtime for time worked beyond 10 hours a shift (12 by agreement). Casual overtime also applies beyond 38 hours a week, or beyond an average of 38 hours across a roster of up to 8 weeks. An employer must not require more than 14 hours of work in a 24-hour period (cl 19.1).",
   ],
   casualPenaltyBasis: "additive",
   junior: null,
@@ -614,8 +614,8 @@ Security Officer Level 5|1185.70|31.20
   ],
   allowancesClause: "cl 17",
   hoursNotes: [
-    "Ordinary hours may be rostered as broken shifts of up to 2 periods of duty; each period must be paid for at least 3 hours even if the employee works a shorter time (cl 13.3(h)–(i)), and the broken shift allowance is payable on top.",
-    "Call back: an employee required to return to work after finishing is paid for at least 2 hours (Monday to Saturday disciplinary or administrative attendance), 3 hours (Monday to Saturday for any other purpose) or 4 hours (Sunday) (cl 19.5, Table 6).",
+    "Ordinary hours may be rostered as broken shifts of up to 2 periods of duty. Each period must be paid for at least 3 hours even if the employee works a shorter time (cl 13.3(h) to (i)), and the broken shift allowance is payable on top.",
+    "An employee required to return to work after finishing is paid a call back minimum of 2 hours for a disciplinary or administrative attendance, Monday to Saturday (cl 19.5, Table 6). The call back minimum is 3 hours for any other purpose Monday to Saturday, and 4 hours on a Sunday.",
   ],
   unverified: [
     "Classification definitions for Security Officer Levels 1 to 5 (Schedule A). We publish the rate for each level but not the duties that place an officer at that level",
@@ -834,8 +834,8 @@ D4 (driver)|1118.00|29.42
   penaltiesClause: "cl 33",
   penaltyNotes: [
     "Day workers' ordinary hours are Monday to Friday between 6.00 am and 6.00 pm (cl 17.2). Saturday and Sunday are ordinary hours only by agreement. Without one, weekend work is paid as overtime.",
-    "For casuals every percentage applies to the casual ordinary hourly rate, which already includes the 25% loading (cl 11.1(d)). A casual Saturday at 150% is therefore 187.5% of the base rate. This award compounds where most others add.",
-    "Saturday, Sunday and public holiday shift rates replace the afternoon and night shift loadings rather than adding to them (cl 33.2(i)–(j)). Extra rates, other than special rates and public holiday rates, are not cumulative beyond double the ordinary hourly rate (cl 26).",
+    "For casuals every percentage applies to the casual ordinary hourly rate, which already includes the 25% loading (cl 11.1(d)). A casual Saturday at 150% is therefore 187.5% of the base rate. The Manufacturing Award compounds the casual loading. Awards such as Fast Food, Pharmacy, Security and Clerks add it instead.",
+    "Saturday, Sunday and public holiday shift rates replace the afternoon and night shift loadings rather than adding to them (cl 33.2(i) to (j)). Extra rates, other than special rates and public holiday rates, are not cumulative beyond double the ordinary hourly rate (cl 26).",
   ],
   // cl 32.
   overtime: [
@@ -874,7 +874,7 @@ D4 (driver)|1118.00|29.42
     { name: "Leading hand — in charge of 3 to 10 employees", amount: 48.98, unit: "per week", clause: "cl 30.2(a)(i)", note: "All-purpose: added to the rate before penalties and overtime are calculated." },
     { name: "Leading hand — in charge of 11 to 20 employees", amount: 73.15, unit: "per week", clause: "cl 30.2(a)(i)", note: "All-purpose." },
     { name: "Leading hand — in charge of more than 20 employees", amount: 93.12, unit: "per week", clause: "cl 30.2(a)(i)", note: "All-purpose." },
-    { name: "Tool allowance — tradesperson", amount: 17.9, unit: "per week", clause: "cl 30.2(c)(ii)", note: "All-purpose. Not payable where the employer provides all tools (cl 30.2(c)(iii)–(iv))." },
+    { name: "Tool allowance — tradesperson", amount: 17.9, unit: "per week", clause: "cl 30.2(c)(ii)", note: "All-purpose. Not payable where the employer provides all tools (cl 30.2(c)(iii) to (iv))." },
     { name: "Tool allowance — carpenter, joiner or shipwright/boatbuilder", amount: 33.88, unit: "per week", clause: "cl 30.2(d)(ii)", note: "All-purpose." },
     { name: "Technical computing equipment allowance", amount: 57.87, unit: "per week", clause: "cl 30.2(e)(i)", note: "All-purpose." },
     { name: "First aid allowance", amount: 22.26, unit: "per week", clause: "cl 30.3(b)" },
@@ -892,10 +892,10 @@ D4 (driver)|1118.00|29.42
     "Day workers' ordinary hours average 38 a week, up to 152 in 28 days, and normally no more than 8 a day unless agreed (cl 17.2).",
   ],
   unverified: [
-    "Vehicle manufacturing employees under Part 9 (cl 48–57), which carry their own loadings, allowances and overtime rules",
-    "Apprentice, adult apprentice, cadet and trainee rates (cl 21–24)",
+    "Vehicle manufacturing employees under Part 9 (cl 48 to 57), which carry their own loadings, allowances and overtime rules",
+    "Apprentice, adult apprentice, cadet and trainee rates (cl 21 to 24)",
     "Supervisor/Trainer/Coordinator rates, which are a formula on the rate of the employees supervised (cl 20.1(g))",
-    "Phased-in rates for employees without relevant work experience (cl 20.1(e)–(f))",
+    "Phased-in rates for employees without relevant work experience (cl 20.1(e) to (f))",
     "Height money, ship repair and the other special rates in cl 30.4 not listed here",
   ],
 };
@@ -1023,9 +1023,9 @@ export const RESTAURANT_AWARD: ModernAwardData = {
   ],
   penaltiesClause: "cl 24.2, Table 8",
   penaltyNotes: [
-    "The weeknight penalty is a flat amount on top of the hourly rate, not a percentage: $2.95 for each hour or part of an hour between 10.00 pm and midnight, and $4.42 between midnight and 6.00 am, Monday to Friday. Both are set as 10% and 15% of the Level 4 standard hourly rate (Schedule C.3).",
+    "The Restaurant Award weeknight penalty is a flat amount on top of the hourly rate, not a percentage. From Monday to Friday it is $2.95 for each hour or part of an hour between 10.00 pm and midnight, and $4.42 between midnight and 6.00 am. Both are set as 10% and 15% of the Level 4 standard hourly rate (Schedule C.3).",
     "Only the higher penalty is paid where two would apply at the same time (cl 24.3).",
-    "By agreement, a full-time or part-time employee can instead be paid 125% on a public holiday and have the same number of hours added to annual leave or take a day off within 28 days (cl 24.4(d)). A public holiday shift is paid for at least 4 hours (full-time and part-time) or 2 hours (casual) (cl 24.4(a)–(b)).",
+    "By agreement, a full-time or part-time employee can instead be paid 125% on a public holiday. The employee then has the same number of hours added to annual leave or takes a day off within 28 days (cl 24.4(d)). A public holiday shift is paid for at least 4 hours (full-time and part-time) or 2 hours (casual) (cl 24.4(a) to (b)).",
   ],
   // cl 23.4, Table 7. Schedule B.1.4 prints casual overtime at the same dollar figures as full-time.
   overtime: [
@@ -1039,7 +1039,7 @@ export const RESTAURANT_AWARD: ModernAwardData = {
   overtimeClause: "cl 23.4, Table 7",
   overtimeNotes: [
     "Overtime percentages apply to the minimum hourly rate for casuals too. The award's Schedule B.1.4 prints casual overtime at exactly the full-time dollar figures, without the 25% loading.",
-    "Work on a rostered day off is paid at the overtime rate for at least 4 hours (cl 23.1(d)–(e)). Each day's overtime stands alone (cl 23.3).",
+    "Work on a rostered day off is paid at the overtime rate for at least 4 hours (cl 23.1(d) to (e)). Each day's overtime stands alone (cl 23.3).",
   ],
   casualPenaltyBasis: "additive",
   // cl 18.2, Table 4. Weekly junior rates round to the nearest 10 cents (cl 18.2(b)).
@@ -1204,8 +1204,8 @@ export const NURSES_AWARD: ModernAwardData = {
   ],
   penaltiesClause: "cl 20.2, 21 and 28.2",
   penaltyNotes: [
-    "Casual shift loadings are worked out on the minimum hourly rate and the 25% casual loading is then added (cl 11.4), so a casual afternoon shift is 137.5% and a night shift 140%. Weekend and public holiday rates are the other way round: they are a percentage of the casual hourly rate (cl 21, 28.2), so a casual Saturday is 150% of the casual rate (187.5% of the minimum rate).",
-    "Shift loadings do not apply on a Saturday, Sunday or public holiday, where the weekend or public holiday rate is paid instead (cl 20.2(d)), and do not apply to registered nurse levels 4 and 5 (cl 20.2(e)).",
+    "Casual shift loadings are worked out on the minimum hourly rate and the 25% casual loading is then added (cl 11.4). A casual afternoon shift is 137.5% and a night shift 140%. Weekend and public holiday rates are the other way round: they are a percentage of the casual hourly rate (cl 21, 28.2). A casual Saturday is 150% of the casual rate (187.5% of the minimum rate).",
+    "Shift loadings do not apply on a Saturday, Sunday or public holiday, where the weekend or public holiday rate is paid instead (cl 20.2(d)). Shift loadings also do not apply to registered nurse levels 4 and 5 (cl 20.2(e)).",
     "Christmas Day falling on a weekend attracts an extra 50% loading in businesses that operate 7 days a week (cl 28.2(b)).",
   ],
   // cl 19.1 (full-time and part-time) and 19.2 (casuals: % of the casual hourly rate).
@@ -1218,11 +1218,11 @@ export const NURSES_AWARD: ModernAwardData = {
   overtimeClause: "cl 19.1 and 19.2",
   overtimeNotes: [
     "Casual overtime is a percentage of the casual hourly rate (cl 19.2), so it includes the loading. Overtime replaces shift loadings and weekend penalties rather than adding to them (cl 19.1(c)). Overtime rates do not apply to registered nurse levels 4 and 5 (cl 19.1(b)).",
-    "A nurse recalled to the workplace is paid for at least 3 hours at the overtime rate; recall handled by phone or electronically is paid for at least one hour (cl 19.6–19.7).",
+    "A nurse recalled to the workplace is paid for at least 3 hours at the overtime rate. Recall handled by phone or electronically is paid for at least one hour (cl 19.6 and 19.7).",
   ],
   casualPenaltyBasis: "compounded",
   casualRuleSummary:
-    "Casuals receive 25% on top of the minimum hourly rate. Afternoon and night shift loadings are calculated on the minimum rate and the 25% is then added (137.5% and 140%), but Saturday, Sunday, public holiday and overtime rates are a percentage of the casual hourly rate, so they compound: a casual Saturday is 150% of the casual rate, or 187.5% of the minimum rate.",
+    "Nurses Award casuals receive 25% on top of the minimum hourly rate. Afternoon and night shift loadings are calculated on the minimum rate and the 25% is then added (137.5% and 140%). Saturday, Sunday, public holiday and overtime rates are a percentage of the casual hourly rate, so they compound: a casual Saturday is 150% of the casual rate, or 187.5% of the minimum rate.",
   junior: null,
   noJuniorNote:
     "The Nurses Award has no junior rates. The only age-based rates are for student enrolled nurses under 21, shown in the rate table; every other classification is paid the same at any age.",
@@ -1336,7 +1336,7 @@ export const AGED_CARE_AWARD: ModernAwardData = {
   penaltyNotes: [
     "A shift allowance is paid for the whole shift (cl 26.2). An employee working fewer than 38 hours a week gets it only if the shift starts before 6.00 am or finishes after 6.00 pm (cl 26.1).",
     "Weekend rates replace shift allowances (cl 23.1), and a casual's 175% Saturday and 200% Sunday replace the casual loading rather than adding to it (cl 23.3).",
-    "On a public holiday a full-time or part-time employee is paid their ordinary pay plus an additional 150% for hours worked (250% in all), or can elect each year to have the hours added to annual leave instead (cl 29.2(a)–(b)). Casuals are paid 275% (cl 29.2(c)).",
+    "On a public holiday a full-time or part-time employee is paid their ordinary pay plus an additional 150% for hours worked (250% in all). They can instead elect each year to have the hours added to annual leave (cl 29.2(a) and (b)). Casuals are paid 275% (cl 29.2(c)).",
   ],
   // cl 25.1.
   overtime: [
@@ -1347,7 +1347,7 @@ export const AGED_CARE_AWARD: ModernAwardData = {
   ],
   overtimeClause: "cl 25.1",
   overtimeNotes: [
-    "Casual overtime is set in terms at 187.5%, 250% and 312.5% of the hourly rate (cl 25.1(c)) and applies to hours over 38 a week, 76 a fortnight or 10 a day. For part-timers working more than 10 hours in a day, Saturday counts with Monday to Friday (cl 25.1(b)(ii)).",
+    "Casual overtime is set in terms at 187.5%, 250% and 312.5% of the hourly rate (cl 25.1(c)). It applies to hours over 38 a week, 76 a fortnight or 10 a day. For part-timers working more than 10 hours in a day, Saturday counts with Monday to Friday (cl 25.1(b)(ii)).",
     "An employee recalled to work overtime is paid for at least 4 hours (cl 25.1(e)).",
   ],
   casualPenaltyBasis: "additive",
@@ -1373,7 +1373,7 @@ export const AGED_CARE_AWARD: ModernAwardData = {
   ],
   allowancesClause: "cl 15 and 22.9",
   hoursNotes: [
-    "Minimum payment per engagement: 4 hours for full-time employees, 2 hours for part-time and casual employees (cl 22.7).",
+    "The minimum payment per engagement is 4 hours for full-time employees and 2 hours for part-time and casual employees (cl 22.7).",
     "A broken shift (part-time or casual, by agreement) can span at most 12 hours; work beyond that span is paid at double time (cl 22.8).",
     "Employees must get at least 10 hours off between shifts, or 8 by agreement (cl 22.4). Day workers' ordinary hours fall between 6.00 am and 6.00 pm, Monday to Friday (cl 22.2).",
   ],
@@ -1445,7 +1445,7 @@ Level 6|1215.90|32.00
   penaltiesClause: "cl 23, Tables 14 and 15",
   penaltyNotes: [
     "Ordinary hours can only be worked Monday to Friday 7.00 am to 9.00 pm, Saturday 7.00 am to 6.00 pm and Sunday 10.00 am to 5.00 pm (cl 14.4, Table 2). Outside those spans a full-time or part-time employee is on overtime.",
-    "The casual loading of 25% applies to ordinary hours between 7.00 am and 9.00 pm Monday to Friday (cl 11.2); the casual weekend and public holiday percentages in Table 15 already include it where it applies.",
+    "The casual loading of 25% applies to ordinary hours between 7.00 am and 9.00 pm Monday to Friday (cl 11.2). The casual weekend and public holiday percentages in Table 15 already include it where it applies.",
   ],
   // cl 22.5, Table 13.
   overtime: [
@@ -1546,7 +1546,7 @@ Level 3|1119.10|29.45
   penaltiesClause: "cl 20.2, Table 7",
   penaltyNotes: [
     "Part-time employees are paid a 15% allowance on every ordinary hour (cl 10.2), and Table 7's part-time column already includes it. In exchange a part-timer can be rostered up to 7.6 hours a day, 5 days a week without overtime.",
-    "The award's own worked example: a part-time Level 1 cleaner working 6.00 pm to 11.00 pm on a Friday, Saturday and Sunday is paid $35.20, $44.68 and $58.22 an hour, $690.50 for the three shifts (cl 20, Example 1).",
+    "In the Cleaning Award's own worked example (cl 20, Example 1), a part-time Level 1 cleaner works 6.00 pm to 11.00 pm on a Friday, Saturday and Sunday. That cleaner is paid $35.20, $44.68 and $58.22 an hour, $690.50 for the three shifts.",
   ],
   // cl 19.3, Table 5. The part-time allowance is not added to overtime.
   overtime: [
@@ -1690,13 +1690,13 @@ export const ROAD_TRANSPORT_AWARD: ModernAwardData = {
       fullTime: 2.0,
       casual: 3.25,
       casualTabulated: true,
-      note: "Again paid in addition to the weekly wage for full-time and part-time day workers. Casuals get 300% plus the 25% loading.",
+      note: "For full-time and part-time day workers this rate is also paid in addition to the weekly wage. Casuals get 300% plus the 25% loading.",
     },
   ],
   penaltiesClause: "cl 22.3, 22.8, 22.10, 23 and Schedule C",
   penaltyNotes: [
     "Day workers' ordinary hours are Monday to Friday between 5.30 am and 6.30 pm; ordinary hours on a weekend need an agreement (cl 13.4, 13.6). Anyone required to work on a Saturday or Sunday is paid for at least 4 hours (cl 23.1(c)).",
-    "For shiftworkers, Saturday, Sunday and public holiday rates replace the shift rate (cl 22.8(b)). An afternoon or night shift roster that does not run for at least 5 consecutive shifts is paid at 150% for 3 hours and 200% after that (cl 22.10).",
+    "For shiftworkers, Saturday, Sunday and public holiday rates replace the shift rate (cl 22.8(b)). An afternoon or night shift roster that does not run for at least 5 consecutive shifts is paid at 150% for the first 3 hours and 200% after that (cl 22.10).",
     "Newspaper, meat, live poultry and fish, fruit or vegetable store drivers starting ordinary hours between 12.01 am and 6.00 am on a weekday are paid 130% (casuals 155%) for those hours (Schedule C.2.1 and C.4.1).",
   ],
   // cl 21.1 and 11.4; Schedule C.3.1 and C.5.1.
@@ -1741,7 +1741,7 @@ export const ROAD_TRANSPORT_AWARD: ModernAwardData = {
   allowancesClause: "cl 19",
   hoursNotes: [
     "Casuals are paid for at least 4 hours each engagement (cl 11.3).",
-    "Ordinary hours are at most 8 a day, worked continuously except for meal and fatigue breaks (cl 13.5), between 5.30 am and 6.30 pm, movable by an hour at each end by agreement (cl 13.6).",
+    "Ordinary hours are at most 8 a day, worked continuously except for meal and fatigue breaks (cl 13.5). They fall between 5.30 am and 6.30 pm, and that span can move by an hour at each end by agreement (cl 13.6).",
   ],
   unverified: [
     "Oil distribution workers (cl 14 and 17.2), whose 35-hour week gives different hourly rates for the same weekly wage",

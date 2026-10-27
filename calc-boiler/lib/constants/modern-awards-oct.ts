@@ -48,7 +48,7 @@ import type { AwardRate, ModernAwardData } from "./modern-awards";
 const VERIFIED_ON = "5 October 2026";
 const OPERATIVE = "1 July 2026";
 const EFFECTIVE_NOTE =
-  "Applies from the first full pay period starting on or after 1 July 2026, not universally 1 July.";
+  "The new rates apply from the first full pay period starting on or after 1 July 2026, not universally from 1 July.";
 const SUMMARY = (code: string) =>
   `https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/${code.toLowerCase()}-summary`;
 
@@ -438,7 +438,7 @@ Level 6 — Law clerk|1369.20|36.03
     "An employee working overtime gets a paid 20-minute rest break after each 4 hours of overtime if work continues (cl 20.4).",
   ],
   unverified: [
-    "Annualised wage arrangements (cl 17): many law firms pay an annualised salary that must still cover what the award would give for the hours actually worked",
+    "Annualised wage arrangements (cl 17): an annualised salary under the Legal Services Award must still cover what the award would give for the hours actually worked",
     "Law graduate special conditions (cl 28)",
     "Classification definitions in Schedule A: we publish the rate for each level, not the duties that place someone in it",
     "National Training Wage (Schedule E of the Miscellaneous Award) trainee rates",
@@ -653,7 +653,7 @@ Level 7|1325.70|34.89
   penaltyNotes: [
     "Ordinary hours can be worked between 5.00 am and 11.00 pm Monday to Friday and 6.00 am and 9.00 pm on Saturday and Sunday (cl 13.1). Work outside those spans is overtime.",
     "Casual loadings differ by day: 25% Monday to Friday and 30% on Saturday, Sunday and public holidays (cl 12.1). Schedule B.2 therefore shows casuals at 125% on weekdays and 130% on weekends, and a casual's Sunday rate is lower than a permanent employee's 150%.",
-    "The casual public holiday rate: cl 26.3(c) points casuals to the 30% loading in cl 12.1(b), and Schedule B.2 lists 130% for Saturday, Sunday and public holidays together. Because that sits so far below the permanent 250%, we do not print a dollar rate for it; confirm with Fair Work before relying on it.",
+    "The casual public holiday rate: cl 26.3(c) points casuals to the 30% loading in cl 12.1(b), and Schedule B.2 lists 130% for Saturday, Sunday and public holidays together. Because that sits so far below the permanent 250%, we do not print a dollar rate for it; confirm it with the Fair Work Ombudsman before relying on it.",
   ],
   // cl 19.2.
   overtime: [
@@ -880,8 +880,8 @@ Level 11|1865.60|49.09
   ],
   penaltiesClause: "cl 22, cl 28 and Schedule B.1 / B.2.1",
   penaltyNotes: [
-    "Most employees work ordinary hours Monday to Friday, 6.00 am to 6.00 pm (cl 13.1(d)). Weekend ordinary hours exist only for the roles listed in cl 13.1(e) to (g): airports, caretakers and caravan parks, catering and hospitality, cleaners, community services, garbage and sanitary services, livestock and saleyards, local law enforcement, parking, recreation centres and golf courses, tourism, libraries and customer service centres. Everyone else's weekend work is overtime.",
-    "Casual penalties are the permanent percentage plus the 25% loading: 120% becomes 145%, 150% becomes 175%, and 175% becomes 200% (Schedule B.2.1; cl 11.2).",
+    "The Local Government Award's standard span of ordinary hours is Monday to Friday, 6.00 am to 6.00 pm (cl 13.1(d)). Weekend ordinary hours exist only for the roles listed in cl 13.1(e) to (g): airports, caretakers and caravan parks, catering and hospitality, cleaners, community services, garbage and sanitary services, livestock and saleyards, local law enforcement, parking, recreation centres and golf courses, tourism, libraries and customer service centres. Everyone else's weekend work is overtime.",
+    "Under the Local Government Award, a casual's penalty rate is the permanent percentage plus the 25% casual loading: 120% becomes 145%, 150% becomes 175%, and 175% becomes 200% (Schedule B.2.1; cl 11.2).",
     "Different spans apply by role: 5.00 am to 10.00 pm Monday to Sunday for the cl 13.1(e) roles, 8.00 am to 9.00 pm for libraries, and 6.00 am to 7.00 pm for childcare. Work outside the span for your role attracts the 120% weekday rate (cl 22.1).",
   ],
   // cl 21.2; Schedule B.1.4.
@@ -1004,7 +1004,7 @@ Level 10 — Production and Support Staff 8|1309.40|34.46
   penaltiesClause: "cl 21.5, cl 63.3(c) and cl 63.4",
   penaltyNotes: [
     "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so evenings and weekend daytime hours inside a normal week carry no loading. Saturday has no penalty rate.",
-    "Casual penalties are the permanent percentage plus the 25% loading: 200% becomes 225% (the award's notes at cl 21.5 and 63.3 say so).",
+    "Live Performance Award casuals get the permanent penalty percentage plus their 25% casual loading, so 200% becomes 225% (notes to cl 21.5 and 63.3).",
     "Touring sound and lighting employees get a 17.5% loading instead of overtime and penalty rates (cl 63.6(a)), and crewing services employees get a 52.5% loading for work between 11.00 pm and 6.00 am (cl 63.7). Those special arrangements replace the table above.",
   ],
   // cl 63.1 and 63.2.

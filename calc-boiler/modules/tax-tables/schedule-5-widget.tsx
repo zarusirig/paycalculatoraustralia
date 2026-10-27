@@ -84,8 +84,8 @@ export default function Schedule5Widget() {
               <span className="text-navy">HECS-HELP / study loan (STSL)</span>
             </label>
             <p className="text-xs text-warmgray">
-              Uses the ATO Schedule 5 apportionment arithmetic with FY2026-27 rates. Assumes the tax-free
-              threshold is claimed and that pay is even across the year.
+              This calculator applies the ATO Schedule 5 apportionment arithmetic with FY2026-27 rates. It
+              assumes you claim the tax-free threshold and that your regular pay is the same every period.
             </p>
           </form>
 

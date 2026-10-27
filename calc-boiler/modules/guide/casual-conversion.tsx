@@ -45,7 +45,7 @@ export default function CasualConversionPage() {
 
       <PageHeader featuredImage title="Casual Conversion in Australia: How to Become Permanent and What It Does to Your Pay">
         <p>
-          <strong>If you have been a casual for 6 months (12 months in a small business) and no longer fit the definition of casual employment, you can give your employer written notice that you want to become permanent.</strong> The employer must consult you and answer in writing within {EMPLOYEE_CHOICE.responseDays} days, and can refuse only for set reasons. Becoming permanent ends your {loading} casual loading and starts paid leave, so the pay trade-off is worth checking before you decide.
+          <strong>If you have been a casual for 6 months (12 months in a small business) and no longer fit the definition of casual employment, you can give your employer written notice that you want to become permanent.</strong> Casual conversion now works through the employee choice pathway in the National Employment Standards. Your employer must consult you and answer in writing within {EMPLOYEE_CHOICE.responseDays} days, and can refuse only for the reasons listed below. Becoming permanent ends your {loading} casual loading and starts paid annual leave, paid sick and carer&rsquo;s leave and paid public holidays you would have worked. The pay comparison below sets casual against permanent gross pay on the same base rate and shows how many paid weeks a casual needs to break even. The rest of the page covers what makes you a casual, each step of the notice process and what changes on your payslip.
         </p>
       </PageHeader>
 

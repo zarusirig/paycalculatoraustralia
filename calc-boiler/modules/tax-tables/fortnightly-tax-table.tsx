@@ -81,7 +81,7 @@ export default function FortnightlyTaxTablePage() {
           <TableDownloads frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_FORTNIGHTLY} className="mb-6" />
           <TaxTableLookupWidget frequency="fortnightly" defaultGross={2_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
-            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
+            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage placement="content" className="mb-0 mt-6" />
@@ -103,9 +103,9 @@ export default function FortnightlyTaxTablePage() {
               <h2>Full Fortnightly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
                 The table lists the amount to withhold from fortnightly earnings in {formatAUD(100)} steps, in the two
-                {" "}{ATO_FORTNIGHTLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
+                {" "}{ATO_FORTNIGHTLY.nat} columns: tax-free threshold claimed (column 2 of the ATO
                 table) and not claimed (column 3, typical for a{" "}
-                <Link href="/second-job-tax-calculator/">second job</Link>) &mdash; plus the total with a study loan.
+                <Link href="/second-job-tax-calculator/">second job</Link>), plus the total with a study loan.
                 Fortnightly is Australia&apos;s most common pay cycle, with 26 pays a year. Switch to{" "}
                 {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an older pay run, or download the full table as a CSV.
               </p>
@@ -114,8 +114,8 @@ export default function FortnightlyTaxTablePage() {
                 caption={`Fortnightly tax table: PAYG withholding by fortnightly earnings, ATO ${ATO_FORTNIGHTLY.nat}`}
               />
               <p className="text-sm text-warmgray-light">
-                Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
-                sample amounts exactly &mdash; including the property that every fortnightly amount is an even number of
+                Each amount in the table is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
+                sample amounts exactly, including the property that every fortnightly amount is an even number of
                 dollars.{" "}
                 To skip the lookup, the <Link href="/fortnightly-pay-calculator/">fortnightly tax calculator</Link> works out your exact fortnightly pay.
               </p>
@@ -163,14 +163,14 @@ export default function FortnightlyTaxTablePage() {
             <section id="even-dollars">
               <h2>Why Every Fortnightly Amount Is an Even Number of Dollars</h2>
               <p>
-                {ATO_FORTNIGHTLY.nat} is not calculated independently &mdash; it is <em>derived</em> from the weekly schedule.
+                {ATO_FORTNIGHTLY.nat} is not calculated independently. It is <em>derived</em> from the weekly schedule.
                 The ATO halves the fortnightly earnings to get a weekly equivalent, applies the weekly Schedule 1 formula,
                 rounds that weekly result to the nearest dollar, and only then doubles it. Doubling a whole number always
                 produces an even number, so a genuine {ATO_FORTNIGHTLY.nat} figure is <strong>never an odd dollar amount</strong>.
               </p>
               <p>
-                This is a useful audit check. If a payroll system or online calculator shows an odd fortnightly withholding
-                figure, it is not applying the schedule &mdash; it has almost certainly annualised your pay, run the annual tax
+                That makes the even-dollar rule a quick audit check. If a payroll system or online calculator shows an odd fortnightly withholding
+                figure, it is not applying the schedule. It has almost certainly annualised your pay, run the annual tax
                 scale, and divided by 26. That shortcut also tends to subtract the full Low Income Tax Offset, which the ATO
                 scales deliberately do not deliver through withholding, and it under-withholds badly at the low end. The same
                 rule applies to the study loan component, which is likewise derived weekly and doubled.
@@ -185,8 +185,8 @@ export default function FortnightlyTaxTablePage() {
                 reason column 2 sits so far below column 3.
               </p>
               <ul>
-                <li><strong>Column 2 &mdash; tax-free threshold claimed.</strong> The normal column for your main job. Nothing is withheld until fortnightly earnings pass roughly {formatAUD(724)}, and the 2% Medicare levy is built in with its low-income shading.</li>
-                <li><strong>Column 3 &mdash; no tax-free threshold.</strong> Used for second jobs and anyone who has not claimed the threshold. Withholding starts from the first dollar. At {formatAUD(1_600)} a fortnight, column 2 withholds {formatAUD(example1600tft.totalWithheld)} while column 3 withholds {formatAUD(example1600noTft.totalWithheld)} &mdash; {formatAUD(example1600noTft.totalWithheld - example1600tft.totalWithheld)} more per pay.</li>
+                <li><strong>Column 2: tax-free threshold claimed.</strong> The normal column for your main job. Nothing is withheld until fortnightly earnings pass roughly {formatAUD(724)}, and the 2% Medicare levy is built in with its low-income shading.</li>
+                <li><strong>Column 3: no tax-free threshold.</strong> Used for second jobs and anyone who has not claimed the threshold. Withholding starts from the first dollar. At {formatAUD(1_600)} a fortnight, column 2 withholds {formatAUD(example1600tft.totalWithheld)} while column 3 withholds {formatAUD(example1600noTft.totalWithheld)} &mdash; {formatAUD(example1600noTft.totalWithheld - example1600tft.totalWithheld)} more per pay.</li>
               </ul>
               <p>
                 Claiming the threshold at two jobs simultaneously is the most common cause of an unexpected tax bill: each
@@ -206,7 +206,7 @@ export default function FortnightlyTaxTablePage() {
               <p>
                 That component comes from{" "}
                 <a href={ATO_SCHEDULE_8.pageUrl} target="_blank" rel="noopener noreferrer">{ATO_SCHEDULE_8.nat} (Schedule 8)</a>,
-                which has its own coefficient table &mdash; it is not the annual HECS repayment divided by 26. Since FY2025-26,
+                which has its own coefficient table. The loan component is not the annual HECS repayment divided by 26. Since FY2025-26,
                 student loan repayments have used a marginal system rather than a flat percentage of total income. At{" "}
                 {formatAUD(3_000)} a fortnight with the threshold claimed, the income tax is{" "}
                 {formatAUD(example3000stsl.paygWithheld)} and the loan component is {formatAUD(example3000stsl.stslWithheld)},
@@ -219,7 +219,7 @@ export default function FortnightlyTaxTablePage() {
             <section id="foreign-residents">
               <h2>Fortnightly Tax Table for Foreign Residents</h2>
               <p>
-                Foreign residents for tax purposes use ATO Scale 3. There is no tax-free threshold and no Medicare levy, so
+                Foreign residents for tax purposes use ATO Scale 3. That scale has no tax-free threshold and no Medicare levy, so
                 withholding starts at 30 cents in the dollar from the first dollar. The ATO publishes these bands, and the
                 table beneath shows the resulting fortnightly amounts:
               </p>
@@ -244,8 +244,8 @@ export default function FortnightlyTaxTablePage() {
                 A payee who has not quoted a tax file number, has not claimed an exemption from quoting one, and has not advised
                 that they have applied for one must be withheld at the penalty rates:{" "}
                 <strong>{NO_TFN_RATES.resident * 100}%</strong> for a resident and{" "}
-                <strong>{NO_TFN_RATES.foreignResident * 100}%</strong> for a foreign resident, ignoring cents. It is a flat rate on
-                every dollar &mdash; no threshold, no graduated scale.
+                <strong>{NO_TFN_RATES.foreignResident * 100}%</strong> for a foreign resident, ignoring cents. Each no-TFN rate is a flat rate on
+                every dollar, with no threshold and no graduated scale.
               </p>
               <p>
                 If the payee states on their <em>Tax file number declaration</em> that they have applied for a TFN or made an enquiry
@@ -262,7 +262,7 @@ export default function FortnightlyTaxTablePage() {
                 {ATO_FORTNIGHTLY.nat} is built on <strong>{FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays a year</strong>. Depending
                 on where the pay date falls, a financial year sometimes contains{" "}
                 <strong>{FORTNIGHTLY_EXTRA_PAY.extraPayCount} fortnightly pay days</strong>. The table cannot know that, so the extra
-                pay is withheld exactly like an ordinary fortnight &mdash; and across the year slightly too little tax is collected.
+                pay is withheld exactly like an ordinary fortnight, and across the year slightly too little tax is collected.
                 The shortfall shows up as a smaller refund, or a bill, on the tax assessment.
               </p>
               <p>
@@ -271,7 +271,7 @@ export default function FortnightlyTaxTablePage() {
               </p>
               <ExtraPayTable frequency="fortnightly" schedule={FORTNIGHTLY_EXTRA_PAY} />
               <p>
-                This is voluntary and must be requested by the payee &mdash; an employer cannot impose it. Weekly payroll faces the
+                The extra withholding is voluntary and must be requested by the payee. An employer cannot impose it. Weekly payroll faces the
                 same issue in a <Link href="/weekly-tax-table/">53-pay year</Link>; monthly payroll never does, because twelve
                 calendar months always means exactly twelve pays.
               </p>
@@ -314,10 +314,10 @@ export default function FortnightlyTaxTablePage() {
               <p>
                 From 1 July 2026 the marginal rate on income between $18,201 and $45,000 dropped from{" "}
                 <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts, and the ATO reissued all 15 withholding
-                schedules and 12 tax tables &mdash; including {ATO_FORTNIGHTLY.nat} &mdash; to match. The same update raised the
+                schedules and 12 tax tables, including {ATO_FORTNIGHTLY.nat}, to match. The same update raised the
                 Medicare levy low-income thresholds and re-indexed the study and training loan repayment thresholds. Compared with
                 2025-26, withholding falls by up to about <strong>{formatAUD(268 / 26)} per fortnight</strong> for anyone earning
-                $45,000 a year or more. A further cut to 14% arrives on 1 July 2027 &mdash; details in our{" "}
+                $45,000 a year or more. A further cut to 14% arrives on 1 July 2027. The details are in our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
             </section>
@@ -345,12 +345,12 @@ export default function FortnightlyTaxTablePage() {
             <section id="related-resources">
               <h2>Related Tax Tables and Calculators</h2>
               <ul>
-                <li><Link href="/payg-withholding-tables/">PAYG withholding tables hub</Link> &mdash; the full schedule system explained.</li>
-                <li><Link href="/weekly-tax-table/">Weekly tax table (NAT 1005)</Link> &mdash; withholding for 52-pay cycles.</li>
-                <li><Link href="/monthly-tax-table/">Monthly tax table (NAT 1007)</Link> &mdash; withholding for 12-pay cycles.</li>
-                <li><Link href="/schedule-5-tax-table/">Schedule 5 tax table (NAT 3348)</Link> &mdash; bonuses, commissions, and back payments.</li>
-                <li><Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link> &mdash; your full fortnightly take-home breakdown.</li>
-                <li><Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> &mdash; how the STSL column affects your repayments.</li>
+                <li><Link href="/payg-withholding-tables/">PAYG withholding tables hub</Link>: the full schedule system explained.</li>
+                <li><Link href="/weekly-tax-table/">Weekly tax table (NAT 1005)</Link>: withholding for 52-pay cycles.</li>
+                <li><Link href="/monthly-tax-table/">Monthly tax table (NAT 1007)</Link>: withholding for 12-pay cycles.</li>
+                <li><Link href="/schedule-5-tax-table/">Schedule 5 tax table (NAT 3348)</Link>: bonuses, commissions, and back payments.</li>
+                <li><Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link>: your full fortnightly take-home breakdown.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>: how the STSL column affects your repayments.</li>
               </ul>
             </section>
 
@@ -367,7 +367,7 @@ export default function FortnightlyTaxTablePage() {
                   <a href={ATO_SCHEDULE_1.pageUrl} target="_blank" rel="noopener noreferrer">Schedule 1 ({ATO_SCHEDULE_1.nat})</a>{" "}
                   coefficient method: fortnightly earnings are halved and truncated to a weekly equivalent, the scale&apos;s
                   <em> a</em> and <em>b</em> coefficients are applied as y = a&middot;x &minus; b, the weekly result is rounded to the
-                  nearest dollar, and that figure is doubled &mdash; which is why every amount here is even. Study loan components
+                  nearest dollar, and that figure is doubled, which is why every amount here is even. Study loan components
                   use the separate{" "}
                   <a href={ATO_SCHEDULE_8.pageUrl} target="_blank" rel="noopener noreferrer">Schedule 8 ({ATO_SCHEDULE_8.nat})</a> coefficients,
                   not the annual repayment schedule divided back. This reproduces the printed {ATO_FORTNIGHTLY.nat} look-up table

@@ -25,7 +25,7 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim deductions without receipts?",
-    a: "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. Laundry of eligible work clothing allows claims up to $150 without written records. The ATO accepts digital records: photos of receipts and accounting apps are valid evidence.",
+    a: "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. You can claim up to $150 for laundering eligible work clothing without written records. The ATO accepts digital records: photos of receipts and accounting apps are valid evidence.",
   },
   {
     q: "How do I claim deductions?",

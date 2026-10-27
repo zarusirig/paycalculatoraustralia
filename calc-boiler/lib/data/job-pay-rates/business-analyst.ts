@@ -70,9 +70,9 @@ export const BUSINESS_ANALYST: Occupation = {
   heading: "Business Analyst Salary Australia 2026: Median Pay & Take-Home",
   metaTitle: `Business Analyst Salary Australia 2026 - ${aud(BA.medianSalary)} Median`,
   metaDescription: `Business analysts' median salary was ${aud(BA.medianSalary)} on 2023–24 tax returns; full-time ICT analysts' median is $2,697 a week. Take-home pay and award coverage.`,
-  lede: `Business analysts reported a median salary of ${aud(BA.medianSalary)} and an average of ${aud(BA.avgSalary)} on 2023–24 tax returns (ATO), and full-time ICT business and systems analysts had median pay of $2,697 a week in May 2025 (Jobs and Skills Australia). On the ${aud(BA.medianSalary)} median, take-home pay is about ${aud(netAnnual(BA.medianSalary))} a year after tax. No award names the job; whether one covers you depends on your employer.`,
+  lede: `Business analysts reported a median salary of ${aud(BA.medianSalary)} and an average of ${aud(BA.avgSalary)} on 2023-24 tax returns (ATO), and full-time ICT business and systems analysts had median pay of $2,697 a week in May 2025 (Jobs and Skills Australia). On the ${aud(BA.medianSalary)} median, take-home pay is about ${aud(netAnnual(BA.medianSalary))} a year after tax. No modern award names the business analyst job, so award coverage depends on your employer's industry and your duties.`,
   coverage: [
-    "No modern award names business analysts. The nearest is the information technology stream of the Professional Employees Award 2020 [MA000065], whose definition of the IT industry includes system analysis services and computer consultancy (cl 2.3). It applies only where your employer is principally engaged in the IT, telecommunications services or quality auditing industry, and only to work that needs a degree with a science or IT major accredited by the Australian Computer Society, or ACS Certified Professional standing (cl 4.1(b), cl 2.3).",
+    "No modern award names business analysts. The nearest is the information technology stream of the Professional Employees Award 2020 [MA000065], whose definition of the IT industry includes system analysis services and computer consultancy (cl 2.3). The IT stream applies only where your employer is principally engaged in the IT, telecommunications services or quality auditing industry. At those employers, the IT stream covers only work that needs a degree with a science or IT major accredited by the Australian Computer Society, or ACS Certified Professional standing (cl 4.1(b), cl 2.3).",
     "If you meet that test, the award minimums are the ones on the software engineer page. If you work as a business analyst in a bank, a government agency or another non-IT business, that stream does not apply; check your employer's industry award or enterprise agreement. If no award covers you, the National Minimum Wage and the National Employment Standards are the legal floor.",
   ],
   tables: [nmwTable("business analysts")],
@@ -93,19 +93,19 @@ export const BUSINESS_ANALYST: Occupation = {
   faqs: [
     {
       q: "How much does a business analyst earn in Australia?",
-      a: `On 2023–24 tax returns, the 46,789 people coded as IT business analysts had a median salary or wage income of ${aud(BA.medianSalary)} and an average of ${aud(BA.avgSalary)} (ATO). Jobs and Skills Australia's full-time median for ICT business and systems analysts is $2,697 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
+      a: `On 2023-24 tax returns, the 46,789 people coded as IT business analysts had a median salary or wage income of ${aud(BA.medianSalary)} and an average of ${aud(BA.avgSalary)} (ATO). Jobs and Skills Australia's full-time median for ICT business and systems analysts is $2,697 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
     },
     {
       q: "What is a business analyst's take-home pay?",
-      a: `On the ${aud(BA.medianSalary)} median, about ${aud(netAnnual(BA.medianSalary))} a year or ${aud(netFortnightly(BA.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the ${aud(JSA_ANNUAL)} full-time median, about ${aud(netAnnual(JSA_ANNUAL))} a year.`,
+      a: `A business analyst on the ${aud(BA.medianSalary)} median takes home about ${aud(netAnnual(BA.medianSalary))} a year or ${aud(netFortnightly(BA.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the ${aud(JSA_ANNUAL)} full-time median, take-home pay is about ${aud(netAnnual(JSA_ANNUAL))} a year.`,
     },
     {
       q: "Is there an award for business analysts?",
-      a: "No award names the job. A business analyst at an employer principally in the IT industry, in a role needing an ACS-accredited degree, may be covered by the Professional Employees Award; elsewhere it depends on the employer's industry award, and if none applies you are award-free with the National Minimum Wage as the floor.",
+      a: "No modern award names the business analyst job. A business analyst at an employer principally in the IT industry, in a role needing an ACS-accredited degree, may be covered by the Professional Employees Award. Elsewhere, coverage depends on the employer's industry award, and if none applies you are award-free with the National Minimum Wage as the floor.",
     },
     {
       q: "Do business analysts earn more than systems analysts?",
-      a: "About the same. On 2023–24 tax returns the median salary or wage income was $119,229 for business analysts and $119,204 for systems analysts, though systems analysts' average was higher ($125,940 against $123,441).",
+      a: "Business analysts and systems analysts earn about the same. On 2023-24 tax returns the median salary or wage income was $119,229 for business analysts and $119,204 for systems analysts, though systems analysts' average was higher ($125,940 against $123,441).",
     },
   ],
   sources: [

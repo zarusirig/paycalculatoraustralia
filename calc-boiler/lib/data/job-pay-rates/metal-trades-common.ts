@@ -62,10 +62,10 @@ export const METAL_PENALTIES: PenaltyRow[] = [
 ];
 
 export const METAL_PENALTIES_NOTE =
-  "Percentages of the minimum hourly rate (cl 33). Day workers' ordinary hours are Monday to Friday, 6 am to 6 pm; Saturday or Sunday ordinary hours need agreement, and without it weekend work is overtime. For casuals this award compounds: each percentage applies to the casual hourly rate that already includes the 25% loading, so a casual Saturday at 150% is 187.5% of the base rate.";
+  "This table shows each rate as a percentage of the award's minimum hourly rate (cl 33). Day workers' ordinary hours are Monday to Friday, 6 am to 6 pm; Saturday or Sunday ordinary hours need agreement, and without it weekend work is overtime. For casuals this award compounds: each percentage applies to the casual hourly rate that already includes the 25% loading, so a casual Saturday at 150% is 187.5% of the base rate.";
 
 export const METAL_OVERTIME: string[] = [
-  "First 3 hours of overtime at 150% of the minimum hourly rate, then 200% (cl 32). Continuous shiftworkers are paid 200% for all overtime.",
+  "Overtime is paid at 150% of the minimum hourly rate for the first 3 hours, then 200% (cl 32). Continuous shiftworkers are paid 200% for all overtime.",
   "Saturday overtime for day workers is 150% for the first 3 hours (minimum 4 hours), then 200%; Sunday overtime is 200% with a 3-hour minimum; public holiday overtime is 250%.",
   "For casuals, overtime is a percentage of the casual hourly rate (cl 32.1(f)). A call back after leaving work is paid for at least 4 hours at overtime rates (cl 32.13).",
 ];

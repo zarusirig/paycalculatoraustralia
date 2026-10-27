@@ -51,7 +51,7 @@ export default function TaxRefundGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Refund Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Guide: How Tax Returns Work in Australia</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how tax refunds work, what deductions you can claim, and how to maximise your return. A complete guide to the Australian tax return process for the FY{RY} return you lodge in 2026.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">A tax refund in Australia is the PAYG tax your employer withheld above your assessed liability, paid back by the ATO after you lodge your tax return. The ATO calculates the refund on the FY{RY} return you lodge in 2026 using the resident tax brackets, the Medicare levy, tax offsets such as LITO, and your allowable deductions. The worked example and tax refund formula below show each step, followed by the deductions that increase a refund, lodgment deadlines and processing times.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -68,7 +68,7 @@ export default function TaxRefundGuidePage() {
                 Throughout each pay cycle, your employer deducts income tax based on PAYG withholding schedules. These schedules assume you earn the same amount every pay period for the full 12 months. Three common situations create a gap between tax withheld and tax owed: claiming work-related deductions that reduce taxable income, working for only part of the financial year, and receiving tax offsets such as the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>{formatAUD(LITO.maxOffset)}</strong>.
               </p>
               <p>
-                The refund is not free money from the government. It is your own income that was over-withheld. Use our <Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY{RY}.
+                The refund is your own income that was over-withheld, not a payment from the government. Use our<Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY{RY}.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -92,7 +92,7 @@ export default function TaxRefundGuidePage() {
                 Your tax refund equals the difference between <strong>total PAYG tax withheld and your assessed tax liability</strong>. The ATO applies Australian income tax brackets, the Medicare levy, tax offsets, and allowable deductions to arrive at the final figure.
               </p>
               <p>
-                The calculation follows a defined sequence. The ATO first determines gross income from all sources: salary, wages, interest, dividends, rental income, and capital gains. Allowable deductions are then subtracted from gross income to produce taxable income. Income tax is calculated on taxable income using the FY{RY} resident tax brackets.
+                The ATO first determines gross income from all sources: salary, wages, interest, dividends, rental income, and capital gains. Allowable deductions are then subtracted from gross income to produce taxable income. Income tax is calculated on taxable income using the FY{RY} resident tax brackets.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example at {formatAUD(EX_GROSS)} (FY{RY} return)</h3>
@@ -182,7 +182,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements offer a separate pathway to reduce taxable income. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details.
+                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements are a separate way to reduce taxable income. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details.
               </p>
             </section>
 
@@ -194,10 +194,10 @@ export default function TaxRefundGuidePage() {
               </p>
               <ol>
                 <li><strong>Log into myGov</strong> at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> and navigate to the ATO section. Link your ATO account if you have not done so previously.</li>
-                <li><strong>Wait for pre-fill data.</strong> Your employer&apos;s income statement, bank interest, private health insurance details, and government payments auto-populate once it arrives &mdash; the ATO says most information is pre-filled by {RETURN_2026.prefillReady}. Lodging before pre-fill data is available increases the risk of errors.</li>
+                <li><strong>Wait for pre-fill data.</strong> Your employer&apos;s income statement, bank interest, private health insurance details, and government payments auto-populate when the pre-fill data arrives. The ATO says most information is pre-filled by {RETURN_2026.prefillReady}. Lodging before pre-fill data is available increases the risk of errors.</li>
                 <li><strong>Verify your income.</strong> Check that your salary, wages, allowances, and other income match your final payslip and payment summaries. Report all assessable income including interest above $1, dividends, rental income, and capital gains.</li>
                 <li><strong>Add deductions.</strong> Enter work-related expenses, self-education costs, donations, and other allowable deductions. The ATO pre-fills some deductions such as income protection insurance and tax agent fees from the prior year.</li>
-                <li><strong>Review offsets and levies.</strong> The system automatically applies the &quot;Low Income Tax Offset&quot; (LITO), the &quot;Medicare Levy&quot; at {formatPercent(MEDICARE_LEVY.rate, 0)}, and the &quot;Medicare Levy Surcharge&quot; if applicable. Confirm your private health insurance status to avoid an incorrect MLS charge &mdash; the <Link href="/medicare-levy-surcharge-calculator/">MLS calculator</Link> shows whether it applies to you.</li>
+                <li><strong>Review offsets and levies.</strong> myTax automatically applies the &quot;Low Income Tax Offset&quot; (LITO), the &quot;Medicare Levy&quot; at {formatPercent(MEDICARE_LEVY.rate, 0)}, and the &quot;Medicare Levy Surcharge&quot; if applicable. Confirm your private health insurance status to avoid an incorrect MLS charge. The<Link href="/medicare-levy-surcharge-calculator/">MLS calculator</Link> shows whether it applies to you.</li>
                 <li><strong>Submit and receive your Notice of Assessment.</strong> The ATO issues a Notice of Assessment confirming your refund amount or tax debt. The ATO says most myTax returns process in {RETURN_2026.onlineProcessingBusinessDays} business days and most refunds issue within {RETURN_2026.onlineRefundTypical}, paid by direct deposit.</li>
               </ol>
               <p>
@@ -263,7 +263,7 @@ export default function TaxRefundGuidePage() {
                 A tax refund occurs when your employer withheld <strong>more tax than your assessed liability</strong>; a tax debt occurs when the total tax withheld is <strong>less than your assessed liability</strong>. The ATO&apos;s Notice of Assessment confirms which outcome applies.
               </p>
               <p>
-                Tax debts arise from three primary causes: holding multiple jobs where each employer applies the tax-free threshold separately, earning untaxed investment income such as rental profits or capital gains, and incorrectly completing your TFN declaration (claiming the tax-free threshold at more than one employer). When the threshold is claimed at both jobs, the second employer withholds as if the first {formatAUD(TAX_FREE_THRESHOLD)} of that job&apos;s pay were tax-free, even though your main job has already used it &mdash; the shortfall shows up as a debt at lodgment. Our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> shows the effect on your own figures.
+                Tax debts arise from three primary causes: holding multiple jobs where each employer applies the tax-free threshold separately, earning untaxed investment income such as rental profits or capital gains, and incorrectly completing your TFN declaration (claiming the tax-free threshold at more than one employer). When the threshold is claimed at both jobs, the second employer withholds as if the first {formatAUD(TAX_FREE_THRESHOLD)} of that job&apos;s pay were tax-free, even though your main job has already used it. The shortfall shows up as a debt at lodgment. Our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> shows the effect on your own figures.
               </p>
               <p>
                 The ATO charges interest on overdue tax debts at the &quot;General Interest Charge&quot; (GIC) rate: <strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} per annum for {GENERAL_INTEREST_CHARGE.quarter}</strong>, compounding daily and reset every quarter. Payment plans are available for debts you cannot pay in full.
@@ -277,7 +277,7 @@ export default function TaxRefundGuidePage() {
             <section id="common-mistakes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Tax Refund Mistakes?</h2>
               <p>
-                The most common tax return error is <strong>claiming deductions without adequate records</strong>, resulting in ATO adjustments, penalties, and reduced refunds. 
+                The most common tax return error is <strong>claiming deductions without adequate records</strong>, which leads to ATO adjustments, penalties, and reduced refunds.
               </p>
               <ul>
                 <li><strong>Claiming personal expenses as work-related.</strong> Home-to-work commuting, conventional clothing, and personal phone usage are not deductible.</li>
@@ -317,10 +317,10 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. This affects employees who salary sacrifice into super: a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
+                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. The higher SG rate affects employees who salary sacrifice into super: a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
               </p>
               <p>
-                The ATO continues to invest in data-matching technology. Cryptocurrency exchanges, ride-share platforms, short-term rental platforms (Airbnb, Stayz), and the sharing economy reporting regime provide the ATO with third-party transaction data. Unreported income from these sources is increasingly detected during return processing.
+                The ATO receives third-party transaction data from cryptocurrency exchanges, ride-share platforms, short-term rental platforms (Airbnb, Stayz), and the sharing economy reporting regime. Unreported income from these sources is increasingly detected during return processing.
               </p>
             </section>
 
@@ -328,7 +328,7 @@ export default function TaxRefundGuidePage() {
             <section id="related-resources">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
               <p>
-                The Australian tax system connects income tax, superannuation, Medicare, and PAYG withholding into a single framework assessed through your annual tax return. The following tools and guides cover each component in detail.
+                The tools and guides below cover each part of your tax return in more detail: income tax and PAYG withholding, tax offsets, the Medicare levy and surcharge, HECS-HELP repayments, salary sacrifice and superannuation.
               </p>
               <ul>
                 <li><Link href="/tax-return-calculator/">Tax Return Estimator</Link>: calculate your expected refund or tax debt based on income, deductions, and PAYG withheld.</li>

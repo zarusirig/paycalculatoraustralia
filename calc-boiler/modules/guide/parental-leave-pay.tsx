@@ -64,7 +64,7 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Paid Parental Leave Calculator 2026 - 26 Weeks, Pay and Super</h1>
           <p className="text-lg text-warmgray">
-            Paid Parental Leave in Australia is <strong>{formatAUD(RATE.daily, 2)} a day, or {formatAUD(RATE.weekly, 2)} a week</strong>, for {PPL_CURRENT_FY}, paid for up to <strong>{NOW.days} days ({NOW.weeks} weeks)</strong> for a child born or adopted on or after {NOW.label}. The rate is based on the National Minimum Wage and is taxed as income, with {NOW.reservedForPartner} of the days reserved for a partner and a {Math.round(PPL_RULES.superRate * 100)}% superannuation contribution paid by the ATO. Work out your days, your pay and whether you meet the income test.
+            Paid Parental Leave in Australia is <strong>{formatAUD(RATE.daily, 2)} a day, or {formatAUD(RATE.weekly, 2)} a week</strong>, for {PPL_CURRENT_FY}, paid for up to <strong>{NOW.days} days ({NOW.weeks} weeks)</strong> for a child born or adopted on or after {NOW.label}. The rate is based on the National Minimum Wage, and Parental Leave Pay is taxable income. {NOW.reservedForPartner} of the days are reserved for a partner, and the ATO pays a {Math.round(PPL_RULES.superRate * 100)}% superannuation contribution on your Parental Leave Pay. The calculator works out your days, your pay before tax, the tax withheld if Services Australia pays you and whether you meet the income test.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -131,7 +131,7 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
                     <Row label={`Super from the ATO (${Math.round(PPL_RULES.superRate * 100)}%, paid after 30 June)`} value={formatAUD(r.superEst, 2)} />
                   </div>
                   {r.block.unpublishedDays > 0 && <Note tone="warn">* {r.block.unpublishedDays} of your days fall after 30 June 2027. The rate for those days isn&apos;t published yet (it usually rises on 1 July with the national minimum wage), so they are priced at today&apos;s {formatAUD(RATE.daily, 2)}.</Note>}
-                  <p className="text-xs text-warmgray-light">Weekdays only, one continuous block. Doesn&apos;t check the work test or residence rules. The super estimate excludes the ATO&apos;s interest component.</p>
+                  <p className="text-xs text-warmgray-light">The calculator counts weekdays only, in one continuous block, and doesn&apos;t check the work test or residence rules. The super estimate excludes the ATO&apos;s interest component.</p>
                 </div>
               </div>
             </CardContent>

@@ -55,7 +55,7 @@ export default function AnnualLeavePage() {
 
       <PageHeader title="Annual Leave Calculator Australia: Hours, Balance and Payout">
         <p>
-          <strong>Full-time and part-time employees earn 4 weeks of paid annual leave a year, worked out on ordinary hours.</strong> On a 38-hour week that is {FT} hours (20 days), which builds at 1 hour for every 13 hours you work. Enter your hours and service below to see your accrued leave, your balance after leave taken, what it is worth, and the tax if it is paid out when you leave. Casuals do not accrue annual leave but are paid a casual loading instead.
+          <strong>Full-time and part-time employees earn 4 weeks of paid annual leave a year under the National Employment Standards, worked out on ordinary hours.</strong> On a 38-hour week that is {FT} hours (20 days), which builds at 1 hour for every 13 hours you work. Enter your hours and service below to see your accrued leave, your balance after leave taken, what it is worth, and the tax if it is paid out when you leave. Casuals do not accrue annual leave but are paid a casual loading instead. The rest of this page covers how annual leave accrues, a worked example, how leave is paid, and how a payout is taxed.
         </p>
       </PageHeader>
 

@@ -17,16 +17,16 @@ const cents = (r: number) => `${Math.round(r * 100)} cents`;
 export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   {
     q: "What is the Centrelink income test?",
-    a: `The income test works out how much your Centrelink payment is reduced by the income you earn. Income up to a free area does not affect your payment; above it, the payment reduces by a set amount per dollar. For JobSeeker Payment the free area is ${formatAUD(JS.freeArea)} a fortnight, with a ${cents(JS.taper1)} reduction per dollar up to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above that. For a single Age Pensioner the reduction is ${cents(AP.single.taper)} per dollar above ${formatAUD(AP.single.freeArea)} a fortnight.`,
+    a: `The Centrelink income test works out how much your Centrelink payment is reduced by the income you earn. Income up to the payment's free area does not affect your payment; above it, the payment reduces by a set number of cents for each dollar, called the taper rate. For JobSeeker Payment the free area is ${formatAUD(JS.freeArea)} a fortnight, with a ${cents(JS.taper1)} reduction per dollar up to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above that. For a single Age Pensioner the reduction is ${cents(AP.single.taper)} per dollar above ${formatAUD(AP.single.freeArea)} a fortnight.`,
   },
   {
     q: "Where is the Centrelink online estimator, and how is it different from this page?",
-    a: `Services Australia's official online estimator is the Payment and Service Finder: it asks about your situation, lists the payments you may be able to get and gives an estimate of each. The Work Out Your Own Payment tools on this page do something narrower: each applies one payment's income test to your fortnightly earnings, so you can check the taper on a statement. For JobSeeker Payment that is the ${formatAUD(JS.freeArea)} free area, ${cents(JS.taper1)} per dollar to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above it, worked through in the JobSeeker payment calculator; for students and Australian Apprentices it is the ${formatAUD(ST.freeArea)} free area, ${cents(ST.taper1)} per dollar to ${formatAUD(ST.band1End)} and ${cents(ST.taper2)} per dollar above it. Both the finder and this page give estimates, not a decision on a claim.`,
+    a: `Services Australia's official online estimator is the Payment and Service Finder: it asks about your situation, lists the payments you may be able to get and gives an estimate of each. The Work Out Your Own Payment tools on this page do something narrower: each applies one payment's income test to your fortnightly earnings, so you can check the taper on a statement. For JobSeeker Payment that is the ${formatAUD(JS.freeArea)} free area, ${cents(JS.taper1)} per dollar to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above it, worked through in the JobSeeker payment calculator. For students and Australian Apprentices it is the ${formatAUD(ST.freeArea)} free area, ${cents(ST.taper1)} per dollar to ${formatAUD(ST.band1End)} and ${cents(ST.taper2)} per dollar above it. Both the finder and this page give estimates, not a decision on a claim.`,
     links: { "Payment and Service Finder": "https://www.servicesaustralia.gov.au/payment-and-service-finder", "JobSeeker payment calculator": "/jobseeker-payment-calculator/" },
   },
   {
     q: "What is Working Credit?",
-    a: `Working Credit lets you build up credits during fortnights when your income is low, then use them to offset employment income in higher-earning fortnights. Credits build in fortnights when your income is under ${formatAUD(WORKING_CREDIT.accrualThreshold)}: you earn one credit for each dollar below ${formatAUD(WORKING_CREDIT.accrualThreshold)}, so up to ${WORKING_CREDIT.maxPerFortnight} credits a fortnight, to a maximum balance of ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} credits (${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance job seekers). When you earn more, each credit offsets $1 of employment income above the free area before the income test is applied, which means you keep more of your Centrelink payment when you work extra hours.`,
+    a: `Working Credit lets you build up credits during fortnights when your income is low, then use them to offset employment income in higher-earning fortnights. Credits build in fortnights when your income is under ${formatAUD(WORKING_CREDIT.accrualThreshold)}: you earn one credit for each dollar below ${formatAUD(WORKING_CREDIT.accrualThreshold)}, so up to ${WORKING_CREDIT.maxPerFortnight} credits a fortnight. The maximum balance is ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} credits (${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance job seekers). When you earn more, each credit offsets $1 of employment income above the free area before the income test is applied. You keep more of your Centrelink payment in the fortnights you work extra hours.`,
   },
   {
     q: "Does my partner's income affect my payment?",
@@ -44,7 +44,7 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is my superannuation balance counted for the income test?",
-    a: "Before Age Pension age: your superannuation balance is generally not counted under either the income test or the assets test. After reaching Age Pension age: your super balance becomes a financial asset and is subject to deeming rules under the income test and counted in full under the assets test. This transition significantly impacts your Centrelink entitlement.",
+    a: "Before you reach Age Pension age, your superannuation balance is generally not counted under either the income test or the assets test. Once you reach Age Pension age, your super balance becomes a financial asset: it is deemed under the income test and counted in full under the assets test.",
   },
   {
     q: "Does salary sacrifice reduce my assessable income for Centrelink?",
@@ -56,7 +56,7 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if I report my income late?",
-    a: "Late reporting suspends your Centrelink payment. You do not lose eligibility permanently, but your payment for that fortnight is delayed until you submit your report. If you keep failing to report, your payment may be cancelled and you will need to re-claim. Submit your report on or before your designated reporting day to avoid disruption.",
+    a: "Late reporting suspends your Centrelink payment. You do not lose eligibility permanently, but your payment for that fortnight is delayed until you submit your report. If you keep failing to report, your payment may be cancelled and you will need to re-claim. Submit your report on or before your designated reporting day so your payment is not suspended.",
   },
   {
     q: "Is my Centrelink payment taxable income?",

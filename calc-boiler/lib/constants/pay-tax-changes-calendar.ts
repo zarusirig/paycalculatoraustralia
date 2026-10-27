@@ -94,7 +94,7 @@ export const CHANGE_DATES: readonly ChangeDate[] = [
     status: "upcoming",
     headline: "Junior pay phase-in starts for 18 to 20 year olds on three awards",
     items: [
-      { text: `Applies from the first full pay period on or after 1 December 2026, only to employees with more than ${PENDING_JUNIOR_CHANGE.serviceQualifier.replace("more than ", "")} with their employer, on the ${retail.award}, the ${fastFood.award} and the ${pharmacy.award} (pharmacy assistant levels 1 and 2).`, href: "/junior-pay-rates/" },
+      { text: `The phase-in applies from the first full pay period on or after 1 December 2026, only to employees with more than ${PENDING_JUNIOR_CHANGE.serviceQualifier.replace("more than ", "")}, on the ${retail.award}, the ${fastFood.award} and the ${pharmacy.award} (pharmacy assistant levels 1 and 2).`, href: "/junior-pay-rates/" },
       { text: `Retail and fast food step the 18, 19 and 20 year old percentages of the adult rate in six-monthly stages: 18 year olds go from ${fastFood.present.age18}% to ${fastFood.rows[0].age18}%, 19 year olds from ${fastFood.present.age19}% to ${fastFood.rows[0].age19}%, and fast food 20 year olds from ${fastFood.present.age20}% to ${fastFood.rows[0].age20}%. Retail 20 year olds with over 6 months already receive 100%.`, href: "/retail-award-rates/" },
       { text: "This is a phase-in, not a jump to the adult rate: full adult rates arrive in stages through 2029. Under-18 rates are unchanged. It does not change the National Minimum Wage." },
     ],
@@ -126,7 +126,7 @@ export const CHANGE_DATES: readonly ChangeDate[] = [
     status: "upcoming",
     headline: "The 2026-27 income year ends",
     items: [
-      { text: "Last day for deductible spending, super contributions that count for this year, and donations.", href: "/tax-calendar/" },
+      { text: "This is the last day for deductible spending, donations and super contributions to count in this income year.", href: "/tax-calendar/" },
     ],
   },
   {
@@ -137,8 +137,8 @@ export const CHANGE_DATES: readonly ChangeDate[] = [
     items: [
       { text: `The legislated cut takes the rate on $18,201 to $45,000 from ${pct(LEGISLATED_CUT_2027_28.fromRate)} to ${pct(LEGISLATED_CUT_2027_28.toRate)} (${LEGISLATED_CUT_2027_28.actNumber}). Thresholds are unchanged.`, href: "/stage-3-tax-cuts/" },
       { text: `The ${NMW_DECISION.nextReview} outcome operates from ${NMW_DECISION.nextReviewOperativeFrom}. The new rate is not known until the Fair Work Commission decides it (the 2026 decision was made on ${NMW_DECISION.decidedOn}).`, href: "/minimum-wage-history-australia/" },
-      { text: `Next junior step: retail and fast food 18, 19 and 20 year olds move to ${fastFood.rows[1].age18}%, ${fastFood.rows[1].age19}% and ${fastFood.rows[1].age20}% (retail 20 year olds stay at 100%); pharmacy assistants to ${pharmacy.rows[1].age18}%, ${pharmacy.rows[1].age19}% and ${pharmacy.rows[1].age20}%.`, href: "/junior-pay-rates/" },
-      { text: "The 50% CGT discount for resident individuals and trusts, including partnership gains, is replaced with cost base indexation on gains that build up on and after this date, and resident individuals pay a 30% minimum tax on those gains. New residential dwellings and affordable housing keep a discount. Nothing changes for assets sold in 2026-27.", href: "/capital-gains-tax-calculator/" },
+      { text: `At the next junior step, retail and fast food 18, 19 and 20 year olds move to ${fastFood.rows[1].age18}%, ${fastFood.rows[1].age19}% and ${fastFood.rows[1].age20}% (retail 20 year olds stay at 100%); pharmacy assistants to ${pharmacy.rows[1].age18}%, ${pharmacy.rows[1].age19}% and ${pharmacy.rows[1].age20}%.`, href: "/junior-pay-rates/" },
+      { text: "The 50% CGT discount for resident individuals and trusts, including partnership gains, is replaced with cost base indexation on gains that build up on and after this date. Resident individuals pay a 30% minimum tax on those gains. New residential dwellings and affordable housing keep a discount. Nothing changes for assets sold in 2026-27.", href: "/capital-gains-tax-calculator/" },
     ],
   },
 ];

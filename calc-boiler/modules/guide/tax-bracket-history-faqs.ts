@@ -45,7 +45,7 @@ const [, s2627] = TAX_BRACKETS_2026_27;
 export const TAX_BRACKET_HISTORY_FAQS: readonly FaqItem[] = [
   {
     q: "When did the Stage 3 tax cuts take effect?",
-    a: `The revised Stage 3 tax cuts took effect on 1 July 2024, applying from FY2024-25 onwards. They lowered the 19% rate to ${pct(s2526.rate)}, replaced the 32.5% rate with ${pct(m2526.rate)} and extended that bracket to ${formatAUD(m2526.max)}, and raised the 45% threshold to ${formatAUD(TAX_BRACKETS_2025_26[4].min - 1)}. The original plan was significantly amended in January 2024, with the revised version receiving Royal Assent in March 2024.`,
+    a: `The revised Stage 3 tax cuts took effect on 1 July 2024, and they apply from FY2024-25 onwards. They lowered the 19% rate to ${pct(s2526.rate)}, replaced the 32.5% rate with ${pct(m2526.rate)} and extended that bracket to ${formatAUD(m2526.max)}, and raised the 45% threshold to ${formatAUD(TAX_BRACKETS_2025_26[4].min - 1)}. The original plan was amended in January 2024, and the revised version received Royal Assent in March 2024.`,
   },
   {
     q: "What was the LMITO and when was it removed?",
@@ -66,7 +66,7 @@ export const TAX_BRACKET_HISTORY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What was the original Stage 3 plan?",
-    a: "The original Stage 3 plan would have created a flat 30% rate for all income between $45,001 and $200,000, eliminating the 32.5% and 37% brackets entirely. This would have disproportionately benefited higher earners. The revised version retained progressive brackets while still delivering cuts across all income levels.",
+    a: "The original Stage 3 plan would have set a flat 30% rate for all income between $45,001 and $200,000, and removed the 32.5% and 37% brackets. Under that plan, the largest dollar cuts would have gone to higher earners. The revised version kept progressive brackets and still cut tax at every income level above the tax-free threshold.",
   },
   {
     q: "What are the 4 stages of the Personal Income Tax Plan?",

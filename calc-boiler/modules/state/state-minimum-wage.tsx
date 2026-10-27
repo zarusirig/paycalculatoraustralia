@@ -18,12 +18,12 @@ const FWO_SYSTEM_URL = "https://www.fairwork.gov.au/about-us/workplace-laws/fair
 
 /** Plain-English summary of who is outside the national system, per the FWO page. */
 const STATE_SYSTEM: Record<StateKey, { name: string; outside: string }> = {
-  nsw: { name: "New South Wales", outside: "State public sector and local government employees are not covered by the national system and remain under the NSW state system. Most private-sector employees are in the national system." },
+  nsw: { name: "New South Wales", outside: "NSW state public sector and local government employees are not covered by the national system and remain under the NSW state system. Most private-sector employees in New South Wales are in the national system." },
   vic: { name: "Victoria", outside: "Most employees in Victoria are covered by the national system, including state government employees with some exceptions such as senior public servants. There is no separate Victorian minimum wage." },
-  qld: { name: "Queensland", outside: "State public sector and local government employees are not covered by the national system and remain under the Queensland state system. Most private-sector employees are in the national system." },
-  wa: { name: "Western Australia", outside: "Western Australian State public sector employers and local government entities, plus sole traders, partnerships, other unincorporated entities and non-trading corporations, are covered by the state system. Employees of trading companies are in the national system." },
-  sa: { name: "South Australia", outside: "State public sector and local government employees are not covered by the national system and remain under the South Australian state system. Most private-sector employees are in the national system." },
-  tas: { name: "Tasmania", outside: "State public sector employees remain under the Tasmanian state system. Local government employees are covered by the national system, as are most private-sector employees." },
+  qld: { name: "Queensland", outside: "Queensland state public sector and local government employees are not covered by the national system and remain under the Queensland state system. Most private-sector employees in Queensland are in the national system." },
+  wa: { name: "Western Australia", outside: "Western Australian State public sector employers and local government entities, plus sole traders, partnerships, other unincorporated entities and non-trading corporations, are covered by the WA state system. Employees of trading companies in Western Australia are in the national system." },
+  sa: { name: "South Australia", outside: "South Australian state public sector and local government employees are not covered by the national system and remain under the South Australian state system. Most private-sector employees in South Australia are in the national system." },
+  tas: { name: "Tasmania", outside: "Tasmanian state public sector employees remain under the Tasmanian state system. Tasmanian local government employees are covered by the national system, as are most private-sector employees." },
   act: { name: "the ACT", outside: "Generally, all employees and employers in the ACT are covered by the national system, so there is no separate ACT minimum wage." },
   nt: { name: "the Northern Territory", outside: "Generally, all employees and employers in the Northern Territory are covered by the national system, so there is no separate NT minimum wage." },
 };
@@ -57,7 +57,7 @@ export default function StateMinimumWage({ state }: { state: StateKey }) {
           The Queensland Industrial Relations Commission&rsquo;s State Wage Case 2026 (Declaration of General Ruling, [2026] QIRC 281, delivered {qld.deliveredOn}) lifted
           state award wages for full-time adults by {(qld.increase * 100).toFixed(2)}% and set the Queensland Minimum Wage at{" "}
           <strong className="text-navy">{money(qld.qmwWeekly)} a week</strong>, operative from {qld.operativeFrom}. An award-free part-time or casual
-          employee in the state system gets that weekly figure divided by 38, about {money(qmwHourly)} an hour. This applies to employees in the Queensland
+          employee in the state system gets that weekly figure divided by 38, about {money(qmwHourly)} an hour. The Queensland Minimum Wage applies to employees in the Queensland
           state system, not to the private-sector employees who are covered by the {money(EMPLOYMENT.minimumWageHourly)} national rate.
         </p>
       )}

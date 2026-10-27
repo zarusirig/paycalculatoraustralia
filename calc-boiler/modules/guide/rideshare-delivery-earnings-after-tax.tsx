@@ -56,7 +56,7 @@ export default function RideshareDeliveryAfterTaxPage() {
 
       <PageHeader title="Rideshare & Delivery Earnings After Tax in Australia">
         <p>
-          <strong>Uber, DoorDash and other gig payments arrive with no tax taken out, so what you keep depends on your profit, your GST status and what you set aside.</strong> Rideshare drivers must register for GST from the first trip; delivery workers only at {formatAUD(GST_REGISTRATION_THRESHOLD, 0)} GST turnover. Income tax is on profit at the normal resident rates plus the Medicare levy. Enter your own numbers below. This page does not say what drivers earn.
+          <strong>Uber, DoorDash and other rideshare and delivery payments in Australia arrive with no tax taken out, so your earnings after tax depend on your profit and your GST status.</strong> Under ATO rules, rideshare drivers must register for GST from the first trip, while delivery workers must register only once GST turnover reaches {formatAUD(GST_REGISTRATION_THRESHOLD, 0)}. Income tax is charged on your profit at the normal resident rates, plus the Medicare levy. Enter your payments and expenses in the calculator below to see the GST, income tax and Medicare levy to set aside for the ATO and what is left. The rest of this page covers ABN and GST rules, claimable expenses including car costs, worked examples and paying the tax on time. This page does not say what drivers earn.
         </p>
       </PageHeader>
 
@@ -108,14 +108,14 @@ export default function RideshareDeliveryAfterTaxPage() {
               caption={<>ATO, <a href={GIG_TAX_SOURCES.rideSourcing} target="_blank" rel="noopener noreferrer">ride-sourcing</a> and <a href={GIG_TAX_SOURCES.registeringGst} target="_blank" rel="noopener noreferrer">registering for GST</a>, read {GIG_TAX_VERIFIED_ON}. GST turnover is your gross business income (not profit) less GST.</>}
             />
             <p>
-              The rideshare rule is the unusual one. The ATO requires registration for taxi and limousine travel, including ride-sourcing, regardless of turnover, so a driver who clears a few thousand dollars a year still needs an ABN, GST registration and a BAS. Delivery isn&rsquo;t in that category, so the ordinary threshold applies. If you also have other business income, it counts toward the turnover. Once you pass the threshold you register within 21 days. Penalties and interest can apply if you don&rsquo;t register when required.
+              The rideshare GST rule is the unusual one. The ATO requires registration for taxi and limousine travel, including ride-sourcing, regardless of turnover, so a driver who clears a few thousand dollars a year still needs an ABN, GST registration and a BAS. Delivery isn&rsquo;t in that category, so the ordinary threshold applies. If you also have other business income, it counts toward the turnover. Once you pass the threshold you register within 21 days. Penalties and interest can apply if you don&rsquo;t register when required.
             </p>
           </section>
 
           <section>
             <H2 id="gst-working">How GST Works Out for a Registered Driver</H2>
             <p>
-              Fares include GST, which is one-eleventh of the amount you receive. You hold it for the ATO, then deduct the GST in your business purchases (a credit), such as the GST in fuel, a service or part of your phone plan. Only the business-use part of a mixed-use cost counts. The GST you collected, less the credits, is paid with your BAS. For income tax, your income is the amount <em>excluding</em> GST and your expenses are the amount excluding the GST you reclaim, so the GST isn&rsquo;t double counted.
+              Fares include GST, which is one-eleventh of the amount you receive. You hold it for the ATO, then claim back the GST in your business purchases as a GST credit, such as the GST in fuel, a service or part of your phone plan. Only the business-use part of a mixed-use cost counts. The GST you collected, less the credits, is paid with your BAS. For income tax, your income is the amount <em>excluding</em> GST and your expenses are the amount excluding the GST you reclaim, so the GST isn&rsquo;t double counted.
             </p>
           </section>
 
@@ -125,14 +125,14 @@ export default function RideshareDeliveryAfterTaxPage() {
               Claim costs that relate to earning the income, apportioned for private use, and keep records (the ATO&rsquo;s free myDeductions tool in the ATO app is one way). For rideshare the ATO is specific: claim only deductions related to transporting passengers for a fare and apportion expenses to the time you are providing the service. Typical categories are fuel or charging, registration and insurance share, servicing and tyres, car cleaning, a phone and data share, platform fees if you report gross payments, and a tax agent&rsquo;s fee.
             </p>
             <p>
-              For the car there are two methods. <strong>Cents per kilometre</strong> is {Math.round(CPK * 100)}c a km for {CURRENT_CPK_YEAR}, capped at {KM_CAP} business km a year, so the most you can claim that way is {formatAUD(CPK * CPK_KM_CAP, 0)}, without keeping receipts for the car running costs (you must still be able to show how you worked out the kilometres). The <strong>logbook method</strong> applies your business-use percentage, from a 12-week logbook, to the actual car costs, and has no kilometre cap. A driver covering many kilometres usually compares the two. See <Link href="/cents-per-km/">cents per km</Link> for the details.
+              For the car there are two methods. <strong>Cents per kilometre</strong> is {Math.round(CPK * 100)}c a km for {CURRENT_CPK_YEAR}, capped at {KM_CAP} business km a year, so the most you can claim that way is {formatAUD(CPK * CPK_KM_CAP, 0)}, without keeping receipts for the car running costs (you must still be able to show how you worked out the kilometres). The <strong>logbook method</strong> applies your business-use percentage, from a 12-week logbook, to the actual car costs, and has no kilometre cap. If you drive a lot of business kilometres, compare the two methods before you choose. See <Link href="/cents-per-km/">cents per km</Link> for the details.
             </p>
           </section>
 
           <section>
             <H2 id="worked-examples">Two Worked Examples (Made-Up Figures)</H2>
             <p>
-              These are invented to show how the pieces fit together. They are not typical earnings and not a target. The calculator above will do the same sums on yours.
+              These examples use invented figures to show how GST, income tax and the Medicare levy fit together. They are not typical earnings and not a target. The calculator above does the same sums on your own figures.
             </p>
             <DataTable
               head={["", "Example A: rideshare, GST-registered", "Example B: delivery, not registered, also has a job"]}
@@ -151,7 +151,7 @@ export default function RideshareDeliveryAfterTaxPage() {
               caption={<>2026-27 resident rates and Medicare levy; private hospital cover assumed; no HELP debt. In Example B the delivery profit sits on top of a wage, so it is taxed at that wage&rsquo;s marginal rate, which is why the share set aside is higher than for a sole earner.</>}
             />
             <p>
-              In Example A the share of payments set aside works out to {pct(A.setAsideShare)}, and in Example B to {pct(B.setAsideShare)}. Those two percentages are the point: the share isn&rsquo;t fixed, so a blanket &ldquo;put 25% aside&rdquo; rule can leave you short or over-saving. Use your own figures.
+              In Example A the share of payments set aside works out to {pct(A.setAsideShare)}, and in Example B to {pct(B.setAsideShare)}. Those two percentages show that the share set aside isn&rsquo;t fixed, so a blanket &quot;put 25% aside&quot; rule can leave you short or over-saving. Enter your own payments and expenses in the calculator above to see your share.
             </p>
           </section>
 

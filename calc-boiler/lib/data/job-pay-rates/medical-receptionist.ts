@@ -54,7 +54,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
   },
   coverage: [
     "Receptionists in medical practices, dental practices and other private health businesses are covered by the Health Professionals and Support Services Award 2020 [MA000027], in its Support Services stream. The award names \"Receptionist\" as an indicative Level 3 role.",
-    "Level depends on duties, not job title. A general clerk with less than 3 months' experience is Level 1 and a clerk with 3 months to under a year's service is Level 2. A clerk in a ward, casualty or medical records role is Level 4.",
+    "Your Support Services level depends on your duties, not your job title. A general clerk with less than 3 months' experience is Level 1 and a clerk with 3 months to under a year's service is Level 2. A clerk in a ward, casualty or medical records role is Level 4.",
     "Level 5 applies to administrative and clerical employees who need a comprehensive knowledge of medical terminology and/or a working knowledge of health insurance schemes, among other skills (A.1.5). A receptionist whose job genuinely requires that knowledge may be classified higher than Level 3. Check the full Level 5 definition against your duties.",
   ],
   tables: [
@@ -62,7 +62,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
       id: "support-services",
       title: "Medical receptionist pay rates 2026–27",
       intro:
-        "Clause 16.2(a) of the award, Support Services Levels 1 to 5. Casual rates are from the award's Schedule C.1.7.",
+        "These are the Support Services Levels 1 to 5 minimums from clause 16.2(a) of the Health Professionals and Support Services Award. Casual rates are from the award's Schedule C.1.7.",
       rows: [
         { label: "Level 1", weekly: 1024.7, hourly: 26.97, casualHourly: 33.71, note: "General clerk, under 3 months' experience" },
         { label: "Level 2", weekly: 1065.2, hourly: 28.03, casualHourly: 35.04, note: "General clerk/typist, 3 months to under 1 year" },
@@ -78,7 +78,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
     { when: "Shiftwork (shift starts 6 pm–6 am or finishes 6 pm–8 am)", permanent: "115%", casual: "140%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate, from the award's Schedule C.1.1 and C.1.7. Casual percentages include the 25% casual loading.",
+    "Penalty rates are percentages of the minimum hourly rate, from the award's Schedule C.1.1 and C.1.7. Casual percentages include the 25% casual loading.",
   overtime: [
     "Monday to Saturday: 150% for the first 2 hours, then 200% (cl 25.2).",
     "Sunday: 200%. Public holiday: 250%.",

@@ -5,7 +5,7 @@ export default function ThousandDollarInstantTaxDeduction() {
   return (
     <>
       <p className="lead">
-        The <strong>$1,000 instant work-related deduction</strong> is now law, receiving royal
+        The <strong>$1,000 instant work-related deduction</strong> became law when it received royal
         assent on 26 June 2026. It applies to the <strong>2026-27 income year</strong>. That is the
         return you lodge from July 2027, not the one due this October. It lets 6.2 million
         workers deduct up to $1,000 with no receipts at all.
@@ -23,17 +23,17 @@ export default function ThousandDollarInstantTaxDeduction() {
 
       <h2>What the deduction actually is</h2>
       <p>
-        Instead of keeping receipts and itemising every uniform, tool, subscription or
-        work-related purchase, eligible employees can simply claim a flat $1,000 deduction
-        against their taxable income for the 2026-27 income year, with no substantiation required. It
+        The instant work-related deduction lets eligible employees claim a flat $1,000 against
+        their taxable income for the 2026-27 income year, with no substantiation required. You do
+        not need to keep receipts or itemise each uniform, tool, subscription or work-related
+        purchase. It
         became law under the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which passed
         Parliament and received royal assent on 26 June 2026.
       </p>
 
       <h2>When you can claim it, and when you can&apos;t</h2>
       <p>
-        This is the detail that trips people up: the $1,000 deduction applies to the 2026-27
-        income year, which started on 1 July 2026. You claim it on the tax return you lodge from
+        The $1,000 deduction applies to the 2026-27 income year, which started on 1 July 2026. You claim it on the tax return you lodge from
         1 July 2027. It does not apply to the 2025-26 return most people are lodging right now,
         between July and October 2026. That return still uses the normal substantiation rules;
         see our <Link href="/news/tax-time-2026-whats-new/">tax time 2026 roundup</Link> for
@@ -48,11 +48,10 @@ export default function ThousandDollarInstantTaxDeduction() {
         better outcome when you prepare that return, but you can&apos;t do both for the same expenses.
       </p>
       <p>
-        For most workers, the flat $1,000 deduction will be the simpler and better option. Treasury
-        estimates it will benefit 6.2 million workers with an average tax saving of $205, and cut
-        overall compliance costs by around $380 million a year by removing the need to keep
-        receipts for smaller work-related purchases like uniforms, small tools, phone and internet
-        use, or professional subscriptions. If you&apos;re a tradesperson, frequent traveller for work,
+        Treasury estimates the flat $1,000 deduction will benefit 6.2 million workers with an
+        average tax saving of $205, and cut overall compliance costs by around $380 million a year.
+        The compliance cost cut comes from removing the need to keep receipts for smaller work-related purchases like
+        uniforms, small tools, phone and internet use, or professional subscriptions. If you&apos;re a tradesperson, frequent traveller for work,
         or someone with genuinely large annual work expenses, itemising is still likely to leave
         you better off, so run both numbers before you lodge.
       </p>
@@ -66,9 +65,9 @@ export default function ThousandDollarInstantTaxDeduction() {
       </p>
       <p>
         Sole traders with labour income are also eligible, alongside employees, provided the
-        income qualifies as work-related. The deduction sits alongside, not instead of, the
-        broader tax cuts also landing in the 2026-27 income year, including the 16% to 15% rate
-        cut on income between $18,201 and $45,000; see our{" "}
+        income qualifies as work-related. The deduction applies on top of the broader tax cuts
+        in the 2026-27 income year, including the 16% to 15% rate cut on income between $18,201
+        and $45,000. See our{" "}
         <Link href="/news/tax-cut-july-2026/">tax cut from 1 July 2026</Link> explainer for how
         the two measures interact on the same return.
       </p>

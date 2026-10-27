@@ -90,7 +90,7 @@ export const PLUMBER: Occupation = {
       id: "registered",
       title: "Registered plumber pay rates, 2026–27 (weekly hire)",
       intro:
-        "Weekly = clause 18.1 minimum + industry, plumbing trade, registration and special fixed allowances ($127.44 a week in total). Hourly and casual rates are exactly as published in Schedule C.1.3 and C.1.6.",
+        "The weekly rate is the clause 18.1 minimum plus the industry, plumbing trade, registration and special fixed allowances ($127.44 a week in total). Hourly and casual rates are exactly as published in Schedule C.1.3 and C.1.6.",
       rows: [
         row("Plumbing and mechanical services tradesperson level 1 (registered)", 1119.1, TRADE_REGISTERED, 32.8, 41.0, "Qualified, registered plumber"),
         row("Plumbing and mechanical services tradesperson level 2 (registered)", 1154.3, TRADE_REGISTERED, 33.73, 42.16),
@@ -128,7 +128,7 @@ export const PLUMBER: Occupation = {
     { when: "Shiftwork, 5+ consecutive shifts with 48 hours' notice", permanent: "133%", casual: "158%" },
   ],
   penaltiesNote:
-    "Percentages of the ordinary hourly rate, which already includes the all-purpose allowances (Schedule C.1.3–C.1.7).",
+    "Plumber penalty rates are percentages of the ordinary hourly rate, which already includes the all-purpose allowances (Schedule C.1.3 to C.1.7).",
   overtime: [
     "Monday to Saturday: 150% for the first 2 hours, then 200%; overtime after 12 noon Saturday, or starting after midnight before ordinary hours, is 200% (Schedule C.1.5).",
     "Sunday: 200%. Public holiday: 250%.",

@@ -12,7 +12,7 @@ const DAILY_HOURS = EMPLOYMENT.standardWeeklyHours / 5;
 export const MINING_FIFO_FAQS: readonly FaqItem[] = [
   {
     q: "How much do FIFO miners earn in Australia?",
-    a: "FIFO mining salaries typically range from $100,000 to $200,000+ depending on role, experience, and roster type. Entry-level labourers start around $80,000–$110,000, while experienced drillers, electricians, and site managers can earn $160,000–$220,000. The Pilbara in WA and the Bowen Basin in QLD offer the highest pay.",
+    a: "FIFO mining salaries typically range from $100,000 to $200,000+ depending on role, experience, and roster type. Entry-level labourers start around $80,000 to $110,000, while experienced drillers, electricians, and site managers can earn $160,000 to $220,000. The Pilbara in WA and the Bowen Basin in QLD offer the highest pay.",
   },
   {
     q: "Can FIFO workers claim the zone tax offset?",

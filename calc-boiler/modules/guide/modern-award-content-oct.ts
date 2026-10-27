@@ -50,7 +50,7 @@ function miscellaneous(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "Who is covered by the Miscellaneous Award?",
-        a: "Employees in the Level 1 to Level 4 classifications who are not covered by any other modern award, throughout Australia (cl 4.1). It does not cover managerial or professional employees such as accountants, marketing, legal, human resources, public relations and IT specialists, or employees covered by an enterprise instrument or a modern enterprise award. It also covers on-hire employees where the labour hire employer is not covered by an award with a more suitable classification.",
+        a: "The Miscellaneous Award covers employees in the Level 1 to Level 4 classifications who are not covered by any other modern award, throughout Australia (cl 4.1). It does not cover managerial or professional employees such as accountants, marketing, legal, human resources, public relations and IT specialists, or employees covered by an enterprise instrument or a modern enterprise award. It also covers on-hire employees where the labour hire employer is not covered by an award with a more suitable classification.",
       },
       {
         q: "What is the Miscellaneous Award Saturday and Sunday rate?",
@@ -58,7 +58,7 @@ function miscellaneous(): AwardPageCopy {
       },
       {
         q: "What is the Miscellaneous Award overtime rate?",
-        a: `150% of the minimum rate for the first 3 hours and 200% after that (${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 2))} at Level 1). Overtime on a public holiday is 250%. The casual loading is not paid on overtime, so casuals get the same overtime percentages as permanent staff.`,
+        a: `Miscellaneous Award overtime is 150% of the minimum rate for the first 3 hours and 200% after that (${$(x(l1.hourly, 1.5))} and ${$(x(l1.hourly, 2))} at Level 1). Overtime on a public holiday is 250%. The casual loading is not paid on overtime, so casuals get the same overtime percentages as permanent staff.`,
       },
       {
         q: "What do the four levels mean?",
@@ -139,7 +139,7 @@ function buildingConstruction(): AwardPageCopy {
       },
       {
         q: "How does this page differ from the construction and trades pay guide?",
-        a: "This page is the award: the hourly rate for each CW/ECW level, with overtime and weekend multipliers. The construction and trades pay guide covers what tradies and apprentices actually earn, including apprentice wages and take-home pay. Use this page to check an hourly rate against the award, and the guide to see the bigger picture.",
+        a: "This page is the award: the hourly rate for each CW/ECW level, with overtime and weekend multipliers. The construction and trades pay guide covers what tradies and apprentices actually earn, including apprentice wages and take-home pay. Use this page to check an hourly rate against the Building and Construction Award, and the guide to see what that rate means in take-home pay.",
       },
     ],
   };
@@ -164,7 +164,7 @@ function legalServices(): AwardPageCopy {
       `Legal Services Award MA000116 rates from ${a.meta.operativeFrom}: ${$(l1.hourly)} to ${$(l6.hourly)} an hour, with casual, overtime and shift rates.`,
     ),
     h1: `Legal Services Award Pay Rates ${FY}`,
-    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}): legal secretaries, receptionists, paralegals who are not graduates, law graduates and law clerks. Operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}): legal secretaries, receptionists, paralegals who are not graduates, law graduates and law clerks. The rates are operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 legal clerical employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 2 is ${$(l2.hourly)}, Level 5 ${$(l5.hourly)} (the same as a law graduate) and a Level 6 law clerk ${$(l6.hourly)}. Day workers have no weekend penalty rates. Work outside Monday to Friday, 7.00 am to 6.30 pm, is overtime at 150% then 200%.`,
     trap: {
       heading: "For a day worker, a Saturday is overtime, not a penalty rate",
@@ -184,7 +184,7 @@ function legalServices(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "Do legal secretaries get penalty rates on weekends?",
-        a: `Not as day workers. Their ordinary hours are Monday to Friday, 7.00 am to 6.30 pm, so weekend work is overtime: Saturday before noon is 150% for 3 hours then 200%, Saturday after noon and Sunday are 200%, with a 3-hour minimum, and public holidays 250%. Shiftworkers are paid 150% on a Saturday, 200% on a Sunday and 250% on a public holiday.`,
+        a: `Legal secretaries who are day workers do not get weekend penalty rates. Their ordinary hours are Monday to Friday, 7.00 am to 6.30 pm, so weekend work is overtime: Saturday before noon is 150% for 3 hours then 200%, Saturday after noon and Sunday are 200%, with a 3-hour minimum, and public holidays 250%. Shiftworkers are paid 150% on a Saturday, 200% on a Sunday and 250% on a public holiday.`,
       },
       {
         q: "What is the law graduate rate?",
@@ -247,7 +247,7 @@ function electrical(): AwardPageCopy {
       },
       {
         q: "What do electrical apprentices earn?",
-        a: "For apprentices who started on or after 1 January 2014 the rate is a percentage of the grade 5 minimum rate: 1st year 50% (55% if Year 12 is completed), 2nd year 60% (65%), 3rd year 70%, 4th year 82%, plus the tool allowance and part of the other all-purpose allowances (cl 16.4(a)(ii)). Adult apprentices start at 80% of grade 5 in the first year. We do not publish apprentice dollar rates here.",
+        a: "Electrical apprentices who started on or after 1 January 2014 are paid a percentage of the grade 5 minimum rate: 1st year 50% (55% if Year 12 is completed), 2nd year 60% (65%), 3rd year 70%, 4th year 82%, plus the tool allowance and part of the other all-purpose allowances (cl 16.4(a)(ii)). Adult apprentices start at 80% of grade 5 in the first year. We do not publish apprentice dollar rates here.",
       },
       {
         q: "Is the electrician's licence allowance in the table?",
@@ -335,7 +335,7 @@ function realEstate(): AwardPageCopy {
     directAnswer: `A Level 1 (Associate) employee earns at least ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week) in their first 12 months and ${$(l1b.hourly)} after that; a casual earns 25% more. Level 2 is ${$(l2.hourly)}, Level 3 ${$(level("real-estate", "Level 3 (Supervisory)").hourly)} and Level 4 ${$(l4.hourly)}. There are no Saturday or Sunday penalty rates for ordinary hours; a public holiday is 200% (casuals 200% of their casual rate).`,
     trap: {
       heading: "No weekend penalty rates, but a rostered day off is paid at overtime rates",
-      body: "Ordinary hours under the Real Estate Industry Award are 38 a week and can be worked on any day, so Saturday and Sunday open homes inside the week are paid at the ordinary rate. Only a public holiday (200%) or work on a rostered day off (150% for 2 hours, then 200%) pays more. And overtime is only payable for hours the employer specifically directed you to work. Hours worked on your own initiative are not (cl 19.1(b)–(c)). Commission-only salespeople are outside these weekly rates entirely.",
+      body: "Ordinary hours under the Real Estate Industry Award are 38 a week and can be worked on any day, so Saturday and Sunday open homes worked as ordinary hours are paid at the ordinary rate. Only a public holiday (200%) or work on a rostered day off (150% for 2 hours, then 200%) pays more. Overtime is payable only for hours the employer specifically directed you to work, not for hours worked on your own initiative (cl 19.1(b) to (c)). Commission-only salespeople are outside these weekly rates entirely.",
     },
     workedExample: {
       heading: "Worked example: a Level 2 employee working a public holiday",
@@ -350,7 +350,7 @@ function realEstate(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "Does the real estate award have weekend penalty rates?",
-        a: "No. Ordinary hours are 38 a week and may be worked on any day of the week, averaged over up to 8 weeks (cl 13.1–13.2), so ordinary weekend hours are paid at the ordinary rate. Penalty-type rates apply only on public holidays (200%) and for work on a rostered day off (150% for the first 2 hours, 200% after).",
+        a: "No. Ordinary hours are 38 a week and may be worked on any day of the week, averaged over up to 8 weeks (cl 13.1 to 13.2), so ordinary weekend hours are paid at the ordinary rate. Penalty-type rates apply only on public holidays (200%) and for work on a rostered day off (150% for the first 2 hours, 200% after).",
       },
       {
         q: "What is the commission-only rule in the Real Estate Award?",
@@ -409,7 +409,7 @@ function localGovernment(): AwardPageCopy {
       },
       {
         q: "What is local government overtime pay?",
-        a: `150% of the minimum rate for the first 2 hours and 200% after that, Monday to Saturday before noon; 200% from noon on Saturday and all day Sunday; and 250% on a public holiday. The casual loading is not paid on overtime. A recalled employee is paid a minimum of 3 hours (cl 21.5).`,
+        a: `Local Government Award overtime is 150% of the minimum rate for the first 2 hours and 200% after that, Monday to Saturday before noon; 200% from noon on Saturday and all day Sunday; and 250% on a public holiday. The casual loading is not paid on overtime. A recalled employee is paid a minimum of 3 hours (cl 21.5).`,
       },
       {
         q: "What is the on-call allowance for council staff?",
@@ -450,7 +450,7 @@ function livePerformance(): AwardPageCopy {
       heading: "Worked example: a casual Level 3 crew member on a Sunday",
       intro: `Kai is a casual Level 3 production and support employee (${$(l3.hourly)} an hour) who works a 6-hour shift on a Sunday.`,
       steps: [
-        `A weekly employee starting work on a Sunday is paid 200% for all time worked; a casual's rate is the loading added, so 225% (cl 63.4).`,
+        `A weekly employee starting work on a Sunday is paid 200% for all time worked, and a casual is paid the casual loading on top, so 225% (cl 63.4).`,
         `${$(l3.hourly)} × 225% = ${$(sunCas)} an hour.`,
         `6 hours × ${$(sunCas)} = ${$(roundCents(sunCas * 6))} before tax. The minimum payment on a Sunday is 4 hours.`,
       ],
@@ -471,7 +471,7 @@ function livePerformance(): AwardPageCopy {
       },
       {
         q: "What is the minimum engagement for casual crew?",
-        a: "A casual may be engaged for a minimum of 3 consecutive hours and cannot be paid per performance. Work on a public holiday or a Sunday carries a minimum payment of 4 hours (cl 57.1, 61.2, 21.5, 63.4).",
+        a: "A casual crew member has a minimum engagement of 3 consecutive hours and cannot be paid per performance. Work on a public holiday or a Sunday carries a minimum payment of 4 hours (cl 57.1, 61.2, 21.5, 63.4).",
       },
     ],
   };

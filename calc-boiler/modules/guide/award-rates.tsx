@@ -68,7 +68,7 @@ export default function AwardRatesGuidePage() {
             Award Rates {SITE_CONFIG.financialYear}: Pay Rates for Every Major Modern Award, A–Z
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Current minimum award pay rates in Australia from {HOSPITALITY_AWARD.operativeFrom}. {AWARD_DIRECTORY.length} awards with full verified rate tables &mdash; casual, penalty, junior and overtime rates &mdash; plus how to work out which award covers you.
+            This page lists the current minimum award pay rates in Australia from {HOSPITALITY_AWARD.operativeFrom}. {AWARD_DIRECTORY.length} awards have full verified rate tables with casual, penalty, junior and overtime rates, and the guide shows how to work out which award covers you.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -85,7 +85,7 @@ export default function AwardRatesGuidePage() {
             <section id="award-rates-a-z">
               <h2>Award Rates A–Z</h2>
               <p>
-                Every award we publish a full, clause-cited rate table for. The headline figure is the adult Level 1 (or first adult) classification &mdash; the rate a new adult starter is most likely to be on. Casual adds the 25% loading.
+                The table lists every award we publish a full, clause-cited rate table for. The headline figure is the adult Level 1 (or first adult) classification, the rate a new adult starter is most likely to be on. The casual column adds the 25% casual loading.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -116,21 +116,21 @@ export default function AwardRatesGuidePage() {
                   </table>
                 </div>
                 <p className="mt-2 text-xs text-warmgray-light">
-                  Every figure is read from constants transcribed from the Fair Work Commission&rsquo;s consolidated award texts and regression-tested. Rates apply from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}.
+                  Each rate in the table is read from constants transcribed from the Fair Work Commission&apos;s consolidated award texts and regression-tested. Rates apply from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}.
                 </p>
               </div>
               <p>
                 Level 1 rates sit close together because the Annual Wage Review floor lifts the lowest classifications to a common minimum. They diverge higher up: the SCHADS social and community services stream reaches {formatAUD(SCHADS_TOP.hourly, 2)} an hour at its top classification because of the Equal Remuneration Order, and a pharmacist manager earns {formatAUD(PHARMACY_AWARD.rates[PHARMACY_AWARD.rates.length - 1].hourly, 2)}.
               </p>
               <p>
-                Not listed? Australia has more than 120 modern awards. For any other award, use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool and open its pay guide &mdash; we would rather send you to the source than print a number we have not verified.
+                Australia has more than 120 modern awards. For any award not in this table, use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool and open that award&apos;s pay guide. We would rather send you to the source than print a number we have not verified.
               </p>
             </section>
 
             <section id="what-are-award-rates">
               <h2>What Are Award Rates in Australia?</h2>
               <p>
-                Award rates are the legally enforceable minimum pay rates set out in modern awards &mdash; instruments made by the Fair Work Commission under the Fair Work Act 2009 for an industry or occupation. An award sets the minimum hourly rate for each classification, plus overtime, penalty rates, allowances and some leave rules.
+                Award rates are the legally enforceable minimum pay rates set out in modern awards, which are instruments the Fair Work Commission makes under the Fair Work Act 2009 for an industry or occupation. An award sets the minimum hourly rate for each classification, plus overtime, penalty rates, allowances and some leave rules.
               </p>
               <p>
                 Awards are the middle tier of Australia&apos;s safety net. The National Minimum Wage sits beneath them for award-free employees; an enterprise agreement, where one applies, replaces the award but must leave employees better off overall. Use our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to turn an award rate into after-tax pay.
@@ -140,10 +140,10 @@ export default function AwardRatesGuidePage() {
             <section id="how-are-award-rates-determined">
               <h2>How Are Award Rates Set Each Year?</h2>
               <p>
-                The Fair Work Commission reviews every award rate in the Annual Wage Review, decided each June. New rates apply from the first full pay period starting on or after <strong>1 July</strong> &mdash; not universally on 1 July. For {SITE_CONFIG.financialYear} the increase was <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</strong>.
+                The Fair Work Commission reviews every award rate in the Annual Wage Review, decided each June. New rates apply from the first full pay period starting on or after <strong>1 July</strong>, not on 1 July itself for every employee. For {SITE_CONFIG.financialYear} the increase was <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</strong>.
               </p>
               <p>
-                That percentage was not applied uniformly. It was subject to two floors &mdash; {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} a week for ongoing employment and {formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} for an entry-level rate in the first six months &mdash; so the lowest classifications in some awards were lifted <em>to</em> the floor. Hospitality Introductory and Manufacturing C14 sit on the {formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} floor; hospitality Level 1 and Manufacturing C13 on the {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} floor. Adding {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% to last year&rsquo;s rate gives the wrong answer for them.
+                That percentage was not applied uniformly. It was subject to two floors: {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} a week for ongoing employment and {formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} for an entry-level rate in the first six months, so the lowest classifications in some awards were lifted <em>to</em> the floor. Hospitality Introductory and Manufacturing C14 sit on the {formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} floor; hospitality Level 1 and Manufacturing C13 on the {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} floor. Adding {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% to last year&apos;s rate gives the wrong answer for those classifications.
               </p>
             </section>
 
@@ -157,7 +157,7 @@ export default function AwardRatesGuidePage() {
                   <ShieldAlert className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" />
                   <div>
                     <h3 className="mb-1 text-base font-bold text-navy">An award rate is a floor, not a suggestion</h3>
-                    <p className="text-sm text-navy">If an award covers your job, your employer must pay at least its rate for your classification &mdash; paying only the national minimum wage instead is an underpayment. Report underpayment to the Fair Work Ombudsman on 13 13 94.</p>
+                    <p className="text-sm text-navy">If an award covers your job, your employer must pay at least its rate for your classification. Paying only the national minimum wage instead is an underpayment. Report underpayment to the Fair Work Ombudsman on 13 13 94.</p>
                   </div>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function AwardRatesGuidePage() {
             <section id="penalty-rates-explained">
               <h2>How Do Penalty Rates Work?</h2>
               <p>
-                Penalty rates are percentages of the base hourly rate paid for work at unsociable times. They differ between awards far more than most tables suggest. Using the General Retail Industry Award Level 1 ({formatAUD(R1.hourly, 2)}/hr) as the worked example:
+                Penalty rates are percentages of the base hourly rate paid for work at unsociable times. The percentages differ from award to award. Using the General Retail Industry Award Level 1 ({formatAUD(R1.hourly, 2)}/hr) as the worked example:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -200,14 +200,14 @@ export default function AwardRatesGuidePage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="mt-2 text-xs text-warmgray-light">General Retail Industry Award (MA000004). Casual penalties add the 25% loading rather than multiplying by it. See <Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline">retail award rates</Link> for every level.</p>
+                <p className="mt-2 text-xs text-warmgray-light">These rates are from the General Retail Industry Award (MA000004). Under the retail award, casual penalty rates add the 25% casual loading rather than multiplying by it. See <Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline">retail award rates</Link> for every level.</p>
               </div>
               <h3>The same day pays differently under different awards</h3>
               <ul>
                 <li><strong>Sunday:</strong> {pct(RETAIL_PENALTIES.sunday)} in retail and {pct(HOSPITALITY_PENALTIES.sunday)} in hospitality, but {pct(FAST_FOOD_AWARD.penalties.find((p) => p.label.startsWith("Sunday (Level 1"))!.fullTime)} for a fast food Level 1 employee and 200% for a security officer or clerk.</li>
                 <li><strong>Evenings:</strong> hospitality adds a flat {formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour rather than a percentage; security weeknights between 6pm and 6am are {(SECURITY_AWARD.penalties[0].fullTime * 100).toFixed(1)}%.</li>
-                <li><strong>Pharmacy</strong> penalties change with the time of day &mdash; Saturday is 125% between 8am and 6pm but 200% before 8am.</li>
-                <li><strong>Manufacturing</strong> compounds casual penalties: a casual&rsquo;s 150% is 150% of the casual rate, which is {cents(roundCents(MANUFACTURING_AWARD.rates[0].hourly * 1.25) * 1.5)} at C14.</li>
+                <li><strong>Pharmacy</strong> penalties change with the time of day: Saturday is 125% between 8am and 6pm but 200% before 8am.</li>
+                <li><strong>Manufacturing</strong> compounds casual penalties: a casual&apos;s 150% is 150% of the casual rate, which is {cents(roundCents(MANUFACTURING_AWARD.rates[0].hourly * 1.25) * 1.5)} at C14.</li>
               </ul>
               <p>
                 For how overtime and shift loadings work in general, see our <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link>.
@@ -217,7 +217,7 @@ export default function AwardRatesGuidePage() {
             <section id="worked-example">
               <h2>How Is Award Pay Calculated? A Worked Week</h2>
               <p>
-                Award pay is the classification rate multiplied by hours, with the penalty for each day applied. A Level 1 casual retail worker ({formatAUD(CASUAL_BASE, 2)}/hr ordinary) working this roster earns:
+                Award pay is the classification rate multiplied by hours, with the penalty for each day applied. A Level 1 casual employee under the General Retail Industry Award ({formatAUD(CASUAL_BASE, 2)}/hr ordinary) working this roster earns:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -258,7 +258,7 @@ export default function AwardRatesGuidePage() {
             <section id="award-vs-enterprise-agreement">
               <h2>Award Rate or Enterprise Agreement?</h2>
               <p>
-                An enterprise agreement is negotiated for a single employer and, once approved, replaces the award for the employees it covers. It must pass the Better Off Overall Test against the award, so an agreement can restructure penalty rates but cannot leave employees worse off overall. Large retailers and fast food chains commonly operate under agreements &mdash; see <Link href="/pay-rates/">pay rates by employer</Link>. If an agreement is terminated, the award applies again.
+                An enterprise agreement is negotiated for a single employer and, once approved, replaces the award for the employees it covers. It must pass the Better Off Overall Test against the award, so an agreement can restructure penalty rates but cannot leave employees worse off overall. Large retailers and fast food chains commonly operate under agreements. See <Link href="/pay-rates/">pay rates by employer</Link>. If an agreement is terminated, the award applies again.
               </p>
             </section>
 
@@ -268,7 +268,7 @@ export default function AwardRatesGuidePage() {
                 <li>Open the Fair Work Ombudsman&apos;s Find My Award tool.</li>
                 <li>Choose your industry and answer the questions about your role.</li>
                 <li>Note the award name, code (for example MA000004) and your classification level.</li>
-                <li>Check your classification rate in the A–Z table above, or in the award&apos;s pay guide.</li>
+                <li>Check your classification rate in the A to Z table above, or in the award&apos;s pay guide.</li>
               </ol>
               <p>
                 To price a particular day, shift or employment type, run the award, level and hours through the Fair Work Ombudsman&apos;s Pay and Conditions Tool; our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide explains what it asks and the rates behind it.
@@ -288,7 +288,7 @@ export default function AwardRatesGuidePage() {
               <h2>What Changed for {SITE_CONFIG.financialYear}?</h2>
               <ul>
                 <li><strong>A {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% increase with floors</strong> from the first full pay period on or after 1 July 2026. The national minimum wage rose from {formatAUD(EMPLOYMENT.minimumWageHourlyPrevious, 2)} to {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. See the <Link href="/minimum-wage-history-australia/">minimum wage history</Link>.</li>
-                <li><strong>Junior rates are rising from 1 December 2026</strong> in the retail, fast food and pharmacy awards, for 18–20 year olds with more than 6 months&apos; service &mdash; a phase-in to the adult rate by 2029, not an immediate jump. See the <Link href="/fast-food-award-rates/#junior-rates">fast food</Link>, <Link href="/retail-award-rates/#junior-rates">retail</Link> and <Link href="/pharmacy-award-rates/#junior-rates">pharmacy</Link> schedules.</li>
+                <li><strong>Junior rates are rising from 1 December 2026</strong> in the retail, fast food and pharmacy awards for employees aged 18 to 20 with more than 6 months&apos; service. The increase is a phase-in to the adult rate by 2029, not an immediate jump. See the <Link href="/fast-food-award-rates/#junior-rates">fast food</Link>, <Link href="/retail-award-rates/#junior-rates">retail</Link> and <Link href="/pharmacy-award-rates/#junior-rates">pharmacy</Link> schedules.</li>
                 <li><strong>Payday Super:</strong> from 1 July 2026 the 12% superannuation guarantee must be paid with each pay rather than quarterly.</li>
               </ul>
             </section>
@@ -296,11 +296,11 @@ export default function AwardRatesGuidePage() {
             <section id="related-resources">
               <h2>Related Guides</h2>
               <ul>
-                <li><Link href="/junior-pay-rates/">Junior pay rates</Link> &mdash; minimum wage by age and every award&apos;s junior scale.</li>
-                <li><Link href="/overtime-penalty-rates-guide/">Overtime and penalty rates</Link> &mdash; how loadings and overtime are calculated.</li>
-                <li><Link href="/take-home-pay-calculator/">Take-home pay calculator</Link> &mdash; your award rate after tax.</li>
-                <li><Link href="/weekly-pay-calculator/">Weekly pay calculator</Link> &mdash; a mixed roster of shifts.</li>
-                <li><Link href="/backpay-calculator/">Backpay calculator</Link> &mdash; what is owed if you were underpaid.</li>
+                <li><Link href="/junior-pay-rates/">Junior pay rates</Link>: minimum wage by age and every award&apos;s junior scale.</li>
+                <li><Link href="/overtime-penalty-rates-guide/">Overtime and penalty rates</Link>: how loadings and overtime are calculated.</li>
+                <li><Link href="/take-home-pay-calculator/">Take-home pay calculator</Link>: your award rate after tax.</li>
+                <li><Link href="/weekly-pay-calculator/">Weekly pay calculator</Link>: a mixed roster of shifts.</li>
+                <li><Link href="/backpay-calculator/">Backpay calculator</Link>: what is owed if you were underpaid.</li>
               </ul>
             </section>
 
@@ -316,7 +316,7 @@ export default function AwardRatesGuidePage() {
                 <strong>Queensland.</strong> State and local government employees are covered by the Queensland state system. Its minimum wage is {formatAUD(QLD_STATE_WAGE_CASE_2026.qmwWeekly, 2)} a week from {QLD_STATE_WAGE_CASE_2026.operativeFrom}, after the {(QLD_STATE_WAGE_CASE_2026.increase * 100).toFixed(2)}% increase in the {QLD_STATE_WAGE_CASE_2026.citation} decision (<a href={QLD_STATE_WAGE_CASE_2026.url} target="_blank" rel="noopener noreferrer">QIRC</a>). Queensland private-sector employees are on the national awards.
               </p>
               <p>
-                What does differ by state is the calendar around the rate. Each state declares its own public holidays, so which days attract public-holiday penalty rates depends on where you work: see the <Link href="/pay-calculator-nsw/">NSW</Link>, <Link href="/pay-calculator-qld/">Queensland</Link> and <Link href="/pay-calculator-vic/">Victoria</Link> pay pages. Long service leave is state law, with a different accrual in each jurisdiction (<Link href="/long-service-leave-calculator/">long service leave calculator</Link>).
+                What differs by state is the public holiday calendar and long service leave. Each state declares its own public holidays, so which days attract public-holiday penalty rates depends on where you work: see the <Link href="/pay-calculator-nsw/">NSW</Link>, <Link href="/pay-calculator-qld/">Queensland</Link> and <Link href="/pay-calculator-vic/">Victoria</Link> pay pages. Long service leave is state law, with a different accrual in each jurisdiction (<Link href="/long-service-leave-calculator/">long service leave calculator</Link>).
               </p>
               <p>
                 Under every award sits the national minimum wage of {formatAUD(NMW.hourly, 2)} an hour, the floor for employees no award covers; see <Link href="/minimum-wage-australia/">minimum wage Australia</Link>.
@@ -341,7 +341,7 @@ export default function AwardRatesGuidePage() {
 
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How this guide works">
-                <p>Every rate on this page is read from constants transcribed from the Fair Work Commission&rsquo;s consolidated award texts (consolidated to 1 July 2026) and the Fair Work Ombudsman pay guides, with the clause cited on each award page, and pinned by automated tests. Rates apply to national system employees from the first full pay period on or after 1 July 2026. We list only awards we have verified line by line; for any other award we link to Fair Work rather than publish an unverified figure.</p>
+                <p>Every rate on this page is read from constants transcribed from the Fair Work Commission&apos;s consolidated award texts (consolidated to 1 July 2026) and the Fair Work Ombudsman pay guides, with the clause cited on each award page, and pinned by automated tests. Rates apply to national system employees from the first full pay period on or after 1 July 2026. We list only awards we have verified line by line; for any other award we link to Fair Work rather than publish an unverified figure.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
               {(() => { const a = getGuideAuthorship("award-rates"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

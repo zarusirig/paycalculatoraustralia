@@ -94,7 +94,7 @@ export const SOCIAL_WORKER: Occupation = {
       id: "sacs",
       title: "Social worker pay rates, SCHADS social and community services, Levels 3 to 6",
       intro:
-        "SCHADS Award Schedule B, weekly and hourly rates as published including the Equal Remuneration Order. Casual is the hourly rate plus the 25% loading (the award publishes no casual column).",
+        "Social worker weekly and hourly rates are from SCHADS Award Schedule B as published, including the Equal Remuneration Order. Casual is the hourly rate plus the 25% loading (the award publishes no casual column).",
       rows: ROWS,
     },
   ],
@@ -106,7 +106,7 @@ export const SOCIAL_WORKER: Occupation = {
     { when: "Night shift", permanent: pct(1 + SCHADS_PENALTIES.nightShiftLoading), casual: "—" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2).",
+    "SCHADS penalty rates are percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2).",
   overtime: [
     "Social and community services employees: time and a half for the first 3 hours of overtime Monday to Saturday, then double time (cl 28.1(a)(ii)), one hour longer at time and a half than disability and home care workers get.",
     "Sunday overtime is double time and public holiday overtime is double time and a half.",
@@ -133,7 +133,7 @@ export const SOCIAL_WORKER: Occupation = {
     },
     {
       q: "Which award covers social workers?",
-      a: `It depends on the employer. Social workers in community organisations and not-for-profits are covered by the SCHADS Award. Social workers in hospitals and other health businesses are covered by the Health Professionals and Support Services Award, which from 1 October 2026 pays a first-year social worker with a bachelor-level (AQF Level 7) qualification a minimum of ${firstYear(7).hourly} an hour. Government social workers are paid under public sector agreements.`,
+      a: `The award that covers a social worker is set by the employer's sector. Social workers in community organisations and not-for-profits are covered by the SCHADS Award. Social workers in hospitals and other health businesses are covered by the Health Professionals and Support Services Award, which from 1 October 2026 pays a first-year social worker with a bachelor-level (AQF Level 7) qualification a minimum of ${firstYear(7).hourly} an hour. Government social workers are paid under public sector agreements.`,
     },
     {
       q: "How much overtime do social workers get?",

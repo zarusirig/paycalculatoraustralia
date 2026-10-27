@@ -1,0 +1,247 @@
+      { q: "Which state's public holidays apply if I work interstate?", a: "The public holidays of the place your job is based, not where you happen to work that day. The Fair Work Ombudsman's example is a Melbourne-based employee working in Sydney on Melbourne Cup Day, who still gets the Victorian holiday entitlement." },
+    ],
+    related: [
+      { href: "/easter-public-holiday-pay/", label: "Easter 2027 pay" },
+      { href: "/australia-day-public-holiday-pay/", label: "Australia Day 2027 pay" },
+      { href: "/christmas-day-pay-rates/", label: "Christmas Day pay rates" },
+      { href: "/boxing-day-pay-rates/", label: "Boxing Day pay rates" },
+    ],
+    sources: [FW_2027],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Melbourne Cup Day
+  // ---------------------------------------------------------------------------
+  {
+    slug: "melbourne-cup-day-pay",
+    guideKey: "melbourne-cup-day-pay",
+    shortName: "Melbourne Cup Day pay",
+    titles: ["Melbourne Cup Day 2026 Pay Rates: Tuesday 3 November in Victoria", "Melbourne Cup Day 2026 Pay: Public Holiday Rates in Victoria"],
+    h1: "Melbourne Cup Day 2026 pay: Tuesday 3 November public holiday rates",
+    descriptions: [
+      `Melbourne Cup Day is Tuesday 3 November 2026. Hospitality and retail pay ${HOSP_P} (casual ${HOSP_C}). Regional Victoria swaps, interstate workers and a calculator.`,
+      `Melbourne Cup Day is Tuesday 3 November 2026. Retail and hospitality pay ${HOSP_P} (casual ${HOSP_C}). Regional swaps and a calculator.`,
+    ],
+    standfirst:
+      "Melbourne Cup Day is a Victorian public holiday, with a twist: some non-metropolitan councils swap it for a local holiday, so for part of regional Victoria the day your public holiday rate applies is not the first Tuesday in November.",
+    directAnswer: `Melbourne Cup Day 2026 is Tuesday 3 November, a public holiday across Victoria except in council areas that have arranged a local holiday instead. Work it and a hospitality or retail worker is paid ${HOSP_P} of the base rate (casuals ${HOSP_C}). If you are full-time or part-time and Tuesday is a normal working day, you are paid your base rate for the day even when you don't work.`,
+    topics: [
+      {
+        topic: "melbourne-cup",
+        id: "dates",
+        heading: "Melbourne Cup Day date, 2026 and 2027",
+        intro:
+          "Melbourne Cup Day is the first Tuesday in November. It is a Victorian public holiday only. No other state or territory has it, and Business Victoria lists it as statewide unless a non-metropolitan council has arranged a local holiday instead.",
+      },
+    ],
+    vicRegional: true,
+    sectionsBeforeCalculator: [
+      {
+        id: "who-gets-it",
+        heading: "Who gets the Melbourne Cup Day public holiday",
+        paragraphs: [
+          "The test is where your job is based. If you work in metropolitan Melbourne or in a Victorian council area that hasn't swapped, Tuesday 3 November 2026 is a public holiday for you. If your job is based in an area that has a replacement local holiday, that local day is your public holiday and Melbourne Cup Day is an ordinary working day.",
+          "It does not depend on where you are standing that day. The Fair Work Ombudsman's example is a Melbourne-based employee working in Sydney on Melbourne Cup Day, who still gets the Victorian public holiday entitlement. A Sydney-based employee working in Melbourne that day does not.",
+        ],
+      },
+      {
+        id: "rates",
+        heading: "Melbourne Cup Day pay rates",
+        paragraphs: [
+          `It is a full public holiday under Victoria's Public Holidays Act, so the award public holiday rate applies to every hour worked. Hospitality and retail workers earn ${HOSP_P} of the base rate if full-time or part-time and ${HOSP_C} if casual, the casual figure already containing the 25% loading. Across the 14 awards on this site the permanent range is ${RANGE_PERM}.`,
+          "Many Melbourne Cup Day workers are in hospitality: pubs, clubs and restaurants run big days around the race. If you are casual, remember you are paid only for the hours you work, and a permanent employee who normally works Tuesdays but is not rostered still gets the day's base pay.",
+        ],
+      },
+    ],
+    calculator: { holidayName: "Melbourne Cup Day", stateCode: "VIC", awardKey: "hospitality", employment: "casual", hours: 6 },
+    example: {
+      heading: "Worked example: a 6-hour hospitality shift on Melbourne Cup Day",
+      intro:
+        "Entry-level adult hospitality and retail rates from 1 July 2026, 6 hours worked on Tuesday 3 November 2026, compared with the same hours on an ordinary Tuesday.",
+      awardKeys: ["hospitality", "retail"],
+      hours: 6,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths such as the hospitality minimum engagement.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "not-working",
+        heading: "If you have Melbourne Cup Day off",
+        paragraphs: [
+          "A full-time or part-time employee whose normal week includes Tuesday is paid their base rate for the ordinary hours they would have worked on 3 November. Penalty rates, loadings, allowances and overtime are not included. Your employer can't change your roster to avoid the payment, and a part-timer who doesn't normally work Tuesdays is not paid for it.",
+          "In an area where the council has swapped the holiday, the same rule applies on the local day instead, and Tuesday 3 November is paid as an ordinary day.",
+        ],
+      },
+      {
+        id: "annual-leave",
+        heading: "Cup Day and annual leave",
+        paragraphs: [
+          "A common arrangement is a long weekend built by taking Monday 2 November as annual leave. Only the Monday costs a day of leave: Tuesday 3 November is a public holiday for a Victorian-based employee who normally works Tuesdays and is paid as one, not deducted from the leave balance.",
+        ],
+      },
+      {
+        id: "2027",
+        heading: "Melbourne Cup Day 2027",
+        paragraphs: [
+          "Melbourne Cup Day 2027 is Tuesday 2 November. Business Victoria's 2027 list shows it as a statewide public holiday. The non-metropolitan council swaps for 2027 have not been published yet, so the regional table above covers 2026 only. Check Business Victoria's non-metropolitan page again once it is updated.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "When is Melbourne Cup Day in 2026?", a: "Tuesday 3 November 2026. Melbourne Cup Day 2027 is Tuesday 2 November. It is the first Tuesday in November and a public holiday in Victoria only." },
+      { q: "Is Melbourne Cup Day a public holiday everywhere in Victoria?", a: "No. It is statewide unless a non-metropolitan council has arranged a local holiday instead. In 2026 that includes Geelong (Wednesday 21 October), Warrnambool and Moyne (Thursday 7 May) and Wodonga (Friday 27 November). In those areas the local day is the public holiday and Tuesday 3 November is an ordinary working day." },
+      { q: "How much do you get paid on Melbourne Cup Day?", a: `Your award's public holiday rate. Hospitality and retail workers earn ${HOSP_P} of the base rate if full-time or part-time and ${HOSP_C} if casual. Across the 14 awards on this site the permanent range is ${RANGE_PERM}.` },
+      { q: "Do I get paid for Melbourne Cup Day if I don't work?", a: NOT_WORKING_ANSWER },
+      { q: "Do I get Melbourne Cup Day off if I work in Victoria but live interstate, or the other way round?", a: "Your public holiday entitlement follows where your job is based, not where you live or where you happen to be that day. A Melbourne-based employee working in Sydney on Melbourne Cup Day still gets the Victorian holiday entitlement." },
+    ],
+    related: [
+      { href: "/public-holiday-pay/vic/", label: "VIC public holidays 2026 and 2027" },
+      { href: "/pay-calculator-vic/", label: "Victoria pay calculator" },
+      { href: "/hospitality-award-rates/", label: "Hospitality award rates" },
+      { href: "/christmas-day-pay-rates/", label: "Christmas Day pay rates" },
+    ],
+    sources: [
+      FW_2026,
+      FW_2027,
+      {
+        title: "Victorian public holidays 2026",
+        url: "https://business.vic.gov.au/business-information/public-holidays/victorian-public-holidays-2026",
+        publisher: "Business Victoria",
+      },
+      {
+        title: "Victorian non-metropolitan public holidays 2026",
+        url: "https://business.vic.gov.au/business-information/public-holidays/victorian-non-metropolitan-public-holidays-2026",
+        publisher: "Business Victoria",
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Easter
+  // ---------------------------------------------------------------------------
+  {
+    slug: "easter-public-holiday-pay",
+    guideKey: "easter-public-holiday-pay",
+    shortName: "Easter public holiday pay",
+    titles: ["Easter 2027 Public Holiday Pay: Good Friday to Easter Monday", "Easter 2027 Public Holiday Pay: Rates and Dates"],
+    h1: "Easter 2027 public holiday pay: Good Friday to Easter Monday",
+    descriptions: [
+      `Easter 2027: Good Friday 26 March to Easter Monday 29 March. Which days are public holidays in your state, plus pay rates (retail ${RETAIL_P}, casual ${RETAIL_C}) and a calculator.`,
+      `Easter 2027 runs 26 to 29 March. Which days are public holidays by state, and the pay (retail ${RETAIL_P}, casual ${RETAIL_C}). Calculator inside.`,
+    ],
+    standfirst:
+      "Easter is four days long on the calendar, but the number that are public holidays depends on where you work. Good Friday and Easter Monday are public holidays nearly everywhere; Easter Saturday and Easter Sunday are not.",
+    directAnswer: `Easter 2027 is Good Friday 26 March, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Good Friday and Easter Monday are public holidays in every state, and every hour worked is paid at your award's public holiday rate: ${RETAIL_P} for retail and hospitality staff, ${RETAIL_C} for casuals. Easter Saturday is a holiday in NSW, VIC, QLD, SA, the ACT and the NT, and Easter Sunday in every state except Tasmania.`,
+    topics: [
+      {
+        topic: "easter",
+        id: "dates",
+        heading: "Easter 2027 public holidays by state",
+        intro:
+          "Easter Sunday 2027 is 28 March, so Good Friday is 26 March and Easter Monday 29 March. Each row below lists the Easter days that state treats as public holidays. Victoria calls the Saturday the Saturday before Easter Sunday and Queensland the day after Good Friday.",
+        footnote:
+          "Tasmania also lists Easter Tuesday (30 March), but generally only for the Tasmanian Public Service, so it is left out of the table. Most Tasmanian private-sector workers work it at ordinary rates unless their award or agreement says otherwise.",
+      },
+    ],
+    sectionsBeforeCalculator: [
+      {
+        id: "rates",
+        heading: "Easter pay rates",
+        paragraphs: [
+          `On each Easter day that is a public holiday in your state, your award's public holiday rate applies to every hour worked. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Across the 14 awards on this site the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}.`,
+          `Road Transport day workers get a higher rate on Good Friday than on other public holidays: ${ROAD_GF_XMAS_PERM} of the weekly wage rate for full-time and part-time day workers and ${ROAD_GF_XMAS_CASUAL} for casuals, the same as on Christmas Day. If your award singles out Good Friday or Easter Sunday, the clause is in the award's public holiday section.`,
+          "Where Easter Saturday or Easter Sunday is a public holiday in your state, your award's public holiday row is the rate to check for hours worked that day. SCHADS says in terms that public holiday pay replaces weekend rates and shift loadings (cl 34.2(b)); for any other award, read its public holiday clause.",
+        ],
+      },
+    ],
+    calculator: { holidayName: "Good Friday", awardKey: "retail", employment: "permanent", hours: 8 },
+    example: {
+      heading: "Worked example: an 8-hour shift on Good Friday 2027",
+      intro:
+        "Entry-level adult rates from 1 July 2026, 8 hours worked on Friday 26 March 2027, compared with the same hours on an ordinary weekday. Any increase from the next annual wage review will lift both columns.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "not-working",
+        heading: "Paid for Easter days you don't work",
+        paragraphs: [
+          "A full-time or part-time employee is paid their base rate for the ordinary hours they would have worked on any Easter public holiday that falls on a day they normally work. For a Monday-to-Friday worker that means Good Friday and Easter Monday. For someone who normally works Saturdays or Sundays it also covers Easter Saturday or Easter Sunday in the states where those are public holidays, and nothing in the states where they are not.",
+          "Casuals are not paid for Easter public holidays they don't work, so a four-day Easter weekend can be a four-day drop in pay for a casual who isn't rostered. If you are a casual, check your roster early.",
+        ],
+      },
+      {
+        id: "refuse",
+        heading: "Refusing Easter shifts",
+        paragraphs: [
+          "Employers can ask you to work an Easter public holiday, but the request has to be reasonable and you can refuse if you have reasonable grounds. The Fair Work Ombudsman's factors are the nature of the workplace and your role, your personal circumstances, including caring responsibilities, whether you could expect to be asked, how much notice you were given, and any penalty rates or other payments on offer.",
+        ],
+      },
+      {
+        id: "annual-leave",
+        heading: "Taking annual leave around Easter",
+        paragraphs: [
+          "Annual leave over Easter costs fewer days than it looks. The public holidays are paid as public holidays and are not deducted from your balance when they fall on a day you would normally work. Taking Tuesday 30 March to Friday 2 April 2027 off gives a ten-day break from Good Friday to Sunday 4 April. It costs four days of leave for a Monday-to-Friday worker (Tuesday to Friday), and the Good Friday and Easter Monday public holidays cost nothing.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "When is Easter in 2027?", a: "Good Friday is Friday 26 March 2027, Easter Saturday is 27 March, Easter Sunday is 28 March and Easter Monday is 29 March." },
+      { q: "Which Easter days are public holidays?", a: "Good Friday and Easter Monday are public holidays in every state and territory. Easter Saturday is a public holiday in New South Wales, Victoria, Queensland, South Australia, the ACT and the Northern Territory but not in Western Australia or Tasmania. Easter Sunday is a public holiday everywhere except Tasmania. Tasmania also lists Easter Tuesday, generally for the Tasmanian Public Service only." },
+      { q: "How much do you get paid on Good Friday?", a: `Your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Road Transport day workers get a higher rate on Good Friday than on other public holidays.` },
+      { q: "Do I get paid for Easter public holidays if I don't work?", a: NOT_WORKING_ANSWER },
+      { q: "Is Easter Sunday paid at public holiday rates?", a: `Where it is a public holiday in your state, yes. Easter Sunday is a public holiday in every state and territory except Tasmania, so an hour worked is paid at your award's public holiday rate (${RETAIL_P} in retail and hospitality, ${RETAIL_C} for casuals).` },
+    ],
+    related: [
+      { href: "/public-holidays-2027/", label: "Public holidays 2027 with pay rates" },
+      { href: "/australia-day-public-holiday-pay/", label: "Australia Day 2027 pay" },
+      { href: "/overtime-penalty-rates-guide/", label: "Penalty rates guide" },
+      { href: "/retail-award-rates/", label: "Retail award rates" },
+    ],
+    sources: [FW_2027],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Australia Day
+  // ---------------------------------------------------------------------------
+  {
+    slug: "australia-day-public-holiday-pay",
+    guideKey: "australia-day-public-holiday-pay",
+    shortName: "Australia Day pay",
+    titles: ["Australia Day 2027 Public Holiday Pay: Tuesday 26 January", "Australia Day 2027 Public Holiday Pay and Rates"],
+    h1: "Australia Day 2027 public holiday pay: Tuesday 26 January",
+    descriptions: [
+      `Australia Day 2027 is Tuesday 26 January, a public holiday in every state with no extra day. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Calculator inside.`,
+      `Australia Day 2027 is Tuesday 26 January in every state. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}). Calculator inside.`,
+    ],
+    standfirst:
+      "Australia Day 2027 falls in the middle of the week, on a Tuesday. Nothing moves and no state adds an extra day, so the questions are about the pay on the day, and what taking the Monday off does to your leave.",
+    directAnswer: `Australia Day 2027 is Tuesday 26 January in every state and territory. Work it and your award pays the public holiday rate: ${RETAIL_P} of the base rate for full-time and part-time retail and hospitality staff, ${RETAIL_C} for casuals. If it falls on a day you normally work and you are not rostered, a full-time or part-time employee is still paid their base rate for their ordinary hours.`,
+    topics: [
+      {
+        topic: "australia-day",
+        id: "dates",
+        heading: "Australia Day 2027 by state",
+        intro:
+          "Australia Day is 26 January. In 2027 that is a Tuesday, so there is no weekend substitute to work out. Every state and territory observes it on the day.",
+      },
+    ],
+    sectionsBeforeCalculator: [
+      {
+        id: "rates",
+        heading: "What Australia Day pays",
+        paragraphs: [
+          `Australia Day is paid at your award's public holiday rate, the same as any other public holiday. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, with the 25% casual loading already in the casual figure. Across the 14 awards on this site the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}.`,
+          "An enterprise agreement's rate replaces the award rate. Pick the enterprise agreement option in the calculator below and enter your own percentage.",
+        ],
+      },
+      {
+        id: "refusing",
+        heading: "Working or refusing to work on Australia Day",
+        paragraphs: [
+          "Every employee can be absent from work on a public holiday, but an employer can ask you to work it if the request is reasonable and you can refuse if the request is unreasonable or you have reasonable grounds. The Fair Work Ombudsman's factors include the nature of your workplace and role, your personal circumstances, the penalty rates on offer and the notice given.",
+          "You and your employer can also agree to substitute another day for Australia Day where your award or agreement allows it, or, if you are award and agreement free, by agreement. The substitute day is then paid as the public holiday and the original day as an ordinary day.",
+        ],
+      },
+    ],

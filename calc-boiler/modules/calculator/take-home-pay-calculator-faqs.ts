@@ -41,7 +41,7 @@ export const TAKE_HOME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What percentage of my salary do I actually take home?",
-    a: `The percentage varies by income level. In FY${FY}, at $40,000 you retain ${keep(EX40, 40_000)} (${formatAUD(EX40.takeHomePay)}). At $80,000, you retain ${keep(EX80, 80_000)} (${formatAUD(EX80.takeHomePay)}). At $150,000, you retain ${keep(EX150, 150_000)} (${formatAUD(EX150.takeHomePay)}). The percentage decreases as income rises because Australia's progressive tax brackets apply higher marginal rates to each additional dollar earned.`,
+    a: `The percentage you keep falls as your income rises. In FY${FY}, at $40,000 you retain ${keep(EX40, 40_000)} (${formatAUD(EX40.takeHomePay)}). At $80,000, you retain ${keep(EX80, 80_000)} (${formatAUD(EX80.takeHomePay)}). At $150,000, you retain ${keep(EX150, 150_000)} (${formatAUD(EX150.takeHomePay)}). It falls because Australia's progressive tax brackets apply higher marginal rates to each additional dollar earned.`,
   },
   {
     q: "Is superannuation deducted from my take-home pay?",
@@ -63,7 +63,7 @@ export const TAKE_HOME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice increase take-home pay?",
-    a: `Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing ${formatAUD(SACRIFICE)} saves ${formatAUD(SACRIFICE_SAVING)} in tax overall. The trade-off is that super funds are locked until preservation age (${PRESERVATION_AGE} for most Australians).`,
+    a: `Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing ${formatAUD(SACRIFICE)} saves ${formatAUD(SACRIFICE_SAVING)} in tax overall. The trade-off is that the sacrificed amount is preserved in super until your preservation age (${PRESERVATION_AGE} for most Australians).`,
   },
   {
     q: "Do I pay the Medicare Levy Surcharge?",

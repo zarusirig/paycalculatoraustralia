@@ -16,7 +16,7 @@ const RESIDUAL_EXAMPLE_PRICE = 40_000;
 export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   {
     q: "What is a novated lease in simple terms?",
-    a: "A novated lease is a three-way arrangement between you, your employer and a finance company. Your employer takes the lease payments and the running-cost budget out of your pay, mostly from pre-tax salary, and sends them to the leasing company. This reduces your taxable income and lowers the total cost of running a vehicle compared to paying with after-tax dollars. The car is registered in your name, and you choose the vehicle, lease term, and running cost budget.",
+    a: "A novated lease is a three-way arrangement between you, your employer and a finance company. Your employer takes the lease payments and the running-cost budget out of your pay, mostly from pre-tax salary, and sends them to the leasing company. Those pre-tax deductions reduce your taxable income and lower the total cost of running the vehicle compared with paying from after-tax pay. The car is registered in your name, and you choose the vehicle, lease term, and running cost budget.",
   },
   {
     q: "What happens if I leave my job?",
@@ -29,7 +29,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does a novated lease reduce my super?",
-    a: "It should not. Under Payday Super, qualifying earnings include salary sacrificed amounts that would otherwise be qualifying earnings, so your employer's super should still be worked out on your pre-sacrifice salary. Check the super line on the payslip after the first lease deduction, and ask payroll which figure they are using if it moved.",
+    a: "No. A novated lease does not reduce the super your employer must pay. Under Payday Super, qualifying earnings include salary sacrificed amounts that would otherwise be qualifying earnings, so your employer must work out your super on your pre-sacrifice salary. Check the super line on your payslip after the first lease deduction, and if it moved, ask payroll which salary figure they are using.",
   },
   {
     q: "Can I novate a used car?",
@@ -47,7 +47,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are registration and insurance included?",
-    a: "Yes. A fully maintained novated lease bundles registration, comprehensive insurance, fuel, scheduled servicing, tyres, and roadside assistance into the fortnightly or monthly budget. The leasing company pays these costs from the running cost pool deducted from your salary. Any surplus in the running cost account at lease end is refunded to the employee.",
+    a: "Yes. A fully maintained novated lease bundles registration, comprehensive insurance, fuel, scheduled servicing, tyres, and roadside assistance into the fortnightly or monthly budget. The leasing company pays these costs from the running cost budget deducted from your salary. Any surplus left in that budget at lease end is refunded to you.",
   },
   {
     q: "Is a novated lease the same as salary packaging?",
@@ -59,7 +59,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is there a kilometre limit on a novated lease?",
-    a: "No. Unlike an operating lease or car subscription, a novated lease has no kilometre cap. The running cost budget is set based on estimated annual kilometres (typically 15,000 to 20,000 km), but exceeding the estimate does not incur penalties. Higher kilometres simply deplete the fuel and tyre budget faster, which is adjusted at the annual budget review.",
+    a: "No. Unlike an operating lease or car subscription, a novated lease has no kilometre cap. The running cost budget is set based on estimated annual kilometres (typically 15,000 to 20,000 km), but exceeding the estimate does not incur penalties. Higher kilometres use up the fuel and tyre budget faster, and that budget is adjusted at the annual budget review.",
   },
   {
     q: "Does a novated lease reduce my HECS-HELP repayment?",

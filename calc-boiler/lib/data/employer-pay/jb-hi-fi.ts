@@ -45,7 +45,7 @@ export const JB_HI_FI_PAY: EmployerPay = {
         : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
-    "These are the General Retail Industry Award minimums that apply to JB Hi-Fi store staff. JB Hi-Fi's actual pay rates, and any sales incentives, are not published, so your pay may be higher, but it cannot be lower.",
+    "The rates on this page are the General Retail Industry Award minimums that apply to JB Hi-Fi store staff. JB Hi-Fi does not publish its actual pay rates or any sales incentives, so your pay may be higher, but it cannot be lower.",
     "Your payslip must name the award or agreement you are paid under, and your classification level. If it says Retail Award, match your level to the table below.",
   ],
   unverified: [
@@ -66,11 +66,11 @@ export const JB_HI_FI_PAY: EmployerPay = {
     },
     {
       q: "Does JB Hi-Fi have an enterprise agreement?",
-      a: "Not for its stores, as far as we could find. The only JB Hi-Fi agreements approved by the Fair Work Commission since 2019 cover its Victorian Home Delivery Centre. Store staff are engaged under the General Retail Industry Award.",
+      a: "JB Hi-Fi has no enterprise agreement for its stores, as far as we could find. The only JB Hi-Fi agreements approved by the Fair Work Commission since 2019 cover its Victorian Home Delivery Centre. Store staff are engaged under the General Retail Industry Award.",
     },
     {
       q: "Are JB Hi-Fi warehouse staff paid these rates?",
-      a: "Not necessarily. JB Hi-Fi's Victorian Home Delivery Centre, a warehouse, has its own enterprise agreements (AE521349 and AE533888), and this page does not show their rates. The award rates here are for store staff.",
+      a: "JB Hi-Fi warehouse staff are not necessarily paid these rates. The Victorian Home Delivery Centre, a warehouse, has its own enterprise agreements (AE521349 and AE533888), and this page does not show their rates. The award rates here are for store staff.",
     },
   ],
 };

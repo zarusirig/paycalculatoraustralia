@@ -92,7 +92,7 @@ export const HPSS_OCT_2026_SOURCES: OccupationSource[] = [
  * page covers the transition in full.
  */
 export const HPSS_OCT_2026_NOTICES: string[] = [
-  "Stage 1 of the gender undervaluation increases (determination PR814029); further stages are due from 30 June 2027, 2028, 2029 and 2030. If you were on this award on 30 September 2026, clause J.4.3 keeps your old minimum rate if it was higher.",
+  "The Health Professional stream rates on this page are Stage 1 of the gender undervaluation increases (determination PR814029). Further stages are due from 30 June 2027, 2028, 2029 and 2030. If you were on this award on 30 September 2026, clause J.4.3 keeps your old minimum rate if it was higher.",
 ];
 
 /** The four Level 1 rows (1st year to 7th year+) for one AQF level, with the published casual rate. */
@@ -126,7 +126,7 @@ export function hpssOct2026Level1Table(aqf: HpssAqfLevel, id = "level-1"): RateT
     title: `Health professional level 1, AQF Level ${aqf}, from 1 October 2026`,
     // How Level 1 pay is set (AQF level and years at Level 1) is in each
     // profession's coverage paragraphs, so the intro does not repeat it.
-    intro: `Clause 17.1 as substituted by determination PR814029, AQF Level ${aqf} rows. Casual rates are Schedule C.2.3 exactly.`,
+    intro: `These are the AQF Level ${aqf} rows of clause 17.1, as substituted by determination PR814029. Casual rates are exactly as Schedule C.2.3 prints them.`,
     rows: hpssOct2026Level1Rows(aqf),
   };
 }
@@ -137,7 +137,7 @@ export function hpssOct2026SeniorTable(): RateTable {
     title: "Health professional levels 2 to 4, from 1 October 2026",
     // The level definitions are in the row labels and, on each profession's
     // page, in its coverage paragraphs.
-    intro: "Clause 17.2 as substituted by PR814029; levels are defined in Schedule A.2. Casual rates are Schedule C.2.3 exactly.",
+    intro: "These rates are from clause 17.2 as substituted by PR814029, and Schedule A.2 defines each level. Casual rates are exactly as Schedule C.2.3 prints them.",
     rows: hpssOct2026SeniorRows(),
   };
 }

@@ -14,7 +14,7 @@ export const OTE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "What is a good OTE split?",
-    a: "There is no legal standard. The split is simply base divided by OTE: $80,000 base on $120,000 OTE is 67:33. The higher the base share, the more of your pay is guaranteed and the more counts for things based on fixed earnings, like the Fair Work high income threshold.",
+    a: "There is no legal standard. The split is base divided by OTE: $80,000 base on $120,000 OTE is 67:33. The higher the base share, the more of your pay is guaranteed and the more of it counts towards tests based on fixed earnings, such as the Fair Work high income threshold.",
   },
   {
     q: "Is super paid on commission in Australia?",

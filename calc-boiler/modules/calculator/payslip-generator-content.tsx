@@ -117,7 +117,7 @@ export default function PayslipGeneratorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Employer Payslip Obligations in Australia</h2>
             <p className="mb-4 text-warmgray">
-              Payslips are a legal requirement, not a courtesy. Under the Fair Work Act, employers must give every employee a
+              Payslips are a legal requirement in Australia. Under the Fair Work Act, employers must give every employee a
               payslip (electronic or paper) <strong>within one working day of payday</strong>, even if the employee is on leave.
               Employee records, including pay records, must be kept for <strong>seven years</strong>. The Fair Work Ombudsman can
               issue infringement notices and pursue penalties for missing or inaccurate payslips.
@@ -155,7 +155,7 @@ export default function PayslipGeneratorContent() {
             <ol className="list-decimal pl-4 space-y-1">
               <li>Ordinary earnings = hourly rate x hours (or annual salary ÷ pay periods per year).</li>
               <li>Gross pay for the period = ordinary earnings + overtime + allowances.</li>
-              <li>PAYG estimate: the period gross is annualised, FY{SITE_CONFIG.financialYear} income tax, LITO and the 2% Medicare levy are applied (plus HECS-HELP if selected), and the result is divided back to the pay period. If the tax-free threshold is not claimed, tax scales are applied from the first dollar. Employers&apos; payroll software uses the ATO Schedule 1 coefficients, so figures can differ by a few dollars, so use the override field for exact amounts.</li>
+              <li>PAYG estimate: the period gross is annualised, FY{SITE_CONFIG.financialYear} income tax, LITO and the 2% Medicare levy are applied (plus HECS-HELP if selected), and the result is divided back to the pay period. If the tax-free threshold is not claimed, tax scales are applied from the first dollar. Employers&apos; payroll software uses the ATO Schedule 1 coefficients, so figures can differ by a few dollars. Use the override field for exact amounts.</li>
               <li>Super Guarantee ({(SUPER_GUARANTEE.rate * 100).toFixed(0)}%) is calculated on ordinary time earnings (ordinary hours plus allowances, excluding overtime).</li>
               <li>YTD totals multiply the current period by the number of pays this financial year. Replace with actual YTD figures from payroll records where available.</li>
               <li>All processing is client-side. No names, ABNs or pay figures leave your device.</li>

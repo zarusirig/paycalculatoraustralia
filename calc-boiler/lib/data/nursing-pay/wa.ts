@@ -110,7 +110,7 @@ export const WA_NURSING_PAY: NursingStateData = {
         { label: "Level 2.4", annual: 124087 },
       ],
       note:
-        "Rates from 12 October 2026 (clause 17(1)). A registered nurse or midwife doing a post-basic course leading to registration is paid at Level 1.2 or higher (clause 17(8)).",
+        "These Registered Nurse/Midwife rates apply from 12 October 2026 (clause 17(1)). A registered nurse or midwife doing a post-basic course leading to registration is paid at Level 1.2 or higher (clause 17(8)).",
     },
     {
       classification: "Senior Registered Nurse/Midwife",
@@ -160,7 +160,7 @@ export const WA_NURSING_PAY: NursingStateData = {
         { label: "Advanced Skill Enrolled Nurse 3", weekly: 1764.83 },
       ],
       note:
-        "Rates from 7 October 2026 (clause 24.1(e), after the second flat $65-a-week rise). Enrolled nurse levels 1 to 4 are years of employment as an enrolled nurse. Advanced skill requires a relevant post-enrolment qualification and at least three years' experience.",
+        "These enrolled nurse rates apply from 7 October 2026 (clause 24.1(e), after the second flat $65-a-week rise). Enrolled nurse levels 1 to 4 are years of employment as an enrolled nurse. Advanced skill requires a relevant post-enrolment qualification and at least three years' experience.",
     },
     {
       classification: "Enrolled Mental Health Nurse",
@@ -190,7 +190,7 @@ export const WA_NURSING_PAY: NursingStateData = {
         { label: "Year 5", annual: 77478 },
       ],
       note:
-        "A closed classification: registration is limited to mothercraft nursing and the holder cannot administer medicines.",
+        "Enrolled Nurse (Mothercraft Nursing only) is a closed classification: registration is limited to mothercraft nursing and the holder cannot administer medicines.",
     },
     {
       classification: "Assistant in Nursing",
@@ -256,7 +256,7 @@ export const WA_NURSING_PAY: NursingStateData = {
 
   highlights: [
     "WA pays the highest night shift loading of the six states on this site: 35% on a weekday night shift.",
-    "Saturday is +50% and Sunday +75%, and those replace the shift loading rather than adding to it.",
+    "In WA, Saturday ordinary hours are +50% and Sunday ordinary hours +75%, and those weekend rates replace the afternoon or night shift loading rather than adding to it.",
     "Registered nurses and midwives progress through Level 1.1 to 2.4, then into Senior Registered Nurse/Midwife Levels 1 to 10.",
     "The ANF agreement's last scheduled rise applied from 12 October 2026, taking RN/M Level 1.1 to $85,848 and Level 2.4 to $124,087 a year.",
     "Nurse practitioners have no separate rate: the agreement classifies them as Senior Registered Nurses at a level assessed on work value, floored at Level 3.",

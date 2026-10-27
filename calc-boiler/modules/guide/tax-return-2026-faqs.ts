@@ -57,6 +57,6 @@ export const TAX_RETURN_2026_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "When do I have to lodge my tax return?",
-    a: `If you lodge yourself, by ${R.selfLodgeDueDate} for the ${R.incomeYear} year. With a registered tax agent you usually get until ${R.agentDueDateMostPeople}, provided you are on the agent's client list by ${R.selfLodgeDueDate}. Some agent clients have an earlier date (${R.agentDueDateLargeLiability} if the latest return had a tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at 30 June 2026). You can lodge any time from 1 July, and the ATO says it pre-fills most information by ${R.prefillReady}.`,
+    a: `If you lodge yourself, your tax return is due by ${R.selfLodgeDueDate} for the ${R.incomeYear} year. With a registered tax agent you usually get until ${R.agentDueDateMostPeople}, provided you are on the agent's client list by ${R.selfLodgeDueDate}. Some agent clients have an earlier date (${R.agentDueDateLargeLiability} if the latest return had a tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at 30 June 2026). You can lodge any time from 1 July, and the ATO says it pre-fills most information by ${R.prefillReady}.`,
   },
 ];

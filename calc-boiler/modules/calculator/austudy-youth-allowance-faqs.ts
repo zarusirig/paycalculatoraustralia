@@ -16,7 +16,7 @@ export const STUDENT_FAQS: readonly StudentFaq[] = [
   },
   {
     q: "Who is eligible for Youth Allowance?",
-    a: `Students and Australian Apprentices: 18 to 24 and studying full time, 16 to 24 in a full-time apprenticeship, or 16–17 and independent, needing to live away from home to study, or studying full time after finishing year 12. Job seekers: ${YJ.minAge} to ${YJ.maxAge}, and unemployed and looking for work, or temporarily unable to work or study because of illness or injury. Everyone must meet the residence rules and the income and assets tests.`,
+    a: `Students and Australian Apprentices: 18 to 24 and studying full time, 16 to 24 in a full-time apprenticeship, or 16 to 17 and independent, needing to live away from home to study, or studying full time after finishing year 12. Job seekers: ${YJ.minAge} to ${YJ.maxAge}, and unemployed and looking for work, or temporarily unable to work or study because of illness or injury. Everyone must meet the residence rules and the income and assets tests.`,
   },
   {
     q: "How much can I earn on Youth Allowance as a job seeker?",
@@ -52,6 +52,6 @@ export const STUDENT_FAQS: readonly StudentFaq[] = [
   },
   {
     q: "Are Austudy and Youth Allowance taxable?",
-    a: "Yes, for students and apprentices 16 or older. Both are taxable Centrelink payments and count with your wages in your tax return; the tax-free threshold usually covers most or all of it, but check with the take-home pay calculator if you also work.",
+    a: "Yes, for students and apprentices 16 or older. Both are taxable Centrelink payments and count with your wages in your tax return. The tax-free threshold usually covers most or all of the payment. If you also work, check the tax on your wages with the take-home pay calculator.",
   },
 ];

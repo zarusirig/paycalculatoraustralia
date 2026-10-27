@@ -101,7 +101,7 @@ export default function FamilyTaxBenefitCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Income limits as published by Services Australia for {A.financialYear}. Our calculator&apos;s own limits (e.g. {formatAUD(ftbABaseRateIncome({ age0to12: 1, age13to19: 0 }))} and {formatAUD(ftbANilIncome({ age0to12: 1, age13to19: 0 }))} for one child) reproduce each figure to within $1. Limits are higher if you also get Rent Assistance or Energy Supplement.</p>
+        <p className="mt-2 text-xs text-warmgray-light">The income limits in this table are the ones Services Australia publishes for {A.financialYear}. Our calculator&apos;s own limits (e.g. {formatAUD(ftbABaseRateIncome({ age0to12: 1, age13to19: 0 }))} and {formatAUD(ftbANilIncome({ age0to12: 1, age13to19: 0 }))} for one child) reproduce each figure to within $1. Limits are higher if you also get Rent Assistance or Energy Supplement.</p>
       </section>
 
       <section>
@@ -116,12 +116,12 @@ export default function FamilyTaxBenefitCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Part B is a two-part test. First, the single parent (or in a couple, the higher earner) must have adjusted taxable income of {formatAUD(B.primaryEarnerLimit)} or less; above that there is no Part B at all. Second, for couples, the lower earner can earn {formatAUD(B.secondaryFreeArea)} a year before Part B reduces by 20 cents per dollar. A supplement of up to {formatAUD(B.supplementAnnual, 2)} per family is paid after the year.</p>
+        <p className={P + " mt-4"}>The FTB Part B income test has two parts. First, the single parent (or in a couple, the higher earner) must have adjusted taxable income of {formatAUD(B.primaryEarnerLimit)} or less; above that there is no Part B at all. Second, for couples, the lower earner can earn {formatAUD(B.secondaryFreeArea)} a year before Part B reduces by 20 cents per dollar. The FTB Part B supplement of up to {formatAUD(B.supplementAnnual, 2)} per family is paid after the year.</p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>How a Pay Rise Changes Your FTB</h2>
-        <p className={P}>FTB Part A for two children aged 0–12 at different family incomes. Between {formatAUD(A.lowerThreshold)} and the base-rate point each extra dollar costs 20 cents of Part A; above {formatAUD(A.higherThreshold)}, 30 cents.</p>
+        <p className={P}>The table shows FTB Part A for two children aged 0 to 12 at different family incomes. Between {formatAUD(A.lowerThreshold)} and the base-rate point, each extra dollar of family income cuts Part A by 20 cents; above {formatAUD(A.higherThreshold)}, 30 cents.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Family income</th><th scope="col" className={TH + " text-right"}>Part A a fortnight</th><th scope="col" className={TH + " text-right"}>Part A a year (incl. supplement)</th></tr></thead>
@@ -132,7 +132,7 @@ export default function FamilyTaxBenefitCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Going from {formatAUD(70_000)} to {formatAUD(80_000)} costs about {formatAUD(ftbA(70_000, TWO_KIDS).annualExSupplement - ftbA(80_000, TWO_KIDS).annualExSupplement)} of Part A for this family, and crossing {formatAUD(A.supplementIncomeLimit)} loses the {formatAUD(2 * A.supplementAnnual, 2)} supplement. Tax takes its share of the rise too. See what an extra shift is worth after tax with the <Link href="/pay-rise-calculator/" className={LINK}>pay rise calculator</Link> or the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>, and remember to update your family income estimate with Services Australia.</p>
+        <p className={P + " mt-4"}>Going from {formatAUD(70_000)} to {formatAUD(80_000)} costs about {formatAUD(ftbA(70_000, TWO_KIDS).annualExSupplement - ftbA(80_000, TWO_KIDS).annualExSupplement)} of Part A for this family, and crossing {formatAUD(A.supplementIncomeLimit)} loses the {formatAUD(2 * A.supplementAnnual, 2)} supplement. Income tax and the Medicare levy also come out of the rise. See what an extra shift is worth after tax with the <Link href="/pay-rise-calculator/" className={LINK}>pay rise calculator</Link> or the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>. Update your family income estimate with Services Australia when your pay rises, to avoid an FTB debt.</p>
       </section>
 
       <section>
@@ -155,8 +155,8 @@ export default function FamilyTaxBenefitCalculatorContent() {
         <ul className="list-disc pl-4 space-y-1">
           <li>Part A is the higher of two methods. Method 1: maximum rate − 20c × income between {formatAUD(A.lowerThreshold)} and {formatAUD(A.higherThreshold)} − 30c × income over {formatAUD(A.higherThreshold)}. Method 2: base rate − 30c × income over {formatAUD(A.higherThreshold)}.</li>
           <li>Part B: maximum rate if the single or higher-earner income is {formatAUD(B.primaryEarnerLimit)} or less; for couples, less 20c × the lower earner&apos;s income over {formatAUD(B.secondaryFreeArea)}.</li>
-          <li>Yearly amounts are the fortnightly rate × 365 ÷ 14. Supplements are added to the tested amount and reduced last; the Part A supplement needs family ATI of {formatAUD(A.supplementIncomeLimit)} or less. These reproduce every income limit Services Australia publishes for {A.financialYear} to within $1 (our unit tests check each one).</li>
-          <li>Figures read at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder, which also handles shared care and child support.</li>
+          <li>Yearly amounts are the fortnightly rate × 365 ÷ 14. Supplements are added to the tested amount and reduced last; the Part A supplement needs family ATI of {formatAUD(A.supplementIncomeLimit)} or less. These formulas reproduce every income limit Services Australia publishes for {A.financialYear} to within $1 (our unit tests check each one).</li>
+          <li>We read these figures at Services Australia on {FAMILY_PAYMENT_SOURCES.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use the Services Australia Payment Finder, which also handles shared care and child support.</li>
         </ul>
       </MethodologyDisclosure>
 

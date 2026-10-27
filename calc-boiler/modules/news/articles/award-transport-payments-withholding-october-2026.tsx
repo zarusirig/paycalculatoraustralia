@@ -46,8 +46,8 @@ export default function AwardTransportPaymentsWithholdingOctober2026() {
         Award transport payments had their own rules in tax law, so the ATO varied withholding on them to nil and
         required employers to report them separately in Single Touch Payroll. The Treasury Laws Amendment (Tax
         Reform No. 1) Act 2026 received royal assent on 26 June 2026 and repeals those provisions. The ATO&apos;s
-        guidance, published on 26 August 2026, says that for amounts previously treated as award transport payments
-        and paid on or after {AWARD_TRANSPORT_CHANGE_DATE}, employers must withhold from them and no longer identify
+        guidance, published on 26 August 2026, covers amounts previously treated as award transport payments
+        and paid on or after {AWARD_TRANSPORT_CHANGE_DATE}. Employers must withhold tax from those amounts and no longer identify
         them separately in STP. The payments still have to be reported, under whichever allowance category fits.
       </p>
       <p>
@@ -59,7 +59,7 @@ export default function AwardTransportPaymentsWithholdingOctober2026() {
 
       <h2>What it means for your pay</h2>
       <p>
-        The allowance is added to the pay your employer withholds from, so your net pay drops slightly. Using the
+        Your award transport payment is added to the pay your employer withholds from, so your net pay drops slightly. Using the
         FY2026-27 weekly tax table (tax-free threshold claimed), a {formatAUD(ALLOWANCE)} weekly allowance on top of:
       </p>
       <div className="overflow-x-auto not-prose my-6 rounded-xl border border-sandstone-dark/20">
@@ -89,12 +89,12 @@ export default function AwardTransportPaymentsWithholdingOctober2026() {
         tax return. What changes is that the tax is collected through the year instead of at tax time.
       </p>
       <p>
-        This does not change cents-per-kilometre car allowances paid at or below the ATO rate for deductible work
+        The award transport change does not affect cents-per-kilometre car allowances paid at or below the ATO rate for deductible work
         travel, which remain free of withholding for the first {CPK_KM_CAP.toLocaleString("en-AU")} km. Our{" "}
         <Link href="/cents-per-km/">cents per km guide</Link> covers those, the{" "}
         <Link href="/travel-allowance/">travel allowance guide</Link> covers overnight travel, and you can check
-        your new net pay with the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link> or read the
-        allowance lines on your payslip with our <Link href="/understanding-your-payslip/">payslip guide</Link>.
+        your new net pay with the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link>.
+        You can also read the allowance lines on your payslip with our <Link href="/understanding-your-payslip/">payslip guide</Link>.
       </p>
     </>
   );

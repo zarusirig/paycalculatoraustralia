@@ -50,7 +50,7 @@ export const MW_FAQS: readonly Faq[] = [
   },
   {
     q: "What is the minimum wage in Victoria, NSW and Queensland?",
-    a: `The same as everywhere else in Australia: ${money(NMW.hourly)} an hour. The National Minimum Wage and modern award rates are set nationally by the Fair Work Commission, so there is no separate minimum wage for Victoria, Melbourne, New South Wales, Sydney, Queensland, South Australia, Tasmania, the ACT or the Northern Territory. Western Australia is the one partial exception: employees of sole traders, partnerships and some trusts there are in the WA state system, whose adult State Minimum Wage is ${money(WA_STATE_MINIMUM_WAGE.weekly)} a week (${money(WA_STATE_MINIMUM_WAGE.hourly)} an hour) from ${WA_STATE_MINIMUM_WAGE.operativeFrom}.`,
+    a: `The minimum wage in Victoria, NSW and Queensland is the same as everywhere else in Australia: ${money(NMW.hourly)} an hour. The National Minimum Wage and modern award rates are set nationally by the Fair Work Commission, so there is no separate minimum wage for Victoria, Melbourne, New South Wales, Sydney, Queensland, South Australia, Tasmania, the ACT or the Northern Territory. Western Australia is the one partial exception: employees of sole traders, partnerships and some trusts there are in the WA state system, whose adult State Minimum Wage is ${money(WA_STATE_MINIMUM_WAGE.weekly)} a week (${money(WA_STATE_MINIMUM_WAGE.hourly)} an hour) from ${WA_STATE_MINIMUM_WAGE.operativeFrom}.`,
   },
   {
     q: "What is the casual minimum wage in Australia?",
@@ -66,6 +66,6 @@ export const MW_FAQS: readonly Faq[] = [
   },
   {
     q: "Who gets paid the National Minimum Wage?",
-    a: `Adults aged ${ADULT_AGE} and over who are not covered by a modern award or enterprise agreement. Most employees are covered by an award, which sets its own minimum for each classification. Since ${NMW_DECISION.operativeFrom} the lowest adult award rate for ongoing employment is ${money(NMW.hourly)}, and an entry-level rate for no more than the first six months must be at least ${money(NMW_DECISION.entryLevelHourly)}. Junior employees, apprentices, trainees and employees on the supported wage system have their own minimums under the ${NMW_ORDER.citation}.`,
+    a: `The National Minimum Wage is paid to adults aged ${ADULT_AGE} and over who are not covered by a modern award or enterprise agreement. Most employees are covered by an award, which sets its own minimum for each classification. Since ${NMW_DECISION.operativeFrom} the lowest adult award rate for ongoing employment is ${money(NMW.hourly)}, and an entry-level rate for no more than the first six months must be at least ${money(NMW_DECISION.entryLevelHourly)}. Junior employees, apprentices, trainees and employees on the supported wage system have their own minimums under the ${NMW_ORDER.citation}.`,
   },
 ];

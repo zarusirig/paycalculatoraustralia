@@ -39,7 +39,7 @@ const T50_2 = TAX_50K(2);
 export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   {
     q: "How much redundancy pay am I entitled to?",
-    a: `Under the National Employment Standards it depends on your completed years of continuous service: 4 weeks' pay at 1 year, 6 at 2, 7 at 3, 8 at 4, 10 at 5, 11 at 6, 13 at 7, 14 at 8, 16 at 9, and 12 weeks from 10 years. Less than 1 year gets nothing. An award, enterprise agreement or contract can give you more, never less.`,
+    a: `Under the National Employment Standards, your redundancy pay is set by your completed years of continuous service: 4 weeks' pay at 1 year, 6 at 2, 7 at 3, 8 at 4, 10 at 5, 11 at 6, 13 at 7, 14 at 8, 16 at 9, and 12 weeks from 10 years. With less than 1 year of service, you get no NES redundancy pay. An award, enterprise agreement or contract can give you more, never less.`,
   },
   {
     q: "How is redundancy pay calculated?",
@@ -47,7 +47,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: `What is the tax-free redundancy limit for ${Y}?`,
-    a: `${formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service, for genuine redundancy payments made in the ${Y} income year. With 5 completed years that is ${formatAUD(genuineRedundancyTaxFreeLimit(5))}. For payments made in ${REDUNDANCY_TAX_2025_26.incomeYear} it was ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreePerYear)} a year.`,
+    a: `The tax-free limit is ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service, for genuine redundancy payments made in the ${Y} income year. With 5 completed years that is ${formatAUD(genuineRedundancyTaxFreeLimit(5))}. For payments made in ${REDUNDANCY_TAX_2025_26.incomeYear} it was ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreePerYear)} a year.`,
   },
   {
     q: "Is redundancy pay tax free?",
@@ -55,7 +55,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "How is redundancy pay taxed?",
-    a: `A genuine redundancy payment is tax-free up to the limit. Anything above it is an employment termination payment (ETP), taxed at ${pct(ETP_RATES.underPreservationAge)} if you are under preservation age (${PRESERVATION_AGE}) at the end of the income year or ${pct(ETP_RATES.atOrOverPreservationAge)} if you have reached it, both including the Medicare levy, up to the ${Y} ETP cap of ${formatAUD(REDUNDANCY_TAX.etpCap)}. Any amount over the cap is taxed at ${pct(ETP_RATES.aboveCap)}.`,
+    a: `A genuine redundancy payment is tax-free up to the limit. Anything above it is an employment termination payment (ETP). The ETP is taxed at ${pct(ETP_RATES.underPreservationAge)} if you are under preservation age (${PRESERVATION_AGE}) at the end of the income year, or ${pct(ETP_RATES.atOrOverPreservationAge)} if you have reached it. Both rates include the Medicare levy and apply up to the ${Y} ETP cap of ${formatAUD(REDUNDANCY_TAX.etpCap)}. Any amount over the cap is taxed at ${pct(ETP_RATES.aboveCap)}.`,
   },
   {
     q: "What makes a redundancy genuine for tax?",
@@ -67,15 +67,15 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "How much redundancy pay do you get in NSW?",
-    a: "The same as every other state: the National Employment Standards scale, from 4 weeks at 1 year to 16 weeks at 9 years and 12 weeks from 10 years, for national system employees. NSW adds long service leave under its 1955 Act, with a pro-rata payment from 5 years when the employer ends the job for a reason other than serious and wilful misconduct.",
+    a: "NSW redundancy pay is the same as in every other state: the National Employment Standards scale, from 4 weeks at 1 year to 16 weeks at 9 years and 12 weeks from 10 years, for national system employees. NSW adds long service leave under its 1955 Act, with a pro-rata payment from 5 years when the employer ends the job for a reason other than serious and wilful misconduct.",
   },
   {
     q: "What are redundancy entitlements in Victoria?",
-    a: "Redundancy pay follows the National Employment Standards scale, the same as every state, for national system employees. On top of that, you are paid notice or pay in lieu, unused annual leave and long service leave. Under Victoria's 2018 Act, long service leave is payable from 7 years of continuous service, however the employment ends.",
+    a: "Victorian redundancy pay follows the National Employment Standards scale, the same as every state, for national system employees. On top of that, you are paid notice or pay in lieu, unused annual leave and long service leave. Under Victoria's 2018 Act, long service leave is payable from 7 years of continuous service, however the employment ends.",
   },
   {
     q: "Do small businesses have to pay redundancy?",
-    a: `No NES redundancy pay is owed by an employer with fewer than ${SMALL_BUSINESS_HEADCOUNT} employees, counted when the notice is given and including regular casuals. Notice, unused annual leave and any long service leave are still owed, and an award or agreement can still require redundancy pay. If a small business pays a genuine redundancy anyway, the ATO tax-free limit still applies to it.`,
+    a: `An employer with fewer than ${SMALL_BUSINESS_HEADCOUNT} employees owes no NES redundancy pay. The headcount is taken when notice is given and includes regular casuals. Notice, unused annual leave and any long service leave are still owed, and an award or agreement can still require redundancy pay. If a small business pays a genuine redundancy anyway, the ATO tax-free limit still applies to it.`,
   },
   {
     q: "Are casual employees entitled to redundancy pay?",
@@ -83,7 +83,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "Is notice pay part of redundancy pay?",
-    a: "No. They are separate entitlements and you get both. Notice is 1 to 4 weeks depending on service, plus 1 week if you are over 45 with at least 2 years' service, Payment in lieu of notice is an employment termination payment under the ATO's rules rather than ordinary salary; how much of a package falls inside the genuine redundancy tax-free limit depends on how it is structured, so check the income statement your employer reports.",
+    a: "No. Notice pay and redundancy pay are separate entitlements and you get both. Notice is 1 to 4 weeks depending on service, plus 1 week if you are over 45 with at least 2 years' service. Payment in lieu of notice is an employment termination payment under the ATO's rules, not ordinary salary. How much of a package falls inside the genuine redundancy tax-free limit depends on how it is structured, so check the income statement your employer reports.",
   },
   {
     q: "Is superannuation paid on redundancy pay?",
@@ -101,7 +101,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   // "redundancy payment": docs/seo/2026-09-24-paa-optimisation.md.
   {
     q: "How much tax will I pay on $50,000 redundancy?",
-    a: `It depends on your years of service. For a genuine redundancy in ${Y} with 5 completed years, ${formatAUD(T50_5.taxFree)} is tax-free and the other ${formatAUD(T50_5.etpTaxable)} is taxed at ${pct(T50_5.rateWithinCap)}, so tax is about ${formatAUD(T50_5.tax)}. With 2 years only ${formatAUD(T50_2.taxFree)} is tax-free and tax is about ${formatAUD(T50_2.tax)}. Rates assume you are under ${PRESERVATION_AGE}.`,
+    a: `Your tax depends on your completed years of service, because each year adds to the tax-free limit. For a genuine redundancy in ${Y} with 5 completed years, ${formatAUD(T50_5.taxFree)} is tax-free and the other ${formatAUD(T50_5.etpTaxable)} is taxed at ${pct(T50_5.rateWithinCap)}, so tax is about ${formatAUD(T50_5.tax)}. With 2 years only ${formatAUD(T50_2.taxFree)} is tax-free and tax is about ${formatAUD(T50_2.tax)}. Rates assume you are under ${PRESERVATION_AGE}.`,
   },
   {
     q: "Do you get more redundancy if you are over 45?",

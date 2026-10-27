@@ -61,9 +61,9 @@ export default function SaptoCalculator() {
           SAPTO Calculator
         </h2>
         <p className="text-sm text-warmgray mb-6">
-          Works out your seniors and pensioners tax offset for the {SAPTO_INCOME_YEAR} income year,
-          using the ATO&rsquo;s published rates and thresholds. Claim it at the tax offsets section
-          of your return.
+          This calculator works out your seniors and pensioners tax offset (SAPTO) for the {SAPTO_INCOME_YEAR}
+          income year from the ATO&rsquo;s published rates and thresholds. You claim SAPTO in the tax
+          offsets section of your return.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">
@@ -116,8 +116,8 @@ export default function SaptoCalculator() {
                 aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
-                Taxable income plus reportable super contributions, total net investment loss and
-                adjusted fringe benefits, not just your salary.
+                Rebate income is your taxable income plus reportable super contributions, total net
+                investment loss and adjusted fringe benefits, not just your salary.
               </p>
             </div>
 
@@ -142,8 +142,8 @@ export default function SaptoCalculator() {
                   />
                 </div>
                 <p className="text-xs text-warmgray-light mt-1">
-                  Eligibility is tested on half your combined income, so your spouse&rsquo;s income
-                  can rule you out even when yours is low.
+                  SAPTO eligibility is tested on half your combined rebate income, so your
+                  spouse&rsquo;s income can rule you out even when yours is low.
                 </p>
               </div>
             )}

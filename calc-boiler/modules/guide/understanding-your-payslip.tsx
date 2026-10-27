@@ -125,7 +125,7 @@ export default function UnderstandingYourPayslipPage() {
                   </h4>
                   <ul className="space-y-1 text-navy">
                     <li>Pay period dates (e.g. 1 July to 14 July)</li>
-                    <li>Date the payment was actively made</li>
+                    <li>Date the payment was made</li>
                   </ul>
                 </div>
                 <div className="bg-white border rounded-lg p-4 shadow-sm">
@@ -133,8 +133,8 @@ export default function UnderstandingYourPayslipPage() {
                     <CheckCircle2 className="h-4 w-4 text-eucalyptus" /> Money & Tax
                   </h4>
                   <ul className="space-y-1 text-navy">
-                    <li>Gross pay and Net pay amounts</li>
-                    <li>Specific tax deductions (PAYG)</li>
+                    <li>Gross pay and net pay amounts</li>
+                    <li>Tax withheld (PAYG withholding)</li>
                   </ul>
                 </div>
                 <div className="bg-white border rounded-lg p-4 shadow-sm">
@@ -234,7 +234,7 @@ export default function UnderstandingYourPayslipPage() {
               </div>
 
               <p>
-                Voluntary deductions require your written authorisation. An employer cannot deduct union fees, charity donations, or salary sacrifice amounts without a signed agreement. Review the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to understand how pre-tax deductions reduce your taxable income while boosting your retirement savings.
+                Voluntary deductions require your written authorisation. An employer cannot deduct union fees, charity donations, or salary sacrifice amounts without a signed agreement. Review the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to see how pre-tax deductions reduce your taxable income and increase your super balance.
               </p>
             </section>
 
@@ -257,7 +257,7 @@ export default function UnderstandingYourPayslipPage() {
                 The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare Levy does not appear as a separate line on your payslip. It is bundled into the PAYG withholding amount alongside your income tax.
               </p>
               <p>
-                Your employer calculates income tax and the Medicare Levy together, then withholds the combined total. On an <strong>$85,000</strong> salary, the Medicare Levy component is <strong>$1,700 per year</strong> (or <strong>$65.38 per fortnight</strong>). Singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> (the latest ATO-published threshold, for 2025-26) pay no Medicare Levy, and a reduced levy applies up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &ldquo;Medicare Levy Surcharge&rdquo; (MLS) of 1%&ndash;1.5% applies in FY{SITE_CONFIG.financialYear} to singles with income for MLS purposes above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> who do not hold private hospital cover. To see exactly how much of your PAYG withholding goes towards Medicare, use our <Link href="/medicare-levy/">Medicare Levy Calculator</Link> which isolates the levy at any salary level.
+                Your employer calculates income tax and the Medicare Levy together, then withholds the combined total. On an <strong>$85,000</strong> salary, the Medicare Levy component is <strong>$1,700 per year</strong> (or <strong>$65.38 per fortnight</strong>). Singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> (the latest ATO-published threshold, for 2025-26) pay no Medicare Levy, and a reduced levy applies up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The Medicare Levy Surcharge (MLS) of 1% to 1.5% applies in FY{SITE_CONFIG.financialYear} to singles with income for MLS purposes above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> who do not hold private hospital cover. To see exactly how much of your PAYG withholding goes towards Medicare, use our <Link href="/medicare-levy/">Medicare Levy Calculator</Link> which isolates the levy at any salary level.
               </p>
             </section>
 
@@ -271,11 +271,11 @@ export default function UnderstandingYourPayslipPage() {
               </p>
               <ol>
                 <li><strong>Verify your hours:</strong> Multiply your ordinary hours by your hourly rate. The result must match the gross pay figure. For salaried employees on <strong>$85,000</strong>, the fortnightly gross is <strong>$3,269.23</strong> ($85,000 &divide; 26).</li>
-                <li><strong>Check overtime and penalty rates:</strong> Overtime, Saturday, Sunday, and public holiday hours must each appear as separate line items with the correct loading. Standard overtime rates range from <strong>1.5x</strong> (first 2&ndash;3 hours) to <strong>2.0x</strong> (subsequent hours) depending on your award.</li>
+                <li><strong>Check overtime and penalty rates:</strong> Overtime, Saturday, Sunday, and public holiday hours must each appear as separate line items with the correct loading. Standard overtime rates range from <strong>1.5x</strong> (first 2 to 3 hours) to <strong>2.0x</strong> (subsequent hours) depending on your award.</li>
                 <li><strong>Confirm PAYG withholding:</strong> Compare the tax withheld against the ATO&apos;s online tax withheld calculator or our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>. A discrepancy of more than <strong>$5 per pay cycle</strong> warrants investigation.</li>
                 <li><strong>Validate superannuation:</strong> The super amount must equal your qualifying earnings (ordinary time earnings for most employees) multiplied by {formatPercent(SUPER_GUARANTEE.rate, 0)}. On <strong>$3,269.23</strong> fortnightly gross, super is <strong>$392.31</strong>.</li>
                 <li><strong>Cross-check YTD totals:</strong> Add the current period&apos;s amounts to the previous payslip&apos;s YTD figures. The new YTD must equal the sum. A mismatch indicates a payroll processing error.</li>
-                <li><strong>Verify leave balances:</strong> Full-time employees accrue <strong>4 weeks</strong> (152 hours) of annual leave per year, equal to <strong>2.923 hours per week</strong>. Check that your balance increases by this amount each pay period.</li>
+                <li><strong>Verify leave balances:</strong> Full-time employees accrue <strong>4 weeks</strong> (152 hours) of annual leave per year, equal to <strong>2.923 hours per week</strong>. Check that your balance increases by this amount for each week in the pay period.</li>
               </ol>
               <p>
                 If you find an error, raise it with your payroll department in writing. Employers must correct payslip errors and issue an amended payslip. Persistent underpayment can be reported to the Fair Work Ombudsman.
@@ -288,7 +288,7 @@ export default function UnderstandingYourPayslipPage() {
                 YTD stands for &ldquo;Year-to-Date&rdquo; and shows your cumulative totals for gross pay, tax withheld, and super contributions since <strong>1 July</strong> (the start of the Australian financial year).
               </p>
               <p>
-                YTD figures serve 3 critical purposes: verifying your income statement at tax time, detecting payroll errors mid-year, and confirming your employer has actually transferred superannuation to your fund. To check the YTD figure on your payslip or project it into an annual income, use our <Link href="/ytd-income-calculator/">YTD income calculator</Link>.
+                YTD figures have 3 uses: verifying your income statement at tax time, detecting payroll errors mid-year, and confirming your employer has actually transferred superannuation to your fund. To check the YTD figure on your payslip or project it into an annual income, use our <Link href="/ytd-income-calculator/">YTD income calculator</Link>.
               </p>
               <ul>
                 <li><strong>YTD Gross:</strong> Total gross earnings since 1 July. At 30 June, this figure must match the gross income on your &ldquo;Income Statement&rdquo; (formerly called the PAYG Payment Summary) in myGov.</li>
@@ -310,11 +310,11 @@ export default function UnderstandingYourPayslipPage() {
                 The SG rate increased from <strong>11.5%</strong> to <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on 1 July 2025. On an <strong>$85,000</strong> salary, your employer contributes <strong>$10,200 per year</strong> (or <strong>$392.31 per fortnight</strong>) to your nominated super fund. From 1 July 2026 the maximum super contribution base is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, so earnings above it do not attract additional SG contributions (it was $62,500 per quarter until 30 June 2026). Read the <Link href="/superannuation-guide/">Superannuation Guide</Link> for a full breakdown of SG rates, contribution caps, and Division 293 tax.
               </p>
               <p className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4 text-navy text-sm italic">
-                <strong>Crucial Check:</strong> Ensure your payslip clearly states the name of your chosen super fund and the dollar amount being contributed. It is alarmingly common for businesses to list super on a payslip but fail to actually transfer the cash to the fund (a practice known as Super Theft). If you suspect this, log into your Super fund&apos;s portal to verify the cash actually arrived.
+                <strong>Crucial Check:</strong> Your payslip must state the name of your chosen super fund and the dollar amount contributed. It is common for businesses to list super on a payslip but fail to transfer the cash to the fund (a practice known as super theft). If you suspect this, log into your super fund&apos;s portal to check the contribution arrived.
               </p>
               <h3>When Must Employers Pay Super?</h3>
               <p>
-                Since Payday Super commenced on 1 July 2026, employers must pay SG <strong>on every payday</strong> and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC): the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%. This means super should now appear on your payslip and reach your fund in step with your pay, not months later.
+                Since Payday Super commenced on 1 July 2026, employers must pay SG <strong>on every payday</strong> and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC): the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%. The super shown on each payslip must now reach your fund in step with your pay, not months later.
               </p>
             </section>
 
@@ -400,7 +400,7 @@ export default function UnderstandingYourPayslipPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Payslip requirements on this page are based on Fair Work Ombudsman regulations under the Fair Work Act 2009. PAYG withholding and superannuation reporting obligations reference current ATO record-keeping requirements for employers.</p>
+                <p>Payslip requirements on this page are based on the Fair Work Act 2009 and the Fair Work Regulations, as set out in Fair Work Ombudsman guidance. PAYG withholding and superannuation reporting obligations reference current ATO record-keeping requirements for employers.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("understanding-your-payslip"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -437,7 +437,7 @@ export default function UnderstandingYourPayslipPage() {
                     <FileText className="h-6 w-6 text-eucalyptus-light" />
                     <h3 className="text-lg font-bold">Compare Payslips</h3>
                   </div>
-                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer&apos;s payslip to check you aren&apos;t being underpaid.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">Enter your weekly, fortnightly, monthly or annual gross pay in the take-home pay calculator to see the income tax, Medicare levy, super and take-home pay your payslip should show. Compare each line with your employer&apos;s payslip to check you aren&apos;t being underpaid.</p>
                   <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Generate Demo Payslip
                   </Link>

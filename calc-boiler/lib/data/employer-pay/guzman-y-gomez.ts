@@ -33,7 +33,7 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period on or after 1 December 2026",
     detail:
-      "Crew aged 18 to 20 who have worked for their employer for more than 6 months move up: 18-year-olds from 70% to 75%, 19-year-olds from 80% to 85%, and 20-year-olds from 90% to 95% of the adult rate (determination PR813654). At Level 1 that is $20.86, $23.64 and $26.42 an hour. Adult rates next change with the 2027 Annual Wage Review.",
+      "GYG crew aged 18 to 20 who have worked for their employer for more than 6 months move up: 18-year-olds from 70% to 75%, 19-year-olds from 80% to 85%, and 20-year-olds from 90% to 95% of the adult rate (determination PR813654). At Level 1 that is $20.86, $23.64 and $26.42 an hour. Adult rates next change with the 2027 Annual Wage Review.",
   },
   verifiedOn: "24 September 2026",
   rates: SUBWAY_PAY.rates.map((r, i) =>
@@ -43,8 +43,8 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
   ),
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
-    "These are the Fast Food Industry Award minimums, which apply to GYG crew in corporate and franchised restaurants. Some restaurants may pay more.",
-    "If you work in a franchised restaurant, your employer is the franchisee. If that franchisee has its own approved agreement, it sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
+    "The Fast Food Industry Award minimums on this page apply to GYG crew in corporate and franchised restaurants. A GYG restaurant can pay more.",
+    "In a franchised GYG restaurant, your employer is the franchisee. A franchisee with its own approved agreement pays under that agreement instead, but the agreement cannot set a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
   ],
   unverified: [
     "A franchisee agreement registered under a company name without \"Guzman\" in its title (our search was by title).",
@@ -63,7 +63,7 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
     },
     {
       q: "Does GYG have an enterprise agreement?",
-      a: "No. The Guzman Y Gomez Enterprise Agreement 2012 was terminated by the Fair Work Commission with effect from 15 November 2018 after workers applied, GYG withdrew the replacement agreement it had proposed, and its crew moved to the Fast Food Industry Award.",
+      a: "No. The Guzman Y Gomez Enterprise Agreement 2012 was terminated by the Fair Work Commission with effect from 15 November 2018 after workers applied. GYG withdrew the replacement agreement it had proposed, and its crew moved to the Fast Food Industry Award.",
     },
     {
       q: "Do GYG junior rates go up in December 2026?",

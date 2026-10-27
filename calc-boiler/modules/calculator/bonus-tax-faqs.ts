@@ -67,11 +67,11 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Why is my bonus smaller than expected?",
-    a: `Because the bonus is taxed at your marginal rate, not your effective rate. If your salary puts you in the ${formatPercent(MIDDLE.rate, 0)} bracket, ${formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0)} (${formatPercent(MIDDLE.rate, 0)} + ${MEDICARE} Medicare) applies to every dollar of the bonus, even though the overall effective tax rate on a ${formatAUD(90_000)} salary is only about ${formatPercent(AT_90K.effectiveTaxRate)}. The tax-free threshold and lower brackets are already used up by your regular income.`,
+    a: `Your bonus is taxed at your marginal rate, not your effective rate. If your salary puts you in the ${formatPercent(MIDDLE.rate, 0)} bracket, ${formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0)} (${formatPercent(MIDDLE.rate, 0)} + ${MEDICARE} Medicare levy) applies to every dollar of the bonus. The overall effective tax rate on a ${formatAUD(90_000)} salary is only about ${formatPercent(AT_90K.effectiveTaxRate)}. Your regular income has already used up the tax-free threshold and the lower brackets.`,
   },
   {
     q: "Do I get superannuation on my bonus?",
-    a: `Generally yes. Performance, Christmas, sign-on and referral bonuses all count as qualifying earnings under Payday Super, so they attract the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee. The main exception is a bonus paid solely for work performed entirely outside your ordinary hours, which is excluded. Check your employment contract or ask your payroll department to confirm how your specific bonus is treated.`,
+    a: `Yes, for most bonuses. Performance, Christmas, sign-on and referral bonuses all count as qualifying earnings under Payday Super, so they attract the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee. The main exception is a bonus paid solely for work performed entirely outside your ordinary hours, which is excluded. Check your employment contract or ask your payroll department to confirm how your specific bonus is treated.`,
   },
   {
     q: "Will I get the tax on my bonus back at tax time?",
@@ -87,11 +87,11 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Does a bonus affect my HECS-HELP repayment?",
-    a: `Yes. HECS-HELP repayments are based on your total repayment income, which includes your salary plus any bonuses, commissions, and fringe benefits. A bonus that pushes your repayment income above the ${formatAUD(HECS_HELP.minimumThreshold)} minimum threshold triggers a compulsory repayment. The marginal repayment rate starts at ${formatPercent(HECS_HELP.bands[1].marginalRate, 0)} on income above ${formatAUD(HECS_HELP.minimumThreshold)} under the FY${SITE_CONFIG.financialYear} marginal system.`,
+    a: `Yes. HECS-HELP repayments are based on your total repayment income, which includes your salary plus any bonuses, commissions and reportable fringe benefits. A bonus that pushes your repayment income above the ${formatAUD(HECS_HELP.minimumThreshold)} minimum threshold triggers a compulsory repayment. The marginal repayment rate starts at ${formatPercent(HECS_HELP.bands[1].marginalRate, 0)} on income above ${formatAUD(HECS_HELP.minimumThreshold)} under the FY${SITE_CONFIG.financialYear} marginal system.`,
   },
   {
     q: "Does it matter when my bonus is paid during the financial year?",
-    a: `The timing within a financial year does not change your total tax liability: your annual tax is calculated on total income regardless of when it is received. However, if your employer can defer a bonus payment to the next financial year (e.g., from June to July), it shifts the income into a different tax year and could result in a lower marginal rate if your income is lower in that year.`,
+    a: `The timing of a bonus within a financial year does not change your total tax for that year: your annual tax is calculated on total income, whenever it is received. If your employer can defer the bonus to the next financial year (for example, from June to July), the income moves into that tax year. It could then be taxed at a lower marginal rate if your total income is lower in that year.`,
   },
   {
     q: "Can I salary sacrifice my bonus into super?",
@@ -103,7 +103,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Why was so much tax taken from my bonus?",
-    a: `Your bonus sits on top of your regular salary, so every dollar is taxed at your highest marginal rate. A worker earning ${formatAUD(90_000)} pays about ${formatPercent(TOTAL_RATE_90K)} of total income in tax and Medicare levy, but the bonus is taxed at ${MIDDLE_ALL_IN} (${formatPercent(MIDDLE.rate, 0)} plus ${MEDICARE} Medicare levy) because it falls entirely in their top bracket. Some payroll systems also annualise the pay period containing the bonus, which can produce even higher withholding that is corrected when you lodge your return.`,
+    a: `Your bonus sits on top of your regular salary, so every dollar is taxed at your highest marginal rate. A worker earning ${formatAUD(90_000)} pays about ${formatPercent(TOTAL_RATE_90K)} of total income in tax and Medicare levy. The bonus is taxed at ${MIDDLE_ALL_IN} (${formatPercent(MIDDLE.rate, 0)} plus ${MEDICARE} Medicare levy) because it falls entirely in that worker's top bracket. Some payroll systems also annualise the pay period containing the bonus, which can produce even higher withholding that is corrected when you lodge your return.`,
   },
   {
     q: "Are commissions taxed the same as bonuses?",
@@ -115,7 +115,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "How are bonuses taxed for part-time or casual workers?",
-    a: `The same way as full-time workers. The ATO does not differentiate between employment types for bonus taxation. A part-time worker earning ${formatAUD(30_000)} per year who receives a ${formatAUD(5_000)} bonus has the bonus taxed at the ${formatPercent(SECOND.rate, 0)} marginal rate because total income of ${formatAUD(35_000)} falls in the ${formatAUD(SECOND.min)}\u2013${formatAUD(SECOND.max)} bracket; with the Medicare levy phasing in over that range, the bonus adds ${formatAUD(PT_TAX_ON_BONUS)} to their tax for the year. The lower income base means part-time workers typically face a lower marginal rate on bonuses than full-time workers.`,
+    a: `A part-time or casual worker's bonus is taxed the same way as a full-time worker's. The ATO does not differentiate between employment types for bonus taxation. A part-time worker earning ${formatAUD(30_000)} per year who receives a ${formatAUD(5_000)} bonus has the bonus taxed at the ${formatPercent(SECOND.rate, 0)} marginal rate, because total income of ${formatAUD(35_000)} falls in the ${formatAUD(SECOND.min)} to ${formatAUD(SECOND.max)} bracket. The Medicare levy also phases in over that range, so the bonus adds ${formatAUD(PT_TAX_ON_BONUS)} to their tax for the year. On a lower total income, the bonus can fall in a lower tax bracket than it would on a full-time salary.`,
   },
   {
     q: "How are bonuses taxed for non-residents?",

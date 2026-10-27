@@ -41,7 +41,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "1 January 2027",
     detail:
-      "A further 4.3% from the first full pay period on or after 1 January 2027, already written into clause 33.3. That takes CT1 to $100,316 and CT9 to $142,888.",
+      "NT teacher salaries rise a further 4.3% from the first full pay period on or after 1 January 2027, already written into clause 33.3. That takes CT1 to $100,316 and CT9 to $142,888.",
   },
   verifiedOn: "28 August 2026",
 
@@ -50,7 +50,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Classroom teachers: CT1 to CT9",
       intro:
-        "The main scale. Your entry classification is set by completed years of post-qualification service: less than 12 months starts at CT1, one year at CT2, and so on.",
+        "The classroom teacher scale is the main NT teacher pay scale. Your entry classification is set by completed years of post-qualification service: less than 12 months starts at CT1, one year at CT2, and so on.",
       stepHeading: "Classification",
       steps: [
         { label: "CT1", salary: 96_180, note: "Under 12 months post-qualification experience" },
@@ -68,7 +68,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
       id: "senior-teachers",
       title: "Senior teachers: ST1 to ST8",
       intro:
-        "Promotion-based classifications, not steps you age into. Levels are set by the NTPS Job Evaluation System against the NTPS Capability Framework.",
+        "NT senior teacher levels are promotion-based classifications, not steps you reach through years of service. Levels are set by the NTPS Job Evaluation System against the NTPS Capability Framework.",
       stepHeading: "Classification",
       steps: [
         { label: "ST1", salary: 145_286 },
@@ -108,7 +108,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
       id: "aboriginal-team-teachers",
       title: "Aboriginal team teachers: AT1 to AT7, and authorised persons",
       intro:
-        "A separate NT classification structure with its own salary scale under the same agreement.",
+        "Aboriginal team teachers and authorised persons are on a separate NT classification structure, which has its own salary scale under the same agreement.",
       stepHeading: "Classification",
       steps: [
         { label: "AT1", salary: 61_415 },
@@ -157,7 +157,7 @@ export const NT_TEACHER_PAY: TeacherPayState = {
       heading: "Principals move within a band only on performance",
       body: [
         "Clause 40: pay progression for principals is based on high performance and is not automatic. Participation is not mandatory and applications are at the principal's discretion.",
-        "To be eligible you need at least 12 months service at a principal classification, a 12-month performance agreement with satisfactory performance against it, and a submission made in advance of the annual assessment date demonstrating at least one of the progression criteria: sustained superior performance, successful increased duties, new projects with significant results, applied specialist expertise, or sustained leadership measured against the AITSL Professional Standard for Principals.",
+        "To be eligible you need at least 12 months service at a principal classification, a 12-month performance agreement with satisfactory performance against it, and a submission made before the annual assessment date. That submission must demonstrate at least one of the progression criteria: sustained superior performance, successful increased duties, new projects with significant results, applied specialist expertise, or sustained leadership measured against the AITSL Professional Standard for Principals.",
       ],
     },
     {
@@ -169,13 +169,13 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "The agreement runs to a nominal expiry of 31 December 2027, so the rates below are current and a further 4.3% is already locked in for 1 January 2027.",
+    "The NT educators' agreement runs to a nominal expiry of 31 December 2027, so the rates below are current and a further 4.3% is already locked in for 1 January 2027.",
   ],
 
   unverified: [
     "Assistant principal and deputy principal salaries: the NT has no such salary classification. The agreement mentions assistant principal only as a workload rule, and NT leadership pay runs Senior Teacher ST1-ST8 and Principal PLO1-PLO7.",
     "Executive contract principal (PLEC) rates are published as total remuneration packages including superannuation and a vehicle, not base salaries, so they are not comparable to the tables above and are not shown.",
-    "Remote and district allowances, which are substantial in the NT but vary by location and are not a salary rate.",
+    "Remote and district allowances are not shown. They are substantial in the NT but vary by location and are not a salary rate.",
   ],
 
   sources: [
@@ -206,11 +206,11 @@ export const NT_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How do NT teachers move up the pay scale?",
-      a: "One increment after each 12 months of service, continuous or broken, and each increment must be held for 12 months before the next. Unusually, the agreement says an annual increment will only be withheld as an outcome of inability or discipline procedures, not as a performance rating.",
+      a: "NT teachers move up one increment after each 12 months of service, continuous or broken, and each increment must be held for 12 months before the next. Unusually, the agreement says an annual increment will only be withheld as an outcome of inability or discipline procedures, not as a performance rating.",
     },
     {
       q: "What is Rapid Incremental Progression in the NT?",
-      a: "A scheme that moves an early career teacher straight to CT4 at the start of their third year, skipping CT3. You need your first two years of service in NT Government schools within a four-year period, plus two semester units of postgraduate study completed in those two years. Relief teaching counts, at 180 days to the year.",
+      a: "Rapid Incremental Progression is a scheme that moves an early career NT teacher straight to CT4 at the start of their third year, skipping CT3. You need your first two years of service in NT Government schools within a four-year period, plus two semester units of postgraduate study completed in those two years. Relief teaching counts, at 180 days to the year.",
     },
     {
       q: "Is there an assistant principal salary in the NT?",

@@ -211,7 +211,7 @@ export const LEVEL_DESCRIPTORS: Record<string, LevelDescriptor> = {
 
   // SA: OCPSE Determination 5, Attachment 2, work level definitions.
   "aso-2": {
-    text: "ASO-2 work has clearly defined outcomes, problem solving or both, done under general direction. Staff may run a minor function or part of a major one, using limited judgement based on precedents and guidelines. ASO-2 staff may allocate and check work and train others on the job, but they do not line-supervise staff.",
+    text: "ASO-2 work has clearly defined outcomes, problem solving or both, and is done under general direction. Staff may run a minor function or part of a major one, using limited judgement based on precedents and guidelines. ASO-2 staff may allocate and check work and train others on the job, but they do not line-supervise staff.",
     sourceId: "saAsoStandards",
   },
   "aso-3": {

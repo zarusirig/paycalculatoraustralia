@@ -85,7 +85,7 @@ export const CIVIL_ENGINEER: Occupation = {
   heading: "Civil Engineer Salary Australia 2026: Award Minimum, Median & Take-Home",
   metaTitle: `Civil Engineer Salary Australia 2026: ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr`,
   metaDescription: `Civil engineer pay in Australia: ${aud(ATO_MEDIAN)} median and ${aud(ATO_AVERAGE)} average salary on 2023–24 tax returns, the ${aud(GRAD.annual!)} graduate award minimum, and take-home.`,
-  lede: `Civil engineers who lodged 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. The legal floor is far lower: a graduate civil engineer must be paid at least ${aud(GRAD.annual!)} a year (${aud2(GRAD.hourly)} an hour) under the Professional Employees Award from 1 July 2026. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
+  lede: `Civil engineers who lodged 2023-24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. The legal floor is far lower: a graduate civil engineer must be paid at least ${aud(GRAD.annual!)} a year (${aud2(GRAD.hourly)} an hour) under the Professional Employees Award from 1 July 2026. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   parent: {
     href: "/job-pay-rates/engineer/",
     label: "Engineer Pay Rates",
@@ -101,7 +101,7 @@ export const CIVIL_ENGINEER: Occupation = {
       id: "civil-professional",
       title: "Civil engineer minimum salaries by level, 2026–27",
       intro:
-        "Annual wages from clause 14.1; weekly is the award's own conversion (annual x 6/313); hourly and casual rates are exactly as Schedule C publishes them. The 3-year degree rate does not apply to a graduate engineer, whose degree must be 4 or 5 years.",
+        "Civil engineer annual wages come from clause 14.1 of the Professional Employees Award. Weekly is the award's own conversion (annual x 6/313), and hourly and casual rates are exactly as Schedule C publishes them. The 3-year degree rate does not apply to a graduate engineer, whose degree must be 4 or 5 years.",
       rows: [
         GRAD,
         peaRow(PEA.pp12),
@@ -128,7 +128,7 @@ export const CIVIL_ENGINEER: Occupation = {
     "A quantity surveyor is coded with civil engineers in ATO statistics but is a different job; see the surveyor page for land surveyors.",
   ],
   payslipNotes: [
-    `Pay point rises: as a graduate you move up one pay point on each anniversary, from ${aud(GRAD.annual!)} at 1.1 to ${aud(peaRow(PEA.pp12).annual!)}, ${aud(peaRow(PEA.pp13).annual!)} and ${aud(peaRow(PEA.pp14).annual!)}, unless your employer defers it, and either way it must be confirmed in writing (Schedule A.1.3–A.1.4). If your rate has not changed after an anniversary, ask why.`,
+    `Pay point rises: as a graduate you move up one pay point on each anniversary, from ${aud(GRAD.annual!)} at 1.1 to ${aud(peaRow(PEA.pp12).annual!)}, ${aud(peaRow(PEA.pp13).annual!)} and ${aud(peaRow(PEA.pp14).annual!)}, unless your employer defers it, and either way it must be confirmed in writing (Schedule A.1.3 to A.1.4). If your rate has not changed after an anniversary, ask why.`,
     "Vehicle allowance: if you agree to use your own car for site visits or other work travel, the award requires at least $1.00 a kilometre (cl 16.3), and it must appear as its own line on the payslip, not folded into salary (Fair Work Regulations reg 3.46(1)(g), noted in cl 16).",
     "Recorded hours: below the cl 18.6 salary line your employer must keep records of hours over 38 a week, before 6 am or after 10 pm, and on Sundays and public holidays (cl 18.5). These are the hours any overtime or penalty line on your payslip is paid for.",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
@@ -141,7 +141,7 @@ export const CIVIL_ENGINEER: Occupation = {
   faqs: [
     {
       q: "How much does a civil engineer earn in Australia?",
-      a: `The 50,761 people who gave their occupation as civil engineer on 2023–24 tax returns had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO Taxation statistics 2023–24). Jobs and Skills Australia puts median full-time pay for civil engineering professionals at $2,217 a week (May 2025), about $115,284 a year.`,
+      a: `The 50,761 people who gave their occupation as civil engineer on 2023-24 tax returns had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO Taxation statistics 2023-24). Jobs and Skills Australia puts median full-time pay for civil engineering professionals at $2,217 a week (May 2025), about $115,284 a year.`,
     },
     {
       q: "What is the minimum salary for a graduate civil engineer in 2026?",
@@ -149,19 +149,19 @@ export const CIVIL_ENGINEER: Occupation = {
     },
     {
       q: "What is a civil engineer's take-home pay?",
-      a: `On the ATO median salary of ${aud(ATO_MEDIAN)}, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year (${aud(netFortnightly(ATO_MEDIAN))} a fortnight) after income tax and the Medicare levy at 2026–27 rates, with no HECS-HELP. On the ${aud(GRAD.annual!)} graduate minimum it is about ${aud(netAnnual(GRAD.annual!))} a year.`,
+      a: `On the ATO median salary of ${aud(ATO_MEDIAN)}, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year (${aud(netFortnightly(ATO_MEDIAN))} a fortnight) after income tax and the Medicare levy at 2026-27 rates, with no HECS-HELP. On the ${aud(GRAD.annual!)} graduate minimum it is about ${aud(netAnnual(GRAD.annual!))} a year.`,
     },
     {
       q: "Do civil engineers get paid overtime?",
-      a: `Only below a salary line. Under the Professional Employees Award, hours over 38 a week are paid at the ordinary minimum hourly rate (no time and a half), and that stops applying once your salary is at least 25% above your level's minimum, which is ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate and ${aud(exemptionThreshold(L2.annual!))} at Level 2. Above it, overtime depends on your contract.`,
+      a: `Civil engineers get paid for overtime under the award only below a salary line. Under the Professional Employees Award, hours over 38 a week are paid at the ordinary minimum hourly rate (no time and a half), and that stops applying once your salary is at least 25% above your level's minimum, which is ${aud2(exemptionThreshold(GRAD.annual!))} for a graduate and ${aud(exemptionThreshold(L2.annual!))} at Level 2. Above it, overtime depends on your contract.`,
     },
     {
       q: "Do structural and geotechnical engineers earn more than civil engineers?",
-      a: "Not on 2023–24 tax returns. The median salary or wage income was $113,231 for structural engineers, $118,380 for geotechnical engineers and $124,537 for transport engineers, against $120,000 for civil engineers. All four sit in the same civil engineering professionals group and under the same award.",
+      a: "Not on 2023-24 tax returns. The median salary or wage income was $113,231 for structural engineers, $118,380 for geotechnical engineers and $124,537 for transport engineers, against $120,000 for civil engineers. All four sit in the same civil engineering professionals group and under the same award.",
     },
     {
       q: "Is a civil engineer at a council or water utility on this award?",
-      a: "Not necessarily. The Professional Employees Award excludes employees covered by the Water Industry, Rail Industry, Port Authorities, Airport Employees and State Government Agencies awards, and local government employees covered by another award (cl 4.2–4.3). Check your employer's award or enterprise agreement.",
+      a: "Not necessarily. The Professional Employees Award excludes employees covered by the Water Industry, Rail Industry, Port Authorities, Airport Employees and State Government Agencies awards, and local government employees covered by another award (cl 4.2 to 4.3). Check your employer's award or enterprise agreement.",
     },
   ],
   sources: [

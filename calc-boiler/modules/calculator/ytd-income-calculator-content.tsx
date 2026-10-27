@@ -72,8 +72,8 @@ export default function YTDIncomeCalculatorContent() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Annualise Your YTD Income</h2>
         <p className="mb-4 text-warmgray">
           Annualising converts a part-year YTD figure into a projected full-year income. Lenders, real estate
-          agents, and Centrelink all use annualised income to assess applications, and it is the fastest way to
-          sanity-check whether your employer is withholding the right amount of tax.
+          agents, and Centrelink all use annualised income to assess applications. Annualising is also a quick
+          check on whether your employer is withholding the right amount of PAYG tax.
         </p>
         <div className="bg-sandstone rounded-xl border border-sandstone-dark/20 p-5 mb-4 text-center">
           <p className="text-navy font-semibold">Projected annual income = (YTD gross ÷ pays received) × pays per year</p>
@@ -96,7 +96,7 @@ export default function YTDIncomeCalculatorContent() {
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Your YTD Figure Matters</h2>
         <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
-          <li><strong>Home loan and rental applications</strong>: lenders annualise the YTD gross on your two most recent payslips to verify the income you declared. A YTD figure that annualises below your stated salary triggers follow-up questions, so it pays to check the maths before they do.</li>
+          <li><strong>Home loan and rental applications</strong>: lenders annualise the YTD gross on your two most recent payslips to verify the income you declared. A YTD figure that annualises below your stated salary triggers follow-up questions, so check the maths before you apply.</li>
           <li><strong>Estimating your tax refund</strong>: comparing YTD tax withheld against the tax actually payable on your projected annual income reveals whether you are heading for a refund or a bill. Run your projected income through the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">income tax calculator</Link> to see the target figure.</li>
           <li><strong>Catching payroll errors early</strong>: if YTD gross ÷ pays received does not equal your contracted per-period pay, something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment. YTD totals make errors visible that individual payslips hide.</li>
         </ul>
@@ -110,10 +110,9 @@ export default function YTDIncomeCalculatorContent() {
           calendar year. Every YTD column on your payslip resets to zero with the first pay after 1 July.
         </p>
         <p className="mb-4 text-warmgray">
-          A new financial year has just begun, so payslips issued in July show only one or two pays&apos; worth
-          of YTD income. That catches people out every year: a $2,000 YTD figure in mid-July is exactly on
-          track for a $52,000 year for a fortnightly earner. Use the annualise mode above rather than judging
-          the raw YTD number.
+          Payslips issued in July show only one or two pays&apos; worth of YTD income, so the raw YTD number
+          looks low. For a fortnightly earner, a $2,000 YTD figure in mid-July is exactly on track for a
+          $52,000 year. Use the annualise mode in the calculator above rather than judging the raw YTD number.
         </p>
         <p className="text-warmgray">
           The 30 June cut-off also means your final June payslip is the one that should match your income

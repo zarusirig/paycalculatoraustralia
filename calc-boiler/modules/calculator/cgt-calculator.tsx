@@ -170,17 +170,17 @@ export default function CgtCalculator() {
           Capital Gains Tax Calculator
         </h2>
         <p className="text-sm text-warmgray mb-6">
-          Works out your net capital gain for the {CGT_INCOME_YEAR} income year using the ATO&rsquo;s
-          own 8-step method, then taxes it at your marginal rate, because CGT is part of your income
-          tax, not a separate tax with its own rate.
+          This calculator works out your net capital gain for the {CGT_INCOME_YEAR} income year with
+          the ATO&rsquo;s 8-step method, then taxes it at your marginal rate. Capital gains tax is part
+          of your income tax, not a separate tax with its own rate.
         </p>
         <p className="text-sm text-navy mb-6 rounded-lg border-l-4 border-ochre bg-sandstone/60 p-3">
           <strong>Selling on or after {CGT_REFORM_2027.startDate}?</strong> This calculator only
           covers contract dates up to 30 June 2027. From {CGT_REFORM_2027.startDate} the part of a
           gain that builds up after that date gets cost base indexation instead of the{" "}
           {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, and resident individuals pay at
-          least {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} on it. That cannot be worked out
-          yet, because it needs CPI for the quarter you sell and your asset&rsquo;s value at{" "}
+          least {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} on it. That tax cannot be worked
+          out yet, because it needs CPI for the quarter you sell and your asset&rsquo;s value at{" "}
           {CGT_REFORM_2027.startDate}.
         </p>
 
@@ -406,8 +406,8 @@ export default function CgtCalculator() {
                       Qualifying for the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount
                       would cut this by {formatAUD(discountForgone)}.
                     </strong>{" "}
-                    There is no partial discount for holding an asset eleven months. It is all or
-                    nothing.
+                    There is no partial discount for holding an asset eleven months: the discount
+                    applies in full or not at all.
                   </p>
                 )}
               </div>

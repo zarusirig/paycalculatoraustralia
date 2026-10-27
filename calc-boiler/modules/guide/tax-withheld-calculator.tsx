@@ -168,7 +168,7 @@ export default function TaxWithheldCalculatorPage() {
 
             <div className="mt-12 not-prose space-y-6">
               <MethodologyDisclosure>
-                <p>Per-pay withholding uses the ATO&rsquo;s Schedule 1 coefficients for payments from {PAYG_TABLES_UPDATED} and Schedule 8 for study and training loans; our engine reproduces the ATO&rsquo;s published sample withholding amounts. The year-end figure multiplies one pay by the number of pays in a year (52, 26 or 12) and compares it with {FY} resident tax after the {m(LITO.maxOffset)}-maximum low income tax offset, the Medicare levy (single thresholds) and, if ticked, the compulsory study loan repayment. On {m(EXAMPLE.perPeriod.grossPerPeriod)} a fortnight the difference is {m(EXAMPLE.difference)}.</p>
+                <p>Per-pay withholding uses the ATO&rsquo;s Schedule 1 coefficients for payments from {PAYG_TABLES_UPDATED} and Schedule 8 for study and training loans; our engine reproduces the ATO&rsquo;s published sample withholding amounts. The year-end figure multiplies one pay by the number of pays in a year (52, 26 or 12) and compares it with {FY} resident tax after the low income tax offset (up to {m(LITO.maxOffset)}), the Medicare levy (single thresholds) and, if ticked, the compulsory study loan repayment. On {m(EXAMPLE.perPeriod.grossPerPeriod)} a fortnight, the gap between a year of withholding and the tax owed is {m(EXAMPLE.difference)}.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
               {authorship && <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />}

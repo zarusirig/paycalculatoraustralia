@@ -32,7 +32,7 @@ const [, helpB1, helpB2, helpB3] = HECS_HELP_2025_26.bands;
 export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   {
     q: "What is a tax refund?",
-    a: "A tax refund is the amount the ATO returns to you when your employer withheld more PAYG tax during the year than your actual assessed tax liability. The refund represents over-withheld income, not a government payment.",
+    a: "A tax refund is the amount the ATO returns to you when your employer withheld more PAYG tax during the year than your actual assessed tax liability. The refund is your own over-withheld tax, not a government payment.",
   },
   {
     q: "What is the average tax refund in Australia?",
@@ -41,7 +41,7 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if I don't lodge a tax return?",
-    a: `Individuals who earn above the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold are generally required to lodge. Failure to lodge can attract a penalty of ${formatAUD(PENALTY_UNIT.amount)} per ${PENALTY_UNIT.ftlDaysPerUnit}-day period (up to ${formatAUD(FTL_MAX_INDIVIDUAL)}). Even if you earned less than ${formatAUD(TAX_FREE_THRESHOLD)}, lodging is beneficial when tax was withheld, as you receive a full refund of all PAYG tax paid.`,
+    a: `Individuals who earn above the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold are generally required to lodge. Failure to lodge can attract a penalty of ${formatAUD(PENALTY_UNIT.amount)} per ${PENALTY_UNIT.ftlDaysPerUnit}-day period (up to ${formatAUD(FTL_MAX_INDIVIDUAL)}). Even if you earned less than ${formatAUD(TAX_FREE_THRESHOLD)}, lodge if tax was withheld from your pay: lodging is how you get a full refund of the PAYG tax withheld.`,
   },
   {
     q: "What if I owe the ATO money?",
@@ -57,7 +57,7 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim deductions without receipts?",
-    a: "The ATO requires records for all deduction claims. For work-related expenses under $300 in total, you are not required to provide written evidence, but you must be able to show how you calculated the amount. Laundry of eligible work clothing allows claims up to $150 without written records. All claims above these thresholds require receipts, invoices, or bank/credit card statements.",
+    a: "The ATO requires records for all deduction claims. For work-related expenses under $300 in total, you are not required to provide written evidence, but you must be able to show how you calculated the amount. You can claim up to $150 for laundry of eligible work clothing without written records. All claims above these thresholds require receipts, invoices, or bank/credit card statements.",
   },
   {
     q: "How do I claim working from home expenses?",
@@ -77,7 +77,7 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does private health insurance affect my tax refund?",
-    a: `Private hospital cover affects your tax in two ways. First, holding appropriate hospital cover exempts you from the "Medicare Levy Surcharge" (MLS) of ${formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}–${formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}. For FY${FY} it applies on income for MLS purposes above ${formatAUD(MLS_BASE_SINGLE)} (singles) or ${formatAUD(MLS_BASE_FAMILY)} (families); on the FY${RY} return you are lodging now, the singles threshold is ${formatAUD(MLS_BASE_2025_26)}. Second, the private health insurance rebate reduces your premium cost. You can receive the rebate as a reduction in premiums during the year or as a refundable tax offset at lodgment. The rebate is income-tested on the same tiers and falls to 0% in the top tier: above ${formatAUD(PHI_REBATE_NIL_ABOVE)} for singles in FY${FY} (rates for ${PHI_REBATE.period}). Check your own position with the Medicare levy surcharge calculator.`,
+    a: `Private hospital cover affects your tax in two ways. First, holding appropriate hospital cover exempts you from the Medicare levy surcharge (MLS) of ${formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)} to ${formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}. For FY${FY} it applies on income for MLS purposes above ${formatAUD(MLS_BASE_SINGLE)} (singles) or ${formatAUD(MLS_BASE_FAMILY)} (families); on the FY${RY} return you are lodging now, the singles threshold is ${formatAUD(MLS_BASE_2025_26)}. Second, the private health insurance rebate reduces your premium cost. You can receive the rebate as a reduction in premiums during the year or as a refundable tax offset at lodgment. The rebate is income-tested on the same tiers and falls to 0% in the top tier: above ${formatAUD(PHI_REBATE_NIL_ABOVE)} for singles in FY${FY} (rates for ${PHI_REBATE.period}). Check your own position with the Medicare levy surcharge calculator.`,
     links: { "Medicare levy surcharge calculator": "/medicare-levy-surcharge-calculator/" },
   },
   {

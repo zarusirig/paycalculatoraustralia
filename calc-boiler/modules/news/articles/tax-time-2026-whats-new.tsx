@@ -5,10 +5,11 @@ export default function TaxTime2026WhatsNew() {
   return (
     <>
       <p className="lead">
-        Lodging your 2025-26 tax return this year? The Medicare levy low-income thresholds rose,
-        the <strong>$2 minimum</strong> for gift deductions was scrapped, and the work-from-home
-        fixed rate holds at <strong>70 cents an hour</strong>. Here&apos;s everything that&apos;s
-        actually different this tax time.
+        On the 2025-26 tax return you lodge this tax time, the Medicare levy low-income thresholds
+        are higher, the <strong>$2 minimum</strong> for gift deductions has been removed, and the
+        work-from-home fixed rate stays at <strong>70 cents an hour</strong>. This page covers the
+        lodgment deadlines, each change in detail, and how the changes reach your refund or tax bill.
+        The tax return calculator linked below estimates that refund.
       </p>
 
       <NewsKeyFacts
@@ -30,10 +31,10 @@ export default function TaxTime2026WhatsNew() {
         early if you think you&apos;ll run late.
       </p>
       <p>
-        Most people can prefill a large chunk of their return through myGov, since employer,
-        bank and health insurer data typically flows through automatically by late July. Waiting
-        a couple of weeks after 1 July before lodging often means less manual entry and fewer
-        amendments later, particularly if you have income from multiple sources.
+        The ATO prefills a large part of your return in myGov, since employer, bank and health
+        insurer data typically flows through automatically by late July. Waiting a couple of weeks
+        after 1 July before lodging often means less manual entry and fewer amendments later,
+        particularly if you have income from multiple sources.
       </p>
 
       <h2>Medicare levy thresholds are higher</h2>
@@ -42,7 +43,8 @@ export default function TaxTime2026WhatsNew() {
         singles threshold lifted from $27,222 to $28,011, and the family threshold from $45,907 to
         $47,238 (see our{" "}
         <Link href="/news/medicare-levy-thresholds-2026/">Medicare levy thresholds explainer</Link>{" "}
-        for the full table. The ATO applies this automatically; there&apos;s nothing extra to claim.
+        for the full table). The ATO applies the higher thresholds automatically, so you have nothing
+        extra to claim.
       </p>
 
       <h2>Work-from-home claims stay the same</h2>
@@ -50,14 +52,14 @@ export default function TaxTime2026WhatsNew() {
         The fixed rate method for working-from-home expenses stays at 70 cents per hour for
         2025-26, unchanged from 2024-25. You can still separately claim depreciation on assets
         costing more than $300, work-related purchases up to $300, and home office cleaning and
-        repair costs on top of the fixed rate. Just keep a record of the hours you worked from
-        home across the year.
+        repair costs on top of the fixed rate. The fixed rate method needs a record of the hours
+        you worked from home across the year.
       </p>
       <p>
         If you&apos;d rather itemise, you can still use the actual cost method instead of the fixed
         rate, claiming the work-related portion of your actual electricity, internet, phone and
-        depreciation costs with supporting records. Most people find the fixed rate simpler unless
-        their actual running costs are unusually high, so compare both before you decide which to
+        depreciation costs with supporting records. The fixed rate is simpler to claim unless your
+        actual running costs are unusually high, so compare both methods before you decide which to
         use on this year&apos;s return.
       </p>
 
@@ -70,7 +72,7 @@ export default function TaxTime2026WhatsNew() {
         longer claim that interest as a tax deduction on your 2025-26 or later returns.
       </p>
       <p>
-        HECS and HELP debtors also face a genuinely new element this tax time: this is the first
+        HECS and HELP debtors also face a new element this tax time: this is the first
         full year the marginal repayment system and the FY2026-27 threshold settings interact with
         an assessment, after 2.8% indexation was applied on 1 June 2026. See our{" "}
         <Link href="/news/hecs-marginal-repayment-first-tax-time/">
@@ -82,7 +84,7 @@ export default function TaxTime2026WhatsNew() {
       <h2>What this means for your pay</h2>
       <p>
         None of this year&apos;s changes affect your fortnightly pay packet. They show up in your
-        refund or tax bill once you lodge. Note that the $1,000 instant deduction does{" "}
+        refund or tax bill once you lodge. The $1,000 instant deduction does{" "}
         <em>not</em> apply to this year&apos;s return; see our{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">
           $1,000 instant deduction explainer

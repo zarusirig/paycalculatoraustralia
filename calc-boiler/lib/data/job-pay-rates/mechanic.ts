@@ -103,7 +103,7 @@ const DIESEL_MECHANIC_SECTION: OccupationSection = {
       dieselRow("Factory or processing plant maintenance", "Manufacturing Award, C10 tradesperson", MANUFACTURING_TRADE.hourly, MANUFACTURING_TRADE.weekly),
       dieselRow("Maintaining plant on a mine site", "Mining Industry Award, Level 3 (maintenance trades)", MINING_TRADE.hourly, MINING_TRADE.weekly),
     ],
-    note: "Minimums from the first full pay period on or after 1 July 2026. The mining row includes the all-purpose industry allowance (Schedule B.1.3). Casual is the hourly rate plus 25%; the Vehicle Repair Award's casual loading rises outside weekday daytime hours.",
+    note: "These minimums apply from the first full pay period on or after 1 July 2026. The mining row includes the all-purpose industry allowance (Schedule B.1.3). Casual is the hourly rate plus 25%; the Vehicle Repair Award's casual loading rises outside weekday daytime hours.",
   },
 };
 
@@ -133,13 +133,13 @@ export const MECHANIC: Occupation = {
       id: "mechanics",
       title: "Mechanic pay rates, 2026–27",
       intro:
-        "Vehicle Repair, Services and Retail Award cl 16.2, from the first full pay period on or after 1 July 2026. The casual column is the weekday daytime rate (25% loading); casual loadings are higher at other times (see below).",
+        "These are the minimum rates in cl 16.2 of the Vehicle Repair, Services and Retail Award, from the first full pay period on or after 1 July 2026. The casual column is the weekday daytime rate (25% loading); casual loadings are higher at other times (see below).",
       rows: MECHANIC_ROWS,
     },
     {
       id: "workshop",
       title: "Other workshop classifications (non-trade)",
-      intro: "Clause 16.2. Workshop employees without a trade qualification are classified R2 to R5 by skill level and duties (Schedule A.1.1–A.1.4).",
+      intro: "Workshop employees without a trade qualification are classified R2 to R5 by skill level and duties (Schedule A.1.1 to A.1.4), and their minimum rates are in clause 16.2.",
       rows: OTHER_ROWS,
     },
   ],

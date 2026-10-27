@@ -59,7 +59,7 @@ export const WA: Jurisdiction = {
         "Public service officers employed by the Western Australian agencies listed in Schedule 6 of the agreement.",
       basis: "agreement",
       effectiveFrom: "13 June 2026",
-      rangeMeaning: "First and last increment of the level. Annual salary only; superannuation is paid on top.",
+      rangeMeaning: "The salary range is the first and last increment of the level. Figures are annual salary only, and superannuation is paid on top.",
       sourceId: "wa-csa-2024",
       streams: [
         {
@@ -72,7 +72,7 @@ export const WA: Jurisdiction = {
               code: "Level 1",
               name: "General Division Level 1",
               aliases: ["wa level 1", "level 1 wa", "wa government level 1 salary"],
-              summary: "Four increments. Adult trainees are paid Level 1.1 (clause 11.3).",
+              summary: "This level has four increments, and adult trainees are paid at Level 1.1 (clause 11.3).",
               min: 68_028,
               max: 77_574,
               payPoints: [
@@ -194,7 +194,7 @@ export const WA: Jurisdiction = {
               code: "Class 1",
               name: "General Division Class 1",
               aliases: ["wa class 1"],
-              summary: "Single rate. Classes sit above Level 9.",
+              summary: "This Class is paid a single rate and sits above Level 9.",
               min: 211_558,
               max: 211_558,
             },
@@ -202,7 +202,7 @@ export const WA: Jurisdiction = {
               code: "Class 2",
               name: "General Division Class 2",
               aliases: ["wa class 2"],
-              summary: "Single rate. Classes sit above Level 9.",
+              summary: "This Class is paid a single rate and sits above Level 9.",
               min: 222_530,
               max: 222_530,
             },
@@ -210,7 +210,7 @@ export const WA: Jurisdiction = {
               code: "Class 3",
               name: "General Division Class 3",
               aliases: ["wa class 3"],
-              summary: "Single rate. Classes sit above Level 9.",
+              summary: "This Class is paid a single rate and sits above Level 9.",
               min: 233_486,
               max: 233_486,
             },
@@ -218,7 +218,7 @@ export const WA: Jurisdiction = {
               code: "Class 4",
               name: "General Division Class 4",
               aliases: ["wa class 4"],
-              summary: "Single rate. Classes sit above Level 9.",
+              summary: "This Class is paid a single rate and sits above Level 9.",
               min: 244_449,
               max: 244_449,
             },
@@ -403,7 +403,7 @@ export const WA: Jurisdiction = {
     },
     {
       q: "When is the next WA public sector pay rise?",
-      a: "Not yet scheduled. The 13 June 2026 increase is the last one in the Public Sector CSA Agreement 2024, which expires on 12 June 2027. The next rise depends on a replacement agreement.",
+      a: "The next WA public sector pay rise is not yet scheduled. The 13 June 2026 increase is the last one in the Public Sector CSA Agreement 2024, which expires on 12 June 2027. The next rise depends on a replacement agreement.",
     },
     {
       q: "What does a WA Level 2 or Level 3 public servant earn?",
@@ -411,7 +411,7 @@ export const WA: Jurisdiction = {
     },
     {
       q: "What is a Specified Calling in the WA public sector?",
-      a: "A separate salary scale in Schedule 3 of the agreement for professional officers in specified callings. From 13 June 2026 it runs from $86,377 at Level 1.1 to $255,846 at Level 10.",
+      a: "Specified Calling is a separate salary scale in Schedule 3 of the agreement for professional officers in specified callings. From 13 June 2026 it runs from $86,377 at Level 1.1 to $255,846 at Level 10.",
     },
   ],
 };

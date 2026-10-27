@@ -58,7 +58,7 @@ export const DENTAL_ASSISTANT: Occupation = {
   },
   coverage: [
     "Dental assistants in private dental practices are covered by the Health Professionals and Support Services Award 2020 [MA000027], in its Support Services stream. Since 1 April 2026 the award classifies dental assistants by qualification and experience rather than lumping them in with general support staff.",
-    "An unqualified dental assistant with less than 12 months' industry experience is Level 3. With 12 months to under 4 years' experience they are Level 5. A Certificate III (or 4+ years' experience, or experience the employer assesses as equivalent to a Certificate III) is Level 6, and a Certificate IV (or equivalent experience) is Level 7 (award Schedule A, A.1.3–A.1.7).",
+    "An unqualified dental assistant with less than 12 months' industry experience is Level 3. With 12 months to under 4 years' experience they are Level 5. A Certificate III (or 4+ years' experience, or experience the employer assesses as equivalent to a Certificate III) is Level 6, and a Certificate IV (or equivalent experience) is Level 7 (award Schedule A, A.1.3 to A.1.7).",
     "Dental assistants who were already employed on 31 March 2026 were moved to the new levels under Schedule J, and keep the higher of their old rate and the new rate (clause J.3).",
   ],
   tables: [
@@ -81,7 +81,7 @@ export const DENTAL_ASSISTANT: Occupation = {
     { when: "Shiftwork (shift starts 6 pm–6 am or finishes 6 pm–8 am)", permanent: "115%", casual: "140%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate, from the award's Schedule C.1.2 and C.1.8. Casual percentages include the 25% casual loading.",
+    "Dental assistant penalty rates are percentages of the minimum hourly rate, from the award's Schedule C.1.2 and C.1.8. Casual percentages include the 25% casual loading.",
   overtime: [
     "Monday to Saturday: 150% for the first 2 hours, then 200% (cl 25.2).",
     "Sunday: 200%. Public holiday: 250%.",

@@ -41,7 +41,7 @@ export default function CentrelinkDebtPage({ intro, children, afterCalculator }:
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Centrelink Debt" title="Centrelink Debt 2026: Refunds, the Income Apportionment Scheme and Overpayments">
           <p>
-            Three things put Centrelink debts back in the news in 2025–26: refunds to people who paid back <em>more</em> than they owed, the Income Apportionment Resolution Scheme (up to {formatAUD(RESOLUTION_SCHEME.maxPayment)} per debt, applications close {RESOLUTION_SCHEME.closes}), and the new robodebt class action settlement. Here is what each one is, and how a wrong income report creates a debt in the first place.
+            Three things put Centrelink debts back in the news in 2025-26: refunds to people who paid back <em>more</em> than they owed, the Income Apportionment Resolution Scheme (up to {formatAUD(RESOLUTION_SCHEME.maxPayment)} per eligible debt, applications close {RESOLUTION_SCHEME.closes}), and the new robodebt class action settlement. A Centrelink debt is money you owe Services Australia after it paid you more than you were eligible for. This page explains each of the three, works out the Resolution Scheme payment for one eligible debt, and shows how under-reported fortnightly pay on JobSeeker becomes a debt. It then covers what happens once you have a debt, including whether it affects your credit rating, and how income apportionment differs from robodebt.
           </p>
         </W3Hero>
 
@@ -75,7 +75,7 @@ export default function CentrelinkDebtPage({ intro, children, afterCalculator }:
           </W3Section>
 
           <W3Section title="How Earnings Reporting Creates an Overpayment">
-            <p className={P}>An overpayment is simply being paid more than you were eligible for. With an income-tested payment like JobSeeker, the payment is set by the income you <em>report</em> each fortnight. If the true figure was higher, the income test should have taken more off, and that difference becomes a debt. Since 7 December 2020 you report pay <strong>as it appears on your payslip, for the Centrelink fortnight you were paid</strong> (gross, before tax), rather than for the days you worked.</p>
+            <p className={P}>A Centrelink overpayment is money you were paid above what you were eligible for. With an income-tested payment like JobSeeker, the fortnightly amount is set by the income you <em>report</em> each fortnight. If the true figure was higher, the income test should have taken more off, and that difference becomes a debt. Since 7 December 2020 you report pay <strong>as it appears on your payslip, for the Centrelink fortnight you were paid</strong> (gross, before tax), rather than for the days you worked.</p>
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h3 style={FONT} className="text-lg font-semibold text-navy mb-4">JobSeeker Overpayment Illustration</h3>
@@ -89,12 +89,12 @@ export default function CentrelinkDebtPage({ intro, children, afterCalculator }:
                     <Row label="Single JobSeeker maximum (from 20 Sep 2026)" value={formatAUD(JS_MAX, 2)} />
                     <Row label="Overpaid each fortnight" value={formatAUD(Math.max(0, r.per), 2)} bold />
                     <Row label={`Debt over ${fortnights} fortnight${fortnights === 1 ? "" : "s"}`} value={formatAUD(r.total, 2)} bold highlight />
-                    <p className="text-xs text-warmgray-light pt-2">JobSeeker income test: {formatAUD(T.freeArea)} free area, 50c per $1 to {formatAUD(T.band1End)}, 60c above. In the 60c band every unreported dollar is 60 cents of debt. An illustration only: a real debt letter works from your full record, including Working Credit.</p>
+                    <p className="text-xs text-warmgray-light pt-2">JobSeeker income test: {formatAUD(T.freeArea)} free area, 50c per $1 to {formatAUD(T.band1End)}, 60c above. In the 60c band every unreported dollar is 60 cents of debt. This is an illustration only: a real debt letter works from your full record, including Working Credit.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <p className={P + " mt-4"}>The same logic applies to every income-tested payment, with that payment&apos;s free area and taper. See exactly how your pay moves each one in the <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Austudy and Youth Allowance</Link>, <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link> and <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment</Link> calculators. The <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link> gives the gross figure to report.</p>
+            <p className={P + " mt-4"}>The same overpayment arithmetic applies to every income-tested Centrelink payment, using that payment&apos;s own free area and taper. See how your pay changes each one in the<Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>, <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link>, <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Austudy and Youth Allowance</Link>, <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension</Link> and <Link href="/carer-payment-calculator/" className={LINK}>Carer Payment</Link> calculators. The <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link> gives the gross fortnightly figure to report.</p>
             <ul className="list-disc pl-6 space-y-1 text-warmgray">
               <li>Report your <strong>gross</strong> income, not the amount paid into your bank.</li>
               <li>Tell Services Australia about changes to your circumstances within <strong>14 days</strong>.</li>

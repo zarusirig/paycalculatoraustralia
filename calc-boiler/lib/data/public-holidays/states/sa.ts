@@ -9,7 +9,7 @@ export const SA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   name: "South Australia",
   inName: "in South Australia",
   standfirst:
-    "South Australia has 13 whole-day public holidays in 2026 and 14 in 2027, set by the Public Holidays Act 2023. It also has two part-day public holidays, Christmas Eve and New Year's Eve from 7pm to midnight, so an evening shift can change rate partway through. On 26 December SA observes the Proclamation Day holiday, which is paid the same way as Boxing Day elsewhere.",
+    "South Australia has 13 whole-day public holidays in 2026 and 14 in 2027, set by the Public Holidays Act 2023. It also has two part-day public holidays, Christmas Eve and New Year's Eve from 7pm to midnight. An evening shift that runs into that window is paid at the usual rate for the day before the window starts and at the public holiday rate inside it. On 26 December SA observes the Proclamation Day holiday, which is paid the same way as Boxing Day elsewhere.",
   sources: [
     { title: "Public holidays", url: "https://www.safework.sa.gov.au/resources/public-holidays", publisher: "SafeWork SA" },
     { title: "Public Holidays Act 2023 (SA)", url: "https://www.legislation.sa.gov.au/lz?path=%2FC%2FA%2FPublic%20Holidays%20Act%202023", publisher: "South Australian Legislation" },
@@ -95,7 +95,7 @@ export const SA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   faqs: [
     {
       q: "Are Christmas Eve and New Year's Eve public holidays in SA?",
-      a: "From 7pm to midnight only. Hours worked in that window are paid at your award's public holiday rate, even when the day falls on a weekend. Hours before 7pm are paid at the usual rate for that day.",
+      a: "Christmas Eve and New Year's Eve are public holidays in South Australia from 7pm to midnight only. Hours worked in that window are paid at your award's public holiday rate, even when the day falls on a weekend. Hours before 7pm are paid at the usual rate for that day.",
     },
     {
       q: "Is Boxing Day a public holiday in South Australia?",

@@ -52,7 +52,7 @@ export default function SalaryVsHourlyPage() {
             Salary vs Hourly Pay: Which Is Better For You?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Choosing between a salaried role and hourly pay affects your income stability, overtime access, leave entitlements, and total package value. Here is how to compare them side by side and determine which arrangement genuinely pays more for your situation.
+            Salary vs hourly pay in Australia is a choice between fixed income and paid extra hours. Our view: hourly pay comes out ahead when you work regular overtime or weekend and public holiday shifts, because those hours attract overtime or penalty rates. A salary comes out ahead when extra hours are rare, because your pay stays the same each pay period, even in quiet weeks. Income tax works the same way for both: PAYG withholding at the same marginal rates. The table below compares overtime, leave, super, notice periods and tax treatment, followed by the pros and cons of each. A worked example then compares total package value, and later sections cover tax and converting between an annual salary and an hourly rate.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -66,7 +66,7 @@ export default function SalaryVsHourlyPage() {
             <section id="key-differences">
               <h2>Key Differences at a Glance</h2>
               <p>
-                The fundamental difference is simple: salaried employees receive a fixed annual amount divided into equal pay periods, while hourly employees are paid for each hour actually worked. But the downstream effects on overtime, leave, stability, and tax treatment create a more complex picture.
+                A salaried employee receives a fixed annual amount divided into equal pay periods, while an hourly employee is paid for each hour actually worked. That difference flows through to overtime pay, leave, income predictability, tax treatment and career progression, compared row by row below.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -154,7 +154,7 @@ export default function SalaryVsHourlyPage() {
                 </Card>
               </div>
               <p>
-                The biggest advantage of salary is <strong>stability</strong>. You know exactly what you will earn each fortnight, regardless of public holidays, sick days, or quiet periods. This makes loan applications and long-term financial planning significantly easier. The trade-off is that additional effort (working late, weekend emails, extra projects) is rarely compensated separately.
+                The biggest advantage of salary is <strong>stability</strong>. You know exactly what you will earn each pay period, regardless of public holidays, sick days or quiet periods. That fixed figure makes loan applications and long-term financial planning easier. The trade-off is that extra effort (working late, weekend emails, extra projects) is rarely paid separately.
               </p>
             </section>
 
@@ -187,7 +187,7 @@ export default function SalaryVsHourlyPage() {
                 </Card>
               </div>
               <p>
-                Hourly pay shines when <strong>overtime and penalty rates</strong> are available. A worker earning $38.50/hr who regularly works 5 hours of overtime per week at 1.5x earns an additional <strong>$15,015 per year</strong>, money a salaried employee in an equivalent role would not receive. Use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model exact amounts.
+                Hourly pay comes out ahead when <strong>overtime and penalty rates</strong> are available. A worker earning $38.50/hr who regularly works 5 hours of overtime per week at 1.5x earns an additional <strong>$15,015 per year</strong>, money a salaried employee in an equivalent role would not receive. Use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model exact amounts.
               </p>
             </section>
 
@@ -207,7 +207,7 @@ export default function SalaryVsHourlyPage() {
             <section id="total-package-comparison">
               <h2>Total Package Comparison</h2>
               <p>
-                Comparing salary to hourly pay requires looking beyond the base rate. The following example compares a <strong>$75,000 salaried</strong> role with an <strong>hourly role at $38.50/hr</strong> (approximately equivalent base rate) where the hourly worker averages 5 hours of overtime per week.
+                Salary and hourly pay compare fairly only on total package value: base pay plus overtime, paid leave and super. The example below compares a <strong>$75,000 salaried</strong> role with an <strong>hourly role at $38.50/hr</strong> (approximately equivalent base rate) where the hourly worker averages 5 hours of overtime per week.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -256,7 +256,7 @@ export default function SalaryVsHourlyPage() {
                 </div>
               </div>
               <p>
-                In this scenario, the hourly worker earns <strong>$16,220 more per year</strong> in total package value, but works 260 additional hours (5 hours x 52 weeks). If overtime is not consistently available, the gap narrows or reverses. The salaried employee benefits from steady income during quiet periods, paid sick days, and no income reduction during annual leave.
+                In this scenario, the hourly worker earns <strong>$16,220 more per year</strong> in total package value, but works 260 additional hours (5 hours x 52 weeks). If overtime is not consistently available, the gap narrows or reverses. The salaried employee keeps steady income during quiet periods and, unlike a casual hourly worker, gets paid sick days and full pay during annual leave.
               </p>
             </section>
 
@@ -269,7 +269,7 @@ export default function SalaryVsHourlyPage() {
                 The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax: the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
               </p>
               <p>
-                Salary sacrifice opportunities are typically more accessible to salaried employees. Employers are more likely to offer packaging arrangements (super, novated leases, devices) to permanent salaried staff. Check your eligibility with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
+                Our view: salary sacrifice is easier to arrange on a salary, because employers are more likely to offer packaging arrangements (super, novated leases, devices) to permanent salaried staff. Model the tax effect with our<Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
               </p>
             </section>
 
@@ -305,7 +305,7 @@ export default function SalaryVsHourlyPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Total package calculations use FY{SITE_CONFIG.financialYear} tax rates, 12% SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards. Individual award conditions may vary.</p>
+                <p>Total package calculations use FY{SITE_CONFIG.financialYear} tax rates, 12% SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards. Your own award or enterprise agreement sets your overtime rates and thresholds.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("salary-vs-hourly"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

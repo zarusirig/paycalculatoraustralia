@@ -315,7 +315,7 @@ function div293Item(salary: number): React.ReactNode | null {
   return (
     <>
       <Link href="/division-293-tax/" className={LINK}>Division 293</Link>: income plus super is {formatAUD(d.over)} over {formatAUD(d.threshold)}, so {pct(d.rate, 0)} more on{" "}
-      {formatAUD(d.base)} of contributions: <strong>{formatAUD(d.amount)} a year</strong>, billed after your return.
+      {formatAUD(d.base)} of contributions: <strong>{formatAUD(d.amount)} a year</strong>, assessed by the ATO after you lodge your tax return.
     </>
   );
 }
@@ -326,7 +326,7 @@ function sgCapItem(salary: number): React.ReactNode | null {
   return (
     <>
       <Link href="/superannuation-guide/" className={LINK}>Super guarantee</Link>: stops at {formatAUD(c.maxSG)}, not {formatAUD(c.uncapped)}, as only the first{" "}
-      {formatAUD(c.maxBase)} counts; that fills the concessional cap.
+      {formatAUD(c.maxBase)} of salary counts (the maximum contribution base); that fills the concessional cap.
     </>
   );
 }

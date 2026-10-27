@@ -184,7 +184,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           <li>exempt foreign employment income</li>
         </ul>
         <p className="mb-4 text-warmgray">
-          That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold, because the contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
+          That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold: reportable super contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
         </p>
         <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Repayment Table for {SITE_CONFIG.previousFinancialYear} (Your 2026 Tax Return)</h3>
         <p className="mb-4 text-warmgray">
@@ -272,7 +272,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section id="how-much-hecs-do-i-pay">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much HECS Do I Have to Pay?</h2>
         <p className="mb-3 text-warmgray">
-          It depends on your income, not on the size of your debt. If your repayment income is {formatAUD(T)} or less you pay nothing in {SITE_CONFIG.financialYear}. Above that you pay 15 cents for each dollar over {formatAUD(T)}, stepping to {formatAUD(B2.base)} plus 17 cents per dollar from {formatAUD(B2.min)}, and 10% of your whole repayment income from {formatAUD(B3.min)}. The repayment is the same whether you owe $5,000 or $50,000, until the balance reaches zero and repayments stop.
+          Your compulsory HECS repayment is set by your repayment income, not by the size of your debt. If your repayment income is {formatAUD(T)} or less you pay nothing in {SITE_CONFIG.financialYear}. Above that you pay 15 cents for each dollar over {formatAUD(T)}, stepping to {formatAUD(B2.base)} plus 17 cents per dollar from {formatAUD(B2.min)}, and 10% of your whole repayment income from {formatAUD(B3.min)}. The repayment is the same whether you owe $5,000 or $50,000, until the balance reaches zero and repayments stop.
         </p>
         <p className="text-warmgray">
           Your employer withholds the repayment through PAYG during the year using your tax file number declaration, and the exact amount is settled when your return is assessed. See <a href="#why-payslip-differs" className="text-eucalyptus-dark hover:underline font-medium">why your payslip deduction differs</a> from the annual figure.
@@ -442,7 +442,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
           ATO, <a href={ATO_INDEXATION_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Study and training loan indexation rates</a>.
         </p>
         <p className="mb-4 text-warmgray">
-          One quirk matters for timing. Compulsory repayments made through PAYG during the year are not credited to your loan until your return is assessed, usually after 1 June. So the balance that gets indexed is often larger than the balance you think you have. Separately, every study and training support debt that existed on 1 June 2025 received a one-off <strong>20% reduction</strong>; the ATO has finished processing it, and accounts left in credit were refunded.
+          Compulsory repayments withheld through PAYG during the year are not credited to your loan until your return is assessed, usually after 1 June. So the balance that gets indexed is often larger than the balance you think you have. Separately, every study and training support debt that existed on 1 June 2025 received a one-off <strong>20% reduction</strong>; the ATO has finished processing it, and accounts left in credit were refunded.
         </p>
         <p className="mb-3 text-warmgray">
           A voluntary repayment only reduces the indexed amount if it lands <em>before</em> 1 June. Beyond that timing point the case for paying early is a straight comparison: {HECS_HELP.indexationRate * 100}% indexation against what the money would earn or save elsewhere. Credit cards, car loans and personal loans all cost more, so they come first.
@@ -506,12 +506,12 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators and Guides</h2>
         <ul className="list-disc pl-5 text-warmgray space-y-2">
-          <li><Link href="/graduate-salary-australia/" className="text-eucalyptus-dark hover:underline font-medium">Graduate salary Australia</Link> &mdash; starting pay in six professions, with take-home and the repayment at each.</li>
-          <li><Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax file number declaration</Link> &mdash; where you tell your employer about the loan so STSL is withheld.</li>
-          <li><Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline font-medium">STSL on your payslip</Link> &mdash; how the withholding is worked out each pay.</li>
-          <li><Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">Extra super vs HECS repayment</Link> &mdash; where a spare dollar does more work.</li>
-          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-home pay calculator</Link> &mdash; net pay with or without a study loan.</li>
-          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income tax calculator</Link> &mdash; brackets and your marginal rate.</li>
+          <li><Link href="/graduate-salary-australia/" className="text-eucalyptus-dark hover:underline font-medium">Graduate salary Australia</Link>: starting pay in six professions, with take-home and the repayment at each.</li>
+          <li><Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax file number declaration</Link>: where you tell your employer about the loan so STSL is withheld.</li>
+          <li><Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline font-medium">STSL on your payslip</Link>: how the withholding is worked out each pay.</li>
+          <li><Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">Extra super vs HECS repayment</Link>: where a spare dollar does more work.</li>
+          <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-home pay calculator</Link>: net pay with or without a study loan.</li>
+          <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income tax calculator</Link>: brackets and your marginal rate.</li>
         </ul>
       </section>
 

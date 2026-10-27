@@ -79,7 +79,7 @@ export default function TerminationPaymentTaxPage() {
           <section>
             <H2 id="what-is-etp">What Counts as a Termination Payment for Tax?</H2>
             <p>
-              Not everything you receive when a job ends is taxed the same way. The ATO separates employment termination payments from other things paid at the same time. Getting the split right is what makes the calculator accurate.
+              The ATO taxes an employment termination payment (ETP) separately from other amounts paid when a job ends, such as leave payouts, wages owed and super benefits. Getting the split right is what makes the calculator accurate.
             </p>
             <DataTable
               head={["Taxed as an ETP", "Not an ETP"]}
@@ -142,7 +142,7 @@ export default function TerminationPaymentTaxPage() {
             <ul>
               <li><strong>Split the payment correctly.</strong> Check the payment summary or income statement. Leave and notice pay are separate lines from the redundancy payment.</li>
               <li><strong>Timing matters.</strong> The caps are by income year (1 July to 30 June). Two ETPs in one year share the caps.</li>
-              <li><strong>Check your age cut-offs.</strong> Turning 60 before 30 June moves the rate from {pct(ETP_RATES.underPreservationAge)} to {pct(ETP_RATES.atOrOverPreservationAge)}. Being {GENUINE_REDUNDANCY_AGE_LIMIT} on the day of dismissal removes the genuine redundancy tax-free amount.</li>
+              <li><strong>Check your age cut-offs.</strong> Turning 60 before 30 June moves the rate from {pct(ETP_RATES.underPreservationAge)} to {pct(ETP_RATES.atOrOverPreservationAge)}. Being {GENUINE_REDUNDANCY_AGE_LIMIT} or older on the day of dismissal removes the genuine redundancy tax-free amount.</li>
               <li><strong>Centrelink.</strong> A termination payment can delay income support. See the <Link href="/jobseeker-payment-calculator/">JobSeeker payment calculator</Link> and the redundancy page for the income maintenance period.</li>
             </ul>
           </section>

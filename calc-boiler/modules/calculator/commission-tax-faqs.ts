@@ -43,7 +43,7 @@ export const COMMISSION_TAX_FAQS: readonly CommissionTaxFaq[] = [
   },
   {
     q: "Why was so much tax taken out of my commission?",
-    a: `Because withholding is an estimate made from one pay period, while your real tax is assessed on the whole year. The two usually differ by a small amount, and the difference is settled when you lodge: over-withholding comes back as part of your refund, under-withholding is added to your bill. Schedule 5 also caps withholding on any commission at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the payment.`,
+    a: `Tax withheld from a commission is an estimate made from one pay period, while your real tax is assessed on the whole year. The two usually differ by a small amount, and the difference is settled when you lodge: over-withholding comes back as part of your refund, under-withholding is added to your bill. Schedule 5 also caps withholding on any commission at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the payment.`,
   },
   {
     q: "Are commissions taxed differently from bonuses?",

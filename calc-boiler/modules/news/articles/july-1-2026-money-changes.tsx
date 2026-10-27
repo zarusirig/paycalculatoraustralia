@@ -5,10 +5,11 @@ export default function July12026MoneyChanges() {
   return (
     <>
       <p className="lead">
-        1 July 2026 brought the biggest single-day reshuffle of Australian pay, tax and benefits
-        in years: the minimum wage jumped <strong>6%</strong>, payday super began, the tax rate
-        dropped to <strong>15%</strong>, HECS thresholds rose, and Centrelink payments were
-        indexed. Here&apos;s every change in one place.
+        On 1 July 2026 Australian pay, super, tax, HECS and family payment rules all changed at
+        once: the national minimum wage rose <strong>6%</strong>, payday super began, the tax rate
+        on the second income tax bracket dropped to <strong>15%</strong>, the HECS repayment
+        threshold rose, and Family Tax Benefit was indexed. Each section below gives the new figure
+        and links to the calculator or guide that checks your own numbers.
       </p>
 
       <NewsKeyFacts
@@ -24,7 +25,7 @@ export default function July12026MoneyChanges() {
       <h2>Pay: minimum wage and award rates rise</h2>
       <p>
         The national minimum wage rose 6% to $26.44 an hour ($1,004.90 for a 38-hour week), while
-        modern award minimum rates rose a separate 4.75%, reaching award-reliant
+        modern award minimum rates rose a separate 4.75%. The award rise reaches award-reliant
         workers, about 23% of employees according to the ABS (May 2025). The rise applies from the first full
         pay period on or after 1 July 2026. Read the full breakdown in{" "}
         <Link href="/news/minimum-wage-increase-july-2026/">minimum wage rise explained</Link>,
@@ -47,7 +48,7 @@ export default function July12026MoneyChanges() {
       <h2>Tax: the 16% rate drops to 15%</h2>
       <p>
         The tax rate on income between $18,201 and $45,000 fell from 16% to 15%, worth up to $268
-        a year, applied automatically through PAYG withholding. Full detail in{" "}
+        a year, applied automatically through PAYG withholding. The full detail is in{" "}
         <Link href="/news/tax-cut-july-2026/">tax cut from 1 July 2026</Link>; check your exact
         saving with the <Link href="/income-tax-calculator/">income tax calculator</Link>. The
         $1,000 instant work-related deduction also starts applying from this date, though it&apos;s
@@ -62,7 +63,7 @@ export default function July12026MoneyChanges() {
       <p>
         The compulsory repayment threshold for 2026-27 rose to $69,528, and HECS balances were
         indexed 2.8% back on 1 June. Under the marginal repayment system, you now pay 15c for
-        every dollar of repayment income above that threshold, rather than a flat percentage of
+        every dollar of repayment income above that threshold in the first band, rather than a flat percentage of
         your total income. See{" "}
         <Link href="/news/hecs-repayment-threshold-2026-27/">
           HECS threshold rises to $69,528
@@ -87,18 +88,19 @@ export default function July12026MoneyChanges() {
 
       <h2>Putting it all together</h2>
       <p>
-        No single change on 1 July 2026 is dramatic on its own, but stacked together they touch
-        almost every working Australian: a pay rise if you&apos;re on the minimum wage or an award, a
-        small tax cut whatever you earn, faster super contributions, a higher HECS threshold if
-        you have a study loan, and adjusted Centrelink rates if you receive a payment. Most flow
-        through automatically via payroll, your super fund or Services Australia. The main thing
-        worth doing is checking your own payslip and notice of assessment reflect the new rates.
+        Each 1 July 2026 change reaches a different group: a pay rise if you&apos;re on the
+        minimum wage or an award, a small tax cut if your income is above the tax-free threshold, faster
+        super contributions, a higher HECS threshold if you have a study loan, and adjusted
+        Centrelink rates if you receive a payment. Most flow through automatically via payroll,
+        your super fund or Services Australia. Check that your own payslip and notice of
+        assessment reflect the new rates.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        Most of these changes apply automatically (through payroll, your super fund, or Centrelink),
-        so there&apos;s usually nothing to apply for. The exception is checking your own numbers: run
+        The pay rises, the tax rate cut, payday super and Family Tax Benefit indexation apply
+        automatically through payroll, your super fund or Centrelink, so you do not apply for them.
+        To check your own numbers, run
         your salary through the{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your new
         after-tax pay, or the{" "}

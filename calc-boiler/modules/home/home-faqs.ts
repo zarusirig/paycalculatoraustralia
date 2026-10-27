@@ -77,7 +77,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "When do penalty rates apply?",
-    a: `Penalty rates apply when your award or agreement says so, typically weekends, public holidays, overtime and late nights. Under most awards Saturday work pays around ${pct(EMPLOYMENT.penaltyRates.saturdayMin)}–${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)}–${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)}–${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so always check the award that covers your job.`,
+    a: `Penalty rates apply when your award or agreement says so, typically weekends, public holidays, overtime and late nights. Under most awards Saturday work pays around ${pct(EMPLOYMENT.penaltyRates.saturdayMin)} to ${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)} to ${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)} to ${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so check the award that covers your job.`,
   },
   {
     q: "Is super included in my salary, or paid on top?",
@@ -105,7 +105,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "Why does my employer withhold more tax than this calculator shows?",
-    a: `Employers withhold using the ATO's per-pay-period tables, which round conservatively and can't see your whole year, so the amount held back usually runs slightly above your true annual liability, refunded when you lodge. For the full explanation of PAYG withholding versus annual tax, see the Income Tax Calculator.`,
+    a: `Your employer withholds more because it uses the ATO's per-pay-period tables, which round conservatively and can't see your whole year. The amount held back usually runs slightly above your true annual liability, and the extra is refunded when you lodge. For the full explanation of PAYG withholding versus annual tax, see the Income Tax Calculator.`,
   },
   {
     q: "What happens to my take-home pay if my income changes during the year?",
@@ -113,7 +113,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "How is a second job taxed?",
-    a: `You can only claim the tax-free threshold with one employer, so your second employer withholds tax from the first dollar, which is why second-job payslips look heavily taxed, even though your actual annual tax doesn't change. See the Income Tax Calculator for the full two-jobs breakdown.`,
+    a: `You can only claim the tax-free threshold with one employer, so your second employer withholds tax from the first dollar. That is why second-job payslips look heavily taxed, even though your actual annual tax doesn't change. See the Income Tax Calculator for the full two-jobs breakdown.`,
   },
   {
     q: "Can new migrants and visa holders use this pay calculator?",
@@ -121,7 +121,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "How often should my employer pay super?",
-    a: `On every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines. Your employer's contribution must now reach your fund within 7 business days of each payday. Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
+    a: `Your employer must pay super on every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines. Your employer's contribution must now reach your fund within 7 business days of each payday. Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
   },
   {
     q: "Do I pay tax differently in different states?",
@@ -133,6 +133,6 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "What deductions come out of my pay before it reaches my bank account?",
-    a: `Three compulsory deductions: income tax, the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments once your income passes ${formatAUD(HECS_HELP.minimumThreshold)}. Voluntary arrangements such as salary sacrifice or a novated lease also come out pre-tax if you have set them up. Superannuation is not a deduction: your employer pays it on top of your salary.`,
+    a: `Three compulsory deductions come out of your pay: income tax, the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments once your income passes ${formatAUD(HECS_HELP.minimumThreshold)}. Voluntary arrangements such as salary sacrifice or a novated lease also come out pre-tax if you have set them up. Superannuation is not a deduction: your employer pays it on top of your salary.`,
   },
 ] as const;

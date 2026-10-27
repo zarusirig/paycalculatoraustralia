@@ -143,7 +143,7 @@ export const KFC_PAY: EmployerPay = {
     },
     {
       q: "Is the KFC enterprise agreement still in force?",
-      a: "Yes. Its nominal expiry date was in April 2024, but an agreement keeps applying until it is replaced or terminated, and we found no replacement KFC agreement approved or lodged with the Fair Work Commission as at 22 October 2026. It only covers KFC's own restaurants and the franchisees named in it.",
+      a: "Yes. The KFC agreement passed its nominal expiry date in April 2024, but an agreement keeps applying until it is replaced or terminated. We found no replacement KFC agreement approved or lodged with the Fair Work Commission as at 22 October 2026. The KFC agreement only covers KFC's own restaurants and the franchisees named in it.",
     },
     {
       q: "What does KFC pay on weekends and public holidays?",
@@ -166,7 +166,7 @@ export const KFC_PAY: EmployerPay = {
     commencedOn: "29 April 2020",
     status: "past-nominal-expiry",
     statusNote:
-      "Past its nominal expiry date of 29 April 2024 but still in force: an agreement keeps applying until it is replaced or terminated. On 22 October 2026 we found no replacement KFC agreement, application or approval decision on the Fair Work Commission's site, and the SDA's KFC page still describes this agreement as current.",
+      "The KFC agreement is past its nominal expiry date of 29 April 2024 but still in force, because an agreement keeps applying until it is replaced or terminated. On 22 October 2026 we found no replacement KFC agreement, application or approval decision on the Fair Work Commission's site, and the SDA's KFC page still describes this agreement as current.",
     payRises: [
       { date: "1 February 2020", amount: "Fast Food Award weekly rate plus 0.25% for full-time and part-time staff; casuals the award hourly rate plus 1 cent before the loading", source: "[2020] FWCA 2020 at [72](g) and (h)", paid: true },
       { date: "1 July 2021", amount: "Permanent margin lifted to the award weekly rate plus 0.5%", source: "[2020] FWCA 2020 at [72](g)", paid: true },
@@ -175,7 +175,7 @@ export const KFC_PAY: EmployerPay = {
       { date: "First full pay period on or after 1 July 2027", amount: "The 2027 Annual Wage Review percentage, not yet decided", source: "Flows through the agreement's award-plus formula" },
     ],
     aboveAward:
-      "The approving Deputy President recorded that permanent staff get \"an additional 0.25% over the award rate from 1/2/20 and 0.5% over the award rate from 1/7/21\" and casuals \"an additional $0.01 per hour at the adult level (plus the additional 25% loading) over the award rate\", with the adult weekly rate rounded to the nearest 10 cents so that the agreement rates sit above the award ([2020] FWCA 2020 at [64] and [72]). On 2026 rates that is $27.95 against the award's $27.81 for an adult Team Member, 14 cents more.",
+      "The approving Deputy President recorded that permanent staff get \"an additional 0.25% over the award rate from 1/2/20 and 0.5% over the award rate from 1/7/21\" and casuals \"an additional $0.01 per hour at the adult level (plus the additional 25% loading) over the award rate\" ([2020] FWCA 2020 at [72]). The decision also records that the adult weekly rate is rounded to the nearest 10 cents so that the KFC agreement rates sit above the award (at [64]). On 2026 rates that is $27.95 against the award's $27.81 for an adult Team Member, 14 cents more.",
     whatItMeans: [
       "KFC's rates are the Fast Food Award plus a small fixed margin, so every Annual Wage Review flows straight into KFC pay each July.",
       "Permanent staff get the award weekly rate plus 0.5%; casuals get the award hourly rate plus 1 cent, then the 25% loading.",

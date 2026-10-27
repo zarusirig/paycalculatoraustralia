@@ -21,7 +21,7 @@ export interface ZoneFaq {
 export const ZONE_FAQS: readonly ZoneFaq[] = [
   {
     q: "How much is the zone tax offset?",
-    a: `The fixed amount is ${formatAUD(A)} for Zone A, ${formatAUD(B)} for Zone B and ${formatAUD(SPECIAL)} for a special area within either zone, for the ${ZONE_OFFSET_INCOME_YEAR} income year. A special area replaces the zone amount rather than adding to it, so ${formatAUD(SPECIAL)} is the maximum without dependants. If you maintained dependants you also add 50% of your base amount in Zone A or a special area, or 20% in Zone B.`,
+    a: `The zone tax offset fixed amount is ${formatAUD(A)} for Zone A, ${formatAUD(B)} for Zone B and ${formatAUD(SPECIAL)} for a special area within either zone, for the ${ZONE_OFFSET_INCOME_YEAR} income year. A special area replaces the zone amount rather than adding to it, so ${formatAUD(SPECIAL)} is the maximum without dependants. If you maintained dependants you also add 50% of your base amount in Zone A or a special area, or 20% in Zone B.`,
   },
   {
     q: "Is Darwin in Zone A or Zone B?",
@@ -45,7 +45,7 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Is the zone tax offset refundable?",
-    a: "No. It is non-refundable, so it reduces your tax payable to a minimum of zero but does not generate a cash refund on its own. Any excess is lost and cannot be carried forward.",
+    a: "No. The zone tax offset is non-refundable, so it reduces your tax payable to a minimum of zero but does not generate a cash refund on its own. Any excess is lost and cannot be carried forward.",
   },
   {
     q: "Does my employer apply the zone tax offset to my pay?",
@@ -53,7 +53,7 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "What if I moved to a zone part-way through the year?",
-    a: `If you reach ${ZONE_QUALIFYING_DAYS} days or more you claim in full. If you fall short, you may still qualify by carrying forward unused days from your first year in the zone, provided the stay is a continuous period of under 5 years, you could not claim in that first year, the two years together total ${ZONE_QUALIFYING_DAYS} days or more, and the current-year period includes 1 July.`,
+    a: `If you reach ${ZONE_QUALIFYING_DAYS} days or more in the zone, you claim the full zone tax offset. If you fall short, you may still qualify by carrying forward unused days from your first year in the zone, provided the stay is a continuous period of under 5 years, you could not claim in that first year, the two years together total ${ZONE_QUALIFYING_DAYS} days or more, and the current-year period includes 1 July.`,
   },
   {
     q: "Does a remote area allowance affect the offset?",
@@ -65,6 +65,6 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Which financial year do these amounts apply to?",
-    a: `The ${ZONE_OFFSET_INCOME_YEAR} income year: the return being lodged now, due 31 October 2026. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
+    a: `These zone tax offset amounts apply to the ${ZONE_OFFSET_INCOME_YEAR} income year, the return being lodged now, due 31 October 2026. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
   },
 ] as const;

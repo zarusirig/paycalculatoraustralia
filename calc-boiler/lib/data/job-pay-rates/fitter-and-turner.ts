@@ -127,7 +127,7 @@ export const FITTER_AND_TURNER: Occupation = {
       id: "fitter-and-turner",
       title: "Fitter and turner pay rates by classification, 2026–27",
       intro:
-        "Manufacturing Award cl 20.1(a), from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% loading (cl 11.1). The training shown is the minimum Schedule A.3.1 sets for each level.",
+        "Fitter and turner rates come from Manufacturing Award cl 20.1(a) and apply from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% loading (cl 11.1). The training shown is the minimum Schedule A.3.1 sets for each level.",
       rows: [FT_C10, FT_C9, FT_C8, FT_C7, FT_C6, FT_C5],
     },
     {
@@ -170,7 +170,7 @@ export const FITTER_AND_TURNER: Occupation = {
     },
     {
       q: "What do fitters and turners actually earn?",
-      a: `Jobs and Skills Australia reports median full-time earnings of $2,606 a week for metal fitters and machinists (ABS, May 2025), about ${money0(annual52(2_606))} a year before tax. Full-time workers in the group average 50 hours a week, so the median includes a lot of overtime and mining agreement pay.`,
+      a: `Jobs and Skills Australia reports median full-time earnings of $2,606 a week for metal fitters and machinists (ABS, May 2025), about ${money0(annual52(2_606))} a year before tax. Full-time metal fitters and machinists work an average of 50 hours a week, so that median includes overtime and mining agreement pay.`,
     },
   ],
   sources: [

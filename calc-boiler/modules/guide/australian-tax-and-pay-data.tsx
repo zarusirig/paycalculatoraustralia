@@ -89,8 +89,8 @@ export default function AustralianTaxAndPayData() {
             Australian Tax and Pay Data: Free CSV and JSON Downloads
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            The tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage figures that run this
-            site&apos;s calculators, as clean tables you can download, open in Excel or Google Sheets, or load into code. Every figure
+            This page holds the tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage figures
+            that run this site&apos;s calculators, as tables you can download, open in Excel or Google Sheets, or load into code. Every figure
             is traced to the ATO or the Fair Work Commission, labelled with the year it belongs to, and free to reuse with a link.
           </p>
           <p className="mb-6 text-sm text-warmgray">
@@ -107,7 +107,7 @@ export default function AustralianTaxAndPayData() {
             <section id="downloads">
               <h2 style={H}>Download the data</h2>
               <p>
-                Six CSV files and one combined JSON file. The files are plain: a header row, one row per line of the table, dollar
+                The data comes as six CSV files and one combined JSON file. The files are plain: a header row, one row per line of the table, dollar
                 amounts as numbers without symbols, and rates as decimals (0.15 means 15%). A blank cell means &ldquo;no upper
                 limit&rdquo; or &ldquo;not applicable&rdquo;.
               </p>
@@ -135,8 +135,8 @@ export default function AustralianTaxAndPayData() {
               </ul>
               <p>
                 The file addresses are permanent (<code>{OPEN_DATA.path}data/&lt;file&gt;</code>) and the files are served with open
-                CORS headers, so a spreadsheet function or a script can read them straight from the URL. When a rate changes the file
-                at the same address is replaced and the version and date on this page move.
+                CORS headers, so a spreadsheet function or a script can read them straight from the URL. When a rate changes, the file
+                at the same address is replaced and the version and date on this page are updated.
               </p>
             </section>
 
@@ -168,7 +168,7 @@ export default function AustralianTaxAndPayData() {
             <section id="minimum-wage">
               <h2 style={H}>National Minimum Wage, 2010-11 to {fy}</h2>
               <p>
-                The adult National Minimum Wage by financial year, per hour and for a 38-hour week, as set by each Annual Wage Review.
+                This table gives the adult National Minimum Wage by financial year, per hour and for a 38-hour week, as set by each Annual Wage Review.
                 The &ldquo;as announced&rdquo; column is the increase the Fair Work Commission published, which it rounds (2022-23 was
                 announced as 5.2%, a flat $40 a week); the file also carries the increase calculated from the weekly rates. The
                 junior percentages are in their own file. Read the context on{" "}
@@ -194,7 +194,7 @@ export default function AustralianTaxAndPayData() {
             <section id="hecs">
               <h2 style={H}>HECS-HELP repayment thresholds</h2>
               <p>
-                Compulsory repayments use a marginal system: the rate applies only to income above each threshold, except in the top
+                HECS-HELP compulsory repayments use a marginal system: the rate applies only to income above each threshold, except in the top
                 band where the percentage applies to the whole repayment income. The file also holds 2025-26 for comparison. Try your
                 own income in the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>.
               </p>

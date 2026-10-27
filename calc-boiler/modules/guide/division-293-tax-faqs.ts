@@ -30,7 +30,7 @@ const EX_TAX = division293Estimate(EX_INCOME, EX_SUPER);
 export const DIVISION_293_FAQS: readonly FaqItem[] = [
   {
     q: "What is Division 293 tax?",
-    a: `Division 293 is an additional ${RATE} tax on concessional (before-tax) super contributions for individuals whose income plus concessional super contributions exceed ${THRESHOLD}. It effectively doubles the tax on those contributions from ${BASE_RATE} to ${pct(COMBINED)} for high-income earners, partially closing the gap between the concessional super tax rate and the top marginal rate.`,
+    a: `Division 293 is an additional ${RATE} tax on concessional (before-tax) super contributions for people whose income plus concessional super contributions exceed ${THRESHOLD}. For those high-income earners it doubles the tax on the contributions it applies to, from ${BASE_RATE} to ${pct(COMBINED)}, which narrows the gap between the concessional super tax rate and the top marginal rate.`,
   },
   {
     q: "How is Division 293 tax calculated?",
@@ -46,7 +46,7 @@ export const DIVISION_293_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice into super trigger Division 293?",
-    a: "Salary sacrifice reduces your taxable income but the sacrificed amount is added as a concessional super contribution. Since Division 293 adds income + super contributions, salary sacrifice does not help you avoid the threshold. The total of taxable income plus super remains the same. However, the net tax benefit of salary sacrifice is still positive even with Division 293.",
+    a: "Salary sacrifice does not lower your Division 293 total, so it does not help you avoid the threshold. It reduces your taxable income, but the sacrificed amount is added back as a concessional super contribution, so your taxable income plus super stays the same. The net tax benefit of salary sacrifice is still positive even with Division 293.",
   },
   {
     q: "Is the $250,000 threshold indexed?",

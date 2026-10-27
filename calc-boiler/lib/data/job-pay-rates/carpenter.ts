@@ -65,7 +65,7 @@ export const CARPENTER: Occupation = {
       id: "carpenter",
       title: "Carpenter pay rates by sector, 2026–27 (weekly hire)",
       intro:
-        "Weekly = CW3 minimum ($1,119.10) + industry allowance + carpenter tool allowance ($41.22), all paid for all purposes. Hourly is that weekly amount over 38 hours; casual adds the 25% loading (cl 12.4).",
+        "The weekly rate is the CW3 minimum ($1,119.10) plus the industry allowance and the carpenter tool allowance ($41.22), all paid for all purposes. The hourly rate is that weekly amount divided by 38 hours, and the casual rate adds the 25% loading (cl 12.4).",
       rows: [
         buildingRow("Carpenter (CW3) — residential building", "CW/ECW 3", [residential, CARPENTER_TOOL_ALLOWANCE], "Single or dual occupancy homes"),
         buildingRow("Carpenter (CW3) — general building and construction", "CW/ECW 3", [general, CARPENTER_TOOL_ALLOWANCE], "Commercial, multi-unit and civil work"),
@@ -75,7 +75,7 @@ export const CARPENTER: Occupation = {
       id: "construction-levels",
       title: "Construction worker levels, general building (weekly hire, without tool allowance)",
       intro:
-        "Clause 19.1 minimum + the $67.15 general building industry allowance. A carpenter classified above CW3 still receives the $41.22 tool allowance on top of these figures.",
+        "Each rate is the clause 19.1 minimum plus the $67.15 general building industry allowance. A carpenter classified above CW3 still receives the $41.22 tool allowance on top of these figures.",
       rows: [
         buildingRow("CW/ECW 1 (level a) — new entrant", "CW/ECW 1 (level a)", [general]),
         buildingRow("CW/ECW 2", "CW/ECW 2", [general]),

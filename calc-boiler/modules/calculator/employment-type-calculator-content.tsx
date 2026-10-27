@@ -67,13 +67,13 @@ export default function EmploymentTypeCalculatorContent() {
           <li><strong>Notice period:</strong> 1-5 weeks guaranteed = varies</li>
           <li><strong>Redundancy pay:</strong> 4-16 weeks after 1+ years = varies</li>
         </ul>
-        <p className="mt-4 text-warmgray">The combined value of leave alone (annual + personal + public holidays) is approximately <strong>14.6%</strong> of annual earnings &mdash; meaning the 25% casual loading only provides a <strong>~10% premium</strong> over permanent employment once leave is accounted for. For long-term employment, permanent roles generally offer better total value. The loading and the weekend penalties it stacks on are set by your award: see the <Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link> and the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link> for the two awards that cover most casuals.</p>
+        <p className="mt-4 text-warmgray">The combined value of leave alone (annual + personal + public holidays) is approximately <strong>14.6%</strong> of annual earnings, so the 25% casual loading only provides a <strong>~10% premium</strong> over permanent employment once leave is accounted for. For long-term employment, permanent roles generally offer better total value. The loading and the weekend penalties it stacks on are set by your award: see the <Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link> and the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link> for the two awards that cover most casuals.</p>
       </section>
 
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Conversion Rights</h2>
         <p className="mb-4 text-warmgray">Since 26 August 2024, a casual employee who has worked for their employer for at least <strong>6 months (12 months for a small business employer with fewer than 15 employees)</strong> and believes they no longer meet the casual definition can notify their employer that they want to become permanent. The employer must respond in writing within 21 days and can only refuse on fair and reasonable operational grounds. Employers are no longer required to offer conversion.</p>
-        <p className="text-warmgray">For a detailed comparison guide, see our <Link href="/full-time-vs-part-time-vs-casual/" className="text-eucalyptus-dark hover:underline font-medium">Full-Time vs Part-Time vs Casual</Link> guide. To calculate your superannuation entitlements under any employment type, use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link>.</p>
+        <p className="text-warmgray">To compare the entitlements of each employment type, see the <Link href="/full-time-vs-part-time-vs-casual/" className="text-eucalyptus-dark hover:underline font-medium">Full-Time vs Part-Time vs Casual</Link> guide. To calculate your superannuation entitlements under any employment type, use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link>.</p>
       </section>
 
       <MethodologyDisclosure>
@@ -119,7 +119,7 @@ export default function EmploymentTypeCalculatorContent() {
 
       <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Full Pay Breakdown</h2>
-        <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super for any employment type.</p>
+        <p className="text-warmgray mb-6 max-w-lg mx-auto">See your pay after income tax, the Medicare levy and HECS repayment, plus your super, for full-time, part-time or casual work.</p>
         <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
           Calculate Your Take-Home Pay →
         </Link>

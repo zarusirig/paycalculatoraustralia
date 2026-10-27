@@ -114,15 +114,15 @@ export const COLES_PAY: EmployerPay = {
     },
     {
       q: "How much does Coles pay 15 year olds?",
-      a: "A Level 1 team member under 16 is paid 46.5% of the adult rate: about $13.22 an hour, or $16.53 as a casual. At 16 it rises to 51% (about $14.50), at 17 to 61% (about $17.34), and from 20 you get the full adult rate.",
+      a: "A Level 1 Coles team member under 16 is paid 46.5% of the adult rate: about $13.22 an hour, or $16.53 as a casual. At 16 it rises to 51% (about $14.50), at 17 to 61% (about $17.34), and from 20 you get the full adult rate.",
     },
     {
       q: "What are Coles penalty rates?",
-      a: "Weekday evenings from 6pm and Saturdays pay base + 25% (casual + 50%). Sundays from 9am pay base + 50% (casual + 75%), and public holidays base + 125% (casual + 150%). For an adult Level 1 casual, Sunday is about $49.75 an hour.",
+      a: "Coles pays base + 25% (casual + 50%) on weekday evenings from 6pm and on Saturdays. Sundays from 9am pay base + 50% (casual + 75%), and public holidays base + 125% (casual + 150%). For an adult Level 1 casual, Sunday is about $49.75 an hour.",
     },
     {
       q: "What is the Coles EBA?",
-      a: "The Coles Retail Enterprise Agreement 2024 (AE524516), approved by the Fair Work Commission on 3 May 2024. It covers Coles supermarket and Coles Liquor team members, runs to 3 May 2028, and ties each July's pay rise to the Retail Award Level 1 increase.",
+      a: "The Coles EBA is the Coles Retail Enterprise Agreement 2024 (AE524516), approved by the Fair Work Commission on 3 May 2024. It covers Coles supermarket and Coles Liquor team members, runs to 3 May 2028, and ties each July's pay rise to the Retail Award Level 1 increase.",
     },
     {
       q: "Is Coles paid above the award?",
@@ -130,7 +130,7 @@ export const COLES_PAY: EmployerPay = {
     },
     {
       q: "When is the next Coles pay rise?",
-      a: "From the first full pay period after 1 July 2027. Every level rises by the percentage the 2027 Annual Wage Review adds to the Retail Award Level 1 rate (cl 3.4.1), usually decided in June. It is the last rise the agreement provides for before its nominal expiry on 3 May 2028.",
+      a: "The next Coles pay rise is from the first full pay period after 1 July 2027. Every level rises by the percentage the 2027 Annual Wage Review adds to the Retail Award Level 1 rate (cl 3.4.1), usually decided in June. It is the last rise the agreement provides for before its nominal expiry on 3 May 2028.",
     },
   ],
   // 22 Oct 2026: read from the approval decision [2024] FWCFB 250 (FWC PDF).
@@ -138,7 +138,7 @@ export const COLES_PAY: EmployerPay = {
     underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
     commencedOn: "7 October 2024",
     status: "in-term",
-    statusNote: "Inside its nominal term, which runs to 3 May 2028. One scheduled rise remains, in July 2027.",
+    statusNote: "The Coles agreement is inside its nominal term, which runs to 3 May 2028. One scheduled rise remains, in July 2027.",
     payRises: [
       { date: "First full pay period after 1 July 2024", amount: "3.75%, the 2024 rise to the Retail Award Level 1 rate", source: "Agreement cl 3.4.1", paid: true },
       { date: "First full pay period after 1 July 2025", amount: "3.5%", source: "Agreement cl 3.4.1; [2025] FWCFB 3500", paid: true },

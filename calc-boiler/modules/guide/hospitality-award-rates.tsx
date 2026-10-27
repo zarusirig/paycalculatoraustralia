@@ -94,11 +94,11 @@ export default function HospitalityAwardRatesPage() {
             Hospitality Award Rates {SITE_CONFIG.financialYear}: Levels 1&ndash;6
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount.
+            The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount per hour on top of these rates. The tables below give the hourly rate for each level on weekdays, Saturdays, Sundays and public holidays, for full-time, part-time and casual employees. The rest of this page covers which award applies to your venue, penalty rates, overtime, junior rates and allowances.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> Adult hospitality rates run from <strong>{formatAUD(INTRO.hourly, 2)}</strong> an hour at the introductory level to <strong>{formatAUD(L6.hourly, 2)}</strong> at Level 6. Level 1 &mdash; the standard entry classification for a food and beverage attendant or kitchen hand &mdash; is <strong>{formatAUD(L1.hourly, 2)}</strong> an hour, or <strong>{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</strong> as a casual. Evening and night work add a <strong>flat cash amount</strong> per hour, not a percentage.
+              <strong>Direct answer:</strong> Adult hospitality rates run from <strong>{formatAUD(INTRO.hourly, 2)}</strong> an hour at the introductory level to <strong>{formatAUD(L6.hourly, 2)}</strong> at Level 6. Level 1 (the standard entry classification for a food and beverage attendant or kitchen hand) is <strong>{formatAUD(L1.hourly, 2)}</strong> an hour, or <strong>{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</strong> as a casual. Evening and night work add a <strong>flat cash amount</strong> per hour, not a percentage.
             </p>
           </div>
           <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -114,7 +114,7 @@ export default function HospitalityAwardRatesPage() {
             Hospitality Award Rates by Level, from {HOSPITALITY_AWARD.operativeFrom}
           </h2>
           <p className="mb-3 text-sm text-warmgray">
-            Hourly rates for Introductory and Levels 1 to 6. Each day shows the full-time or part-time rate, then the casual rate with the {pct(LOADING)} loading included. Evening and night loadings are flat cash on top (see <a href="#penalty-rates" className="text-eucalyptus-dark hover:underline">penalty rates</a>).
+            This table gives the hospitality award hourly rates for Introductory and Levels 1 to 6. Each day shows the full-time or part-time rate, then the casual rate with the {pct(LOADING)} loading included. Evening and night loadings are flat cash on top (see <a href="#penalty-rates" className="text-eucalyptus-dark hover:underline">penalty rates</a>).
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
             <table className="w-full min-w-[44rem] text-left text-sm text-navy">
@@ -169,7 +169,7 @@ export default function HospitalityAwardRatesPage() {
             <section id="rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Award Pay Rates</h2>
               <p>
-                These are the adult rates for full-time and part-time employees. Part-time employees are paid the same hourly rate as full-time employees for their classification &mdash; the difference is hours, not rate.
+                The table below gives the adult hospitality award rates for full-time and part-time employees. Part-time employees are paid the same hourly rate as full-time employees for their classification. The difference is hours, not rate.
               </p>
               <AwardRateTable
                 rows={HOSPITALITY_RATES}
@@ -177,7 +177,7 @@ export default function HospitalityAwardRatesPage() {
                 caption={`Hospitality award adult pay rates from ${HOSPITALITY_AWARD.operativeFrom}`}
               />
               <p className="text-sm text-warmgray">
-                Weekly rates are as published by the Fair Work Ombudsman. Hourly is the weekly rate divided by {EMPLOYMENT.standardWeeklyHours} ordinary hours. The casual column adds the {pct(LOADING)} loading. The managerial (hotels) weekly figure comes from the Fair Work pay guide &mdash; the award itself sets a minimum <strong>annual</strong> salary of {formatAUD(HOSPITALITY_MANAGERIAL_SOURCE.awardAnnualSalary)} at {HOSPITALITY_MANAGERIAL_SOURCE.awardClause} and never states a weekly rate for that classification.
+                Weekly rates are as published by the Fair Work Ombudsman. Hourly is the weekly rate divided by {EMPLOYMENT.standardWeeklyHours} ordinary hours. The casual column adds the {pct(LOADING)} loading. The managerial (hotels) weekly figure comes from the Fair Work pay guide. The award itself sets a minimum <strong>annual</strong> salary of {formatAUD(HOSPITALITY_MANAGERIAL_SOURCE.awardAnnualSalary)} at {HOSPITALITY_MANAGERIAL_SOURCE.awardClause} and never states a weekly rate for that classification.
               </p>
             </section>
 
@@ -202,7 +202,7 @@ export default function HospitalityAwardRatesPage() {
             <section id="pay-guide">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</h2>
               <p>
-                The hourly rate for every classification on each day of the week, for permanent and casual employees, in the layout of the Fair Work pay guide. Evening and night work add a flat amount on top &mdash; see <a href="#penalty-rates">penalty rates</a>.
+                The two tables below give the hospitality award hourly rate for every classification on each day of the week, first for permanent employees and then for casuals, in the layout of the Fair Work pay guide. Evening and night work add a flat amount on top, set out under <a href="#penalty-rates">penalty rates</a>.
               </p>
               <h3>Full-time and part-time</h3>
               <PayGuideMatrix
@@ -228,7 +228,7 @@ export default function HospitalityAwardRatesPage() {
             <section id="award-for-hospitality">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Award for Hospitality Applies to You?</h2>
               <p>
-                Not every venue that serves food or drink is under the same award. The award for hospitality depends on what the employer does, not on your job title. Work through it in this order:
+                The award for hospitality that applies to you depends on what your employer&apos;s business does, not on your job title. Venues that serve food or drink are not all under the same award. Work through this list in order:
               </p>
               <ul>
                 <li><strong>Hotel, motel, pub, bar, resort, casino, caterer or accommodation business:</strong> the Hospitality Industry (General) Award 2020 ({HOSPITALITY_AWARD.code}), the rates on this page.</li>
@@ -259,7 +259,7 @@ export default function HospitalityAwardRatesPage() {
             <section id="classifications">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Level Am I? Hospitality Classifications</h2>
               <p>
-                The award classifies by the work performed, not by job title. These are the classifications that map to each pay level for food and beverage, kitchen and cooking roles.
+                The hospitality award classifies you by the work you perform, not by your job title. The table below maps each food and beverage, kitchen and cooking classification to its pay level and hourly rate.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -285,7 +285,7 @@ export default function HospitalityAwardRatesPage() {
                 </div>
               </div>
               <p>
-                <strong>There is no food and beverage attendant grade 5.</strong> That stream runs grades 1 to 4 only; Level 5 is &ldquo;food and beverage supervisor&rdquo;, a different classification rather than a fifth grade. A rate table showing an F&amp;B grade 5 has invented a classification the award does not contain.
+                <strong>There is no food and beverage attendant grade 5.</strong> The food and beverage attendant stream runs grades 1 to 4 only. Level 5 is &quot;food and beverage supervisor&quot;, a different classification rather than a fifth grade. A rate table showing an F&amp;B grade 5 has invented a classification the award does not contain.
               </p>
             </section>
 
@@ -329,7 +329,7 @@ export default function HospitalityAwardRatesPage() {
 
               <h3>Evening and night work is a flat cash amount</h3>
               <p>
-                This is the part most hospitality pay calculators get wrong. Evening and night loadings in this award are <strong>not multipliers</strong>. You are paid your ordinary rate <em>plus a fixed number of dollars per hour</em>:
+                Evening and night loadings in the hospitality award work differently from weekend penalties: they are <strong>not multipliers</strong>. This is the part most hospitality pay calculators get wrong. You are paid your ordinary rate <em>plus a fixed number of dollars per hour</em>:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -361,13 +361,13 @@ export default function HospitalityAwardRatesPage() {
                 </div>
               </div>
               <p>
-                Because the amount is fixed, it is worth proportionally more at lower classifications &mdash; {formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} is {((HOSPITALITY_PENALTIES.nightPerHour / L1.hourly) * 100).toFixed(1)}% on Level 1 but only {((HOSPITALITY_PENALTIES.nightPerHour / L6.hourly) * 100).toFixed(1)}% on Level 6. The <Link href="/retail-award-rates/">retail award</Link> does the opposite, using a percentage for evening work.
+                Because the amount is fixed, it is worth proportionally more at lower classifications: {formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} is {((HOSPITALITY_PENALTIES.nightPerHour / L1.hourly) * 100).toFixed(1)}% on Level 1 but only {((HOSPITALITY_PENALTIES.nightPerHour / L6.hourly) * 100).toFixed(1)}% on Level 6. The <Link href="/retail-award-rates/">retail award</Link> does the opposite, using a percentage for evening work.
               </p>
               <p>
-                <strong>Penalties do not stack.</strong> Where more than one penalty could apply to the same hours, only the highest is paid &mdash; with one exception: {HOSPITALITY_PENALTIES.highestOnlyException.charAt(0).toLowerCase() + HOSPITALITY_PENALTIES.highestOnlyException.slice(1)}
+                <strong>Penalties do not stack.</strong> Where more than one penalty could apply to the same hours, only the highest is paid, with one exception: {HOSPITALITY_PENALTIES.highestOnlyException.charAt(0).toLowerCase() + HOSPITALITY_PENALTIES.highestOnlyException.slice(1)}
               </p>
               <p>
-                And casual penalties are <strong>additive, not compounded</strong> &mdash; casual Sunday is {pct(HOSPITALITY_PENALTIES.casualSunday)}, being {pct(HOSPITALITY_PENALTIES.sunday)} plus the {pct(LOADING)} loading, not {pct(HOSPITALITY_PENALTIES.sunday)} multiplied by {(1 + LOADING).toFixed(2)} which would give {pct(HOSPITALITY_PENALTIES.sunday * (1 + LOADING))}.
+                Casual hospitality penalties are <strong>additive, not compounded</strong>: casual Sunday is {pct(HOSPITALITY_PENALTIES.casualSunday)}, being {pct(HOSPITALITY_PENALTIES.sunday)} plus the {pct(LOADING)} loading, not {pct(HOSPITALITY_PENALTIES.sunday)} multiplied by {(1 + LOADING).toFixed(2)} which would give {pct(HOSPITALITY_PENALTIES.sunday * (1 + LOADING))}.
               </p>
             </section>
 
@@ -404,13 +404,13 @@ export default function HospitalityAwardRatesPage() {
 
               <h3>Casuals do not get the loading on overtime &mdash; and retail casuals do</h3>
               <p>
-                In hospitality the overtime clause operates on the <strong>ordinary hourly rate</strong>, and the award&rsquo;s definitions clause excludes the casual loading from that term. The consequence is concrete: for Monday to Friday, weekend and rostered-day-off overtime, <strong>a casual and a full-time employee on the same classification are paid identical overtime dollars.</strong> On Level 1 that is {formatAUD(toCents(L1.hourly * HOSPITALITY_OVERTIME.weekdayFirst2Hours), 2)} an hour for both.
+                In hospitality the overtime clause operates on the <strong>ordinary hourly rate</strong>, and the award&rsquo;s definitions clause excludes the casual loading from that term. As a result, for Monday to Friday, weekend and rostered-day-off overtime, <strong>a casual and a full-time employee on the same classification are paid identical overtime dollars.</strong> On Level 1 that is {formatAUD(toCents(L1.hourly * HOSPITALITY_OVERTIME.weekdayFirst2Hours), 2)} an hour for both.
               </p>
               <p>
-                <strong>Public holidays are the exception.</strong> There the two do diverge &mdash; full-time overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime)} and casual overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual)}, or {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime), 2)} against {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual), 2)} on Level 1. Stating the rule without that carve-out understates casual public holiday pay.
+                <strong>Public holidays are the exception.</strong> There the two rates diverge: full-time overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime)} and casual overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual)}, or {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime), 2)} against {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual), 2)} on Level 1. Stating the rule without that carve-out understates casual public holiday pay.
               </p>
               <p>
-                The <Link href="/retail-award-rates/">General Retail Industry Award</Link> does the opposite &mdash; the loading <em>is</em> included, so retail casual overtime is 175% against 150% for permanents. Two awards, two rules, and one payroll configuration cannot serve both. This is a common source of underpayment when a venue runs a bistro under one award and a shop under the other.
+                The <Link href="/retail-award-rates/">General Retail Industry Award</Link> does the opposite: the loading <em>is</em> included, so retail casual overtime is 175% against 150% for permanents. One payroll configuration cannot apply both awards&apos; overtime rules. This is a common source of underpayment when a venue runs a bistro under one award and a shop under the other.
               </p>
             </section>
 
@@ -428,7 +428,7 @@ export default function HospitalityAwardRatesPage() {
                 casualLoading={LOADING}
               />
               <p>
-                Two things set hospitality apart. <strong>19-year-olds receive {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}</strong> where the retail award pays 80%. And the <strong>full adult rate starts at 20</strong>, not 21.
+                Two junior rules set the hospitality award apart from the retail award. <strong>19-year-olds receive {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}</strong> where the retail award pays 80%. And the <strong>full adult rate starts at 20</strong>, not 21.
               </p>
               <p>
                 {HOSPITALITY_JUNIOR_ADULT_RATE_EXCEPTIONS} {HOSPITALITY_JUNIOR_ADULT_RATE_SOURCE}
@@ -454,11 +454,11 @@ export default function HospitalityAwardRatesPage() {
             <section id="allowances">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Allowances</h2>
               <p>
-                Fixed-dollar allowances in clause 26 of the award, from {HOSPITALITY_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost (such as special clothing) are not listed.
+                The table lists the fixed-dollar allowances in clause 26 of the hospitality award, from {HOSPITALITY_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost (such as special clothing) are not listed.
               </p>
               <AllowanceTable allowances={HOSPITALITY_ALLOWANCES} caption="Hospitality award allowances" />
               <p className="text-sm">
-                How these compare with the allowances in other awards, and how each is taxed: <Link href="/allowances-guide/">allowances guide</Link>.
+                See how these compare with the allowances in other awards, and how each is taxed, in the <Link href="/allowances-guide/">allowances guide</Link>.
               </p>
               <TakeHomeLinks rows={HOSPITALITY_RATES.map((r) => ({ level: r.level, hourly: r.hourly }))} heading="What does a hospitality rate take home?" />
             </section>
@@ -485,7 +485,7 @@ export default function HospitalityAwardRatesPage() {
             <section id="when-rates-changed">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When These Rates Took Effect</h2>
               <p>
-                <strong>{HOSPITALITY_AWARD.effectiveNote}</strong> That is not universally 1 July. If your pay period began before {HOSPITALITY_AWARD.operativeFrom}, the previous rate lawfully applies to that whole period and the rise starts with the next one &mdash; the most common reason a July payslip looks wrong when it is not.
+                <strong>{HOSPITALITY_AWARD.effectiveNote}</strong> The start date is therefore not 1 July for every employee. If your pay period began before {HOSPITALITY_AWARD.operativeFrom}, the previous rate lawfully applies to that whole period and the rise starts with the next one. This is the most common reason a July payslip looks wrong when it is not.
               </p>
               <p>
                 The award was varied by determination {HOSPITALITY_AWARD.determination}, and the Fair Work Ombudsman published the updated pay guide on {HOSPITALITY_AWARD.payGuidePublished}. If you have been paid below these rates, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed.
@@ -495,16 +495,16 @@ export default function HospitalityAwardRatesPage() {
             <section id="related">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
-                <li><Link href="/retail-award-rates/">Retail Award Rates</Link> &mdash; the other big casual-employing award, with different overtime rules</li>
-                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link> &mdash; minimum wage by age across awards</li>
-                <li><Link href="/overtime-penalty-rates-guide/">Penalty Rates</Link> &mdash; weekend and public holiday loadings across awards</li>
-                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> &mdash; social, community and home care</li>
-                <li><Link href="/retail-hospitality-pay-guide/">Working in Retail &amp; Hospitality</Link> &mdash; rights, rosters and take-home pay</li>
-                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; your award rate after tax</li>
-                <li><Link href="/apprentice-pay/chef/">Apprentice Chef Pay</Link> &mdash; the cookery apprentice percentages in this award, year by year</li>
-                <li><Link href="/live-performance-award-rates/">Live Performance Award Rates</Link> &mdash; the award for venue production and front-of-house staff at theatres and concerts</li>
-                <li><Link href="/christmas-day-pay-rates/">Christmas Day</Link>, <Link href="/boxing-day-pay-rates/">Boxing Day</Link>, <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day</Link>, <Link href="/australia-day-public-holiday-pay/">Australia Day</Link> and <Link href="/easter-public-holiday-pay/">Easter</Link> pay &mdash; the hospitality public holiday rate on each day, with the dates by state</li>
-                <li><Link href="/christmas-shutdown-annual-leave/">Christmas Shutdown and Annual Leave</Link> &mdash; a worked example on this award&rsquo;s Level 1 rate</li>
+                <li><Link href="/retail-award-rates/">Retail Award Rates</Link>: the other big casual-employing award, with different overtime rules</li>
+                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link>: minimum wage by age across awards</li>
+                <li><Link href="/overtime-penalty-rates-guide/">Penalty Rates</Link>: weekend and public holiday loadings across awards</li>
+                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link>: social, community and home care</li>
+                <li><Link href="/retail-hospitality-pay-guide/">Working in Retail &amp; Hospitality</Link>: rights, rosters and take-home pay</li>
+                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: your award rate after tax</li>
+                <li><Link href="/apprentice-pay/chef/">Apprentice Chef Pay</Link>: the cookery apprentice percentages in this award, year by year</li>
+                <li><Link href="/live-performance-award-rates/">Live Performance Award Rates</Link>: the award for venue production and front-of-house staff at theatres and concerts</li>
+                <li><Link href="/christmas-day-pay-rates/">Christmas Day</Link>, <Link href="/boxing-day-pay-rates/">Boxing Day</Link>, <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day</Link>, <Link href="/australia-day-public-holiday-pay/">Australia Day</Link> and <Link href="/easter-public-holiday-pay/">Easter</Link> pay: the hospitality public holiday rate on each day, with the dates by state</li>
+                <li><Link href="/christmas-shutdown-annual-leave/">Christmas Shutdown and Annual Leave</Link>: a worked example on this award&rsquo;s Level 1 rate</li>
               </ul>
             </section>
 
@@ -581,7 +581,7 @@ export default function HospitalityAwardRatesPage() {
                   Every rate comes from a single constants file checked against the Fair Work Ombudsman pay guide for {HOSPITALITY_AWARD.code} effective {HOSPITALITY_AWARD.operativeFrom} (published {HOSPITALITY_AWARD.payGuidePublished}) and the consolidated award text. Hourly is the published weekly rate divided by {EMPLOYMENT.standardWeeklyHours}; casual rates add the {pct(LOADING)} loading.
                 </p>
                 <p>
-                  Automated tests assert the three rules this award is most often modelled wrongly on: that evening and night loadings are flat cash rather than multipliers, that casual penalties are additive rather than compounded, and that the casual loading is excluded from overtime. Junior figures are the award percentage applied to the weekly classification rate and then divided by {EMPLOYMENT.standardWeeklyHours} &mdash; the order Fair Work uses. Classifications we could not verify are listed as gaps rather than estimated.
+                  Automated tests assert the three rules this award is most often modelled wrongly on: that evening and night loadings are flat cash rather than multipliers, that casual penalties are additive rather than compounded, and that the casual loading is excluded from overtime. Junior figures are the award percentage applied to the weekly classification rate and then divided by {EMPLOYMENT.standardWeeklyHours}. This is the order Fair Work uses. Classifications we could not verify are listed as gaps rather than estimated.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -602,7 +602,7 @@ export default function HospitalityAwardRatesPage() {
                 <CardContent className="p-6">
                   <h2 className="mb-2 text-lg font-bold">Check your take-home pay</h2>
                   <p className="mb-4 text-sm text-eucalyptus-light">
-                    Level 1 casual is {formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour before tax. See what actually lands in your account.
+                    Level 1 casual is {formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour before tax. Enter it in the take-home pay calculator to see what lands in your account after tax.
                   </p>
                   <Link href="/take-home-pay-calculator/" className="block w-full rounded-md bg-white px-4 py-2.5 text-center text-sm font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone/50">
                     Calculate Take-Home Pay

@@ -50,7 +50,7 @@ export const COSTCO_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period 36 months after the agreement began (on or after about 15 November 2026)",
     detail:
-      "The final printed column of cl 5.1: Service Assistant first step $30.02 → $30.92, Service Clerk first step $31.27 → $32.21, Tradesperson first step $36.24 → $37.33, and the Supervisor rate $36.27 → $37.32.",
+      "Costco's rates move to the final printed column of cl 5.1. The first Service Assistant step rises from $30.02 to $30.92 and the first Service Clerk step from $31.27 to $32.21. The first Tradesperson step rises from $36.24 to $37.33, and the Supervisor rate from $36.27 to $37.32.",
   },
   verifiedOn: "24 September 2026",
   casualLoading: 0.25,
@@ -125,7 +125,7 @@ export const COSTCO_PAY: EmployerPay = {
     },
     {
       q: "When is the next Costco pay rise?",
-      a: "From the first full pay period 36 months after the agreement began, around mid-November 2026. The first Service Assistant step goes from $30.02 to $30.92 and the first Service Clerk step from $31.27 to $32.21. The agreement's nominal expiry date is 8 September 2027.",
+      a: "The next Costco pay rise is from the first full pay period 36 months after the agreement began, around mid-November 2026. The first Service Assistant step goes from $30.02 to $30.92 and the first Service Clerk step from $31.27 to $32.21. The agreement's nominal expiry date is 8 September 2027.",
     },
   ],
 };

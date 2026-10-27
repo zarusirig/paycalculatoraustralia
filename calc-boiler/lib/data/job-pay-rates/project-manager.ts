@@ -69,7 +69,7 @@ export const PROJECT_MANAGER: Occupation = {
   heading: "Project Manager Salary Australia 2026: Construction, IT & Program Roles, With Take-Home",
   metaTitle: `Project Manager Salary 2026 - ${aud(CONSTRUCTION.medianSalary)} to ${aud(ICT.medianSalary)} Median`,
   metaDescription: `Project manager salaries from 2023–24 tax returns: construction ${aud(CONSTRUCTION.medianSalary)} median, IT ${aud(ICT.medianSalary)}, program administrators ${aud(ADMIN.medianSalary)}. Take-home pay on each.`,
-  lede: `What a project manager earns depends on what they manage. On 2023–24 tax returns the median salary was ${aud(CONSTRUCTION.medianSalary)} for construction project managers and ${aud(ICT.medianSalary)} for IT project managers, against ${aud(ADMIN.medianSalary)} for program and project administrators (ATO). A construction project manager on the median takes home about ${aud(netFortnightly(CONSTRUCTION.medianSalary))} a fortnight after tax; an IT project manager about ${aud(netFortnightly(ICT.medianSalary))}.`,
+  lede: `A project manager's salary in Australia depends on what they manage. On 2023-24 tax returns the median salary was ${aud(CONSTRUCTION.medianSalary)} for construction project managers and ${aud(ICT.medianSalary)} for IT project managers, against ${aud(ADMIN.medianSalary)} for program and project administrators (ATO). A construction project manager on the median takes home about ${aud(netFortnightly(CONSTRUCTION.medianSalary))} a fortnight after tax, and an IT project manager on the median about ${aud(netFortnightly(ICT.medianSalary))}. The pay after tax table below gives the take-home pay on each of these medians.`,
   coverage: [
     "No modern award names project managers. The Professional Employees Award, which covers professional engineers and IT staff, says its classifications do not apply to anyone employed in a wholly or principally managerial position (Schedule A), so an engineer or IT professional who moves into a mainly managerial project role can leave that award's coverage.",
     "Whether another award covers you depends on your employer's industry and how much of your work is managerial. If none does, you are award-free: the National Minimum Wage and the National Employment Standards are your legal floor, and your contract or enterprise agreement sets everything above it.",
@@ -93,19 +93,19 @@ export const PROJECT_MANAGER: Occupation = {
   faqs: [
     {
       q: "How much does a project manager earn in Australia?",
-      a: `It depends on the field. On 2023–24 tax returns, construction project managers had a median salary or wage income of ${aud(CONSTRUCTION.medianSalary)} (average ${aud(CONSTRUCTION.avgSalary)}) and IT project managers ${aud(ICT.medianSalary)} (average ${aud(ICT.avgSalary)}), according to the ATO. Program and project administrators had a median of ${aud(ADMIN.medianSalary)}.`,
+      a: `Construction project managers had a median salary or wage income of ${aud(CONSTRUCTION.medianSalary)} (average ${aud(CONSTRUCTION.avgSalary)}) on 2023-24 tax returns, and IT project managers ${aud(ICT.medianSalary)} (average ${aud(ICT.avgSalary)}), according to the ATO. Program and project administrators had a median of ${aud(ADMIN.medianSalary)}.`,
     },
     {
       q: "What does an IT project manager take home after tax?",
-      a: `On the ${aud(ICT.medianSalary)} median, about ${aud(netAnnual(ICT.medianSalary))} a year or ${aud(netFortnightly(ICT.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
+      a: `An IT project manager on the ${aud(ICT.medianSalary)} median takes home about ${aud(netAnnual(ICT.medianSalary))} a year or ${aud(netFortnightly(ICT.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
     },
     {
       q: "What does a construction project manager take home after tax?",
-      a: `On the ${aud(CONSTRUCTION.medianSalary)} median, about ${aud(netAnnual(CONSTRUCTION.medianSalary))} a year or ${aud(netFortnightly(CONSTRUCTION.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
+      a: `A construction project manager on the ${aud(CONSTRUCTION.medianSalary)} median takes home about ${aud(netAnnual(CONSTRUCTION.medianSalary))} a year or ${aud(netFortnightly(CONSTRUCTION.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
     },
     {
       q: "Is there an award for project managers?",
-      a: "No award names the job. The Professional Employees Award, for example, excludes anyone in a wholly or principally managerial position. Whether another award applies depends on your employer's industry and duties; if none does, you are award-free and the National Minimum Wage is the floor.",
+      a: "No modern award names project managers. The Professional Employees Award, for example, excludes anyone in a wholly or principally managerial position. Whether another award applies depends on your employer's industry and duties; if none does, you are award-free and the National Minimum Wage is the floor.",
     },
   ],
   sources: [ATO_TABLE_15, ...JSA_SOURCES, { title: "Professional Employees Award 2020 [MA000065], Schedule A", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url }, NMW_ORDER_2026, FWO_PAY_SLIPS],

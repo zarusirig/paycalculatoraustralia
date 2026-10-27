@@ -114,7 +114,7 @@ export function JobsNearSalary({ salary }: { salary: number }) {
         {takeHomeBand(salary) === "low" ? `Who Earns About ${s} Full-Time?` : `Jobs That Pay About ${s}`}
       </h2>
       <p className="text-navy leading-relaxed mb-6">
-        Published pay closer to {s} than to any other salary on this site, with take-home a fortnight.
+        Each job and pay scale below has a published salary closer to {s} than to any other salary on this site, shown with its take-home pay a fortnight.
         {mw.adult ? ` A full-time adult on the minimum wage earns ${formatAUD(NMW.annual)} (${formatAUD(calculatePayBreakdown({ grossSalary: NMW.annual }).fortnightly)}).` : ""}
         {mw.juniors.map((j) => ` ${j.years < 16 ? "Under 16" : `${j.years === 18 ? "An" : "A"} ${j.age}-year-old`} on the junior minimum wage: ${formatAUD(j.annual)}.`).join("")}
       </p>
@@ -157,7 +157,7 @@ export function JobsNearSalary({ salary }: { salary: number }) {
 
       <p className="mt-3 text-sm text-warmgray leading-relaxed">
         {occupations.length > 0 ? `Medians: full-time adults, ${MEDIAN_SOURCE_NAME}, ${MEDIAN_SOURCE_PERIOD}. ` : ""}
-        Salary before super, from the date shown; no HECS-HELP. <Link href="/job-pay-rates/" className={LINK}>Pay rates by job</Link>.
+        Salaries are before super and apply from the date shown; take-home assumes no HECS-HELP debt. <Link href="/job-pay-rates/" className={LINK}>Pay rates by job</Link>.
       </p>
     </section>
   );

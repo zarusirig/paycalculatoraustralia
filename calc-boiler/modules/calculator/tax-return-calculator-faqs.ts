@@ -39,7 +39,7 @@ export const TAX_RETURN_CALCULATOR_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How much tax will I get back?",
-    a: `It is the tax withheld from your pay for the year minus the tax you owe on your taxable income. In the example above, ${formatAUD(EXAMPLE_INPUTS.taxWithheld)} withheld against ${formatAUD(EXAMPLE_INPUTS.grossIncome)} of income and ${formatAUD(EXAMPLE_INPUTS.deductions)} of deductions gives about ${formatAUD(EXAMPLE_THIS_YEAR.refund)} back. Enter your own figures above; more deductions raise the refund.`,
+    a: `The tax you get back is the tax withheld from your pay for the year minus the tax you owe on your taxable income. In the example above, ${formatAUD(EXAMPLE_INPUTS.taxWithheld)} withheld against ${formatAUD(EXAMPLE_INPUTS.grossIncome)} of income and ${formatAUD(EXAMPLE_INPUTS.deductions)} of deductions gives about ${formatAUD(EXAMPLE_THIS_YEAR.refund)} back. Enter your own figures in the calculator above: more deductions lower your taxable income and raise the refund.`,
   },
   {
     q: "Which income year should I choose?",
@@ -59,7 +59,7 @@ export const TAX_RETURN_CALCULATOR_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How does private health insurance affect my tax return?",
-    a: `If you are single, earn more than ${formatAUD(THIS.mlsSinglesThreshold)} in ${THIS.incomeYear} and don't hold private hospital cover, you pay the Medicare levy surcharge of ${pct(MLS_2025_26_SINGLE[0].rate)} to ${pct(MLS_2025_26_SINGLE[2].rate)}, depending on your income. The singles threshold is ${formatAUD(NEXT.mlsSinglesThreshold)} for ${NEXT.incomeYear}. Family thresholds are higher. Having the right hospital cover for the whole year means you don't pay it.`,
+    a: `If you are single, earn more than ${formatAUD(THIS.mlsSinglesThreshold)} in ${THIS.incomeYear} and don't hold private hospital cover, you pay the Medicare levy surcharge of ${pct(MLS_2025_26_SINGLE[0].rate)} to ${pct(MLS_2025_26_SINGLE[2].rate)}, depending on your income. The singles threshold is ${formatAUD(NEXT.mlsSinglesThreshold)} for ${NEXT.incomeYear}. Family thresholds are higher. Holding an appropriate level of private hospital cover for the whole year means you don't pay it.`,
   },
   {
     q: "Why do I owe tax when I have two jobs?",

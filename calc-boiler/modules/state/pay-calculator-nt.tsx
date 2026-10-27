@@ -62,10 +62,10 @@ export default function PayCalculatorNTPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">NT</span>
           </div>
           <p className="text-lg text-warmgray">
-            A wage calculator for Territory workers, on ATO {SITE_CONFIG.financialYear} rates. Two
-            things change the answer more here than anywhere else in Australia: the zone tax offset,
-            which every NT resident can claim, and Picnic Day and May Day, which nobody outside the
-            Territory gets.
+            This Northern Territory pay calculator works out your take-home pay on
+            ATO {SITE_CONFIG.financialYear} rates. Two things change NT pay more than anywhere else in
+            Australia: the zone tax offset, which NT residents claim in their tax return, and Picnic
+            Day and May Day, which nobody outside the Territory gets.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -86,8 +86,8 @@ export default function PayCalculatorNTPage() {
             <p className="mb-4 text-warmgray">
               The Territory levies no income tax. What it does have is the zone tax offset, which the
               calculator above deliberately does not apply because the amount depends on your locality
-              and it is claimed in your return rather than withheld from your pay. Here is the base
-              arithmetic on {formatAUD(typicalSalary(PROFILE))}, the average full-time wage in the NT.
+              and it is claimed in your return rather than withheld from your pay. The worked example below
+              runs the base arithmetic on {formatAUD(typicalSalary(PROFILE))}, the average full-time wage in the NT.
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">

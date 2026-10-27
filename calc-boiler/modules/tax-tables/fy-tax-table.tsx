@@ -441,7 +441,7 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
                       the withholding is aiming at.
                     </li>
                     <li>
-                      <strong>Schedule 5 (NAT 3348), back payments, commissions and bonuses.</strong> Also reissued for 1 July 2026. Method B(ii)
+                      <strong>Schedule 5 (NAT 3348), back payments, commissions and bonuses.</strong> This schedule was also reissued for 1 July 2026. Method B(ii)
                       works from the regular {cycle.period}ly table on this page, so a bonus paid with a {cycle.period}ly pay dated in 2026-27 is
                       checked against this edition first: see the <Link href="/schedule-5-tax-table/">Schedule 5 tax table</Link> and the{" "}
                       <Link href="/bonus-tax-calculator/">bonus tax calculator</Link>.

@@ -11,11 +11,11 @@ export const ALLOWANCES_GUIDE_FAQS: Faq[] = [
   },
   {
     q: "How do I know which allowances I am owed?",
-    a: "It depends on your award or enterprise agreement. The Fair Work Ombudsman's Pay and Conditions Tool and its downloadable pay guides list the allowances for your industry. If an enterprise agreement covers you, the allowances are in the agreement, which you can find on the Fair Work Commission website.",
+    a: "Your award or enterprise agreement sets which allowances you are owed. The Fair Work Ombudsman's Pay and Conditions Tool and its downloadable pay guides list the allowances for your industry. If an enterprise agreement covers you, the allowances are in the agreement, which you can find on the Fair Work Commission website.",
   },
   {
     q: "How much is the first aid allowance?",
-    a: "It varies by award: for example $13.43 a week for full-time hospitality staff, $14.55 a week under the General Retail Industry Award and $16.79 a week under the Clerks Award. You are paid it if you hold a current first aid qualification and your employer appoints you to perform first aid duty. See the table on this page for each award.",
+    a: "The first aid allowance varies by award: for example $13.43 a week for full-time hospitality staff, $14.55 a week under the General Retail Industry Award and $16.79 a week under the Clerks Award. You are paid it if you hold a current first aid qualification and your employer appoints you to perform first aid duty. See the table on this page for each award.",
   },
   {
     q: "Is a tool allowance paid if my employer supplies the tools?",
@@ -23,7 +23,7 @@ export const ALLOWANCES_GUIDE_FAQS: Faq[] = [
   },
   {
     q: "What is a split shift or broken shift allowance?",
-    a: "It is an extra payment when your shift is split into two or more periods with an unpaid break between them. For example, the Hospitality Industry (General) Award pays $3.69 a day for a break of 2 to 3 hours and $5.60 for a longer break, while the Children's Services Award pays $21.38 for each day you work two separate shifts.",
+    a: "A split shift or broken shift allowance is an extra payment made when your shift is split into two or more periods with an unpaid break between them. For example, the Hospitality Industry (General) Award pays $3.69 a day for a break of 2 to 3 hours and $5.60 for a longer break, while the Children's Services Award pays $21.38 for each day you work two separate shifts.",
   },
   {
     q: "Is an allowance taxed?",

@@ -194,13 +194,13 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     hasStateWageSetting: true,
     stateWageHeading: "NSW state awards: the 2026 State Wage Case",
     stateWage: [
-      "NSW has no minimum wage of its own that differs from the national one for private-sector employees. What NSW does have is a state Industrial Relations Commission that sets rates in NSW state awards, which cover state public sector and local government work and a handful of industries.",
-      "In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Full Bench of the Industrial Relations Commission of NSW adopted the Fair Work Commission's 4.75% increase and applied it to the minimum rates in several state awards, including the Kindergartens and Child Care Centres (State) Award, the Health, Fitness and Indoor Sports Centres (State) Award and the Transport Industry (State) Award from the first full pay period on or after 1 July 2026. Some awards, including the Local Government, Aged, Disability and Home Care (State) Award and the Live Theatre and Concert (State) Award, move from the first full pay period on or after 1 September 2026.",
+      "NSW has no minimum wage of its own that differs from the national one for private-sector employees. NSW does have its own Industrial Relations Commission, which sets rates in NSW state awards. Those awards cover state public sector and local government work and a handful of industries.",
+      "In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Full Bench of the Industrial Relations Commission of NSW adopted the Fair Work Commission's 4.75% increase. The Commission applied it to the minimum rates in several state awards, including the Kindergartens and Child Care Centres (State) Award, the Health, Fitness and Indoor Sports Centres (State) Award and the Transport Industry (State) Award, from the first full pay period on or after 1 July 2026. Some awards, including the Local Government, Aged, Disability and Home Care (State) Award and the Live Theatre and Concert (State) Award, rise from the first full pay period on or after 1 September 2026.",
       "If your pay is set by a NSW state award, read the award itself on the Industrial Relations Commission site for the exact classification rate. The 4.75% figure is the size of the increase, not a new rate.",
     ],
     youngWorkers: [
-      "NSW sets no minimum age for starting work. NSW Industrial Relations notes that many teenagers take a part-time or casual job while still at school, and the limit is schooling itself: compulsory schooling for children under 17 is set by the Education Act 1990 (NSW), so shifts have to fit around school attendance.",
-      "The Office of the Children's Guardian regulates the working hours of employees under 16 only in specific areas, namely still photography, modelling, promotional work, performance art and public speaking, under the Children's Guardian Act 2019. It does not cover an under-16 working in retail or hospitality, whose pay comes from the national junior percentages or their award's junior scale.",
+      "NSW sets no minimum age for starting work. NSW Industrial Relations notes that many teenagers take a part-time or casual job while still at school. The limit in NSW is schooling itself: compulsory schooling for children under 17 is set by the Education Act 1990 (NSW), so shifts have to fit around school attendance.",
+      "The Office of the Children's Guardian regulates the working hours of employees under 16 only in still photography, modelling, promotional work, performance art and public speaking, under the Children's Guardian Act 2019. It does not cover an under-16 working in retail or hospitality, whose pay comes from the national junior percentages or their award's junior scale.",
       "Where a NSW state award applies, its own junior and apprentice provisions govern, not the national table.",
     ],
     regulators: [
@@ -215,15 +215,15 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "Is there a minimum age to start work in NSW?",
-        a: "No. NSW Industrial Relations states there is no minimum legal age for starting work in NSW. Work has to fit around compulsory schooling, which applies to children under 17 under the Education Act 1990 (NSW), and the Office of the Children's Guardian regulates the hours of under-16s only in modelling, still photography, promotional work, performance art and public speaking.",
+        a: "No. NSW Industrial Relations states there is no minimum legal age for starting work in NSW. Work has to fit around compulsory schooling, which applies to children under 17 under the Education Act 1990 (NSW). The Office of the Children's Guardian regulates the hours of under-16s only in modelling, still photography, promotional work, performance art and public speaking.",
       },
       {
         q: "Did NSW state award wages go up in 2026?",
-        a: "Yes, by 4.75%. In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Industrial Relations Commission of NSW applied the Fair Work Commission's 4.75% increase to minimum rates in several state awards, from the first full pay period on or after 1 July 2026 for most and 1 September 2026 for some, including the Local Government, Aged, Disability and Home Care (State) Award.",
+        a: "Yes, NSW state award rates rose by 4.75%. In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Industrial Relations Commission of NSW applied the Fair Work Commission's 4.75% increase to minimum rates in several state awards. Rates in most of those awards rose from the first full pay period on or after 1 July 2026. Some, including the Local Government, Aged, Disability and Home Care (State) Award, rose from the first full pay period on or after 1 September 2026.",
       },
       {
         q: "Are NSW public servants and council workers paid under the national minimum wage?",
-        a: "No. The Fair Work Ombudsman states that NSW state public sector and local government employees are not covered by the national system and remain under the state system, so their pay comes from NSW state awards and agreements set through the Industrial Relations Commission of NSW.",
+        a: "No. The Fair Work Ombudsman states that NSW state public sector and local government employees are not covered by the national system and remain under the state system. Their pay comes from NSW state awards and agreements set through the Industrial Relations Commission of NSW.",
       },
     ],
   },
@@ -245,11 +245,11 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     stateWageHeading: "Is there a Victorian minimum wage?",
     stateWage: [
       `No. Victoria referred its industrial relations powers to the Commonwealth, so the Fair Work Commission sets the minimum wage and award rates for almost everyone who works in the state. A Melbourne cafe, a Geelong factory and a Victorian state government department all start from the same ${NMW_HOURLY} floor.`,
-      "What Victoria does regulate itself, through the Workforce Inspectorate Victoria (called the Wage Inspectorate Victoria until 12 December 2025), is long service leave, the employment of children under 15 through child employment licences, and owner-driver and forestry contractor laws. Those are the Victorian rules that sit around a minimum-wage job.",
+      "What Victoria does regulate itself, through the Workforce Inspectorate Victoria (called the Wage Inspectorate Victoria until 12 December 2025), is long service leave, the employment of children under 15 through child employment licences, and owner-driver and forestry contractor laws.",
     ],
     youngWorkers: [
       "Victoria licenses the employment of children under 15. An employer usually needs a child employment licence from the Workforce Inspectorate Victoria before employing anyone under 15, whether the work is paid or voluntary. Licences are free, last up to 2 years and can cover several children, and employing a child without one is a crime.",
-      "A child must be 11 to deliver newspapers and advertising material, and 13 for other work such as retail or hospitality. Children usually work only between 6am and 9pm and never in school hours: at most 3 hours a day and 12 hours a week during term, or 6 hours a day and 30 hours a week in school holidays, with a 30-minute break after every 3 hours. A supervisor must be 18 or over and hold a Victorian Working with Children Clearance.",
+      "A child must be 11 to deliver newspapers and advertising material, and 13 for other work such as retail or hospitality. Children usually work only between 6am and 9pm and never in school hours. A child can work at most 3 hours a day and 12 hours a week during term, or 6 hours a day and 30 hours a week in school holidays, with a 30-minute break after every 3 hours. A supervisor must be 18 or over and hold a Victorian Working with Children Clearance.",
       "From 15, pay follows the national junior percentages or your award's junior scale. Apprentice wages are set by the award or agreement that covers the trade, not by Victoria.",
     ],
     regulators: [
@@ -260,11 +260,11 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "At what age can you start work in Victoria?",
-        a: "At 11 to deliver newspapers and advertising material, and at 13 for other work such as retail or hospitality, according to the Workforce Inspectorate Victoria. An employer usually needs a free child employment licence to employ anyone under 15, paid or voluntary.",
+        a: "A child in Victoria can start work at 11 to deliver newspapers and advertising material, and at 13 for other work such as retail or hospitality, according to the Workforce Inspectorate Victoria. An employer usually needs a free child employment licence to employ anyone under 15, paid or voluntary.",
       },
       {
         q: "How many hours can a 14-year-old work in Victoria?",
-        a: "During school term, at most 3 hours a day and 12 hours a week, usually between 6am and 9pm and never during school hours. In school holidays the limit is 6 hours a day and 30 hours a week. A 30-minute rest break is due after every 3 hours, with at least 12 hours between shifts.",
+        a: "A child in Victoria can work at most 3 hours a day and 12 hours a week during school term, usually between 6am and 9pm and never during school hours. In school holidays the limit is 6 hours a day and 30 hours a week. A 30-minute rest break is due after every 3 hours, with at least 12 hours between shifts.",
       },
       {
         q: "Are Victorian state government employees in the national system?",
@@ -328,7 +328,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "Am I in the WA state system or the national system?",
-        a: "It depends on your employer's legal structure. Sole traders, unincorporated partnerships and trusts with no Pty Ltd trustee, household employers, not-for-profits that are not trading or financial corporations, every WA local government and most state public sector agencies are in the WA state system. A Pty Ltd company, or a partnership or trust with a Pty Ltd partner or trustee, is in the national system. Wageline (1300 655 266) can check.",
+        a: "Your employer's legal structure decides which system you are in. Sole traders, unincorporated partnerships and trusts with no Pty Ltd trustee, household employers, not-for-profits that are not trading or financial corporations, every WA local government and most state public sector agencies are in the WA state system. A Pty Ltd company, or a partnership or trust with a Pty Ltd partner or trustee, is in the national system. Wageline (1300 655 266) can check.",
       },
       {
         q: "What is the minimum wage for an apprentice in the WA state system?",
@@ -336,7 +336,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
       },
       {
         q: "At what age can a child work in WA?",
-        a: "From 10 to deliver newspapers, pamphlets or advertising material, and from 13 in shops, fast food outlets, cafes and restaurants with a parent's written permission, outside school hours and between 6am and 10pm. A child of any age can work in a family business or perform as an entertainer if it does not stop them attending school.",
+        a: "A child in WA can work from 10 delivering newspapers, pamphlets or advertising material, and from 13 in shops, fast food outlets, cafes and restaurants with a parent's written permission, outside school hours and between 6am and 10pm. A child of any age can work in a family business or perform as an entertainer if it does not stop them attending school.",
       },
     ],
   },
@@ -358,8 +358,8 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     stateWageHeading: "South Australia's state safety net: the minimum standard of remuneration",
     stateWage: [
       `No separate South Australian minimum wage applies to private-sector employees. South Australia referred its private-sector industrial relations powers to the Commonwealth, so the Fair Work Commission's ${NMW_HOURLY} floor and its modern awards apply, and SafeWork SA sends private-sector pay claims to the Fair Work Ombudsman (13 13 94).`,
-      "The state system has its own floor. Under section 100A of the Fair Work Act 1994 (SA), a Full Bench of the South Australian Employment Tribunal must review each year the minimum standard of remuneration (section 69), the minimum wage rates in state awards and their work-related allowances and loadings. SafeWork SA says this State Wage Case safety net cannot be overridden by an award or agreement, and that most state-system staff have their pay set by enterprise agreements or state awards.",
-      `For 2026 the Tribunal gave notice on 22 June 2026 (ET-26-02424) that, unless someone objected by 14 July 2026, it could adopt the Fair Work Commission's outcome: a minimum standard of remuneration of $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages, allowances and loadings. We have not read the final declaration, so treat those figures as the proposal. Anyone unsure whether a state award or agreement covers them can ring the SafeWork SA Help Centre on 1300 365 255.`,
+      "South Australia's state system has its own wage floor. Under section 100A of the Fair Work Act 1994 (SA), a Full Bench of the South Australian Employment Tribunal must review each year the minimum standard of remuneration (section 69), the minimum wage rates in state awards and their work-related allowances and loadings. SafeWork SA says this State Wage Case safety net cannot be overridden by an award or agreement, and that most state-system staff have their pay set by enterprise agreements or state awards.",
+      `For 2026 the Tribunal gave notice on 22 June 2026 (ET-26-02424) that, unless someone objected by 14 July 2026, it could adopt the Fair Work Commission's outcome: a minimum standard of remuneration of $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages, allowances and loadings. We have not read the final declaration, so treat those figures as the proposal. If you are unsure whether a South Australian state award or agreement covers you, ring the SafeWork SA Help Centre on 1300 365 255.`,
     ],
     youngWorkers: [
       "South Australia has no minimum working age, so a child of any age may do paid work. SafeWork SA's own example is a newsagent employing a 12-year-old to deliver newspapers before school. Some businesses set their own minimum age, and liquor licensing and mining laws restrict some duties for younger workers.",
@@ -466,7 +466,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "How old do you have to be to work in Queensland?",
-        a: "Generally 13. Children from 11 can do supervised delivery of newspapers or advertising material between 6am and 6pm. Under the Child Employment Act 2006 a school-aged child can work at most 4 hours on a school day and 12 hours in a school week, and no child can work between 10pm and 6am.",
+        a: "The general minimum working age in Queensland is 13. Children from 11 can do supervised delivery of newspapers or advertising material between 6am and 6pm. Under the Child Employment Act 2006 a school-aged child can work at most 4 hours on a school day and 12 hours in a school week, and no child can work between 10pm and 6am.",
       },
       {
         q: "Who is in the Queensland state industrial relations system?",
@@ -483,7 +483,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     answerNote: "There is no ACT minimum wage: generally every employee and employer in the ACT is in the national system.",
     systemFwo: "Generally, all employees and employers in the Australian Capital Territory and Northern Territory are covered by the national system.",
     systemSummary:
-      "Generally all employees and employers in the ACT are in the national system, so there is no state-level minimum wage and no state wage case. The ACT's own rules matter for young workers, payroll tax, long service leave and public holidays.",
+      "Generally all employees and employers in the ACT are in the national system, so the ACT has no territory minimum wage and no territory wage case. The ACT's own rules matter for young workers, payroll tax, long service leave and public holidays.",
     coverage: {
       national: ["Generally all employees and employers in the ACT"],
       state: [],
@@ -524,7 +524,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     answerNote: "There is no Northern Territory minimum wage: generally every NT employee and employer is in the national system.",
     systemFwo: "Generally, all employees and employers in the Australian Capital Territory and Northern Territory are covered by the national system.",
     systemSummary:
-      "Generally all employees and employers in the Northern Territory are in the national system, so there is no territory minimum wage. The NT's own rules matter for payroll tax, long service leave and a public holiday list with part-day and regional days.",
+      "The Northern Territory has no territory minimum wage, because generally all employees and employers in the NT are in the national system. The NT's own rules matter for payroll tax, long service leave and a public holiday list with part-day and regional days.",
     coverage: {
       national: ["Generally all employees and employers in the NT"],
       state: [],
@@ -532,9 +532,9 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     hasStateWageSetting: false,
     stateWageHeading: "Is there a Northern Territory minimum wage?",
     stateWage: [
-      `No. The Fair Work Ombudsman states that generally all employees and employers in the Northern Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern award rates are the wage floors.`,
-      "The NT Government's own wages page says the same thing from the Territory's side: private-sector minimum pay and conditions are set under Commonwealth law, so it sends workers to the Fair Work Ombudsman for pay, leave, awards and agreements, and sends NT public servants to the Office of the Commissioner for Public Employment.",
-      "The Territory's own rules show up around the wage instead: a long service leave scheme that accrues at a different rate from most states, a public holiday list with part-day holidays and regional show days, and the highest payroll tax threshold of any state or territory.",
+      `The Fair Work Ombudsman states that generally all employees and employers in the Northern Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern award rates are the wage floors in the NT.`,
+      "The NT Government's wages and conditions page agrees: private-sector minimum pay and conditions in the NT are set under Commonwealth law. It sends private-sector workers to the Fair Work Ombudsman for pay, leave, awards and agreements, and NT public servants to the Office of the Commissioner for Public Employment.",
+      "The Northern Territory sets its own rules around the minimum wage instead. NT long service leave accrues at a different rate from most states, and the NT public holiday list has part-day holidays and regional show days. The NT payroll tax threshold is the highest of any state or territory.",
     ],
     youngWorkers: [
       "Under-21 and apprentice pay in the NT follows the national junior percentages or the scale in the modern award for the job.",
@@ -547,7 +547,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "Where do NT public servants check their pay and conditions?",
-        a: "With the Office of the Commissioner for Public Employment, which the NT Government's wages and conditions page directs public servants to. Private-sector workers in the NT are under Commonwealth law and go to the Fair Work Ombudsman for pay, leave and award questions.",
+        a: "NT public servants check their pay and conditions with the Office of the Commissioner for Public Employment, which the NT Government's wages and conditions page directs them to. Private-sector workers in the NT are under Commonwealth law and go to the Fair Work Ombudsman for pay, leave and award questions.",
       },
       {
         q: "Does the Northern Territory have its own minimum wage?",

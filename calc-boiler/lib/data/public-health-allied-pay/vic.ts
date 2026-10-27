@@ -221,7 +221,7 @@ export const VIC_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       ],
       entry: "Grade 1, year 1",
       entryRule:
-        "A new graduate starts on Grade 1, year 1, and moves up one year for each 12 months of experience. A relevant master's starts on Grade 1, year 2 and a doctorate on year 4 (clause 85.5). In a rural or regional health service or a community health centre, a four-year degree (or a three-year degree with honours or a 12-month internship) starts on year 2 (clause 85.7). Grade 1 has five years after the agreement removed the old years 1 and 7.",
+        "A new graduate starts on Grade 1, year 1, and moves up one year for each 12 months of experience. A graduate with a relevant master's starts on Grade 1, year 2 and one with a doctorate on year 4 (clause 85.5). Clause 85.7 applies in a rural or regional health service or a community health centre: there, a four-year degree (or a three-year degree with honours or a 12-month internship) starts on year 2. Grade 1 has five years after the agreement removed the old years 1 and 7.",
       top: "Grade 7",
       topNote: "Grade 7 is the highest allied health grade in the agreement",
       notes: [

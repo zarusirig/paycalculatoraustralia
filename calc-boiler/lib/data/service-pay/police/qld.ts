@@ -48,7 +48,7 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable-to-senior-constable",
       title: "Constable and Senior Constable",
       intro:
-        "Sworn constables and senior constables from 1 July 2026, including the CPI Uplift Adjustment triggered by the March 2026 Brisbane CPI (which lifted the 1 July 2025 rise from 3% to 3.5%).",
+        "Queensland Police Service sworn constables and senior constables are paid these rates from 1 July 2026, including the CPI Uplift Adjustment triggered by the March 2026 Brisbane CPI. That adjustment lifted the 1 July 2025 rise from 3% to 3.5%.",
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Constable 1", salary: 78_505, note: "First Year Constable (pay point 1.1). $3,009.10 a fortnight" },
@@ -80,7 +80,7 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "sergeant",
       title: "Sergeant",
-      intro: "Sergeants from 1 July 2026, including the CPI Uplift Adjustment.",
+      intro: "Queensland Police Service sergeants are paid these rates from 1 July 2026, including the CPI Uplift Adjustment.",
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Sergeant 1", salary: 118_127, note: "$4,527.80 a fortnight" },
@@ -95,7 +95,7 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "senior-sergeant",
       title: "Senior Sergeant",
-      intro: "Senior sergeants from 1 July 2026, including the CPI Uplift Adjustment.",
+      intro: "Queensland Police Service senior sergeants are paid these rates from 1 July 2026, including the CPI Uplift Adjustment.",
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Senior Sergeant 1", salary: 135_281, note: "$5,185.30 a fortnight" },
@@ -120,12 +120,12 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
     "Night Operational Shift Allowance (clause 39): an extra 20% of base rate for each shift starting between 6pm and 2am, paid on top of the Operational Shift Allowance.",
   ],
   notices: [
-    "The salaries shown are QPS's published CPI-uplifted rates, which are higher than the tables printed in Schedule 1 of the certified agreement because the 1 July 2025 rise became 3.5% instead of 3% and the 1 July 2026 rise compounds on it. QPS says back payments began in the pay fortnight of 24 June 2026 with all adjustments expected to be finished by 5 August 2026.",
+    "The salaries on this page are the Queensland Police Service's published CPI-uplifted rates. They are higher than the Schedule 1 tables in the certified agreement because the 1 July 2025 rise became 3.5% instead of 3%. The 1 July 2026 rise compounds on that higher rate. QPS says back payments began in the pay fortnight of 24 June 2026 with all adjustments expected to be finished by 5 August 2026.",
     "QPS Recruiting's \"What we offer\" page still quotes a First Year Constable base of $78,124, the pre-uplift Schedule 1 figure. The uplifted rate from 1 July 2026 is $78,505.",
     "The certified agreement runs to a nominal expiry date of 30 June 2028.",
   ],
   unverified: [
-    "The recruit rate is described by QPS as a percentage of the First Year Constable salary; no dollar rate for recruits is printed in the agreement's Schedule 1, so none is shown here.",
+    "QPS describes the recruit rate as a percentage of the First Year Constable salary. No dollar rate for recruits is printed in the agreement's Schedule 1, so none is shown here.",
     "Inspector and above, and Police Liaison Officers and other support classifications, are not reproduced here.",
   ],
   sources: [
@@ -152,7 +152,7 @@ export const QLD_POLICE_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does a senior constable earn in Queensland?",
-      a: "Senior Constables are paid $96,528 at pay point 1 rising to $118,127 at pay point 10 from 1 July 2026. Officers on shift rosters usually also receive the 21% Operational Shift Allowance on top.",
+      a: "Senior Constables are paid $96,528 at pay point 1 rising to $118,127 at pay point 10 from 1 July 2026. Officers in operational shift positions who equitably take part in shift rosters also receive the 21% Operational Shift Allowance on top.",
     },
     {
       q: "What do Queensland police recruits get paid?",

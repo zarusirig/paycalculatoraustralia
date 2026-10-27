@@ -31,7 +31,7 @@ export const ASSETS_TEST_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How much does the Age Pension reduce for assets over the limit?",
-    a: `$${AT.taperPerThousand.single} a fortnight for every $1,000 over the full-pension limit if you are single, and $${AT.taperPerThousand.coupleEach.toFixed(2)} a fortnight each for a couple (on your combined assets). For example, a single homeowner with ${formatAUD(433_000)} of assessable assets is ${formatAUD(100_000)} over the limit, so the pension drops by ${formatAUD(300)} to ${formatAUD(assetsTestRate(433_000, "single", "homeowner"), 2)} a fortnight under the assets test.`,
+    a: `The Age Pension drops by $${AT.taperPerThousand.single} a fortnight for every $1,000 of assets over the full-pension limit if you are single, and by $${AT.taperPerThousand.coupleEach.toFixed(2)} a fortnight each for a couple (on your combined assets). For example, a single homeowner with ${formatAUD(433_000)} of assessable assets is ${formatAUD(100_000)} over the limit, so the pension drops by ${formatAUD(300)} to ${formatAUD(assetsTestRate(433_000, "single", "homeowner"), 2)} a fortnight under the assets test.`,
   },
   {
     q: "Does the income test or the assets test apply?",
@@ -62,7 +62,7 @@ export const DEEMING_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What counts as a financial asset for deeming?",
-    a: "Bank, building society and credit union accounts, term deposits, cash, managed investments, listed shares and securities, loans you have made, some gifts, account-based income streams (such as an account-based pension) and superannuation once you are Age Pension age. Your home, car and household contents are assets for the assets test but are not deemed.",
+    a: "Financial assets for deeming are bank, building society and credit union accounts, term deposits, cash, managed investments, listed shares and securities, loans you have made, some gifts, account-based income streams (such as an account-based pension) and superannuation once you are Age Pension age. Your home, car and household contents are assets for the assets test but are not deemed.",
   },
   {
     q: "Does deeming affect my wages or Family Tax Benefit?",
@@ -85,7 +85,7 @@ export const DSP_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How many hours can I work on the Disability Support Pension?",
-    a: `Up to ${DSP.maxWorkHoursPerWeek} hours a week of paid work without losing DSP, as long as you meet the income test. If you work ${DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis, DSP is suspended (not cancelled) for up to ${DSP.suspensionYears} years, and you keep your Pensioner Concession Card. Work in an Australian Disability Enterprise, under the Supported Wage System or with ongoing Inclusive Employment Australia support does not trigger the suspension.`,
+    a: `You can do up to ${DSP.maxWorkHoursPerWeek} hours a week of paid work without losing the Disability Support Pension, as long as you meet the income test. If you work ${DSP.suspensionHoursPerWeek} or more hours a week on an ongoing basis, DSP is suspended (not cancelled) for up to ${DSP.suspensionYears} years, and you keep your Pensioner Concession Card. Work in an Australian Disability Enterprise, under the Supported Wage System or with ongoing Inclusive Employment Australia support does not trigger the suspension.`,
   },
   {
     q: "How much can I earn on DSP?",
@@ -101,7 +101,7 @@ export const DSP_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What are the DSP assets limits?",
-    a: `The same as the Age Pension: a full pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner) or ${formatAUD(AT.fullPensionLimit.single.nonHomeowner)} (single non-homeowner), reducing $3 a fortnight per $1,000 above that; a part pension stops above ${formatAUD(AT.partPensionCutOff.single.homeowner)} and ${formatAUD(AT.partPensionCutOff.single.nonHomeowner)} from ${AT.ratesFrom}. Under 21s with no children have their own cut-offs.`,
+    a: `The DSP assets limits are the same as the Age Pension's: a full pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner) or ${formatAUD(AT.fullPensionLimit.single.nonHomeowner)} (single non-homeowner), reducing $3 a fortnight per $1,000 above that; a part pension stops above ${formatAUD(AT.partPensionCutOff.single.homeowner)} and ${formatAUD(AT.partPensionCutOff.single.nonHomeowner)} from ${AT.ratesFrom}. Under 21s with no children have their own cut-offs.`,
   },
 ];
 
@@ -113,7 +113,7 @@ export const CCS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the 3 Day Guarantee?",
-    a: `From ${CCS.hours.guaranteeFrom} the CCS activity test was replaced. Every eligible family gets at least ${CCS.hours.guaranteed} hours of subsidised care per child each fortnight (about three days a week), whatever their work hours. You get ${CCS.hours.higher} hours if you and your partner each do more than ${CCS.hours.participationThreshold} hours of recognised participation a fortnight (paid work, looking for work, volunteering and the other recognised types), have an exemption, or for an Aboriginal or Torres Strait Islander child.`,
+    a: `From ${CCS.hours.guaranteeFrom} the CCS activity test was replaced. Every eligible family gets at least ${CCS.hours.guaranteed} hours of subsidised care per child each fortnight (about three days a week), whatever their work hours. You get ${CCS.hours.higher} hours for an Aboriginal or Torres Strait Islander child, or if you and your partner each do more than ${CCS.hours.participationThreshold} hours of recognised participation a fortnight (paid work, looking for work, volunteering and the other recognised types) or have an exemption.`,
   },
   {
     q: "What are the CCS hourly rate caps for 2026-27?",
@@ -125,7 +125,7 @@ export const CCS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What family income does Centrelink use for CCS?",
-    a: "Your family income estimate for the financial year: combined adjusted taxable income of you and your partner: taxable income (wages, overtime, bonuses, business and investment income) plus reportable fringe benefits, reportable super contributions, net investment losses and some tax-free pensions. At the end of the year Services Australia balances your CCS against your actual income.",
+    a: "Centrelink uses your family income estimate for the financial year, which is the combined adjusted taxable income of you and your partner. Adjusted taxable income is your taxable income (wages, overtime, bonuses, business and investment income) plus reportable fringe benefits, reportable super contributions, net investment losses and some tax-free pensions. At the end of the year Services Australia balances your CCS against your actual income.",
   },
   {
     q: "Why is 5% of my CCS withheld?",
@@ -148,7 +148,7 @@ export const CSHC_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How is the account-based pension deemed for the CSHC?",
-    a: `At the deeming rates: ${pct(DEEMING.lowerRate)} on the first ${formatAUD(DEEMING.thresholds.single)} for a single person (${formatAUD(DEEMING.thresholds.nonPensionerCouple)} for each member of a couple), and ${pct(DEEMING.upperRate)} above that. Deeming applies if you bought or changed the income stream on or after 1 January 2015, if your card was granted after 31 December 2014, or if it belongs to your partner and they are 60 or older. Older grandfathered streams are not deemed.`,
+    a: `For the CSHC, an account-based pension is deemed at the deeming rates: ${pct(DEEMING.lowerRate)} on the first ${formatAUD(DEEMING.thresholds.single)} for a single person (${formatAUD(DEEMING.thresholds.nonPensionerCouple)} for each member of a couple), and ${pct(DEEMING.upperRate)} above that. Deeming applies if you bought or changed the income stream on or after 1 January 2015, if your card was granted after 31 December 2014, or if it belongs to your partner and they are 60 or older. Older grandfathered streams are not deemed.`,
   },
   {
     q: "What is the difference between the CSHC and the Pensioner Concession Card?",
@@ -156,6 +156,6 @@ export const CSHC_FAQS: readonly W3Faq[] = [
   },
   {
     q: "When are the CSHC income limits indexed?",
-    a: `Each year on ${CSHC.indexedOn}, in line with the Consumer Price Index. The ${CSHC.limitsFrom} increase was ${formatAUD(CSHC.incomeLimit.single - CSHC.previousIncomeLimit.single)} for singles and ${formatAUD(CSHC.incomeLimit.couple - CSHC.previousIncomeLimit.couple)} for couples.`,
+    a: `The CSHC income limits are indexed each year on ${CSHC.indexedOn}, in line with the Consumer Price Index. The ${CSHC.limitsFrom} increase was ${formatAUD(CSHC.incomeLimit.single - CSHC.previousIncomeLimit.single)} for singles and ${formatAUD(CSHC.incomeLimit.couple - CSHC.previousIncomeLimit.couple)} for couples.`,
   },
 ];

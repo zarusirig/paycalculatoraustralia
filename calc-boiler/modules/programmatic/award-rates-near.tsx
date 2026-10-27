@@ -53,7 +53,7 @@ export function awardRatesLead(near: AwardRatesNear, label: string): string {
     return `These award classifications have an adult minimum rate within ${w} of ${label} an hour.`;
   }
   if (near.position === "below-all") {
-    return `${label} an hour is below every adult award minimum rate in our index; the lowest is ${money(AWARD_RATE_MIN.hourly)} an hour. These are the lowest, one per award.`;
+    return `${label} an hour is below every adult award minimum rate in our index; the lowest is ${money(AWARD_RATE_MIN.hourly)} an hour. These are the lowest award minimums, one per award.`;
   }
   if (near.position === "above-all") {
     return `${label} an hour is above every adult award minimum rate in our index (the highest is ${money(AWARD_RATE_MAX.hourly)}), so pay at this level is set by an enterprise agreement or contract, not an award minimum. These are the highest award minimums, one per award.`;
@@ -81,7 +81,7 @@ export function awardRatesFaqAnswer(near: AwardRatesNear, label: string): string
   } else {
     lead = `The adult award minimum rates nearest to ${label} an hour${oneDate ? ` from ${oneDate}` : ""}, one per award, are: ${list}.`;
   }
-  return `${lead} These are legal minimums for ordinary hours, not typical pay: many employees are paid more.`;
+  return `${lead} These are legal minimums for ordinary hours, not typical pay, and an employer can pay above them.`;
 }
 
 export function AwardRatesNearSection({

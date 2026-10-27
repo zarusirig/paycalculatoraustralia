@@ -128,7 +128,7 @@ export default function DisabilitySupportPensionCalculatorContent() {
       </W3Section>
 
       <W3Section title="DSP Assets Test">
-        <p className={P}>DSP uses the pension assets test: the lower of the income-test and assets-test results is paid. Above the full-pension limit, DSP reduces by $3 a fortnight per $1,000 ($1.50 each for a couple). Your home is not counted. Figures from {AT.ratesFrom}; couples combined.</p>
+        <p className={P}>DSP uses the pension assets test: the lower of the income-test and assets-test results is paid. Above the full-pension limit, DSP reduces by $3 a fortnight per $1,000 ($1.50 each for a couple). Your home is not counted. The limits below apply from {AT.ratesFrom}; couples combined.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Situation (21+)</th><th scope="col" className={TH + " text-right"}>Full pension up to</th><th scope="col" className={TH + " text-right"}>Part pension stops above</th></tr></thead>

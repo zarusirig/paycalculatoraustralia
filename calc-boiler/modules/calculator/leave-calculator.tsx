@@ -70,7 +70,8 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
             {EMPLOYMENT.annualLeaveWeeks} weeks per year of full-time service ({ACCRUAL_HOURS_PER_WEEK} hours per{" "}
             {EMPLOYMENT.standardWeeklyHours}-hour week), and the payout adds {LEAD_LOADING_PCT} leave loading where your award or
             agreement provides it. Casuals accrue none and receive a {formatPercent(EMPLOYMENT.casualLoading, 0)} loading instead.
-            This calculator uses {SITE_CONFIG.financialYear} rates and shows the tax on the lump sum. To track your
+            This calculator uses {SITE_CONFIG.financialYear} rates. Enter your annual base salary and years of service below to see the
+            gross payout before tax, split into base leave pay and leave loading. To track your
             balance and accrual while you are still employed, use the{" "}
             <Link href="/annual-leave-calculator/" className="text-eucalyptus-dark underline">annual leave calculator</Link>.
           </p>

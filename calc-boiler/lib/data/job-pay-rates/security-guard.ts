@@ -59,7 +59,7 @@ export const SECURITY_GUARD: Occupation = {
     {
       id: "security-officers",
       title: "Security guard pay rates by level, 2026–27",
-      intro: "Clause 15.1, Table 4 of the award. Casual day rates are from the award's Schedule B.3.",
+      intro: "Security guard minimum rates are from clause 15.1, Table 4 of the Security Services Industry Award. Casual day rates are from the award's Schedule B.3.",
       rows: [
         rowFromModernAward(SECURITY_AWARD, "Security Officer Level 1", undefined, "Guarding, basic crowd control, access control"),
         rowFromModernAward(SECURITY_AWARD, "Security Officer Level 2", undefined, "Mobile patrol, screening, alarm monitoring, dog handling"),
@@ -78,7 +78,7 @@ export const SECURITY_GUARD: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 20.2, Table 7). Casual percentages include the 25% casual loading. Permanent night work means more than two-thirds of your shifts in a roster cycle include midnight to 6 am (cl 20.3).",
+    "Security guard penalty rates are percentages of the minimum hourly rate (cl 20.2, Table 7). Casual percentages include the 25% casual loading. Permanent night work means more than two-thirds of your shifts in a roster cycle include midnight to 6 am (cl 20.3).",
   overtime: [
     "Monday to Saturday: 150% for the first 2 hours, then 200% (cl 19.3, Table 5).",
     "Sunday: 200%. Public holiday: 250%.",

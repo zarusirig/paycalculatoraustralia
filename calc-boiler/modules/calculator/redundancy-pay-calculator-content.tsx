@@ -116,13 +116,13 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
   return (
     <div className="max-w-4xl mx-auto space-y-10">
       <p className="text-lg text-warmgray">
-        A redundancy calculator applies the National Employment Standards scale, weeks of base pay by
-        completed years of continuous service, {nesRedundancyWeeks(1)} weeks at 1 year rising to{" "}
-        {nesRedundancyWeeks(9)} weeks at 9 years and {nesRedundancyWeeks(10)} weeks from 10 years, then
+        This redundancy pay calculator applies the National Employment Standards (NES) scale: weeks of base pay by
+        completed years of continuous service, from {nesRedundancyWeeks(1)} weeks at 1 year to{" "}
+        {nesRedundancyWeeks(9)} weeks at 9 years and {nesRedundancyWeeks(10)} weeks from 10 years. It then applies
         the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
         {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per completed year. Amounts above the limit are taxed
         as an employment termination payment at {pct(ETP_RATES.atOrOverPreservationAge)} or{" "}
-        {pct(ETP_RATES.underPreservationAge)} depending on age. The same rules apply in NSW,
+        {pct(ETP_RATES.underPreservationAge)}, depending on whether you have reached preservation age. The same scale and tax rules apply in NSW,
         Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
       </p>
 
@@ -131,7 +131,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <h2 className={H2} style={FONT}>Redundancy Payment Calculation Table: Weeks by Years of Service</h2>
         <p className={P}>
           The National Employment Standards set the minimum redundancy pay for every national system
-          employee in Australia. It is worked out on <strong>completed years of continuous service</strong>
+          employee in Australia. Redundancy pay is worked out on <strong>completed years of continuous service</strong>
           (4 years and 11 months counts as 4) and paid at your base rate for ordinary hours.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-6">
@@ -202,7 +202,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           </table>
         </div>
         <p className="mt-3 text-sm text-warmgray">
-          The NES minimum alone almost never reaches the limit. The tax-free cap starts to matter when an
+          The NES minimum alone almost never reaches the limit. The tax-free limit starts to matter when an
           agreement or negotiated package pays several weeks per year of service.
         </p>
       </section>
@@ -253,7 +253,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           <strong>Partly.</strong> A genuine redundancy payment is tax-free up to {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
           {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service. Anything above that limit is an
           employment termination payment, taxed at {pct(ETP_RATES.underPreservationAge)} or{" "}
-          {pct(ETP_RATES.atOrOverPreservationAge)} depending on age. To see the tax on your own package,
+          {pct(ETP_RATES.atOrOverPreservationAge)}, depending on whether you have reached preservation age. To see the tax on your own package,
           including the whole-of-income cap, use the{" "}
           <Link href="/termination-payment-tax-calculator/" className={LINK}>termination payment tax calculator</Link>.
         </p>
@@ -280,8 +280,8 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className="mt-3 text-sm text-warmgray">
           Rates include the 2% Medicare levy. The excess over the tax-free limit on a genuine redundancy
           is an &ldquo;excluded&rdquo; ETP, so only the {Y} ETP cap applies to it. A non-genuine payment can
-          also be limited by the $180,000 whole-of-income cap, which depends on your other income, and this
-          calculator does not model that, so treat its figure for a non-genuine payment as the lowest the
+          also be limited by the $180,000 whole-of-income cap, which depends on your other income. This
+          calculator does not model that cap, so treat its tax figure for a non-genuine payment as the lowest the
           tax could be.
         </p>
         <h3 className={H3} style={FONT}>What makes a redundancy genuine?</h3>
@@ -302,7 +302,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <h2 className={H2} style={FONT}>Redundancy Calculator for QLD, NSW, VIC, WA and Every State</h2>
         <p className={P}>
           There is no separate Queensland or NSW redundancy calculator because there is no separate state
-          scale: NES redundancy pay comes from the Fair Work Act and is identical across Australia for
+          scale. NES redundancy pay comes from the Fair Work Act and is identical across Australia for
           national system employees. Two things do change with your state:
         </p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
@@ -337,7 +337,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           </table>
         </div>
         <p className="mt-3 text-xs text-warmgray-light">
-          Long service leave figures from each state or territory Act. See the state pages linked above
+          The long service leave figures come from each state or territory Act. See the state pages linked above
           for the rules and a calculator set to that state.
         </p>
       </section>

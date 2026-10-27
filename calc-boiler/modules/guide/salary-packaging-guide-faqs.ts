@@ -35,7 +35,7 @@ export const SALARY_PACKAGING_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary packaging affect my Centrelink payments?",
-    a: `It can. Services Australia adds your reportable fringe benefits amount (RFBA) to adjusted taxable income for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. For RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service, Centrelink counts only ${formatPercent(CENTRELINK_FACTOR, 0)} of it (1 minus the ${formatPercent(FBT.rate, 0)} FBT rate). A PBI employee's RFBA of about ${formatAUD(PBI_RFBA)} is therefore counted as about ${formatAUD(Math.round(PBI_RFBA * CENTRELINK_FACTOR))} (roughly the amount packaged), so income for these tests ends up close to what it would have been without packaging.`,
+    a: `Salary packaging can affect your Centrelink payments. Services Australia adds your reportable fringe benefits amount (RFBA) to adjusted taxable income for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. For RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service, Services Australia counts only ${formatPercent(CENTRELINK_FACTOR, 0)} of it (1 minus the ${formatPercent(FBT.rate, 0)} FBT rate). A PBI employee's RFBA of about ${formatAUD(PBI_RFBA)} is therefore counted as about ${formatAUD(Math.round(PBI_RFBA * CENTRELINK_FACTOR))} (roughly the amount packaged), so income for these tests ends up close to what it would have been without packaging.`,
   },
   {
     q: "Does salary packaging reduce my HECS-HELP repayments?",

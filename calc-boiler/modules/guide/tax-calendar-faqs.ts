@@ -23,7 +23,7 @@ export const TAX_CALENDAR_FAQS: readonly FaqItem[] = [
   },
   {
     q: `When is the ${R.incomeYear} tax return due?`,
-    a: `If you lodge it yourself, by ${R.selfLodgeDueDate}${self.effectiveIso !== self.iso ? ` (it falls on a weekend, so the ATO accepts it on ${formatIso(self.effectiveIso, "long")})` : ""}. With a registered tax agent, most people have until ${R.agentDueDateMostPeople} if they are on the agent's list by ${R.selfLodgeDueDate}.`,
+    a: `If you lodge it yourself, the return is due by ${R.selfLodgeDueDate}${self.effectiveIso !== self.iso ? ` (it falls on a weekend, so the ATO accepts it on ${formatIso(self.effectiveIso, "long")})` : ""}. With a registered tax agent, most people have until ${R.agentDueDateMostPeople} if they are on the agent's list by ${R.selfLodgeDueDate}.`,
   },
   {
     q: "Can I lodge my tax return before 14 July?",
@@ -44,7 +44,7 @@ export const TAX_CALENDAR_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if my employer pays super late?",
-    a: `They are liable for the Super Guarantee Charge. From ${SUPER_GUARANTEE.paydaySuperStart}, it is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, an administrative uplift of up to ${pct(SGC.current.administrativeUpliftMax)}, and a choice loading where it applies. The charge is now tax-deductible. For earnings paid up to 30 June 2026 the old quarterly rules still apply.`,
+    a: `Your employer is liable for the Super Guarantee Charge. From ${SUPER_GUARANTEE.paydaySuperStart}, it is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, an administrative uplift of up to ${pct(SGC.current.administrativeUpliftMax)}, and a choice loading where it applies. The charge is now tax-deductible. For earnings paid up to 30 June 2026 the old quarterly rules still apply.`,
   },
   {
     q: "How long does the ATO take to process a tax refund?",
@@ -56,7 +56,7 @@ export const TAX_CALENDAR_FAQS: readonly FaqItem[] = [
   },
   {
     q: `What is the maximum super contribution base for ${Y.incomeYear}?`,
-    a: `It is ${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} for the year. Under Payday Super it became an annual figure instead of a quarterly one. Employers don't have to pay SG on qualifying earnings above it, so the most SG owed for one employee is ${formatAUD(SUPER_GUARANTEE.maxSGAnnual, 2)}.`,
+    a: `The maximum super contribution base is ${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} for the year. Under Payday Super it became an annual figure instead of a quarterly one. Employers don't have to pay SG on qualifying earnings above it, so the most SG owed for one employee is ${formatAUD(SUPER_GUARANTEE.maxSGAnnual, 2)}.`,
   },
   {
     q: `What is the concessional super contributions cap for ${Y.incomeYear}?`,

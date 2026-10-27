@@ -77,7 +77,7 @@ export default function TravelAllowancePage() {
           <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="capital-cities">Reasonable Travel Allowance by Capital City, {TD_2026_4.incomeYear}</H2>
-            <p>Daily totals (accommodation, meals and incidentals) from Tables 1 to 3 of {TD_2026_4.id}. Your salary means salary excluding allowances; part-timers use the full-time equivalent.</p>
+            <p>The daily totals below (accommodation, meals and incidentals) come from Tables 1 to 3 of {TD_2026_4.id}. Your salary band is set by your salary excluding allowances, and part-time employees use the full-time equivalent salary.</p>
             <DataTable
               head={["City", ...BANDS.map((b) => `Salary ${SALARY_BANDS[b].label}`)]}
               align={["l", "r", "r", "r"]}
@@ -119,7 +119,7 @@ export default function TravelAllowancePage() {
 
           <section>
             <H2 id="overseas">Overseas Travel: Meals and Incidentals</H2>
-            <p>Overseas there is no reasonable amount for accommodation: it must always be substantiated, and tax is always withheld from an overseas accommodation allowance. Meals and incidentals depend on the country&rsquo;s cost group. Countries not listed use cost group 3, and on a day in two countries you use the higher group. Away 6 or more nights in a row? Keep travel records such as a diary, even within the reasonable amount.</p>
+            <p>Overseas there is no reasonable amount for accommodation: it must always be substantiated, and tax is always withheld from an overseas accommodation allowance. Meals and incidentals depend on the country&rsquo;s cost group. Countries not listed use cost group 3, and on a day in two countries you use the higher group. If you are away for 6 or more nights in a row, keep travel records such as a diary, even when your claim is within the reasonable amount.</p>
             <DataTable
               head={["Cost group", ...BANDS.map((b) => SALARY_BANDS[b].label), "Example countries"]}
               align={["l", "r", "r", "r", "l"]}
@@ -147,7 +147,7 @@ export default function TravelAllowancePage() {
 
           <section>
             <H2 id="tax-return">Travel Allowance in Your Tax Return</H2>
-            <p>If you received an allowance and spent it on deductible travel, you can claim what you actually spent. Claim no more than the reasonable amount and you don&rsquo;t need receipts, but you must be able to show you travelled for work, received and declared the allowance, how you worked out the amount, and that you weren&rsquo;t reimbursed. Claim more than the reasonable amount and you must substantiate the whole claim. If the allowance wasn&rsquo;t on your income statement and you spent all of it, you can leave both the allowance and the deduction out of your return. More: our <Link href="/tax-deductions-guide/">tax deductions guide</Link>.</p>
+            <p>If you received an allowance and spent it on deductible travel, you can claim what you actually spent. Claim no more than the reasonable amount and you don&rsquo;t need receipts, but you must be able to show you travelled for work, received and declared the allowance, how you worked out the amount, and that you weren&rsquo;t reimbursed. Claim more than the reasonable amount and you must substantiate the whole claim. If the allowance wasn&rsquo;t on your income statement and you spent all of it, you can leave both the allowance and the deduction out of your return. Other work-related claims are in our <Link href="/tax-deductions-guide/">tax deductions guide</Link>.</p>
             <p><strong>Truck drivers</strong> have separate meal amounts for any domestic trip: {money(TRUCK_DRIVER_MEALS.breakfast)} breakfast, {money(TRUCK_DRIVER_MEALS.lunch)} lunch and {money(TRUCK_DRIVER_MEALS.dinner)} dinner, each meal separately (Table 5). Their accommodation and incidentals must always be substantiated.</p>
           </section>
 

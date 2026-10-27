@@ -159,7 +159,7 @@ export const SA_NURSING_PAY: NursingStateData = {
         { label: "9th increment", annual: 110497 },
       ],
       note:
-        "SA overlaps its levels deliberately: Clinical Nurse/Midwife 1st increment is the same money as Registered Nurse/Midwife 5th increment.",
+        "SA Health's levels overlap: the Clinical Nurse/Midwife 1st increment pays the same as the Registered Nurse/Midwife 5th increment.",
     },
     {
       classification: "Associate Nurse/Midwife Unit Manager (Level 2)",
@@ -310,7 +310,7 @@ export const SA_NURSING_PAY: NursingStateData = {
     "An hourly rate for any SA classification",
     "Afternoon, weekend and public holiday penalty rates, which sit in the parent award rather than the agreement",
     "The dollar rates paid since the SA Government's 4% administrative increase from January 2026, and after the further 2% set for October 2026. SA Health confirms both percentages but had not published the start date of the 2% or the resulting pay table when this page was checked on 22 October 2026, so the table above is the last officially published column (1 January 2025) and is at least 4% below current pay",
-    "Any rate under the proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026, which employees voted down in the 20–29 July 2026 ballot (reported 30 July 2026)",
+    "Any rate under the proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026, which employees voted down in the 20 to 29 July 2026 ballot (reported 30 July 2026)",
   ],
 
   verifiedOn: "22 October 2026",
@@ -322,7 +322,7 @@ export const SA_NURSING_PAY: NursingStateData = {
     "SA numbers its scales RN/M1 to RN/M6 and overlaps them: a Clinical Nurse/Midwife at the bottom of Level 2 earns exactly what a Registered Nurse/Midwife earns at the 5th increment.",
     "There is no separate nurse practitioner scale. Nurse practitioners sit at Level 4 with the advanced unit manager and consultant roles.",
     "Night shift Monday to Friday attracts 20.5%, set by the agreement itself in place of the award rate.",
-    "The 2022 agreement nominally expired on 31 July 2025, and a proposed replacement was voted down in the 20–29 July 2026 ballot, so bargaining continues.",
+    "The 2022 agreement nominally expired on 31 July 2025, and a proposed replacement was voted down in the 20 to 29 July 2026 ballot, so bargaining continues.",
     // Kept last so the attributed union report (reportedChange) renders directly under it.
     "Current pay is at least 4% above the table: the SA Government paid a 4% administrative increase from January 2026, and a further 2% was set for October 2026 with no day published. SA Health had not published the start date or the new dollar rates when this page was checked on 22 October 2026.",
   ],

@@ -21,11 +21,11 @@ export const GRADUATE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "How much does a graduate lawyer earn in Australia?",
-    a: `The Government's 2025 Graduate Outcomes Survey reports a median of ${formatAUD(QILT_MEDIANS_2025.law, 0)} for full-time law and paralegal studies undergraduates four to six months after graduating. The only legal minimum is the Legal Services Award for law graduates doing practical legal training in a private firm, at $33.99 an hour or about $67,174 a year; once admitted a lawyer is award-free and pay comes from the contract. We do not publish firm salary bands because no official source does.`,
+    a: `The Government's 2025 Graduate Outcomes Survey reports a median of ${formatAUD(QILT_MEDIANS_2025.law, 0)} for full-time law and paralegal studies undergraduates four to six months after graduating. The only legal minimum is the Legal Services Award for law graduates doing practical legal training in a private firm, at $33.99 an hour or about $67,174 a year. Once admitted, a lawyer is award-free and pay comes from the employment contract. We do not publish firm salary bands because no official source does.`,
   },
   {
     q: "How much does a graduate nurse earn in Australia?",
-    a: `The median full-time salary for nursing undergraduates in the 2025 Graduate Outcomes Survey was ${formatAUD(QILT_MEDIANS_2025.nursing, 0)}. Public-sector nurses are paid on state enterprise agreement scales, and the first step of the registered nurse scale in each state is listed on this page, from about ${formatAUD(round100(NURSE_LOW), 0)} to about ${formatAUD(round100(NURSE_HIGH), 0)} on a full-time basis before overtime, penalties and allowances.`,
+    a: `The median full-time salary for nursing undergraduates in the 2025 Graduate Outcomes Survey was ${formatAUD(QILT_MEDIANS_2025.nursing, 0)}. Public-sector nurses are paid on state enterprise agreement scales. The first step of the registered nurse scale runs from about ${formatAUD(round100(NURSE_LOW), 0)} to about ${formatAUD(round100(NURSE_HIGH), 0)} full-time across the states listed on this page, before overtime, penalties and allowances.`,
   },
   {
     q: "How much does a graduate engineer earn in Australia?",
@@ -37,7 +37,7 @@ export const GRADUATE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "How much does a graduate teacher earn in Australia?",
-    a: `Public-school graduates start on the first qualified step of their state's salary scale, which ranges from about ${formatAUD(round100(TEACHER_LOW.annual), 0)} in ${TEACHER_LOW.state} to ${formatAUD(round100(TEACHER_HIGH.annual), 0)} in ${TEACHER_HIGH.state} in the current agreements listed on this page. The 2025 Graduate Outcomes Survey median for teacher education graduates in full-time work was ${formatAUD(QILT_MEDIANS_2025.teaching, 0)}.`,
+    a: `Graduate teachers in public schools start on the first qualified step of their state's salary scale, from about ${formatAUD(round100(TEACHER_LOW.annual), 0)} in ${TEACHER_LOW.state} to ${formatAUD(round100(TEACHER_HIGH.annual), 0)} in ${TEACHER_HIGH.state} under the current agreements listed on this page. The 2025 Graduate Outcomes Survey median for teacher education graduates in full-time work was ${formatAUD(QILT_MEDIANS_2025.teaching, 0)}.`,
   },
   {
     q: "How much does an intern doctor earn in Australia?",
@@ -45,7 +45,7 @@ export const GRADUATE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "How much of a graduate salary do you take home?",
-    a: "It depends on the salary, your HELP debt and super arrangement. On $80,000 a resident pays about $14,520 in income tax and $1,600 Medicare levy in 2026-27, leaving about $63,880 a year, or $1,228 a week, before any HELP repayment. Use the take-home pay pages linked here for the nearest salary, and the HECS-HELP calculator if you have a debt.",
+    a: "On an $80,000 graduate salary, a resident takes home about $63,880 a year, or $1,228 a week, in 2026-27, before any HELP repayment. That is after about $14,520 income tax and $1,600 Medicare levy. Your own figure changes with the salary, your HELP debt and your super arrangement. Use the take-home pay pages linked here for the nearest salary, and the HECS-HELP calculator if you have a debt.",
   },
   {
     q: "Does super come on top of a graduate salary?",

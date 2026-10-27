@@ -54,7 +54,7 @@ export const REAL_ESTATE_AGENT: Occupation = {
       id: "real-estate",
       title: "Real estate agent minimum pay rates 2026–27",
       intro:
-        "Weekly rates from clause 14.1 of the award. Hourly and casual rates from the award's Schedule B. These apply to salaried and retainer-plus-commission employees, not to commission-only agents.",
+        "The weekly rates for real estate agents come from clause 14.1 of the Real Estate Industry Award. The hourly and casual rates come from the award's Schedule B. These rates apply to salaried and retainer-plus-commission employees, not to commission-only agents.",
       rows: REAL_ESTATE_ROWS,
     },
   ],

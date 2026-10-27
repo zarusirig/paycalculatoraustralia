@@ -42,7 +42,7 @@ export default function GrossVsNetCalculator() {
     <Card className="shadow-md not-prose" id="gross-net-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Gross to Net / Net to Gross Pay Converter</h2>
-        <p className="text-sm text-warmgray mb-6">Uses the ATO&rsquo;s 2026-27 withholding formulas, so the net figure matches what a payslip pays, not the year-end tax result.</p>
+        <p className="text-sm text-warmgray mb-6">This converter uses the ATO&rsquo;s 2026-27 PAYG withholding formulas, so the net figure matches your payslip, not your year-end tax result.</p>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField id="gn-mode" label="I know my" value={mode} onChange={setMode} options={[{ value: "gross-to-net", label: "Gross pay (work out net)" }, { value: "net-to-gross", label: "Net pay (work out gross)" }]} />
@@ -72,7 +72,7 @@ export default function GrossVsNetCalculator() {
               {formatAUD(slip.gross, 2)} gross is about {formatAUD(slip.gross * periods)} a year; {formatAUD(slip.net, 2)} net is about {formatAUD(slip.net * periods)} a year. {(slip.deductionRate * 100).toFixed(1)}% of your gross pay is deducted before it reaches you.
             </p>
             <p className="text-xs text-warmgray-light">
-              Resident 2026-27 withholding scales; offsets beyond those built into the scales aren&rsquo;t included. Your actual tax is settled in your return: see the <Link href="/gross-pay-calculator/" className="underline">gross pay calculator</Link> for the annual figure.
+              The converter uses the resident 2026-27 withholding scales and leaves out offsets beyond those built into the scales. Your actual tax is settled in your return: see the <Link href="/gross-pay-calculator/" className="underline">gross pay calculator</Link> for the annual figure.
             </p>
           </div>
         </div>

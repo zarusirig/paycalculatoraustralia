@@ -79,7 +79,7 @@ export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculat
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Family Tax Benefit Calculator: FTB Part A and Part B ({A.financialYear})</h1>
           <p className="text-lg text-warmgray">
-            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0–12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a teenager; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your incomes and children to estimate both, and see how a pay rise or extra hours changes them.
+            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0–12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a teenager; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your adjusted taxable income (and your partner&apos;s) and your children&apos;s ages to estimate both payments, and see how a pay rise or extra hours changes them.
           </p>
           <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">{A.financialYear} rates and thresholds (from 1 July 2026) · verified {FAMILY_PAYMENT_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />
@@ -163,7 +163,7 @@ export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculat
                     </div>
                   </div>
                   <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-4 text-xs text-navy">
-                    <strong>An estimate, on stated assumptions.</strong> Uses the {A.financialYear} rates, thresholds and tapers published by Services Australia (read {FAMILY_PAYMENT_SOURCES.verifiedOn}). Assumes 100% care of every child and that you meet the Maintenance Action Test and immunisation requirements. Not modelled: shared care, the Maintenance Income Test (child support), Rent Assistance and Energy Supplement paid with FTB, the newborn supplement, grandparent carer rules. Supplements are reduced last. FTB is paid on your income estimate and balanced after the year.
+                    <strong>An estimate, on stated assumptions.</strong> Uses the {A.financialYear} rates, thresholds and tapers published by Services Australia (read {FAMILY_PAYMENT_SOURCES.verifiedOn}). It assumes 100% care of every child and that you meet the Maintenance Action Test and immunisation requirements. It does not model shared care, the Maintenance Income Test (child support), Rent Assistance and Energy Supplement paid with FTB, the newborn supplement or grandparent carer rules. Supplements are reduced last. FTB is paid on your family income estimate and balanced against your actual income after the year.
                   </div>
                 </div>
               </div>

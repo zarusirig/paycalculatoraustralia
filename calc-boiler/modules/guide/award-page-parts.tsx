@@ -209,7 +209,7 @@ export function JuniorPhaseInTable({
         </table>
       </div>
       <p className="mt-2 text-xs text-warmgray">
-        Dollar figures are the hourly rate on {baseLabel} ({formatAUD(adultWeekly, 2)} a week at current rates), before any future Annual Wage Review increase. Employees aged 18–20 with 6 months or less with the employer stay on {schedule.qualifyingPeriod.age18}%, {schedule.qualifyingPeriod.age19}% and {schedule.qualifyingPeriod.age20}%. Source: determination {schedule.determination}.
+        Dollar figures are the hourly rate on {baseLabel} ({formatAUD(adultWeekly, 2)} a week at current rates), before any future Annual Wage Review increase. Employees aged 18 to 20 with 6 months or less with the employer stay on {schedule.qualifyingPeriod.age18}%, {schedule.qualifyingPeriod.age19}% and {schedule.qualifyingPeriod.age20}%. Source: determination {schedule.determination}.
       </p>
     </div>
   );
@@ -250,7 +250,7 @@ export function TakeHomeLinks({ rows, heading }: { rows: readonly MatrixRow[]; h
         </ul>
       )}
       <p className="text-sm text-navy">
-        Working a mix of shifts? Enter your hours in the <Link href="/weekly-pay-calculator/" className="font-semibold text-eucalyptus-dark hover:underline">weekly pay calculator</Link>, or turn a salary into net pay with the <Link href="/take-home-pay-calculator/" className="font-semibold text-eucalyptus-dark hover:underline">take-home pay calculator</Link>.
+        For a week with a mix of shifts, enter your hours in the<Link href="/weekly-pay-calculator/" className="font-semibold text-eucalyptus-dark hover:underline">weekly pay calculator</Link>, or turn a salary into net pay with the <Link href="/take-home-pay-calculator/" className="font-semibold text-eucalyptus-dark hover:underline">take-home pay calculator</Link>.
       </p>
     </div>
   );

@@ -86,7 +86,7 @@ export const BUILDING_PENALTIES: PenaltyRow[] = [
 ];
 
 export const BUILDING_PENALTIES_NOTE =
-  "Percentages of the ordinary hourly rate, which already includes the industry allowance and any other all-purpose allowance. Ordinary hours run Monday to Friday (cl 16.1), so all weekend work is overtime (cl 29.12, 30.1). Casual rates are from cl 12.5 and 12.6.";
+  "The percentages in the table are of the ordinary hourly rate under the Building and Construction General On-site Award. That ordinary hourly rate already includes the industry allowance and any other all-purpose allowance. Ordinary hours run Monday to Friday (cl 16.1), so all weekend work is overtime (cl 29.12, 30.1). Casual rates are from cl 12.5 and 12.6.";
 
 export const BUILDING_OVERTIME: string[] = [
   "Monday to Friday: 150% for the first 2 hours beyond ordinary hours, then 200% (cl 29.4(a)).",

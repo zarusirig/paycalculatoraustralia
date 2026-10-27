@@ -75,7 +75,7 @@ export default function PublicHolidayPayCalculator({
           {intro ?? (
             <>
               Enter your base hourly rate (the permanent rate from your payslip or award, before any casual loading), the
-              hours you work on the day and your award. The award rate is read from the award&rsquo;s own penalty table.
+              hours you work on the day and your award. The calculator takes the public holiday rate from the award&rsquo;s own penalty table.
             </>
           )}
         </p>
@@ -153,7 +153,7 @@ export default function PublicHolidayPayCalculator({
             {award?.note ? <p className="text-xs text-warmgray">{award.shortName}: {award.note}</p> : null}
             {partDayNote ? <p className="text-xs text-warmgray">{partDayNote}</p> : null}
             <p className="text-xs text-warmgray-light">
-              Before tax. Minimum shift lengths, overtime and allowances are not included.{" "}
+              These figures are before tax. Minimum shift lengths, overtime and allowances are not included.{" "}
               {award ? (
                 <Link href={award.href} className="underline">
                   All {award.shortName} rates

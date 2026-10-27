@@ -78,7 +78,7 @@ export default function GrossPayCalculatorContent() {
               <li><strong>Identify the income tax brackets</strong>: the FY{SITE_CONFIG.financialYear} rates are {bracketRatesSentence()}.</li>
               <li><strong>Add the Medicare levy</strong>: a flat <strong>2%</strong> of taxable income applies to most Australian residents.</li>
               <li><strong>Apply the Low Income Tax Offset</strong>: LITO reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below {formatAUD(LITO.nilOffsetIncome)}, effectively raising the tax-free threshold to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>.</li>
-              <li><strong>Iterate to solve</strong>: because Australia uses progressive marginal rates, no single formula converts net to gross. This calculator uses binary search across the ATO tax tables to find the exact gross salary that produces your target net pay.</li>
+              <li><strong>Iterate to solve</strong>: because Australia uses progressive marginal rates, no single formula converts net to gross. This calculator runs a binary search across the ATO resident income tax rates to find the exact gross salary that produces your target net pay.</li>
             </ol>
             <p className="text-warmgray">
               Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the full bracket breakdown for any gross salary amount.
@@ -135,7 +135,7 @@ export default function GrossPayCalculatorContent() {
               </table>
             </div>
             <p className="text-warmgray">
-              To calculate your net pay from a known gross salary, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>. The gross pay calculator on this page performs the reverse operation, converting net pay back to gross.
+              To calculate your net pay from a known gross salary, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>. The gross pay calculator above works in reverse: enter your target net pay and it finds the gross salary that produces it.
             </p>
           </section>
 
@@ -143,15 +143,15 @@ export default function GrossPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Gross Pay Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              The gross pay calculator serves anyone who knows what they need in their bank account and must work backwards to a pre-tax salary figure. Three primary user groups rely on this Australian tax calculator daily:
+              The gross pay calculator is for anyone who knows what they need in their bank account and must work backwards to a pre-tax salary figure. Three groups of users fit that description:
             </p>
             <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Salary negotiators</strong>: employees entering a new role or requesting a pay rise who need to translate living expenses into a gross salary figure. A worker who spends $1,200 per week on rent, bills, and essentials needs a gross salary of at least <strong>{formatAUD(Math.round(GROSS_FOR_1200_WK))}</strong> to cover those costs after tax.</li>
               <li><strong>Job seekers comparing offers</strong>: candidates who receive offers quoted as a &quot;Total Remuneration Package&quot; (gross plus super) and need to convert that figure to weekly take-home pay. A $100,000 TRP translates to a base salary of <strong>{formatAUD(TRP_BASE)}</strong> and net weekly pay of <strong>{formatAUD(EX_TRP.weekly)}</strong>.</li>
-              <li><strong>Budgeters and mortgage applicants</strong>: individuals who know their monthly expenses and need to determine the minimum gross income required. Lenders assess borrowing capacity on gross salary, so converting net targets to gross figures is essential for pre-approval applications.</li>
+              <li><strong>Budgeters and mortgage applicants</strong>: individuals who know their monthly expenses and need to determine the minimum gross income required. Lenders assess borrowing capacity on gross salary, so a pre-approval application needs your net target converted to a gross figure.</li>
             </ul>
             <p className="text-warmgray">
-              Contractors and freelancers who set their own rates also benefit from reverse-calculating gross pay. Use the <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">Contractor Pay Calculator</Link> for scenarios involving GST, BAS, and business expenses.
+              Contractors and freelancers who set their own rates also work back from a net target to a gross rate. Use the <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">Contractor Pay Calculator</Link> for scenarios involving GST, BAS, and business expenses.
             </p>
           </section>
 
@@ -159,7 +159,7 @@ export default function GrossPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Gross Salary Do You Need for Common Net Pay Targets?</h2>
             <p className="mb-4 text-warmgray">
-              The table below shows the gross annual salary required to achieve common net take-home pay targets in FY{SITE_CONFIG.financialYear}. All figures assume an Australian resident with no HECS-HELP debt, no salary sacrifice, and no private health insurance surcharge.
+              The table below shows the gross annual salary required to achieve common net take-home pay targets in FY{SITE_CONFIG.financialYear}. All figures assume an Australian resident with no HECS-HELP debt, no salary sacrifice, and no Medicare Levy Surcharge.
             </p>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm border border-sandstone-dark/20 rounded-xl overflow-hidden">
@@ -235,7 +235,7 @@ export default function GrossPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Example Gross Salary Calculations</h2>
             <p className="mb-4 text-warmgray">
-              Here are some common net take-home targets and the gross annual salary required to hit them under the FY25-26 tax brackets:
+              Each card below shows a common net take-home target and the gross annual salary required to hit it under the FY25-26 tax brackets:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
@@ -262,7 +262,7 @@ export default function GrossPayCalculatorContent() {
               })}
             </div>
             <p className="mt-4 text-xs text-warmgray-light">
-              *Calculations are exact for standard income tax and Medicare levy. Note that if you have a HECS-HELP debt, you will need a higher gross salary to hit the same net target because loan repayments will also be deducted.
+              *Calculations are exact for standard income tax and the Medicare levy. If you have a HECS-HELP debt, you need a higher gross salary to hit the same net target because compulsory HECS-HELP repayments are also withheld.
             </p>
           </section>
 
@@ -287,7 +287,7 @@ export default function GrossPayCalculatorContent() {
             <p className="mb-2 text-sm">How this reverse calculation works:</p>
             <ol className="list-decimal pl-4 space-y-1">
               <li>Takes your target net amount and annualises it (e.g. weekly x 52).</li>
-              <li>Uses a rapid iterative algorithm (binary search) against the standard ATO tax tables to find the exact gross salary that yields that exact net pay after income tax and Medicare levy.</li>
+              <li>Runs a binary search against the ATO resident income tax rates to find the exact gross salary that yields that net pay after income tax, LITO and the Medicare levy.</li>
               <li>Does not include HECS debt deductions.</li>
             </ol>
           </MethodologyDisclosure>

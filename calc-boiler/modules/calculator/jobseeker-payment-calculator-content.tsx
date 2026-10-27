@@ -166,7 +166,7 @@ export default function JobseekerPaymentCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you 40 cents better off before tax, and that is before working credits, so working more always adds to the total, but at a flatter slope than the wage suggests. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
+        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you 40 cents better off, before tax and before working credits. Working more always raises your wages plus JobSeeker total, but by less than the extra wage while any JobSeeker is still paid. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
       </section>
 
       <section>
@@ -187,7 +187,7 @@ export default function JobseekerPaymentCalculatorContent() {
 
       <section>
         <h2 style={FONT} className={H2}>What Counts as Income, and When</h2>
-        <p className={P}>Gross wages in the fortnight they are paid, before tax, salary sacrifice or HECS. Commission, bonuses, overtime and penalty rates count too. Your <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly gross</Link> is the figure to enter, and JobSeeker itself is taxable, so put the wages and the payment together through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link> to see the year.</p>
+        <p className={P}>Services Australia counts your gross wages in the fortnight they are paid, before tax, salary sacrifice or HECS come out. Commission, bonuses, overtime and penalty rates count too. Your <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly gross</Link> is the figure to enter in the calculator above. JobSeeker Payment itself is taxable, so put the wages and the payment together through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link> to see the year.</p>
       </section>
 
       <section>

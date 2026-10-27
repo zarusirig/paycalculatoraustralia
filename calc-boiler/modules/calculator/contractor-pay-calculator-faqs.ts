@@ -48,7 +48,7 @@ const EMPLOYEE_HOURLY = TARGET_SALARY / EMPLOYMENT.hoursPerYear;
 /** PAA answer reused as the lead of the "What Rate Should I Charge?" section. */
 export const CONTRACTOR_RATE_ANSWER: FaqItem = {
   q: "What rate should I charge as a contractor?",
-  a: `Start from the salary you want to replace. To match ${formatAUD(TARGET_SALARY)} plus ${SG} super over ${BILLABLE_WEEKS} billable weeks of ${H} hours, you need at least ${formatAUD(FLOOR_RATE, 2)} an hour, against ${formatAUD(EMPLOYEE_HOURLY, 2)} an hour as an employee. That is the floor: unbilled time, insurance and sick days are why many contractors charge 1.4 to 1.6 times the employee rate.`,
+  a: `To replace a ${formatAUD(TARGET_SALARY)} salary plus ${SG} super over ${BILLABLE_WEEKS} billable weeks of ${H} hours, you need to charge at least ${formatAUD(FLOOR_RATE, 2)} an hour, against ${formatAUD(EMPLOYEE_HOURLY, 2)} an hour as an employee. That hourly rate is the floor, worked out from the salary you want to replace. Unbilled time, insurance and sick days are why many contractors charge 1.4 to 1.6 times the employee rate.`,
 };
 
 /** Worked example for "How do I convert a contractor rate to a salary?". */
@@ -71,7 +71,7 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   CONTRACTOR_SALARY_ANSWER,
   {
     q: "What is the 80% rule for contractors?",
-    a: "It is part of the ATO's personal services income (PSI) rules. If 80% or more of your PSI in a year comes from one client and its associates, you can only self-assess as a personal services business by passing the results test. If you fail it and have no personal services business determination from the ATO, the PSI rules apply, which limit the deductions you can claim and stop you splitting that income with others.",
+    a: "The rule is part of the ATO's personal services income (PSI) rules. If 80% or more of your PSI in a year comes from one client and its associates, you can only self-assess as a personal services business by passing the results test. If you fail it and have no personal services business determination from the ATO, the PSI rules apply, which limit the deductions you can claim and stop you splitting that income with others.",
   },
   {
     q: "What is a contractor for tax purposes?",
@@ -88,11 +88,11 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors need to pay super?",
-    a: `If you're an independent contractor working under your own ABN, super is optional (but recommended). However, if a business hires you primarily for your labour (rather than achieving a specific result), they may be required to pay the ${SG} super guarantee on your behalf. Use the "Includes Super" toggle to model either scenario.`,
+    a: `If you're an independent contractor working under your own ABN, paying super for yourself is optional. If a business hires you primarily for your labour (rather than to achieve a specific result), they may be required to pay the ${SG} super guarantee on your behalf. Tick "Includes Superannuation" in the calculator if your rate already includes super, or leave it unticked to see the super you would set aside yourself.`,
   },
   {
     q: "How do I calculate my contractor hourly rate?",
-    a: `Your contractor rate should cover the benefits you lose compared to employment: super (${SG}), annual leave (4 weeks), sick leave, public holidays, insurance, and admin time. A common rule of thumb: multiply an equivalent employee hourly rate by 1.4-1.6 to get your contractor rate.`,
+    a: `Your contractor rate should cover the benefits you lose compared to employment: super (${SG}), annual leave (4 weeks), sick leave, public holidays, insurance, and admin time. A common rule of thumb is to multiply an equivalent employee hourly rate by 1.4 to 1.6 to get your contractor rate.`,
   },
   {
     q: "Can contractors claim business deductions?",
@@ -108,6 +108,6 @@ export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What insurance do contractors need in Australia?",
-    a: "Most contractors carry 3 types of insurance: public liability ($5–$20 million cover, costing $300–$1,200/year), professional indemnity (required for consultants, accountants, and IT professionals, costing $400–$2,000/year), and income protection (typically replaces up to 70% of income during illness or injury). Workers' compensation is compulsory in some states for contractors who employ others.",
+    a: "Most contractors carry 3 types of insurance: public liability ($5 to $20 million cover, costing $300 to $1,200 a year), professional indemnity (required for consultants, accountants, and IT professionals, costing $400 to $2,000 a year), and income protection (typically replaces up to 70% of income during illness or injury). Workers' compensation is compulsory in some states for contractors who employ others.",
   },
 ];

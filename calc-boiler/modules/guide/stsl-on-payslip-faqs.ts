@@ -16,11 +16,11 @@ export const STSL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is STSL the same as HECS?",
-    a: "Effectively yes for most people. STSL (Study and Training Support Loans) is the ATO's umbrella term covering HECS-HELP, FEE-HELP, VET Student Loans, SA-HELP, and apprenticeship loans. If your only loan is HECS, the STSL line on your payslip is your HECS withholding.",
+    a: "Yes, if HECS-HELP is your only study loan. STSL (Study and Training Support Loans) is the ATO's umbrella term covering HECS-HELP, FEE-HELP, VET Student Loans, SA-HELP, and apprenticeship loans. If your only loan is HECS, the STSL line on your payslip is your HECS withholding.",
   },
   {
     q: "Why did STSL suddenly appear on my payslip?",
-    a: `Usually because a pay rise, extra hours, or a bonus pushed your per-pay earnings above the repayment threshold (annualised ${THRESHOLD} for ${FY}), or because you updated your TFN declaration to declare a study loan.`,
+    a: `STSL usually appears because a pay rise, extra hours, or a bonus pushed your per-pay earnings above the repayment threshold (annualised ${THRESHOLD} for ${FY}), or because you updated your TFN declaration to declare a study loan.`,
   },
   {
     q: "What happens if too much STSL is withheld?",

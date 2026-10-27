@@ -237,7 +237,7 @@ function SalaryFiguresSection({ occ, payslipLink }: { occ: Occupation; payslipLi
             </tbody>
           </TableShell>
           <p>
-            2026–27 resident rates with the Medicare levy and no HECS-HELP
+            Take-home pay uses 2026-27 resident tax rates with the Medicare levy and no HECS-HELP debt
             {surcharge ? (
               <>
 , assuming private hospital cover (without it a single person pays the{" "}
@@ -610,8 +610,8 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                   </tbody>
                 </TableShell>
                 <p>
-                  2026–27 resident rates with the Medicare levy and no HECS-HELP; super is paid on top. Full breakdown:{" "}
-                  <TakeHomeLink annual={afterTaxBase} />, or put in your own hours with the{" "}
+                  Take-home pay uses 2026-27 resident tax rates with the Medicare levy and no HECS-HELP debt; super is paid on top. Full breakdown:{" "}
+                  <TakeHomeLink annual={afterTaxBase} />, or enter your own gross weekly pay in the{" "}
                   <Link href="/weekly-pay-calculator/">weekly pay calculator</Link>.
                 </p>
                 <TakeHomeButton />

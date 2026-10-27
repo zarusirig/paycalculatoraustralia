@@ -37,7 +37,7 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Why does the monthly table ask for cents when the weekly one does not?",
-    a: `Because of a quirk in the conversion. For weekly and fortnightly pay you ignore cents before looking up the amount. For monthly pay the ATO tells you to enter the earnings including cents, and adds a specific rule: if the monthly amount ends in exactly 33 cents, add one cent before converting. The ATO's own example uses ${formatAUD(ex.earnings, 2)}, which gives ${formatAUD(ex.withTFT)} with the tax-free threshold and ${formatAUD(ex.noTFT)} without it.`,
+    a: `The monthly table asks for cents because of how the ATO converts monthly earnings to a weekly equivalent. For weekly and fortnightly pay you ignore cents before looking up the amount. For monthly pay the ATO tells you to enter the earnings including cents, and adds a rule: if the monthly amount ends in exactly 33 cents, add one cent before converting. The ATO's own example uses ${formatAUD(ex.earnings, 2)}, which gives ${formatAUD(ex.withTFT)} with the tax-free threshold and ${formatAUD(ex.noTFT)} without it.`,
   },
   {
     q: "Which column of the monthly tax table applies to me?",
@@ -45,7 +45,7 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Does a monthly pay cycle ever have a 13th pay?",
-    a: "No. Twelve calendar months means exactly 12 monthly pay days every financial year, so monthly payroll never hits the extra-pay problem that weekly (53 pays) and fortnightly (27 pays) cycles run into. That is one genuine administrative advantage of monthly pay: withholding across the year always lines up with what the table assumes.",
+    a: "No. Twelve calendar months means exactly 12 monthly pay days every financial year, so monthly payroll does not hit the extra-pay problem that weekly (53 pays) and fortnightly (27 pays) cycles run into. Monthly withholding across the year lines up with what the monthly tax table assumes.",
   },
   {
     q: "Does the monthly tax table include the Medicare levy?",
@@ -65,7 +65,7 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Why was so much tax withheld in the month I got my bonus?",
-    a: "Because adding a lump sum to a normal monthly pay and using this table tells the formula you earn that combined amount every month, which annualises you into a much higher bracket. That is not the correct treatment. Bonuses, commissions and back payments that relate to more than one pay period should be withheld under Schedule 5 (NAT 3348), which spreads the payment across the year and usually withholds substantially less.",
+    a: "Tax withheld jumps in a bonus month because running a lump sum through this table with your normal monthly pay tells the formula you earn that combined amount every month. That annualises you into a much higher bracket and is not the correct treatment. Bonuses, commissions and back payments that relate to more than one pay period should be withheld under Schedule 5 (NAT 3348), which spreads the payment across the year and usually withholds substantially less.",
   },
   {
     q: "Where is the official ATO monthly tax table?",

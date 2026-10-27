@@ -13,7 +13,7 @@ const PAY_DAYS = SUPER_GUARANTEE_CHARGE.current.businessDaysToPay;
 export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   {
     q: "Why is my first pay less than expected?",
-    a: "Your employer deducts PAYG income tax from your gross pay before paying you. The amount deducted depends on your income level and whether you claimed the tax-free threshold on your TFN Declaration.",
+    a: "Your employer deducts PAYG income tax from your gross pay before paying you. The amount deducted depends on how much you earn in each pay period and whether you claimed the tax-free threshold on your TFN Declaration.",
   },
   {
     q: "Do I need a tax file number for my first job?",
@@ -25,7 +25,7 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the tax-free threshold?",
-    a: `The tax-free threshold is ${TFT}. If your total annual income is ${TFT} or less, you pay no income tax. You claim the tax-free threshold on your TFN Declaration form, which tells your employer to withhold less tax from each pay. Only claim it at one employer if you have multiple jobs.`,
+    a: `The tax-free threshold is ${TFT}. If your total annual income is ${TFT} or less, you pay no income tax. You claim the tax-free threshold on your TFN Declaration form, which tells your employer to withhold less tax from each pay. If you have multiple jobs, claim it at one employer only.`,
   },
   {
     q: "When does my employer pay super?",
@@ -38,7 +38,7 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What if my payslip looks wrong?",
-    a: "First, check your hours against your roster or timesheet. Verify your pay rate matches your employment contract or the relevant award rate. If something is wrong, raise it with your employer's payroll team immediately. If your employer does not fix the error, contact the Fair Work Ombudsman on 13 13 94 for free advice.",
+    a: "First, check your hours against your roster or timesheet. Check that your pay rate matches your employment contract or the award rate for your classification. If something is wrong, raise it with your employer's payroll team immediately. If your employer does not fix the error, contact the Fair Work Ombudsman on 13 13 94 for free advice.",
   },
   {
     q: "What is the minimum wage for my first job?",

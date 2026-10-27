@@ -198,7 +198,7 @@ export default function LowIncomeTaxOffsetPage() {
 
             <section id="marginal-rate">
               <h2 style={FONT}>How the Phase-Out Raises Your Marginal Rate</h2>
-              <p>Because LITO shrinks as you earn more, each extra dollar between {m(LITO.fullOffsetCeiling)} and {m(LITO.nilOffsetIncome)} costs more tax than the bracket rate alone. Between {m(LITO.fullOffsetCeiling)} and {m(LITO.phaseOut1.end)} you pay {pct(rate)} tax plus {perDollar1}c of lost offset, so on {m(a40.income)} the next $1,000 costs {m(a40.taxOnNext1000)} including the Medicare levy. Above {m(LITO.phaseOut1.end)} it is {pct(B[2].rate)} plus {perDollar2}c. It&rsquo;s still always worth earning more: you keep most of every extra dollar. More in <Link href="/tax-brackets/#marginal-tax-rate">marginal tax rate vs average rate</Link>.</p>
+              <p>Because LITO shrinks as you earn more, each extra dollar between {m(LITO.fullOffsetCeiling)} and {m(LITO.nilOffsetIncome)} costs more tax than the bracket rate alone. Between {m(LITO.fullOffsetCeiling)} and {m(LITO.phaseOut1.end)} you pay {pct(rate)} tax plus {perDollar1}c of lost offset, so on {m(a40.income)} the next $1,000 costs {m(a40.taxOnNext1000)} including the Medicare levy. Above {m(LITO.phaseOut1.end)} it is {pct(B[2].rate)} plus {perDollar2}c. Earning more still leaves you better off: you keep most of every extra dollar. More in <Link href="/tax-brackets/#marginal-tax-rate">marginal tax rate vs average rate</Link>.</p>
             </section>
 
             <section id="eligibility">

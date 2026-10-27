@@ -74,7 +74,7 @@ export default function PerPaySuperCalculator() {
                   onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 1_000_000))}
                   className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
               </div>
-              <p className="mt-1 text-xs text-warmgray-light">Base pay before tax. Leave out overtime, which usually isn&rsquo;t qualifying earnings.</p>
+              <p className="mt-1 text-xs text-warmgray-light">Base pay before tax. Leave out overtime, which is not qualifying earnings when your award or agreement clearly sets out your ordinary hours.</p>
             </div>
             <fieldset>
               <legend className="mb-1 block text-sm font-medium text-navy">Pay frequency</legend>
@@ -113,7 +113,7 @@ export default function PerPaySuperCalculator() {
                   <div className="text-sm font-semibold text-navy">Must reach your fund by</div>
                   <div className="text-2xl font-bold text-navy">{due ? formatDateAU(due) : "Pick a payday"}</div>
                   <p className="mt-1 text-xs text-warmgray">
-                    {days} business days after payday, counting weekends only. Add one day for each public holiday in that window that covers a whole state or territory, in any state or territory.
+                    {days} business days after payday. This date skips weekends only, so add one day for each public holiday in that window that covers a whole state or territory, in any state or territory.
                   </p>
                 </div>
               </div>

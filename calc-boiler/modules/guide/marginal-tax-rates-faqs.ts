@@ -20,7 +20,7 @@ export const MARGINAL_TAX_RATES_FAQS: Faq[] = [
   },
   {
     q: "How much of a $10,000 raise do I keep?",
-    a: "It depends on where the raise falls. On $85,000 a $10,000 raise sits entirely inside the 30% bracket, so tax and Medicare take 32% and you keep $6,800. If a HELP debt applies, the repayment adds 15c per $1 above the threshold, so you keep less. Use the calculator above for your own figures.",
+    a: "On $85,000 you keep $6,800 of a $10,000 raise, because the whole raise sits inside the 30% bracket, where tax and Medicare take 32%. A raise at another income, or across a bracket threshold, keeps a different share. If a HELP debt applies, the repayment adds 15c per $1 above the threshold, so you keep less. Enter your income and the raise in the calculator above to see your own figure.",
   },
   {
     q: "Is a bonus taxed at a higher rate than my normal pay?",

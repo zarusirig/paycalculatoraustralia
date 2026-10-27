@@ -1,0 +1,210 @@
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import TrustBar from "@/components/common/trust-bar";
+import MethodologyDisclosure from "@/components/common/methodology-disclosure";
+import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import {
+  formatAUD,
+  formatPercent,
+  HECS_HELP,
+  MEDICARE_LEVY,
+  SOURCES,
+  SITE_CONFIG,
+  SUPER_GUARANTEE,
+} from "@/lib/constants";
+import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+import StateTakeHomeCalculator from "./state-take-home-calculator";
+import StateMinimumWage from "./state-minimum-wage";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { WA_FAQS } from "./pay-calculator-wa-faqs";
+import {
+  AbsEarningsTable,
+  FAQItem,
+  FAQSection,
+  ForwardLslLinks,
+  H2,
+  LongServiceLeaveBlock,
+  OtherStatesNav,
+  EmployerPayrollTaxLink,
+  PayrollTaxForEmployees,
+  StatePayFacts,
+  PenaltyRateNote,
+  PublicHolidayTable,
+  WorkedExample,
+  typicalSalary,
+} from "./state-sections";
+import FeaturedImage from "@/components/common/featured-image";
+
+const PROFILE = STATE_PROFILES.WA;
+
+const SOURCES_LIST: SourceLink[] = [
+  { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
+  { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}), Table 13e, Western Australia`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
+  { title: "2026 public holidays, Western Australia", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
+  { title: "Overview of long service leave in WA (Long Service Leave Act 1958)", url: PROFILE.longServiceLeave.agencyUrl, publisher: "Government of Western Australia" },
+  { title: "WA payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.wa.ratesUrl, publisher: PAYROLL_TAX_STATES.wa.revenueOffice },
+];
+
+export default function PayCalculatorWAPage() {
+  return (
+    <div className="min-h-screen flex-grow">
+      <div className="mx-auto max-w-7xl space-y-12 px-4 py-8 sm:px-6 lg:px-8">
+        {/* HERO */}
+        <section className="mx-auto max-w-4xl rounded-2xl border border-sandstone-dark/10 bg-eucalyptus-light/30 p-8 md:p-12">
+          <nav aria-label="breadcrumb">
+            <ol className="flex items-center space-x-1 text-sm text-warmgray">
+              <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
+              <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
+              <li><span className="font-medium text-navy" aria-current="page">Pay Calculator WA</span></li>
+            </ol>
+          </nav>
+          <div className="mb-3 mt-4 flex items-center gap-3">
+            <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl font-bold text-navy md:text-4xl">
+              Pay Calculator WA: Your Take-Home Pay in Western Australia
+            </h1>
+            <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">WA</span>
+          </div>
+          <p className="text-lg text-warmgray">
+            Take-home pay in Western Australia is gross salary less federal income tax and the{" "}
+            {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, worked out on the ATO{" "}
+            {SITE_CONFIG.financialYear} rates that apply in every state. Employer super of{" "}
+            {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top, and HECS-HELP repayments start at{" "}
+            {formatAUD(HECS_HELP.minimumThreshold)}. The average WA full-time adult earns{" "}
+            {formatAUD(PROFILE.awote.personsFullTime, 2)} a week (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}).
+          </p>
+          <TrustBar className="mt-4" />
+        </section>
+
+        {/* CALCULATOR — above the fold */}
+        <section className="mx-auto max-w-4xl">
+          <StateTakeHomeCalculator stateCode="WA" defaultSalary={typicalSalary(PROFILE)} />
+        </section>
+
+        <div className="mx-auto max-w-4xl space-y-10">
+          <FeaturedImage placement="content" className="mt-0 mb-10" />
+          <StatePayFacts profile={PROFILE} />
+
+          <StateMinimumWage state="wa" />
+
+          <section>
+            <H2>How much of a WA salary do you actually keep?</H2>
+            <p className="mb-4 text-warmgray">
+              Income tax is federal, so a Perth payslip is taxed exactly like a Hobart one. The
+              difference is that WA salaries are bigger, which pushes more of them into the 37% bracket.
+              Here is the arithmetic on {formatAUD(typicalSalary(PROFILE))}, the average full-time wage
+              in Western Australia.
+            </p>
+            <WorkedExample profile={PROFILE} />
+            <p className="text-sm text-warmgray">
+              If you work in the Pilbara, the Kimberley or the Goldfields, you may also be entitled to
+              the federal{" "}
+              <Link href="/zone-tax-offset/" className="text-eucalyptus-dark hover:underline">zone tax offset</Link>, which the
+              calculator above does not apply because it depends on your specific locality. It reduces
+              tax payable rather than income, so it lands at tax time.
+            </p>
+          </section>
+
+          <section>
+            <H2>Is your WA salary normal? What the ABS says</H2>
+            <p className="mb-4 text-warmgray">
+              WA has the highest full-time ordinary time earnings of any state; only the ACT is higher,
+              and that is a public service artefact. Note the size of the gap between men and women in
+              the table below: it is the widest in the country, and it is a composition effect of the
+              resources workforce rather than a difference in award rates.
+            </p>
+            <AbsEarningsTable profile={PROFILE} />
+            <p className="mt-4 text-sm text-warmgray">
+              Overtime pushes the WA full-time figure up by more than {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
+              a week. If you work a roster, the{" "}
+              <Link href="/mining-fifo-pay-guide/" className="text-eucalyptus-dark hover:underline">mining and FIFO pay guide</Link> and the{" "}
+              <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime calculator</Link> are the
+              right tools; base salary alone will understate you.
+            </p>
+          </section>
+
+          <section>
+            <H2>Western Australian public holidays and what they do to your pay</H2>
+            <p className="mb-4 text-warmgray">
+              WA moves two holidays that most of the country holds on fixed dates: Labour Day falls in
+              early March, and the King&apos;s Birthday is held in late September rather than June, so
+              a WA worker and a NSW worker doing the same job get penalty rates on entirely different
+              Mondays. WA Day in June is unique to this state.
+            </p>
+            <PublicHolidayTable profile={PROFILE} />
+            <PenaltyRateNote profile={PROFILE} />
+            <p className="mt-4 text-sm text-warmgray">
+              Regional WA sometimes observes the King&apos;s Birthday on a different date again, so check
+              with{" "}
+              <a href="https://www.wa.gov.au/service/employment/workplace-arrangements/public-holidays-western-australia" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">the WA Government</a>{" "}
+              for your town before you count on a penalty shift.
+            </p>
+          </section>
+
+          <section>
+            <H2>Long service leave in Western Australia</H2>
+            <p className="mb-4 text-warmgray">
+              WA is the most generous state at the exit. Under the {PROFILE.longServiceLeave.act}, a
+              payment can be owed after 7 years of continuous employment when the job ends (including
+              by plain resignation), even though the leave itself cannot be taken until 10 years.
+              Full-time, part-time, casual and seasonal employees are all covered.
+            </p>
+            <LongServiceLeaveBlock profile={PROFILE} />
+            <ForwardLslLinks profile={PROFILE} />
+            <p className="mt-4 text-sm text-warmgray">
+              Construction workers accrue through MyLeave instead, which carries service between
+              employers across the industry.
+            </p>
+          </section>
+
+          <section>
+            <H2>Does WA payroll tax come out of your pay?</H2>
+            <PayrollTaxForEmployees profile={PROFILE} />
+            <p className="mt-4 text-sm text-warmgray">
+              WorkCover WA premiums are the same story: an employer insurance cost, priced by industry
+              risk, never deducted from wages. The deductions that <em>are</em> legitimate are listed
+              in the{" "}
+              <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
+            </p>
+          </section>
+
+          <section>
+            <H2>WA has its own industrial relations system</H2>
+            <p className="mb-4 text-warmgray">
+              This is the one genuinely structural difference in WA, and it changes which minimum rate
+              applies to you. Western Australia never referred its full industrial relations power to
+              the Commonwealth, so sole traders, unincorporated partnerships and other non-constitutional
+              employers in WA sit in the <strong>state</strong> system with its own award rates and its
+              own state minimum wage, not the national minimum wage.
+            </p>
+            <p className="text-sm text-warmgray">
+              If your employer is a Pty Ltd company, you are in the national system and the{" "}
+              <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">federal award rates</Link> apply. If it is a
+              sole trader or a partnership, check the WA state award instead, as the base rate can differ,
+              and so can the penalty rate loadings the calculator above assumes.
+            </p>
+          </section>
+
+
+          <OtherStatesNav profile={PROFILE} />
+
+          {/* T2: employer payroll tax detail moved to /payroll-tax/wa/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
+
+
+          <FAQSection>
+            {WA_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
+          </FAQSection>
+
+          <MethodologyDisclosure>
+            <p>Income tax, the Medicare levy, LITO, HECS-HELP and superannuation are calculated with the site&apos;s federal engine for {SITE_CONFIG.financialYear}; there are no state-specific individual income taxes in Australia. WA earnings come from the ABS Average Weekly Earnings release for {STATE_EMPLOYEE_SOURCES.absReferencePeriod} (Table 13e, original series). Public holidays come from the Fair Work Ombudsman&apos;s 2026 list, and long service leave from the Long Service Leave Act 1958 as explained by Private Sector Labour Relations. State payroll tax and WorkCover data are sourced from the Department of Finance WA and WorkCover WA.</p>
+          </MethodologyDisclosure>
+
+          <SourceAttribution sources={SOURCES_LIST} lastVerified={STATE_EMPLOYEE_SOURCES.verifiedOn} />
+        </div>
+      </div>
+    </div>
+  );
+}

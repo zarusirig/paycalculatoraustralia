@@ -49,7 +49,7 @@ export const SA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       id: "correctional-officer-co1-co3",
       title: "Correctional Officer CO-1 to CO-3",
       intro:
-        "Schedule 1.12, from the first full pay period on or after 1 July 2026. CO-1 is the training level, CO-2 follows the Certificate III in Correctional Practice, and CO-3 includes Advanced Correctional Officers with a Certificate IV.",
+        "The SA agreement sets these salaries in Schedule 1.12, from the first full pay period on or after 1 July 2026. CO-1 is the training level, CO-2 follows the Certificate III in Correctional Practice, and CO-3 includes Advanced Correctional Officers with a Certificate IV.",
       stepHeading: "Level and increment",
       steps: [
         { label: "CO-1 1st year adult", salary: 59_406 },
@@ -72,7 +72,7 @@ export const SA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer-co4",
       title: "Correctional Officer CO-4 (team supervision)",
-      intro: "Schedule 1.12, from the first full pay period on or after 1 July 2026. CO-4 may supervise and lead a small team of correctional officers.",
+      intro: "These team supervision salaries come from the same Schedule 1.12 column, from the first full pay period on or after 1 July 2026. CO-4 may supervise and lead a small team of correctional officers.",
       stepHeading: "Increment",
       steps: [
         { label: "CO-4 increment 1", salary: 86_274 },
@@ -91,7 +91,7 @@ export const SA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   ],
   penalties: [],
   notices: [
-    "These are base salaries. Shift, weekend and public holiday penalties for correctional officers are set by Part 9 of the SA Public Sector Salaried Employees Interim Award, which we have not reproduced.",
+    "The South Australian correctional officer salaries on this page are base salaries. Shift, weekend and public holiday penalties for correctional officers are set by Part 9 of the SA Public Sector Salaried Employees Interim Award, which we have not reproduced.",
   ],
   unverified: [
     "Shift, weekend and public holiday penalties (Part 9 of the SA Public Sector Salaried Employees Interim Award).",
@@ -111,7 +111,7 @@ export const SA_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When is the next pay rise for SA correctional officers?",
-      a: "From the first full pay period on or after 1 July 2027, when CO-1 1st year adult rises to $61,853 under the agreement's next column.",
+      a: "The next pay rise for SA correctional officers is from the first full pay period on or after 1 July 2027, when CO-1 1st year adult rises to $61,853 under the agreement's next column.",
     },
   ],
 };

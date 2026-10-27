@@ -1,0 +1,204 @@
+    trap: {
+      heading: "The work value increases are finished, and these rates include them",
+      body: `The aged care work value case lifted direct care rates from 1 January 2025, with a second step on 1 October 2025 for the larger increases, and general staff by 3% from 1 January 2025. The 1 July 2026 Annual Wage Review then applied on top. There is no further scheduled increase for Aged Care Award employees; the 1 August 2026 rise was for nurses under the Nurses Award. The award sets weekly rates only, so the hourly figures here are the weekly rate divided by 38.`,
+    },
+    related: {
+      heading: "Aged Care Award, Nurses Award or SCHADS?",
+      body: [
+        "Three awards divide aged care between them. The Aged Care Award covers personal care workers, nursing assistants and support staff in residential facilities. Registered and enrolled nurses are covered by the Nurses Award, and home care workers by the SCHADS Award.",
+      ],
+      links: [
+        { href: "/nurses-award-rates/", label: "Nurses Award rates", note: "aged care registered and enrolled nurses" },
+        { href: "/schads-award-pay-rates/", label: "SCHADS Award rates", note: "home care and disability support" },
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "How much does a personal care worker earn in aged care?",
+        a: `From ${a.meta.operativeFrom} a personal care worker, who is a direct care employee under the Aged Care Award, earns ${$(dc1.hourly)} an hour at level 1 (Introductory), ${$(dc2.hourly)} at level 2 (Direct Carer), ${$(dc3.hourly)} at level 3 (Qualified), ${$(findAwardRate(a, "Direct care — level 4 (Senior)").hourly)} at level 4 (Senior), ${$(findAwardRate(a, "Direct care — level 5 (Specialist)").hourly)} at level 5 (Specialist) and ${$(dc6.hourly)} as a Team Leader. On a full-time 38-hour week a Qualified carer earns ${$(dc3.weekly)}.`,
+      },
+      {
+        q: "What are aged care award shift penalties?",
+        a: `An afternoon shift starting between 10.00 am and 1.00 pm is paid an extra 10%, one starting between 1.00 pm and 4.00 pm 12.5%, a night shift starting between 4.00 pm and 4.00 am 15%, and one starting between 4.00 am and 6.00 am 10%. The allowance is paid for the whole shift. At direct care level 3 the 15% night shift rate is ${$(roundCents(dc3.hourly * 1.15))} an hour.`,
+      },
+      {
+        q: "What is the aged care award casual overtime rate?",
+        a: `The Aged Care Award sets casual overtime at 187.5% of the hourly rate for the first 2 hours Monday to Friday, 250% after that and on weekends, and 312.5% on public holidays. For a Qualified direct care worker that is ${$(roundCents(dc3.hourly * 1.875))}, ${$(roundCents(dc3.hourly * 2.5))} and ${$(roundCents(dc3.hourly * 3.125))} an hour.`,
+      },
+      {
+        q: "Is there a sleepover allowance under the aged care award?",
+        a: `Yes. An employee required to sleep over is paid an allowance of 5.2% of the standard rate (${$(a.allowances.find((x) => x.name.startsWith("Sleepover"))!.amount)} a night), plus free board and lodging. Any work performed during a sleepover is paid on top, at overtime rates for full-time employees.`,
+      },
+    ],
+  };
+}
+
+function hairAndBeauty(): AwardPageCopy {
+  const a = MODERN_AWARDS["hair-and-beauty"];
+  const l1 = findAwardRate(a, "Level 1");
+  const l3 = findAwardRate(a, "Level 3");
+  const l6 = findAwardRate(a, "Level 6");
+  return {
+    slug: "hair-and-beauty-award-rates",
+    crumb: "Hair and Beauty Award Rates",
+    title: `Hair and Beauty Award Pay Rates ${FY} (${a.meta.code}) - Hairdressers`,
+    description: `Hair and Beauty Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr (${$(casual(a, l1.hourly))} casual) to Level 6 ${$(l6.hourly)}. Saturday 133%, Sunday 200% and junior rates.`,
+    h1: `Hair and Beauty Award Pay Rates ${FY}`,
+    standfirst: `Every adult classification under the ${a.meta.name} (${a.meta.code}), covering hairdressers, barbers, beauty therapists, nail technicians and salon staff, operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 hair and beauty employee earns at least ${$(l1.hourly)} an hour, or ${$(casual(a, l1.hourly))} as a casual. A qualified hairdresser or beauty therapist at Level 3 earns ${$(l3.hourly)}, and Level 6 ${$(l6.hourly)}. Saturday between 7.00 am and 6.00 pm is 133% (casuals 158%), Sunday 200% (casuals 225%) and public holidays 250% for everyone.`,
+    trap: {
+      heading: "Saturday is 133%, casual public holidays are 250%, and adult pay starts at 18",
+      body: `Salon Saturdays are paid at 133% (${$(roundCents(l1.hourly * 1.33))} at Level 1), not the 125% most awards use. On a public holiday a casual gets 250%, the same as a permanent employee, because the 25% loading is not added. Juniors reach the adult rate at 18: under-17s get 50% and 17-year-olds 75%.`,
+    },
+    related: {
+      heading: "Apprentice and qualified hairdresser pay",
+      body: [
+        "Clause 18 pays apprentice hairdressers a percentage of the Level 3 rate, with a 77% third year and a separate 30-month scale for pre-apprentices. The year-by-year figures, the Saturday rate and the tool allowance are on the apprentice page; the qualified hairdresser page sets Level 3 and above against median hairdresser pay:",
+      ],
+      links: [
+        { href: "/apprentice-pay/hairdresser/", label: "Apprentice hairdresser pay", note: "year 1 to 4, junior and pre-apprentice scales" },
+        { href: "/job-pay-rates/hairdresser/", label: "Hairdresser pay rates", note: "Level 3 to Level 6, hourly to annual, with the median" },
+        { href: "/apprentice-pay-rates/", label: "Apprentice pay rates by trade", note: "every trade side by side, with a wages calculator" },
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "How much does a hairdresser earn under the award?",
+        a: `A qualified hairdresser is typically classified at Level 3 or above: ${$(l3.hourly)} an hour (${$(l3.weekly)} a week) at Level 3, ${$(findAwardRate(a, "Level 4").hourly)} at Level 4, ${$(findAwardRate(a, "Level 5").hourly)} at Level 5 and ${$(l6.hourly)} at Level 6. Apprentice hairdressers are paid a percentage of the Level 3 rate under clause 18, and the year-by-year figures are on the apprentice hairdresser page.`,
+      },
+      {
+        q: "What are hair and beauty junior rates?",
+        a: `A hair and beauty employee under 17 is paid 50% of the adult rate, a 17-year-old 75%, and an employee aged 18 or over the full adult rate. At Level 1 that is ${$(juniorHourlyFor(a, l1, 0.5))} and ${$(juniorHourlyFor(a, l1, 0.75))} an hour, the award's own Schedule B figures.`,
+      },
+      {
+        q: "Do salon workers get paid more for late nights?",
+        a: "Ordinary hours can only be worked 7.00 am to 9.00 pm on weekdays, 7.00 am to 6.00 pm on Saturday and 10.00 am to 5.00 pm on Sunday. Full-time and part-time employees working outside those hours are paid overtime. Casuals working before 7.00 am or after 9.00 pm on a weekday, or outside 7.00 am to 6.00 pm on a Saturday, are paid 150%.",
+      },
+      {
+        q: "Is there a tool allowance for hairdressers?",
+        a: `Yes. An employee required to provide their own tools, including scissors, is paid ${$(a.allowances.find((x) => x.name.startsWith("Tool"))!.amount)} a week, and must be reimbursed for any electrical equipment they have to buy.`,
+      },
+    ],
+  };
+}
+
+function cleaning(): AwardPageCopy {
+  const a = MODERN_AWARDS.cleaning;
+  const l1 = findAwardRate(a, "Level 1");
+  const l2 = findAwardRate(a, "Level 2");
+  const l3 = findAwardRate(a, "Level 3");
+  const pt = (h: number) => roundCents(h * (1 + (a.meta.partTimeLoading ?? 0)));
+  return {
+    slug: "cleaning-award-rates",
+    crumb: "Cleaning Award Rates",
+    title: `Cleaning Award Pay Rates ${FY} (${a.meta.code}) - Casual Cleaners`,
+    description: `Cleaning Services Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr full-time, ${$(pt(l1.hourly))} part-time (15% allowance), ${$(casual(a, l1.hourly))} casual. Night, weekend and holiday rates.`,
+    h1: `Cleaning Award Pay Rates ${FY}`,
+    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}), covering commercial and contract cleaners and shopping trolley collectors, with separate full-time, part-time and casual rates, operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 cleaner earns at least ${$(l1.hourly)} an hour full-time, ${$(pt(l1.hourly))} part-time and ${$(casual(a, l1.hourly))} casual. Level 2 is ${$(l2.hourly)} and Level 3 ${$(l3.hourly)} (full-time). A weekday shift starting before 6.00 am or finishing after 6.00 pm is paid 115% (part-time 130%, casual 140%) for the whole shift, Saturday 150% and Sunday 200%.`,
+    trap: {
+      heading: "Part-time cleaners are paid 15% more per hour than full-timers",
+      body: `The Cleaning Services Award pays part-time employees a 15% allowance on every ordinary hour (cl 10.2), so a part-time Level 1 cleaner's base rate is ${$(pt(l1.hourly))}, not ${$(l1.hourly)}. The penalty table has a separate part-time column: a part-timer's Saturday is 165% and Sunday 215%. Junior rates apply only to shopping trolley collectors. Every other cleaner gets the adult rate at any age.`,
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "What is the cleaning award night shift rate?",
+        a: `A Monday to Friday shift that starts before 6.00 am or finishes after 6.00 pm is paid at 115% for the whole shift (part-time 130%, casual 140%). A permanent night shift (one that finishes after midnight and by 8.00 am and does not rotate) is 130% (casual 155%). At Level 1 that is ${$(roundCents(l1.hourly * 1.15))} and ${$(roundCents(l1.hourly * 1.3))} an hour full-time.`,
+      },
+      {
+        q: "What is the minimum shift for a cleaner?",
+        a: "The Cleaning Services Award sets a part-time or casual cleaner's minimum shift by the size of the site. The cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more. The cleaner must be paid for the minimum even if the job finishes early.",
+      },
+      {
+        q: "Is there a toilet cleaning allowance?",
+        a: `Yes. A cleaner employed for the major part of a shift to clean toilets is paid ${$(a.allowances.find((x) => x.name.startsWith("Toilet"))!.amount)} a shift or $18.17 a week. Other allowances include a broken shift allowance of $4.71 a day and a leading hand allowance from $61.73 a week.`,
+      },
+      {
+        q: "Do junior cleaners get paid less?",
+        a: "Only shopping trolley collectors employed by trolley collection contractors can be paid junior rates: 45% of the adult rate under 16, rising to 90% at 20. Every other cleaner covered by the award must be paid the full adult rate regardless of age.",
+      },
+    ],
+  };
+}
+
+function roadTransport(): AwardPageCopy {
+  const a = MODERN_AWARDS["road-transport"];
+  const g1 = findAwardRate(a, "Transport Worker Grade 1");
+  const g2 = findAwardRate(a, "Transport Worker Grade 2");
+  const g3 = findAwardRate(a, "Transport Worker Grade 3");
+  const g6 = findAwardRate(a, "Transport Worker Grade 6");
+  const g7 = findAwardRate(a, "Transport Worker Grade 7");
+  const g10 = findAwardRate(a, "Transport Worker Grade 10");
+  return {
+    slug: "road-transport-award-rates",
+    crumb: "Road Transport Award Rates",
+    title: `Road Transport Award Pay Rates ${FY} (${a.meta.code}) - Truck Drivers`,
+    description: `Road Transport Award rates from ${a.meta.operativeFrom}: Grade 1 ${$(g1.hourly)}/hr to Grade 10 ${$(g10.hourly)}/hr; semi-trailer ${$(g6.hourly)}, B-double ${$(g7.hourly)}. Shift, weekend and casual rates.`,
+    h1: `Road Transport Award Pay Rates ${FY}`,
+    standfirst: `Every transport worker grade and distribution facility level under the ${a.meta.name} (${a.meta.code}), covering truck, forklift and delivery drivers, couriers, loaders and warehouse staff, operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Transport Worker Grade 1 earns at least ${$(g1.hourly)} an hour, or ${$(casual(a, g1.hourly))} as a casual. A light rigid driver (Grade 2) earns ${$(g2.hourly)}, a forklift or medium rigid driver (Grade 3) ${$(g3.hourly)}, a semi-trailer driver (Grade 6) ${$(g6.hourly)} and a B-double driver (Grade 7) ${$(g7.hourly)}. Saturday is 150% and Sunday 200% (casuals 175% and 225%).`,
+    trap: {
+      heading: "Casual overtime drops the 25% loading, and junior rates run off the hourly rate",
+      body: `A casual on overtime is not paid the 25% loading. They get the overtime rate plus 10% of the minimum hourly rate: 160% for the first 2 hours and 210% after (${$(roundCents(g1.hourly * 1.6))} and ${$(roundCents(g1.hourly * 2.1))} at Grade 1). Full-time day workers are paid public holiday rates on top of their weekly wage. And a junior aged 18 or over driving a vehicle alone must be paid the adult rate for that driving grade.`,
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "How much does a truck driver earn under the award?",
+        a: `Under the Road Transport Award, a truck driver's grade and minimum rate are set by the vehicle they drive. A rigid truck up to 4.5 tonnes is Grade 2 (${$(g2.hourly)} an hour); a two-axle rigid up to 13.9 tonnes Grade 3 (${$(g3.hourly)}); a three-axle rigid Grade 4 (${$(findAwardRate(a, "Transport Worker Grade 4").hourly)}); a semi-trailer over 22.4 tonnes Grade 6 (${$(g6.hourly)}); a B-double up to 53.4 tonnes Grade 7 (${$(g7.hourly)}); and heavier combinations Grades 8 to 10 (up to ${$(g10.hourly)}). Full-time, Grade 6 is ${$(g6.weekly)} a week.`,
+      },
+      {
+        q: "What are the road transport award shift rates?",
+        a: `Shiftworkers are paid 117.5% on an afternoon shift (finishing after 6.30 pm and by 12.30 am) and 130% on a night shift (finishing after 12.30 am and by 8.30 am); casuals get 142.5% and 155%. At Grade 6 that is ${$(roundCents(g6.hourly * 1.175))} and ${$(roundCents(g6.hourly * 1.3))} an hour full-time. A shift roster that does not run for at least 5 consecutive afternoons or nights is paid 150% for the first 3 hours and 200% after.`,
+      },
+      {
+        q: "What is the minimum engagement for a casual truck driver?",
+        a: "A casual must be paid for at least 4 hours each engagement, and anyone required to work on a Saturday or Sunday is paid for at least 4 hours.",
+      },
+      {
+        q: "Is there a dangerous goods allowance?",
+        a: "Yes. A driver carrying bulk dangerous goods or explosives by public road is paid $25.07 a day, and one carrying packaged dangerous goods that require placards $10.47 a day. The employer must also reimburse training and medical costs for a dangerous goods licence.",
+      },
+    ],
+  };
+}
+
+const BUILDERS: Record<ModernAwardKey, () => AwardPageCopy> = {
+  "fast-food": fastFood,
+  pharmacy,
+  manufacturing,
+  security,
+  clerks,
+  // --- T4 awards batch 3 ---
+  restaurant,
+  nurses,
+  "aged-care": agedCare,
+  "hair-and-beauty": hairAndBeauty,
+  cleaning,
+  "road-transport": roadTransport,
+  // --- October 2026 batch (modern-award-content-oct.ts); lazy so import order cannot matter ---
+  miscellaneous: () => OCT_BUILDERS.miscellaneous(),
+  "building-construction": () => OCT_BUILDERS["building-construction"](),
+  "legal-services": () => OCT_BUILDERS["legal-services"](),
+  electrical: () => OCT_BUILDERS.electrical(),
+  fitness: () => OCT_BUILDERS.fitness(),
+  "real-estate": () => OCT_BUILDERS["real-estate"](),
+  "local-government": () => OCT_BUILDERS["local-government"](),
+  "live-performance": () => OCT_BUILDERS["live-performance"](),
+  // --- October 2026 batch 2 (modern-award-content-oct2.ts) ---
+  plumbing: () => OCT2_BUILDERS.plumbing(),
+  pastoral: () => OCT2_BUILDERS.pastoral(),
+  horticulture: () => OCT2_BUILDERS.horticulture(),
+  "health-professionals": () => OCT2_BUILDERS["health-professionals"](),
+  timber: () => OCT2_BUILDERS.timber(),
+  "meat-industry": () => OCT2_BUILDERS["meat-industry"](),
+  "commercial-sales": () => OCT2_BUILDERS["commercial-sales"](),
+  mining: () => OCT2_BUILDERS.mining(),
+};
+
+export function getAwardPageCopy(key: ModernAwardKey): AwardPageCopy {
+  return BUILDERS[key]();
+}

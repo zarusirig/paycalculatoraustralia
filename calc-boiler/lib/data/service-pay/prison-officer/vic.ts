@@ -83,21 +83,21 @@ export const VIC_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "prison-officer-cog2a",
       title: "Prison Officer (COG2A)",
-      intro: "Custodial Officer Structure on an 80-hour fortnight (Table 46), from 1 May 2026. The salaries include the 5.26% paid for the 4 additional hours a fortnight.",
+      intro: "Prison Officers are paid on the Custodial Officer Structure for an 80-hour fortnight (Table 46), from 1 May 2026. Each salary includes the 5.26% paid for the 4 additional hours a fortnight.",
       stepHeading: "Pay point",
       steps: cog2a.map(([p, salary]) => ({ label: `Prison Officer COG2A ${p}`, salary })),
     },
     {
       id: "senior-prison-officer-cog2b",
       title: "Senior Prison Officer / Industry Officer (COG2B)",
-      intro: "Table 46, 80-hour fortnight, from 1 May 2026.",
+      intro: "Senior Prison Officer and Industry Officer salaries come from the same structure (Table 46, 80-hour fortnight) and apply from 1 May 2026.",
       stepHeading: "Pay point",
       steps: cog2b.map(([p, salary]) => ({ label: `Senior Prison Officer COG2B ${p}`, salary })),
     },
     {
       id: "prison-supervisor-cog3",
       title: "Prison Supervisor / Industry Supervisor (COG3)",
-      intro: "Table 46, 80-hour fortnight, from 1 May 2026.",
+      intro: "Prison Supervisor and Industry Supervisor salaries are also set by Table 46, 80-hour fortnight, and apply from 1 May 2026.",
       stepHeading: "Pay point",
       steps: cog3.map(([p, salary]) => ({ label: `Prison Supervisor COG3 ${p}`, salary })),
     },
@@ -107,14 +107,14 @@ export const VIC_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "A trainee custodial officer is classified COG-1 (pay point C1-E01) and paid $63,331 a year on the 80-hour fortnight structure from 1 May 2026 (Table 46).",
-    "Progression through the structure is linked to completing the Certificate III and Certificate IV in Correctional Practice (Appendix 1).",
+    "Progression through the Custodial Officer Structure is linked to completing the Certificate III and Certificate IV in Correctional Practice (Appendix 1).",
   ],
   penalties: [
-    "Custodial officers can be rostered for up to 80 hours a fortnight (76 ordinary hours plus 4 reasonable additional hours), and the agreement pays 5.26% more for that pattern, already included in the Table 46 salaries (clause 43.1(c)–(d)).",
+    "Custodial officers can be rostered for up to 80 hours a fortnight (76 ordinary hours plus 4 reasonable additional hours). The agreement pays 5.26% more for that pattern, and the Table 46 salaries already include it (clause 43.1(c) to (d)).",
     "Rotating shift allowances (Table 20): 15% for an afternoon shift, 20% for a night shift, 50% for Saturday, 100% for Sunday and 150% on a public holiday (or 50% plus a day's leave in lieu).",
   ],
   notices: [
-    "These are the 80-hour fortnight salaries. A custodial officer rostered on a 76-hour fortnight is paid on Table 45, which is lower and is not reproduced here.",
+    "The Corrections Victoria salaries on this page are for the 80-hour fortnight. A custodial officer rostered on a 76-hour fortnight is paid on Table 45, which is lower and is not reproduced here.",
   ],
   unverified: [
     "Table 45 (the same structure on a 76-hour fortnight) and the Operations Manager (COG4) rows.",
@@ -134,11 +134,11 @@ export const VIC_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What do trainee prison officers get paid in Victoria?",
-      a: "A trainee is COG-1 and paid $63,331 a year from 1 May 2026 on the 80-hour fortnight structure.",
+      a: "A trainee prison officer in Victoria is classified COG-1 and paid $63,331 a year from 1 May 2026 on the 80-hour fortnight structure.",
     },
     {
       q: "When is the next pay rise for Victorian prison officers?",
-      a: "1 May 2027, when the agreement's next 3% increase applies. A Prison Officer COG2A at the first pay point goes to $67,334.",
+      a: "Victorian prison officers get their next pay rise on 1 May 2027, when the agreement's next 3% increase applies. A Prison Officer COG2A at the first pay point goes to $67,334.",
     },
   ],
 };

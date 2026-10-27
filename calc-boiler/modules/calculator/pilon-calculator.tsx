@@ -68,7 +68,7 @@ export default function PilonCalculator() {
               </p>
             )}
             <p className="text-xs text-warmgray-light">
-              Minimum notice from the National Employment Standards (Fair Work Act s 117). An award, agreement or contract can require longer notice. Payment in lieu must equal what you would have been paid by working the notice period. Tax is the ATO&rsquo;s employment termination payment treatment, estimated for a resident; this does not include unused leave, long service leave or redundancy pay.
+              The minimum notice comes from the National Employment Standards (Fair Work Act s 117). An award, agreement or contract can require longer notice. Payment in lieu must equal what you would have been paid by working the notice period. The tax estimate uses the ATO&rsquo;s employment termination payment (ETP) treatment for an Australian resident. It does not include unused leave, long service leave or redundancy pay.
             </p>
           </div>
         </div>

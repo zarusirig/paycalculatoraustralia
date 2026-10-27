@@ -50,7 +50,7 @@ export function stateFaqs(code: PayrollTaxStateCode): Faq[] {
     },
     {
       q: `What is the ${s.abbr} payroll tax threshold?`,
-      a: `${formatAUD(s.annualThreshold)} a year of Australian taxable wages; the monthly figure is ${s.monthlyThresholdText}. ${s.thresholdSummary}`,
+      a: `The threshold is ${formatAUD(s.annualThreshold)} a year of Australian taxable wages, and the monthly threshold is ${s.monthlyThresholdText}. ${s.thresholdSummary}`,
     },
     {
       q: `How much ${s.abbr} payroll tax is payable on a $3 million wage bill?`,
@@ -94,14 +94,14 @@ export const CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "Which state has the highest payroll tax threshold?",
-    a: `The Northern Territory at ${formatAUD(PAYROLL_TAX_STATES.nt.annualThreshold)}, although it tapers away completely at $7.5 million. Victoria and Western Australia have the lowest, at ${formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)}.`,
+    a: `The Northern Territory has the highest threshold, at ${formatAUD(PAYROLL_TAX_STATES.nt.annualThreshold)}, although it tapers away completely at $7.5 million of Australian wages. Victoria and Western Australia have the lowest, at ${formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)}.`,
   },
 ];
 
 export const HUB_FAQS: Faq[] = [
   {
     q: "What is payroll tax?",
-    a: "A state and territory tax on the wages employers pay. Each state sets its own rate and tax-free threshold, and only employers whose total Australian wages (including any group they belong to) exceed the threshold pay it.",
+    a: "Payroll tax is a state and territory tax on the wages employers pay. Each state sets its own rate and tax-free threshold, and only employers whose total Australian wages (including any group they belong to) exceed the threshold pay it.",
   },
   ...CALCULATOR_FAQS.slice(1, 5),
   {
@@ -117,7 +117,7 @@ function lowestAnswer(): string {
   const nil15 = at(1_500_000)
     .filter((x) => x.r.total === 0)
     .map((x) => PAYROLL_TAX_STATES[x.code].abbr);
-  return `It depends on the size of the payroll, because thresholds, tapers and rates interact. On a $1.5 million wage bill paid in one state, ${nil15.join(", ")} charge nothing. On $10 million, ${PAYROLL_TAX_STATES[low10.code].name} is cheapest (${formatAUD(low10.r.total)}) and ${PAYROLL_TAX_STATES[high10.code].name} the most expensive (${formatAUD(high10.r.total)}), before any regional concession.`;
+  return `The state with the lowest payroll tax changes with the size of the payroll, because thresholds, tapers and rates interact. On a $1.5 million wage bill paid in one state, ${nil15.join(", ")} charge nothing. On $10 million, ${PAYROLL_TAX_STATES[low10.code].name} is cheapest (${formatAUD(low10.r.total)}) and ${PAYROLL_TAX_STATES[high10.code].name} the most expensive (${formatAUD(high10.r.total)}), before any regional concession.`;
 }
 
 /** "$1.5m" style labels for the example table. */

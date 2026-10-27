@@ -44,7 +44,7 @@ export default function CarerAllowancePage({ children, afterCalculator }: { chil
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Carer Allowance" title="Carer Allowance 2026: How Much, Income Limit and Working">
           <p>
-            Carer Allowance is <strong>{formatAUD(CA.fortnightly, 2)} a fortnight</strong>, a set rate that isn&apos;t taxed. Your wages don&apos;t reduce it: the only income test is that you and your partner&apos;s combined adjusted taxable income is under {formatAUD(CA.incomeLimit)} a year. You can get it on top of Carer Payment, and each brings a {formatAUD(CA.carerSupplementAnnual)} Carer Supplement every year.
+            Carer Allowance is <strong>{formatAUD(CA.fortnightly, 2)} a fortnight</strong>, a set rate that isn&apos;t taxed. Your wages don&apos;t reduce it: the only income test is that your and your partner&apos;s combined adjusted taxable income is under {formatAUD(CA.incomeLimit)} a year. You can get it on top of Carer Payment, and each brings a {formatAUD(CA.carerSupplementAnnual)} Carer Supplement every year.
           </p>
         </W3Hero>
 

@@ -10,7 +10,7 @@ export const TIME_IN_LIEU_FAQS: Faq[] = [
   },
   {
     q: "Is time in lieu hour for hour or time and a half?",
-    a: "It depends on the award. The Clerks, Hospitality, Manufacturing, Security and SCHADS awards give one hour off for each overtime hour. The Retail, Fast Food and Pharmacy awards give time off equal to the overtime payment, so 2 hours at time and a half buys 3 hours off.",
+    a: "Time in lieu is hour for hour under some awards and equal to the overtime payment under others. The Clerks, Hospitality, Manufacturing, Security and SCHADS awards give one hour off for each overtime hour. The Retail, Fast Food and Pharmacy awards give time off equal to the overtime payment, so 2 hours at time and a half buys 3 hours off.",
   },
   {
     q: "Can my employer make me take time in lieu instead of overtime pay?",

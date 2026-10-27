@@ -59,7 +59,7 @@ export default function EmployerCostCalculatorPage({
             Employer Cost Calculator: The True Cost of Hiring
           </h1>
           <p className="text-xl text-warmgray leading-relaxed max-w-3xl">
-            A staff member on a $100,000 salary costs a business far more than $100,000. Calculate the hidden on-costs including superannuation, payroll tax, workers comp, and mandatory leave provisions.
+            An employee on a $100,000 salary costs a business far more than $100,000. This calculator adds superannuation, state payroll tax, the WorkCover premium and the annual leave provision to the base salary to show the true cost of an employee.
           </p>
           <TrustBar className="mt-8 !max-w-none" variant="light" />
         </header>
@@ -75,7 +75,7 @@ export default function EmployerCostCalculatorPage({
                 <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                   <Briefcase className="h-6 w-6 text-eucalyptus" /> Calculate Total Employment Cost
                 </h2>
-                <p className="text-sandstone-dark/50">Adjust the parameters below to see the hidden multiplier effect.</p>
+                <p className="text-sandstone-dark/50">Enter the base salary, state and WorkCover rate to see the true cost and its multiplier over base salary.</p>
               </div>
 
               <div className="p-6 md:p-8 grid md:grid-cols-2 gap-10">
@@ -144,7 +144,7 @@ export default function EmployerCostCalculatorPage({
                           <span className="text-warmgray-light text-sm">%</span>
                         </div>
                       </div>
-                      <p className="text-xs text-warmgray-light leading-tight">Varies wildly by industry risk (0.5% - 10%).</p>
+                      <p className="text-xs text-warmgray-light leading-tight">The premium rate varies by industry risk, from 0.5% to 10%.</p>
                     </div>
                   </div>
                 </div>

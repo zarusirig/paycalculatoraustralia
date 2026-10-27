@@ -53,7 +53,7 @@ export const VIC_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "constable-to-leading-senior-constable",
       title: "Constable to Leading Senior Constable (Schedule A, Levels 1–2)",
-      intro: `Sworn police officers from Constable 1 (the Probationary Constable rate) to Leading Senior Constable 16, from 1 June 2026. ${COMMUTED}`,
+      intro: `This table covers Victoria Police sworn officers from Constable 1 (the Probationary Constable rate) to Leading Senior Constable 16, from 1 June 2026. ${COMMUTED}`,
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Constable 1", salary: 84_060, note: "Probationary Constable rate after swearing-in" },
@@ -91,7 +91,7 @@ export const VIC_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "senior-sergeant",
       title: "Senior Sergeant (Schedule A, Level 4)",
-      intro: `Senior sergeants, from 1 June 2026. ${COMMUTED}`,
+      intro: `Victoria Police senior sergeants are paid these rates from 1 June 2026. ${COMMUTED}`,
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Senior Sergeant 1", salary: 155_601 },
@@ -106,7 +106,7 @@ export const VIC_POLICE_PAY: ServicePayJurisdiction = {
       id: "inspector",
       title: "Inspector (Schedule A, Level 5)",
       intro:
-        "Inspectors, from 1 June 2026. For officers the agreement's base rate is the Schedule A amount divided by 116.4%, so these amounts are not base salary either.",
+        "Victoria Police inspectors are paid these rates from 1 June 2026. For officers, the agreement's base rate is the Schedule A amount divided by 116.4%, so these amounts are not base salary either.",
       stepHeading: "Rank and pay point",
       steps: [
         { label: "Inspector 1", salary: 170_644 },
@@ -127,7 +127,7 @@ export const VIC_POLICE_PAY: ServicePayJurisdiction = {
   ],
   penalties: [
     "Commuted penalty allowance (clause 64.1): the Schedule A rate for Constables to Senior Sergeants already includes 13% of base pay for liability to work weekends, public holidays and shifts. The shift allowances below are paid on top when that work is actually done.",
-    "Shift allowances (clause 79.2), per rostered ordinary hour: 18.5% (unsociable, 6pm–1am Monday to Friday), 23.5% (intrusive, 1am–7am Monday to Friday), 39.36% (weekend, 7am–6pm), 45.22% (unsociable weekend, 6pm–1am) and 57.76% (intrusive weekend, 1am–7am), each on the ordinary hourly rate. Christmas Day, Boxing Day, New Year's Day and Australia Day are treated as weekend days.",
+    "Shift allowances (clause 79.2), per rostered ordinary hour: 18.5% (unsociable, 6pm to 1am Monday to Friday), 23.5% (intrusive, 1am to 7am Monday to Friday), 39.36% (weekend, 7am to 6pm), 45.22% (unsociable weekend, 6pm to 1am) and 57.76% (intrusive weekend, 1am to 7am), each on the ordinary hourly rate. Christmas Day, Boxing Day, New Year's Day and Australia Day are treated as weekend days.",
     "Excessive night work (clause 80): night work rostered on more than seven occasions in 28 days is paid at the overtime/recall rate of 1.5 for each hour.",
   ],
   notices: [

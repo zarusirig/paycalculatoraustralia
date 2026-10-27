@@ -59,7 +59,7 @@ export const CHEF: Occupation = {
   coverage: [
     "Which award covers a chef depends on where they work. Chefs in hotels, pubs, taverns, motels, resorts and casinos are covered by the Hospitality Industry (General) Award 2020 [MA000009]. Chefs in restaurants, cafés, reception centres and roadhouses are covered by the Restaurant Industry Award 2020 [MA000119]. A restaurant inside a hotel or licensed club stays under the Hospitality or Clubs award (Restaurant Award cl 4.2).",
     "Both awards use the same cook grades and pay the same minimum weekly and hourly rates at every level. A qualified chef (someone who has completed a commercial cookery apprenticeship or passed the trade test; the Restaurant Award also accepts the appropriate level of training) starts at Cook grade 3 (tradesperson), which both awards describe as \"a commi chef or equivalent\". A demi chef is Cook grade 4 and a chef de partie Cook grade 5.",
-    "Cook grades 1 and 2 cover unqualified cooks: grade 1 cooks breakfasts and snacks, grade 2 has the appropriate level of training. The awards differ on penalty rates. See the penalty section.",
+    "Cook grades 1 and 2 cover unqualified cooks: grade 1 cooks breakfasts and snacks, grade 2 has the appropriate level of training. The Hospitality and Restaurant awards differ on penalty rates, which the penalty section sets out.",
     "Chefs in takeaway shops are usually under the Fast Food Award, and cooks in residential aged care under the Aged Care Award general stream. Head chefs and executive chefs are commonly paid salaries above the award.",
   ],
   tables: [
@@ -67,7 +67,7 @@ export const CHEF: Occupation = {
       id: "cooks-hospitality",
       title: "Chef and cook pay rates: Hospitality Award, 2026–27",
       intro:
-        "Hospitality Award cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading.",
+        "Chef and cook minimums under the Hospitality Award are set by cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. The casual rate is the minimum hourly rate plus the 25% casual loading.",
       rows: [
         hospitalityRow("Level 2", "Cook grade 1", "Breakfasts and snacks"),
         hospitalityRow("Level 3", "Cook grade 2", "Has the appropriate level of training"),
@@ -80,7 +80,7 @@ export const CHEF: Occupation = {
       id: "cooks-restaurant",
       title: "Chef and cook pay rates: Restaurant Award, 2026–27",
       intro:
-        "Restaurant Award cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. The minimums are the same dollars as the Hospitality Award; the penalty rates differ.",
+        "Chef and cook minimums under the Restaurant Award are set by cl 18.1, Table 3, from the first full pay period on or after 1 July 2026. They are the same dollar amounts as the Hospitality Award, but the penalty rates differ.",
       rows: [
         restaurantRow("Level 2", "Restaurant — Cook grade 1"),
         restaurantRow("Level 3", "Restaurant — Cook grade 2"),
@@ -91,7 +91,7 @@ export const CHEF: Occupation = {
     },
   ],
   penalties: HOSPITALITY_PENALTY_ROWS,
-  penaltiesNote: `Hospitality Award cl 29.2, Table 14. ${HOSPITALITY_EVENING_NOTE} Under the Restaurant Award the $2.95 loading starts at 10 pm (not 7 pm), the $4.42 loading runs midnight to 6 am, and casual chefs at Cook grade 2 or above get 175% on Sunday (Table 8).`,
+  penaltiesNote: `The chef penalty rates above are from the Hospitality Award (cl 29.2, Table 14). ${HOSPITALITY_EVENING_NOTE} Under the Restaurant Award the $2.95 loading starts at 10 pm (not 7 pm), the $4.42 loading runs midnight to 6 am, and casual chefs at Cook grade 2 or above get 175% on Sunday (Table 8).`,
   overtime: HOSPITALITY_OVERTIME_LINES,
   allowances: [
     { name: "Tool and equipment allowance", amount: "$2.03 per day", note: "A cook or apprentice cook required to supply and use their own tools; up to $9.94 a week (Hospitality cl 26.5(a); the Restaurant Award pays the same)." },
@@ -118,7 +118,7 @@ export const CHEF: Occupation = {
     },
     {
       q: "Is a chef covered by the Hospitality Award or the Restaurant Award?",
-      a: "It depends on the employer. Hotels, pubs, motels and resorts use the Hospitality Award; restaurants, cafés and reception centres use the Restaurant Award. The minimum hourly rates are identical; the evening loadings, casual Sunday rate for lower grades and Saturday overtime differ.",
+      a: "It depends on the type of business that employs the chef. Hotels, pubs, motels and resorts use the Hospitality Award; restaurants, cafés and reception centres use the Restaurant Award. The minimum hourly rates are identical; the evening loadings, casual Sunday rate for lower grades and Saturday overtime differ.",
     },
     {
       q: "How much is a chef paid on a Sunday?",

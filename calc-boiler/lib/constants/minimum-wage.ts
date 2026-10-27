@@ -63,7 +63,7 @@ export const NMW_DECISION = {
   decidedOn: "2 June 2026",
   operativeFrom: "1 July 2026",
   operativeNote:
-    "Applies from the start of the employee's first full pay period on or after 1 July 2026.",
+    "The new minimum rates apply from the start of each employee's first full pay period on or after 1 July 2026.",
   /** The decision itself refers to "the 2027 Review" ([141]). */
   nextReview: "Annual Wage Review 2027",
   /** s 286/287 Fair Work Act: review outcomes operate from 1 July. */

@@ -44,7 +44,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable-to-senior-constable",
       title: "Constable to Senior Constable (seven weeks leave)",
       intro:
-        "Sworn constables and senior constables on the seven-weeks-leave salary table (Attachment A clause 7), from 7 August 2026 (a 4% increase).",
+        "These rates apply to sworn NT Police Force constables and senior constables on the seven-weeks-leave salary table (Attachment A clause 7) from 7 August 2026 (a 4% increase).",
       stepHeading: "Rank",
       steps: [
         { label: "Constable 1 (Graduation to end 12 months service)", salary: 87_005 },
@@ -71,7 +71,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "sergeant",
       title: "Sergeant (seven weeks leave)",
-      intro: "Sergeants on the seven-weeks-leave salary table, from 7 August 2026.",
+      intro: "These rates apply to NT Police Force sergeants on the seven-weeks-leave salary table from 7 August 2026.",
       stepHeading: "Rank",
       steps: [
         { label: "Sergeant 1", salary: 130_457 },
@@ -84,7 +84,7 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "senior-sergeant",
       title: "Senior Sergeant (seven weeks leave)",
-      intro: "Senior sergeants on the seven-weeks-leave salary table, from 7 August 2026.",
+      intro: "These rates apply to NT Police Force senior sergeants on the seven-weeks-leave salary table from 7 August 2026.",
       stepHeading: "Rank",
       steps: [
         { label: "Senior Sergeant 1", salary: 143_876 },
@@ -98,11 +98,11 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
   topStep: "Senior Constable 6",
 
   traineePay: [
-    "Recruits in training are paid $74,619 a year from 7 August 2026 on the seven-weeks-leave table, rising to $79,095 after 4 months (Attachment A clause 7).",
+    "NT Police Force recruits in training are paid $74,619 a year from 7 August 2026 on the seven-weeks-leave table, rising to $79,095 after 4 months (Attachment A clause 7).",
     "Recruit Constables in training at the NTPFES College are excluded from the General Policing Allowance and the Night Shift Allowance (clauses 17 and 20).",
   ],
   penalties: [
-    "Consolidated Allowance (clause 15): increased from 20% to 23% of salary for the life of the agreement.",
+    "Consolidated Allowance (clause 15): 23% of salary for the life of the agreement, up from 20%.",
     "General Policing Allowance (clause 17): 5% of base annual salary, paid fortnightly to Senior Sergeants and below (not recruits in training).",
     "Night Shift Allowance (clause 20): 15% of base annual salary for each night shift actually worked, for Senior Sergeants and below; not payable when the night shift is worked as overtime.",
   ],
@@ -129,11 +129,11 @@ export const NT_POLICE_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What do NT police recruits get paid?",
-      a: "Recruits in training are paid $74,619 a year from 7 August 2026, rising to $79,095 after four months (seven-weeks-leave table).",
+      a: "NT Police Force recruits in training are paid $74,619 a year from 7 August 2026, rising to $79,095 after four months (seven-weeks-leave table).",
     },
     {
       q: "How much does a senior constable earn in the Northern Territory?",
-      a: "Senior Constables earn $109,176 at pay point 1 rising to $120,539 at pay point 6 from 7 August 2026 on the seven-weeks-leave table.",
+      a: "NT Police Force Senior Constables earn $109,176 at pay point 1 rising to $120,539 at pay point 6 from 7 August 2026 on the seven-weeks-leave table.",
     },
     {
       q: "When is the next NT police pay rise?",

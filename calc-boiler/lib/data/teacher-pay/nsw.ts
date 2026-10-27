@@ -84,7 +84,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
       id: "principals",
       title: "Principals (Schedule 2A)",
       intro:
-        "The principal classification structure. A principal's classification is derived from their school's funding allocation, and P2 to P5 include a complexity loading on top of the base principal salary.",
+        "A NSW public school principal's classification is derived from their school's funding allocation, and P2 to P5 include a complexity loading on top of the base principal salary.",
       stepHeading: "Classification",
       steps: [
         { label: "Teaching Principal 1 (TP1) / Associate Principal", salary: 153_531 },
@@ -166,7 +166,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "The rates below are the award's 9 October 2026 column, the last 3% rise it schedules, paid from the first full pay period on or after 9 October 2026, so the first pay with the new rate can fall a little after that date. The award remains in force until 8 October 2027.",
+    "The rates below are the NSW award's 9 October 2026 column, the last 3% rise it schedules. They are paid from the first full pay period on or after 9 October 2026, so the first pay with the new rate can fall a little after that date. The award remains in force until 8 October 2027.",
   ],
 
   unverified: [
@@ -196,7 +196,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "When do NSW teachers get a pay rise?",
-      a: "The latest is 3% from the first pay period commencing on or after 9 October 2026 (clause 3 of the Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024), which took Step 1 to $92,882 and Step 7 to $133,422. The previous 3% applied from the first pay period commencing on or after 9 October 2025, and the one before that from 9 October 2024. The 9 October 2026 rise is the last in the award's three-year schedule, and the award remains in force until 8 October 2027, so any further rise depends on a new award. Because it applies from the first pay period on or after 9 October, it shows on your pay a little after that date rather than on the day itself.",
+      a: "NSW public school teachers got their latest pay rise of 3% from the first pay period commencing on or after 9 October 2026 (clause 3 of the Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024). It took Step 1 to $92,882 and Step 7 to $133,422. The previous 3% applied from the first pay period commencing on or after 9 October 2025, and the one before that from 9 October 2024. The 9 October 2026 rise is the last in the award's three-year schedule. The award remains in force until 8 October 2027, so any further rise depends on a new award. Because it applies from the first pay period on or after 9 October, it shows on your pay a little after that date rather than on the day itself.",
     },
     {
       q: "What is the graduate teacher salary in NSW?",
@@ -204,7 +204,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the top of the NSW teacher pay scale?",
-      a: "Step 7, $133,422 a year, is the top of the classroom teacher scale. Above that, Highly Accomplished / Lead Teacher accreditation pays $141,997, and moving into a promotion position such as head teacher pays $153,531.",
+      a: "Step 7, $133,422 a year, is the top of the NSW classroom teacher scale. Above that, Highly Accomplished / Lead Teacher accreditation pays $141,997, and moving into a promotion position such as head teacher pays $153,531.",
     },
     {
       q: "How long does it take to reach the top of the NSW teacher scale?",
@@ -220,7 +220,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the casual teacher daily rate in NSW?",
-      a: "Casual teachers are paid a daily rate: $480.43 at CT1 (graduate accreditation), $538.73 at CT2 and $599.85 at CT3, for rates commencing on or after 9 October 2026.",
+      a: "NSW casual teachers are paid a daily rate: $480.43 at CT1 (graduate accreditation), $538.73 at CT2 and $599.85 at CT3, for rates commencing on or after 9 October 2026.",
     },
   ],
 };

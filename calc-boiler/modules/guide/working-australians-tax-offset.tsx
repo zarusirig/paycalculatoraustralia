@@ -102,7 +102,7 @@ export default function WorkingAustraliansTaxOffsetPage() {
           <section>
             <H2 id="take-home">Take-Home Pay in 2027-28 vs 2026-27</H2>
             <p>
-              The table holds your salary the same in both years, so the difference is purely the law. It includes income tax, the low income tax offset and the Medicare levy at current settings. Pay rises would add to it.
+              The table holds your salary the same in both years, so the whole difference comes from the rate cut and the WATO. It includes income tax, the low income tax offset and the Medicare levy at current settings. Pay rises would add to it.
             </p>
             <DataTable
               head={["Salary", "Take-home 2026-27", "Take-home 2027-28", "Better off a year", "Per fortnight"]}

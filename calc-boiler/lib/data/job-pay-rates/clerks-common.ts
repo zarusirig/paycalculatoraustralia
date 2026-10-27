@@ -32,7 +32,7 @@ export const CLERKS_PENALTY_ROWS: PenaltyRow[] = CLERKS_AWARD.penalties.map((p) 
   casual: pct(p.casual),
 }));
 
-export const CLERKS_PENALTIES_NOTE = `Percentages of the minimum hourly rate (${CLERKS_AWARD.penaltiesClause}). Casual percentages include the 25% loading. ${CLERKS_AWARD.penaltyNotes[0]}`;
+export const CLERKS_PENALTIES_NOTE = `Clerks Award penalty rates are percentages of the minimum hourly rate (${CLERKS_AWARD.penaltiesClause}). Casual percentages include the 25% loading. ${CLERKS_AWARD.penaltyNotes[0]}`;
 
 export const CLERKS_OVERTIME_LINES: string[] = [
   `Full-time and part-time: ${CLERKS_AWARD.overtime.map((o) => `${o.label.toLowerCase()} ${pct(o.fullTime)}`).join("; ")} (${CLERKS_AWARD.overtimeClause}).`,

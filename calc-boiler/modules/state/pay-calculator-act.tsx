@@ -64,11 +64,13 @@ export default function PayCalculatorACTPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">ACT</span>
           </div>
           <p className="text-lg text-warmgray">
-            Canberra has the highest earnings in the country and the shortest wait for long service
-            leave. This salary calculator applies ATO {SITE_CONFIG.financialYear} rates to your gross
-            pay, and the sections below deal with the ACT-only parts: Canberra Day, Reconciliation Day,
-            7-year long service leave, and the public service super rate that makes package figures here
-            misleading.
+            Canberra take-home pay is your gross salary minus federal income tax and the Medicare
+            levy: the Australian Capital Territory (ACT) sets no income tax of its own. Canberra has the highest
+            earnings in the country and the shortest wait for long service leave. This salary
+            calculator applies the ATO {SITE_CONFIG.financialYear} rates to your gross pay and shows
+            your weekly, fortnightly and monthly take-home pay. The sections below cover the ACT-only
+            parts: Canberra Day, Reconciliation Day, 7-year long service leave, and the public service
+            super rate that makes Canberra package figures misleading.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -105,32 +107,33 @@ export default function PayCalculatorACTPage() {
             <H2>Is your Canberra salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               The ACT posts the highest full-time ordinary time earnings in Australia at{" "}
-              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week, and by some distance the smallest
-              gender gap of any jurisdiction, a consequence of a workforce dominated by classified
-              public service pay scales rather than negotiated private rates.
+              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week. It also has by some distance the
+              smallest gender gap of any jurisdiction, because classified public service pay scales,
+              not negotiated private rates, dominate the ACT workforce.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Note how close the full-time and total-earnings rows are: there is very little overtime in
-              the ACT compared with the resource states, so base salary tells you nearly the whole
-              story.
+              The full-time rows for ordinary hours and including overtime sit close together because
+              ACT workers earn very little overtime compared with the resource states. For a Canberra
+              salary, base pay is nearly the whole figure.
             </p>
           </section>
 
           <section>
             <H2>The ACT super rate that makes package offers confusing</H2>
             <p className="mb-4 text-warmgray">
-              This is the single most common source of confusion in a Canberra pay comparison, and the
-              calculator above handles it if you tick the package box.
+              Federal public servants under PSSap get a higher employer super rate than the standard
+              SG rate, which makes Canberra package offers hard to compare. The calculator above handles
+              this if you tick the package box.
             </p>
             <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>APS Superannuation</strong> &mdash; Federal public servants under the PSSap scheme receive employer super contributions of <strong>15.4%</strong>, compared to the standard SG rate of 12%. This adds <strong>$3,400 per year</strong> in additional super for an employee on $100,000. Learn more in our <Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline">Superannuation Guide</Link>.</li>
+              <li><strong>APS Superannuation</strong>: federal public servants under the PSSap scheme receive employer super contributions of <strong>15.4%</strong>, compared to the standard SG rate of 12%. This adds <strong>$3,400 per year</strong> in additional super for an employee on $100,000. Learn more in our <Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline">Superannuation Guide</Link>.</li>
             </ul>
             <p className="text-sm text-warmgray">
               The calculator above uses the statutory guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)},
               which is what a private-sector Canberra employer pays. If you are on a higher scheme rate,
               the take-home figure is unaffected (super is paid on top of salary, not out of it), but
-              the total package line will understate you. Compare offers with the{" "}
+              the total package line will understate your package. Compare offers with the{" "}
               <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">salary package calculator</Link>.
             </p>
           </section>
@@ -150,9 +153,10 @@ export default function PayCalculatorACTPage() {
           <section>
             <H2>Long service leave in the ACT</H2>
             <p className="mb-4 text-warmgray">
-              The ACT reaches the entitlement faster than anywhere else in Australia: 7 years, and a
-              pro-rata payment can be owed from as little as 5. There is also a quirk worth knowing:
-              if a public holiday falls during your long service leave, the leave is extended by a day.
+              ACT employees reach the long service leave entitlement faster than anywhere else in
+              Australia: after 7 years, and a pro-rata payment can be owed from as little as 5. If a
+              public holiday falls during your long service leave in the ACT, the leave is extended by
+              a day.
             </p>
             <LongServiceLeaveBlock profile={PROFILE} />
             <ForwardLslLinks profile={PROFILE} />
@@ -169,10 +173,10 @@ export default function PayCalculatorACTPage() {
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               The ACT charges the highest general payroll tax rate in the country (6.75%, rising with
-              payroll size), but only on employers with more than $1.75 million of Australian wages. Either way it is not your
-              deduction. See the{" "}
-              <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link> for the
-              items that genuinely are.
+              payroll size), but only on employers with more than $1.75 million of Australian wages. The employer
+              pays it, and it is not deducted from ACT wages. The{" "}
+              <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link> lists
+              the deductions that do come out of your pay.
             </p>
           </section>
 

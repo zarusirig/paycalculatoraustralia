@@ -97,7 +97,7 @@ export const BOOST_JUICE_PAY: EmployerPay = {
     },
     {
       q: "Which award covers Boost Juice?",
-      a: "The Fast Food Industry Award 2020 (MA000003). Juices and smoothies sold from a kiosk to drink elsewhere are fast food as the award defines it. The Fair Work Ombudsman's 2018 report on Retail Zoo named this award as covering the group's takeaway brands. The Retail Award does not apply, because it excludes fast food operations.",
+      a: "Boost Juice staff are covered by the Fast Food Industry Award 2020 (MA000003). Juices and smoothies sold from a kiosk to drink elsewhere are fast food as the award defines it. The Fair Work Ombudsman's 2018 report on Retail Zoo named this award as covering the group's takeaway brands. The Retail Award does not apply, because it excludes fast food operations.",
     },
     {
       q: "Does Boost Juice have an enterprise agreement?",
@@ -105,7 +105,7 @@ export const BOOST_JUICE_PAY: EmployerPay = {
     },
     {
       q: "How much does Boost Juice pay a 15 or 16 year old?",
-      a: "The award prints junior dollars for Level 1. A team member under 16 gets $11.12 an hour ($13.90 casual), a 16-year-old $13.91 ($17.39 casual) and a 17-year-old $16.69 ($20.86 casual). Every shift must be at least 3 hours, including for school students, and the adult rate applies from 21.",
+      a: "A Boost Juice team member under 16 must get at least $11.12 an hour ($13.90 casual), a 16-year-old $13.91 ($17.39 casual) and a 17-year-old $16.69 ($20.86 casual). These are the Fast Food Award's printed junior rates for Level 1. Every shift must be at least 3 hours, including for school students, and the adult rate applies from 21.",
     },
     {
       q: "What does Boost Juice pay on weekends and public holidays?",

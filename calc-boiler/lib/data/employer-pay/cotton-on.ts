@@ -67,7 +67,7 @@ export const COTTON_ON_PAY: EmployerPay = {
   notices: [
     "These are the General Retail Industry Award minimums for store staff. Cotton On Group can pay above them, but we found no store agreement that sets a different floor.",
     "Cotton On Group does have one enterprise agreement, approved on 23 December 2025. It covers team members at its distribution centres only (COG Regional Team Pty Ltd, with the United Workers Union). If you work in a store it does not apply to you, and your payslip must name the award or agreement you are paid under.",
-    "Brands under the same group, including Cotton On Body, Cotton On Kids, Factorie, Typo, Rubi and Supré, are retail stores covered by the same award. These rates are the floor there too.",
+    "Cotton On Group's other store brands, including Cotton On Body, Cotton On Kids, Factorie, Typo, Rubi and Supré, are covered by the same award, so these rates are the floor there too.",
   ],
   unverified: [
     "Which award level Cotton On classifies each store role at; team member, senior team member and keyholder roles could sit at Levels 1 to 3.",

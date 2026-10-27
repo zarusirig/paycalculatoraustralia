@@ -51,7 +51,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
       id: "classroom-teachers",
       title: "Teachers: Step 1 to Step 9",
       intro:
-        "The classroom teacher scale. Where you enter depends on your qualification, and Step 9 is the only step you have to apply for.",
+        "The South Australian classroom teacher scale sets your entry step by your qualification, and Step 9 is the only step you have to apply for.",
       stepHeading: "Step",
       steps: [
         { label: "Special Authority", salary: 74_083, note: "Teaching without a full qualification" },
@@ -70,7 +70,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
       id: "advanced-and-certified",
       title: "Advanced Skills, Highly Accomplished and Lead Teachers",
       intro:
-        "Classifications above the classroom scale that keep you in the classroom. AST2 is closed to new applicants; HAT and Lead require national certification.",
+        "These SA classifications pay above the classroom scale while keeping you in the classroom. AST2 is closed to new applicants; HAT and Lead require national certification.",
       stepHeading: "Classification",
       steps: [
         {
@@ -104,7 +104,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     {
       id: "band-a-principals",
       title: "Band A: principals and preschool directors",
-      intro: "The principal scale. Band level follows the site, not length of service.",
+      intro: "Band A is the SA principal and preschool director scale. Band level follows the site, not length of service.",
       stepHeading: "Band",
       steps: [
         { label: "Band A-1", salary: 146_492 },
@@ -140,15 +140,15 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Step 9 is the one you have to apply for",
       body: [
-        "Every other step comes with duty days. Step 9 does not. Under the Step 9 Teacher Guidelines, teachers who have completed 207 duty days at Step 8 are entitled to apply and to have the application individually considered.",
-        "You submit a Professional Development Plan. Importantly, the guidelines state there will be no quota of Step 9 teachers: meeting the requirements is the test, not competing against colleagues.",
+        "Every other step comes with duty days, but Step 9 does not. Under the Step 9 Teacher Guidelines, teachers who have completed 207 duty days at Step 8 are entitled to apply and to have the application individually considered.",
+        "You submit a Professional Development Plan. The guidelines state there will be no quota of Step 9 teachers: meeting the requirements is the test, not competing against colleagues.",
       ],
     },
     {
       heading: "AST2 is closed; HAT and Lead are the live pathway",
       body: [
         "Clause 6.7.4 stopped accepting applications for AST2 after the end of Week 4, Term 1 in 2022. Teachers who held it keep it as their substantive classification, but nobody new can get it.",
-        "The live route above the classroom scale is national certification at the Highly Accomplished or Lead career stage. The department determines how many HAT and Lead positions are made available, and appointments run for up to five years, so unlike a step, it is not permanent.",
+        "The live route above the classroom scale is national certification at the Highly Accomplished or Lead career stage. The department determines how many HAT and Lead positions are made available, and appointments run for up to five years, so, unlike a step, a HAT or Lead appointment is not permanent.",
       ],
     },
     {
@@ -161,7 +161,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "1 May 2026 is the last salary column the 2024 agreement makes, and the agreement's nominal life is three years from 25 March 2024 (to March 2027). No successor agreement or further increase has been published, so there is no next scheduled rise to show.",
+    "1 May 2026 is the last salary column in the 2024 SA agreement, and the agreement's nominal life is three years from 25 March 2024 (to March 2027). No successor agreement or further increase has been published, so there is no next scheduled rise to show.",
     "Re-checked on 24 September 2026: the Department for Education's pay rates page still links the 2024 agreement and the School Teacher Web Rates sheet dated 8 May 2026, whose figures match the table below, and the Attorney-General's Department still lists the 2024 agreement as current.",
   ],
 
@@ -210,15 +210,15 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the top of the SA teacher pay scale?",
-      a: "Step 9, $123,236 a year. Above that, a Highly Accomplished Teacher is paid $133,736 and a Lead Teacher $141,365, both requiring national certification, and Band B leadership starts at $133,736.",
+      a: "The top of the SA classroom teacher scale is Step 9, at $123,236 a year. Above that, a Highly Accomplished Teacher is paid $133,736 and a Lead Teacher $141,365, both requiring national certification, and Band B leadership starts at $133,736.",
     },
     {
       q: "How do SA teachers move up a step?",
-      a: "One step for every 207 duty days served, capped at one step per twelve calendar months. For a full-time teacher that is effectively the anniversary of your last increment, pushed out by any leave without pay.",
+      a: "SA teachers move up one step for every 207 duty days served, capped at one step per twelve calendar months. For a full-time teacher that is effectively the anniversary of your last increment, pushed out by any leave without pay.",
     },
     {
       q: "How do you get to Step 9 in South Australia?",
-      a: "By applying. Once you have completed 207 duty days at Step 8 you are entitled to apply and to have your application individually considered, submitting a Professional Development Plan. The guidelines state there is no quota on the number of Step 9 teachers.",
+      a: "You get to the top SA classroom step by applying for it. Once you have completed 207 duty days at Step 8 you are entitled to apply and to have your application individually considered, submitting a Professional Development Plan. The guidelines state there is no quota on the number of Step 9 teachers.",
     },
     {
       q: "Can you still become an Advanced Skills Teacher in SA?",

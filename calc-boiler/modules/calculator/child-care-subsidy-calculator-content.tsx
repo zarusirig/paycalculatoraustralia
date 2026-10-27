@@ -88,7 +88,7 @@ export default function ChildCareSubsidyCalculatorContent() {
       </W3Section>
 
       <W3Section title="Hourly Rate Caps 2026-27">
-        <p className={P}>Your CCS percentage applies to the lower of your hourly fee and the cap. If your centre charges a daily session, the hourly fee is the daily fee divided by the session length, not the hours your child actually attends.</p>
+        <p className={P}>Your CCS percentage applies to the lower of your hourly fee and the hourly rate cap for your care type and your child&apos;s age (below school age or school age). If your centre charges a daily session, the hourly fee is the daily fee divided by the session length, not the hours your child actually attends.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Care type</th><th scope="col" className={TH + " text-right"}>Below school age</th><th scope="col" className={TH + " text-right"}>School age</th></tr></thead>
@@ -134,7 +134,7 @@ export default function ChildCareSubsidyCalculatorContent() {
           <li>Standard CCS % = {CCS.standard.maxPercent} − (family income − {formatAUD(CCS.standard.lowerThreshold)}) ÷ {formatAUD(CCS.standard.step)}, between {CCS.standard.maxPercent}% and 0%, shown to 2 decimal places. This reproduces all five of Services Australia&apos;s standard-rate worked examples exactly (our tests assert them).</li>
           <li>Higher CCS % follows the published {CCS.financialYear} table. One of Services Australia&apos;s worked examples (twins on $182,300) gives the younger twin 81.99%, which does not follow from that table (83.05%); we follow the table, which the Department of Education publishes too.</li>
           <li>Subsidy per hour = CCS % × the lower of the hourly fee (daily fee ÷ session hours) and the cap, rounded to the cent; paid for the session hours charged up to {CCS.hours.guaranteed} or {CCS.hours.higher} hours a fortnight; {CCS.defaultWithholding * 100}% withheld.</li>
-          <li>Read at Services Australia and the Department of Education on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia.</li>
+          <li>Figures were read at Services Australia and the Department of Education on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia.</li>
         </ul>
       </MethodologyDisclosure>
 

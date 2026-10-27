@@ -79,7 +79,7 @@ export default function PayAndTaxChangesCalendar() {
             What Changes and When: Australian Pay and Tax Dates, 1 July 2026 to 1 July 2027
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            Every pay, tax and super date that moves in the next twelve months, in order: what changed on 1 July 2026, what changes
+            This calendar lists every pay, tax and super date that moves in the next twelve months, in order: what changed on 1 July 2026, what changes
             on 1 December 2026, what does not change on 1 January 2027, and what is already legislated for 1 July 2027. Each date
             is tied to an ATO or Fair Work Commission source, and you can add the upcoming ones to your calendar.
           </p>
@@ -167,8 +167,8 @@ export default function PayAndTaxChangesCalendar() {
             <section id="junior-steps">
               <h2 style={H}>The junior phase-in, step by step</h2>
               <p>
-                For employees aged 18 to 20 with more than 6 months with their employer, the awards below move toward the adult rate in
-                stages, each starting from the first full pay period on or after the date. Under-18 rates are unchanged. The numbers are
+                For employees aged 18 to 20 with more than 6 months with their employer, junior percentages under the General Retail,
+                Fast Food and Pharmacy Industry Awards move toward the adult rate in stages, each starting from the first full pay period on or after the date. Under-18 rates are unchanged. The numbers are
                 the percentage of the adult classification rate.
               </p>
               <Table caption="Fast Food and Retail awards: 18, 19 and 20 year olds (% of adult rate)" head={["From", "18", "19", "20 (fast food)", "20 (retail)"]} minWidth={460}>

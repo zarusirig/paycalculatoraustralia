@@ -58,7 +58,7 @@ export default function SalarySacrificeVsMortgagePage() {
             Salary Sacrifice vs Extra Mortgage Payments &mdash; Which Is Better?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            If you have spare cash flow, should you salary sacrifice into super for the tax benefit or make extra mortgage repayments for the guaranteed interest saving? The answer depends on your tax bracket, mortgage rate, and how far you are from retirement.
+            Salary sacrifice into super cuts your income tax now, but the money stays in super until preservation age. Extra mortgage repayments earn a guaranteed, tax-free return equal to your mortgage interest rate, and you can reach that money through redraw or an offset account. Salary sacrifice comes out ahead when your marginal tax rate is high and your mortgage rate is low. Extra repayments win when your mortgage rate is high, retirement is close or you need access to the money. The scenario table below starts both options from the same monthly amount of pre-tax salary and compares the results at different mortgage rates. The rest of this guide covers when each option wins, how to split your spare cash between them and the concessional cap that limits salary sacrifice.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -78,14 +78,14 @@ export default function SalarySacrificeVsMortgagePage() {
             <section id="core-trade-off">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Core Trade-Off</h2>
               <p>
-                Both options reduce your effective debt or build wealth, but they work in fundamentally different ways:
+                Salary sacrifice builds your super balance and extra repayments cut your home loan. They differ on tax, return and access to the money:
               </p>
               <ul>
-                <li><strong>Salary sacrifice into super:</strong> Contributions are taxed at just <strong>15%</strong> inside super (compared to your marginal tax rate of up to 45%), giving an immediate tax saving. Super then grows tax-efficiently at 15% on earnings. However, the money is <strong>locked until preservation age</strong> (currently 60) and a condition of release is met.</li>
-                <li><strong>Extra mortgage payments:</strong> Every extra dollar paid off the mortgage provides a <strong>guaranteed &ldquo;return&rdquo;</strong> equal to your mortgage interest rate (e.g., 6% rate = 6% guaranteed, tax-free return). The equity is accessible via redraw or refinancing, giving you financial flexibility.</li>
+                <li><strong>Salary sacrifice into super:</strong> Contributions are taxed at <strong>15%</strong> inside super instead of at your marginal tax rate of up to 45%, so you save tax straight away. Earnings inside super are then taxed at 15%. However, the money is <strong>locked until preservation age</strong> (currently 60) and a condition of release is met.</li>
+                <li><strong>Extra mortgage payments:</strong> Every extra dollar paid off the mortgage provides a <strong>guaranteed &ldquo;return&rdquo;</strong> equal to your mortgage interest rate (a 6% rate gives a 6% guaranteed, tax-free return). You can reach that equity through redraw or refinancing.</li>
               </ul>
               <p>
-                The decision essentially comes down to: is the <strong>tax benefit of super</strong> (which could be 22% to 32% per dollar for those in the 37% or 45% brackets) worth more than the <strong>guaranteed, accessible return</strong> of paying down your mortgage?
+                The decision comes down to this question: is the <strong>tax benefit of super</strong> (which could be 22% to 32% per dollar for those in the 37% or 45% brackets) worth more than the <strong>guaranteed, accessible return</strong> of paying down your mortgage?
               </p>
             </section>
 
@@ -93,7 +93,7 @@ export default function SalarySacrificeVsMortgagePage() {
             <section id="scenario-comparison">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Scenario Comparison &mdash; $500/Month Extra</h2>
               <p>
-                The table below compares directing an extra <strong>$500 per month</strong> ($6,000/year) into salary sacrifice versus extra mortgage payments, for a worker in the <strong>30% tax bracket</strong> ($45,001&ndash;$135,000 income). We model 10-year and 20-year outcomes at three mortgage interest rates.
+                The table below compares directing an extra <strong>$500 per month</strong> ($6,000/year) into salary sacrifice versus extra mortgage payments, for a worker in the <strong>30% tax bracket</strong> ($45,001 to $135,000 taxable income). The table shows 10-year and 20-year outcomes at three mortgage interest rates.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-x-auto overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -134,7 +134,7 @@ export default function SalarySacrificeVsMortgagePage() {
                 <p className="text-xs text-warmgray mt-2">*Super: $6,000 a year of pre-tax salary, less 15% contributions tax ($5,100 invested), growing at 7.5% less 15% earnings tax (about 6.4% a year). **Mortgage: the same $6,000 taxed at 30% plus the 2% Medicare levy ($4,080 a year) paid off the loan; the figure is the equity built, i.e. extra repayments plus the interest they avoid (guaranteed, tax-free). Figures are approximate and rounded, ignore fees, and assume constant returns.</p>
               </div>
               <p>
-                At a <strong>5% mortgage rate</strong>, salary sacrifice clearly wins over both timeframes. At <strong>7%</strong>, the super advantage narrows significantly &mdash; and for someone who values accessibility, the mortgage option becomes more compelling despite the lower headline number.
+                At a <strong>5% mortgage rate</strong>, salary sacrifice wins over both timeframes. At <strong>7%</strong>, the super advantage narrows. If you value access to the money, the mortgage option becomes more attractive despite its lower figure in the table.
               </p>
             </section>
 
@@ -142,8 +142,8 @@ export default function SalarySacrificeVsMortgagePage() {
             <section id="when-super-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Salary Sacrifice Wins</h2>
               <ul>
-                <li><strong>High marginal tax rate (37% or 45%):</strong> The tax saving on contributions is 22&ndash;32 cents per dollar, creating a significant head start that compound growth amplifies over time.</li>
-                <li><strong>Low mortgage interest rate (under 5%):</strong> When your mortgage rate is low, the guaranteed return from extra repayments is modest, making super&apos;s higher expected return more attractive.</li>
+                <li><strong>High marginal tax rate (37% or 45%):</strong> The tax saving on contributions is 22 to 32 cents per dollar, and compound growth adds to that head start over time.</li>
+                <li><strong>Low mortgage interest rate (under 5%):</strong> When your mortgage rate is low, the guaranteed return from extra repayments is modest, so super&apos;s higher expected return counts for more.</li>
                 <li><strong>Long time to retirement (15+ years):</strong> More time means more compounding. The locked nature of super is less of a concern when preservation age is distant.</li>
                 <li><strong>Unused concessional cap space:</strong> If you haven&apos;t been maximising your {formatAUD(CAP)} concessional cap (and have unused carry-forward amounts from previous years), the tax benefit is especially valuable.</li>
               </ul>
@@ -153,7 +153,7 @@ export default function SalarySacrificeVsMortgagePage() {
             <section id="when-mortgage-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Extra Mortgage Payments Win</h2>
               <ul>
-                <li><strong>High mortgage interest rate (6%+):</strong> A guaranteed 6&ndash;7% tax-free return is hard to beat, especially on a risk-adjusted basis. Super returns are not guaranteed and can be negative in any given year.</li>
+                <li><strong>High mortgage interest rate (6%+):</strong> A guaranteed tax-free return of 6 to 7% is hard to beat, especially on a risk-adjusted basis. Super returns are not guaranteed and can be negative in any given year.</li>
                 <li><strong>Close to retirement (under 10 years):</strong> Less time for compounding reduces super&apos;s advantage, and you may need accessible equity for retirement planning.</li>
                 <li><strong>Need for financial flexibility:</strong> Extra mortgage payments build accessible equity (via redraw or offset). Super is locked until preservation age. If you might need the money for renovations, emergencies, or career changes, mortgage equity is more useful.</li>
                 <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches the 15% income tax rate, so the saving from salary sacrifice is at most the 2c Medicare levy per dollar, which barely justifies locking money away for decades.</li>
@@ -165,15 +165,15 @@ export default function SalarySacrificeVsMortgagePage() {
             <section id="hybrid-approach">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Hybrid Approach</h2>
               <p>
-                For many Australians, the optimal strategy is a combination of both:
+                You can also split your spare cash between both options:
               </p>
               <ol>
                 <li><strong>Salary sacrifice to the cap:</strong> Contribute enough to maximise the tax benefit, particularly if you are in the 37% or 45% bracket. For FY{SITE_CONFIG.financialYear}, the concessional cap is <strong>{formatAUD(CAP)}</strong> (including employer SG). If your employer contributes $12,000 in SG, you can salary sacrifice up to {formatAUD(CAP - 12_000)} before hitting the cap.</li>
-                <li><strong>Direct remaining surplus to the mortgage:</strong> Any additional savings beyond the super cap (or beyond what you are comfortable locking away) goes to extra mortgage payments for the guaranteed, accessible return.</li>
+                <li><strong>Direct remaining surplus to the mortgage:</strong> Any additional savings beyond the super cap (or beyond what you are comfortable locking away) go to extra mortgage payments for the guaranteed, accessible return.</li>
                 <li><strong>Use an offset account:</strong> Rather than making direct extra repayments, park surplus cash in a mortgage offset account. This provides the same interest saving while keeping the money instantly accessible.</li>
               </ol>
               <p>
-                The right split depends on your specific numbers. Use the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax impact and the <Link href="/">Pay Calculator</Link> to see your overall take-home pay position.
+                The right split depends on your own tax bracket, mortgage rate and years to retirement. Use the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax impact and the <Link href="/">Pay Calculator</Link> to see your overall take-home pay position.
               </p>
             </section>
 

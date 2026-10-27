@@ -16,7 +16,7 @@ import FeaturedImage from "@/components/common/featured-image";
 export const JOB_PAY_HUB_FAQS = [
   {
     q: "How do I find the award pay rate for my job?",
-    a: "Find the modern award that covers your employer's industry and your role, then find your classification in that award's minimum rates clause. Each job page on this site names the award and clause, explains which classification fits which duties, and lists the 2026–27 rates from the Fair Work Commission's consolidated award text.",
+    a: "Find the modern award that covers your employer's industry and your role, then find your classification in that award's minimum rates clause. Each job page on this site names the award and clause, explains which classification fits which duties, and lists the 2026-27 rates from the Fair Work Commission's consolidated award text.",
   },
   {
     q: "When do award pay rates change?",
@@ -24,7 +24,7 @@ export const JOB_PAY_HUB_FAQS = [
   },
   {
     q: "Is the award rate what I will actually be paid?",
-    a: "The award rate is the legal minimum. Your employer can pay more, and an enterprise agreement, if your workplace has one, replaces the award rates. Each job page also shows the median full-time earnings for that occupation from Jobs and Skills Australia, which is what people in the job typically earn.",
+    a: "The award rate is the legal minimum. Your employer can pay more, and an enterprise agreement, if your workplace has one, replaces the award rates. Each job page also shows the median full-time earnings for that occupation from Jobs and Skills Australia, which is the midpoint of what full-time employees in that job earn.",
   },
   {
     q: "What if my job is not covered by an award?",
@@ -95,9 +95,12 @@ export default function JobPayRatesHubPage() {
             Job Pay Rates Australia 2026: Award Minimums by Occupation
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            The minimum hourly, casual and weekly pay for {OCCUPATIONS.length} common jobs, read from each job&rsquo;s
-            modern award and applying from {JOB_PAY_RATES_FROM}. Each page adds penalty rates, overtime, take-home pay
-            and what people in the job actually earn.
+            The award minimum hourly, casual and weekly pay for {OCCUPATIONS.length} common Australian jobs is listed
+            below. Each rate is read from the job&rsquo;s modern award and applies from {JOB_PAY_RATES_FROM}. The tables group
+            the jobs by sector and give each job&rsquo;s award and classification (or award-free status), minimum hourly
+            rate, casual hourly rate and median full-time weekly earnings. Each job page adds penalty rates, overtime,
+            take-home pay and what people in the job actually earn. Below the tables are doctor and dentist taxable
+            incomes from ATO taxation statistics, how to read an award rate, and common questions.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />

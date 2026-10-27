@@ -162,11 +162,11 @@ export function nmwHourlyAt(percentage: number): number {
 export function ageNote(age: MinWageAge): string {
   switch (age) {
     case 14:
-      return "Fourteen is the bottom of every junior scale. The National Minimum Wage, Retail, Fast Food and Pharmacy awards use an under-16 band; Hospitality, Restaurant and Hair and Beauty an under-17 band; Road Transport, Real Estate and Commercial Sales an under-19 band. Whether a 14-year-old can be employed at all, in what job and for how many hours, is decided by the state, not by Fair Work, and most state limits are written for children under 15.";
+      return "Fourteen is the bottom of every junior scale. The National Minimum Wage, Retail, Fast Food and Pharmacy awards use an under-16 band; Hospitality, Restaurant and Hair and Beauty an under-17 band; Road Transport, Real Estate and Commercial Sales an under-19 band. Whether a 14-year-old can be employed at all, in what job and for how many hours, is decided by each state and territory, not by Fair Work, and most of those limits are written for children under 15.";
     case 15:
-      return "Fifteen pays exactly what fourteen pays: no award and no part of the National Minimum Wage has a separate band for 15. What changes on the 15th birthday is the state rules. Victoria's child employment licence, Western Australia's parental-permission rule, the ACT's 10-hour weekly cap and the Northern Territory's list of allowed jobs are all written for children under 15.";
+      return "Fifteen pays exactly what fourteen pays: no award and no part of the National Minimum Wage has a separate band for 15. What changes on the 15th birthday is the state and territory rules. Victoria's child employment licence, Western Australia's parental-permission rule, the ACT's 10-hour weekly cap and the Northern Territory's list of allowed jobs are all written for children under 15.";
     case 16:
-      return "Sixteen is the first step up on the National Minimum Wage and on the Retail, Fast Food, Pharmacy and Clerks scales, and Pastoral and Horticulture move to 60%. Hospitality is the exception people notice: its junior table has no 16-year-old row, so a 16-year-old stays on the under-17 rate until turning 17, and Restaurant, Hair and Beauty, Fitness, Local Government and Meat Industry work the same way.";
+      return "Sixteen is the first step up on the National Minimum Wage and on the Retail, Fast Food, Pharmacy and Clerks scales, and Pastoral and Horticulture move to 60%. The Hospitality award does not move: its junior table has no 16-year-old row, so a 16-year-old stays on the under-17 rate until turning 17, and Restaurant, Hair and Beauty, Fitness, Local Government and Meat Industry work the same way.";
     case 17:
       return "At 17 every under-17 band ends, so Hospitality and Restaurant finally move up, to 60%. Hair and Beauty pays 75% at 17, the highest of the award junior scales on this page, and Pastoral and Horticulture pay 70%. Only Road Transport, Real Estate and Commercial Sales still hold a 17-year-old in an under-19 band.";
     case 18:
@@ -263,7 +263,7 @@ export function birthdayBlock(age: MinWageAge): BirthdayBlock {
     intro = `At ${ADULT_AGE} the National Minimum Wage junior scale ends and every award junior scale has run out, so the full adult rate applies whatever the job. The awards that still treat a 20-year-old as a junior move like this:`;
   } else if (rises.length === 0) {
     heading = `Turning ${next}: No Change to the Rate`;
-    intro = `No award and no part of the National Minimum Wage has a band that starts at ${next}, so a ${next}-year-old is paid the same percentage as ${aAge(age)}-year-old. The first rise comes later, and when depends on the award:`;
+    intro = `No award and no part of the National Minimum Wage has a band that starts at ${next}, so a ${next}-year-old is paid the same percentage as ${aAge(age)}-year-old. Each award's first rise comes at a later birthday:`;
   } else {
     heading = `What Changes When You Turn ${next}`;
     intro = `${rises.length} of the ${JUNIOR_SCALE_AWARDS.length} award scales${nmw.to.percentage > nmw.from.percentage ? " and the National Minimum Wage" : ""} pay more from the birthday itself (the Fair Work Ombudsman's example: a junior who turns 17 on 22 March is owed the 17-year-old rate from 22 March).${adultAlready.length > 0 ? ` ${names(adultAlready)} already pays the adult rate.` : ""}`;
@@ -467,7 +467,7 @@ function phaseInFaq(age: 18 | 19 | 20): Faq {
   const full = listJoin([...new Set(rows.map((r) => r.steps[r.steps.length - 1].effective))]);
   return {
     q: `Is the minimum wage for ${age} year olds going up?`,
-    a: `Yes, in stages, but only for ${age}-year-olds with ${PHASE_IN.serviceQualifier} under the ${listJoin(rows.map((r) => AWARD_SHORT[r.key]))} award${rows.length > 1 ? "s" : ""}: ${first.present}% becomes ${first.steps[0].percentage}% from the first full pay period starting on or after ${PHASE_IN.start}, and the ${age}-year-old band reaches 100% from ${full}. That follows ${PHASE_IN.decision}; it is not a one-step jump to the adult rate, ${age}-year-olds with 6 months or less stay on ${first.present}%, and nothing has changed yet.${age === 20 ? " Retail is not included because a 20-year-old with more than 6 months' service already gets the retail adult rate." : ""}`,
+    a: `Yes, in stages, but only for ${age}-year-olds with ${PHASE_IN.serviceQualifier} under the ${listJoin(rows.map((r) => AWARD_SHORT[r.key]))} award${rows.length > 1 ? "s" : ""}: ${first.present}% becomes ${first.steps[0].percentage}% from the first full pay period starting on or after ${PHASE_IN.start}, and the ${age}-year-old band reaches 100% from ${full}. That follows ${PHASE_IN.decision}. It is not a one-step jump to the adult rate, and ${age}-year-olds with 6 months or less stay on ${first.present}%. No rate has changed yet.${age === 20 ? " Retail is not included because a 20-year-old with more than 6 months' service already gets the retail adult rate." : ""}`,
   };
 }
 

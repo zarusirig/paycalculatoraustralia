@@ -36,7 +36,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (Schedule 1, clause 16.1.1)",
       intro:
-        "Career firefighters from entry-level Firefighter Year 1 to Senior Firefighter (Advanced). Each Firefighter year needs 12 months' satisfactory service plus the required units; First Class (Year 4) follows 3 years' service.",
+        "The Tasmania Fire Service firefighter scale runs from entry-level Firefighter Year 1 to Senior Firefighter (Advanced). Each Firefighter year needs 12 months' satisfactory service plus the required units; First Class (Year 4) follows 3 years' service.",
       stepHeading: "Classification",
       steps: [
         { label: "Firefighter Yr 1", salary: 74_169 },
@@ -72,7 +72,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   topStep: "Senior Firefighter (Advanced)",
 
   traineePay: [
-    "The agreement does not set a separate recruit or trainee rate. Firefighter Year 1 (described as entry-level firefighters) is $74,169 a year from 1 December 2025.",
+    "The Tasmania Fire Service agreement does not set a separate recruit or trainee rate. Firefighter Year 1 (described as entry-level firefighters) is $74,169 a year from 1 December 2025.",
   ],
   penalties: [
     "Career brigades work the 2 days on / 2 nights on / 4 days off 10/14 shift roster within an average 42-hour week (clause 5.5).",
@@ -115,11 +115,11 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does a station officer earn in Tasmania?",
-      a: "Station Officers earn $117,031 (Station Officer 1) to $119,361 (Station Officer 3) a year from 1 December 2025. Senior Station Officers earn $121,859 to $124,285.",
+      a: "Tasmania Fire Service Station Officers earn $117,031 (Station Officer 1) to $119,361 (Station Officer 3) a year from 1 December 2025. Senior Station Officers earn $121,859 to $124,285.",
     },
     {
       q: "Is a new Tasmanian firefighter agreement coming?",
-      a: "The 2025 agreement was in force until 30 June 2026 and negotiations for a replacement were due to begin from December 2025. No new agreement had been registered when we checked on 24 September 2026.",
+      a: "The Firefighting Industrial Agreement of 2025 was in force until 30 June 2026 and negotiations for a replacement were due to begin from December 2025. No new agreement had been registered when we checked on 24 September 2026.",
     },
   ],
 };

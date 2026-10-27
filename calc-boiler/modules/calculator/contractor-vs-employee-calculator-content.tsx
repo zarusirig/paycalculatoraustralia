@@ -66,13 +66,13 @@ export default function ContractorVsEmployeeCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Contractor vs Employee Pay Compare?</h2>
             <p className="mb-4 text-warmgray">
-              A contractor earning the same gross rate as an employee takes home <strong>less cash and no entitlements</strong> unless the contract rate is at least 30% higher. The Australian tax system treats employees and contractors differently across income tax withholding, superannuation, Medicare levy, and leave entitlements, creating a significant gap in total compensation value.
+              A contractor earning the same gross rate as an employee takes home <strong>less cash and no entitlements</strong> unless the contract rate is at least 30% higher. Australian tax and employment law treats employees and contractors differently on income tax withholding, superannuation, the Medicare levy and leave entitlements. Those differences open a gap in total compensation value that the gross rate does not show.
             </p>
             <p className="mb-4 text-warmgray">
               On a <strong>$100,000</strong> gross rate, an employee&apos;s total package value (including 12% superannuation guarantee paid by the employer) is <strong>$112,000</strong>. A contractor at the same $100,000 receives no employer super, no paid leave, and no workers compensation coverage. After self-funding super and covering business expenses, the contractor&apos;s disposable income drops below the employee&apos;s take-home pay. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see the exact income tax breakdown at any salary level.
             </p>
             <p className="mb-4 text-warmgray">
-              This contractor vs employee calculator for FY{FY} applies the current Australian tax brackets, the <strong>12% SG rate</strong>, and the <strong>2% Medicare levy</strong> to produce an accurate side-by-side comparison. The calculation factors in deductible business expenses, voluntary super contributions, and the true cost of lost entitlements like annual leave, personal leave, and employer-provided insurance.
+              This contractor vs employee calculator for FY{FY} applies the current Australian tax brackets, the <strong>12% SG rate</strong>, and the <strong>2% Medicare levy</strong> to compare an employee and a contractor on the same gross rate. Enter your gross income and annual business expenses above. The calculator takes those expenses, and self-funded super if you tick the box, off the contractor&apos;s taxable income. It then shows the approximate contract value you need to match the employee package.
             </p>
           </section>
 
@@ -136,7 +136,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
               </table>
             </div>
             <p className="mt-4 text-warmgray text-sm">
-              Employees benefit from the employer paying superannuation on top of salary, PAYG withholding that eliminates large tax bills, and access to the <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Leave Calculator</Link> entitlements under the Fair Work Act. Contractors trade these benefits for flexibility and greater deduction opportunities.
+              Employees get superannuation paid by the employer on top of salary, and paid leave under the Fair Work Act (work out what that leave is worth with the <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Leave Calculator</Link>). PAYG withholding collects their income tax from each pay instead of as a lump sum at tax time. Contractors give up these benefits in exchange for flexibility and wider business deductions.
             </p>
           </section>
 
@@ -144,13 +144,13 @@ export default function ContractorVsEmployeeCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Contractor vs Employee Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              This Australian tax calculator serves <strong>4 primary user groups</strong> evaluating whether to work as an employee or operate under an ABN as a sole trader or contractor.
+              This contractor vs employee calculator is built for <strong>4 primary user groups</strong> evaluating whether to work as an employee or operate under an ABN as a sole trader or contractor.
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Employees considering contracting</strong> &mdash; IT professionals, consultants, and tradespeople offered a contract rate who want to verify whether the higher gross compensates for lost entitlements.</li>
-              <li><strong>Contractors evaluating employment offers</strong> &mdash; Existing ABN holders offered a permanent role who want to compare the net financial position after accounting for super, leave, and insurance.</li>
-              <li><strong>Employers setting contract rates</strong> &mdash; Hiring managers and HR teams determining a fair contractor day rate that equals their standard employee salary package.</li>
-              <li><strong>Accountants and bookkeepers</strong> &mdash; Tax professionals advising clients on the financial implications of changing their engagement structure for the {FY} financial year.</li>
+              <li><strong>Employees considering contracting</strong>: IT professionals, consultants, and tradespeople offered a contract rate who want to verify whether the higher gross compensates for lost entitlements.</li>
+              <li><strong>Contractors evaluating employment offers</strong>: Existing ABN holders offered a permanent role who want to compare the net financial position after accounting for super, leave, and insurance.</li>
+              <li><strong>Employers setting contract rates</strong>: Hiring managers and HR teams determining a fair contractor day rate that equals their standard employee salary package.</li>
+              <li><strong>Accountants and bookkeepers</strong>: Tax professionals advising clients on the financial implications of changing their engagement structure for the {FY} financial year.</li>
             </ul>
           </section>
 
@@ -295,7 +295,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Hidden Costs Do Contractors Face?</h2>
             <p className="mb-4 text-warmgray">
-              Contractors bear <strong>6 additional costs</strong> that employees receive at no charge. These hidden costs reduce the contractor&apos;s effective hourly rate and total compensation value.
+              Contractors bear <strong>6 additional costs</strong> that an employer covers for employees at no charge. These hidden costs reduce the contractor&apos;s effective hourly rate and total compensation value.
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Superannuation (12% SG)</strong> &mdash; Employer pays this in addition to base salary. Self-funding costs <strong>$12,000</strong> on a $100,000 income.</li>
@@ -307,7 +307,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
             </ul>
             <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4">
               <p className="text-navy font-medium">
-                To match a $100,000 employee package, a contractor should typically charge approximately <strong>$135,000 to $145,000</strong> (before GST) to offset the lack of super, leave, and insurance.
+                To match a $100,000 employee package, a contractor needs to charge approximately <strong>$135,000 to $145,000</strong> (before GST) to offset the lack of super, leave, and insurance.
               </p>
             </div>
           </section>
@@ -331,7 +331,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3 flex items-center"><ChevronRight className="h-5 w-5 mr-1" /> Employment is better when:</h3>
                 <ul className="space-y-2 text-sm pl-2 border-l-2 border-sandstone-dark/20">
-                  <li>The gross pay rates are visually similar.</li>
+                  <li>The contract rate is close to the employee salary.</li>
                   <li>You value job security, sick leave, and paid holidays.</li>
                   <li>You don&apos;t want the administrative burden of BAS, tax, and insurance.</li>
                   <li>You need the protection of workers compensation.</li>
@@ -347,11 +347,11 @@ export default function ContractorVsEmployeeCalculatorContent() {
               The most common mistake is comparing gross rates directly without adjusting for the <strong>$25,000&ndash;$40,000 gap</strong> in hidden entitlements and costs. Five frequent errors distort the contractor vs employee calculation.
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-              <li><strong>Ignoring superannuation</strong> &mdash; Employees receive 12% super on top of their salary. A contractor earning $100,000 who skips super misses <strong>$12,000</strong> per year in retirement savings, compounding to over <strong>$400,000</strong> across a 20-year career at average fund returns.</li>
-              <li><strong>Forgetting leave entitlements</strong> &mdash; Four weeks of annual leave and 10 days of personal leave represent <strong>11.4%</strong> of an employee&apos;s salary value. Contractors who work every billable day to match income risk burnout without accounting for unpaid downtime.</li>
-              <li><strong>Overlooking GST obligations</strong> &mdash; Contractors earning above $75,000 must register for GST and charge clients 10%. The GST collected is not income &mdash; it belongs to the ATO. Spending GST revenue as personal income creates a debt at BAS time.</li>
-              <li><strong>Underestimating admin costs</strong> &mdash; BAS lodgment, bookkeeping, insurance premiums, and software subscriptions cost <strong>$3,000&ndash;$6,000</strong> annually. Many new contractors discover these costs only after their first BAS quarter.</li>
-              <li><strong>Assuming &quot;sham contracting&quot; is risk-free</strong> &mdash; The ATO applies a multi-factor test to determine genuine contractor status. Under the Fair Work Act, courts can order penalties of up to <strong>{SHAM_MAX_INDIVIDUAL}</strong> per contravention for individuals and up to <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses for sham contracting.</li>
+              <li><strong>Ignoring superannuation</strong>: Employees receive 12% super on top of their salary. A contractor earning $100,000 who skips super misses <strong>$12,000</strong> per year in retirement savings, compounding to over <strong>$400,000</strong> across a 20-year career at average fund returns.</li>
+              <li><strong>Forgetting leave entitlements</strong>: Four weeks of annual leave and 10 days of personal leave represent <strong>11.4%</strong> of an employee&apos;s salary value. Contractors who work every billable day to match income risk burnout without accounting for unpaid downtime.</li>
+              <li><strong>Overlooking GST obligations</strong>: Contractors with annual turnover above $75,000 must register for GST and charge clients 10%. The GST you collect is not income: it belongs to the ATO. Spending GST revenue as personal income creates a debt at BAS time.</li>
+              <li><strong>Underestimating admin costs</strong>: BAS lodgment, bookkeeping, insurance premiums, and software subscriptions cost <strong>$3,000&ndash;$6,000</strong> annually. Many new contractors discover these costs only after their first BAS quarter.</li>
+              <li><strong>Assuming &quot;sham contracting&quot; is risk-free</strong>: The ATO applies a multi-factor test to determine genuine contractor status. Under the Fair Work Act, courts can order penalties of up to <strong>{SHAM_MAX_INDIVIDUAL}</strong> per contravention for individuals and up to <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses for sham contracting.</li>
             </ol>
           </section>
 
@@ -360,40 +360,40 @@ export default function ContractorVsEmployeeCalculatorContent() {
             <section id="ato-multi-factor">
               <h2>How Does the ATO Determine Your Status?</h2>
               <p>
-                The ATO applies a &ldquo;Multi-Factor Test&rdquo; rooted in Australian common law &mdash; no single factor is decisive, and the test examines the totality of the working relationship across <strong>6 primary indicators</strong>.
+                The ATO applies a multi-factor test rooted in Australian common law. No single factor is decisive: the test looks at the whole working relationship across <strong>6 primary indicators</strong>.
               </p>
               <p>
-                Following the High Court&apos;s 2022 decisions in <em>Construction, Forestry, Maritime, Mining and Energy Union v Personnel Contracting Pty Ltd</em> and <em>ZG Operations Australia Pty Ltd v Jamsek</em>, courts now prioritise the terms of the written contract &mdash; provided those terms reflect a genuine arrangement and are not a sham. The 6 indicators the ATO evaluates are:
+                Following the High Court&apos;s 2022 decisions in <em>Construction, Forestry, Maritime, Mining and Energy Union v Personnel Contracting Pty Ltd</em> and <em>ZG Operations Australia Pty Ltd v Jamsek</em>, courts now prioritise the terms of the written contract, provided those terms reflect a genuine arrangement and are not a sham. The 6 indicators the ATO evaluates are:
               </p>
               <ol>
                 <li><strong>Ability to sub-contract or delegate:</strong> A contractor has the right to hire others to do the work. An employee performs the work personally.</li>
                 <li><strong>Basis of payment:</strong> Contractors invoice for a result (fixed quote, per-project fee). Employees receive a regular wage or salary per hour, week, or month.</li>
                 <li><strong>Equipment, tools, and other assets:</strong> Contractors supply their own tools, vehicles, and software. Employees use the employer&apos;s equipment.</li>
-                <li><strong>Commercial risk:</strong> Contractors bear financial risk &mdash; they fix defects at their own cost and carry their own professional indemnity, public liability, and income protection insurance. Employees bear no such risk.</li>
+                <li><strong>Commercial risk:</strong> Contractors bear financial risk: they fix defects at their own cost and carry their own professional indemnity, public liability, and income protection insurance. Employees bear no such risk.</li>
                 <li><strong>Control over the work:</strong> Contractors decide how, when, and where they perform the work. Employees follow the employer&apos;s directions on method, location, and hours.</li>
                 <li><strong>Independence / integration:</strong> Contractors operate visibly as a separate business (own ABN, own branding, multiple clients). Employees are integrated into the employer&apos;s operations (wearing uniforms, using company email addresses, attending staff meetings).</li>
               </ol>
               <p>
-                A worker who satisfies 4 or more of these indicators as a contractor is more likely to be genuinely independent. A worker who fails most indicators &mdash; for example, using the employer&apos;s tools, working fixed rosters, having no right to delegate, and receiving hourly pay &mdash; is almost certainly an employee regardless of what the contract states. The ATO publishes a free &ldquo;Employee/Contractor Decision Tool&rdquo; on ato.gov.au that walks through each factor interactively.
+                A worker who satisfies 4 or more of these indicators as a contractor is more likely to be genuinely independent. A worker who fails most indicators (for example, using the employer&apos;s tools, working fixed rosters, having no right to delegate, and receiving hourly pay) is almost certainly an employee regardless of what the contract states. The ATO publishes a free Employee/Contractor Decision Tool on ato.gov.au that steps through each factor.
               </p>
               <div className="bg-sandstone border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6 text-sm">
                 <div className="flex items-start gap-4">
                   <ShieldAlert className="h-6 w-6 text-ochre mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-ochre mb-1">Beware of &lsquo;Sham Contracting&rsquo;</h3>
-                    <p className="text-ochre">Intentionally classifying an employee as an independent contractor to avoid paying them super, leave, or minimum wage is illegal. Directors face massive fines, and the courts will force the company to backpay years of stolen superannuation and annual leave.</p>
+                    <p className="text-ochre">Intentionally classifying an employee as an independent contractor to avoid paying them super, leave, or minimum wage is illegal under the Fair Work Act. The business and its directors face civil penalties, and the business must back pay the superannuation and annual leave it withheld.</p>
                   </div>
                 </div>
               </div>
               <p>
-                A classic sign of sham contracting is forcing a worker to go and get an ABN before you will give them shifts, while continuing to dictate their hours and uniform just like regular employees.
+                A classic sign of sham contracting is a business that makes a worker get an ABN before it gives them shifts, while still setting their hours and uniform the same way it does for its employees.
               </p>
             </section>
             {/* ============================================================ */}
             <section id="comparison-table">
               <h2>Contractor vs Employee Comparison Table</h2>
               <p>
-                Employees and contractors differ across <strong>12 key attributes</strong> covering tax, entitlements, risk, and work arrangements &mdash; the table below summarises every major distinction in one place.
+                Employees and contractors differ across <strong>12 key attributes</strong> covering tax, entitlements, risk, and work arrangements. The table below sets out each attribute side by side.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -478,29 +478,29 @@ export default function ContractorVsEmployeeCalculatorContent() {
                 Contractors earning above <strong>$75,000 in annual turnover</strong> must register for GST, charge 10% on every invoice, and remit the collected GST to the ATO via quarterly or monthly BAS lodgements.
               </p>
               <p>
-                This means if you quote $100/hour to a client, the invoice actually becomes $110 (plus GST). The client pays $110, you keep $100, and $10 goes to the ATO. Many first-time contractors underestimate this cash-flow requirement and end up with a sizeable BAS bill at the end of each quarter.
+                If you quote $100/hour to a client, the invoice becomes $110 including GST. The client pays $110, you keep $100, and $10 goes to the ATO. Many first-time contractors underestimate this cash-flow requirement and end up with a sizeable BAS bill at the end of each quarter.
               </p>
               <p>
-                If you earn under $75,000, GST registration is optional. However, registering allows you to claim GST credits on business expenses (equipment, software, insurance), which can offset your liability. Contractors who purchase significant assets &mdash; vehicles, computer equipment, or specialised tools &mdash; in their first year of business often benefit from voluntary registration even below the $75,000 threshold.
+                If your annual turnover is under $75,000, GST registration is optional. Registering lets you claim GST credits on business expenses (equipment, software, insurance), which offset the GST you owe. Contractors who buy significant assets (vehicles, computer equipment, or specialised tools) in their first year of business often benefit from voluntary registration even below the $75,000 threshold.
               </p>
               <p>
-                Employees never interact with GST. Their salary is not subject to GST, and they do not lodge BAS returns. This administrative burden is one of the hidden costs of contracting that workers overlook when comparing contractor vs employee arrangements.
+                Employees never interact with GST. Their salary is not subject to GST, and they do not lodge BAS returns. BAS lodgement is one of the hidden admin costs of contracting to count when you compare contractor vs employee arrangements.
               </p>
             </section>
             {/* ============================================================ */}
             <section id="super-obligations">
               <h2>Super Entitlements for Contractors</h2>
               <p>
-                Genuine independent contractors pay their own superannuation voluntarily, but the Superannuation Guarantee (Administration) Act 1992 creates a critical exception: employers must pay the <strong>12% Super Guarantee</strong> for any contractor hired &ldquo;wholly or principally for their personal labour and skills.&rdquo;
+                Genuine independent contractors pay their own superannuation voluntarily, but the Superannuation Guarantee (Administration) Act 1992 creates an exception: employers must pay the <strong>12% Super Guarantee</strong> for any contractor hired &ldquo;wholly or principally for their personal labour and skills.&rdquo;
               </p>
               <p className="text-lg font-medium text-navy border-l-4 border-eucalyptus pl-4 py-1">
                 If a contractor is hired wholly or principally for their personal labour and skills, the employer must still pay the 12% Super Guarantee on top of their invoice.
               </p>
               <p>
-                This exception targets sole traders who function economically like employees &mdash; a freelance web developer billing hourly, a sole-trader electrician on a long-term engagement, or a contract bookkeeper working 3 days per week for a single client. The test asks: is the hiring business paying for the contractor&apos;s personal effort, or for a deliverable that the contractor&apos;s business produces using any combination of staff and resources?
+                This exception targets sole traders who function economically like employees: a freelance web developer billing hourly, a sole-trader electrician on a long-term engagement, or a contract bookkeeper working 3 days per week for a single client. The test asks: is the hiring business paying for the contractor&apos;s personal effort, or for a deliverable that the contractor&apos;s business produces using any combination of staff and resources?
               </p>
               <p>
-                If you hire a solo graphic designer on an hourly rate to do design work just because they are good at it, the ATO classifies them as an employee <strong>for superannuation purposes only</strong>. You must pay their super. If you hire a massive plumbing <em>company</em> to fix a roof, and they send an anonymous plumber out, that is a true B2B contract and no super is owed.
+                If you hire a solo graphic designer on an hourly rate to do the design work personally, the ATO classifies them as an employee <strong>for superannuation purposes only</strong>. You must pay their super. If you hire a plumbing <em>company</em> to fix a roof and it sends any plumber from its staff, that is a genuine B2B contract and no super is owed.
               </p>
               <p>
                 Contractors who do not receive employer super contributions can still make personal concessional (before-tax) contributions up to the <strong>{CC_CAP} annual cap</strong> and claim a full tax deduction. Non-concessional (after-tax) contributions are capped at <strong>{NCC_CAP} per year</strong> in FY{FY}. Read the full breakdown in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
@@ -510,28 +510,28 @@ export default function ContractorVsEmployeeCalculatorContent() {
             <section id="sham-contracting">
               <h2>What Are the Risks of Sham Contracting?</h2>
               <p>
-                &ldquo;Sham contracting&rdquo; occurs when an employer deliberately disguises an employment relationship as a contracting arrangement to avoid paying entitlements &mdash; courts can impose maximum penalties per contravention of <strong>{SHAM_MAX_INDIVIDUAL}</strong> for individuals, <strong>{SHAM_MAX_SMALL_BUSINESS}</strong> for businesses with fewer than 15 employees, and <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses.
+                Sham contracting occurs when an employer deliberately disguises an employment relationship as a contracting arrangement to avoid paying entitlements. Courts can impose maximum penalties per contravention of <strong>{SHAM_MAX_INDIVIDUAL}</strong> for individuals, <strong>{SHAM_MAX_SMALL_BUSINESS}</strong> for businesses with fewer than 15 employees, and <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses.
               </p>
               <p>
                 Beyond the civil penalties, sham contracting triggers 3 additional financial consequences:
               </p>
               <ol>
                 <li><strong>Backpayment of superannuation:</strong> The employer must pay all unpaid Super Guarantee amounts at 12% (or the rate applicable at the time), plus the Superannuation Guarantee Charge (SGC). From 1 July 2026 that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%; the charge is now tax-deductible. For earnings paid up to 30 June 2026 the old rules apply: 10% nominal interest, $20 per employee per quarter, and no deduction.</li>
-                <li><strong>Backpayment of leave entitlements:</strong> The employer owes all accumulated annual leave, personal leave, and any applicable redundancy pay &mdash; potentially spanning multiple years. Long-service leave liabilities accrue after <strong>7 to 10 years</strong> depending on the state.</li>
+                <li><strong>Backpayment of leave entitlements:</strong> The employer owes all accumulated annual leave, personal leave, and any applicable redundancy pay, which can span multiple years. Long-service leave liabilities accrue after <strong>7 to 10 years</strong> depending on the state.</li>
                 <li><strong>Backpayment of Award underpayments:</strong> If the worker was covered by a Modern Award, the employer must make up the difference between what was paid and the Award minimum, including overtime, penalty rates, and allowances. Review common Award structures on our <Link href="/award-rates/">Award Rates</Link> page.</li>
               </ol>
               <p>
                 Industries with the highest rates of sham contracting enforcement include construction, cleaning, hospitality, transport and logistics, and IT consulting. The Fair Work Ombudsman conducts targeted audits in these sectors annually. In FY2025-26, the FWO recovered <strong>$453 million</strong> in underpaid wages for workers.
               </p>
               <p>
-                There is no &ldquo;innocent mistake&rdquo; defence if the employer &ldquo;reasonably should have known&rdquo; the worker was an employee. The onus falls on the employer to prove the arrangement is genuine.
+                There is no &quot;innocent mistake&quot; defence if the employer &quot;reasonably should have known&quot; the worker was an employee. The onus falls on the employer to prove the arrangement is genuine.
               </p>
             </section>
             {/* ============================================================ */}
             <section id="switching">
               <h2>How to Switch from Contractor to Employee</h2>
               <p>
-                Switching from contractor to employee requires a formal transition covering <strong>5 administrative steps</strong> &mdash; the employer must restructure the legal arrangement, payroll registration, and insurance coverage.
+                Switching from contractor to employee requires a formal transition covering <strong>5 administrative steps</strong>. The employer must restructure the legal arrangement, payroll registration, and insurance coverage.
               </p>
               <ol>
                 <li><strong>Sign a new employment contract:</strong> The contractor agreement terminates and a written employment contract replaces it, specifying the role, salary, hours, and applicable Modern Award or Enterprise Agreement.</li>
@@ -548,11 +548,11 @@ export default function ContractorVsEmployeeCalculatorContent() {
             <section id="insurance-and-leave">
               <h2>What Insurance and Leave Do Contractors Miss Out On?</h2>
               <p>
-                Contractors receive <strong>zero paid leave</strong> and must purchase all workplace insurance at their own expense &mdash; these two costs represent the largest hidden gap between contracting and employment income.
+                Contractors receive <strong>zero paid leave</strong> and must purchase all workplace insurance at their own expense. These two costs are the largest hidden gap between contracting and employment income.
               </p>
               <ul>
                 <li><strong>Annual leave:</strong> Employees receive 4 weeks (20 days) paid leave per year under the National Employment Standards. Contractors who take 4 weeks off sacrifice approximately <strong>7.7%</strong> of their annual billable revenue.</li>
-                <li><strong>Personal / carer&apos;s leave:</strong> Employees receive 10 days paid personal leave per year. Contractors receive nothing &mdash; illness or caring responsibilities translate directly into lost income.</li>
+                <li><strong>Personal / carer&apos;s leave:</strong> Employees receive 10 days paid personal leave per year. Contractors receive nothing, so every day off for illness or caring responsibilities is lost income.</li>
                 <li><strong>Long-service leave:</strong> Employees accrue long-service leave after 7 to 10 years (varies by state). Contractors have no equivalent entitlement.</li>
                 <li><strong>Public holidays:</strong> Employees receive <strong>8 national public holidays</strong> paid (plus state-specific additions, totalling 10 to 13 days depending on the jurisdiction). Contractors forfeit this income or must work the day.</li>
                 <li><strong>Workers&apos; compensation:</strong> Employers take out WorkCover insurance for their employees. True independent contractors must pay for their own income protection insurance (typically <strong>$800 to $2,500 per year</strong>) and public liability insurance (typically <strong>$400 to $1,500 per year</strong>).</li>
@@ -566,7 +566,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Australian Tax Calculators</h2>
             <p className="mb-4 text-warmgray">
-              These calculators complement the contractor vs employee comparison by modelling specific components of your pay, tax, and superannuation.
+              Each calculator below models a single part of the contractor vs employee comparison in more detail: employee take-home pay, super, salary sacrifice, contractor pay, or your tax return.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/take-home-pay-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
@@ -596,7 +596,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
             <p className="mb-2 text-sm">Calculations for the comparison are based on the following rules:</p>
             <ol className="list-decimal pl-4 space-y-1">
               <li><strong>Employee:</strong> Tax is calculated on Gross. Super (12%) is added on top. Net = Gross − Tax − Medicare. Total value = Gross + Super.</li>
-              <li><strong>Contractor:</strong> Taxable Income = Gross − Business Expenses − Self-Funded Super. Tax is calculated on this reduced Taxable Income, demonstrating the value of tax deductions. Net Cash = Gross − Expenses − Super − Tax − Medicare. Total value = Net Cash + Super.</li>
+              <li><strong>Contractor:</strong> Taxable Income = Gross − Business Expenses − Self-Funded Super. Tax is calculated on this reduced Taxable Income, which shows the value of the deductions. Net Cash = Gross − Expenses − Super − Tax − Medicare. Total value = Net Cash + Super.</li>
             </ol>
           </MethodologyDisclosure>
 
@@ -608,7 +608,7 @@ export default function ContractorVsEmployeeCalculatorContent() {
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Want the employee breakdown?</h2>
-            <p className="text-warmgray mb-6 max-w-lg mx-auto">See exactly how your employee take-home pay is affected by tax, medicare, super, and HECS.</p>
+            <p className="text-warmgray mb-6 max-w-lg mx-auto">See exactly how your employee take-home pay is affected by tax, the Medicare levy, super, and HECS.</p>
             <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Go to Take-Home Calculator →</Link>
           </section>
 

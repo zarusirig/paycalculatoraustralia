@@ -114,8 +114,8 @@ export function TaxableWagesList() {
   return (
     <>
       <p>
-        Payroll tax law is harmonised across the states on what counts as wages, so the list is broadly the same
-        everywhere. Taxable wages include:
+        Payroll tax law is harmonised across the states and territories on what counts as wages, so the taxable
+        wages list is broadly the same in every jurisdiction. Taxable wages include:
       </p>
       <ul>
         <li>salaries, wages, commissions, bonuses and allowances;</li>
@@ -125,9 +125,10 @@ export function TaxableWagesList() {
         <li>payments to many contractors (the &ldquo;relevant contract&rdquo; rules) and to employment agencies, unless an exemption applies.</li>
       </ul>
       <p>
-        Commonly exempt: government Paid Parental Leave, paid parental leave the employer provides (within limits),
-        workers compensation payments, and the tax-free part of a genuine redundancy payment. Exemptions and their
-        limits do differ by state, so check the revenue office&rsquo;s list before you rely on one.
+        Common payroll tax exemptions include government Paid Parental Leave, paid parental leave the employer
+        provides (within limits), workers compensation payments, and the tax-free part of a genuine redundancy
+        payment. Exemptions and their limits differ by state and territory, so check your state or territory revenue
+        office&rsquo;s list before you rely on one.
       </p>
     </>
   );

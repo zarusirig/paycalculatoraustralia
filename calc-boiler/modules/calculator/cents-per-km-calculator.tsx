@@ -35,7 +35,7 @@ export default function CentsPerKmCalculator() {
     <Card className="shadow-md not-prose" id="cents-per-km-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Cents per Kilometre Calculator</h2>
-        <p className="text-sm text-warmgray mb-6">Your car expense deduction at the ATO rate, and, if your employer pays a car allowance per km, how much of it is paid tax-free and how much is withheld from.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator works out your cents per km car expense deduction at the ATO rate for the income year. If your employer pays a car allowance per km, it also shows how much of the allowance is withheld from and how much is not.</p>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <NumberField id="cpk-km" label="Work-related kilometres this year" hint="Per car. Home to work doesn't count as work travel." value={km} onChange={setKm} step={100} />
@@ -49,7 +49,7 @@ export default function CentsPerKmCalculator() {
               <ResultRow label="ATO rate" value={`${cents(rate)} per km`} />
               <ResultRow label="Cents per km deduction" value={formatAUD(deduction, 2)} bold />
             </dl>
-            {km > CPK_KM_CAP && <p className={NOTE_WARN}>Only {CPK_KM_CAP.toLocaleString("en-AU")} km per car can be claimed this way. For more, the logbook method may give a bigger deduction.</p>}
+            {km > CPK_KM_CAP && <p className={NOTE_WARN}>Only {CPK_KM_CAP.toLocaleString("en-AU")} km per car can be claimed with the cents per km method. Above that, the logbook method may give a bigger deduction.</p>}
             {allowance && (
               <>
                 <dl className="divide-y divide-sandstone-dark/20 rounded-xl border border-sandstone-dark/20 bg-white px-5 py-2">
@@ -69,7 +69,7 @@ export default function CentsPerKmCalculator() {
               </>
             )}
             <p className="text-xs text-warmgray-light">
-              The rate covers all car costs (fuel, registration, insurance, repairs and depreciation), so nothing is added on top. You need a record of how you worked out your kilometres, but no receipts.
+              The cents per km rate covers all car running costs (fuel, registration, insurance, repairs and depreciation), so you cannot claim any of those costs separately. You need a record of how you worked out your kilometres, but you do not need receipts.
             </p>
           </div>
         </div>

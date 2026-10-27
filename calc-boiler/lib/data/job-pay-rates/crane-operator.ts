@@ -77,7 +77,7 @@ export const CRANE_OPERATOR: Occupation = {
   },
   coverage: [
     "Which award covers a crane operator depends on who employs them. Operators employed by a crane hire company are covered by the Mobile Crane Hiring Award 2020 [MA000032], which grades them from MCE1 to MCE7 by the size and type of crane they are licensed and required to operate.",
-    "That award does not apply to an employer covered by the Building and Construction General On-site Award. A crane operator employed directly by a builder or construction contractor is classified under that award instead, from CW3 for small cranes to CW7 for tower cranes and the largest mobile cranes.",
+    "The Mobile Crane Hiring Award does not apply to an employer covered by the Building and Construction General On-site Award. A crane operator employed directly by a builder or construction contractor is classified under that award instead, from CW3 for small cranes to CW7 for tower cranes and the largest mobile cranes.",
     "Both awards add an all-purpose industry allowance to the classification rate ($63.79 a week under the Mobile Crane Hiring Award, $67.15 in general building), so the rates below include it.",
     "Crane operators on major projects and in mining are very often paid under enterprise agreements, which is why the market median is far above either award.",
   ],
@@ -86,7 +86,7 @@ export const CRANE_OPERATOR: Occupation = {
       id: "mobile-crane-hire",
       title: "Crane operator pay rates: Mobile Crane Hiring Award (crane hire companies)",
       intro:
-        "Weekly = clause 16.1 minimum + the $63.79 all-purpose industry allowance. Hourly and casual rates are exactly as published in Schedule B.2.1 and B.3.1.",
+        "The weekly rate is the clause 16.1 minimum plus the $63.79 all-purpose industry allowance. Hourly and casual rates are exactly as the Mobile Crane Hiring Award publishes them in Schedule B.2.1 and B.3.1.",
       rows: [
         mce("Mobile crane employee level 1 (MCE1)", 1119.1, 31.13, 38.91, "Slew crane up to 20t, dogger"),
         mce("Mobile crane employee level 2 (MCE2)", 1154.3, 32.06, 40.08, "Slew crane 21–60t, Franna (non-slew)"),
@@ -101,7 +101,7 @@ export const CRANE_OPERATOR: Occupation = {
       id: "building-cranes",
       title: "Crane operator pay rates: Building and Construction Award (employed by a builder)",
       intro:
-        "Clause 19.1 minimum + the $67.15 general building industry allowance, weekly hire. The award publishes no hourly schedule, so hourly is the weekly amount over 38 hours and casual adds the 25% loading (cl 12.4).",
+        "The weekly rate is the clause 19.1 minimum plus the $67.15 general building industry allowance, for a weekly hire employee. The Building and Construction Award publishes no hourly schedule, so hourly is the weekly amount over 38 hours and casual adds the 25% loading (cl 12.4).",
       rows: [
         buildingRow("CW3 — cranes up to 5 tonnes", "CW/ECW 3", [INDUSTRY_ALLOWANCE.general]),
         buildingRow("CW4 — mobile cranes up to 15 tonnes", "CW/ECW 4", [INDUSTRY_ALLOWANCE.general]),
@@ -118,7 +118,7 @@ export const CRANE_OPERATOR: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Mobile Crane Hiring Award: percentages of the ordinary hourly rate including the industry allowance. Ordinary hours are Monday to Friday (cl 12.1), so weekend work is overtime (cl 22.3); casual rates include the loading (cl 9.4). The Building and Construction Award uses the same percentages.",
+    "Mobile Crane Hiring Award penalty rates are percentages of the ordinary hourly rate including the industry allowance. Ordinary hours are Monday to Friday (cl 12.1), so weekend work is overtime (cl 22.3); casual rates include the loading (cl 9.4). The Building and Construction Award uses the same percentages.",
   overtime: [
     "Monday to Friday and Saturday before 12 noon: 150% for the first 2 hours, then 200% (cl 22.3, Schedule B.2.3).",
     "Saturday after 12 noon and Sunday: 200%. Public holiday: 250%. Casuals: 175%, 225% and 275% (cl 9.4).",
@@ -141,7 +141,7 @@ export const CRANE_OPERATOR: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a crane operator in 2026?",
-      a: "A crane hire operator licensed for 21–60 tonne slew cranes or Franna (non-slew) cranes is MCE2 under the Mobile Crane Hiring Award, with a minimum of $32.06 an hour, or $1,218.09 a week including the industry allowance, from the first full pay period on or after 1 July 2026. Rates rise to $37.06 an hour for cranes over 400 tonnes (MCE7).",
+      a: "A crane hire operator licensed for 21 to 60 tonne slew cranes or Franna (non-slew) cranes is MCE2 under the Mobile Crane Hiring Award, with a minimum of $32.06 an hour, or $1,218.09 a week including the industry allowance, from the first full pay period on or after 1 July 2026. Rates rise to $37.06 an hour for cranes over 400 tonnes (MCE7).",
     },
     {
       q: "What is the casual rate for a crane operator?",

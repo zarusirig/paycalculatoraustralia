@@ -47,7 +47,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "paramedics",
       title: "Intern and Paramedic (Schedule 1, Parts 2.2 and 2.3)",
       intro:
-        "Graduate interns and qualified Paramedics in SAAS emergency operations. Pay points 2.1 and 2.2 also cover Paramedic Defined Practice. Rates are annual base salary.",
+        "This table covers graduate interns and qualified Paramedics in SAAS emergency operations. Pay points 2.1 and 2.2 also cover Paramedic Defined Practice. Rates are annual base salary.",
       stepHeading: "Classification and pay point",
       steps: [
         { label: "Intern - pay point 1.2", salary: 77_059, note: "From 1 July 2026 (pay point 1.1 deleted on that date)" },
@@ -63,7 +63,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
     {
       id: "intensive-care",
       title: "Intensive Care Paramedic (Schedule 1, Part 2.5)",
-      intro: "Intensive Care Paramedics (ICPs) and ICP interns. ICP pay points 3.2 and 3.3 were deleted from 1 July 2026.",
+      intro: "This table covers SAAS Intensive Care Paramedics (ICPs) and ICP interns. ICP pay points 3.2 and 3.3 were deleted from 1 July 2026.",
       stepHeading: "Classification and pay point",
       steps: [
         { label: "Intensive Care Paramedic Intern - pay point 3.3", salary: 107_878, note: "From 1 July 2026" },
@@ -75,7 +75,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
     {
       id: "sot-ecp",
       title: "Special Operations Team, Retrieval ICP and Extended Care Paramedics (Schedule 1, Part 2.8)",
-      intro: "SOT/Retrieval Intensive Care Paramedics and Extended Care Paramedics (ECP).",
+      intro: "This table covers SAAS SOT/Retrieval Intensive Care Paramedics and Extended Care Paramedics (ECP).",
       stepHeading: "Classification and pay point",
       steps: [
         { label: "SOT/Retrieval ICP, ECP - pay point 5.1", salary: 135_277, note: "From 31 December 2025" },
@@ -88,7 +88,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "icp-team-leaders",
       title: "Intensive Care Paramedic Team Leaders (Schedule 1, Part 3.2)",
       intro:
-        "ICP Clinical Team Leaders (CTL), Regional Team Leaders (RTL) and Area Clinical Team Leaders (ACTL). Pay depends on the number of reports.",
+        "This table covers SAAS ICP Clinical Team Leaders (CTL), Regional Team Leaders (RTL) and Area Clinical Team Leaders (ACTL). A team leader's pay point depends on the number of reports.",
       stepHeading: "Classification and pay point",
       steps: [
         { label: "CTL/RTL <12 reports - pay point 4.1", salary: 119_867, note: "From 31 December 2025" },
@@ -109,7 +109,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   penalties: [
     "Shift workers not on a rolled-in rate get an early morning penalty of 17% for work between midnight and 6:30am, or a night shift penalty of 20.5% for night shifts between 7pm and 7am (clause 18).",
-    "Most rostered emergency staff are paid a rolled-in rate (RIR) allowance on top of base salary instead of separate shift penalties - 37.57% of base for the Metro Emergency Operations Day/Night roster (Schedule 4).",
+    "Most rostered emergency staff are paid a rolled-in rate (RIR) allowance on top of base salary instead of separate shift penalties: 37.57% of base for the Metro Emergency Operations Day/Night roster (Schedule 4).",
     "Casual employees receive a 25% loading (clause 14.6); casuals working weekends get the 50% weekend penalty under clause 17.10.2 of the Award (clause 38.2).",
     "Work on part-day public holidays (Christmas Eve and New Year's Eve from 7pm) and Easter Sunday attracts Award penalty rates even for employees on the rolled-in rate (clause 20).",
   ],
@@ -134,7 +134,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
   faqs: [
     {
       q: "How much does a paramedic earn in SA?",
-      a: "Under the SA Ambulance Service Enterprise Agreement 2025, a SAAS Paramedic earns $83,904 (pay point 2.1) to $104,458 (pay point 2.7) a year in base salary. Most rostered paramedics also receive a rolled-in rate allowance - 37.57% of base on the metropolitan day/night roster.",
+      a: "Under the SA Ambulance Service Enterprise Agreement 2025, a SAAS Paramedic earns $83,904 (pay point 2.1) to $104,458 (pay point 2.7) a year in base salary. Most rostered paramedics also receive a rolled-in rate allowance of 37.57% of base on the metropolitan day/night roster.",
     },
     {
       q: "What does a graduate paramedic earn in SA?",
@@ -146,7 +146,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When is the next SA paramedic pay rise?",
-      a: "The next increase is 3.5% from the first full pay period on or after 31 December 2026, followed by 3.5% from 31 December 2027 and 3.0% from 31 December 2028.",
+      a: "The next SAAS pay rise is 3.5% from the first full pay period on or after 31 December 2026, followed by 3.5% from 31 December 2027 and 3.0% from 31 December 2028.",
     },
   ],
 };

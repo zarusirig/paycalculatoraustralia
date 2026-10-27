@@ -1,0 +1,81 @@
+    grouping: [
+      "Part 5 of the Payroll Tax Act 2011 groups related corporations, businesses sharing employees, businesses under common control, tracing of interests and people in two or more groups, and an Australian business can be grouped with an overseas one. A “business” includes running a trust, even a dormant one. Each member employing in the ACT must register, and the ACT Revenue Office must be told promptly in writing when an entity joins or leaves.",
+      "Only one member claims the threshold. With the Commissioner's approval one member can lodge a single return for all — a Joint Return Lodger — nominated on the same form as the designated group employer.",
+    ],
+    contractorsHeading: "Contractors and Employment Agents",
+    contractors: [
+      "Payments under a relevant contract are taxable unless the contract is exempt, and a flat deduction for materials or equipment may apply by trade (circular PTA018). The ACT's exemptions cover contracts where labour is secondary to supplying goods, services not ordinarily required that the contractor offers to the public, owner-drivers carrying goods in their own vehicle, and genuine independent businesses serving the public, the last only if you apply to the Commissioner for ACT Revenue. A contract that includes any non-exempt work, or that was set up to avoid payroll tax, gets no exemption.",
+      "Employment agencies pay the payroll tax on wages of the workers they hire out, whoever actually pays them, but in some circumstances can exclude payments to independent contractors. GST is never part of the taxable amount.",
+    ],
+    lodgement: [
+      "Apply to register within seven days after the end of the month in which your or your group's wages pass $145,833.33. Monthly returns and payments are due by the 7th for July to November and January to May, and the December return by 14 January. There is no June return: June goes into the annual reconciliation due 28 July.",
+      "All returns are lodged in the ACT Revenue Office's Self Service Portal, and the annual return automatically adjusts the threshold for the part of the year you paid wages. You can apply in writing to the Commissioner to change your lodgement period.",
+    ],
+    faqs: [
+      {
+        q: "What changed in ACT payroll tax on 1 July 2026?",
+        a: "The threshold fell from $2 million to $1.75 million, and the flat 6.85% rate with surcharges for larger groups was replaced by five bands based on Australia-wide wages: 6.75% up to $20 million, 6.85% to $50 million, 7.35% to $100 million, 7.85% to $150 million and 8.75% above $150 million.",
+      },
+      {
+        q: "Do ACT payroll tax bands work like income tax brackets?",
+        a: "No. Your total Australia-wide wages (or your group's) pick a single band, and that one rate applies to all your ACT wages above your share of the $1.75 million threshold, not just to the wages above the band's starting point.",
+      },
+      {
+        q: "Are contractors exempt from ACT payroll tax?",
+        a: "Only if the contract fits an exemption: labour secondary to supplying goods, services not ordinarily required from a contractor who serves the public, owner-drivers carrying goods in their own vehicle, or a genuine independent business serving the public (which needs the Commissioner's approval). Otherwise relevant contract payments are taxable, less any allowed deduction for materials.",
+      },
+    ],
+    sources: [
+      { title: "About payroll tax (rates, exempt wages, contractors)", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/about-payroll-tax", publisher: ACT },
+      { title: "Calculating payroll tax", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/calculating-payroll-tax", publisher: ACT },
+      { title: "Grouping", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/grouping", publisher: ACT },
+      { title: "Contractors", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/contractors", publisher: ACT },
+      { title: "Lodging returns", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/lodging-returns", publisher: ACT },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  nt: {
+    legislation: "Payroll Tax Act 2009 (NT)",
+    workedExample: [
+      "The Territory Revenue Office's guide: an employer paying $2.4 million is under the $2.5 million threshold and pays nothing. At $2.9 million the annual deductible amount (ADA) falls to $2.5 million − ($400,000 ÷ 2) = $2.3 million, leaving $600,000 taxed at 5.5%, which is $33,000. An employer with $2.7 million in the NT out of $10.4 million Australia-wide has no tax-free amount at all and pays $148,500.",
+    ],
+    leviesHeading: "A 6.5% Rate for $100 Million Employers",
+    levies: [
+      "From 1 July 2026 an amendment to the Payroll Tax Act 2009 adds a 6.5% rate for employers and groups with Australia-wide wages of $100 million or more; the $2.5 million threshold, the deduction settings and the 5.5% rate are unchanged for everyone else. The rate test is separate from the deduction: a large group still gets its ADA worked out in the usual way, then pays 6.5% on its net NT wages. Monthly returns should use 6.5% if the employer or group expects to reach $100 million for the year, using last year's wages as the starting point; the annual return corrects any difference.",
+      "Non-profit charities, public benevolent institutions, religious institutions, non-profit non-government schools, public and non-profit private hospitals and local governing bodies can be exempt for wages of staff working exclusively in their charitable activities. There is no form: apply to TRO by email or letter for a determination.",
+    ],
+    grouping: [
+      "Grouping is automatic, and smaller groups are subsumed into a single master group. A group of NT taxpayers can apply (form F-PRT-003) for its designated group employer to lodge one consolidated return and make one payment for every member; members stay jointly and severally liable, but their liabilities are treated as met once the DGE pays.",
+      "Each month's deduction is fixed in advance: when the annual adjustment return is lodged, INTRA divides the year's ADA by 12 to set the monthly deductable amount (MDA) for the next year.",
+    ],
+    contractorsHeading: "When Contractor Payments Are Taxable",
+    contractors: [
+      "TRO's guide lists the signs that payments to a contractor are taxable wages: the services are a normal part of your business for most of the year, the contractor has no employees of their own, invoices you for more than 90 days' work in the year, averages more than 10 days a month in the months they work for you (any part of a day counts), or the labour exceeds 50% of the contract value. It does not matter whether they trade as a company or trust, bring their own tools, or signed an agreement saying they are not an employee.",
+      "For fly-in fly-out workers, wages for a month worked entirely in one state are taxed there; if a FIFO worker works in two or more states in the same month, the payroll tax goes to the state or territory where they normally live.",
+    ],
+    lodgement: [
+      "NT payroll tax is due by the 21st of the following month, not the 7th: tax for July 2026 must be received by Friday 21 August 2026, and for October 2026 by Monday 23 November 2026 because 21 November is a Saturday. Returns are lodged in INTRA, and you register within 21 days of the end of the first month your Australian wages pass $208,333.",
+      "Employers whose estimated tax for the year is under the annual-lodgement threshold can lodge just an annual return; that threshold rises to $20,000 from 1 September 2026. TRO warns against paying June twice — pay only the amount in the annual return, by 21 July.",
+    ],
+    faqs: [
+      {
+        q: "When is NT payroll tax due?",
+        a: "By the 21st of the month after the return period, later than the 7th used in most states. If the 21st is a weekend or public holiday, TRO must receive payment by the next NT business day. The annual return and any balance are due by 21 July.",
+      },
+      {
+        q: "Who pays the 6.5% NT payroll tax rate?",
+        a: "From 1 July 2026, employers and payroll tax groups whose Australia-wide wages are $100 million or more. They still get the usual annual deductible amount (which is nil at that size); the 6.5% applies to their net NT taxable wages. Everyone else pays 5.5%.",
+      },
+      {
+        q: "When are contractor payments taxable in the NT?",
+        a: "Signs include services that are a normal part of your business for most of the year, a contractor with no employees, invoices for more than 90 days' work in the year, more than 10 days' work a month on average, or labour making up more than half the contract value. A company or trust structure, own tools or a signed 'not an employee' agreement do not change the answer.",
+      },
+    ],
+    sources: [
+      { title: "Payroll tax (due dates and 1 July 2026 changes)", url: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax", publisher: NT },
+      { title: "Payroll tax changes from 1 July 2026", url: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax/payroll-changes-from-1-july-2026", publisher: NT },
+      { title: "Payroll tax guide for Northern Territory employers and businesses", url: "https://treasury.nt.gov.au/pms/tro/information/payroll-tax-guide-for-nt-employers-and-businesses.pdf", publisher: NT },
+    ],
+  },
+};

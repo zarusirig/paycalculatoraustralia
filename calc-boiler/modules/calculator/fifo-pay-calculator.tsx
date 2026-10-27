@@ -94,7 +94,7 @@ export default function FifoPayCalculator() {
               {`About ${r.daysOnSitePerYear} days on site and ${r.annual.hours.toLocaleString("en-AU")} hours a year. Every hour worked averages ${formatAUD(r.effectiveHourly, 2)} gross, and ${Math.round(t.effectiveTaxRate * 100)}% of your gross goes in ${t.hecsRepayment > 0 ? "tax, Medicare and HECS" : "tax and Medicare"}.`}
             </p>
             <p className="text-xs text-warmgray-light">
-              Assumes you work every swing all year. Paid leave usually pays ordinary hours only, so a year with leave earns less overtime. FIFO workers who live outside a remote zone can&rsquo;t claim the <Link href="/zone-tax-offset/" className="underline">zone tax offset</Link>, so none is applied. Your employer withholds tax from each pay using the ATO tables; this is your full-year tax.
+              This FIFO pay calculator assumes you work every swing all year. Paid leave usually pays ordinary hours only, so a year with leave earns less overtime. FIFO workers who live outside a remote zone can&rsquo;t claim the <Link href="/zone-tax-offset/" className="underline">zone tax offset</Link>, so none is applied. Your employer withholds tax from each pay using the ATO tax tables. The tax shown here is your full-year tax.
             </p>
           </div>
         </div>

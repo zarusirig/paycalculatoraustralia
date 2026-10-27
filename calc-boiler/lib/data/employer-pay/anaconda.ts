@@ -38,8 +38,8 @@ export const ANACONDA_PAY: EmployerPay = {
         : "Higher retail classification: the award's Schedule A lists the duties at each level",
   })),
   notices: [
-    "These are the General Retail Industry Award minimums that apply to Anaconda store staff. Anaconda's actual pay rates are not published, so your pay may be higher, but it cannot be lower.",
-    "Your payslip must name the award or agreement you are paid under. If it names an agreement, that agreement sets your pay, but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
+    "These General Retail Industry Award minimums are the floor for Anaconda store staff. Anaconda does not publish its actual hourly rates or any above-award payments, so your pay may be higher than these rates, but it cannot be lower.",
+    "Your Anaconda payslip must name the award or agreement you are paid under. If it names an agreement, that agreement sets your pay, but it cannot pay a base rate below these award rates (Fair Work Act s 206).",
   ],
   unverified: [
     "Anaconda's actual hourly rates and any above-award payments: not public.",

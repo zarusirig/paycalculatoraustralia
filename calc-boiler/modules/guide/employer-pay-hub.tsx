@@ -39,9 +39,11 @@ export default function EmployerPayHubPage() {
             Pay Rates by Employer 2026: Coles, Woolworths, Bunnings, McDonald&rsquo;s &amp; More
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
-            What Australia&rsquo;s biggest retail, fast food and other large employers pay per hour, read from each
-            one&rsquo;s enterprise agreement or, where staff are award-covered, the modern award. Every
-            employer page lists rates by level and by age, penalty rates and weekly pay.
+            This page compares hourly pay rates at Australia&rsquo;s biggest retail, fast food and other
+            large employers, including Coles, Woolworths, Bunnings and McDonald&rsquo;s. Each rate is read from the
+            employer&rsquo;s own enterprise agreement or, where staff are award-covered, from the modern award.
+            The table below sets each employer&rsquo;s adult entry-level rate beside its casual rate and top
+            rate. Every employer page then lists rates by level and by age, penalty rates and weekly pay.
           </p>
           <p className="mb-6 text-sm text-warmgray">
             Pay Calculator Australia is independent and not affiliated with any employer listed here.
@@ -55,8 +57,8 @@ export default function EmployerPayHubPage() {
             <section id="employers">
               <h2 style={HEADING_FONT}>Entry-level adult pay rate at each employer</h2>
               <p>
-                The adult hourly rate at each employer&rsquo;s entry level, the casual rate, and the
-                highest classification rate we publish. Sorted by entry-level rate.
+                The table lists the adult hourly rate at each employer&rsquo;s entry level, the casual rate
+                and the highest classification rate we publish, sorted from the highest entry-level rate down.
               </p>
               <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                 <table className="w-full min-w-[44rem] text-left text-sm text-warmgray">
@@ -112,7 +114,7 @@ export default function EmployerPayHubPage() {
               </p>
               <p>
                 An agreement can never pay a base rate below the award rate for the same work. When the
-                annual wage review lifts the award above an agreement&rsquo;s rate, the employer has to
+                Annual Wage Review lifts the award above an agreement&rsquo;s rate, the employer has to
                 pay the award rate until the agreement catches up. The award minimums are on our{" "}
                 <Link href="/retail-award-rates/">retail award rates</Link> and{" "}
                 <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages, and the

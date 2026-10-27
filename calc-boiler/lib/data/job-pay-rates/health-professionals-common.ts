@@ -99,7 +99,7 @@ export const HPSS_PENALTIES: PenaltyRow[] = [
 ];
 
 export const HPSS_PENALTIES_NOTE =
-  "Percentages of the minimum hourly rate (cl 26 and Schedule C.2). A casual's weekend and shiftwork rates replace the 25% loading rather than adding to it (cl 26.1(b), 26.3(b)), and the shift penalty does not apply on weekends or public holidays where those rates are paid instead (cl 26.3(c)).";
+  "The penalty rates in this table are percentages of the minimum hourly rate (cl 26 and Schedule C.2). A casual's weekend and shiftwork rates replace the 25% loading rather than adding to it (cl 26.1(b), 26.3(b)), and the shift penalty does not apply on weekends or public holidays where those rates are paid instead (cl 26.3(c)).";
 
 export const HPSS_OVERTIME: string[] = [
   "Full-time and part-time: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250% (cl 25.2).",

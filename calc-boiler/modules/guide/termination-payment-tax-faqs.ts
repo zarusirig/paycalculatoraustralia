@@ -14,7 +14,7 @@ const pct = (r: number) => `${Math.round(r * 100)}%`;
 export const TERMINATION_TAX_FAQS: Faq[] = [
   {
     q: "How is a termination payment taxed in Australia?",
-    a: `An employment termination payment (ETP) is taxed at ${pct(ETP_RATES.atOrOverPreservationAge)} (including Medicare levy) if you have reached preservation age (${PRESERVATION_AGE}) by the end of the income year, or ${pct(ETP_RATES.underPreservationAge)} if you have not, up to the ETP cap of ${formatAUD(Y.etpCap)} for ${Y.incomeYear}. Anything above the cap is taxed at the top rate, ${pct(ETP_RATES.aboveCap)}. A genuine redundancy payment is tax-free up to a limit before any of this applies.`,
+    a: `An employment termination payment (ETP) is taxed at ${pct(ETP_RATES.atOrOverPreservationAge)} (including Medicare levy) if you have reached preservation age (${PRESERVATION_AGE}) by the end of the income year, or ${pct(ETP_RATES.underPreservationAge)} if you have not. Both rates apply up to the ETP cap of ${formatAUD(Y.etpCap)} for ${Y.incomeYear}. Anything above the cap is taxed at the top rate, ${pct(ETP_RATES.aboveCap)}. A genuine redundancy payment is tax-free up to a limit before any of this applies.`,
   },
   {
     q: "How much of a redundancy payment is tax-free?",
@@ -26,11 +26,11 @@ export const TERMINATION_TAX_FAQS: Faq[] = [
   },
   {
     q: "What is the ETP cap for 2026-27?",
-    a: `${formatAUD(Y.etpCap)}, up from ${formatAUD(REDUNDANCY_TAX_2025_26.etpCap)} in ${REDUNDANCY_TAX_2025_26.incomeYear}. The ETP cap is indexed each year. The amount of an ETP up to the cap is taxed at the concessional rate and the amount above it at the top marginal rate.`,
+    a: `The ETP cap is ${formatAUD(Y.etpCap)}, up from ${formatAUD(REDUNDANCY_TAX_2025_26.etpCap)} in ${REDUNDANCY_TAX_2025_26.incomeYear}. The ETP cap is indexed each year. The amount of an ETP up to the cap is taxed at the concessional rate and the amount above it at the top marginal rate.`,
   },
   {
     q: "What is the whole-of-income cap?",
-    a: `A separate ${formatAUD(WHOLE_OF_INCOME_CAP)} cap that applies to ETPs that are not excluded, such as a golden handshake or a non-genuine redundancy. It is reduced by your other taxable income in the same income year, whether earned before or after the payment, and the lesser of it and the ETP cap applies. The part of a genuine redundancy above the tax-free limit is an excluded ETP and is tested only against the ETP cap.`,
+    a: `The whole-of-income cap is a separate ${formatAUD(WHOLE_OF_INCOME_CAP)} cap that applies to ETPs that are not excluded, such as a golden handshake or a non-genuine redundancy. It is reduced by your other taxable income in the same income year, whether earned before or after the payment. The lower of the whole-of-income cap and the ETP cap applies. The part of a genuine redundancy above the tax-free limit is an excluded ETP and is tested only against the ETP cap.`,
   },
   {
     q: "Is a payment in lieu of notice taxed as an ETP?",

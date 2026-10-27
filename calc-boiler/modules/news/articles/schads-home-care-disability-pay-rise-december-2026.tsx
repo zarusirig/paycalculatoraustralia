@@ -33,7 +33,7 @@ export default function SchadsHomeCareDisabilityPayRiseDecember2026() {
   return (
     <>
       <p className="lead">
-        Home care workers who look after people with disability will get a pay rise of up to{" "}
+        Home care workers in disability care under Schedule E of the SCHADS Award will get a pay rise of up to{" "}
         <strong>{pctLabel}</strong> from the first full pay period starting on or after{" "}
         <strong>{S.operativeFrom}</strong>. The Fair Work Commission&apos;s Expert Panel confirmed the increase on{" "}
         {S.decidedOn} ({S.decision}), but pushed it back two months from the {S.deferredFrom} start it had

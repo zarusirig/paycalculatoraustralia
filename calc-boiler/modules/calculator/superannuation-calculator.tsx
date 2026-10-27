@@ -138,7 +138,7 @@ export default function SuperannuationCalculatorPage({
           {/* --- Salary Sacrifice Into Super (existing, preserved) --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Sacrifice Into Super</h2>
-            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at 15% inside the fund instead of your marginal rate (up to 45%), making it one of the most effective tax-saving strategies available.</p>
+            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at 15% inside the fund instead of at your marginal rate (up to 45%).</p>
             <p className="mb-3 text-warmgray">Your salary sacrifice counts towards the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap along with your employer&apos;s SG contributions. On {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in SG, leaving you <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in cap space for voluntary contributions.</p>
             <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
           </section>

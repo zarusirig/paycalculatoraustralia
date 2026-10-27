@@ -93,7 +93,7 @@ const FORKLIFT_DRIVER_SECTION: OccupationSection = {
       driverRow("Storeworker grade 3", GRADE_3),
       driverRow("Storeworker grade 4", GRADE_4),
     ],
-    note: "Full-time minimums from the first full pay period on or after 1 July 2026. Annual is weekly x 52. Take-home uses 2026–27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS.",
+    note: "These are full-time forklift driver minimums from the first full pay period on or after 1 July 2026. Annual is weekly x 52. Take-home uses 2026-27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS.",
   },
 };
 
@@ -122,7 +122,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
       id: "storage",
       title: "Forklift operator pay rates: Storage Services and Wholesale Award, 2026–27",
       intro:
-        "Storage Services and Wholesale Award cl 15.1, from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule B.2.1 column: the hourly rate plus the 25% casual loading (cl 11.2). Grade 1 is entry level; a licensed forklift operator starts at grade 2.",
+        "These Storage Services and Wholesale Award cl 15.1 minimums apply from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule B.2.1 column: the hourly rate plus the 25% casual loading (cl 11.2). Grade 1 is entry level; a licensed forklift operator starts at grade 2.",
       rows: [
         storeRow("Storeworker grade 1, on commencement", 1029.1, 27.08, 33.85, "Entry level"),
         storeRow("Storeworker grade 1, after 3 months", 1041.6, 27.41, 34.26),
@@ -136,7 +136,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
       id: "other-awards",
       title: "Forklift operator pay rates: retail, manufacturing and transport awards",
       intro:
-        "The same job under other awards, from the first full pay period on or after 1 July 2026. Retail and Manufacturing from the shared award data on this site; Transport Worker Grade 3 from the Road Transport and Distribution Award.",
+        "These are forklift operator rates under other awards, from the first full pay period on or after 1 July 2026. The Retail and Manufacturing rows come from the shared award data on this site, and the Transport Worker Grade 3 row comes from the Road Transport and Distribution Award.",
       rows: [
         rowFromModernAward(MANUFACTURING_AWARD, "C12 / V3", "Manufacturing C12: Employee Level III", "Operation of mobile equipment including fork-lifts"),
         storeRow("Road Transport: Transport Worker Grade 3", TRANSPORT_GRADE_3.weekly, TRANSPORT_GRADE_3.hourly, 34.79, "Forklift up to 5 tonnes"),
@@ -152,7 +152,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Day workers, from the award's Schedule B.1.1 and B.2.1: percentages of the minimum hourly rate, with the casual percentages including the 25% loading. Shiftworkers have separate loadings: 112.5% early morning, 115% afternoon and 130% night for full-time and part-time employees (Schedule B.1.2).",
+    "The penalty rates above are for day workers (the award's Schedule B.1.1 and B.2.1) and are percentages of the minimum hourly rate, with the 25% casual loading already in the casual percentages. Shiftworkers have separate loadings: 112.5% early morning, 115% afternoon and 130% night for full-time and part-time employees (Schedule B.1.2).",
   overtime: [
     "Full-time and part-time: 150% of the minimum hourly rate for the first 2 hours, then 200% (cl 21.1(b)). Sunday overtime is 200% and public holiday overtime 250%.",
     "Casual: 175% for the first 2 hours, then 225% (cl 21.1(d)), because the 25% casual loading is added to the overtime percentages.",

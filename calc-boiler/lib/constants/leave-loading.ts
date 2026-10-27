@@ -116,7 +116,7 @@ export const LEAVE_LOADING_RULES: readonly LeaveLoadingRule[] = [
     clause: "cl 30.3",
     dayWork: "flat",
     shiftwork: "flat",
-    summary: "A flat 17.5% on the amount payable under the NES for the leave, including untaken leave paid out when employment ends. No comparison with penalty rates.",
+    summary: "A flat 17.5% on the amount payable under the NES for the leave, including untaken leave paid out when employment ends. The loading is not compared with penalty rates.",
   },
   {
     code: MA["fast-food"].meta.code,
@@ -176,7 +176,7 @@ export const LEAVE_LOADING_RULES: readonly LeaveLoadingRule[] = [
     clause: "cl 21.3",
     dayWork: "greater-of-earnings",
     shiftwork: "greater-of-earnings",
-    summary: "Leave is paid at the greater of what you would have earned, or the minimum rate plus first aid, supervision or relieving allowances plus 17.5%. On termination the 17.5% is lost if dismissed for misconduct.",
+    summary: "Leave is paid at the greater of what you would have earned, or the minimum rate plus first aid, supervision or relieving allowances plus 17.5%. On termination the 17.5% is not paid if you are dismissed for misconduct.",
   },
 ];
 

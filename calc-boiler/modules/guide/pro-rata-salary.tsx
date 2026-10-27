@@ -61,7 +61,7 @@ export default function ProRataSalaryPage() {
                 &ldquo;Pro rata&rdquo; means &ldquo;in proportion&rdquo;. A pro-rata salary is the full-time salary for a role, paid in proportion to the hours you work. Job ads say &ldquo;{formatAUD(ex.fte)} pro rata&rdquo; or &ldquo;{formatAUD(ex.fte)} FTE&rdquo; to quote the full-time figure for a part-time job, so you can compare it with full-time roles. What you are actually paid is that figure multiplied by your fraction of full time.
               </p>
               <p>
-                Full time is normally {EMPLOYMENT.standardWeeklyHours} ordinary hours a week, the maximum under the National Employment Standards, or {EMPLOYMENT.standardWeeklyHours / 5} hours a day over five days. Some awards and agreements use 35, 37.5 or 40 hours; the calculator lets you change it.
+                Full time is normally {EMPLOYMENT.standardWeeklyHours} ordinary hours a week, the maximum under the National Employment Standards, or {EMPLOYMENT.standardWeeklyHours / 5} hours a day over five days. Some awards and agreements use 35, 37.5 or 40 hours; the calculator lets you change the full-time hours to match.
               </p>
             </section>
 

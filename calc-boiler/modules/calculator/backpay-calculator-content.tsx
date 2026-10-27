@@ -34,8 +34,11 @@ export default function BackpayCalculatorContent() {
           <div className="max-w-4xl mx-auto space-y-10">
 
             <p className="text-lg text-warmgray">
-              Calculate how much you are owed in backpay: the calculator above adds unpaid super and leave entitlements to
-              the wage shortfall to give the total underpayment.
+              Backpay owed in Australia is the correct award or enterprise agreement hourly rate minus the rate you were
+              paid, multiplied by the hours you worked in the underpayment period. The calculator above adds the unpaid
+              super and annual leave accrual on that wage shortfall to give your total underpayment, then estimates the
+              tax on the lump sum. The rest of this page covers how backpay is calculated and taxed, how to make an
+              underpayment claim with the Fair Work Ombudsman, and the common types of underpayment.
             </p>
 
             <section id="what-is-back-pay">
@@ -45,12 +48,12 @@ export default function BackpayCalculatorContent() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Backpay Calculated in Australia?</h2>
-              <p className="mb-4 text-warmgray">Backpay is the difference between what you <strong>should have been paid</strong> and what you <strong>were actually paid</strong>, multiplied by the total hours worked during the underpayment period. The Fair Work Ombudsman uses a straightforward formula:</p>
+              <p className="mb-4 text-warmgray">Backpay is the difference between what you <strong>should have been paid</strong> and what you <strong>were actually paid</strong>, multiplied by the total hours worked during the underpayment period. The Fair Work Ombudsman uses this formula:</p>
               <p className="mb-4 text-warmgray font-medium">(Correct hourly rate - Actual hourly rate) x Total hours worked = Wage shortfall</p>
-              <p className="mb-4 text-warmgray">In addition to the wage shortfall, your employer also owes:</p>
+              <p className="mb-4 text-warmgray">On top of the wage shortfall, your employer owes:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
                 <li><strong>Unpaid superannuation:</strong> The 12% SG applies to the underpaid amount. If you were paid {formatAUD(EXAMPLE.actual, 2)}/hr instead of {formatAUD(EXAMPLE.correct, 2)}/hr, your employer owes an additional <strong>{formatAUD(EXAMPLE.superPerHour, 2)}/hr</strong> in super on the {formatAUD(EXAMPLE.diff, 2)} difference.</li>
-                <li><strong>Unpaid leave accrual:</strong> Annual leave accrues on ordinary hours. Underpayment means your leave balance was also underpaid when you took or cashed out leave.</li>
+                <li><strong>Unpaid leave accrual:</strong> Annual leave accrues on ordinary hours. If your hourly rate was underpaid, any annual leave you took or cashed out was also paid at the wrong rate.</li>
                 <li><strong>Interest:</strong> In some cases, the Fair Work Ombudsman or courts may award interest on unpaid wages, particularly for prolonged underpayments.</li>
               </ul>
               <p className="mt-4 text-warmgray">Check the correct rate for your role using the <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Award Rates</Link> page, which lists minimum pay rates by industry classification, or run your award, level and hours through the <Link href="/fair-work-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Fair Work pay calculator</Link>.</p>

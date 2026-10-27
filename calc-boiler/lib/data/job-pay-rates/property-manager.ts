@@ -45,7 +45,7 @@ export const PROPERTY_MANAGER: Occupation = {
     {
       id: "real-estate",
       title: "Property manager minimum pay rates 2026–27",
-      intro: "Weekly rates from clause 14.1 of the Real Estate Industry Award. Hourly and casual rates from the award's Schedule B.",
+      intro: "The weekly rates for property managers come from clause 14.1 of the Real Estate Industry Award. The hourly and casual rates come from the award's Schedule B.",
       rows: REAL_ESTATE_ROWS,
     },
   ],
@@ -74,7 +74,7 @@ export const PROPERTY_MANAGER: Occupation = {
     },
     {
       q: "How much does a property management assistant earn?",
-      a: "An assistant or associate is Level 1: at least $1,010.60 a week ($26.59 an hour) in the first 12 months at that level, then $1,063.90 a week ($28.00 an hour).",
+      a: "A property management assistant or associate is Level 1 under the Real Estate Industry Award, paid at least $1,010.60 a week ($26.59 an hour) in the first 12 months at that level. After that, the minimum is $1,063.90 a week ($28.00 an hour).",
     },
     {
       q: "Can a property manager be paid commission only?",
@@ -86,7 +86,7 @@ export const PROPERTY_MANAGER: Occupation = {
     },
     {
       q: "Do property managers get weekend penalty rates?",
-      a: "No. Ordinary hours under this award can be worked on any day of the week, so weekend hours are paid at the ordinary rate. Public holidays are paid at 200%.",
+      a: "No. Ordinary hours under the Real Estate Industry Award can be worked on any day of the week, so a property manager's weekend hours are paid at the ordinary rate. Public holidays are paid at 200%.",
     },
   ],
   sources: [

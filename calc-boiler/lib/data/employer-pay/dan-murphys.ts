@@ -41,7 +41,7 @@ export const DAN_MURPHYS_PAY: EmployerPay = {
     },
     {
       q: "When does the Dan Murphy's agreement expire?",
-      a: "Its nominal expiry date is 30 June 2029. Until then, rates rise from the first full pay period on or after each 1 July by the percentage the Annual Wage Review gives the General Retail Industry Award.",
+      a: "The Endeavour Group agreement that covers Dan Murphy's has a nominal expiry date of 30 June 2029. Until then, rates rise from the first full pay period on or after each 1 July by the percentage the Annual Wage Review gives the General Retail Industry Award.",
     },
   ],
 };

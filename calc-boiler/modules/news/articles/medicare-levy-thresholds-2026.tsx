@@ -5,10 +5,14 @@ export default function MedicareLevyThresholds2026() {
   return (
     <>
       <p className="lead">
-        Medicare levy low-income thresholds rose <strong>2.9%</strong> for the 2025-26 income
-        year, backdated to 1 July 2025. Singles now pay no Medicare levy at all below{" "}
+        The Medicare levy low-income thresholds rose <strong>2.9%</strong> for the 2025-26 income
+        year, backdated to 1 July 2025. A single taxpayer now pays no Medicare levy at all below{" "}
         <strong>$28,011</strong>, up from $27,222, sparing more than a million low-income
-        earners some or all of the 2% levy.
+        earners some or all of the 2% levy. The ATO applies the new thresholds when it assesses
+        your tax return. The table below compares the old and new thresholds
+        for singles, families, seniors and pensioners, and each dependent child or student. The
+        rest of this article explains why the thresholds moved, how the reduced-rate band works
+        and what changes on your tax return.
       </p>
 
       <p className="text-sm text-navy/60">
@@ -30,15 +34,15 @@ export default function MedicareLevyThresholds2026() {
       <p>
         Medicare levy low-income thresholds are indexed each year so that the levy doesn&apos;t
         start biting into wages that have simply kept pace with inflation. The 2.9% lift for
-        2025-26 was confirmed as part of the government&apos;s cost-of-living measures, and
-        applies retrospectively to the whole income year: the return most people lodge between
-        July and October 2026.
+        2025-26 was confirmed as part of the Federal Budget&apos;s cost-of-living measures, and
+        applies retrospectively to the whole income year, so it flows into the return most people
+        lodge between July and October 2026.
       </p>
       <p>
-        The thresholds aren&apos;t a headline Budget centrepiece (they move most years by a
-        similar percentage), but a 2.9% lift is larger than some recent years&apos; indexation and
-        was specifically called out because it delivers tax relief to more than a million people
-        who sit near the boundary. Treasury estimated the change reduces receipts by around $450
+        The Medicare levy thresholds aren&apos;t a headline Budget measure, because they move most
+        years by a similar percentage. The 2.9% lift is larger than some recent years&apos;
+        indexation, and the Budget called it out because it delivers tax relief to more than a
+        million people who sit near the boundary. Treasury estimated the change reduces receipts by around $450
         million over five years from 2025-26, reflecting how many taxpayers fall into the
         affected income range.
       </p>
@@ -48,8 +52,8 @@ export default function MedicareLevyThresholds2026() {
         Below the singles threshold of $28,011, you pay no Medicare levy at all. Between $28,011
         and $35,013, a reduced rate applies: 10 cents for every dollar over the threshold,
         instead of the full 2%. Families, seniors and pensioners have their own higher
-        thresholds, all lifted by the same 2.9%, so a part-time worker or part-year retiree who
-        was previously just over the old threshold may now pay nothing.
+        thresholds, all lifted by the same 2.9%. A part-time worker or part-year retiree whose
+        income sits between the old and new threshold now pays no Medicare levy.
       </p>
       <p>
         The family threshold works the same way but is assessed on combined family income, with
@@ -70,15 +74,15 @@ export default function MedicareLevyThresholds2026() {
       <p>
         Because the increase is backdated to 1 July 2025, it applies to the entire income year
         even though it was only confirmed around Budget time in May 2026. If your employer
-        withheld PAYG based on the old, lower thresholds throughout the year, you&apos;ll typically see
-        the correction as a slightly larger refund once your 2025-26 return is assessed, rather
-        than as any change to your take-home pay during the year itself.
+        withheld PAYG based on the old, lower thresholds throughout the year, the correction shows
+        up when your 2025-26 return is assessed, as a slightly larger refund or a smaller tax bill,
+        not as a change to your take-home pay during the year itself.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        If your income sits near the old thresholds, it&apos;s worth checking whether you now fall
-        into the reduced-rate band or below it entirely. Run your numbers through our{" "}
+        If your taxable income sits near the old thresholds, check whether you now fall below the
+        new threshold or into the reduced-rate band above it. Run your numbers through our{" "}
         <Link href="/medicare-levy/">Medicare levy guide</Link> to see exactly what you owe under
         the new thresholds, or use the{" "}
         <Link href="/income-tax-calculator/">income tax calculator</Link> for your full FY2025-26

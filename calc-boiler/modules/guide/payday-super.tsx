@@ -57,7 +57,7 @@ export default function PaydaySuperPage() {
             Payday Super: Your Super Is Now Paid Every Payday
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Since {SUPER_GUARANTEE.paydaySuperStart}, employers must pay the super guarantee with every pay run instead of once a quarter. Use the calculator to see how much super should go to your fund each payday and when it has to arrive.
+            Since {SUPER_GUARANTEE.paydaySuperStart}, Payday Super has required Australian employers to pay the super guarantee with every pay run instead of once a quarter. The calculator below works out how much super is due for each payday and the date it must reach your fund by. The rest of the page covers the business-day deadline, qualifying earnings, the charge for late super, the closed ATO clearing house, the legislation and what you should check.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -77,7 +77,7 @@ export default function PaydaySuperPage() {
 
             <section id="what-changed">
               <h2 style={H}>What changed on {SUPER_GUARANTEE.paydaySuperStart}</h2>
-              <p>Payday Super changed when employers pay super. The rate did not change. Here is the old quarterly system next to the new one.</p>
+              <p>Payday Super changed when employers pay super, but the rate did not change. The table sets the old quarterly system against Payday Super.</p>
               <div className="not-prose overflow-x-auto">
                 <table className="w-full border-collapse text-left text-sm">
                   <thead className="bg-sandstone text-navy">

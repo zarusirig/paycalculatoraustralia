@@ -50,8 +50,8 @@ export const WA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   penalties: [],
   notices: [
     "The Western Australian Fire Service Enterprise Bargaining Agreement 2023 expired on 8 June 2025. Its last scheduled pay increase took effect in June 2024.",
-    "Bargaining for a replacement agreement between DFES and the United Professional Firefighters Union of WA has run since 2025. In December 2025 Western Australian Industrial Relations Commission proceedings resulted in an interim (administrative) pay increase while bargaining continued, but no replacement agreement had been registered with the WAIRC when we checked on 22 October 2026.",
-    "DFES's careers page describes the roster as four days on, four days off: two 10-hour day shifts (0800–1800) followed by two 14-hour night shifts (1800–0800), an average of 42 hours a week, paid for 40 hours with the extra two hours accruing as additional annual leave.",
+    "Bargaining for a replacement agreement between DFES and the United Professional Firefighters Union of WA has run since 2025. In December 2025 Western Australian Industrial Relations Commission proceedings resulted in an interim (administrative) pay increase while bargaining continued. No replacement agreement had been registered with the WAIRC when we checked on 22 October 2026.",
+    "DFES's careers page describes the roster as four days on, four days off: two 10-hour day shifts (0800 to 1800) followed by two 14-hour night shifts (1800 to 0800), an average of 42 hours a week, paid for 40 hours with the extra two hours accruing as additional annual leave.",
   ],
   unverified: [
     "Current WA career firefighter pay rates are not shown. DFES's careers page still prints rates effective from June 2024, but an administrative pay increase was granted in December 2025, so those figures are out of date. No official DFES or WAIRC table of the rates after that increase could be found.",

@@ -74,9 +74,13 @@ function ContactPage() {
               Contact Us
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
-              Have a question about our calculators, found an error in our
-              figures, or want to suggest a new feature? We&apos;d love to hear
-              from you.
+              You can contact Pay Calculator Australia by email to ask about a
+              calculator, report an error in our figures or suggest a new
+              feature. The error report and feature request links below open an
+              email with the subject line already filled in. This page also
+              explains that we can&apos;t give personal tax advice, and lists the
+              government contacts for your own tax, workplace rights, Medicare
+              and Centrelink questions.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>

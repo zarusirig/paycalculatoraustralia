@@ -97,7 +97,7 @@ export default function AgePensionAssetsTestCalculatorPage({ children, afterCalc
           <p>
             From {AT.ratesFrom} you get the full Age Pension with assets up to <strong>{formatAUD(AT.fullPensionLimit.single.homeowner)}</strong> (single homeowner) or <strong>{formatAUD(AT.fullPensionLimit.couple.homeowner)}</strong> (couple homeowner, combined). Above that the pension falls by <strong>$3 a fortnight for every $1,000</strong> ($1.50 each for a couple) and stops at <strong>{formatAUD(AT.partPensionCutOff.single.homeowner)}</strong> single or <strong>{formatAUD(AT.partPensionCutOff.couple.homeowner)}</strong> for a couple. Non-homeowners can have {formatAUD(AT.fullPensionLimit.single.nonHomeowner - AT.fullPensionLimit.single.homeowner)} more.
           </p>
-          <p className="text-base">The calculator runs the assets test and the income test (with your wages, the Work Bonus and deemed income on your savings) and shows which one sets your pension. Services Australia pays the lower.</p>
+          <p className="text-base">The calculator runs the assets test and the income test (with your wages, the Work Bonus and deemed income on your savings) and shows which one sets your pension. Services Australia pays the lower rate.</p>
         </W3Hero>
 
         <section className="max-w-4xl mx-auto">

@@ -20,12 +20,12 @@ import FeaturedImage from "@/components/common/featured-image";
 
 /** State-specific paragraph for the "how it is calculated" section. */
 const HOW_NOTE: Record<PayrollTaxStateCode, string> = {
-  nsw: "NSW is the simplest system in the country: the threshold never phases out, so every NSW-only employer over $1.2 million pays 5.45% on the excess.",
+  nsw: "The NSW threshold does not phase out as wages grow, so every NSW-only employer over $1.2 million pays 5.45% on the excess.",
   vic: "The phase-out means the threshold falls by 50 cents for each dollar of Australian wages above $3 million. A Victoria-only employer can shortcut it as ($5 million − wages) × 50%.",
   qld: "The deduction is worked out on Australian wages first ($1.3 million less one-seventh of wages above $1.3 million) and then multiplied by the Queensland share.",
   wa: "WA's deductable amount is $1 million − (Australian wages − $1 million) × 2/13, multiplied by the WA share. It is zero from $7.5 million.",
-  sa: "Two steps: the rate is set by total Australian wages (0% to 4.95% between $1.5 million and $1.7 million), then applied to SA wages less the $600,000 deduction (SA share).",
-  tas: "Above $2 million of Australian wages: 4% on the gap between the two apportioned thresholds, plus 6.1% on Tasmanian wages above the apportioned $2 million.",
+  sa: "SA payroll tax is worked out in two steps: the rate is set by total Australian wages (0% to 4.95% between $1.5 million and $1.7 million), then applied to SA wages less the $600,000 deduction (SA share).",
+  tas: "Above $2 million of Australian wages, Tasmanian payroll tax is 4% on the gap between the two apportioned thresholds, plus 6.1% on Tasmanian wages above the apportioned $2 million.",
   act: "Find your band from total Australia-wide wages, then apply that single rate to ACT wages less the apportioned $1.75 million.",
   nt: "The $2.5 million falls by $1 for every $2 of Australian wages above $2.5 million; the NT share of what is left is deducted, and 5.5% (or 6.5% from $100 million) applies to the rest.",
 };
@@ -158,7 +158,7 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
             </section>
 
             <p>
-              What counts as wages, why employees never pay it and how {s.abbr} compares with the other states are the
+              What counts as wages, why employees do not pay it and how {s.abbr} compares with the other states are the
               same everywhere, so they are covered once on the{" "}
               <Link href="/payroll-tax/#taxable-wages">payroll tax hub</Link> and in the{" "}
               <Link href="/payroll-tax/#compare">state-by-state comparison</Link>. For an employee&rsquo;s take-home pay

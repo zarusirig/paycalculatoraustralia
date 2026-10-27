@@ -76,7 +76,7 @@ export const REJECT_SHOP_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "The agreement's junior percentages (cl 19.2) apply to the Team Member rate and reach the adult rate at 20, a year earlier than the Retail Award. Where the award's percentage is higher, the award's applies: from 1 December 2026 that lifts 18-year-olds with more than 6 months' service to 75% and 19-year-olds to 85%. The dollars below are our arithmetic from the Team Member weekly rate; casuals add the 26% loading.",
+    "The Reject Shop agreement's junior percentages (cl 19.2) apply to the Team Member rate and reach the adult rate at 20, a year earlier than the Retail Award. Where the award's percentage is higher, the award's applies. From 1 December 2026 that lifts 18- and 19-year-olds with more than 6 months' service to 75% and 85% respectively. The dollars below are our arithmetic from the Team Member weekly rate; casuals add the 26% loading.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "Base rate", casual: "Base + 26%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "Base + 25%", casual: "Base + 51%" },
@@ -120,7 +120,7 @@ export const REJECT_SHOP_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does The Reject Shop pay an hour in 2026?",
-      a: "A Team Member gets $1,062.08 a week, or $27.95 an hour, as a permanent employee, and $35.22 an hour as a casual. That applies from the first full pay period on or after 1 July 2026. A Team Leader gets $29.35 an hour ($36.98 casual). Both are worked out from the agreement's rule of the Retail Award rate plus 0.5%.",
+      a: "A Reject Shop Team Member gets $1,062.08 a week, or $27.95 an hour, as a permanent employee, and $35.22 an hour as a casual. That applies from the first full pay period on or after 1 July 2026. A Team Leader gets $29.35 an hour ($36.98 casual). Both are worked out from the agreement's rule of the Retail Award rate plus 0.5%.",
     },
     {
       q: "How much does The Reject Shop pay a 15 or 16 year old?",
@@ -128,7 +128,7 @@ export const REJECT_SHOP_PAY: EmployerPay = {
     },
     {
       q: "What are The Reject Shop penalty rates?",
-      a: "Weekday evenings after 6pm and Saturdays pay base plus 25% ($34.94 an hour for a Team Member), Sundays base plus 50% ($41.93) and public holidays base plus 125% ($62.89). Casual rates include the 26% loading: $42.20, $49.19 and $70.15 for the same hours.",
+      a: "The Reject Shop pays base plus 25% on weekday evenings after 6pm and on Saturdays ($34.94 an hour for a Team Member), base plus 50% on Sundays ($41.93) and base plus 125% on public holidays ($62.89). Casual rates include the 26% loading: $42.20, $49.19 and $70.15 for the same hours.",
     },
     {
       q: "Is The Reject Shop enterprise agreement still in force?",

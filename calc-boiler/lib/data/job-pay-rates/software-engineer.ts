@@ -103,7 +103,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
   heading: "Software Engineer Salary Australia 2026: What Tax Returns Show & Take-Home",
   metaTitle: `Software Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD3.hourly)}/hr Award`,
   metaDescription: `Software engineers' median salary was ${aud(ATO_MEDIAN)} on 2023–24 tax returns (ATO). When the IT award applies, its graduate floor and take-home pay on each figure.`,
-  lede: `The 84,585 people who gave their occupation as software engineer on 2023–24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. Whether any award minimum applies depends on your employer: the Professional Employees Award covers IT professionals only at businesses principally in the IT or telecommunications industry, where a graduate's floor is ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
+  lede: `The 84,585 people who gave their occupation as software engineer on 2023-24 tax returns had a median salary of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)}, according to the ATO. Whether any award minimum applies depends on your employer: the Professional Employees Award covers IT professionals only at businesses principally in the IT or telecommunications industry, where a graduate's floor is ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour). On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netFortnightly(ATO_MEDIAN))} a fortnight.`,
   coverage: [
     "The Professional Employees Award 2020 [MA000065] covers software engineers only through its information technology stream, and only where the employer is principally engaged in the IT industry or the telecommunications services industry (cl 4.1(b)). The award defines the IT industry to include designing software, computer programming, computer consultancy and system analysis services (cl 2.3).",
     "Within such an employer, the classifications apply to professional IT duties: work that needs a 3, 4 or 5-year degree with a science or IT major accredited by the Australian Computer Society at professional level, or the qualifications and experience to be an ACS Certified Professional (cl 2.3). A graduate starts at Level 1 pay point 1.1; with 4 years' professional IT experience after graduating you are an experienced IT employee at Level 2.",
@@ -115,7 +115,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
       id: "it-professional",
       title: "Software engineer award minimums (IT-industry employers), 2026–27",
       intro:
-        "Professional Employees Award annual wages from clause 14.1, the award's weekly conversion (annual x 6/313), and Schedule C hourly and casual rates. They apply only where the award covers you; see above.",
+        "The table shows Professional Employees Award annual wages from clause 14.1, the award's weekly conversion (annual x 6/313), and Schedule C hourly and casual rates. These minimums apply only where the award covers you, as set out above.",
       rows: [GRAD3, GRAD45, peaRow(PEA.pp12), peaRow(PEA.pp13), peaRow(PEA.pp14), L2, peaRow(PEA.level3), L4],
     },
   ],
@@ -123,7 +123,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
   penaltiesNote: PEA_PENALTIES_NOTE,
   overtime: [
     "Overtime beyond 38 hours a week includes call-backs and work done on electronic devices or remotely, and is paid at the ordinary minimum hourly rate (cl 18.2(a)).",
-    `It stops applying once your contract salary is at least 25% above your level's minimum (cl 18.6): ${aud2(exemptionThreshold(GRAD3.annual!))} for a 3-year-degree graduate, ${aud(exemptionThreshold(L2.annual!))} at Level 2 and ${aud2(exemptionThreshold(L4.annual!))} at Level 4.`,
+    `Award overtime stops applying once your contract salary is at least 25% above your level's minimum (cl 18.6): ${aud2(exemptionThreshold(GRAD3.annual!))} for a 3-year-degree graduate, ${aud(exemptionThreshold(L2.annual!))} at Level 2 and ${aud2(exemptionThreshold(L4.annual!))} at Level 4.`,
   ],
   allowances: PEA_ALLOWANCES,
   median: MEDIAN,
@@ -143,7 +143,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
   faqs: [
     {
       q: "How much does a software engineer earn in Australia?",
-      a: `On 2023–24 tax returns, the 84,585 people who gave their occupation as software engineer had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO Taxation statistics 2023–24). Jobs and Skills Australia's full-time median for software and applications programmers is $2,537 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
+      a: `On 2023-24 tax returns, the 84,585 people who gave their occupation as software engineer had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO Taxation statistics 2023-24). Jobs and Skills Australia's full-time median for software and applications programmers is $2,537 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
     },
     {
       q: "Is there an award for software engineers?",
@@ -151,11 +151,11 @@ export const SOFTWARE_ENGINEER: Occupation = {
     },
     {
       q: "What is the minimum salary for a graduate software engineer?",
-      a: `Where the award applies, ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour) for a graduate with a 3-year accredited degree, or ${aud(GRAD45.annual!)} with a 4 or 5-year degree, at Level 1 pay point 1.1 from 1 July 2026. Elsewhere the legal floor is the National Minimum Wage.`,
+      a: `A graduate software engineer covered by the award earns at least ${aud(GRAD3.annual!)} a year (${aud2(GRAD3.hourly)} an hour) with a 3-year accredited degree, or ${aud(GRAD45.annual!)} with a 4 or 5-year degree. Both rates are Level 1 pay point 1.1 and apply from 1 July 2026. Elsewhere the legal floor is the National Minimum Wage.`,
     },
     {
       q: "What is a software engineer's take-home pay?",
-      a: `On the ${aud(ATO_MEDIAN)} ATO median, about ${aud(netAnnual(ATO_MEDIAN))} a year or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the ${aud(ATO_AVERAGE)} average, about ${aud(netAnnual(ATO_AVERAGE))} a year.`,
+      a: `A software engineer on the ${aud(ATO_MEDIAN)} ATO median takes home about ${aud(netAnnual(ATO_MEDIAN))} a year or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the ${aud(ATO_AVERAGE)} average, take-home pay is about ${aud(netAnnual(ATO_AVERAGE))} a year.`,
     },
     {
       q: "Do software engineers get paid for on-call or after-hours work?",
@@ -163,7 +163,7 @@ export const SOFTWARE_ENGINEER: Occupation = {
     },
     {
       q: "Do software engineers earn more than developers and testers?",
-      a: "On 2023–24 tax returns the median salary or wage income was $132,758 for software engineers, $117,992 for applications programmers, $122,234 for analyst programmers and $106,142 for software testers (ATO).",
+      a: "Yes, on median pay. On 2023-24 tax returns the median salary or wage income was $132,758 for software engineers, $117,992 for applications programmers, $122,234 for analyst programmers and $106,142 for software testers (ATO).",
     },
   ],
   sources: [

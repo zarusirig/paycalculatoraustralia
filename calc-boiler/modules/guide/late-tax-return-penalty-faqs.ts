@@ -26,7 +26,7 @@ export const LATE_TAX_RETURN_FAQS: Faq[] = [
   },
   {
     q: "How much is a penalty unit?",
-    a: `${formatAUD(PENALTY_UNIT.amount)} for failures on or after ${PENALTY_UNIT.from}, and ${formatAUD(PENALTY_UNIT.previousAmount)} from ${PENALTY_UNIT.previousPeriod}. The ATO publishes the current value on its penalty units page.`,
+    a: `A penalty unit is ${formatAUD(PENALTY_UNIT.amount)} for failures on or after ${PENALTY_UNIT.from}, and ${formatAUD(PENALTY_UNIT.previousAmount)} from ${PENALTY_UNIT.previousPeriod}. The ATO publishes the current value on its penalty units page.`,
   },
   {
     q: "Can I get a late lodgement penalty removed?",
@@ -38,10 +38,10 @@ export const LATE_TAX_RETURN_FAQS: Faq[] = [
   },
   {
     q: "Is there interest on top of the penalty?",
-    a: "If you owe tax, the ATO charges general interest charge on the unpaid amount from the due date for payment until it is paid. The rate is set each quarter, so check the ATO's current rate. The failure-to-lodge penalty and the interest are separate charges.",
+    a: "If you owe tax, the ATO charges the general interest charge on the unpaid amount from the due date for payment until it is paid. The rate is set each quarter, so check the ATO's current rate. The failure-to-lodge penalty and the interest are separate charges.",
   },
   {
     q: "How do I lodge a late tax return?",
-    a: "Lodge it as soon as you can. Most people lodge online through myTax in myGov, where the ATO pre-fills most details, or ask a registered tax agent. The penalty is counted while the return is overdue, so lodging sooner is always cheaper. Use the tax return calculator to estimate your refund or bill first.",
+    a: "Lodge it as soon as you can. Most people lodge online through myTax in myGov, where the ATO pre-fills most details, or ask a registered tax agent. The penalty is counted while the return is overdue, so lodging now stops it adding another penalty unit. Use the tax return calculator to estimate your refund or bill first.",
   },
 ];

@@ -86,7 +86,7 @@ export default function TakeHomePayCalculatorContent() {
               <li><strong>Total deductions:</strong> {formatAUD(EX80.netIncomeTax)} + {formatAUD(EX80.medicareLevy)} = <strong>{formatAUD(EX80.totalDeductions)}</strong>.</li>
               <li><strong>Take-home pay:</strong> $80,000 &minus; {formatAUD(EX80.totalDeductions)} = <strong>{formatAUD(EX80.takeHomePay)} per year</strong> ({formatAUD(EX80.weekly, 2)} per week).</li>
             </ol>
-            <p className="text-warmgray">Your employer also contributes <strong>{formatAUD(EX80.superContribution)}</strong> in superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate) on top of your salary, bringing the total remuneration package to <strong>{formatAUD(EX80.totalPackage)}</strong>. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model different SG scenarios.</p>
+            <p className="text-warmgray">Your employer also contributes <strong>{formatAUD(EX80.superContribution)}</strong> in superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate) on top of your salary, so your total remuneration package is <strong>{formatAUD(EX80.totalPackage)}</strong>. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model different SG scenarios.</p>
           </section>
 
           {/* ---- WHAT DEDUCTIONS REDUCE YOUR TAKE-HOME PAY? ---- */}
@@ -137,10 +137,10 @@ export default function TakeHomePayCalculatorContent() {
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray mb-4">The largest deduction is income tax, calculated using Australia&apos;s <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">progressive tax brackets</Link>. The &quot;Low Income Tax Offset&quot; (LITO) reduces tax for incomes below {formatAUD(LITO.nilOffsetIncome)}, providing up to <strong>{formatAUD(LITO.maxOffset)}</strong> in savings. The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> is a flat 2% that funds Australia&apos;s public healthcare system.</p>
+            <p className="text-warmgray mb-4">The largest deduction is income tax, calculated using Australia&apos;s <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">progressive tax brackets</Link>. The &quot;Low Income Tax Offset&quot; (LITO) reduces tax for incomes below {formatAUD(LITO.nilOffsetIncome)}, providing up to <strong>{formatAUD(LITO.maxOffset)}</strong> in savings. The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> is a flat 2% of taxable income that funds Australia&apos;s public healthcare system.</p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">How Does the Tax-Free Threshold Affect Net Pay?</h3>
-            <p className="text-warmgray">Every Australian tax resident claiming the tax-free threshold pays <strong>$0</strong> income tax on the first $18,200 of annual earnings. That threshold is worth <strong>{formatAUD(TAX_FREE_THRESHOLD * B1.rate)}</strong> a year: the tax the first {formatAUD(TAX_FREE_THRESHOLD)} would otherwise attract at the {pct0(B1.rate)} rate. Employees who hold multiple jobs should claim the threshold on only one position &mdash; claiming it on two jobs results in under-withholding and a tax bill at lodgment. Non-residents forfeit the threshold entirely and pay 30% from the first dollar earned, producing a significantly lower after-tax income on the same gross salary.</p>
+            <p className="text-warmgray">Every Australian tax resident claiming the tax-free threshold pays <strong>$0</strong> income tax on the first $18,200 of annual earnings. That threshold is worth <strong>{formatAUD(TAX_FREE_THRESHOLD * B1.rate)}</strong> a year: the tax the first {formatAUD(TAX_FREE_THRESHOLD)} would otherwise attract at the {pct0(B1.rate)} rate. Employees who hold multiple jobs should claim the threshold on only one position. Claiming it on two jobs results in under-withholding and a tax bill at lodgment. Non-residents cannot claim the threshold and pay 30% from the first dollar earned, so their after-tax income is lower on the same gross salary.</p>
           </section>
 
           {/* ---- TAKE-HOME PAY TABLE BY SALARY LEVEL ---- */}
@@ -179,7 +179,7 @@ export default function TakeHomePayCalculatorContent() {
               </table>
             </div>
             <p className="mt-3 text-sm text-warmgray-light mb-4">
-              Figures exclude HECS-HELP repayments and Medicare Levy Surcharge. If you carry a HECS debt, your take-home decreases further &mdash;{" "}
+              Figures exclude HECS-HELP repayments and Medicare Levy Surcharge. If you carry a HECS-HELP debt, your take-home pay is lower again:{" "}
               <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">calculate your HECS repayment</Link> to see the impact.
             </p>
             {/* T6: hub linking every /take-home-pay-on/ page */}
@@ -188,19 +188,19 @@ export default function TakeHomePayCalculatorContent() {
             </p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Take-Home Pay on Part-Time and Casual Hours</h3>
-            <p className="text-warmgray">Part-time and casual employees use the same income tax brackets as full-time workers &mdash; the ATO does not distinguish by employment type. A part-time worker earning <strong>$40,000</strong> per year takes home <strong>{formatAUD(EX40.takeHomePay)}</strong>, identical to a full-time employee on the same gross salary. Casual employees receive a 25% loading in lieu of leave entitlements, which increases gross pay but also increases taxable income. A casual worker paid $30 per hour for 25 hours per week earns {formatAUD(CASUAL_GROSS)} gross and takes home <strong>{formatAUD(EX_CASUAL.takeHomePay)}</strong> after taxation and the Medicare levy.</p>
+            <p className="text-warmgray">Part-time and casual employees use the same income tax brackets as full-time workers. The ATO does not distinguish by employment type. A part-time worker earning <strong>$40,000</strong> per year takes home <strong>{formatAUD(EX40.takeHomePay)}</strong>, identical to a full-time employee on the same gross salary. Casual employees receive a 25% casual loading instead of paid leave, which raises both gross pay and taxable income. A casual worker paid $30 per hour for 25 hours per week earns {formatAUD(CASUAL_GROSS)} gross and takes home <strong>{formatAUD(EX_CASUAL.takeHomePay)}</strong> after income tax and the Medicare levy.</p>
           </section>
 
           {/* ---- WHO USES THIS CALCULATOR? ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Take-Home Pay Calculator?</h2>
-            <p className="text-warmgray mb-4">This Australian take-home pay calculator serves 5 primary user groups, each needing an accurate net salary figure for a different reason.</p>
+            <p className="text-warmgray mb-4">This Australian take-home pay calculator serves 5 primary user groups, and each needs an accurate net salary figure for a different reason.</p>
             <ul className="space-y-3 text-warmgray">
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">1.</span><span><strong>Job seekers comparing offers</strong> &mdash; A $90,000 offer at one company and a $95,000 package at another produce different take-home amounts depending on whether super is included. Enter both figures to compare net pay directly.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">2.</span><span><strong>Employees budgeting monthly expenses</strong> &mdash; Rent, groceries, and loan repayments require a precise monthly income figure. The calculator converts your annual take-home into weekly, fortnightly, and monthly amounts.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong> &mdash; Compulsory repayments begin above {formatAUD(HECS_HELP.minimumThreshold)} under the marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">4.</span><span><strong>Workers considering a pay rise</strong> &mdash; A $10,000 raise does not equal $10,000 more take-home. On $80,000, an extra $10,000 adds only <strong>{formatAUD(EX90.takeHomePay - EX80.takeHomePay)}</strong> after the {pct0(B2.rate)} marginal rate and 2% Medicare levy. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for side-by-side comparisons.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">5.</span><span><strong>Employers explaining total remuneration</strong> &mdash; HR teams use net pay breakdowns to show candidates the full value of a salary package, including the employer&apos;s {formatPercent(SUPER_GUARANTEE.rate, 0)} super contribution and any salary sacrifice arrangements.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">1.</span><span><strong>Job seekers comparing offers</strong>: a $90,000 offer at one company and a $95,000 package at another produce different take-home amounts depending on whether super is included. Enter both figures to compare net pay directly.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">2.</span><span><strong>Employees budgeting monthly expenses</strong>: rent, groceries, and loan repayments require a precise monthly income figure. The calculator converts your annual take-home into weekly, fortnightly, and monthly amounts.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong>: compulsory repayments begin above {formatAUD(HECS_HELP.minimumThreshold)} under the marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">4.</span><span><strong>Workers considering a pay rise</strong>: a $10,000 raise does not equal $10,000 more take-home. On $80,000, an extra $10,000 adds only <strong>{formatAUD(EX90.takeHomePay - EX80.takeHomePay)}</strong> after the {pct0(B2.rate)} marginal rate and 2% Medicare levy. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for side-by-side comparisons.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">5.</span><span><strong>Employers explaining total remuneration</strong>: HR teams use net pay breakdowns to show candidates the full value of a salary package, including the employer&apos;s {formatPercent(SUPER_GUARANTEE.rate, 0)} super contribution and any salary sacrifice arrangements.</span></li>
             </ul>
           </section>
 
@@ -251,7 +251,7 @@ export default function TakeHomePayCalculatorContent() {
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray">To convert a gross salary to its take-home equivalent, use the calculator above. To work in the opposite direction &mdash; entering a desired net figure and finding the gross salary required &mdash; use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>.</p>
+            <p className="text-warmgray">To convert a gross salary to its take-home equivalent, use the calculator above. To work in the opposite direction (enter the net figure you want and find the gross salary required), use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>.</p>
           </section>
 
           {/* ---- WHAT CHANGED THIS FINANCIAL YEAR? ---- */}
@@ -304,13 +304,13 @@ export default function TakeHomePayCalculatorContent() {
           {/* ---- COMMON TAKE-HOME PAY MISTAKES ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Take-Home Pay Mistakes?</h2>
-            <p className="text-warmgray mb-4">Five errors cause Australian employees to miscalculate their net pay after tax, leading to budget shortfalls or incorrect salary expectations.</p>
+            <p className="text-warmgray mb-4">Five errors cause Australian employees to miscalculate their net pay after tax, which leads to budget shortfalls or incorrect salary expectations.</p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Confusing marginal rate with effective rate.</strong> An employee on $80,000 pays a 30% marginal rate on the top portion of income, but the effective rate (income tax plus Medicare) across their entire salary is only <strong>{formatPercent(EX80.effectiveTaxRate)}</strong>. Assuming 30% of the full $80,000 goes to tax overestimates the deduction by <strong>{formatAUD(80_000 * 0.3 - EX80.totalDeductions)}</strong>.</li>
               <li><strong>Treating super as a take-home deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee is paid by the employer on top of your gross salary. It does not reduce your take-home pay unless your contract specifies a &quot;total package inclusive of super&quot; arrangement.</li>
               <li><strong>Ignoring the LITO offset.</strong> Incomes below {formatAUD(LITO.nilOffsetIncome)} receive a &quot;Low Income Tax Offset&quot; of up to {formatAUD(LITO.maxOffset)} that directly reduces tax payable. Omitting LITO from manual calculations overstates tax at $60,000 by <strong>{formatAUD(LITO_60K)}</strong> (and by the full {formatAUD(LITO.maxOffset)} at {formatAUD(LITO.fullOffsetCeiling)} or less).</li>
               <li><strong>Using old HECS-HELP thresholds.</strong> The repayment threshold rose from $54,435 to {formatAUD(HECS_HELP.previousThreshold)} when the marginal system launched in FY2025-26, and again to {formatAUD(HECS_HELP.minimumThreshold)} for FY{SITE_CONFIG.financialYear}. Using old thresholds overstates repayments for graduates earning between $54,435 and {formatAUD(HECS_HELP.minimumThreshold)}.</li>
-              <li><strong>Forgetting the Medicare Levy Surcharge.</strong> Singles earning {formatAUD(MLS_FROM)} or more without private health insurance pay an additional 1%&ndash;1.5% surcharge. On $150,000 without cover, the &quot;Medicare Levy Surcharge&quot; adds <strong>{formatAUD(MLS_150K)}</strong> in deductions beyond the standard 2% levy.</li>
+              <li><strong>Forgetting the Medicare Levy Surcharge.</strong> Singles earning {formatAUD(MLS_FROM)} or more without private health insurance pay an additional 1% to 1.5% surcharge. On $150,000 without cover, the &quot;Medicare Levy Surcharge&quot; adds <strong>{formatAUD(MLS_150K)}</strong> in deductions beyond the standard 2% levy.</li>
             </ol>
           </section>
 
@@ -324,10 +324,10 @@ export default function TakeHomePayCalculatorContent() {
             <p className="text-sm text-warmgray-light mb-4"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Claim Work-Related Tax Deductions</h3>
-            <p className="text-warmgray mb-3">Tax deductions reduce your taxable income at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. Common deductions include work-from-home expenses (using the ATO fixed rate per hour), uniforms and protective clothing, tools and equipment, and professional development courses. A $2,000 deduction at the 30% marginal rate reduces your tax by <strong>$600</strong>.</p>
+            <p className="text-warmgray mb-3">Each tax deduction reduces your taxable income and saves tax at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. Common deductions include work-from-home expenses (using the ATO fixed rate per hour), uniforms and protective clothing, tools and equipment, and professional development courses. A $2,000 deduction at the 30% marginal rate reduces your tax by <strong>$600</strong>.</p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Obtain Private Health Insurance</h3>
-            <p className="text-warmgray mb-4">Singles earning {formatAUD(MLS_FROM)} or more avoid the &quot;Medicare Levy Surcharge&quot; (1%&ndash;1.5%) by holding private hospital cover. On a $150,000 salary, the surcharge costs <strong>{formatAUD(MLS_150K)} per year</strong> &mdash; often more than a basic hospital policy. Obtaining cover increases your disposable salary by eliminating this surcharge.</p>
+            <p className="text-warmgray mb-4">Singles earning {formatAUD(MLS_FROM)} or more avoid the &quot;Medicare Levy Surcharge&quot; (1% to 1.5%) by holding private hospital cover. On a $150,000 salary, the surcharge costs <strong>{formatAUD(MLS_150K)} per year</strong>, often more than a basic hospital policy. Holding cover removes this surcharge from your tax bill.</p>
 
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -366,13 +366,13 @@ export default function TakeHomePayCalculatorContent() {
           {/* ---- RELATED CALCULATORS ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Other Calculators Help With Pay Planning?</h2>
-            <p className="text-warmgray mb-4">This take-home pay calculator covers net income after tax. Five related tools on Pay Calculator Australia address adjacent payroll questions:</p>
+            <p className="text-warmgray mb-4">This take-home pay calculator covers net income after tax. Five related tools on Pay Calculator Australia answer the next questions on income tax, salary sacrifice, HECS-HELP, super and gross pay:</p>
             <ul className="space-y-2 text-warmgray">
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> &mdash; See a bracket-by-bracket breakdown of your income tax, including marginal and effective rates.</li>
-              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> &mdash; Compare take-home pay with and without pre-tax super contributions.</li>
-              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> &mdash; Calculate your compulsory student loan repayment under the FY{SITE_CONFIG.financialYear} marginal system.</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> &mdash; Model your employer SG contributions, salary sacrifice top-ups, and projected super balance.</li>
-              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Gross Pay Calculator</Link> &mdash; Reverse-calculate the gross salary required to achieve a target take-home amount.</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link>: see a bracket-by-bracket breakdown of your income tax, including marginal and effective rates.</li>
+              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link>: compare take-home pay with and without pre-tax super contributions.</li>
+              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link>: calculate your compulsory student loan repayment under the FY{SITE_CONFIG.financialYear} marginal system.</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link>: model your employer SG contributions, salary sacrifice top-ups, and projected super balance.</li>
+              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Gross Pay Calculator</Link>: reverse-calculate the gross salary required to achieve a target take-home amount.</li>
             </ul>
           </section>
 

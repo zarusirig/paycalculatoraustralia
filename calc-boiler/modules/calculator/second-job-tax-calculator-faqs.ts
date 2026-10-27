@@ -65,7 +65,7 @@ export const BOTH_TFT_DEBT = taxOn(BOTH_JOB * 2) - BOTH_TFT_WITHHELD;
 export const SECOND_JOB_FAQS: readonly FaqItem[] = [
   {
     q: "Why is my second job taxed more?",
-    a: `It isn't taxed at a higher rate; more is withheld. You can claim the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold from only one employer, so your second employer withholds from the first dollar using the 'no tax-free threshold' scale, which starts at ${NO_TFT_START_RATE} in ${FY}. At tax time the ATO works out tax on your combined income: too much withheld comes back as a refund, too little becomes a bill.`,
+    a: `Your second job isn't taxed at a higher rate; more tax is withheld from it. You can claim the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold from only one employer, so your second employer withholds from the first dollar using the 'no tax-free threshold' scale, which starts at ${NO_TFT_START_RATE} in ${FY}. At tax time the ATO works out tax on your combined income: too much withheld comes back as a refund, too little becomes a bill.`,
   },
   {
     q: "Do you get taxed 50% on your second job?",
@@ -77,11 +77,11 @@ export const SECOND_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is it worth getting a second job in Australia?",
-    a: `Financially, you keep most of it. On top of a ${formatAUD(MAIN_JOB)} salary, a ${formatAUD(SECOND_JOB)} second job leaves ${formatAUD(SECOND_JOB_KEPT)} after tax and Medicare levy, and the second employer also pays ${SG} super on your ordinary earnings. Higher earners keep less of each extra dollar, and a HECS-HELP debt takes a further cut once combined income passes the repayment threshold.`,
+    a: `Financially, you keep most of what a second job pays. On top of a ${formatAUD(MAIN_JOB)} salary, a ${formatAUD(SECOND_JOB)} second job leaves ${formatAUD(SECOND_JOB_KEPT)} after tax and the Medicare levy, and the second employer also pays ${SG} super on your ordinary time earnings. Higher earners keep less of each extra dollar, and a HECS-HELP debt takes a further cut once combined income passes the repayment threshold.`,
   },
   {
     q: "Should I claim the tax-free threshold on my higher-paying job?",
-    a: "Yes. Always claim the tax-free threshold on the job that pays more. This reduces withholding on your largest income source and minimises the chance of a tax debt at the end of the financial year.",
+    a: "Yes. Claim the tax-free threshold on the job that pays more. This reduces withholding on your largest income source and minimises the chance of a tax debt at the end of the financial year.",
   },
   {
     q: "Will I get a tax refund from my second job?",

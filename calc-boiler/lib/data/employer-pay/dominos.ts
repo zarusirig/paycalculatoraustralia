@@ -48,7 +48,7 @@ export const DOMINOS_PAY: EmployerPay = {
     { name: "Own car used for deliveries", amount: "$0.53 a kilometre", when: "Employee delivery drivers who use their own car (award cl 17.8(a), from 1 July 2026)" },
   ],
   notices: [
-    "These are the Fast Food Industry Award minimums, which apply to Domino's corporate and franchised stores. Some stores may pay more.",
+    "These Fast Food Industry Award minimums apply to Domino's corporate and franchised stores. A Domino's store can pay above them.",
     "Domino's delivery drivers who are employees are paid the Level 1 rate (the same as in-store crew) plus a per-kilometre allowance for using their own car. People delivering through app platforms as contractors are not covered by these rates.",
     "In July 2026 the Federal Court gave judgment in a class action about Domino's use of old agreements between 2013 and January 2018. It concerns past pay, not current rates.",
   ],
@@ -70,7 +70,7 @@ export const DOMINOS_PAY: EmployerPay = {
     },
     {
       q: "How much does a Domino's delivery driver earn?",
-      a: "An employee delivery driver is Level 1 under the Fast Food Award: at least $27.81 an hour, or $34.76 as a casual, plus $0.53 a kilometre when using their own car.",
+      a: "A Domino's delivery driver who is an employee is Level 1 under the Fast Food Award: at least $27.81 an hour, or $34.76 as a casual, plus $0.53 a kilometre when using their own car.",
     },
     {
       q: "Does Domino's have an enterprise agreement?",

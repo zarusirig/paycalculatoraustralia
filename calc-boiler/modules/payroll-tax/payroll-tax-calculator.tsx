@@ -215,7 +215,7 @@ export default function PayrollTaxCalculator({
             )}
 
             <p className="text-xs text-warmgray-light">
-              Full financial year only. Part-year employers get a smaller threshold, and monthly returns use the
+              The result covers a full financial year only. Part-year employers get a smaller threshold, and monthly returns use the
               monthly threshold ({info.monthlyThresholdText}); the annual return trues it up. Payroll tax is an
               employer cost. To add super, leave and workers compensation, use the{" "}
               <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">employer cost calculator</Link>.

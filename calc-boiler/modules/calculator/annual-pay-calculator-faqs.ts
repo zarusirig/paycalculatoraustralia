@@ -33,27 +33,27 @@ const AWOTE_ANNUAL = Math.round(AWOTE_WEEKLY * 52);
 export const ANNUAL_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "What is $80,000 a year after tax in Australia?",
-    a: `A gross annual salary of $80,000 in Australia for FY${FY} results in approximately ${formatAUD(at80k.takeHomePay)} in annual take-home pay after ${formatAUD(at80k.netIncomeTax)} in income tax and ${formatAUD(at80k.medicareLevy)} Medicare levy. Your employer pays an additional ${formatAUD(at80k.superContribution)} into super on top.`,
+    a: `A gross annual salary of $80,000 in Australia for FY${FY} results in approximately ${formatAUD(at80k.takeHomePay)} in annual take-home pay after ${formatAUD(at80k.netIncomeTax)} in income tax and ${formatAUD(at80k.medicareLevy)} Medicare levy, with no HECS-HELP debt. Your employer also pays ${formatAUD(at80k.superContribution)} into super on top of that salary.`,
   },
   {
     q: "What is $100,000 a year after tax in Australia?",
-    a: `A gross annual salary of $100,000 in Australia for FY${FY} results in approximately ${formatAUD(at100k.takeHomePay)} in annual take-home pay after ${formatAUD(at100k.netIncomeTax)} in income tax and ${formatAUD(at100k.medicareLevy)} Medicare levy. The effective rate of tax plus Medicare levy is ${EFF100}%.`,
+    a: `A gross annual salary of $100,000 in Australia for FY${FY} results in approximately ${formatAUD(at100k.takeHomePay)} in annual take-home pay after ${formatAUD(at100k.netIncomeTax)} in income tax and ${formatAUD(at100k.medicareLevy)} Medicare levy, with no HECS-HELP debt. That is an effective rate of ${EFF100}% for income tax plus the Medicare levy.`,
   },
   {
     q: "How is annual pay calculated in Australia?",
-    a: `Annual take-home pay equals your gross yearly salary minus income tax, the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and any HECS-HELP repayments for the financial year running 1 July to 30 June. The ATO applies progressive income tax brackets (${bracketRatesSentence()}), meaning only the portion of income within each bracket is taxed at that bracket's marginal rate.`,
+    a: `Annual take-home pay equals your gross yearly salary minus income tax, the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and any HECS-HELP repayments for the financial year running 1 July to 30 June. The ATO applies progressive income tax brackets (${bracketRatesSentence()}). Only the part of your income inside each bracket is taxed at that bracket's marginal rate.`,
   },
   {
     q: "What is the annual salary calculator used for?",
-    a: "The annual salary calculator converts a yearly gross figure into a single annual take-home number for budgeting, salary comparisons, loan applications, and tax return verification. It is preferred over per-cycle calculators when you negotiate a yearly package or compare two job offers.",
+    a: "The annual salary calculator converts a yearly gross figure into a single annual take-home number for budgeting, salary comparisons, loan applications, and tax return verification. Use it instead of a weekly or fortnightly calculator when you negotiate a yearly package or compare two job offers.",
   },
   {
     q: "Does my annual pay include superannuation?",
-    a: `Generally no. Your employer pays an additional ${SG} superannuation guarantee on top of your gross annual salary into your nominated super fund. The total of gross salary plus super equals your total remuneration package. Check your contract: if it quotes a "package including super", your base salary is lower than the package figure.`,
+    a: `No. Your gross annual salary does not include super: your employer pays the ${SG} superannuation guarantee on top of it, into your nominated super fund. Gross salary plus super is your total remuneration package. Check your contract: if it quotes a "package including super", your base salary is lower than the package figure.`,
   },
   {
     q: "Why does my annual pay differ from my tax return?",
-    a: "Your tax return includes work-related deductions, investment income, bank interest, rental income, and other assessable income sources. This calculator estimates standard PAYG withholding on salary income only. The ATO reconciles all income and deductions when you lodge your annual return.",
+    a: "Your tax return counts more than your salary: work-related deductions, investment income, bank interest, rental income and any other assessable income. This calculator estimates standard PAYG withholding on salary income only. The ATO reconciles all income and deductions when you lodge your annual return.",
   },
   {
     q: "What is the average annual salary in Australia?",
@@ -73,6 +73,6 @@ export const ANNUAL_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I pay the Medicare Levy Surcharge on top of the Medicare levy?",
-    a: `The Medicare Levy Surcharge (MLS) is a separate charge of ${pct(MLS.tier1.rate)} to ${pct(MLS.tier3.rate)} applied in FY${FY} to singles with income for MLS purposes over ${formatAUD(MLS.tier1.min - 1)} (or ${formatAUD(MLS.familyTier1.min - 1)} for families) who do not hold an eligible private hospital insurance policy. The standard ${pct(MEDICARE_LEVY.rate)} Medicare levy applies to Australian residents above the low-income threshold, regardless of private health insurance status.`,
+    a: `The Medicare Levy Surcharge (MLS) is a separate charge on top of the Medicare levy for higher earners who do not hold an eligible private hospital insurance policy. The MLS is ${pct(MLS.tier1.rate)} to ${pct(MLS.tier3.rate)} in FY${FY} for singles with income for MLS purposes over ${formatAUD(MLS.tier1.min - 1)} (or ${formatAUD(MLS.familyTier1.min - 1)} for families). The standard ${pct(MEDICARE_LEVY.rate)} Medicare levy applies to Australian residents above the low-income threshold, regardless of private health insurance status.`,
   },
 ];

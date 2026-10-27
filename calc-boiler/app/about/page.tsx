@@ -74,10 +74,14 @@ function AboutPage() {
               About Pay Calculator Australia
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
-              Pay Calculator Australia provides free, accurate pay calculation
-              tools for Australian workers, employers, and HR professionals. We
-              built this site because understanding your pay shouldn&apos;t
-              require an accounting degree.
+              Pay Calculator Australia is a free set of pay and tax calculators
+              for Australian workers, employers and HR professionals. Its tax,
+              super and award rates come from official ATO and Fair Work
+              publications. Anita Bell, the site&apos;s founder and a senior
+              bookkeeper, runs it. We built it because understanding your pay
+              shouldn&apos;t require an accounting degree. This page explains
+              who runs the site, how we check the calculators, which sources we use
+              and what the calculators cover.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>
@@ -92,10 +96,10 @@ function AboutPage() {
               Our Mission
             </h2>
             <p className="leading-relaxed text-warmgray">
-              Every Australian worker deserves to understand exactly what they
-              earn, what gets deducted, and why. We provide instant, accurate
-              calculators backed by official government data. It is completely free,
-              with no signups, no paywalls, and no misleading complexity.
+              We want every Australian worker to know exactly what they earn,
+              what gets deducted, and why. Our calculators give an instant
+              result from official government rates. They are free to use, with
+              no sign-up and no paywall.
             </p>
           </section>
 
@@ -120,7 +124,7 @@ function AboutPage() {
               rostering software including Gusto, Deputy, Tsheets and KeyPay.
             </p>
             <p className="leading-relaxed text-warmgray">
-              She has strong experience in hospitality, building and
+              Her bookkeeping experience covers hospitality, building and
               construction, financial services, real estate, ecommerce, and
               medical and health services. This site gives general information
               and estimates. Read our{" "}
@@ -156,9 +160,8 @@ function AboutPage() {
                   Official Sources Only
                 </h3>
                 <p className="text-sm leading-relaxed text-warmgray">
-                  All tax brackets, super rates, and thresholds are sourced
-                  directly from ATO.gov.au and verified against published
-                  schedules.
+                  We take every tax bracket, super rate and threshold from
+                  ATO.gov.au, then check it against published schedules.
                 </p>
               </div>
 
@@ -295,8 +298,8 @@ function AboutPage() {
               What We Cover
             </h2>
             <p className="mb-4 leading-relaxed text-warmgray">
-              Our calculators and guides cover the full scope of Australian pay
-              calculation, including:
+              Our calculators and guides cover Australian pay calculation,
+              including:
             </p>
             <ul className="grid gap-2 text-warmgray sm:grid-cols-2">
               {[
@@ -336,8 +339,8 @@ function AboutPage() {
               Contact Us
             </h2>
             <p className="leading-relaxed text-warmgray">
-              Have a question, found an error, or want to suggest a feature?
-              We&apos;d love to hear from you.
+              Email us if you have a question, find an error or want to
+              suggest a feature.
             </p>
             <p className="mt-3 text-warmgray">
               Email:{" "}

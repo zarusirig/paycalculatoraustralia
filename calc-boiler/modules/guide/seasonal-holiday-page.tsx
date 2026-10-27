@@ -136,7 +136,7 @@ function Matrix2027() {
       <section id="dates">
         <h2 style={HEADING_FONT}>2027 public holidays most workers are paid for</h2>
         <p>
-          The holidays that matter on most rosters, state by state. A dash means that state has no public holiday that day. Dates in
+          This table lists the main public holidays for each state and territory. A dash means that state has no public holiday that day. Dates in
           the table come from each state government&rsquo;s own 2027 list and agree with the Fair Work Ombudsman&rsquo;s 2027 page.
         </p>
         <TableShell caption="Public holidays 2027 by state: the main days" minWidth="52rem">
@@ -413,7 +413,7 @@ function ShutdownExample() {
         </tbody>
       </TableShell>
       <p className="-mt-2 text-sm text-warmgray">
-        Before tax. The two public holidays are paid separately as public holidays at your ordinary base rate for the day and are not taken
+        These amounts are before tax. The two public holidays are paid separately as public holidays at your ordinary base rate for the day and are not taken
         out of the leave balance. Whether a leave loading applies, and how it is worked out, depends on your award: see the{" "}
         <Link href="/leave-loading-calculator/">leave loading calculator</Link>.
       </p>
@@ -561,7 +561,7 @@ export default function SeasonalHolidayPage({ page }: { page: SeasonalPage }) {
                 <p>
                   Public holiday pay rates are read from the site&rsquo;s award constants (Fair Work Commission award texts, rates from the
                   first full pay period on or after 1 July 2026). Rights when not working come from the Fair Work Ombudsman and the Fair Work
-                  Act 2009 ss 114–116. Check your own award or enterprise agreement before relying on a figure.
+                  Act 2009 ss 114 to 116. Check your own award or enterprise agreement before relying on a figure.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={[...page.sources, ...stateSources, ...PH_NES_SOURCES]} lastVerified={SEASONAL_VERIFIED_ON} />

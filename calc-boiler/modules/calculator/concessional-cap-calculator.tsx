@@ -79,7 +79,7 @@ export default function ConcessionalCapCalculator() {
     <Card className="shadow-md not-prose" id="cap-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Concessional Cap &amp; Salary Sacrifice Calculator {FY}</h2>
-        <p className="text-sm text-warmgray mb-6">Checks your before-tax contributions against the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap (plus any carry-forward), then shows what salary sacrificing does to your pay and your super.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator checks your concessional (before-tax) super contributions against the {formatAUD(SUPER_GUARANTEE.concessionalCap)} general cap, plus any carry-forward, then shows what salary sacrificing does to your take-home pay and your super.</p>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
@@ -122,7 +122,7 @@ export default function ConcessionalCapCalculator() {
               </dl>
             )}
             <p className="text-xs text-warmgray-light">
-              {FY} resident tax rates, with private hospital cover assumed so the surcharge isn&rsquo;t counted. Contributions count in the year your fund receives them.{effect.div293 > 0 && <> Division 293 may apply: see <Link href="/division-293-tax/" className="underline">Division 293 tax</Link>.</>} For pay-period detail use the <Link href="/salary-sacrifice-calculator/" className="underline">salary sacrifice calculator</Link>.
+              {FY} resident tax rates apply, with private hospital cover assumed so the Medicare levy surcharge is not counted. Contributions count in the year your fund receives them.{effect.div293 > 0 && <> Division 293 may apply: see <Link href="/division-293-tax/" className="underline">Division 293 tax</Link>.</>} For pay-period detail use the <Link href="/salary-sacrifice-calculator/" className="underline">salary sacrifice calculator</Link>.
             </p>
           </div>
         </div>

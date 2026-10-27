@@ -5,10 +5,13 @@ export default function FederalBudget202627YourPay() {
   return (
     <>
       <p className="lead">
-        Treasurer Jim Chalmers handed down the <strong>2026-27 Federal Budget</strong> on
-        12 May 2026. It didn&apos;t cut tax rates again (that was already locked in), but it
-        added a new <strong>$250 Working Australians Tax Offset</strong> from 2027-28, stacking
-        on top of the 1 July tax cut and the $1,000 instant deduction.
+        The <strong>2026-27 Federal Budget</strong> was handed down by Treasurer Jim Chalmers on
+        12 May 2026. It added one new tax measure for workers:
+        a <strong>$250 Working Australians Tax Offset</strong> from the 2027-28 income year. It did
+        not cut tax rates again. The offset comes on top of the 1 July tax cut, which was already
+        legislated, and the $1,000 instant work-related deduction, which the Budget confirmed. The
+        rest of this page covers what the measures are worth combined, how the offset reduces your
+        tax and what the Budget left unchanged.
       </p>
 
       <NewsKeyFacts
@@ -25,9 +28,9 @@ export default function FederalBudget202627YourPay() {
       <p>
         Most of the headline tax relief in this Budget wasn&apos;t new. The 16% to 15% rate cut
         on income between $18,201 and $45,000 had already been legislated in the 2025 Budget and
-        simply took effect as planned on 1 July 2026. See our{" "}
+        took effect as planned on 1 July 2026. See our{" "}
         <Link href="/news/tax-cut-july-2026/">tax cut explainer</Link> for the detail. The
-        genuinely new measure was the Working Australians Tax Offset (WATO): a permanent, annual
+        new measure was the Working Australians Tax Offset (WATO): a permanent, annual
         offset of up to $250, starting from the 2027-28 income year and reaching over 13 million
         workers.
       </p>
@@ -43,7 +46,7 @@ export default function FederalBudget202627YourPay() {
         2027 rate cuts, the new $250 offset and the $1,000 deduction) at up to $2,816 a year for
         a worker on average earnings of $81,245 from 2027-28, if they receive the maximum benefit
         from the instant deduction. A worker receiving the average $205 deduction benefit instead
-        would be about $2,701 better off. For most people the actual saving this year is smaller:
+        would be about $2,701 better off. Your saving this year is smaller:
         the immediate 1 July 2026 benefit is capped at $268, with the rest arriving in later
         years.
       </p>
@@ -60,19 +63,17 @@ export default function FederalBudget202627YourPay() {
 
       <h2>What the Budget didn&apos;t change</h2>
       <p>
-        There was no new personal tax bracket restructure, no change to the Medicare levy rate
-        itself, and no fresh HECS or superannuation announcement in this Budget beyond measures
-        already legislated and covered separately in our HECS and super coverage. Anyone expecting
-        a bigger, immediate rate cut in this Budget will find the real story is the staged
-        rollout that started in 2024 and continues through 2027-28.
+        The Budget made no new personal tax bracket restructure, no change to the Medicare levy
+        rate and no new HECS or superannuation announcement beyond measures already legislated.
+        The larger rate cuts come from the staged rollout that started in 2024 and continues
+        through 2027-28, not from new measures in this Budget.
       </p>
       <p>
         Superannuation guarantee, Division 296 tax and the HECS repayment thresholds were all
-        confirmed at the settings already legislated earlier in the year. None of them were
-        revisited or expanded in this Budget. Similarly, the Medicare levy rate stayed at 2%; only
-        the low-income thresholds that determine who&apos;s exempt or shaded-in moved, and that
-        increase had already been flagged before Budget night. In other words, this was a Budget
-        of confirmation and one new offset, rather than a fresh round of rate cuts.
+        confirmed at the settings already legislated earlier in the year, with no changes in this
+        Budget. The Medicare levy rate stayed at 2%. Only the low-income thresholds that determine
+        who&apos;s exempt or shaded-in moved, and that increase had already been flagged before
+        Budget night.
       </p>
 
       <h2>What this means for your pay</h2>

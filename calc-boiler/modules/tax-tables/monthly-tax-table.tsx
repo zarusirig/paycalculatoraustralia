@@ -79,7 +79,7 @@ export default function MonthlyTaxTablePage() {
           <TableDownloads frequency="monthly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_MONTHLY} className="mb-6" />
           <TaxTableLookupWidget frequency="monthly" defaultGross={6_500} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
-            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
+            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage placement="content" className="mb-0 mt-6" />
@@ -101,8 +101,8 @@ export default function MonthlyTaxTablePage() {
               <h2>Full Monthly Tax Table {PAYG_FINANCIAL_YEAR}: With and Without the Tax-Free Threshold</h2>
               <p>
                 The table lists the amount to withhold from monthly earnings in {formatAUD(250)} steps, in the two
-                {" "}{ATO_MONTHLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
-                table) and not claimed (column 3) &mdash; plus the total with a study loan. Monthly pay cycles, 12 pays a
+                {" "}{ATO_MONTHLY.nat} columns every employer uses. Column 2 of the ATO
+                table applies when the tax-free threshold is claimed, column 3 when it is not, and our table also shows the total with a study loan. Monthly pay cycles, 12 pays a
                 year, are most common in salaried professional roles. Switch to {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an
                 older pay run, or download every dollar as a CSV.
               </p>
@@ -125,7 +125,7 @@ export default function MonthlyTaxTablePage() {
                 The employer&apos;s process for one pay run is:
               </p>
               <ol>
-                <li>Add allowances and irregular payments to the normal monthly earnings. Unlike the weekly and fortnightly tables, the ATO tells you to keep the <strong>cents</strong>.</li>
+                <li>Add allowances and irregular payments to the normal monthly earnings. For the monthly table, unlike the weekly and fortnightly tables, the ATO tells you to keep the <strong>cents</strong>.</li>
                 <li>Find that amount in column 1; if it is not listed, use the next lower figure.</li>
                 <li>Read across to column 2 or column 3, depending on the Tax file number declaration.</li>
                 <li>Subtract any tax offset claimed on a <em>Withholding declaration</em>, converted to a monthly value.</li>
@@ -159,21 +159,21 @@ export default function MonthlyTaxTablePage() {
             <section id="why-not-times-four">
               <h2>Why Monthly Withholding Is Not the Weekly Amount Times Four</h2>
               <p>
-                {ATO_MONTHLY.nat}, like every other tax table, is derived from the weekly schedule &mdash; but the conversion is
+                {ATO_MONTHLY.nat}, like every other tax table, is derived from the weekly schedule, but the conversion is
                 not a factor of four. A year has 52 weeks and 12 months, so the average month is about{" "}
                 <strong>4.33 weeks</strong>. The ATO converts monthly earnings to a weekly equivalent by multiplying by 3 and
                 dividing by 13, applies the weekly Schedule 1 formula, rounds to the nearest dollar, then converts back by
                 multiplying by 13 and dividing by 3.
               </p>
               <p>
-                The difference is not trivial. On {formatAUD(6_500)} a month, the correct withholding is{" "}
-                {formatAUD(example6500.totalWithheld)}; treating the month as four weeks of {formatAUD(6_500 / 4)} would give
+                On {formatAUD(6_500)} a month, the correct withholding is{" "}
+                {formatAUD(example6500.totalWithheld)}. Treating the month as four weeks of {formatAUD(6_500 / 4)} would give
                 about {formatAUD(weeklyEquivalentOfMonth)} &mdash; roughly {formatAUD(example6500.totalWithheld - weeklyEquivalentOfMonth)} short
                 every month, and around {formatAUD((example6500.totalWithheld - weeklyEquivalentOfMonth) * 12)} across the year.
               </p>
               <p>
-                There is one more monthly-only quirk worth knowing: if the monthly earnings figure ends in exactly{" "}
-                <strong>33 cents</strong>, the ATO tells you to add one cent before converting. It exists purely to stop a
+                The monthly table has one extra rule: if the monthly earnings figure ends in exactly{" "}
+                <strong>33 cents</strong>, the ATO tells you to add one cent before converting. The extra cent prevents a
                 rounding artefact in the 3&thinsp;&divide;&thinsp;13 conversion, and payroll software applies it automatically.
               </p>
             </section>
@@ -186,8 +186,8 @@ export default function MonthlyTaxTablePage() {
                 column 2 sits so far below column 3.
               </p>
               <ul>
-                <li><strong>Column 2 &mdash; tax-free threshold claimed.</strong> The normal column for your main job, with the 2% Medicare levy and its low-income shading already built in.</li>
-                <li><strong>Column 3 &mdash; no tax-free threshold.</strong> Used for a <Link href="/second-job-tax-calculator/">second job</Link> or where the threshold has not been claimed; withholding applies from the first dollar. At {formatAUD(6_500)} a month, column 2 withholds {formatAUD(example6500.totalWithheld)} while column 3 withholds {formatAUD(example6500noTft.totalWithheld)} &mdash; {formatAUD(example6500noTft.totalWithheld - example6500.totalWithheld)} more per pay.</li>
+                <li><strong>Column 2: tax-free threshold claimed.</strong> The normal column for your main job, with the 2% Medicare levy and its low-income shading already built in.</li>
+                <li><strong>Column 3: no tax-free threshold.</strong> Used for a <Link href="/second-job-tax-calculator/">second job</Link> or where the threshold has not been claimed; withholding applies from the first dollar. At {formatAUD(6_500)} a month, column 2 withholds {formatAUD(example6500.totalWithheld)} while column 3 withholds {formatAUD(example6500noTft.totalWithheld)} &mdash; {formatAUD(example6500noTft.totalWithheld - example6500.totalWithheld)} more per pay.</li>
               </ul>
               <p>
                 Salary sacrifice changes the input rather than the column: if you sacrifice into super or a novated lease, the
@@ -207,7 +207,7 @@ export default function MonthlyTaxTablePage() {
               <p>
                 That component comes from{" "}
                 <a href={ATO_SCHEDULE_8.pageUrl} target="_blank" rel="noopener noreferrer">{ATO_SCHEDULE_8.nat} (Schedule 8)</a>,
-                which has its own coefficients applied to the same weekly equivalent &mdash; it is not the annual HECS repayment
+                which has its own coefficients applied to the same weekly equivalent. The loan component is not the annual HECS repayment
                 divided by 12. At {formatAUD(8_000)} a month with the threshold claimed, the income tax is{" "}
                 {formatAUD(example8000stsl.paygWithheld)} and the loan component is {formatAUD(example8000stsl.stslWithheld)}, for{" "}
                 {formatAUD(example8000stsl.totalWithheld)} total. Our{" "}
@@ -244,8 +244,8 @@ export default function MonthlyTaxTablePage() {
                 A payee who has not quoted a tax file number, has not claimed an exemption from quoting one, and has not advised
                 that they have applied for one must be withheld at{" "}
                 <strong>{NO_TFN_RATES.resident * 100}%</strong> if they are a resident and{" "}
-                <strong>{NO_TFN_RATES.foreignResident * 100}%</strong> if they are a foreign resident, ignoring cents. It is a flat
-                rate on every dollar &mdash; no threshold, no graduated scale.
+                <strong>{NO_TFN_RATES.foreignResident * 100}%</strong> if they are a foreign resident, ignoring cents. Both are flat
+                rates on every dollar, with no tax-free threshold and no graduated scale.
               </p>
               <p>
                 If the payee states on their <em>Tax file number declaration</em> that they have applied for a TFN or made an enquiry
@@ -266,9 +266,9 @@ export default function MonthlyTaxTablePage() {
                 publishes an optional additional withholding table for both cycles so a payee can ask payroll to make up the gap.
               </p>
               <p>
-                Monthly payroll is immune. Twelve calendar months always means exactly twelve pay days, so the number of pays never
-                diverges from what {ATO_MONTHLY.nat} assumes. If you are choosing a pay cycle, that is a genuine, if small,
-                administrative advantage &mdash; there is no year in which you need to warn staff about a withholding shortfall.
+                Monthly payroll does not have this problem. Twelve calendar months always means exactly twelve pay days, so the number of pays never
+                diverges from what {ATO_MONTHLY.nat} assumes. If you are an employer choosing a pay cycle, that is a small
+                administrative advantage: there is no year in which you need to warn staff about a withholding shortfall.
               </p>
             </section>
 
@@ -310,7 +310,7 @@ export default function MonthlyTaxTablePage() {
                 <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts, so the reissued {ATO_MONTHLY.nat} withholds
                 up to about <strong>{formatAUD(268 / 12)} less per month</strong> than 2025-26 for anyone earning $45,000 a year or more.
                 The same update lifted the Medicare levy low-income thresholds and re-indexed the study and training loan repayment
-                thresholds across all 15 withholding schedules. A further cut to 14% is legislated for 1 July 2027 &mdash; see our{" "}
+                thresholds across all 15 withholding schedules. A further cut to 14% is legislated for 1 July 2027. See our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
             </section>

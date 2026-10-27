@@ -76,14 +76,14 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
   nsw: {
     milestones: [5, 7, 10, 12, 15, 20, 25],
     actNote:
-      "NSW Industrial Relations regulates the Long Service Leave Act 1955 and launched an updated Long Service Leave Guide on 1 March 2026. The Act defines a month as 4⅓ weeks, so “two months” is 8.67 weeks, and the entitlement is counted in weeks rather than days or hours.",
+      "NSW Industrial Relations regulates the Long Service Leave Act 1955 and launched an updated Long Service Leave Guide on 1 March 2026. The NSW Act defines a month as 4⅓ weeks, so 'two months' is 8.67 weeks, and the entitlement is counted in weeks rather than days or hours.",
     payCalc: [
-      "NSW pays long service leave at “ordinary pay”, which can have three parts: a primary component, the cash value of any board or lodging, and the average weekly value of bonuses or incentives. Shift-work, overtime and other penalty rates are left out; casual loading is kept in.",
-      "The primary component depends on how you are paid on the “prescribed date”: the day the leave starts or the job ends. If you are on a fixed rate (a salary for standard hours, or an hourly rate tied to hours worked, which covers casuals with variable hours), it is the higher of your ordinary remuneration on that date or your average weekly ordinary remuneration over the previous five years (section 3(1)(a)). Anyone else gets the higher of their average weekly wage over the previous 12 months or the previous five years (section 3(1)(b)).",
+      "NSW pays long service leave at 'ordinary pay', which can have three parts: a primary component, the cash value of any board or lodging, and the average weekly value of bonuses or incentives. Shift-work, overtime and other penalty rates are left out; casual loading is kept in.",
+      "The primary component depends on how you are paid on the 'prescribed date': the day the leave starts or the job ends. If you are on a fixed rate (a salary for standard hours, or an hourly rate tied to hours worked, which covers casuals with variable hours), it is the higher of your ordinary remuneration on that date or your average weekly ordinary remuneration over the previous five years (section 3(1)(a)). Anyone else gets the higher of their average weekly wage over the previous 12 months or the previous five years (section 3(1)(b)).",
       "Allowances paid for the work itself (height, heat, a first-aid allowance paid for all ordinary hours) are included; expense allowances for travel, meals, uniforms, a car or tools are not. Where board or lodging is supplied but no value is fixed in the contract or award, the Act adds $15 a week for board and $5 a week for lodging. Bonuses and incentives only count while annual ordinary pay without them is under the high-income threshold.",
     ],
     takingLeave: [
-      "Leave is meant to be taken in one continuous block. By agreement it can be split into periods of at least one day: two periods for a 2-month entitlement, two or three where it is more than 2 months, and two, three or four where it is more than 19.5 weeks.",
+      "NSW long service leave is meant to be taken in one continuous block. By agreement it can be split into periods of at least one day: two periods for a 2-month entitlement, two or three where it is more than 2 months, and two, three or four where it is more than 19.5 weeks.",
       "Leave in advance needs the employer's agreement and is subtracted from what you accrue later; if you leave before earning it back, the employer may recover the value to the extent the law allows. An employer can direct you to take long service leave on at least one month's notice. You do not have to give a fixed period of notice to ask for it.",
     ],
     continuity: [
@@ -152,7 +152,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       },
       {
         q: "Does parental leave affect long service leave in Victoria?",
-        a: "It never breaks continuous employment. Unpaid parental leave of up to 52 weeks also counts towards the leave you accrue; anything longer counts only if your contract or award provides for it or you and your employer agree in writing.",
+        a: "Parental leave, paid or unpaid, never breaks continuous employment in Victoria. Unpaid parental leave of up to 52 weeks also counts towards the leave you accrue; anything longer counts only if your contract or award provides for it or you and your employer agree in writing.",
       },
     ],
     sources: [
@@ -166,14 +166,14 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
   qld: {
     milestones: [7, 10, 12, 15, 17, 20],
     actNote:
-      "Queensland has no stand-alone long service leave Act: the entitlement sits in the Industrial Relations Act 2016, and Business Queensland publishes the entitlement tables in years, months, weeks and days. In Infosys Technologies Limited v Fox [2025] QCA 45 the Court of Appeal held that service outside Queensland, including overseas, needs no “substantial connection” to the state to count.",
+      "Queensland has no stand-alone long service leave Act: the entitlement sits in the Industrial Relations Act 2016, and Business Queensland publishes the entitlement tables in years, months, weeks and days. In Infosys Technologies Limited v Fox [2025] QCA 45 the Court of Appeal held that service outside Queensland, including overseas, needs no 'substantial connection' to the state to count.",
     payCalc: [
-      "Leave is paid at the ordinary rate being paid when it is taken (no overtime), and if you are paid above the award, at the higher rate.",
+      "Queensland long service leave is paid at the ordinary rate you are on when the leave is taken, with no overtime. If you are paid above the award, it is paid at that higher rate.",
       "Casual and regular part-time employees, and anyone whose status changed during their service, use an hours formula instead of weeks: total ordinary hours worked ÷ 52 × 8.6667 ÷ 10. Business Queensland's example: 15,600 ordinary hours over 10 years gives 260.001 hours of paid leave. Employers must keep a running record of each casual's total ordinary hours to 30 June each year.",
-      "Commission is paid as the “default average commission”: total commission in the year before the leave ÷ 52.179 × the weeks of leave, unless an award, agreement or contract says otherwise or the Queensland Industrial Relations Commission finds it unfair.",
+      "Commission is paid as the 'default average commission': total commission in the year before the leave ÷ 52.179 × the weeks of leave, unless an award, agreement or contract says otherwise or the Queensland Industrial Relations Commission finds it unfair.",
     ],
     takingLeave: [
-      "Leave is taken at a time agreed with the employer and can be any length the employer agrees to. If you cannot agree, the employer can require you to take at least 4 weeks by giving at least 3 months' written notice.",
+      "Queensland long service leave is taken at a time agreed with the employer and can be any length the employer agrees to. If you cannot agree, the employer can require you to take at least 4 weeks by giving at least 3 months' written notice.",
       "Long service leave is exclusive of public holidays: a public holiday that falls on a day you would normally work is added to the leave.",
     ],
     continuity: [
@@ -218,14 +218,14 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       "Dismissal for serious misconduct changes the payout. Between 7 and 10 years nothing is owed. After 10 years you are paid only the part of your last fully accrued entitlement you have not taken. Wageline's Anastasia, dismissed after 12 years and one month, gets 8.667 weeks but nothing for the two years since.",
     ],
     takingLeave: [
-      "An employer cannot direct you to take long service leave at a particular time. If you have not agreed on timing, the employer cannot refuse leave that fell due more than 12 months ago: give at least 2 weeks' notice and take it in one continuous period.",
-      "You can ask to take it at half pay (8 weeks becomes 16) or double pay (8 weeks becomes 4). A public holiday during the leave adds a day for full-time and part-time employees. Leave in advance is by agreement, and if you leave before earning it back the employer may deduct the difference from your final pay.",
+      "A WA employer cannot direct you to take long service leave at a particular time. If you have not agreed on timing, the employer cannot refuse leave that fell due more than 12 months ago: give at least 2 weeks' notice and take it in one continuous period.",
+      "You can ask to take WA long service leave at half pay (8 weeks becomes 16) or double pay (8 weeks becomes 4). A public holiday during the leave adds a day for full-time and part-time employees. Leave in advance is by agreement, and if you leave before earning it back the employer may deduct the difference from your final pay.",
     ],
     continuity: [
-      "Cashing out is allowed only once an entitlement has fully accrued, by written agreement signed by both parties, and at no less than the ordinary pay you would have received on leave. It cannot be done in advance: not as a lump sum, a loading on top of base pay or a commission.",
+      "Cashing out WA long service leave is allowed only once an entitlement has fully accrued, by written agreement signed by both parties, and at no less than the ordinary pay you would have received on leave. It cannot be done in advance: not as a lump sum, a loading on top of base pay or a commission.",
     ],
     portableIntro:
-      "Employees working on site in the construction industry are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 instead of the 1958 Act; MyLeave administers it.",
+      "WA employees working on site in the construction industry are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 instead of the 1958 Act. MyLeave administers that portable scheme.",
     portable: [
       { name: "MyLeave", covers: "on-site construction industry employees, under the Construction Industry Portable Paid Long Service Leave Act 1985", url: "http://www.myleave.wa.gov.au/" },
     ],
@@ -236,11 +236,11 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       },
       {
         q: "Is overtime included in WA long service leave pay?",
-        a: "Overtime rates are not, but overtime hours can be. If you regularly worked overtime during an accrual period, those hours are counted in your normal weekly number of hours, which are then paid at your ordinary time rate.",
+        a: "Overtime rates are not included in WA long service leave pay, but overtime hours can be. If you regularly worked overtime during an accrual period, those hours are counted in your normal weekly number of hours, which are then paid at your ordinary time rate.",
       },
       {
         q: "What happens to WA long service leave if I am dismissed for serious misconduct?",
-        a: "Between 7 and 10 years of continuous employment, no pro-rata payment is owed. After 10 years you are paid only the untaken part of your last fully accrued entitlement (the 8.667 weeks at 10 years, or 4.333 weeks for each further 5 years) and nothing pro-rata for the time since. The employer has to prove the misconduct.",
+        a: "A WA employee dismissed for serious misconduct between 7 and 10 years of continuous employment is owed no pro-rata payment. After 10 years you are paid only the untaken part of your last fully accrued entitlement (the 8.667 weeks at 10 years, or 4.333 weeks for each further 5 years) and nothing pro-rata for the time since. The employer has to prove the misconduct.",
       },
     ],
     sources: [
@@ -257,19 +257,19 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     actNote:
       "SafeWork SA administers the Long Service Leave Act 1987 and investigates claims lodged on its long service leave claim form free of charge. SA counts entitlement in calendar weeks: 13 weeks at 10 years, then 1.3 weeks (9.1 calendar days) for each further completed year.",
     payCalc: [
-      "Leave is paid at your ordinary weekly rate: your normal weekly pay excluding overtime, shift premiums and penalty rates, on the day leave starts or payment in lieu is made. A higher rate you are acting in on that day counts, and if a pay rise lands while you are on leave, the remaining weeks are paid at the new rate.",
+      "SA long service leave is paid at your ordinary weekly rate: your normal weekly pay excluding overtime, shift premiums and penalty rates, on the day leave starts or payment in lieu is made. A higher rate you are acting in on that day counts, and if a pay rise lands while you are on leave, the remaining weeks are paid at the new rate.",
       "Hours are averaged over 3 years. Someone full-time for at least the last 3 years gets 13 weeks of full-time hours at the current rate; part-time, casual and mixed workers are paid on their average hours over the previous 3 years; commission, target and piece workers on their average income over the previous 12 months. A casual's rate includes the casual loading.",
       "Payment is due in advance for the whole period, on normal paydays, or as agreed, and immediately when employment ends. Once you reach 10 years, dismissal for misconduct cannot take the entitlement away: it must be paid out in full.",
     ],
     takingLeave: [
-      "Leave should be taken in one continuous period as soon as practicable after it falls due. Separate periods, as short as one day, need both sides to agree. An employer can direct you to take leave only with at least 60 days' notice.",
+      "SA long service leave should be taken in one continuous period as soon as practicable after it falls due. Separate periods, as short as one day, need both sides to agree. An employer can direct you to take leave only with at least 60 days' notice.",
       "Every day after the leave starts counts as a day of leave, weekends and public holidays included: 13 weeks starting Monday 1 August ends Monday 31 October. Leave at half pay needs the employer's agreement.",
     ],
     continuity: [
       "Parental leave, employer-funded or government-funded, does not break service but does not count towards it, so it has to be made up before 10 years is reached. Periods of apprenticeship count where you are re-employed by the same employer within 12 months of finishing it.",
     ],
     portableIntro:
-      "Two groups in South Australia accrue through portable schemes instead of the 1987 Act.",
+      "Two groups in South Australia accrue long service leave through portable schemes instead of the 1987 Act: construction industry workers and community services sector workers.",
     portable: [
       { name: "Portable Long Service Leave (Construction Industry Long Service Leave Act 1987)", covers: "construction industry workers", url: "https://www.portableleave.org.au/" },
       { name: "SA Portable Long Service Leave: community services (Portable Long Service Leave Act 2024)", covers: "community services sector workers, based on service to the industry", url: "https://saplsl-community.org.au/" },
@@ -281,11 +281,11 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       },
       {
         q: "How is long service leave worked out for part-time and casual workers in SA?",
-        a: "On the average number of hours worked over the previous 3 years, at the current ordinary rate (including casual loading for casuals). A worker who has been full-time for at least the last 3 years is paid on full-time hours; commission, target and piece workers are paid on their average income over the previous 12 months.",
+        a: "SA long service leave for part-time and casual workers is based on average hours worked over the previous 3 years, at the current ordinary rate (including casual loading for casuals). A worker who has been full-time for at least the last 3 years is paid on full-time hours; commission, target and piece workers are paid on their average income over the previous 12 months.",
       },
       {
         q: "Does parental leave count towards long service leave in SA?",
-        a: "It does not break continuous service, but it does not count as service either, whether employer-funded or government-funded (unless an enterprise agreement says otherwise). The time has to be made up: 12 months of maternity leave pushes the 10-year point back by 12 months.",
+        a: "In SA, parental leave does not break continuous service, but it does not count as service either, whether employer-funded or government-funded (unless an enterprise agreement says otherwise). The time has to be made up: 12 months of maternity leave pushes the 10-year point back by 12 months.",
       },
     ],
     sources: [
@@ -303,12 +303,12 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     actNote:
       "WorkSafe Tasmania administers the Long Service Leave Act 1976 for the private sector. The same Act carries separate provisions for mining employees, so the figures on this page do not apply to them.",
     payCalc: [
-      "Ordinary pay is what you would have earned had you stayed at work. Tasmania includes shift penalties, part-time and casual loadings, allowances paid for all hours and all purposes of the award, and the cash value of board and lodging (unless supplied for work far from home). It excludes overtime, special rates such as danger or hardship allowances, travel allowances, bonuses, living-away-from-home and meal allowances.",
+      "For Tasmanian long service leave, ordinary pay is what you would have earned had you stayed at work. It includes shift penalties, part-time and casual loadings, allowances paid for all hours and all purposes of the award, and the cash value of board and lodging (unless supplied for work far from home). It excludes overtime, special rates such as danger or hardship allowances, travel allowances, bonuses, living-away-from-home and meal allowances.",
       "A casual's ordinary pay is based on average hours over the 12 months before the leave starts (total hours ÷ 52). Commission earners, such as real estate salespeople, are paid on average weekly remuneration over the 3 months before the leave.",
       "A pro-rata payment is years of continuous employment, including part years, ÷ 10 × 8.667 weeks. On death, the estate is paid 1/60th of ordinary pay for the period of continuous employment (between 7 and 10 years), or for the period since the last accrued entitlement.",
     ],
     takingLeave: [
-      "Leave is taken in one period unless the employer and employee agree to two periods. By agreement it can instead be cashed in, or taken as a mix of cash and leave.",
+      "Tasmanian long service leave is taken in one period unless the employer and employee agree to two periods. By agreement it can instead be cashed in, or taken as a mix of cash and leave.",
     ],
     continuity: [
       "Casual and part-time employees count as continuously employed if they regularly work 32 hours or more in each consecutive four-week period. Moving between associated corporations keeps your service, and so does being re-engaged within 2 months at the same place of business by a new employer doing substantially the same kind of business.",
@@ -327,7 +327,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       },
       {
         q: "Can long service leave be split in Tasmania?",
-        a: "Only into two periods, and only if the employer and employee agree. Otherwise it is taken in one period. You can also agree to cash it in, or take a mix of cash and leave.",
+        a: "Tasmanian long service leave can be split only into two periods, and only if the employer and employee agree. Otherwise it is taken in one period. You can also agree to cash it in, or take a mix of cash and leave.",
       },
     ],
     sources: [
@@ -342,19 +342,19 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     actNote:
       "WorkSafe ACT administers the Long Service Leave Act 1976 through Guidance Note 067. Its authorised officers can inspect records and investigate complaints, and an employer can ask the Registrar of Long Service Leave to review their decisions. Employers must keep long service leave records for seven years after service ends.",
     payCalc: [
-      "Leave is paid at your ordinary remuneration, which excludes overtime, penalty rates and allowances paid under an award or agreement.",
+      "ACT long service leave is paid at your ordinary remuneration, which excludes overtime, penalty rates and allowances paid under an award or agreement.",
       "A special rule protects people who cut their hours late in their career: if you moved from full-time to part-time or casual in the two years before becoming entitled, your ordinary remuneration is your previous five years' salary added together and divided by five.",
       "Payment is made before you go on leave, or on normal paydays if you agree, and as soon as possible after termination. Pro-rata payments between 5 and 7 years are worked out on completed years and months of service.",
     ],
     takingLeave: [
-      "The employer must grant leave as soon as practicable after it accrues, at an agreed time. If you cannot agree, the employer gives written notice that the leave must be taken after 60 days. It is an offence for an employer not to grant leave of four weeks or more as soon as practicable, unless both sides agree otherwise.",
+      "An ACT employer must grant long service leave as soon as practicable after it accrues, at an agreed time. If you cannot agree, the employer gives written notice that the leave must be taken after 60 days. It is an offence for an employer not to grant leave of four weeks or more as soon as practicable, unless both sides agree otherwise.",
       "A public holiday or award holiday during long service leave adds one day to the leave.",
     ],
     continuity: [
       "Continuous service includes annual and long service leave, up to 2 weeks a year of illness or injury, a break engineered to avoid granting leave, and an apprenticeship where you start with the same employer within 12 months of finishing it. Service outside the ACT may not count.",
     ],
     portableIntro:
-      "Employees in the industries covered by the Long Service Leave (Portable Schemes) Act 2009 would not usually be entitled under the 1976 Act; ACT Leave runs those schemes. Since 1 April 2025 the old contract cleaning scheme has been part of a wider Services Industry Scheme, and on 3 May 2026 the ACT Government delayed the entry of hairdressing and beauty, and accommodation and food services, into that scheme until 1 January 2027.",
+      "Employees in the industries covered by the Long Service Leave (Portable Schemes) Act 2009 would not usually be entitled under the 1976 Act; ACT Leave runs those schemes. Since 1 April 2025 the old contract cleaning scheme has been part of a wider Services Industry Scheme. On 3 May 2026 the ACT Government delayed the entry of hairdressing and beauty, and accommodation and food services, into that scheme until 1 January 2027.",
     portable: [
       { name: "ACT Leave: Building and Construction Industry Scheme", covers: "the building and construction industry", url: "https://actleave.act.gov.au/" },
       { name: "ACT Leave: Community Sector Industry Scheme", covers: "the community sector", url: "https://actleave.act.gov.au/" },
@@ -368,7 +368,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       },
       {
         q: "Can my ACT employer make me take long service leave?",
-        a: "If you cannot agree on a time, the employer can give you written notice that the leave must be taken after 60 days from the date of the notice.",
+        a: "Yes, if you and your ACT employer cannot agree on a time. Your employer can then give you written notice that the leave must be taken after 60 days from the date of the notice.",
       },
       {
         q: "What if I went part-time before reaching long service leave in the ACT?",
@@ -387,7 +387,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     actNote:
       "The Long Service Leave Act 1981 covers most NT private sector employees; NT and Australian Government employees and NT Build construction workers are outside it. Disputes go to the Office of the Commissioner for Public Employment (OCPE), which can investigate, request your employer's records and refer a matter to the Solicitor for the Northern Territory.",
     payCalc: [
-      "While on leave you are paid your usual rate of pay, which does not include overtime, penalties, or district and site allowances.",
+      "NT long service leave is paid at your usual rate of pay, which does not include overtime, penalties, or district and site allowances.",
       "Only completed years are paid. After 10 years the credit is paid out when you resign (14½ years pays 14), less any leave already used. Part years, absences on workers compensation and unpaid leave do not accumulate any leave at all.",
       "Between 7 and 10 years, a resignation for illness, incapacity or a domestic or other pressing necessity has to be shown to be genuine and the real reason, and one a reasonable person would make. If your employer goes bankrupt or into liquidation, unpaid long service leave may be covered by the Australian Government's Fair Entitlements Guarantee.",
     ],
@@ -404,7 +404,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     faqs: [
       {
         q: "Can I split long service leave in the NT?",
-        a: "Only if your employer agrees, and then into no more than 3 periods of at least 4 weeks each. Otherwise it is taken in one continuous period.",
+        a: "NT long service leave can be split only if your employer agrees, and then into no more than 3 periods of at least 4 weeks each. Otherwise it is taken in one continuous period.",
       },
       {
         q: "Do public holidays extend NT long service leave?",

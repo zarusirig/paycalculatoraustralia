@@ -71,9 +71,10 @@ export default function PublicServicePayScalesPage() {
             Public Service Pay Scales in Australia
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            Nine services, nine classification systems, nine sets of numbers. The federal APS
-            runs APS 1&ndash;6, EL 1, EL 2 and SES Bands 1&ndash;3 with a median APS 6 base salary of{" "}
-            <strong className="text-navy">$108,092</strong>; Victoria runs grades 1&ndash;7 with value
+            Australia has nine public services, and each sets its own classification system and
+            pay scale. The federal Australian Public Service (APS) runs APS 1 to 6, EL 1, EL 2 and
+            SES Bands 1 to 3 with a median APS 6 base salary of{" "}
+            <strong className="text-navy">$108,092</strong>; Victoria runs grades 1 to 7 with value
             ranges and progression steps (every grade and step is on the{" "}
             <Link href="/public-service-pay-scales/vic/" className="font-medium text-eucalyptus-dark hover:underline">VPS salary 2026</Link>{" "}
             page); Queensland
@@ -87,8 +88,8 @@ export default function PublicServicePayScalesPage() {
             <strong className="text-navy">$86,325 to $99,237</strong> from December 2025, the ACT an ASO 6{" "}
             <strong className="text-navy">$102,657 to $116,592</strong> from 4 December 2025, and the
             Northern Territory an AO5 <strong className="text-navy">$93,674 to $98,332</strong> from 13
-            August 2026. Every figure on these pages is transcribed from the agreement, award or
-            determination that sets it.
+            August 2026. Every figure on these pages is transcribed from the agreement, award,
+            determination or official remuneration release that sets or reports it.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -154,9 +155,9 @@ export default function PublicServicePayScalesPage() {
                   <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> table.
                 </li>
                 <li>
-                  <strong>Queensland.</strong> Four streams (administrative (AO), professional
+                  <strong>Queensland.</strong> Four streams, administrative (AO), professional
                   (PO), technical (TO) and operational (OO), each with numbered levels and
-                  numbered pay points inside them, written as AO3/2 or PO4/1. The award sets the
+                  numbered pay points inside them, written as AO3/2 or PO4/1. The state award sets the
                   floor and each entity&rsquo;s certified agreement can sit above it.
                 </li>
                 <li>
@@ -236,9 +237,9 @@ export default function PublicServicePayScalesPage() {
             <section id="no-single-aps-scale">
               <h2 style={HEADING_FONT}>Why there is no single APS salary</h2>
               <p>
-                Search &ldquo;APS 6 salary&rdquo; and you will be given a number. Treat it carefully:
-                the APS has around 102 agency enterprise agreements and each one sets its own pay
-                points, so the honest answer is a range. Across the whole service at 31 December
+                There is no single &ldquo;APS 6 salary&rdquo;: the APS has around 102 agency
+                enterprise agreements and each one sets its own pay points, so the answer is a
+                range. Across the whole service at 31 December
                 2025 the median APS 6 base salary was <strong>$108,092</strong>, and 90% of APS 6
                 employees were paid between <strong>$97,316</strong> and <strong>$115,199</strong>.
                 One agency&rsquo;s agreement, Treasury&rsquo;s, pays APS 6 across four
@@ -247,7 +248,7 @@ export default function PublicServicePayScalesPage() {
               </p>
               <p>
                 Service-wide bargaining has been narrowing the spread since 2023, which the APSC
-                calls reducing pay fragmentation, and the same three-year package delivered 4%, 3.8%
+                calls reducing pay fragmentation. Its three-year pay package delivered 4%, 3.8%
                 and 3.4% increases in March 2024, 2025 and 2026. Until alignment finishes, the number
                 that matters to you is in your own agency&rsquo;s agreement. The{" "}
                 <Link href="/public-service-pay-scales/aps/">APS pay scales page</Link> sets out the
@@ -258,7 +259,7 @@ export default function PublicServicePayScalesPage() {
                 <Link href="/public-service-pay-scales/qld/">Queensland page</Link> keeps the two
                 layers apart: the award rate that job advertisements quote, and one entity&rsquo;s
                 certified agreement schedule shown beside it. Victoria is the exception: one
-                agreement, one table, published in Schedule C (our{" "}
+                agreement covers the whole VPS, and one pay table is published in Schedule C (our{" "}
                 <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> page transcribes it).
               </p>
             </section>
@@ -299,10 +300,10 @@ export default function PublicServicePayScalesPage() {
             <section id="after-tax">
               <h2 style={HEADING_FONT}>What a band is worth after tax</h2>
               <p>
-                Classification tables are gross figures. What lands in your account depends on income
-                tax, the Medicare levy and any study loan repayment, and public service payrolls
+                Classification tables are gross figures. Your take-home pay depends on income
+                tax, the Medicare levy and any study loan repayment. Public service payrolls
                 usually pay fortnightly, which is why the schedules are published as fortnightly
-                rates in the first place. Every band on the jurisdiction pages links to the nearest
+                rates. Every band on the jurisdiction pages links to the nearest
                 take-home page, and these calculators take an exact salary:
               </p>
               <ul>

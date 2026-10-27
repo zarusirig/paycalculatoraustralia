@@ -42,13 +42,13 @@ export const EVENT_CINEMAS_PAY: EmployerPay = {
         : { ...r, description: SCHEDULE_D },
   ),
   penaltyNotes: [
-    "There is no Saturday, Sunday or evening penalty for cinema workers. Instead every cinema rate includes an 8% penalty averaging loading, paid on all hours (award cl 13.4 Note 1 and cl 58.1).",
-    "For a Level 1 crew member that is $28.56 an hour at any time between 8am and 1am, and $57.12 an hour between 1am and 8am or on a public holiday.",
+    "Event Cinemas crew get no Saturday, Sunday or evening penalty. Instead every cinema rate includes an 8% penalty averaging loading, paid on all hours (award cl 13.4 Note 1 and cl 58.1).",
+    "An Event Cinemas Level 1 crew member gets $28.56 an hour at any time between 8am and 1am, and $57.12 an hour between 1am and 8am or on a public holiday.",
     "A roster changed on short notice for non-operational reasons, or a meal break not given after 5 hours, is paid at 200% for the affected time, or 225% for casuals (cl 59.3, cl 60.2; FWO pay guide).",
   ],
   notices: [
-    "These are the award minimums for cinema workers. Event Cinemas advertises new crew at Cinema Worker Level 1 ($28.56 an hour, $35.70 casual). It may pay more; it cannot pay less.",
-    "Juniors under 21 are paid a percentage of the Level 4 rate rather than Level 1, so the junior table below uses Level 4 as its base.",
+    "These are the Broadcasting, Recorded Entertainment and Cinemas Award minimums. Event Cinemas advertises new crew at Cinema Worker Level 1 ($28.56 an hour, $35.70 casual), and it may pay more but cannot pay less.",
+    "Event Cinemas juniors under 21 are paid a percentage of the award's Level 4 rate rather than Level 1, so the junior table below uses Level 4 as its base.",
   ],
   unverified: [
     "Agreements approved before 2016 were not checked; none for Event Cinemas was found on the terminated-agreements list.",
@@ -68,11 +68,11 @@ export const EVENT_CINEMAS_PAY: EmployerPay = {
     },
     {
       q: "What does Event Cinemas pay on public holidays?",
-      a: "200% of the minimum hourly rate for both permanent and casual staff: $57.12 an hour for a Level 1 crew member. Casuals do not get an extra loading on top.",
+      a: "Event Cinemas pays 200% of the minimum hourly rate on public holidays, for both permanent and casual staff: $57.12 an hour for a Level 1 crew member. Casuals do not get an extra loading on top.",
     },
     {
       q: "Does Event Cinemas have an enterprise agreement?",
-      a: "We found none on the Fair Work Commission's lists of agreements approved since 2016, and Event Cinemas' own job ads classify crew under the Broadcasting, Recorded Entertainment and Cinemas Award.",
+      a: "No Event Cinemas enterprise agreement appears on the Fair Work Commission's lists of agreements approved since 2016, and Event Cinemas' own job ads classify crew under the Broadcasting, Recorded Entertainment and Cinemas Award.",
     },
   ],
 };

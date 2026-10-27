@@ -38,7 +38,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-officer-day",
       title: "Correctional Officer and First Class Correctional Officer, day workers (Schedule 1)",
-      intro: "Base salaries for day workers from the first full pay period on or after 1 December 2025 (a 3.0% increase).",
+      intro: "Tasmania Prison Service day workers are paid these base salaries from the first full pay period on or after 1 December 2025 (a 3.0% increase).",
       stepHeading: "Classification",
       steps: [
         { label: "CO Probationary", salary: 71_290 },
@@ -54,7 +54,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       id: "correctional-officer-shift",
       title: "Correctional Officer and FCCO, shift workers (Schedule 2)",
       intro:
-        "Salaries including the annual allowance for shift work, which applies a 1.30 multiplier from the first full pay period on or after 1 December 2025.",
+        "These salaries for shift workers include the annual allowance for shift work, which applies a 1.30 multiplier from the first full pay period on or after 1 December 2025.",
       stepHeading: "Classification",
       steps: [
         { label: "CO Probationary (shift)", salary: 92_677 },
@@ -69,7 +69,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     {
       id: "correctional-supervisor",
       title: "Correctional Supervisor, day workers (Schedule 1)",
-      intro: "Base salaries from the first full pay period on or after 1 December 2025.",
+      intro: "Correctional Supervisors on day work are paid these base salaries from the first full pay period on or after 1 December 2025.",
       stepHeading: "Classification",
       steps: [
         { label: "Correctional Supervisor (CS) Level 1", salary: 85_501 },
@@ -112,7 +112,7 @@ export const TAS_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a trainee correctional officer earn in Tasmania?",
-      a: "$66,520 a year while in training, under Schedule 1 of the Correctional Officers Agreement 2023.",
+      a: "A trainee correctional officer in Tasmania earns $66,520 a year while in training, under Schedule 1 of the Correctional Officers Agreement 2023.",
     },
   ],
 };

@@ -1,0 +1,168 @@
+      {
+        q: "How much is the bricklayer tool allowance for an apprentice?",
+        a: "$29.26 a week from 1 July 2026, the clause 21.1(a) amount for a refractory bricklayer or bricklayer under the Building and Construction General On-site Award. Apprentices get the full amount, not a percentage, as part of the ordinary weekly rate for all purposes (cl 19.7(c)). It is already in the pay guide figures on this page.",
+      },
+      {
+        q: "Is a refractory bricklaying apprentice paid more?",
+        a: "Not during the apprenticeship. Bricklayers and refractory bricklayers share the same percentages and the same $29.26 tool allowance. The difference comes after qualifying: the award classifies a refractory bricklayer at CW/ECW 5 ($1,189.60 a week before allowances) and a bricklayer at CW/ECW 3 ($1,119.10).",
+      },
+    ],
+  },
+  {
+    slug: "painter",
+    label: "Painter",
+    trade: "painting",
+    tradeSlug: "building",
+    h1: "Apprentice Painter Pay",
+    lead:
+      "Painting apprentices have the smallest trade tool allowance in the Building and Construction General On-site Award: $9.89 a week, shared with signwriters and glaziers (cl 21.1(a)). The award still pays it to apprentices in full, with the industry allowance, for all purposes (cl 19.7(c)). A painting apprentice's minimum therefore sits $31.33 a week below a carpentry apprentice's in every year.",
+    extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "The levels and allowances behind the apprentice rates." }],
+    allowances: buildingScenarios("Tool allowance (signwriter, painter or glazier)", PAINTER_PG.toolAllowance),
+    payGuide: PAINTER_PG,
+    sharesTableWith: ["carpenter", "bricklayer"],
+    qualification: {
+      code: "CPC30620",
+      title: "Certificate III in Painting and Decorating",
+      url: tgaUrl("CPC30620"),
+      detail: "It is current on training.gov.au: 29 units, 26 core and 3 elective.",
+    },
+    facts: [
+      "The Fair Work Ombudsman pay guide prints one apprentice table for glaziers, painters and signwriters, and the tables on this page are that table. The award's painter classification includes artworkers, spray painters, shotblasters and sandblasters, all at CW/ECW 3 (Schedule A.2.3).",
+      "Watch the classification once you qualify. The award also lists painter brush hand and spray painter among its CW/ECW 1 classifications (Schedule A.2.1), the lowest level, which starts at $1,013.50 a week. That level is not available to someone who has finished: clause 19.7(a) says a person who has completed a full apprenticeship must not be paid less than the $1,119.10 standard rate, before the $9.89 tool allowance and the industry allowance.",
+      "Stage progression counts the competencies in your Certificate III training plan: stage 2 at 25% or 12 months after starting, stage 3 at 50% or 12 months after stage 2, and stage 4 at 75% or 12 months after stage 3, whichever is earlier each time (cl 19.7(b)).",
+      "Coverage depends on the work your employer does and on any enterprise agreement, so check the award named on your contract before relying on these tables.",
+    ],
+    sections: [
+      {
+        heading: "Overtime, Shiftwork and Days Away for Painting Apprentices",
+        paragraphs: [
+          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter more here than in most trades. Under clause 14.4 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate. An apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to. No apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results.",
+          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship. Absences on paid leave, or on leave without pay taken in accordance with the award's leave provisions, do not add a day. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked unpaid overtime on a push to finish a job, then been stood down in a wet fortnight, needs both halves of that rule.",
+        ],
+      },
+      {
+        heading: "Adult Apprentice Painters",
+        paragraphs: [
+          "The Fair Work Ombudsman pay guide prints a single adult apprentice rate for the glazier, painter and signwriter group that applies in every year of the apprenticeship: $1,090.54 a week ($28.70 an hour) on a general building, civil or engineering construction site and $1,077.11 ($28.35) on residential work, each including the $9.89 tool allowance and the industry allowance. An adult apprentice is a person who is 21 or over when the contract of training is signed (cl 14.1(a)).",
+          "Because the adult rate is close to the $1,119.10 standard rate a qualified painter must get after completion (cl 19.7(a)), the pay rise at the end of an adult painting apprenticeship is small: $28.59 a week in the wage part before allowances, by our arithmetic. The bigger difference is for the junior: a first-year with Year 12 moves from $692.55 a week on a general site to the trade rate over four stages.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Can an apprentice painter be made to work overtime?",
+        a: "Not alone, and not if under 18 unless they choose to. Clause 14.4 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate. It also says no apprentice will work overtime or shiftwork on their own, and no apprentice under 18 can be required to work it. No apprentice can be required to work at times that would prevent attendance at the RTO, except in an emergency.",
+      },
+      {
+        q: "Do I have to serve extra time if I am away from work?",
+        a: "For unpaid absences, yes. Clause 14.5 adds a day to the apprenticeship for each day of absence in a year. Absences on paid leave, or on leave without pay taken under the award's leave provisions, do not add a day. The clause also credits back time worked beyond ordinary hours during that year. Paid sick leave and annual leave do not extend the apprenticeship.",
+      },
+      {
+        q: "Do apprentice painters get the industry allowance?",
+        a: "On work covered by the Building and Construction General On-site Award, yes. The award adds the industry allowance ($67.15 a week for general building, civil and engineering construction, $53.72 for residential building) and the $9.89 painter tool allowance to the percentage rate, for all purposes. A painting employer who is not covered by this award may pay differently.",
+      },
+      {
+        q: "Why is an apprentice painter paid less than an apprentice carpenter?",
+        a: "Only because of the tool allowance: $9.89 a week for a painter against $41.22 for a carpenter (cl 21.1(a)). The percentage of the standard rate and the industry allowance are the same, so the gap is $31.33 a week in every year, for example $692.55 against $723.88 in first year with Year 12 on a general building site.",
+      },
+    ],
+  },
+  {
+    slug: "plumber",
+    label: "Plumber",
+    trade: "plumbing",
+    tradeSlug: "plumbing",
+    h1: "Apprentice Plumber Pay",
+    lead:
+      "Plumbing apprentices are paid under the Plumbing and Fire Sprinklers Award 2020, which builds the allowances into the apprentice rate itself. The hourly rates in Schedule E.2.1 include the full industry allowance and the apprentice's percentage of the tool and plumbing trade allowances, all paid for all purposes. There is nothing to add for those three allowances when you check a payslip. The same schedule prints the weekend and public holiday rates.",
+    job: { href: "/job-pay-rates/plumber/", label: "Plumber pay rates (qualified)" },
+    extraLinks: [
+      { href: "/plumbing-award-rates/", label: "Plumbing Award rates", blurb: "Every level of the Plumbing and Fire Sprinklers Award, with the registration allowance." },
+      { href: "/construction-trades-pay/", label: "Construction and Trades Pay Guide", blurb: "What tradies and apprentices earn, with allowances and take-home." },
+    ],
+    allowances: [],
+    penalty: {
+      heading: "Weekend and Public Holiday Rates",
+      intro:
+        "Schedule E.2.1(b) of the Plumbing and Fire Sprinklers Award prints the apprentice's weekend and public holiday rates as a percentage of the apprentice hourly rate: Saturday 150% for the first 2 hours and 200% after that, Sunday 200% and public holidays 250%. Applied to the Year 12 rates in the first table:",
+      columns: [
+        { label: "Saturday first 2 hours", pct: 150 },
+        { label: "Saturday after 2 hours", pct: 200 },
+        { label: "Sunday", pct: 200 },
+        { label: "Public holiday", pct: 250 },
+      ],
+      caption: "Hourly dollars, matching Schedule E.2.1(b) and the Fair Work Ombudsman pay guide. The allowances are already inside these rates.",
+    },
+    qualification: {
+      code: "CPC32420",
+      title: "Certificate III in Plumbing",
+      url: tgaUrl("CPC32420"),
+      detail:
+        "It is current on training.gov.au, with two specialisations: general plumber, roofing and mechanical (77 units) and general plumber and mechanical (73 units).",
+    },
+    facts: [
+      "Apprentice plumbers, mechanical services and irrigation installers are covered by the Plumbing and Fire Sprinklers Award 2020. Its apprentice hourly rate in Schedule E.2.1 already contains the allowances: the percentage of the tradesperson level 1 weekly rate plus the full industry allowance and the same percentage of the tool and plumbing trade allowances, all paid for all purposes.",
+      "Compare like with like. Once the building award's allowances are counted, a first-year carpentry apprentice with Year 12 on a general building site must get $19.05 an hour, against $18.11 for a plumbing apprentice, both from the Fair Work Ombudsman pay guides. The bare building percentage rate of $16.20 leaves the allowances out.",
+      "The weekly figures are the pay guide's, not the hourly rate times 38: $864.35 in 3rd year, for example, where $22.75 x 38 would give $864.50. The 4th-year rate is 90% of the tradesperson rate and allowances. Apprentice sprinkler fitters have their own rates in Schedule E.2.2 and are not shown here.",
+    ],
+    faqs: [
+      {
+        q: "Are allowances included in the apprentice plumber rate?",
+        a: "Yes. The hourly rates in Schedule E.2.1 of the Plumbing and Fire Sprinklers Award 2020 already include the full industry allowance and the relevant percentage of the tool and plumbing trade allowances, all paid for all purposes. You do not add them again on top.",
+      },
+      {
+        q: "What do apprentice sprinkler fitters get paid?",
+        a: "Sprinkler fitting apprentices have separate rates in Schedule E.2.2 of the Plumbing and Fire Sprinklers Award 2020. They are not shown on this page, which covers plumbing, mechanical services and irrigation apprentices.",
+      },
+    ],
+  },
+  {
+    slug: "mechanic",
+    label: "Mechanic",
+    trade: "motor mechanic",
+    tradeSlug: "automotive",
+    h1: "Apprentice Mechanic Pay",
+    lead:
+      "A motor mechanic apprentice is paid under the Vehicle Repair, Services and Retail Award 2020, which differs from most trade awards in three ways: the 4th-year junior rate is 88% of the tradesperson rate rather than 90%, adult apprentices are paid fixed classification rates, and the award prints Saturday, Sunday and public holiday rates for apprentices.",
+    job: { href: "/job-pay-rates/mechanic/", label: "Mechanic pay rates (qualified)" },
+    extraLinks: [{ href: "/manufacturing-award-rates/", label: "Manufacturing Award rates", blurb: "The award that covers many other mechanical and engineering trades." }],
+    allowances: [
+      {
+        id: "tools",
+        label: "If you supply your own hand tools",
+        lines: [{ label: "Apprentice tool allowance", clause: "cl 19.6(b)", byStage: [5.88, 7.59, 10.46, 12.14] }],
+        condition: "Payable only where the employer requires the apprentice to provide their own tools. Not subject to overtime, penalties or annual leave loading (cl 19.6(c))",
+        allPurpose: false,
+      },
+    ],
+    penalty: {
+      heading: "Weekend and Public Holiday Rates",
+      intro:
+        "Schedule B.5.1 of the Vehicle Repair, Services and Retail Award prints the rates for a junior apprentice as a percentage of the ordinary hourly rate: Saturday 150%, Sunday 200% and public holidays 250%. Applied to the Year 12 rates in the first table:",
+      columns: [
+        { label: "Saturday", pct: 150 },
+        { label: "Sunday", pct: 200 },
+        { label: "Public holiday", pct: 250 },
+      ],
+      caption: "Hourly dollars, matching the Fair Work Ombudsman pay guide. The apprentice tool allowance is not subject to penalty additions (cl 19.6(c)).",
+    },
+    qualification: {
+      code: "AUR30620",
+      title: "Certificate III in Light Vehicle Mechanical Technology",
+      url: tgaUrl("AUR30620"),
+      detail: "It is current on training.gov.au: 36 units, 20 core and 16 elective.",
+    },
+    facts: [
+      "A motor mechanic apprentice in a workshop, dealership or service centre is usually covered by the Vehicle Repair, Services and Retail Award 2020. The award splits apprentices at 21: a junior apprentice is under 21 (cl 16.9(a)) and an adult apprentice is over 21 when the apprenticeship starts (cl 16.10(a)). Junior rates are a percentage of the Level R6 tradesperson rate of $1,119.10 a week.",
+      "Adult apprentices are paid by reference to award classification levels instead of percentages: 80% of R6 in first year, then Level 1, Level 2 and Level 3, and the full R6 rate after the apprenticeship (cl 16.10(b)). A person already employed in the vehicle industry before becoming an adult apprentice with that employer cannot have their pay cut by signing the contract (cl 16.10(c)).",
+      "The tool allowance for apprentices rises by year, from $5.88 to $12.14 a week, against $13.86 for a tradesperson, and is payable only where the apprentice is required to provide their own tools (cl 19.6(a), (b)).",
+    ],
+    sections: [
+      {
+        heading: "The 21 Trades on the Same Apprentice Table",
+        paragraphs: [
+          "The Vehicle Repair, Services and Retail Award does not have a mechanic-only apprentice scale. Clause 13.2 lists 21 apprenticeship trades, and every junior apprentice in any of them is paid from the one table in clause 16.9: $559.55 a week in first year ($615.51 with Year 12), $671.46 ($727.42) in second year, $839.33 in third year and $984.81 in fourth. The trades are automotive electrician, automotive engine reconditioner, automotive parts interpreter (specialist), bodymaker and wheelwright, brake mechanic, electrical fitter and armature winder (auto), electroplater, electrical mechanic, fitter and turner, machinist (metal), motorcycle or motor scooter mechanic, motor mechanic or automotive technician, painter (tradesperson), panel beater, plant mechanic, signwriter, smith, trimmer (tradesperson), welder (tradesperson), wheel aligner and wood machinist.",
+          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums. It is also why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)). The only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13).",
+          "The employer carries the training costs. Fees for prescribed courses and prescribed textbooks that the apprentice pays must be reimbursed, and the employer can instead pay the training provider directly within six months of the start of the apprenticeship or of the relevant stage (cl 13.3). Where block release training needs an overnight stay, the employer pays the excess reasonable travel costs, less any government apprentice travel assistance the apprentice can claim (cl 13.4). Attendance at training and assessment under the training contract is paid as time worked (cl 13).",
+        ],
+      },

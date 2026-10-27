@@ -41,7 +41,7 @@ export interface Faq {
 export const LSL_HUB_FAQS: Faq[] = [
   {
     q: "How much long service leave do you get in Australia?",
-    a: "It depends on the state or territory, because long service leave is not part of the National Employment Standards. Six jurisdictions (NSW, Victoria, Queensland, WA, Tasmania and the ACT) accrue about 0.8667 weeks a year, which is 8.667 weeks (two months) after 10 years. South Australia and the Northern Territory accrue 1.3 weeks a year, which is 13 weeks after 10 years, half as much again.",
+    a: "Long service leave in Australia is set by your state or territory, because it is not part of the National Employment Standards. Six jurisdictions (NSW, Victoria, Queensland, WA, Tasmania and the ACT) accrue about 0.8667 weeks a year, which is 8.667 weeks (two months) after 10 years. South Australia and the Northern Territory accrue 1.3 weeks a year, which is 13 weeks after 10 years, half as much again.",
   },
   {
     q: "How much long service leave do you get after 10 years?",
@@ -61,7 +61,7 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "Can you cash out long service leave?",
-    a: "It varies. NSW, Victoria and the Northern Territory prohibit it. In NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued, and South Australia by written, signed agreement once you reach 10 years. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. WorkSafe ACT does not address it in the guidance we verified, so check with them.",
+    a: "Cashing out long service leave is allowed in some states and territories and banned in others. NSW, Victoria and the Northern Territory prohibit it. In NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued, and South Australia by written, signed agreement once you reach 10 years. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. WorkSafe ACT does not address it in the guidance we verified, so check with them.",
   },
   {
     q: "Do casual employees get long service leave?",
@@ -77,7 +77,7 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "What if my award or enterprise agreement covers long service leave?",
-    a: "Then the Act may not apply to you. Every jurisdiction excludes employees whose long service leave comes from a federal enterprise agreement or a pre-reform federal award with its own long service leave terms. Portable schemes for building and construction, contract cleaning, community services, security and black coal mining also sit outside these Acts. The Fair Work Ombudsman on 13 13 94 can confirm which applies to you.",
+    a: "Then your state or territory long service leave Act may not apply to you. Every jurisdiction excludes employees whose long service leave comes from a federal enterprise agreement or a pre-reform federal award with its own long service leave terms. Portable schemes for building and construction, contract cleaning, community services, security and black coal mining also sit outside these Acts. The Fair Work Ombudsman on 13 13 94 can confirm which applies to you.",
   },
 ];
 

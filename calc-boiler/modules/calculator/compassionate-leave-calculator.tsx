@@ -33,7 +33,7 @@ export default function CompassionateLeaveCalculator() {
     <Card className="shadow-md not-prose" id="compassionate-leave-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Compassionate Leave Pay Calculator</h2>
-        <p className="text-sm text-warmgray mb-6">What your employer must pay for compassionate or bereavement leave under the National Employment Standards.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator works out what your employer must pay for compassionate or bereavement leave under the National Employment Standards (NES).</p>
 
         <div className="grid gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
@@ -59,7 +59,7 @@ export default function CompassionateLeaveCalculator() {
                 : "Paid at your base rate for the ordinary hours you would have worked. It isn't taken from your sick or annual leave, and a fresh 2 days applies to each new death, life-threatening illness or injury, stillbirth or miscarriage."}
             </p>
             <p className="text-xs text-warmgray-light">
-              National Employment Standards minimum (Fair Work Act ss 104–106). Awards and enterprise agreements can provide additional compassionate leave entitlements.
+              This is the National Employment Standards minimum (Fair Work Act ss 104 to 106). Awards and enterprise agreements can provide additional compassionate leave entitlements.
             </p>
           </div>
         </div>

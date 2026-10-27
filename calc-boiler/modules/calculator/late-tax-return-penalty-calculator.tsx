@@ -62,7 +62,7 @@ export default function LateTaxReturnPenaltyCalculator() {
                 {r.penalty === null ? (
                   <p className={NOTE_WARN}>This calculator covers due dates from 7 November 2024. For an older return, check the penalty unit on the ATO&rsquo;s penalty units page.</p>
                 ) : r.daysOverdue === 0 ? (
-                  <p className={NOTE_OK}>Lodged on or before the due date, so no failure-to-lodge penalty.</p>
+                  <p className={NOTE_OK}>You lodged on or before the due date, so no failure-to-lodge penalty applies.</p>
                 ) : refund ? (
                   <p className={NOTE_OK}>
                     The ATO says it generally will not issue a penalty notice for a late return that results in a refund or a nil result, unless it applied the penalty before you lodged. So the likely charge is <strong>$0</strong>, but the figure above is the most it can be if it does.
@@ -70,7 +70,7 @@ export default function LateTaxReturnPenaltyCalculator() {
                 ) : (
                   <p className={NOTE_WARN}>
                     {r.atMaximum
-                      ? `You are past the point where the penalty stops growing (${formatIso(r.maximumReachedIso)}). The penalty cannot grow further, but lodging still matters: until you do, any refund waits and any tax owing is not assessed.`
+                      ? `The failure-to-lodge penalty reached its maximum on ${formatIso(r.maximumReachedIso)} and cannot grow further. Lodging still matters: until you do, any refund waits and any tax owing is not assessed.`
                       : `Each extra ${FTL_RULES.daysPerUnit} days adds another unit until the maximum is reached on ${formatIso(r.maximumReachedIso)}. Lodging sooner caps the cost.`}
                   </p>
                 )}

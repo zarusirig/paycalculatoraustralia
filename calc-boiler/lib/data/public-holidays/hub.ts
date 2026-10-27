@@ -50,23 +50,23 @@ export function hubFaqs(): { q: string; a: string }[] {
     },
     {
       q: "Can my employer make me work on a public holiday?",
-      a: "Your employer can ask, but the request has to be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. Relevant factors include the type of workplace and job, your personal circumstances and caring responsibilities, whether you are full-time, part-time or casual, whether you could have expected to be asked, the penalty rates on offer and how much notice you were given. If the request is reasonable and your refusal is not, you can be required to work.",
+      a: "Your employer can ask, but the request has to be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. Relevant factors include the type of workplace and job, your personal circumstances and caring responsibilities, and whether you are full-time, part-time or casual. They also include whether you could have expected to be asked, the penalty rates on offer and how much notice you were given. If the request is reasonable and your refusal is not, you can be required to work.",
     },
     {
       q: "Are casual public holiday rates added to the casual loading?",
-      a: `In most awards the casual public holiday rate already includes the 25% loading (Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points), so nothing more is added. Two awards on this site work the other way: Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
+      a: `In most awards the casual public holiday rate already includes the 25% loading (Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points), so nothing more is added. Two awards on this site work the other way. Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
     },
     {
       q: "What happens if a public holiday falls during my annual leave?",
-      a: "If it falls on a day you would normally work, you are paid for the public holiday and it is not deducted from your annual leave or sick leave balance. Public holidays during unpaid leave, such as unpaid parental leave, are not paid. Whether a public holiday extends long service leave depends on your state's long service leave law.",
+      a: "If the public holiday falls on a day you would normally work, you are paid for it and the day is not deducted from your annual leave or sick leave balance. Public holidays during unpaid leave, such as unpaid parental leave, are not paid. Whether a public holiday extends long service leave depends on your state's long service leave law.",
     },
     {
       q: "Can I swap a public holiday for another day?",
-      a: "Only where your award or agreement allows it and you and your employer agree, or, if you are award and agreement free, by agreement with your employer. The substitute day is then treated as the public holiday for pay. Some awards also let a permanent employee take a lower rate plus a day added to annual leave instead of the full public holiday rate.",
+      a: "You can swap a public holiday only where your award or agreement allows it and you and your employer agree. If you are award and agreement free, you can swap it by agreement with your employer. The substitute day is then treated as the public holiday for pay. Some awards also let a permanent employee take a lower rate plus a day added to annual leave instead of the full public holiday rate.",
     },
     {
       q: "Which state's public holidays do I get if I work interstate?",
-      a: "The public holidays of the place your job is based, not where you happen to be working that day. The Fair Work Ombudsman's example is a Melbourne-based employee working in Sydney on Melbourne Cup Day, who still gets the Victorian public holiday entitlement.",
+      a: "You get the public holidays of the state or region where your job is based, not where you happen to be working that day. The Fair Work Ombudsman's example is a Melbourne-based employee working in Sydney on Melbourne Cup Day, who still gets the Victorian public holiday entitlement.",
     },
     {
       q: "How are part-day public holidays paid?",

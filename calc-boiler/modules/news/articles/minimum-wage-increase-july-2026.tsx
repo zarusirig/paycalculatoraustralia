@@ -23,11 +23,12 @@ export default function MinimumWageIncreaseJuly2026() {
 
       <h2>What the Commission decided</h2>
       <p>
-        The Expert Panel handed down the Annual Wage Review 2026 decision on 2 June 2026, lifting
-        the national minimum wage by 6% and modern award minimum rates by 4.75%. The Panel said a
-        real wage increase large enough to fully close the gap left by the inflation spike of
-        recent years would not be practicable in the current circumstances, pointing to inflation
-        sitting above the Reserve Bank&apos;s target band and global fuel supply disruption.
+        The Fair Work Commission&apos;s Expert Panel handed down the Annual Wage Review 2026 decision
+        on 2 June 2026, lifting the national minimum wage by 6% and modern award minimum rates by
+        4.75%. The Panel said a real wage increase large enough to fully close the gap left by the
+        inflation spike of recent years would not be practicable in the current circumstances. It
+        pointed to inflation sitting above the Reserve Bank&apos;s target band and to global fuel
+        supply disruption.
       </p>
       <p>
         The decision also starts a three-stage phase-out of the C13 classification (the lowest
@@ -36,8 +37,9 @@ export default function MinimumWageIncreaseJuly2026() {
 
       <h2>Who gets the increase</h2>
       <p>
-        The rise applies to employees on the national minimum wage and the workers, about 23% of
-        employees, according to the ABS (May 2025), whose pay is set only by a modern award. If you&apos;re on
+        The national minimum wage rise applies to employees paid the national minimum wage. The
+        separate modern award rise applies to award-reliant workers, whose pay is set only by a
+        modern award: about 23% of employees, according to the ABS (May 2025). If you&apos;re on
         an enterprise agreement or an over-award salary, nothing changes automatically, though many
         agreements index their rates to the review. Check your award classification on our{" "}
         <Link href="/award-rates/">award rates guide</Link> if you&apos;re not sure which rate
@@ -59,7 +61,7 @@ export default function MinimumWageIncreaseJuly2026() {
         <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link>{" "}
         to see the annual figure, then our{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for the after-tax
-        result. Casual? Remember the 25% loading stacks on top of the new base rate.
+        result. If you&apos;re a casual, the 25% casual loading is paid on top of the new base rate.
       </p>
     </>
   );

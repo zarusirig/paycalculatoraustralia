@@ -72,7 +72,7 @@ export default function EaAwardFloorChecker() {
                 : "An agreement's base rate can't be less than the award's. If the award rate has overtaken your agreement, your employer must pay at least the award base rate. Check you've picked the right classification, then raise it with your employer or the Fair Work Ombudsman."}
             </p>
             <p className="text-xs text-warmgray-light">
-              Award rates from the first full pay period on or after 1 July 2026. Full classification tables: <Link href={award.href} className="underline">{award.name} rates</Link>.
+              These award rates apply from the first full pay period on or after 1 July 2026. Full classification tables: <Link href={award.href} className="underline">{award.name} rates</Link>.
             </p>
           </div>
         </div>

@@ -15,11 +15,11 @@ export const WA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the take-home pay on the average WA salary?",
-    a: `Full-time adults in WA earn ${awoteLine(PROFILE)}, the highest of any state (ABS, ${ABS_PERIOD}). The worked example above shows what is left after tax.`,
+    a: `Full-time adults in WA earn ${awoteLine(PROFILE)}, the highest of any state (ABS, ${ABS_PERIOD}). The worked example above takes income tax and the Medicare levy off the WA average and shows the take-home pay per week, fortnight and month.`,
   },
   {
     q: "Am I covered by WA state awards or federal awards?",
-    a: "It depends on your employer's legal structure, not on where you live. Employees of incorporated companies are in the national system and covered by federal modern awards. Employees of sole traders, unincorporated partnerships and other non-constitutional employers in WA are covered by the WA state system, with its own awards and its own state minimum wage.",
+    a: "Your employer's legal structure decides whether WA state awards or federal awards apply to you, not where you live. Employees of incorporated companies are in the national system and covered by federal modern awards. Employees of sole traders, unincorporated partnerships and other non-constitutional employers in WA are covered by the WA state system, with its own awards and its own state minimum wage.",
   },
   {
     q: "Why is the King's Birthday in September in WA?",
@@ -27,7 +27,7 @@ export const WA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When do I get long service leave in WA?",
-    a: "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued under the Long Service Leave Act 1958, then a further 4.333 weeks every 5 years. Separately, after 7 years of continuous employment a payment may be owed when employment ends by resignation, dismissal, redundancy or death.",
+    a: "WA employees can take long service leave after 10 years of continuous employment, when 8.667 weeks has accrued under the Long Service Leave Act 1958, then a further 4.333 weeks every 5 years. Separately, after 7 years of continuous employment a payment may be owed when employment ends by resignation, dismissal, redundancy or death.",
   },
   {
     q: "Do WA employees pay for WorkCover?",

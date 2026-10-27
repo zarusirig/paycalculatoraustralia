@@ -79,7 +79,7 @@ function bracketNote(salary: number): string {
     f.nextBracketStart !== null && f.nextBracketRate !== null
       ? f.nextBracketStart - 1 === salary
         ? ` ${s} is the top of this bracket: the very next dollar is taxed at ${rate(f.nextBracketRate)}.`
-        : ` The ${rate(f.nextBracketRate)} rate starts above ${formatAUD(f.nextBracketStart - 1)}, ${formatAUD(f.nextBracketStart - 1 - salary)} further up; income tax on a rise up to that size stays at ${rate(b.rate)} in the dollar before offsets and Medicare.`
+        : ` The ${rate(f.nextBracketRate)} rate starts above ${formatAUD(f.nextBracketStart - 1)}, ${formatAUD(f.nextBracketStart - 1 - salary)} further up, so a rise of up to that size is taxed at ${rate(b.rate)} before offsets and Medicare.`
       : "";
 
   switch (f.bracketIndex) {
@@ -101,7 +101,7 @@ function litoNote(salary: number): string {
   const lito = f.breakdown.litoOffset;
   switch (f.litoStage) {
     case "full":
-      return `The full ${formatAUD(LITO.maxOffset)} Low Income Tax Offset applies${f.breakdown.netIncomeTax === 0 ? ", which wipes out the income tax entirely. LITO means no tax is payable on income up to " + formatAUD(LITO.effectiveTaxFreeThreshold) : ""}.`;
+      return `The full ${formatAUD(LITO.maxOffset)} Low Income Tax Offset applies${f.breakdown.netIncomeTax === 0 ? ", which wipes out the income tax entirely. LITO means no income tax is payable on income up to " + formatAUD(LITO.effectiveTaxFreeThreshold) : ""}.`;
     case "phase-out-5c":
       return `LITO is phasing out here: it is ${formatAUD(lito)} (down from ${formatAUD(LITO.maxOffset)}), falling 5c for every dollar over ${formatAUD(LITO.fullOffsetCeiling)}. That clawback is why the rate on the next dollar is higher than the bracket rate alone.`;
     case "phase-out-1.5c":

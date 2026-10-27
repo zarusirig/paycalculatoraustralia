@@ -36,7 +36,7 @@ const LAPTOP = 2_500;
 export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   {
     q: "What is salary sacrificing?",
-    a: "Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value, such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, resulting in lower income tax and PAYG withholding.",
+    a: "Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value, such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, so their income tax and PAYG withholding are lower.",
   },
   {
     q: "How much can I salary sacrifice into super?",
@@ -44,15 +44,15 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice reduce my take-home pay?",
-    a: `Yes. The sacrificed amount is deducted before income tax is calculated, reducing your net pay. The reduction is smaller than the sacrifice amount because of the tax saving. Sacrificing ${formatAUD(SACRIFICE)} on an $80,000 salary reduces take-home pay by approximately ${formatAUD(TAKE_HOME_DROP)}. The remaining ${formatAUD(SACRIFICE - TAKE_HOME_DROP)} is the income tax and Medicare levy you no longer pay.`,
+    a: `Yes, but by less than the amount you sacrifice. The sacrificed amount comes off your gross salary before income tax is calculated, so you pay less tax on the salary that is left. Sacrificing ${formatAUD(SACRIFICE)} on an $80,000 salary reduces take-home pay by approximately ${formatAUD(TAKE_HOME_DROP)}. The remaining ${formatAUD(SACRIFICE - TAKE_HOME_DROP)} is the income tax and Medicare levy you no longer pay.`,
   },
   {
     q: "Do I pay tax on salary sacrificed super?",
-    a: `Yes. The super fund deducts ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on all concessional contributions, including salary sacrifice amounts. Because ${pct(CONTRIBUTIONS_TAX_RATE)} is lower than the marginal income tax rates of ${TAX_BRACKETS.slice(2).map((b) => pct(b.rate)).join(", ").replace(/, ([^,]*)$/, " and $1")}, the employee pays less total tax than receiving the same amount as cash salary.`,
+    a: `Yes. The super fund deducts ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on all concessional contributions, including salary sacrifice amounts. Because ${pct(CONTRIBUTIONS_TAX_RATE)} is lower than the marginal income tax rates of ${TAX_BRACKETS.slice(2).map((b) => pct(b.rate)).join(", ").replace(/, ([^,]*)$/, " and $1")}, you pay less total tax than you would on the same amount taken as cash salary.`,
   },
   {
     q: "Is salary sacrificing suitable for everyone?",
-    a: `No. It is most beneficial for middle-to-high income earners. Up to ${formatAUD(SECOND.max)}, your marginal income tax rate is ${pct(SECOND.rate)} for ${FY}, the same as the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax, so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
+    a: `No. Salary sacrificing into super is most beneficial for middle-to-high income earners. Up to ${formatAUD(SECOND.max)}, your marginal income tax rate is ${pct(SECOND.rate)} for ${FY}, the same as the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax, so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
   },
   {
     q: "Can I salary sacrifice into things other than super?",
@@ -69,15 +69,15 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I change my salary sacrifice amount mid-year?",
-    a: "Yes. Most employers allow adjustments to salary sacrifice arrangements at any time, though some restrict changes to quarterly intervals. Changes apply to future pay periods only. You cannot retrospectively sacrifice income already received. Contact your payroll team to confirm your employer's specific adjustment schedule.",
+    a: "Yes. Your employer sets how often you can change a salary sacrifice arrangement: some allow changes at any time, others only at quarterly intervals. Changes apply to future pay periods only. You cannot sacrifice income you have already received. Ask your payroll team for your employer's adjustment schedule.",
   },
   {
     q: "Can I carry forward unused concessional cap amounts?",
-    a: `Yes. If your total super balance is below ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to ${CARRY_FORWARD.years} prior years (for FY${FY}, the years ${CF_WINDOW[0]?.year} to ${CF_WINDOW[CF_WINDOW.length - 1]?.year}). Unused amounts older than ${CARRY_FORWARD.years} years expire. This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.`,
+    a: `Yes. If your total super balance is below ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to ${CARRY_FORWARD.years} prior years (for FY${FY}, the years ${CF_WINDOW[0]?.year} to ${CF_WINDOW[CF_WINDOW.length - 1]?.year}). Unused amounts older than ${CARRY_FORWARD.years} years expire. Carried-forward cap amounts let you salary sacrifice a larger one-off amount in a high-income year without exceeding the cap.`,
   },
   {
     q: "Should I salary sacrifice or pay off my mortgage faster?",
-    a: `The answer depends on your mortgage interest rate versus expected after-tax super return. At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the ${pct(CONTRIBUTIONS_TAX_RATE)} concessional tax rate is significantly lower than the ${pct(MID_RATE)}+ marginal rate on the same income used for extra mortgage repayments. If your mortgage rate is higher than your expected super return after the tax advantage, prioritise the mortgage. Run the numbers at your specific salary using the calculator above.`,
+    a: `Compare your mortgage interest rate with your expected after-tax super return. At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the ${pct(CONTRIBUTIONS_TAX_RATE)} concessional tax rate is significantly lower than the ${pct(MID_RATE)}+ marginal rate on the same income used for extra mortgage repayments. If your mortgage rate is higher than your expected super return after the tax advantage, prioritise the mortgage. Enter your salary and sacrifice amount in the calculator above to see the tax saving at your income.`,
   },
   {
     q: "Can I salary sacrifice a car?",
@@ -89,7 +89,7 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice affect Centrelink payments?",
-    a: "It depends on the specific payment. Services Australia calculates eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments using adjusted taxable income (ATI), which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice reduces taxable income but increases reportable items, so ATI remains similar. The net impact on Centrelink eligibility is typically minimal.",
+    a: "Salary sacrifice has little effect on Centrelink payments tested on adjusted taxable income (ATI). Services Australia calculates eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments using ATI, which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice reduces taxable income but increases those reportable items, so ATI remains similar. The net impact on Centrelink eligibility is typically minimal.",
   },
   {
     q: "Do not-for-profit employees get extra salary sacrifice benefits?",

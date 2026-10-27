@@ -162,7 +162,7 @@ export default function AverageSalaryAustraliaPage() {
             <section id="median-salary">
               <h2 style={HEADING_FONT}>Median salary in Australia {HEADLINE_YEAR}</h2>
               <p>
-                The median is the middle of the line: half of employees earn less, half earn more. The ABS publishes it in{" "}
+                The median salary is what the middle employee earns: half of employees earn less, half earn more. The ABS publishes it in{" "}
                 <a href={EE_RELEASE.url} target="_blank" rel="noreferrer noopener">Employee Earnings</a> ({EE_RELEASE.referencePeriod}),
                 the latest edition. Yearly figures are the ABS weekly figure &times; 52.
               </p>
@@ -220,7 +220,7 @@ export default function AverageSalaryAustraliaPage() {
                 <tr><th scope="row" className={`${td} font-medium`}>Median, part-time employees</th><td className={td}>{dollars(EE_MEDIAN.partTime)}</td><td className={td}>{dollars(annualise(EE_MEDIAN.partTime))}</td><td className={td}>EE, {EE_RELEASE.referencePeriod}</td></tr>
               </Table>
               <p className="text-sm">
-                Yearly figures are the ABS weekly figure × 52. The median rose {dollars(EE_MEDIAN.allEmployees - EE_MEDIAN.allEmployeesPrevYear)}{" "}
+                Yearly figures are the ABS weekly figure × 52. The median for all employees rose {dollars(EE_MEDIAN.allEmployees - EE_MEDIAN.allEmployeesPrevYear)}{" "}
                 a week (1.9%) in the year to {EE_RELEASE.referencePeriod}; average full-time earnings rose{" "}
                 {AWE_HEADLINE.fullTimeOrdinaryAnnualChangePct}% in the year to {AWE_RELEASE.referencePeriod}.
               </p>
@@ -361,8 +361,8 @@ export default function AverageSalaryAustraliaPage() {
             <section id="distribution">
               <h2 style={HEADING_FONT}>How salaries are spread: percentiles</h2>
               <p>
-                The ABS publishes where employees sit across the whole earnings range. These cover every employee, full-time and part-time,
-                in their main job.
+                The ABS Employee Earnings percentiles show where employees sit across the whole earnings range. They cover every employee,
+                full-time and part-time, in their main job.
               </p>
               <Table caption="Distribution of weekly earnings, all employees" head={["Percentile", "Weekly", "Yearly", "Meaning"]} minWidth={520}>
                 {EE_PERCENTILES_ALL.map((p) => (
@@ -398,7 +398,7 @@ export default function AverageSalaryAustraliaPage() {
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="Data sources and methodology">
                 <p>
-                  Every salary on this page is an Australian Bureau of Statistics figure. The average is full-time adult average weekly
+                  Every before-tax salary on this page is an Australian Bureau of Statistics figure. The average is full-time adult average weekly
                   ordinary time earnings from Average Weekly Earnings, {AWE_RELEASE.referencePeriod} (seasonally adjusted for the national
                   headline; original series for states, industries and sectors). Medians, percentiles and the checker use Employee Earnings,{" "}
                   {EE_RELEASE.referencePeriod}: median weekly earnings in main job, and the Table 7 count of employees in $100-a-week bands.

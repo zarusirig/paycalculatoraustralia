@@ -109,7 +109,7 @@ export default function AnnualLeaveCalculator() {
               </>
             )}
             <p className="text-xs text-warmgray-light">
-              National Employment Standards minimum (Fair Work Act ss 86–90). Your award, agreement or contract can give more, never less. Leave keeps accruing on paid leave and long service leave but not on unpaid leave. The tax shown is an estimate for a single resident; actual withholding depends on your payroll.
+              These figures are the National Employment Standards minimum (Fair Work Act ss 86 to 90). Your award, agreement or contract can give more, never less. Leave keeps accruing on paid leave and long service leave but not on unpaid leave. The tax shown is an estimate for a single resident; actual withholding depends on your payroll.
             </p>
           </div>
         </div>

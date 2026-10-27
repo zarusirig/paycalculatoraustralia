@@ -66,7 +66,7 @@ export default function EmployerCostCalculatorContent() {
           On the assumptions in the table below, the multiplier is about <strong>{MULT_100K.toFixed(2)}x</strong> the base salary (about {MULT_100K_NO_PAYROLL.toFixed(2)}x for a business under the payroll tax threshold). This multiplier includes the Superannuation Guarantee at 12%, annual leave provisions at 7.69%, workers compensation insurance, and payroll tax for businesses above the state threshold. Employers who provide additional benefits such as salary-packaged novated leases, training budgets, or fringe benefits face an even higher true cost of employment.
         </p>
         <p>
-          Understanding this cost multiplier is critical for small business cash flow forecasting, headcount planning, and deciding between hiring employees versus engaging contractors. The Australian tax calculator treats take-home pay from the employee&apos;s perspective, but this guide examines the same salary from the employer&apos;s side of the ledger.
+          The cost multiplier feeds small business cash flow forecasts, headcount planning and the choice between hiring an employee and engaging a contractor. A take-home pay calculator shows a salary from the employee&apos;s side. The calculator above and this guide show the same salary from the employer&apos;s side of the ledger.
         </p>
       </section>
 
@@ -77,7 +77,7 @@ export default function EmployerCostCalculatorContent() {
           On-costs are the mandatory expenses an employer pays <strong>on top of an employee&apos;s base salary</strong>, including superannuation, workers compensation, payroll tax, and leave loading.
         </p>
         <p>
-          These costs are legislated under federal and state law. An employer cannot legally avoid them. The four primary on-cost categories break down as follows:
+          Federal and state laws set these costs, and an employer cannot legally avoid them. The four main on-cost categories are:
         </p>
         <ul>
           <li><strong>Superannuation Guarantee (SG):</strong> 12% of qualifying earnings, paid with each pay since Payday Super began on 1 July 2026, and received by the fund within 7 business days</li>
@@ -91,7 +91,7 @@ export default function EmployerCostCalculatorContent() {
 
         <h3>How Do On-Costs Differ for Casual vs Permanent Employees?</h3>
         <p>
-          Casual employees receive a <strong>25% loading</strong> on their base hourly rate under the Fair Work Act to compensate for no paid leave entitlements. This loading replaces the annual leave provision, personal leave provision, and notice period obligation. Casual workers still attract superannuation at 12%, payroll tax, and workers compensation premiums. The casual loading often makes the per-hour cost higher, but the flexibility of zero paid leave and no redundancy obligations makes casuals cheaper for unpredictable, seasonal, or project-based workloads.
+          Casual employees receive a <strong>25% loading</strong> on their base hourly rate under the Fair Work Act to compensate for no paid leave entitlements. This loading replaces the annual leave provision, personal leave provision, and notice period obligation. Casual workers still attract superannuation at 12%, payroll tax, and workers compensation premiums. The casual loading often makes the per-hour cost higher. With no paid leave and no redundancy obligations, casuals cost less for unpredictable, seasonal or project-based workloads.
         </p>
       </section>
 
@@ -266,7 +266,7 @@ export default function EmployerCostCalculatorContent() {
           Workers compensation insurance costs employers between <strong>0.3% and 10%+ of wages</strong> depending on the industry classification and the employer&apos;s claims history.
         </p>
         <p>
-          Every Australian state and territory mandates workers compensation insurance for all employers. The premium is calculated as a percentage of the total remuneration paid to each employee, multiplied by an industry-specific rate set by the state&apos;s workers compensation authority. Employers with a poor claims history pay a loading above the base rate, while employers with clean records receive experience-based discounts.
+          Every Australian state and territory mandates workers compensation insurance for all employers. The premium is the total remuneration paid to employees, multiplied by an industry-specific rate set by the state&apos;s workers compensation authority. Employers with a poor claims history pay a loading above the base rate, while employers with clean records receive experience-based discounts.
         </p>
         <div className="not-prose overflow-x-auto my-6">
           <table className="w-full text-sm border-collapse border border-sandstone-dark/20 rounded-lg">
@@ -318,7 +318,7 @@ export default function EmployerCostCalculatorContent() {
           A Melbourne-based marketing agency hiring a full-time marketing manager at {formatAUD(WORKED_SALARY)} per year faces a total employment cost of approximately <strong>{formatAUD(WORKED_TOTAL)}</strong> in FY{SITE_CONFIG.financialYear}.
         </p>
         <p>
-          The following step-by-step calculation uses real Victorian rates:
+          The steps below start from the base salary and add each on-cost, with payroll tax at the Victorian rate and threshold:
         </p>
         <ol>
           <li><strong>Base salary:</strong> {formatAUD(WORKED_SALARY)}</li>
@@ -332,7 +332,7 @@ export default function EmployerCostCalculatorContent() {
           Adding these components: {formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)} + {formatAUD(WORKED_ANNUAL_LEAVE)} + {formatAUD(WORKED_PERSONAL_LEAVE)} + {formatAUD(WORKED_PAYROLL_TAX)} + {formatAUD(WORKED_WORKCOVER)} = <strong>{formatAUD(WORKED_TOTAL)}</strong>. The cost multiplier for this role is <strong>{WORKED_MULTIPLIER.toFixed(2)}x</strong>. This excludes recruitment costs, training, equipment, and office space, which push the real total higher.
         </p>
         <p>
-          Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see that the employee on this $95,000 salary takes home approximately <strong>{formatAUD(WORKED_TAKE_HOME)}</strong> in FY{SITE_CONFIG.financialYear} after income tax and the Medicare levy (no HECS-HELP debt). The gap between the employer&apos;s total cost of {formatAUD(WORKED_TOTAL)} and the employee&apos;s take-home pay is <strong>{formatAUD(WORKED_TOTAL - WORKED_TAKE_HOME)}</strong> &mdash; made up of income tax, Medicare levy, super, payroll tax, insurance and leave provisions.
+          Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see that the employee on this $95,000 salary takes home approximately <strong>{formatAUD(WORKED_TAKE_HOME)}</strong> in FY{SITE_CONFIG.financialYear} after income tax and the Medicare levy (no HECS-HELP debt). The gap between the employer&apos;s total cost of {formatAUD(WORKED_TOTAL)} and the employee&apos;s take-home pay is <strong>{formatAUD(WORKED_TOTAL - WORKED_TAKE_HOME)}</strong>, made up of income tax, Medicare levy, super, payroll tax, insurance and leave provisions.
         </p>
       </section>
 
@@ -348,7 +348,7 @@ export default function EmployerCostCalculatorContent() {
           If an employee is paid $50/hour, the cost to the business is about {formatAUD(HOURLY_ONCOST, 2)}/hour once super and paid annual and personal leave are counted, before payroll tax and WorkCover. A contractor charging a flat $65/hour on invoice can still work out cheaper when the work is irregular, because the business pays only for hours billed and the contractor provides their own insurance, leave and super.
         </p>
         <p>
-          The ATO applies strict guidelines to determine whether a worker is genuinely an independent contractor or a &quot;sham contractor&quot; who is actually an employee. Misclassification exposes the business to back-payment of superannuation, payroll tax, workers compensation, and penalties. Key factors the ATO examines include control over work methods, the ability to delegate, the provision of tools, and the right to work for multiple clients. See our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> for a detailed comparison.
+          The ATO tests whether a worker is genuinely an independent contractor or a &quot;sham contractor&quot; who is actually an employee. Misclassification exposes the business to back-payment of superannuation, payroll tax, workers compensation, and penalties. Key factors the ATO examines include control over work methods, the ability to delegate, the provision of tools, and the right to work for multiple clients. See our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> for a detailed comparison.
         </p>
         <div className="not-prose mt-6 mb-10 flex flex-wrap gap-3">
           <Link href="/contractor-vs-employee-calculator/" className="inline-flex items-center px-4 py-2 border border-sandstone-dark/30 shadow-sm text-sm font-medium rounded-lg text-navy bg-white hover:bg-sandstone/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-eucalyptus/20 transition-colors">
@@ -425,7 +425,7 @@ export default function EmployerCostCalculatorContent() {
       <section id="related-resources">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
         <p>
-          The employer cost calculator is one component of a broader payroll and taxation toolkit. The following guides and calculators address related aspects of employment costs, employee entitlements, and Australian tax obligations.
+          The guides and calculators below cover the costs and entitlements behind the employer cost calculator: super obligations, contractor versus employee costs, salary packaging, redundancy pay, annual leave and fringe benefits tax.
         </p>
         <div className="not-prose grid sm:grid-cols-2 gap-4 my-6">
           <Link href="/superannuation-guide/" className="group flex items-center justify-between p-4 rounded-xl bg-sandstone/50 border border-sandstone-dark/10 hover:border-eucalyptus/40 hover:bg-white hover:shadow-sm transition-all">
@@ -504,7 +504,7 @@ export function EmployerCostCalculatorSidebar() {
               <h3 className="text-xl font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Reverse the Math</h3>
             </div>
             <p className="text-sandstone-dark/50 text-sm mb-6 leading-relaxed">
-              Now that you see the business cost, calculate what the employee actually takes home after the ATO takes its slice.
+              Now that you have the employer cost, calculate what the employee takes home after income tax and the Medicare levy.
             </p>
             <Link href="/take-home-pay-calculator/" className="block w-full py-3 px-4 bg-eucalyptus-dark text-white font-semibold text-sm text-center rounded-lg hover:bg-eucalyptus shadow-md transition-all hover:shadow-lg">
               Take-Home Pay Calculator

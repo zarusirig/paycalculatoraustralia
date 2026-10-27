@@ -59,7 +59,7 @@ export default function AgePensionIncomeTestCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>How the Work Bonus Changes the Result</h2>
         <p className={P}>The Work Bonus is not a payment. It is an offset: {formatAUD(WORK_BONUS.fortnightlyCredit)} of credit is added to your Work Bonus balance every fortnight, whether you work or not, up to {formatAUD(WORK_BONUS.maxBalance)}. When you have employment or self-employment income, the first {formatAUD(WORK_BONUS.fortnightlyCredit)} in the fortnight is disregarded and the balance offsets what remains, all before the income test above is applied. Income under {formatAUD(WORK_BONUS.fortnightlyCredit)} is reduced to zero and the unused credit goes back into the balance. It applies only to income from working, not to deemed or investment income, and you do not have to apply for it. The credit and the maximum balance are set in legislation and are not part of the September indexation.</p>
-        <p className={P}>Someone with a full {formatAUD(WORK_BONUS.maxBalance)} balance can earn {formatAUD(WORK_BONUS.maxBalance + WORK_BONUS.fortnightlyCredit)} in a single fortnight before any of it is assessed. That is why the published cut-off &ldquo;may be higher&rdquo; for people who work.</p>
+        <p className={P}>Someone with a full {formatAUD(WORK_BONUS.maxBalance)} balance can earn {formatAUD(WORK_BONUS.maxBalance + WORK_BONUS.fortnightlyCredit)} in a single fortnight before any of it is assessed. That is why Services Australia says the published income test cut-off &quot;may be higher&quot; for people who work.</p>
       </section>
 
       <section>
@@ -127,7 +127,7 @@ export default function AgePensionIncomeTestCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Assessable income here is after the Work Bonus. Working pensioners: subtract {formatAUD(WORK_BONUS.fortnightlyCredit)} and any balance from your wages first, then read the row. The pension is taxable: the <Link href="/sapto-calculator/" className={LINK}>SAPTO calculator</Link> shows whether any tax is actually payable.</p>
+        <p className={P + " mt-4"}>Assessable income here is after the Work Bonus. Working pensioners: subtract {formatAUD(WORK_BONUS.fortnightlyCredit)} and any balance from your wages first, then read the row. The pension is taxable: the <Link href="/sapto-calculator/" className={LINK}>SAPTO calculator</Link> shows whether any tax is payable.</p>
       </section>
 
       <section>

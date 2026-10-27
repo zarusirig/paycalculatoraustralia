@@ -79,8 +79,8 @@ export default function TeacherPayAustraliaPage() {
             {lowestGraduate.state.code}) and <strong className="text-navy">{formatAUD(highestGraduate.graduate)}</strong> (
             {highestGraduate.state.code}), and the top of the classroom teacher scale runs from{" "}
             <strong className="text-navy">{formatAUD(lowestTop.top)}</strong> ({lowestTop.state.code}) to{" "}
-            <strong className="text-navy">{formatAUD(highestTop.top)}</strong> ({highestTop.state.code}). Every figure
-            below is read from the state&rsquo;s own agreement or salary schedule and links to its take-home pay.
+            <strong className="text-navy">{formatAUD(highestTop.top)}</strong> ({highestTop.state.code}). Each salary
+            in the table below is full-time and before tax, from the state&rsquo;s own agreement or salary schedule. Each links to the nearest take-home pay page, with net pay by week, fortnight and month.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />

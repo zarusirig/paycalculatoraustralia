@@ -46,7 +46,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       id: "teacher-levels",
       title: "Teacher Level 1 to 8: the classroom teacher scale",
       intro:
-        "The scale every ACT public school teacher is paid on. Teacher Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage. Those are development stages, not separate pay classifications.",
+        "Every classroom teacher in an ACT public school is paid on this scale. Teacher Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage. Those are development stages, not separate pay classifications.",
       stepHeading: "Classification",
       steps: [
         { label: "Teacher Level 1", salary: 91_396, note: "New Educator, graduate entry point" },
@@ -67,7 +67,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       id: "permit-to-teach",
       title: "Permit to Teach",
       intro:
-        "Paid to a person teaching under a permit rather than full registration. It sits below Teacher Level 1.",
+        "The Permit to Teach rate is paid to a person teaching in an ACT public school under a permit rather than full registration. It sits below Teacher Level 1.",
       stepHeading: "Classification",
       steps: [{ label: "Permit to Teach", salary: 82_796 }],
     },
@@ -75,7 +75,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       id: "school-leaders",
       title: "School leaders: executive teacher, deputy principal and principal",
       intro:
-        "The agreement's local designations: School Leader C is an executive teacher, School Leader B a deputy principal, and School Leader A a principal.",
+        "Under the ACT agreement, School Leader C is an executive teacher, School Leader B a deputy principal, and School Leader A a principal.",
       stepHeading: "Classification",
       steps: [
         { label: "School Leader C1 (executive teacher)", salary: 145_938 },
@@ -107,7 +107,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Where you start depends on prior experience, counted in full years",
       body: [
-        "Clause Q1.8: teachers are placed on the Teacher Level Classification Structure based on recognition of qualifications and prior experience, including both teaching and other work experience. All prior experience is recognised in full years only.",
+        "Under clause Q1.8, ACT teachers are placed on the Teacher Level Classification Structure based on recognition of qualifications and prior experience, including both teaching and other work experience. All prior experience is recognised in full years only.",
         "That means a career changer can start above Teacher Level 1, but a part-year of experience counts for nothing until it becomes a full year.",
       ],
     },
@@ -128,7 +128,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
     {
       heading: "Principals do not receive increments",
       body: [
-        "Clause X3.2: principal classification levels are determined by the Schools Weighted Index (SWI) and incremental progression does not apply. A principal's School Leader A level follows the school, not their length of service.",
+        "Under clause X3.2, ACT principal classification levels are determined by the Schools Weighted Index (SWI) and incremental progression does not apply. A principal's School Leader A level follows the school, not their length of service.",
         "School Leader B and C do have two pay points each. The agreement provided for the transition to B1/C1 on 27 January 2024 and progression to B2/C2 on 27 January 2025.",
       ],
     },
@@ -167,15 +167,15 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "What is the graduate teacher salary in the ACT?",
-      a: "A new teacher starts at Teacher Level 1, $91,396 a year, from the first full pay period on or after 4 December 2025. A teacher with recognised prior experience can start higher. The ACT recognises prior experience in full years only.",
+      a: "A new graduate teacher in an ACT public school starts at Teacher Level 1, $91,396 a year, from the first full pay period on or after 4 December 2025. A teacher with recognised prior experience can start higher. The ACT recognises prior experience in full years only.",
     },
     {
       q: "What is the top of the ACT teacher pay scale?",
-      a: "Teacher Level 8, $129,106 a year. Above that you move into a school leader classification: $145,938 at School Leader C1 (executive teacher), $168,900 at School Leader B1 (deputy principal) and $195,885 at School Leader A Level 1 (principal).",
+      a: "Teacher Level 8, $129,106 a year, is the top of the ACT classroom teacher scale. Above that you move into a school leader classification: $145,938 at School Leader C1 (executive teacher), $168,900 at School Leader B1 (deputy principal) and $195,885 at School Leader A Level 1 (principal).",
     },
     {
       q: "When do ACT teachers get their pay increment?",
-      a: "On 27 January. All classroom teachers share a common increment date, so the whole teaching service moves on the same day rather than on individual work anniversaries. Leave without pay can push your increment date out.",
+      a: "ACT classroom teachers get their pay increment on 27 January. All classroom teachers share a common increment date, so the whole teaching service moves on the same day rather than on individual work anniversaries. Leave without pay can push your increment date out.",
     },
     {
       q: "Do ACT teachers get paid extra for HALT certification?",
@@ -183,7 +183,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How is an ACT principal's salary set?",
-      a: "By the school, not by service. A principal's School Leader A level is determined by the Schools Weighted Index, and the agreement states that incremental progression does not apply to principals. The three levels pay $195,885, $210,521 and $225,158.",
+      a: "An ACT principal's salary is set by the school, not by length of service. A principal's School Leader A level is determined by the Schools Weighted Index, and the agreement states that incremental progression does not apply to principals. The three levels pay $195,885, $210,521 and $225,158.",
     },
     {
       q: "When do ACT teachers get a pay rise?",

@@ -131,7 +131,7 @@ export default function ApsGradePage({ data }: { data: ApsGradeData }) {
           <section>
             <H2 id="by-agency">{grade.label} Salary by Agency</H2>
             <p>
-              Five agencies&rsquo; enterprise agreements, all at the rates from 12 March 2026 (the 3.4% service-wide increase). Where an agreement lists every pay point, the table shows the lowest and highest.
+              The table compares five agencies&rsquo; enterprise agreements, all at the rates from 12 March 2026 (the 3.4% service-wide increase). Where an agreement lists every pay point, the table shows the lowest and highest.
             </p>
             <DataTable
               head={["Agency", "Bottom", "Top", "How the agreement sets it"]}

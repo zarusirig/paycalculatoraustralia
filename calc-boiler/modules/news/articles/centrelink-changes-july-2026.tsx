@@ -32,10 +32,10 @@ export default function CentrelinkChangesJuly2026() {
         year rather than partway through it.
       </p>
       <p>
-        The exact amount a family receives depends on the number and ages of children, whether
-        they&apos;re on the maximum rate or a part rate under the income test, and any
-        supplementary payments like the FTB Part A supplement, paid after the end of the financial
-        year once your tax return confirms your actual family income.
+        The Family Tax Benefit amount your family receives depends on the number and ages of your
+        children, your rate under the income test (the maximum rate or a part rate), and
+        supplements such as the FTB Part A supplement. That supplement is paid after the end of the
+        financial year, once your tax return confirms your actual family income.
       </p>
 
       <h2>Income limits moved too</h2>
@@ -43,7 +43,7 @@ export default function CentrelinkChangesJuly2026() {
         Alongside the rate rises, the Family Tax Benefit Part B primary earner income limit lifted
         to $124,327 for 2026-27. Families where the primary earner earns more than that aren&apos;t
         eligible for Part B at all. Family Tax Benefit Part A&apos;s income-free areas and taper
-        thresholds were indexed on the same date, which can lift the payment for some families
+        thresholds were indexed on the same date. That can lift the Part A payment for some families
         already receiving a part rate, and may bring some higher-income families back into
         eligibility for at least a small payment.
       </p>
@@ -56,27 +56,26 @@ export default function CentrelinkChangesJuly2026() {
         <Link href="/news/age-pension-increase-march-2026/">Age Pension</Link>, JobSeeker and
         Carer Payment, which index every 20 March and 20 September, and to student payments like
         Youth Allowance and Austudy, which index each{" "}
-        <Link href="/news/centrelink-payment-increase-january-2026/">1 January</Link>. Running
-        three separate indexation cycles across the year means Centrelink payment rates are
-        essentially always being reviewed for some category of recipient, even though any single
-        payment only moves once or twice a year.
+        <Link href="/news/centrelink-payment-increase-january-2026/">1 January</Link>. With three
+        separate indexation cycles, some group of Centrelink recipients gets a rate change at
+        several points in the year, even though any single payment only moves once or twice a year.
       </p>
 
       <h2>Do you need to do anything</h2>
       <p>
         Existing Family Tax Benefit recipients get the higher rate automatically from their first
-        payment after 1 July 2026, and there&apos;s no need to reapply. If your family income has
-        dropped below the new, higher Part B limit and you weren&apos;t previously eligible, or
-        you have a new baby or changed care arrangements, you&apos;ll need to lodge or update a
-        claim through myGov to start receiving the payment. It&apos;s also worth confirming your
-        family income estimate for the new financial year is accurate, since an outdated estimate
-        can lead to an overpayment that Centrelink claws back at tax time.
+        payment after 1 July 2026, and there&apos;s no need to reapply. Some families do need to
+        lodge or update a claim through myGov to start receiving the payment. That applies if you
+        weren&apos;t previously eligible and the primary earner&apos;s income is below the
+        higher Part B limit, or if you have a new baby or changed care arrangements. Check that
+        your family income estimate for the new financial year is accurate, because an outdated
+        estimate can lead to an overpayment that Centrelink claws back at tax time.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        Family Tax Benefit sits alongside your take-home pay rather than through it, but a change
-        in household income can shift how much you&apos;re entitled to. If you&apos;re weighing up
+        Family Tax Benefit is paid separately from your wages, but a change in your family income
+        can shift how much Family Tax Benefit you&apos;re entitled to. If you&apos;re weighing up
         extra shifts, a pay rise, or returning to work after parental leave, use our{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to see your new
         after-tax income, and the{" "}

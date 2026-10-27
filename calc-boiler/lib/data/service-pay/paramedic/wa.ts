@@ -78,7 +78,7 @@ export const WA_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "specialist",
       title: "Station officers and specialist paramedics (Appendix 1)",
       intro:
-        "Station Officer grades and specialist clinical roles, including Critical Care and Extended Care Paramedics and their interns.",
+        "This table covers St John WA Station Officer grades and specialist clinical roles, including Critical Care and Extended Care Paramedics and their interns.",
       stepHeading: "Position",
       effectiveFrom: "1 July 2026",
       steps: [
@@ -121,13 +121,13 @@ export const WA_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "From 1 July 2026 a Paramedic Intern Year 1 is paid a base rate of $1,416.66 a week ($37.28 an hour), about $73,869 a year. With the shift allowance and shift penalty the agreement's Total Annually figure is $99,428.01.",
-    "A Paramedic Intern Year 2 is paid a base rate of $1,565.75 a week ($41.20 an hour), about $81,643 a year base ($109,891.35 Total Annually).",
+    "A Paramedic Intern Year 2 is paid a base rate of $1,565.75 a week ($41.20 an hour), about $81,643 a year in base salary, or $109,891.35 on the agreement's Total Annually figure.",
     "A Student Ambulance Officer - CPHC is paid $1,351.14 a week and a Student Ambulance Officer - Operations $1,400.29 a week base from 1 July 2026.",
   ],
 
   penalties: [
     "Appendix 1 shift loadings: night 15%, Saturday 50%, Sunday 75%.",
-    "Casual rates incur a 25% loading.",
+    "Casual employees are paid a 25% loading.",
     "Each rostered paramedic position also carries a weekly shift allowance and shift penalty on top of base (for an AP3 from 1 July 2026: shift allowance $651.27 and shift penalty $53.71 a week), which is why the agreement's Total Annually figure is well above base salary.",
   ],
 
@@ -161,7 +161,7 @@ export const WA_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a graduate paramedic earn at St John WA?",
-      a: "A Paramedic Intern Year 1 is paid a base rate of $1,416.66 a week (about $73,869 a year) from 1 July 2026, or $99,428.01 a year including shift allowance and penalty. In Year 2 the base rate is $1,565.75 a week.",
+      a: "A St John WA Paramedic Intern Year 1 is paid a base rate of $1,416.66 a week (about $73,869 a year) from 1 July 2026, or $99,428.01 a year including shift allowance and penalty. In Year 2 the base rate is $1,565.75 a week.",
     },
     {
       q: "How much does a critical care paramedic earn in WA?",

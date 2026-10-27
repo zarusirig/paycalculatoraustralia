@@ -51,7 +51,7 @@ const SACRIFICE = 10_000;
 export const STAGE_3_FAQS: readonly FaqItem[] = [
   {
     q: "When did the Stage 3 tax cuts start?",
-    a: `The revised Stage 3 tax cuts took effect on ${TAX_HISTORY.stage3TaxCuts.effectiveDate}, applying from FY2024-25 onwards. If you are employed, your employer should have adjusted your PAYG withholding from your first pay in July 2024. The same rates continued in FY2025-26, and from ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} the ${pct(NEW_LOW.rate)} rate fell to ${pct(TAX_BRACKETS[1].rate)}.`,
+    a: `The revised Stage 3 tax cuts took effect on ${TAX_HISTORY.stage3TaxCuts.effectiveDate} and apply from FY2024-25 onwards. If you are employed, your employer should have adjusted your PAYG withholding from your first pay in July 2024. The same rates continued in FY2025-26, and from ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} the ${pct(NEW_LOW.rate)} rate fell to ${pct(TAX_BRACKETS[1].rate)}.`,
   },
   {
     q: "How much do the Stage 3 tax cuts save me?",
@@ -60,7 +60,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to do anything to receive the tax cuts?",
-    a: "No. The tax cuts are automatic. Your employer updates their payroll software to use the new PAYG withholding tables, and you receive more take-home pay each pay period. No forms to fill out, no application required.",
+    a: "No. The tax cuts are automatic. Your employer updates their payroll software to use the new PAYG withholding tables, and you receive more take-home pay each pay period. You do not fill out a form or apply.",
   },
   {
     q: "Am I better or worse off under the revised plan vs the original?",
@@ -68,7 +68,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happened to the 32.5% tax rate?",
-    a: `The ${pct(OLD_MID.rate)} rate was abolished under both the original and revised Stage 3 plans. It was replaced by a ${pct(NEW_MID.rate)} rate. Under the revised plan, the ${pct(NEW_MID.rate)} rate applies from ${formatAUD(NEW_MID.min)} to ${formatAUD(NEW_MID.max)}. The ${pts(MID_CUT)} reduction is worth up to ${formatAUD((OLD_MID.max - OLD_MID.min + 1) * MID_CUT)} across the old ${formatAUD(OLD_MID.min)}–${formatAUD(OLD_MID.max)} band, and income from ${formatAUD(OLD_MID.max + 1)} to ${formatAUD(NEW_MID.max)} dropped from the ${pct(SCALE_2023_24[3].rate)} rate to ${pct(NEW_MID.rate)}.`,
+    a: `The ${pct(OLD_MID.rate)} rate was abolished under both the original and revised Stage 3 plans. It was replaced by a ${pct(NEW_MID.rate)} rate. Under the revised plan, the ${pct(NEW_MID.rate)} rate applies from ${formatAUD(NEW_MID.min)} to ${formatAUD(NEW_MID.max)}. The ${pts(MID_CUT)} reduction is worth up to ${formatAUD((OLD_MID.max - OLD_MID.min + 1) * MID_CUT)} across the old ${formatAUD(OLD_MID.min)} to ${formatAUD(OLD_MID.max)} band, and income from ${formatAUD(OLD_MID.max + 1)} to ${formatAUD(NEW_MID.max)} dropped from the ${pct(SCALE_2023_24[3].rate)} rate to ${pct(NEW_MID.rate)}.`,
   },
   {
     q: "Why was the 19% rate reduced to 16%?",

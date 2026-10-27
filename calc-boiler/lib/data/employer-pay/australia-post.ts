@@ -61,7 +61,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   ],
   juniorScale: [],
   juniorNote:
-    "Australia Post does not pay junior rates to permanent employees: a permanent employee under 21 gets the adult rate (cl 11.6.1). Casual and fixed-term juniors in listed classifications are paid 50% of the adult salary under 17, 60% at 17, 70% at 18, 81% at 19 and 91% at 20. For a junior trainee postie that is $28,044 to $51,031 a year in the Booklet.",
+    "Australia Post does not pay junior rates to permanent employees: a permanent employee under 21 gets the adult rate (cl 11.6.1). Casual and fixed-term juniors in listed classifications are paid 50% of the adult salary under 17, 60% at 17, 70% at 18, 81% at 19 and 91% at 20. For a junior trainee postie, the agreement's Rates of Pay Booklet prints $28,044 to $51,031 a year.",
   penalties: [
     { when: "Monday to Friday", permanent: "Ordinary rate", casual: "Ordinary rate + 22.5%" },
     { when: "Shift any part of which falls between 6pm and 6.30am", permanent: "+ 15% of salary for that shift", casual: "+ 15%, plus the 22.5% loading" },
@@ -90,7 +90,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   ],
   notices: [
     "Australia Post prints annual salaries, not hourly rates. The hourly rates here use the agreement's own formula (annual salary ÷ 313 × 6 ÷ 36.75) and match the union's September 2026 table. Full-time hours are 36.75 a week, so the full-time year shown is the printed salary, not 38 hours × 52 weeks.",
-    "The 4% rise in September 2026 is the last pay rise this agreement schedules. It reaches its nominal expiry on 9 October 2027; any later rise depends on a new agreement.",
+    "The 4% rise in September 2026 is the last pay rise this agreement schedules. The Australia Post agreement reaches its nominal expiry on 9 October 2027; any later rise depends on a new agreement.",
     "These rates are for Australia Post itself. Staff at Licensed Post Offices work for the private licensee and are usually paid under the General Retail Industry Award, and StarTrack has its own agreements.",
   ],
   unverified: [

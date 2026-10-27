@@ -48,7 +48,7 @@ const RATE_BEFORE = formatPercent(TAX_BRACKETS_2025_26[1].rate, 0);
 /** PAA answer reused as the lead of the "tax taken out each fortnight" section. */
 export const FORTNIGHTLY_TAX_ANSWER: FaqItem = {
   q: "How much tax do I pay if I get paid fortnightly?",
-  a: `It depends on your gross pay each fortnight. If you claim the tax-free threshold, the ATO's ${FY} fortnightly tax table withholds ${formatAUD(WH(2_000).withheld)} from ${formatAUD(2_000)}, ${formatAUD(WH(3_000).withheld)} from ${formatAUD(3_000)} and ${formatAUD(WH(4_000).withheld)} from ${formatAUD(4_000)}. The amount already includes the Medicare levy. A HECS-HELP debt adds a separate repayment on top.`,
+  a: `The tax taken out of your fortnightly pay is set by your gross pay for that fortnight. If you claim the tax-free threshold, the ATO's ${FY} fortnightly tax table withholds ${formatAUD(WH(2_000).withheld)} from ${formatAUD(2_000)}, ${formatAUD(WH(3_000).withheld)} from ${formatAUD(3_000)} and ${formatAUD(WH(4_000).withheld)} from ${formatAUD(4_000)}. The amount already includes the Medicare levy. A HECS-HELP debt adds a separate repayment on top.`,
 };
 
 export const FORTNIGHTLY_FAQS: readonly FaqItem[] = [
@@ -80,7 +80,7 @@ export const FORTNIGHTLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why is my fortnightly pay different from monthly divided by 2?",
-    a: `Because a year has ${N} fortnights but 12 months. Fortnightly pay = annual salary ÷ ${N} (${formatAUD(grossFn, 2)} on ${formatAUD(EXAMPLE)}). Monthly pay = annual salary ÷ 12 (${formatAUD(grossMonth, 2)} on ${formatAUD(EXAMPLE)}). Dividing monthly by 2 gives ${formatAUD(grossMonth / 2, 2)}, which is ${formatAUD(grossMonth / 2 - grossFn, 2)} higher than the real fortnightly amount. Two months each year contain 3 fortnightly pays instead of 2.`,
+    a: `Fortnightly pay works out lower because a year has ${N} fortnights but only 12 months. Fortnightly pay = annual salary ÷ ${N} (${formatAUD(grossFn, 2)} on ${formatAUD(EXAMPLE)}). Monthly pay = annual salary ÷ 12 (${formatAUD(grossMonth, 2)} on ${formatAUD(EXAMPLE)}). Dividing monthly by 2 gives ${formatAUD(grossMonth / 2, 2)}, which is ${formatAUD(grossMonth / 2 - grossFn, 2)} higher than the real fortnightly amount. Two months each year contain 3 fortnightly pays instead of 2.`,
   },
   {
     q: "Is superannuation deducted from my fortnightly pay?",
@@ -92,11 +92,11 @@ export const FORTNIGHTLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is fortnightly pay better than monthly pay?",
-    a: `Annual take-home pay is identical under both frequencies. Fortnightly pay provides ${N} paychecks instead of 12, producing 2 months per year with 3 pay periods. This extra fortnight helps employees accelerate mortgage repayments, build savings, or manage cash flow more closely than a monthly cycle.`,
+    a: `Annual take-home pay is identical under both pay frequencies. Fortnightly pay gives you ${N} pays a year instead of 12, so 2 months each year contain 3 pay periods. The third pay in those months can go to extra mortgage repayments or savings, and a fortnightly cycle pays you more often than a monthly cycle.`,
   },
   {
     q: "Will I get a tax refund if I am paid fortnightly?",
-    a: "The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.",
+    a: "Being paid fortnightly does not by itself produce a tax refund. The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.",
   },
   {
     q: "How does HECS-HELP affect fortnightly take-home pay?",

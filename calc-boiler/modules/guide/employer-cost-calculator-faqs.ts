@@ -50,7 +50,7 @@ const FBT_EXAMPLE_TAX = Math.round(FBT_EXAMPLE_VALUE * FBT.grossUpType1 * FBT.ra
 export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   {
     q: "How much does an employee actually cost an employer?",
-    a: `On this page's assumptions the cost is about ${MULT_100K.toFixed(2)}x the base salary: for a $100,000 salary, about ${formatAUD(MULT_100K * 100_000)} once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (${formatPercent(TABLE_WORKCOVER, 1)} here; 0.3%–10% by industry), and payroll tax (${PRT_RANGE}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.`,
+    a: `On this page's assumptions the cost is about ${MULT_100K.toFixed(2)}x the base salary: for a $100,000 salary, about ${formatAUD(MULT_100K * 100_000)} once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (${formatPercent(TABLE_WORKCOVER, 1)} here; 0.3% to 10% by industry), and payroll tax (${PRT_RANGE}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.`,
   },
   {
     q: "What is payroll tax and who pays it?",
@@ -66,12 +66,12 @@ export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do fringe benefits increase my employment cost?",
-    a: `Yes. If you provide benefits like a company car, parking, or entertainment, Fringe Benefits Tax (FBT) applies at ${formatPercent(FBT.rate, 0)} of the grossed-up taxable value. The FBT is paid by the employer, not the employee, which can significantly increase the true cost. A car benefit with a ${formatAUD(FBT_EXAMPLE_VALUE)} taxable value attracts roughly ${formatAUD(FBT_EXAMPLE_TAX)} in FBT once grossed up, making the total cost of that perk about ${formatAUD(FBT_EXAMPLE_VALUE + FBT_EXAMPLE_TAX)} to the business. See our Salary Sacrifice Guide for FBT-exempt alternatives.`,
+    a: `Yes. If you provide benefits like a company car, parking, or entertainment, Fringe Benefits Tax (FBT) applies at ${formatPercent(FBT.rate, 0)} of the grossed-up taxable value. The employer pays the FBT, not the employee. A car benefit with a ${formatAUD(FBT_EXAMPLE_VALUE)} taxable value attracts roughly ${formatAUD(FBT_EXAMPLE_TAX)} in FBT once grossed up, making the total cost of that perk about ${formatAUD(FBT_EXAMPLE_VALUE + FBT_EXAMPLE_TAX)} to the business. See our Salary Sacrifice Guide for FBT-exempt alternatives.`,
     links: { "Salary Sacrifice Guide": "/salary-sacrifice-calculator/" },
   },
   {
     q: "Is a casual employee cheaper than a permanent one?",
-    a: `Not per hour. Casual employees receive a ${formatPercent(EMPLOYMENT.casualLoading, 0)} loading on their base rate to compensate for no paid leave. They also attract super (${SG}), payroll tax, and WorkCover costs. The loading makes casuals more expensive per hour worked, but the flexibility of not paying for sick days, annual leave, or redundancy makes them cheaper for variable, seasonal, or project-based workloads.`,
+    a: `Not per hour. Casual employees receive a ${formatPercent(EMPLOYMENT.casualLoading, 0)} loading on their base rate to compensate for no paid leave. They also attract super (${SG}), payroll tax, and WorkCover costs. The loading makes casuals more expensive per hour worked, but with no paid sick days, annual leave or redundancy pay, casuals cost less for variable, seasonal or project-based workloads.`,
   },
   {
     q: "Is there a cap on how much super an employer pays?",

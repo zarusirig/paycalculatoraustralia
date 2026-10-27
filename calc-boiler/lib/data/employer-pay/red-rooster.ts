@@ -37,7 +37,7 @@ export const RED_ROOSTER_PAY: EmployerPay = {
   ),
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
-    "These are the Fast Food Industry Award minimums. Your employer may be Craveable Brands or a franchisee; either way, these are the least you can be paid, and some restaurants pay more.",
+    "These are the Fast Food Industry Award minimums for Red Rooster staff. Your employer is either Craveable Brands or the franchisee that owns your restaurant; either way, these are the least you can be paid, and a restaurant can pay more.",
     "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
   ],
   unverified: [
@@ -52,15 +52,15 @@ export const RED_ROOSTER_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does Red Rooster pay an hour in 2026?",
-      a: "Red Rooster staff are paid under the Fast Food Industry Award. An adult crew member (Level 1) must get at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. Shift supervisors and trainers (Level 2) get $29.45, and staff in charge of a restaurant (Level 3) $29.91 or $30.27.",
+      a: "Red Rooster staff are paid under the Fast Food Industry Award. An adult crew member (Level 1) must get at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. Shift supervisors and trainers (Level 2) get $29.45. Staff in charge of a restaurant (Level 3) get $29.91 if they supervise at most one other person, or $30.27 if they supervise two or more.",
     },
     {
       q: "Does Red Rooster have an enterprise agreement?",
-      a: "Not any more. The Red Rooster Agreement 2009 was terminated by the Fair Work Commission on 31 May 2022, and no replacement has been approved, so the Fast Food Industry Award applies unless a franchisee has its own agreement.",
+      a: "Red Rooster no longer has an enterprise agreement. The Red Rooster Agreement 2009 was terminated by the Fair Work Commission on 31 May 2022, and no replacement has been approved, so the Fast Food Industry Award applies unless a franchisee has its own agreement.",
     },
     {
       q: "Do Red Rooster junior rates go up in December 2026?",
-      a: "Yes, for 18 to 20 year olds who have worked for their employer for more than 6 months. From the first full pay period on or after 1 December 2026 they move to 75%, 85% and 95% of the adult rate ($20.86, $23.64 and $26.42 at Level 1), reaching the full rate in stages by July 2029.",
+      a: "Yes. Red Rooster junior rates rise for staff aged 18 to 20 who have worked for their employer for more than 6 months. From the first full pay period on or after 1 December 2026 they move to 75%, 85% and 95% of the adult rate respectively ($20.86, $23.64 and $26.42 at Level 1), reaching the full rate in stages by July 2029.",
     },
   ],
 };

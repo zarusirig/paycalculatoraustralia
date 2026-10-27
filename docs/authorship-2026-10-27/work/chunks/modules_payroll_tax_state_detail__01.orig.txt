@@ -1,0 +1,192 @@
+// =============================================================================
+// Payroll tax — what genuinely differs in each state and territory.
+//
+// The eight /payroll-tax/{state}/ pages used to share most of their prose
+// (taxable wages, grouping, "employees don't pay it", the all-states table).
+// That shared material now lives once on the /payroll-tax/ hub. This module
+// holds each jurisdiction's own rules: its revenue office's worked examples,
+// levies and concessions, grouping and contractor provisions, and how returns
+// are lodged. Every statement was read from the revenue office's own page on
+// PAYROLL_TAX_STATE_DETAIL_VERIFIED_ON via Firecrawl (raw markdown); the URL
+// sits in `sources`. Figures used in worked examples are also pinned against
+// the engine in lib/constants/__tests__/payroll-tax.test.ts.
+//
+// Server-safe (no "use client"): page.tsx builds FAQPage JSON-LD from `faqs`.
+// =============================================================================
+
+import type { SourceLink } from "@/components/common/source-attribution";
+import type { PayrollTaxStateCode } from "@/lib/constants/payroll-tax";
+
+export const PAYROLL_TAX_STATE_DETAIL_VERIFIED_ON = "10 October 2026";
+
+export interface StateFaq {
+  q: string;
+  a: string;
+}
+
+export interface PayrollTaxStateDetail {
+  /** The Act(s) the revenue office administers, as it names them. */
+  legislation: string;
+  /** The revenue office's own worked examples, in prose. */
+  workedExample: string[];
+  /** Heading for the levies / concessions section. */
+  leviesHeading: string;
+  levies: string[];
+  grouping: string[];
+  contractorsHeading: string;
+  contractors: string[];
+  lodgement: string[];
+  /** Questions this jurisdiction answers differently (appended to the shared state FAQs). */
+  faqs: StateFaq[];
+  sources: SourceLink[];
+}
+
+const NSW = "Revenue NSW";
+const VIC = "State Revenue Office Victoria";
+const QLD = "Queensland Revenue Office";
+const WA = "RevenueWA (Department of Treasury and Finance)";
+const SA = "RevenueSA";
+const TAS = "State Revenue Office Tasmania";
+const ACT = "ACT Revenue Office";
+const NT = "Territory Revenue Office";
+
+export const PAYROLL_TAX_STATE_DETAIL: Record<PayrollTaxStateCode, PayrollTaxStateDetail> = {
+  // ---------------------------------------------------------------------------
+  nsw: {
+    legislation: "Payroll Tax Act 2007 (NSW)",
+    workedExample: [
+      "Revenue NSW's own examples: an employer paying $1.5 million of NSW wages for the whole year is taxed on $300,000, which is $16,350 at 5.45%. A business with $900,000 of NSW wages out of $3 million Australia-wide gets $1.2 million × $900,000 ÷ $3 million = $360,000 of threshold and is taxed on $540,000.",
+      "A part-year employer gets the threshold for the days it employed: $1.2 million × 184 ÷ 365 = $604,931.51, so $1.5 million paid over 184 days is taxed on $895,068.49.",
+    ],
+    leviesHeading: "No Surcharge, but an Apprentice Rebate",
+    levies: [
+      "NSW adds no levy or surcharge to the 5.45% rate and has no regional rate. Its main concession is a rebate on wages paid to apprentices and new entrant trainees approved by Training Services NSW. Existing-worker traineeships do not qualify, and where a group training organisation (GTO) places the apprentice, only the GTO can claim, not the host employer. Wages paid by non-profit GTOs approved by Training Services NSW are exempt outright.",
+    ],
+    grouping: [
+      "Only one member of a NSW group, the designated group employer, claims the $1.2 million. Groups arise from related corporations under section 50 of the Corporations Act, common control, tracing of interests, common employees and subsuming smaller groups into a larger one; NSW Public Service agencies and state-owned corporations have their own rules. Groups can now create a group, change members and upload documents themselves in Payroll Tax Online, and a group can use a Group Single Lodger.",
+      "NSW also targets phoenix activity. Since amendments to the Payroll Tax Act 2007 in September 2023, a successor business and a former entity form a group if both were sufficiently influenced by the same third party, which lets Revenue NSW recover unpaid payroll tax from employers that have engaged in illegal phoenix activity, and it can now penalise directors and intermediaries who promote phoenix schemes.",
+    ],
+    contractorsHeading: "Contractors and Owner-Drivers",
+    contractors: [
+      "Payments under a “relevant contract” (any arrangement where a contractor supplies the services of a worker) are taxable unless one of seven contractor exemptions applies, and if one does, every payment to that contractor is exempt. Only the labour component is taxed: materials, tools, equipment, a vehicle and GST are not, and where an invoice does not split them you can deduct the percentage for the trade in Revenue Ruling PTA 018. Keep the evidence (ABN, contracts, invoices, days worked, proof of services to the public) for at least five years.",
+      "From 21 April 2026 the Fair Work Commission's Road Transport Contractual Chain Order makes transport businesses pay owner-drivers more for fuel. Revenue NSW says those fuel contributions do not affect the owner-driver exemption in section 32(2)(d) of the Payroll Tax Act 2007.",
+    ],
+    lodgement: [
+      "If your annual NSW liability is more than $20,000 you must pay monthly and lodge a nil return for any month without taxable wages. Under $20,000 you can pay monthly or just lodge the annual return, which every registered business must lodge by 28 July, even if it is nil.",
+      "Monthly lodgers whose annual liability is under $150,000 can use the estimate method instead of actual wages: last year's tax × 1.03 ÷ days employed × (365 ÷ 12). Revenue NSW's example turns $35,000 of tax last year into $98.77 a day, or $3,004 a month. Above $150,000 you must use actual wages.",
+    ],
+    faqs: [
+      {
+        q: "Can I pay NSW payroll tax annually instead of monthly?",
+        a: "Yes, if your annual NSW payroll tax liability is less than $20,000: you must lodge the annual return by 28 July and can choose whether to pay monthly. Above $20,000 you must pay every month and lodge nil returns for months with no taxable wages.",
+      },
+      {
+        q: "What is the NSW payroll tax estimate method?",
+        a: "A way for monthly lodgers with an annual liability under $150,000 to pay a fixed estimate each month instead of calculating actual wages: last year's tax × 1.03, divided by the days employed, times 365 ÷ 12. The annual return then trues it up. Above $150,000 you must use actual wages.",
+      },
+      {
+        q: "Are payments to contractors subject to NSW payroll tax?",
+        a: "Often. Payments under a relevant contract are taxable unless one of seven contractor exemptions applies. Only the labour component counts (materials, tools, equipment, vehicles and GST are excluded), and owner-drivers' fuel contributions under the 2026 Road Transport Contractual Chain Order do not affect their exemption.",
+      },
+    ],
+    sources: [
+      { title: "Key dates for payroll tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/lodge-and-pay-returns/key-dates", publisher: NSW },
+      { title: "Calculate and pay your monthly return", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/lodge-and-pay-returns/monthly-return", publisher: NSW },
+      { title: "Register for payroll tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/registration/register-for-payroll-tax", publisher: NSW },
+      { title: "Payroll tax grouping", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/grouping", publisher: NSW },
+      { title: "Payroll tax grouping for illegal phoenix operators", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/grouping/illegal-phoenix-operators", publisher: NSW },
+      { title: "Contractors and payroll tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/taxable-wages/contractors", publisher: NSW },
+      { title: "Apprentice and trainee wages", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/taxable-wages/apprentice-and-trainee-wages", publisher: NSW },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  vic: {
+    legislation: "Payroll Tax Act 2007 (Vic)",
+    workedExample: [
+      "SRO Victoria's phase-out example: a metropolitan employer with $4.2 million of Victorian wages in 2024-25 (a $900,000 threshold and 45% phase-out that year) got $900,000 − ($4.2 million − $3 million) × 45% = $360,000. On the current $1 million threshold and 50% rate, a Victoria-only employer can shortcut it as ($5 million − wages) × 50%, so the same $4.2 million now leaves a $400,000 threshold.",
+      "Surcharge thresholds are shared out the same way. SRO's Company B paid $80 million in Victoria and $70 million in NSW in 2025-26, so its thresholds were $10 million × 80 ÷ 150 = $5,333,333.33 and $100 million × 80 ÷ 150 = $53,333,333.33.",
+    ],
+    leviesHeading: "Mental Health and COVID-19 Debt Surcharges, and the Regional Rate",
+    levies: [
+      "Two surcharges sit on top of the 4.85% rate once Australian wages pass $10 million a year ($833,333 a month). The mental health and wellbeing surcharge was a recommendation of the Royal Commission into Victoria's mental health system and has applied since 1 January 2022; the COVID-19 debt temporary surcharge runs from 1 July 2023 to 30 June 2033. Each is 0.5% (1% combined) on Victorian wages above the apportioned $10 million, and each adds another 0.5% above $100 million ($8,333,333 a month). Both are calculated automatically in your returns.",
+      "Regional employers pay 1.2125%, a quarter of the standard rate, if at least 85% of their Victorian taxable wages go to regional employees: people who do more than half of their Victorian work for you in regional Victoria. The 85% test is applied to each monthly return and again for the year, so a business that misses it for a few months can still get the lower rate, and a refund, at the annual reconciliation. In a group, each member is tested on its own.",
+    ],
+    grouping: [
+      "Under section 70 of Victoria's Payroll Tax Act 2007, related corporations form a mandatory group: section 79(3) stops the Commissioner excluding a related corporation even if its business is independent. Groups formed through common employees, common control or tracing can apply to SRO for exclusion.",
+      "Common-employee grouping was tested in Commissioner of State Revenue v Liquid Rock Constructions [2012] VSC 329. For trusts, anyone who may benefit from a discretionary trust is deemed to hold more than 50% of it, so a family trust is readily grouped with other businesses the same family controls.",
+    ],
+    contractorsHeading: "Contractors, Agencies and Medical Practices",
+    contractors: [
+      "SRO Victoria warns that contractor arrangements can be relevant contracts and still be taxable, and it publishes industry guidance for the two sectors where this bites hardest: employment agencies, which may owe tax on the wages of workers they place (with a declaration for chains of on-hire), and medical businesses, which must assess payroll tax on practitioners from GPs and dentists to physiotherapists and pharmacists.",
+      "From 1 July 2025 a Victorian GP business's wages for GP work are exempt in proportion to its fully-funded consultations: exempt wages = A × B ÷ C, where A is GP wages, B is income from fully-funded GP items and C is income from all GP items (consumables excluded). SRO's example: $20,000 of GP wages × $12,000 ÷ $30,000 = $8,000 exempt, $12,000 taxable. Allied health and dental businesses are not covered.",
+    ],
+    lodgement: [
+      "Returns are lodged and paid through PTX Express: monthly by the 7th, and an electronic annual reconciliation (e-AR) by 21 July with no extensions. Miss it and penalty tax of up to 25% plus interest can apply. The e-AR opens in mid-June, takes about 30 minutes, includes June's wages, and can be edited until early May the following year.",
+      "Your registration letter says whether you are on a monthly or an annual return cycle; monthly lodgers must report wages every month even when no tax is owed, and an employer on the annual cycle that wants to switch to monthly asks SRO.",
+    ],
+    faqs: [
+      {
+        q: "What are the Victorian payroll tax surcharges?",
+        a: "The mental health and wellbeing surcharge (since 1 January 2022) and the COVID-19 debt temporary surcharge (1 July 2023 to 30 June 2033). Each is 0.5% on Victorian wages above an apportioned $10 million of Australian wages, plus another 0.5% each above $100 million: 1% combined from $10 million, 2% from $100 million.",
+      },
+      {
+        q: "Who qualifies for the regional payroll tax rate in Victoria?",
+        a: "Employers that pay at least 85% of their Victorian taxable wages to regional employees, meaning employees who do more than half of their Victorian work for the employer in regional Victoria. They pay 1.2125% instead of 4.85%. The test applies monthly and for the full year, and each member of a group is assessed separately.",
+      },
+      {
+        q: "Is GP income exempt from Victorian payroll tax?",
+        a: "Partly. From 1 July 2025 wages a GP medical business pays for GP work are exempt in the proportion that its GP income comes from fully-funded items: exempt wages = GP wages × fully-funded GP income ÷ all GP income, excluding consumables. It does not cover allied health or dental businesses.",
+      },
+    ],
+    sources: [
+      { title: "Threshold and phase-out rate", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/threshold-and-phase-out-rate", publisher: VIC },
+      { title: "Payroll tax surcharges", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/payroll-tax-surcharges", publisher: VIC },
+      { title: "Regional employers", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/industries-and-locations/regional-employers", publisher: VIC },
+      { title: "Grouping", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/grouping", publisher: VIC },
+      { title: "Medical industry", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/industries-and-locations/medical-industry", publisher: VIC },
+      { title: "Lodge your annual reconciliation", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/managing-your-payroll-tax/lodge-your-annual-reconciliation", publisher: VIC },
+      { title: "Lodge your monthly return", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/managing-your-payroll-tax/lodge-your-monthly-return", publisher: VIC },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  qld: {
+    legislation: "Queensland payroll tax legislation, administered by the Queensland Revenue Office",
+    workedExample: [
+      "QRO's mental health levy examples: Company A, not grouped, pays $112 million, all in Queensland. Its primary levy is ($112 million − $10 million) × 0.25% = $255,000 and its additional levy ($112 million − $100 million) × 0.5% = $60,000, making $315,000 on top of payroll tax. Company C pays $4 million in Queensland out of $16 million Australia-wide, so its threshold is $10 million × 4 ÷ 16 = $2.5 million and its levy ($4 million − $2.5 million) × 0.25% = $3,750.",
+      "The deduction also runs month by month: up to $108,333, reduced by $1 for every $7 of monthly wages above that, and nil once monthly wages reach $866,666.",
+    ],
+    leviesHeading: "Mental Health Levy, Regional Discount and Apprentice Rebate",
+    levies: [
+      "The mental health levy is charged on Queensland wages above the apportioned thresholds once Australian wages pass $10 million: 0.25%, plus a further 0.5% above $100 million. Thresholds are adjusted for groups, interstate wages, part years and periodic returns, and in a group only the designated group employer reconciles the levy in its annual return.",
+      "Regional employers get 1 percentage point off (3.75% or 3.95%) until 30 June 2030, unless Australian wages exceed $350 million. You qualify if your principal place of employment (your ABN business address) is in regional Queensland and at least 85% of your Queensland wages go to employees whose principal place of residence is there: the Cairns, Central Queensland, Darling Downs–Maranoa, Mackay–Isaac–Whitsunday, Queensland–Outback, Townsville and Wide Bay regions. Working holiday makers and PALM scheme workers in temporary accommodation generally do not count. Eligibility is tested at every return.",
+      "Apprentice and trainee wages are exempt, and a 50% rebate applies on top for each year from 1 July 2016 to 30 June 2027: half of those wages × your rate comes off your liability. QRO's example: $50,000 of apprentice wages in a month cuts a $10,000 liability by $1,187.50.",
+    ],
+    grouping: [
+      "A business can be grouped even if it does not employ in Queensland. Only the designated group employer (DGE) can claim the deduction, and only while the group's Australian wages are under $10.4 million. If the DGE's deduction is bigger than its own wages it can nominate another member registered in Queensland to take the excess; the excess cannot be split, and if no one is nominated QRO decides.",
+      "Deductions come in three types. A non-grouped employer paying only Queensland wages claims an actual periodic deduction worked out on each return. An employer with interstate wages, or a DGE, sets a fixed periodic deduction at 1 July and must recalculate it if wages move more than 30% from the estimate. The annual deduction is calculated when the annual return is lodged.",
+    ],
+    contractorsHeading: "Relevant Contracts and General Practitioners",
+    contractors: [
+      "In Queensland a relevant contract is any arrangement where you supply services, are supplied with services, or re-supply goods (hand goods to someone to work on and get them back altered). Arrangements for services are almost always relevant contracts and are taxable unless one of nine exemptions applies; if they are taxable you may still deduct the non-labour component.",
+      "General practitioners are the exception QRO spells out. After an amnesty on payments to contracted GPs, wages a medical practice pays to a GP, as contractor or employee, have been exempt since 1 December 2024, and the Revenue Legislation Amendment Bill 2024 made that permanent.",
+    ],
+    lodgement: [
+      "Register within 7 days of the first month in which Australian wages, yours or your group's, exceed $25,000 a week, even if you expect to stay under $1.3 million for the year.",
+      "Monthly and half-yearly lodgers file periodic returns 7 days after the period ends; the July–December half-year and the December month are both due 14 January 2027. There is no June return: June goes into the annual return due 21 July 2027. A final return is due within 21 days of a change of status.",
+    ],
+    faqs: [
+      {
+        q: "What is the Queensland mental health levy?",
+        a: "A levy on top of payroll tax for employers and groups with more than $10 million of Australian taxable wages: 0.25% on Queensland wages above the apportioned $10 million, plus 0.5% above an apportioned $100 million. A non-grouped Queensland-only employer paying $112 million pays $255,000 + $60,000 = $315,000.",
+      },
+      {
+        q: "Who gets the Queensland regional payroll tax discount?",
+        a: "Employers whose ABN business address is in regional Queensland and who pay at least 85% of their Queensland taxable wages to employees who usually live there. They pay 3.75% (or 3.95% above $6.5 million) until 30 June 2030, but not if Australian wages exceed $350 million.",
+      },
+      {
+        q: "Is there a payroll tax rebate for apprentices in Queensland?",
+        a: "Yes. Apprentice and trainee wages are exempt, and you also get a rebate of 50% of those wages multiplied by your payroll tax rate, for each financial year from 1 July 2016 to 30 June 2027. It is calculated automatically in QRO Online.",
+      },
+    ],

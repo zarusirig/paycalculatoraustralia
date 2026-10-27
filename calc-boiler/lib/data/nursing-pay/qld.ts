@@ -73,7 +73,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
         publisher: "Queensland Industrial Relations Commission",
       },
       note:
-        "The parent award supplies the shift and weekend penalties. The certified agreement also ensures no employee is paid below the corresponding award rate.",
+        "The parent award supplies the shift and weekend penalties. Under the certified agreement, no employee is paid below the corresponding award rate.",
     },
   ],
 
@@ -389,7 +389,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   highlights: [
     "A registered nurse or midwife in Queensland starts at $87,790 a year, which is $44.2763 an hour. Queensland Health publishes the hourly rate to four decimal places.",
     "The 1 April 2026 rates include a 0.5% CPI Uplift Adjustment that the published agreement PDF does not yet show; the wage schedule is the operative document.",
-    "Nurse Grade 5 has seven paid pay points now. Pay point 8 is legislated but does not start paying until 1 December 2027.",
+    "Nurse Grade 5 has seven paid pay points now. Pay point 8 is set by the agreement but does not start paying until 1 December 2027.",
     "Queensland pays the clinical nurse consultant and the nurse unit manager on the same grade and the same money.",
   ],
 };

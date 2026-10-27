@@ -35,7 +35,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "ga-captain",
       title: "Captain: airline and general aviation minimum salaries (clause A.1.1)",
       intro:
-        "Minimum annual salaries for full-time captains employed by an airline operation or a general aviation employer (charter, aerial work, private, business and instructional flying), by aircraft type and weight. UTBNI means up to but not including.",
+        "The Air Pilots Award sets minimum annual salaries for full-time captains by aircraft type and weight. These rates cover captains employed by an airline operation or a general aviation employer (charter, aerial work, private, business and instructional flying). UTBNI means up to but not including.",
       stepHeading: "Aircraft classification",
       steps: [
         { label: "Single engine UTBNI 1360 kg", salary: 58_226 },
@@ -58,7 +58,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "ga-first-officer",
       title: "First Officer / Second Pilot: airline and general aviation minimum salaries (clause A.1.1)",
       intro:
-        "Minimum annual salaries for full-time first officers and second pilots on the same aircraft classifications.",
+        "The award sets minimum annual salaries for full-time first officers and second pilots on the same aircraft classifications as captains.",
       stepHeading: "Aircraft classification",
       steps: [
         { label: "Single engine UTBNI 1360 kg", salary: 52_257 },
@@ -81,7 +81,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "larger-aircraft",
       title: "Larger aircraft minimum salaries (clause A.1.2)",
       intro:
-        "Minimum annual salaries for full-time pilots on jet and wide-body aircraft under Schedule A. Airline pilots are usually paid above these minimums under their airline's enterprise agreement.",
+        "Schedule A sets minimum annual salaries for full-time pilots on jet and wide-body aircraft. Airline pilots are usually paid above these minimums under their airline's enterprise agreement.",
       stepHeading: "Aircraft and rank",
       steps: [
         { label: "Fokker 28 — Captain", salary: 161_088 },
@@ -109,7 +109,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "regional-captain",
       title: "Regional airlines: Captain minimum salaries (clause B.1.1)",
       intro:
-        "Minimum annual salaries for full-time captains employed by regional airlines, by the aircraft groups listed in Schedule B.",
+        "Schedule B sets minimum annual salaries for full-time captains employed by regional airlines, by aircraft group.",
       stepHeading: "Aircraft group",
       steps: [
         { label: "Group 1 (Cessna 206, 207, 210)", salary: 66_317 },
@@ -136,7 +136,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "regional-co-pilot",
       title: "Regional airlines: Co-pilot minimum salaries (clause B.1.1)",
       intro:
-        "Minimum annual salaries for full-time co-pilots at regional airlines. Schedule B prints no co-pilot rate for Groups 1 to 4.",
+        "Schedule B sets minimum annual salaries for full-time co-pilots at regional airlines and prints no co-pilot rate for Groups 1 to 4.",
       stepHeading: "Aircraft group",
       steps: [
         { label: "Group 5", salary: 66_833 },
@@ -153,7 +153,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "helicopter-onshore-single",
       title: "Helicopter pilots: on-shore, single engine (clause D.5.1)",
       intro:
-        "Minimum annual salaries for full-time pilots on on-shore helicopter operations flying single-engine helicopters, by year of service.",
+        "The award sets minimum annual salaries for full-time pilots flying single-engine helicopters in on-shore operations, by year of service.",
       stepHeading: "Year of service",
       steps: [
         { label: "1st year of service", salary: 71_985 },
@@ -171,7 +171,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "aerial-application",
       title: "Aerial application (agricultural) pilots (clause C.9.1)",
       intro:
-        "Minimum salaries for full-time aerial application pilots, by aerial application flying hours in the industry. The award prints weekly rates; commission on the aircraft's charge-out price is paid on top.",
+        "Schedule C sets minimum salaries for full-time aerial application pilots by their aerial application flying hours in the industry. The award prints weekly rates; commission on the aircraft's charge-out price is paid on top.",
       stepHeading: "Industry flying hours",
       steps: [
         { label: "0–1000", salary: 51_001, note: "$978.10 a week × 52.143" },
@@ -188,7 +188,7 @@ export const PILOT_PAY: AviationPayPage = {
     "The award has no separate cadet or student-pilot rate for general aviation. A pilot covered by the award must hold a commercial pilot's licence or airline transport pilot's licence, and the lowest minimum salary is First Officer/Second Pilot on a single engine aircraft UTBNI 1360 kg at $52,257 a year.",
     "Second Officer under Training (defined as \"a pilot under initial training for a second officer position\") has a minimum of $75,738 a year on wide-body aircraft from the first full pay period on or after 14 July 2026.",
     "Flight instructors (clause A.1.7) are paid on appointment as follows: Grade III at the single engine (or multi engine) charter salary; Grade II at that charter salary plus $4669.27 per annum; Grade I plus $9338.55 per annum. A Grade I single-engine instructor gets increments of $1186.91 per annum in the sixth, seventh and eighth year of service with the same employer.",
-    "An aerial application pilot with more than 6 months' industry experience must be paid at least the 1001–2000 flying hours rate ($1004.90 a week) (clause C.9.2).",
+    "An aerial application pilot with more than 6 months' industry experience must be paid at least the 1001 to 2000 flying hours rate ($1004.90 a week) (clause C.9.2).",
   ],
   allowances: [
     "Casual pilots (clause 10.2): \"A casual pilot will be paid per flying hour at the rate of 1/800th of the annual salary prescribed for the class of work performed (including additions to salary).\"",
@@ -204,9 +204,9 @@ export const PILOT_PAY: AviationPayPage = {
   ],
   otherInstruments: [],
   notices: [
-    "These are award minimum salaries. Most airline pilots (Qantas, Virgin Australia, Jetstar, Rex, QantasLink and others) are paid under their airline's enterprise agreement, which usually pays above the award.",
+    "The salaries on this page are Air Pilots Award minimums. Most airline pilots (Qantas, Virgin Australia, Jetstar, Rex, QantasLink and others) are paid under their airline's enterprise agreement, which usually pays above the award.",
     "Additions to salary (instrument rating, aircraft type, licence and supervisory additions) are paid on top of the minimum salary and count as salary for all purposes.",
-    "Other helicopter minimums printed in Schedule D: on-shore twin 0–9000 lbs $76,871 (1st year) to $90,362 (9th year); on-shore twin over 9000 lbs $80,241 to $93,733; off-shore single engine command UTBNI 9000 lbs $75,183 (1st year) to $98,797 (15th year); off-shore all other operations command $83,617 to $107,226, plus the all-purpose special duties addition.",
+    "Schedule D prints other helicopter minimums: on-shore twin (0 to 9000 lbs) $76,871 (1st year) to $90,362 (9th year); on-shore twin (over 9000 lbs) $80,241 to $93,733; off-shore single engine command UTBNI 9000 lbs $75,183 (1st year) to $98,797 (15th year); off-shore all other operations command $83,617 to $107,226, plus the all-purpose special duties addition.",
     "Award minimum rates change each year after the Fair Work Commission's Annual Wage Review, usually from the first full pay period on or after 1 July.",
   ],
   unverified: [

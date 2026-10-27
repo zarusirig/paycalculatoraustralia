@@ -275,7 +275,7 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
     junior: electrical.junior,
     adult: electrical.adult,
     notes: [
-      "Adult apprentices who started on or after 1 January 2014: 80% of grade 5 in year 1, then at least the grade 1 rate (cl 16.4(b)).",
+      "Adult electrical apprentices who started on or after 1 January 2014 get 80% of grade 5 in year 1, then at least the grade 1 rate (cl 16.4(b)).",
       SCHOOL_BASED_NOTE,
     ],
     tradePageHref: "/job-pay-rates/apprentice-electrician/",
@@ -318,9 +318,9 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
     junior: BUILDING,
     adult: null,
     notes: [
-      "Four-year term, started on or after 1 January 2014. A three-year term uses 55%, 75% and 90% (cl 19.7(b)(i)(B)) and is not tabulated.",
+      "The building rates are for apprentices on a four-year term who started on or after 1 January 2014. A three-year term uses 55%, 75% and 90% (cl 19.7(b)(i)(B)) and is not tabulated.",
       "Stage 2 to 4 can start earlier than 12 months if the apprentice completes the training plan competencies sooner (competency-based progression, cl 19.7(b)(i)(A)).",
-      "Weekly-hire employees. Daily-hire employees get a loaded hourly rate (cl 19.3).",
+      "The rates shown are for weekly-hire employees. Daily-hire employees get a loaded hourly rate (cl 19.3).",
       SCHOOL_BASED_NOTE,
     ],
     tradePageHref: "/job-pay-rates/carpenter/",
@@ -445,7 +445,7 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
     junior: MEAT,
     adult: MEAT_ADULT,
     notes: [
-      "Adult apprentices who started on or after 1 January 2014: at least 80% of MI 7 in the first year, then at least the lowest adult classification rate (MI 1) or the year rate, whichever is greater (cl 16.4).",
+      "Adult meat industry apprentices who started on or after 1 January 2014 get at least 80% of MI 7 in the first year, then at least the lowest adult classification rate (MI 1) or the year rate, whichever is greater (cl 16.4).",
       "Allowances (for example for cold work or for tools) are not in these figures.",
       SCHOOL_BASED_NOTE,
     ],

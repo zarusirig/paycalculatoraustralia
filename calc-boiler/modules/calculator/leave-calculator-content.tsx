@@ -31,7 +31,7 @@ export default function LeaveCalculatorContent() {
           Annual leave loading is an extra <strong>17.5% of your base weekly pay</strong>, paid on top of the ordinary rate for each week of annual leave taken or paid out. This annual leave loading calculator applies the same formula an employer uses: <strong>{EMPLOYMENT.annualLeaveWeeks} weeks × weekly pay × 17.5%</strong> for a full year of accrued leave.
         </p>
         <p className="mb-4 text-warmgray">
-          The 17.5% rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during holidays than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
+          The 17.5% rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during annual leave than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Worked Example: Leave Loading at $80,000 Salary</h3>
@@ -49,7 +49,7 @@ export default function LeaveCalculatorContent() {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Who Gets Leave Loading?</h3>
         <p className="mb-4 text-warmgray">
-          Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Employees on Award-free contracts, common in professional services, banking, and technology, typically do not receive leave loading unless their contract specifies it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
+          Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Employees on Award-free contracts, common in professional services, banking, and technology, receive leave loading only if their contract or enterprise agreement provides for it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Is Leave Loading Taxed?</h3>
@@ -65,7 +65,7 @@ export default function LeaveCalculatorContent() {
           Leave in Australia is calculated by accruing <strong>4 weeks (152 hours) of paid annual leave per year</strong> of continuous service for full-time employees under the National Employment Standards (NES).
         </p>
         <p className="mb-4 text-warmgray">
-          Leave accrues progressively from the first day of employment, not as a lump sum at year-end. A full-time employee working a standard 38-hour week earns <strong>2.923 hours of leave per week</strong>, or approximately 0.833 days per fortnight. The Australian tax calculator applies the same ordinary hours figure when converting between annual salary and weekly pay for leave calculations.
+          Leave accrues progressively from the first day of employment, not as a lump sum at year-end. A full-time employee working a standard 38-hour week earns <strong>2.923 hours of leave per week</strong>, or approximately 0.833 days per fortnight. This leave calculator uses the same ordinary hours figure to convert your accrued weeks of annual leave into hours.
         </p>
         <p className="mb-4 text-warmgray">
           Part-time employees accrue leave on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours (2.1 weeks)</strong> of annual leave per year instead of the full 152 hours. Casual employees do not accrue annual leave and instead receive a <strong>25% casual loading</strong> on their base hourly rate.
@@ -182,7 +182,7 @@ export default function LeaveCalculatorContent() {
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference. Apply only if your Award or contract provides for it.
+          Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference and applies only if your Award or contract provides for it.
         </p>
       </section>
 
@@ -274,7 +274,7 @@ export default function LeaveCalculatorContent() {
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          *Victoria is the outlier: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (weeks of service ÷ 60), and the entitlement to take it (or be paid out on termination) arises at 7 years, not 10. The other states above vest the full 8.67-week (or equivalent) entitlement specifically at their stated milestone.
+          *Victoria is the outlier: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (weeks of service ÷ 60), and the entitlement to take it (or be paid out on termination) arises at 7 years, not 10. The other states and territories above vest the full 8.67-week (or equivalent) entitlement at their stated milestone.
         </p>
       </section>
 
@@ -302,7 +302,7 @@ export default function LeaveCalculatorContent() {
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
           <li><Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link>: calculate severance pay based on years of service and combine it with your leave payout total</li>
           <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: convert your gross annual salary to after-tax take-home pay for FY{SITE_CONFIG.financialYear}</li>
-          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG rate of 12% on your ordinary time earnings and check the Medicare levy surcharge threshold</li>
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG rate of 12% on your ordinary time earnings and see the concessional cap space left for salary sacrifice</li>
           <li><Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link>: determine penalty rates for overtime, weekend, and public holiday work under your Award</li>
           <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: estimate how much tax you pay on salary and leave payouts combined in the {SITE_CONFIG.financialYear} financial year</li>
         </ul>

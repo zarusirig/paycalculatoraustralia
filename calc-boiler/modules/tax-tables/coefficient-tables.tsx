@@ -105,8 +105,8 @@ export default function CoefficientTables({
         {`${frequency.charAt(0).toUpperCase()}${frequency.slice(1)} tax table ${info.label}: ATO Schedule 1 coefficients`}
       </Heading>
       <p className="mb-3 text-sm text-warmgray">
-        Weekly equivalent x is worked out from your pay, then tax withheld = a &times; x &minus; b, rounded to the dollar
-        (applies to {info.appliesTo}).{" "}
+        The ATO method converts your pay to a weekly equivalent x, works out weekly tax withheld = a &times; x &minus; b rounded
+        to the dollar, then converts that back to your pay period (applies to {info.appliesTo}).{" "}
         <a href={info.schedule1Url} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">
           Official ATO Schedule 1
         </a>

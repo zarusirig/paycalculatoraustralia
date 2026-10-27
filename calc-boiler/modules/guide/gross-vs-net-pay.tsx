@@ -110,7 +110,7 @@ export default function GrossVsNetPayPage() {
               })}
               caption="Resident, tax-free threshold claimed, no study loan, private hospital cover assumed so no surcharge. The per-fortnight column is what the ATO scales withhold; the yearly column is tax actually payable after offsets, so 26 fortnights won't match it exactly. Your return squares up the difference."
             />
-            <p>For any salary, use the <Link href="/gross-pay-calculator/">gross pay calculator</Link> (annual, with a net-to-gross mode) or the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.</p>
+            <p>To see your own weekly, fortnightly or monthly net pay, enter your gross pay in the calculator above. For an annual salary, use the <Link href="/gross-pay-calculator/">gross pay calculator</Link> (annual, with a net-to-gross mode) or the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.</p>
           </section>
 
           <section>

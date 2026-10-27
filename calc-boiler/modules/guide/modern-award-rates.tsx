@@ -124,11 +124,11 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               <h2 style={H2}>{meta.shortName} Pay Rates by Level</h2>
               {partTimeLoading !== undefined ? (
                 <p>
-                  Adult minimum rates under the {meta.name}. Unusually, this award pays part-time employees more per hour than full-timers: a {pct(partTimeLoading)} part-time allowance on every ordinary hour ({meta.partTimeLoadingClause}). The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
+                  The table below gives the adult minimum rates under the {meta.name}. Unusually, this award pays part-time employees more per hour than full-timers: a {pct(partTimeLoading)} part-time allowance on every ordinary hour ({meta.partTimeLoadingClause}). The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
                 </p>
               ) : (
                 <p>
-                  {meta.ratesLabel ?? "Adult minimum rates"} for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification &mdash; the difference is hours, not rate. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
+                  {meta.ratesLabel ?? "Adult minimum rates"} for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification; only their hours differ. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
                 </p>
               )}
               <AwardRateTable
@@ -139,7 +139,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               />
               <p className="text-sm text-warmgray">
                 {meta.hourlyDerivation ??
-                  `Weekly rates are the award’s minimum weekly rate for a full-time employee (${award.ratesClause}); hourly is the weekly rate divided by ${meta.standardWeeklyHours}.`}
+                  `Weekly rates are the award's minimum weekly rate for a full-time employee (${award.ratesClause}); hourly is the weekly rate divided by ${meta.standardWeeklyHours}.`}
               </p>
               {award.classificationNotes.length > 0 && (
                 <>
@@ -196,7 +196,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
             <section id="pay-guide">
               <h2 style={H2}>{meta.shortName} Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</h2>
               <p>
-                The hourly rate for each classification at each penalty band, in the layout of the Fair Work pay guide. Find your level, then the day you worked.
+                These tables give the hourly rate for each classification at each penalty band, in the same layout as the Fair Work pay guide. Find your level, then the day you worked.
               </p>
               <h3>{partTimeLoading !== undefined ? "Full-time" : "Full-time and part-time"}</h3>
               <PayGuideMatrix
@@ -231,7 +231,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               />
               <p className="text-sm text-warmgray">
                 {award.casualRuleSummary
-                  ? "Casual columns marked “of casual rate” apply the percentage to the casual hourly rate; the others are a percentage of the minimum rate that already includes the loading."
+                  ? "Casual columns marked 'of casual rate' apply the percentage to the casual hourly rate; the others are a percentage of the minimum rate that already includes the loading."
                   : compounded
                     ? `Casual figures apply each percentage to the casual ordinary hourly rate (the minimum rate plus ${pct(loading)}), as this award requires.`
                     : `Casual figures are the award's casual percentages, which already include the ${pct(loading)} loading where it applies.`}{" "}
@@ -390,7 +390,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
             <section id="allowances">
               <h2 style={H2}>{meta.shortName} Allowances</h2>
               <p>
-                Fixed-dollar allowances in {award.allowancesClause}, operative from {meta.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met.
+                These are the fixed-dollar allowances in {award.allowancesClause}, operative from {meta.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met.
               </p>
               <AllowanceTable allowances={award.allowances} caption={`${meta.shortName} allowances`} />
               <p className="text-sm">
@@ -414,7 +414,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                 {award.unverified.map((g) => (<li key={g}>{g}</li>))}
               </ul>
               <p>
-                An enterprise agreement, if one covers your workplace, replaces these award rates &mdash; though it must leave you better off overall.
+                If an enterprise agreement covers your workplace, it replaces these award rates, but it must leave you better off overall.
               </p>
               <div className="not-prose mt-6">
                 <a href={meta.awardTextUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md border border-transparent bg-eucalyptus-dark px-5 py-3 text-base font-medium text-white shadow-sm hover:bg-navy">
@@ -452,7 +452,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How these rates were verified">
                 <p>
-                  Every figure comes from one constants file transcribed on {meta.verifiedOn} from the Fair Work Commission&rsquo;s consolidated {meta.code} award text, which incorporates all amendments up to and including {meta.consolidatedTo}. Clause numbers are cited against each table. Hourly is the published weekly rate divided by {meta.standardWeeklyHours}; derived dollar figures are rounded half up to the cent.
+                  Every award rate and allowance on this page comes from one constants file transcribed on {meta.verifiedOn} from the Fair Work Commission&rsquo;s consolidated {meta.code} award text, which incorporates all amendments up to and including {meta.consolidatedTo}. Clause numbers are cited against each table. Hourly is the published weekly rate divided by {meta.standardWeeklyHours}; derived dollar figures are rounded half up to the cent.
                 </p>
                 <p>
                   Automated tests pin the published rates, check every hourly rate against its weekly rate, and assert the rules this award is most often modelled wrongly on{award.casualRuleSummary ? ", including which casual penalties add the loading and which compound on the casual rate" : compounded ? ", including that casual penalties compound on the casual rate" : ", including that casual penalties add the loading rather than multiplying by it"}. Parts of the award we have not verified are listed as gaps rather than estimated.
@@ -475,7 +475,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                 <CardContent className="p-6">
                   <h2 className="mb-2 text-lg font-bold">Check your take-home pay</h2>
                   <p className="mb-4 text-sm text-eucalyptus-light">
-                    {award.entryLevel} casual is {formatAUD(casualEntry, 2)} an hour before tax. See what lands in your account.
+                    {award.entryLevel} casual is {formatAUD(casualEntry, 2)} an hour before tax. Enter your gross weekly pay in the weekly pay calculator to see your pay after tax.
                   </p>
                   <Link href="/weekly-pay-calculator/" className="mb-2 block w-full rounded-md bg-white px-4 py-2.5 text-center text-sm font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone/50">
                     Weekly Pay Calculator

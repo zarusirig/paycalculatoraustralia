@@ -78,7 +78,10 @@ function TermsPage() {
             </p>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
               By using {SITE_CONFIG.name} ({SITE_CONFIG.domain}), you agree to
-              these terms. Please read them carefully.
+              these terms of use, so please read them carefully. They cover what
+              our calculators do, why their results are estimates and not
+              financial, tax or legal advice, the limits of our liability, and
+              the Australian law that governs them.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>

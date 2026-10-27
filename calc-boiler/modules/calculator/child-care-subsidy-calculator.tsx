@@ -76,7 +76,7 @@ export default function ChildCareSubsidyCalculatorPage({ children: content, afte
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Child Care Subsidy Calculator" title="Child Care Subsidy Calculator 2026-27: Your CCS % and Gap Fee">
           <p>
-            In 2026-27 families earning up to <strong>{formatAUD(CCS.standard.lowerThreshold)}</strong> get <strong>{CCS.standard.maxPercent}%</strong> Child Care Subsidy; it falls 1 percentage point for every {formatAUD(CCS.standard.step)} of combined family income and ends at {formatAUD(CCS.standard.cutOut)}. A second or younger child aged 5 or under gets up to <strong>{CCS.higher.maxPercent}%</strong> while family income is under {formatAUD(CCS.higher.incomeLimit)}. Since {CCS.hours.guaranteeFrom} every family gets at least <strong>{CCS.hours.guaranteed} subsidised hours</strong> per child a fortnight.
+            In 2026-27 families with a combined family income up to <strong>{formatAUD(CCS.standard.lowerThreshold)}</strong> get <strong>{CCS.standard.maxPercent}%</strong> Child Care Subsidy (CCS). The rate falls 1 percentage point for every {formatAUD(CCS.standard.step)} of family income above that and ends at {formatAUD(CCS.standard.cutOut)}. A second or younger child aged 5 or under gets up to <strong>{CCS.higher.maxPercent}%</strong> while family income is under {formatAUD(CCS.higher.incomeLimit)}. Since {CCS.hours.guaranteeFrom} every family gets at least <strong>{CCS.hours.guaranteed} subsidised hours</strong> per child a fortnight.
           </p>
           <p className="text-base">Enter both parents&apos; pay and your centre&apos;s fees to see your CCS percentage, the subsidy paid to your centre and your gap fee.</p>
         </W3Hero>

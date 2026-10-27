@@ -21,7 +21,7 @@ export const SA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are Christmas Eve and New Year's Eve public holidays in SA?",
-    a: "Both are part-day public holidays in South Australia, running from 7 pm to midnight. Hours worked before 7 pm are ordinary hours and hours after it attract public holiday entitlements, so a single evening shift can span both.",
+    a: "Christmas Eve and New Year's Eve are both part-day public holidays in South Australia, running from 7 pm to midnight. Hours worked before 7 pm are ordinary hours and hours after it attract public holiday entitlements, so a single evening shift can span both.",
   },
   {
     q: "Why does SA have Proclamation Day instead of Boxing Day?",
@@ -33,7 +33,7 @@ export const SA_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do SA employees pay payroll tax?",
-    a: `No. Payroll tax is charged to the employer once its Australian wage bill passes ${formatAUD(SA_PAYROLL_TAX.threshold)}: a variable rate from 0% to ${SA_RATE} on payrolls between ${millions(SA_PAYROLL_TAX.threshold)} and ${millions(SA_PAYROLL_TAX.fullRateFrom)}, then ${SA_RATE}. It never appears as a deduction on an employee's payslip.`,
+    a: `No. Payroll tax is charged to the employer once its Australian wage bill passes ${formatAUD(SA_PAYROLL_TAX.threshold)}: a variable rate from 0% to ${SA_RATE} on payrolls between ${millions(SA_PAYROLL_TAX.threshold)} and ${millions(SA_PAYROLL_TAX.fullRateFrom)}, then ${SA_RATE}. It does not appear as a deduction on an employee's payslip.`,
   },
   {
     q: "Does salary packaging change my SA take-home pay?",

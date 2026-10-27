@@ -46,7 +46,7 @@ export default function FinalPayCalculatorContent() {
 
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the NES Notice Period Requirements?</h2>
-        <p className="mb-4 text-warmgray">The National Employment Standards set minimum notice periods based on length of service.</p>
+        <p className="mb-4 text-warmgray">The National Employment Standards set the minimum notice period your employer must give, based on your length of continuous service.</p>
         <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm max-w-xl mx-auto">
           <table className="w-full text-sm">
             <thead className="bg-sandstone font-semibold text-navy">

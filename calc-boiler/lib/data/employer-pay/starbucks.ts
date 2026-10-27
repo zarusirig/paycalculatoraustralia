@@ -45,7 +45,7 @@ export const STARBUCKS_PAY: EmployerPay = {
   penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 barista")),
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to Starbucks Coffee Australia's stores. Starbucks may pay more; it cannot pay less.",
-    "In 2023 Starbucks gave the Fair Work Ombudsman an enforceable undertaking after finding it had underpaid 2,427 current and former staff $4.34 million (before superannuation and interest) between 2014 and 2020, mostly through the award's part-time and rostering rules. It concerns past pay, not current rates.",
+    "In 2023 Starbucks gave the Fair Work Ombudsman an enforceable undertaking after finding it had underpaid 2,427 current and former staff $4.34 million (before superannuation and interest) between 2014 and 2020, mostly through the award's part-time and rostering rules. The undertaking concerns past pay, not current rates.",
   ],
   unverified: [
     "Whether Starbucks pays above the award for any role. Its own rates are not published.",
@@ -64,7 +64,7 @@ export const STARBUCKS_PAY: EmployerPay = {
     },
     {
       q: "Does Starbucks Australia have an enterprise agreement?",
-      a: "We found none approved since 2016. The Fair Work Ombudsman's 2023 enforceable undertaking with Starbucks Coffee Australia dealt with its obligations under the Fast Food Industry Award, which sets the minimum pay for its staff.",
+      a: "We found no Starbucks Australia enterprise agreement approved since 2016. The Fair Work Ombudsman's 2023 enforceable undertaking with Starbucks Coffee Australia dealt with its obligations under the Fast Food Industry Award, which sets the minimum pay for its staff.",
     },
     {
       q: "Was Starbucks Australia fined for underpaying staff?",

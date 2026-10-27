@@ -78,10 +78,10 @@ export default function TaxReturnCalculatorContent() {
         </div>
         <p className="mb-4 text-warmgray">The calculation follows 4 steps:</p>
         <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-          <li><strong>Add up assessable income</strong> &mdash; salary, wages, interest, dividends and other income received in {THIS.incomeYear}</li>
-          <li><strong>Subtract allowable deductions</strong> &mdash; work-related expenses, self-education, donations and tax agent fees reduce your taxable income</li>
-          <li><strong>Apply the tax rates and offsets</strong> &mdash; tax is worked out on taxable income at marginal rates, then the Low Income Tax Offset (up to <strong>{formatAUD(LITO.maxOffset)}</strong>) is taken off and the <strong>{pct(MEDICARE_LEVY.rate)}</strong> Medicare levy is added</li>
-          <li><strong>Compare with tax withheld</strong> &mdash; the difference between your total tax and the tax already withheld is your refund or amount owing</li>
+          <li><strong>Add up assessable income</strong>: salary, wages, interest, dividends and other income received in {THIS.incomeYear}</li>
+          <li><strong>Subtract allowable deductions</strong>: work-related expenses, self-education, donations and tax agent fees reduce your taxable income</li>
+          <li><strong>Apply the tax rates and offsets</strong>: tax is worked out on taxable income at marginal rates, then the Low Income Tax Offset (up to <strong>{formatAUD(LITO.maxOffset)}</strong>) is taken off and the <strong>{pct(MEDICARE_LEVY.rate)}</strong> Medicare levy is added</li>
+          <li><strong>Compare with tax withheld</strong>: the difference between your total tax and the tax already withheld is your refund or amount owing</li>
         </ol>
         <p className="text-warmgray">
           For deadlines, refund times and what changed this year, see the <Link href="/tax-return-2026/" className="text-eucalyptus-dark hover:underline">2026 tax return guide</Link>. For tax on the pay you are earning now, use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
@@ -160,7 +160,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Who Uses This Tax Return Calculator?</h2>
         <p className="mb-4 text-warmgray">
-          Employees, contractors and retirees use it to estimate their refund before lodging through myTax or a tax agent.
+          Employees, contractors and retirees use this tax return calculator to estimate their refund or amount owing before lodging through myTax or a tax agent.
         </p>
         <ul className="space-y-3 text-warmgray mb-4">
           <li className="flex items-start gap-3">
@@ -177,7 +177,7 @@ export default function TaxReturnCalculatorContent() {
           </li>
           <li className="flex items-start gap-3">
             <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">4</span>
-            <span><strong>Study loan holders</strong> checking how much their compulsory repayment takes off the refund &mdash; for {THIS.incomeYear}, repayments start above <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong> and apply only to income above it</span>
+            <span><strong>Study loan holders</strong> checking how much their compulsory repayment takes off the refund. For {THIS.incomeYear}, repayments start above <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong> and apply only to income above it</span>
           </li>
           <li className="flex items-start gap-3">
             <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">5</span>
@@ -230,7 +230,7 @@ export default function TaxReturnCalculatorContent() {
           </table>
         </div>
         <p className="text-warmgray">
-          Lodging a return doesn&rsquo;t always produce a refund. People with more than one job, investment income with no tax withheld, or a study loan are the most likely to get a bill.
+          A tax return ends in a bill, not a refund, when too little tax was withheld during the year. People with more than one job, investment income with no tax withheld, or a study loan are the most likely to get a bill.
         </p>
       </section>
 
@@ -271,11 +271,11 @@ export default function TaxReturnCalculatorContent() {
           The ATO matches your return against data from employers, banks, share registries and government agencies. Avoiding these 5 mistakes protects your refund.
         </p>
         <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-          <li><strong>Leaving out income</strong> &mdash; bank interest, dividends, government payments and second jobs are all reported to the ATO. Missing them triggers an amendment.</li>
-          <li><strong>Claiming private expenses</strong> &mdash; travel between home and work, personal phone use and everyday clothing are not deductible.</li>
-          <li><strong>Claiming the tax-free threshold twice</strong> &mdash; only one employer should apply the <strong>$18,200</strong> tax-free threshold. Claiming it from two causes under-withholding and a bill.</li>
+          <li><strong>Leaving out income</strong>: bank interest, dividends, government payments and second jobs are all reported to the ATO. Missing them triggers an amendment.</li>
+          <li><strong>Claiming private expenses</strong>: travel between home and work, personal phone use and everyday clothing are not deductible.</li>
+          <li><strong>Claiming the tax-free threshold twice</strong>: only one employer should apply the <strong>$18,200</strong> tax-free threshold. Claiming it from two causes under-withholding and a bill.</li>
           <li><strong>Forgetting the Medicare levy surcharge</strong> &mdash; for {THIS.incomeYear}, singles earning above <strong>{formatAUD(THIS.mlsSinglesThreshold)}</strong> without private hospital cover pay 1% to 1.5% extra. Family thresholds are higher.</li>
-          <li><strong>Lodging too early</strong> &mdash; lodging before your income statement is &quot;tax ready&quot; risks missing pre-fill data. The ATO has most of it by {R.prefillReady}.</li>
+          <li><strong>Lodging too early</strong>: lodging before your income statement is &quot;tax ready&quot; risks missing pre-fill data. The ATO has most of it by {R.prefillReady}.</li>
         </ol>
         <p className="text-warmgray">
           Study loan repayments are based on &quot;repayment income&quot;, which can be higher than taxable income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your compulsory repayment.
@@ -287,7 +287,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Related Australian Tax Calculators</h2>
         <p className="mb-4 text-warmgray">
-          Estimating your tax return is one part of understanding your pay. These tools cover this year&rsquo;s pay, super, salary sacrifice and study loans.
+          The tax return calculator above estimates your refund or bill at the end of an income year. These tools cover this year&rsquo;s pay, super, salary sacrifice and study loans.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link href="/tax-return-2026/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
@@ -325,7 +325,7 @@ export default function TaxReturnCalculatorContent() {
           <li>Compares the result with your PAYG tax withheld to estimate your refund or amount owing.</li>
           <li>Uses taxable income for the surcharge and study loan tests. Real returns also add items such as reportable fringe benefits and super contributions.</li>
           <li>Does not include other offsets, foreign income, capital gains, rental income, franking credits or the private health insurance rebate adjustment.</li>
-          <li>This is an estimate only &mdash; lodge through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myTax</a> for your actual result.</li>
+          <li>This is an estimate only. Lodge through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myTax</a> for your actual result.</li>
         </ul>
       </MethodologyDisclosure>
 

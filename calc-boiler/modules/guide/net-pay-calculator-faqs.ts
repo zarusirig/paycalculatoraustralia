@@ -26,7 +26,7 @@ export const NET_PAY_CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "How much of an hour's pay do I keep after tax?",
-    a: "It depends on your income. On $40 an hour for 38 hours a week you keep about 80c in the dollar, or about $32 an hour; at $80 an hour you keep about 73c. The more you earn, the smaller the share, because higher bands are taxed at higher rates. The table on this page shows net pay per hour at common hourly rates.",
+    a: "On $40 an hour for 38 hours a week you keep about 80c in the dollar, or about $32 an hour; at $80 an hour you keep about 73c. Both figures assume the tax-free threshold is claimed and there is no HELP debt. The share you keep falls as your hourly rate rises, because each higher tax band is taxed at a higher rate. The table on this page shows net pay per hour at common hourly rates.",
   },
   {
     q: "Does casual loading count as part of my gross pay?",

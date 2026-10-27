@@ -12,7 +12,7 @@ const LIMIT = formatAUD(CARRY_FORWARD.totalSuperBalanceLimit);
 export const CARRY_FORWARD_FAQS: Faq[] = [
   {
     q: "What are carry-forward concessional contributions?",
-    a: `If you contribute less than the concessional cap in a year, the unused part can be carried forward and used in later years to contribute above the general cap, for up to ${CARRY_FORWARD.years} years. It lets you catch up on before-tax super contributions, for example by salary sacrificing or making a personal contribution you claim as a deduction.`,
+    a: `Carry-forward concessional contributions let you use unused concessional cap amounts from up to the previous ${CARRY_FORWARD.years} years to contribute above the general cap. If you contribute less than the concessional cap in a year, the unused part can be carried forward. This is how you catch up on before-tax super contributions, for example by salary sacrificing or making a personal contribution you claim as a deduction.`,
   },
   {
     q: "Who can use carry-forward contributions?",
@@ -20,19 +20,19 @@ export const CARRY_FORWARD_FAQS: Faq[] = [
   },
   {
     q: "What is the concessional contributions cap for 2026-27?",
-    a: `${CAP} from 1 July 2026. It was $30,000 for 2024-25 and 2025-26, $27,500 for 2021-22 to 2023-24, and $25,000 from 2017-18 to 2020-21.`,
+    a: `The concessional contributions cap is ${CAP} from 1 July 2026. It was $30,000 for 2024-25 and 2025-26, $27,500 for 2021-22 to 2023-24, and $25,000 from 2017-18 to 2020-21.`,
   },
   {
     q: "How long does an unused cap amount last?",
-    a: `Five years, then it expires. The ATO's example: a 2020-21 unused amount not used by the end of 2025-26 expires. So for 2026-27 you can use unused amounts from 2021-22 to 2025-26, and the 2021-22 amount is lost after 30 June 2027.`,
+    a: `An unused concessional cap amount lasts five years, then it expires. The ATO's example: a 2020-21 unused amount not used by the end of 2025-26 expires. So for 2026-27 you can use unused amounts from 2021-22 to 2025-26, and the 2021-22 amount is lost after 30 June 2027.`,
   },
   {
     q: "Which carry-forward amounts are used first?",
-    a: "The oldest. The ATO says the oldest available unused cap amounts are carried forward first, so the amount closest to expiring is used before newer ones. This happens automatically once your concessional contributions exceed the general cap for the year.",
+    a: "The oldest unused cap amounts are used first, the ATO says, so the amount closest to expiring is used before newer ones. This happens automatically once your concessional contributions exceed the general cap for the year.",
   },
   {
     q: "What counts as a concessional contribution?",
-    a: "Your employer's super guarantee, salary sacrifice contributions, any other employer contributions (including fees and insurance your employer pays for you) and personal contributions you claim a tax deduction for. Contributions count towards the cap in the year your super fund receives them.",
+    a: "Concessional contributions are your employer's super guarantee, salary sacrifice contributions, any other employer contributions (including fees and insurance your employer pays for you) and personal contributions you claim a tax deduction for. Contributions count towards the cap in the year your super fund receives them.",
   },
   {
     q: "How do I find my unused cap amounts?",

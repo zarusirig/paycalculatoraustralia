@@ -118,10 +118,14 @@ export default function NovatedLeaseCalculatorPage({
             Novated Lease Calculator: EV, PHEV and Petrol, With FBT
           </h1>
           <p className="text-lg text-warmgray">
-            See the pre-tax and post-tax deductions a novated lease puts on your payslip, the FBT (or the electric car
-            exemption), what it does to your take-home pay, and how the total compares with buying the same car from
-            after-tax income. FBT rates and the {LUXURY_CAR_TAX.financialYear} luxury car tax thresholds are read
-            from the ATO pages listed at the bottom, verified {NOVATED_LEASE_SOURCES.verifiedOn}.
+            This novated lease calculator shows the pre-tax and post-tax deductions a novated lease puts on your
+            payslip and the fringe benefits tax (FBT) on the car. For an eligible electric car it applies the
+            electric car FBT exemption instead. It then gives your take-home pay with and without the lease, and
+            compares the total over the lease term with buying the same car from after-tax income. Below the
+            calculator are your payslip lines, the electric car and PHEV rules, the employee contribution method
+            against the statutory formula, the HECS-HELP effect and residual values. FBT rates and the
+            {LUXURY_CAR_TAX.financialYear} luxury car tax thresholds are read from the ATO pages listed at the bottom,
+            verified {NOVATED_LEASE_SOURCES.verifiedOn}.
           </p>
           <TrustBar className="mt-4" />
         </section>

@@ -1,0 +1,598 @@
+[
+ {
+  "job": "t1-001-payg-withholding-tables",
+  "note": "The Related Resources list links both /schedule-5-tax-table/ and /bonus-tax-calculator/, and both are described as the Schedule 5 withholding method for bonuses, commissions and back payments (Method A / B(ii)). They look like near-duplicates."
+ },
+ {
+  "job": "t1-001-payg-withholding-tables",
+  "note": "This page sends readers to four different calculators for the same job of checking withholding (/tax-withheld-calculator/, /income-tax-calculator/, /take-home-pay-calculator/, /gross-pay-calculator/). Check which one owns the 'PAYG withheld' intent."
+ },
+ {
+  "job": "t1-002-spokes",
+  "note": "The painter, carpenter and bricklayer spokes share one FWO apprentice table (sharesTableWith). The AUDIT nearest sibling for painter is bricklayer (Jaccard 0.48). The painter page differs through its $9.89 tool allowance, the CW/ECW 1 classification warning and its hours and absence sections, so it is not a duplicate, but the pages overlap heavily."
+ },
+ {
+  "job": "t1-009-spokes",
+  "note": "On the carpenter page, the 'Three-Year Terms and the Rest of the Carpenter Group' section (source line 263) repeats nearly the same cl 21.1(a) trade list as the first facts paragraph (line 246). This is repetition within one page, not a duplicate URL. The section copy could be cut to a cross-reference in a later pass, but this pass could not do it because it would remove the $41.22 figure from that string."
+ },
+ {
+  "job": "t1-010-fortnightly-tax-table",
+  "note": "The AUDIT marks this page deserves_page=near-duplicate. FyTableLinks/fyPath produce /fortnightly-tax-table/{fy}/ pages (modules/tax-tables/fy-tax-table-data.ts:84). /fortnightly-tax-table/2026-27/ most likely duplicates this page's intent ('fortnightly tax table 2026'). The 2025-26 table also sits on this page behind the year toggle, so it overlaps the 2025-26 FY page too. Consider a canonical, or merging the current-year FY page into this URL."
+ },
+ {
+  "job": "t1-013-bws",
+  "note": "/pay-rates/dan-murphys/ spreads BWS_PAY, so it inherits the coverage, next-increase detail, junior note, penalty notes and 'not shown' list word for word from bws.ts. Only the notices and FAQs differ. The two pages are near-duplicates apart from the Duty Manager row; the audit already marks the BWS page as a 'thin variant'."
+ },
+ {
+  "job": "t1-014-super-contribution-caps-2026-27",
+  "note": "/news/super-tax-changes-explained/ restates the cap figures and the transfer balance cap move from /news/super-contribution-caps-2026-27/ and /news/transfer-balance-cap-increase-2026/, and the Division 296 detail from /news/division-296-super-tax-starts/. It works as a hub for those pages. Watch it for overlap with the Division 296 page on 'who Division 296 affects' queries."
+ },
+ {
+  "job": "t1-015-centrelink-changes-july-2026",
+  "note": "centrelink-changes-july-2026 covers only Family Tax Benefit despite the broad 'Centrelink changes' slug, so its intent overlaps any dedicated FTB rates page. Check for an FTB hub before treating it as distinct."
+ },
+ {
+  "job": "t1-015-centrelink-changes-july-2026",
+  "note": "deeming-rates-change-2026 (March) and the September 2026 Age Pension/deeming story (lib/news.ts:750) both target 'deeming rates change 2026'. Check for cannibalisation."
+ },
+ {
+  "job": "t1-017-virgin-australia",
+  "note": "/pay-rates/zambrero/ spreads SUBWAY_PAY and takes its rates, junior scale, penalties and overtime directly from subway.ts. Only the Level 1 description, the coverage, the notices and the FAQs differ, so the tables match /pay-rates/subway/ exactly (and any other fast-food employer built on the same base). It is a near-duplicate risk for the scaled-content signal."
+ },
+ {
+  "job": "t1-018-tax-time-2026-whats-new",
+  "note": "tax-time-2026-whats-new overlaps with july-1-2026-money-changes and medicare-levy-thresholds-2026 on the Medicare threshold content. Its distinct intent (what changes on the 2025-26 return) holds, but the reviewer should check that the overlapping sections do not repeat word for word."
+ },
+ {
+  "job": "t1-019-monthly-tax-table",
+  "note": "AUDIT marks /monthly-tax-table/ as near-duplicate. The current-year landing page (FY 2026-27) renders the same table, coefficients and examples as the year-locked page /<monthly slug>/2026-27/ (fyPath in modules/tax-tables/fy-tax-table-data.ts), which FyTableLinks links from this page. Decide which URL owns 'monthly tax table 2027'."
+ },
+ {
+  "job": "t1-024-hourly-to-annual-salary-calculator-faqs",
+  "note": "period-pay-table renders on both /weekly-pay-calculator/ and /fortnightly-pay-calculator/. The AUDIT marks the weekly page as a 'thin variant', so the shared table plus template copy is a near-duplicate signal between the two URLs. The table footnote is locked (it contains HECS-HELP), so I left it unchanged."
+ },
+ {
+  "job": "t1-025-schedule-5-tax-table-faqs",
+  "note": "The fortnightly and monthly FAQ files repeat the weekly CSV answer and the 'whichever financial year is selected' wording almost word for word. The AUDIT already marks /fortnightly-tax-table/ and /monthly-tax-table/ as near-duplicates."
+ },
+ {
+  "job": "t1-029-fy-tax-table",
+  "note": "The 2025-26 pages cover one ATO edition shared by 2024-25 and 2025-26, and they say so themselves. They are distinct from the 2026-27 pages because they show different figures and a different 'what changed' section. No merge is suggested."
+ },
+ {
+  "job": "t1-030-hecs-20-percent-cut-status",
+  "note": "/news/hecs-marginal-repayment-first-tax-time/ repeats the $80,000 / $10,472 worked example and the 15c-over-$69,528 explanation from /news/hecs-repayment-threshold-2026-27/ (line 53 of that file). Its distinct angle is the tax-time reconciliation and the two-jobs shortfall. Once the FY2025-26 vs FY2026-27 fact question is resolved, keep the two pages apart by year or merge the reconciliation section into the threshold page."
+ },
+ {
+  "job": "t1-034-index",
+  "note": "The hub FAQs \"Are teacher aides paid during school holidays?\" (line 1005) and \"Which states pay teacher aides across the school holidays?\" (line 1013) answer almost the same question on /school-support-staff-pay/ and describe WA and Victoria differently. Consider merging them into one answer."
+ },
+ {
+  "job": "t1-035-payday-super-employees-payslip",
+  "note": "payday-super-employees-payslip and payday-super-starts-july-2026 overlap: both cover the 7-business-day deadline, how to check your fund and the superannuation calculator. Their intents differ (what your payslip shows vs how the rules work for employers), but the two 'how to check' sections are close to duplicates."
+ },
+ {
+  "job": "t1-036-red-rooster",
+  "note": "The Red Rooster, Starbucks and Spotlight pages spread the rates, juniors and penalties from subway.ts or iga.ts. The only content unique to each page is the coverage, notices, unverified items and FAQs, which matches the AUDIT 'thin variant' verdict for Starbucks."
+ },
+ {
+  "job": "t1-039-anaconda",
+  "note": "Anaconda and Spotlight pay-rates pages show the same General Retail Industry Award table and say they have no store agreement. Their notices were near-identical. I reworded the Anaconda notice to make it specific to Anaconda, but the two URLs remain close variants (the AUDIT marks Anaconda 'thin variant')."
+ },
+ {
+  "job": "t1-040-hecs-repayment-threshold-2026-27",
+  "note": "The 'HECS' section of july-1-2026-money-changes repeats the opening of hecs-repayment-threshold-2026-27 (threshold $69,528, 15c marginal rate). It links there, so this is roundup overlap, not a duplicate page."
+ },
+ {
+  "job": "t1-041-award-transport-payments-withholding-october-2026",
+  "note": "/news/award-wage-increase-2026-industries/ overlaps heavily with /news/minimum-wage-increase-july-2026/. Both explain the 4.75% award rise against the NMW rise from the same Annual Wage Review 2026, with the same effective-date wording. The industries page only stands apart if it gets per-award rate tables."
+ },
+ {
+  "job": "t1-042-division-296-super-tax-starts",
+  "note": "The Division 296 article (/news/division-296-super-tax-starts/) may overlap with /news/super-tax-changes-explained/. Check whether the second page repeats the Division 296 mechanics instead of linking to this one."
+ },
+ {
+  "job": "t1-042-division-296-super-tax-starts",
+  "note": "The federal budget article repeats the 1 July 2026 cut detail that /news/tax-cut-july-2026/ owns. It already links there; the overlap is limited to one sentence."
+ },
+ {
+  "job": "t1-044-costco",
+  "note": "Dan Murphy's imports almost everything from bws.ts (same Endeavour Group Retail Agreement 2025). The only differences are the Duty Manager row, no in-charge allowance, and its own notices and FAQs. /pay-rates/dan-murphys/ and /pay-rates/bws/ are likely near-duplicates apart from that. Dan Murphy's has the stronger demand (84 pre-crash clicks on casual-rate queries)."
+ },
+ {
+  "job": "t1-044-costco",
+  "note": "Cotton On spreads IGA_PAY (Retail Award). Its rates, penalties and overtime match /pay-rates/iga/ and the other Retail Award employer pages. What sets it apart is the published FWO junior dollars and the coverage evidence about the distribution centre agreement."
+ },
+ {
+  "job": "t1-045-medicare-levy-thresholds-2026",
+  "note": "minimum-wage-increase-july-2026 and new-minimum-wage-take-home-pay share the $26.44 / $1,004.90 / 25% casual loading facts and overlapping FAQs (casual rate, when it starts). Their intents are distinct (news of the rise vs after-tax lookup), but both lead paragraphs open on the same figure. Keep the take-home page focused on after-tax figures."
+ },
+ {
+  "job": "t1-046-fy-links",
+  "note": "The monthly-tax-table FAQs on 4.33 weeks / the x3 / 13 conversion and the 33-cent rule repeat the body copy in modules/tax-tables/monthly-tax-table.tsx (lines 164 and 176). That is repetition within one page, not across URLs, but it adds to the near-duplicate AUDIT verdict for /monthly-tax-table/ against the /monthly-tax-table/2026-27/ year page."
+ },
+ {
+  "job": "t1-048-big-w",
+  "note": "Boost Juice imports all rates, penalties and overtime from subway.ts (Fast Food Award). Its rate, junior and penalty tables match Subway, McDonald's and the other Fast Food Award employer pages. What makes the Boost Juice page distinct is only its coverage, notices and FAQ prose, so those sibling pages are close to duplicates on the tables."
+ },
+ {
+  "job": "t1-050-index",
+  "note": "The AUDIT marks the homepage deserves_page=near-duplicate. Its body repeats the full tax, Medicare, LITO, MLS, super and HECS explainer from /take-home-pay-calculator/, /income-tax-calculator/, /medicare-levy-surcharge-calculator/ and /hecs-help-calculator/. The head term \"pay calculator\" / \"salary calculator\" is probably split across these URLs."
+ },
+ {
+  "job": "t1-051-junior-pay-rates",
+  "note": "The AUDIT marks /junior-pay-rates/ as a 'thin variant'. Its top queries are age-specific ('minimum wage australia 14 year old', '15 year old'), and the /minimum-wage-by-age/{age}/ pages linked from the at-a-glance table also target those queries. Check whether the hub and the age pages split the same queries."
+ },
+ {
+  "job": "t1-053-mcdonalds",
+  "note": "Domino's and Red Rooster use the same Fast Food Award figures as McDonald's (a test enforces identical rates, junior rates and penalties). Their pages are near-duplicates of /pay-rates/mcdonalds/ apart from employer-specific notes, and the reviewer should check their prose does not repeat McDonald's sentence shapes."
+ },
+ {
+  "job": "t1-054-jb-hi-fi",
+  "note": "/pay-rates/liquorland/ imports its rates, penalties, overtime and sources from coles.ts. Its hourly, penalty and overtime figures are the same as /pay-rates/coles/. What makes it distinct is the liquor-only terms: Level 1 and Level 3 titles only, no junior rates (Appendix 3 is Coles Supermarkets only), the liquor licence allowance and the 6-hour meal break rule. The AUDIT still marks it as a distinct intent, but the reviewer should watch for overlap with the Coles page."
+ },
+ {
+  "job": "t1-054-jb-hi-fi",
+  "note": "/pay-rates/jb-hi-fi/ uses the IGA_PAY award transcription, so its rate table is identical to /pay-rates/iga/ and every other award-only retailer page. Only the coverage, notices, FAQ answers and unverified items are specific to JB Hi-Fi."
+ },
+ {
+  "job": "t1-060-ato-downloads",
+  "note": "The AUDIT marks /fortnightly-tax-table/ and /monthly-tax-table/ as near-duplicates. They are most likely near-duplicates of their /2026-27/ financial-year children, which render the same CoefficientTables, FullTaxTable and downloads-manifest components with the same financial year locked. This pass only changed template prose, so the merge decision is still open."
+ },
+ {
+  "job": "t1-065-fortnightly-pay-calculator-content",
+  "note": "The top query for this URL is 'how many fortnights in a year' (1,934 of the page's clicks). The 'How Many Fortnights Are in a Year?' section here overlaps with /fortnights-in-a-year/, which this page links to as the pay date calculator. Check the two URLs are not splitting that head term."
+ },
+ {
+  "job": "t1-069-adf-pay-scales",
+  "note": "The template at modules/guide/adf-pay-scales.tsx renders four pages: the /adf-pay-scales/ hub and three service pages (army, navy, air-force). The service pages repeat the hub's Notices, TakeHomeNote, trainee table and Footer word for word. Their intros, FAQs and pay-grade lists are specific to each service, so I don't see a duplicate URL. A reviewer may want to check how much the three service pages overlap with each other."
+ },
+ {
+  "job": "t1-071-junior-pay-rates-faqs",
+  "note": "The 14, 15 and 16-year-old FAQs on /junior-pay-rates/ answer the same queries as the /minimum-wage-by-age/<age>/ pages (for example /minimum-wage-by-age/15/), so check for cannibalisation on 'minimum wage australia 14 year old' and '15 year old'."
+ },
+ {
+  "job": "t1-072-weekly-pay-calculator-content",
+  "note": "The /weekly-pay-calculator/ section 'How Much Tax Is Taken Out of My Weekly Pay?' and the withholding table overlap heavily with /weekly-tax-table/. The AUDIT marks this page as a 'thin variant'. Check that the two pages split intent (calculator vs full ATO table) and do not compete for 'weekly tax calculator'."
+ },
+ {
+  "job": "t1-073-minimum-wage-by-age-data",
+  "note": "/minimum-wage-by-age/14/ and /minimum-wage-by-age/15/ show identical rate tables (same under-16 band on every scale). Only the state child-employment rules and the FAQs separate them, so they are near-duplicates on the rate query."
+ },
+ {
+  "job": "t1-076-home-faqs",
+  "note": "The homepage AUDIT says deserves_page=near-duplicate. The FAQs on take-home pay at $80,000 and $100,000, and on weekly, fortnightly and monthly pay, likely overlap the salary-calculator and the $80k and $100k salary result pages. The withholding and second-job FAQs already hand off to /income-tax-calculator/, as the file's scope rule requires."
+ },
+ {
+  "job": "t1-084-home-calculator",
+  "note": "The homepage AUDIT row says deserves_page=near-duplicate. Its top queries (weekly tax calculator, salary calculator, take home pay calculator) overlap the dedicated weekly and fortnightly pay calculator pages, which this card already links to through HEAD_TERM_PRIMARY."
+ },
+ {
+  "job": "t1-092-page",
+  "note": "The AUDIT marks all 26 grade pages (APS 3 to EL2, VPS 2 to 7, QLD AO and SA ASO levels) as 'thin variant'. The page openings come from modules/guide/aps-grade-page and modules/guide/state-level-page, not this route file, so whether each level page is different enough from its jurisdiction page (/public-service-pay-scales/aps/ etc.) has to be judged in those units."
+ },
+ {
+  "job": "t1-037-david-jones",
+  "note": "Event Cinemas and Hoyts take their rates, juniors, penalties and overtime from the same award transcription. Before this pass the Event Cinemas penalty note and junior note were word for word the Hoyts ones. Event Cinemas now names itself in both, but the Hoyts copy is unchanged. Domino's, GYG and Subway (and Harvey Norman and IGA) also share all their rate tables, so the per-employer prose is what keeps those pages distinct."
+ },
+ {
+  "job": "t2-001-lease-guide",
+  "note": "The guide overlaps with /novated-lease-calculator/ (its FAQs and explanatory copy cover ECM, the EV exemption and the reportable fringe benefits amount). The guide is distinct as mechanics and the calculator as numbers, but the two pages should not answer the same FAQ questions."
+ },
+ {
+  "job": "t2-002-superannuation-guide",
+  "note": "The superannuation guide overlaps with /payday-super/, /concessional-contributions-cap/ and /super-guarantee-rate-history/ (rate history table, Payday Super deadlines, caps). Check that its intent stays the broad hub and does not compete with those pages for the same queries."
+ },
+ {
+  "job": "t2-005-income-test",
+  "note": "AUDIT marks this page near-duplicate. The 'Current Maximum Rates and Indexation Dates' table (lines 207-219) repeats /centrelink-payment-rates/, and the JobSeeker worked example and taper explanation overlap /jobseeker-payment-calculator/, which most likely owns 'jobseeker payment calculator australia'."
+ },
+ {
+  "job": "t2-006-calculator-content",
+  "note": "The 'available-items', 'who-benefits', 'risks-downsides', 'how-to-set-up' and 'fbt-implications' sections came from the merged salary sacrifice guide (2026-08-28). The 'Who Benefits Most' table repeats the 'Tax Benefits' table (lines 160-197) with the same rates and savings, and the HECS and cap-excess points appear in both 'Common Mistakes' and 'Risks'. This is within-page duplication, not a duplicate URL, but it is worth consolidating."
+ },
+ {
+  "job": "t2-012-rates-guide",
+  "note": "The awards and penalty material does not look like a duplicate. The FY2026-27 tax section (lines 236-240, 334) repeats bracket text that the Income Tax Calculator and Medicare levy pages likely already carry. Check that this page is not competing for tax-bracket queries."
+ },
+ {
+  "job": "t2-013-state-index",
+  "note": "The 8 /minimum-wage/{state}/ pages share one template, and the AUDIT marks each one 'thin variant'. Their per-state data in this chunk (NSW, VIC, WA) is specific to each state and differs from the others. The near-duplicate risk is the shared template prose and the identical national-rate opening, not this data."
+ },
+ {
+  "job": "t2-015-state-index",
+  "note": "The QLD stateWage paragraph at line 449 and the QLD youngWorkers paragraph at line 454 both say under-21s on a Queensland modern award get award junior rates rather than the Queensland minimum wage, so the same page says it twice. I kept both because both carry the fact. A reviewer could drop one."
+ },
+ {
+  "job": "t2-025-calculator-content",
+  "note": "/age-pension-assets-test-calculator/ and /age-pension-income-test-calculator/ overlap: both run the income test with the Work Bonus and link to each other. They target different queries (assets thresholds versus income test and Work Bonus), so they look distinct, not near-duplicates."
+ },
+ {
+  "job": "t2-028-guide-faqs",
+  "note": "/annual-leave-calculator/, /leave-calculator/ and /annual-leave-guide/ all cover payout tax on unused annual leave and the super-on-payout rule. A code comment says the intent split is deliberate: accrual on the calculator page, payout on /leave-calculator/, the long-form guide on /annual-leave-guide/. Still, check the three pages for repeated payout-tax paragraphs."
+ },
+ {
+  "job": "t2-033-wage-australia",
+  "note": "/minimum-wage/{state}/ (8 pages) repeat the national rate, the after-tax figure and the casual rate from /minimum-wage-australia/ in their direct answers. The state-specific value is in the sections below the calculator (state system, young workers, holidays, payroll tax, LSL). For the 6 states other than WA (and possibly the ACT and NT), the AUDIT 'thin variant' rating suggests checking whether they should stay separate URLs."
+ },
+ {
+  "job": "t2-033-wage-australia",
+  "note": "/minimum-wage-by-age/14-20/ (7 pages) are all rated 'thin variant'. Their rate tables differ by age, but the template prose is shared."
+ },
+ {
+  "job": "t2-034-home-deductions",
+  "note": "The WFH fixed-rate FAQ in modules/guide/tax-refund-guide-faqs.ts (line 64) repeats the core answer of /work-from-home-deductions/ (rate, what it covers, full-year hours record). Check that it links to the WFH page and does not compete with it."
+ },
+ {
+  "job": "t2-037-pay-calculator",
+  "note": "/first-job-pay-guide/ repeats parts of /tax-file-number-declaration/ (claiming the tax-free threshold, second job), /understanding-your-payslip/ (the payslip line table) and /junior-pay-rates/ (the under-18 section). It is still a distinct intent but should lean on internal links instead of repeating that content."
+ },
+ {
+  "job": "t2-040-calculator-qld",
+  "note": "The QLD, SA and TAS state pay calculator pages share one template (state-sections components). Their hand-written prose is state-specific, but the deserves_page=thin variant verdict on all three stands. On the SA page, the hero and the 'How much do you keep' section both made the 'no state income tax' point, so I kept that point only in the section."
+ },
+ {
+  "job": "t2-042-medicare-faqs",
+  "note": "/private-health-insurance-medicare/ repeats the MLS tier table and the break-even logic of /medicare-levy-surcharge-calculator/. Its own ground is the comparison of PHI and the surcharge, the rebate and LHC. Check that the two pages are not competing for 'medicare levy surcharge thresholds'."
+ },
+ {
+  "job": "t2-045-holiday-tax",
+  "note": "The section at lines 70 and 223 overlaps with /non-resident-tax/ (WHM rates above $45,000 mirror non-resident rates). It is a distinct intent and needs no merge, but keep the non-resident detail on that page."
+ },
+ {
+  "job": "t2-046-job-checklist",
+  "note": "/new-job-checklist/ overlaps with /first-job-pay-guide/ and /tax-file-number-declaration/. The TFN declaration and tax-free threshold items repeat both pages, so check whether these pages compete for the same queries."
+ },
+ {
+  "job": "t2-049-calculator-faqs",
+  "note": "contractor-vs-employee-calculator-faqs.ts has two near-duplicate GST FAQs ('Do I need to register for GST as a contractor?' line 34 and 'Do contractors have to charge GST?' line 83). It also has two overlapping super FAQs ('Do contractors have to pay super?' line 30 and 'Are contractors entitled to superannuation?' line 70). Consider merging each pair within the page and the FAQPage schema."
+ },
+ {
+  "job": "t2-050-act-faqs",
+  "note": "Both pages are AUDIT 'thin variant'. The tax maths (federal), WorkedExample, AbsEarningsTable and FAQ shapes (income tax same in every state, payroll tax is the employer's, MLS/HECS federal) repeat across all eight /pay-calculator-<state>/ pages. The only unique parts are public holidays, LSL, ACT PSSap super and AWOTE level. The reviewer should consider whether the state pages need more state-only content, or should be consolidated toward the main calculator."
+ },
+ {
+  "job": "t2-054-subsidy-calculator",
+  "note": "/commission-tax-calculator/ uses the same engine as /bonus-tax-calculator/ (the code comment says so, and the FAQ says the only difference is the payslip label). It still has its own query set ('is commission taxed'), so I see no merge, but the reviewer should check the two pages' copy is not near-duplicate."
+ },
+ {
+  "job": "t2-055-tax-content",
+  "note": "The /payroll-tax/ hub and /payroll-tax-calculator/ use the same RatesTable, ComparisonGrid, TaxableWagesList and four of the same FAQ answers (HUB_FAQS reuses CALCULATOR_FAQS.slice(1, 5)), so the two pages overlap heavily. The hub's job is the lookup intent and the calculator page's job is the calculate intent; keep that split clear."
+ },
+ {
+  "job": "t2-060-guide-faqs",
+  "note": "The /tax-refund-guide/ FAQs 'How long does a tax return take?' and 'How long does a tax refund take to arrive?' (lines 50-57) give almost the same answer with the same three figures. I could not merge or reorder them here because the questions are locked and the expression order must stay. Consider dropping one FAQ."
+ },
+ {
+  "job": "t2-060-guide-faqs",
+  "note": "/tax-return-2026/ has two deadline FAQs: 'When is the tax return deadline in 2026?' (line 16) and 'When do I have to lodge my tax return?' (line 60). The second one covers the first, plus the exceptions."
+ },
+ {
+  "job": "t2-060-guide-faqs",
+  "note": "The refund-timing answer ('The ATO says most returns lodged online through myTax are processed in X business days...') appears almost word for word on /tax-refund-guide/ (lines 52 and 56) and /tax-return-2026/ (line 28). That is a sentence repeated across URLs."
+ },
+ {
+  "job": "t2-061-salary-faqs",
+  "note": "The air traffic controller page says the same thing twice. AVIATION_COPY howPayWorks[2] in aviation-pay.tsx line 48 says RAAF controllers are ADF members on ADF pay scales. The ATC notice in lib/data/aviation-pay/air-traffic-controller.ts says the same. Both carry a fact, so I left them; a reviewer could drop one."
+ },
+ {
+  "job": "t2-063-award-rates",
+  "note": "/hospitality-award-rates/ (MA000009 rate tables) and /retail-hospitality-pay-guide/ cover similar ground, but the intents look different: rate lookup versus a rights and rosters guide. They are already linked to each other, and no merge is suggested."
+ },
+ {
+  "job": "t2-064-tax-offset",
+  "note": "/marginal-tax-rates/ and /tax-brackets/ share the 2026-27 scale and the marginal vs average explanation. The page says it is deliberately the 'raise question' page and links to /tax-brackets/ for the scale, so it should stay separate if the raise/all-in-band angle stays distinct. Watch for cannibalisation on 'marginal tax rate' queries."
+ },
+ {
+  "job": "t2-068-pilon-calculator",
+  "note": "public-holiday-pay-calculator.tsx renders on 17 pages: 8 state variants plus the Christmas, Boxing Day and New Year's Day pages. The AUDIT marks NSW, VIC, QLD, SA, TAS and ACT as 'thin variant', so check those state pages for near-duplication of /public-holiday-pay/. This chunk does not hold their openings (their intros come from the intro prop), so no centerpiece rewrite was possible here."
+ },
+ {
+  "job": "t2-069-concessional-faqs",
+  "note": "/casual-conversion/ (pay comparison section and the 'Is it better to stay casual or become permanent?' FAQ) overlaps with /casual-loading-calculator/ ('Is casual or permanent better paid?' FAQ). The two use different break-even models: 52/1.25 weeks versus a leave-equivalent loading. Keep each one to its own intent and keep the cross-link."
+ },
+ {
+  "job": "t2-071-calculator-content",
+  "note": "The 'How Does Employee vs Contractor Cost Compare?' section repeats intent served by /contractor-vs-employee-calculator/. It is short and links there, so this is low risk, but the reviewer should make sure the two pages do not compete for 'contractor vs employee cost'."
+ },
+ {
+  "job": "t2-072-calculator-wa",
+  "note": "The 8 /pay-calculator-<state>/ pages share the same take-home calculator, minimum wage block, pay-facts list, worked example template and payroll tax box, and income tax is identical across states. Only holidays, long service leave, payroll tax and the ABS figures differ. The AUDIT already marks all 8 as 'thin variant'."
+ },
+ {
+  "job": "t2-077-pay-report",
+  "note": "/australian-pay-report-2026/ ranks for average weekly wage and AWOTE 2026 queries, which /average-salary-australia/ also targets (\"abs average weekly earnings australia 2026\"). Both pages show ABS AWE/EE figures, so there is a risk of cannibalisation. Consider making the pay report link to /average-salary-australia/ as the canonical AWOTE answer, or the reverse."
+ },
+ {
+  "job": "t2-077-pay-report",
+  "note": "/australian-tax-and-pay-data/ and /australian-pay-report-2026/ are both downloadable-dataset pages that repeat the same 2026-27 tax cut paragraph (16% to 15%, 14% from 1 July 2027). Their intents differ (raw rate tables vs computed take-home study), but the duplicated tax-cut prose is worth trimming on one of them."
+ },
+ {
+  "job": "t2-079-trades-pay",
+  "note": "The apprentice wage queries for /construction-trades-pay/ overlap with /apprentice-pay-rates/ (which has the calculator) and the apprentice electrician job-pay-rates page (same MA000025 data). Decide which URL owns 'apprentice wage calculator'."
+ },
+ {
+  "job": "t2-081-superannuation-faqs",
+  "note": "/tax-return-calculator/ FAQs 'How much will my tax refund be?' and 'How much tax will I get back?' (tax-return-calculator-faqs.ts lines 38 and 42) give the same answer with the same worked example. This is duplication inside one page, not across URLs."
+ },
+ {
+  "job": "t2-082-calculator-tas",
+  "note": "The TAS, VIC and WA state pay calculator pages share one section template (StatePayFacts, WorkedExample, AbsEarningsTable, PublicHolidayTable, LSL, payroll tax). Their hand-written prose is state-specific, so they are not near-duplicates, but the AUDIT marks all three as 'thin variant'."
+ },
+ {
+  "job": "t2-083-childhood-teacher",
+  "note": "No merge signals. /job-pay-rates/electrical-engineer/ is closest to /job-pay-rates/mechanical-engineer/ (Jaccard 0.37), but the intents are distinct: different ATO codes, the Electrical Power Industry Award exclusion, and the electronics engineer comparison."
+ },
+ {
+  "job": "t2-085-tax-faqs",
+  "note": "/rideshare-delivery-earnings-after-tax/ overlaps /gig-economy-pay-guide/ on ABN, GST, BAS and deductions, and /delivery-driver-pay-rate/ on the delivery floor. The intent differs (after-tax calculator vs general guide), so no merge is suggested, but internal anchors should keep that split."
+ },
+ {
+  "job": "t2-086-guide-faqs",
+  "note": "The Stage 3 FAQs on /tax-bracket-history/ ('When did the Stage 3 tax cuts take effect?', 'What was the original Stage 3 plan?', 'How much do I save at $80,000 under Stage 3?') probably overlap /stage-3-tax-cuts/. Check that the two pages do not compete for the same Stage 3 queries."
+ },
+ {
+  "job": "t2-087-rates-nurse",
+  "note": "Nurse page: FAQ 1 ('How much do nurses get paid in Australia?') and FAQ 7 ('What do registered nurses actually earn in Australia?') open with the same sentence about the JSA median. This is duplication within one page, not across URLs. Consider merging the two FAQs."
+ },
+ {
+  "job": "t2-088-rates-receptionist",
+  "note": "/job-pay-rates/retail-worker/ renders the same RETAIL_RATES, RETAIL_PENALTIES and RETAIL_OVERTIME constants as /retail-award-rates/ (Levels 1 to 8, the same penalty and overtime tables). Check whether the two pages overlap enough to be near-duplicates for 'retail award rate' queries."
+ },
+ {
+  "job": "t2-090-award-faqs",
+  "note": "/retail-hospitality-pay-guide/ FAQs (casual loading, weekend penalties, junior scales, public holiday rate) repeat answers that /retail-award-rates/ and /hospitality-award-rates/ already own. Its distinct value is the cross-award comparison and the rights section. Watch for cannibalisation on 'hospitality award rates qld' and 'retail casual rates'."
+ },
+ {
+  "job": "t2-091-rates-accountant",
+  "note": "The six G3 pages built from allied-health-g3.ts (speech pathologist, audiologist, podiatrist, dietitian, plus radiographer and sonographer) share entryParagraph, levelsParagraph, multiAqfNotice and four sharedFaqs. The AUDIT marks speech-pathologist, audiologist, podiatrist and dietitian as 'thin variant', with Jaccard 0.70 to 0.78 between them. This pass can only change wording, not the shared template, so the near-duplicate signal stays. Those four pages need profession-specific facts, or a merge into one HPSS allied health page."
+ },
+ {
+  "job": "t2-099-type-calculator",
+  "note": "/employment-type-calculator/ (H1 'Part-Time vs Full-Time vs Casual Calculator') looks like a near-duplicate of /full-time-vs-part-time-vs-casual/, and overlaps /casual-loading-calculator/ and /casual-conversion/. Its top queries ('casual loading rate calculator', 'full time vs casual calculator') are split across those URLs."
+ },
+ {
+  "job": "t2-099-type-calculator",
+  "note": "/final-pay-calculator/ overlaps /termination-payment-tax-calculator/ on 'final pay tax calculator' and termination tax. Check which URL should own the tax-on-final-pay intent."
+ },
+ {
+  "job": "t2-105-calculator-faqs",
+  "note": "Salary sacrifice content on /superannuation-calculator/ (two sections, lines 116-144) overlaps the /salary-sacrifice-calculator/ page. It is kept as a short summary with links, but it should not grow."
+ },
+ {
+  "job": "t2-109-calculator-faqs",
+  "note": "The AUDIT marks /apprentice-pay-rates/ and /apprentice-pay/painter/ as thin variants. All 10 apprentice pages share this one calculator template, whose prose is generic to every trade (only the award name, code and clause expressions differ). Check whether /apprentice-pay-rates/ duplicates the trade pages."
+ },
+ {
+  "job": "t2-111-guide-faqs",
+  "note": "The /net-pay-calculator/ FAQs (net pay vs take-home pay, why net pay is lower) overlap /take-home-pay-calculator/ and /gross-vs-net-pay/. The source comment says the page is distinct because it uses the hourly rate. Check the SERP overlap."
+ },
+ {
+  "job": "t2-112-leave-content",
+  "note": "The 8 state spokes share one template. Their openings come from j.summary and their body from LSL_STATE_DETAIL, which are outside this unit. The template sentences on the spoke pages (annual-leave note, tax line) now name long service leave and stay built around per-state expressions."
+ },
+ {
+  "job": "t2-113-pay-calculator",
+  "note": "/gross-vs-net-pay/ has a net-to-gross mode in its converter that overlaps /gross-pay-calculator/, which owns the 'net to gross calculator' queries. Consider stating each page's distinct job: payslip withholding vs annual gross salary target."
+ },
+ {
+  "job": "t2-113-pay-calculator",
+  "note": "/income-tax-calculator/ is AUDIT 'thin variant'. Its bracket table, tax-on ladder and 2025-26 vs 2026-27 comparison overlap /tax-brackets/, /tax-on/ and /stage-3-tax-cuts/."
+ },
+ {
+  "job": "t2-117-pay-aps",
+  "note": "The APS grade pages (/public-service-pay-scales/aps/aps-3/ to /el2/) are flagged 'thin variant' in AUDIT, with Jaccard 0.93 to 0.97 between siblings. The band summaries in this unit render as a paragraph on each of them (modules/guide/aps-grade-page.tsx:128), and they are now full sentences. The near-duplication comes from the shared grade template, which is outside this unit."
+ },
+ {
+  "job": "t2-118-pay-guide",
+  "note": "The gig-economy-pay-guide overlaps /rideshare-delivery-earnings-after-tax/ (in the sidebar) on the 'uber eats tax calculator' and 'uber tax calculator australia' queries. Check which URL should own the calculator intent."
+ },
+ {
+  "job": "t2-120-pay-index",
+  "note": "The QLD, SA and WA scales each list all six professions (pharmacist, radiographer, physiotherapist, psychologist, occupational therapist, sonographer), so the same entryRule, status and notes paragraphs render word for word on all six profession pages. Each state's text is specific to its instrument, but the six pages share these blocks. The per-profession difference comes only from professionNotes (SA and WA psychologist) and the NSW/VIC profession-specific scales."
+ },
+ {
+  "job": "t2-121-mortgage-faqs",
+  "note": "/salary-sacrifice-vs-mortgage/ links to /salary-sacrifice-calculator/ twice in the sidebar, once labelled 'Salary Sacrifice Calculator' and once 'Salary Sacrifice Guide'. Both labels point to the same URL."
+ },
+ {
+  "job": "t2-122-calculator-content",
+  "note": "The 'How Does Contractor Take-Home Pay Compare to Employee Pay?' section and the 'Contractor vs Employee: Compare Side-by-Side' box overlap with /contractor-vs-employee-calculator/. Consider keeping only the link here so the two URLs do not compete for 'contractor vs employee' queries."
+ },
+ {
+  "job": "t2-123-rates-engineer",
+  "note": "/job-pay-rates/engineer/ uses the JSA ANZSCO 2332 Civil Engineering Professionals median ($2,217 a week), which is the same median /job-pay-rates/civil-engineer/ uses (civil-engineer.ts line 49). The two pages share an award (MA000065) and a median, so they overlap. The engineer page only stays distinct as a hub that links to the civil, electrical and mechanical spokes."
+ },
+ {
+  "job": "t2-124-calculator-content",
+  "note": "The calculator page and /novated-lease-guide/ are split on purpose (calculator intent against explainer intent, per the code comment). The related-links card already separates them, and I saw nothing suggesting they are near-duplicates."
+ },
+ {
+  "job": "t2-126-cap-faqs",
+  "note": "/construction-trades-pay/ ranks for 'apprentice wage calculator' and 'apprentice pay calculator', which overlap with the existing /apprentice-pay/ and /apprentice-pay-rates/ routes. This looks like a query split across three URLs, so check for cannibalisation."
+ },
+ {
+  "job": "t2-126-cap-faqs",
+  "note": "/concessional-contributions-cap/ ranks for 'carry forward concessional contributions calculator', which overlaps with /carry-forward-concessional-contributions-calculator/. The cap page already links to it, so keep the intents separate."
+ },
+ {
+  "job": "t2-128-guide-faqs",
+  "note": "/ote-salary/ FAQ 'What does OTE mean for super?' and the 'OTE in Super' section repeat the ordinary time earnings definition found on super guides. It is a short section and supports a distinct intent, so it is not a merge candidate."
+ },
+ {
+  "job": "t2-129-tax-calendar",
+  "note": "The /tax-calendar/ page overlaps /pay-and-tax-changes-calendar/ and /tax-return-2026/ on the return due dates and the 1 July changes. Its intent (a month-by-month lookup) is distinct, but check that the head term 'tax calendar' is not split across these pages."
+ },
+ {
+  "job": "t2-130-calculator-faqs",
+  "note": "/leave-calculator/ (payout on termination) and /leave-loading-calculator/ overlap on the 17.5% loading arithmetic, and /leave-calculator/ hero links to /annual-leave-calculator/ for balance tracking. The intents are distinct (payout vs loading vs accrual), so I see no merge, but the leave-loading FAQ material on /leave-calculator/ duplicates the leave loading page's core topic."
+ },
+ {
+  "job": "t2-134-pay-vic",
+  "note": "vic.ts faqs[5] and faqs[6] repeat the same AEU, FWC and 23 October 2026 status text on one page. The same status is also repeated in nextIncrease.detail and notices[1]. That is four tellings of one fact on a single page."
+ },
+ {
+  "job": "t2-136-2026-27",
+  "note": "The rate-cut content here overlaps with /stage-3-tax-cuts/, /tax-brackets/ and /pay-and-tax-changes-calendar/. This page is the news-update intent, so keep it distinct, but check that the calendar page does not repeat the same summary."
+ },
+ {
+  "job": "t2-137-packaging-guide",
+  "note": "/salary-packaging-guide/ partly overlaps /fringe-benefits-tax/ (FBT caps and exemptions) and /novated-lease-guide/. Its distinct ground is the not-for-profit (NFP) and hospital living-expense caps and the effect of RFBA on income tests. It is not a near-duplicate."
+ },
+ {
+  "job": "t2-138-vs-hourly",
+  "note": "/salary-vs-hourly/ overlaps with /full-time-vs-part-time-vs-casual/ on leave and casual loading, but its comparison intent (salary vs hourly) is distinct, so this is not a merge candidate."
+ },
+ {
+  "job": "t2-139-calculator-content",
+  "note": "/leave-calculator/ links to /leave-loading-calculator/ and /annual-leave-calculator/. Its 17.5% loading section (worked example, who gets it, is it taxed) likely overlaps /leave-loading-calculator/. Check for cannibalisation on 'leave loading calculator' queries."
+ },
+ {
+  "job": "t2-142-vs-company",
+  "note": "\"Sole trader vs employee\" queries overlap with /contractor-vs-employee-calculator/. Both the \"Contractor vs Employee Guide\" and \"Contractor vs Employee Calculator\" links (lines 315, 316 and sidebar 356) point to that same URL, so the guide appears already merged into the calculator. The two pages need clearly separate jobs: this page covers structure and company tax, and that page covers the employment status test and take-home pay."
+ },
+ {
+  "job": "t2-144-calculator-content",
+  "note": "The tax section overlaps /termination-payment-tax-calculator/ (ETP rates, caps, genuine vs non-genuine). The page already links there, and the intents are different (a redundancy pay table versus ETP tax), so this is not a merge candidate."
+ },
+ {
+  "job": "t2-147-calculator-content",
+  "note": "The AUDIT marks /take-home-pay-calculator/ as deserves_page=thin variant. It overlaps with the head-term calculators it links to (pay calculator australia, salary calculator, income tax calculator). Its $80,000 worked example probably duplicates the /take-home-pay-on/ $80,000 page. Check for cannibalisation."
+ },
+ {
+  "job": "t2-148-deductions-guide",
+  "note": "The Working From Home paragraph overlaps /work-from-home-deductions/, but it already links there as a summary. I see no duplicate intent."
+ },
+ {
+  "job": "t2-149-pay-act",
+  "note": "/healthcare-worker-pay/nt/ is marked 'thin variant' with /healthcare-worker-pay/act/ as its nearest sibling (Jaccard 0.173). The intros now share no sentence shapes: ACT names Canberra Health Services/ACT Health and the 1% + $1,000 rise; NT names NT Health, the Nurse 1 to 8 structure and the 3% ballot offer. The two pages cover different instruments, so this is not a merge case."
+ },
+ {
+  "job": "t2-151-calculator-content",
+  "note": "/net-pay-calculator/ (hourly-rate payslip tool) and /monthly-pay-calculator/ (annual salary divided by 12) are distinct inputs and intents; no merge signal from these units."
+ },
+ {
+  "job": "t2-162-levy-faqs",
+  "note": "The /medicare-levy/ FAQ 'Is the Medicare levy the same as the Medicare levy surcharge?' and the /medicare-levy-surcharge-calculator/ FAQ 'Is the Medicare levy surcharge the same as the Medicare levy?' answer the same question in near-identical words. The two pages have distinct intents, but this FAQ pair is cross-page duplication worth reviewing."
+ },
+ {
+  "job": "t2-163-trade-faqs",
+  "note": "The AUDIT marks /apprentice-pay/painter/ as a 'thin variant'. The template renders it with the same pay-guide wage table it shares with the other building trades (sharesTableWith), and only the tool allowance differs. That makes it a candidate for review against /apprentice-pay/carpenter/ and /apprentice-pay/bricklayer/."
+ },
+ {
+  "job": "t2-164-calculator-content",
+  "note": "The page's own 'Gross Pay vs Net Pay' section and the separate gross-vs-net-calculator module (modules/calculator/gross-vs-net-calculator.tsx) may target the same 'gross vs net' intent. Check whether the gross-vs-net URL competes with /gross-pay-calculator/ for 'net to gross' queries."
+ },
+ {
+  "job": "t2-166-trades-common",
+  "note": "/job-pay-rates/midwife/ and /job-pay-rates/nurse/ share the Nurses Award rate rows (nearest_jaccard 0.321, distinct intent per AUDIT). The midwife page's own prose (coverage, state notes, FAQs) is midwife-specific, so this is not a merge candidate."
+ },
+ {
+  "job": "t2-167-calculator-page",
+  "note": "There is some overlap with /overtime-pay-calculator/ and /overtime-penalty-rates-guide/ in the overtime section, but this page has a distinct calculate intent (adding up a timesheet and converting decimal hours), so it is not a near-duplicate."
+ },
+ {
+  "job": "t2-170-property-manager",
+  "note": "/job-pay-rates/real-estate-agent/ and /job-pay-rates/property-manager/ render the same REAL_ESTATE_ROWS table, penalties, overtime list and JSA median (ANZSCO 6121), with a Jaccard of 0.437. AUDIT says their intent is distinct. What sets them apart is the coverage text (levels, commission-only rules and stand-by), so keep that text distinct."
+ },
+ {
+  "job": "t2-170-property-manager",
+  "note": "/job-pay-rates/radiographer/ is closest to /job-pay-rates/sonographer/ (Jaccard 0.675), because both use sharedFaqs, entryParagraph and levelsParagraph from allied-health-g3.ts. The radiographer-specific FAQs and the ATO intro are already specific to the entity."
+ },
+ {
+  "job": "t2-176-medicare-levy",
+  "note": "The /medicare-levy/ page and /medicare-levy-surcharge-calculator/ are already split by intent (the comment at line 169 explains this). The surcharge section on this page is a short summary, so this is not a duplicate."
+ },
+ {
+  "job": "t2-178-rates-boilermaker",
+  "note": "The boilermaker and welder pages share the median FAQ answer almost word for word (boilermaker.ts line 114, welder.ts line 121) and the same construction/mining notice. The notice on this page now names the boilermaker as subject, but the FAQ answer is still duplicated. The pages are not near-duplicates overall, because each has its own award definition and classification table."
+ },
+ {
+  "job": "t2-182-calculator-content",
+  "note": "The 'Related Australian Tax Calculators' block links to /contractor-pay-calculator/, which covers similar contractor take-home ground. Worth checking that the two URLs do not split the 'contractor vs employee' query."
+ },
+ {
+  "job": "t2-183-payroll-officer",
+  "note": "Nearest sibling in AUDIT is /job-pay-rates/bookkeeper/ (Jaccard 0.322). The two share the Clerks Award penalty, overtime and allowance data, but the payroll duty levels and the 2026-27 payroll-change sections are distinct. No merge suggested."
+ },
+ {
+  "job": "t2-185-levy-surcharge",
+  "note": "/medicare-levy-surcharge-calculator/ and /private-health-insurance-medicare/ both cover whether hospital cover costs less than the surcharge. This page cross-links and keeps to the cost-only break-even, so the intents look distinct. Watch for overlap if the other page repeats the break-even table."
+ },
+ {
+  "job": "t2-191-calculator-content",
+  "note": "This page links to /tax-return-2026/ for deadlines and refund times, but its own deadline section (lines 238-265) and its return-vs-refund timing row repeat that guide's content. Check the two pages for overlap."
+ },
+ {
+  "job": "t2-195-calculator-content",
+  "note": "/overtime-pay-calculator/ links to /overtime-penalty-rates-guide/, and both pages carry award penalty and overtime multiplier tables. Check the two pages for overlap in the penalty-rate tables and the 'common mistakes' content."
+ },
+ {
+  "job": "t2-197-test-faqs",
+  "note": "AUDIT marks /centrelink-income-test/ as deserves_page=near-duplicate. Its FAQ repeats the JobSeeker free area and taper bands and sends readers to /jobseeker-payment-calculator/, which is the likely overlapping URL (top query: 'jobseeker payment calculator australia')."
+ },
+ {
+  "job": "t2-198-vs-casual",
+  "note": "/full-time-vs-part-time-vs-casual/ and /employment-type-calculator/ target the same 'part time vs full time vs casual' query set. Keep this guide on entitlements and the calculator on dollars, and watch for cannibalisation."
+ },
+ {
+  "job": "t2-204-pay-guide",
+  "note": "This guide overlaps with /fifo-pay-calculator/ for the query \"fifo pay calculator\". The roster and allowance prose here is a likely duplicate of that calculator page's support copy. Check which URL should own the calculator query."
+ },
+ {
+  "job": "t2-206-pay-sa",
+  "note": "AUDIT rates /public-service-pay-scales/sa/aso-2/ through aso-5/ as 'thin variant' with nearest-sibling Jaccard 0.91. Those grade pages come from state-levels.ts, not this unit, but they are near-duplicates of each other and of the matching level section on /public-service-pay-scales/sa/."
+ },
+ {
+  "job": "t2-209-employee-index",
+  "note": "lib/constants/long-service-leave.ts keeps a second set of state LSL data with different 'thereafter' wording (for example, the QLD and ACT entries). The state pay pages and the /long-service-leave-calculator/<state>/ pages can therefore describe the same rule in different words. This is a data-consistency issue, not a duplicate URL."
+ },
+ {
+  "job": "t2-211-return-2026",
+  "note": "/tax-return-2026/ overlaps with /tax-return-calculator/ and /tax-refund-guide/. The page already links to both and has a distinct intent (deadline and 2025-26 rates), so no merge is suggested."
+ },
+ {
+  "job": "t2-222-calculator-page",
+  "note": "The FY2025-26 FAQ ('Can I still calculate my 2025-26 tax?') sends readers to the tax return calculator. The $60k/$80k/$100k answers overlap with any per-salary 'tax on $X' pages, so check those pages for head-term cannibalisation (AUDIT deserves_page=thin variant)."
+ },
+ {
+  "job": "t2-224-service-leave",
+  "note": "The ACT summary at lib/constants/long-service-leave.ts:448 is nearly word for word the same as the ACT long service leave text in lib/data/state-employee/index.ts:399, and the Vic and Qld summaries (lines 246, 288) closely match state-employee/index.ts:294 and :315. The same prose renders on the LSL state pages and on the state-employee pages, which is a scaled-content signal across the two URL sets. The two files diverge too ('public holiday or award holiday' here, 'public holiday' there)."
+ },
+ {
+  "job": "t2-239-in-lieu",
+  "note": "working-credit.ts feeds both /centrelink-income-test/ and /centrelink-working-credit-calculator/. The AUDIT marks /centrelink-income-test/ deserves_page=near-duplicate. Neither page's prose comes from this unit, so a merge decision has to be made on the page modules (modules/guide/centrelink-income-test.tsx and working-credit.tsx)."
+ },
+ {
+  "job": "t2-256-state-page",
+  "note": "The AUDIT marks the NSW, VIC, QLD and WA long service leave spokes as 'thin variant'. All 8 state pages render from one template (LongServiceLeaveSpoke in modules/calculator/long-service-leave-content plus spokeFaqs). Any work to make them distinct belongs to those module units, not this route file."
+ },
+ {
+  "job": "t2-259-casual-page",
+  "note": "The code comment in app/full-time-vs-part-time-vs-casual/page.tsx says /full-time-vs-part-time-vs-casual/ (the entitlements explainer) and /employment-type-calculator/ (the pay tool) were already split in the 25 Sep 2026 cannibal fix. No new near-duplicate signal in this unit."
+ },
+ {
+  "job": "t2-282-calculator-page",
+  "note": "The code comment at app/take-home-pay-calculator/page.tsx lines 23-30 says this URL is the one primary page for 'take home pay calculator', 'net pay calculator' and 'after tax income calculator'. The same head terms used to be split across /, /gross-pay-calculator/ and /monthly-pay-calculator/, and the AUDIT rates this page deserves_page=thin variant. The reviewer should confirm that those sibling pages still link here and do not compete for these terms."
+ },
+ {
+  "job": "t2-283-age-page",
+  "note": "The 7 age pages (/minimum-wage-by-age/14/ to /20/) are all rendered by one template (MinimumWageByAgePage plus spokeTitle, spokeDescription and spokeFaqs in modules/guide/minimum-wage-by-age-data). The AUDIT marks every one of them 'deserves_page=thin variant'. The prose that makes these pages different from each other is in that data module, not in this route file."
+ },
+ {
+  "job": "t2-294-on-page",
+  "note": "/take-home-pay-on/ and /tax-on/ are parallel salary hubs that share the SalaryHub module and a near-identical $5k grid (TAX_ON_SALARIES vs TAKE_HOME_SALARIES). Their intents are distinct (take-home vs tax), so this is not a merge candidate. Check that the two hub intros do not share sentence shapes."
+ },
+ {
+  "job": "t3-393-take-home-sections",
+  "note": "/tax-on/N/ and /take-home-pay-on/N/ cover the same 41 salaries and both rank for '<salary> after tax australia' (for example, '65000 after tax australia' shows up on both /tax-on/65000/ and /take-home-pay-on/65000/). For each salary, the two pages are a likely cannibalisation pair."
+ },
+ {
+  "job": "t3-396-page",
+  "note": "/take-home-pay-on/[salary]/ and /tax-on/[salary]/ share a salary grid. The code comments say take-home owns net-pay intent and tax-on owns tax-owed intent. The query 'tax on $25000', '$55000' and '60000' still lands on take-home-pay-on pages, so the reviewer should confirm that the two families do not compete for the tax-on head phrase."
+ },
+ {
+  "job": "t3-401-page",
+  "note": "/tax-on/[salary]/ and /take-home-pay-on/[salary]/ share the same salary grid and both render take-home pay in the hero. The meta intent pass (23 Oct) keeps the take-home figure out of the /tax-on/ title and description, but the /tax-on/ hero sentence still ends with '{takeHomePay} take-home'. A reviewer may want to confirm the body below (TaxOnSalary module) keeps the tax-owed focus so the pair does not compete for 'X after tax' queries."
+ }
+]

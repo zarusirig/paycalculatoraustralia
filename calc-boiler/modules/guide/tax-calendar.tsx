@@ -82,7 +82,7 @@ export default function TaxCalendarPage() {
   return (
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Calendar</span></li></ol></nav>
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H}>Australian Tax Calendar {Y.incomeYear}</h1><p className="text-xl text-warmgray leading-relaxed mb-6">A tax week in Australia is one of the {EMPLOYMENT.weeksPerYear} weeks of the financial year, which for {Y.incomeYear} runs from {Y.start} to {Y.end}. Within that year the {R.incomeYear} tax return is due {R.selfLodgeDueDate}{self.effectiveIso !== self.iso ? `, accepted on ${formatIso(self.effectiveIso, "long")} as the next business day` : ""}, or {R.agentDueDateMostPeople} for most tax agent clients; super is due within {SGC.current.businessDaysToPay} business days of each payday. Where a due date falls on a weekend or public holiday, we show the next business day the ATO accepts.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H}>Australian Tax Calendar {Y.incomeYear}</h1><p className="text-xl text-warmgray leading-relaxed mb-6">A tax week in Australia is one of the {EMPLOYMENT.weeksPerYear} weeks of the financial year, which for {Y.incomeYear} runs from {Y.start} to {Y.end}. Within that year the {R.incomeYear} tax return is due {R.selfLodgeDueDate}{self.effectiveIso !== self.iso ? `, accepted on ${formatIso(self.effectiveIso, "long")} as the next business day` : ""}, or {R.agentDueDateMostPeople} for most tax agent clients. Under Payday Super, employer super is due within {SGC.current.businessDaysToPay} business days of each payday. Where a due date falls on a weekend or public holiday, we show the next business day the ATO accepts.</p><TrustBar className="!max-w-none" /></header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
           <FeaturedImage className="mt-0" />
@@ -122,7 +122,7 @@ export default function TaxCalendarPage() {
             <p>Key dates for the {R.incomeYear} return:</p>
             <ul>
               <li><strong>{R.prefillReady.replace(/^./, (c) => c.toUpperCase())} 2026</strong>: the ATO has pre-filled most employer, bank, health fund and government data</li>
-              <li><strong>{R.selfLodgeDueDate}</strong>: self-lodgment deadline{self.effectiveIso !== self.iso && <> (lodge by {formatIso(self.effectiveIso, "long")} because it falls on a weekend)</>}. Also due now: agent clients with a prior-year return still outstanding at 30 June 2026</li>
+              <li><strong>{R.selfLodgeDueDate}</strong>: self-lodgment deadline{self.effectiveIso !== self.iso && <> (lodge by {formatIso(self.effectiveIso, "long")} because it falls on a weekend)</>}. Also due on this date: agent clients with a prior-year return still outstanding at 30 June 2026</li>
               <li><strong>{R.agentDueDateLargeLiability}</strong>: agent clients whose latest return had a tax liability of $20,000 or more</li>
               <li><strong>{R.agentDueDateMostPeople}</strong>: most other agent clients{agent.effectiveIso !== agent.iso && <> (next business day {formatIso(agent.effectiveIso, "long")})</>}</li>
               <li><strong>{R.agentConcessionDate}</strong>: concession date for 15 May agent returns, if any payment is also made by then</li>
@@ -238,14 +238,14 @@ export default function TaxCalendarPage() {
               <li><strong>Penalty unit</strong>: {formatAUD(PENALTY_UNIT.amount)}, up from {formatAUD(PENALTY_UNIT.previousAmount)}</li>
               <li><strong>Car expenses</strong>: {R.carCentsPerKmNextYear}c per km for {Y.incomeYear}, up from {R.carCentsPerKm}c</li>
             </ul>
-            <p>See all of them on our <Link href="/tax-changes-2026-27/">2026-27 tax changes</Link> page, or the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link> for the 1 December 2026 and 1 July 2027 dates, or see your take-home pay at current rates with the <Link href="/">Pay Calculator</Link>.</p>
+            <p>See all of them on our <Link href="/tax-changes-2026-27/">2026-27 tax changes</Link> page, or the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link> for the 1 December 2026 and 1 July 2027 dates. To see your take-home pay at current rates, enter your salary in the <Link href="/">Pay Calculator</Link>.</p>
           </section>
 
           {/* ---- CONTEXT BORDER ---- */}
 
           {/* ===== SECTION 11: Related Resources ===== */}
           <section><h2 style={H}>Related Resources</h2>
-            <p>Explore these guides and calculators for related Australian tax and payroll topics:</p>
+            <p>These guides and calculators cover the tax return, tax rate, super and PAYG withholding topics on this calendar in more detail:</p>
             <ul>
               <li><Link href="/tax-return-calculator/">Tax Return Calculator</Link>: estimate your {R.incomeYear} refund or tax payable on the {R.incomeYear} rates</li>
               <li><Link href="/tax-return-2026/">Tax Return 2026 Guide</Link>: deadlines, refund times and what changed for the {R.incomeYear} return</li>

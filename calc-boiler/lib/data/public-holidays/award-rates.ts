@@ -68,22 +68,22 @@ const ROW_PICK: Record<string, (p: PenaltyRow) => boolean> = {
 };
 
 const NOTES: Record<string, string> = {
-  "fast-food": "Casuals 250% (the 225% plus the 25% loading).",
+  "fast-food": "Casuals are paid 250%, which is the 225% permanent rate plus the 25% casual loading.",
   restaurant:
-    "By agreement a permanent employee can take 125% plus a day added to annual leave or a day off within 28 days instead (cl 24.4(d)). Minimum engagement 4 hours (permanent) or 2 hours (casual).",
+    "By agreement a permanent employee can take 125% plus a day added to annual leave or a day off within 28 days instead (cl 24.4(d)). The minimum engagement is 4 hours for permanent employees and 2 hours for casuals.",
   nurses:
     "Casual rate is 200% of the casual hourly rate (cl 28.2), which is 250% of the minimum rate. Christmas Day on a weekend attracts an extra 50% in 7-day businesses (cl 28.2(b)).",
   manufacturing:
-    "Casual rate is 250% of the casual hourly rate (cl 33), which is 312.5% of the minimum rate. Minimum 3 hours for day workers.",
+    "Casual rate is 250% of the casual hourly rate (cl 33), which is 312.5% of the minimum rate. The minimum for day workers is 3 hours.",
   "aged-care":
     "Permanent employees can elect each year to have the hours added to annual leave instead of the extra 150% (cl 29.2(b)).",
   "hair-and-beauty": "Casuals are paid 250%, the same as permanent staff. The 25% loading is not added (Table 15).",
   cleaning: "Part-time employees are paid 265% because their 15% part-time allowance applies too (cl 10.2).",
   "road-transport":
-    "Day workers get 150% on top of the weekly wage for hours worked (effectively 250%), and 200% on top (300%) on Good Friday and Christmas Day; casual day workers 275% and 325% (cl 23.2).",
-  clerks: "Paid for at least 4 hours when required to work a public holiday (cl 24.4(d)).",
+    "Day workers get 150% on top of the weekly wage for hours worked (effectively 250%), and 200% on top (300%) on Good Friday and Christmas Day; casual day workers get 275% and 325% (cl 23.2).",
+  clerks: "Clerks are paid for at least 4 hours when required to work a public holiday (cl 24.4(d)).",
   timber:
-    "Casual 275% is tabulated for the General Timber stream only (cl 27.1(d)); the award prints no casual public holiday rate for the other two streams. Minimum 3 hours.",
+    "Casual 275% is tabulated for the General Timber stream only (cl 27.1(d)); the award prints no casual public holiday rate for the other two streams. The minimum is 3 hours.",
   mining: "Casual rate is 250% of the casual hourly rate (Schedule B.2.3), which is 312.5% of the minimum rate.",
   "health-professionals": "Casuals are paid 275%, the 250% plus the 25% loading (Schedule C.2.3).",
 };

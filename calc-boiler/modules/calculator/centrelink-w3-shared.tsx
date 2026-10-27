@@ -93,7 +93,7 @@ export function W3Related({ current }: { current: W3PageKey }) {
     { key: "advance", href: "/centrelink-advance-payment/", label: "Centrelink advance payment calculator", blurb: "how much you can borrow and what comes off each fortnight" },
     { key: "crisis", href: "/centrelink-crisis-payment/", label: "Crisis Payment", blurb: "the one-off payment after an extreme circumstance" },
     { key: "debt", href: "/centrelink-debt/", label: "Centrelink debt", blurb: "overpayments, refunds and the income apportionment scheme" },
-    { key: "col", href: "/cost-of-living-payment-2026/", label: "Cost of living payment 2026", blurb: "what actually exists this year" },
+    { key: "col", href: "/cost-of-living-payment-2026/", label: "Cost of living payment 2026", blurb: "which cost of living payments exist this year" },
     { key: "ppl", href: "/parental-leave-pay/", label: "Paid Parental Leave calculator", blurb: "26 weeks from 1 July 2026, days, split and super" },
     { key: "jobseeker", href: "/jobseeker-payment-calculator/", label: "JobSeeker payment calculator", blurb: "what you keep when you work part-time" },
     { key: "pension", href: "/age-pension-income-test-calculator/", label: "Age Pension calculator", blurb: "rates from 20 September 2026 and the income test, with the Work Bonus" },

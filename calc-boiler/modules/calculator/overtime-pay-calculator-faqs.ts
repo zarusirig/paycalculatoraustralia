@@ -16,11 +16,11 @@ const EXAMPLE_BASE = 30;
 export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "How is overtime pay calculated?",
-    a: `Overtime pay is your base hourly rate multiplied by the penalty rate set in your Award or agreement. For example, time-and-a-half on a ${formatAUD(EXAMPLE_BASE)}/hr base rate = ${formatAUD(EXAMPLE_BASE * 1.5)}/hr. The first 2-3 overtime hours are typically at 1.5×, and hours beyond that at 2.0×.`,
+    a: `Overtime pay is your base hourly rate multiplied by the overtime rate set in your award or enterprise agreement. Time-and-a-half on a ${formatAUD(EXAMPLE_BASE)}/hr base rate is ${formatAUD(EXAMPLE_BASE * 1.5)}/hr. Under most awards the first 2-3 overtime hours are paid at 1.5×, and hours beyond that at 2.0×.`,
   },
   {
     q: "When does overtime start?",
-    a: `For most full-time employees, overtime begins after ${WEEK} hours per week (or ${DAY} hours per day). Part-time employees may earn overtime after exceeding their agreed hours. The exact threshold depends on your Award or enterprise agreement.`,
+    a: `For most full-time employees, overtime begins after ${WEEK} hours per week (or ${DAY} hours per day). Your award or enterprise agreement sets the exact threshold, including whether a part-time employee earns overtime for hours past their agreed hours.`,
   },
   {
     q: "Do casual workers get overtime?",
@@ -28,19 +28,19 @@ export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I refuse to work overtime?",
-    a: "Under the National Employment Standards, an employer can request \"reasonable overtime.\" You can refuse if it is unreasonable. Factors include your personal circumstances, the notice given, your role, and health and safety risks. The Fair Work Ombudsman provides guidance on what constitutes reasonable overtime.",
+    a: "You can refuse overtime if it is unreasonable. Under the National Employment Standards, an employer can request \"reasonable overtime\". The factors that decide whether it is reasonable include your personal circumstances, the notice given, your role, and health and safety risks. The Fair Work Ombudsman publishes guidance on what counts as reasonable overtime.",
   },
   {
     q: "Is superannuation paid on overtime hours?",
-    a: `The ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee does not apply to overtime hours under the ATO's definition of "Ordinary Time Earnings." Overtime pay falls outside OTE. Some enterprise agreements override this and include overtime in the super calculation base, so check your employment contract.`,
+    a: `The ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee does not apply to overtime pay, because overtime falls outside the ATO's definition of "Ordinary Time Earnings" (OTE). Some enterprise agreements override this and include overtime in the super calculation base, so check your agreement or employment contract.`,
   },
   {
     q: "Does overtime push me into a higher tax bracket?",
-    a: `Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from ${formatAUD(LOW.max)} to above ${formatAUD(MID.min)}), the portion above the threshold is taxed at the higher marginal rate of ${pct(MID.rate)} instead of ${pct(LOW.rate)}. Only the portion above the threshold is taxed at the higher rate, not your entire income.`,
+    a: `Overtime pushes only the part of your income above a bracket threshold into the higher tax bracket, not your entire income. Overtime adds to your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (for example, from ${formatAUD(LOW.max)} to above ${formatAUD(MID.min)}), the portion above the threshold is taxed at the higher marginal rate of ${pct(MID.rate)} instead of ${pct(LOW.rate)}.`,
   },
   {
     q: "Can I take time off instead of overtime pay?",
-    a: "\"Time Off In Lieu\" (TOIL) allows employees to take paid time off instead of receiving overtime pay, but only where your award, enterprise agreement or contract allows it, as the National Employment Standards do not provide it. The ratio depends on the award: the Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour, while the General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (2 hours at 150% = 3 hours off). The employee must genuinely agree; an employer cannot unilaterally substitute TOIL for overtime payment.",
+    a: "Time off in lieu (TOIL) lets you take paid time off instead of overtime pay, but only where your award, enterprise agreement or contract allows it. The National Employment Standards do not provide TOIL. The award sets the ratio. The Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour. The General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (2 hours at 150% = 3 hours off). You must genuinely agree to TOIL; an employer cannot unilaterally substitute it for overtime pay.",
   },
   {
     q: "Is there a maximum number of overtime hours per week?",

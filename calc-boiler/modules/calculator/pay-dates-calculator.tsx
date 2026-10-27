@@ -92,7 +92,7 @@ export default function PayDatesCalculator() {
                     ? `${fy.label} has ${summary.count} ${cycle} pay days on this cycle, one more than the tax tables assume. ${extra > 0 ? `If you want to avoid a tax bill, you can ask your employer to withhold an extra ${formatAUD(extra)} from each pay (ATO table).` : "At this pay the ATO table doesn't list an extra amount."}`
                     : cycle === "monthly"
                       ? "Monthly pay always has 12 pay days, so there is never an extra pay."
-                      : `A normal year: ${summary.count} pay days, matching the tax tables.`}
+                      : `This is a normal year with ${summary.count} pay days, matching the tax tables.`}
                 </p>
                 <details className="rounded-xl border border-sandstone-dark/20 bg-white">
                   <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy">All {summary.count} pay dates in {fy.label}</summary>

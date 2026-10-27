@@ -25,7 +25,7 @@ const eg = estimateMls({
 export const MLS_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What is the Medicare levy surcharge threshold for ${MLS_INCOME_YEAR}?`,
-    a: `${SINGLE_BASE} for singles and ${FAMILY_BASE} for families, with the family threshold rising ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. At or under the threshold no surcharge applies. Above it, the rate is 1% (singles to ${formatAUD(S.tier1.max)}), 1.25% (to ${formatAUD(S.tier2.max)}) or 1.5% (${formatAUD(S.tier3.min)} and over) if you don't hold private patient hospital cover.`,
+    a: `The Medicare levy surcharge threshold is ${SINGLE_BASE} for singles and ${FAMILY_BASE} for families, with the family threshold rising ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. At or under the threshold no surcharge applies. Above it, the rate is 1% (singles to ${formatAUD(S.tier1.max)}), 1.25% (to ${formatAUD(S.tier2.max)}) or 1.5% (${formatAUD(S.tier3.min)} and over) if you don't hold private patient hospital cover.`,
   },
   {
     q: "How is the Medicare levy surcharge calculated?",
@@ -49,7 +49,7 @@ export const MLS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Do I pay the surcharge if I had cover for only part of the year?",
-    a: "Only for the days without appropriate cover. If you took out a policy in October, you pay the surcharge for July to September. The surcharge is worked out when you lodge your return.",
+    a: "You pay the surcharge only for the days without appropriate hospital cover. If you took out a policy in October, you pay the surcharge for July to September. The surcharge is worked out when you lodge your return.",
   },
   {
     q: "Is the Medicare levy surcharge taken out of my pay?",

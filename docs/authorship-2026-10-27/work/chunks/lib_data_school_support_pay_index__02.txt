@@ -1,0 +1,293 @@
+    {
+      q: "When is the next pay rise for Tasmanian teacher assistants?",
+      a: "Tasmanian Teacher Assistants get their next rise from the first full pay period on or after 1 December 2026: $800 is added to the base salary, then 3%. Level 2 goes from $69,593 to $72,505 a year full-time and Level 6 from $74,837 to $77,906. A further 2.75% applies from 1 September 2027, taking Level 2 to $74,499.",
+    },
+    {
+      q: "What allowances can a Tasmanian teacher assistant get?",
+      a: "Appendix 16 pays $33.38 a week for regular toileting or showering support, $44.51 a week each for meal management plans, specialist programs (speech and language, Auslan or physiotherapy) and credentialled health care procedures, $10 for each day spent in the water with a student, and 1.35% of base salary at a Support School or Tier Four site.",
+    },
+  ],
+  verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+  teacherPayHref: "/teacher-pay-australia/tas/",
+  publishedOn: "2026-10-22",
+};
+
+// ---------------------------------------------------------------------------
+// ACT: School Assistants, ACT Public Sector Administrative and Related
+// Classifications Enterprise Agreement 2023-2026, Annex A (4 December 2025 column)
+// ---------------------------------------------------------------------------
+
+/**
+ * Annex A labels the rows "School Assistant 2/3 (85.034% of ASO2/ASO3 Broadband)" and
+ * "School Assistant 4 (91.836% of ASO4)": clause R16.6's 62.5/73.5 and 67.5/73.5, as the
+ * annex rounds them. The printed salaries follow the rounded percentages.
+ */
+export const ACT_SA_PERCENT = 0.85034;
+export const ACT_SA4_PERCENT = 0.91836;
+const ACT_SA23: number[] = [59_725, 61_158, 62_564, 63_988, 65_400, 66_968, 68_511, 70_049, 71_670];
+const ACT_SA3: number[] = [66_968, 68_511, 70_049, 71_670];
+const ACT_SA4: number[] = [79_668, 81_934, 83_849, 85_789];
+const actRows = (prefix: string, values: number[], firstNote?: string) =>
+  values.map((annual, i) => ({ label: `${prefix} pay point ${i + 1}`, annual, ...(i === 0 && firstNote ? { note: firstNote } : {}) }));
+
+const ACT: SchoolSupportState = {
+  slug: "act",
+  code: "ACT",
+  stateName: "Australian Capital Territory",
+  roleName: "School Assistant",
+  roleShort: "school assistant",
+  employer: "ACT Education Directorate",
+  instrument:
+    "ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023 to 2026, approved by the Fair Work Commission on 13 September 2023 (AG2023/2959). Section R holds the Education Directorate conditions for School Assistants and Annex A prints their pay. The agreement passed its nominal expiry date on 31 March 2026 but keeps applying: the proposed 2026 to 2029 replacement was not approved by employees when voting closed on 8 September 2026, so the 4 December 2025 rates below are the rates in force.",
+  headline:
+    "A School Assistant in an ACT public school is paid $59,725 to $71,670 a year at School Assistant 2/3, $66,968 to $71,670 at School Assistant 3 and $79,668 to $85,789 at School Assistant 4, under the ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023 to 2026, rates from 4 December 2025. These are full annual salaries for the school-year pattern: 31.25 hours a week in term time for levels 1 to 3 and 33.75 for level 4, with paid stand-down between terms. A flat $1,500 a year School Support Allowance is paid on top. The agreement has passed its nominal expiry and no later rate is set.",
+  metaTitle: "School Assistant Pay ACT 2026 - SA 2/3, 3 and 4 Salaries",
+  metaDescription:
+    "ACT School Assistant pay from 4 Dec 2025: SA 2/3 $59,725 to $71,670, SA 4 to $85,789, term-time hours, paid stand-down, the $1,500 allowance and take-home pay.",
+  h1: "School Assistant Pay ACT 2026: Learning Support Assistant and School Assistant Salaries",
+  fullTimeHours: 31.25,
+  hoursNote:
+    "Full-time School Assistants 1, 2, 2/3 and 3 work 125 hours over four weeks, an average of 31 hours 15 minutes a week and usually 6 hours 15 minutes a day; a School Assistant 4 works 67 hours 30 minutes a fortnight, or 33 hours 45 minutes a week (clauses R2.2 and R2.3). The annual salary is the ASO rate scaled to those hours: the ASO 1 to 3 salary times 62.5/73.5, and the ASO 4 salary times 67.5/73.5 (clause R16.6). It is not reduced again for stand-down (clause R16.7), so a full-time School Assistant who works the whole school year receives the printed figure. Part-time staff are paid for their designated hours.",
+  startingPoint:
+    "Your level follows your job title. Learning Support Assistants and administrative, library, technology, food technology and general assistants start at School Assistant 2/3, a broadband of nine pay points; preschool, bilingual, vision support and hearing support assistants and Aboriginal and Torres Strait Islander Education Workers start at School Assistant 3; administrative coordinators, wellbeing support workers, youth support workers and Aboriginal and Torres Strait Islander Education Officers start at School Assistant 4 (clause R16.2). School Assistant 1 ($55,378 to $58,501) is only used for trainees in ACTPS vocational employment programs (clause R16.3).",
+  entry: { label: "School Assistant 2/3 pay point 1", annual: 59_725, annualBasis: "published" },
+  tables: [
+    {
+      id: "act-2025",
+      title: "School Assistants from 4 December 2025",
+      status: "current",
+      effectiveFrom: "4 December 2025",
+      annualBasis: "published",
+      caption:
+        "Annex A of the agreement, School Assistant rows, column '1% + $1,000 from 04/12/2025'. Each figure is 85.034% of the matching ASO pay point (91.836% for School Assistant 4), which is how the annex labels them. The agreement prints no hourly rate for School Assistants.",
+      sourceId: "act-admin-ea-2023",
+      showHourly: false,
+      rows: [
+        ...actRows("School Assistant 2/3", ACT_SA23, "Learning Support Assistants start here (cl R16.2)"),
+        ...actRows("School Assistant 3", ACT_SA3, "Preschool, bilingual, vision and hearing support assistants start here"),
+        ...actRows("School Assistant 4", ACT_SA4, "Wellbeing and youth support workers, administrative coordinators start here"),
+      ],
+    },
+  ],
+  notes: [
+    "The agreement's last increase was 1% plus $1,000 from the first full pay period on or after 1 December 2025 (4 December 2025), and it passed its nominal expiry on 31 March 2026. Employees voted down the proposed Administrative and Related Classifications Enterprise Agreement 2026 to 2029 in a ballot that closed on 8 September 2026, so no further increase is scheduled until a new agreement is made and approved by the Fair Work Commission.",
+    "A temporary School Support Allowance of $1,500 a year is paid to every School Assistant 1 to 4 in equal fortnightly instalments for the life of the agreement (clause R16.8 and Annex C). It is a flat amount, paid once a pay period, and not paid for a full pay period of unpaid leave.",
+    "The working days between published school terms are paid stand-down (clause R3.3). A School Assistant 4 works six extra days during those breaks, usually two in each, plus four professional learning days (clause R3.4). Annual leave of four weeks is taken in the block from the end of Term 4 to the last working day before Australia Day (clause R7.4).",
+    "A temporary School Assistant moves up a pay point after 12 months of continuous service, or after 200 days worked at their ordinary hours if the service is broken; earlier service, including casual work, counts (clause R15). Casual School Assistants are engaged through the Directorate's casual register (clause R14.2).",
+    "Every School Assistant does at least four days (25 hours) of professional learning a year, preferably in the stand-down periods (clause R13.5).",
+  ],
+  sources: [
+    {
+      id: "act-admin-ea-2023",
+      title: "ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023 to 2026 (AG2023/2959), Section R and Annex A",
+      publisher: "ACT Government (Chief Minister, Treasury and Economic Development Directorate)",
+      url: "https://www.cmtedd.act.gov.au/__data/assets/pdf_file/0004/2287633/ACT-Public-Sector-Administrative-and-Related-Classifications-Enterprise-Agreement-2023-2026.pdf",
+      effectiveFrom: "4 December 2025",
+      verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+      note: "Clauses R2.2, R2.3, R3, R7, R13.5, R14, R15, R16.2 to R16.8 and R17; Annex A School Assistant rows, column '1% + $1,000 from 04/12/2025'; Annex C School Support Allowance.",
+    },
+    {
+      id: "act-agreements-portal",
+      title: "Enterprise Agreements, ACTPS Employment Portal",
+      publisher: "ACT Government",
+      url: "https://www.cmtedd.act.gov.au/employment-framework/for-employees/agreements",
+      verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+      note: "States that the proposed 2026 to 2029 agreement was not approved by employees (vote closed 8 September 2026) and that the 2023 to 2026 agreement continues to apply. Page dated 8 October 2026.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How much does a school assistant earn in the ACT?",
+      a: "From 4 December 2025 a School Assistant 2/3 in an ACT public school is paid $59,725 to $71,670 a year across nine pay points, a School Assistant 3 $66,968 to $71,670 and a School Assistant 4 $79,668 to $85,789, plus the $1,500 a year School Support Allowance. These are the Annex A rates of the ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023 to 2026.",
+    },
+    {
+      q: "What level does a Learning Support Assistant start on in the ACT?",
+      a: "A Learning Support Assistant in the ACT starts at School Assistant 2/3, pay point 1, on $59,725 a year. The 2/3 broadband was created when the agreement started: every School Assistant 2 moved into it at the matching pay point and the old competency barrier between levels 2 and 3 was removed (clause R17).",
+    },
+    {
+      q: "Why is an ACT school assistant paid less than an ASO at the same level?",
+      a: "An ACT School Assistant is paid less because the salary is pro rata to the hours worked. A School Assistant 2/3 works 62.5 hours a fortnight against 73.5 for a full-time ASO, so the pay is the ASO rate times 62.5/73.5 (85.034%); a School Assistant 4 works 67.5 hours and gets 91.836% (clause R16.6). ASO 2 pay point 1 is $70,236, which becomes $59,725 for a School Assistant 2/3.",
+    },
+    {
+      q: "When is the next ACT school assistant pay rise?",
+      a: "No next pay rise is set for ACT School Assistants. The agreement's last rise was 1% plus $1,000 from 4 December 2025 and it passed its nominal expiry on 31 March 2026. The proposed 2026 to 2029 replacement was voted down in September 2026, so the next increase depends on a new agreement being made and approved by the Fair Work Commission.",
+    },
+  ],
+  verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+  teacherPayHref: "/teacher-pay-australia/act/",
+  publishedOn: "2026-10-22",
+};
+
+// ---------------------------------------------------------------------------
+// NT: School-based Administrative Officers (92% and 96% arrangements),
+// Northern Territory Public Sector 2025-2029 Enterprise Agreement, Schedule 11
+// ---------------------------------------------------------------------------
+
+type NtRow = [string, number, number, number]; // designation, 92% from 13 Aug 2026, 96% from 13 Aug 2026, 92% from 12 Aug 2027
+const NT_ROWS: NtRow[] = [
+  ["AO2 pay point 1", 58_817, 61_374, 60_875],
+  ["AO2 pay point 2", 60_231, 62_849, 62_338],
+  ["AO2 pay point 3", 61_361, 64_029, 63_509],
+  ["AO2 pay point 4", 62_509, 65_227, 64_697],
+  ["AO2 pay point 5", 63_688, 66_457, 65_917],
+  ["AO3 pay point 1", 65_172, 68_005, 67_453],
+  ["AO3 pay point 2", 66_358, 69_243, 68_680],
+  ["AO3 pay point 3", 67_566, 70_503, 69_930],
+  ["AO3 pay point 4", 70_026, 73_070, 72_477],
+  ["AO4 pay point 1", 73_291, 76_477, 75_856],
+  ["AO4 pay point 2", 74_576, 77_819, 77_186],
+  ["AO4 pay point 3", 76_786, 80_124, 79_473],
+  ["AO4 pay point 4", 78_998, 82_432, 81_762],
+  ["AO4 pay point 5", 81_206, 84_736, 84_048],
+  ["AO4 pay point 6", 83_558, 87_191, 86_483],
+];
+
+/** The 100% (full) AO rates already verified in lib/data/public-service-pay/nt.ts. */
+const NT_AO_BANDS = NT_PUBLIC_SERVICE.schedules.find((s) => s.id === "nt-ea-2026")?.streams.flatMap((s) => s.bands) ?? [];
+function ntFullRate(code: string): number {
+  const band = NT_AO_BANDS.find((b) => b.code === code);
+  if (!band) throw new Error(`school-support-pay: ${code} missing from nt.ts`);
+  return band.min;
+}
+export const NT_FULL_AO_PAY_POINTS = NT_AO_BANDS.filter((b) => ["AO2", "AO3", "AO4"].includes(b.code)).flatMap((b) => b.payPoints ?? []);
+
+const NT: SchoolSupportState = {
+  slug: "nt",
+  code: "NT",
+  stateName: "Northern Territory",
+  roleName: "School-based Administrative Officer",
+  roleShort: "school-based AO",
+  employer: "NT Department of Education and Training",
+  instrument:
+    "Northern Territory Public Sector 2025 to 2029 Enterprise Agreement, approved by the Fair Work Commission on 30 January 2026 (AG2025/4592) and operating from 6 February 2026. School-based administrative employees have their own set of conditions inside the agreement, with three employment arrangements (92%, 96% and 100%) at AO2 to AO4, and Schedule 11 prints a separate salary table for the 92% and 96% arrangements.",
+  headline: `A school-based Administrative Officer in a Northern Territory government school is paid $58,817 a year at AO2 pay point 1 on the 92% arrangement (6 hours 15 minutes each school day), $61,374 on the 96% arrangement (7 hours 21 minutes) and ${formatSalary(ntFullRate("AO2"))} at 100%, from 13 August 2026 under the NTPS 2025 to 2029 Enterprise Agreement. The school-based scale runs to $83,558 (92%) or $87,191 (96%) at the top of AO4. Staff on 92% and 96% are paid at ordinary rates for the days the school is closed and do not attend. The next rise is 3.5% from 12 August 2027.`,
+  metaTitle: "NT School Support Staff Pay 2026 - School-Based AO2 to AO4",
+  metaDescription:
+    "NT school support staff pay from 13 Aug 2026: school-based AO2 to AO4 at 92% ($58,817 to $83,558) and 96%, hours, holiday pay, the 2027 rise and take-home pay.",
+  h1: "NT School Support Staff Pay 2026: School-Based AO2 to AO4 Rates",
+  fullTimeHours: 36.75,
+  hoursNote:
+    "The nominal hours of duty for a school-based administrative employee are 36.75 a week, worked between 7.30am and 5.30pm Monday to Friday (clause 7.1 of the school-based conditions). The three arrangements in clause 7.2 decide the pay: 92% means 6 hours 15 minutes each school day, 96% means 7 hours 21 minutes each school day, and 100% means 7 hours 21 minutes every working day, school holidays included. The tables show the annual salary for each arrangement, as printed; the agreement has no separate hourly rate. Overtime starts after 7 hours 21 minutes in a day (clause 7.4).",
+  startingPoint:
+    "School-based positions are created at AO2, AO3 or AO4 on a 92%, 96% or 100% arrangement, and a filled position can be converted between them on a proposal from the employee or the CEO (clause 7.9, which calls them School Assistant positions). A new employee starts at pay point 1 of the designation and moves up one pay point after 12 months at a point, or 12 months of broken service in the preceding 24 months (clause 36.2). Part-time staff progress on the same calendar time (clause 36.3).",
+  entry: { label: "AO2 pay point 1 (92%)", annual: 58_817, annualBasis: "published" },
+  tables: [
+    {
+      id: "nt-92-2026",
+      title: "School-based Administrative Officers on the 92% arrangement, from 13 August 2026",
+      status: "current",
+      effectiveFrom: "13 August 2026",
+      annualBasis: "published",
+      caption:
+        "Schedule 11 of the agreement, table 'School-Based Administrative Officers (92%)', column 'salary rates effective 13.08.26'. Each figure is 92% of the full AO rate on our NT public service page, rounded to the dollar.",
+      sourceId: "nt-ea-2025",
+      showHourly: false,
+      rows: NT_ROWS.map(([label, a92], i) => ({ label, annual: a92, ...(i === 0 ? { note: "New school-based AO2s start here" } : {}) })),
+    },
+    {
+      id: "nt-96pc-2026",
+      title: "School-based Administrative Officers on the 96% arrangement, from 13 August 2026",
+      status: "current",
+      effectiveFrom: "13 August 2026",
+      annualBasis: "published",
+      caption:
+        "Schedule 11, table 'School-Based Administrative Officers (96%)', column 'salary rates effective 13.08.26': 96% of the full AO rate. The 100% arrangement is paid at the full rate, listed on our NT public service page.",
+      sourceId: "nt-ea-2025",
+      showHourly: false,
+      rows: NT_ROWS.map(([label, , a96]) => ({ label, annual: a96 })),
+    },
+    {
+      id: "nt-92-2027",
+      title: "92% arrangement from 12 August 2027 (3.5% increase)",
+      status: "upcoming",
+      effectiveFrom: "12 August 2027",
+      annualBasis: "published",
+      caption:
+        "Schedule 11, 92% table, column 'salary rates effective 12.08.27': the 3.5% increase from the first full pay period on or after 10 August 2027 (clause 35.3). A further 3.5% follows from 10 August 2028, with any Darwin CPI above 3.5% added.",
+      sourceId: "nt-ea-2025",
+      showHourly: false,
+      rows: NT_ROWS.map(([label, , , a92next]) => ({ label, annual: a92next })),
+    },
+  ],
+  notes: [
+    `The 100% arrangement is paid at the standard NTPS rate: ${formatSalary(ntFullRate("AO2"))} at AO2 pay point 1, ${formatSalary(ntFullRate("AO3"))} at AO3 and ${formatSalary(ntFullRate("AO4"))} at AO4 from 13 August 2026, with every pay point on the NT public service pay scales page. The school vacation, extra duty and leave loading clauses below do not apply to 100% staff (clause 7.2).`,
+    "Staff on 92% and 96% are not required to attend on days the school is closed, apart from the two working days before the school year starts, and are paid at ordinary rates for those days (clause 7.3). Recreation leave is taken in the December and January holidays. If the principal needs you on a non-school day you are paid an extra half of normal time on top of salary, or time and a half on a public holiday (clause 7.3(e)).",
+    "Recreation leave loading is paid automatically in the last pay before 25 December each year (clause 7.5). Someone employed for less than the full school year is paid for the term and end-of-year holidays pro rata, for each completed month of service (clause 7.3(f)).",
+    "Pay rises under the agreement: 3% from 17 November 2025, 3% from 13 August 2026, 3.5% from 12 August 2027 and 3.5% from 10 August 2028, plus any Darwin CPI above 3.5% in the final year (clause 35.3).",
+    "Assistant Teachers in NT schools (AT1 to AT7) are on the teachers' agreement, not this one; their rates are on the NT teacher pay page.",
+  ],
+  sources: [
+    {
+      id: "nt-ea-2025",
+      title: "Northern Territory Public Sector 2025 to 2029 Enterprise Agreement (AG2025/4592), School-Based Administrative Employees conditions and Schedule 11",
+      publisher: "Office of the Commissioner for Public Employment (NT)",
+      url: "https://ocpe.nt.gov.au/__data/assets/pdf_file/0008/1590713/ntps-2025-2029-enterprise-agreement.pdf",
+      effectiveFrom: "13 August 2026",
+      verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+      note: "Clauses 7.1 to 7.9 of the School-Based Administrative Employees conditions; Schedule 11 tables 'School-Based Administrative Officers (92%)' and '(96%)', columns 13.08.26 and 12.08.27; clauses 35.3, 36.2 and 36.3.",
+    },
+    {
+      id: "nt-ocpe-admin-rates",
+      title: "General NTPS, administrative stream, rates of pay (rates effective 13 August 2026)",
+      publisher: "Office of the Commissioner for Public Employment (NT)",
+      url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/rates-of-pay/general-ntps-administrative-stream",
+      effectiveFrom: "13 August 2026",
+      verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+      note: "The full (100%) AO2 to AO4 rates that the 92% and 96% figures are scaled from.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How much does a school support officer earn in the NT?",
+      a: `From 13 August 2026 a school-based Administrative Officer at AO2 pay point 1 is paid $58,817 a year on the 92% arrangement, $61,374 on 96% and ${formatSalary(ntFullRate("AO2"))} on 100%. AO3 starts at $65,172 (92%) or $68,005 (96%), and AO4 at $73,291 (92%) or $76,477 (96%), under the NTPS 2025 to 2029 Enterprise Agreement.`,
+    },
+    {
+      q: "What is the difference between a 92% and a 96% school-based AO in the NT?",
+      a: `The difference is the hours worked each school day. A 92% employee works 6 hours 15 minutes each school day and a 96% employee 7 hours 21 minutes, against 36.75 hours a week for a 100% employee, who also works through the school holidays (clause 7.2). Pay is scaled the same way: AO2 pay point 1 is $58,817, $61,374 or ${formatSalary(ntFullRate("AO2"))}.`,
+    },
+    {
+      q: "Are NT school-based AOs paid during school holidays?",
+      a: "Yes. On the 92% and 96% arrangements you are not required to attend when the school is closed, apart from two working days before the school year, and you are paid at ordinary rates for those days (clause 7.3). The lower percentage is what pays for that time. Recreation leave is taken in the December and January break.",
+    },
+    {
+      q: "When is the next pay rise for NT school support staff?",
+      a: "NT school-based AOs get their next rise of 3.5% from the first full pay period on or after 10 August 2027 (12 August 2027), which takes AO2 pay point 1 on the 92% arrangement from $58,817 to $60,875. Another 3.5% follows from 10 August 2028, with any Darwin CPI above 3.5% added on.",
+    },
+  ],
+  verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON_H3,
+  teacherPayHref: "/teacher-pay-australia/nt/",
+  publishedOn: "2026-10-22",
+};
+
+// ---------------------------------------------------------------------------
+
+export const SCHOOL_SUPPORT_STATES: readonly SchoolSupportState[] = [NSW, VIC, QLD, WA, SA_SSO, TAS, ACT, NT];
+export const SCHOOL_SUPPORT_SLUGS: readonly SchoolSupportStateSlug[] = SCHOOL_SUPPORT_STATES.map((s) => s.slug);
+
+/** States we looked for and could not verify, listed on the hub. Empty since H3 (22 October 2026). */
+export const SCHOOL_SUPPORT_NOT_BUILT: readonly string[] = [];
+
+export function getSchoolSupportState(slug: string): SchoolSupportState | undefined {
+  return SCHOOL_SUPPORT_STATES.find((s) => s.slug === slug);
+}
+
+export { derive as deriveFullTimeAnnual };
+
+export const SCHOOL_SUPPORT_HUB_FAQS: readonly PayFaq[] = [
+  {
+    q: "How much do teacher aides get paid in Australia?",
+    a: `Teacher aide pay in Australia is set state by state for government schools, with a separate award for non-government schools. In government schools the entry rate is $38.33 an hour for an SLSO 1 in NSW (from 1 July 2026), $36.2775 for a Tasmanian Teacher Assistant at Band 2 Level 2 (from 1 December 2025), $31.6921 for a Queensland OO2 teacher aide (from 1 November 2025), $34.75 for a WA Education Assistant (from 1 January 2026), ${formatSalary(SSO1.min)} a year for a South Australian SSO-1 (from May 2026), $51,622 a year full-time for Victorian ES 1-1, $59,725 for an ACT School Assistant 2/3 (from 4 December 2025) and $58,817 for an NT school-based AO2 on the 92% arrangement (from 13 August 2026). Private and Catholic schools use the Educational Services (Schools) General Staff Award.`,
+  },
+  {
+    q: "Are teacher aides paid during school holidays?",
+    a: "Teacher aides' pay during school holidays differs by state and by type of contract. NSW permanent SLSOs are paid in 26 equal fortnightly pays across the year, and long-term temporaries are paid in school vacations; short-term temporaries get a 15% loading instead of recreation leave. Casual Education Assistants in WA get a 25% loading instead of personal leave and paid student vacation time. Victorian ES staff on a term-time fraction are paid a proportion of the full-time salary. Tasmanian Teacher Assistants are paid for school terms only unless they elect to annualise their pay over 52 weeks. ACT School Assistants are on paid stand-down between terms, with annual leave in the December to January block. NT school-based AOs on the 92% or 96% arrangement are paid at ordinary rates for the days the school is closed.",
+  },
+  {
+    q: "What is a teacher aide called in each state?",
+    a: "The teacher aide role is called School Learning Support Officer (SLSO) in NSW, Education Support (ES) staff in Victoria, teacher aide in Queensland, Education Assistant (EA) in Western Australia, School Services Officer (SSO) in South Australia, Teacher Assistant in Tasmania, School Assistant (most often a Learning Support Assistant) in the ACT, and school-based Administrative Officer (AO2 to AO4) in the Northern Territory.",
+  },
+  {
+    q: "Which states pay teacher aides across the school holidays?",
+    a: "NSW permanent SLSOs, Victorian ES staff on a 52/52 basis, Queensland teacher aides, SA SSOs with leave conditions, ACT School Assistants and NT school-based AOs on 92% or 96% all receive their annual salary across the year, with the school holidays covered by paid stand-down or recreation leave. WA Education Assistants and Tasmanian Teacher Assistants are paid for the weeks they work, with recreation leave and public holidays paid on top, unless they choose to annualise.",
+  },
+];

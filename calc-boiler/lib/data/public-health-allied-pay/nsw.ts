@@ -193,7 +193,7 @@ export const NSW_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       ],
       entry: "Level 2, year 1",
       entryRule:
-        "Level 1 is a supervised first year after graduating (the provisional development year), and the move to Level 2 is automatic once the supervised practice program is done. Under NSW Health Determination 25 of 2023, a new graduate who is already fully registered starts on Level 2, year 1 instead; the determination is in force until 30 October 2026 unless it is replaced. Level 2 rises a year at a time to year 5.",
+        "Level 1 is a supervised first year after graduating (the provisional development year), and the move to Level 2 is automatic once the supervised practice program is done. Under NSW Health Determination 25 of 2023, a new graduate who is already fully registered starts on Level 2, year 1 instead. The determination is in force until 30 October 2026 unless it is replaced. Level 2 rises a year at a time to year 5.",
       top: "Level 6, year 3",
       topNote: "Level 6 is a chief radiographer running a department of 20 or more radiographers",
       notes: ["Radiographer rates are for a 35-hour week, as the award's table states."],
@@ -232,7 +232,7 @@ export const NSW_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       ],
       entry: "Level 1, year 1",
       entryRule:
-        "Clause 5.2: a three-year degree starts on Level 1, year 1; a degree of more than three years starts on year 2; a degree plus a master's (more than four years of study) starts on year 3. The move to Level 2 is automatic after 12 months on Level 1, year 4. Levels 3 to 6 are senior clinician, educator, department head and clinical specialist roles.",
+        "Clause 5.2 sets the starting step by degree. A health professional with a three-year degree starts on Level 1, year 1. One with a degree of more than three years starts on year 2 and one with a degree plus a master's (more than four years of study) starts on year 3. The move to Level 2 is automatic after 12 months on Level 1, year 4. Levels 3 to 6 are senior clinician, educator, department head and clinical specialist roles.",
       top: "Level 8, grade 4",
       topNote: "Level 8 is a discipline director or adviser for a local health district",
     },
@@ -270,7 +270,7 @@ export const NSW_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       entryRule:
         "A psychologist in training (provisional registration) starts on year 1 of the psychologist scale. A psychologist who already has full registration starts on year 3 (clause 2A). Clinical psychologists, who hold a clinical master's or higher, have their own scale.",
       top: "Principal clinical psychologist, year 1 and after",
-      topNote: "Principal clinical psychologist is filled by merit selection from senior clinical psychologists",
+      topNote: "The principal clinical psychologist role is filled by merit selection from senior clinical psychologists",
     },
   ],
 };

@@ -7,8 +7,8 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
       <p className="lead">
         Millions of HECS debtors are lodging tax returns that reconcile a full year of PAYG
         withholding against the FY2026-27 marginal repayment bands for the first time, with{" "}
-        <strong>15%</strong> charged only on income above <strong>$69,528</strong>. Here&apos;s
-        what to check before you lodge.
+        <strong>15%</strong> charged only on income above <strong>$69,528</strong>. Before you
+        lodge, check whether enough STSL was withheld across all your jobs.
       </p>
 
       <NewsKeyFacts
@@ -32,11 +32,11 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
         The marginal system makes this reconciliation less brutal than it used to be. Under the
         old flat-rate rules, tipping just over the threshold made a percentage of your entire
         income repayable, so an under-withheld year could produce a four-figure surprise. Now the
-        repayment scales smoothly, as our coverage of the{" "}
+        repayment rises gradually with income. As our coverage of the{" "}
         <Link href="/news/hecs-repayment-threshold-2026-27/">
           FY2026-27 threshold rise to $69,528
         </Link>{" "}
-        shows, someone barely over the line owes tens of dollars, not thousands.
+        shows, someone just over the threshold owes tens of dollars, not thousands.
       </p>
 
       <h2>How the repayment is actually worked out</h2>
@@ -45,8 +45,8 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
         threshold by $10,472, and 15c in the dollar on that excess comes to roughly $1,571 for the
         year. If their employer withheld $30 a week in STSL (about $1,560 across 52 weeks), the
         assessment lands within a few dollars of what was withheld, and the notice of assessment
-        simply moves the credit onto the loan. Remember that repayment income is broader than
-        salary: reportable fringe benefits, reportable super contributions and net investment
+        simply moves the credit onto the loan. Repayment income is broader than salary.
+        Reportable fringe benefits, reportable super contributions and net investment
         losses are all added back, which is a common reason assessments come in higher than the
         payslip maths suggests. Our <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> walks
         through the full definition.
@@ -58,26 +58,26 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
         any STSL, but your combined repayment income from both jobs can still exceed the
         threshold. That produces an unexpected compulsory repayment at tax time. Ticking the HELP
         debt box on every TFN declaration doesn&apos;t eliminate this, since withholding tables
-        only ever look at income from that one job. If you&apos;re in this position ongoing, you
-        can ask one employer to withhold extra each pay, or simply set aside the shortfall
-        yourself once you know the size of it.
+        only ever look at income from that one job. If you keep working both jobs, you can ask
+        one employer to withhold extra each pay, or set aside the shortfall yourself once you
+        know its size.
       </p>
 
       <h2>What the 20% cut and indexation don&apos;t change here</h2>
       <p>
         The 20% debt reduction and the 2.8% indexation applied on 1 June 2026 both adjust your
         outstanding loan balance directly through the ATO. Neither appears as a line item on your
-        tax return. Your compulsory repayment for the year is simply your repayment income run
-        through the bands, applied against whatever balance remains after those adjustments. The
-        one place they matter at tax time: if your remaining balance is smaller than your
-        calculated repayment, you only repay what&apos;s left, and any excess withholding comes
-        back as a refund.
+        tax return. Your compulsory repayment for the year is your repayment income run through
+        the bands, applied against whatever balance remains after those adjustments. They matter
+        at tax time in one case: if your remaining balance is smaller than your calculated
+        repayment, you only repay what&apos;s left, and any excess withholding comes back as a
+        refund.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        If your income moved during the year (a raise, a new job, or extra hours), it&apos;s worth
-        checking whether enough STSL was withheld before you lodge. Estimate your compulsory
+        If your income moved during the year (a raise, a new job, or extra hours), check whether
+        enough STSL was withheld before you lodge. Estimate your compulsory
         repayment with our <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>, then
         run your full return through our{" "}
         <Link href="/tax-return-calculator/">tax return calculator</Link> to see whether

@@ -92,7 +92,7 @@ export const YOUTH_WORKER: Occupation = {
   },
   coverage: [
     "Youth workers employed by community organisations, youth services, youth refuges and similar non-government providers are covered by the Social, Community, Home Care and Disability Services Industry Award 2010, the SCHADS Award [MA000100]. The award's definition of the social and community services sector includes youth work by name.",
-    "The award has no classification called youth worker. It grades roles in the Social and community services stream (Schedule B) by qualification and responsibility. A youth worker with a relevant certificate is appointed at Level 2; with a Certificate IV the minimum is pay point 2, and a diploma commences at pay point 2 too. A youth worker who supervises staff or volunteers, including managing the day-to-day operations of a group of residential facilities for persons with a disability, is at Level 3, where a three-year degree commences no lower than pay point 3 and a four-year degree no lower than pay point 4.",
+    "The award has no classification called youth worker. It grades roles in the Social and community services stream (Schedule B) by qualification and responsibility. A youth worker with a relevant certificate is appointed at Level 2; with a Certificate IV the minimum is pay point 2, and a diploma commences at pay point 2 too. A youth worker who supervises staff or volunteers, including managing the day-to-day operations of a group of residential facilities for persons with a disability, is at Level 3. A three-year degree at this level commences no lower than pay point 3, and a four-year degree no lower than pay point 4.",
     "Rates for Levels 2 and up already include the Equal Remuneration Order uplift, which the award says forms part of ordinary pay for all purposes. Level 1 carries no uplift and is for entry-level work under close direction.",
     "State government youth justice and child protection workers are generally employed under state public sector awards or agreements rather than this award, so use this page for community sector youth work only.",
   ],
@@ -101,7 +101,7 @@ export const YOUTH_WORKER: Occupation = {
       id: "sacs",
       title: "Youth worker pay rates: Social and community services stream, 2026–27",
       intro:
-        "SCHADS Award Schedule B, Levels 2 to 4, as published (including the Equal Remuneration Order). Casual is the hourly rate plus the 25% loading.",
+        "This table shows the SCHADS Award Schedule B rates for Levels 2 to 4, as published and including the Equal Remuneration Order. The casual rate is the hourly rate plus the 25% casual loading.",
       rows: SCHADS_SACS.filter((r) => /^Level [2-4] /.test(r.classification)).map((r) => toRow(r, NOTES[r.classification])),
     },
   ],
@@ -113,7 +113,7 @@ export const YOUTH_WORKER: Occupation = {
     { when: "Night shift", permanent: pct(1 + SCHADS_PENALTIES.nightShiftLoading), casual: "—" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2). Youth refuges and residential programs run around the clock, so these penalties matter more here than in most community roles.",
+    "The SCHADS penalty rates above are percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2). Youth refuges and residential programs run around the clock, so these penalties matter more here than in most community roles.",
   overtime: [
     "Time and a half for the first 2 hours of overtime Monday to Saturday, then double time (cl 28.1(a)(i)).",
     "Sunday overtime is double time and public holiday overtime is double time and a half.",
@@ -145,11 +145,11 @@ export const YOUTH_WORKER: Occupation = {
     },
     {
       q: "Does the SCHADS Award have a youth worker classification?",
-      a: "No. The award names youth work in its definition of the social and community services sector, but it classifies roles by qualification and responsibility under Level 1 to Level 8. Most youth workers sit at Level 2 or Level 3, depending on their qualification and whether they supervise others.",
+      a: "No. The SCHADS Award names youth work in its definition of the social and community services sector, but it classifies roles by qualification and responsibility under Level 1 to Level 8. Most youth workers sit at Level 2 or Level 3, depending on their qualification and whether they supervise others.",
     },
     {
       q: "What does a youth worker with a degree earn?",
-      a: `Graduates with a three-year degree doing Level 3 work commence at no lower than Level 3 pay point 3: ${money(L3P3.hourly)} an hour, ${money(L3P3.weekly)} a week. A four-year degree commences no lower than pay point 4. A Level 4 position starts at ${money(L4P1.hourly)} an hour.`,
+      a: `A youth worker with a three-year degree doing Level 3 work commences no lower than Level 3 pay point 3: ${money(L3P3.hourly)} an hour, ${money(L3P3.weekly)} a week. A youth worker with a four-year degree commences no lower than pay point 4. A Level 4 position starts at ${money(L4P1.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a youth worker?",

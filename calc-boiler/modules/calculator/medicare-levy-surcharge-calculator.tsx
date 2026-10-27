@@ -81,7 +81,7 @@ export default function MedicareLevySurchargeCalculator() {
     <Card className="shadow-md not-prose" id="mls-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Medicare Levy Surcharge Calculator {MLS_INCOME_YEAR}</h2>
-        <p className="text-sm text-warmgray mb-6">Uses the ATO&rsquo;s {MLS_INCOME_YEAR} surcharge tiers. Enter income for the whole year, before any cover changes.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator uses the ATO&rsquo;s {MLS_INCOME_YEAR} surcharge tiers. Enter income for the whole year, before any cover changes.</p>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
@@ -139,7 +139,7 @@ export default function MedicareLevySurchargeCalculator() {
                 ? `You're under the ${formatAUD(est.baseThreshold)} threshold, so no surcharge applies with or without cover.`
                 : cover === "full"
                   ? "Your hospital cover means no surcharge. Without it, the full-year figure above would apply."
-                  : `Charged at ${formatMlsRate(est.rate)} on ${formatAUD(est.chargeBase)}. It isn't withheld from your pay, so it's added when you lodge. This is on top of the 2% Medicare levy.`}
+                  : `Your surcharge is charged at ${formatMlsRate(est.rate)} on ${formatAUD(est.chargeBase)}. It isn't withheld from your pay, so it's added when you lodge your tax return. This is on top of the 2% Medicare levy.`}
             </p>
             {hasSpouse && est.tier > 0 && (
               <p className="mt-2 text-xs text-warmgray">

@@ -206,7 +206,7 @@ export default function JuniorPayRatesPage() {
             <section id="which-rate-applies">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Junior Rate Actually Applies to You?</h2>
               <p>
-                This is the question that matters, and the table above answers it for only a minority of young workers. Most people under {ADULT_AGE} in paid work are in retail, fast food or hospitality, all award-covered. <strong>An award sets its own junior percentage, and applies it to the award classification rate, not to the National Minimum Wage.</strong> Both numbers change.
+                The junior minimum wage table above covers only award and agreement free employees, a minority of young workers. Most people under {ADULT_AGE} in paid work are in retail, fast food or hospitality, all award-covered. <strong>An award sets its own junior percentage, and applies it to the award classification rate, not to the National Minimum Wage.</strong> Both numbers change.
               </p>
               <p>
                 So there are three questions, in order: does an award cover your job; what classification level are you; and what percentage does that award set for your age. Getting the first one wrong is the expensive mistake.
@@ -245,7 +245,7 @@ export default function JuniorPayRatesPage() {
                 </table>
               </div>
               <p className="text-sm">
-                Entry-level base rates including the {Math.round(CASUAL_LOADING * 100)}% casual loading, before evening, weekend and public holiday penalties. Each employer page lists every level, penalty rate and the agreement it comes from.
+                The table shows entry-level base rates including the {Math.round(CASUAL_LOADING * 100)}% casual loading, before evening, weekend and public holiday penalties. Each employer page lists every level, penalty rate and the agreement it comes from.
               </p>
             </section>
 
@@ -314,7 +314,7 @@ export default function JuniorPayRatesPage() {
             <section id="awards-without-junior-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Some Awards Have No Junior Rates At All</h2>
               <p>
-                A junior rate only exists where the instrument covering you actually contains one, and several major awards do not. The <Link href="/schads-award-pay-rates/">SCHADS award</Link> (social, community, home care and disability services) has <strong>no junior rates clause</strong>. An 18-year-old disability support worker is entitled to the full adult rate for their classification.
+                A junior rate only exists where the instrument covering you contains one, and several major awards do not. The <Link href="/schads-award-pay-rates/">SCHADS award</Link> (social, community, home care and disability services) has <strong>no junior rates clause</strong>. An 18-year-old disability support worker is entitled to the full adult rate for their classification.
               </p>
               <p>
                 Two further limits are easy to miss. Under the retail award, junior percentages apply <strong>only to employee levels 1 to 3</strong>; a junior doing level 4 work is entitled to the full level 4 rate. And in hospitality, juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the adult rate whatever their age.
@@ -336,7 +336,7 @@ export default function JuniorPayRatesPage() {
                       It is <strong>not a jump to the adult rate</strong>. On {PENDING_JUNIOR_CHANGE.earliestStart} an eligible 19-year-old moves from 80% to 85%, not to 100%. Employees with 6 months or less stay on 70%, 80% and 90%, and rates for under-18s do not change.
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-navy">
-                      <strong>Why some sources still say &ldquo;could start&rdquo;.</strong> The Fair Work Ombudsman&rsquo;s explainer, published 8 April 2026, says the changes &ldquo;could start from 1 December 2026&rdquo;. That was written before the Commission&rsquo;s {PENDING_JUNIOR_CHANGE.implementationDecidedOn} decision, which at paragraph [263] says the transitional arrangements should commence on {PENDING_JUNIOR_CHANGE.earliestStart} for the retail and fast food awards, and adopted the Pharmacy Guild&rsquo;s agreed transition for pharmacy. Re-read against the decision on 14 October 2026. The new percentages do not apply to any pay period before that date.
+                      <strong>Why some sources still say &ldquo;could start&rdquo;.</strong> The Fair Work Ombudsman&rsquo;s explainer, published 8 April 2026, says the changes &ldquo;could start from 1 December 2026&rdquo;. That was written before the Commission&rsquo;s {PENDING_JUNIOR_CHANGE.implementationDecidedOn} decision, which at paragraph [263] says the transitional arrangements should commence on {PENDING_JUNIOR_CHANGE.earliestStart} for the retail and fast food awards, and adopted the Pharmacy Guild&rsquo;s agreed transition for pharmacy. The new percentages do not apply to any pay period before that date. We re-read this section against the decision on 14 October 2026.
                     </p>
                   </div>
                 </div>
@@ -393,7 +393,7 @@ export default function JuniorPayRatesPage() {
             <section id="minimum-working-age">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Working Age by State</h2>
               <p>
-                <strong>There is no national minimum working age.</strong> It is set by each state and territory, and the differences are large. Separately from any of this, every jurisdiction prohibits work during school hours for children of compulsory school age.
+                <strong>There is no national minimum working age.</strong> It is set by each state and territory, and the differences are large. Separately, every jurisdiction prohibits work during school hours for children of compulsory school age.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -441,7 +441,7 @@ export default function JuniorPayRatesPage() {
                 The casual rate is then the <strong>rounded</strong> junior hourly rate plus the {(CASUAL_LOADING * 100).toFixed(0)}% loading. At 19 that gives {formatAUD(byAge("19").casualHourly, 2)}; deriving it from the unrounded figure would give a cent less. Every hourly and casual figure in the first table matches Fair Work&rsquo;s published dollars exactly, and automated tests hold them there.
               </p>
               <p>
-                To see what a junior rate leaves after tax, use our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>: most junior earnings fall under the {formatAUD(18_200)} tax-free threshold, so the answer is often that no income tax is withheld at all. Our <Link href="/first-job-pay-guide/">first job guide</Link> covers tax file numbers, super and reading your first payslip.
+                To see what a junior rate leaves after tax, enter it in our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>. Most junior earnings fall under the {formatAUD(18_200)} tax-free threshold. If you claim that threshold with your employer, the answer is often that no income tax is withheld at all. Our <Link href="/first-job-pay-guide/">first job guide</Link> covers tax file numbers, super and reading your first payslip.
               </p>
             </section>
 
@@ -521,7 +521,7 @@ export default function JuniorPayRatesPage() {
                 <CardContent className="p-6">
                   <h2 className="mb-2 text-lg font-bold">First job?</h2>
                   <p className="mb-4 text-sm text-eucalyptus-light">
-                    Most junior earnings sit under the {formatAUD(18_200)} tax-free threshold, so no income tax is withheld. Check yours.
+                    Most junior earnings sit under the {formatAUD(18_200)} tax-free threshold, so no income tax is withheld when you claim the threshold. Check yours.
                   </p>
                   <Link href="/take-home-pay-calculator/" className="block w-full rounded-md bg-white px-4 py-2.5 text-center text-sm font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone/50">
                     Calculate Take-Home Pay

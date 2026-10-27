@@ -439,12 +439,12 @@ export function keyFindings(): string[] {
 
   return [
     `The 1 July 2026 tax cut is worth at most ${aud(cut.perYear)} a year (${aud(cut.perWeek, 2)} a week), reached by every resident earning ${aud(cut.fromIncome)} or more. The legislated second cut on 1 July 2027 doubles that to ${aud(cut.perYear * 2)} a year against 2025-26.`,
-    `A full-time worker on the National Minimum Wage (${aud(nmw.annual)} a year) takes home ${aud(nmw.takeHome)} in ${SITE_CONFIG.financialYear}; on the average full-time salary (${aud(avg.annual)}) take-home is ${aud(avg.takeHome)}. The average full-time wage is ${avg.timesMinimum.toFixed(2)} times the minimum wage.`,
-    `The full-time median (${aud(medFt.annual)}) is ${pct(1 - medFt.shareOfAverage)} below the full-time average, because a minority of very high earners lift the mean.`,
+    `A full-time worker on the National Minimum Wage (${aud(nmw.annual)} a year) takes home ${aud(nmw.takeHome)} in ${SITE_CONFIG.financialYear}. A full-time worker on average full-time ordinary earnings (AWOTE, ${aud(avg.annual)} a year) takes home ${aud(avg.takeHome)} in the same year. Average full-time earnings are ${avg.timesMinimum.toFixed(2)} times the minimum wage.`,
+    `The full-time median (${aud(medFt.annual)} a year) is ${pct(1 - medFt.shareOfAverage)} below the full-time average, because a minority of very high earners lift the mean.`,
     `Of the ${awards.length} modern awards we track, the highest entry-level adult rate is ${hi.name} (${hi.classification}) at ${aud(hi.hourly, 2)} an hour, ${pct(hi.premiumOverNmw)} above the minimum wage; the lowest are ${tiedLow.join(" and ")} at ${aud(lo.hourly, 2)}${Math.abs(lo.premiumOverNmw) < 1e-9 ? ", exactly the minimum wage" : ""}${below.length ? ` (the ${below.map((b) => `${short(b.name)} ${b.classification}`).join(", ")} induction rate is lower, ${aud(below[0].hourly, 2)}, but applies only for the first 38 hours)` : ""}.`,
     `A minimum-wage worker needs ${hNmw.hoursFor1000Net} hours to take home $1,000; an average full-time earner needs ${hAvg.hoursFor1000Net}.`,
     ...(topTeacher && lowTeacher
-      ? [`Graduate teacher pay ranges from ${aud(lowTeacher.entry)} (${lowTeacher.code}) to ${aud(topTeacher.entry)} (${topTeacher.code}) depending on the state.`]
+      ? [`Graduate classroom teacher salaries range from ${aud(lowTeacher.entry)} (${lowTeacher.code}) to ${aud(topTeacher.entry)} (${topTeacher.code}) across the states and territories in this report.`]
       : []),
   ];
 }

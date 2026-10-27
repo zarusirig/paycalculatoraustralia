@@ -200,7 +200,7 @@ export default function TaxBracketsGuidePage() {
               <h2 style={FONT}>Australian Tax Brackets {FY} (Residents)</h2>
               <p>These are the ATO&rsquo;s resident income tax rates for the {FY} income year, 1 July 2026 to 30 June 2027. They apply to your <em>taxable income</em> (assessable income minus deductions) if you were an Australian resident for tax purposes all year and are entitled to the full nil-rate band. How that first bracket works, and who can claim it with their employer, is explained on the <Link href="/tax-free-threshold/">what is the tax-free threshold</Link> page.</p>
               <BracketTable brackets={B} caption={`Australian resident tax brackets ${FY}`} />
-              <p>Each rate applies only to the slice of income inside its band. The dollar amount in each row (for example {formatAUD(B[2].base)}) is simply the total tax on every band below it, so you can work out tax on any income as <strong>that amount plus the rate times the income over the threshold</strong>. The <Link href="/tax-free-threshold/">tax-free threshold</Link> is the nil band at the top of the table; it has been {formatAUD(TAX_FREE_THRESHOLD)} since 2012.</p>
+              <p>Each rate applies only to the slice of income inside its band. The dollar amount in each row (for example {formatAUD(B[2].base)}) is the total tax on every band below it, so you can work out tax on any income as <strong>that amount plus the rate times the income over the threshold</strong>. The <Link href="/tax-free-threshold/">tax-free threshold</Link> is the nil band at the top of the table; it has been {formatAUD(TAX_FREE_THRESHOLD)} since 2012.</p>
             </section>
 
             <div className="not-prose my-10"><TaxBracketsLookup /></div>
@@ -257,12 +257,12 @@ export default function TaxBracketsGuidePage() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-sm text-warmgray-light">Income tax after the low income tax offset, before the Medicare levy. For earlier years back to 2019-20 see <Link href="/tax-bracket-history/">tax bracket history</Link>.</p>
+              <p className="text-sm text-warmgray-light">The figures are income tax after the low income tax offset, before the Medicare levy. For earlier years back to 2019-20 see <Link href="/tax-bracket-history/">tax bracket history</Link>.</p>
             </section>
 
             <section id="tax-at-thresholds">
               <h2 style={FONT}>How Much Tax at Each Threshold</h2>
-              <p>The most you can pay inside each bracket, and the running total at the top of it. Income tax only, before offsets and the Medicare levy.</p>
+              <p>The table below shows the most income tax you can pay inside each bracket, and the running total at the top of it. The figures are income tax only, before offsets and the Medicare levy.</p>
               <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                 <table className="w-full text-sm text-left text-warmgray">
                   <thead className="bg-sandstone">
@@ -338,7 +338,7 @@ export default function TaxBracketsGuidePage() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-sm text-warmgray-light">Resident, {FY} rates, single, no HELP debt, no Medicare levy surcharge. Highlighted: the next $1,000 costs more than the bracket rate plus Medicare. Below {formatAUD(NIL)} the next $1,000 can cost nothing because LITO absorbs the tax.</p>
+              <p className="text-sm text-warmgray-light">Resident, {FY} rates, single, no HELP debt, no Medicare levy surcharge. A highlighted figure means the next $1,000 costs more than the bracket rate plus Medicare. Below {formatAUD(NIL)} the next $1,000 can cost nothing because LITO absorbs the tax.</p>
             </section>
 
             <section id="tax-on-salary">
@@ -368,7 +368,7 @@ export default function TaxBracketsGuidePage() {
               <p className="text-sm text-warmgray-light">The ATO&rsquo;s foreign-resident page currently shows these rates for {FOREIGN_TABLE_YEAR}. The 1 July 2026 cut applied only to the resident second band, which foreign residents don&rsquo;t have, and the ATO&rsquo;s foreign-resident withholding scale for {FY} is unchanged.</p>
               <h3>Working holiday maker tax rates (visa 417 and 462)</h3>
               <BracketTable brackets={WHM_TAX_BRACKETS_2025_26} caption="Working holiday maker tax rates" medicare={false} />
-              <p className="text-sm text-warmgray-light">Latest table published by the ATO, for {WHM_TABLE_YEAR}. See <Link href="/working-holiday-tax/">working holiday tax</Link> for how employers register to withhold at these rates.</p>
+              <p className="text-sm text-warmgray-light">This is the latest working holiday maker table published by the ATO, for {WHM_TABLE_YEAR}. See <Link href="/working-holiday-tax/">working holiday tax</Link> for how employers register to withhold at these rates.</p>
               <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                 <table className="w-full text-sm text-left text-warmgray">
                   <thead className="bg-sandstone">

@@ -124,7 +124,7 @@ export default function PayRiseCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Does the Pay Rise Impact Table Show?</h2>
             <p className="mb-4 text-warmgray">
-              The table below shows how pay rises of different sizes translate into after-tax income across <strong>5 salary levels</strong> in the {SITE_CONFIG.financialYear} financial year. Each row calculates income tax, Medicare levy, and the resulting net weekly boost.
+              The table below shows how pay rises of different sizes translate into after-tax income across <strong>5 salary levels</strong> in the {SITE_CONFIG.financialYear} financial year. Each row shows the extra income tax and Medicare levy the raise attracts, then the net gain per year and per week.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -171,7 +171,7 @@ export default function PayRiseCalculatorContent() {
               A 10% gross pay rise produces <strong>less than 10%</strong> additional take-home pay because the raise is taxed at the marginal rate, which is higher than the average rate applied to total income.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian Tax Office applies income tax brackets progressively. In FY{SITE_CONFIG.financialYear} the resident rates are {bracketRatesSentence()}. The 2% Medicare levy applies on top of all these rates.
+              Australian resident income tax rates are progressive: each rate applies only to the income inside its bracket. In FY{SITE_CONFIG.financialYear} the resident rates are {bracketRatesSentence()}. The 2% Medicare levy applies on top of all these rates.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: 10% Rise on $90,000</h3>
@@ -221,26 +221,26 @@ export default function PayRiseCalculatorContent() {
               Wages rose <strong>{(WPI_ANNUAL * 100).toFixed(1)}%</strong> over the year to the June quarter 2026, according to the Australian Bureau of Statistics Wage Price Index. On average full-time adult ordinary time earnings of about {formatAUD(AWOTE_ANNUAL)} a year (ABS, May 2026), that is roughly <strong>{formatAUD(Math.round(AWOTE_ANNUAL * WPI_ANNUAL))}</strong> before tax.
             </p>
             <p className="text-warmgray mb-4">
-              Pay rises vary significantly by industry, role seniority, and location. Award-covered workers received the Fair Work Commission&apos;s annual increase from 1 July, while agreement and contract rises depend on the employer. The ABS publishes wage growth by industry and sector in each Wage Price Index release.
+              Your own pay rise depends on how your pay is set. Award-covered workers received the Fair Work Commission&apos;s annual increase from 1 July, while agreement and contract rises depend on the employer. The ABS publishes wage growth by industry and sector in each Wage Price Index release.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Inflation Affect a Pay Rise?</h3>
             <p className="text-warmgray mb-4">
-              A pay rise below the inflation rate results in a <strong>real wage decrease</strong>. With the CPI up <strong>{(CPI_ANNUAL * 100).toFixed(1)}%</strong> over the year to June 2026 (ABS), a 3% nominal pay rise is a real <strong>cut</strong> of about {((CPI_ANNUAL - 0.03) * 100).toFixed(1)}% in purchasing power &mdash; and the {(WPI_ANNUAL * 100).toFixed(1)}% average wage rise also trailed inflation. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to compare your current and proposed salary in after-tax terms, then adjust for inflation to assess whether the offer genuinely improves your financial position.
+              A pay rise below the inflation rate results in a <strong>real wage decrease</strong>. With the CPI up <strong>{(CPI_ANNUAL * 100).toFixed(1)}%</strong> over the year to June 2026 (ABS), a 3% nominal pay rise is a real <strong>cut</strong> of about {((CPI_ANNUAL - 0.03) * 100).toFixed(1)}% in purchasing power. The {(WPI_ANNUAL * 100).toFixed(1)}% average wage rise also trailed inflation. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to compare your current and proposed salary in after-tax terms, then compare the rise with the CPI to see whether the offer beats inflation.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              This pay rise calculator serves <strong>3 primary groups</strong> of Australian workers: employees preparing for salary negotiations, job seekers comparing offers, and HR professionals modelling compensation changes.
+              This pay rise calculator is built for <strong>3 primary groups</strong> of Australian workers: employees preparing for salary negotiations, job seekers comparing offers, and HR professionals modelling compensation changes.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
-              <li><strong>Employees negotiating a raise</strong> &mdash; calculate the exact after-tax benefit before entering a salary review meeting. Knowing the net weekly impact strengthens the negotiation position.</li>
-              <li><strong>Job seekers comparing offers</strong> &mdash; a $10,000 higher gross salary at a new company does not mean $10,000 more in the bank. This calculator reveals the true take-home difference between your current and offered salary.</li>
-              <li><strong>HR and payroll professionals</strong> &mdash; model the cost-to-company impact of proposed raises, including employer superannuation obligations at the <strong>12% SG rate</strong>.</li>
-              <li><strong>Contractors considering permanent roles</strong> &mdash; compare a contract day rate against a permanent salary offer. Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a detailed side-by-side breakdown.</li>
-              <li><strong>Part-time workers gaining extra hours</strong> &mdash; calculate the net pay increase from moving from 3 days per week to 4 days, or from part-time to full-time hours.</li>
+              <li><strong>Employees negotiating a raise</strong>: calculate the exact after-tax benefit before your salary review meeting, so you know what the gross figure you ask for is worth each week.</li>
+              <li><strong>Job seekers comparing offers</strong>: a $10,000 higher gross salary at a new company does not mean $10,000 more in the bank. Enter your current and offered salary to see the real take-home difference.</li>
+              <li><strong>HR and payroll professionals</strong>: model the cost-to-company impact of proposed raises, including the extra employer superannuation at the <strong>12% SG rate</strong>.</li>
+              <li><strong>Contractors considering permanent roles</strong>: this calculator takes a base salary, not a day rate. To compare a contract day rate against a permanent salary offer, use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a side-by-side breakdown.</li>
+              <li><strong>Part-time workers gaining extra hours</strong>: calculate the net pay increase from moving from 3 days per week to 4 days, or from part-time to full-time hours.</li>
             </ul>
           </section>
 
@@ -249,7 +249,7 @@ export default function PayRiseCalculatorContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">1. Build Your Case</h3>
-                <p className="text-sm">Don&apos;t just ask for more money because of inflation. Track your specific achievements over the last 6-12 months. Did you save the company money? Drive new revenue? Take on duties outside your job description?</p>
+                <p className="text-sm">Base the request on your results, not on inflation alone. List your achievements over the last 6-12 months, such as money you saved the company, new revenue you brought in, or duties you took on outside your job description.</p>
               </div>
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">2. Research the Market</h3>
@@ -261,7 +261,7 @@ export default function PayRiseCalculatorContent() {
               </div>
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">4. Focus on the Gross</h3>
-                <p className="text-sm">When negotiating, always talk in terms of the Total Package or Base Gross Salary. Do not negotiate based on what you want to &quot;take home&quot; every week, as your employer doesn&apos;t control the tax rates.</p>
+                <p className="text-sm">Negotiate in terms of the Total Package or Base Gross Salary, not the amount you want to take home each week. Your employer does not control the tax rates, so a take-home figure can change even when your salary does not.</p>
               </div>
             </div>
           </section>
@@ -269,28 +269,28 @@ export default function PayRiseCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Common Mistakes When Calculating a Pay Rise?</h2>
             <p className="mb-4 text-warmgray">
-              Employees and employers make <strong>5 frequent errors</strong> when estimating the value of a pay rise. Each mistake leads to unrealistic expectations about after-tax income.
+              Employees and employers make <strong>5 frequent errors</strong> when estimating the value of a pay rise. Each error gives a wrong figure for what the raise is worth to you.
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>Dividing the gross raise by 52 weeks</strong> &mdash; this ignores tax entirely. A $10,000 raise is not {formatAUD(10_000 / 52)} per week; it is <strong>{formatAUD(RAISE_10K_ON_80K / 52)} per week</strong> after the {pct0(B2.rate + MEDICARE_LEVY.rate)} marginal rate on an $80,000 salary.</li>
-              <li><strong>Using the average tax rate instead of the marginal rate</strong> &mdash; on $80,000 your overall effective rate of {(EX80.effectiveTaxRate * 100).toFixed(1)}% does not apply to the raise. The marginal rate of {pct0(B2.rate)} (plus 2% Medicare) applies to every additional dollar within the {formatAUD(B2.min)}-{formatAUD(B2.max)} bracket.</li>
-              <li><strong>Forgetting the superannuation guarantee increase</strong> &mdash; a $10,000 base salary raise also adds <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> to superannuation at the {pct0(SUPER_GUARANTEE.rate)} SG rate. This is real compensation, but it does not appear in take-home pay. Model this with our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.</li>
-              <li><strong>Ignoring HECS-HELP threshold crossings</strong> &mdash; a pay rise that pushes repayment income above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> triggers student loan repayments of {Math.round(HECS_HELP.bands[1].marginalRate * 100)} cents per dollar above the threshold. This effectively adds {pct0(HECS_HELP.bands[1].marginalRate)} to the marginal rate on income in that first band.</li>
-              <li><strong>Confusing gross salary with total package</strong> &mdash; some employment contracts quote &quot;total remuneration&quot; inclusive of superannuation. A $110,000 total package is only <strong>{formatAUD(TRP_110K_BASE)}</strong> in base salary after extracting {pct0(SUPER_GUARANTEE.rate)} super. Always confirm whether the quoted figure includes or excludes the employer SG contribution.</li>
+              <li><strong>Dividing the gross raise by 52 weeks</strong>: this ignores tax entirely. A $10,000 raise is not {formatAUD(10_000 / 52)} per week; it is <strong>{formatAUD(RAISE_10K_ON_80K / 52)} per week</strong> after the {pct0(B2.rate + MEDICARE_LEVY.rate)} marginal rate on an $80,000 salary.</li>
+              <li><strong>Using the average tax rate instead of the marginal rate</strong>: on $80,000 your overall effective rate of {(EX80.effectiveTaxRate * 100).toFixed(1)}% does not apply to the raise. The marginal rate of {pct0(B2.rate)} (plus 2% Medicare) applies to every additional dollar within the {formatAUD(B2.min)}-{formatAUD(B2.max)} bracket.</li>
+              <li><strong>Forgetting the superannuation guarantee increase</strong>: a $10,000 base salary raise also adds <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> to superannuation at the {pct0(SUPER_GUARANTEE.rate)} SG rate. This is real compensation, but it does not appear in take-home pay. Model this with our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.</li>
+              <li><strong>Ignoring HECS-HELP threshold crossings</strong>: a pay rise that pushes repayment income above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> triggers student loan repayments of {Math.round(HECS_HELP.bands[1].marginalRate * 100)} cents per dollar above the threshold. This effectively adds {pct0(HECS_HELP.bands[1].marginalRate)} to the marginal rate on income in that first band.</li>
+              <li><strong>Confusing gross salary with total package</strong>: some employment contracts quote &quot;total remuneration&quot; inclusive of superannuation. A $110,000 total package is only <strong>{formatAUD(TRP_110K_BASE)}</strong> in base salary after extracting {pct0(SUPER_GUARANTEE.rate)} super. Check whether the quoted figure includes or excludes the employer SG contribution.</li>
             </ol>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Related Calculators Help with Pay Rise Planning?</h2>
             <p className="mb-4 text-warmgray">
-              Pay rise calculations connect to several other Australian tax and salary tools. Use the calculators below to model the full impact of a salary change on taxation, superannuation, and net pay.
+              Use the calculators below to model the rest of a salary change: the full tax breakdown, the Low Income Tax Offset, salary sacrifice, superannuation, and the gross salary needed for a take-home target.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
-              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> &mdash; see the complete breakdown of income tax, Medicare levy, and net pay at any gross salary.</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; calculate your total Australian income tax liability for FY{SITE_CONFIG.financialYear} including the &quot;Low Income Tax Offset&quot; (LITO).</li>
-              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> &mdash; model how redirecting part of your pay rise into pre-tax super contributions reduces your taxable income.</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; calculate the employer SG contribution on your new salary and project long-term super balance growth.</li>
-              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link> &mdash; reverse-calculate the gross salary required to achieve a specific take-home pay target after a raise.</li>
+              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: see the complete breakdown of income tax, Medicare levy, and net pay at any gross salary.</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: calculate your total Australian income tax liability for FY{SITE_CONFIG.financialYear} including the Low Income Tax Offset (LITO).</li>
+              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link>: model how redirecting part of your pay rise into pre-tax super contributions reduces your taxable income.</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG contribution on your new salary and project long-term super balance growth.</li>
+              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>: reverse-calculate the gross salary required to achieve a specific take-home pay target after a raise.</li>
             </ul>
           </section>
 
@@ -313,7 +313,7 @@ export default function PayRiseCalculatorContent() {
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Understand the Tax Brackets</h2>
-            <p className="text-warmgray mb-6 max-w-lg mx-auto">Want to see exactly where the tax rates change? View our guide on the current tax thresholds.</p>
+            <p className="text-warmgray mb-6 max-w-lg mx-auto">Our tax brackets guide lists each income threshold where the resident tax rate changes.</p>
             <Link href="/tax-brackets/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">View Tax Brackets →</Link>
           </section>
 

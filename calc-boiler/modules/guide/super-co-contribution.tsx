@@ -56,7 +56,7 @@ export default function SuperCoContributionPage() {
             Super Co-Contribution & Spouse Contribution Tax Offset
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The government will match up to $500 of your personal super contributions if you are a low-to-middle income earner. Plus, contributing to your spouse&apos;s super can earn you a tax offset of up to $540. Here is how both schemes work, who qualifies, and how to maximise the benefit.
+            The government super co-contribution adds up to $500 a year to your super when you make personal (after-tax) contributions and you are a low-to-middle income earner. The spouse super contribution tax offset is a separate scheme. Put after-tax money into your spouse&apos;s super and you can claim a tax offset of up to $540 on your own tax return. Below are the eligibility rules for each scheme, the income thresholds that reduce them, and a worked example of a couple claiming both.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -120,7 +120,7 @@ export default function SuperCoContributionPage() {
                 </div>
               </div>
               <p>
-                The reduction formula is: maximum co-contribution is reduced by <strong>$0.03333</strong> for every $1.00 of income above {formatAUD(LOWER)}. This produces a linear phase-out from $500 to $0 across the $15,000 income range.
+                The reduction formula is: maximum co-contribution is reduced by <strong>$0.03333</strong> for every $1.00 of total income above {formatAUD(LOWER)}. This produces a linear phase-out from $500 to $0 across the $15,000 income range.
               </p>
             </section>
 
@@ -239,7 +239,7 @@ export default function SuperCoContributionPage() {
                 </div>
               </div>
               <p>
-                The couple contributes $4,000 from after-tax income and receives <strong>{formatAUD(maxCoContribution(36_000))} of government money</strong> into Partner B&apos;s super plus a <strong>$540 tax reduction</strong> for Partner A &mdash; a combined benefit of <strong>{formatAUD(maxCoContribution(36_000) + 540)}</strong> for a $4,000 outlay. If Partner B earned $40,000 or more, the spouse offset would be nil, although the co-contribution would still be available up to {formatAUD(HIGHER)}.
+                The couple contributes $4,000 from after-tax income and receives <strong>{formatAUD(maxCoContribution(36_000))} of government money</strong> into Partner B&apos;s super plus a <strong>$540 tax reduction</strong> for Partner A, a combined benefit of<strong>{formatAUD(maxCoContribution(36_000) + 540)}</strong> for a $4,000 outlay. If Partner B earned $40,000 or more, the spouse offset would be nil, although the co-contribution would still be available up to {formatAUD(HIGHER)}.
               </p>
             </section>
 

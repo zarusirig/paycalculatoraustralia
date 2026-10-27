@@ -19,7 +19,7 @@ export const EMPLOYMENT_TYPE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What are the standard hours for full-time work?",
-    a: `Full-time employees work ${HOURS} ordinary hours per week under the National Employment Standards. Some awards or agreements may average this over a cycle (e.g., ${HOURS * 2} hours per fortnight).`,
+    a: `Full-time employees work ${HOURS} ordinary hours per week under the National Employment Standards. Some awards and enterprise agreements average these hours over a longer work cycle (for example, ${HOURS * 2} hours per fortnight).`,
   },
   {
     q: "Do part-time employees get the same leave as full-time?",
@@ -31,11 +31,11 @@ export const EMPLOYMENT_TYPE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is casual or part-time better financially?",
-    a: `Casuals earn ${LOADING} loading but miss paid leave worth roughly 10–15% of salary when actually used. For ongoing regular work, part-time typically provides better overall value once leave, notice period, and redundancy protections are factored in. For short-term or irregular work, casual loading can make it more lucrative. Use the Employment Type Calculator to model your specific scenario.`,
+    a: `Casual employees earn the ${LOADING} casual loading but give up paid leave worth roughly 10 to 15% of salary when the leave is taken. For ongoing regular work, part-time employment typically gives better overall value once paid leave, notice period and redundancy protections are counted. For short-term or irregular work, the casual loading can pay more. Enter your base hourly rate and weekly hours in the Employment Type Calculator to compare full-time, part-time and casual pay side by side.`,
     links: { "Employment Type Calculator": "/employment-type-calculator/" },
   },
   {
     q: "Can a casual employee be fired without notice?",
-    a: "Technically, casual employment can end without notice from either party since there is no firm advance commitment. However, a casual employed on a regular and systematic basis for at least 6 months (12 months with a small business) who reasonably expected that work to continue may be protected by unfair dismissal laws. The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights.",
+    a: "Casual employment can end without notice from either party, because a casual has no firm advance commitment to ongoing work. However, a casual employed on a regular and systematic basis for at least 6 months (12 months with a small business) who reasonably expected that work to continue may be protected by unfair dismissal laws. The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights.",
   },
 ];

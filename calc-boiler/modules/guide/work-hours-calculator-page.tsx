@@ -79,7 +79,7 @@ export default function WorkHoursCalculatorPage() {
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Work Hours Calculator</span></li></ol></nav>
 
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work Hours Calculator: Timesheet, Breaks and Overtime</h1><p className="text-xl text-warmgray leading-relaxed mb-6">Add up a week of shifts from start and finish times, take out unpaid breaks, and get the total in <strong>both decimal hours and h:mm</strong>. Overnight shifts, the {CASUAL_LOADING * 100}% casual loading and overtime past {STANDARD_WEEKLY_HOURS} hours are all handled. Nothing is uploaded; your timesheet stays in your browser.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work Hours Calculator: Timesheet, Breaks and Overtime</h1><p className="text-xl text-warmgray leading-relaxed mb-6">This work hours calculator adds up a weekly or fortnightly timesheet from start and finish times, deducts unpaid breaks, and gives the total in <strong>both decimal hours and h:mm</strong>. Overnight shifts, the {CASUAL_LOADING * 100}% casual loading and overtime past {STANDARD_WEEKLY_HOURS} hours a week are all handled, and you can change the overtime threshold to match your award. Add your hourly rate and the calculator gives gross pay for the week or fortnight, before tax. Nothing is uploaded; your timesheet stays in your browser. Below the calculator are a minutes-to-decimal table, the rules for shifts past midnight, unpaid breaks, award overtime and casual loading, a worked example week and the employer record-keeping rules.</p><TrustBar className="!max-w-none" /></header>
 
       <div className="mb-12"><WorkHoursCalculator /></div>
 
@@ -101,7 +101,7 @@ export default function WorkHoursCalculatorPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Decimal Hours vs Hours and Minutes</h2>
-            <p>Payroll systems store time as <strong>decimal hours</strong>, not hours and minutes. That is why a payslip can say <code>7.5</code> for a shift you think of as seven and a half hours, and <code>7.25</code> for one you think of as seven fifteen. The conversion is simply minutes divided by 60.</p>
+            <p>Payroll systems store time as <strong>decimal hours</strong>, not hours and minutes. That is why a payslip can say <code>7.5</code> for a shift you think of as seven and a half hours, and <code>7.25</code> for one you think of as seven fifteen. To convert, divide the minutes by 60.</p>
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The trap:</strong> {formatDecimalHours(7.5)} hours is 7 hours 30 minutes, not 7 hours 50 minutes. Reading decimal hours as h:mm overstates every shift that has a part-hour in it.</p>
 
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Minutes</th><th className="px-5 py-3">h:mm</th><th className="px-5 py-3">Decimal hours</th><th className="px-5 py-3">Notes</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -119,7 +119,7 @@ export default function WorkHoursCalculatorPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Shifts That Finish After Midnight</h2>
-            <p>This is where most timesheet tools quietly break. If you subtract a 6:00 am finish from a 10:00 pm start you get <strong>minus sixteen hours</strong>. A calculator that does not detect the day boundary either drops the shift or, worse, subtracts it from your week.</p>
+            <p>A shift that crosses midnight breaks simple start-and-finish subtraction. If you subtract a 10:00 pm start from a 6:00 am finish you get <strong>minus sixteen hours</strong>. A calculator that does not detect the day boundary either drops the shift or, worse, subtracts it from your week.</p>
             <p>The rule this calculator follows: <strong>if the finish time is earlier than the start time, the shift crosses midnight</strong> and a full day is added before the subtraction. So 10:00 pm to 6:00 am is {formatDecimalHours(calculateShift({ start: "22:00", end: "06:00" }).paidHours)} hours, and with a 30-minute unpaid break it is {formatDecimalHours(NIGHT_SHIFT.paidHours)} hours ({minutesToHm(NIGHT_SHIFT.paidMinutes)}). Rows that cross midnight are marked <strong>+1 day</strong> so you can see the calculator read it the way you meant.</p>
             <p>The mirror-image mistake matters too. A finish time <em>equal</em> to the start time is a zero-length shift, not a 24-hour one. 9:00 am to 9:00 am is treated as nothing worked, because nobody types that meaning a full day.</p>
           </section>
@@ -134,7 +134,7 @@ export default function WorkHoursCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Overtime: Your Award Sets the Threshold</h2>
             <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>There is no single national overtime rule.</strong> The National Employment Standards set {STANDARD_WEEKLY_HOURS} ordinary hours a week for a full-time employee, but <em>when</em> overtime starts and <em>what</em> it pays comes from the modern award or enterprise agreement that covers you.</p>
-            <p>Three common patterns, none of which is universal:</p>
+            <p>Awards set overtime in three common patterns, and none of them is universal:</p>
             <ul>
               <li><strong>Weekly threshold.</strong> Hours past {STANDARD_WEEKLY_HOURS} in a week attract overtime. This is the calculator&rsquo;s default and the easiest to reason about.</li>
               <li><strong>Banded multipliers.</strong> The <Link href="/hospitality-award-rates/">Hospitality Award</Link> pays the first two hours of overtime at time and a half and everything after at double time. Set the first band to 2 hours, {OVERTIME_DEFAULTS.firstTierMultiplier}× and {OVERTIME_DEFAULTS.secondTierMultiplier}× to model it.</li>
@@ -145,7 +145,7 @@ export default function WorkHoursCalculatorPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: A {formatDecimalHours(EXAMPLE_TOTALS.totalHours)}-Hour Week</h2>
-            <p>Two early shifts, an evening, two nights that run past midnight and a short Saturday, on a base rate of {formatAUD(EXAMPLE_RATE, 2)} an hour:</p>
+            <p>This example week has two early shifts, an evening shift, two night shifts that run past midnight and a short Saturday, all at a base rate of {formatAUD(EXAMPLE_RATE, 2)} an hour:</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Day</th><th className="px-5 py-3">Start</th><th className="px-5 py-3">Finish</th><th className="px-5 py-3">Break</th><th className="px-5 py-3 text-right">Paid hours</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {EXAMPLE_WEEK.map((row, i) => {
                 const r = EXAMPLE_TOTALS.rows[i];
@@ -168,7 +168,7 @@ export default function WorkHoursCalculatorPage() {
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Overtime: {formatDecimalHours(EXAMPLE_PAY.split.firstTierHours)} h at {OVERTIME_DEFAULTS.firstTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.firstTierPay, 2)}</td></tr>
               <tr><td className="px-5 py-3">Overtime: {formatDecimalHours(EXAMPLE_PAY.split.secondTierHours)} h at {OVERTIME_DEFAULTS.secondTierMultiplier}×</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(EXAMPLE_PAY.secondTierPay, 2)}</td></tr>
               <tr className="bg-sandstone"><td className="px-5 py-3 font-semibold text-navy">Gross for the week</td><td className="px-5 py-3 text-right font-bold tabular-nums text-navy">{formatAUD(EXAMPLE_PAY.gross, 2)}</td></tr>
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Gross, before PAYG tax and superannuation. Overtime thresholds shown are the calculator defaults, not a statement of award entitlements.</p></div>
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">These figures are gross, before PAYG tax and superannuation. Overtime thresholds shown are the calculator defaults, not a statement of award entitlements.</p></div>
           </section>
 
           <section>
@@ -188,7 +188,7 @@ export default function WorkHoursCalculatorPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <ul>
               <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link>: price time and a half, double time and public holiday rates</li>
-              <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: how the thresholds actually work award by award</li>
+              <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: how overtime thresholds work award by award</li>
               <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>: turn an hourly rate into a yearly figure</li>
               <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: gross to net after tax, Medicare and super</li>
               <li><Link href="/retail-award-rates/">Retail Award Rates</Link>: General Retail Industry Award minimums</li>

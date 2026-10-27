@@ -62,7 +62,7 @@ export const SPOTLIGHT_PAY: EmployerPay = {
     },
     {
       q: "Does Spotlight have an enterprise agreement?",
-      a: "Not for its stores. The Spotlight Australian Stores Enterprise Agreement 2009 was terminated by the Fair Work Commission on 27 June 2014, and the only Spotlight agreements approved since 2016 cover its distribution centre.",
+      a: "Spotlight has no enterprise agreement for its stores. The Spotlight Pty Ltd Australian Stores Enterprise Agreement 2009 was terminated by the Fair Work Commission on 27 June 2014, and the only Spotlight agreements approved since 2016 cover its distribution centre.",
     },
     {
       q: "Are Spotlight distribution centre staff paid these rates?",

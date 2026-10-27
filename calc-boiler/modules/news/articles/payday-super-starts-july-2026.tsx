@@ -23,17 +23,17 @@ export default function PaydaySuperStartsJuly2026() {
 
       <h2>What payday super actually changes</h2>
       <p>
-        Until now, employers had until 28 days after the end of each quarter to pay super guarantee,
-        meaning contributions could sit outside your fund for up to four months after you earned
-        them. Payday super closes that gap. From 1 July 2026, super guarantee on qualifying earnings
-        must be calculated and paid alongside each pay run, and must reach your super fund within 7
-        business days of payday, with a longer window for some new employees while their fund
-        details are confirmed. Employers must also work out and pay super on qualifying earnings
-        paid from 1 July 2026 even where the underlying work was performed before that date, so the
-        cut-over applies to when you&apos;re paid rather than when the shift or task happened. Payroll
-        systems now need to calculate qualifying earnings, apply the 12% super guarantee rate,
-        and get each contribution to the fund within 7 business days of payday, which is a substantial change
-        from batching contributions once every three months.
+        Under the old quarterly system, employers had until 28 days after the end of each quarter to
+        pay super guarantee, so contributions could sit outside your fund for up to four months after
+        you earned them. Payday super closes that gap. From 1 July 2026, super guarantee on qualifying
+        earnings must be calculated and paid alongside each pay run, and must reach your super fund
+        within 7 business days of payday. The window is longer for some new employees while their
+        fund details are confirmed. Employers must also work out and pay super on qualifying earnings
+        paid from 1 July 2026 even where the work was performed before that date. The cut-over
+        follows when you&apos;re paid, not when the shift or task happened. Payroll systems now need
+        to calculate qualifying earnings, apply the 12% super guarantee rate and get each
+        contribution to the fund within 7 business days of payday. That replaces batching
+        contributions once every three months.
       </p>
 
       <h2>Why the Small Business Superannuation Clearing House closed</h2>
@@ -46,8 +46,8 @@ export default function PaydaySuperStartsJuly2026() {
         bodies urged small employers to download their SBSCH payment records well before the closure
         date, since access to historical data disappeared along with the service on 1 July 2026.
         Most major payroll platforms rolled out a built-in clearing house or a direct integration
-        with commercial providers in the lead-up to the change, so the switch for most businesses
-        was a configuration update rather than a full system replacement.
+        with commercial providers before the change. For most businesses, the switch was a
+        configuration update rather than a full system replacement.
       </p>
 
       <h2>What happens if super is paid late</h2>
@@ -64,8 +64,8 @@ export default function PaydaySuperStartsJuly2026() {
       <h2>How employees can check it&apos;s working</h2>
       <p>
         You can track whether contributions are landing on time through your super fund&apos;s app,
-        member portal, or the ATO online services section of myGov. If you notice super guarantee is
-        missing a few business days after payday, raise it with your employer first. See our guide
+        member portal, or the ATO online services section of myGov. If super guarantee is still
+        missing from your fund once the deadline has passed, raise it with your employer first. See our guide
         to <Link href="/understanding-your-payslip/">understanding your payslip</Link> for what your
         super line should show each pay cycle.
       </p>

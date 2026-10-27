@@ -100,7 +100,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
-                Compare take-home pay and total entitlements across full-time, part-time, and casual employment. See the real value of leave, super, and casual loading side by side.
+                Enter a base hourly rate and weekly hours to compare full-time, part-time and casual pay side by side. The table shows annual earnings, super, take-home pay after tax and the dollar value of paid annual and personal leave. Casuals get the casual loading instead of that paid leave.
               </p>
               <TrustBar className="mt-4" />
             </div>
@@ -132,7 +132,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                       className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                     <input type="range" min={5} max={38} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                       value={clamp(hoursPerWeek, 5, 38)} onChange={(e) => setHoursPerWeek(Number(e.target.value))} />
-                    <p className="text-xs text-warmgray-light mt-1">Full-time is always {EMPLOYMENT.standardWeeklyHours} hours/week</p>
+                    <p className="text-xs text-warmgray-light mt-1">Full-time is set at {EMPLOYMENT.standardWeeklyHours} hours/week</p>
                   </div>
                 </form>
 
@@ -188,7 +188,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                 <div className="mt-6">
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-sm text-warmgray">
                     <p className="font-medium mb-1">Disclaimer:</p>
-                    <p>Calculations use standard employment conditions. Actual entitlements depend on your award, enterprise agreement, or employment contract. Casual loading of 25% compensates for the absence of paid leave. Tax estimates use ATO FY{SITE_CONFIG.financialYear} rates.</p>
+                    <p>Calculations use the National Employment Standards leave minimums. Your actual entitlements depend on your award, enterprise agreement or employment contract. Casuals get the 25% casual loading instead of paid annual and personal leave. Take-home pay allows for the low income tax offset and the Medicare levy, and tax estimates use ATO FY{SITE_CONFIG.financialYear} rates.</p>
                   </div>
                 </div>
                 <div className="mt-4 text-sm text-warmgray border-t border-sandstone-dark/20 pt-4">

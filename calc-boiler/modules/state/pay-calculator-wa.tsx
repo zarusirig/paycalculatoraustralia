@@ -66,11 +66,15 @@ export default function PayCalculatorWAPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">WA</span>
           </div>
           <p className="text-lg text-warmgray">
-            Take-home pay in Western Australia is gross salary less federal income tax and the{" "}
+            Take-home pay in Western Australia is your gross salary less federal income tax and the{" "}
             {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, worked out on the ATO{" "}
             {SITE_CONFIG.financialYear} rates that apply in every state. Employer super of{" "}
-            {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top, and HECS-HELP repayments start at{" "}
-            {formatAUD(HECS_HELP.minimumThreshold)}. The average WA full-time adult earns{" "}
+            {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top of your salary, and HECS-HELP repayments start at{" "}
+            {formatAUD(HECS_HELP.minimumThreshold)}. The WA pay calculator below shows your take-home pay
+            a year, a week, a fortnight, a month and per hour. Further down, this page covers WA public
+            holidays, long service leave, payroll tax and the separate WA state industrial relations
+            system. The calculator starts at the average for WA full-time adults, whose ordinary time
+            earnings are{" "}
             {formatAUD(PROFILE.awote.personsFullTime, 2)} a week (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}).
           </p>
           <TrustBar className="mt-4" />
@@ -92,8 +96,8 @@ export default function PayCalculatorWAPage() {
             <p className="mb-4 text-warmgray">
               Income tax is federal, so a Perth payslip is taxed exactly like a Hobart one. The
               difference is that WA salaries are bigger, which pushes more of them into the 37% bracket.
-              Here is the arithmetic on {formatAUD(typicalSalary(PROFILE))}, the average full-time wage
-              in Western Australia.
+              The worked example below uses {formatAUD(typicalSalary(PROFILE))}, the average full-time
+              ordinary time wage in Western Australia.
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
@@ -109,17 +113,17 @@ export default function PayCalculatorWAPage() {
             <H2>Is your WA salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               WA has the highest full-time ordinary time earnings of any state; only the ACT is higher,
-              and that is a public service artefact. Note the size of the gap between men and women in
-              the table below: it is the widest in the country, and it is a composition effect of the
-              resources workforce rather than a difference in award rates.
+              and that is a public service artefact. The gap between WA men and women in the table below
+              is the widest in the country, and it is a composition effect of the resources workforce
+              rather than a difference in award rates.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Overtime pushes the WA full-time figure up by more than {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
+              With overtime included, the WA full-time figure rises by {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
               a week. If you work a roster, the{" "}
               <Link href="/mining-fifo-pay-guide/" className="text-eucalyptus-dark hover:underline">mining and FIFO pay guide</Link> and the{" "}
               <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime calculator</Link> are the
-              right tools; base salary alone will understate you.
+              right tools; base salary alone understates your pay.
             </p>
           </section>
 
@@ -152,8 +156,8 @@ export default function PayCalculatorWAPage() {
             <LongServiceLeaveBlock profile={PROFILE} />
             <ForwardLslLinks profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Construction workers accrue through MyLeave instead, which carries service between
-              employers across the industry.
+              WA construction workers accrue long service leave through MyLeave instead, which carries
+              service between employers across the industry.
             </p>
           </section>
 
@@ -161,8 +165,8 @@ export default function PayCalculatorWAPage() {
             <H2>Does WA payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              WorkCover WA premiums are the same story: an employer insurance cost, priced by industry
-              risk, never deducted from wages. The deductions that <em>are</em> legitimate are listed
+              WorkCover WA premiums work the same way: they are an employer insurance cost, priced by
+              industry risk, and never deducted from wages. The deductions that <em>are</em> legitimate are listed
               in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
@@ -171,8 +175,8 @@ export default function PayCalculatorWAPage() {
           <section>
             <H2>WA has its own industrial relations system</H2>
             <p className="mb-4 text-warmgray">
-              This is the one genuinely structural difference in WA, and it changes which minimum rate
-              applies to you. Western Australia never referred its full industrial relations power to
+              The WA state industrial relations system is the one structural difference in WA pay, and it
+              changes which minimum rate applies to you. Western Australia never referred its full industrial relations power to
               the Commonwealth, so sole traders, unincorporated partnerships and other non-constitutional
               employers in WA sit in the <strong>state</strong> system with its own award rates and its
               own state minimum wage, not the national minimum wage.
@@ -180,8 +184,8 @@ export default function PayCalculatorWAPage() {
             <p className="text-sm text-warmgray">
               If your employer is a Pty Ltd company, you are in the national system and the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">federal award rates</Link> apply. If it is a
-              sole trader or a partnership, check the WA state award instead, as the base rate can differ,
-              and so can the penalty rate loadings the calculator above assumes.
+              sole trader or a partnership, check the WA state award instead, as its base rate and penalty
+              rates can differ from the federal award.
             </p>
           </section>
 

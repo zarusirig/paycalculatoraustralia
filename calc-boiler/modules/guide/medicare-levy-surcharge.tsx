@@ -88,7 +88,7 @@ export default function MedicareLevySurchargePage() {
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Medicare Levy Surcharge Calculator {MLS_INCOME_YEAR}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
-          The Medicare levy surcharge (MLS) is an extra <strong>1% to 1.5%</strong> charged on top of the {RATE} Medicare levy if your income for MLS purposes is over <strong>{formatAUD(SINGLE_BASE)}</strong> (singles) or <strong>{formatAUD(FAMILY_BASE)}</strong> (families) in {MLS_INCOME_YEAR} and you don&rsquo;t hold private patient hospital cover. Work out your tier, your surcharge, and whether a hospital policy would cost less.
+          The Medicare levy surcharge (MLS) is an extra <strong>1% to 1.5%</strong> charged on top of the {RATE} Medicare levy if your income for MLS purposes is over <strong>{formatAUD(SINGLE_BASE)}</strong> (singles) or <strong>{formatAUD(FAMILY_BASE)}</strong> (families) in {MLS_INCOME_YEAR} and you don&rsquo;t hold private patient hospital cover. The calculator below works out your MLS tier, your surcharge, and whether a hospital policy would cost less after the rebate.
         </p>
         <TrustBar className="!max-w-none" />
       </header>
@@ -101,7 +101,7 @@ export default function MedicareLevySurchargePage() {
 
           <section>
             <H2 id="thresholds">Medicare Levy Surcharge Thresholds and Rates {MLS_INCOME_YEAR}</H2>
-            <p>Your tier is set by your income for MLS purposes: your own if you&rsquo;re single, or you and your spouse&rsquo;s combined if you have a family. These are the ATO&rsquo;s {MLS_INCOME_YEAR} figures.</p>
+            <p>Your Medicare levy surcharge tier is set by your income for MLS purposes: your own if you&rsquo;re single, or you and your spouse&rsquo;s combined if you have a family. These are the ATO&rsquo;s {MLS_INCOME_YEAR} figures.</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Tier</th><th className="px-4 py-3">Singles</th><th className="px-4 py-3">Families</th><th className="px-4 py-3 text-right">MLS rate</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {TIERS.map((t, i) => (
                 <tr key={t.name} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{t.name}</td><td className="px-4 py-3 tabular-nums">{t.single}</td><td className="px-4 py-3 tabular-nums">{t.family}</td><td className="px-4 py-3 text-right font-medium text-navy">{mlsPct(t.rate)}</td></tr>
@@ -136,7 +136,7 @@ export default function MedicareLevySurchargePage() {
 
           <section>
             <H2 id="table">Medicare Levy Surcharge by Income (Singles)</H2>
-            <p>Full year, no hospital cover, no fringe benefits, investment losses or reportable super. Note the cliff at each boundary: crossing into a tier applies the rate to the whole income, not just the excess.</p>
+            <p>The table assumes a single person with no hospital cover for the full year and no fringe benefits, investment losses or reportable super. Each tier boundary is a cliff: crossing into a tier applies the rate to the whole income, not just the excess.</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Taxable income</th><th className="px-4 py-3 text-right">MLS rate</th><th className="px-4 py-3 text-right">Surcharge</th><th className="px-4 py-3 text-right">Per fortnight</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {TABLE_INCOMES.map((inc, i) => {
                 const r = singleAt(inc);
@@ -154,13 +154,13 @@ export default function MedicareLevySurchargePage() {
 
           <section>
             <H2 id="cover-vs-surcharge">Is Private Hospital Cover Cheaper Than the Surcharge?</H2>
-            <p>It depends on the premium you&rsquo;re quoted, and the government <strong>private health insurance rebate</strong> works against you as income rises: it runs on the same tiers, and shrinks as the surcharge grows. From {PHI_REBATE.period}:</p>
+            <p>Private hospital cover is cheaper than the surcharge when the premium you&rsquo;re quoted, after the rebate, is less than your surcharge. The government <strong>private health insurance rebate</strong> works against you as income rises: it runs on the same tiers, and shrinks as the surcharge grows. From {PHI_REBATE.period}:</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Oldest on policy</th>{TIERS.map((t) => <th key={t.name} className="px-4 py-3 text-right">{t.name}</th>)}</tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {AGES.map((a, i) => (
                 <tr key={a.key} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{a.label}</td>{TIERS.map((t) => <td key={t.name} className="px-4 py-3 text-right tabular-nums">{formatPercent(phiRebateRate(t.tier, a.key), 3)}</td>)}</tr>
               ))}
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_REBATE} target="_blank" rel="noopener noreferrer" className="hover:underline">Income thresholds and rates for the private health insurance rebate</a>. Rates from 1 April 2027 are due in March 2027.</p></div>
-            <p>A simple way to decide: the <strong>break-even premium</strong> is the surcharge divided by the share of the premium you pay after the rebate. If your quote, before the rebate, is under that figure, the cover costs less than the surcharge.</p>
+            <p>The <strong>break-even premium</strong> is the surcharge divided by the share of the premium you pay after the rebate. If your quote, before the rebate, is under that figure, the cover costs less than the surcharge.</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Single, taxable income</th><th className="px-4 py-3 text-right">Surcharge</th><th className="px-4 py-3 text-right">Rebate (under 65)</th><th className="px-4 py-3 text-right">Cover is cheaper if the premium is under</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {BREAK_EVEN_INCOMES.map((inc, i) => {
                 const r = singleAt(inc);
@@ -198,7 +198,7 @@ export default function MedicareLevySurchargePage() {
 
           <section>
             <H2 id="vs-levy">The Surcharge vs the Medicare Levy</H2>
-            <p>They&rsquo;re separate charges. The {RATE} <Link href="/medicare-levy/">Medicare levy</Link> is paid by almost every resident, has low-income and family reductions, and is included in the tax your employer withholds. The surcharge is extra, applies only above the thresholds on this page, can be removed entirely by hospital cover, and isn&rsquo;t withheld from your pay. The ATO adds it when you lodge, and your notice of assessment shows the two together as &ldquo;Medicare levy and surcharge&rdquo;.</p>
+            <p>The Medicare levy surcharge and the Medicare levy are separate charges. The {RATE} <Link href="/medicare-levy/">Medicare levy</Link> is paid by almost every resident, has low-income and family reductions, and is included in the tax your employer withholds. The surcharge is extra, applies only above the thresholds on this page, can be removed entirely by hospital cover, and isn&rsquo;t withheld from your pay. The ATO adds it when you lodge, and your notice of assessment shows the two together as &ldquo;Medicare levy and surcharge&rdquo;.</p>
           </section>
 
           <section>

@@ -51,15 +51,15 @@ export const BACKPAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is back pay taxed in Australia?",
-    a: "Back pay is taxed in the year you receive it, not the years it relates to, and your employer withholds tax using the ATO's Schedule 5 methods. If part of it relates to work more than 12 months earlier and that part is 10% or more of your income for the year, the ATO may give you a tax offset so you don't pay more than if it had been paid on time.",
+    a: "Back pay is taxed in the year you receive it, not the years it relates to, and your employer withholds tax using the ATO's Schedule 5 methods. If part of it relates to work more than 12 months earlier and that part is 10% or more of your income for the year, the ATO may apply the lump sum payment in arrears tax offset so you don't pay more than if it had been paid on time.",
   },
   {
     q: "How far back can I claim backpay in Australia?",
-    a: `Generally up to 6 years. You have 6 years from when an underpayment happened to recover it through the courts, and that covers wages, overtime, penalty rates and allowances. Unpaid super is chased separately through the ATO's Superannuation Guarantee Charge.`,
+    a: `You generally have up to 6 years to claim backpay in Australia. You have 6 years from when each underpayment happened to recover it through the courts, and that covers wages, overtime, penalty rates and allowances. Unpaid super is chased separately through the ATO's Superannuation Guarantee Charge.`,
   },
   {
     q: "Do I still get back pay if I resign?",
-    a: "If you were underpaid, yes. The money is still owed after you leave and can be claimed for up to 6 years. A backdated pay rise in a new enterprise agreement is different: whether former employees get it depends on the agreement, and some only pay it to people still employed when it is approved. Check your agreement's back pay clause.",
+    a: "Yes, if you were underpaid. The money is still owed after you leave and can be claimed for up to 6 years. A backdated pay rise in a new enterprise agreement is different: whether former employees get it depends on the agreement, and some only pay it to people still employed when it is approved. Check your agreement's back pay clause.",
   },
   {
     q: "Does my employer owe super on backpay?",

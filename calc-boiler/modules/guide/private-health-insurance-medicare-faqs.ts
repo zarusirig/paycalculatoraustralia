@@ -44,7 +44,7 @@ export const PHI_MEDICARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is it cheaper to get private health insurance or pay the surcharge?",
-    a: `It depends on your income and your quote. Compare the surcharge you would pay with the premium after your rebate: at ${formatAUD(EG_INCOME)} a single pays ${formatAUD(EG.fullYearSurcharge)} of surcharge, so cover is cheaper if it costs less than ${formatAUD(EG_BREAK_EVEN)} a year before the rebate. The surcharge rises with income while the rebate falls, so cover tends to compare better at higher incomes. Private hospital cover also provides actual hospital coverage.`,
+    a: `Private hospital cover is cheaper when its premium after your rebate is less than the surcharge you would pay without it. At ${formatAUD(EG_INCOME)} a single pays ${formatAUD(EG.fullYearSurcharge)} of surcharge, so cover is cheaper if it costs less than ${formatAUD(EG_BREAK_EVEN)} a year before the rebate. The surcharge rises with income while the rebate falls, so the break-even premium is higher at higher incomes. Private hospital cover also provides actual hospital coverage.`,
   },
   {
     q: "Does extras-only cover exempt me from the MLS?",
@@ -52,7 +52,7 @@ export const PHI_MEDICARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is Lifetime Health Cover loading?",
-    a: `Lifetime Health Cover (LHC) loading adds ${LHC_PER_YEAR}% per year to your hospital cover premium for every year you are aged over 30 without hospital cover. It maxes out at ${LHC_MAX}%. A person who first takes out cover at age ${LHC_EG_AGE} pays a ${(LHC_EG_AGE - 30) * LHC_PER_YEAR}% loading. The loading is removed after 10 continuous years of holding hospital cover.`,
+    a: `Lifetime Health Cover (LHC) loading adds ${LHC_PER_YEAR}% to your hospital cover premium for every year you are aged over 30 without hospital cover. The loading is capped at ${LHC_MAX}%. A person who first takes out cover at age ${LHC_EG_AGE} pays a ${(LHC_EG_AGE - 30) * LHC_PER_YEAR}% loading. The loading is removed after 10 continuous years of holding hospital cover.`,
   },
   {
     q: "Do I pay MLS for the full year if I get PHI part-way through?",
@@ -60,6 +60,6 @@ export const PHI_MEDICARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How does the family threshold work?",
-    a: `The ${MLS_INCOME_YEAR} family MLS threshold is ${formatAUD(FAMILY_BASE)} combined income for MLS purposes. This increases by ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. Family income is the combined income of you and your spouse (including de facto partners). You, your spouse and your dependent children all need appropriate hospital cover for the family to avoid it.`,
+    a: `The ${MLS_INCOME_YEAR} family MLS threshold is ${formatAUD(FAMILY_BASE)} combined income for MLS purposes. This increases by ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. Family income is the combined income of you and your spouse (including de facto partners). You, your spouse and your dependent children all need appropriate hospital cover for the family to avoid the surcharge.`,
   },
 ];

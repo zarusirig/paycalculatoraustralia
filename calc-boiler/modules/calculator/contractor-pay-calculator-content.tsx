@@ -123,10 +123,10 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">How Is Contractor Pay Calculated in Australia?</h2>
           <p className="mb-3 text-warmgray">
-            Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>2% Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Unlike employees who receive a payslip with deductions already removed, ABN contractors invoice clients for their gross amount and manage taxation independently through the PAYG instalment system.
+            Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>2% Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Employees have PAYG withholding taken out of each pay. ABN contractors invoice clients for the gross amount and pay their own income tax through PAYG instalments.
           </p>
           <p className="mb-4 text-warmgray">
-            The Australian Tax Office requires every contractor operating under an ABN to lodge a tax return. Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST and remit <strong>10%</strong> of invoiced amounts quarterly via a Business Activity Statement (BAS). Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
+            The Australian Taxation Office (ATO) requires every contractor operating under an ABN to lodge a tax return. Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST and remit <strong>10%</strong> of invoiced amounts quarterly via a Business Activity Statement (BAS). Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Step-by-Step Contractor Pay Calculation</h3>
           <ol className="list-decimal space-y-2 pl-6 text-warmgray">
@@ -206,7 +206,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Who Uses This Contractor Pay Calculator?</h2>
           <p className="mb-4 text-warmgray">
-            Over <strong>1 million</strong> independent contractors operate in Australia across construction, IT, healthcare, creative industries, and transport. This Australian tax calculator serves 5 primary user groups.
+            Over <strong>1 million</strong> independent contractors operate in Australia across construction, IT, healthcare, creative industries, and transport. This contractor pay calculator is built for 5 user groups.
           </p>
           <ul className="list-disc space-y-2 pl-6 text-warmgray">
             <li><strong>Freelancers and sole traders</strong>: graphic designers, copywriters, and web developers who invoice multiple clients and need to estimate quarterly tax obligations before each BAS lodgement</li>
@@ -228,7 +228,7 @@ export default function ContractorPayCalculatorContent() {
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">GST Registration and BAS Lodgement</h3>
           <p className="mb-3 text-warmgray">
-            Contractors with annual turnover exceeding <strong>$75,000</strong> must register for GST. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and remit it to the ATO via quarterly BAS returns. Taxi drivers, rideshare operators, and Uber drivers must register for GST regardless of turnover. Voluntary GST registration below $75,000 allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
+            Contractors with annual turnover exceeding <strong>$75,000</strong> must register for GST. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and remit it to the ATO on your quarterly BAS. Taxi drivers and rideshare drivers (including Uber drivers) must register for GST regardless of turnover. Voluntary GST registration below $75,000 allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">PAYG Instalments and Income Tax</h3>
           <p className="mb-3 text-warmgray">
@@ -244,7 +244,7 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Take-Home by Daily Rate (FY{SITE_CONFIG.financialYear})</h2>
           <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over 48 working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and Medicare. The table below shows real take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
+            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over 48 working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and the Medicare levy. The table below shows annual and per-day take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -339,7 +339,7 @@ export default function ContractorPayCalculatorContent() {
               <li>Super at the {formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee rate on the salary, capped at the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base for FY{SITE_CONFIG.financialYear}.</li>
               <li>Not included: leave loading, workers&apos; compensation, income protection, long service leave and income tax (both sides pay the same tax rates on the same taxable income).</li>
             </ul>
-            <p className="mt-2">This section uses {SALARY_EXAMPLE.billableDays} billable days. The take-home table above uses {BILLABLE_WEEKS} weeks and deducts only tax. Use the <Link href="/annual-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link> to see the take-home pay on the equivalent salary.</p>
+            <p className="mt-2">This section uses {SALARY_EXAMPLE.billableDays} billable days. The take-home table above uses {BILLABLE_WEEKS} weeks and deducts only income tax and the Medicare levy. Use the<Link href="/annual-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link> to see the take-home pay on the equivalent salary.</p>
           </div>
         </section>
 
@@ -351,7 +351,7 @@ export default function ContractorPayCalculatorContent() {
           </p>
           <ol className="list-decimal space-y-3 pl-6 text-warmgray">
             <li>
-              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO &mdash; spend it and the shortfall lands at BAS time.
+              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO. If you spend it, you are short when your BAS is due.
             </li>
             <li>
               <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong>, a difficult amount to pay at once.
@@ -372,7 +372,7 @@ export default function ContractorPayCalculatorContent() {
         <section className="rounded-xl border-2 border-eucalyptus/30 bg-eucalyptus-light/40 p-6">
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-2 text-xl font-bold text-navy">Contractor vs Employee: Compare Side-by-Side</h2>
           <p className="mb-4 text-warmgray">
-            Not sure whether you&apos;re better off as a contractor or employee? Our comparison calculator shows you the real difference after tax, super, GST, and insurance.
+            The Contractor vs Employee Calculator shows the difference between contractor pay and employee pay after tax, super, GST and insurance.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link

@@ -115,7 +115,7 @@ export default function AgePensionIncomeTestCalculatorPage({ children, afterCalc
             </table>
           </div>
           <p className="text-base text-warmgray">
-            See how working or other income changes your Age Pension. The Work Bonus takes the first {formatAUD(WORK_BONUS.fortnightlyCredit)} of wages out of the test each fortnight; above the {formatAUD(IT.single.freeArea)} (single) or {formatAUD(IT.couple.freeArea)} (couple, combined) free area the pension reduces by 50 cents in the dollar. Carries both the {RATE_SET_LABELS[MARCH_2026]} rates and the {RATE_SET_LABELS[SEPTEMBER_2026]} rates that replace them.
+            This Age Pension calculator shows how wages or other income change your pension under the income test. The Work Bonus takes the first {formatAUD(WORK_BONUS.fortnightlyCredit)} of wages out of the test each fortnight; above the {formatAUD(IT.single.freeArea)} (single) or {formatAUD(IT.couple.freeArea)} (couple, combined) free area the pension reduces by 50 cents in the dollar. The calculator carries both the {RATE_SET_LABELS[MARCH_2026]} rates and the {RATE_SET_LABELS[SEPTEMBER_2026]} rates that replace them.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -196,7 +196,7 @@ export default function AgePensionIncomeTestCalculatorPage({ children, afterCalc
                   </div>
                   <NotIncluded items={["the assets test", "deeming (enter deemed income yourself)", "transitional-rate pensioners", "Rent Assistance", "couples where only one partner gets a pension or lives apart due to ill health"]} />
                   {/* H3 Centrelink wave 3: the two tests that were out of scope now have their own pages. */}
-                  <p className="text-sm text-navy">Have savings or other assets? The <Link href="/age-pension-assets-test-calculator/" className={LINK}>Age Pension assets test calculator</Link> runs both tests and deems your savings for you. Current deeming rates: <Link href="/deeming-rates/" className={LINK}>deeming rates and calculator</Link>.</p>
+                  <p className="text-sm text-navy">If you have savings or other assets, the <Link href="/age-pension-assets-test-calculator/" className={LINK}>Age Pension assets test calculator</Link> runs both tests and deems your savings for you. Current deeming rates: <Link href="/deeming-rates/" className={LINK}>deeming rates and calculator</Link>.</p>
                 </div>
               </div>
             </CardContent>

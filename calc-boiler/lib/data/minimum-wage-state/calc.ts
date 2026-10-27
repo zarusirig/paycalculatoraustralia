@@ -29,7 +29,7 @@ const NMW_BASIS: MwBasis = {
   hourly: NMW.hourly,
   weekly: NMW.weekly,
   adultOnly: false,
-  note: `The National Minimum Wage of $${NMW.hourly.toFixed(2)} an hour ($${NMW.weekly.toFixed(2)} for ${EMPLOYMENT.standardWeeklyHours} hours), operative from the first full pay period on or after 1 July 2026.`,
+  note: `The National Minimum Wage is $${NMW.hourly.toFixed(2)} an hour ($${NMW.weekly.toFixed(2)} for ${EMPLOYMENT.standardWeeklyHours} hours), operative from the first full pay period on or after 1 July 2026.`,
 };
 
 /** The wage bases the calculator offers for a state: the national one, plus a state minimum where one exists. */
@@ -43,7 +43,7 @@ export function basesFor(slug: MwStateSlug): MwBasis[] {
         hourly: WA_STATE_MINIMUM_WAGE.hourly,
         weekly: WA_STATE_MINIMUM_WAGE.weekly,
         adultOnly: true,
-        note: `The WA State Minimum Wage of $${WA_STATE_MINIMUM_WAGE.hourly.toFixed(2)} an hour ($${WA_STATE_MINIMUM_WAGE.weekly.toFixed(2)} a week) from ${WA_STATE_MINIMUM_WAGE.operativeFrom}, for employees in the WA state system.`,
+        note: `The WA State Minimum Wage is $${WA_STATE_MINIMUM_WAGE.hourly.toFixed(2)} an hour ($${WA_STATE_MINIMUM_WAGE.weekly.toFixed(2)} a week) from ${WA_STATE_MINIMUM_WAGE.operativeFrom} for employees in the WA state system.`,
       },
     ];
   }
@@ -56,7 +56,7 @@ export function basesFor(slug: MwStateSlug): MwBasis[] {
         hourly: roundCents(QLD_STATE_WAGE_CASE_2026.qmwWeekly / EMPLOYMENT.standardWeeklyHours),
         weekly: QLD_STATE_WAGE_CASE_2026.qmwWeekly,
         adultOnly: true,
-        note: `The Queensland minimum wage of $${QLD_STATE_WAGE_CASE_2026.qmwWeekly.toFixed(2)} a week from ${QLD_STATE_WAGE_CASE_2026.operativeFrom}. The hourly figure is our arithmetic: the weekly rate over ${EMPLOYMENT.standardWeeklyHours} hours.`,
+        note: `The Queensland minimum wage is $${QLD_STATE_WAGE_CASE_2026.qmwWeekly.toFixed(2)} a week from ${QLD_STATE_WAGE_CASE_2026.operativeFrom}. The hourly figure is our arithmetic: the weekly rate divided by ${EMPLOYMENT.standardWeeklyHours} hours.`,
       },
     ];
   }

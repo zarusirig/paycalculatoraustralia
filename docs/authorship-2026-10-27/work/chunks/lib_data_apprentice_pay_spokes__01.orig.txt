@@ -1,0 +1,337 @@
+// =============================================================================
+// /apprentice-pay/{trade}/ spokes: one page per trade, built on the rates in
+// ./index.ts (the hub /apprentice-pay-rates/ uses the same data).
+//
+// A spoke points at a data trade (tradeSlug) for the award's percentage rates
+// and adds only what is specific to that occupation: its own allowances, the
+// Fair Work Ombudsman (FWO) pay guide figures where the pay guide prints a
+// table for that trade, penalty rates where the award or pay guide prints them,
+// the national qualification, and plain facts about coverage and progression.
+//
+// Sources, all read 9 October 2026 (re-check of the 5 October 2026 build):
+//
+//   Awards (Fair Work Commission consolidated text, awards.fairwork.gov.au):
+//   Building      MA000020 cl 19.7(b), (c): apprentice = % of the CW3 standard rate PLUS the cl 21.1 tool allowance
+//                 and the cl 22 industry allowance, "as part of the ordinary weekly rate for all purposes". The tool
+//                 allowance is paid in full (no apprentice percentage). cl 21.1(a) carpenter/joiner $41.22,
+//                 bricklayer/refractory bricklayer $29.26, signwriter/painter/glazier $9.89; cl 22.1 $67.15 general,
+//                 $53.72 residential (varied ppc 01Jul26). Schedule A.2.1, A.2.3, A.2.4, A.2.5, A.2.8 classifications.
+//   Automotive    MA000089 cl 19.6(b), (c) apprentice tool allowance; cl 16.9, 16.10; Schedule B.5.1 penalty rates.
+//   Manufacturing MA000010 cl 30.2(c)(ii) $17.90 a week tradesperson tool allowance (varied ppc 01Jul24, not since),
+//                 (iii), (iv), (v), (viii), (ix); cl 21.6, 21.7(b); Schedule C10 qualification.
+//   Hair          MA000005 cl 18.1, 18.3 (pre-apprentices), 18.4, 17.1 (Level 1 $1,056.80), 20.8(a) $10.52 tool
+//                 allowance, 23.1 Table 14 penalty rates.
+//   Hospitality   MA000009 cl 19.3 proficiency pay, 19.5 adult apprentices, 26.5(a) $2.03 a day / $9.94 a week tools,
+//                 29.2 Table 14 penalty rates; Table 3 Introductory level $978.10, Level 4 $1,119.10 / $29.45.
+//   Meat          MA000059 cl 16.3, 16.4, 20.2(a) cold temperature allowance, 24.3 meat retail weekend rates.
+//   Plumbing      MA000036 cl 18.2(c), 18.3(b), 21.3(a) industry allowance $41.41 a week, Schedule E.2.1(b) penalty rates.
+//
+//   FWO pay guides (https://calculate.fairwork.gov.au/payguides/fairwork/<code>/pdf, rates from the first full
+//   pay period starting on or after 1 July 2026): MA000020 published 2 July 2026; MA000036 11 August 2026;
+//   MA000089, MA000005, MA000009, MA000059 24 June 2026; MA000010 29 July 2026.
+//
+//   Qualifications (training.gov.au, usage recommendation as shown on 9 October 2026): CPC30326, CPC30220,
+//   CPC33020, CPC30620, CPC32420, AUR30620, SHB30416, SIT30821, MEM31925, MEM31922, AMP30815.
+//
+// What we derive (and say so on the page): building allowance tables are wage + tool + industry allowance, which
+// the tests check equal the FWO pay guide figure in every row; hourly = weekly / 38 rounded to the cent (the
+// award's own weekly-to-hourly method, cl 19.3(b)); the boilermaker tool allowance in dollars a week is
+// $17.90 x the cl 21.6 column 1 percentage (cl 30.2(c)(v)); penalty dollars are the hourly rate x the award
+// percentage, rounded to the cent, and the tests check them against the pay guide.
+//
+// Deliberately left out (not verified, or outside the page's payslip-checking border): state licensing,
+// Restaurant Industry Award cookery rates, sprinkler-fitting apprentices, building weekend overtime tables,
+// meat-retail public holiday rates (cl 31.3 sets several different ones), and any trade not in a spoke.
+// =============================================================================
+
+import { APPRENTICE_RATES_FROM, type ApprenticeRate, type ApprenticeStage, apprenticeRate, getTrade, roundCent } from "./index";
+
+export type SpokeSlug =
+  | "carpenter"
+  | "plumber"
+  | "mechanic"
+  | "hairdresser"
+  | "chef"
+  | "bricklayer"
+  | "painter"
+  | "boilermaker"
+  | "butcher";
+
+export const STAGES = [1, 2, 3, 4] as const satisfies readonly ApprenticeStage[];
+
+/** Date the spoke pages were last checked against the awards, pay guides and training.gov.au. */
+export const SPOKES_VERIFIED_ON = "9 October 2026";
+
+export const payGuideUrl = (code: string) => `https://calculate.fairwork.gov.au/payguides/fairwork/${code.toLowerCase()}/pdf`;
+const tgaUrl = (code: string) => `https://training.gov.au/training/details/${code}`;
+
+export interface AllowanceLine {
+  label: string;
+  clause: string;
+  /** Dollars a week for stage 1 to 4. */
+  byStage: readonly [number, number, number, number];
+}
+
+export interface AllowanceScenario {
+  id: string;
+  label: string;
+  lines: readonly AllowanceLine[];
+  /** When the allowance is only payable in some cases. */
+  condition?: string;
+  /** True when the award pays the allowance for all purposes, so an hourly equivalent is a real hourly rate. */
+  allPurpose: boolean;
+}
+
+export interface SpokeFaq {
+  q: string;
+  a: string;
+}
+
+export interface Qualification {
+  code: string;
+  title: string;
+  url: string;
+  /** Verified detail from training.gov.au, in a sentence. */
+  detail: string;
+}
+
+/** Weekend / public holiday percentages the award (and the FWO pay guide) applies to an apprentice's hourly rate. */
+export interface PenaltyTable {
+  heading: string;
+  intro: string;
+  columns: readonly { label: string; pct: number }[];
+  caption: string;
+}
+
+/** FWO pay guide key: stages 1 and 2 split by Year 12, stages 3 and 4 do not. */
+export type PayGuideKey = "1n" | "1y" | "2n" | "2y" | "3" | "4";
+/** [weekly, hourly] dollars as the FWO pay guide prints them. */
+export type PayGuideTable = Readonly<Record<PayGuideKey, readonly [number, number]>>;
+
+/** FWO MA000020 pay guide apprentice tables for one tool-allowance group: wage + tool + industry allowance. */
+export interface BuildingPayGuide {
+  /** The pay guide's table name for the group. */
+  group: string;
+  /** Short name for sentences: "carpenter and joiner". */
+  groupShort: string;
+  /** cl 21.1(a) tool allowance for the group, dollars a week, paid in full to apprentices. */
+  toolAllowance: number;
+  /** "General building and construction - not residential work", 4-year apprentice, started after 1 Jan 2014. */
+  general: PayGuideTable;
+  /** "General building and construction - residential work". */
+  residential: PayGuideTable;
+  /** "Adult apprentice", all years/stages. */
+  adult: { general: readonly [number, number]; residential: readonly [number, number] };
+}
+
+export interface ApprenticeSpoke {
+  slug: SpokeSlug;
+  /** "Carpenter" */
+  label: string;
+  /** Lower case noun used in sentences: "carpentry". */
+  trade: string;
+  /** Data trade in ./index.ts that supplies the rates. */
+  tradeSlug: string;
+  /** Page-specific H1 fragment. */
+  h1: string;
+  /** Opening paragraph under the headline figures: what is specific to this trade's pay. */
+  lead: string;
+  /** Existing pages on the site for the same trade. */
+  job?: { href: string; label: string };
+  extraLinks: { href: string; label: string; blurb: string }[];
+  allowances: readonly AllowanceScenario[];
+  /** Building trades only: the FWO pay guide's all-in apprentice tables for the trade's tool allowance group. */
+  payGuide?: BuildingPayGuide;
+  penalty?: PenaltyTable;
+  qualification: Qualification;
+  /** Plain, verified facts: coverage, progression, what is not in the table. */
+  facts: string[];
+  /**
+   * Trade-specific sections rendered after the facts (22 Oct 2026). The nine
+   * spoke pages share one template, so the award rules each page explains are
+   * split between trades rather than repeated: what one page covers in depth,
+   * its siblings mention in a line.
+   */
+  sections?: { heading: string; paragraphs: string[] }[];
+  /** Occupation-specific FAQs added to the shared ones. */
+  faqs: SpokeFaq[];
+  /** Other spokes that share this spoke's percentage table. */
+  sharesTableWith?: SpokeSlug[];
+}
+
+const ST = (a: number): readonly [number, number, number, number] => [a, a, a, a];
+
+// ---- Building (MA000020) ---------------------------------------------------
+// cl 22.1: general building, civil and metal and engineering construction $67.15; residential $53.72.
+export const INDUSTRY_ALLOWANCE = { general: 67.15, residential: 53.72 } as const;
+const INDUSTRY_GENERAL: AllowanceLine = { label: "Industry allowance (general building, civil and engineering construction)", clause: "cl 22.1(a)", byStage: ST(INDUSTRY_ALLOWANCE.general) };
+const INDUSTRY_RESIDENTIAL: AllowanceLine = { label: "Industry allowance (residential building)", clause: "cl 22.1(b)", byStage: ST(INDUSTRY_ALLOWANCE.residential) };
+
+function buildingScenarios(toolLabel: string, tool: number): AllowanceScenario[] {
+  const toolLine: AllowanceLine = { label: toolLabel, clause: "cl 21.1(a)", byStage: ST(tool) };
+  return [
+    { id: "general", label: "General building, civil or engineering construction site", lines: [toolLine, INDUSTRY_GENERAL], allPurpose: true },
+    { id: "residential", label: "Residential building (single or dual occupancy, not multistorey)", lines: [toolLine, INDUSTRY_RESIDENTIAL], allPurpose: true },
+  ];
+}
+
+const pg = (rows: Record<PayGuideKey, readonly [number, number]>): PayGuideTable => rows;
+
+// FWO MA000020 pay guide, published 2 July 2026, "Apprentice - 4 years - General building and construction -
+// [not] residential work - Started after 1 Jan 2014 - <group>" and "Adult apprentice - ... - All years/stages".
+const CARPENTER_PG: BuildingPayGuide = {
+  group: "Carpenter and/or joiner (including bridge and wharf), carver, floor sander, letter cutter, stonemason, artificial stoneworker, marble and slate worker or tilelayer",
+  groupShort: "carpenter and joiner",
+  toolAllowance: 41.22,
+  general: pg({ "1n": [667.92, 17.58], "1y": [723.88, 19.05], "2n": [779.83, 20.52], "2y": [835.79, 21.99], "3": [947.7, 24.94], "4": [1115.56, 29.36] }),
+  residential: pg({ "1n": [654.49, 17.22], "1y": [710.45, 18.7], "2n": [766.4, 20.17], "2y": [822.36, 21.64], "3": [934.27, 24.59], "4": [1102.13, 29.0] }),
+  adult: { general: [1121.87, 29.52], residential: [1108.44, 29.17] },
+};
+const BRICKLAYER_PG: BuildingPayGuide = {
+  group: "Bricklayer or refractory bricklayer",
+  groupShort: "bricklayer and refractory bricklayer",
+  toolAllowance: 29.26,
+  general: pg({ "1n": [655.96, 17.26], "1y": [711.92, 18.73], "2n": [767.87, 20.21], "2y": [823.83, 21.68], "3": [935.74, 24.62], "4": [1103.6, 29.04] }),
+  residential: pg({ "1n": [642.53, 16.91], "1y": [698.49, 18.38], "2n": [754.44, 19.85], "2y": [810.4, 21.33], "3": [922.31, 24.27], "4": [1090.17, 28.69] }),
+  adult: { general: [1109.91, 29.21], residential: [1096.48, 28.85] },
+};
+const PAINTER_PG: BuildingPayGuide = {
+  group: "Glazier, painter or signwriter",
+  groupShort: "glazier, painter and signwriter",
+  toolAllowance: 9.89,
+  general: pg({ "1n": [636.59, 16.75], "1y": [692.55, 18.23], "2n": [748.5, 19.7], "2y": [804.46, 21.17], "3": [916.37, 24.12], "4": [1084.23, 28.53] }),
+  residential: pg({ "1n": [623.16, 16.4], "1y": [679.12, 17.87], "2n": [735.07, 19.34], "2y": [791.03, 20.82], "3": [902.94, 23.76], "4": [1070.8, 28.18] }),
+  adult: { general: [1090.54, 28.7], residential: [1077.11, 28.35] },
+};
+/** FWO MA000020 pay guide "All others" (no cl 21.1(a) tool allowance), general building, stage 1 with Year 12. */
+export const BUILDING_ALL_OTHERS_1Y_GENERAL = [682.66, 17.96] as const;
+
+export const payGuideKey = (stage: ApprenticeStage, year12: "completed" | "not-completed"): PayGuideKey =>
+  stage >= 3 ? (String(stage) as PayGuideKey) : (`${stage}${year12 === "completed" ? "y" : "n"}` as PayGuideKey);
+
+// ---- Manufacturing (MA000010) ----------------------------------------------
+// cl 30.2(c)(ii) $17.90 a week x the cl 21.6 column 1 percentage (cl 30.2(c)(v)), rounded to the cent: our arithmetic.
+// The FWO pay guide prints the same allowance per hour: $0.24, $0.28, $0.35, $0.41 (= these / 38, to the cent).
+export const MANUFACTURING_TOOL_ALLOWANCE = 17.9;
+export const MANUFACTURING_TOOL_PCT = [50, 60, 75, 88] as const;
+export const MANUFACTURING_TOOL_HOURLY_PAY_GUIDE = [0.24, 0.28, 0.35, 0.41] as const;
+const BOILERMAKER_TOOL: AllowanceLine = {
+  label: "Tool allowance (apprentice share of $17.90, our calculation)",
+  clause: "cl 30.2(c)(ii), (v)",
+  byStage: MANUFACTURING_TOOL_PCT.map((p) => roundCent((MANUFACTURING_TOOL_ALLOWANCE * p) / 100)) as unknown as readonly [number, number, number, number],
+};
+
+export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
+  {
+    slug: "carpenter",
+    label: "Carpenter",
+    trade: "carpentry",
+    tradeSlug: "building",
+    h1: "Apprentice Carpenter Pay",
+    lead:
+      "Carpentry apprentices carry the largest tool allowance in the Building and Construction General On-site Award: $41.22 a week, the amount clause 21.1(a) sets for a carpenter and/or joiner. The award pays it to apprentices in full, not as a percentage, together with the industry allowance, and both are part of the ordinary rate for all purposes (cl 19.7(c)). The minimums above already include both.",
+    job: { href: "/job-pay-rates/carpenter/", label: "Carpenter pay rates (qualified)" },
+    extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "Every level of the award the apprentice rates come from." }],
+    allowances: buildingScenarios("Tool allowance (carpenter and/or joiner)", CARPENTER_PG.toolAllowance),
+    payGuide: CARPENTER_PG,
+    sharesTableWith: ["bricklayer", "painter"],
+    qualification: {
+      code: "CPC30326",
+      title: "Certificate III in Carpentry",
+      url: tgaUrl("CPC30326"),
+      detail:
+        "training.gov.au released CPC30326 on 23 September 2026 (34 units: 27 core and 7 elective) and marked the previous CPC30220 superseded from 22 September 2026, listing the two as equivalent.",
+    },
+    facts: [
+      "The $41.22 is shared by everyone in the same line of clause 21.1(a): joiners, bridge and wharf carpenters, carpenter-divers, carvers, floor sanders, letter cutters, stonemasons, tilelayers and marble, slate and artificial stone workers. The Fair Work Ombudsman pay guide prints one apprentice table for that whole group, and the tables on this page are that table.",
+      "A qualified carpenter or joiner is a CW/ECW 3 classification (Schedule A.2.3). The award places a joiner special class at CW/ECW 4 ($1,154.40 a week) and a carpenter-diver at CW/ECW 8 ($1,286.70), and a carpenter-diver also gets $1.33 an hour for all purposes (cl 23.5). Once the apprenticeship is complete, clause 19.7(a) sets the floor at the $1,119.10 standard rate, so with the tool and industry allowances a carpenter on a general building site is on at least $1,227.47 a week.",
+      "The training plan that sets your stage dates is for the Certificate III in Carpentry. Apprentices who signed up under CPC30220 and those under its replacement CPC30326 progress the same way: stage 2 at 25% of the competencies in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever is earlier each time (cl 19.7(b)).",
+    ],
+    sections: [
+      {
+        heading: "TAFE Fees, Textbooks and Block Release",
+        paragraphs: [
+          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. All fees charged by the registered training organisation and the cost of every prescribed textbook that the apprentice has paid for must be reimbursed by the employer, and clause 14.6(a) sets the time limit from the start of the apprenticeship or of the stage the fees relate to. An employer who pays the RTO directly meets the same obligation.",
+          "Time at the RTO is paid time. Under clause 14.3 an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training, and any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated. A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site, and the tool and industry allowances stay in the rate because the award pays them for all purposes.",
+          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.3(e)), but if the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
+        ],
+      },
+      {
+        heading: "Three-Year Terms and the Rest of the Carpenter Group",
+        paragraphs: [
+          "The tables on this page are the award's four-year nominal term. Clause 19.7(b)(i)(B) prints a separate table for a three-year apprenticeship: 55% of the standard rate in stage 1, 75% in stage 2 (entered at 50% of the training plan competencies or 12 months, whichever is earlier) and 90% in stage 3 (entered at 75% of competencies or 12 months after stage 2). It has no Year 12 split. If your training contract names a three-year term, those percentages apply instead of the four-year ones, with the same tool and industry allowances added.",
+          "Clause 21.1(a) attaches the $41.22 tool allowance to one line of trades: artificial stoneworker, carpenter and/or joiner, carpenter-diver, carver, bridge and wharf carpenter, floor sander, letter cutter, marble and slate worker, stonemason and tilelayer. An apprentice in any of those trades is on the table above. Whichever trade it is, clause 19.7(a) sets the floor after completion: a person who has completed a full apprenticeship must not be paid less than the $1,119.10 standard rate, before the allowances.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Does my employer have to pay my TAFE fees as an apprentice carpenter?",
+        a: "Yes. Clause 14.6 of the Building and Construction General On-site Award requires the employer to reimburse all RTO fees and prescribed textbook costs the apprentice has paid, within the time limit in clause 14.6(a), or to pay the RTO directly. Time at the RTO for training and assessment in the training contract is paid as time worked (cl 14.3).",
+      },
+      {
+        q: "What if my carpentry apprenticeship is a three-year term?",
+        a: "A different table applies. Clause 19.7(b)(i)(B) pays a three-year apprentice 55% of the standard rate in stage 1, 75% in stage 2 and 90% in stage 3, with no Year 12 split, plus the $41.22 tool allowance and the industry allowance for all purposes. Stage 2 starts at 50% of the training plan competencies or after 12 months, and stage 3 at 75% or 12 months after stage 2, whichever comes first.",
+      },
+      {
+        q: "Is the tool allowance included in the apprentice carpenter rate?",
+        a: "Not in the percentage of the standard rate, but it is part of the minimum. Clause 19.7(b) and (c) of the Building and Construction General On-site Award make an apprentice's minimum the percentage rate plus the $41.22 carpenter tool allowance and the industry allowance, for all purposes. The Fair Work Ombudsman pay guide figures on this page, such as $19.05 an hour in first year with Year 12 on a general building site, already include both.",
+      },
+      {
+        q: "Do apprentice carpenters get paid more on a commercial site than on a house?",
+        a: "Yes, by $13.43 a week, which is the gap between the two industry allowances: $67.15 on general building, civil and engineering construction work and $53.72 on residential building (single or dual occupancy, not multistorey). In first year with Year 12 that is $19.05 an hour against $18.70.",
+      },
+    ],
+  },
+  {
+    slug: "bricklayer",
+    label: "Bricklayer",
+    trade: "bricklaying",
+    tradeSlug: "building",
+    h1: "Apprentice Bricklayer Pay",
+    lead:
+      "A bricklaying apprentice's minimum includes a $29.26 a week tool allowance, the amount clause 21.1(a) of the Building and Construction General On-site Award sets for a bricklayer or refractory bricklayer. It is paid in full to apprentices with the industry allowance, for all purposes (cl 19.7(c)). That is $11.96 a week less than the carpentry tool allowance, about 31 cents an hour, and it is the only reason a bricklaying apprentice's minimum differs from a carpentry apprentice's.",
+    job: { href: "/job-pay-rates/bricklayer/", label: "Bricklayer pay rates (qualified)" },
+    extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "The levels and allowances behind the apprentice rates." }],
+    allowances: buildingScenarios("Tool allowance (refractory bricklayer or bricklayer)", BRICKLAYER_PG.toolAllowance),
+    payGuide: BRICKLAYER_PG,
+    sharesTableWith: ["carpenter", "painter"],
+    qualification: {
+      code: "CPC33020",
+      title: "Certificate III in Bricklaying and Blocklaying",
+      url: tgaUrl("CPC33020"),
+      detail:
+        "It is current on training.gov.au and has three specialisations of 28 units each (20 core, 8 elective): traditional and heritage bricklaying, refractory bricklaying, and paving.",
+    },
+    facts: [
+      "Only two classifications share the $29.26 rate: bricklayer and refractory bricklayer. The Fair Work Ombudsman pay guide prints one apprentice table for that pair, and the tables on this page are that table.",
+      "Refractory work changes the qualified rate, not the apprentice rate. The award lists a bricklayer at CW/ECW 3 ($1,119.10 a week before allowances) and a refractory bricklayer at CW/ECW 5 ($1,189.60), $70.50 a week apart (Schedule A.2.3 and A.2.5). During the apprenticeship both are paid the same percentage of the standard rate and the same tool allowance.",
+      "The paving specialisation lines up with a separate award classification, paviour (including segmental paving), which has no tool allowance in clause 21.1(a). If your employer classifies you as a paviour rather than a bricklayer, the pay guide's \"All others\" apprentice table applies instead: $682.66 a week ($17.96 an hour) in first year with Year 12 on a general building site, against $711.92 ($18.73) for a bricklayer.",
+      "Stage progression counts the competencies in the training plan for your Certificate III: stage 2 at 25% or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever comes first (cl 19.7(b)).",
+    ],
+    sections: [
+      {
+        heading: "Moving Up a Stage Early: How the Competency Test Works",
+        paragraphs: [
+          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying), any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience are met, and either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees.",
+          "If the employer disagrees with the RTO's assessment and the three parties cannot resolve it by agreement, the matter goes through the award's dispute procedure rather than sitting unresolved on the payslip (cl 14.9(b)). Once agreement is reached or a determination is made, the new rate is paid from the first full pay period starting on or after that date (cl 14.9(d)). The training package for the qualification named in the contract of training decides how competency is assessed (cl 14.9(c)).",
+          "For a bricklaying apprentice the three markers are worth $55.95, $111.91 and $167.86 a week respectively in the wage part of the rate (5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12, 10 points between stages 2 and 3, and 15 points between stages 3 and 4), with the $29.26 tool allowance and the industry allowance unchanged. Our arithmetic on clause 19.7(b).",
+        ],
+      },
+      {
+        heading: "Labourers, Adult Apprentices and the Rates Around You on Site",
+        paragraphs: [
+          "Not everyone laying bricks or carrying them is on the apprentice table. A labourer on a pick and shovel, or a plasterer's, terrazzo or stonemason's assistant, is a CW/ECW 1 classification in Schedule A.2.1, paid at least $1,013.50 a week plus the industry allowance, with no tool allowance. Because a first-year apprentice with Year 12 is on $711.92 a week on a general site, an apprentice can be paid less than the labourer passing them bricks; the difference is the training contract and the trade rate at the end of it.",
+          "An apprentice who signs the contract of training at 21 or older is an adult apprentice (cl 14.1(a)). The Fair Work Ombudsman pay guide prints one adult apprentice bricklayer rate for every year of the apprenticeship: $1,109.91 a week ($29.21 an hour) on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, both including the $29.26 tool allowance and the industry allowance. Under clause 19.8(a), someone who already worked for the employer before becoming its adult apprentice keeps the ordinary hourly rate of their old classification if it is higher.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "What happens if my employer disagrees that I have reached the next stage?",
+        a: "Clause 14.9 of the award pays the next stage rate once the RTO has assessed the apprentice as competent in the required proportion of units, unless the employer tells the RTO and the apprentice it disagrees. A disagreement that cannot be settled between the RTO, the employer and the apprentice goes through the award's dispute procedure. Once agreed or determined, the higher rate starts from the first full pay period on or after that date.",
+      },
+      {
+        q: "How much is an adult apprentice bricklayer paid?",
+        a: "The Fair Work Ombudsman pay guide for the Building and Construction General On-site Award prints $1,109.91 a week ($29.21 an hour) for an adult apprentice bricklayer on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, for all years of the apprenticeship, including the $29.26 tool allowance and the industry allowance. An adult apprentice is someone 21 or over when the contract of training is signed.",
+      },

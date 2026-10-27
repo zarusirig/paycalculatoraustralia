@@ -68,14 +68,14 @@ export const TEACHER_AIDE: Occupation = {
     "Teacher aides, integration aides and classroom assistants in non-government schools (independent and Catholic) are covered by the Educational Services (Schools) General Staff Award 2020 [MA000076]. The award calls the role classroom support services.",
     "A teacher aide starts at Level 1.3 (classroom support grade 1: general assistance to teachers under direct supervision) or Level 2.1 (grade 2: helping with the educational program with some discretion; typically Year 12, or a Certificate I or II with relevant experience). Level 3 covers more senior roles such as a student services co-ordinator. Staff move up a pay point within a level after each year, subject to a performance review (cl 17.2).",
     "Teacher aides in government schools (called education assistants, school learning support officers or teacher assistants depending on the state) are state public sector employees paid under their state's own award or agreement, which this award does not cover.",
-    "Many schools employ aides for school terms only. The award allows a contract to provide unpaid leave in non-term weeks, with the annual salary reduced in proportion to the weeks worked plus 4 weeks' annual leave (cl 12.2).",
+    "A non-government school can employ a teacher aide for school terms only. The award allows the contract to provide unpaid leave in non-term weeks, with the annual salary reduced in proportion to the weeks worked plus 4 weeks' annual leave (cl 12.2).",
   ],
   tables: [
     {
       id: "classroom-support",
       title: "Teacher aide pay rates, non-government schools, 2026–27",
       intro:
-        "Clause 17.1: annual salary (weekly x 52.18), weekly and hourly minimums exactly as published. Casual rates are Schedule B.2.1 exactly.",
+        "The table shows the clause 17.1 annual salary (weekly x 52.18), weekly and hourly minimums for teacher aides exactly as the award publishes them. Casual rates are copied exactly from Schedule B.2.1.",
       rows: [
         lvl("Level 1.3", 55_582, 1065.2, 28.03, 35.04, "Classroom support grade 1, starting point"),
         lvl("Level 2.1", 55_994, 1073.1, 28.24, 35.3, "Classroom support grade 2, starting point"),
@@ -93,7 +93,7 @@ export const TEACHER_AIDE: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate from Schedule B.1.1 and B.2.1 (the column for employees other than cooking/catering and boarding staff).",
+    "Teacher aide penalty rates are percentages of the minimum hourly rate from Schedule B.1.1 and B.2.1 (the column for employees other than cooking/catering and boarding staff).",
   overtime: [
     "Monday to Friday: 150% for the first 3 hours, then 200% (Schedule B.1.3).",
     "Saturday: 150% for the first 3 hours, then 200%. Sunday: 200%. Public holiday: 250%.",
@@ -101,7 +101,7 @@ export const TEACHER_AIDE: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
-    "Paid for school terms only? Under cl 12.2 your adjusted salary is the annual rate x (weeks worked + 4 weeks' leave) / 52.18. The award's example: Level 3.1 over 39.4 term weeks is $48,601 a year, not $58,436.",
+    "If you are paid for school terms only, your adjusted salary under cl 12.2 is the annual rate x (weeks worked + 4 weeks' leave) / 52.18. The award's example: Level 3.1 over 39.4 term weeks is $48,601 a year, not $58,436.",
   ],
   notShown: [
     "Government school teacher aide scales, which are set by each state (see school support staff pay by state).",
@@ -118,7 +118,7 @@ export const TEACHER_AIDE: Occupation = {
     },
     {
       q: "Do teacher aides get paid in the school holidays?",
-      a: "It depends on the contract. Under the award a school can employ an aide on a term-time basis with unpaid leave in non-term weeks, in which case the annual salary is reduced to reflect the weeks worked plus 4 weeks' paid annual leave (cl 12.2). Otherwise the aide is paid all year.",
+      a: "A teacher aide is paid through the school holidays unless the contract is a term-time contract. Under the award a school can employ an aide on a term-time basis with unpaid leave in non-term weeks, in which case the annual salary is reduced to reflect the weeks worked plus 4 weeks' paid annual leave (cl 12.2).",
     },
     {
       q: "Are government school teacher aides paid under this award?",
@@ -126,7 +126,7 @@ export const TEACHER_AIDE: Occupation = {
     },
     {
       q: "What do teacher aides actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,342 a week for education aides (ABS, May 2025). Many aides work part-time or term-time only, so their annual pay is lower.",
+      a: "Jobs and Skills Australia reports median full-time earnings of $1,342 a week for education aides (ABS, May 2025). That median is for full-time aides, so an aide who works part-time or term-time only earns less a year than a full-time aide on the same rate.",
     },
   ],
   sources: [

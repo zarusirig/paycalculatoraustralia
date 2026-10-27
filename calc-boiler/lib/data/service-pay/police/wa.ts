@@ -37,7 +37,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "constable-to-senior-constable",
       title: "Constable, First Class Constable and Senior Constable",
-      intro: "Sworn constables to senior constables under clause 10.1, from 1 July 2026.",
+      intro: "This table lists WA Police Force salaries for sworn constables up to senior constables under clause 10.1, from 1 July 2026.",
       stepHeading: "Classification",
       steps: [
         {
@@ -63,7 +63,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
       id: "sergeant",
       title: "Sergeant (base rows)",
       intro:
-        "Sergeants not in an officer-in-charge position, from 1 July 2026. Increments are reached after each two years of satisfactory service (clause 10.2(a)).",
+        "These rows cover WA Police Force sergeants who are not in an officer-in-charge position, from 1 July 2026. Sergeants reach the next increment after each two years of satisfactory service (clause 10.2(a)).",
       stepHeading: "Classification",
       steps: [
         { label: "Sergeant – Base Rate", salary: 127_619 },
@@ -76,7 +76,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "senior-sergeant",
       title: "Senior Sergeant (base rows)",
-      intro: "Senior sergeants not in an officer-in-charge position, from 1 July 2026.",
+      intro: "These rows cover WA Police Force senior sergeants who are not in an officer-in-charge position, from 1 July 2026.",
       stepHeading: "Classification",
       steps: [
         { label: "Senior Sergeant Base Rate", salary: 142_174 },
@@ -90,7 +90,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
       id: "inspector",
       title: "Inspector",
       intro:
-        "Commissioned officers at the rank of Inspector, from 1 July 2026. Commissioned officers' rates include an allowance for duty beyond 40 hours a week and for public holiday and weekend work (clause 10.1(b)).",
+        "This table covers WA Police Force commissioned officers at the rank of Inspector, from 1 July 2026. Commissioned officers' rates include an allowance for duty beyond 40 hours a week and for public holiday and weekend work (clause 10.1(b)).",
       stepHeading: "Classification",
       steps: [
         { label: "Inspector Base Rate", salary: 173_361 },
@@ -108,7 +108,7 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
   ],
   penalties: [
     "Shift allowance (clause 16.1), per ordinary eight-hour shift from 1 July 2026: $74.11 for a Saturday or Sunday day shift, $84.35 for an afternoon shift, $101.13 for an evening shift and $126.56 for a night shift. Shifts of other lengths are paid pro rata.",
-    "Shift types (clause 11.7): afternoon shifts start 11am–4:30pm, evening shifts 5pm–7:30pm and night shifts 8pm–5:30am.",
+    "Shift types (clause 11.7): an afternoon shift starts between 11am and 4:30pm, an evening shift between 5pm and 7:30pm and a night shift between 8pm and 5:30am.",
     "Recruits-in-Training and commissioned officers are excluded from the clause 16.1 shift allowance except as the agreement provides.",
   ],
   notices: [
@@ -132,15 +132,15 @@ export const WA_POLICE_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does a senior constable earn in Western Australia?",
-      a: "Senior Constables earn $115,722 at the base rate rising to $124,558 at Increment V from 1 July 2026. First Class Constables earn $107,977 to $109,553.",
+      a: "WA Police Force Senior Constables earn $115,722 at the base rate, rising to $124,558 at Increment V, from 1 July 2026. First Class Constables earn $107,977 to $109,553.",
     },
     {
       q: "What are WA police recruits paid?",
-      a: "Recruits-in-Training are paid $74,309 a year from 1 July 2026 under the agreement.",
+      a: "WA Police Force Recruits-in-Training are paid $74,309 a year from 1 July 2026 under the agreement.",
     },
     {
       q: "What does a sergeant earn in WA Police?",
-      a: "A sergeant on the standard scale earns $127,619 at the base rate rising to $135,005 at Base Increment IV from 1 July 2026. Sergeants in charge of stations are paid more.",
+      a: "A WA Police Force sergeant on the standard (base) scale earns $127,619 at the base rate, rising to $135,005 at Base Increment IV, from 1 July 2026. Sergeants in charge of stations (Schedule H positions) are paid from separate rows that are higher than these base rates.",
     },
   ],
 };

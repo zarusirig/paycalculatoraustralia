@@ -176,7 +176,7 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
 
             <section id="after-tax">
               <p>
-                How tax, super and penalties apply to these salaries:{" "}
+                To see how tax, super and shift penalties apply to these salaries, read{" "}
                 <Link href={`${cfg.hubPath}#after-tax`}>{cfg.hubLabel}</Link>.
               </p>
               <div className="not-prose my-8">

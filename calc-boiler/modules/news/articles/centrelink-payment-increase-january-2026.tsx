@@ -29,16 +29,15 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         income tests that apply to them. Youth Allowance and Austudy&apos;s single, away-from-home
         maximum basic rate rose by $13.90 to $677.20 a fortnight, and ABSTUDY&apos;s independent
         single rate for those aged 16 to 21 moved to match it. Other categories (living at home,
-        living away with dependents, or partnered) also moved, though by different dollar
-        amounts, since each rate is indexed against the same movement in the Consumer Price Index
-        but starts from a different base.
+        living away with dependants, or partnered) also moved, though by different dollar
+        amounts. Each rate is indexed against the same movement in the Consumer Price Index but
+        starts from a different base.
       </p>
       <p>
         The Youth Disability Support Pension (the rate of Disability Support Pension paid to
         recipients under 21) rose by up to $17.20 a fortnight, taking the rate for those living
         independently to $839.80. If you&apos;re not sure which category applies to you, your
-        Centrelink online account shows your specific payment rate and the date it was last
-        reviewed, rather than the general headline figures reported in the media.
+        Centrelink online account shows your own payment rate and the date it was last reviewed.
       </p>
 
       <h2>Carer Allowance and student income tests</h2>
@@ -74,25 +73,24 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
 
       <h2>Checking your own rate</h2>
       <p>
-        Exact rates vary by your living arrangements, whether you have dependents, and your own
-        and your parents&apos; income for many student payments. Log in to your Centrelink online
-        account through myGov to see your updated rate and income test, and use our{" "}
+        Your exact rate depends on your living arrangements, whether you have dependants, and, for
+        many student payments, your own and your parents&apos; income. Log in to your Centrelink
+        online account through myGov to see your updated rate and income test, and use our{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to understand
-        how earnings from part-time or casual work interact with your payment. It&apos;s worth
-        checking your MyGov inbox for a formal letter confirming your new rate, since the exact
-        figure that lands in your account can differ slightly from the headline numbers reported
-        here if you receive supplementary payments like Rent Assistance or Pharmaceutical
-        Allowance on top of your base rate.
+        how earnings from part-time or casual work interact with your payment. Check your myGov
+        inbox for a formal letter confirming your new rate. If you receive supplementary payments
+        like Rent Assistance or Pharmaceutical Allowance on top of your base rate, the figure that
+        lands in your account can differ slightly from the headline numbers reported here.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
         If you combine a Centrelink payment with part-time or casual work, a small increase in
-        your base rate can shift how much of your earnings get taxed away under the income test.
-        Run your take-home pay through our{" "}
+        your base rate can shift how much payment you keep after the income test counts your
+        earnings. Run your pay through our{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to see what a shift
-        change or extra hours actually nets you once both tax and the Centrelink taper are
-        accounted for, and check the current thresholds on the{" "}
+        change or extra hours nets you after tax, and check how the Centrelink taper and current
+        thresholds affect your payment on the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link>.
       </p>
     </>

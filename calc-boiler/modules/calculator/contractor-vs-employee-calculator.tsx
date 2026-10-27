@@ -59,8 +59,8 @@ export default function ContractorVsEmployeeCalculatorPage({ children, afterCalc
             Contractor vs Employee Calculator: Compare Your Take-Home
           </h1>
           <p className="text-lg text-warmgray">
-            See the real difference between working as an employee and as a contractor (ABN).
-            Compare tax, super, and hidden costs side-by-side for FY{SITE_CONFIG.financialYear}.
+            Compare your take-home pay as an employee and as an ABN contractor on the same gross annual rate.
+            The calculator shows income tax, Medicare levy, super and business expenses side-by-side for FY{SITE_CONFIG.financialYear}.
           </p>
           <TrustBar className="mt-4" />
         </section>

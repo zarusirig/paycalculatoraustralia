@@ -46,7 +46,7 @@ export const NSW_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "paramedics",
       title: "Paramedic entry level and Paramedic Level 1 (Table 1A)",
       intro:
-        "Trainee Paramedics, Paramedic Interns and qualified Paramedics employed by NSW Ambulance. Paramedics move up one increment automatically after each 12 months.",
+        "NSW Ambulance employs Trainee Paramedics, Paramedic Interns and qualified Paramedics on this scale. Paramedics move up one increment automatically after each 12 months.",
       stepHeading: "Classification",
       effectiveFrom: "1 July 2026",
       steps: [
@@ -99,7 +99,7 @@ export const NSW_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "management",
       title: "Management staff (Table 1B)",
       intro:
-        "Registered paramedics appointed to management roles. Manager Level 1 includes Team Leader and VCCC Clinical Team Leader positions.",
+        "Registered paramedics appointed to NSW Ambulance management roles are paid on this scale. Manager Level 1 includes Team Leader and VCCC Clinical Team Leader positions.",
       stepHeading: "Management level",
       effectiveFrom: "1 July 2026",
       steps: [
@@ -112,7 +112,7 @@ export const NSW_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "A Trainee Paramedic is paid $1,424.05 a week from the first full pay period on or after 1 July 2026 (about $74,254 a year). A Trainee Paramedic is undertaking the training and work experience required to become a Paramedic Intern.",
-    "A Paramedic Intern - a registered paramedic completing the NSW Ambulance internship program - is paid $1,618.94 a week (about $84,416 a year).",
+    "A Paramedic Intern (a registered paramedic completing the NSW Ambulance internship program) is paid $1,618.94 a week (about $84,416 a year).",
     "After the internship, a Paramedic starts at Level 1, Band 1, Increment 1 on $1,722.45 a week (about $89,814 a year) and moves up an increment automatically after each 12 months, to $1,980.90 a week (about $103,290 a year) at Increment 6.",
   ],
 
@@ -155,7 +155,7 @@ export const NSW_PARAMEDIC_PAY: ServicePayJurisdiction = {
   faqs: [
     {
       q: "How much does a paramedic earn in NSW?",
-      a: "Under the NSW Ambulance Paramedics (State) Award 2026, a qualified NSW Ambulance paramedic earns $1,722.45 to $1,980.90 a week base from the first full pay period on or after 1 July 2026 - about $89,814 to $103,290 a year. Shift, weekend and public holiday penalties are paid on top.",
+      a: "Under the NSW Ambulance Paramedics (State) Award 2026, a qualified NSW Ambulance paramedic earns $1,722.45 to $1,980.90 a week base from the first full pay period on or after 1 July 2026 (about $89,814 to $103,290 a year). Shift, weekend and public holiday penalties are paid on top.",
     },
     {
       q: "What does a graduate paramedic earn in NSW?",
@@ -163,7 +163,7 @@ export const NSW_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does an intensive care paramedic earn in NSW?",
-      a: "Intensive Care Paramedics are classified as Paramedic Specialist (Level 2) and are paid $2,119.50 to $2,248.58 a week - about $110,517 to $117,248 a year - from 1 July 2026. Critical Care Paramedics (Aeromedical) are paid $2,377.37 to $2,438.95 a week (about $123,963 to $127,174 a year).",
+      a: "NSW Ambulance Intensive Care Paramedics are classified as Paramedic Specialist (Level 2) and are paid $2,119.50 to $2,248.58 a week (about $110,517 to $117,248 a year) from 1 July 2026. Critical Care Paramedics (Aeromedical) are paid $2,377.37 to $2,438.95 a week (about $123,963 to $127,174 a year).",
     },
     {
       q: "When is the next NSW paramedic pay rise?",

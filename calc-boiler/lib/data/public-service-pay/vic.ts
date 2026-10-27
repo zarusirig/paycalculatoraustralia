@@ -50,10 +50,10 @@ export const VIC: Jurisdiction = {
     ],
     title: "VPS pay grades and steps from 1 May 2026",
     intro:
-      "Annual salary at every progression step of VPS grades 1 to 6, from the 1 May 2026 column of Schedule C. Each row is a value range (3.1, 3.2 and so on) and each column is a step inside it. Grade 7 and the Senior Technical Specialist structure are further down the page.",
+      "The table gives the annual salary at every progression step of VPS grades 1 to 6, from the 1 May 2026 column of Schedule C. Each row is a value range (3.1, 3.2 and so on) and each column is a step inside it. Grade 7 and the Senior Technical Specialist structure are further down the page.",
     stepLabel: "Step",
     note:
-      "Salary only; superannuation is paid on top. Executives (SES) are set by the Victorian Independent Remuneration Tribunal and are not in this grid.",
+      "The VPS grid shows salary only, and superannuation is paid on top. Executive (SES) pay is set by the Victorian Independent Remuneration Tribunal and is not in this grid.",
   },
 
   instrument:
@@ -67,7 +67,7 @@ export const VIC: Jurisdiction = {
       id: "vps-2026",
       title: "VPS salaries from 1 May 2026, Enterprise Agreement 2024, Schedule C",
       coverage:
-        "All Victorian Public Service employers covered by the agreement, across grades 1 to 7 including the Senior Technical Specialist structure at grade 7.",
+        "Schedule C applies to all Victorian Public Service employers covered by the agreement, across grades 1 to 7 including the Senior Technical Specialist structure at grade 7.",
       basis: "agreement",
       effectiveFrom: "1 May 2026",
       rangeMeaning:
@@ -85,7 +85,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 1, Value Range 1.1",
               group: "VPS Grade 1",
               aliases: ["vps1", "vps grade 1"],
-              summary: "The base of the VPS structure. Four progression steps.",
+              summary: "This value range is the base of the VPS structure and has four progression steps.",
               min: 56_677,
               max: 60_164,
               payPoints: [
@@ -100,7 +100,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 2, Value Range 2.1",
               group: "VPS Grade 2",
               aliases: ["vps2", "vps grade 2"],
-              summary: "Entry value range of grade 2. Eight progression steps.",
+              summary: "The entry value range of grade 2 has eight progression steps.",
               min: 62_104,
               max: 70_930,
               payPoints: [
@@ -119,7 +119,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 2, Value Range 2.2",
               group: "VPS Grade 2",
               aliases: [],
-              summary: "Upper value range of grade 2. Seven progression steps.",
+              summary: "The upper value range of grade 2 has seven progression steps.",
               min: 72_189,
               max: 79_753,
               payPoints: [
@@ -137,7 +137,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 3, Value Range 3.1",
               group: "VPS Grade 3",
               aliases: ["vps3", "vps grade 3", "vps3 salary"],
-              summary: "Entry value range of grade 3. Six progression steps.",
+              summary: "The entry value range of grade 3 has six progression steps.",
               min: 81_496,
               max: 90_227,
               payPoints: [
@@ -154,7 +154,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 3, Value Range 3.2",
               group: "VPS Grade 3",
               aliases: [],
-              summary: "Upper value range of grade 3. Five progression steps.",
+              summary: "The upper value range of grade 3 has five progression steps.",
               min: 91_971,
               max: 98_955,
               payPoints: [
@@ -189,7 +189,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 5, Value Range 5.1",
               group: "VPS Grade 5",
               aliases: ["vps5", "vps grade 5", "vps5 salary range"],
-              summary: "Entry value range of grade 5. Five progression steps.",
+              summary: "The entry value range of grade 5 has five progression steps.",
               min: 116_413,
               max: 128_631,
               payPoints: [
@@ -205,7 +205,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 5, Value Range 5.2",
               group: "VPS Grade 5",
               aliases: [],
-              summary: "Upper value range of grade 5. Five progression steps.",
+              summary: "The upper value range of grade 5 has five progression steps.",
               min: 128_635,
               max: 140_849,
               payPoints: [
@@ -221,7 +221,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 6, Value Range 6.1",
               group: "VPS Grade 6",
               aliases: ["vps6", "vps grade 6"],
-              summary: "Entry value range of grade 6. Seven progression steps.",
+              summary: "The entry value range of grade 6 has seven progression steps.",
               min: 142_790,
               max: 166_938,
               payPoints: [
@@ -239,7 +239,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 6, Value Range 6.2",
               group: "VPS Grade 6",
               aliases: [],
-              summary: "Upper value range of grade 6. Seven progression steps.",
+              summary: "The upper value range of grade 6 has seven progression steps.",
               min: 166_939,
               max: 191_084,
               payPoints: [
@@ -258,7 +258,7 @@ export const VIC: Jurisdiction = {
               group: "VPS Grade 7",
               aliases: ["vps7", "vps grade 7", "senior technical specialist"],
               summary:
-                "Entry value range of grade 7, which also carries the Senior Technical Specialist structure. Five progression steps.",
+                "The entry value range of grade 7, which also carries the Senior Technical Specialist structure, has five progression steps.",
               min: 193_946,
               max: 217_218,
               payPoints: [
@@ -274,7 +274,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 7, Value Range 7.2",
               group: "VPS Grade 7",
               aliases: [],
-              summary: "Middle value range of grade 7. Five progression steps.",
+              summary: "The middle value range of grade 7 has five progression steps.",
               min: 217_223,
               max: 240_496,
               payPoints: [
@@ -290,7 +290,7 @@ export const VIC: Jurisdiction = {
               name: "VPS Grade 7, Value Range 7.3",
               group: "VPS Grade 7",
               aliases: [],
-              summary: "Top value range of the VPS structure. Five progression steps.",
+              summary: "The top value range of the VPS structure has five progression steps.",
               min: 240_496,
               max: 263_771,
               payPoints: [
@@ -309,7 +309,7 @@ export const VIC: Jurisdiction = {
       id: "vic-executives-2026",
       title: "Victorian public service executives from 1 July 2026",
       coverage:
-        "Executives employed in Victorian public service bodies, above the VPS grade structure. Set by determination of the Victorian Independent Remuneration Tribunal, not by the enterprise agreement.",
+        "These bands cover executives employed in Victorian public service bodies, above the VPS grade structure. They are set by determination of the Victorian Independent Remuneration Tribunal, not by the enterprise agreement.",
       basis: "determination",
       effectiveFrom: "1 July 2026",
       rangeMeaning:
@@ -413,19 +413,19 @@ export const VIC: Jurisdiction = {
     },
     {
       q: "What is the VPS 5 salary range?",
-      a: "Value range 5.1 pays $116,413 to $128,631 across five steps and value range 5.2 pays $128,635 to $140,849 across five steps, from 1 May 2026.",
+      a: "VPS value range 5.1 pays $116,413 to $128,631 across five steps and value range 5.2 pays $128,635 to $140,849 across five steps, from 1 May 2026.",
     },
     {
       q: "What are the VPS salary bands?",
-      a: "Seven grades, most of them split into two or three value ranges, and each value range split into progression steps. Grade 4 is the exception with a single value range of seven steps. Above grade 7 the Victorian Independent Remuneration Tribunal sets executive bands, starting at $240,938 total remuneration package for SES-1 from 1 July 2026.",
+      a: "The VPS has seven grades, most of them split into two or three value ranges, with each value range split into progression steps. Grade 4 is the exception with a single value range of seven steps. Above grade 7 the Victorian Independent Remuneration Tribunal sets executive bands, starting at $240,938 total remuneration package for SES-1 from 1 July 2026.",
     },
     {
       q: "When is the next VPS pay rise?",
-      a: "The agreement provides 3% increases on 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027. The rates on this page include the 1 May 2026 increase; the next one is 1 May 2027.",
+      a: "The next VPS pay rise is on 1 May 2027. The VPS agreement provides 3% increases on 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027. The rates on this page include the 1 May 2026 increase.",
     },
     {
       q: "How do you move up a VPS pay point?",
-      a: "Through the annual performance cycle. You need 12 months of continuous VPS employment, 12 months at your current step and a current performance and development plan. At the top of a value range you receive a 1.5% lump sum instead of a step.",
+      a: "You move up a VPS pay point through the annual performance cycle. You need 12 months of continuous VPS employment, 12 months at your current step and a current performance and development plan. At the top of a value range you receive a 1.5% lump sum instead of a step.",
     },
   ],
 };

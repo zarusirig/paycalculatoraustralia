@@ -29,10 +29,10 @@ export default function Division296SuperTaxStarts() {
         earnings for the year attributable to the balance above that threshold and taxes it at an
         extra 15%, on top of the 15% funds already pay. If your TSB exceeds $10 million, a further
         10% applies to earnings attributable to the portion above that higher threshold, a combined
-        extra 25% on that top slice. The tax is levied on the individual, so it&apos;s calculated
-        across all of a person&apos;s super interests combined, not fund by fund. If you hold
-        balances across several funds, the ATO aggregates your total super balance to work out
-        whether you&apos;re over either threshold before apportioning the earnings.
+        extra 25% on that top slice. The tax is calculated across all of your super interests
+        combined, not fund by fund. If you hold balances across several funds, the ATO aggregates
+        your total super balance to work out whether you&apos;re over either threshold before
+        apportioning the earnings.
       </p>
 
       {/*
@@ -62,8 +62,8 @@ export default function Division296SuperTaxStarts() {
         with large property or business holdings. If your balance is well under $3 million, Division
         296 has no direct effect on you, though you may want to keep an eye on your growth if
         you&apos;re a high income earner already paying{" "}
-        <Link href="/division-293-tax/">Division 293 tax</Link> on contributions. It&apos;s worth
-        noting Division 296 and Division 293 are separate measures: Division 293 is an extra 15% tax
+        <Link href="/division-293-tax/">Division 293 tax</Link> on contributions. Division 296
+        and Division 293 are separate measures: Division 293 is an extra 15% tax
         on concessional contributions for high income earners, while Division 296 taxes a share of
         investment earnings once your total balance passes $3 million, regardless of your income.
       </p>
@@ -80,10 +80,10 @@ export default function Division296SuperTaxStarts() {
       <p>
         Division 296 tax is assessed separately from your income tax return and doesn&apos;t change
         your regular pay or super guarantee contributions. If your balance is nowhere near $3
-        million, focus instead on the changes that do affect most people this year, like the higher
-        contribution caps. Check your position with our{" "}
-        <Link href="/superannuation-calculator/">superannuation calculator</Link> and see how it
-        compares with existing high-income super tax settings on our{" "}
+        million, focus instead on the changes that do apply to you this year, like the higher
+        contribution caps. Check your employer super and concessional cap space with our{" "}
+        <Link href="/superannuation-calculator/">superannuation calculator</Link> and compare
+        this tax with the existing high-income contributions tax on our{" "}
         <Link href="/division-293-tax/">Division 293 tax guide</Link>.
       </p>
     </>

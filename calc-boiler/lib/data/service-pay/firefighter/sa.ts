@@ -35,7 +35,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "1 January 2027",
     detail:
-      "A 3.5% increase from the first full pay period on or after 1 January 2027, already printed in Appendix A: Recruit Firefighter $1,715.19, First Class Firefighter Level 3 $2,413.58, Senior Firefighter Level 2B $2,672.47 and Station Officer Level 1 $2,828.46 per week. A further 3% follows from 1 January 2028.",
+      "MFS total wages rise 3.5% from the first full pay period on or after 1 January 2027, and Appendix A already prints the new rates: Recruit Firefighter $1,715.19, First Class Firefighter Level 3 $2,413.58, Senior Firefighter Level 2B $2,672.47 and Station Officer Level 1 $2,828.46 per week. A further 3% follows from 1 January 2028.",
   },
   verifiedOn: "24 September 2026",
 
@@ -44,7 +44,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (Appendix A, total weekly wage)",
       intro:
-        "Permanent full-time MFS firefighters from recruit through the Fourth, Third, Second and First Class ranks to Senior Firefighter.",
+        "This MFS table covers permanent full-time firefighters from Recruit through the Fourth, Third, Second and First Class ranks to Senior Firefighter.",
       stepHeading: "Rank",
       steps: [
         { label: "Recruit Firefighter", salary: 86_411, note: "$1,657.19 per week" },
@@ -63,7 +63,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     {
       id: "officers",
       title: "Officers (Appendix A, total weekly wage)",
-      intro: "MFS Station Officers and Commanders.",
+      intro: "This MFS table covers Station Officers and Commanders.",
       stepHeading: "Rank",
       steps: [
         { label: "Station Officer Level 1", salary: 142_497, note: "$2,732.81 per week" },
@@ -83,13 +83,13 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "Clause 15C lifted the Recruit Firefighter rate to 85% of the Fourth Class Firefighter rank from the first full pay period on or after 1 January 2026. The recruit rate went from $1,187.12 per week (1 January 2025) to $1,575.97 per week (1 January 2026).",
   ],
   penalties: [
-    "Rates are total weekly wages. The 1 January 2026 column also includes a 1.8925% public holiday adjustment, and from 1 July 2026 a $3,000-a-year base uplift reflecting rescue qualification and advanced skills (clause 15B).",
+    "The MFS rates in Appendix A are total weekly wages. The 1 January 2026 column also includes a 1.8925% public holiday adjustment, and from 1 July 2026 a $3,000-a-year base uplift reflecting rescue qualification and advanced skills (clause 15B).",
     "The normal hourly rate is the Appendix A total wage divided by 40 (clause 6 definitions).",
     "Senior Firefighter Level 2A employees who are eligible and willing to act up to Station Officer are paid an extra amount (set at $50.23 per week and increased in line with the agreement's wage increases) on top of their total wage (clause 31.4).",
   ],
   notices: [
-    "The 2025 agreement came into force on 19 February 2026. Its first increases (4% plus the public holiday adjustment) were back-dated to the first full pay period on or after 1 January 2026 (clause 8.4).",
-    "The agreement's nominal expiry date is 1 January 2028; negotiations for a new agreement must start at least six months before that.",
+    "The MFS Enterprise Agreement 2025 came into force on 19 February 2026. Its first increases (4% plus the public holiday adjustment) were back-dated to the first full pay period on or after 1 January 2026 (clause 8.4).",
+    "The MFS agreement's nominal expiry date is 1 January 2028; negotiations for a new agreement must start at least six months before that.",
   ],
   unverified: [
     "Assistant Chief Fire Officer, marine and communications classifications are printed in Appendix A but are not shown here.",

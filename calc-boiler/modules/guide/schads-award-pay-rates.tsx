@@ -131,11 +131,11 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             SCHADS Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            SCHADS is the short name for the <a href={SCHADS_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{SCHADS_AWARD.name}</a> ({SCHADS_AWARD.code}). Its {SITE_CONFIG.financialYear} rates apply from {SCHADS_AWARD.operativeFrom}: Level 1 pay point 1 is {formatAUD(L1.hourly, 2)} an hour and Level 8 pay point 3 is {formatAUD(L8.hourly, 2)} an hour, with casuals paid {PCT(SCHADS_AWARD.casualLoading)} more ({formatAUD(schadsCasualHourly(L1.hourly), 2)} at Level 1 pay point 1). Every pay point in the social and community services and home care streams is listed below.
+            SCHADS is the short name for the <a href={SCHADS_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{SCHADS_AWARD.name}</a> ({SCHADS_AWARD.code}). Its {SITE_CONFIG.financialYear} rates apply from {SCHADS_AWARD.operativeFrom}: Level 1 pay point 1 is {formatAUD(L1.hourly, 2)} an hour and Level 8 pay point 3 is {formatAUD(L8.hourly, 2)} an hour, with casuals paid {PCT(SCHADS_AWARD.casualLoading)} more ({formatAUD(schadsCasualHourly(L1.hourly), 2)} at Level 1 pay point 1). Every pay point in the social and community services and home care streams is listed below, with a printable SCHADS pay guide you can save as a PDF.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> Social and community services rates run from <strong>{formatAUD(L1.weekly, 2)}</strong> a week ({formatAUD(L1.hourly, 2)}/hr) at Level 1 pay point 1 to <strong>{formatAUD(L8.weekly, 2)}</strong> a week ({formatAUD(L8.hourly, 2)}/hr) at Level 8 pay point 3. The widely quoted Level 4 rate is <strong>{formatAUD(L4.weekly, 2)}</strong> a week, or {formatAUD(L4.hourly, 2)} an hour &mdash; not the {formatAUD(CLAUSE_15_LEVEL_4, 2)} printed in clause 15, which omits the Equal Remuneration Order.
+              <strong>Direct answer:</strong> Social and community services rates run from <strong>{formatAUD(L1.weekly, 2)}</strong> a week ({formatAUD(L1.hourly, 2)}/hr) at Level 1 pay point 1 to <strong>{formatAUD(L8.weekly, 2)}</strong> a week ({formatAUD(L8.hourly, 2)}/hr) at Level 8 pay point 3. The widely quoted Level 4 rate is <strong>{formatAUD(L4.weekly, 2)}</strong> a week, or {formatAUD(L4.hourly, 2)} an hour, not the {formatAUD(CLAUSE_15_LEVEL_4, 2)} printed in clause 15, which omits the Equal Remuneration Order.
             </p>
           </div>
           <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -163,7 +163,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                       The operative rate is <strong>{formatAUD(L4.weekly, 2)}</strong> &mdash; <strong>{ERO_UPLIFT_PCT}% higher</strong>, a difference of {formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week or about {formatAUD((L4.weekly - CLAUSE_15_LEVEL_4) * 52, 0)} a year.
                     </p>
                     <p className="text-sm leading-relaxed text-navy">
-                      <strong>The ERO tables begin at Level {SCHADS_AWARD.eroLowestLevel}.</strong> Level 1 has no ERO row and receives no uplift, so its rates below are the plain clause 15 minimums &mdash; which are also the operative rates. Levels {SCHADS_AWARD.eroLowestLevel} to 8 are ERO-inclusive.
+                      <strong>The ERO tables begin at Level {SCHADS_AWARD.eroLowestLevel}.</strong> Level 1 has no ERO row and receives no uplift, so its rates below are the plain clause 15 minimums, and those minimums are also the operative rates. Levels {SCHADS_AWARD.eroLowestLevel} to 8 are ERO-inclusive.
                     </p>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="sacs-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Social and Community Services Pay Rates (Schedule B)</h2>
               <p>
-                This is the stream most people mean by &ldquo;SCHADS rates&rdquo;. It covers social workers, case managers, community development workers, youth workers and most disability support work delivered outside the home. Levels {SCHADS_AWARD.eroLowestLevel} to 8 carry the Equal Remuneration Order; Level 1 does not.
+                Schedule B is the stream most people mean by &ldquo;SCHADS rates&rdquo;. It covers social workers, case managers, community development workers, youth workers and most disability support work delivered outside the home. Levels {SCHADS_AWARD.eroLowestLevel} to 8 carry the Equal Remuneration Order; Level 1 does not.
               </p>
               <RateTable rows={SCHADS_SACS} caption={`SCHADS social and community services pay rates from ${SCHADS_AWARD.operativeFrom}`} />
               <p className="text-sm text-warmgray">
@@ -182,12 +182,12 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
 
               <h3>Why Level 1 to Level 2 jumps so far</h3>
               <p>
-                Level 1 pay point 3 is {formatAUD(L1_TOP.weekly, 2)} a week. Level 2 pay point 1 is {formatAUD(L2.weekly, 2)} &mdash; a step of {formatAUD(L2.weekly - L1_TOP.weekly, 2)} between adjacent classifications, far larger than any other gap in the table. It is not a typo. <strong>Level 1 receives no ERO uplift and Level 2 does.</strong> That single fact is why arguing your classification is worth more here than in most awards.
+                Level 1 pay point 3 is {formatAUD(L1_TOP.weekly, 2)} a week. Level 2 pay point 1 is {formatAUD(L2.weekly, 2)}, a step of {formatAUD(L2.weekly - L1_TOP.weekly, 2)} between adjacent classifications, far larger than any other gap in the table. It is not a typo. <strong>Level 1 receives no ERO uplift and Level 2 does.</strong> That single fact makes this boundary the first place to check your classification on a SCHADS payslip.
               </p>
 
               <h3>Watch out: {formatAUD(L1_TOP.weekly, 2)} means two different things</h3>
               <p>
-                The same figure appears twice in this award with a {formatAUD(L2.weekly - L1_TOP.weekly, 0)}-a-week difference in meaning. {formatAUD(L1_TOP.weekly, 2)} is the <strong>operative rate</strong> for Level 1 pay point 3. It is also the <strong>pre-ERO clause 15 figure</strong> for Level 2 pay point 1 &mdash; which becomes {formatAUD(L2.weekly, 2)} once the Equal Remuneration Order is applied.
+                The same figure appears twice in this award with a {formatAUD(L2.weekly - L1_TOP.weekly, 0)}-a-week difference in meaning. {formatAUD(L1_TOP.weekly, 2)} is the <strong>operative rate</strong> for Level 1 pay point 3. It is also the <strong>pre-ERO clause 15 figure</strong> for Level 2 pay point 1. That figure becomes {formatAUD(L2.weekly, 2)} once the Equal Remuneration Order is applied.
               </p>
               <p>
                 So if you are a Level 2 and your payslip shows {formatAUD(L1_TOP.weekly, 2)}, you are being paid a Level 1 rate under a Level 2 classification. This is the single likeliest way a SCHADS pay table goes wrong, and it is worth {formatAUD((L2.weekly - L1_TOP.weekly) * 52, 0)} a year.
@@ -214,7 +214,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="pay-guide">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Pay Guide 2026: Every Pay Point, Every Day</h2>
               <p>
-                The printable version: every classification&rsquo;s hourly rate on a weekday, Saturday, Sunday and public holiday, for permanent and casual employees, from the first full pay period on or after {SCHADS_AWARD.operativeFrom}. Use the print button above to save it as a PDF. Shift loadings (afternoon {PCT(SCHADS_PENALTIES.afternoonShiftLoading)}, night {PCT(SCHADS_PENALTIES.nightShiftLoading)}) are covered under <a href="#penalty-rates">penalty rates</a>.
+                The SCHADS pay guide below is the printable version: every classification&rsquo;s hourly rate on a weekday, Saturday, Sunday and public holiday, for permanent and casual employees, from the first full pay period on or after {SCHADS_AWARD.operativeFrom}. Use the print button above to save it as a PDF. Shift loadings (afternoon {PCT(SCHADS_PENALTIES.afternoonShiftLoading)}, night {PCT(SCHADS_PENALTIES.nightShiftLoading)}) are covered under <a href="#penalty-rates">penalty rates</a>.
               </p>
               {[
                 { title: "Social and community services (Schedule B)", rows: SCHADS_SACS },
@@ -241,7 +241,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 </div>
               ))}
               <p className="text-sm text-warmgray">
-                Percentages from award clauses 26, 29 and 34 applied to each hourly rate and rounded to the cent; casual percentages already include the {PCT(SCHADS_AWARD.casualLoading)} loading. Public holiday is &ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo; in the award&rsquo;s own words.
+                Each day rate applies the percentages in award clauses 26, 29 and 34 to the hourly rate, rounded to the cent; casual percentages already include the {PCT(SCHADS_AWARD.casualLoading)} loading. Public holiday is &ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo; in the award&rsquo;s own words.
               </p>
             </section>
 
@@ -295,10 +295,10 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 <strong>Two rules that change the arithmetic.</strong> First, {SCHADS_PENALTIES.substitutionNote.charAt(0).toLowerCase() + SCHADS_PENALTIES.substitutionNote.slice(1)} You do not add a night loading to a Sunday rate. Second, public holiday payment replaces both the weekend rate and any shift loading.
               </p>
               <p>
-                A note on wording: the award does not say &ldquo;{PCT(SCHADS_PENALTIES.publicHoliday)}&rdquo; for public holidays. Clause 34.2(a) says <strong>&ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo;</strong>. The percentage is the arithmetic, and the two agree &mdash; but if you are quoting the award in a pay dispute, quote the phrase.
+                A note on wording: the award does not say &ldquo;{PCT(SCHADS_PENALTIES.publicHoliday)}&rdquo; for public holidays. Clause 34.2(a) says <strong>&ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo;</strong>. The percentage is the arithmetic, and the two agree. If you are quoting the award in a pay dispute, quote the phrase.
               </p>
               <p>
-                <strong>Casual penalties are additive, not compounded.</strong> Casual Sunday is {PCT(SCHADS_PENALTIES.casualSunday)} of the base rate &mdash; the {PCT(SCHADS_PENALTIES.sunday)} Sunday rate plus the {PCT(SCHADS_AWARD.casualLoading)} loading. It is not {PCT(SCHADS_PENALTIES.sunday)} multiplied by {(1 + SCHADS_AWARD.casualLoading).toFixed(2)}, which would give {PCT(SCHADS_PENALTIES.sunday * (1 + SCHADS_AWARD.casualLoading))}. Compounding is the most common overpayment error in SCHADS payroll, and the most common basis for a disputed underpayment claim in the other direction.
+                <strong>Casual penalties are additive, not compounded.</strong> Casual Sunday is {PCT(SCHADS_PENALTIES.casualSunday)} of the base rate: the {PCT(SCHADS_PENALTIES.sunday)} Sunday rate plus the {PCT(SCHADS_AWARD.casualLoading)} loading. It is not {PCT(SCHADS_PENALTIES.sunday)} multiplied by {(1 + SCHADS_AWARD.casualLoading).toFixed(2)}, which would give {PCT(SCHADS_PENALTIES.sunday * (1 + SCHADS_AWARD.casualLoading))}. Compounding is the most common overpayment error in SCHADS payroll, and the most common basis for a disputed underpayment claim in the other direction.
               </p>
               <p>
                 For how penalty rates work across other awards, see our <Link href="/overtime-penalty-rates-guide/">penalty rates guide</Link>.
@@ -308,7 +308,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="allowances">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Allowances</h2>
               <p>
-                SCHADS carries more allowances than most awards, and they are where underpayment usually hides. These apply from {SCHADS_AWARD.operativeFrom}, except the vehicle allowance, which has a temporary rate (below).
+                The SCHADS award pays allowances for sleepovers, broken shifts, on-call periods, first aid, overtime meals, uniforms, laundry and use of your own car. These apply from {SCHADS_AWARD.operativeFrom}, except the vehicle allowance, which has a temporary rate (below).
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -348,7 +348,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 Clause {SCHADS_VEHICLE_ALLOWANCE.clause} sets a temporary vehicle allowance of {formatAUD(SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm, 2)} per kilometre from {SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel} to {SCHADS_VEHICLE_ALLOWANCE.temporaryToLabel}, inserted by <a href={SCHADS_VEHICLE_ALLOWANCE.sourceUrl} target="_blank" rel="noopener noreferrer">{SCHADS_VEHICLE_ALLOWANCE.determination}</a>. {SCHADS_VEHICLE_ALLOWANCE.payPeriodNote} The ordinary {formatAUD(SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm, 2)} per kilometre rate applies again from {SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}. All other allowances above apply from {SCHADS_AWARD.operativeFrom}.
               </p>
               <p>
-                The sleepover allowance pays for the sleepover itself. <strong>If you are woken and required to work, those hours are paid separately</strong> at the rate applying at that time &mdash; the allowance does not buy the employer any working time.
+                The sleepover allowance pays for the sleepover itself. <strong>If you are woken and required to work, those hours are paid separately</strong> at the rate applying at that time. The sleepover allowance does not buy the employer any working time.
               </p>
             </section>
 
@@ -365,7 +365,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 <strong>No.</strong> The SCHADS award contains no junior rates clause and no age-based percentage scale. An employee under 21 covered by this award is paid the <strong>full adult rate</strong> for their classification.
               </p>
               <p>
-                This is worth stating plainly because age-percentage tables are routinely attributed to SCHADS in circulation, and they are not in the award. If you have been shown one, the question to ask is which award actually covers the role &mdash; not what percentage applies. Awards that genuinely do set junior rates, and the percentages they use, are set out in our <Link href="/junior-pay-rates/">junior pay rates guide</Link>.
+                Age-percentage tables attributed to SCHADS are not in the award. If you have been shown one, ask which award actually covers the role, not what percentage applies. The awards that do set junior rates, and the percentages they use, are set out in our <Link href="/junior-pay-rates/">junior pay rates guide</Link>.
               </p>
               <p>
                 The one age-linked route into SCHADS pay is the National Training Wage: clause 19.2 does not set trainee rates itself but incorporates {SCHADS_AWARD.traineeRatesSource}. Those rates vary with age and schooling completed. We have not verified them, so they are listed as a gap below rather than reproduced.
@@ -409,20 +409,20 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="related">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
-                <li><Link href="/award-rates/">Award Rates Australia</Link> &mdash; how modern awards work and which one covers you</li>
-                <li><Link href="/news/schads-home-care-disability-pay-rise-december-2026/">SCHADS home care pay rise, 1 December 2026</Link> &mdash; the new Schedule E disability care rates</li>
-                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link> &mdash; the awards that do set age-based rates, and the percentages</li>
-                <li><Link href="/overtime-penalty-rates-guide/">Penalty Rates</Link> &mdash; weekend, evening and public holiday loadings across awards</li>
-                <li><Link href="/healthcare-worker-pay/">Healthcare Worker Pay</Link> &mdash; nurses, doctors and allied health</li>
-                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; convert your award rate to net pay after tax</li>
-                <li><Link href="/backpay-calculator/">Backpay Calculator</Link> &mdash; what you are owed if you have been underpaid</li>
+                <li><Link href="/award-rates/">Award Rates Australia</Link>: how modern awards work and which one covers you</li>
+                <li><Link href="/news/schads-home-care-disability-pay-rise-december-2026/">SCHADS home care pay rise, 1 December 2026</Link>: the new Schedule E disability care rates</li>
+                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link>: the awards that do set age-based rates, and the percentages</li>
+                <li><Link href="/overtime-penalty-rates-guide/">Penalty Rates</Link>: weekend, evening and public holiday loadings across awards</li>
+                <li><Link href="/healthcare-worker-pay/">Healthcare Worker Pay</Link>: nurses, doctors and allied health</li>
+                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: convert your award rate to net pay after tax</li>
+                <li><Link href="/backpay-calculator/">Backpay Calculator</Link>: what you are owed if you have been underpaid</li>
               </ul>
             </section>
 
             <section id="levels-2-to-5-annual">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Level 2, 3, 4 and 5 Salary: Annual Pay by Pay Point</h2>
               <p>
-                Schedule B weekly rates from {SCHADS_AWARD.operativeFrom}, annualised at {WEEKS_PER_YEAR} weeks. The annual figure is the award minimum for a {SCHADS_AWARD.standardWeeklyHours}-hour week; the casual column adds the {PCT(SCHADS_AWARD.casualLoading)} loading to the hourly rate.
+                The table below gives each Schedule B weekly rate from {SCHADS_AWARD.operativeFrom}, annualised at {WEEKS_PER_YEAR} weeks. The annual figure is the award minimum for a {SCHADS_AWARD.standardWeeklyHours}-hour week; the casual column adds the {PCT(SCHADS_AWARD.casualLoading)} loading to the hourly rate.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -459,7 +459,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 Home care is classified differently: the Schedule E home care levels are not the Schedule B levels above, and Schedule E disability rates rise from {SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (Level 1 pay point 1 to {formatAUD(DEC_2026_L1.weekly, 2)} a week). See <a href="#home-care-rates">Home Care Pay Rates (Schedules E and F)</a>.
               </p>
               <p>
-                To turn an annual figure into take-home pay &mdash; for example {formatAUD(annualOf(L4.weekly))} a year at Level 4 pay point 1 &mdash; use the <Link href="/tax-on/">tax on every salary</Link> tables or the <a href="#take-home">take-home links</a> on this page.
+                To turn an annual figure into take-home pay (for example {formatAUD(annualOf(L4.weekly))} a year at Level 4 pay point 1), use the <Link href="/tax-on/">tax on every salary</Link> tables or the <a href="#take-home">take-home links</a> on this page.
               </p>
             </section>
 

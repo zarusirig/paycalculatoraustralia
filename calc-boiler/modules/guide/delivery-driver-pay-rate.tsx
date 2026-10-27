@@ -55,7 +55,7 @@ export default function DeliveryDriverPayRatePage() {
 
       <PageHeader title="Delivery Driver Pay Rate in Australia: the $31.30 an Hour Minimum">
         <p>
-          <strong>From {DELIVERY_MSO.commences}, on-demand food and grocery delivery workers have a legal pay floor of at least {formatAUD(deliveryRate("bicycle-or-none"), 2)} an hour of engaged time</strong> ({formatAUD(deliveryRate("motorcycle-or-scooter"), 2)} on a motorcycle or petrol scooter, {formatAUD(deliveryRate("car-or-van"), 2)} in a car or van). It comes from the Fair Work Commission&rsquo;s first Minimum Standards Order and applies to workers on apps like Uber Eats and DoorDash when the work fits the order. It is before your fuel, repairs and tax.
+          <strong>From {DELIVERY_MSO.commences}, on-demand food and grocery delivery workers have a legal pay floor of at least {formatAUD(deliveryRate("bicycle-or-none"), 2)} an hour of engaged time</strong> ({formatAUD(deliveryRate("motorcycle-or-scooter"), 2)} on a motorcycle or petrol scooter, {formatAUD(deliveryRate("car-or-van"), 2)} in a car or van). It comes from the Fair Work Commission&rsquo;s first Minimum Standards Order and applies to workers on apps like Uber Eats and DoorDash when the work fits the order. The hourly floor is before your fuel, repairs and tax.
         </p>
       </PageHeader>
 
@@ -97,7 +97,7 @@ export default function DeliveryDriverPayRatePage() {
           <section>
             <H2 id="who">Who the Order Covers (and Who It Doesn&rsquo;t)</H2>
             <p>
-              It covers &ldquo;employee-like workers&rdquo;: people engaged through an app or website run by a digital labour platform operator, whose work across an earnings period is mainly collecting and delivering food, drinks, alcohol or groceries that a customer ordered online, to be delivered as soon as possible. The Fair Work Ombudsman describes them as independent contractors who usually use a vehicle such as a car or bike. The order also binds the platform operators that engage them.
+              The order covers &ldquo;employee-like workers&rdquo;: people engaged through an app or website run by a digital labour platform operator, whose work across an earnings period is mainly collecting and delivering food, drinks, alcohol or groceries that a customer ordered online, to be delivered as soon as possible. The Fair Work Ombudsman describes them as independent contractors who usually use a vehicle such as a car or bike. The order also binds the platform operators that engage them.
             </p>
             <ul>
               <li><strong>Covered:</strong> food, drink and grocery delivery on an app, on foot, by bike, e-bike, scooter, motorcycle, car or small van.</li>
@@ -106,7 +106,7 @@ export default function DeliveryDriverPayRatePage() {
               <li><strong>Employees:</strong> if a restaurant or store employs you directly to deliver, you are an employee under an award or the <Link href="/minimum-wage-australia/">National Minimum Wage</Link>, and this order does not apply to you.</li>
             </ul>
             <p>
-              Which brand you use matters less than what you do. Uber Eats, DoorDash and similar food and grocery apps are digital labour platforms. If the work you do through the app fits the coverage test above, the order applies to the platform that engages you. If you are not sure, ask the platform or call the Fair Work Infoline on 13 13 94.
+              Coverage depends on the work you do, not on the app&rsquo;s brand. Uber Eats, DoorDash and similar food and grocery apps are digital labour platforms. If the work you do through the app fits the coverage test above, the order applies to the platform that engages you. If you are not sure, ask the platform or call the Fair Work Infoline on 13 13 94.
             </p>
           </section>
 
@@ -133,7 +133,7 @@ export default function DeliveryDriverPayRatePage() {
           <section>
             <H2 id="before-expenses">The Rate Is Before Your Costs</H2>
             <p>
-              The most important point for take-home pay: the order makes the worker responsible for their own vehicle. You pay for registration, fuel or charging, maintenance, repairs, compulsory third-party insurance, any licences or checks the platform requires, and fines unless the platform directed you to do what led to the fine. The platform must hold personal accident insurance for you. None of those costs is reimbursed through the floor.
+              The delivery minimum rate is before your costs: the order makes the worker responsible for their own vehicle. You pay for registration, fuel or charging, maintenance, repairs, compulsory third-party insurance, any licences or checks the platform requires, and fines unless the platform directed you to do what led to the fine. The platform must hold personal accident insurance for you. None of those costs is reimbursed through the floor.
             </p>
             <p>
               So the figure to compare with a wage is not the {formatAUD(deliveryRate("bicycle-or-none"), 2)} to {formatAUD(deliveryRate("car-or-van"), 2)} hourly rate itself but what is left after those costs and after tax. The ATO&rsquo;s cents-per-kilometre rate for {CURRENT_CPK_YEAR} is {Math.round(CPK * 100)}c a km (capped at 5,000 km under that method), a ready estimate of car running costs; see <Link href="/cents-per-km/">cents per km</Link>. For a full tax view, use the <Link href="/rideshare-delivery-earnings-after-tax/">rideshare and delivery earnings after tax calculator</Link>.

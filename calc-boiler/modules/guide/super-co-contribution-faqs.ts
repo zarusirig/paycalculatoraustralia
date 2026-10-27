@@ -32,7 +32,7 @@ export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I receive both the co-contribution and spouse offset?",
-    a: "Yes, but they apply to different people. The low-income spouse can receive the government co-contribution on their own personal contributions. Simultaneously, the higher-earning partner can contribute to the low-income spouse's super and claim the spouse offset on their own tax return. The two benefits stack: one rewards personal contributions, the other rewards spousal support.",
+    a: "Yes, but they apply to different people. The low-income spouse can receive the government co-contribution on their own personal contributions. Simultaneously, the higher-earning partner can contribute to the low-income spouse's super and claim the spouse offset on their own tax return. The co-contribution is paid into the low-income spouse's super fund, and the spouse offset reduces the higher earner's tax payable.",
   },
   {
     q: "When do I need to make contributions by?",

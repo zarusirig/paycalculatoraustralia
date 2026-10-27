@@ -34,14 +34,14 @@ export function MonthlyPayCalculatorIntro() {
     <>
           {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
           <p className="text-warmgray">
-            Monthly pay is your annual salary divided by <strong>12</strong>. Enter your salary in the calculator above for
+            Gross monthly pay is your annual salary divided by <strong>12</strong>. Enter your salary in the calculator above for
             your own monthly tax, super and net pay.
           </p>
           {/* --- H2: How Is Monthly Pay Calculated? --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Monthly Pay Calculated in Australia?</h2>
             <p className="text-warmgray mb-4">
-              Monthly take-home pay equals your gross annual salary divided by 12, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld for that month. The Australian Taxation Office publishes a dedicated <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:underline"><strong>monthly tax table</strong></Link> that employers use to determine the exact amount withheld from each pay cycle.
+              Monthly take-home pay equals your gross annual salary divided by 12, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld for that month. The Australian Taxation Office publishes a <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:underline"><strong>monthly tax table</strong></Link> that employers use to work out the PAYG amount withheld from each monthly pay.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Step-by-Step Monthly Pay Calculation</h3>
@@ -50,7 +50,7 @@ export function MonthlyPayCalculatorIntro() {
               <li><strong>Income tax:</strong> Apply the FY{SITE_CONFIG.financialYear} marginal tax rates to your annual income, then divide the annual tax by 12. The first <strong>{formatAUD(18200)}</strong> is tax-free. Income between {formatAUD(FIRST_TAXED_BRACKET.min)} and {formatAUD(FIRST_TAXED_BRACKET.max)} is taxed at <strong>{FIRST_RATE}</strong>. Income between {formatAUD(45001)} and {formatAUD(135000)} is taxed at <strong>30%</strong>.</li>
               <li><strong>Medicare levy:</strong> Add <strong>{formatPercent(MEDICARE_LEVY.rate, 0)}</strong> of your taxable income, divided by 12.</li>
               <li><strong>HECS-HELP:</strong> If you carry a study debt and earn above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, a marginal repayment is withheld each month.</li>
-              <li><strong>Net monthly pay:</strong> Subtract all deductions from your gross monthly figure. The remainder is your after-tax monthly income.</li>
+              <li><strong>Net monthly pay:</strong> Subtract income tax, the Medicare levy and any HECS-HELP repayment from your gross monthly figure. The remainder is your net monthly pay.</li>
             </ol>
             <p className="text-warmgray mb-4">
               Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the full annual breakdown before dividing by 12.
@@ -95,7 +95,7 @@ export function MonthlyPayCalculatorIntro() {
               Salaried employees paid on a monthly cycle, budgeters aligning expenses with a single monthly deposit, and HR professionals verifying payroll all use this Australian tax calculator. Monthly pay cycles are common in corporate, government, and professional-services roles.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
-              <li><strong>Full-time salaried employees</strong> comparing a job offer against current net pay to assess real purchasing power.</li>
+              <li><strong>Full-time salaried employees</strong> comparing the net monthly pay of a job offer against their current net monthly pay.</li>
               <li><strong>Mortgage applicants</strong> who need to verify their net monthly income when lenders assess serviceability.</li>
               <li><strong>Budget planners</strong> matching rent, utilities, groceries, and loan repayments against a single monthly deposit.</li>
               <li><strong>Payroll officers</strong> cross-checking PAYG withholding amounts against the ATO monthly tax table.</li>
@@ -114,7 +114,7 @@ export default function MonthlyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Deductions Apply to Monthly Pay?</h2>
             <p className="text-warmgray mb-4">
-              Four deductions reduce monthly gross pay to net pay: PAYG income tax, the Medicare levy, the &quot;Medicare Levy Surcharge&quot; (if applicable), and HECS-HELP repayments. Superannuation is paid by the employer on top of salary and does not reduce your take-home pay. Employers withhold PAYG from the ATO tables for their pay cycle: the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">weekly tax table {SITE_CONFIG.financialYear}</Link>, and its fortnightly and monthly equivalents, all sit on one page.
+              Four deductions reduce monthly gross pay to net pay: PAYG income tax, the Medicare levy, the &quot;Medicare Levy Surcharge&quot; (if applicable), and HECS-HELP repayments. Superannuation is paid by the employer on top of salary and does not reduce your take-home pay. Employers withhold PAYG using the ATO tax table for their pay cycle. The <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">weekly tax table {SITE_CONFIG.financialYear}</Link> and its fortnightly and monthly equivalents sit on one page.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">FY{SITE_CONFIG.financialYear} Income Tax Brackets</h3>
@@ -159,9 +159,9 @@ export default function MonthlyPayCalculatorContent() {
               <li><strong>Using 4 weeks instead of 1/12:</strong> Four weeks equals <strong>28 days</strong>. A calendar month averages <strong>30.44 days</strong>. Dividing annual pay by 13 (52/4) instead of 12 understates monthly income by approximately 7.7%.</li>
               <li><strong>Deducting super from take-home:</strong> The employer superannuation guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top of your salary. Subtracting it from gross pay double-counts the deduction and understates your net monthly pay.</li>
               <li><strong>Ignoring LITO:</strong> The &quot;Low Income Tax Offset&quot; reduces tax payable by up to <strong>$700</strong> for incomes under {formatAUD(66667)}. Omitting it overstates monthly tax on salaries between {formatAUD(18200)} and {formatAUD(66667)}.</li>
-              <li><strong>Forgetting HECS-HELP:</strong> Employees with a study debt above {formatAUD(HECS_HELP.minimumThreshold)} have a compulsory repayment withheld each pay period. The marginal repayment starts at <strong>15%</strong> of every dollar above the threshold.</li>
+              <li><strong>Forgetting HECS-HELP:</strong> Employees with a study debt who earn above {formatAUD(HECS_HELP.minimumThreshold)} have a compulsory repayment withheld each pay period. The marginal repayment starts at <strong>15%</strong> of every dollar above the threshold.</li>
               <li><strong>Applying the wrong financial year rates:</strong> Brackets change most years. In FY{SITE_CONFIG.financialYear} the first taxed bracket is {FIRST_RATE} up to {formatAUD(FIRST_TAXED_BRACKET.max)}, and the 30% bracket extends to {formatAUD(135000)} under the Stage 3 tax cuts. A calculator still using an earlier year&apos;s rates will get your monthly tax wrong.</li>
-              <li><strong>Assuming a raise flows straight through:</strong> Part of any increase goes to tax at your marginal rate. Our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows what a raise actually adds to each monthly pay.</li>
+              <li><strong>Assuming a raise flows straight through:</strong> Part of any increase goes to tax at your marginal rate. Our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows what a raise adds to each monthly pay after tax.</li>
             </ol>
           </section>
 
@@ -171,7 +171,7 @@ export default function MonthlyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Calculators</h2>
             <p className="text-warmgray mb-4">
-              Explore other Australian tax calculators to convert your salary across pay frequencies, estimate deductions, or model salary sacrifice scenarios.
+              These calculators convert your salary to weekly, fortnightly or annual take-home pay, turn an hourly rate into a yearly salary, and model salary sacrifice and HECS-HELP repayments.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link href="/weekly-pay-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-eucalyptus-light/40 transition-colors">
@@ -202,7 +202,7 @@ export default function MonthlyPayCalculatorContent() {
           </section>
 
           <MethodologyDisclosure>
-            <p>Calculations are based on 12 months per year. We divide the annual figures by 12 to provide the exact monthly equivalent. This guarantees accuracy regardless of how many days are in a specific month.</p>
+            <p>Calculations are based on 12 months per year. We divide each annual figure by 12 to give the monthly equivalent, so every month shows the same amount however many days it has.</p>
           </MethodologyDisclosure>
 
           {/* --- H2: FAQs --- */}

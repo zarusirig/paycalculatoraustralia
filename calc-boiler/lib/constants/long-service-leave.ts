@@ -194,7 +194,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     proRataBasis: "part-years",
     casualsCovered: true,
     casualsNote:
-      "The Act covers full-time, part-time (including part-timers with fluctuating hours), casual, piecework, commission and outworker employees.",
+      "The NSW Act covers full-time, part-time (including part-timers with fluctuating hours), casual, piecework, commission and outworker employees.",
     cashingOut: "prohibited",
     cashingOutNote:
       "Long service leave cannot be cashed out in NSW. It is an offence to give or receive payment instead of taking the leave, and a criminal conviction may be recorded.",
@@ -206,7 +206,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "building and construction, contract cleaning, community services and black coal mining employees in a portable scheme",
     ],
     summary:
-      "Ten years of continuous service with one employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is owed only if the employer ends the job for something other than serious and wilful misconduct, or you resign because of illness, incapacity or pressing necessity. Past 10 years it is paid out however the job ends.",
+      "Ten years of continuous service with one employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is owed only if the employer ends the job for something other than serious and wilful misconduct, you resign because of illness, incapacity or pressing necessity, or you die. From 10 years the accrued balance is paid out however the job ends.",
   },
 
   vic: {
@@ -243,7 +243,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "building and construction employees, whose entitlement comes from the LeavePlus (formerly CoINVEST) scheme",
     ],
     summary:
-      "Victoria has one of the shortest qualifying periods in the country: 7 years of continuous employment with one employer, at which point about 6.07 weeks has accrued. Leave accrues at one week for every 60 weeks of employment, and once you pass 7 years the whole unused balance is paid out however the employment ends, resignation included.",
+      "Victoria shares the shortest qualifying period in the country with the ACT: 7 years of continuous employment with one employer, at which point about 6.07 weeks has accrued. Leave accrues at one week for every 60 weeks of employment, and once you pass 7 years the whole unused balance is paid out however the employment ends, resignation included.",
   },
 
   qld: {
@@ -279,13 +279,13 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "Casual and regular part-time employees qualify after the same 10 years. Their entitlement is worked out from hours, not weeks: total ordinary hours ÷ 52 × 8.6667 ÷ 10. Since 30 March 1994 all continuous casual service counts, but a break of more than 3 months between contracts can end continuity. Casuals are paid at the loaded casual hourly rate.",
     cashingOut: "restricted",
     cashingOutNote:
-      "Queensland long service leave can only be cashed in if the award, enterprise agreement or certified agreement allows it, or if the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship (Form 13), and only once the entitlement has been reached.",
+      "Queensland long service leave can be cashed in only once the entitlement has been reached. Even then, the award, enterprise agreement or certified agreement must allow it, or the Queensland Industrial Relations Commission must order it on compassionate grounds or financial hardship (Form 13).",
     notCovered: [
       "employees whose long service leave comes from a federal award or enterprise agreement",
       "building and construction, contract cleaning and community services workers in Queensland's QLeave portable schemes",
     ],
     summary:
-      "Ten years of continuous service earns 8.6667 weeks, rising to 13 weeks at 15 years; past 15 years leave can be taken as it accrues. Between 7 and 10 years a proportionate payment is owed only in defined circumstances: death, illness, domestic necessity, or a dismissal that is not about your conduct, capacity or performance. From 10 years the payment on termination is automatic and covers your full continuous service.",
+      "Ten years of continuous service earns 8.6667 weeks, rising to 13 weeks at 15 years; past 15 years leave can be taken as it accrues. Between 7 and 10 years a proportionate payment is owed only for death, illness, injury, incapacity, domestic or other pressing necessity, or a dismissal that is unfair or not about your conduct, capacity or performance. From 10 years the payment on termination is automatic and covers your full continuous service.",
   },
 
   wa: {
@@ -321,7 +321,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "on-site construction industry employees, who are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 (MyLeave)",
     ],
     summary:
-      "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. WA is unusually generous at the exit: after 7 years of continuous employment a full-time, part-time, casual or seasonal employee is paid pro-rata long service leave when the job ends by resignation, dismissal, redundancy or death. The only exception is dismissal for serious misconduct.",
+      "WA long service leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. After 7 years of continuous employment, a full-time, part-time, casual or seasonal employee in WA is paid pro-rata long service leave when the job ends by resignation, dismissal, redundancy or death. The only exception is dismissal for serious misconduct.",
   },
 
   sa: {
@@ -348,11 +348,11 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     proRataBasis: "completed-years",
     casualsCovered: true,
     casualsNote:
-      "Full-time, part-time and casual workers accrue at the same 1.3 weeks a year: employment status does not change the rate. A casual's contracts must form a continuous series; a prolonged gap or a clear termination can break it. Weeks that do not count as service (such as unpaid leave) must be added on before the 10 years is reached.",
+      "Full-time, part-time and casual workers accrue at the same 1.3 weeks a year under the SA Act. A casual's contracts must form a continuous series; a prolonged gap or a clear termination can break it. Weeks that do not count as service (such as unpaid leave) must be added on before the 10 years is reached.",
     // SafeWork SA, "Payment of entitlement" (read 10 October 2026).
     cashingOut: "by-agreement",
     cashingOutNote:
-      "Once you complete 10 years, you and your employer can agree to a cash payment instead of some or all of the leave. SafeWork SA says the agreement must be in writing and signed by both of you, it is paid at your current ordinary weekly rate, and the employer must give you a written statement of the payment and the leave left. Your employer cannot force you to take cash instead of leave.",
+      "Once you complete 10 years, you and your employer can agree to a cash payment instead of some or all of the leave. SafeWork SA says the agreement must be in writing and signed by both of you. The cash is paid at your current ordinary weekly rate, and the employer must give you a written statement of the payment and the leave left. Your employer cannot force you to take cash instead of leave.",
     notCovered: [
       "SA and Commonwealth public sector employees",
       "construction industry workers covered by the Construction Industry Long Service Leave Act 1987 (SA)",
@@ -360,7 +360,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "workers whose long service leave comes from a pre-modernised award, or an award or agreement with its own long service leave terms",
     ],
     summary:
-      "South Australia pays the largest entitlement in the country: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each COMPLETED year, so 8½ years pays 10.4 weeks, not 11.05. Before 10 years it is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice; from 10 years even a misconduct dismissal does not remove it.",
+      "South Australia shares the largest entitlement in the country with the NT: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each completed year, so 8½ years pays 10.4 weeks, not 11.05. Before 10 years the pro-rata payment is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice. From 10 years even a misconduct dismissal does not remove the payment.",
   },
 
   tas: {
@@ -445,7 +445,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "employees in the ACT Leave portable schemes: building and construction, community sector, security, and the Services Industry Scheme (contract cleaning; hairdressing and beauty, and accommodation and food services, from 1 January 2027)",
     ],
     summary:
-      "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years of continuous service, then a further fifth of a month each year. If a public holiday or award holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or a dismissal short of serious and wilful misconduct, and it is worked out on completed years and months.",
+      "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after 7 years of continuous service, then a further fifth of a month for each additional year of service. If a public holiday or award holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or a dismissal short of serious and wilful misconduct, and it is worked out on completed years and months.",
   },
 
   nt: {
@@ -485,7 +485,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "construction workers under the NT Build portable long service scheme",
     ],
     summary:
-      "Thirteen weeks of paid leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count (14½ years pays 14 years), and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
+      "Thirteen weeks of paid long service leave is owed in the NT after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count (14½ years pays 14 years), and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
   },
 };
 
@@ -724,7 +724,7 @@ export function entitlementOnEnding(
   let explanation: string;
 
   if (years < j.proRataFromYears) {
-    explanation = `Under ${j.proRataFromYears} years of continuous service, so no long service leave is payable ${j.inName} however the job ends.`;
+    explanation = `With under ${j.proRataFromYears} years of continuous service, no long service leave is payable ${j.inName} however the job ends.`;
   } else if (years >= j.proRataUnconditionalFromYears) {
     // Past the unconditional threshold the balance is paid however the job
     // ends. WA and SA are the exception for a serious-misconduct dismissal,
@@ -755,7 +755,7 @@ export function entitlementOnEnding(
     }
   } else if (CONDITIONAL_QUALIFYING.includes(reason)) {
     payable = accrued;
-    explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances, and this one qualifies.`;
+    explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances, and the reason you selected is one of them.`;
   } else {
     explanation = `Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.inName}, a pro-rata payment is owed only in defined circumstances. A plain resignation is not one of them.`;
   }

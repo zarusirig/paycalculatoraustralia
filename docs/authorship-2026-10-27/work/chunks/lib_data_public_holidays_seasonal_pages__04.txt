@@ -1,0 +1,163 @@
+    calculator: { holidayName: "Australia Day", awardKey: "retail", employment: "permanent", hours: 8 },
+    example: {
+      heading: "Worked example: an 8-hour shift on Australia Day 2027",
+      intro: "This example uses entry-level adult rates from 1 July 2026, with 8 hours worked on Australia Day, Tuesday 26 January 2027, compared with the same hours on an ordinary weekday.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "not-working",
+        heading: "If you have Australia Day off",
+        paragraphs: [
+          "A full-time or part-time employee who normally works Tuesdays is paid their base rate for the ordinary hours they would have worked on 26 January 2027, without any penalty rates, loadings, overtime or allowances. Your employer can't change your roster to avoid it. A part-timer who doesn't normally work Tuesdays gets nothing for it, and casuals are not paid for a public holiday they don't work.",
+        ],
+      },
+      {
+        id: "long-weekend",
+        heading: "No long weekend in 2027, but a cheap one",
+        paragraphs: [
+          "Because 26 January 2027 is a Tuesday there is no automatic long weekend. If you want one, you can take Monday 25 January as annual leave. That costs one day of leave: the Tuesday public holiday is paid as a public holiday and is not taken out of your balance when it falls on a day you would normally work. Check with your employer that the Monday leave is approved before you book.",
+          "In 2026 Australia Day was a Monday, so the long weekend came with the date.",
+        ],
+      },
+      {
+        id: "other",
+        heading: "Australia Day and other holiday questions",
+        paragraphs: [
+          "If you work in Western Australia, Tasmania or any other state, the Australia Day rules above are the same, because the day, the rate and the right to be paid for a normal working day are all national. What differs between states is the other holidays around it, covered in the 2027 public holiday guide.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "When is Australia Day in 2027?", a: "Australia Day falls on Tuesday 26 January 2027, a public holiday in every state and territory. Because it falls on a weekday, no state adds an extra holiday." },
+      { q: "How much do you get paid on Australia Day?", a: `Australia Day is paid at your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Across 14 awards the permanent range is ${RANGE_PERM}.` },
+      { q: "Do I get paid for Australia Day if I don't work?", a: NOT_WORKING_ANSWER },
+      { q: "Can I refuse to work on Australia Day?", a: "You can refuse if the request is unreasonable or you have reasonable grounds. Relevant factors include your role, your personal circumstances, the notice you were given and the penalty rates on offer. Employers and employees can also agree to swap the public holiday for another day where the award or agreement allows." },
+      { q: "If I take Monday 25 January 2027 off, how much leave do I use?", a: "Taking the Monday before Australia Day off uses one day of annual leave. The public holiday on Tuesday 26 January is paid as a public holiday and is not deducted from your annual leave balance when it falls on a day you would normally work." },
+    ],
+    related: [
+      { href: "/public-holidays-2027/", label: "Public holidays 2027 with pay rates" },
+      { href: "/easter-public-holiday-pay/", label: "Easter 2027 pay" },
+      { href: "/annual-leave-guide/", label: "Annual leave guide" },
+      { href: "/casual-loading-calculator/", label: "Casual loading calculator" },
+    ],
+    sources: [FW_2027],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Christmas shutdown
+  // ---------------------------------------------------------------------------
+  {
+    slug: "christmas-shutdown-annual-leave",
+    guideKey: "christmas-shutdown-annual-leave",
+    shortName: "Christmas shutdown and annual leave",
+    titles: ["Christmas Shutdown and Annual Leave: Can Your Employer Force It?", "Christmas Shutdown and Annual Leave: Your Rights"],
+    h1: "Christmas shutdown and annual leave: can your employer make you take it?",
+    descriptions: [
+      "Can your employer make you take annual leave over a Christmas closedown? What the award must allow, how much leave it uses, public holidays and a worked example.",
+      "Can your employer direct annual leave over a Christmas closedown? What the award must allow, how much leave it uses, and a worked example.",
+    ],
+    standfirst:
+      "A Christmas shutdown is when the business closes for the holiday period. Whether you can be made to use annual leave for it depends on your award or agreement, and the public holidays inside the shutdown are not taken out of your leave.",
+    directAnswer:
+      "An employer can direct you to take annual leave during a shutdown only if your award or enterprise agreement allows it, and in most cases the direction must be reasonable, in writing and given with the notice period the award requires. If no award or agreement applies, the direction only has to be reasonable. Public holidays inside the shutdown are paid as public holidays, not deducted from your annual leave.",
+    topics: [],
+    sectionsBeforeCalculator: [
+      {
+        id: "can-they",
+        heading: "Can your employer make you take annual leave over Christmas?",
+        paragraphs: [
+          "If an award or enterprise agreement applies to you, your employer can direct you to take annual leave during a shutdown only if that award or agreement allows it. Most awards have rules about how and when, and in most cases the direction must be reasonable, in writing and given to the affected employees within the required notice period. An award may also restrict a shutdown to certain times, such as the end-of-year period.",
+          "If your award or agreement has no rules allowing the direction, your employer can't direct you to take annual leave. You and your employer can still agree that you take annual leave, including before you have accrued it, or unpaid leave during the shutdown. If no award or agreement applies to you, your employer can require you to take paid annual leave if the requirement is reasonable. The Fair Work Ombudsman says this includes a temporary shutdown between Christmas and New Year.",
+        ],
+        bullets: [
+          "Check your award's closedown or annual leave clause for the notice period: some awards allow a shorter notice period if the employer and a majority of affected employees agree.",
+          "The Fair Work Ombudsman's example is a food manufacturer whose award requires a reasonable, written direction with at least 28 days' notice. Notice periods differ between awards, so the 28 days is not a general rule.",
+          "If an enterprise agreement covers you, search for it on the Fair Work Commission's agreement database and read its shutdown clause: the agreement's rules replace the award's.",
+        ],
+      },
+      {
+        id: "pay-during",
+        heading: "How you are paid during a shutdown",
+        paragraphs: [
+          "If you are directed to take annual leave, you are paid for it as annual leave at your base rate for the hours you would have worked, plus any leave loading your award provides. Leave loading is not part of the National Employment Standards. It comes from your award or agreement: under the Hospitality Award, for example, it is a flat 17.5%. The leave loading calculator shows the figure for your award.",
+          "If you continue to work while the business shuts down, you should receive your normal pay. If there is a public holiday during the shutdown, you should be given the day off without loss of pay, or be paid the public holiday rate under your award or agreement if you work.",
+        ],
+      },
+    ],
+    calculator: { awardKey: "hospitality", employment: "permanent", hours: 8 },
+    example: {
+      heading: "Worked example: a Monday 28 December 2026 to Friday 8 January 2027 shutdown",
+      intro:
+        "This example follows a full-time employee who works Monday to Friday, 7.6 hours a day, in any state or territory, where Monday 28 December 2026 and Friday 1 January 2027 are both public holidays.",
+      awardKeys: [],
+      hours: 0,
+      shiftNote: "",
+    },
+    shutdownExample: true,
+    sectionsAfterCalculator: [
+      {
+        id: "public-holidays",
+        heading: "Public holidays during the shutdown",
+        paragraphs: [
+          "A public holiday that falls on a day you would normally work is paid as a public holiday, even when you are on paid annual leave during a shutdown. The Fair Work Ombudsman says an employee's base pay rate for their ordinary hours applies, and employers should check whether they need to adjust payroll so that annual leave isn't incorrectly deducted for the public holiday.",
+          "That is why the example above uses 8 days of leave, not 10. Christmas Day and Boxing Day fall before the shutdown in 2026, but the additional Boxing Day holiday on Monday 28 December and New Year's Day on Friday 1 January do fall inside it, and neither is charged to your leave balance. Public holidays in unpaid leave are not paid.",
+        ],
+      },
+      {
+        id: "not-enough-leave",
+        heading: "What if you don't have enough annual leave?",
+        paragraphs: [
+          "If the shutdown is longer than your leave balance, the Fair Work Ombudsman says that, if your award or agreement allows it, you can agree with your employer to take annual leave before you have accrued it, or unpaid leave. This is by agreement, not a direction. Get any such agreement in writing.",
+          "Part-time employees use leave only for the days they would have worked. A part-timer who works Tuesday to Thursday is charged for those days in the shutdown, not for Monday or Friday.",
+        ],
+      },
+      {
+        id: "casuals",
+        heading: "Casual employees and shutdowns",
+        paragraphs: [
+          "Casual employees are not entitled to paid annual leave under the National Employment Standards (Fair Work Act s 86), so a shutdown means no work and no pay unless your employer offers shifts.",
+        ],
+      },
+      {
+        id: "stand-down",
+        heading: "A shutdown is not a stand down",
+        paragraphs: [
+          "A shutdown is a planned closure, such as over Christmas and New Year. A stand down is when an employer tells employees not to work because they can't be usefully employed for a reason outside the employer's control, such as an equipment breakdown that isn't the employer's fault or a natural disaster. Different rules apply: see the Fair Work Ombudsman's stand down page. A planned Christmas closure is a shutdown, so the annual leave rules above are the ones to check.",
+        ],
+      },
+      {
+        id: "disconnect",
+        heading: "Contact and right to disconnect",
+        paragraphs: [
+          "Before shutting down, employers and employees should discuss whether you are required to be contactable or on call. The Fair Work Ombudsman points to the right to disconnect as relevant here, so get any expectation to be reachable over the break settled in writing.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Can my employer make me take annual leave over Christmas?", a: "Your employer can make you take annual leave over Christmas only if your award or enterprise agreement allows it. Most awards require the direction to be reasonable, in writing and given within a set notice period. If no award or agreement applies to you, the direction only has to be reasonable. If your award has no rules allowing the direction, you can agree to take annual leave or unpaid leave, but you can't be directed." },
+      { q: "Do public holidays come out of my annual leave during a shutdown?", a: "No. A public holiday on a day you would normally work is paid as a public holiday and is not deducted from your annual leave, even during a shutdown. A Monday to Friday worker on leave from Monday 28 December 2026 to Friday 8 January 2027 uses 8 days, not 10, in a state where 28 December and 1 January are both public holidays." },
+      { q: "What if I don't have enough annual leave for the shutdown?", a: "If your award or agreement allows it, you can agree with your employer to take annual leave before you have accrued it, or unpaid leave. It is by agreement: your employer can't make you." },
+      { q: "Do casuals get paid during a Christmas shutdown?", a: "No. Casual employees are not entitled to paid annual leave, so if the business is closed and you aren't rostered, you aren't paid. If the business stays open and you work, you are paid for the hours worked, and public holidays you work are paid at the casual public holiday rate." },
+      { q: "How much notice must my employer give for a shutdown?", a: "The notice period for a shutdown is set by your award or agreement. Most awards require the direction to be reasonable, in writing and given within a notice period, and some allow a shorter period if the employer and most affected employees agree. The Fair Work Ombudsman's example, a food manufacturer's award, requires at least 28 days' written notice, but that is one award's rule, not a general one." },
+      { q: "Is a shutdown the same as a stand down?", a: "No. A shutdown is a temporary planned closure such as over Christmas and New Year, when you can be directed to take annual leave if your award or agreement allows it. A stand down is when an employer can't usefully employ you for a reason outside their control, such as a natural disaster." },
+    ],
+    related: [
+      { href: "/annual-leave-guide/", label: "Annual leave guide" },
+      { href: "/leave-loading-calculator/", label: "Leave loading calculator" },
+      { href: "/christmas-day-pay-rates/", label: "Christmas Day pay rates" },
+      { href: "/boxing-day-pay-rates/", label: "Boxing Day pay rates" },
+    ],
+    sources: [FW_END_OF_YEAR, FW_SHUTDOWN, FW_2026],
+  },
+];
+
+export function getSeasonalPage(slug: string): SeasonalPage | undefined {
+  return SEASONAL_PAGES.find((p) => p.slug === slug);
+}
+
+export function seasonalPath(slug: string): string {
+  return `/${slug}/`;
+}

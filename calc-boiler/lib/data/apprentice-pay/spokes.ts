@@ -244,16 +244,16 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     },
     facts: [
       "The $41.22 is shared by everyone in the same line of clause 21.1(a): joiners, bridge and wharf carpenters, carpenter-divers, carvers, floor sanders, letter cutters, stonemasons, tilelayers and marble, slate and artificial stone workers. The Fair Work Ombudsman pay guide prints one apprentice table for that whole group, and the tables on this page are that table.",
-      "A qualified carpenter or joiner is a CW/ECW 3 classification (Schedule A.2.3). The award places a joiner special class at CW/ECW 4 ($1,154.40 a week) and a carpenter-diver at CW/ECW 8 ($1,286.70), and a carpenter-diver also gets $1.33 an hour for all purposes (cl 23.5). Once the apprenticeship is complete, clause 19.7(a) sets the floor at the $1,119.10 standard rate, so with the tool and industry allowances a carpenter on a general building site is on at least $1,227.47 a week.",
-      "The training plan that sets your stage dates is for the Certificate III in Carpentry. Apprentices who signed up under CPC30220 and those under its replacement CPC30326 progress the same way: stage 2 at 25% of the competencies in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever is earlier each time (cl 19.7(b)).",
+      "A qualified carpenter or joiner is a CW/ECW 3 classification (Schedule A.2.3). The award places a joiner special class at CW/ECW 4 ($1,154.40 a week) and a carpenter-diver at CW/ECW 8 ($1,286.70), and a carpenter-diver also gets $1.33 an hour for all purposes (cl 23.5). Once the apprenticeship is complete, clause 19.7(a) sets the floor at the $1,119.10 standard rate. With the tool and industry allowances, a qualified carpenter on a general building site is on at least $1,227.47 a week.",
+      "The training plan that sets your stage dates is for the Certificate III in Carpentry. Apprentices who signed up under CPC30220 and those under its replacement CPC30326 progress the same way under clause 19.7(b). Stage 2 starts at 25% of the competencies in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, and stage 4 at 75% or 12 months after stage 3, whichever is earlier each time.",
     ],
     sections: [
       {
         heading: "TAFE Fees, Textbooks and Block Release",
         paragraphs: [
-          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. All fees charged by the registered training organisation and the cost of every prescribed textbook that the apprentice has paid for must be reimbursed by the employer, and clause 14.6(a) sets the time limit from the start of the apprenticeship or of the stage the fees relate to. An employer who pays the RTO directly meets the same obligation.",
-          "Time at the RTO is paid time. Under clause 14.3 an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training, and any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated. A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site, and the tool and industry allowances stay in the rate because the award pays them for all purposes.",
-          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.3(e)), but if the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
+          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. The employer must reimburse all fees charged by the registered training organisation (RTO) and the cost of every prescribed textbook that the apprentice has paid for. Clause 14.6(a) sets the time limit, counted from the start of the apprenticeship or of the stage the fees relate to. An employer who pays the RTO directly meets the same obligation.",
+          "Time at the RTO is paid time. Under clause 14.3 an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training. Any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated. A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site. The tool and industry allowances stay in the rate because the award pays them for all purposes.",
+          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.3(e)). If the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
         ],
       },
       {
@@ -313,9 +313,9 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       {
         heading: "Moving Up a Stage Early: How the Competency Test Works",
         paragraphs: [
-          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying), any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience are met, and either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees.",
+          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying). Any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience must also be met. The third condition is that either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees.",
           "If the employer disagrees with the RTO's assessment and the three parties cannot resolve it by agreement, the matter goes through the award's dispute procedure rather than sitting unresolved on the payslip (cl 14.9(b)). Once agreement is reached or a determination is made, the new rate is paid from the first full pay period starting on or after that date (cl 14.9(d)). The training package for the qualification named in the contract of training decides how competency is assessed (cl 14.9(c)).",
-          "For a bricklaying apprentice the three markers are worth $55.95, $111.91 and $167.86 a week respectively in the wage part of the rate (5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12, 10 points between stages 2 and 3, and 15 points between stages 3 and 4), with the $29.26 tool allowance and the industry allowance unchanged. Our arithmetic on clause 19.7(b).",
+          "For a bricklaying apprentice the three markers are worth $55.95, $111.91 and $167.86 a week respectively in the wage part of the rate (5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12, 10 points between stages 2 and 3, and 15 points between stages 3 and 4), with the $29.26 tool allowance and the industry allowance unchanged. These dollar figures are our arithmetic on clause 19.7(b).",
         ],
       },
       {
@@ -352,7 +352,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     tradeSlug: "building",
     h1: "Apprentice Painter Pay",
     lead:
-      "Painting apprentices have the smallest trade tool allowance in the Building and Construction General On-site Award: $9.89 a week, shared with signwriters and glaziers (cl 21.1(a)). The award still pays it in full to apprentices with the industry allowance, for all purposes (cl 19.7(c)), so a painting apprentice's minimum sits $31.33 a week below a carpentry apprentice's in every year.",
+      "Painting apprentices have the smallest trade tool allowance in the Building and Construction General On-site Award: $9.89 a week, shared with signwriters and glaziers (cl 21.1(a)). The award still pays it to apprentices in full, with the industry allowance, for all purposes (cl 19.7(c)). A painting apprentice's minimum therefore sits $31.33 a week below a carpentry apprentice's in every year.",
     extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "The levels and allowances behind the apprentice rates." }],
     allowances: buildingScenarios("Tool allowance (signwriter, painter or glazier)", PAINTER_PG.toolAllowance),
     payGuide: PAINTER_PG,
@@ -373,8 +373,8 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       {
         heading: "Overtime, Shiftwork and Days Away for Painting Apprentices",
         paragraphs: [
-          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter more here than in most trades. Under clause 14.4 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate, but an apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to, and no apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results.",
-          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship, except absences on paid leave or on leave without pay taken in accordance with the award's leave provisions. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked unpaid overtime on a push to finish a job, then been stood down in a wet fortnight, needs both halves of that rule.",
+          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter more here than in most trades. Under clause 14.4 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate. An apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to. No apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results.",
+          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship. Absences on paid leave, or on leave without pay taken in accordance with the award's leave provisions, do not add a day. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked unpaid overtime on a push to finish a job, then been stood down in a wet fortnight, needs both halves of that rule.",
         ],
       },
       {
@@ -388,11 +388,11 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     faqs: [
       {
         q: "Can an apprentice painter be made to work overtime?",
-        a: "Not alone, and not if under 18 unless they choose to. Clause 14.4 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate, but says no apprentice will work overtime or shiftwork on their own, no apprentice under 18 can be required to work it, and no apprentice can be required to work at times that would prevent attendance at the RTO except in an emergency.",
+        a: "Not alone, and not if under 18 unless they choose to. Clause 14.4 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate. It also says no apprentice will work overtime or shiftwork on their own, and no apprentice under 18 can be required to work it. No apprentice can be required to work at times that would prevent attendance at the RTO, except in an emergency.",
       },
       {
         q: "Do I have to serve extra time if I am away from work?",
-        a: "For unpaid absences, yes. Clause 14.5 adds a day to the apprenticeship for each day of absence in a year, except absences on paid leave or on leave without pay taken under the award's leave provisions, and credits back time worked beyond ordinary hours during that year. Paid sick leave and annual leave do not extend the apprenticeship.",
+        a: "For unpaid absences, yes. Clause 14.5 adds a day to the apprenticeship for each day of absence in a year. Absences on paid leave, or on leave without pay taken under the award's leave provisions, do not add a day. The clause also credits back time worked beyond ordinary hours during that year. Paid sick leave and annual leave do not extend the apprenticeship.",
       },
       {
         q: "Do apprentice painters get the industry allowance?",
@@ -411,7 +411,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     tradeSlug: "plumbing",
     h1: "Apprentice Plumber Pay",
     lead:
-      "Plumbing apprentices are paid under the Plumbing and Fire Sprinklers Award 2020, which builds the allowances into the apprentice rate itself. The hourly rates in Schedule E.2.1 include the full industry allowance and the apprentice's percentage of the tool and plumbing trade allowances, all for all purposes, so there is nothing to add for those three when you check a payslip. The same schedule prints the weekend and public holiday rates.",
+      "Plumbing apprentices are paid under the Plumbing and Fire Sprinklers Award 2020, which builds the allowances into the apprentice rate itself. The hourly rates in Schedule E.2.1 include the full industry allowance and the apprentice's percentage of the tool and plumbing trade allowances, all paid for all purposes. There is nothing to add for those three allowances when you check a payslip. The same schedule prints the weekend and public holiday rates.",
     job: { href: "/job-pay-rates/plumber/", label: "Plumber pay rates (qualified)" },
     extraLinks: [
       { href: "/plumbing-award-rates/", label: "Plumbing Award rates", blurb: "Every level of the Plumbing and Fire Sprinklers Award, with the registration allowance." },
@@ -499,15 +499,15 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
         heading: "The 21 Trades on the Same Apprentice Table",
         paragraphs: [
           "The Vehicle Repair, Services and Retail Award does not have a mechanic-only apprentice scale. Clause 13.2 lists 21 apprenticeship trades, and every junior apprentice in any of them is paid from the one table in clause 16.9: $559.55 a week in first year ($615.51 with Year 12), $671.46 ($727.42) in second year, $839.33 in third year and $984.81 in fourth. The trades are automotive electrician, automotive engine reconditioner, automotive parts interpreter (specialist), bodymaker and wheelwright, brake mechanic, electrical fitter and armature winder (auto), electroplater, electrical mechanic, fitter and turner, machinist (metal), motorcycle or motor scooter mechanic, motor mechanic or automotive technician, painter (tradesperson), panel beater, plant mechanic, signwriter, smith, trimmer (tradesperson), welder (tradesperson), wheel aligner and wood machinist.",
-          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums, and why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)): the only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13).",
+          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums. It is also why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)). The only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13).",
           "The employer carries the training costs. Fees for prescribed courses and prescribed textbooks that the apprentice pays must be reimbursed, and the employer can instead pay the training provider directly within six months of the start of the apprenticeship or of the relevant stage (cl 13.3). Where block release training needs an overnight stay, the employer pays the excess reasonable travel costs, less any government apprentice travel assistance the apprentice can claim (cl 13.4). Attendance at training and assessment under the training contract is paid as time worked (cl 13).",
         ],
       },
       {
         heading: "Where the Penalty Percentages Come From",
         paragraphs: [
-          "Schedule B of the award prints three separate tables for junior apprentices: B.5.1 for ordinary hours and weekend and public holiday penalties, B.5.2 for shiftwork and B.5.3 for overtime, each expressed as a percentage of the junior apprentice hourly rate. Adult apprentices have their own set at B.6.1 to B.6.3, worked as a percentage of the adult apprentice hourly rate. The penalty table above is B.5.1 applied to the Year 12 rates; an apprentice on afternoon or night shift, or working overtime, should read the B.5.2 and B.5.3 percentages instead.",
-          "Progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year, so a mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up.",
+          "Schedule B of the Vehicle Repair, Services and Retail Award prints three separate tables for junior apprentices: B.5.1 for ordinary hours and weekend and public holiday penalties, B.5.2 for shiftwork and B.5.3 for overtime, each expressed as a percentage of the junior apprentice hourly rate. Adult apprentices have their own set at B.6.1 to B.6.3, worked as a percentage of the adult apprentice hourly rate. The penalty table above is B.5.1 applied to the Year 12 rates. An apprentice on afternoon or night shift, or working overtime, should read the B.5.2 and B.5.3 percentages instead.",
+          "Apprentice mechanic progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year. A mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up.",
         ],
       },
     ],
@@ -537,7 +537,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     tradeSlug: "hairdressing",
     h1: "Apprentice Hairdresser Pay",
     lead:
-      "Hairdressing apprentices are paid under the Hair and Beauty Industry Award 2020, which has a 77% third year, a separate 30-month scale for pre-apprentices, a $10.52 weekly tool allowance when the salon makes you bring your own scissors, and a Saturday rate of 133% between 7am and 6pm.",
+      "Hairdressing apprentices are paid under the Hair and Beauty Industry Award 2020, which has a 77% third year and a separate 30-month scale for pre-apprentices. The award also sets a $10.52 weekly tool allowance when the salon requires you to provide and use your own scissors, and a Saturday rate of 133% between 7am and 6pm.",
     job: { href: "/job-pay-rates/hairdresser/", label: "Hairdresser pay rates (qualified)" },
     extraLinks: [{ href: "/hair-and-beauty-award-rates/", label: "Hair and Beauty Award rates", blurb: "Every level, plus casual and weekend rates." }],
     allowances: [
@@ -567,7 +567,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       detail: "It is current on training.gov.au: 28 units, 21 core and 7 elective.",
     },
     facts: [
-      "The junior rates come from Table 6 (has not completed Year 12) and Table 7 (has completed Year 12) in clause 18.1. The percentages apply to the Level 3 standard weekly rate of $1,119.10. The 3rd-year rate is 77% and the 4th-year rate is 90%, which makes hairdressing slightly different from the building trades (75% in 3rd year) and from beauty therapy (80%).",
+      "Junior hairdressing apprentice rates come from Table 6 (has not completed Year 12) and Table 7 (has completed Year 12) in clause 18.1 of the Hair and Beauty Industry Award. The percentages apply to the Level 3 standard weekly rate of $1,119.10. The 3rd-year rate is 77% and the 4th-year rate is 90%, which makes hairdressing slightly different from the building trades (75% in 3rd year) and from beauty therapy (80%).",
       "Pre-apprentices have their own tables (cl 18.3, Tables 10 and 11), which the Fair Work Ombudsman pay guide applies to an apprentice who has completed a pre-apprenticeship. They step up every six months: 50%, 55%, 60% and then 77% for the last 12 months without Year 12, or 55%, 55%, 65% and 77% with Year 12, 30 months in all.",
       "If the salon requires you to provide and use your own tools, including scissors, it must pay $10.52 a week on top of the wage (cl 20.8(a)). Electrical equipment you have to buy for the job, such as a hair dryer, is reimbursed instead (cl 20.8(b)).",
     ],
@@ -578,7 +578,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       },
       {
         q: "Do apprentice hairdressers get paid more on Saturdays?",
-        a: "Yes. For ordinary hours on a Saturday between 7am and 6pm the award pays 133% of the hourly rate (cl 23.1), so a first-year apprentice with Year 12 gets $21.55 an hour instead of $16.20. Sunday work between 10am and 5pm is 200% and public holidays 250%.",
+        a: "Yes. For ordinary hours on a Saturday between 7am and 6pm the Hair and Beauty Industry Award pays 133% of the hourly rate (cl 23.1), so a first-year apprentice with Year 12 gets $21.55 an hour instead of $16.20. Sunday work between 10am and 5pm is 200% and public holidays 250%.",
       },
       {
         q: "Do apprentice hairdressers get a tool allowance?",
@@ -593,7 +593,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     tradeSlug: "cookery",
     h1: "Apprentice Chef Pay",
     lead:
-      "Cookery apprentices in hotels, pubs and clubs are paid under the Hospitality Industry (General) Award 2020, which does not split rates by Year 12, pays 95% of the standard rate in 4th year, adds a loading for evening and early-morning hours, and can lift a 4th-year apprentice to the full standard hourly rate early through proficiency pay.",
+      "Cookery apprentices in hotels, pubs and clubs are paid under the Hospitality Industry (General) Award 2020, which does not split rates by Year 12, pays 95% of the standard rate in 4th year and adds a loading for Monday to Friday evening and early-morning hours. Proficiency pay can lift a 4th-year cookery apprentice to the full standard hourly rate early.",
     job: { href: "/job-pay-rates/chef/", label: "Chef pay rates (qualified)" },
     extraLinks: [
       { href: "/hospitality-award-rates/", label: "Hospitality Award rates", blurb: "The award these cookery apprentice rates come from." },
@@ -642,7 +642,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       },
       {
         q: "What do apprentice chefs get paid on weekends and late nights?",
-        a: "The award pays 125% of the hourly rate on a Saturday, 150% on a Sunday and 225% on a public holiday (cl 29.2). A first-year apprentice on $16.20 gets $20.25 on a Saturday and $24.30 on a Sunday. Monday to Friday work between 7pm and midnight adds $2.95 an hour, and between midnight and 7am $4.42 an hour.",
+        a: "The Hospitality Industry (General) Award pays 125% of the hourly rate on a Saturday, 150% on a Sunday and 225% on a public holiday (cl 29.2). A first-year apprentice on $16.20 gets $20.25 on a Saturday and $24.30 on a Sunday. Monday to Friday work between 7pm and midnight adds $2.95 an hour, and between midnight and 7am $4.42 an hour.",
       },
     ],
   },
@@ -675,7 +675,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     },
     facts: [
       "A boilermaker apprentice is normally doing the Engineering / Vehicle Tradesperson (Fabrication) apprenticeship that clause 12.4 of the Manufacturing and Associated Industries and Occupations Award 2020 names. The rates come from clause 21.6 for apprentices who started on or after 1 January 2014. The finished tradesperson is C10, $1,119.10 a week or $29.45 an hour, and the award lists the Certificate III in Engineering - Fabrication Trade as a C10 qualification.",
-      "Year 12 matters in the first two years and in the 4th. An apprentice who has not completed Year 12 is paid 88% of C10 in 4th year ($984.81), but one who has completed Year 12 is paid the C12/V3 rate of $1,029.10 a week, $44.29 a week more.",
+      "Year 12 changes a boilermaker apprentice's rate in the first two years and in the 4th. An apprentice who has not completed Year 12 is paid 88% of C10 in 4th year ($984.81), but one who has completed Year 12 is paid the C12/V3 rate of $1,029.10 a week, $44.29 a week more.",
       "Progression counts Competency Points (cl 21.7(b)): stage 2 at 25% of the points for the Certificate III in the training plan or 12 months after starting, stage 3 at 50% or 12 months after stage 2, stage 4 at 75% or 12 months after stage 3, whichever is earlier. On a 96-point fabrication plan that is 24, 48 and 72 points (our arithmetic). The probationary period cannot be more than three months (cl 12.10), and an apprentice under 18 does not have to work overtime or shiftwork (cl 12.15).",
       "The tool allowance is $17.90 a week for a tradesperson (cl 30.2(c)(ii)), and an apprentice gets the column 1 percentage of clause 21.6: 50%, 60%, 75% and 88% (cl 30.2(c)(v)). The weekly dollar amounts in the allowance table above are our arithmetic; the Fair Work Ombudsman pay guide shows the same allowance per hour as 24, 28, 35 and 41 cents. It is paid for all purposes (cl 30.2(c)(ix)), so it counts in overtime and penalty rates.",
       "Not every boilermaker is under this award. The Building and Construction General On-site Award 2020 names a boilermaker and/or structural steel tradesperson classification, so a boilermaker working on a building site may be covered by that award instead, with its own percentages and allowances. Check your contract or pay guide.",
@@ -732,7 +732,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
         paragraphs: [
           "The Meat Industry Award treats the butchery apprenticeship as competency based, and says so plainly: the actual time taken to complete it will vary with the intensity of training, the variety of work experience and any prior learning (cl 16.5(e)). Clause 16.9 sets the entry test for each stage. Stage 2 starts on attainment of 25% of the total competency points for the Certificate III in the training plan or 12 months after commencing, whichever is earlier; stage 3 at 50% of the points or 12 months after starting stage 2; stage 4 at 75% or 12 months after starting stage 3. The exit point is 100% of the competency points, and the apprentice is then paid as a qualified MI 7 tradesperson.",
           "The nominal period is up to four years, but it moves in both directions. It can be shortened to recognise prior learning, including vocational education in school and pre-apprenticeship programs, with the approval of the apprenticeship authority (cl 16.5(f)(ii)), and it can be extended by up to 6 months in stage 3 and 12 months in stage 4 where that is needed to complete the competencies (cl 16.5(f)(iii)). The probationary period cannot exceed 3 months (cl 16.5(i)).",
-          "Days away count. The nominal period is extended by a day for each day of absence in each year of the apprenticeship, except annual leave and long service leave (cl 16.5(o)), but paid personal and carer's leave totalling ten or fewer days in an apprenticeship year does not extend it (cl 16.5(p)). Training and assessment time under the training contract is paid as time worked (cl 16.5(j)), and an apprentice's ordinary hours cannot exceed those of the tradesperson they work alongside (cl 16.5(l)).",
+          "The nominal period is extended by a day for each day of absence in each year of the apprenticeship, except annual leave and long service leave (cl 16.5(o)), but paid personal and carer's leave totalling ten or fewer days in an apprenticeship year does not extend it (cl 16.5(p)). Training and assessment time under the training contract is paid as time worked (cl 16.5(j)), and an apprentice's ordinary hours cannot exceed those of the tradesperson they work alongside (cl 16.5(l)).",
         ],
       },
       {
@@ -746,7 +746,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     faqs: [
       {
         q: "Can a butchery apprenticeship be extended or shortened?",
-        a: "Both. Under clause 16.5(f) of the Meat Industry Award 2020 the nominal period of up to four years can be shortened to recognise prior learning, including school-based training and pre-apprenticeship programs, with the apprenticeship authority's approval, and extended by up to 6 months in stage 3 and 12 months in stage 4 where that is needed to complete the competencies. Each day of absence other than annual or long service leave also adds a day (cl 16.5(o)).",
+        a: "Yes, a butchery apprenticeship can be shortened or extended. Under clause 16.5(f) of the Meat Industry Award 2020 the nominal period of up to four years can be shortened to recognise prior learning with the apprenticeship authority's approval. Prior learning includes school-based training and pre-apprenticeship programs. The nominal period can be extended by up to 6 months in stage 3 and 12 months in stage 4 where that is needed to complete the competencies. Each day of absence other than annual or long service leave also adds a day (cl 16.5(o)).",
       },
       {
         q: "Is an adult apprentice butcher paid more than a junior?",

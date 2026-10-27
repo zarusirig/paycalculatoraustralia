@@ -100,7 +100,7 @@ export default function ListoCalculatorPage() {
           <section>
             <H2 id="boost-2027">The 1 July 2027 Boost: $37,000 to $45,000, $500 to $810</H2>
             <p>
-              Treasury and the ATO confirm that from 1 July 2027 the LISTO income threshold increases from {formatAUD(NOW.incomeThreshold)} to {formatAUD(NEXT.incomeThreshold)}, to match the top of the second income tax bracket, and the maximum payment increases to {formatAUD(NEXT.maxPayment)} to account for the rises in the super guarantee rate. The ATO lists the measure as law. Two consequences:
+              Treasury and the ATO confirm that from 1 July 2027 the LISTO income threshold increases from {formatAUD(NOW.incomeThreshold)} to {formatAUD(NEXT.incomeThreshold)}, to match the top of the second income tax bracket. From the same date the LISTO maximum payment increases to {formatAUD(NEXT.maxPayment)} to account for the rises in the super guarantee rate. The ATO lists the measure as law. Two consequences:
             </p>
             <ul>
               <li><strong>More people qualify.</strong> Workers with income between {formatAUD(NOW.incomeThreshold + 1)} and {formatAUD(NEXT.incomeThreshold)} are newly eligible.</li>

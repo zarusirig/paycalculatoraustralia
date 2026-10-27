@@ -117,7 +117,7 @@ export const IGA_PAY: EmployerPay = {
     },
     {
       q: "Does IGA have an enterprise agreement?",
-      a: "There is no single IGA agreement. Each IGA supermarket is owned and run independently, so most IGA staff are paid under the General Retail Industry Award. A few owners, such as Lloyds IGA and Champions IGA, have their own agreements, which cannot pay a base rate below the award.",
+      a: "IGA has no single enterprise agreement covering all its stores. Each IGA supermarket is owned and run independently, so most IGA staff are paid under the General Retail Industry Award. A few owners, such as Lloyds IGA and Champions IGA, have their own agreements, which cannot pay a base rate below the award.",
     },
     {
       q: "How much does IGA pay a 15 or 16 year old?",

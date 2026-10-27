@@ -7,8 +7,9 @@ export default function HecsIndexation2026() {
       <p className="lead">
         HECS and other HELP debts were indexed by <strong>2.8%</strong> on 1 June 2026, the
         lowest rate since 2021, after the government capped indexation at whichever is lower:
-        the Consumer Price Index (CPI) or the Wage Price Index (WPI). Here&apos;s what it added
-        to a typical balance and how the cap works.
+        the Consumer Price Index (CPI) or the Wage Price Index (WPI). This update shows what the
+        rate added to typical balances, how the cap works and how voluntary repayments change the
+        amount indexed.
       </p>
 
       <NewsKeyFacts
@@ -25,17 +26,17 @@ export default function HecsIndexation2026() {
       <p>
         Since 1 June 2023, HELP indexation has been capped at the lower of CPI or WPI, both
         measured over the 12 months to the March quarter. The cap was legislated after CPI-based
-        indexation hit 7.1% in June 2023, adding thousands of dollars to balances overnight, a
-        graduate with $30,000 owing watched more than $2,000 land on their debt in a single day.
+        indexation hit 7.1% in June 2023, when a $30,000 balance had more than $2,000
+        added in a single day.
         Parliament later backdated the cap, retrospectively cutting that year&apos;s rate to 3.2%
         and crediting the difference back to affected accounts. In 2026, the wage measure came in
         lower than the price measure, so 2.8% was the rate applied on 1 June.
       </p>
       <p>
-        The practical effect of the cap is a safeguard: your student debt can never grow faster
-        than average wages. That matters because HECS carries no commercial interest; indexation
-        is the only mechanism by which the balance rises, and it now moves in step with the slower
-        of the two economic measures rather than tracking inflation alone.
+        Under the cap, the HELP indexation rate cannot be higher than growth in the Wage Price
+        Index, so your student debt does not grow faster than wages. HECS carries no commercial
+        interest, so indexation is the only way the balance rises. It now follows the slower of
+        CPI and WPI rather than tracking inflation alone.
       </p>
 
       <h2>What 2.8% adds to a real balance</h2>
@@ -43,7 +44,7 @@ export default function HecsIndexation2026() {
         Indexation applies to whatever balance had remained unpaid for more than 11 months. A
         graduate with a $30,000 debt saw roughly $840 added on 1 June 2026; someone with $50,000
         owing picked up around $1,400, while a smaller $20,000 balance grew by about $560. The
-        adjustment happens automatically inside your ATO loan account, and nothing changes on your
+        ATO adds indexation to your study loan account automatically. Nothing changes on your
         payslip, and your employer is not notified.
       </p>
       <p>
@@ -58,9 +59,9 @@ export default function HecsIndexation2026() {
         payment made on or after 1 June does nothing for that year&apos;s indexation, since the
         calculation uses the balance as it stood that morning. A $5,000 voluntary payment on
         31 May saved $140 of indexation at the 2.8% rate; the same payment on 2 June saved
-        nothing until 2027. Whether paying early is worthwhile at all is a separate question:
-        with indexation at 2.8%, money parked in a higher-interest savings account can earn more
-        than early repayment saves, so the maths only favours voluntary payments in
+        nothing until 2027. Whether paying early is worthwhile at all is a separate question.
+        With indexation at 2.8%, a savings account that earns more than that rate after tax
+        returns more than early repayment saves. The maths only favours voluntary payments in
         high-indexation years or when the cash has no better use.
       </p>
 
@@ -68,8 +69,8 @@ export default function HecsIndexation2026() {
       <p>
         The one-off 20% reduction applied to balances as at 1 June 2025 is a separate measure to
         annual indexation. If your balance was cut in 2025, the 2.8% applied on 1 June 2026 was
-        calculated on your already-reduced balance, not the pre-cut figure, so the cut also
-        shrinks every future year&apos;s indexation in dollar terms. See our explainer on{" "}
+        calculated on your already-reduced balance, not the pre-cut figure. The cut therefore
+        also shrinks every future year&apos;s indexation in dollar terms. See our explainer on{" "}
         <Link href="/news/hecs-20-percent-cut-status/">checking the 20% cut landed</Link> if
         you&apos;re not sure your account reflects it.
       </p>
@@ -78,7 +79,7 @@ export default function HecsIndexation2026() {
       <p>
         Indexation changes your total loan balance, not your compulsory repayment rate or your
         take-home pay directly. Your employer still withholds STSL based on your income under the
-        FY2026-27 thresholds, not your outstanding debt. What it does change is how long the debt
+        FY2026-27 thresholds, not your outstanding debt. Indexation does change how long the debt
         takes to clear: a bigger balance means more years of repayments at the same withholding
         rate. To see how much of your pay currently goes toward compulsory HECS repayments, run
         your salary through our <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>,

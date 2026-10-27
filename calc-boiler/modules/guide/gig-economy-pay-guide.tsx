@@ -33,7 +33,7 @@ export default function GigEconomyPayGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Gig Economy Pay Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gig Economy Pay Guide: Tax &amp; Pay for Uber, Delivery &amp; Freelance Workers</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Working for Uber, Deliveroo, DoorDash, or freelancing? You are running a business, and the tax rules are different from employment. This guide covers ABN registration, GST obligations, quarterly BAS, deductions, and super: everything gig workers need to manage their tax.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">If you drive for Uber or DiDi, deliver for Uber Eats, Deliveroo or DoorDash, or freelance, you are running a business, and the tax rules are different from employment. Gig platforms do not withhold tax from your payments, so you set aside your own income tax, Medicare levy and GST (if registered). The table below shows the approximate income tax and Medicare levy at each level of annual gig income, and the share of that income to put aside. To get your own figure, enter your expected gig income in the Income Tax Calculator. The rest of this guide covers ABN registration, GST and quarterly BAS, deductions by gig type, super, and gig work alongside a regular job.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -69,7 +69,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>GST Registration</h3>
               <p>
-                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. This is a special rule: Uber, DiDi, Ola, and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches $75,000</strong>.
+                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. Uber, DiDi, Ola and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches $75,000</strong>.
               </p>
               <p>
                 When registered for GST, you charge GST (10%) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
@@ -77,7 +77,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Setting Aside for Tax</h3>
               <p>
-                As a gig worker, no one withholds tax from your income. A common approach is to set aside <strong>25-30% of gross income</strong> into a separate bank account for tax. This covers income tax, Medicare levy, and GST (if registered). The exact percentage depends on your total annual income:
+                No one withholds tax from your gig income. A common approach is to set aside <strong>25-30% of gross income</strong> into a separate bank account for tax. This covers income tax, Medicare levy, and GST (if registered). The percentage you need depends on your total annual income. The table shows resident income tax and Medicare levy only, so add GST on top if you are registered:
               </p>
 
               <div className="not-prose my-6">
@@ -116,7 +116,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>No Automatic Withholding</h3>
               <p>
-                Unlike employees, gig platforms do not withhold tax from your payments. You receive the full gross amount (minus platform fees). This means your bank account looks healthier during the year, but you owe a lump sum at tax time if you have not set money aside.
+                Gig platforms do not withhold tax from your payments the way an employer withholds PAYG tax from wages. You receive the full gross amount (minus platform fees). This means your bank account looks healthier during the year, but you owe a lump sum at tax time if you have not set money aside.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Quarterly BAS (Business Activity Statements)</h3>
@@ -126,7 +126,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>PAYG Instalments</h3>
               <p>
-                Once the ATO receives your first tax return showing business income, they may enrol you in <strong>PAYG instalments</strong>. This requires you to make quarterly pre-payments of estimated income tax, smoothing out your tax bill throughout the year instead of one large payment at tax time. PAYG instalments are reported on your BAS.
+                Once the ATO receives your first tax return showing business income, the ATO may enrol you in <strong>PAYG instalments</strong>. PAYG instalments are quarterly pre-payments of your estimated income tax, so your tax bill is spread across the year instead of one large payment at tax time. PAYG instalments are reported on your BAS.
               </p>
             </section>
 
@@ -134,7 +134,7 @@ export default function GigEconomyPayGuidePage() {
             <section id="deductions-by-platform">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Deductions by Gig Type</h2>
               <p>
-                As a sole trader, you can deduct expenses that are <strong>directly related to earning your gig income</strong>. The deductions available vary significantly by the type of gig work you do.
+                As a sole trader, you can deduct expenses that are <strong>directly related to earning your gig income</strong>. The tables below list the main deductions and typical annual amounts for rideshare drivers, delivery riders and freelancers.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Rideshare Drivers (Uber, DiDi, Ola)</h3>
@@ -198,10 +198,10 @@ export default function GigEconomyPayGuidePage() {
             <section id="super-gig-worker">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Superannuation as a Gig Worker</h2>
               <p>
-                As an independent contractor, <strong>no one pays super for you</strong>. This is one of the biggest financial differences between employment and gig work. There is no compulsory SG contribution from the platform.
+                As an independent contractor, <strong>no one pays super for you</strong>. Unlike an employer paying wages, a gig platform makes no compulsory SG contribution for you, so any super on your gig income comes from your own contributions.
               </p>
               <p>
-                You can (and should) make voluntary super contributions. <strong>Personal concessional contributions</strong> are tax-deductible: you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>15%</strong> in the fund, compared to your marginal rate (which could be 30-45%). The annual concessional contributions cap is <strong>$30,000</strong>.
+                You can make voluntary super contributions yourself.<strong>Personal concessional contributions</strong> are tax-deductible: you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>15%</strong> in the fund, compared to your marginal rate (which could be 30-45%). The annual concessional contributions cap is <strong>$30,000</strong>.
               </p>
               <p>
                 For example, a gig worker earning $80,000 in the 30% bracket who contributes $10,000 to super saves <strong>$1,500 in tax</strong> (30% marginal rate minus 15% super tax = 15% x $10,000). See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for detailed contribution strategies.
@@ -212,10 +212,10 @@ export default function GigEconomyPayGuidePage() {
             <section id="gig-plus-employment">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gig Work Plus Employment</h2>
               <p>
-                Many gig workers also hold a regular job. If you earn employment income <strong>and</strong> gig income, both are combined for tax purposes. Your total assessable income determines your marginal tax rate. Key considerations:
+                If you earn employment income from a regular job <strong>and</strong> gig income, both are combined for tax purposes. Your total assessable income determines your marginal tax rate. Key considerations:
               </p>
               <ul>
-                <li><strong>Your employer withholds tax based on your employment income only.</strong> They do not know about your gig income. This means your withholding may be insufficient, leading to a tax debt at year end.</li>
+                <li><strong>Your employer withholds tax based on your employment income only.</strong> Your employer does not know about your gig income, so the tax withheld from your wages may not cover your total tax. Any shortfall becomes a tax debt at year end.</li>
                 <li><strong>Request additional withholding</strong> by lodging a <strong>PAYG withholding variation</strong> with the ATO, or voluntarily increase your withholding amount with your employer.</li>
                 <li><strong>Business deductions from gig work</strong> can only be offset against your gig income (or total income if you are a sole trader reporting in your individual tax return). You cannot salary sacrifice your gig income.</li>
                 <li><strong>GST obligations</strong> are based on your gig/business turnover only. Your employment income is not included in the $75,000 GST threshold calculation.</li>

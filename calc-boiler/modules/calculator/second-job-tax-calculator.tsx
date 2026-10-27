@@ -224,7 +224,7 @@ export default function SecondJobTaxCalculatorPage({ children, afterCalculator }
                 <div className="mt-6">
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-sm text-warmgray">
                     <p className="font-medium mb-1">Disclaimer:</p>
-                    <p>This calculator provides estimates based on current ATO PAYG withholding schedules. Job 2 withholding uses an approximate &quot;no tax-free threshold&quot; rate. Your actual refund or debt depends on deductions, offsets, and other income. For personal tax advice, consult a registered tax agent.</p>
+                    <p>This calculator provides estimates based on current ATO PAYG withholding schedules. Job 2 withholding uses the ATO &quot;no tax-free threshold&quot; scale, applied to fortnightly pay. Your actual refund or debt depends on deductions, offsets, and other income. For personal tax advice, consult a registered tax agent.</p>
                   </div>
                 </div>
                 <div className="mt-4 text-sm text-warmgray border-t border-sandstone-dark/20 pt-4">

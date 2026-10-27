@@ -37,7 +37,7 @@ function faq(id: TaxOnFaqId, salary: number): FaqItem {
       const totalTax = b.netIncomeTax + b.medicareLevy;
       return {
         q: `How much tax do I pay on ${s}?`,
-        a: `${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}: ${formatAUD(b.netIncomeTax)} income tax plus ${formatAUD(b.medicareLevy)} Medicare levy, ${pct1(totalTax / salary)} of the salary, leaving ${formatAUD(b.takeHomePay)} a year (${formatAUD(b.weekly)} a week). ATO resident rates, no HECS-HELP.`,
+        a: `You pay ${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}: ${formatAUD(b.netIncomeTax)} income tax plus ${formatAUD(b.medicareLevy)} Medicare levy, ${pct1(totalTax / salary)} of the salary, leaving ${formatAUD(b.takeHomePay)} a year (${formatAUD(b.weekly)} a week). The figures use ATO resident tax rates and assume no HECS-HELP debt.`,
       };
     }
     case "lito":

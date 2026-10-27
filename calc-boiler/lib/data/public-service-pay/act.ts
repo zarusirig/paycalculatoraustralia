@@ -69,7 +69,7 @@ export const ACT: Jurisdiction = {
       id: "act-admin-2025",
       title: "ACT Administrative and Related Classifications EA 2023–2026, from 4 December 2025",
       coverage:
-        "ACT Public Service employees in the Administrative Services Officer and Senior Officer classifications, across all directorates.",
+        "This schedule covers ACT Public Service employees in the Administrative Services Officer and Senior Officer classifications, across all directorates.",
       basis: "agreement",
       effectiveFrom: "4 December 2025",
       rangeMeaning:
@@ -259,19 +259,19 @@ export const ACT: Jurisdiction = {
   faqs: [
     {
       q: "What is the ACT Public Service pay scale in 2026?",
-      a: "The rates in force are the 4 December 2025 column of the ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023–2026. They run from $65,124 at ASO 1 to $116,592 at the top of ASO 6, then $127,597 to $136,873 at Senior Officer Grade C, $149,172 to $167,151 at Grade B and $172,246 at Grade A.",
+      a: "The ACT Public Service pay scale in force is the 4 December 2025 column of the ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023-2026. Its rates run from $65,124 at ASO 1 to $116,592 at the top of ASO 6, then $127,597 to $136,873 at Senior Officer Grade C, $149,172 to $167,151 at Grade B and $172,246 at Grade A.",
     },
     {
       q: "What does an ACT ASO 6 earn?",
-      a: "ASO 6 has five pay points: $102,657, $104,996, $107,622, $112,584 and $116,592 a year from 4 December 2025, plus employer superannuation of 12.5% (13.5% if you contribute at least 3% yourself).",
+      a: "An ACT ASO 6 is paid on five pay points: $102,657, $104,996, $107,622, $112,584 and $116,592 a year from 4 December 2025, plus employer superannuation of 12.5% (13.5% if you contribute at least 3% yourself).",
     },
     {
       q: "When is the next ACT public service pay rise?",
-      a: "None is scheduled. The 2023–2026 agreement's last increase was 1% plus $1,000 from 4 December 2025, and it passed its nominal expiry on 31 March 2026. The proposed 2026–2029 replacement was not approved by employees when voting closed on 8 September 2026, so the next rise depends on a new agreement being made and approved by the Fair Work Commission.",
+      a: "No ACT public service pay rise is scheduled. The 2023-2026 agreement's last increase was 1% plus $1,000 from 4 December 2025, and it passed its nominal expiry on 31 March 2026. The proposed 2026-2029 replacement was not approved by employees when voting closed on 8 September 2026, so the next rise depends on a new agreement being made and approved by the Fair Work Commission.",
     },
     {
       q: "What does an ACT Senior Officer Grade C earn?",
-      a: "SOG C pays $127,597 at the first pay point and $136,873 at the second, from 4 December 2025. Grade B pays $149,172 to $167,151 and Grade A is a single rate of $172,246.",
+      a: "An ACT Senior Officer Grade C (SOG C) earns $127,597 at the first pay point and $136,873 at the second, from 4 December 2025. Grade B pays $149,172 to $167,151 and Grade A is a single rate of $172,246.",
     },
     {
       q: "Why are the first two ASO 1 pay points the same?",
@@ -279,7 +279,7 @@ export const ACT: Jurisdiction = {
     },
     {
       q: "What superannuation do ACT public servants get?",
-      a: "12.5% of ordinary time earnings from 1 January 2026 under clause D7.5 of the agreement, plus an extra 1% in any pay where you contribute 3% or more yourself. Members of the older CSS and PSSdb schemes get what their scheme rules set instead.",
+      a: "ACT public servants get employer superannuation of 12.5% of ordinary time earnings from 1 January 2026 under clause D7.5 of the agreement, plus an extra 1% in any pay where you contribute 3% or more yourself. Members of the older CSS and PSSdb schemes get what their scheme rules set instead.",
     },
   ],
 };

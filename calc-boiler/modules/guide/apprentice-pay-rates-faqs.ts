@@ -29,7 +29,7 @@ const e1n = apprenticeRate(elec, "junior", 1, "not-completed")!;
 export const APPRENTICE_PAY_FAQS: Faq[] = [
   {
     q: "How much do apprentices get paid in Australia?",
-    a: `It depends on the trade's award and the year of the apprenticeship. From the first full pay period on or after 1 July 2026, the first-year minimums across the trades on this page run from ${formatAUD(FIRST_MIN, 2)} to ${formatAUD(FIRST_MAX, 2)} an hour, rising to between ${formatAUD(FOURTH_MIN, 2)} and ${formatAUD(FOURTH_MAX, 2)} in fourth year. Those are award minimums, so employers and enterprise agreements can pay more, and the electrical and plumbing figures include allowances that the other trades add on top.`,
+    a: `From the first full pay period on or after 1 July 2026, first-year apprentice minimums across the trades on this page run from ${formatAUD(FIRST_MIN, 2)} to ${formatAUD(FIRST_MAX, 2)} an hour, rising to between ${formatAUD(FOURTH_MIN, 2)} and ${formatAUD(FOURTH_MAX, 2)} in fourth year. The exact rate is set by the trade's award and the year of the apprenticeship. Those are award minimums, so employers and enterprise agreements can pay more, and the electrical and plumbing figures include allowances that the other trades add on top.`,
   },
   {
     q: "Do apprentices get paid minimum wage?",
@@ -37,7 +37,7 @@ export const APPRENTICE_PAY_FAQS: Faq[] = [
   },
   {
     q: "What is a first-year apprentice carpenter paid in 2026?",
-    a: `Under the Building and Construction General On-site Award a first-year apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the $1,119.10 standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the $41.22 carpenter tool allowance and the industry allowance on top for all purposes, so on a general building site the Fair Work Ombudsman pay guide puts the first-year minimum with Year 12 at ${formatAUD(carp1.hourly, 2)} an hour (${formatAUD(carp1.weekly, 2)} a week).`,
+    a: `Under the Building and Construction General On-site Award, a first-year carpentry apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the $1,119.10 standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the $41.22 carpenter tool allowance and the industry allowance on top for all purposes, so on a general building site the Fair Work Ombudsman pay guide puts the first-year minimum with Year 12 at ${formatAUD(carp1.hourly, 2)} an hour (${formatAUD(carp1.weekly, 2)} a week).`,
   },
   {
     q: "What is a first-year apprentice chef paid?",

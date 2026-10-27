@@ -343,7 +343,7 @@ export default function MedicareLevyCalculator() {
             </div>
 
             <p className="text-xs text-warmgray-light">
-              An estimate for a full year of Australian residency, before any exemption. It does not
+              This is an estimate for a full year of Australian residency, before any exemption. It does not
               include income tax; see the{" "}
               <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">
                 income tax calculator

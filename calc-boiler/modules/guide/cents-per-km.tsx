@@ -91,12 +91,12 @@ export default function CentsPerKmPage() {
               <li><strong>Cap it at {CPK_KM_CAP.toLocaleString("en-AU")} km per car.</strong> Joint owners using the car for separate work can each claim up to {CPK_KM_CAP.toLocaleString("en-AU")} km.</li>
               <li><strong>Multiply by the rate</strong>: 960 km × {c(CURRENT_CPK_RATE)} = {formatAUD(centsPerKmDeduction(960), 2)}.</li>
             </ol>
-            <p>You must own or lease the car, and you can&rsquo;t add fuel, rego, insurance or repairs on top: the rate already covers them. Driving more than {CPK_KM_CAP.toLocaleString("en-AU")} km for work? The logbook method isn&rsquo;t capped at that, but needs a logbook and records of your car expenses. See the <Link href="/tax-deductions-guide/">tax deductions guide</Link> or estimate your refund with the <Link href="/tax-return-calculator/">tax return calculator</Link>.</p>
+            <p>You must own or lease the car, and you can&rsquo;t add fuel, rego, insurance or repairs on top: the rate already covers them. If you drive more than {CPK_KM_CAP.toLocaleString("en-AU")} km for work, the logbook method has no kilometre cap, but it needs a logbook and records of your car expenses. See the <Link href="/tax-deductions-guide/">tax deductions guide</Link> or estimate your refund with the <Link href="/tax-return-calculator/">tax return calculator</Link>.</p>
           </section>
 
           <section>
             <H2 id="car-allowance">Car Allowance on Your Payslip: Is It Taxed?</H2>
-            <p>Many employers pay a per-km car allowance. How much tax is withheld depends on the rate and the kilometres (ATO <a href={CENTS_PER_KM_SOURCES.atoWithholdingForAllowances} target="_blank" rel="noopener noreferrer">withholding for allowances</a>, Table 2):</p>
+            <p>If your employer pays a per-km car allowance, how much tax is withheld depends on the rate and the kilometres (ATO <a href={CENTS_PER_KM_SOURCES.atoWithholdingForAllowances} target="_blank" rel="noopener noreferrer">withholding for allowances</a>, Table 2):</p>
             <DataTable
               head={["Car allowance paid for work travel", "Tax withheld?"]}
               rows={[

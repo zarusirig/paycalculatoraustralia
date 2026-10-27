@@ -79,7 +79,7 @@ export default function WeeklyPayCalculatorPage({ children, afterCalculator }: {
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2">Weekly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
           <p className="text-base md:text-lg text-navy">
             On <strong>$80,000</strong> you take home <strong>{formatAUD(EX.weekly, 2)} a week</strong> ({formatAUD(80_000 / 52, 2)} gross)
-            after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
+            after income tax and the Medicare levy in FY{SITE_CONFIG.financialYear}.
           </p>
           <TrustBar className="mt-2" />
         </section>

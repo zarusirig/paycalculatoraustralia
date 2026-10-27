@@ -130,7 +130,7 @@ export function Row({ label, value, bold, highlight }: { label: string; value: s
 export function NotIncluded({ items }: { items: string[] }) {
   return (
     <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-4 text-xs text-navy">
-      <strong>Income test only.</strong> Not modelled: {items.join("; ")}. Services Australia pays the lower of the income and assets test results, so treat this as the income-test ceiling, not a quote. Figures verified at Services Australia and in the DSS 20 September 2026 rates list on {CENTRELINK_SOURCES.verifiedOn}.
+      <strong>Income test only.</strong> Not modelled: {items.join("; ")}. Services Australia pays the lower of the income and assets test results, so treat this as the income-test ceiling, not a quote. Figures were verified at Services Australia and against the DSS 20 September 2026 rates list on {CENTRELINK_SOURCES.verifiedOn}.
     </div>
   );
 }

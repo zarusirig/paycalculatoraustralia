@@ -53,7 +53,7 @@ export default function TaxBracketHistoryPage() {
             Tax Bracket History &mdash; Australian Income Tax Rates 2020 to 2026
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            How have Australian tax brackets evolved over the past six financial years? This page tracks every rate and threshold change from FY2020-21 through FY2025-26, including the landmark Stage 3 tax cuts that reshaped the system from 1 July 2024.
+            The Australian resident income tax brackets and marginal tax rates below cover the six financial years from FY2020-21 through FY2025-26, the period that includes the revised Stage 3 tax cuts. Those cuts lowered rates and widened brackets from 1 July 2024. The tables show every rate and threshold by year. The timeline explains each stage of the Personal Income Tax Plan, and a worked example compares the tax payable on a single salary across the years.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -68,12 +68,12 @@ export default function TaxBracketHistoryPage() {
             <section id="brackets-by-year">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Brackets by Financial Year</h2>
               <p>
-                Australia&apos;s individual income tax brackets remained stable from FY2020-21 through FY2023-24, with five brackets and a top marginal rate of <strong>45%</strong>. The revised Stage 3 tax cuts then restructured the system from 1 July 2024, delivering lower rates and wider brackets for every taxpayer.
+                Australia&apos;s individual income tax brackets remained stable from FY2020-21 through FY2023-24, with five brackets and a top marginal rate of <strong>45%</strong>. From 1 July 2024, the revised Stage 3 tax cuts lowered rates and widened brackets for every taxpayer with taxable income above the tax-free threshold.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2020-21 to FY2023-24</h3>
               <p>
-                These four years shared identical tax brackets. The only significant change during this period was the removal of the Low and Middle Income Tax Offset (LMITO) from FY2022-23 onwards, which effectively increased the tax burden for earners between $37,000 and $126,000.
+                The resident tax brackets were identical in all four of these years. The main change in this period was the removal of the Low and Middle Income Tax Offset (LMITO) from FY2022-23 onwards, which raised the tax payable by earners between $37,000 and $126,000.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -215,8 +215,8 @@ export default function TaxBracketHistoryPage() {
               <ul>
                 <li><strong>FY2018-19 &mdash; Stage 1:</strong> Increased the Low Income Tax Offset (LITO) from $445 to $700 and introduced the temporary Low and Middle Income Tax Offset (LMITO) worth up to $530 (later increased to $1,500).</li>
                 <li><strong>FY2020-21 &mdash; Stage 2:</strong> Raised the upper limit of the 19% bracket from $37,000 to $45,000 and the 32.5% bracket from $90,000 to $120,000. These changes were brought forward from the originally planned FY2022-23.</li>
-                <li><strong>FY2022-23 &mdash; LMITO Removed:</strong> The temporary Low and Middle Income Tax Offset was not extended beyond FY2021-22, resulting in an effective tax increase of up to $1,500 for earners between $37,000 and $126,000.</li>
-                <li><strong>FY2024-25 &mdash; Revised Stage 3:</strong> The original Stage 3 plan (a flat 30% rate from $45,001 to $200,000) was replaced with the revised version: 16% for $18,201&ndash;$45,000, 30% for $45,001&ndash;$135,000, 37% for $135,001&ndash;$190,000, and 45% above $190,001. Every taxpayer earning above $18,200 received a cut.</li>
+                <li><strong>FY2022-23 &mdash; LMITO Removed:</strong> The temporary Low and Middle Income Tax Offset was not extended beyond FY2021-22, so earners between $37,000 and $126,000 paid up to $1,500 more tax.</li>
+                <li><strong>FY2024-25 &mdash; Revised Stage 3:</strong> The original Stage 3 plan (a flat 30% rate from $45,001 to $200,000) was replaced with the revised version: 16% for $18,201 to $45,000, 30% for $45,001 to $135,000, 37% for $135,001 to $190,000, and 45% above $190,001. Every taxpayer earning above $18,200 received a cut.</li>
               </ul>
               <p>
                 Read the full breakdown of Stage 3 savings at every income level in our <Link href="/stage-3-tax-cuts/">Stage 3 Tax Cuts</Link> guide.
@@ -227,7 +227,7 @@ export default function TaxBracketHistoryPage() {
             <section id="tax-on-80k">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax on $80,000 &mdash; Historical Comparison</h2>
               <p>
-                To illustrate the real impact of bracket changes, the table below shows the total income tax payable on a <strong>$80,000</strong> taxable income across each financial year. This excludes the Medicare Levy and any offsets.
+                To compare the bracket changes at a single salary, the table below shows the total income tax payable on a <strong>$80,000</strong> taxable income in each financial year, before the Medicare Levy and any tax offsets.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -281,7 +281,7 @@ export default function TaxBracketHistoryPage() {
                 <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy and all offsets (LITO, LMITO). LMITO would have reduced the FY2020-21 and FY2021-22 figures by up to $1,080 at lodgement.</p>
               </div>
               <p>
-                The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
+                The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Enter your own taxable income in the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
               </p>
               <p>
                 For the current year&apos;s full breakdown at this and nearby salaries, including Medicare and the offsets excluded above, see <Link href="/tax-on/80000/">Tax on $80,000 in Australia</Link>, <Link href="/tax-on/90000/">Tax on $90,000 in Australia</Link> and <Link href="/tax-on/50000/">Tax on $50,000 in Australia</Link>. The current, previous and legislated 2027-28 scales are also available as CSV and JSON on the <Link href="/australian-tax-and-pay-data/">Australian tax and pay data</Link> page.

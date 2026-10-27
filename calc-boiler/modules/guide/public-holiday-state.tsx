@@ -76,7 +76,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
             <p className="text-base leading-relaxed text-navy">
               <strong>Direct answer:</strong> {s.code} has {statewideDays(y26).length} whole-day public holidays in 2026 and{" "}
               {statewideDays(y27).length} in 2027
-              {parts.length ? `, plus part-day holidays from ${partHours.join(" / ")}` : ""}. Work one and your award pays{" "}
+              {parts.length ? `, plus part-day holidays from ${partHours.join(" / ")}` : ""}. Work a public holiday and your award pays{" "}
               {pctLabel(range.permanentMin)} to {pctLabel(range.permanentMax)} of your base rate: {pctLabel(presetAward.permanent)} under
               the {presetAward.shortName} ({pctLabel(presetAward.casual)} for casuals).
             </p>
@@ -132,8 +132,8 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
             <section id="weekends">
               <h2 style={HEADING_FONT}>Weekend holidays {s.inName}: which shift gets the public holiday rate</h2>
               <p>
-                Whether the weekend day stays a holiday {s.inName}, and which weekday is added, decides which shift gets the public
-                holiday rate.
+                When a public holiday falls on a Saturday or Sunday, whether the weekend day stays a holiday {s.inName}, and which
+                weekday is added, decides which shift gets the public holiday rate.
                 {ordinaryWeekend.length
                   ? ` ${inState}, ${listOf(ordinaryWeekend.map((r) => formatHolidayDate(r.date)))} ${ordinaryWeekend.length > 1 ? "are ordinary weekend days" : "is an ordinary weekend day"} for pay.`
                   : ` ${inState}, every one of those weekend days is itself a public holiday.`}
@@ -143,7 +143,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
 
             <section id="pay">
               <p>
-                Every award&rsquo;s rate, pay for a day off and refusing a shift: see the{" "}
+                Every award&rsquo;s public holiday rate, pay for a day off and the right to refuse a shift are covered in the{" "}
                 <Link href={`${PH_HUB_PATH}#award-rates`}>public holiday pay guide</Link>.
               </p>
             </section>

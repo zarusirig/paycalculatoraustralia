@@ -66,7 +66,7 @@ export const IMAGING_HOURS_NOTICE =
 
 /** The level definitions every HPSS page uses (Schedule A.2, from 1 October 2026). */
 export function levelsParagraph(plural: string): string {
-  return `Level 2 is for ${plural} working as a senior clinician, specialist, supervisor or educator (Level 2.1 with under 5 years in that role, 2.2 with 5 or more); level 3 is an advanced clinician, senior specialist or section manager; level 4 is a manager (Schedule A.2).`;
+  return `Level 2 is for ${plural} working as a senior clinician, specialist, supervisor or educator: Level 2.1 with under 5 years in that role, 2.2 with 5 or more. Level 3 is an advanced clinician, senior specialist or section manager, and Level 4 is a manager (Schedule A.2).`;
 }
 
 const aqfList = (aqfs: readonly HpssAqfLevel[]) =>
@@ -85,7 +85,7 @@ export function entryParagraph(profession: string, aqfs: readonly HpssAqfLevel[]
 /** Notice for professions listed at more than one AQF level. */
 export function multiAqfNotice(lower: string, aqfs: readonly HpssAqfLevel[]): string {
   const rest = aqfs.slice(1).map((a) => `AQF Level ${a} (${firstYear(a).hourly} an hour in the 1st year)`);
-  return `Check your AQF level, not just your level: the headline is the AQF Level ${aqfs[0]} rate. A ${lower} whose qualification is at ${rest.join(" or ")} starts higher. In the Australian Qualifications Framework, Level 8 is a bachelor honours degree or graduate diploma and Level 9 a masters degree.`;
+  return `Check your AQF level as well as your classification level: the headline rate on this page is the AQF Level ${aqfs[0]} rate. A ${lower} whose qualification is at ${rest.join(" or ")} starts higher. In the Australian Qualifications Framework, Level 8 is a bachelor honours degree or graduate diploma and Level 9 a masters degree.`;
 }
 
 /** The FAQs every G3 page shares, worded for the occupation, at its lowest listed AQF level. */

@@ -86,7 +86,7 @@ export default function CentrelinkPaymentRatesPage() {
         <article className={ARTICLE_CLASS}>
           <section>
             <H2 id="summary">All Centrelink Payment Rates at a Glance</H2>
-            <p>The highest fortnightly rate for a single person on each payment, the date the rate applies from, and when it next changes.</p>
+            <p>This table lists the maximum fortnightly rates for each Centrelink payment, the date those rates apply from, and when each payment is indexed.</p>
             <DataTable
               head={["Payment", "Maximum per fortnight", "Rates from", "Indexed", "Calculator"]}
               rows={[

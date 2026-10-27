@@ -628,10 +628,10 @@ export default function WorkHoursCalculator() {
                 />
               </div>
               <p className="mt-1 text-xs text-warmgray-light">
-                Defaults to the national minimum wage of{" "}
+                The base hourly rate defaults to the national minimum wage of{" "}
                 {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour from{" "}
                 {SITE_CONFIG.financialYearStart}. Enter your own award or contract rate before
-                loading.
+                casual loading.
               </p>
             </div>
 
@@ -856,7 +856,7 @@ export default function WorkHoursCalculator() {
                 </p>
               )}
               <p className="text-xs text-warmgray-light">
-                Gross, before tax and super. Run the figure through the{" "}
+                This is gross pay, before tax and super. Run the figure through the{" "}
                 <Link
                   href="/take-home-pay-calculator/"
                   className="text-eucalyptus-dark hover:underline"

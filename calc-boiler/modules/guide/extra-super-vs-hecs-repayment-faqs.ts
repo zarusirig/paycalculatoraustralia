@@ -21,7 +21,7 @@ const exampleSaving = MONTHLY * 12 * (EXAMPLE_RATE + MEDICARE_LEVY.rate - CONTRI
 export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   {
     q: "Is it better to pay off HECS or put extra into super?",
-    a: `For most young workers with 20+ years to retirement, extra super contributions provide better long-term value due to the tax benefit (${pct(CONTRIBUTIONS_TAX)} vs your marginal rate) and compound growth. However, if your HECS balance is large (over $50,000) and indexation is high, paying it down faster can be worthwhile for the certain return and improved cash flow.`,
+    a: `Our view: for most young workers with 20+ years to retirement, extra super contributions give better long-term value than paying off HECS. That is because contributions are taxed at ${pct(CONTRIBUTIONS_TAX)} instead of your marginal rate, and they compound over those years. If your HECS balance is large (over $50,000) and indexation is high, paying it down faster can be worthwhile for the certain return and improved cash flow.`,
   },
   {
     q: "How is HECS-HELP debt indexed?",
@@ -30,7 +30,7 @@ export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do voluntary HECS repayments reduce my compulsory repayments?",
-    a: "Voluntary repayments reduce your outstanding balance but do not change the compulsory repayment percentage applied to your income. However, if your voluntary payments bring the balance to zero, compulsory repayments cease entirely, immediately boosting your take-home pay.",
+    a: "Voluntary repayments reduce your outstanding balance but do not change the compulsory repayment percentage applied to your income. Once voluntary payments bring your HECS balance to zero, compulsory repayments stop, which raises your take-home pay.",
   },
   {
     q: "What tax benefit do I get from extra super contributions?",
@@ -38,7 +38,7 @@ export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I do both extra super and voluntary HECS payments?",
-    a: `Yes. If you have sufficient surplus cash flow, you can split between both. A common approach is to salary sacrifice up to the concessional cap (${formatAUD(SUPER_GUARANTEE.concessionalCap)} including employer SG) for the tax benefit, then direct remaining surplus to voluntary HECS repayments. Use the Salary Sacrifice Calculator and HECS Calculator to model your options.`,
+    a: `Yes. You can split surplus cash between extra super and voluntary HECS repayments. Our view: salary sacrifice up to the concessional cap (${formatAUD(SUPER_GUARANTEE.concessionalCap)} including employer SG) first, because that is where the tax benefit is, then put remaining surplus into voluntary HECS repayments. Use the Salary Sacrifice Calculator and HECS Calculator to model your options.`,
     links: { "Salary Sacrifice Calculator": "/salary-sacrifice-calculator/", "HECS Calculator": "/hecs-help-calculator/" },
   },
 ];

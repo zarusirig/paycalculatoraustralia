@@ -32,6 +32,6 @@ export const HISTORY_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How often does the minimum wage increase?",
-    a: `Once a year. The Fair Work Commission's Annual Wage Review sets the National Minimum Wage and all modern award rates, usually announced in late May or June, with the new rates applying from the first full pay period on or after 1 July. The next review is the ${NMW_DECISION.nextReview}.`,
+    a: `The National Minimum Wage increases once a year. The Fair Work Commission's Annual Wage Review sets the National Minimum Wage and all modern award rates, usually announced in late May or June, with the new rates applying from the first full pay period on or after 1 July. The next review is the ${NMW_DECISION.nextReview}.`,
   },
 ];

@@ -1,0 +1,342 @@
+// =============================================================================
+// Minimum wage by state and territory (/minimum-wage/{state}/) — F1, Oct 2026.
+//
+// The National Minimum Wage is one figure for the whole country, so a state
+// page earns its place only by carrying what genuinely differs by state:
+//   - which workers sit in the STATE industrial system rather than the national
+//     one (Fair Work Ombudsman, "Fair Work system", content updated 13 Aug 2026,
+//     plus the state's own system page where it publishes one),
+//   - any state minimum wage or state wage case (WA, QLD, NSW, and the
+//     Tasmanian State Service — read from the tribunals' own pages / decisions),
+//   - the state's own child employment rules for under-15s and school-age
+//     workers, read from the state government page the Fair Work Ombudsman's
+//     "Minimum working age" page links to,
+//   - the state's public holidays, payroll tax and long service leave, which are
+//     READ FROM the existing verified datasets (lib/data/public-holidays,
+//     lib/constants/payroll-tax, lib/constants/long-service-leave) rather than
+//     re-keyed, so a refresh of those flows through here.
+//
+// Nothing here is estimated. A state-system wage figure we could not read from
+// the tribunal is left out and the page says so. The national rate, after-tax
+// table and junior table are the same in every state, so the state pages give
+// them one line and link to /minimum-wage-australia/.
+// System coverage and wage cases verified 5 October 2026; coverage lists, child
+// employment rules, the WA State Wage order and the Tasmanian State Service
+// update read again 10 October 2026 (Firecrawl, official pages, URLs below).
+// =============================================================================
+
+import { fitDescription, fitTitle } from "../../seo-title";
+import { EMPLOYMENT, SUPER_GUARANTEE } from "../../constants/australian-tax";
+import { LSL_JURISDICTIONS } from "../../constants/long-service-leave";
+import { NMW, QLD_STATE_WAGE_CASE_2026, WA_STATE_MINIMUM_WAGE } from "../../constants/minimum-wage";
+import { PAYROLL_TAX_STATES } from "../../constants/payroll-tax";
+import { STATE_PUBLIC_HOLIDAYS, formatHolidayDate, statewideDays, yearOf } from "../public-holidays";
+import type { PublicHolidayDate, StatePublicHolidays } from "../public-holidays";
+
+export const MW_STATE_SLUGS = ["nsw", "vic", "wa", "sa", "tas", "qld", "act", "nt"] as const;
+import type { MwStateSlug } from "./calc";
+export * from "./calc";
+import { fullTimeAdultTakeHome } from "./calc";
+
+export const MW_STATE_VERIFIED_ON = "10 October 2026";
+
+/** The 2026-27 minimum wage year: first full pay period from 1 July 2026 to 30 June 2027. */
+export const MW_FY_START = "2026-07-01";
+export const MW_FY_END = "2027-06-30";
+
+export interface MwSource {
+  title: string;
+  publisher: string;
+  url: string;
+}
+
+export interface MwFaq {
+  q: string;
+  a: string;
+}
+
+export interface MwStateInfo {
+  slug: MwStateSlug;
+  code: string;
+  name: string;
+  /** "in Victoria", "in the ACT". */
+  inName: string;
+  /** The state-specific sentence that closes the direct answer. */
+  answerNote: string;
+  /** Plain-English reading of who is in the state system, from the FWO page. */
+  systemSummary: string;
+  /** What the FWO page says, quoted closely, for the "who the national wage covers" section. */
+  systemFwo: string;
+  /** Who is in each system, in the official sources' own categories. */
+  coverage: { national: readonly string[]; state: readonly string[] };
+  /** True when a worker's minimum can be set by a state tribunal rather than the FWC. */
+  hasStateWageSetting: boolean;
+  /** Headline for the "state wage" section. */
+  stateWageHeading: string;
+  /** Paragraphs for the state wage-setting section. */
+  stateWage: readonly string[];
+  /** Child employment, junior and apprentice rules specific to the state. */
+  youngWorkers: readonly string[];
+  /** The state's own regulators and information pages (all read on the verification date). */
+  regulators: readonly MwSource[];
+  /** Where each state-specific figure or rule was read. */
+  sources: readonly MwSource[];
+  /** The role this state's page plays in the "other states" list and title. */
+  uniqueAngle: string;
+  /** Questions only this state's page answers (rendered and emitted as FAQPage JSON-LD). */
+  faqs: readonly MwFaq[];
+}
+
+const FWO_SYSTEM: MwSource = {
+  title: "Fair Work system, who is covered",
+  publisher: "Fair Work Ombudsman",
+  url: "https://www.fairwork.gov.au/about-us/workplace-laws/fair-work-system",
+};
+
+const NMW_SOURCE: MwSource = {
+  title: "National Minimum Wage Order 2026 (PR799279) and Annual Wage Review 2026 [2026] FWCFB 3500",
+  publisher: "Fair Work Commission",
+  url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr799279.pdf",
+};
+
+const money = (n: number) => `$${n.toFixed(2)}`;
+const wholeMoney = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+const NMW_HOURLY = money(NMW.hourly);
+
+// --- Sources read 10 October 2026 -------------------------------------------
+const NSW_STARTING_WORK: MwSource = {
+  title: "Starting work: your rights and responsibilities",
+  publisher: "NSW Industrial Relations",
+  url: "https://www.nsw.gov.au/employment/rights-responsibilities/starting-work",
+};
+const VIC_CHILD_LICENCE: MwSource = {
+  title: "Employing children under 15 years old",
+  publisher: "Workforce Inspectorate Victoria",
+  url: "https://www.vic.gov.au/child-employment-licence",
+};
+const WA_WHICH_SYSTEM: MwSource = {
+  title: "Which system of employment law applies",
+  publisher: "Government of Western Australia (Wageline)",
+  url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-law-applies",
+};
+const WA_CHILDREN: MwSource = {
+  title: "When children can work in Western Australia",
+  publisher: "Government of Western Australia (Wageline)",
+  url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/when-children-can-work-western-australia",
+};
+const WA_STATE_WAGE_ORDER: MwSource = {
+  title: "2026 State Wage order [2026] WAIRC 00400",
+  publisher: "WA Industrial Relations Commission",
+  url: "https://www.wairc.wa.gov.au/assets/Documents/WageCase/2026/Decisions-Orders/2026-State-Wage-order-2026-WAIRC-00400-LS-Copy.pdf",
+};
+const SA_IR_SYSTEM: MwSource = {
+  title: "Industrial relations: private sector, public sector and local government",
+  publisher: "SafeWork SA",
+  url: "https://safework.sa.gov.au/workers/wages-and-conditions/industrial-relations",
+};
+const SAET_SWC_2026_NOTICE: MwSource = {
+  title: "State Wage Case 2026 notice (ET-26-02424), 22 June 2026",
+  publisher: "South Australian Employment Tribunal",
+  url: "https://www.saet.sa.gov.au/app/uploads/2026/07/StateWageCase2026Notice.pdf",
+};
+const SA_MIN_AGE: MwSource = {
+  title: "Minimum working age",
+  publisher: "SafeWork SA",
+  url: "https://safework.sa.gov.au/workers/wages-and-conditions/minimum-working-age",
+};
+const TAS_SSMO_UPDATE: MwSource = {
+  title: "Wages and conditions update for State Service agreements",
+  publisher: "Tasmanian Department of Premier and Cabinet",
+  url: "https://www.dpac.tas.gov.au/working-in-the-state-service/messages-from-the-head-of-the-state-service/wages-and-conditions-update-for-state-service-agreements",
+};
+const TAS_TIC_WAGE_CASES: MwSource = {
+  title: "State wage cases",
+  publisher: "Tasmanian Industrial Commission",
+  url: "https://www.tic.tas.gov.au/decisions_issued/decision_summaries/state_wage_cases",
+};
+const QLD_CHILD_RULES: MwSource = {
+  title: "Restrictions on children working in Queensland",
+  publisher: "Business Queensland",
+  url: "https://www.business.qld.gov.au/running-business/employing/hiring-recruitment/employing-children/restrictions",
+};
+const ACT_YOUNG_WORKER: MwSource = {
+  title: "Your rights as a young worker",
+  publisher: "ACT Government",
+  url: "https://www.act.gov.au/community/youth/your-rights-as-a-young-worker",
+};
+const NT_WAGES: MwSource = {
+  title: "Wages and conditions of employment",
+  publisher: "Northern Territory Government",
+  url: "https://nt.gov.au/employ/for-employees-in-nt/your-rights,-health-and-safety/wages-and-conditions-of-employment",
+};
+
+const WA_APPRENTICE_ADULT = 828.9;
+/** 2026 State Wage order cl 5(b): award-free apprentices, four-year term, by reference to the Manufacturing, Maintenance and Metal Trades Award. */
+const WA_APPRENTICE_FOUR_YEAR = [464.2, 607.9, 828.9, 972.6] as const;
+/** Tasmanian Industrial Commission state wage cases page: latest Tasmanian minimum wage decision listed (T14984 of 2022). */
+const TAS_LAST_MINIMUM = { weekly: 812.6, decided: "22 December 2022", operative: "1 August 2022" } as const;
+
+export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
+  nsw: {
+    slug: "nsw",
+    code: "NSW",
+    name: "New South Wales",
+    inName: "in New South Wales",
+    uniqueAngle: "NSW state awards rose 4.75% in the 2026 State Wage Case",
+    answerNote: "NSW has no separate minimum wage, but NSW state awards for public sector and council work rose 4.75% in the 2026 State Wage Case.",
+    systemFwo: "State public sector and local government employees aren't covered by the national system and remain under the state system.",
+    systemSummary:
+      "Almost every private-sector employee in NSW is in the national system, so the National Minimum Wage and modern awards apply. NSW state public sector and local government employees are the main group left in the state system.",
+    coverage: {
+      national: ["Private-sector employers and their employees"],
+      state: ["NSW state public sector employees", "NSW local government (council) employees"],
+    },
+    hasStateWageSetting: true,
+    stateWageHeading: "NSW state awards: the 2026 State Wage Case",
+    stateWage: [
+      "NSW has no minimum wage of its own that differs from the national one for private-sector employees. NSW does have its own Industrial Relations Commission, which sets rates in NSW state awards. Those awards cover state public sector and local government work and a handful of industries.",
+      "In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Full Bench of the Industrial Relations Commission of NSW adopted the Fair Work Commission's 4.75% increase. The Commission applied it to the minimum rates in several state awards, including the Kindergartens and Child Care Centres (State) Award, the Health, Fitness and Indoor Sports Centres (State) Award and the Transport Industry (State) Award, from the first full pay period on or after 1 July 2026. Some awards, including the Local Government, Aged, Disability and Home Care (State) Award and the Live Theatre and Concert (State) Award, rise from the first full pay period on or after 1 September 2026.",
+      "If your pay is set by a NSW state award, read the award itself on the Industrial Relations Commission site for the exact classification rate. The 4.75% figure is the size of the increase, not a new rate.",
+    ],
+    youngWorkers: [
+      "NSW sets no minimum age for starting work. NSW Industrial Relations notes that many teenagers take a part-time or casual job while still at school. The limit in NSW is schooling itself: compulsory schooling for children under 17 is set by the Education Act 1990 (NSW), so shifts have to fit around school attendance.",
+      "The Office of the Children's Guardian regulates the working hours of employees under 16 only in still photography, modelling, promotional work, performance art and public speaking, under the Children's Guardian Act 2019. It does not cover an under-16 working in retail or hospitality, whose pay comes from the national junior percentages or their award's junior scale.",
+      "Where a NSW state award applies, its own junior and apprentice provisions govern, not the national table.",
+    ],
+    regulators: [
+      { title: "NSW Industrial Relations (131 628)", publisher: "NSW Government", url: "https://www.nsw.gov.au/departments-and-agencies/premiers-department/nsw-industrial-relations" },
+      { title: "State Wage Case 2026", publisher: "Industrial Relations Commission of NSW", url: "https://irc.nsw.gov.au/content/dcj/ctsd/irc/irc/major-cases-and-decisions/state-wage-case-2026.html" },
+    ],
+    sources: [
+      FWO_SYSTEM,
+      { title: "State Wage Case 2026 [2026] NSWIRComm 16", publisher: "Industrial Relations Commission of NSW", url: "https://www.caselaw.nsw.gov.au/decision/1a032a13e159214c92ded7b4" },
+      NSW_STARTING_WORK,
+    ],
+    faqs: [
+      {
+        q: "Is there a minimum age to start work in NSW?",
+        a: "No. NSW Industrial Relations states there is no minimum legal age for starting work in NSW. Work has to fit around compulsory schooling, which applies to children under 17 under the Education Act 1990 (NSW). The Office of the Children's Guardian regulates the hours of under-16s only in modelling, still photography, promotional work, performance art and public speaking.",
+      },
+      {
+        q: "Did NSW state award wages go up in 2026?",
+        a: "Yes, NSW state award rates rose by 4.75%. In the State Wage Case 2026 ([2026] NSWIRComm 16, 25 August 2026) the Industrial Relations Commission of NSW applied the Fair Work Commission's 4.75% increase to minimum rates in several state awards. Rates in most of those awards rose from the first full pay period on or after 1 July 2026. Some, including the Local Government, Aged, Disability and Home Care (State) Award, rose from the first full pay period on or after 1 September 2026.",
+      },
+      {
+        q: "Are NSW public servants and council workers paid under the national minimum wage?",
+        a: "No. The Fair Work Ombudsman states that NSW state public sector and local government employees are not covered by the national system and remain under the state system. Their pay comes from NSW state awards and agreements set through the Industrial Relations Commission of NSW.",
+      },
+    ],
+  },
+  vic: {
+    slug: "vic",
+    code: "VIC",
+    name: "Victoria",
+    inName: "in Victoria",
+    uniqueAngle: "Victoria is almost entirely in the national system and licenses employers of under-15s",
+    answerNote: "There is no separate Victorian minimum wage: almost every Victorian employee, including most state government staff, is in the national system.",
+    systemFwo: "Most employees in Victoria are covered by the national system. This includes state government employees with some exceptions such as senior public servants.",
+    systemSummary:
+      "Victoria is the clearest case of a single national wage: most Victorian employees, including state government employees apart from exceptions such as senior public servants, are in the national system. There is no Victorian state minimum wage.",
+    coverage: {
+      national: ["Private-sector employers and their employees", "Most Victorian state government employees"],
+      state: ["Some exceptions, such as senior public servants"],
+    },
+    hasStateWageSetting: false,
+    stateWageHeading: "Is there a Victorian minimum wage?",
+    stateWage: [
+      `No. Victoria referred its industrial relations powers to the Commonwealth, so the Fair Work Commission sets the minimum wage and award rates for almost everyone who works in the state. A Melbourne cafe, a Geelong factory and a Victorian state government department all start from the same ${NMW_HOURLY} floor.`,
+      "What Victoria does regulate itself, through the Workforce Inspectorate Victoria (called the Wage Inspectorate Victoria until 12 December 2025), is long service leave, the employment of children under 15 through child employment licences, and owner-driver and forestry contractor laws.",
+    ],
+    youngWorkers: [
+      "Victoria licenses the employment of children under 15. An employer usually needs a child employment licence from the Workforce Inspectorate Victoria before employing anyone under 15, whether the work is paid or voluntary. Licences are free, last up to 2 years and can cover several children, and employing a child without one is a crime.",
+      "A child must be 11 to deliver newspapers and advertising material, and 13 for other work such as retail or hospitality. Children usually work only between 6am and 9pm and never in school hours. A child can work at most 3 hours a day and 12 hours a week during term, or 6 hours a day and 30 hours a week in school holidays, with a 30-minute break after every 3 hours. A supervisor must be 18 or over and hold a Victorian Working with Children Clearance.",
+      "From 15, pay follows the national junior percentages or your award's junior scale. Apprentice wages are set by the award or agreement that covers the trade, not by Victoria.",
+    ],
+    regulators: [
+      { title: "Workforce Inspectorate Victoria (1800 287 287)", publisher: "Victorian Government", url: "https://www.vic.gov.au/workforce-inspectorate-victoria" },
+      { title: "Business Victoria", publisher: "Victorian Government", url: "https://business.vic.gov.au/" },
+    ],
+    sources: [FWO_SYSTEM, VIC_CHILD_LICENCE],
+    faqs: [
+      {
+        q: "At what age can you start work in Victoria?",
+        a: "A child in Victoria can start work at 11 to deliver newspapers and advertising material, and at 13 for other work such as retail or hospitality, according to the Workforce Inspectorate Victoria. An employer usually needs a free child employment licence to employ anyone under 15, paid or voluntary.",
+      },
+      {
+        q: "How many hours can a 14-year-old work in Victoria?",
+        a: "A child in Victoria can work at most 3 hours a day and 12 hours a week during school term, usually between 6am and 9pm and never during school hours. In school holidays the limit is 6 hours a day and 30 hours a week. A 30-minute rest break is due after every 3 hours, with at least 12 hours between shifts.",
+      },
+      {
+        q: "Are Victorian state government employees in the national system?",
+        a: "Mostly, yes. The Fair Work Ombudsman states that most Victorian employees are covered by the national system, including state government employees, with some exceptions such as senior public servants. That sets Victoria apart from NSW, Queensland, South Australia, Western Australia and Tasmania, whose state public servants stay in the state system.",
+      },
+    ],
+  },
+  wa: {
+    slug: "wa",
+    code: "WA",
+    name: "Western Australia",
+    inName: "in Western Australia",
+    uniqueAngle: "WA is the only state with its own State Minimum Wage for private-sector workers",
+    answerNote: `Employees of sole traders, unincorporated partnerships and other non-company employers in the WA state system have their own State Minimum Wage of ${money(WA_STATE_MINIMUM_WAGE.hourly)} an hour (${money(WA_STATE_MINIMUM_WAGE.weekly)} a week).`,
+    systemFwo: "All Western Australian State public sector employers are covered by the state industrial relations system. Sole traders, partnerships, other unincorporated entities and non-trading corporations are also covered by the state system.",
+    systemSummary:
+      "Western Australia is the one state where a private-sector employee's minimum wage can differ, because WA runs two systems side by side and which one covers you depends on your employer's legal structure, not where you live. Unincorporated businesses, household employers, some not-for-profits, every WA local government and most state public sector agencies are in the WA state system. Pty Ltd companies are in the national system.",
+    coverage: {
+      national: [
+        "Pty Ltd businesses that are trading or financial corporations",
+        "Partnerships with a Pty Ltd partner, and trusts with a Pty Ltd trustee",
+        "Not-for-profits with substantial trading or financial activities",
+        "Foreign corporations, and all federal public sector agencies",
+      ],
+      state: [
+        "Sole traders, and unincorporated partnerships",
+        "Unincorporated trusts where no trustee is a Pty Ltd entity",
+        "Household employers who hire someone for domestic work in a private home",
+        "Incorporated associations and not-for-profits that are not trading or financial corporations, such as some sporting clubs and school P&Cs",
+        "All WA local governments (since 1 January 2023)",
+        "Most WA state public sector agencies",
+      ],
+    },
+    hasStateWageSetting: true,
+    stateWageHeading: "WA State Minimum Wage 2026",
+    stateWage: [
+      `The Western Australian Industrial Relations Commission raised the State Minimum Wage by ${(WA_STATE_MINIMUM_WAGE.increase * 100).toFixed(2)}% to $${WA_STATE_MINIMUM_WAGE.weekly.toFixed(2)} a week from ${WA_STATE_MINIMUM_WAGE.operativeFrom} (2026 State Wage Case, [2026] WAIRC 00381). It also increased award rates of pay by 4.75% from that time. The increases apply only to employees who are paid the minimum wage or award rates in the WA state system, which the Commission estimates covers about 27,000 employers and more than 300,000 employees.`,
+      `The State Minimum Wage works out at $${WA_STATE_MINIMUM_WAGE.hourly.toFixed(2)} an hour for adults, which is $${(NMW.hourly - WA_STATE_MINIMUM_WAGE.hourly).toFixed(2)} an hour below the National Minimum Wage of $${NMW.hourly.toFixed(2)}. Which one applies depends on whether the employer is in the state or national system, not on where you live. A WA employee of a company is in the national system and gets at least $${NMW.hourly.toFixed(2)}.`,
+      `The 2026 State Wage order ([2026] WAIRC 00400) fixes the $${WA_STATE_MINIMUM_WAGE.weekly.toFixed(2)} under section 12 of the Minimum Conditions of Employment Act 1993 for employees aged 21 or over who are not apprentices, and sets ${money(WA_APPRENTICE_ADULT)} a week for apprentices aged 21 or over. An apprentice with no award is paid by reference to the Manufacturing, Maintenance and Metal Trades Award: on a four-year term, ${WA_APPRENTICE_FOUR_YEAR.map(money).join(", ").replace(/, ([^,]*)$/, " and $1")} a week from first to fourth year.`,
+      "Every WA local government has been in the state system since 1 January 2023, under a state declaration the federal Minister endorsed. Council pay comes from industrial agreements or the two main local government state awards, the Local Government Officers (Western Australia) Award and the Municipal Employees (Western Australia) Award, and long service leave for most council staff from the Local Government (Long Service Leave) Regulations 2024.",
+      "To check your system, find the employer's legal entity name on your payslip or contract, which can differ from the trading name. Wageline's example: you work at the Perth Café, but Café Pty Ltd employs you, so you are in the national system. Search the name on the ABN Lookup, or ask Wageline (1300 655 266) at the Department of Local Government, Industry Regulation and Safety. A business that changes from a sole trader to a company may move systems.",
+    ],
+    youngWorkers: [
+      "WA's child employment law, the Children and Community Services Act 2004, covers under-15s working for WA businesses in both the state and national systems, including unpaid 'volunteer' work. Children aged 10 to 12 may only deliver newspapers, pamphlets or advertising material, outside school hours, between 6am and 7pm, accompanied by a parent or an adult with a parent's written permission.",
+      "At 13 and 14 a child may also work in a shop, fast food outlet, cafe or restaurant, or collect shopping trolleys, with a parent's written permission, outside school hours and not before 6am or after 10pm. A child of any age may work in a family business or perform as an actor, musician or entertainer if it does not stop them attending school. Fines reach $24,000, or $120,000 for an incorporated employer.",
+      `The State Minimum Wage is the adult rate. In the state system an under-21 covered by a WA award gets the award's junior percentage of the $${WA_STATE_MINIMUM_WAGE.weekly.toFixed(2)} minimum adult award wage (2026 State Wage order). A WA employee of a company is on the national junior percentages of ${NMW_HOURLY} or their award's junior scale.`,
+    ],
+    regulators: [
+      { title: "WA Private Sector Labour Relations (Wageline, 1300 655 266)", publisher: "Government of Western Australia", url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/private-sector-labour-relations" },
+      { title: "Which system of employment law applies", publisher: "Government of Western Australia", url: WA_WHICH_SYSTEM.url },
+      { title: "The 2026 State Wage Case", publisher: "WA Industrial Relations Commission", url: "https://www.wairc.wa.gov.au/state-wage-case/wage-case-5" },
+    ],
+    sources: [
+      FWO_SYSTEM,
+      { title: "The 2026 State Wage Case", publisher: "WA Industrial Relations Commission", url: "https://www.wairc.wa.gov.au/state-wage-case/wage-case-5" },
+      WA_STATE_WAGE_ORDER,
+      { title: "WA award and minimum rates of pay to increase from 1 July 2026", publisher: "Government of Western Australia", url: WA_STATE_MINIMUM_WAGE.url },
+      WA_WHICH_SYSTEM,
+      WA_CHILDREN,
+    ],
+    faqs: [
+      {
+        q: "Am I in the WA state system or the national system?",
+        a: "Your employer's legal structure decides which system you are in. Sole traders, unincorporated partnerships and trusts with no Pty Ltd trustee, household employers, not-for-profits that are not trading or financial corporations, every WA local government and most state public sector agencies are in the WA state system. A Pty Ltd company, or a partnership or trust with a Pty Ltd partner or trustee, is in the national system. Wageline (1300 655 266) can check.",
+      },
+      {
+        q: "What is the minimum wage for an apprentice in the WA state system?",
+        a: `${money(WA_APPRENTICE_ADULT)} a week for apprentices aged 21 or over. Younger apprentices get their WA award's rate or, with no award, the Manufacturing, Maintenance and Metal Trades Award rate: ${money(WA_APPRENTICE_FOUR_YEAR[0])} a week in the first year of a four-year apprenticeship, rising to ${money(WA_APPRENTICE_FOUR_YEAR[3])} in the fourth (2026 State Wage order, [2026] WAIRC 00400).`,
+      },
+      {
+        q: "At what age can a child work in WA?",
+        a: "A child in WA can work from 10 delivering newspapers, pamphlets or advertising material, and from 13 in shops, fast food outlets, cafes and restaurants with a parent's written permission, outside school hours and between 6am and 10pm. A child of any age can work in a family business or perform as an entertainer if it does not stop them attending school.",
+      },
+    ],
+  },

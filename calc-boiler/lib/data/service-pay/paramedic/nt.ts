@@ -48,7 +48,7 @@ export const NT_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "paramedics",
       title: "Intern and Qualified Paramedic (Schedule 2, 1 July 2024 rates)",
       intro:
-        "Intern Paramedics and Qualified Paramedics, who move up by years since qualifying (Para 0-2, 2-3, 3+, 5+). Base salary; a 32.4% roster allowance is paid on top for fixed rosters with regular night shifts.",
+        "This scale covers St John Ambulance NT Intern Paramedics and Qualified Paramedics, who move up by years since qualifying (Para 0-2, 2-3, 3+, 5+). The annual salary column is base pay; a 32.4% roster allowance is paid on top for fixed rosters with regular night shifts.",
       stepHeading: "Classification",
       effectiveFrom: "1 July 2024",
       steps: [
@@ -82,7 +82,7 @@ export const NT_PARAMEDIC_PAY: ServicePayJurisdiction = {
     {
       id: "icp",
       title: "Intensive Care Paramedic (Schedule 2, 1 July 2024 rates)",
-      intro: "Intensive Care Paramedics, stepped by years at ICP level. Base salary; roster allowance extra.",
+      intro: "St John Ambulance NT Intensive Care Paramedics step up this scale by years at ICP level. The annual salary column is base pay; the roster allowance is extra.",
       stepHeading: "Classification",
       effectiveFrom: "1 July 2024",
       steps: [
@@ -118,7 +118,7 @@ export const NT_PARAMEDIC_PAY: ServicePayJurisdiction = {
   ],
 
   notices: [
-    "These are the 1 July 2024 rates - the last increase in the St John Ambulance NT agreement, which reached its nominal expiry on 30 June 2025. No replacement agreement could be found, so the expired agreement continues to apply.",
+    "The 1 July 2024 rates on this page are from the last increase in the St John Ambulance NT agreement, which reached its nominal expiry on 30 June 2025. No replacement agreement could be found, so the expired agreement continues to apply.",
     "St John Ambulance NT is a private not-for-profit employer contracted by the NT Government; its paramedics are paid under a Fair Work Commission enterprise agreement, not the NT Public Sector agreement.",
     "Salary figures quoted for NT paramedics often use the agreement's Total Annually figure, which includes the 32.4% roster allowance. Base salary is lower.",
   ],
@@ -145,7 +145,7 @@ export const NT_PARAMEDIC_PAY: ServicePayJurisdiction = {
   faqs: [
     {
       q: "How much does a paramedic earn in the NT?",
-      a: "Under the St John Ambulance NT agreement's latest rates (1 July 2024), a Qualified Paramedic's base is $3,291.55 to $3,462.61 a fortnight - about $85,815 to $90,275 a year. With the 32.4% roster allowance the agreement's total is $113,308.24 to $119,196.83 a year. Any rise since then could not be verified.",
+      a: "Under the St John Ambulance NT agreement's latest rates (1 July 2024), a Qualified Paramedic's base is $3,291.55 to $3,462.61 a fortnight, about $85,815 to $90,275 a year. With the 32.4% roster allowance the agreement's total is $113,308.24 to $119,196.83 a year. Any rise since then could not be verified.",
     },
     {
       q: "What does a graduate paramedic earn in the NT?",
@@ -153,7 +153,7 @@ export const NT_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does an intensive care paramedic earn in the NT?",
-      a: "At the 1 July 2024 rates, an Intensive Care Paramedic's base is about $96,790 (ICP 0-2) to $122,572 (ICP 5+) a year, or $127,798.42 to $161,840.37 including the roster allowance.",
+      a: "At the 1 July 2024 rates, a St John Ambulance NT Intensive Care Paramedic's base is about $96,790 (ICP 0-2) to $122,572 (ICP 5+) a year, or $127,798.42 to $161,840.37 including the roster allowance.",
     },
   ],
 };

@@ -85,7 +85,7 @@ export const RETAIL_WORKER: Occupation = {
       id: "retail",
       title: "Retail worker pay rates by level, 2026–27",
       intro:
-        "General Retail Industry Award cl 17.1, Table 4, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading (cl 11.1).",
+        "Retail worker minimums come from General Retail Industry Award cl 17.1, Table 4, and apply from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading (cl 11.1).",
       rows: RETAIL_RATES.map((r) => retailRow(r.level, NOTES[r.level])),
     },
   ],
@@ -96,7 +96,7 @@ export const RETAIL_WORKER: Occupation = {
     { when: "Public holiday", permanent: pct(RETAIL_PENALTIES.publicHoliday), casual: pct(RETAIL_PENALTIES.casualPublicHoliday) },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate for ordinary hours (cl 22.1, Table 12). Casual percentages include the 25% casual loading. Shiftworkers have separate rates that are not shown here.",
+    "Retail Award penalty rates are percentages of the minimum hourly rate for ordinary hours (cl 22.1, Table 12). Casual percentages include the 25% casual loading. Shiftworkers have separate rates that are not shown here.",
   overtime: [
     `Full-time and part-time: ${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.weekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.sunday)}; public holiday ${pct(RETAIL_OVERTIME.publicHoliday)} (cl 21.2(c), Table 11).`,
     `Casual: ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.casualSunday)}; public holiday ${pct(RETAIL_OVERTIME.casualPublicHoliday)}; the casual loading is included.`,
@@ -130,7 +130,7 @@ export const RETAIL_WORKER: Occupation = {
     },
     {
       q: "Do supermarket workers get the retail award rate?",
-      a: "The award is the legal minimum. Coles, Woolworths and other large chains pay under enterprise agreements, which must leave employees better off overall than the award. See the employer pay pages for their agreement rates.",
+      a: "The General Retail Industry Award rate is the legal minimum for supermarket workers. Coles, Woolworths and other large chains pay under enterprise agreements, which must leave employees better off overall than the award. See the employer pay pages for their agreement rates.",
     },
     {
       q: "What do retail workers actually earn?",

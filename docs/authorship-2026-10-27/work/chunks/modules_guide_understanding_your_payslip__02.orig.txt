@@ -1,0 +1,43 @@
+          {/* SIDEBAR */}
+          <aside className="lg:w-1/3">
+            <div className="mv-sidebar space-y-6">
+              <Card className="bg-sandstone border-sandstone-dark/20">
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-navy mb-3 block">Related Content</h3>
+                  <div className="space-y-3">
+                    <Link href="/take-home-pay-calculator/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Verify Your Payslip Math</span>
+                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
+                    </Link>
+                    <Link href="/payg-withholding-tables/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Official ATO PAYG Tables</span>
+                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
+                    </Link>
+                    <Link href="/award-rates/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Check Fair Work Awards</span>
+                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <FileText className="h-6 w-6 text-eucalyptus-light" />
+                    <h3 className="text-lg font-bold">Compare Payslips</h3>
+                  </div>
+                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer&apos;s payslip to check you aren&apos;t being underpaid.</p>
+                  <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
+                    Generate Demo Payslip
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </div>
+  );
+}

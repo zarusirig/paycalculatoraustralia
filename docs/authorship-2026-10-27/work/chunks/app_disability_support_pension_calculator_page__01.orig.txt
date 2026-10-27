@@ -1,0 +1,29 @@
+import DisabilitySupportPensionCalculatorPage from "@/modules/calculator/disability-support-pension-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
+import DisabilitySupportPensionCalculatorContent from "@/modules/calculator/disability-support-pension-calculator-content";
+import { DSP_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
+import { JsonLd } from "@/modules/seo/json-ld";
+import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
+import { formatAUD } from "@/lib/constants";
+import { DSP, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test";
+import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+
+const SLUG = "disability-support-pension-calculator";
+const R = DSP.rates21Plus.maxFortnightly;
+// Meta intent pass 23 Oct 2026: "disability pension rates" and "dsp rates 2026" lead GSC.
+const TITLE = "Disability Support Pension Rates 2026: DSP Calculator & Work";
+const DESCRIPTION = `DSP is ${formatAUD(R.single.total, 2)} a fortnight single and ${formatAUD(R.coupleEach.total, 2)} each for couples from ${DSP.ratesFrom}. Work up to ${DSP.maxWorkHoursPerWeek} hours a week: see what your pay does to DSP.`;
+
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
+
+function Page() {
+  return (
+    <>
+      <JsonLd code={w3Schema({ slug: SLUG, name: "Disability Support Pension Calculator", description: DESCRIPTION, faqs: DSP_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
+      <DisabilitySupportPensionCalculatorPage afterCalculator={<WhatsNextInline route="/disability-support-pension-calculator/" />}><DisabilitySupportPensionCalculatorContent /></DisabilitySupportPensionCalculatorPage>
+    </>
+  );
+}
+
+export default withPageEnd(Page, "/disability-support-pension-calculator/");

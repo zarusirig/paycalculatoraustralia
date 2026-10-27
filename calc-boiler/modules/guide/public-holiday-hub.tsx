@@ -62,9 +62,9 @@ export default function PublicHolidayHub() {
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             Work a public holiday and your award pays <strong className="text-navy">{pctLabel(range.permanentMin)} to {pctLabel(range.permanentMax)}</strong> of
-            your base rate for every hour ({pctLabel(range.casualMin)} to {pctLabel(range.casualMax)} for casuals). Stay home on a day you
-            would normally work and you are still paid your base rate. Here is what that comes to for your shift, and which days count in
-            your state.
+            your base rate for every hour ({pctLabel(range.casualMin)} to {pctLabel(range.casualMax)} for casuals). If you are full-time or part-time and
+            stay home on a day you would normally work, you are still paid your base rate. The calculator below works out that pay for
+            your shift, and the state pages linked below list which days count where your job is based.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -88,18 +88,18 @@ export default function PublicHolidayHub() {
             <section id="award-rates">
               <h2 style={HEADING_FONT}>Public holiday penalty rates by award</h2>
               <p>
-                The public holiday rate for hours worked, as a percentage of the award&rsquo;s minimum hourly rate, under the{" "}
+                The table shows the public holiday rate for hours worked, as a percentage of the award&rsquo;s minimum hourly rate, under the{" "}
                 {PUBLIC_HOLIDAY_AWARD_RATES.length} awards this site publishes full rate tables for. Figures are read from each award&rsquo;s
                 penalty table (rates from the first full pay period on or after 1 July 2026). Casual figures include the 25% casual
                 loading.
               </p>
               <AwardPublicHolidayTable />
               <p>
-                Most awards simply add the 25% casual loading to the permanent public holiday rate. Two do not: the Manufacturing and
+                Most awards add the 25% casual loading to the permanent public holiday rate. Two exceptions apply: the Manufacturing and
                 Nurses awards express the casual rate as a percentage of the <em>casual</em> hourly rate, so it compounds, and the Hair and
                 Beauty Award pays casuals the same {pctLabel(getAwardPublicHolidayRate("hair-and-beauty")!.casual)} as everyone else. If
                 you&rsquo;re on an enterprise agreement, its rate replaces the award&rsquo;s. Pick &ldquo;Enterprise agreement&rdquo; in the
-                calculator and enter it.
+                calculator and enter the agreement&rsquo;s public holiday rate.
               </p>
             </section>
 
@@ -181,7 +181,7 @@ export default function PublicHolidayHub() {
               <p>
                 Queensland makes Christmas Eve a public holiday from 6pm to midnight. South Australia and the Northern Territory do the
                 same for Christmas Eve and New Year&rsquo;s Eve from 7pm. Only the hours inside that window are paid at the public
-                holiday rate, so an evening shift can change rate halfway through. Enter just the hours after the start time in the
+                holiday rate, so an evening shift can change rate part-way through. Enter just the hours after the start time in the
                 calculator, and work out the rest at your usual rate.
               </p>
             </section>
@@ -289,7 +289,7 @@ export default function PublicHolidayHub() {
                   Commission&rsquo;s consolidated award texts and apply from the first full pay period on or after 1 July 2026. Where an
                   award prints the casual rate as a percentage of the casual hourly rate, it is converted to a percentage of the base
                   rate so all {PUBLIC_HOLIDAY_AWARD_RATES.length} awards compare on one scale. The rights and pay for not working come from the Fair Work
-                  Ombudsman&rsquo;s public holiday pages and the Fair Work Act 2009 ss 114–116.
+                  Ombudsman&rsquo;s public holiday pages and the Fair Work Act 2009 ss 114 to 116.
                 </p>
                 <p>
                   Every date on the state pages was read from that state or territory government&rsquo;s own public holidays page on{" "}

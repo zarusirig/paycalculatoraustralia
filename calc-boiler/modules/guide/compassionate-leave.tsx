@@ -36,7 +36,7 @@ export default function CompassionateLeavePage() {
 
       <PageHeader title="Compassionate Leave in Australia: 2 Days Bereavement Leave and Pay">
         <p>
-          <strong>Every employee gets {COMPASSIONATE_LEAVE.daysPerOccasion} days of compassionate leave each time a member of their immediate family or household dies or develops a life-threatening illness or injury, and after a stillbirth or miscarriage.</strong> Full-time and part-time employees are paid at their base rate for the hours they would have worked; casuals get the same leave unpaid. It is also called bereavement leave, it doesn&rsquo;t come out of sick or annual leave, and there is no yearly cap.
+          <strong>Every employee gets {COMPASSIONATE_LEAVE.daysPerOccasion} days of compassionate leave each time a member of their immediate family or household dies or develops a life-threatening illness or injury, and after a stillbirth or miscarriage.</strong> Full-time and part-time employees are paid at their base rate for the hours they would have worked; casuals get the same leave unpaid. Compassionate leave is also called bereavement leave. It doesn&rsquo;t come out of sick or annual leave, and there is no yearly cap.
         </p>
       </PageHeader>
 

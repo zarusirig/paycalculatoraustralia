@@ -45,11 +45,11 @@ export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: `What are the tax thresholds for 2026?`,
-    a: `The thresholds are ${thresholds}. They have not moved since 1 July 2024. What changed on 1 July 2026 is the rate on the second band, which fell from ${pct(P[1].rate)} to ${pct(B[1].rate)}. Income up to ${money(TAX_FREE_THRESHOLD)} is tax-free, and with the low income tax offset a resident pays no income tax up to ${money(NIL)}.`,
+    a: `The Australian resident tax thresholds are ${thresholds}. They have not moved since 1 July 2024. What changed on 1 July 2026 is the rate on the second band, which fell from ${pct(P[1].rate)} to ${pct(B[1].rate)}. Income up to ${money(TAX_FREE_THRESHOLD)} is tax-free, and with the low income tax offset a resident pays no income tax up to ${money(NIL)}.`,
   },
   {
     q: `What were the tax brackets for ${PREV}?`,
-    a: `For ${PREV}: nil to ${money(P[0].max)}; ${pct(P[1].rate)} to ${money(P[1].max)}; ${money(P[2].base)} plus ${pct(P[2].rate)} over ${money(P[1].max)}; ${money(P[3].base)} plus ${pct(P[3].rate)} over ${money(P[2].max)}; ${money(P[4].base)} plus ${pct(P[4].rate)} over ${money(P[3].max)}. Use these for the ${PREV} tax return you lodge in 2026.`,
+    a: `The ${PREV} Australian resident tax brackets were: nil to ${money(P[0].max)}; ${pct(P[1].rate)} to ${money(P[1].max)}; ${money(P[2].base)} plus ${pct(P[2].rate)} over ${money(P[1].max)}; ${money(P[3].base)} plus ${pct(P[3].rate)} over ${money(P[2].max)}; ${money(P[4].base)} plus ${pct(P[4].rate)} over ${money(P[3].max)}. Use these for the ${PREV} tax return you lodge in 2026.`,
   },
   {
     q: "How much tax do I pay on $100,000 in Australia?",
@@ -57,7 +57,7 @@ export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What is my marginal tax rate?",
-    a: `Your marginal tax rate is the rate on your last (and next) dollar of taxable income: the rate of the bracket your income finishes in. In ${FY} it is 0%, ${pct(B[1].rate)}, ${pct(B[2].rate)}, ${pct(B[3].rate)} or ${pct(top.rate)}, or 2 points more once you add the Medicare levy. Between ${money(LITO.fullOffsetCeiling)} and ${money(LITO.nilOffsetIncome)} the low income tax offset is being withdrawn, so each extra dollar actually costs more than the bracket rate.`,
+    a: `Your marginal tax rate is the rate on your last (and next) dollar of taxable income: the rate of the bracket your income finishes in. In ${FY} it is 0%, ${pct(B[1].rate)}, ${pct(B[2].rate)}, ${pct(B[3].rate)} or ${pct(top.rate)}, or 2 points more once you add the Medicare levy. Between ${money(LITO.fullOffsetCeiling)} and ${money(LITO.nilOffsetIncome)} the low income tax offset is being withdrawn, so each extra dollar costs more than the bracket rate.`,
   },
   {
     q: "What is the difference between marginal and average tax rate?",
@@ -65,7 +65,7 @@ export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What is the highest tax rate in Australia?",
-    a: `${pct(top.rate)} on taxable income over ${money(top.min - 1)}. With the 2% Medicare levy the top marginal rate is ${pct(top.rate + MEDICARE_LEVY.rate)}. A single person over ${money(MEDICARE_LEVY.surcharge.tier3.min - 1)} without private hospital cover also pays the Medicare levy surcharge at ${formatPercent(MEDICARE_LEVY.surcharge.tier3.rate)} (${FY} tiers).`,
+    a: `The highest Australian resident tax rate is ${pct(top.rate)} on taxable income over ${money(top.min - 1)}. With the 2% Medicare levy the top marginal rate is ${pct(top.rate + MEDICARE_LEVY.rate)}. A single person over ${money(MEDICARE_LEVY.surcharge.tier3.min - 1)} without private hospital cover also pays the Medicare levy surcharge at ${formatPercent(MEDICARE_LEVY.surcharge.tier3.rate)} (${FY} tiers).`,
   },
   {
     q: "Will a pay rise push me into a higher tax bracket and leave me worse off?",

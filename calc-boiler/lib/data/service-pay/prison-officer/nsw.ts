@@ -49,7 +49,7 @@ export const NSW_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
       id: "correctional-officer",
       title: "Correctional officer ranks",
       intro:
-        "Crown Employees (Correctional Officers) Award salaries, from the first full pay period on or after 1 July 2026 (a 3% increase). The incidental allowance in each note is paid on top, per year.",
+        "Corrective Services NSW pays these Crown Employees (Correctional Officers) Award salaries from the first full pay period on or after 1 July 2026 (a 3% increase). The incidental allowance in each note is paid on top of salary each year.",
       stepHeading: "Classification",
       steps: [
         { label: "Probationary Correctional Officer", salary: 77_406, note: "Incidental allowance: not paid in training; $1,272 a year on graduation" },
@@ -79,7 +79,7 @@ export const NSW_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     "A new recruit is a Probationary Correctional Officer, paid $77,406 a year from the first full pay period on or after 1 July 2026. The award table marks the incidental allowance as not applicable while the officer is in training; it is $1,272 a year once the officer graduates.",
   ],
   penalties: [
-    "Shift allowances, other than at weekends or on public holidays: 10% for an early morning shift (starting before 6 am), 15% for an afternoon shift (C or D watch) and 17½% for a night shift (B watch) (clause 11(ii)).",
+    "Other than at weekends or on public holidays, NSW correctional officers get a shift allowance of 10% for an early morning shift (starting before 6 am), 15% for an afternoon shift (C or D watch) and 17½% for a night shift (B watch) (clause 11(ii)).",
     "Continuous shift workers regularly rostered on Sundays and public holidays get half time extra for ordinary time on a Saturday, three quarter time extra on a Sunday, and half time extra when rostered on and working a public holiday, with six weeks' recreation leave a year (clause 16(ii)).",
   ],
   notices: [
@@ -108,11 +108,11 @@ export const NSW_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a First Class Correctional Officer earn in NSW?",
-      a: "$84,799 a year in the first year and $91,742 from the second year, plus an incidental allowance of $3,816 a year, from the first full pay period on or after 1 July 2026.",
+      a: "A First Class Correctional Officer in NSW earns $84,799 a year in the first year and $91,742 from the second year. Both steps also attract an incidental allowance of $3,816 a year, and these figures apply from the first full pay period on or after 1 July 2026.",
     },
     {
       q: "Do NSW correctional officers get shift penalties?",
-      a: "Yes. The award pays 10% for an early morning shift, 15% for an afternoon shift and 17½% for a night shift. Continuous shift workers also get half time extra on Saturdays and three quarter time extra on Sundays.",
+      a: "Yes. The Crown Employees (Correctional Officers) Award pays 10% for an early morning shift, 15% for an afternoon shift and 17½% for a night shift. Continuous shift workers also get half time extra on Saturdays and three quarter time extra on Sundays.",
     },
   ],
 };

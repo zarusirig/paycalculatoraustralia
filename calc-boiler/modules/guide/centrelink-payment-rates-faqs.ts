@@ -22,11 +22,11 @@ const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 export const CENTRELINK_PAYMENT_RATES_FAQS: Faq[] = [
   {
     q: "How much is JobSeeker Payment a fortnight?",
-    a: `From ${JS.ratesFrom}, the maximum JobSeeker Payment is ${f2(JS.maxFortnightly.single)} a fortnight for a single person with no children, ${f2(JS.maxFortnightly.singleWithChildren)} for a single person with a dependent child (and for people 55 or older on the payment for 9 months or more, or with a partial capacity to work), and ${f2(JS.maxFortnightly.partnered)} each for a member of a couple. Energy Supplement is paid on top. The payment reduces once your income goes over $150 a fortnight.`,
+    a: `From ${JS.ratesFrom}, the maximum JobSeeker Payment is ${f2(JS.maxFortnightly.single)} a fortnight for a single person with no children. The maximum is ${f2(JS.maxFortnightly.singleWithChildren)} for a single person with a dependent child, and for people 55 or older who have been on the payment for 9 months or more, or who have a partial capacity to work. The maximum for a member of a couple is ${f2(JS.maxFortnightly.partnered)} each. Energy Supplement is paid on top. The payment reduces once your income goes over $150 a fortnight.`,
   },
   {
     q: "What are the Centrelink payment rates from 20 September 2026?",
-    a: `JobSeeker single ${f2(JS.maxFortnightly.single)}, Age Pension single ${f2(AP.maxFortnightly.single.total)} and couple ${f2(AP.maxFortnightly.coupleEach.total)} each (including the Pension Supplement and Energy Supplement), Disability Support Pension and Carer Payment at the same pension rate for people 21 and over, Parenting Payment Single ${f2(PARENTING_PAYMENT.single.maxFortnightly)} including the Pension Supplement, and Parenting Payment Partnered ${f2(PARENTING_PAYMENT.partnered.maxFortnightly)}. Maximum Rent Assistance for a single person with no children is ${f2(RENT_ASSISTANCE.rows.single.max)}. These are the fortnightly maximums before the income and assets tests.`,
+    a: `JobSeeker Payment is up to ${f2(JS.maxFortnightly.single)} a fortnight for a single person with no children. The Age Pension is up to ${f2(AP.maxFortnightly.single.total)} single and ${f2(AP.maxFortnightly.coupleEach.total)} each for a couple, including the Pension Supplement and Energy Supplement. Disability Support Pension and Carer Payment are paid at the same pension rate for people 21 and over. Parenting Payment Single is ${f2(PARENTING_PAYMENT.single.maxFortnightly)} including the Pension Supplement, and Parenting Payment Partnered is ${f2(PARENTING_PAYMENT.partnered.maxFortnightly)}. Maximum Rent Assistance for a single person with no children is ${f2(RENT_ASSISTANCE.rows.single.max)}. These are the fortnightly maximums before the income and assets tests.`,
   },
   {
     q: "How much is the Age Pension a fortnight?",
@@ -38,7 +38,7 @@ export const CENTRELINK_PAYMENT_RATES_FAQS: Faq[] = [
   },
   {
     q: "Did Youth Allowance and Austudy go up on 20 September 2026?",
-    a: `No. Student payments are indexed on 1 January, so the rates from ${YOUTH_ALLOWANCE_STUDENT.ratesFrom} still apply: Austudy is ${f2(AUSTUDY.maxFortnightly.singleNoChildren)} a fortnight for a single student with no children, and Youth Allowance ranges from ${f2(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.under18AtHome)} (under 18, living at home) to ${f2(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.awayFromHome)} (living away from home). The only Youth Allowance rate that moved in September is the single principal carer rate.`,
+    a: `No. Youth Allowance for students and Austudy are indexed on 1 January, so the rates from ${YOUTH_ALLOWANCE_STUDENT.ratesFrom} still apply: Austudy is ${f2(AUSTUDY.maxFortnightly.singleNoChildren)} a fortnight for a single student with no children, and Youth Allowance ranges from ${f2(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.under18AtHome)} (under 18, living at home) to ${f2(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.awayFromHome)} (living away from home). The only Youth Allowance rate that moved in September is the single principal carer rate.`,
   },
   {
     q: "How much is Family Tax Benefit in 2026–27?",

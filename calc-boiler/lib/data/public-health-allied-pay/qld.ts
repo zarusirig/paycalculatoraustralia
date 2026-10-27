@@ -106,7 +106,7 @@ export const QLD_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       ],
       entry: "HP3.0",
       entryRule:
-        "Clause 12.6(b): a job that needs a three-year degree starts on HP3.0; a job that needs a four-year degree, or a two-year master's for registration or entry to the profession, starts on HP3.1. Pay rises one pay point for each 12 months within a level. Moving to HP4 and above is by merit selection for an advertised job.",
+        "Clause 12.6(b) sets the starting pay point by the qualification the job needs. A health practitioner whose job needs a three-year degree starts on HP3.0. One whose job needs a four-year degree, or a two-year master's for registration or entry to the profession, starts on HP3.1. Pay rises one pay point for each 12 months within a level. Moving to HP4 and above is by merit selection for an advertised job.",
       top: "HP8.5",
       topNote: "HP8 jobs are filled by merit selection and the employer sets the pay point (clause 12.6(d))",
       notes: ["Annual figures are the award's reference salary: the fortnightly rate x 26.089, as printed."],

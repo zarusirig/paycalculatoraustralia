@@ -87,7 +87,7 @@ export const VETERINARIAN: Occupation = {
       id: "veterinary-surgeons",
       title: "Vet pay rates by level, 2026–27",
       intro:
-        "Annual salaries from clause 15.3. Weekly is annual ÷ 52 rounded to the nearest 10 cents, the award's own method; hourly and casual rates are exactly as the award and Schedule B.2.5 publish them.",
+        "Annual salaries for veterinary surgeons come from clause 15.3. Weekly is annual ÷ 52 rounded to the nearest 10 cents, the award's own method; hourly and casual rates are exactly as the award and Schedule B.2.5 publish them.",
       rows: [
         vet("Level 1A", 67_582, 34.2, 42.75, "Graduate veterinary surgeon"),
         vet("Level 1B", 71_300, 36.08, 45.1, "Within 6 months of starting"),
@@ -101,10 +101,10 @@ export const VETERINARIAN: Occupation = {
     { when: "Public holiday", permanent: "200%", casual: "225%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 27.3, Schedule B.1.7 and B.2.5). The award's weekend and evening penalty rates (cl 21) apply to employees other than veterinary surgeons, so vets have no Saturday or Sunday penalty under the award.",
+    "Public holiday rates for vets are percentages of the minimum hourly rate (cl 27.3, Schedule B.1.7 and B.2.5). The award's weekend and evening penalty rates (cl 21) apply to employees other than veterinary surgeons, so vets have no Saturday or Sunday penalty under the award.",
   overtime: [
     "Time worked beyond 38 hours a week, other than on call, is paid at the ordinary time rate, or taken as time off hour for hour if you agree (cl 20.2(a)). There is no time and a half.",
-    "An agreed allowance can replace payment for extra hours, but must not be less than what cl 20.2(a) would pay, and the agreement must be in writing (cl 20.2(b)–(c)).",
+    "An agreed allowance can replace payment for extra hours, but must not be less than what cl 20.2(a) would pay, and the agreement must be in writing (cl 20.2(b) and (c)).",
     "Full-time and part-time vets should get at least 3 full days off per fortnight; days off not given accumulate and must be paid out at the ordinary rate if not used within 6 weeks (cl 13.3(c)).",
   ],
   allowances: [
@@ -126,7 +126,7 @@ export const VETERINARIAN: Occupation = {
     },
     {
       q: "How much does an experienced vet earn under the award?",
-      a: "Level 2 is $77,032 a year, Level 3 (experienced veterinary surgeon) $84,628 and Level 4 (senior veterinary surgeon) $95,593. These are minimums; most vets are paid more.",
+      a: "An experienced veterinary surgeon at Level 3 earns at least $84,628 a year under the award, and a senior veterinary surgeon at Level 4 at least $95,593. A vet at Level 2 works without detailed supervision and earns at least $77,032. These are minimums; most vets are paid more.",
     },
     {
       q: "Do vets get paid overtime?",

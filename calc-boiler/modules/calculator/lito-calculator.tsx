@@ -35,7 +35,7 @@ export default function LitoCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>LITO Calculator {FY}</h2>
         <p className="text-sm text-warmgray mb-5">
-          Enter your taxable income (income minus deductions) for the year. Australian resident, {FY} rates.
+          Enter your taxable income (income minus deductions) for the year to see your low income tax offset as an Australian resident at {FY} rates.
         </p>
         <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="lito-income" className="block text-sm font-medium text-navy mb-1">Taxable income ($ a year)</label>
@@ -77,7 +77,7 @@ export default function LitoCalculator() {
             </p>
           )}
           <p className="mt-3 text-xs text-warmgray-light">
-            Income tax only; the 2% Medicare levy is separate and LITO does not reduce it. You don&rsquo;t claim LITO: the ATO applies it when you lodge your return.
+            LITO reduces income tax only. The 2% Medicare levy is separate and LITO does not reduce it. You don&rsquo;t claim LITO: the ATO applies it when you lodge your return.
           </p>
         </div>
       </CardContent>

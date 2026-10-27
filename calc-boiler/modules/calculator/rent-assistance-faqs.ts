@@ -15,7 +15,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "How is Rent Assistance calculated?",
-    a: `You get 75 cents for every dollar of fortnightly rent above a threshold, up to a maximum. For a single person with no children the threshold is ${formatAUD(R.single.threshold, 2)}, so rent of ${formatAUD(400)} a fortnight gives ${formatAUD(rentAssistanceFortnightly(400, "single"), 2)}; you reach the ${formatAUD(R.single.max, 2)} maximum at ${formatAUD(R.single.publishedMaxRent, 2)} of rent.`,
+    a: `You get 75 cents for every dollar of fortnightly rent above a threshold, up to a maximum. For a single person with no children the threshold is ${formatAUD(R.single.threshold, 2)}, so rent of ${formatAUD(400)} a fortnight gives ${formatAUD(rentAssistanceFortnightly(400, "single"), 2)}. You reach the ${formatAUD(R.single.max, 2)} maximum at ${formatAUD(R.single.publishedMaxRent, 2)} of rent.`,
   },
   {
     q: "What is the minimum rent for Rent Assistance?",
@@ -23,7 +23,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "Do I need to claim Rent Assistance separately?",
-    a: "No. Services Australia checks whether you can get Rent Assistance when you claim an eligible payment (such as JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension, Carer Payment, Disability Support Pension, or Family Tax Benefit Part A above the base rate) or update your address and accommodation details, and pays it with your regular payment.",
+    a: "No. Services Australia checks whether you can get Rent Assistance when you claim an eligible payment or update your address and accommodation details, and pays it with your regular payment. Eligible payments include JobSeeker, Youth Allowance, Austudy, Parenting Payment, the Age Pension, Carer Payment, Disability Support Pension, and Family Tax Benefit Part A above the base rate.",
   },
   {
     q: "What is the single sharer rate of Rent Assistance?",
@@ -31,14 +31,14 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "Does working more reduce Rent Assistance?",
-    a: "It can. Rent Assistance is part of the payment it's paid with, so the income test that reduces your JobSeeker, Youth Allowance or Parenting Payment can reduce it too, though getting Rent Assistance also lifts the income at which that payment cuts out. For families, Rent Assistance is paid with FTB Part A only while you get more than the base rate, so a rise in family income can end it.",
+    a: "It can. Rent Assistance is part of the payment it's paid with, so the income test that reduces your JobSeeker, Youth Allowance or Parenting Payment can reduce it too. Getting Rent Assistance also lifts the income at which that payment cuts out. For families, Rent Assistance is paid with FTB Part A only while you get more than the base rate, so a rise in family income can end it.",
   },
   {
     q: "When do Rent Assistance rates change?",
-    a: `On ${RENT_ASSISTANCE.indexedOn} each year, in line with the Consumer Price Index. The figures here apply from ${RENT_ASSISTANCE.ratesFrom}; the next change is on 20 March 2027.`,
+    a: `Rent Assistance rates change on ${RENT_ASSISTANCE.indexedOn} each year, in line with the Consumer Price Index. The figures here apply from ${RENT_ASSISTANCE.ratesFrom}; the next change is on 20 March 2027.`,
   },
   {
     q: "What if I pay board and lodging?",
-    a: "Services Australia counts only the lodging part as rent. If you can't say what you pay for lodging, they use two-thirds of the total board and lodging amount.",
+    a: "Services Australia counts only the lodging part as rent. If you can't say what you pay for lodging, Services Australia uses two-thirds of the total board and lodging amount.",
   },
 ];

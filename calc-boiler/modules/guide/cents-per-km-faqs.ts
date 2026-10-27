@@ -11,11 +11,11 @@ const MAX = formatAUD(CURRENT_CPK_RATE * CPK_KM_CAP);
 export const CENTS_PER_KM_FAQS: Faq[] = [
   {
     q: `What is the ATO cents per km rate for ${CURRENT_CPK_YEAR}?`,
-    a: `${c(CURRENT_CPK_RATE)} per kilometre from 1 July 2026, up from ${c(PREVIOUS_CPK_RATE)} in 2024-25 and 2025-26. You can claim up to ${CPK_KM_CAP.toLocaleString("en-AU")} work-related kilometres per car, a maximum deduction of ${MAX}.`,
+    a: `The ATO cents per km rate is ${c(CURRENT_CPK_RATE)} per kilometre from 1 July 2026, up from ${c(PREVIOUS_CPK_RATE)} in 2024-25 and 2025-26. You can claim up to ${CPK_KM_CAP.toLocaleString("en-AU")} work-related kilometres per car, a maximum deduction of ${MAX}.`,
   },
   {
     q: "What rate do I use for my 2025-26 tax return?",
-    a: `${c(PREVIOUS_CPK_RATE)} per kilometre. The ${c(CURRENT_CPK_RATE)} rate applies to kilometres travelled in the 2026-27 income year, which you claim in the return you lodge after 30 June 2027.`,
+    a: `The rate for that return is ${c(PREVIOUS_CPK_RATE)} per kilometre. The ${c(CURRENT_CPK_RATE)} rate applies to kilometres travelled in the 2026-27 income year, which you claim in the return you lodge after 30 June 2027.`,
   },
   {
     q: "Is a car allowance taxed?",

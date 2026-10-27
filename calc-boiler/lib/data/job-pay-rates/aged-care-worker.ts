@@ -99,14 +99,14 @@ export const AGED_CARE_WORKER: Occupation = {
       id: "direct-care",
       title: "Aged care worker pay rates: direct care stream, 2026–27",
       intro:
-        "Clause 14.3 of the Aged Care Award, from the first full pay period on or after 1 July 2026. Hourly is the weekly rate divided by 38; casual adds the 25% loading (cl 10.4(b)), matching the Fair Work Ombudsman pay guide.",
+        "Clause 14.3 of the Aged Care Award sets these direct care rates from the first full pay period on or after 1 July 2026. Hourly is the weekly rate divided by 38; casual adds the 25% loading (cl 10.4(b)), matching the Fair Work Ombudsman pay guide.",
       rows: AGED_CARE_DIRECT_CARE_ROWS,
     },
     {
       id: "general",
       title: "Aged care general stream: cleaning, laundry, kitchen and admin",
       intro:
-        "Clause 14.1. The single most senior food services employee at a facility is paid a higher rate at levels 4 to 7 (cl 14.2), not shown here.",
+        "Clause 14.1 of the Aged Care Award sets the general stream rates. The single most senior food services employee at a facility is paid a higher rate at levels 4 to 7 (cl 14.2), not shown here.",
       rows: GENERAL_ROWS,
     },
   ],
@@ -120,7 +120,7 @@ export const AGED_CARE_WORKER: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate. Weekend rates come from cl 23.1 (permanent) and cl 23.2 (casual), and replace both the shift loadings and, for casuals, the 25% loading rather than stacking on them. Shift loadings are cl 26.1; the public holiday figures are the Fair Work Ombudsman pay guide's. Part-time and casual staff get shift loadings only when the shift starts before 6 am or finishes after 6 pm (cl 26.1).",
+    "Aged Care Award penalty rates are percentages of the minimum hourly rate. Weekend rates come from cl 23.1 (permanent) and cl 23.2 (casual), and replace both the shift loadings and, for casuals, the 25% loading rather than stacking on them. Shift loadings are cl 26.1; the public holiday figures are the Fair Work Ombudsman pay guide's. Part-time and casual staff get shift loadings only when the shift starts before 6 am or finishes after 6 pm (cl 26.1).",
   overtime: [
     "Full-time: 150% for the first 2 hours Monday to Friday, then 200%; Saturday and Sunday 200%; public holiday 250% (cl 25.1(a)).",
     "Part-time: the same rates for hours over 38 a week (76 a fortnight), and for hours over 10 in a day (cl 25.1(b)).",

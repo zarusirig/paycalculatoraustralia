@@ -72,7 +72,7 @@ export const WOOLWORTHS_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "Under cl 4.4 the junior percentages apply only to Store Team Member Level 1 and Clerical Assistant Level 1. At Level 2 and above you are paid the adult rate at any age, and from 20 you are paid the full adult rate, a year earlier than the national minimum wage.",
+    "Under cl 4.4 the junior percentages apply only to Store Team Member Level 1 and Clerical Assistant Level 1. At Level 2 and above you are paid the adult rate at any age. On those junior grades, from 20 you are paid the full adult rate, a year earlier than the national minimum wage.",
   penalties: [
     { when: "Monday to Friday, 7am to 6pm", permanent: "Base rate", casual: "Base + 25%" },
     { when: "Monday to Friday, 6pm to 11pm", permanent: "Base + 25%", casual: "Base + 50%" },
@@ -95,7 +95,7 @@ export const WOOLWORTHS_PAY: EmployerPay = {
   ],
   notices: [
     "The agreement prints its 2024 rates and then lifts them each July by the percentage the Annual Wage Review gives the Retail Award (cl 4.3): 3.5% in 2025 and 4.75% in 2026. The 2026 figures on this page are that formula applied to the agreement's own table. Woolworths has not published a 2026 table, so your payslip may differ by a cent or two.",
-    "Junior rates under the Retail Award rise from the first full pay period on or after 1 December 2026 for 18- to 20-year-olds with more than 6 months' service ([2026] FWCFB 222). An agreement can never pay a base rate below the award, so if the award rate for your age overtakes the Woolworths junior rate, you must be paid at least the award rate.",
+    "Junior rates under the Retail Award rise from the first full pay period on or after 1 December 2026 for 18- to 20-year-olds with more than 6 months' service ([2026] FWCFB 222). An agreement can never pay a base rate below the award. If the Retail Award rate for your age overtakes the Woolworths junior rate, you must be paid at least the award rate.",
   ],
   unverified: [
     "Distribution centre rates: distribution centres are outside this agreement and we have not identified which agreement covers them.",
@@ -117,23 +117,23 @@ export const WOOLWORTHS_PAY: EmployerPay = {
     },
     {
       q: "How much does Woolworths pay a 15 or 16 year old?",
-      a: "A Store Team Member Level 1 aged 16 or under is paid 50% of the adult rate: about $14.13 an hour, or $17.66 as a casual. At 17 it is 60% (about $16.96), at 18 70%, at 19 80%, and from 20 the full adult rate.",
+      a: "A Woolworths Store Team Member Level 1 aged 16 or under is paid 50% of the adult rate: about $14.13 an hour, or $17.66 as a casual. At 17 it is 60% (about $16.96), at 18 it is 70%, at 19 it is 80%, and from 20 you get the full adult rate.",
     },
     {
       q: "What are Woolworths Sunday penalty rates?",
-      a: "Between 9am and 11pm on a Sunday, permanent staff are paid base + 50% and casuals base + 75%. For an adult Level 1 that is about $42.39 and $49.46 an hour. Sunday hours before 9am or after 11pm attract base + 100% (casual + 125%).",
+      a: "Woolworths permanent staff are paid base + 50% and casuals base + 75% between 9am and 11pm on a Sunday. For an adult Level 1 that is about $42.39 and $49.46 an hour. Sunday hours before 9am or after 11pm attract base + 100% (casual + 125%).",
     },
     {
       q: "What is the Woolworths EBA?",
-      a: "The Woolworths Australian Food Group Agreement 2024 (AE525523), approved by the Fair Work Commission on 22 July 2024. It covers supermarket, Metro, eStore and fulfilment centre staff nationally and nominally expires on 17 April 2028.",
+      a: "The Woolworths EBA is the Woolworths Australian Food Group Agreement 2024 (AE525523), approved by the Fair Work Commission on 22 July 2024. It covers supermarket, Metro, eStore and fulfilment centre staff nationally and nominally expires on 17 April 2028.",
     },
     {
       q: "Is Woolworths paid above the award?",
-      a: "Yes, by a small margin. Level 1 is $28.26 an hour in 2026 against $27.81 under the General Retail Industry Award, about 1.6% more, and because both rise by the same Annual Wage Review percentage the gap stays about the same. When it approved the agreement the Fair Work Commission described the rates as only marginally above the award, and said what matters is that a margin exists.",
+      a: "Yes, by a small margin. Level 1 is $28.26 an hour in 2026 against $27.81 under the General Retail Industry Award, about 1.6% more. Both rise by the same Annual Wage Review percentage, so the gap stays about the same. When it approved the agreement the Fair Work Commission described the rates as only marginally above the award, and said what matters is that a margin exists.",
     },
     {
       q: "When is the next Woolworths pay rise?",
-      a: "From the first full pay period on or after 1 July 2027. Base rates rise by the percentage the Fair Work Commission's 2027 Annual Wage Review gives the Retail Award, usually decided in June. It is the last rise written into the agreement, which nominally expires on 17 April 2028.",
+      a: "The next Woolworths pay rise is from the first full pay period on or after 1 July 2027. Base rates rise by the percentage the Fair Work Commission's 2027 Annual Wage Review gives the Retail Award, usually decided in June. It is the last rise written into the agreement, which nominally expires on 17 April 2028.",
     },
   ],
   // 22 Oct 2026: read from the approval decision [2024] FWCFB 314 (FWC PDF).
@@ -141,7 +141,7 @@ export const WOOLWORTHS_PAY: EmployerPay = {
     underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
     commencedOn: "21 October 2024",
     status: "in-term",
-    statusNote: "Inside its nominal term, which runs to 17 April 2028. One scheduled rise remains, in July 2027.",
+    statusNote: "The Woolworths agreement is inside its nominal term, which runs to 17 April 2028. One scheduled rise remains, in July 2027.",
     payRises: [
       { date: "First full pay period on or after 1 July 2025", amount: "3.5%, the 2025 Annual Wage Review percentage for the Retail Award", source: "Agreement cl 4.3; [2025] FWCFB 3500", paid: true },
       { date: "First full pay period on or after 1 July 2026", amount: "4.75%, the 2026 Annual Wage Review percentage (Level 1 $28.26)", source: "Agreement cl 4.3; [2026] FWCFB 3500", paid: true },

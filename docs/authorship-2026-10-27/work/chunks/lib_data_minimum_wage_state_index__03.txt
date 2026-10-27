@@ -1,0 +1,192 @@
+  nt: {
+    slug: "nt",
+    code: "NT",
+    name: "Northern Territory",
+    inName: "in the Northern Territory",
+    uniqueAngle: "The NT is wholly in the national system, with the highest payroll tax threshold",
+    answerNote: "There is no Northern Territory minimum wage: generally every NT employee and employer is in the national system.",
+    systemFwo: "Generally, all employees and employers in the Australian Capital Territory and Northern Territory are covered by the national system.",
+    systemSummary:
+      "The Northern Territory has no territory minimum wage, because generally all employees and employers in the NT are in the national system. The NT's own rules matter for payroll tax, long service leave and a public holiday list with part-day and regional days.",
+    coverage: {
+      national: ["Generally all employees and employers in the NT"],
+      state: [],
+    },
+    hasStateWageSetting: false,
+    stateWageHeading: "Is there a Northern Territory minimum wage?",
+    stateWage: [
+      `The Fair Work Ombudsman states that generally all employees and employers in the Northern Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern award rates are the wage floors in the NT.`,
+      "The NT Government's wages and conditions page agrees: private-sector minimum pay and conditions in the NT are set under Commonwealth law. It sends private-sector workers to the Fair Work Ombudsman for pay, leave, awards and agreements, and NT public servants to the Office of the Commissioner for Public Employment.",
+      "The Northern Territory sets its own rules around the minimum wage instead. NT long service leave accrues at a different rate from most states, and the NT public holiday list has part-day holidays and regional show days. The NT payroll tax threshold is the highest of any state or territory.",
+    ],
+    youngWorkers: [
+      "Under-21 and apprentice pay in the NT follows the national junior percentages or the scale in the modern award for the job.",
+    ],
+    regulators: [
+      { title: "Wages and conditions of employment", publisher: "Northern Territory Government", url: NT_WAGES.url },
+      { title: "Office of the Commissioner for Public Employment", publisher: "Northern Territory Government", url: "http://www.ocpe.nt.gov.au/" },
+    ],
+    sources: [FWO_SYSTEM, NT_WAGES],
+    faqs: [
+      {
+        q: "Where do NT public servants check their pay and conditions?",
+        a: "NT public servants check their pay and conditions with the Office of the Commissioner for Public Employment, which the NT Government's wages and conditions page directs them to. Private-sector workers in the NT are under Commonwealth law and go to the Fair Work Ombudsman for pay, leave and award questions.",
+      },
+      {
+        q: "Does the Northern Territory have its own minimum wage?",
+        a: `No. The Fair Work Ombudsman states that generally all employees and employers in the Northern Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern awards set the floor. The Territory's own rules cover long service leave, public holidays and payroll tax.`,
+      },
+    ],
+  },
+};
+
+export function isMwStateSlug(v: string): v is MwStateSlug {
+  return (MW_STATE_SLUGS as readonly string[]).includes(v);
+}
+
+export function getMwState(slug: string): MwStateInfo | undefined {
+  return isMwStateSlug(slug) ? MW_STATES[slug] : undefined;
+}
+
+// -----------------------------------------------------------------------------
+// Public holidays, payroll tax and long service leave, read from the datasets
+// -----------------------------------------------------------------------------
+
+export function publicHolidayData(slug: MwStateSlug): StatePublicHolidays {
+  const s = STATE_PUBLIC_HOLIDAYS.find((x) => x.slug === slug);
+  if (!s) throw new Error(`minimum-wage-state: no public holiday data for ${slug}`);
+  return s;
+}
+
+/** Whole-day public holidays that fall in the 2026-27 minimum wage year (1 Jul 2026 to 30 Jun 2027). */
+export function holidaysInMinimumWageYear(slug: MwStateSlug): PublicHolidayDate[] {
+  const s = publicHolidayData(slug);
+  const days: PublicHolidayDate[] = [];
+  for (const y of [2026, 2027] as const) {
+    const year = yearOf(s, y);
+    if (!year) continue;
+    for (const h of statewideDays(year)) {
+      if (h.date >= MW_FY_START && h.date <= MW_FY_END) days.push(h);
+    }
+  }
+  return days.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+const baseName = (name: string) => name.replace(/\s*\(observed\)$/, "");
+
+/**
+ * The whole-day holidays in the 2026-27 wage year that are NOT on every state's
+ * list (Labour Day, Canberra Day, Easter Saturday, an extra Anzac Monday...).
+ * A day counts as shared when every other state has a whole-day holiday on the
+ * same date or under the same name ("Boxing Day (observed)" = "Boxing Day").
+ * Read from the verified public holiday data, so the list is the state's own.
+ */
+export function stateOnlyHolidays(slug: MwStateSlug): PublicHolidayDate[] {
+  const others = MW_STATE_SLUGS.filter((x) => x !== slug).map((x) => {
+    const days = holidaysInMinimumWageYear(x);
+    return { dates: new Set(days.map((h) => h.date)), names: new Set(days.map((h) => baseName(h.name))) };
+  });
+  return holidaysInMinimumWageYear(slug).filter((h) => !others.every((o) => o.dates.has(h.date) || o.names.has(baseName(h.name))));
+}
+
+export function payrollData(slug: MwStateSlug) {
+  return PAYROLL_TAX_STATES[slug];
+}
+
+export function lslData(slug: MwStateSlug) {
+  return LSL_JURISDICTIONS[slug];
+}
+
+/**
+ * Whole full-time adult minimum-wage employees whose WAGES ALONE would reach the
+ * state's headline payroll tax threshold. Our arithmetic, labelled as such on
+ * the page: it ignores super (which also counts), interstate apportionment,
+ * grouping and the phase-outs, so the real figure is lower.
+ */
+export function minimumWageHeadcountAtThreshold(slug: MwStateSlug): number {
+  return Math.ceil(PAYROLL_TAX_STATES[slug].annualThreshold / NMW.annual);
+}
+
+/** Employer super on a full-time adult minimum-wage year (12% SG). */
+export function employerSuperRate(): number {
+  return SUPER_GUARANTEE.rate;
+}
+
+// -----------------------------------------------------------------------------
+// Copy that feeds the page, metadata and FAQPage together
+// -----------------------------------------------------------------------------
+
+/**
+ * Meta pass (23 Oct 2026): searchers type the capital ("minimum wage perth",
+ * "adelaide minimum wage", "melbourne minimum wage 2026", "minimum wage darwin").
+ */
+const MW_CAPITAL: Readonly<Record<MwStateSlug, string>> = {
+  nsw: "Sydney",
+  vic: "Melbourne",
+  wa: "Perth",
+  sa: "Adelaide",
+  tas: "Hobart",
+  qld: "Brisbane",
+  act: "Canberra",
+  nt: "Darwin",
+};
+
+export function mwStateTitle(s: MwStateInfo): string {
+  return fitTitle(
+    `Minimum Wage ${MW_CAPITAL[s.slug]} & ${s.code} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
+    `Minimum Wage ${MW_CAPITAL[s.slug]} & ${s.code} 2026: ${money(NMW.hourly)}/hr and Take-Home`,
+    `Minimum Wage ${s.name} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
+    `Minimum Wage in ${s.code} 2026: ${money(NMW.hourly)}/hr, Take-Home & State Rules`,
+    `${s.code} Minimum Wage 2026: ${money(NMW.hourly)}/hr, Take-Home & Rules`,
+  );
+}
+
+export function mwStateH1(s: MwStateInfo): string {
+  return `Minimum Wage in ${s.name} 2026–27`;
+}
+
+export function mwStateDescription(s: MwStateInfo): string {
+  const t = fullTimeAdultTakeHome(s.slug);
+  const stateBit =
+    s.slug === "wa"
+      ? `WA state-system minimum ${money(WA_STATE_MINIMUM_WAGE.hourly)}/hr. `
+      : s.slug === "qld"
+        ? `Queensland minimum ${wholeMoney(QLD_STATE_WAGE_CASE_2026.qmwWeekly)}/wk from 1 Sep 2026. `
+        : s.slug === "nsw"
+          ? "NSW state awards +4.75%. "
+          : "";
+  // Meta pass (23 Oct 2026): the capital first, as searchers type it.
+  const where = `in ${MW_CAPITAL[s.slug]} and ${s.inName.replace(/^in /, "")}`;
+  return fitDescription(
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, ${money(NMW.weekly)}/wk, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}Who is in the state system, child work rules and a calculator.`,
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State system, child work rules, calculator.`,
+    `Minimum wage ${where}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State rules and a calculator.`,
+    `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, ${money(NMW.weekly)}/wk, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}Who is in the state system, child work rules and a calculator.`,
+    `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. ${stateBit}State system, child work rules, calculator.`,
+    `Minimum wage ${s.inName}: ${money(NMW.hourly)}/hr, about ${wholeMoney(t.weeklyNet)}/wk after tax. State rules and a take-home calculator.`,
+  );
+}
+
+/** "Labour Day (Monday 5 October 2026), Easter Saturday (...) and ..." for the holidays paragraph. */
+export function stateOnlyHolidayList(slug: MwStateSlug): string {
+  const parts = stateOnlyHolidays(slug).map((h) => `${h.name.replace(/^The /, "the ")} on ${formatHolidayDate(h.date)}`);
+  if (parts.length <= 1) return parts.join("");
+  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+
+/**
+ * The FAQ array a state page renders AND emits as FAQPage JSON-LD. The one
+ * shared question carries the state's own answer note; the rest are the
+ * state's own questions.
+ */
+export function mwStateFaqs(s: MwStateInfo): MwFaq[] {
+  return [
+    {
+      q: `What is the minimum wage ${s.inName}?`,
+      a: `${money(NMW.hourly)} an hour, or ${money(NMW.weekly)} for a ${EMPLOYMENT.standardWeeklyHours}-hour week, from the first full pay period on or after 1 July 2026. ${s.answerNote}`,
+    },
+    ...s.faqs,
+  ];
+}
+
+export { NMW_SOURCE };

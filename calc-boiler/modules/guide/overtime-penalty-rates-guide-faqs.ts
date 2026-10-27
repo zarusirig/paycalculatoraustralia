@@ -31,7 +31,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I get super on overtime pay?",
-    a: `Generally no. Overtime is not "Ordinary Time Earnings" (OTE) and does not attract the ${pct(SUPER_GUARANTEE.rate)} superannuation guarantee. Penalty-loaded ordinary hours, unlike overtime, do count as ordinary time earnings and do attract super. Some enterprise agreements specifically include overtime in the super calculation base. Check your agreement or ask your employer's payroll department.`,
+    a: `No. The ${pct(SUPER_GUARANTEE.rate)} superannuation guarantee does not apply to overtime, because overtime is not "Ordinary Time Earnings" (OTE). Penalty-loaded ordinary hours, unlike overtime, do count as ordinary time earnings and do attract super. Some enterprise agreements specifically include overtime in the super calculation base. Check your agreement or ask your employer's payroll department.`,
   },
   {
     q: "How do I find my exact penalty rates?",
@@ -44,15 +44,15 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How do hospitality evening and night rates work?",
-    a: `They are flat cash amounts per hour, not multipliers. The Hospitality Industry (General) Award adds ${formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour for evening work and ${formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour at night on top of the ordinary rate. Guides that print a 1.15x multiplier for hospitality late-night work are wrong. The retail award does use a percentage for evening work after 6pm.`,
+    a: `Hospitality evening and night penalties are flat cash amounts per hour, not multipliers. The Hospitality Industry (General) Award adds ${formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour for evening work and ${formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour at night on top of the ordinary rate. Guides that print a 1.15x multiplier for hospitality late-night work are wrong. The retail award does use a percentage for evening work after 6pm.`,
   },
   {
     q: "Can penalty rates stack on top of each other?",
-    a: "Usually not. Most awards pay only the highest applicable penalty where more than one could apply to the same hours. Under SCHADS, weekend rates substitute for shift loadings rather than adding to them, and public holiday pay replaces both.",
+    a: "Penalty rates do not stack under most modern awards: where more than one penalty could apply to the same hours, the award pays only the highest. Under the SCHADS Award, weekend rates substitute for shift loadings rather than adding to them, and public holiday pay replaces both.",
   },
   {
     q: "What is the difference between penalty rates and overtime?",
-    a: `Penalty rates compensate for when you work (weekends, public holidays, evenings). Overtime compensates for working more than your standard hours (beyond ${EMPLOYMENT.standardWeeklyHours} hours per week for full-time employees). A shift can attract both penalties -- for example, overtime worked on a Sunday receives the higher applicable rate under most modern awards.`,
+    a: `Penalty rates compensate for when you work (weekends, public holidays, evenings). Overtime compensates for working more than your standard hours (beyond ${EMPLOYMENT.standardWeeklyHours} hours per week for full-time employees). The same shift can involve both: under most modern awards, overtime worked on a Sunday is paid at the higher applicable rate.`,
   },
   {
     q: "Can I refuse to work on a public holiday?",
@@ -60,7 +60,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do salaried employees get penalty rates?",
-    a: "It depends on the employment arrangement. Award-covered salaried employees must receive penalty rates unless their salary is high enough to \"absorb\" all applicable penalties and overtime (an \"annualised salary\" arrangement). The annualised salary must exceed the total of base pay plus all penalties the employee would otherwise receive. Employers must conduct annual reconciliations to verify this.",
+    a: "Award-covered salaried employees must receive penalty rates unless their salary is high enough to \"absorb\" all applicable penalties and overtime (an \"annualised salary\" arrangement). The annualised salary must exceed the total of base pay plus all penalties the employee would otherwise receive. Employers must conduct annual reconciliations to verify this.",
   },
   {
     q: "What should I do if my employer is not paying penalty rates?",
@@ -72,16 +72,16 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do penalty rates affect my HECS-HELP repayment?",
-    a: `Yes. Penalty rate income increases your "Repayment Income" for HECS-HELP purposes, which includes taxable income, reportable fringe benefits, and net investment losses. For FY${SITE_CONFIG.financialYear}, compulsory repayments start once repayment income exceeds ${formatAUD(HECS_HELP.minimumThreshold)}, at ${Math.round(HECS_FIRST.marginalRate * 100)}c for each dollar above the threshold. Higher penalty rate earnings raise the repayment. See our HECS-HELP Repayment Calculator for details.`,
+    a: `Yes. Penalty rate income increases your "Repayment Income" for HECS-HELP purposes, which includes taxable income, reportable fringe benefits, and net investment losses. For FY${SITE_CONFIG.financialYear}, compulsory repayments start once repayment income exceeds ${formatAUD(HECS_HELP.minimumThreshold)}, at ${Math.round(HECS_FIRST.marginalRate * 100)}c for each dollar above the threshold. Higher penalty rate earnings raise the repayment. Enter your income in our HECS-HELP Repayment Calculator to see your compulsory repayment.`,
     links: { "HECS-HELP Repayment Calculator": "/hecs-help-calculator/" },
   },
   {
     q: "Does the Right to Disconnect affect overtime and penalties?",
-    a: "The \"Right to Disconnect\" provisions (effective August 2024 for employers with 15+ employees, August 2025 for small employers) allow employees to refuse out-of-hours contact unless the refusal is unreasonable. This does not eliminate overtime or penalty rates but reinforces that work performed outside rostered hours must be compensated. Employees who are contacted and required to perform work outside their scheduled shift are entitled to applicable overtime or penalty rates.",
+    a: "The \"Right to Disconnect\" provisions (effective August 2024 for employers with 15+ employees, August 2025 for small employers) allow employees to refuse out-of-hours contact unless the refusal is unreasonable. The Right to Disconnect does not remove overtime or penalty rates. Employees who are contacted and required to perform work outside their scheduled shift are entitled to applicable overtime or penalty rates.",
   },
   {
     q: "How do I check penalty rates on my payslip?",
-    a: "Your payslip must itemise each pay rate separately under the Fair Work Regulations. Look for line items labelled \"Saturday loading,\" \"Sunday penalty,\" \"Public holiday,\" or \"Overtime\" with the applicable multiplier. If your payslip bundles all hours at a single rate, request a breakdown from your employer. Learn more about payslip requirements in our Understanding Your Payslip guide.",
+    a: "Your payslip must itemise each pay rate separately under the Fair Work Regulations. Look for line items labelled \"Saturday loading\", \"Sunday penalty\", \"Public holiday\" or \"Overtime\" with the applicable multiplier. If your payslip bundles all hours at a single rate, request a breakdown from your employer. Learn more about payslip requirements in our Understanding Your Payslip guide.",
     links: { "Understanding Your Payslip": "/understanding-your-payslip/" },
   },
 ];

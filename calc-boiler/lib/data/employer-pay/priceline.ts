@@ -118,15 +118,15 @@ export const PRICELINE_PAY: EmployerPay = {
     },
     {
       q: "What does Priceline pay on a Sunday?",
-      a: "179% of the base rate, but never less than $53.07 an hour for an adult Retail Employee or $55.72 for a Specialist Sales Assistant, casual or permanent. Because 179% of $29.57 is only $52.93, the $53.07 floor is what adults get.",
+      a: "Priceline pays 179% of the base rate on a Sunday, with a floor of $53.07 an hour for an adult Retail Employee and $55.72 for a Specialist Sales Assistant, casual or permanent. Because 179% of $29.57 is only $52.93, the $53.07 floor is what adults get.",
     },
     {
       q: "How much does Priceline pay a 16 or 17 year old?",
-      a: "Staff aged 16 and younger get 50% of the adult rate, about $14.79 an hour ($18.49 casual), and 17-year-olds 60%, about $17.74 ($22.18 casual). These are our arithmetic from the agreement's percentages.",
+      a: "At Priceline, staff aged 16 and younger get 50% of the adult rate, about $14.79 an hour ($18.49 casual), and 17-year-olds get 60%, about $17.74 ($22.18 casual). These dollar figures are our own arithmetic from the agreement's junior percentages.",
     },
     {
       q: "Does the Priceline agreement cover Priceline Pharmacy?",
-      a: "Only stores Priceline owns itself. Most Priceline Pharmacy stores are franchises owned by community pharmacists, who employ their own staff and are usually covered by the Pharmacy Industry Award or their own agreement.",
+      a: "The Priceline agreement covers only the stores that Priceline owns itself. Most Priceline Pharmacy stores are franchises owned by community pharmacists, who employ their own staff and are usually covered by the Pharmacy Industry Award or their own agreement.",
     },
     {
       q: "When do Priceline junior rates go up?",

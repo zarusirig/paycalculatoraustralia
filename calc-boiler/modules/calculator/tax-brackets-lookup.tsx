@@ -44,7 +44,7 @@ export default function TaxBracketsLookup() {
           How Much Tax on Your Income? Bracket &amp; Marginal Rate Lookup
         </h2>
         <p className="text-sm text-warmgray mb-5">
-          Enter your taxable income for {FY}. Australian resident, full year, tax-free threshold. Includes the low income tax offset and the 2% Medicare levy.
+          Enter your taxable income for {FY}. The lookup assumes you are an Australian resident for the full year and claim the tax-free threshold. It includes the low income tax offset and the 2% Medicare levy.
         </p>
 
         <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-[1fr_auto] items-end">

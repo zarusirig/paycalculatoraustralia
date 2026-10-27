@@ -129,7 +129,7 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
                 </span>
               </h1>
               <p className="mb-6 max-w-lg text-lg leading-relaxed text-sandstone-dark/50">
-                Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution and deductions, with ABN vs PAYG side-by-side for FY{SITE_CONFIG.financialYear}.
+                This contractor pay calculator turns an Australian ABN hourly rate into take-home pay after income tax (less the low income tax offset) and the Medicare levy. Enter your hourly rate, hours per week and weeks per year. If your rate includes GST or super, tick the matching box and the calculator takes it out before working out tax. The summary table shows taxable income, super, tax and take-home pay per day, week, fortnight, month and year. Further down, the page compares ABN contractor pay with PAYG wages and covers the rate to charge, GST, PAYG instalments and the personal services income (PSI) rules. Tax is worked out at the resident income tax rates for FY{SITE_CONFIG.financialYear}.
               </p>
               <TrustBar className="mb-6" />
             </div>
@@ -252,7 +252,7 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
                     </tbody>
                   </table>
                   <p className="px-3 py-2 text-xs text-warmgray-light sm:px-4">
-                    Weekly/fortnightly tax &amp; Medicare use {weeksPerYear}/{Math.floor(weeksPerYear / 2)} periods. Daily uses ({weeksPerYear}×5) workdays.
+                    Weekly and fortnightly columns use {weeksPerYear}/{Math.floor(weeksPerYear / 2)} periods. Daily uses ({weeksPerYear}×5) workdays.
                   </p>
                 </div>
               </CardContent>

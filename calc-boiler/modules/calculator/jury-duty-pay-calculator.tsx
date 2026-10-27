@@ -38,7 +38,7 @@ export default function JuryDutyPayCalculator() {
     <Card className="shadow-md not-prose" id="jury-duty-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Jury Duty Pay Calculator</h2>
-        <p className="text-sm text-warmgray mb-6">What your employer and the court pay while you are on a jury, under the National Employment Standards.</p>
+        <p className="text-sm text-warmgray mb-6">This jury duty pay calculator shows what your employer and the court pay you while you are on a jury, under the National Employment Standards (NES).</p>
 
         <div className="grid gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
@@ -75,7 +75,7 @@ export default function JuryDutyPayCalculator() {
                       ? "Make-up pay tops the court payment up to your base pay for the ordinary hours you would have worked."
                       : "Your employer didn't ask for proof of the court payment, so it pays your full base pay for up to 10 days."}
             </p>
-            <p className="text-xs text-warmgray-light">National Employment Standards (Fair Work Act ss 108–112). State and territory jury laws, awards and agreements can be more generous.</p>
+            <p className="text-xs text-warmgray-light">National Employment Standards (Fair Work Act ss 108 to 112). State and territory jury laws, awards and agreements can be more generous.</p>
           </div>
         </div>
       </CardContent>

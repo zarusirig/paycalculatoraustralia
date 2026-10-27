@@ -69,7 +69,7 @@ export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Where is the official ATO weekly tax table PDF?",
-    a: `The ATO publishes ${ATO_WEEKLY.nat} at ${ATO_WEEKLY.pageUrl}, with a printable look-up table in PDF and a spreadsheet look-up tool in XLSX. Both are linked directly from this page. For payroll compliance always confirm against the current ATO publication; this page reproduces the same Schedule 1 formulas so you can check a figure quickly.`,
+    a: `The ATO publishes ${ATO_WEEKLY.nat} at ${ATO_WEEKLY.pageUrl}, with a printable look-up table in PDF and a spreadsheet look-up tool in XLSX. Both are linked directly from this page. For payroll compliance, confirm each figure against the current ATO publication. This page reproduces the same Schedule 1 formulas so you can check a figure quickly.`,
   },
   {
     q: "Do I use the weekly tax table for leave and termination payments?",

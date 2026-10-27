@@ -39,7 +39,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             Full-Time vs Part-Time vs Casual: Entitlements Compared
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            This guide compares the entitlements of full-time, part-time and casual employment in Australia: paid leave, the {Math.round(EMPLOYMENT.casualLoading * 100)}% casual loading, notice periods, redundancy pay, super and casual conversion rights, as they stand under the Fair Work Act and the modern awards. It explains what each employment type gives up and gets in return; to put dollar figures on the comparison for your own rate and hours, use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">part-time vs full-time vs casual pay calculator</Link>.
+            Full-time, part-time and casual employment in Australia carry different entitlements under the Fair Work Act and the modern awards. This guide compares paid leave, the {Math.round(EMPLOYMENT.casualLoading * 100)}% casual loading, notice periods, redundancy pay, super and casual conversion rights, and what each employment type gives up and gets in return. To put dollar figures on the comparison for your own rate and hours, use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">part-time vs full-time vs casual pay calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -54,7 +54,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             <section id="comparison-table">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Quick Comparison Table</h2>
               <p>
-                The table below summarises the key differences between the three main employment types under the <em>Fair Work Act 2009</em> and the National Employment Standards (NES).
+                The table below compares the three main employment types (full-time, part-time and casual) under the <em>Fair Work Act 2009</em> and the National Employment Standards (NES).
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-x-auto overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -157,7 +157,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>12%</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Workers seeking maximum job security, full leave entitlements, and predictable income. Ideal for those with fixed financial commitments like a mortgage.
+                <strong>Best for:</strong> Workers seeking maximum job security, full leave entitlements and predictable income. Full-time work suits anyone with a fixed financial commitment such as a mortgage.
               </p>
             </section>
 
@@ -194,7 +194,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>Casual conversion right:</strong> After 6 months of employment (12 months with a small business employer), a casual who believes they no longer fit the casual definition can notify their employer in writing that they want to become full-time or part-time. Since 26 August 2024 employers are no longer required to offer conversion.</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Workers who prioritise flexibility over stability &mdash; students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation. For what the loading is worth in dollars in the largest casual workforce, see the <Link href="/retail-award-rates/">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link>.
+                <strong>Best for:</strong> Workers who prioritise flexibility over stability, such as students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation. For what the loading is worth in dollars in the largest casual workforce, see the <Link href="/retail-award-rates/">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link>.
               </p>
             </section>
 
@@ -202,7 +202,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             <section id="cost-comparison">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Real Cost Comparison</h2>
               <p>
-                The 25% casual loading sounds generous, but when you factor in the value of lost entitlements, the financial picture is more nuanced. For a worker earning <strong>$30/hour base rate</strong> working 38 hours per week:
+                The 25% casual loading lifts the hourly rate, but casuals get no paid annual leave or personal leave, so part of that extra pay covers their time off. For a worker earning <strong>$30/hour base rate</strong> working 38 hours per week:
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -251,7 +251,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <p className="text-xs text-warmgray mt-2">Assumes casual works all 52 weeks at 38 hours before deducting leave. Actual casual advantage narrows further when sick leave usage, redundancy pay value, and notice period are included.</p>
               </div>
               <p>
-                The casual worker earns more gross pay, but the gap narrows significantly once leave usage is factored in. Use the <Link href="/employment-type-calculator/">Employment Type Calculator</Link> to model the exact comparison for your rate and hours.
+                In this example the casual worker earns more gross pay. The gap narrows once the casual&apos;s unpaid leave is counted, but the casual is still ahead. Use the <Link href="/employment-type-calculator/">Employment Type Calculator</Link> to model the exact comparison for your rate and hours.
               </p>
             </section>
 
@@ -259,15 +259,15 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             <section id="changing-type">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Changing Employment Type</h2>
               <p>
-                Australian law provides several pathways for changing employment type:
+                The Fair Work Act, the NES and the modern awards set out these pathways for changing employment type:
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual to Permanent Conversion</h3>
               <p>
                 {/* FWO "Your guide to casual employment" (2025-03), checked 24 Sep 2026: employee choice pathway from 26 Aug 2024; 6 months (12 for small business); response within 21 days; employer "can offer or not offer". */}
-                Under the Fair Work Act (as amended by the <em>Fair Work Legislation Amendment (Closing Loopholes No. 2) Act 2024</em>), the &ldquo;employee choice&rdquo; pathway replaced the old employer-offer system on <strong>26 August 2024</strong>. A casual employed for at least <strong>6 months</strong> (12 months with a small business employer of fewer than 15 staff) who believes they no longer meet the definition of a casual employee can notify their employer in writing that they want to change to full-time or part-time employment. Employers are no longer required to offer conversion.
+                Under the Fair Work Act (as amended by the <em>Fair Work Legislation Amendment (Closing Loopholes No. 2) Act 2024</em>), the &ldquo;employee choice&rdquo; pathway replaced the old employer-offer system on <strong>26 August 2024</strong>. A casual can use this pathway after at least <strong>6 months</strong> of employment (12 months with a small business employer of fewer than 15 staff). If they believe they no longer meet the definition of a casual employee, they can notify their employer in writing that they want to change to full-time or part-time employment. Employers are no longer required to offer conversion.
               </p>
               <p>
-                The employer must consult the employee and respond in writing within <strong>21 days</strong>. It can refuse only if the employee still meets the casual definition, or on fair and reasonable operational grounds such as the change requiring a substantial restructure of the role, and the refusal must give reasons.
+                The employer must consult the employee and respond in writing within <strong>21 days</strong>. The employer can refuse only if the employee still meets the casual definition, or on fair and reasonable operational grounds such as the change requiring a substantial restructure of the role. A refusal must give reasons.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Requesting Part-Time After Parental Leave</h3>
               <p>

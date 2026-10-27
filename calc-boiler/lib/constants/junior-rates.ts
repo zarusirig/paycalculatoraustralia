@@ -159,7 +159,7 @@ export const AWARD_JUNIOR_SCALES = [
     award: "General Retail Industry Award",
     code: "MA000004",
     clause: "cl 17.2, Table 5",
-    note: "Retail employee levels 1–3 only. Adult rate at 20 with more than 6 months' service.",
+    note: "The retail junior scale covers retail employee levels 1 to 3 only. A 20-year-old with more than 6 months' service gets the adult rate.",
     scale: [
       { age: "Under 16", percentage: 0.45 },
       { age: "16", percentage: 0.5 },
@@ -174,7 +174,7 @@ export const AWARD_JUNIOR_SCALES = [
     award: "Fast Food Industry Award",
     code: "MA000003",
     clause: "Table 4",
-    note: "Adult rate at 21. From 1 December 2026, 18 to 20-year-olds with more than 6 months' service move towards it in stages (PR813654).",
+    note: "The fast food junior scale reaches the adult rate at 21. From 1 December 2026, 18 to 20-year-olds with more than 6 months' service move towards it in stages (PR813654).",
     scale: [
       { age: "Under 16", percentage: 0.4 },
       { age: "16", percentage: 0.5 },
@@ -189,7 +189,7 @@ export const AWARD_JUNIOR_SCALES = [
     award: "Hair and Beauty Industry Award",
     code: "MA000005",
     clause: "Table 5",
-    note: "Adult rate at 18, the earliest of any common award.",
+    note: "The hair and beauty junior scale reaches the adult rate at 18, the earliest of any common award.",
     scale: [
       { age: "Under 17", percentage: 0.5 },
       { age: "17", percentage: 0.75 },
@@ -356,7 +356,7 @@ export const MINIMUM_WORKING_AGE: readonly {
     jurisdiction: "VIC",
     summary: "13, or 11 for deliveries",
     detail:
-      "11 to deliver newspapers and advertising material; 13 for other work including retail and hospitality. No age limit in entertainment. An employer usually needs a licence to employ someone under 15. Work is generally limited to 6am–9pm, 3 hours a day and 12 hours a week during term.",
+      "11 to deliver newspapers and advertising material; 13 for other work including retail and hospitality. No age limit in entertainment. An employer usually needs a licence to employ someone under 15. Work is generally limited to 6am to 9pm, 3 hours a day and 12 hours a week during term.",
     url: "https://www.vic.gov.au/child-employment-licence",
   },
   {
@@ -391,7 +391,7 @@ export const MINIMUM_WORKING_AGE: readonly {
     jurisdiction: "ACT",
     summary: "No minimum age stated; hours capped by age",
     detail:
-      "ACT government pages set hour limits without stating a floor: no more than 10 hours a week under 15, and daily caps rising from 3 hours under age 3 to 6 hours at ages 12–15.",
+      "ACT government pages set hour limits without stating a floor: no more than 10 hours a week under 15, and daily caps rising from 3 hours under age 3 to 6 hours at ages 12 to 15.",
     url: "https://www.act.gov.au/community/youth/employing-young-people",
   },
   {

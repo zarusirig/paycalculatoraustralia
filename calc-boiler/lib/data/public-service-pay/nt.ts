@@ -37,7 +37,7 @@ export const NT: Jurisdiction = {
     headingTemplate: "NT {label} salary {year}",
     title: "NT Public Sector salary by classification, from 13 August 2026",
     intro:
-      "Each administrative classification below lists every pay point in the 13 August 2026 column of Schedule 11 of the Northern Territory Public Sector 2025–2029 Enterprise Agreement. Every salary links to the nearest take-home pay page.",
+      "Each administrative classification below lists every pay point in the 13 August 2026 column of Schedule 11 of the Northern Territory Public Sector 2025-2029 Enterprise Agreement. Every salary links to the nearest take-home pay page.",
   },
 
   headline:
@@ -58,11 +58,11 @@ export const NT: Jurisdiction = {
       id: "nt-ea-2026",
       title: "NTPS 2025–2029 Enterprise Agreement, from 13 August 2026",
       coverage:
-        "Northern Territory Public Sector employees in the Administrative Officer, Senior Administrative Officer and Executive Officer 2–3 designations.",
+        "This table covers Northern Territory Public Sector employees in the Administrative Officer, Senior Administrative Officer and Executive Officer 2 and 3 designations.",
       basis: "agreement",
       effectiveFrom: "13 August 2026",
       rangeMeaning:
-        "First and last pay point of the designation. Annual full-time salary only; superannuation is paid on top.",
+        "The salary range runs from the first to the last pay point of the designation, as annual full-time salary only, with superannuation paid on top.",
       sourceId: "nt-ea-2025",
       streams: [
         {
@@ -249,7 +249,7 @@ export const NT: Jurisdiction = {
   faqs: [
     {
       q: "What is the NT public service pay scale in 2026?",
-      a: "From 13 August 2026 the administrative stream of the Northern Territory Public Sector 2025–2029 Enterprise Agreement runs from $63,931 at AO2 to $130,039 at the top of AO7, then $136,380 to $152,357 at SAO1 and $157,334 to $171,482 at SAO2. EO2 is $182,000 and EO3 $187,176.",
+      a: "From 13 August 2026 the administrative stream of the Northern Territory Public Sector 2025-2029 Enterprise Agreement runs from $63,931 at AO2 to $130,039 at the top of AO7, then $136,380 to $152,357 at SAO1 and $157,334 to $171,482 at SAO2. EO2 is $182,000 and EO3 $187,176.",
     },
     {
       q: "What does an NT AO5 earn?",
@@ -257,7 +257,7 @@ export const NT: Jurisdiction = {
     },
     {
       q: "When is the next NT public service pay rise?",
-      a: "3.5% from the first full pay period on or after 10 August 2027 (12 August 2027), then 3.5% from 10 August 2028 plus any Darwin CPI above 3.5%. The agreement's nominal expiry is 10 August 2029.",
+      a: "The next NT public service pay rise is 3.5% from the first full pay period on or after 10 August 2027 (12 August 2027). The following rise is 3.5% from 10 August 2028 plus any Darwin CPI above 3.5%. The agreement's nominal expiry is 10 August 2029.",
     },
     {
       q: "What does an NT AO6 or AO7 earn?",
@@ -265,7 +265,7 @@ export const NT: Jurisdiction = {
     },
     {
       q: "How do increments work in the NT public sector?",
-      a: "Below the senior levels you move up one pay point after 12 months' continuous service at your current point, or 12 months' broken service in the last 24 months (clause 36.2). Part-time staff progress on the same calendar time as full-time staff.",
+      a: "Below the Senior Administrative Officer levels, you move up one pay point after 12 months' continuous service at your current point, or 12 months' broken service in the last 24 months (clause 36.2). Part-time staff progress on the same calendar time as full-time staff.",
     },
   ],
 };

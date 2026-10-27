@@ -16,7 +16,7 @@ export const EXAMPLE_ALL_LEAVE = compareCasualPermanent({ baseHourly: 30, hoursP
 export const CASUAL_FAQS: readonly { q: string; a: string }[] = [
   {
     q: "How much is casual loading in Australia?",
-    a: `Usually ${pct(CASUAL_LOADING)} of the base hourly rate. That is the loading for award and agreement-free employees under the National Minimum Wage Order, and it is the loading in the retail, fast food, hospitality and SCHADS awards. On the ${formatAUD(NMW.hourly, 2)} minimum wage, a casual gets at least ${formatAUD(NMW.casualHourly, 2)} an hour.`,
+    a: `Casual loading in Australia is usually ${pct(CASUAL_LOADING)} of the base hourly rate. That is the loading for award and agreement-free employees under the National Minimum Wage Order, and it is the loading in the retail, fast food, hospitality and SCHADS awards. On the ${formatAUD(NMW.hourly, 2)} minimum wage, a casual gets at least ${formatAUD(NMW.casualHourly, 2)} an hour.`,
   },
   {
     q: "How do you calculate a casual rate?",
@@ -32,6 +32,6 @@ export const CASUAL_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Do casuals get paid more on public holidays?",
-    a: `Only if they work. Under the hospitality award a casual working a public holiday gets ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)} of the base rate, and under the retail award ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. A casual who is not rostered on is not paid for the day, unlike a permanent employee.`,
+    a: `Casuals are paid more on a public holiday only if they work it. Under the hospitality award a casual working a public holiday gets ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)} of the base rate, and under the retail award ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. A casual who is not rostered on is not paid for the day, unlike a permanent employee.`,
   },
 ];

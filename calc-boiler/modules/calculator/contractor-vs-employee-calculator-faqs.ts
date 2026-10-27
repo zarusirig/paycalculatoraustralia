@@ -28,7 +28,7 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors have to pay super?",
-    a: `Contractors are not legally required to pay their own super (unlike employers who must pay the SG). However, for retirement planning, setting aside ${SG_PCT} voluntarily is strongly recommended. You can claim a tax deduction for personal super contributions up to the ${CC_CAP} concessional cap (FY${FY}) in your tax return.`,
+    a: `Contractors are not legally required to pay their own super (unlike employers who must pay the SG). Setting aside ${SG_PCT} of your income for super yourself matches what an employer would contribute under the SG. You can claim a tax deduction for personal super contributions up to the ${CC_CAP} concessional cap (FY${FY}) in your tax return.`,
   },
   {
     q: "Do I need to register for GST as a contractor?",
@@ -40,19 +40,19 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much more should a contractor charge than an employee salary?",
-    a: `A contractor should charge 30–45% above the equivalent employee salary to cover the superannuation guarantee (${SG_PCT}), annual leave (7.6%), personal leave (3.8%), insurance ($1,000–$3,000), and admin costs ($2,000–$4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately $135,000–$145,000 before GST.`,
+    a: `A contractor should charge 30 to 45% above the equivalent employee salary to cover the superannuation guarantee (${SG_PCT}), annual leave (7.6%), personal leave (3.8%), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately $135,000 to $145,000 before GST.`,
   },
   {
     q: "Do contractors need income protection insurance?",
-    a: "Income protection insurance is strongly recommended for contractors. Unlike employees who are covered by their employer's workers compensation insurance, contractors must arrange their own coverage. Income protection insurance typically costs 1–3% of your annual income and typically replaces up to 70% of your earnings if you are unable to work due to illness or injury. The premiums are tax-deductible.",
+    a: "Income protection insurance is strongly recommended for contractors. Unlike employees who are covered by their employer's workers' compensation insurance, contractors must arrange their own coverage. Income protection insurance typically costs 1 to 3% of your annual income and replaces up to 70% of your earnings if you are unable to work due to illness or injury. The premiums are tax-deductible.",
   },
   {
     q: "What tax deductions can contractors claim?",
-    a: "Contractors can deduct a wide range of business expenses, including: home office costs, equipment and tools, professional insurance premiums, accounting fees, travel between work sites, software subscriptions, and professional development. These deductions reduce your taxable income, which is the key financial advantage of contracting. Keep detailed records and receipts for every claim.",
+    a: "Contractors can deduct business expenses such as home office costs, equipment and tools, professional insurance premiums, accounting fees, travel between work sites, software subscriptions, and professional development. These deductions reduce your taxable income, and the calculator above subtracts them before it works out your tax. Keep detailed records and receipts for every claim.",
   },
   {
     q: "Do independent contractors pay their own tax?",
-    a: "Yes, independent contractors are responsible for managing their own tax affairs through their ABN. They do not have PAYG tax automatically withheld from their invoices like employees do from their payslips, unless a voluntary withholding agreement is in place.",
+    a: "Yes, independent contractors are responsible for managing their own tax affairs through their ABN. Clients do not withhold PAYG tax from a contractor's invoices the way an employer withholds it from an employee's pay, unless a voluntary withholding agreement is in place.",
   },
   {
     q: "Do contractors pay PAYG instalments?",
@@ -81,7 +81,7 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors have to charge GST?",
-    a: "GST registration is mandatory once a contractor's annual turnover reaches $75,000. Below that threshold, registration is optional. Registered contractors charge 10% GST on every invoice and can claim GST credits on business purchases. Employees never interact with GST.",
+    a: "GST registration is mandatory once a contractor's annual turnover reaches $75,000. Below that threshold, registration is optional. Registered contractors charge 10% GST on every invoice and can claim GST credits on business purchases. Employees do not charge GST on their wages.",
   },
   {
     q: "Do contractors pay more tax than employees?",

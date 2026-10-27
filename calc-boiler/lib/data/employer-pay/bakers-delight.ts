@@ -91,7 +91,7 @@ export const BAKERS_DELIGHT_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "The first five rows are the award's Table 12 rates for ordinary hours (cl 22.1). The percentage is of the minimum hourly rate for your level. The casual column already includes the 25% loading.",
-    "Bakers start early, and the award treats that separately. A baking production employee whose shift starts between 2am and 6am gets 112.5% for the whole shift (casual 137.5%). One who starts between midnight and 2am gets 130% (casual 155%). For a Level 1 baking assistant that is $31.29 and $36.15 an hour ($38.24 and $43.11 casual); for a Level 4 baker $33.13 and $38.29 ($40.49 and $45.65 casual). These rates replace the shiftwork and overtime rates for up to 38 hours a week and 9 hours a day (cl 25.2(c)).",
+    "The Retail Award has separate rates for early starts in baking production. A baking production employee whose shift starts between 2am and 6am gets 112.5% for the whole shift (casual 137.5%). One who starts between midnight and 2am gets 130% (casual 155%). For a Level 1 baking assistant that is $31.29 and $36.15 an hour ($38.24 and $43.11 casual); for a Level 4 baker $33.13 and $38.29 ($40.49 and $45.65 casual). These rates replace the shiftwork and overtime rates for up to 38 hours a week and 9 hours a day (cl 25.2(c)).",
     "For a Level 1 sales assistant, weekday evenings after 6pm and Saturdays pay $34.76 an hour ($41.72 casual), Sundays $41.72 ($48.67 casual) and public holidays $62.57 ($69.53 casual).",
   ],
   notices: [
@@ -118,7 +118,7 @@ export const BAKERS_DELIGHT_PAY: EmployerPay = {
     },
     {
       q: "What do Bakers Delight bakers get for early starts?",
-      a: "The award has special rates for baking production. A shift that starts between 2am and 6am is paid at 112.5% for the whole shift, which is $33.13 an hour for a Level 4 baker ($40.49 casual). A shift that starts between midnight and 2am is paid at 130%, or $38.29 ($45.65 casual). These apply instead of overtime for up to 9 hours a day and 38 hours a week.",
+      a: "The Retail Award has early morning and night shift rates for Bakers Delight baking production staff. A shift that starts between 2am and 6am is paid at 112.5% for the whole shift, which is $33.13 an hour for a Level 4 baker ($40.49 casual). A shift that starts between midnight and 2am is paid at 130%, or $38.29 ($45.65 casual). These apply instead of overtime for up to 9 hours a day and 38 hours a week.",
     },
     {
       q: "Who is my employer at Bakers Delight?",
@@ -126,7 +126,7 @@ export const BAKERS_DELIGHT_PAY: EmployerPay = {
     },
     {
       q: "How much does Bakers Delight pay a 15 or 16 year old?",
-      a: "At Level 1 under the Retail Award, a sales assistant under 16 is paid 45% of the adult rate, which is $12.51 an hour ($15.64 casual). A 16-year-old gets 50%, or $13.91 ($17.39 casual). These are our arithmetic from the award percentages; junior rates do not apply to a qualified baker at Level 4.",
+      a: "At Level 1 under the Retail Award, a sales assistant under 16 is paid 45% of the adult rate, which is $12.51 an hour ($15.64 casual). A 16-year-old gets 50%, or $13.91 ($17.39 casual). These figures are our arithmetic from the award percentages; junior rates do not apply to a qualified baker at Level 4.",
     },
     {
       q: "Was Bakers Delight taken to court over underpayments?",

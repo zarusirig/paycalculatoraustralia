@@ -45,7 +45,7 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable",
       title: "Constable (clause 8.1.1, Column A)",
       intro:
-        "The single Constable salary range, from the first full pay period on or after 1 December 2025. Senior Constable is not a separate scale in Tasmania: gazettal as a Senior Constable advances an officer one level within this range.",
+        "Tasmania Police constables are paid on a single Constable salary range from the first full pay period on or after 1 December 2025. Senior Constable is not a separate scale in Tasmania: gazettal as a Senior Constable advances an officer one level within this range.",
       stepHeading: "Constable level",
       steps: [
         { label: "Constable Level 1", salary: 73_518, note: "Starting point after graduating from the Trainee Course" },
@@ -75,7 +75,7 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "sergeant",
       title: "Sergeant (clause 8.1.1, Column A)",
-      intro: "Sergeants, from the first full pay period on or after 1 December 2025.",
+      intro: "Tasmania Police sergeants are paid these rates from the first full pay period on or after 1 December 2025.",
       stepHeading: "Sergeant level",
       steps: [
         { label: "Sergeant Level 1", salary: 108_929 },
@@ -90,7 +90,7 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "inspector",
       title: "Inspector (clause 8.1.1, Column A)",
-      intro: "Commissioned officers at the rank of Inspector, from the first full pay period on or after 1 December 2025.",
+      intro: "Tasmania Police commissioned officers at the rank of Inspector are paid these rates from the first full pay period on or after 1 December 2025.",
       stepHeading: "Inspector level",
       steps: [
         { label: "Inspector Level 1", salary: 170_026 },
@@ -116,7 +116,7 @@ export const TAS_POLICE_PAY: ServicePayJurisdiction = {
   ],
   notices: [
     "Tasmania Police Recruitment says a first-year Constable on Level 1 ($73,518) with the 28% shift penalty allowance has a gross salary of $94,109.",
-    "The award already sets rises of 3% from 1 December 2026 and 2.75% from 1 December 2027.",
+    "The Police Award already sets rises of 3% from 1 December 2026 and 2.75% from 1 December 2027.",
   ],
   unverified: [
     "Commander and other allowances (specialist, forensic, detective, higher duties) are in the award but not reproduced here.",

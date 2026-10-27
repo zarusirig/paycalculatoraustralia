@@ -39,7 +39,7 @@ export default function OvertimePayCalculatorContent() {
           Overtime pay in Australia is calculated by multiplying your base hourly rate by the penalty multiplier set in your Modern Award or enterprise agreement, then multiplying by the number of overtime hours worked. The formula is: <strong>Base Rate x Penalty Multiplier x Overtime Hours = Gross Overtime Pay</strong>.
         </p>
         <p className="mb-4 text-warmgray">
-          Full-time employees on a standard {EMPLOYMENT.standardWeeklyHours}-hour week trigger overtime after exceeding {EMPLOYMENT.standardWeeklyHours} ordinary hours per week or 7.6 hours per day. Part-time employees trigger overtime after exceeding their agreed contracted hours. The Australian tax calculator applies the same income tax brackets to overtime earnings as it does to regular salary, meaning your take-home pay from overtime depends on your marginal rate.
+          Full-time employees on a standard {EMPLOYMENT.standardWeeklyHours}-hour week trigger overtime after exceeding {EMPLOYMENT.standardWeeklyHours} ordinary hours per week or 7.6 hours per day. Part-time employees trigger overtime after exceeding their agreed contracted hours. Overtime earnings are taxed under the same income tax brackets as your regular salary, so your take-home pay from overtime depends on your marginal tax rate.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Worked Example: Overtime at $35/hr</h3>
@@ -111,7 +111,7 @@ export default function OvertimePayCalculatorContent() {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Penalty Rates by Award Type</h3>
         <p className="mb-4 text-warmgray">
-          Different Modern Awards set different penalty structures. The table below compares weekday overtime rates across 5 common awards for the FY{FY} financial year.
+          Different Modern Awards set different penalty structures. The table below compares weekday overtime, Sunday and public holiday multipliers across 5 common Modern Awards for the FY{FY} financial year.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
           <table className="w-full text-sm">
@@ -179,7 +179,7 @@ export default function OvertimePayCalculatorContent() {
           <li><strong>Payroll managers</strong> cross-checking PAYG withholding on overtime payments against ATO tax tables</li>
         </ul>
         <p className="text-warmgray">
-          Employees earning overtime frequently benefit from reviewing their total annual income using the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to confirm the correct marginal rate applies to their overtime earnings.
+          If you work regular overtime, enter your total annual income in the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to confirm which marginal tax rate applies to your overtime earnings.
         </p>
       </section>
 
@@ -223,7 +223,7 @@ export default function OvertimePayCalculatorContent() {
           Overtime earnings are taxed at your <strong>marginal tax rate</strong> because they are added on top of your regular assessable income. Every overtime dollar sits in your highest income tax bracket, identical to how <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">bonus payments are taxed</Link>.
         </p>
         <p className="mb-4 text-warmgray">
-          Your employer withholds tax from overtime pay through PAYG withholding. The ATO provides Schedule 5 (tax table for back payments and lump sums) and the standard weekly/fortnightly tax tables to calculate withholding on pay periods that include overtime. The 2% Medicare levy also applies to overtime earnings, and employees without private hospital cover whose income for MLS purposes is above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> (singles, {FY}) pay an additional &quot;Medicare Levy Surcharge&quot; of <strong>1% to 1.5%</strong>.
+          Your employer withholds tax from overtime pay through PAYG withholding. The ATO provides Schedule 5 (tax table for back payments and lump sums) and the standard weekly/fortnightly tax tables to calculate withholding on pay periods that include overtime. The 2% Medicare levy also applies to overtime earnings. Employees without private hospital cover whose income for MLS purposes is above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> (singles, {FY}) also pay the Medicare Levy Surcharge of <strong>1% to 1.5%</strong>.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">FY{FY} Tax Brackets on Overtime Income</h3>
@@ -265,7 +265,7 @@ export default function OvertimePayCalculatorContent() {
           Overtime is generally <strong>not classified as Ordinary Time Earnings (OTE)</strong> and does not attract the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee for FY{FY}. The ATO defines OTE as the earnings an employee receives for ordinary hours of work, and overtime hours fall outside that definition. Payday Super (from {SUPER_GUARANTEE.paydaySuperStart}) calculates SG on &quot;qualifying earnings&quot;, which still exclude overtime where ordinary hours are clearly identified.
         </p>
         <p className="mb-4 text-warmgray">
-          Some enterprise agreements or employment contracts include overtime in the superannuation calculation base. Check your employment agreement or contact your employer&apos;s payroll team to confirm. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to calculate the SG rate on your ordinary earnings separately.
+          Some enterprise agreements or employment contracts include overtime in the superannuation calculation base. Check your employment agreement or contact your employer&apos;s payroll team to confirm. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to calculate the SG contribution on your ordinary time earnings separately.
         </p>
       </section>
 
@@ -283,7 +283,7 @@ export default function OvertimePayCalculatorContent() {
           <li><strong>Using the wrong tax bracket</strong>: Overtime sits on top of your base salary, so the marginal rate on overtime is typically higher than your average tax rate across all income</li>
         </ol>
         <p className="text-warmgray">
-          Employees who suspect underpayment of overtime should compare their payslip against the calculations from this overtime pay calculator and review their applicable award on the <a href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages/pay-guides" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">Fair Work Ombudsman website</a>.
+          If you suspect your overtime is underpaid, compare your payslip against the result from the overtime pay calculator above and check the pay guide for your award on the <a href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages/pay-guides" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">Fair Work Ombudsman website</a>.
         </p>
       </section>
 
@@ -293,10 +293,10 @@ export default function OvertimePayCalculatorContent() {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Calculators</h2>
         <p className="mb-4 text-warmgray">
-          Overtime pay interacts with income tax, superannuation, and total salary packaging. These calculators help you model the complete picture:
+          Use these calculators to see how overtime pay affects your weekly pay, income tax, take-home pay and super:
         </p>
         <ul className="list-disc pl-6 space-y-2 text-warmgray">
-          <li><Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">Overtime and penalty rates guide</Link> &mdash; the award rules that set time-and-a-half, double time and weekend loadings.</li>
+          <li><Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">Overtime and penalty rates guide</Link>: Read the award rules that set time-and-a-half, double time and weekend loadings</li>
           <li><Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>: Convert your base salary plus overtime into a weekly after-tax amount</li>
           <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: Calculate your total income tax liability including overtime in your assessable income for FY{FY}</li>
           <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: See your net pay after tax, Medicare levy, and HECS-HELP on a salary that includes regular overtime</li>

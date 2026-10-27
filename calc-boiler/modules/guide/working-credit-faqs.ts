@@ -21,7 +21,7 @@ export const WORKING_CREDIT_FAQS: Faq[] = [
   },
   {
     q: "What is the maximum Working Credit balance?",
-    a: `${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} credits for JobSeeker Payment, Parenting Payment, Disability Support Pension and Carer Payment, and ${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance as a job seeker. With no income it takes ${fortnightsToMaxBalance()} fortnights to reach ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")}.`,
+    a: `The maximum Working Credit balance is ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} credits for JobSeeker Payment, Parenting Payment, Disability Support Pension and Carer Payment, and ${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance as a job seeker. With no income it takes ${fortnightsToMaxBalance()} fortnights to reach ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")}.`,
   },
   {
     q: "How are Working Credits used?",

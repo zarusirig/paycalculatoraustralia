@@ -77,9 +77,10 @@ function PrivacyPage() {
               <time dateTime="2026-10-16">16 October 2026</time>
             </p>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
-              Your privacy matters. Here&apos;s exactly how{" "}
-              {SITE_CONFIG.name} handles your data, in plain English,
-              not legal jargon.
+              This privacy policy sets out how{" "}
+              {SITE_CONFIG.name} handles your data. It covers your calculator
+              inputs (which stay in your browser), the cookies Google Analytics
+              and our ad partners set, and how to opt out of personalised ads.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>

@@ -42,7 +42,7 @@ export const ACCOUNTANT: Occupation = {
   headline: null,
   coverage: [
     "Accountants are award-free. The Fair Work Ombudsman's guidance is that accountants working for an accounting firm are not covered by any modern award, and accountants working elsewhere are also award-free unless their employer's industry award has a classification that matches their duties.",
-    "An award-free accountant is still protected by the National Minimum Wage and the National Employment Standards: annual leave, personal leave, notice, redundancy pay and the rest. Above that floor, pay is whatever the employment contract or an enterprise agreement says.",
+    "An award-free accountant is still protected by the National Minimum Wage and the National Employment Standards: annual leave, personal leave, notice of termination, redundancy pay and the other NES minimums. Above that floor, pay is whatever the employment contract or an enterprise agreement says.",
     "Clerical and bookkeeping staff are different. Accounts clerks and other clerical employees in an accounting firm are generally covered by the Clerks—Private Sector Award, which has its own minimum rates.",
   ],
   tables: [
@@ -50,7 +50,7 @@ export const ACCOUNTANT: Occupation = {
       id: "minimum-wage",
       title: "The legal minimum for an award-free accountant",
       intro:
-        "The National Minimum Wage Order 2026 (PR799279), from the first full pay period starting on or after 1 July 2026. It is the floor, not a typical accountant's salary.",
+        "The National Minimum Wage Order 2026 (PR799279) sets this rate from the first full pay period starting on or after 1 July 2026. It is the legal floor for an award-free accountant, not a typical accountant's salary.",
       rows: [
         { label: "National Minimum Wage (adult)", weekly: 1004.9, hourly: 26.44, casualHourly: 33.05, note: "Applies to award-free employees aged 21 and over" },
       ],
@@ -79,7 +79,7 @@ export const ACCOUNTANT: Occupation = {
     },
     {
       q: "What is the minimum wage for an accountant?",
-      a: "Because accountants are award-free, the legal minimum is the National Minimum Wage: $26.44 an hour or $1,004.90 a week from the first full pay period on or after 1 July 2026. Real accountant salaries are far higher.",
+      a: "Because accountants are award-free, the legal minimum is the National Minimum Wage: $26.44 an hour or $1,004.90 a week from the first full pay period on or after 1 July 2026. The median full-time accountant salary is far higher.",
     },
     {
       q: "How much do accountants earn in Australia?",

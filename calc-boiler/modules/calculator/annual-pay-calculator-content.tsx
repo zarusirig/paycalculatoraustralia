@@ -50,10 +50,10 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Annual Pay Calculated in Australia?</h2>
             <p className="text-warmgray mb-4">
-              Annual pay is calculated by subtracting income tax, Medicare levy, and any HECS-HELP repayments from your gross yearly salary for the Australian financial year running 1 July to 30 June. This annual salary calculator gives you a single yearly figure. If you need a per-cycle breakdown instead, use our <Link href="/fortnightly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Fortnightly Pay Calculator</Link>, <Link href="/monthly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Monthly Pay Calculator</Link>, or <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>. For a full per-payslip view, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
+              Annual take-home pay is calculated by subtracting income tax, Medicare levy, and any HECS-HELP repayments from your gross yearly salary for the Australian financial year running 1 July to 30 June. The annual salary calculator above shows that result as a single yearly figure when you enter your gross annual salary. If you need a per-cycle breakdown instead, use our <Link href="/fortnightly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Fortnightly Pay Calculator</Link>, <Link href="/monthly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Monthly Pay Calculator</Link>, or <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>. For a full per-payslip view, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian tax calculator applies the FY{FY} income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Each dollar above that threshold is taxed at the marginal rate for its bracket, ranging from <strong>{pct(TAX_BRACKETS[1].rate)}</strong> up to <strong>{pct(TAX_BRACKETS[4].rate)}</strong> on income above <strong>{formatAUD(TAX_BRACKETS[4].min - 1)}</strong>.
+              The annual pay calculator applies the FY{FY} income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Each dollar above that threshold is taxed at the marginal rate for its bracket, ranging from <strong>{pct(TAX_BRACKETS[1].rate)}</strong> up to <strong>{pct(TAX_BRACKETS[4].rate)}</strong> on income above <strong>{formatAUD(TAX_BRACKETS[4].min - 1)}</strong>.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Step-by-Step Annual Pay Calculation</h3>
@@ -65,7 +65,7 @@ export default function AnnualPayCalculatorContent() {
               <li><strong>Calculate income tax:</strong> $0 on the first $18,200, then {pct(TAX_BRACKETS[1].rate)} on $18,201 to $45,000 ({formatAUD(EX_BRACKET2_TAX)}), {pct(TAX_BRACKETS[2].rate)} on $45,001 to $85,000 ({formatAUD(EX_BRACKET3_TAX)}). Total income tax is <strong>{formatAUD(EX.incomeTax)}</strong>.</li>
               <li><strong>Apply the LITO offset:</strong> The &quot;Low Income Tax Offset&quot; reduces your tax by up to {formatAUD(LITO.maxOffset)} and phases out completely at {formatAUD(LITO.nilOffsetIncome)}. At $85,000, the LITO is <strong>$0</strong>.</li>
               <li><strong>Add the Medicare levy:</strong> A flat <strong>2%</strong> on taxable income = <strong>{formatAUD(EX.medicareLevy)}</strong>.</li>
-              <li><strong>Subtract HECS-HELP (if applicable):</strong> Under the marginal system, only income above {formatAUD(HECS_HELP.minimumThreshold)} is counted: {pct(HECS_HELP.bands[1].marginalRate)} of the excess at $85,000 adds a deduction of <strong>{formatAUD(EX_HECS)}</strong>.</li>
+              <li><strong>Subtract HECS-HELP (if applicable):</strong> Under the marginal repayment system, only income above {formatAUD(HECS_HELP.minimumThreshold)} is counted: {pct(HECS_HELP.bands[1].marginalRate)} of the excess at $85,000 is a compulsory repayment of <strong>{formatAUD(EX_HECS)}</strong>.</li>
               <li><strong>Calculate take-home pay:</strong> $85,000 &minus; {formatAUD(EX.netIncomeTax)} &minus; {formatAUD(EX.medicareLevy)} = <strong>{formatAUD(EX.takeHomePay)}</strong> per year (without HECS).</li>
             </ol>
             <p className="text-warmgray mt-4">
@@ -77,7 +77,7 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Annual Pay for Each Hourly Rate?</h2>
             <p className="text-warmgray mb-4">
-              Annual pay for a standard 38-hour week equals the hourly rate multiplied by <strong>1,976 hours</strong> (38 hours x 52 weeks). The table below converts common hourly rates to annual gross salary and estimated take-home pay after tax for FY{FY}.
+              Annual pay for a standard 38-hour week equals the hourly rate multiplied by <strong>1,976 hours</strong> (38 hours x 52 weeks). The table below converts common hourly rates to annual gross salary and estimated take-home pay after tax and the Medicare levy (no HECS-HELP) for FY{FY}.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -102,7 +102,7 @@ export default function AnnualPayCalculatorContent() {
               </table>
             </div>
             <p className="text-warmgray text-sm mt-3">
-              For a precise conversion, use our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> which accounts for overtime, penalty rates, and varying work hours.
+              For a precise conversion, use our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link>, which converts your hourly rate at the hours you actually work each week, before overtime and penalty rates.
             </p>
           </section>
 
@@ -110,7 +110,7 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Annual Pay Calculator?</h2>
             <p className="text-warmgray mb-4">
-              Full-time employees, part-time workers converting to annual figures, and job seekers comparing salary offers all use this Australian tax calculator to determine their yearly take-home pay.
+              Full-time employees, part-time workers converting to annual figures, and job seekers comparing salary offers all use this annual pay calculator to work out their yearly take-home pay.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><strong>Salaried employees</strong> verifying their annual net pay after tax matches their payslips across 26 fortnightly or 12 monthly pay cycles.</li>
@@ -190,7 +190,7 @@ export default function AnnualPayCalculatorContent() {
               </table>
             </div>
             <p className="text-warmgray mt-4">
-              The superannuation guarantee rate stays at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> for FY{FY} &mdash; the legislated ceiling, with no further scheduled increase &mdash; and since {SUPER_GUARANTEE.paydaySuperStart} employers must pay it each payday (Payday Super). The Medicare levy stays at a flat <strong>2%</strong> of taxable income. HECS-HELP repayment thresholds start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, with indexation now capped at the lower of CPI or the Wage Price Index.
+              The superannuation guarantee rate stays at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> for FY{FY} (the legislated ceiling, with no further scheduled increase). Since {SUPER_GUARANTEE.paydaySuperStart}, employers must pay it each payday (Payday Super). The Medicare levy stays at a flat <strong>2%</strong> of taxable income. HECS-HELP repayment thresholds start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, with indexation now capped at the lower of CPI or the Wage Price Index.
             </p>
           </section>
 
@@ -206,7 +206,7 @@ export default function AnnualPayCalculatorContent() {
               <li><strong>Forgetting the Medicare levy.</strong> The <strong>2%</strong> Medicare levy adds $1,000 in deductions for every $50,000 of taxable income. This is separate from income tax and is not optional for most Australian residents.</li>
               <li><strong>Ignoring the LITO offset.</strong> Taxpayers earning up to <strong>{formatAUD(LITO.nilOffsetIncome)}</strong> receive the &quot;Low Income Tax Offset&quot; of up to {formatAUD(LITO.maxOffset)}, which reduces total tax owed. Omitting this offset overstates the annual tax calculation.</li>
               <li><strong>Using calendar-year figures instead of financial-year figures.</strong> The Australian financial year runs from 1 July to 30 June. Tax brackets, super rates, and HECS thresholds all reset at 1 July, not 1 January.</li>
-              <li><strong>Assuming a raise flows straight through.</strong> Every extra dollar is taxed at your marginal rate, so a raise never adds its full amount to take-home pay. The <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows the after-tax value of a raise.</li>
+              <li><strong>Assuming a raise flows straight through.</strong> Every extra dollar is taxed at your marginal rate, so your take-home pay rises by less than the gross amount of the raise. The <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows the after-tax value of a raise.</li>
             </ol>
           </section>
 
@@ -214,7 +214,7 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Is Annual Take-Home Pay at Different Salary Levels?</h2>
             <p className="text-warmgray mb-4">
-              Annual take-home pay ranges from <strong>{formatAUD(net(50_000).takeHomePay)}</strong> at a $50,000 salary to <strong>{formatAUD(net(180_000).takeHomePay)}</strong> at $180,000, reflecting Australia&apos;s progressive tax system for FY{FY}. For a worked breakdown at the most-searched salary, see <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline">Tax on $80,000 in Australia</Link>.
+              Annual take-home pay ranges from <strong>{formatAUD(net(50_000).takeHomePay)}</strong> at a $50,000 salary to <strong>{formatAUD(net(180_000).takeHomePay)}</strong> at $180,000, based on Australia&apos;s progressive tax rates for FY{FY}. For a worked breakdown at the most-searched salary, see <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline">Tax on $80,000 in Australia</Link>.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -242,7 +242,7 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Related Calculators Should You Use?</h2>
             <p className="text-warmgray mb-4">
-              This annual pay calculator provides the full-year view. For per-cycle breakdowns, tax-specific tools, and salary comparison calculators, use the related tools below.
+              This annual pay calculator gives the full-year figure. The weekly, fortnightly and monthly calculators below split your take-home pay by pay cycle. The other tools show income tax on its own, model salary sacrifice, work out HECS-HELP repayments and find the gross salary for a target take-home pay.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
               <Link href="/weekly-pay-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-sandstone/50 transition-colors">
@@ -259,17 +259,17 @@ export default function AnnualPayCalculatorContent() {
               </Link>
             </div>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; view a detailed tax-only breakdown across all brackets and offsets.</li>
-              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> &mdash; model concessional contributions to reduce your taxable income and increase your super balance.</li>
-              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> &mdash; calculate your compulsory repayment amount based on your repayment income.</li>
-              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link> &mdash; reverse-calculate the gross salary required to achieve a target after-tax income.</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: view a detailed tax-only breakdown across all brackets and offsets.</li>
+              <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link>: model concessional contributions to reduce your taxable income and increase your super balance.</li>
+              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link>: calculate your compulsory repayment amount based on your repayment income.</li>
+              <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>: reverse-calculate the gross salary required to achieve a target after-tax income.</li>
             </ul>
           </section>
 
           {/* --- CONTEXT BORDER --- */}
 
           <MethodologyDisclosure>
-            <p>Calculations show an entire financial year&apos;s snapshot. If your income fluctuates, your total tax return may differ from a standard full-year projection. Based on standard PAYG estimates.</p>
+            <p>The annual pay calculator projects a full financial year from the salary you enter, using standard PAYG estimates. If your income fluctuates during the year, your tax return may differ from this full-year projection.</p>
           </MethodologyDisclosure>
 
           {/* --- EXPANDED FAQs --- */}

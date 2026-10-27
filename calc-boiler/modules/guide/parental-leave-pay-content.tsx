@@ -71,11 +71,11 @@ export default function ParentalLeavePayContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Before tax. Parental Leave Pay is taxable income. For a multiple birth you get Parental Leave Pay for one child only.</p>
+        <p className="mt-2 text-xs text-warmgray-light">All amounts are before tax. Parental Leave Pay is taxable income. For a multiple birth you get Parental Leave Pay for one child only.</p>
       </W3Section>
 
       <W3Section title="How Many Weeks: 22, 24 or 26?">
-        <p className={P}>It depends on the child&apos;s date of birth or adoption:</p>
+        <p className={P}>The number of Parental Leave Pay weeks your family gets is set by the child&apos;s date of birth or adoption:</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Born or adopted from</th><th scope="col" className={TH + " text-right"}>Family gets up to</th><th scope="col" className={TH + " text-right"}>Reserved for partner</th><th scope="col" className={TH + " text-right"}>Days you can take at the same time</th></tr></thead>
@@ -132,7 +132,7 @@ export default function ParentalLeavePayContent() {
       </W3Section>
 
       <W3Section title="Super on Paid Parental Leave">
-        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim. Just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. It counts towards your concessional contributions cap and is taxed at 15% in the fund. On {NOW.days} days at the 2026-27 rate that is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
+        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim. Just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. The contribution counts towards your concessional contributions cap and is taxed at 15% in the fund. On {NOW.days} days of Parental Leave Pay at the 2026-27 rate, the contribution is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
       </W3Section>
 
       <W3Section title="How and When to Claim">
@@ -142,15 +142,15 @@ export default function ParentalLeavePayContent() {
           <li>To be paid from the date of birth, the claim and proof must be in within <strong>{PPL_RULES.backdateDays} days (14 weeks)</strong>. Payments can be backdated up to 100 days.</li>
           <li>At least one parent must claim within {PPL_RULES.firstClaimWeeks} weeks of the birth or adoption; the other parent has 2 years.</li>
         </ol>
-        <p className={P + " mt-4"}>Separately from the government payment, employees may be entitled to unpaid parental leave under the National Employment Standards. See the Fair Work Ombudsman. Budget the drop from your salary with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</p>
+        <p className={P + " mt-4"}>Separately from the government payment, employees may be entitled to unpaid parental leave under the National Employment Standards, which the Fair Work Ombudsman explains. Budget the drop from your salary with the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.</p>
       </W3Section>
 
       <W3Section title="Related Calculators and Guides">
         <W3Related current="ppl" />
         <ul className="space-y-2 text-warmgray mt-2">
-          <li><Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit calculator</Link> &mdash; Parental Leave Pay counts in your family income</li>
-          <li><Link href="/superannuation-calculator/" className={LINK}>Superannuation calculator</Link> &mdash; the effect of time out of work on your balance</li>
-          <li><Link href="/leave-calculator/" className={LINK}>Leave calculator</Link> &mdash; annual and personal leave balances</li>
+          <li><Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit calculator</Link>: Parental Leave Pay counts in your family income</li>
+          <li><Link href="/superannuation-calculator/" className={LINK}>Superannuation calculator</Link>: the effect of time out of work on your balance</li>
+          <li><Link href="/leave-calculator/" className={LINK}>Leave calculator</Link>: annual and personal leave balances</li>
         </ul>
       </W3Section>
 

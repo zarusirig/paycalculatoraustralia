@@ -51,7 +51,7 @@ export default function WeeklyPayCalculatorContent() {
           {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
           <p className="text-warmgray">
             Weekly pay is your annual salary divided by <strong>52</strong>. Use this weekly pay calculator as a weekly tax
-            calculator: enter your weekly pay or annual salary in the calculator above.
+            calculator. Enter your weekly pay or annual salary above to see the income tax, Medicare levy and take-home pay for each week.
           </p>
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Weekly Pay Calculated in Australia?</h2>
@@ -104,7 +104,7 @@ export default function WeeklyPayCalculatorContent() {
               </table>
             </div>
             <p className="mt-3 text-sm text-warmgray">
-              ATO weekly tax table amounts for a resident claiming the tax-free threshold, no HECS-HELP debt. See every $1 step on the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>.
+              These are ATO weekly tax table amounts for a resident who claims the tax-free threshold and has no HECS-HELP debt. See every $1 step on the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>.
             </p>
           </section>
 
@@ -114,7 +114,7 @@ export default function WeeklyPayCalculatorContent() {
               An Australian resident earning <strong>$70,000</strong> per year takes home <strong>{formatAUD(EX_70K.weekly)}</strong> per week after tax and Medicare in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="text-warmgray mb-4">
-              The table below shows weekly gross pay, weekly tax withheld, and weekly take-home pay at 6 common salary levels. All figures assume an Australian resident claiming the tax-free threshold with no HECS-HELP debt and no salary sacrifice arrangements.
+              The table below shows gross weekly pay, weekly income tax plus Medicare levy, and weekly take-home pay at 6 common salary levels. All figures assume an Australian resident claiming the tax-free threshold, with private hospital cover (no Medicare Levy Surcharge), no HECS-HELP debt and no salary sacrifice arrangements.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -144,13 +144,13 @@ export default function WeeklyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Who Uses a Weekly Pay Calculator?</h2>
             <p className="text-warmgray mb-4">
-              Employees paid on a weekly cycle, casual workers, and budget planners use a weekly pay calculator to convert annual salary figures into usable weekly amounts.
+              Employees paid on a weekly cycle, casual workers, and budget planners use a weekly pay calculator to convert annual salary figures into weekly after-tax amounts.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><strong>Weekly-paid employees:</strong> Retail, hospitality, and construction workers are commonly paid each week under their Modern Award. A weekly calculator confirms the exact net amount expected on each pay slip.</li>
               <li><strong>Casual workers:</strong> Casuals receiving an hourly rate plus a 25% casual loading benefit from converting their expected hours into a weekly after-tax figure. Our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> handles this conversion.</li>
-              <li><strong>Budget planners:</strong> Many household expenses, including rent, groceries, and transport, are billed weekly. Knowing the precise weekly take-home amount makes allocating funds across those 3 cost categories straightforward.</li>
-              <li><strong>Job seekers:</strong> Comparing job offers quoted as annual salaries becomes easier when broken down to a weekly net figure, particularly when evaluating roles across different pay frequencies.</li>
+              <li><strong>Budget planners:</strong> Many household expenses, including rent, groceries, and transport, are billed weekly. Your weekly take-home amount shows what is left to split across those 3 costs each week.</li>
+              <li><strong>Job seekers:</strong> Breaking each annual salary offer down to a weekly net figure lets you compare job offers, including roles paid at different pay frequencies.</li>
               <li><strong>Contractors considering PAYG employment:</strong> Sole traders transitioning to permanent roles use this calculator to compare their current invoiced income against a weekly after-tax salary. See our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a side-by-side comparison.</li>
             </ul>
           </section>
@@ -161,7 +161,7 @@ export default function WeeklyPayCalculatorContent() {
               Weekly pay divides your annual salary into 52 payments, fortnightly pay into 26 payments, and monthly pay into 12 payments. The annual take-home total is identical regardless of frequency.
             </p>
             <p className="text-warmgray mb-4">
-              The key difference lies in cash flow timing and budgeting. Weekly pay provides the most frequent income, which suits employees who manage expenses on a week-to-week basis. Fortnightly pay is the most common cycle in Australia, used by approximately 45% of employers. Monthly pay is standard for salaried professionals in corporate, government, and finance sectors.
+              The difference is cash flow timing and budgeting. Weekly pay arrives most often, which suits employees who manage expenses week to week. Fortnightly pay is the most common cycle in Australia, used by approximately 45% of employers. Monthly pay is standard for salaried professionals in corporate, government, and finance sectors.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
@@ -247,7 +247,7 @@ export default function WeeklyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Calculators</h2>
             <p className="text-warmgray mb-4">
-              These Australian tax calculators complement the weekly pay calculator by handling different pay frequencies, deduction types, and employment scenarios.
+              These Australian tax calculators cover fortnightly and monthly pay, the full annual breakdown, hourly rates, salary sacrifice and the gross salary needed for a target net pay.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link href="/fortnightly-pay-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-eucalyptus-light/40 transition-colors">
@@ -278,7 +278,7 @@ export default function WeeklyPayCalculatorContent() {
           </section>
 
           <MethodologyDisclosure>
-            <p>Calculations are based on 52 weeks per year. We divide the annual figures by 52 to provide the weekly equivalent. This aligns with standard ATO PAYG withholding practices.</p>
+            <p>Calculations are based on 52 weeks per year: we divide the annual figures by 52 to give the weekly equivalent. This matches ATO PAYG withholding practice for weekly pay.</p>
           </MethodologyDisclosure>
 
           <RelatedSearches items={RELATED_SEARCHES} />

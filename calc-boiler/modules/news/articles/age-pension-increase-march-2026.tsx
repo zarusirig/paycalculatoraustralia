@@ -32,16 +32,14 @@ export default function AgePensionIncreaseMarch2026() {
         From 20 March 2026 to 19 September 2026, the maximum full Age Pension is $1,200.90 a
         fortnight for a single person and $905.20 each for a couple, or $1,810.40 combined. Both
         figures include the pension and energy supplements. The rise applies automatically to
-        existing recipients; there&apos;s nothing you need to do to receive the higher rate, and
-        the new amount should appear in your first payment on or after 20 March 2026 without any
-        need to update your details.
+        existing recipients, so you do not need to update your details. The new amount should
+        appear in your first payment on or after 20 March 2026.
       </p>
       <p>
-        For context, the single rate has now risen every March and September for several years
-        running, tracking cost-of-living pressures and wages growth. Couples separated by illness
-        (for example where one partner is in permanent residential care) are generally paid at
-        the higher single rate rather than the couple rate, so it&apos;s worth checking which rate
-        applies to your specific household circumstances.
+        The single Age Pension rate has risen every March and September for several years, in
+        line with cost-of-living pressures and wages growth. Couples separated by illness (for
+        example where one partner is in permanent residential care) are paid the higher single
+        rate rather than the couple rate, so check which rate applies to your household.
       </p>
 
       <h2>Disability Support Pension and Carer Payment rise too</h2>
@@ -52,9 +50,9 @@ export default function AgePensionIncreaseMarch2026() {
         which is separate from the family payments and student allowances indexed in{" "}
         <Link href="/news/centrelink-payment-increase-january-2026/">January</Link> and{" "}
         <Link href="/news/centrelink-changes-july-2026/">July</Link>. JobSeeker Payment and other
-        allowance-type payments are also reviewed on the same 20 March and 20 September dates,
-        though they&apos;re indexed to CPI alone rather than the wage-linked benchmark that applies
-        to pensions, so their dollar increases are typically smaller.
+        allowance-type payments are also indexed on the same 20 March and 20 September dates.
+        They are indexed to CPI alone, not the wage-linked benchmark that applies to pensions, so
+        their dollar increases are typically smaller.
       </p>
 
       <h2>Why the pension rises twice a year</h2>
@@ -62,19 +60,17 @@ export default function AgePensionIncreaseMarch2026() {
         Pension rates are indexed every 20 March and 20 September, using the higher of the
         Consumer Price Index or the Pensioner and Beneficiary Living Cost Index, then checked
         against a benchmark percentage of Male Total Average Weekly Earnings. That benchmark
-        protects pensioner incomes from falling behind wages growth even in years when inflation
-        is low. It&apos;s a deliberate design feature of the pension system: rather than pension
-        rates being set once and left to erode with inflation, they&apos;re recalculated twice a
-        year against whichever measure gives pensioners the better outcome.
+        stops the Age Pension falling behind wages growth even in years when inflation is low.
+        Rather than being set once and left to erode with inflation, pension rates are
+        recalculated twice a year against whichever measure gives pensioners the better outcome.
       </p>
 
       <h2>Income and assets test thresholds also moved</h2>
       <p>
         The income and assets test cut-off points that determine how much pension you receive are
-        indexed alongside the payment rate. Because the thresholds usually rise by a similar
-        proportion, some part-pensioners may find they&apos;re now eligible for a slightly higher
-        payment, or that they&apos;ve become eligible for the first time even if their income and
-        assets haven&apos;t changed. The way Centrelink assesses savings and investments also
+        indexed alongside the payment rate. Because the cut-off points rise with the maximum rate,
+        some part-pensioners may find they&apos;re now eligible for a slightly higher payment, or
+        eligible for the first time, even if their income and assets haven&apos;t changed. The way Centrelink assesses savings and investments also
         changed on the same date. See how{" "}
         <Link href="/news/deeming-rates-change-2026/">deeming rates shifted</Link>, since a higher
         deeming rate can partly offset the benefit of a higher pension rate for part-pensioners

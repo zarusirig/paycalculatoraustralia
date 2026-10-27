@@ -1,0 +1,54 @@
+    workedExample: {
+      heading: "Worked example: a Level 3 operator's Saturday and Sunday",
+      intro: `Lee is a permanent Level 3 operator (${$(l3.hourly)} ordinary hourly rate including the industry allowance: $1,119.10 + $41.41 = ${$(l3.weekly)} a week, divided by 38). He works 6 hours on a Saturday morning, then 8 hours on Sunday.`,
+      steps: [
+        `Saturday before noon: the first 3 hours at 150%, ${$(l3.hourly)} × 1.5 = ${$(x(l3.hourly, 1.5))} → ${$(roundCents(x(l3.hourly, 1.5) * 3))}.`,
+        `The next 3 hours at 200%: ${$(x(l3.hourly, 2))} → ${$(roundCents(x(l3.hourly, 2) * 3))}.`,
+        `Sunday: all hours at 200%, 8 × ${$(x(l3.hourly, 2))} = ${$(roundCents(x(l3.hourly, 2) * 8))}.`,
+        `Total for the weekend: ${$(roundCents(x(l3.hourly, 1.5) * 3 + x(l3.hourly, 2) * 3 + x(l3.hourly, 2) * 8))} before tax.`,
+      ],
+      outro: "For FIFO workers on rostered 12-hour shifts, see the FIFO pay guide: much of FIFO pay is set by an enterprise agreement above these award rates.",
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "How much does a miner earn under the Mining Award?",
+        a: `An entry-level mining employee earns ${$(entry.hourly)} an hour and a Level 3 (competent) operator ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7 (dual trade instrumentation), all including the $41.41 industry allowance. Most large mines pay under enterprise agreements at rates above the Mining Award minimum.`,
+      },
+      {
+        q: "What is the Mining Award industry allowance?",
+        a: "The Mining Award industry allowance is $41.41 a week, paid to all employees for all purposes (cl 18.2(b)). It recognises the location and nature of mining operations, clothing, dirt, wet, height, fumes, heat, cold, confined space and other disabilities. Because it is paid for all purposes, the allowance is part of the ordinary hourly rate that shift loadings, penalties and overtime are calculated on.",
+      },
+      {
+        q: "What are Mining Award shift and weekend rates?",
+        a: `Mining Award afternoon and night shifts are paid at 115% and permanent night shift at 130% (cl 21.2). Ordinary hours on a Saturday before noon are 150% for the first 3 hours and 200% after; all Saturday hours after noon and all Sunday hours are 200%; public holidays are 250% (cl 21.3). At Level 3 that is ${$(x(l3.hourly, 1.15))}, ${$(x(l3.hourly, 1.3))}, ${$(x(l3.hourly, 1.5))}, ${$(x(l3.hourly, 2))} and ${$(x(l3.hourly, 2.5))}.`,
+      },
+      {
+        q: "What is the Mining Award overtime rate?",
+        a: `Mining Award overtime is 150% for the first 3 hours, Monday to noon on Saturday, then 200%; 200% after noon on Saturday and all day Sunday; 250% on a public holiday; and 200% for continuous shiftworkers for all overtime (cl 20). A meal allowance of $22.04 applies on each occasion an employee is entitled to a rest break during overtime.`,
+      },
+      {
+        q: "How are casuals paid in the Mining Award?",
+        a: `A Mining Award casual is paid the ordinary rate plus 25% (cl 11.2), and the loading is part of the all-purpose rate (cl 11.3). Every penalty and overtime percentage is then applied to that casual rate, so a casual Level 3 working a Sunday is paid 200% of ${$(cas3)}, or ${$(x(cas3, 2))} an hour. A casual must be engaged for at least 2 consecutive hours.`,
+      },
+    ],
+    related: {
+      heading: "FIFO, camp and roster pay beyond the award",
+      body: [
+        "The Mining Industry Award sets the safety net. Most mine and FIFO workers are paid under enterprise agreements, with rostered 12-hour shifts, camp conditions and different rates. The FIFO pay guide explains how those arrangements work and how to compare take-home pay.",
+      ],
+      links: [{ href: "/mining-fifo-pay-guide/", label: "Mining and FIFO pay guide", note: "How FIFO rosters and agreement rates work" }],
+    },
+  };
+}
+
+export const OCT2_BUILDERS = {
+  plumbing,
+  pastoral,
+  horticulture,
+  "health-professionals": healthProfessionals,
+  timber,
+  "meat-industry": meatIndustry,
+  "commercial-sales": commercialSales,
+  mining,
+} as const;

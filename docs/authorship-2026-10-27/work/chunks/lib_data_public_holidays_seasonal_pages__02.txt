@@ -1,0 +1,202 @@
+      {
+        id: "sa",
+        heading: "South Australia: Proclamation Day",
+        paragraphs: [
+          "South Australia's holiday on 26 December is Proclamation Day, and it works for pay exactly as Boxing Day does elsewhere. In 2026 that is Saturday 26 December with an additional holiday on Monday 28 December. In 2027, with 26 December on a Sunday, the Sunday and Tuesday 28 December are both public holidays, and Monday 27 December is the additional day for Christmas Day.",
+        ],
+      },
+      {
+        id: "annual-leave",
+        heading: "Boxing Day during annual leave",
+        paragraphs: [
+          "Boxing Day, or its additional Monday, is not deducted from your annual leave balance when you are on leave over Christmas and the day falls on a day you would normally work. You are paid the public holiday instead. A two-week break that includes both Monday 28 December 2026 and Friday 1 January 2027 costs 8 days of leave rather than 10 for someone who works Monday to Friday.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Is Boxing Day a public holiday in every state?", a: "Yes, every state and territory has a public holiday for Boxing Day, though South Australia calls it Proclamation Day. New South Wales, Victoria, Queensland, Western Australia, the ACT and the Northern Territory observe Boxing Day on 26 December, South Australia observes Proclamation Day on 26 December, and Tasmania observes Boxing Day on the next weekday when the 26th falls on a weekend. In 2026 that means Saturday 26 December plus Monday 28 December, except in Tasmania, where only the Monday counts." },
+      { q: "What is the Boxing Day pay rate?", a: `The Boxing Day pay rate is your award's public holiday rate, applied to every hour worked. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. The permanent range across 14 awards is ${RANGE_PERM}.` },
+      { q: "Are both Saturday 26 and Monday 28 December 2026 public holidays?", a: "In New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory, yes: the Saturday is Boxing Day and the Monday is an additional public holiday. In Tasmania only Monday 28 December is a public holiday." },
+      { q: "Do I get paid for Boxing Day if I don't work?", a: NOT_WORKING_ANSWER },
+      { q: "When is Boxing Day in 2027?", a: "Boxing Day is Sunday 26 December 2027, with Tuesday 28 December as an additional public holiday in New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory. Tasmania's public holiday is the Tuesday 28 December. Monday 27 December is the additional day for Christmas Day." },
+      { q: "Can I refuse to work on Boxing Day?", a: "You can refuse if the request is unreasonable or you have reasonable grounds. Relevant factors include your role, your family and caring responsibilities, the notice you were given, whether you could expect to be asked and the penalty rates on offer. In retail, being asked to work Boxing Day is often reasonable." },
+    ],
+    related: [
+      { href: "/christmas-day-pay-rates/", label: "Christmas Day pay rates" },
+      { href: "/new-years-day-pay-rates/", label: "New Year's Day and Eve pay" },
+      { href: "/retail-award-rates/", label: "Retail award rates" },
+      { href: "/christmas-shutdown-annual-leave/", label: "Christmas shutdown and annual leave" },
+    ],
+    sources: [FW_2026, FW_2027, FW_END_OF_YEAR],
+  },
+
+  // ---------------------------------------------------------------------------
+  // New Year
+  // ---------------------------------------------------------------------------
+  {
+    slug: "new-years-day-pay-rates",
+    guideKey: "new-years-day-pay-rates",
+    shortName: "New Year's Day and Eve pay",
+    titles: ["New Year's Day & New Year's Eve Pay Rates 2026-27", "New Year's Day and Eve Pay Rates 2026-27"],
+    h1: "New Year's Day and New Year's Eve pay rates 2026-27",
+    descriptions: [
+      `New Year's Day is Friday 1 January 2027 in every state. SA and NT add a 7pm to midnight New Year's Eve holiday. Retail pays ${RETAIL_P}, casual ${RETAIL_C}. Calculator inside.`,
+      `New Year's Day is Friday 1 January 2027. SA and NT add a 7pm New Year's Eve holiday. Retail pays ${RETAIL_P} (casual ${RETAIL_C}). Calculator inside.`,
+    ],
+    standfirst:
+      "New Year's Day is a public holiday everywhere, and in South Australia and the Northern Territory so is the evening before. That makes a shift across midnight a special case: the hours after midnight fall on New Year's Day, a full public holiday.",
+    directAnswer: `New Year's Day 2027 is Friday 1 January in every state and territory, so every hour worked is paid at your award's public holiday rate: ${RETAIL_P} for retail and hospitality staff, ${RETAIL_C} for casuals. New Year's Eve (Thursday 31 December 2026) is a public holiday only from 7pm to midnight, and only in South Australia and the Northern Territory.`,
+    topics: [
+      {
+        topic: "new-year",
+        id: "dates",
+        heading: "New Year's Eve and New Year's Day by state",
+        intro:
+          "New Year's Day 2027 falls on a Friday, so no state needs an extra weekday. The only state-by-state difference is the evening. South Australia and the Northern Territory make New Year's Eve a part-day public holiday from 7pm to midnight, in 2026 and again in 2027.",
+        footnote:
+          "This page covers New Year's Eve 2026 and 2027 and New Year's Day 2027. New Year's Day 2028 is not covered here.",
+      },
+    ],
+    sectionsBeforeCalculator: [
+      {
+        id: "rates",
+        heading: "What New Year's Day pays",
+        paragraphs: [
+          `New Year's Day carries the same public holiday rate as any other public holiday under your award: ${RETAIL_P} of the base rate for full-time and part-time retail and hospitality staff and ${RETAIL_C} for casuals. The casual figure already includes the 25% casual loading. The permanent range across the 14 awards on this site is ${RANGE_PERM}; the casual range is ${RANGE_CASUAL}.`,
+          "Because 1 January 2027 is a Friday, it is an ordinary working day for any full-time employee who works Monday to Friday. If you are one of them and have the day off, you are paid your base rate for your ordinary hours (Fair Work Act s 116). If you are on annual leave around the holiday, the day is not deducted from your leave balance.",
+        ],
+      },
+      {
+        id: "nye",
+        heading: "New Year's Eve: who gets a public holiday and from when",
+        paragraphs: [
+          "Only two jurisdictions treat New Year's Eve as a public holiday, and only for the evening: South Australia and the Northern Territory, from 7pm to midnight. In the other six states and territories, New Year's Eve is an ordinary day, so a late shift is paid at whatever your award sets for a weekday evening (Thursday 31 December 2026, Friday 31 December 2027). In those states the public holiday rate starts at midnight, when 1 January begins.",
+          "The midnight boundary decides which hours of a late shift earn the public holiday rate. A hospitality worker in Adelaide who finishes at 1am is paid public holiday rates for the whole stretch from 7pm: five hours before midnight under the New Year's Eve rule and one hour after midnight under the New Year's Day rule. A worker in Sydney with the same roster is paid public holiday rates only for the hour after midnight.",
+        ],
+      },
+    ],
+    calculator: {
+      holidayName: "New Year's Day",
+      awardKey: "hospitality",
+      employment: "casual",
+      hours: 8,
+      partDayNote:
+        "For New Year's Eve in SA and the NT, enter only the hours worked from 7pm to midnight plus any hours after midnight; earlier hours are paid at your usual rate for that time.",
+    },
+    example: {
+      heading: "Worked example: an 8-hour shift on New Year's Day 2027",
+      intro: "This example uses entry-level adult rates from 1 July 2026, with 8 hours worked on Friday 1 January 2027, compared with the same hours on an ordinary weekday.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths.",
+    },
+    partDayExample: {
+      heading: "A New Year's Eve shift in South Australia or the NT: 6pm to 1am",
+      awardKey: "hospitality",
+      employment: "casual",
+      shiftText: "6pm Thursday 31 December 2026 to 1am Friday 1 January 2027 in Adelaide or Darwin",
+      ordinaryHours: 1,
+      holidayHours: 6,
+      explanation:
+        "The hour from 6pm to 7pm is outside the New Year's Eve window, so it is paid at the usual weekday evening rate. The five hours from 7pm to midnight are public holiday hours, and the hour from midnight to 1am is on New Year's Day, a full public holiday, so six hours in total are paid at the public holiday rate.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "other-states",
+        heading: "New Year's Eve in the other states",
+        paragraphs: [
+          "In New South Wales, Victoria, Queensland, Western Australia, Tasmania and the ACT there is no New Year's Eve public holiday. Queensland's part-day holiday is on Christmas Eve, not New Year's Eve. Your pay for a New Year's Eve shift is whatever your award or agreement sets for that day and time, for example a Friday night rate in 2027 or a late-night loading. The public holiday rate only starts at midnight.",
+          "Hospitality, venue and event staff who work across midnight should check the rate on the payslip line that covers the first hour of January separately from the rest of the shift.",
+        ],
+      },
+      {
+        id: "casuals",
+        heading: "Casuals and New Year",
+        paragraphs: [
+          "A casual who works New Year's Day is paid the casual public holiday rate, which already includes the 25% casual loading. A casual who is not rostered on is not paid for the day. Whether you can refuse a request to work depends on the Fair Work Ombudsman's reasonableness factors. They include whether you are full-time, part-time or casual, your personal circumstances and the notice you were given.",
+        ],
+      },
+      {
+        id: "not-working",
+        heading: "Paid for New Year's Day when you don't work",
+        paragraphs: [
+          "A full-time or part-time employee whose normal week includes Friday is paid their base rate for their ordinary hours on Friday 1 January 2027. Your employer can't change your roster to avoid paying it. Part-timers who don't normally work Fridays get nothing for it. Overtime, penalty rates and allowances are not part of the base rate that is paid.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is the New Year's Day pay rate?", a: `The New Year's Day pay rate is your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, which already includes the 25% casual loading. The permanent range across 14 awards is ${RANGE_PERM}.` },
+      { q: "Is New Year's Eve a public holiday?", a: "New Year's Eve is a public holiday only in South Australia and the Northern Territory, and only from 7pm to midnight. In every other state and territory New Year's Eve is an ordinary day, and the public holiday rate starts at midnight when New Year's Day begins." },
+      { q: "When is New Year's Day in 2027?", a: "New Year's Day is Friday 1 January 2027, a public holiday in every state and territory. Because it is a weekday, no state needs to add an extra holiday." },
+      { q: "How is a shift across midnight on New Year's Eve paid?", a: "Only the hours inside a public holiday are paid at the public holiday rate. In South Australia and the Northern Territory that is 7pm to midnight and then all of New Year's Day, so a 6pm to 1am shift has one ordinary hour and six public holiday hours. In the other states only the hours after midnight are public holiday hours." },
+      { q: "Do I get paid for New Year's Day if I don't work?", a: NOT_WORKING_ANSWER },
+    ],
+    related: [
+      { href: "/christmas-day-pay-rates/", label: "Christmas Day pay rates" },
+      { href: "/boxing-day-pay-rates/", label: "Boxing Day pay rates" },
+      { href: "/public-holidays-2027/", label: "Public holidays 2027 with pay rates" },
+      { href: "/hospitality-award-rates/", label: "Hospitality award rates" },
+    ],
+    sources: [FW_2026, FW_2027, FW_END_OF_YEAR],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Public holidays 2027
+  // ---------------------------------------------------------------------------
+  {
+    slug: "public-holidays-2027",
+    guideKey: "public-holidays-2027",
+    shortName: "Public holidays 2027",
+    titles: ["Public Holidays 2027 by State: Dates and What You Get Paid", "Public Holidays 2027 by State: Dates + Pay Rates"],
+    h1: "Public holidays 2027 by state, with what each one pays",
+    descriptions: [
+      `Public holidays 2027 for every state and territory, with the pay rate you earn working one: ${RETAIL_P} in retail, casual ${RETAIL_C}. Easter, Christmas and a calculator.`,
+      `Public holidays 2027 by state, plus the pay rate for working one: ${RETAIL_P} in retail, casual ${RETAIL_C}. Easter, Christmas and a calculator.`,
+    ],
+    standfirst:
+      "Public holiday dates depend on your state, and the pay for working one depends on your award or agreement. This page lists the statewide 2027 public holidays for each state and territory, then shows what working each one pays a worker and costs an employer.",
+    directAnswer: `In 2027 Good Friday is 26 March, Easter Monday 29 March, Australia Day Tuesday 26 January and Christmas Day a Saturday, which brings extra weekday holidays on Monday 27 and Tuesday 28 December in most states. Work any of them and your award pays ${RANGE_PERM} of your base rate (${RANGE_CASUAL} for casuals): ${RETAIL_P} (casual ${RETAIL_C}) in retail and hospitality.`,
+    topics: [],
+    matrix2027: true,
+    sectionsBeforeCalculator: [
+      {
+        id: "how-pay-works",
+        heading: "How a 2027 public holiday is paid",
+        paragraphs: [
+          `Each state and territory sets its own list, but the pay rules are national. If you work a public holiday your award or agreement decides the rate. Retail and hospitality pay ${RETAIL_P} (casual ${RETAIL_C}), and across the 14 awards this site publishes the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}. If you are full-time or part-time and don't work a holiday that falls on a day you would normally work, you are still paid your base rate for your ordinary hours.`,
+          "The Fair Work Ombudsman's 2027 list is based on each state and territory's own published list. It includes state-wide holidays, capital-city holidays and some regional holidays, and it notes that some states add or substitute holidays when one falls on a weekend while others don't. That is why the tables below are split by state rather than shown as one national list.",
+        ],
+      },
+    ],
+    calculator: { awardKey: "retail", employment: "permanent", hours: 8 },
+    example: {
+      heading: "Worked example: an 8-hour shift on a 2027 public holiday",
+      intro:
+        "This example takes entry-level adult rates from 1 July 2026, applies them to 8 hours worked on a public holiday and compares the result with the same hours on an ordinary weekday. Award rates are reviewed each year, so these 2026-27 figures can change after the next annual wage review.",
+      awardKeys: ["retail", "hospitality"],
+      hours: 8,
+      shiftNote: "Before tax. Excludes overtime, allowances and minimum shift lengths.",
+    },
+    sectionsAfterCalculator: [
+      {
+        id: "quirks",
+        heading: "What is different about 2027",
+        paragraphs: [
+          "Christmas Day falls on a Saturday and Boxing Day on a Sunday, so most states hold the weekend days and add Monday 27 and Tuesday 28 December. Anzac Day is a Sunday (25 April), which is why the Anzac row in the table differs most. New South Wales, Western Australia and the ACT keep the Sunday and add Monday 26 April. Queensland and the Northern Territory list Monday 26 April as Anzac Day. Victoria, South Australia and Tasmania have no replacement day. Check the row for your state. Australia Day, Tuesday 26 January, falls mid-week with no replacement day needed.",
+          "A few 2027 dates are not published yet. Victoria's Friday before the AFL Grand Final depends on the AFL fixture, and most regional and show-day holidays are announced later in the year. The state pages list what each government has published so far and mark the rest as not yet confirmed.",
+        ],
+      },
+      {
+        id: "holiday-guides",
+        heading: "Pay guides for the big 2027 holidays",
+        paragraphs: [
+          "Easter, Australia Day, Christmas Day and Boxing Day have their own pay guides, each with the state dates, the part-day rules where they apply, and a worked example. The pay rules above apply to all of them, so the guides concentrate on what is specific to each day.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What are the public holidays in 2027?", a: "The public holidays common to every state are New Year's Day (Friday 1 January), Australia Day (Tuesday 26 January), Good Friday (26 March), Easter Monday (29 March), Christmas Day (Saturday 25 December) and Boxing Day (Sunday 26 December) with additional weekdays in most states. Anzac Day is Sunday 25 April, with a Monday holiday in some states. Each state also has its own days such as Labour Day and the King's Birthday." },
+      { q: "How much do you get paid on a public holiday in 2027?", a: `Your award or agreement sets the rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Across 14 awards the permanent range is ${RANGE_PERM} and the casual range is ${RANGE_CASUAL}.` },
+      { q: "Do I get paid for a public holiday I don't work in 2027?", a: NOT_WORKING_ANSWER },
+      { q: "When is Easter in 2027?", a: "Good Friday is 26 March 2027, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Which of the four days are public holidays depends on the state: Western Australia has no Easter Saturday and Tasmania has only Good Friday and Easter Monday." },
+      { q: "Is Christmas Day 2027 on a weekend, and is there an extra public holiday?", a: "Yes. Christmas Day is Saturday 25 December 2027 and Boxing Day is Sunday 26 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December for Christmas Day and Tuesday 28 December for Boxing Day. Tasmania's list shows Monday 27 and Tuesday 28 December." },

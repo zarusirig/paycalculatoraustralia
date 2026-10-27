@@ -23,7 +23,7 @@ export const PARENTING_FAQS: readonly ParentingFaq[] = [
   },
   {
     q: "How much is Parenting Payment Partnered?",
-    a: `${formatAUD(PT.maxFortnightly, 2)} a fortnight from ${PP.ratesFrom}, the same as JobSeeker for a member of a couple. It reduces with your own income over ${formatAUD(PT.freeArea)} a fortnight and with your partner's income over ${formatAUD(PT.partnerIncomeFreeArea, 2)} (if they don't get a pension).`,
+    a: `Parenting Payment Partnered is ${formatAUD(PT.maxFortnightly, 2)} a fortnight from ${PP.ratesFrom}, the same as JobSeeker for a member of a couple. It reduces with your own income over ${formatAUD(PT.freeArea)} a fortnight and with your partner's income over ${formatAUD(PT.partnerIncomeFreeArea, 2)} (if they don't get a pension).`,
   },
   {
     q: "How much can I earn on Parenting Payment Single?",
@@ -39,11 +39,11 @@ export const PARENTING_FAQS: readonly ParentingFaq[] = [
   },
   {
     q: "Who can get Parenting Payment?",
-    a: `Single parents who are the principal carer of a child under ${PP.singleYoungestChildUnder}, and partnered parents who are the principal carer of a child under ${PP.partneredYoungestChildUnder}. You also need to meet the residence rules and the income and assets tests. Single parents have mutual obligation requirements once their youngest child turns ${PP.singleMutualObligationFromAge}.`,
+    a: `Parenting Payment is for single parents who are the principal carer of a child under ${PP.singleYoungestChildUnder}, and partnered parents who are the principal carer of a child under ${PP.partneredYoungestChildUnder}. You also need to meet the residence rules and the income and assets tests. Single parents have mutual obligation requirements once their youngest child turns ${PP.singleMutualObligationFromAge}.`,
   },
   {
     q: "What happens when my youngest child turns 14?",
-    a: `Parenting Payment Single stops when your youngest child turns ${PP.singleYoungestChildUnder} (${PP.partneredYoungestChildUnder} if you're partnered). Most parents then move to JobSeeker Payment, which has a lower maximum rate but, for a single principal carer of a child under 16, the same 40-cent taper over ${formatAUD(150)} a fortnight.`,
+    a: `Parenting Payment Single stops when your youngest child turns ${PP.singleYoungestChildUnder}, and Parenting Payment Partnered stops when your youngest child turns ${PP.partneredYoungestChildUnder}. Most parents then move to JobSeeker Payment, which has a lower maximum rate but, for a single principal carer of a child under 16, the same 40-cent taper over ${formatAUD(150)} a fortnight.`,
   },
   {
     q: "Is Parenting Payment taxable?",
@@ -51,6 +51,6 @@ export const PARENTING_FAQS: readonly ParentingFaq[] = [
   },
   {
     q: "What is the Parenting Payment assets limit?",
-    a: `Your payment stops when assets exceed ${formatAUD(PP.assetLimits.singleHomeowner)} for a single homeowner or ${formatAUD(PP.assetLimits.singleNonHomeowner)} for a single non-homeowner (${formatAUD(PP.assetLimits.coupleHomeowner)} and ${formatAUD(PP.assetLimits.coupleNonHomeowner)} for a couple, combined). Your home is not counted.`,
+    a: `Parenting Payment stops when your assets exceed ${formatAUD(PP.assetLimits.singleHomeowner)} for a single homeowner or ${formatAUD(PP.assetLimits.singleNonHomeowner)} for a single non-homeowner (${formatAUD(PP.assetLimits.coupleHomeowner)} and ${formatAUD(PP.assetLimits.coupleNonHomeowner)} for a couple, combined). Your home is not counted.`,
   },
 ];

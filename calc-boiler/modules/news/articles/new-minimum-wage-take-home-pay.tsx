@@ -7,9 +7,8 @@ export default function NewMinimumWageTakeHomePay() {
     <>
       <p className="lead">
         The national minimum wage is now <strong>$26.44 an hour</strong>: $1,004.90 for a
-        38-hour week, or about $52,255 a year full-time. But gross pay isn&apos;t what lands in
-        your account. Here&apos;s what a minimum-wage worker actually takes home after tax, at
-        weekly, fortnightly and annual frequency.
+        38-hour week, or about $52,255 a year full-time, before tax. The tables below show a
+        full-time minimum-wage worker&apos;s weekly, fortnightly and annual take-home pay after tax.
       </p>
 
       <NewsKeyFacts
@@ -24,11 +23,10 @@ export default function NewMinimumWageTakeHomePay() {
 
       <h2>How the take-home figures were worked out</h2>
       <p>
-        These numbers are calculated using the site&apos;s own FY2026-27 PAYG withholding engine,
-        the same methodology the Australian Taxation Office uses in its Statement of Formulas
-        (NAT 1004): annualising the pay period earnings, applying the FY2026-27 resident tax
-        scale, the Low Income Tax Offset and the shaded Medicare levy, then dividing back to the
-        pay period. The figures below assume a single Australian resident who claims the tax-free
+        The take-home figures on this page come from our FY2026-27 PAYG withholding engine,
+        which follows the Australian Taxation Office&apos;s Statement of Formulas (NAT 1004). It
+        annualises the pay period earnings, applies the FY2026-27 resident tax scale, the Low
+        Income Tax Offset and the shaded Medicare levy, then divides back to the pay period. The figures below assume a single Australian resident who claims the tax-free
         threshold and has no HECS-HELP or other study loan debt. You can see how the same
         withholding rates apply at other income levels on our{" "}
         <Link href="/weekly-tax-table/">weekly tax table</Link>.
@@ -71,7 +69,8 @@ export default function NewMinimumWageTakeHomePay() {
       <p>
         Withholding is worked out by annualising each pay period first, so weekly and fortnightly
         withholding land on slightly different totals than a straight division of the annual tax
-        figure once you account for rounding. The ATO publishes the exact amounts in its{" "}
+        figure once you account for rounding. The ATO publishes the exact amounts, and you can
+        look them up in our{" "}
         <Link href="/payg-withholding-tables/">weekly tax table {SITE_CONFIG.financialYear}</Link> and{" "}
         <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>. On a $52,254.80 annual income, the Low Income Tax
         Offset trims about $216 off the tax bill and the Medicare levy is shaded rather than
@@ -79,8 +78,8 @@ export default function NewMinimumWageTakeHomePay() {
         keep the effective tax rate on minimum-wage earnings well under 15%.
       </p>
       <p>
-        The tax-free threshold does most of the heavy lifting here: the first $18,200 of annual
-        income isn&apos;t taxed at all, and the 15% rate that applies from FY2026-27 covers most of
+        Under the tax-free threshold, the first $18,200 of annual income isn&apos;t taxed at all,
+        and the 15% rate that applies from FY2026-27 covers most of
         the remaining minimum-wage earnings up to $45,000. Because a full-time minimum-wage income
         sits only just above that $45,000 mark, very little of it is taxed at the higher 30% rate,
         which is why the effective average tax rate on the whole $52,254.80 works out closer to
@@ -89,36 +88,36 @@ export default function NewMinimumWageTakeHomePay() {
 
       <h2>Casuals and part-timers</h2>
       <p>
-        Casual employees on the minimum wage receive a 25% casual loading on top of the base rate,
-        taking their minimum hourly rate to $33.05 from 1 July 2026, paid to compensate for
-        missing out on paid leave. Many casuals are also covered by a modern award whose{" "}
-        <Link href="/award-rates/">award pay rates</Link> sit above the national minimum. Part-time workers are simply paid $26.44 for each hour rostered;
+        Casual employees on the national minimum wage receive a 25% casual loading on top of the
+        base rate, taking their minimum hourly rate to $33.05 from 1 July 2026, as compensation
+        for missing out on paid leave. Many casuals are also covered by a modern award whose{" "}
+        <Link href="/award-rates/">award pay rates</Link> sit above the national minimum. Part-time workers on the national minimum wage are paid $26.44 for each hour rostered;
         there&apos;s no separate part-time rate, so a 20-hour week comes to $528.80 gross. Use our{" "}
         <Link href="/weekly-pay-calculator/">weekly pay calculator</Link> to work out gross and
         net pay for your own hours.
       </p>
       <p>
-        Because casual and part-time earnings are usually lower per pay period than a full-time
-        wage, a larger share sits inside the tax-free threshold, so the average tax rate on those
-        hours can be lower again than the full-time figures shown above. If your hours vary week
-        to week, your employer withholds tax based on what you earn that period, not an assumed
-        annual average, so a big week can see proportionally more withheld than a quiet one, even
-        though it evens out at tax time.
+        Casual and part-time earnings are usually lower per pay period than a full-time wage, so a
+        larger share sits inside the tax-free threshold. The average tax rate on those hours can
+        be lower again than the full-time figures shown above. If your hours vary week to week,
+        your employer withholds tax based on what you earn that period, not an assumed annual
+        average. A big week can see proportionally more withheld than a quiet one, and the
+        difference evens out at tax time.
       </p>
 
       <h2>What happens if you have a HECS-HELP debt</h2>
       <p>
         A full-time minimum-wage income of $52,254.80 a year sits below the $69,528 compulsory
-        repayment threshold for 2026-27 for HECS-HELP and other study and training support loans, so nobody on
-        the minimum wage alone has a compulsory repayment withheld, so the take-home figures above
-        apply whether or not you carry a HECS-HELP debt. Repayments only kick in once your total
+        repayment threshold for 2026-27 for HECS-HELP and other study and training support loans.
+        Nobody earning only the minimum wage has a compulsory repayment withheld, so the take-home
+        figures above apply whether or not you carry a HECS-HELP debt. Repayments only kick in once your total
         repayment income, including any second job or other earnings, pushes you over that
         threshold.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        If you&apos;re paid the minimum wage, expect roughly $870 a week, $1,740 a fortnight or
+        If you&apos;re paid the full-time national minimum wage, expect roughly $870 a week, $1,740 a fortnight or
         $45,230 a year after tax under the new rate, assuming you claim the tax-free threshold and
         carry no HECS debt. Your figures will differ if you have a study loan, salary sacrifice
         arrangements or additional income. Run your exact hours and pay cycle through our{" "}

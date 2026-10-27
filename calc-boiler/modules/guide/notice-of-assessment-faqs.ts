@@ -12,15 +12,15 @@ export const NOTICE_OF_ASSESSMENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How long does it take to receive my NOA?",
-    a: `Electronic lodgements through myTax or a tax agent are typically processed within 2 weeks. Paper returns: most refunds issue within ${RETURN_2026.paperRefundBusinessDays} business days. Complex returns that require manual review may take longer. You can check the status of your return through your myGov account.`,
+    a: `Electronic lodgements through myTax or a tax agent are typically processed within 2 weeks. For paper returns, most refunds issue within ${RETURN_2026.paperRefundBusinessDays} business days. Complex returns that require manual review may take longer. You can check the status of your return through your myGov account.`,
   },
   {
     q: "What can I do if I disagree with my NOA?",
-    a: "You can request an amendment within 2 years of the assessment date (4 years for complex affairs). Amendments are lodged through myTax, your tax agent, or by paper. For formal disputes, you can lodge an objection with the ATO, and if that fails, apply to the Administrative Review Tribunal (which replaced the Administrative Appeals Tribunal on 14 October 2024) or the Federal Court.",
+    a: "You can request an amendment within 2 years of the assessment date (4 years for complex affairs). Amendments are lodged through myTax, your tax agent, or by paper. For formal disputes, you can lodge an objection with the ATO. If you are dissatisfied with the ATO's objection decision, you can apply to the Administrative Review Tribunal (which replaced the Administrative Appeals Tribunal on 14 October 2024) or the Federal Court.",
   },
   {
     q: "When will I receive my tax refund?",
-    a: "If you lodge electronically and your return is straightforward, refunds are typically paid within 2 weeks of lodgement. The ATO deposits refunds directly to the bank account you nominate in your tax return. During peak lodgement periods (July–October), processing may take slightly longer.",
+    a: "If you lodge electronically and your return is straightforward, refunds are typically paid within 2 weeks of lodgement. The ATO deposits refunds directly to the bank account you nominate in your tax return. During peak lodgement periods (July to October), processing may take slightly longer.",
   },
   {
     q: "What happens if I owe tax?",

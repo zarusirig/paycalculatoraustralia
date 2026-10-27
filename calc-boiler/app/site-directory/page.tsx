@@ -401,8 +401,10 @@ function Page() {
               Site Directory
             </h1>
             <p className="text-lg leading-relaxed text-warmgray">
-              Every calculator, guide, tax table and salary breakdown on this site: {total} pages,
-              organised by topic. All figures use official ATO rates for FY{SITE_CONFIG.financialYear}.
+              The Pay Calculator Australia site directory links {total} pages by topic: calculators,
+              guides, tax tables, salary breakdowns, pay scales by state and pay news. The salary hubs
+              under Salary Tables link the full take-home pay, tax and salary-to-hourly grids. Income tax figures on this
+              site use the ATO rates for FY{SITE_CONFIG.financialYear}.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>

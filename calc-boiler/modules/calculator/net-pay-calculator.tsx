@@ -93,7 +93,7 @@ export default function NetPayCalculator() {
               After tax you keep about {Math.round((1 - r.deductionRate) * 100)}c of each gross dollar. The same job nets {formatAUD(r.netWeekly, 2)} a week, {formatAUD(r.netFortnightly, 2)} a fortnight or {formatAUD(r.netMonthly, 2)} a month before other deductions.
             </p>
             <p className="text-xs text-warmgray-light">
-              Resident, claiming or not claiming the tax-free threshold as set. Withholding follows the ATO&rsquo;s weekly, fortnightly and monthly tax tables, so it can differ slightly from your final tax for the year. Super is shown for reference and is not part of net pay.
+              This net pay calculator assumes you are an Australian resident for tax, with the tax-free threshold claimed or not claimed as set in the form. Withholding follows the ATO&apos;s weekly, fortnightly and monthly tax tables, so it can differ slightly from your final tax for the year. Super is shown for reference and is not part of net pay.
             </p>
           </div>
         </div>

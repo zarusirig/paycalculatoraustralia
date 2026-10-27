@@ -63,7 +63,7 @@ export const STAFF_SPECIALIST_SCALES: StaffSpecialistScale[] = [
       { label: "Senior staff specialist", annual: 266_942, withAllowance: 313_390 },
     ],
     note:
-      "These are interim rates: the award is before the NSW Industrial Relations Commission, and NSW Health says further increases will follow its decision. Staff specialists on private practice Levels 1 to 4 also get the 17.4% special allowance, and Levels 1 to 3 a private practice allowance of 20%, 14% or 8% of salary.",
+      "The NSW rates are interim: the Staff Specialists (State) Award is before the NSW Industrial Relations Commission, and NSW Health says further increases will follow its decision. Staff specialists on private practice Levels 1 to 4 also get the 17.4% special allowance. Those on Levels 1 to 3 also get a private practice allowance of 20%, 14% or 8% of salary.",
   },
   {
     state: "VIC",
@@ -73,7 +73,7 @@ export const STAFF_SPECIALIST_SCALES: StaffSpecialistScale[] = [
     effectiveFrom: "From the first full pay period on or after 1 March 2025",
     steps: VIC_WEEKLY.map(([label, weekly]) => ({ label, annual: Math.round(weekly * 52) })),
     note:
-      "The agreement sets weekly rates (Year 1 is $5,040.37 a week); the annual figures are the weekly rate × 52. These are the rates for a full-time specialist who doesn't receive private practice income; the agreement sets a lower base for those who do. Its nominal expiry date was 28 February 2026, and it stays in force until a new agreement replaces it.",
+      "The Victorian agreement sets weekly rates (Year 1 is $5,040.37 a week); the annual figures in the table are the weekly rate × 52 (rounded to the dollar). These are the rates for a full-time specialist who doesn't receive private practice income; the agreement sets a lower base for those who do. Its nominal expiry date was 28 February 2026, and it stays in force until a new agreement replaces it.",
   },
   {
     state: "QLD",
@@ -88,6 +88,6 @@ export const STAFF_SPECIALIST_SCALES: StaffSpecialistScale[] = [
       { label: "L21", annual: 239_901 },
     ],
     note:
-      "Staff specialists are paid from L18 to L24, but the agreement's published wage table stops at L21, so the higher steps are not shown. On top of base salary, specialists other than specialist GPs get a general attraction and retention allowance of 50% of base salary, reduced by 25% of base salary for those who opt into the private practice revenue retention arrangement (cl 11.24).",
+      "Queensland Health staff specialists are paid from L18 to L24, but the agreement's published wage table stops at L21, so the higher steps are not shown. On top of base salary, specialists other than specialist GPs get a general attraction and retention allowance of 50% of base salary. For those who opt into the private practice revenue retention arrangement, the allowance is reduced by 25% of base salary (cl 11.24).",
   },
 ];

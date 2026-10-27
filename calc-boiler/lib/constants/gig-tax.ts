@@ -76,7 +76,7 @@ export function gstRegistrationStatus(workType: GigWorkType, grossTakings: numbe
   }
   return {
     mustRegister: false,
-    reason: `Under the $${GST_REGISTRATION_THRESHOLD.toLocaleString("en-AU")} GST threshold, so registration is optional for delivery work.`,
+    reason: `GST turnover is under the $${GST_REGISTRATION_THRESHOLD.toLocaleString("en-AU")} threshold, so GST registration is optional for delivery work.`,
   };
 }
 

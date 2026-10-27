@@ -125,8 +125,8 @@ function AtAGlance({ state }: { state: TeacherPayState }) {
         {state.code} teacher salary {teacherRatesYear(state)} at a glance
       </h2>
       <p>
-        Full-time annual salaries from {state.ratesEffectiveFrom}, read from the {state.agreementName}.
-        Tap a classification for every step, or a salary to see it after tax.
+        Each row below gives the full-time annual salary range from {state.ratesEffectiveFrom}, read from the {state.agreementName}.
+        Tap a classification to jump to its full step table, or a salary to see take-home pay at or near that figure.
       </p>
       <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
         <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">
@@ -249,7 +249,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               A graduate teacher in a {state.nameInSentence} public school is paid{" "}
               <strong className="text-navy">{formatAUD(grad)}</strong> a year, rising to{" "}
               <strong className="text-navy">{formatAUD(top)}</strong> at the top of the classroom
-              teacher scale. Every figure on this page is read from the {state.agreementName} and
+              teacher scale. Every salary on this page is read from the {state.agreementName} and
               applies from {state.ratesEffectiveFrom}.
             </p>
           ) : (
@@ -288,8 +288,8 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 </h2>
                 {state.classificationNote && <p>{state.classificationNote}</p>}
                 <p>
-                  Full-time annual salaries before tax and before superannuation. Part-time teachers
-                  are paid these rates pro rata on their time fraction.
+                  Each step below is a full-time annual salary, before tax and before superannuation.
+                  Part-time teachers are paid these rates pro rata on their time fraction.
                 </p>
                 <ScaleTable scale={state.scales[0]} />
               </section>
@@ -366,7 +366,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 <a href={state.agreementUrl} target="_blank" rel="noreferrer noopener">
                   {state.agreementName}
                 </a>
-                , the instrument {state.employer} pays against. The rates below took effect from{" "}
+                , the instrument {state.employer} pays against. The rates on this page took effect from{" "}
                 {state.ratesEffectiveFrom} and were read from that instrument on {state.verifiedOn}.
               </p>
               {state.nextIncrease && (
@@ -467,8 +467,8 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                   Gross salary is not what lands in your account. A graduate on{" "}
                   {formatAUD(grad)} and a top-of-scale teacher on {formatAUD(top)} both pay income
                   tax and the Medicare levy, and most also have a compulsory HECS-HELP repayment
-                  deducted at these income levels. Every salary in the tables above links to its
-                  take-home figure: start with{" "}
+                  deducted at these income levels. Every salary in the tables above
+                  links to take-home pay at or near that figure: start with{" "}
                   <Link href={takeHomeHref(grad)}>
                     take-home pay on {formatAUD(nearestTakeHomeAmount(grad))}
                   </Link>{" "}
@@ -522,9 +522,9 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link>.
               </p>
               <p>
-                Salary sacrificing also lowers the income your compulsory HECS-HELP repayment is
-                assessed on only in limited cases: reportable fringe benefits and reportable super
-                contributions are added back for that test. If you are packaging, check the effect on
+                Salary sacrificing lowers the income your compulsory HECS-HELP repayment is
+                assessed on only in limited cases, because reportable fringe benefits and reportable
+                super contributions are added back for that test. If you are packaging, check the effect on
                 repayment income before assuming a saving.
               </p>
             </section>

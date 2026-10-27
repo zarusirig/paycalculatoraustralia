@@ -65,7 +65,7 @@ export const TAS_NURSING_PAY: NursingStateData = {
         url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0011/738866/Nurses-and-Midwives-Tasmanian-State-Service-Agreement-2023.pdf",
         publisher: "Tasmanian Industrial Commission",
       },
-      note: "Listed by the Commission under current public sector agreements. No rates are reproduced from it on this page.",
+      note: "The Tasmanian Industrial Commission lists this agreement under its current public sector agreements. No rates are reproduced from it on this page.",
     },
   ],
 
@@ -242,7 +242,7 @@ export const TAS_NURSING_PAY: NursingStateData = {
   unverified: [
     "Shift, weekend and public holiday penalty rates: the Department's salary page publishes base salaries only, and the agreement text has not been read for this page",
     "An hourly rate for any Tasmanian classification",
-    "A separate nurse practitioner rate: the Department's salary page does not publish one, and we will not guess which grade it maps to",
+    "A separate nurse practitioner rate: the Department's salary page does not publish one, and this page does not guess which grade it maps to",
     "A separate midwifery scale: Tasmania's published rates cover nurses and midwives together without distinguishing them",
   ],
 

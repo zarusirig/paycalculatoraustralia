@@ -40,7 +40,7 @@ export const TAS_PARAMEDIC_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "1 December 2026",
     detail:
-      "A $700 structural adjustment plus 3% from the first full pay period commencing on or after 1 December 2026, printed in Schedule 1 Table 2: Paramedic Intern 01 goes to $81,855, Paramedic Level 2 (P2) 01 to $90,225, P2 07 to $105,186 and Intensive Care Paramedic 05 to $118,188. A further 2.75% follows from 1 September 2027.",
+      "Ambulance Tasmania salaries rise by a $700 structural adjustment plus 3% from the first full pay period commencing on or after 1 December 2026, as printed in Schedule 1 Table 2: Paramedic Intern 01 goes to $81,855, Paramedic Level 2 (P2) 01 to $90,225, P2 07 to $105,186 and Intensive Care Paramedic 05 to $118,188. A further 2.75% follows from 1 September 2027.",
   },
   verifiedOn: "24 September 2026",
 
@@ -52,7 +52,7 @@ export const TAS_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "paramedics",
       title: "Paramedic Intern and Paramedic Level 2 (Schedule 1, Table 1)",
       intro:
-        "Graduate interns and qualified Paramedics. Under the 2025 agreement, existing Paramedic 01-07 translate to Paramedic Level 2 (P2) 01-07 at the same increment. Annual base salary.",
+        "This table shows the annual base salary for Ambulance Tasmania graduate interns and qualified Paramedics. Under the 2025 agreement, existing Paramedic 01-07 translate to Paramedic Level 2 (P2) 01-07 at the same increment.",
       stepHeading: "Classification",
       steps: [
         { label: "Paramedic Intern 01", salary: 78_771 },
@@ -156,11 +156,11 @@ export const TAS_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does an intensive care paramedic earn in Tasmania?",
-      a: "An Intensive Care Paramedic is paid $104,898 (ICP 01) to $114,046 (ICP 05) a year. Extended Care Paramedics are paid $119,240 to $120,414, and Critical Care Flight Paramedics $119,553 to $120,731.",
+      a: "An Ambulance Tasmania Intensive Care Paramedic is paid $104,898 (ICP 01) to $114,046 (ICP 05) a year. Extended Care Paramedics are paid $119,240 to $120,414, and Critical Care Flight Paramedics $119,553 to $120,731.",
     },
     {
       q: "When is the next Ambulance Tasmania pay rise?",
-      a: "A $700 structural adjustment plus 3% applies from the first full pay period commencing on or after 1 December 2026, then 2.75% from 1 September 2027.",
+      a: "The next Ambulance Tasmania pay rise is a $700 structural adjustment plus 3% from the first full pay period commencing on or after 1 December 2026, then 2.75% from 1 September 2027.",
     },
   ],
 };

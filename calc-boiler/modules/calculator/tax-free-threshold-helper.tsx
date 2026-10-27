@@ -38,7 +38,7 @@ const ADVICE: Record<TftAdviceCode, { headline: string; text: React.ReactNode }>
   partYear: {
     headline: "Yes, you can claim it",
     text: (
-      <>Your payer withholds as if you had the full {T}, but at tax time the ATO gives you a part-year threshold instead, based on the months you were a resident. That can leave a small bill, so it&rsquo;s worth checking your part-year figure in the guide below.</>
+      <>Your payer withholds as if you had the full {T}, but at tax time the ATO gives you a part-year threshold instead, based on the months you were a resident. The lower part-year threshold can leave a tax bill when you lodge, so check your part-year figure in the guide below.</>
     ),
   },
   onlyPayer: {
@@ -48,7 +48,7 @@ const ADVICE: Record<TftAdviceCode, { headline: string; text: React.ReactNode }>
   allUnderThreshold: {
     headline: "Yes, you can claim it on each job",
     text: (
-      <>The ATO lets you claim the threshold from every payer if you&rsquo;re certain your total income from all of them will be {T} or less. If your income later goes over, give one payer a withholding declaration to stop claiming it there, or you may get a tax bill.</>
+      <>The ATO lets you claim the threshold from every payer if you&rsquo;re certain your total income from all of them will be {T} or less. If your total income later goes over that amount, give one payer a withholding declaration to stop claiming it there, or you may get a tax bill.</>
     ),
   },
   alreadyClaimedElsewhere: {
@@ -188,7 +188,7 @@ export default function TaxFreeThresholdHelper() {
               </div>
             </dl>
             <p className="mt-3 text-xs text-warmgray-light">
-              Resident rates from 1 July 2026, no study loan. The difference isn&rsquo;t lost: it&rsquo;s credited against your tax when you lodge, so over-withholding comes back as a refund and under-withholding becomes a bill.
+              These figures assume resident withholding rates from 1 July 2026, with no study loan. The difference isn&rsquo;t lost: it&rsquo;s credited against your tax when you lodge, so over-withholding comes back as a refund and under-withholding becomes a bill.
             </p>
           </div>
         )}

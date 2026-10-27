@@ -60,7 +60,7 @@ export default function SalaryPackageCalculatorPage({ children, afterCalculator 
           </h1>
           <p className="text-lg text-warmgray">
             &ldquo;{formatAUD(112_000)} package&rdquo;, &ldquo;{formatAUD(100_000)} plus super&rdquo; and &ldquo;{formatAUD(100_000)} including super&rdquo; are three different offers.
-            Enter the number from the job ad and see the base salary, the {RATE_PCT} super, the total package and your {SITE_CONFIG.financialYear} take-home pay.
+            In an Australian salary package, the employer&apos;s super sits inside the figure; in a salary plus super, it is paid on top of the base salary. Employer super is worked out on the base salary, not the package. So to calculate the base salary from a package including super, you divide the package rather than take the super percentage off the top. Your income tax, Medicare levy and take-home pay are all worked out on that base salary. Enter the figure from the job ad below, choose its phrasing, and see the base salary, the {RATE_PCT} super, the total package and your {SITE_CONFIG.financialYear} take-home pay.
           </p>
           <TrustBar className="mt-4" />
         </section>

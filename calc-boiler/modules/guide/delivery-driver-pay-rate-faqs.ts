@@ -16,11 +16,11 @@ export const DELIVERY_DRIVER_FAQS: Faq[] = [
   },
   {
     q: "Is the delivery minimum paid per hour logged in or per hour on a delivery?",
-    a: "Per hour of engaged time, not time logged in. Engaged time runs from when you accept an order until you complete it, as recorded in the app. Waiting for an order to come in, and time you choose to take away from the app, is not engaged time and is not paid under the floor.",
+    a: "The delivery minimum is paid per hour of engaged time, not per hour logged in. Engaged time runs from when you accept an order until you complete it, as recorded in the app. Waiting for an order to come in, and time you choose to take away from the app, is not engaged time and is not paid under the floor.",
   },
   {
     q: "Is the $31.30 before or after expenses?",
-    a: "Before. The order says the delivery worker pays for their own vehicle, registration, fuel and running costs, repairs, insurance, licences and any fines, so the hourly rate is not a take-home figure. Your costs and tax come out of it.",
+    a: "The hourly floor is before expenses. The order says the delivery worker pays for their own vehicle, registration, fuel and running costs, repairs, insurance, licences and any fines, so the hourly rate is not a take-home figure. Your costs and tax come out of it.",
   },
   {
     q: "How does the top-up work if my payout is under the floor?",
@@ -28,7 +28,7 @@ export const DELIVERY_DRIVER_FAQS: Faq[] = [
   },
   {
     q: "What time does not count as engaged time?",
-    a: "Time after a customer has cancelled and you have been told (apart from returning items the platform requires), time after you abandon the engagement, time lost to breakdowns, accidents or breaks, and non-engaged time. Non-engaged time covers unreasonable delays or routes, such as a stop of more than 5 minutes unrelated to the delivery, and only counts against you after the platform has issued two notifications with its evidence.",
+    a: "Engaged time does not include time after a customer has cancelled and you have been told (apart from returning items the platform requires), time after you abandon the engagement, time lost to breakdowns, accidents or breaks, and non-engaged time. Non-engaged time covers unreasonable delays or routes, such as a stop of more than 5 minutes unrelated to the delivery, and only counts against you after the platform has issued two notifications with its evidence.",
   },
   {
     q: "Do tips count towards the minimum?",

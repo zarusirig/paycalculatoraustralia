@@ -11,7 +11,7 @@ export const TAS_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   name: "Tasmania",
   inName: "in Tasmania",
   standfirst:
-    "Tasmania has 9 state-wide public holidays in 2026 and 9 in 2027, the fewest of any state, plus a long list of regional holidays. Everyone gets either Royal Hobart Regatta in February or Recreation Day in November, depending on where they work. WorkSafe Tasmania warns that a day being listed does not by itself mean you get it off or get paid more. That comes from your award, agreement and the National Employment Standards.",
+    "Tasmania has 9 state-wide public holidays in 2026 and 9 in 2027, the fewest of any state, plus regional holidays that apply only in part of the state. Everyone gets either Royal Hobart Regatta in February or Recreation Day in November, depending on where they work. WorkSafe Tasmania warns that a day being listed does not by itself mean you get it off or get paid more. Your award, agreement and the National Employment Standards decide that. The tables below list each Tasmanian holiday by date and area, and the calculator works out your award pay for a shift worked on one.",
   sources: [
     { title: "Public holidays", url: "https://worksafe.tas.gov.au/topics/laws-and-compliance/public-holidays", publisher: "WorkSafe Tasmania" },
   ],
@@ -65,7 +65,7 @@ export const TAS_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       id: "regional",
       title: "Tasmanian regional public holidays 2026 and 2027",
       intro:
-        "These holidays apply only in the areas listed. If your job is based there, award public holiday rates apply that day. Elsewhere it is an ordinary working day. Two are marked as generally observed by the Tasmanian State Service only, so most private sector employees work them at ordinary rates unless their award or agreement says otherwise.",
+        "Each Tasmanian regional holiday applies only in the area shown for it. If your job is based there, award public holiday rates apply that day. Elsewhere it is an ordinary working day. Two are marked as generally observed by the Tasmanian State Service only, so most private sector employees work them at ordinary rates unless their award or agreement says otherwise.",
       rows: [
         {
           name: "Devonport Cup (half day)",
@@ -168,7 +168,7 @@ export const TAS_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       heading: "A listed holiday is not automatically extra pay",
       paragraphs: [
         "WorkSafe Tasmania's own advice is that listing a day as a public holiday does not automatically mean employees can have the day off or get paid more. Your award, agreement and the National Employment Standards decide that. For national system employees, the NES and the award rates on this page apply on every day that is a public holiday where your job is based.",
-        "The practical question is usually a regional one. A Hobart-based employee gets Regatta Day and the Royal Hobart Show, and works Recreation Day at ordinary rates. A Launceston-based employee gets Recreation Day and the Royal Launceston Show, and works Regatta Day at ordinary rates.",
+        "Which regional holidays you get depends on where your job is based. A Hobart-based employee gets Regatta Day and the Royal Hobart Show, and works Recreation Day at ordinary rates. A Launceston-based employee gets Recreation Day and the Royal Launceston Show, and works Regatta Day at ordinary rates.",
       ],
     },
     {
@@ -195,11 +195,11 @@ export const TAS_PUBLIC_HOLIDAYS: StatePublicHolidays = {
     },
     {
       q: "Do I get Regatta Day or Recreation Day?",
-      a: "It depends on where your job is based. Royal Hobart Regatta (9 February 2026, 8 February 2027) applies in the south, and Recreation Day (2 November 2026, 1 November 2027) applies in every part of the state that doesn't observe Regatta.",
+      a: "You get the one that applies where your job is based. Royal Hobart Regatta (9 February 2026, 8 February 2027) applies in the south, and Recreation Day (2 November 2026, 1 November 2027) applies in every part of the state that doesn't observe Regatta.",
     },
     {
       q: "Is Easter Tuesday a public holiday in Tasmania?",
-      a: "It is listed, but WorkSafe Tasmania says it is generally observed by the Tasmanian Public Service only. Most private sector employees work it at ordinary rates unless their award or agreement treats it as a holiday.",
+      a: "Easter Tuesday is on Tasmania's public holiday list, but WorkSafe Tasmania says it is generally observed by the Tasmanian Public Service only. Most private sector employees work it at ordinary rates unless their award or agreement treats it as a holiday.",
     },
   ],
 };

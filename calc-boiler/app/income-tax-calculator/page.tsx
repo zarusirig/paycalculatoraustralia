@@ -99,7 +99,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What is the tax-free threshold in Australia?",
-    a: `The first ${T1} you earn each year is tax-free if you claim the threshold with your main employer. Because the Low Income Tax Offset refunds up to ${formatAUD(LITO.maxOffset)} of tax, you effectively pay no income tax until your income passes ${formatAUD(LITO.effectiveTaxFreeThreshold)} in FY${FY}. Claim the threshold with one employer only. Claiming it twice creates a tax debt.`,
+    a: `The first ${T1} you earn each year is tax-free if you claim the threshold with your main employer. Because the Low Income Tax Offset (LITO) reduces your tax by up to ${formatAUD(LITO.maxOffset)}, you effectively pay no income tax until your income passes ${formatAUD(LITO.effectiveTaxFreeThreshold)} in FY${FY}. Claim the threshold with one employer only. Claiming it with a second employer as well means too little tax is withheld, which leaves a tax debt when you lodge.`,
   },
   {
     q: "What is the difference between marginal and effective tax rates?",
@@ -111,19 +111,19 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How is income tax collected from my pay?",
-    a: `Through PAYG (Pay As You Go) withholding: your employer deducts an estimate of tax from every pay using the ATO withholding schedules and sends it to the ATO. When you lodge your return (by 31 October, or later through a registered tax agent), the ATO compares the total withheld with your actual liability and refunds or bills the difference.`,
+    a: `Income tax is collected through PAYG (Pay As You Go) withholding: your employer deducts an estimate of tax from every pay using the ATO withholding schedules and sends it to the ATO. When you lodge your return (by 31 October, or later through a registered tax agent), the ATO compares the total withheld with your actual liability and refunds or bills the difference.`,
   },
   {
     q: "Why does my payslip show more tax than this calculator?",
-    a: `This calculator shows your annual tax liability. Your employer withholds using ATO schedules that annualise each individual pay and cannot see your deductions, offsets, or income changes across the year, so the withheld total usually lands slightly above the true liability. Anything over-withheld comes back as a refund after you lodge your return.`,
+    a: `This calculator shows your annual tax liability. Your employer withholds PAYG tax using ATO schedules that annualise each individual pay. Those schedules cannot see your deductions, offsets, or income changes across the year, so the withheld total usually lands slightly above the true liability. Anything over-withheld comes back as a refund after you lodge your return.`,
   },
   {
     q: "How is income tax calculated if I have two jobs?",
-    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total. You are never taxed twice, but claiming the threshold on both jobs will leave you with a debt.`,
+    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total. The same income is not taxed twice, but claiming the threshold on both jobs leaves too little tax withheld and a tax debt when you lodge.`,
   },
   {
     q: "Do I pay the Medicare levy on top of income tax?",
-    a: `Most taxpayers pay a Medicare levy of ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income on top of income tax: ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of 1–1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover.`,
+    a: `Yes. The Medicare levy is ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income, paid on top of income tax: ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of 1 to 1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover.`,
   },
   {
     q: "Is superannuation included in taxable income?",

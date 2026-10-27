@@ -62,15 +62,15 @@ export const PHARMACY_ASSISTANT: Occupation = {
   },
   coverage: [
     "Pharmacy assistants and dispensary assistants in community pharmacies (retail chemists) are covered by the Pharmacy Industry Award 2020 [MA000012], not the General Retail Award.",
-    "The level depends on Community Pharmacy qualifications. Level 1 has not yet acquired the competencies for a Community Pharmacy qualification. Level 2 has the Certificate II competencies. Level 3 (also called Dispensary assistant level 3) has the Certificate III competencies and is required by the employer to work at that level, which can include dispensing under a pharmacist's direct supervision or supervising level 1 and 2 assistants. Level 4 has the Certificate IV competencies and is required to work at that level (Schedule A.1–A.4).",
-    "Holding a higher certificate does not by itself move a level 3 or 4 assistant up: the award also requires that the employer requires you to work at that level.",
+    "A pharmacy assistant's award level depends on their Community Pharmacy qualifications. Level 1 has not yet acquired the competencies for a Community Pharmacy qualification. Level 2 has the Certificate II competencies. Level 3 (also called Dispensary assistant level 3) has the Certificate III competencies and is required by the employer to work at that level, which can include dispensing under a pharmacist's direct supervision or supervising level 1 and 2 assistants. Level 4 has the Certificate IV competencies and is required to work at that level (Schedule A.1 to A.4).",
+    "Holding a Certificate III or IV does not by itself put a pharmacy assistant on level 3 or 4. Under the Pharmacy Industry Award, your employer must also require you to work at that level.",
   ],
   tables: [
     {
       id: "assistants",
       title: "Pharmacy assistant pay rates by level, 2026–27",
       intro:
-        "Pharmacy Industry Award cl 16.1, Table 3, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading, for ordinary weekday hours between 8 am and 7 pm.",
+        "These are the minimum rates in Pharmacy Industry Award cl 16.1, Table 3, from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading, for ordinary weekday hours between 8 am and 7 pm.",
       rows: [
         rowFromModernAward(PHARMACY_AWARD, "Pharmacy assistant level 1", undefined, "No Community Pharmacy qualification yet"),
         rowFromModernAward(PHARMACY_AWARD, "Pharmacy assistant level 2", undefined, "Certificate II in Community Pharmacy competencies"),

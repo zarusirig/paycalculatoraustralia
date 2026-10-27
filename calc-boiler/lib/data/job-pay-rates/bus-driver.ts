@@ -52,14 +52,14 @@ export const BUS_DRIVER: Occupation = {
   coverage: [
     "Bus and coach drivers employed by private operators are covered by the Passenger Vehicle Transportation Award 2020 [MA000063]. Your grade depends on the bus and the work, set out in Schedule A of the award.",
     "Grade 2 includes school bus drivers carrying fewer than 25 children. Grade 3 covers school buses carrying 25 or more children, route buses carrying fewer than 25 passengers, and charter or single-day tour work with a return distance under 650 km. Grade 4 covers route buses carrying 25 or more passengers and coach drivers on extended tours of 650 km or more.",
-    "Grade 5 drivers instruct and induct other drivers and operate special services, and Grade 6 are supervisors and trainers who also drive.",
+    "Grade 5 drivers instruct and induct other drivers and operate special services, and Grade 6 drivers are supervisors and trainers who also drive.",
     "Route drivers employed by a state government operator, or by a contractor with a registered enterprise agreement, are paid under that agreement instead. The award is the legal minimum for employers it covers.",
   ],
   tables: [
     {
       id: "passenger-vehicle",
       title: "Bus driver pay rates by grade, 2026–27",
-      intro: "Clause 15.1 of the award. Casual rates from the award's Schedule B.2.1.",
+      intro: "Weekly and hourly rates are from clause 15.1 of the Passenger Vehicle Transportation Award, and casual rates are from its Schedule B.2.1.",
       rows: [
         { label: "Grade 1", weekly: 1038.8, hourly: 27.34, casualHourly: 34.18, note: "Non-driving: yard, cleaning, coach attendants" },
         { label: "Grade 2", weekly: 1062.9, hourly: 27.97, casualHourly: 34.96, note: "School bus under 25 children; hire car" },
@@ -77,9 +77,9 @@ export const BUS_DRIVER: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate for ordinary hours (cl 20.1). Casual percentages include the 25% loading. Penalty and overtime rates are not cumulative: you get whichever is higher. Two-driver operations have a different table (cl 20.2).",
+    "Bus driver penalty rates are percentages of the minimum hourly rate for ordinary hours (cl 20.1). Casual percentages include the 25% loading. Penalty and overtime rates are not cumulative: you get whichever is higher. Two-driver operations have a different table (cl 20.2).",
   overtime: [
-    "150% for the first 3 hours, then 200% (cl 19.2).",
+    "Overtime is paid at 150% for the first 3 hours, then 200% (cl 19.2).",
     "Where overtime and a penalty both apply, you are paid the higher of the two, not both.",
   ],
   allowances: [],
@@ -99,7 +99,7 @@ export const BUS_DRIVER: Occupation = {
     },
     {
       q: "How much do school bus drivers get paid?",
-      a: "A school bus driver carrying fewer than 25 children is Grade 2 ($27.97 an hour). Carrying 25 or more children is Grade 3 ($29.55 an hour). Casual rates are $34.96 and $36.94.",
+      a: "A school bus driver carrying fewer than 25 children is Grade 2 ($27.97 an hour). A driver carrying 25 or more children is Grade 3 ($29.55 an hour). The matching casual rates are $34.96 and $36.94 an hour.",
     },
     {
       q: "What is the casual rate for a bus driver?",

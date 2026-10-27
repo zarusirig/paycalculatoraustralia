@@ -25,8 +25,8 @@ export default function C13ClassificationPhaseOut() {
       <p>
         C13 is the lowest ongoing (non-casual) classification in most modern awards, sitting one
         rung below C12. The Fair Work Commission found the gap between the two too narrow to
-        justify keeping C13 as a distinct entry point, and decided to fold it into C12 over
-        several Annual Wage Reviews rather than in one step, smoothing the transition for
+        justify keeping C13 as a distinct entry point. It decided to fold the classification into C12 over
+        several Annual Wage Reviews rather than in one step, to smooth the transition for
         employers who currently classify staff at C13.
       </p>
 
@@ -47,8 +47,8 @@ export default function C13ClassificationPhaseOut() {
         The Commission hasn&apos;t set a fixed date for full completion. The remaining two stages
         are expected to land in future Annual Wage Reviews, each closing another third of the gap
         between C13 and C12, until C13 disappears entirely and C12 becomes the permanent lowest
-        ongoing rate in affected awards. Casual rates and junior, apprentice and trainee loadings
-        continue to be calculated off the adjusted base rate at each stage, so those don&apos;t
+        ongoing rate in affected awards. Casual loadings and junior, apprentice and trainee rates
+        continue to be calculated off the adjusted base rate at each stage, so they don&apos;t
         need separate tracking.
       </p>
       <p>
@@ -65,7 +65,7 @@ export default function C13ClassificationPhaseOut() {
         The C13 classification appears across a range of modern awards as the entry point for
         ongoing employment, typically covering roles with minimal experience or qualification
         requirements. Anyone currently classified at C13 in an affected award is directly in scope
-        for the phase-out; workers already classified at C12 or above are unaffected by this
+        for the phase-out. Workers already classified at C12 or above are unaffected by this
         specific change, though they still receive the standard 4.75% award increase. If you&apos;re
         unsure which classification applies to your role, your award&apos;s classification
         definitions (usually set out by skill level, qualification or years of experience) will
@@ -75,11 +75,11 @@ export default function C13ClassificationPhaseOut() {
       <h2>What this means for your pay</h2>
       <p>
         If you&apos;re classified at C13, your pay rises by more than colleagues on other
-        classifications this year (5.95% instead of 4.75%) and will keep closing the gap to C12
+        classifications this year (5.95% instead of 4.75%). Your rate will keep closing the gap to C12
         in future reviews until the two rates merge. Compare your current and projected rate
         against the award schedule and our{" "}
         <Link href="/minimum-wage-history-australia/">minimum wage history</Link> page to see how
-        this year&apos;s changes fit the broader trend, then confirm your payslip reflects the new
+        this year&apos;s changes fit the broader trend. Then confirm your payslip shows the new
         rate from your first full July pay period.
       </p>
     </>

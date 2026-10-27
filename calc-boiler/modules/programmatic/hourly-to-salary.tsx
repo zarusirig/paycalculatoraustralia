@@ -196,8 +196,8 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
       <p className="text-warmgray mb-4">
         {label} an hour after tax is{" "}
         <strong className="text-navy">{formatAUD(ft.perWeek, 2)} a week</strong> on a {ft.hoursPerWeek}-hour week:
-        you keep {formatAUD(ft.perHour, 2)} of every hour. The effective tax rate is{" "}
-        {formatPercent(breakdown.effectiveTaxRate)}, and the next dollar is taxed at{" "}
+        you keep {formatAUD(ft.perHour, 2)} of every hour. With the Medicare levy included, the effective tax rate is{" "}
+        {formatPercent(breakdown.effectiveTaxRate)}, and each extra dollar is taxed at{" "}
         {formatPercent(breakdown.marginalTaxRate, 0)}.
       </p>
 
@@ -250,11 +250,11 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
       </div>
       {/* 10 Oct 2026: one line; the HECS sentence only where a repayment is due. */}
       <p className="text-xs text-warmgray-light mt-2">
-        {SITE_CONFIG.financialYear} resident rates, tax-free threshold claimed;{" "}
+        {SITE_CONFIG.financialYear} resident tax rates, with the tax-free threshold claimed and no HECS-HELP debt;{" "}
         <Link href="/payg-withholding-tables/" className={LINK}>
           each pay&apos;s withholding
         </Link>{" "}
-        can differ by a few dollars.
+        can differ from these figures by a few dollars.
         {withHecs.hecsRepayment > 0
           ? ` With a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} brings the year to ${formatAUD(withHecs.takeHomePay)}.`
           : ""}
@@ -347,12 +347,12 @@ function HourlyHoursSection({ rate }: { rate: number }) {
           </>
         )}{" "}
         {nextStart !== null && ftFacts.nextBracketRate !== null
-          ? `The ${formatPercent(ftFacts.nextBracketRate, 0)} rate starts above ${formatAUD(nextStart - 1)}, ${formatAUD((nextStart - 1) / EMPLOYMENT.hoursPerYear, 2)} an hour full time`
-          : `Full time, the top slice is taxed at the ${formatPercent(ftFacts.bracketRate, 0)} top rate`}
+          ? `The ${formatPercent(ftFacts.nextBracketRate, 0)} tax rate starts above ${formatAUD(nextStart - 1)} a year, or ${formatAUD((nextStart - 1) / EMPLOYMENT.hoursPerYear, 2)} an hour full time`
+          : `Full time, the part of this income above the top threshold is taxed at the ${formatPercent(ftFacts.bracketRate, 0)} top rate`}
         {ftFacts.mls.tier > 0
-          ? `. Without private hospital cover the Medicare Levy Surcharge (tier ${ftFacts.mls.tier}) would add ${formatAUD(ftFacts.mls.amount)} a year`
+          ? `. Without private hospital cover, the Medicare Levy Surcharge (tier ${ftFacts.mls.tier}) adds ${formatAUD(ftFacts.mls.amount)} a year`
           : ""}
-        . Every threshold at this income:{" "}
+        . For every tax threshold near this salary, see{" "}
         <Link href={`/take-home-pay-on/${takeHome}/`} className={LINK}>
           take-home pay on {formatAUD(takeHome)}
         </Link>

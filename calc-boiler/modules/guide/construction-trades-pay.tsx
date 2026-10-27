@@ -51,7 +51,7 @@ export default function ConstructionTradesPayPage() {
             Construction &amp; Trades Pay Guide: Rates, Overtime &amp; Apprentice Wages
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Apprenticeship rates of pay are a percentage of the qualified tradesperson&apos;s award rate that steps up each year of the apprenticeship. Under the Electrical award from {APPRENTICE_ELECTRICIAN_AWARD.award?.consolidatedTo ?? SITE_CONFIG.financialYearStart} the minimums for a Year 12 completer are {APPRENTICE_PCTS}, or {APPRENTICE_HOURLY} an hour; adult apprentices get at least {formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)} an hour in first year. This guide also covers qualified trade rates, site allowances, overtime provisions and take-home pay.
+            Apprentice wages in construction and the electrical trades are a percentage of the qualified tradesperson&apos;s award rate, and that percentage steps up each year of the apprenticeship. Under the Electrical, Electronic and Communications Contracting Award from {APPRENTICE_ELECTRICIAN_AWARD.award?.consolidatedTo ?? SITE_CONFIG.financialYearStart}, an apprentice electrician who completed Year 12 is paid at least these shares of the qualified rate from first to final year: {APPRENTICE_PCTS}, or {APPRENTICE_HOURLY} an hour. An adult apprentice electrician gets at least {formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)} an hour in first year. The apprentice table below gives each year&apos;s percentage with its hourly and annual award minimum. This guide also covers qualified trade salaries, site allowances, overtime under the Building and Construction General On-site Award and take-home pay after tax.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -66,7 +66,7 @@ export default function ConstructionTradesPayPage() {
             <section id="trade-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Qualified Trade Rates</h2>
               <p>
-                Qualified tradespeople in Australia earn well above the national average, driven by strong demand in residential construction, infrastructure projects, and commercial building. The table below shows typical annual salary ranges for qualified tradies, including base salary and common overtime. Actual earnings vary by state, employer, and whether the worker is employed under an enterprise agreement or the Building and Construction General On-site Award.
+                Qualified tradespeople in Australia earn well above the national average. The table below shows typical annual salary ranges for qualified electricians, plumbers, carpenters, bricklayers, painters, concreters and boilermakers, including base salary and common overtime. Your actual earnings depend on your state, your employer, and whether you are paid under an enterprise agreement or the Building and Construction General On-site Award.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -98,7 +98,7 @@ export default function ConstructionTradesPayPage() {
             <section id="apprentice-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Apprentice Pay Rates</h2>
               <p>
-                Apprentice wages in Australia are set as a percentage of the qualified trade rate, increasing each year as the apprentice gains skills and experience. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums. For plumbing, carpentry, automotive, hairdressing and cookery apprentices by year, with a wages calculator, see <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
+                Apprentice wages in Australia are a percentage of the qualified trade rate, and the percentage rises with each year of the apprenticeship. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums. For plumbing, carpentry, automotive, hairdressing and cookery apprentices by year, with a wages calculator, see <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -126,7 +126,7 @@ export default function ConstructionTradesPayPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Government Incentives</h3>
               <p>
-                The Australian Government offers incentives to support apprenticeships. The <strong>Australian Apprenticeships Incentive System</strong> provides payments to eligible employers and apprentices, including priority payments for trades experiencing skills shortages. Apprentices in priority trades may receive <strong>$5,000–$10,000</strong> in direct payments over the course of their apprenticeship. Additionally, tools and equipment purchased for an apprenticeship are <strong>tax-deductible</strong> for the apprentice.
+                The Australian Government pays apprenticeship incentives through the <strong>Australian Apprenticeships Incentive System</strong>, which makes payments to eligible employers and apprentices, including priority payments for trades with skills shortages. Apprentices in priority trades may receive <strong>$5,000–$10,000</strong> in direct payments over the course of their apprenticeship. Tools and equipment purchased for an apprenticeship are <strong>tax-deductible</strong> for the apprentice.
               </p>
             </section>
 
@@ -134,7 +134,7 @@ export default function ConstructionTradesPayPage() {
             <section id="site-allowances">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Site Allowances</h2>
               <p>
-                Construction workers receive various allowances on top of their base rate to compensate for the specific conditions of construction work. These allowances are set out in the Building and Construction General On-site Award and enterprise agreements.
+                Construction workers are paid allowances on top of their base rate for the conditions of on-site work. The Building and Construction General On-site Award sets the minimum allowances below, and enterprise agreements set their own.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -166,7 +166,7 @@ export default function ConstructionTradesPayPage() {
             <section id="overtime">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Overtime in Construction</h2>
               <p>
-                Overtime is a significant component of construction worker earnings. The Building and Construction General On-site Award sets the following overtime provisions (the hourly rate for every CW/ECW level, with the industry allowance built in, is on our <Link href="/building-and-construction-award-rates/">Building and Construction Award rates page</Link>):
+                The Building and Construction General On-site Award sets these overtime provisions (the hourly rate for every CW/ECW level, with the industry allowance built in, is on our <Link href="/building-and-construction-award-rates/">Building and Construction Award rates page</Link>):
               </p>
               <ul>
                 <li><strong>Monday to Friday:</strong> Time-and-a-half for the first 2 hours beyond ordinary hours (7.6 hours/day or 38 hours/week), then double time thereafter.</li>
@@ -175,7 +175,7 @@ export default function ConstructionTradesPayPage() {
                 <li><strong>Public Holidays:</strong> Double time and a half (2.5x) for all hours worked, with a minimum 4-hour engagement.</li>
               </ul>
               <p>
-                A qualified carpenter earning <strong>$40/hr</strong> base rate who works 5 hours of overtime on a Saturday earns: 2 hours at $60/hr + 3 hours at $80/hr = <strong>$360</strong> for the Saturday shift alone. Regular Saturday work adds up quickly over a year. Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your exact overtime earnings.
+                A qualified carpenter earning <strong>$40/hr</strong> base rate who works 5 hours of overtime on a Saturday earns: 2 hours at $60/hr + 3 hours at $80/hr = <strong>$360</strong> for the Saturday shift alone. Enter your own base rate and overtime hours in the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to see your overtime pay.
               </p>
             </section>
 
@@ -183,7 +183,7 @@ export default function ConstructionTradesPayPage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Below are take-home pay estimates for common construction and trades roles in FY{SITE_CONFIG.financialYear}, including typical allowances but excluding overtime (LITO and Medicare levy applied, no HECS):
+                These take-home pay estimates for a painter, carpenter, electrician and boilermaker use FY{SITE_CONFIG.financialYear} tax rates, with the low income tax offset (LITO) and Medicare levy applied and no HECS repayment. The gross figures include typical allowances but exclude overtime:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">

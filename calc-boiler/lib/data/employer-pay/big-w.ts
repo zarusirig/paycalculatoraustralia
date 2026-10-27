@@ -104,7 +104,7 @@ export const BIG_W_PAY: EmployerPay = {
   ],
   notices: [
     "BIG W's agreement prints only its 2023 rates. Each July they rise by the Annual Wage Review percentage plus a Boosted Leave increase (4.75% + 0.5% = 5.25% in 2026), so the 2026 figures here are our calculation from that formula, not a BIG W table. The agreement says the increases \"do not compound\"; if that is read as applying every rise to the 2023 rate, Level 1 would be $28.14 rather than $28.29. Check your payslip, and ask the SDA if it shows less.",
-    "Boosted Leave does not change your hourly rate. Permanent staff who elect it (or who do not choose by 31 May, which counts as electing it) get extra paid leave (3 days in 2026–27 for a full-timer), and its value is taken back out of pay in equal weekly amounts. Unused Boosted Leave is paid out at the end of the financial year. Casuals cannot elect it.",
+    "Boosted Leave does not change your hourly rate. Permanent staff who elect it (or who do not choose by 31 May, which counts as electing it) get extra paid leave (3 days in 2026-27 for a full-timer), and its value is taken back out of pay in equal weekly amounts. Unused Boosted Leave is paid out at the end of the financial year. Casuals cannot elect it.",
     "From the first full pay period on or after 1 December 2026, the Retail Award pays 18- and 19-year-olds with more than 6 months' service 75% and 85% of the award rate ($20.86 and $23.64). That is more than BIG W's 70% and 80%, and an agreement cannot pay a base rate below the award, so those staff must get at least the award figure.",
   ],
   unverified: [
@@ -127,7 +127,7 @@ export const BIG_W_PAY: EmployerPay = {
     },
     {
       q: "What is Boosted Leave at Big W, and does it lower my hourly rate?",
-      a: "No. Permanent staff can use the above-award part of each pay rise to buy extra leave, up to 3 days in 2026–27 for a full-timer. Your base rate stays the same; the value of the leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
+      a: "No, Boosted Leave does not lower your BIG W base rate. Permanent staff can use the above-award part of each pay rise to buy extra leave, up to 3 days in 2026-27 for a full-timer. The value of that leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
     },
     {
       q: "How much does Big W pay a 16 or 17 year old?",
@@ -139,7 +139,7 @@ export const BIG_W_PAY: EmployerPay = {
     },
     {
       q: "What is the Big W enterprise agreement?",
-      a: "The BIG W Stores Enterprise Agreement 2023 (AE523762), approved by the Fair Work Commission on 13 March 2024. It started on 20 May 2024 and has a nominal expiry date of 1 October 2027. Pay rises each July by the Annual Wage Review percentage plus a Boosted Leave margin.",
+      a: "The Big W enterprise agreement is the BIG W Stores Enterprise Agreement 2023 (AE523762), approved by the Fair Work Commission on 13 March 2024. It started on 20 May 2024 and has a nominal expiry date of 1 October 2027. Pay rises each July by the Annual Wage Review percentage plus a Boosted Leave margin.",
     },
     {
       q: "Is Big W paid above the award?",
@@ -147,7 +147,7 @@ export const BIG_W_PAY: EmployerPay = {
     },
     {
       q: "When is the next Big W pay rise?",
-      a: "From the first full pay period on or after 1 July 2027: the 2027 Annual Wage Review percentage plus 0.75% (cl 4.2.1). It is the last rise before the agreement's nominal expiry on 1 October 2027. Separately, from 1 December 2026, 18 and 19 year olds with more than 6 months' service must get at least the Retail Award's higher junior rates.",
+      a: "The next BIG W pay rise is from the first full pay period on or after 1 July 2027. That rise is the 2027 Annual Wage Review percentage plus 0.75% (cl 4.2.1). It is the last rise before the agreement's nominal expiry on 1 October 2027. Separately, from 1 December 2026, 18 and 19 year olds with more than 6 months' service must get at least the Retail Award's higher junior rates.",
     },
   ],
   // 22 Oct 2026: read from the approval decision [2024] FWCA 849 (FWC PDF).
@@ -155,7 +155,7 @@ export const BIG_W_PAY: EmployerPay = {
     underlyingAward: { title: "General Retail Industry Award 2020", code: "MA000004", url: "https://awards.fairwork.gov.au/MA000004.html" },
     commencedOn: "20 May 2024",
     status: "in-term",
-    statusNote: "Inside its nominal term, which runs to 1 October 2027. One scheduled rise remains, in July 2027.",
+    statusNote: "The BIG W agreement is inside its nominal term, which runs to 1 October 2027. One scheduled rise remains, in July 2027.",
     payRises: [
       { date: "First full pay period on or after 1 July 2024", amount: "3.75% Annual Wage Review plus 0.25% Boosted Leave increase", source: "Agreement cl 4.2.1", paid: true },
       { date: "First full pay period on or after 1 July 2025", amount: "3.5% plus 0.5%", source: "Agreement cl 4.2.1", paid: true },

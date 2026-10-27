@@ -80,7 +80,7 @@ export default function SecondJobTaxCalculatorContent() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Is My Second Job Taxed More?</h2>
-              <p className="mb-4 text-warmgray">Your second job is not actually taxed at a higher rate. The ATO taxes your <strong>combined income</strong> using the same progressive brackets. The difference is in how tax is <strong>withheld</strong> throughout the year.</p>
+              <p className="mb-4 text-warmgray">Your second job is not taxed at a higher rate. The ATO taxes your <strong>combined income</strong> using the same progressive brackets. The difference is in how tax is <strong>withheld</strong> throughout the year.</p>
               <p className="mb-4 text-warmgray">On your primary job, you claim the <strong>tax-free threshold of $18,200</strong>. Your employer factors this into PAYG withholding, so the first $18,200 has no tax withheld. On your second job, you do not claim the threshold. Your second employer withholds tax from the <strong>first dollar</strong> using the no-threshold scale, which starts at {NO_TFT_START_RATE}, so your second pay packet looks smaller.</p>
               <p className="text-warmgray">At tax time, the ATO calculates your actual liability on your <strong>total combined income</strong>. Because the no-threshold scale withholds as if the second job were your only income, it usually withholds <strong>too little</strong> once your main job reaches a higher bracket: with a {formatAUD(MAIN_JOB)} main job and a {formatAUD(SECOND_JOB)} second job, {EXAMPLE_BALANCE < 0 ? <>you would owe about <strong>{formatAUD(-EXAMPLE_BALANCE)}</strong></> : <>you would get about <strong>{formatAUD(EXAMPLE_BALANCE)}</strong> back</>}. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see how progressive brackets work on your combined income.</p>
             </section>
@@ -89,7 +89,7 @@ export default function SecondJobTaxCalculatorContent() {
             <section id="second-job-tax-rate">
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Tax Rate on a Second Job?</h2>
               <p className="mb-4 text-warmgray">
-                There is no special second job tax rate in Australia. The income is taxed at your marginal rate on your combined income; only the <strong>withholding</strong> differs, because the second employer uses the ATO&apos;s no-tax-free-threshold scale. That scale starts at {NO_TFT_START_RATE}, and it never reaches 50% &mdash; the table shows what it takes from each fortnightly pay in {PAYG_FINANCIAL_YEAR}.
+                There is no special second job tax rate in Australia. The income is taxed at your marginal rate on your combined income; only the <strong>withholding</strong> differs, because the second employer uses the ATO&apos;s no-tax-free-threshold scale. That scale starts at {NO_TFT_START_RATE}, and it never reaches 50%. The table shows what it takes from each fortnightly pay in {PAYG_FINANCIAL_YEAR}.
               </p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
@@ -121,17 +121,17 @@ export default function SecondJobTaxCalculatorContent() {
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Tax-Free Threshold Explained</h2>
               <p className="mb-4 text-warmgray">The tax-free threshold is the first <strong>$18,200</strong> of annual income on which no income tax is payable. Every Australian resident taxpayer is entitled to this threshold, but you can only claim it with <strong>one employer</strong> at a time.</p>
-              <p className="mb-4 text-warmgray">When you start a new job, your <Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax File Number Declaration</Link> asks whether you want to claim the tax-free threshold. If you tick &quot;yes&quot; on both jobs, both employers withhold less tax, and you end up with a <strong>tax debt</strong> at the end of the financial year &mdash; about <strong>{formatAUD(BOTH_TFT_DEBT)}</strong> on two {formatAUD(BOTH_JOB)} jobs.</p>
-              <p className="text-warmgray">Always claim the threshold on the <strong>higher-paying job</strong> to minimise under-withholding. See the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline font-medium">PAYG Withholding Tables</Link> for the exact withholding rates with and without the threshold.</p>
+              <p className="mb-4 text-warmgray">When you start a new job, your <Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax File Number Declaration</Link> asks whether you want to claim the tax-free threshold. If you tick &quot;yes&quot; on both jobs, both employers withhold less tax, and you end up with a <strong>tax debt</strong> at the end of the financial year: about <strong>{formatAUD(BOTH_TFT_DEBT)}</strong> on two {formatAUD(BOTH_JOB)} jobs.</p>
+              <p className="text-warmgray">Claim the threshold on the <strong>higher-paying job</strong> to minimise under-withholding. See the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline font-medium">PAYG Withholding Tables</Link> for the exact withholding rates with and without the threshold.</p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Optimise Tax Across Two Jobs</h2>
-              <p className="mb-4 text-warmgray">Workers with two jobs can take <strong>3 practical steps</strong> to manage their tax position throughout the financial year.</p>
+              <p className="mb-4 text-warmgray">With two jobs, you can take <strong>3 practical steps</strong> to avoid a tax debt at the end of the financial year.</p>
               <ol className="list-decimal pl-6 space-y-3 text-warmgray">
-                <li><strong>Claim the tax-free threshold on the higher-paying job only.</strong> This ensures maximum withholding on the secondary income, reducing the risk of a year-end tax debt.</li>
+                <li><strong>Claim the tax-free threshold on the higher-paying job only.</strong> Your second employer then withholds tax from the first dollar of the secondary income, which lowers the risk of a year-end tax debt.</li>
                 <li><strong>Request additional withholding.</strong> If you know the standard no-TFT rate will under-withhold, submit a withholding variation to the ATO or ask your employer to withhold extra from each pay.</li>
-                <li><strong>Set aside tax from your second job.</strong> Put 30% of your second job income into a separate savings account. Any amount not needed for tax at EOFY becomes a bonus.</li>
+                <li><strong>Set aside tax from your second job.</strong> Put 30% of your second job income into a separate savings account. Any amount you do not need for tax at EOFY stays in your account.</li>
               </ol>
               <p className="mt-4 text-warmgray">Use the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link> mid-year to estimate whether you are on track for a refund or a debt, and adjust your withholding accordingly.</p>
             </section>
@@ -176,10 +176,10 @@ export default function SecondJobTaxCalculatorContent() {
 
             <MethodologyDisclosure>
               <ol className="list-decimal space-y-1 pl-4">
-                <li>Job 1 tax uses standard resident progressive brackets with LITO applied.</li>
+                <li>Job 1 tax uses standard resident progressive brackets with LITO applied, plus the Medicare levy.</li>
                 <li>Job 2 withholding applies the ATO&apos;s {PAYG_FINANCIAL_YEAR} Schedule 1 &quot;no tax-free threshold&quot; scale (which includes the Medicare levy) to fortnightly pay.</li>
-                <li>Combined actual liability applies progressive brackets to total income from both jobs.</li>
-                <li>Estimated refund = total withheld across both jobs minus actual combined tax liability.</li>
+                <li>Combined actual liability applies progressive brackets, LITO and the Medicare levy to total income from both jobs.</li>
+                <li>Estimated refund = second job withholding minus the extra tax the second job adds to the combined liability (main job withholding is taken to match main job tax).</li>
               </ol>
               <p className="mt-2">All rates from the <a className="text-eucalyptus-dark hover:underline" href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" target="_blank" rel="noreferrer noopener">ATO</a>, last verified {SITE_CONFIG.lastVerified}.</p>
             </MethodologyDisclosure>
@@ -218,7 +218,7 @@ export default function SecondJobTaxCalculatorContent() {
             {/* CTA */}
             <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Full Pay Breakdown</h2>
-              <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture across both jobs with income tax, Medicare, HECS, and super.</p>
+              <p className="text-warmgray mb-6 max-w-lg mx-auto">Enter your combined income from both jobs to see income tax, Medicare levy, HECS and super.</p>
               <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
                 Calculate Your Take-Home Pay →
               </Link>

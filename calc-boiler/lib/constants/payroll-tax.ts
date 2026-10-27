@@ -471,7 +471,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: NSW_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$92,055 (28-day month), $98,630 (30-day month) or $101,918 (31-day month)",
     rateSummary:
-      "A flat 5.45% on NSW taxable wages above the tax-free threshold. There is no higher rate for large employers and no surcharge.",
+      "NSW payroll tax is a flat 5.45% on NSW taxable wages above the tax-free threshold. There is no higher rate for large employers and no surcharge.",
     thresholdSummary:
       "The $1.2 million annual threshold does not phase out, however large the payroll. An employer that also pays wages interstate gets the NSW share of it: $1.2m × NSW wages ÷ Australian wages. In a group, only one member (the designated group employer) claims it.",
     extras: null,
@@ -496,7 +496,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: VIC_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$83,333",
     rateSummary:
-      "4.85% on Victorian taxable wages above the threshold. Regional employers (at least 85% of Victorian wages paid to regional employees) pay 1.2125%.",
+      "Victorian payroll tax is 4.85% on Victorian taxable wages above the threshold. Regional employers (at least 85% of Victorian wages paid to regional employees) pay 1.2125%.",
     thresholdSummary:
       "The $1 million threshold applies in full up to $3 million of Australian wages. Between $3 million and $5 million it is reduced by 50 cents for every dollar over $3 million, and above $5 million there is no threshold at all. Interstate employers get the Victorian share.",
     extras:
@@ -520,7 +520,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: QLD_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$108,333 a month (registration test: $25,000 a week)",
     rateSummary:
-      "4.75% where Australian taxable wages are $6.5 million or less, and 4.95% where they are more than $6.5 million. Eligible regional employers get a 1 percentage point discount (3.75% / 3.95%) until 30 June 2030, except above $350 million.",
+      "Queensland payroll tax is 4.75% where Australian taxable wages are $6.5 million or less, and 4.95% where they are more than $6.5 million. Eligible regional employers get a 1 percentage point discount (3.75% / 3.95%) until 30 June 2030, except where Australian taxable wages are above $350 million.",
     thresholdSummary:
       "The $1.3 million deduction shrinks by $1 for every $7 of Australian wages above $1.3 million, reaching zero at $10.4 million. Interstate employers get the Queensland share of what is left.",
     extras:
@@ -544,7 +544,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     headlineRate: "5.5%",
     annualThreshold: WA_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$83,333",
-    rateSummary: "A flat 5.5% on WA taxable wages above the deductable amount. There is no higher tier for large employers in 2026-27.",
+    rateSummary: "WA payroll tax is a flat 5.5% on WA taxable wages above the deductable amount. There is no higher tier for large employers in 2026-27.",
     thresholdSummary:
       "WA uses a diminishing threshold: the $1 million deductable amount falls by $2 for every $13 of Australian wages above $1 million, and disappears at $7.5 million. Interstate employers get the WA share.",
     extras: null,
@@ -569,9 +569,9 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: SA_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$125,000 a month ($28,846 a week)",
     rateSummary:
-      "Nil up to $1.5 million of Australian wages. Between $1.5 million and $1.7 million the rate rises in a straight line from 0% to 4.95%; above $1.7 million it is 4.95%.",
+      "SA payroll tax is nil up to $1.5 million of Australian wages. Between $1.5 million and $1.7 million the rate rises in a straight line from 0% to 4.95%; above $1.7 million it is 4.95%.",
     thresholdSummary:
-      "Once the rate applies, it is charged on SA wages less a deduction of up to $600,000 a year ($50,000 a month). Interstate employers get the SA share of the $600,000.",
+      "Once SA payroll tax applies, the rate is charged on SA wages less a deduction of up to $600,000 a year ($50,000 a month). Interstate employers get the SA share of the $600,000.",
     extras: null,
     registration:
       "Register once your Australia-wide wages (or your group's) exceed $1.5 million a year ($125,000 a month or $28,846 a week).",
@@ -592,7 +592,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: TAS_PAYROLL_TAX.threshold,
     monthlyThresholdText: "days in the month ÷ days in the year × $1.25 million ($24,038 a week)",
     rateSummary:
-      "Two rates: 4% on wages between $1.25 million and $2 million, and 6.1% on wages above $2 million.",
+      "Tasmanian payroll tax has two rates: 4% on wages between $1.25 million and $2 million, and 6.1% on wages above $2 million.",
     thresholdSummary:
       "Both thresholds ($1.25 million and $2 million) are apportioned by the Tasmanian share of Australian wages. An employer that chooses not to claim the threshold pays 6.1% on all Tasmanian wages.",
     extras: null,
@@ -615,21 +615,21 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: ACT_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$145,833.33",
     rateSummary:
-      "6.75% where Australia-wide wages are over $1.75 million and up to $20 million; 6.85% to $50 million; 7.35% to $100 million; 7.85% to $150 million; 8.75% above $150 million. The rate for your band applies to all ACT wages above the threshold amount.",
+      "ACT payroll tax is 6.75% where Australia-wide wages are over $1.75 million and up to $20 million; 6.85% to $50 million; 7.35% to $100 million; 7.85% to $150 million; 8.75% above $150 million. The rate for your band applies to all ACT wages above the threshold amount.",
     thresholdSummary:
-      "The threshold is $1.75 million a year (it was $2 million until 30 June 2026), apportioned by the ACT share of Australian wages. It does not phase out.",
+      "The ACT threshold is $1.75 million a year (it was $2 million until 30 June 2026), apportioned by the ACT share of Australian wages. It does not phase out.",
     extras: "Eligible universities are capped at 6.85%.",
     registration:
       "Apply to register within seven days after the end of the month in which your (or your group's) wages go over the threshold.",
     monthlyDue:
-      "7th of the following month for July–November and January–May; the December return is due 14 January (next working day if a weekend or public holiday).",
+      "7th of the following month for July to November and January to May; the December return is due 14 January (next working day if a weekend or public holiday).",
     annualDue: "28 July 2027 (June wages go in the annual reconciliation)",
     // Corrected 10 Oct 2026 against Tables 2 and 3 of revenue.act.gov.au
     // ".../payroll-tax/about-payroll-tax": 2025-26 surcharges were 0.5% ($50m–$100m)
     // and 1% (above $100m), and from 1 January 2026 wages above $150m paid 8.75%
     // with no surcharge — not a flat 6.85% for everyone above $150m.
     changeFrom2025_26:
-      "From 1 July 2026 the threshold fell from $2 million to $1.75 million and the banded 6.75%–8.75% scale replaced the old structure: a flat 6.85% with a 0.5% surcharge for $50m–$100m of Australian wages and 1% above $100m (and, from 1 January 2026, 8.75% with no surcharge above $150m).",
+      "From 1 July 2026 the ACT threshold fell from $2 million to $1.75 million, and the banded 6.75% to 8.75% scale replaced the old structure. The old structure was a flat 6.85%, with a 0.5% surcharge for $50m to $100m of Australian wages and 1% above $100m. From 1 January 2026, wages above $150m paid 8.75% with no surcharge.",
     revenueOffice: "ACT Revenue Office",
     revenueOfficeUrl: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax",
     ratesUrl: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/about-payroll-tax",
@@ -644,7 +644,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     annualThreshold: NT_PAYROLL_TAX.threshold,
     monthlyThresholdText: "$208,333",
     rateSummary:
-      "5.5% on NT taxable wages above the tax-free amount. From 1 July 2026, employers and groups with Australia-wide wages of $100 million or more pay 6.5%.",
+      "NT payroll tax is 5.5% on NT taxable wages above the tax-free amount. From 1 July 2026, employers and groups with Australia-wide wages of $100 million or more pay 6.5%.",
     thresholdSummary:
       "The $2.5 million tax-free amount is reduced by $1 for every $2 of Australian wages above $2.5 million, so it disappears at $7.5 million. Interstate employers get the NT share of what is left.",
     extras: null,
@@ -652,7 +652,7 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
       "Register within 21 days of the end of the first month in which you pay NT wages and your total Australian taxable wages (including your group's) exceed $208,333.",
     monthlyDue: "21st of the following month (next business day if the 21st is a weekend or public holiday).",
     annualDue: "21 July 2027",
-    changeFrom2025_26: "A 6.5% rate for employers and groups with $100 million or more of Australia-wide wages starts on 1 July 2026. The $2.5 million threshold and the 5.5% general rate are unchanged.",
+    changeFrom2025_26: "NT employers and groups with $100 million or more of Australia-wide wages pay a 6.5% rate from 1 July 2026. The $2.5 million threshold and the 5.5% general rate are unchanged.",
     revenueOffice: "Territory Revenue Office",
     revenueOfficeUrl: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax",
     ratesUrl:

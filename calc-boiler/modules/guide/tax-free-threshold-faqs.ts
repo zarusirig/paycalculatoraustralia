@@ -18,7 +18,7 @@ const w900 = tftWithholdingRow(900, "weekly");
 export const TAX_FREE_THRESHOLD_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What is the tax-free threshold in Australia for ${FY}?`,
-    a: `${T}. It has been ${T} since 1 July 2012 and is unchanged for ${FY}. Australian residents pay no income tax on the first ${T} of taxable income, which works out to ${formatAUD(TFT_PER_PERIOD.weekly)} a week, ${formatAUD(TFT_PER_PERIOD.fortnightly)} a fortnight or about ${formatAUD(TFT_PER_PERIOD.monthly)} a month.`,
+    a: `The tax-free threshold is ${T}. It has been ${T} since 1 July 2012 and is unchanged for ${FY}. Australian residents pay no income tax on the first ${T} of taxable income, which works out to ${formatAUD(TFT_PER_PERIOD.weekly)} a week, ${formatAUD(TFT_PER_PERIOD.fortnightly)} a fortnight or about ${formatAUD(TFT_PER_PERIOD.monthly)} a month.`,
   },
   {
     q: "How much can I earn before paying tax in Australia?",
@@ -30,7 +30,7 @@ export const TAX_FREE_THRESHOLD_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Can I claim the tax-free threshold on two jobs?",
-    a: `Generally no. Claim it on one job and answer "No" on the other, which then withholds at the higher "no tax-free threshold" rate. Claiming it twice means too little tax is withheld, and the ATO collects the shortfall as a bill when you lodge. The only exception is where your total income from every payer will be ${T} or less for the year.`,
+    a: `No, with one exception. Claim it on one job and answer "No" on the other, which then withholds at the higher "no tax-free threshold" rate. Claiming it twice means too little tax is withheld, and the ATO collects the shortfall as a bill when you lodge. The exception is where your total income from every payer will be ${T} or less for the year.`,
   },
   {
     q: "What happens if I don't claim the tax-free threshold?",
@@ -42,7 +42,7 @@ export const TAX_FREE_THRESHOLD_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Can working holiday makers or non-residents claim the tax-free threshold?",
-    a: "Generally no. A foreign resident for the whole year pays tax from the first dollar; the only exception on the TFN declaration is a foreign resident receiving an Australian Government pension or allowance, who can claim it from that payer. Working holiday makers on visa subclass 417 or 462 must answer No: they pay 15% from the first dollar on their working holiday income.",
+    a: "No, with one exception for foreign residents. A foreign resident for the whole year pays tax from the first dollar; the only exception on the TFN declaration is a foreign resident receiving an Australian Government pension or allowance, who can claim it from that payer. Working holiday makers on visa subclass 417 or 462 must answer No: they pay 15% from the first dollar on their working holiday income.",
   },
   {
     q: "Is the tax-free threshold the same as the Medicare levy threshold?",

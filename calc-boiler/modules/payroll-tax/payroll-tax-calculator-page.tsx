@@ -44,7 +44,7 @@ export default function PayrollTaxCalculatorPage() {
               (ACT, above $150 million), and thresholds from {formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)}{" "}
               (VIC, WA) to {formatAUD(PAYROLL_TAX_STATES.nt.annualThreshold)} (NT). A business paying{" "}
               {formatAUD(2_000_000)} of wages only in NSW pays <strong>{formatAUD(nswEx.total)}</strong> a year.
-              Employers pay it; employees never do.
+              Employers pay it; employees do not.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -100,8 +100,8 @@ export default function PayrollTaxCalculatorPage() {
             <section id="compare">
               <h2 style={H2_STYLE}>What the Same Payroll Costs in Each State</h2>
               <p>
-                Annual payroll tax for a single-state employer at four wage bills, full year, no regional concession.
-                The order changes with size: the NT&rsquo;s big threshold wins at the small end, but its taper means a
+                The grid shows annual payroll tax for a single-state employer at four wage bills, for a full year with
+                no regional concession. The order changes with size: the NT&rsquo;s big threshold wins at the small end, but its taper means a
                 $10 million payroll there pays on every dollar.
               </p>
               <ComparisonGrid />
@@ -125,7 +125,7 @@ export default function PayrollTaxCalculatorPage() {
             <section id="employees">
               <h2 style={H2_STYLE}>Payroll Tax and Employees</h2>
               <p>
-                Payroll tax is never withheld from pay. If you are an employee checking your payslip, the{" "}
+                Payroll tax is not withheld from an employee&rsquo;s pay. If you are an employee checking your payslip, the{" "}
                 <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> shows what is withheld (income
                 tax, the Medicare levy and any study loan), and the{" "}
                 <Link href="/employer-cost-calculator/">employer cost calculator</Link> shows what your job costs the

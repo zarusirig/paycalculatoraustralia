@@ -46,7 +46,7 @@ import type { AwardRate, ModernAwardData } from "./modern-awards";
 const VERIFIED_ON = "5 October 2026";
 const OPERATIVE = "1 July 2026";
 const EFFECTIVE_NOTE =
-  "Applies from the first full pay period starting on or after 1 July 2026, not universally 1 July.";
+  "The new rates apply from the first full pay period starting on or after 1 July 2026, not from 1 July for every employee.";
 const SUMMARY = (code: string) =>
   `https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/${code.toLowerCase()}-summary`;
 
@@ -196,7 +196,7 @@ export const PLUMBING_AWARD: ModernAwardData = {
   ],
   penaltiesClause: "cl 23 and Schedules C.1.3–C.1.7, D.1.3–D.1.7",
   penaltyNotes: [
-    "Ordinary hours are 7.00 am to 6.00 pm, Monday to Friday, in a 20-day, 4-week cycle of 8-hour days with 0.4 of an hour a day accruing towards a rostered day off (cl 15.2). By agreement the day can start between 6.00 am and 8.00 am (cl 15.3).",
+    "Plumbing Award ordinary hours are 7.00 am to 6.00 pm, Monday to Friday. They are worked in a 20-day, 4-week cycle of 8-hour days, with 0.4 of an hour a day accruing towards a rostered day off (cl 15.2). By agreement the day can start between 6.00 am and 8.00 am (cl 15.3).",
     "Every percentage applies to the ordinary hourly rate, which already includes the all-purpose allowances. That is why the dollar figures on this page are higher than the percentages of the bare cl 18.1 minimum would give.",
     "Casual penalties are the permanent percentage plus the 25% loading: 150% becomes 175%, 200% becomes 225%, 250% becomes 275% (Schedule C.1.6, cl 22.1(a) NOTE). Penalty rates are not cumulative: only one applies at a time, and none applies where overtime is payable (cl 23.5).",
     "Sprinkler fitters are paid the same percentages on their own ordinary hourly rate, but Saturday work for sprinkler fitters outside ordinary hours is overtime at 200% from the first hour (cl 22.1(a)).",
@@ -215,7 +215,7 @@ export const PLUMBING_AWARD: ModernAwardData = {
   overtimeNotes: [
     "Casuals who work overtime are paid the casual column of the table, which adds the 25% loading to the permanent percentage (cl 12.3, cl 22.1(a) NOTE).",
     "An employee who has to resume work with less than 10 consecutive hours off is paid 200% until released for 10 hours (cl 16.5(c)). A fire sprinkler fitter on a service call-out outside ordinary hours is paid 200%, with at least 2 hours for the first call-back in a day (cl 17.1).",
-    "Meal breaks on a Saturday, Sunday or public holiday: a paid 20-minute break after 4 hours at the overtime rate (cl 22.8).",
+    "On a Saturday, Sunday or public holiday, an employee gets a 20-minute meal break after 4 hours, paid at the overtime rate (cl 22.8).",
   ],
   casualPenaltyBasis: "additive",
   junior: null,
@@ -450,7 +450,7 @@ Level 5|1119.10|29.45
   overtimeClause: "cl 21.3–21.4 and Schedule B.2.3 / B.3.2",
   overtimeNotes: [
     "For full-time and part-time employees overtime is all time beyond ordinary hours or outside the 6.00 am to 6.00 pm span (cl 13.1(a)(iv), cl 21.1). Anyone required to work on a Sunday is paid for at least 3 hours (cl 21.3(e)).",
-    "A casual's ordinary hours can be worked at any time and any day (cl 13.2(a)), so a casual is paid overtime only for hours beyond 12 in an engagement or day, or beyond 304 ordinary hours over 8 weeks. That overtime is 175% of the ordinary rate, inclusive of the loading (cl 21.4).",
+    "A casual's ordinary hours can be worked at any time and any day (cl 13.2(a)). So a casual is paid overtime only for hours beyond 12 in an engagement or day, or beyond 304 ordinary hours over 8 weeks. That overtime is 175% of the ordinary rate, inclusive of the loading (cl 21.4).",
     "Overtime on a public holiday is paid at the public holiday rate: 200% (casuals 225%) (cl 27.3–27.4).",
   ],
   casualPenaltyBasis: "additive",
@@ -487,7 +487,7 @@ Level 5|1119.10|29.45
     "Pieceworkers: the employer must give a written piecework record before the task starts, stating the date, task, piece rate and the hourly rate for the pieceworker (cl 15.2(h)).",
   ],
   unverified: [
-    "Piece rates: the award sets no dollar piece rate. It requires one that lets an average-productivity worker earn at least 15% more than the hourly rate (cl 15.2(d)), so what a picker is actually paid per bucket, punnet or kilogram is set by the employer and not published here",
+    "Piece rates: the award sets no dollar piece rate. It requires one that lets an average-productivity worker earn at least 15% more than the hourly rate (cl 15.2(d)). What a picker is actually paid per bucket, punnet or kilogram is set by the employer, so it is not published here",
     "Apprentice and trainee rates (the National Training Wage is in Schedule E to the Miscellaneous Award) and the supported wage system (Schedule D)",
     "Annualised wage arrangements (cl 17) and accident pay (cl 19)",
   ],
@@ -576,7 +576,7 @@ Health Professional Level 4|2499.10|65.77
   ],
   casualPenaltyBasis: "compounded",
   casualRuleSummary:
-    "Casual weekend work is 175% of the minimum rate with no 25% loading on top (cl 26.1(b)); casual shiftwork is 140% (cl 26.3(b)); and a casual public holiday is 275%, the 250% plus the 25% loading (Schedule C.2.3). Casual overtime is different: the loading is added to the minimum rate first and the overtime percentage is then applied to that, so 150% becomes 187.5% and 200% becomes 250% of the minimum rate (cl 25.3).",
+    "Casual weekend work is 175% of the minimum rate with no 25% loading on top (cl 26.1(b)). Casual shiftwork is 140% (cl 26.3(b)). A casual public holiday is 275%, the 250% plus the 25% loading (Schedule C.2.3). Casual overtime works differently: the loading is added to the minimum rate first, and the overtime percentage then applies to that total. So 150% becomes 187.5% and 200% becomes 250% of the minimum rate (cl 25.3).",
   // cl 26 and 33.2.
   penalties: [
     { label: "Saturday or Sunday ordinary hours", fullTime: 1.5, casual: 1.75, casualBasis: "additive", note: "Casuals get 175% for all time worked on a Saturday or Sunday and are NOT also paid the 25% loading (cl 26.1(b))." },
@@ -585,7 +585,7 @@ Health Professional Level 4|2499.10|65.77
   ],
   penaltiesClause: "cl 26, cl 33.2 and Schedule C",
   penaltyNotes: [
-    "Ordinary hours for a day worker are 6.00 am to 6.00 pm Monday to Friday, but 7.30 am to 9.00 pm Monday to Friday and 8.00 am to 4.30 pm on Saturday in private medical, dental, pathology, physiotherapy, chiropractic and osteopathic practices, and longer spans in private medical imaging practices (cl 13.2). Hours outside the spread are overtime.",
+    "Ordinary hours for a day worker are 6.00 am to 6.00 pm, Monday to Friday. In private medical, dental, pathology, physiotherapy, chiropractic and osteopathic practices the span is 7.30 am to 9.00 pm Monday to Friday and 8.00 am to 4.30 pm on Saturday. Private medical imaging practices have longer spans (cl 13.2). Hours outside the spread are overtime.",
     "The weekend rate is a flat 150% of the minimum rate for all ordinary hours between midnight Friday and midnight Sunday (cl 26.1(a)). It is not split into Saturday and Sunday and has no first-two-hours step.",
     "Overtime rates are paid in substitution for, not on top of, the penalty rates in cl 26 (cl 25.2(b), 25.3(b)).",
   ],
@@ -599,7 +599,7 @@ Health Professional Level 4|2499.10|65.77
   overtimeClause: "cl 25.2–25.3 and Schedule C.1.4, C.2.2",
   overtimeNotes: [
     "Overtime is time over ordinary hours or 10 hours in a shift (cl 25.1). For casuals it is also time over 38 hours a week or 76 hours a fortnight (cl 25.1(c)).",
-    "The casual column is a percentage of the casual hourly rate, which already includes the 25% loading: that is 187.5% of the minimum rate for the first 2 hours, 250% after that and on a Sunday, and 312.5% on a public holiday (cl 25.3(a)).",
+    "The casual column is a percentage of the casual hourly rate, which already includes the 25% loading. As a share of the minimum rate, that is 187.5% for the first 2 hours, 250% after that and on a Sunday, and 312.5% on a public holiday (cl 25.3(a)).",
     "An employee is entitled to 10 consecutive hours off between the end of work on one day and the start on the next (cl 25.4(a)).",
   ],
   junior: null,
@@ -624,10 +624,10 @@ Health Professional Level 4|2499.10|65.77
     "Progression to the next Support Services pay point is by annual movement for full-time employees, or after 1,824 hours of similar experience for part-time and casual employees (cl 16.1).",
   ],
   unverified: [
-    "Dental assistant (Levels 3, 5, 6, 7) and pathology collector (Levels 5, 6, 7) transitional rates to 31 December 2026 (cl 16.2(b)–(c))",
+    "Dental assistant (Levels 3, 5, 6, 7) and pathology collector (Levels 5, 6, 7) transitional rates to 31 December 2026 (cl 16.2(b) to (c))",
     "The classification translation rules for staff who were already employed on 30 September 2026 (Schedule J.4), which can leave an individual on a higher rate than the new table",
     "Later phase-in stages of the Health Professional rates (30 June 2027 to 2030). Do not assume this table is the rate you will be paid next year",
-    "Support Services juniors, cooking, dental technician and gardening apprentices (cl 16.3–16.7) and other special rates",
+    "Support Services juniors, cooking, dental technician and gardening apprentices (cl 16.3 to 16.7) and other special rates",
   ],
 };
 
@@ -751,7 +751,7 @@ Level 9|1256.20|33.06
   penaltyNotes: [
     "Day workers' ordinary hours are 6.30 am to 6.00 pm Monday to Friday (cl 17.2(a)), and can be worked on any day by agreement (cl 17.2(c)). Without that agreement, weekend work is paid at the Saturday and Sunday rates above.",
     "The award tabulates casual weekend rates for shiftworkers (Saturday 175%, Sunday 225%, Schedule D.3.2) but not for a casual day worker, who is paid the casual overtime rates for Saturday and Sunday work. We therefore publish no casual Saturday or Sunday dollar column for day work.",
-    "Shift loadings: afternoon shift 115%, rotating night shift 115%, non-rotating night shift 130% (cl 27.3(b)). Saturday, Sunday and public holiday ordinary shifts are 150% (Saturday), 200% (Sunday and public holiday) in substitution for the shift loading (cl 27.3(d)).",
+    "The shift loadings are 115% for afternoon shift, 115% for rotating night shift and 130% for non-rotating night shift (cl 27.3(b)). Ordinary shifts are paid at 150% on a Saturday and 200% on a Sunday or public holiday, instead of the shift loading (cl 27.3(d)).",
   ],
   // cl 26.2 and Schedule D.2.3 / D.3.3.
   overtime: [
@@ -762,13 +762,13 @@ Level 9|1256.20|33.06
   ],
   overtimeClause: "cl 26.2 and Schedule D.2.3 / D.3.3",
   overtimeNotes: [
-    "Overtime is all time worked outside the 6.30 am to 6.00 pm spread or in excess of the ordinary daily hours (cl 26.1). Each day stands alone, and the hourly rate for overtime is the weekly rate divided by 38 (cl 26.2(c)–(d)).",
+    "Overtime is all time worked outside the 6.30 am to 6.00 pm spread or in excess of the ordinary daily hours (cl 26.1). Each day stands alone, and the hourly rate for overtime is the weekly rate divided by 38 (cl 26.2(c) to (d)).",
     "For a casual day worker the percentages apply to the casual ordinary rate, so first-2-hours overtime is 187.5% and after-2-hours or Sunday overtime is 250% of the minimum rate (cl 12.3, Schedule D.3.3).",
-    "Shiftworkers' overtime differs: 200% on continuous work, otherwise 150% for the first 2 hours and 200% after (cl 26.3(a)). Not reproduced in the table.",
+    "Shiftworkers' overtime differs: 200% on continuous work, otherwise 150% for the first 2 hours and 200% after (cl 26.3(a)). The overtime table above does not show shiftworker rates.",
   ],
   junior: null,
   noJuniorNote:
-    "Unapprenticed juniors in the Timber Industry Award are paid a percentage of the Level 2 rate for their stream (age 16, 40%; 17, 55%; 18, 70%; 19, 85%; 20, 100%), calculated in multiples of 5 cents (cl 20.6–20.7). This page does not tabulate them. Apprentices are paid a percentage of Level 5 by year (cl 20.3).",
+    "Unapprenticed juniors in the Timber Industry Award are paid a percentage of the Level 2 rate for their stream (age 16, 40%; 17, 55%; 18, 70%; 19, 85%; 20, 100%), calculated in multiples of 5 cents (cl 20.6 to 20.7). This page does not tabulate them. Apprentices are paid a percentage of Level 5 by year (cl 20.3).",
   juniorPhaseIn: null,
   // Schedule E (cl 22, 23).
   allowances: [
@@ -791,8 +791,8 @@ Level 9|1256.20|33.06
   ],
   unverified: [
     "General Timber stream piecework and the district piece rates (cl 13 and Schedule H)",
-    "Shiftworker overtime and shift Saturday, Sunday and public holiday dollar rates (Schedule D.2.2, D.2.4–D.2.5, D.3.2)",
-    "Apprentice, saw doctor apprentice and unapprenticed junior rates (cl 20.3–20.7), fire fighting employees (cl 14) and watchpersons (cl 17.4)",
+    "Shiftworker overtime and shift Saturday, Sunday and public holiday dollar rates (Schedule D.2.2, D.2.4 to D.2.5, D.3.2)",
+    "Apprentice, saw doctor apprentice and unapprenticed junior rates (cl 20.3 to 20.7), fire fighting employees (cl 14) and watchpersons (cl 17.4)",
     "Casual Saturday and Sunday ordinary hours for day workers, and the casual public holiday rate in the Wood and Timber Furniture and Pulp and Paper streams, which the award does not tabulate",
     "Whether the forest work and low loader allowances (both for all purposes) apply to you, which would raise your ordinary hourly rate",
   ],
@@ -860,7 +860,7 @@ MI 8|1160.20|30.53
   penaltiesClause: "cl 24 and Schedule B.1–B.3",
   penaltyNotes: [
     "Weekend penalties are paid in place of the casual loading, not on top of it: a casual who works ordinary hours on a weekend gets the weekend rate shown (cl 24.1, 24.2(a)(ii), 24.3(c)). That is why a casual Saturday in a processing establishment is 150%, not 175%.",
-    "Spreads of hours: processing, Monday to Friday 6.00 am to 8.00 pm (Saturday and Sunday only by agreement); manufacturing, Monday to Saturday 6.00 am to 6.00 pm with up to 4 ordinary hours on Saturday; retail, Monday to Friday 4.00 am to 9.00 pm, Saturday 4.00 am to 6.00 pm and Sunday 8.00 am to 6.00 pm (cl 14.3–14.5).",
+    "The spread of ordinary hours differs by establishment type: processing, Monday to Friday 6.00 am to 8.00 pm (Saturday and Sunday only by agreement); manufacturing, Monday to Saturday 6.00 am to 6.00 pm with up to 4 ordinary hours on Saturday; retail, Monday to Friday 4.00 am to 9.00 pm, Saturday 4.00 am to 6.00 pm and Sunday 8.00 am to 6.00 pm (cl 14.3 to 14.5).",
     "Public holiday pay is not tabulated here. It is a different rate per holiday: Christmas Day and Anzac Day 200%, Good Friday 150% for the first 4 hours then 200%, any other public holiday 150% for the first 2 hours then 200%; and for employees other than casuals those rates are paid in addition to the ordinary pay for the day (cl 31.3).",
   ],
   // cl 22.1.
@@ -909,7 +909,7 @@ MI 8|1160.20|30.53
     "Public holiday dollar rates, which differ by holiday and are paid in addition to ordinary pay for non-casuals (cl 31.3)",
     "Daily hire employees (cl 11), payment by results (cl 18), and relieving inspection duties (cl 19)",
     "Shiftwork rates (cl 23), load out area and cleaner rates other than those described above, and annual leave for shiftworkers",
-    "Apprentice and trainee rates (cl 16.3–16.5) and the supported wage system",
+    "Apprentice and trainee rates (cl 16.3 to 16.5) and the supported wage system",
   ],
 };
 
@@ -980,7 +980,7 @@ Commercial Traveller / Advertising Sales Representative|1122.80|29.55
   overtimeClause: "cl 19 and Schedule A.1.2 / A.2.1",
   overtimeNotes: [
     "Full-time and part-time employees: 150% of the minimum hourly rate after 6.00 pm or beyond ordinary hours Monday to Friday, 150% on a Saturday and 200% on a Sunday (cl 19.1). Casuals: 175%, 175% and 225% (cl 19.2).",
-    "Ordinary hours are an average of 38 a week with a maximum of 152 over 28 consecutive days and no more than 10 on any day (cl 13.2–13.4).",
+    "Ordinary hours are an average of 38 a week with a maximum of 152 over 28 consecutive days and no more than 10 on any day (cl 13.2 to 13.4).",
   ],
   casualPenaltyBasis: "additive",
   // cl 15.3; Schedule A.3.1 is hourly (percentage of the adult hourly rate).
@@ -1096,7 +1096,7 @@ export const MINING_AWARD: ModernAwardData = {
   penaltiesClause: "cl 21 and Schedule B.1.3 / B.2.3",
   penaltyNotes: [
     "Ordinary hours of a day worker can be up to 10 a day, between 6.00 am and 6.00 pm, Monday to Sunday (cl 12.4(a)); shiftworkers can work a shift of up to 10 consecutive hours on any day (cl 12.5). The weekend and public holiday rates in cl 21.3 are paid in substitution for the other penalties (cl 21.4).",
-    "For casuals EVERY percentage in this award applies to the casual ordinary hourly rate, which already includes the 25% loading and the industry allowance (Schedule B.2.1). So a casual Saturday first-3-hours rate is 150% of the casual rate, which is 187.5% of the minimum ordinary rate, and a casual public holiday is 250% of the casual rate, or 312.5%.",
+    "For casuals, every percentage in this award applies to the casual ordinary hourly rate, which already includes the 25% loading and the industry allowance (Schedule B.2.1). So a casual Saturday first-3-hours rate is 150% of the casual rate, which is 187.5% of the minimum ordinary rate, and a casual public holiday is 250% of the casual rate, or 312.5%.",
     "The casual loading forms part of the all-purpose rate (cl 11.3).",
   ],
   // cl 20.1–20.2.
@@ -1110,7 +1110,7 @@ export const MINING_AWARD: ModernAwardData = {
   overtimeClause: "cl 20.1–20.2 and Schedule B.1.4–B.1.5, B.2.4–B.2.5",
   overtimeNotes: [
     "A casual's overtime is a percentage of the casual ordinary hourly rate, which includes the 25% loading (cl 20.1 NOTE). A continuous shiftworker is an employee in a continuous process who is rostered regularly on Sundays and public holidays (cl 21.1).",
-    "Meal allowance of $22.04 on each occasion an employee is entitled to a rest break during overtime, unless a meal was provided or notice was given by the previous day or shift (cl 18.3(a)).",
+    "Meal allowance of $22.04 is paid on each occasion an employee is entitled to a rest break during overtime, unless a meal was provided or notice was given by the previous day or shift (cl 18.3(a)).",
   ],
   junior: null,
   noJuniorNote:
@@ -1139,7 +1139,7 @@ export const MINING_AWARD: ModernAwardData = {
   unverified: [
     "Mainline locomotive drivers' rail allowance, which is 30% of the minimum rate (cl 18.2(g)), and any other all-purpose allowance you may be owed on top of these rows",
     "Recall to work for employees who are not continuous shiftworkers (cl 20.3) and rostering arrangements (cl 13)",
-    "Apprentice, school-based apprentice and trainee rates (cl 15.4–15.5, Schedules D and E)",
+    "Apprentice, school-based apprentice and trainee rates (cl 15.4 to 15.5, Schedules D and E)",
     "Whether the award covers you at all: it covers mining operations and not, for example, ancillary work covered by another award",
   ],
 };

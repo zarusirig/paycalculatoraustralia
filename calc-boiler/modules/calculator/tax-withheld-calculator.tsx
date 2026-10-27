@@ -46,7 +46,7 @@ export default function TaxWithheldCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Tax Withheld Calculator {FY}</h2>
         <p className="text-sm text-warmgray mb-6">
-          Enter your gross pay (before tax) for one pay period. Uses the ATO&rsquo;s withholding formulas for payments from 1 July 2026.
+          Enter your gross pay (before tax) for one pay period. The calculator uses the ATO&rsquo;s PAYG withholding formulas for payments made from 1 July 2026.
         </p>
 
         <form onSubmit={(ev) => ev.preventDefault()} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -153,7 +153,7 @@ export default function TaxWithheldCalculator() {
           </div>
 
           <p className="mt-3 text-xs text-warmgray-light">
-            Estimate only. Assumes the same pay every {period} for all of {FY}, no deductions, no other income, single Medicare levy thresholds and no Medicare levy surcharge. See every pay amount in the full <Link href={TABLE_PAGE[frequency].href} className="underline">{TABLE_PAGE[frequency].label}</Link>; for a bonus or back pay use the <Link href="/schedule-5-tax-table/" className="underline">Schedule 5 calculator</Link>.
+            This is an estimate only. It assumes the same pay every {period} for all of {FY}, no deductions, no other income, single Medicare levy thresholds and no Medicare levy surcharge. See every pay amount in the full <Link href={TABLE_PAGE[frequency].href} className="underline">{TABLE_PAGE[frequency].label}</Link>; for a bonus or back pay use the <Link href="/schedule-5-tax-table/" className="underline">Schedule 5 calculator</Link>.
           </p>
         </div>
       </CardContent>

@@ -129,7 +129,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
             <section id="phi-rebate">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Private Health Insurance Rebate Tiers</h2>
               <p>
-                The government provides a rebate on private health insurance premiums, with the amount varying by age and income. Lower income earners receive a higher rebate, while higher income earners receive a reduced rebate or none at all.
+                The private health insurance rebate is set by your income tier and the age of the oldest person on the policy. The rebate falls as income rises: the base tier gets the highest rate, and the top tier gets no rebate at all.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -152,7 +152,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
                 <p className="text-xs text-warmgray mt-2">Rates from {PHI_REBATE.period}, by the age of the oldest person on the policy. Families use the family column in the surcharge table above. Source: ATO, income thresholds and rates for the private health insurance rebate.</p>
               </div>
               <p>
-                You can receive the rebate as either a premium reduction (paid directly to your insurer) or as a refundable tax offset when you lodge your tax return. Most people opt for the premium reduction to lower their monthly costs immediately.
+                You can receive the rebate as either a premium reduction (paid directly to your insurer) or as a refundable tax offset when you lodge your tax return. The premium reduction lowers each premium payment straight away; the tax offset is applied only when your return is assessed.
               </p>
             </section>
 
@@ -203,13 +203,13 @@ export default function PrivateHealthInsuranceMedicarePage() {
             <section id="lifetime-health-cover">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Lifetime Health Cover Loading</h2>
               <p>
-                Lifetime Health Cover (LHC) loading is a government initiative that encourages Australians to take out private hospital cover earlier in life. If you don&apos;t hold hospital cover by <strong>1 July after your 31st birthday</strong>, you pay a 2% loading on your premium for every year you are aged over 30 without cover.
+                Lifetime Health Cover (LHC) loading is an extra charge on the hospital cover premium of anyone who first takes out private hospital cover after the LHC deadline. If you don&apos;t hold hospital cover by <strong>1 July after your 31st birthday</strong>, you pay a 2% loading on your premium for every year you are aged over 30 without cover.
               </p>
               <p>
-                For example, if you first take out hospital cover at age 40, you pay a <strong>20% loading</strong> (10 years x 2%) on top of the base premium. The maximum loading is <strong>70%</strong>. This can add significant cost to your premiums if you delay taking out cover.
+                For example, if you first take out hospital cover at age 40, you pay a <strong>20% loading</strong> (10 years x 2%) on top of the base premium. The maximum loading is <strong>70%</strong>. The loading grows with every year you delay taking out cover, up to that cap.
               </p>
               <p>
-                The good news: LHC loading is removed after <strong>10 continuous years</strong> of holding hospital cover. So even if you start late, the penalty eventually disappears. The loading also applies only to the hospital component of your premium, not to extras cover.
+                LHC loading is removed after <strong>10 continuous years</strong> of holding hospital cover, so a late start does not mean paying the loading for life. The loading applies only to the hospital component of your premium, not to extras cover.
               </p>
               <p>
                 If you turn 31 soon and are above the MLS threshold, getting basic hospital cover now avoids both the surcharge and any future LHC loading.

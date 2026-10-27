@@ -58,7 +58,7 @@ export default function GraduateSalaryAustraliaPage() {
 
       <PageHeader featuredImage title="Graduate Salary in Australia: Law, Nursing, Engineering, Accounting, Teaching & Medicine">
         <p>
-          <strong>The median full-time salary for Australian undergraduates four to six months after finishing was {f0(QILT_MEDIANS_2025.all)} in the Government&rsquo;s 2025 Graduate Outcomes Survey.</strong> By field it runs from {f0(QILT_MEDIANS_2025.business)} (business and management) to {f0(QILT_MEDIANS_2025.medicine)} (medicine). This page lines those survey medians up against the published award or agreement starting rates we could verify, then shows what each leaves in your first payslip.
+          <strong>The median full-time graduate salary for Australian undergraduates four to six months after finishing was {f0(QILT_MEDIANS_2025.all)} in the Australian Government&rsquo;s 2025 Graduate Outcomes Survey (QILT).</strong> By field of study, the QILT median runs from {f0(QILT_MEDIANS_2025.business)} for business and management graduates to {f0(QILT_MEDIANS_2025.medicine)} for medicine graduates. The table below gives the survey median for graduate lawyers, nurses, engineers, accountants, teachers and intern doctors. Beside each median it shows weekly take-home pay and the yearly HELP repayment. A section on each role then sets the survey median beside the award or agreement starting rate wherever we could verify it. A worked example shows what your first payslip looks like.
         </p>
       </PageHeader>
 
@@ -97,7 +97,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="lawyer">Graduate Lawyer Salary</H2>
             <p>
-              Law and paralegal studies graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.law)}. The legal floor is narrower than the market: a law graduate doing practical legal training in a private firm is covered by the Legal Services Award at Level 5, at least {f2(GRADUATE_PROFESSIONS[0].published!.annual / 52 / 38)} an hour, about {f0(GRADUATE_PROFESSIONS[0].published!.annual)} a year. Once admitted, a lawyer is award-free, so pay comes from the contract. We don&rsquo;t publish firm salary bands, because no official source does. See <Link href={GRADUATE_PROFESSIONS[0].detailHref}>{GRADUATE_PROFESSIONS[0].detailLabel}</Link> and, for take-home on {f0(QILT_MEDIANS_2025.law)}, <Link href={takeHomeHref(QILT_MEDIANS_2025.law)}>the take-home page for {f0(takeHomeAmount(QILT_MEDIANS_2025.law))}</Link>.
+              Law and paralegal studies graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.law)}. The Legal Services Award covers fewer law graduates than the survey does: a law graduate doing practical legal training in a private firm is covered at Level 5, at least {f2(GRADUATE_PROFESSIONS[0].published!.annual / 52 / 38)} an hour, about {f0(GRADUATE_PROFESSIONS[0].published!.annual)} a year. Once admitted, a lawyer is award-free, so pay comes from the contract. We don&rsquo;t publish firm salary bands, because no official source does. See <Link href={GRADUATE_PROFESSIONS[0].detailHref}>{GRADUATE_PROFESSIONS[0].detailLabel}</Link> and, for take-home on {f0(QILT_MEDIANS_2025.law)}, <Link href={takeHomeHref(QILT_MEDIANS_2025.law)}>the take-home page for {f0(takeHomeAmount(QILT_MEDIANS_2025.law))}</Link>.
             </p>
           </section>
 
@@ -124,7 +124,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="accountant">Graduate Accountant Salary</H2>
             <p>
-              Accountants are award-free: the Fair Work Ombudsman says accountants working for an accounting firm aren&rsquo;t covered by a modern award, so the only legal floor is the National Minimum Wage and everything above it is in your contract or enterprise agreement. No official source publishes a graduate accountant pay scale, and we don&rsquo;t estimate one. The closest official figure is the {f0(QILT_MEDIANS_2025.business)} median for business and management graduates, a broad group that includes accounting. See <Link href={GRADUATE_PROFESSIONS[3].detailHref}>{GRADUATE_PROFESSIONS[3].detailLabel}</Link>.
+              Graduate accountants working for an accounting firm are award-free: the Fair Work Ombudsman says they aren&rsquo;t covered by a modern award, so the only legal floor is the National Minimum Wage and everything above it is in your contract or enterprise agreement. No official source publishes a graduate accountant pay scale, and we don&rsquo;t estimate one. The closest official figure is the {f0(QILT_MEDIANS_2025.business)} median for business and management graduates, a broad group that includes accounting. See <Link href={GRADUATE_PROFESSIONS[3].detailHref}>{GRADUATE_PROFESSIONS[3].detailLabel}</Link>.
             </p>
           </section>
 
@@ -144,7 +144,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="doctor">Intern Doctor Salary</H2>
             <p>
-              Medicine graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.medicine)}. NSW Health pays interns {f0(80_638)} a year from the first full pay period on or after 1 July 2025 (Information Bulletin IB2026_007, an interim increase pending the NSW Industrial Relations Commission&rsquo;s decision, so it may have been updated). The Medical Practitioners Award sets a lower national-system minimum of {f0(NMW_INTERN_AWARD_MINIMUM.annual)} ({f2(NMW_INTERN_AWARD_MINIMUM.hourly)} an hour) for employers such as private hospitals. Other states&rsquo; intern salaries aren&rsquo;t shown because we couldn&rsquo;t verify them from an official source. See <Link href={GRADUATE_PROFESSIONS[5].detailHref}>{GRADUATE_PROFESSIONS[5].detailLabel}</Link>.
+              Medicine graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.medicine)}. NSW Health pays interns {f0(80_638)} a year from the first full pay period on or after 1 July 2025 (Information Bulletin IB2026_007, an interim increase pending the NSW Industrial Relations Commission&rsquo;s decision, so check NSW Health for any later rate). The Medical Practitioners Award sets a lower national-system minimum of {f0(NMW_INTERN_AWARD_MINIMUM.annual)} ({f2(NMW_INTERN_AWARD_MINIMUM.hourly)} an hour) for employers such as private hospitals. Other states&rsquo; intern salaries aren&rsquo;t shown because we couldn&rsquo;t verify them from an official source. See <Link href={GRADUATE_PROFESSIONS[5].detailHref}>{GRADUATE_PROFESSIONS[5].detailLabel}</Link>.
             </p>
           </section>
 

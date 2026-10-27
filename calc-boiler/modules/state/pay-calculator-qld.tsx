@@ -79,9 +79,10 @@ export default function PayCalculatorQLDPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">QLD</span>
           </div>
           <p className="text-lg text-warmgray">
-            Type in your gross salary and this wage calculator returns the net figure using ATO{" "}
-            {SITE_CONFIG.financialYear} rates. Below it, the parts of your pay that really are
-            Queensland-specific: a public holiday calendar with two part-days and a Brisbane-only show
+            Enter your gross salary and this Queensland wage calculator returns your take-home pay per
+            week, fortnight and month, using ATO{" "}
+            {SITE_CONFIG.financialYear} resident tax rates and the Medicare levy. Below it are the parts
+            of your pay that are Queensland-specific: a public holiday calendar with two part-days and a Brisbane-only show
             day, long service leave under the Industrial Relations Act, and payroll tax you do not pay.
           </p>
           <TrustBar className="mt-4" />

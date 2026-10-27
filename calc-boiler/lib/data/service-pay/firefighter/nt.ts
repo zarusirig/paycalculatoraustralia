@@ -35,7 +35,7 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (Schedule 3, base annual salary)",
       intro:
-        "NTFRS firefighters from recruit through Firefighter Classes D, C, B and A (Qualified Firefighter, the 100% rate) to Senior Firefighter.",
+        "NT Fire and Rescue Service (NTFRS) firefighter salaries step from recruit through Firefighter Classes D, C, B and A (Qualified Firefighter, the 100% rate) to Senior Firefighter.",
       stepHeading: "Rank",
       steps: [
         { label: "Recruit Firefighter - first 4 months", salary: 80_285 },
@@ -50,7 +50,7 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     {
       id: "leading-firefighters-and-officers",
       title: "Leading Firefighter and officers (Schedule 3, base annual salary)",
-      intro: "Leading Firefighter and the officer ranks.",
+      intro: "The NTFRS officer table runs from Leading Firefighter through Station Officer and Senior Station Officer to District Officer.",
       stepHeading: "Rank",
       steps: [
         { label: "Leading Firefighter", salary: 113_222 },
@@ -70,11 +70,11 @@ export const NT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   penalties: [
     "A General Fire Fighting Allowance of 4% of base salary is paid to employees on shift duty at a Darwin or Alice Springs station and on Track Station day shift, for example $4,117 a year for Firefighter Class A (clause 15, Schedule 3).",
     "A 10% Day Shift Allowance (e.g. $10,293 a year for Firefighter Class A) and a 5.2% Alice Springs Allowance (e.g. $5,352 a year for Firefighter Class A) apply where eligible (Schedule 3).",
-    "Shift work follows the 10/14 roster: 10-hour day shifts (0800–1800) and 14-hour night shifts (1800–0800), with ordinary hours averaging 38 a week over 52 weeks (clauses 39 and 41).",
+    "Shift work follows the 10/14 roster: 10-hour day shifts (0800 to 1800) and 14-hour night shifts (1800 to 0800), with ordinary hours averaging 38 a week over 52 weeks (clauses 39 and 41).",
   ],
   notices: [
-    "The 2021-2025 agreement passed its nominal expiry date on 7 November 2025 but continues to operate until it is replaced (OCPE Bulletin 21).",
-    "Bargaining for a 2025–2029 agreement has not produced a deal. A revised offer went to an employee ballot that closed on 22 June 2026 without producing a new agreement, and on 4 September 2026 the Fair Work Commission made an intractable bargaining declaration. If the parties still cannot agree, the Commission will make a workplace determination setting the terms (OCPE Bulletins 20 and 21).",
+    "The NT Fire and Rescue Service 2021-2025 agreement passed its nominal expiry date on 7 November 2025 but continues to operate until it is replaced (OCPE Bulletin 21).",
+    "Bargaining for a 2025-2029 NT Fire and Rescue Service agreement has not produced a deal. A revised offer went to an employee ballot that closed on 22 June 2026 without producing a new agreement, and on 4 September 2026 the Fair Work Commission made an intractable bargaining declaration. If the parties still cannot agree, the Commission will make a workplace determination setting the terms (OCPE Bulletins 20 and 21).",
   ],
   unverified: [
     "No pay increase after 21 November 2024 appears in the agreement or in the OCPE bulletins read (Bulletins 15, 20 and 21 and the negotiations index), so none is shown. The terms of the offer put to ballot did not become an agreement and are not shown.",

@@ -56,7 +56,7 @@ export default function CommonwealthSeniorsHealthCardContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Indexed each {CSHC.indexedOn} in line with the CPI. There is no assets test.</p>
+        <p className="mt-2 text-xs text-warmgray-light">Indexed each {CSHC.indexedOn} in line with the CPI. The CSHC has no assets test.</p>
       </W3Section>
 
       <W3Section title="What Counts as Income for the CSHC">
@@ -69,9 +69,9 @@ export default function CommonwealthSeniorsHealthCardContent() {
       </W3Section>
 
       <W3Section title="Working and Keeping the Card">
-        <p className={P}>There is no limit on hours, and the card doesn&apos;t reduce as you earn. It is all-or-nothing at the income limit. A single card holder with no account-based pension can earn a taxable income just under {formatAUD(CSHC.incomeLimit.single)} and keep it. Reportable super contributions are added to your taxable income for the test.</p>
+        <p className={P}>The Commonwealth Seniors Health Card has no limit on work hours, and the card doesn&apos;t reduce as you earn. It is all-or-nothing at the income limit. A single card holder with no account-based pension can earn a taxable income just under {formatAUD(CSHC.incomeLimit.single)} and keep it. Reportable super contributions are added to your taxable income for the test.</p>
         <p className={P}>Work out your taxable income from a wage on the <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link>, or your net pay on the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>. If your income is low enough for a part pension instead, the <Link href="/age-pension-income-test-calculator/" className={LINK}>Age Pension calculator</Link> and <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link> show whether you would get one. A pension comes with the Pensioner Concession Card.</p>
-        <Note>The test is on your adjusted taxable income for the year, so a year with a large bonus, a lot of overtime or a capital gain from selling shares or property can push you over the limit even if your regular pay doesn&apos;t.</Note>
+        <Note>The CSHC income test is on your adjusted taxable income for the year, so a year with a large bonus, a lot of overtime or a capital gain from selling shares or property can push you over the limit even if your regular pay doesn&apos;t.</Note>
       </W3Section>
 
       <W3Section title="CSHC vs Pensioner Concession Card">

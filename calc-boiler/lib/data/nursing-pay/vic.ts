@@ -71,7 +71,7 @@ export const VIC_NURSING_PAY: NursingStateData = {
       reference: "AE526693, matter AG2024/3737, approved 8 November 2024, [2024] FWCA 3908",
       source: FWC_SOURCE,
       note:
-        "Victorian public health is in the federal system, unlike NSW and Queensland. Appendix 2A prints eight dated wage columns running to 29 November 2027.",
+        "The Victorian public sector nurses and midwives agreement is a federal instrument approved by the Fair Work Commission, unlike the NSW and Queensland state instruments. Appendix 2A prints eight dated wage columns running to 29 November 2027.",
     },
   ],
 
@@ -245,12 +245,12 @@ export const VIC_NURSING_PAY: NursingStateData = {
         { label: "On call, Sunday or weekday public holiday", value: "$147.90 per 12-hour period" },
       ],
       incomplete:
-        "Allowance amounts are the FFPPOOA 11 May 2026 column of Appendix 2 Part 2 and step up again on 23 November 2026. Public holiday and overtime rates sit in clauses 49 and 56 and are not reproduced here.",
+        "The Victorian allowance amounts are from the Appendix 2 Part 2 column headed FFPPOOA 11 May 2026 (the first full pay period on or after that date). They step up again on 23 November 2026. Public holiday and overtime rates sit in clauses 49 and 56 and are not reproduced here.",
     },
   ],
 
   derivation: {
-    annual: "weekly rate x 52, which is what 26 fortnightly pays comes to (the agreement publishes weekly and hourly, not annual)",
+    annual: "the weekly rate x 52, which equals 26 fortnightly pays (the agreement publishes weekly and hourly rates, not annual salaries)",
   },
 
   notReproduced: [
@@ -341,13 +341,13 @@ export const VIC_NURSING_PAY: NursingStateData = {
     "Victoria gives midwives their own classification (Midwife Grade 2 Year 1 to 8), but each year is paid the same weekly rate as the matching RN Grade 2 year.",
 
   intro:
-    "Victorian public health nurses and midwives are covered by a single interest employer agreement approved by the Fair Work Commission (federal, unlike the NSW and Queensland state instruments). Victoria runs registered nurses on a Grade 2 Year 1 to Year 8 ladder and gives midwives their own classification codes at the same money. It is also the one state on this site whose agreement publishes an indicative hourly rate next to every weekly rate, so nothing below has to be worked out.",
+    "Victorian public health nurses and midwives are covered by a single interest employer agreement approved by the Fair Work Commission (federal, unlike the NSW and Queensland state instruments). Victoria runs registered nurses on a Grade 2 Year 1 to Year 8 ladder and gives midwives their own classification codes at the same money. It is also the one state on this site whose agreement publishes an indicative hourly rate next to every weekly rate, so the weekly and hourly figures below are published, not worked out.",
 
   highlights: [
     "Victoria pays a flat dollar night shift allowance rather than a percentage: $114.00 a shift Monday to Thursday, $196.10 on Sunday nights.",
     "Weekend ordinary hours are time and a half from midnight Friday to midnight Sunday, the same rate on both days.",
-    "Grade 2 Year 1 is the graduate year, and its rate does not move at every step, as the agreement repeats it across consecutive wage columns.",
-    "The current column is the first full pay period on or after 11 May 2026; the next rise lands on 30 November 2026.",
+    "Grade 2 Year 1 is the graduate year, and its rate does not rise on every increase date: the agreement repeats the same figure across consecutive wage columns.",
+    "Victoria's current rates are the agreement's column for the first full pay period on or after 11 May 2026. The next rise lands on 30 November 2026.",
   ],
 
   extraSources: [EMPLOYER_SOURCE],

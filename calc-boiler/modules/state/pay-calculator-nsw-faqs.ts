@@ -18,7 +18,7 @@ export const NSW_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How many public holidays does NSW have?",
-    a: "Thirteen state-wide public holidays in 2026, the fewest of any state or territory. NSW adds a day when Anzac Day and Boxing Day fall on a weekend but has no equivalent of Melbourne Cup Day, Canberra Day or the Royal Queensland Show. Regional show days are declared locally and sit outside the state-wide list.",
+    a: "NSW has thirteen state-wide public holidays in 2026, the fewest of any state or territory. NSW adds a day when Anzac Day and Boxing Day fall on a weekend but has no equivalent of Melbourne Cup Day, Canberra Day or the Royal Queensland Show. Regional show days are declared locally and sit outside the state-wide list.",
   },
   {
     q: "When do I get long service leave in NSW?",
@@ -26,11 +26,11 @@ export const NSW_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do employees pay payroll tax or workers compensation premiums?",
-    a: "No. Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These costs do not appear on your payslip and do not reduce your gross salary or take-home pay. Employers factor these on-costs into total hiring budgets, which indirectly influences salary offers.",
+    a: "No. Payroll tax and workers compensation premiums (iCare in NSW) are both employer expenses. Neither appears on your payslip, and neither reduces your gross salary or take-home pay. NSW employers count these on-costs in their hiring budgets, so they affect salary offers indirectly.",
   },
   {
     q: "Do I pay the Medicare levy surcharge in NSW?",
-    a: "The Medicare levy surcharge applies identically across all states. Untick \"I hold private hospital cover\" in the calculator above and it will add the surcharge at your income level so you can see the difference in dollars.",
+    a: "The Medicare levy surcharge applies in NSW exactly as it does in every other state and territory. Untick \"I hold private hospital cover\" in the calculator above and it adds the surcharge for your income level, so you can see the difference in dollars.",
   },
   {
     q: "How does HECS-HELP change my NSW take-home pay?",

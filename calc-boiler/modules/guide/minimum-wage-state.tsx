@@ -100,8 +100,8 @@ export default function MinimumWageStatePage({ state: s }: { state: MwStateInfo 
             <MinimumWageStateCalculator state={s.slug} stateName={s.name} />
             <FeaturedImage placement="content" className="mt-0" />
             <p className="text-sm">
-              The rate, the after-tax table and the junior percentages are the same in every state, so they are set out once in{" "}
-              <Link href="/minimum-wage-australia/">minimum wage in Australia</Link>. This page covers what is different {s.inName}.
+              The national rate, the after-tax table and the junior percentages are the same in every state, so they are set out once in{" "}
+              <Link href="/minimum-wage-australia/">minimum wage in Australia</Link>. This page covers the state system, young workers, public holidays, payroll tax and long service leave rules that apply {s.inName}.
             </p>
 
             <section id="state-system">

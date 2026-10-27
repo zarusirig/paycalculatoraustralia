@@ -44,7 +44,7 @@ export const APS: Jurisdiction = {
     year: "2026",
     title: "APS salary by level",
     intro:
-      "One section per APS level. The table is the 5th to 95th percentile of base salaries actually paid across every agency at 31 December 2025, before the 3.4% service-wide increase from March 2026; the median is the middle salary. Under each table are the APS-wide salary thresholds from the service-wide bargaining package (the minimum and maximum every agency's range for that level must at least reach from 12 March 2026) and, where the level exists there, the Treasury Enterprise Agreement 2024 pay points as a worked example of one real agency scale. Every salary links to the nearest take-home pay page.",
+      "Each APS level has its own section below, with a table of base salaries actually paid across every agency at 31 December 2025. The table gives the 5th percentile, the median (the middle salary) and the 95th percentile, before the 3.4% service-wide increase from March 2026. Under each table are the APS-wide salary thresholds from the service-wide bargaining package. These are the minimum and maximum that every agency's range for that level must at least reach from 12 March 2026. Where the level exists at Treasury, the Treasury Enterprise Agreement 2024 pay points follow as a worked example of one real agency scale. Every salary links to the nearest take-home pay page.",
   },
 
   headline:
@@ -58,18 +58,18 @@ export const APS: Jurisdiction = {
     "Agency enterprise agreements made under the Fair Work Act 2009, using the classifications in the Public Service Classification Rules 2000. Since 2023 they have been bargained service-wide for common terms, but pay ranges are still set agency by agency.",
 
   payRise:
-    "Service-wide bargaining settled an 11.2% pay increase over three years: 4% from the first full pay period after 1 March 2024, 3.8% from the first full pay period after 1 March 2025 and 3.4% from the first full pay period after 1 March 2026. The 3.4% instalment is the most recent increase; the APSC reports that roughly 70 agencies also made small extra adjustments of 0.1% to 1% in 2025 to move their minimum and maximum pay ranges toward the service-wide ranges.",
+    "Service-wide bargaining settled an 11.2% pay increase over three years: 4% from the first full pay period after 1 March 2024, 3.8% from the first full pay period after 1 March 2025 and 3.4% from the first full pay period after 1 March 2026. The 3.4% instalment is the most recent increase. The APSC reports that roughly 70 agencies also adjusted their minimum and maximum pay ranges by a further 0.1% to 1% in 2025, moving them toward the service-wide ranges.",
 
   schedules: [
     {
       id: "apsc-2025",
       title: "APS-wide base salary by classification, 31 December 2025",
       coverage:
-        "Every APS agency. 187,279 employees, collected by the Australian Public Service Commission from all agencies with employees engaged under the Public Service Act 1999.",
+        "This schedule covers every APS agency and 187,279 employees. The Australian Public Service Commission collected the data from all agencies with employees engaged under the Public Service Act 1999.",
       basis: "survey",
       effectiveFrom: "31 December 2025",
       rangeMeaning:
-        "5th to 95th percentile of base salaries actually paid; 90% of employees at that level sit inside it. Base Salary excludes superannuation, allowances and bonuses.",
+        "The range is the 5th to 95th percentile of base salaries actually paid, so 90% of employees at that level sit inside it. Base Salary excludes superannuation, allowances and bonuses.",
       sourceId: "apsc-rem-2025",
       note:
         "A handful of agencies use local classifications and the APSC maps those to the nearest APS level, which is why the single highest salary reported at some levels is far above the 95th percentile. The percentile range, not the reported maximum, is the useful figure.",
@@ -85,7 +85,7 @@ export const APS: Jurisdiction = {
               name: "Graduate APS",
               aliases: ["graduate aps", "aps graduate", "graduate salary aps"],
               summary:
-                "Training classification for employees in an agency graduate programme, normally advancing to APS 4 or APS 5 on completion.",
+                "Graduate APS is a training classification for employees in an agency graduate program, who normally advance to APS 4 or APS 5 on completion.",
               min: 72_951,
               max: 86_724,
               median: 79_176,
@@ -97,7 +97,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 1",
               aliases: ["aps1", "aps level 1"],
               summary:
-                "Entry level. Routine tasks under close direction, following established procedures.",
+                "This is the entry level: routine tasks under close direction, following established procedures.",
               min: 54_516,
               max: 62_600,
               median: 58_408,
@@ -109,7 +109,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 2",
               aliases: ["aps2", "aps level 2"],
               summary:
-                "Administrative and operational support under general direction, with some discretion within defined procedures.",
+                "Staff at this level give administrative and operational support under general direction, with some discretion within defined procedures.",
               min: 59_520,
               max: 71_037,
               median: 64_595,
@@ -121,7 +121,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 3",
               aliases: ["aps3", "aps level 3"],
               summary:
-                "Processing, client contact and case work applying legislation and policy to individual cases.",
+                "Work at this level is processing, client contact and case work applying legislation and policy to individual cases.",
               min: 67_974,
               max: 78_705,
               median: 72_951,
@@ -133,7 +133,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 4",
               aliases: ["aps4", "aps level 4"],
               summary:
-                "More complex case work and technical or specialist support, often supervising APS 1–3 staff.",
+                "This level covers more complex case work and technical or specialist support, often supervising APS 1 to 3 staff.",
               min: 76_714,
               max: 88_200,
               median: 82_906,
@@ -145,7 +145,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 5",
               aliases: ["aps5", "aps level 5"],
               summary:
-                "Specialist, project and policy work under general direction; the first level with substantial independent judgement.",
+                "At this level you do specialist, project and policy work under general direction. It is the first level with substantial independent judgement.",
               min: 86_034,
               max: 96_239,
               median: 92_324,
@@ -157,7 +157,7 @@ export const APS: Jurisdiction = {
               name: "APS Level 6",
               aliases: ["aps6", "aps level 6", "aps 6 pay rate"],
               summary:
-                "The largest classification in the APS. Complex policy, technical and project work, frequently leading a small team.",
+                "This is the largest classification in the APS. It covers complex policy, technical and project work, and staff at this level frequently lead a small team.",
               min: 97_316,
               max: 115_199,
               median: 108_092,
@@ -169,7 +169,7 @@ export const APS: Jurisdiction = {
               name: "Executive Level 1",
               aliases: ["el1", "el1 salary", "executive level 1"],
               summary:
-                "Assistant Director. Manages a team or a work programme and is accountable for its outputs.",
+                "Assistant Directors work at this level, managing a team or a work program and accountable for its outputs.",
               min: 124_861,
               max: 149_271,
               median: 135_701,
@@ -181,7 +181,7 @@ export const APS: Jurisdiction = {
               name: "Executive Level 2",
               aliases: ["el2", "el2 salary", "executive level 2"],
               summary:
-                "Director. Runs a branch section, sets work direction and is accountable for a budget or programme.",
+                "This is the Director level. A Director runs a branch section, sets work direction and is accountable for a budget or program.",
               min: 151_518,
               max: 190_446,
               median: 168_064,
@@ -193,7 +193,7 @@ export const APS: Jurisdiction = {
               name: "Senior Executive Service Band 1",
               aliases: ["ses band 1", "ses band 1 salary", "ses 1"],
               summary:
-                "Assistant Secretary. SES employees are paid under individual determinations or common law arrangements, not the agency enterprise agreement.",
+                "Assistant Secretaries sit in this band. SES employees are paid under individual determinations or common law arrangements, not the agency enterprise agreement.",
               min: 224_919,
               max: 284_341,
               median: 253_804,
@@ -204,7 +204,7 @@ export const APS: Jurisdiction = {
               code: "SES Band 2",
               name: "Senior Executive Service Band 2",
               aliases: ["ses band 2", "ses band 2 salary", "ses 2"],
-              summary: "First Assistant Secretary, normally leading a division.",
+              summary: "First Assistant Secretaries hold this band, normally leading a division.",
               min: 290_763,
               max: 363_798,
               median: 321_888,
@@ -215,7 +215,7 @@ export const APS: Jurisdiction = {
               code: "SES Band 3",
               name: "Senior Executive Service Band 3",
               aliases: ["ses band 3", "ses band 3 salary", "ses 3"],
-              summary: "Deputy Secretary. The most senior classification below agency head.",
+              summary: "Deputy Secretaries hold this band, the most senior classification below agency head.",
               min: 376_314,
               max: 515_181,
               median: 431_975,
@@ -239,14 +239,14 @@ export const APS: Jurisdiction = {
       id: "aps-thresholds-2026",
       title: "APS-wide salary thresholds from 12 March 2026 (pay fragmentation mechanism)",
       coverage:
-        "Every APS agency. These are the minimum and maximum salary thresholds each agency's pay range for a classification must meet or exceed under the service-wide bargaining package. This is a floor for agency ranges, not a pay scale anyone is paid on.",
+        "The thresholds apply to every APS agency. These are the minimum and maximum salary thresholds each agency's pay range for a classification must meet or exceed under the service-wide bargaining package. This is a floor for agency ranges, not a pay scale anyone is paid on.",
       basis: "agreement",
       effectiveFrom: "12 March 2026",
       rangeMeaning:
-        "The lowest bottom and lowest top an agency's range for the level may have. Many agencies pay above both.",
+        "The thresholds are the lowest bottom and lowest top an agency's range for the level may have. Many agencies pay above both.",
       sourceId: "apsc-common-conditions",
       note:
-        "Published for APS 1 to EL 2 only. SES employees are outside the agency enterprise agreements, so there is no threshold for them.",
+        "The thresholds are published for APS 1 to EL 2 only. SES employees are outside the agency enterprise agreements, so there is no threshold for them.",
       streams: [
         {
           id: "aps-thresholds",
@@ -270,10 +270,10 @@ export const APS: Jurisdiction = {
       id: "treasury-2026",
       title: "One agency's scale: Treasury Enterprise Agreement 2024, from 12 March 2026",
       coverage:
-        "The Department of the Treasury only. Reproduced because it shows what an actual APS pay-point scale looks like. Every other agency has its own, and the figures below are not the APS-wide rates.",
+        "This schedule covers the Department of the Treasury only. It is reproduced here because it shows what an actual APS pay-point scale looks like. Every other agency has its own, and the figures below are not the APS-wide rates.",
       basis: "agreement",
       effectiveFrom: "12 March 2026",
-      rangeMeaning: "Bottom and top pay point of the level in this one agency's agreement.",
+      rangeMeaning: "The range is the bottom and top pay point of the level in the Treasury agreement.",
       sourceId: "treasury-ea",
       streams: [
         {
@@ -392,10 +392,10 @@ export const APS: Jurisdiction = {
   ],
 
   progression: [
-    "Within a classification you move up pay points, and the rules live in your agency's enterprise agreement rather than in any APS-wide document. The usual pattern is one increment a year subject to a satisfactory performance rating: at Treasury, for example, APS 6 runs across four pay points from $105,260 to $127,521 and EL 2 across four from $167,708 to $192,469, so the distance from the bottom to the top of a single classification can be more than $24,000.",
+    "Within a classification you move up pay points, and the rules live in your agency's enterprise agreement rather than in any APS-wide document. The usual pattern is one increment a year, subject to a satisfactory performance rating. At Treasury, for example, APS 6 runs across four pay points from $105,260 to $127,521 and EL 2 across four from $167,708 to $192,469, so the distance from the bottom to the top of a single classification can be more than $24,000.",
     "At the top of the range some agencies pay a fixed top-of-salary-range payment instead of a further increment. The APSC counted 3,824 APS 6 employees receiving one in 2025, with a median payment of $1,087, and 4,638 EL 1 employees with a median of $1,357. It is a recurring payment, not a salary increase, so it does not lift your base for superannuation purposes in the way an increment does.",
     "Moving between classifications is a promotion to a different job, not an increment, and it resets you to a pay point in the new band (usually the bottom one). That is why the APS-wide percentile ranges overlap: an EL 1 at the bottom of the band earns less than an APS 6 at the top of theirs in the same agency.",
-    "Transferring between agencies at the same classification can change your salary in either direction, because the two agencies' agreements set different ranges for the same level. The APSC's 2025 data release notes that around 70 agencies made small adjustments of 0.1% to 1% to their minimum and maximum pay ranges that year to move toward the service-wide ranges, after a larger realignment in 2024.",
+    "Transferring between agencies at the same classification can change your salary in either direction, because the two agencies' agreements set different ranges for the same level. The APSC's 2025 data release notes that around 70 agencies adjusted their minimum and maximum pay ranges by 0.1% to 1% that year. Those adjustments moved them toward the service-wide ranges, after a larger realignment in 2024.",
   ],
 
   superannuation: {
@@ -463,7 +463,7 @@ export const APS: Jurisdiction = {
 
   unverified: [
     "Pay-point scales for agencies other than Treasury. There are around 102 agency enterprise agreements and each publishes its own. Find yours on your agency's website rather than assuming another agency's rate.",
-    "SES Band 1–3 salaries are set by individual determinations, so no rate table exists to publish. The figures shown are the percentile spread of what SES employees were actually paid at 31 December 2025.",
+    "SES Band 1 to 3 salaries are set by individual determinations, so no rate table exists to publish. The figures shown are the percentile spread of what SES employees were actually paid at 31 December 2025.",
     "The Australian Government Industry Award minimum rates that underpin APS classifications. The APSC publishes them in its annual wage review circular; we have not reproduced them here.",
   ],
 
@@ -498,7 +498,7 @@ export const APS: Jurisdiction = {
     },
     {
       q: "Why does APS 6 pay differ between agencies?",
-      a: "Because pay ranges are set in each agency's enterprise agreement. The APSC calls the spread pay fragmentation and has been reducing it through service-wide bargaining since 2023; around 70 agencies made further adjustments of 0.1% to 1% to their minimum and maximum ranges in 2025. Until alignment is complete, the same classification pays differently at different agencies.",
+      a: "Pay at the same APS classification differs between agencies because each agency's enterprise agreement sets its own pay ranges. The APSC calls the spread pay fragmentation and has been reducing it through service-wide bargaining since 2023. Around 70 agencies made further adjustments of 0.1% to 1% to their minimum and maximum ranges in 2025. Until alignment is complete, the same classification pays differently at different agencies.",
     },
     {
       q: "When was the last APS pay rise?",

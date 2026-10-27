@@ -31,7 +31,7 @@ export default function AnnualLeaveGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Annual Leave Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Leave Guide Australia</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Your complete guide to annual leave entitlements, 17.5% leave loading, pro-rata calculations, and payout rules when you leave your job. Updated for FY{SITE_CONFIG.financialYear}.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Annual leave entitlements in Australia are set by the National Employment Standards (NES). This guide covers the NES entitlement, 17.5% leave loading, pro-rata accrual calculations, and how unused leave is paid out when you leave your job. Updated for FY{SITE_CONFIG.financialYear}.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -42,8 +42,8 @@ export default function AnnualLeaveGuidePage() {
             <section id="entitlements">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Annual Leave Do You Get in Australia?</h2>
               <p>Full-time and part-time employees in Australia receive <strong>4 weeks (20 days) of paid annual leave per year</strong> under the National Employment Standards (NES).</p>
-              <p>The entitlement is set by the <em>Fair Work Act 2009</em> and applies to every permanent employee regardless of industry, state, or salary level. Shift workers covered by an Award or registered agreement receive <strong>5 weeks (25 days)</strong> per year. Annual leave accrues progressively from an employee&apos;s first day of work, meaning a new hire does not need to wait 12 months before requesting time off.</p>
-              <p>Part-time employees receive the same 4-week entitlement on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours</strong> of annual leave per year instead of the 152 hours a full-time employee on a 38-hour week accumulates. Casual employees do not accrue annual leave at all; their <strong>25% casual loading</strong> compensates for the absence of leave entitlements, redundancy pay, and notice periods. Use our <Link href="/leave-calculator/">Leave Calculator</Link> to determine your exact accrued balance based on your start date and ordinary hours.</p>
+              <p>The entitlement is set by the <em>Fair Work Act 2009</em> and applies to every permanent employee regardless of industry, state, or salary level. Shift workers covered by an Award or registered agreement receive <strong>5 weeks (25 days)</strong> per year. Annual leave accrues progressively from an employee&apos;s first day of work, so a new hire does not need to wait 12 months before requesting time off.</p>
+              <p>Part-time employees receive the same 4-week entitlement on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours</strong> of annual leave per year instead of the 152 hours a full-time employee on a 38-hour week accumulates. Casual employees do not accrue annual leave at all; their <strong>25% casual loading</strong> compensates for the absence of leave entitlements, redundancy pay, and notice periods. Use our <Link href="/leave-calculator/">Leave Calculator</Link> to see your accrued balance and its payout value from your annual base salary and years of service.</p>
             </section>
 
             {/* ── H2 2: How Is Annual Leave Calculated? ── */}
@@ -61,14 +61,14 @@ export default function AnnualLeaveGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Pro-Rata Accrual for a Part-Time Employee</h3>
               <p>A part-time employee works 24 ordinary hours per week. The annual leave entitlement is 24 &times; 4 = <strong>96 hours per year</strong>. After 7 months of employment, the accrued balance is 96 &times; (7 &divide; 12) = <strong>56 hours (7 days)</strong>. This accrual happens automatically regardless of whether the employee has requested leave.</p>
-              <p>Accrual continues during periods of paid leave (annual leave, personal leave, long service leave) but does not accrue during unpaid leave, unpaid parental leave, or community service leave (except jury duty). Your employer&apos;s payroll system calculates accrual each pay cycle. Check your payslip &mdash; our <Link href="/understanding-your-payslip/">Payslip Guide</Link> explains where to find your leave balance.</p>
+              <p>Accrual continues during periods of paid leave (annual leave, personal leave, long service leave) but does not accrue during unpaid leave, unpaid parental leave, or community service leave (except jury duty). Your employer&apos;s payroll system calculates accrual each pay cycle. Check your payslip: our <Link href="/understanding-your-payslip/">Payslip Guide</Link> explains where to find your leave balance.</p>
             </section>
 
             {/* ── H2 3: What Is Leave Loading? ── */}
             <section id="leave-loading">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Leave Loading?</h2>
               <p>Leave loading is an additional <strong>17.5% payment on top of base pay</strong> that eligible employees receive when they take annual leave.</p>
-              <p>The 17.5% rate originated in the 1970s to compensate shift workers, weekend workers, and overtime-dependent employees for the penalty rates and allowances they forgo while on leave. Today, leave loading is not a universal NES entitlement &mdash; it depends on the applicable Award, enterprise agreement, or individual employment contract. Approximately <strong>60% of Award-covered employees</strong> receive leave loading.</p>
+              <p>The 17.5% rate originated in the 1970s to compensate shift workers, weekend workers, and overtime-dependent employees for the penalty rates and allowances they forgo while on leave. Leave loading is not a universal NES entitlement: it depends on the applicable Award, enterprise agreement, or individual employment contract. Approximately <strong>60% of Award-covered employees</strong> receive leave loading.</p>
               <p>Some modern enterprise agreements replace leave loading with a higher base hourly rate. Employees covered by the General Retail Industry Award, the Hospitality Industry Award, and the Clerks&mdash;Private Sector Award all receive 17.5% leave loading. Employees on individual contracts without Award coverage receive leave loading only if their contract specifically includes it.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Leave Loading Worked Example</h3>
@@ -82,7 +82,7 @@ export default function AnnualLeaveGuidePage() {
               </div>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Leave Loading vs Penalty Rates: Which Is Higher?</h3>
-              <p>Some Awards contain a &quot;better off overall&quot; clause. The employee receives either 17.5% leave loading <strong>or</strong> the penalty rates and shift loadings they would have earned &mdash; whichever amount is higher. The employer calculates both scenarios and pays the greater sum. For a nurse regularly working Saturday and Sunday shifts at 150% and 175% penalty rates, the penalty-rate comparison often exceeds the 17.5% loading. For a Monday-to-Friday office worker, the 17.5% loading is typically the higher amount. Consult our <Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> for a full breakdown of penalty rate calculations.</p>
+              <p>Some Awards contain a &quot;better off overall&quot; clause. The employee receives either 17.5% leave loading <strong>or</strong> the penalty rates and shift loadings they would have earned, whichever amount is higher. The employer calculates both scenarios and pays the greater sum. For a nurse regularly working Saturday and Sunday shifts at 150% and 175% penalty rates, the penalty-rate comparison often exceeds the 17.5% loading. For a Monday-to-Friday office worker, the 17.5% loading is typically the higher amount. Consult our <Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> for a full breakdown of penalty rate calculations.</p>
             </section>
 
             {/* ── H2 4: How Is Annual Leave Paid Out on Termination? ── */}
@@ -104,7 +104,7 @@ export default function AnnualLeaveGuidePage() {
             {/* ── H2 5: Can Your Employer Force You to Take Leave? ── */}
             <section id="directed-leave">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Can Your Employer Force You to Take Annual Leave?</h2>
-              <p>Yes &mdash; employers can direct employees to take annual leave in <strong>two specific situations</strong>: during a business shutdown and when the employee has an excessive leave balance.</p>
+              <p>Yes, employers can direct employees to take annual leave in <strong>two specific situations</strong>: during a business shutdown and when the employee has an excessive leave balance.</p>
               <p>Many Awards and enterprise agreements include shutdown clauses covering periods such as Christmas, Easter, and mid-year breaks. Where your award or agreement allows a shutdown, the employer must follow its notice rules, which differ between awards. For example, one food manufacturing award requires at least 28 days&apos; written notice, but that is not a general rule. Check your own award or agreement, or see <Link href="/christmas-shutdown-annual-leave/">Christmas shutdown and annual leave</Link>. If the employee has insufficient accrued leave, the employer and employee can agree to take the time as unpaid leave or as leave in advance.</p>
               <p>Excessive leave provisions apply when an employee&apos;s balance exceeds <strong>8 weeks (304 hours for full-time)</strong> or <strong>10 weeks for shift workers</strong>. The employer must first genuinely attempt to reach agreement on reducing the balance. If agreement cannot be reached within a reasonable period, the employer can issue a written direction requiring the employee to take a specified amount of leave. The direction must not reduce the balance below <strong>6 weeks</strong>, must provide at least <strong>8 weeks&apos; notice</strong>, and must not require the employee to take fewer than <strong>1 week</strong> at a time.</p>
               <p>For a worked example of how many days a Christmas closure uses, and how public holidays inside it are treated, see the <Link href="/christmas-shutdown-annual-leave/">Christmas shutdown and annual leave guide</Link>.</p>
@@ -253,7 +253,7 @@ export default function AnnualLeaveGuidePage() {
                   </tbody>
                 </table>
               </div>
-              <p>South Australia and the Northern Territory offer the most generous long service leave at <strong>13 weeks after 10 years</strong>. Victoria and the ACT have the shortest qualifying periods at <strong>7 years</strong>. Long service leave payouts on termination may qualify for concessional tax treatment &mdash; pre-16 August 1978 service is taxed at a flat <strong>5%</strong>, while post-1978 service is taxed at <strong>32%</strong> (up to the whole-of-income cap). The remaining long service leave balance is taxed at the employee&apos;s marginal rate. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model how a long service leave payout affects your overall take-home pay.</p>
+              <p>South Australia and the Northern Territory offer the most generous long service leave at <strong>13 weeks after 10 years</strong>. Victoria and the ACT have the shortest qualifying periods at <strong>7 years</strong>. Long service leave payouts on termination may qualify for concessional tax treatment: pre-16 August 1978 service is taxed at a flat <strong>5%</strong>, while post-1978 service is taxed at <strong>32%</strong> (up to the whole-of-income cap). The remaining long service leave balance is taxed at the employee&apos;s marginal rate. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model how a long service leave payout affects your overall take-home pay.</p>
             </section>
 
             {/* ── H2 9: What Changed in FY2026-27? ── */}
@@ -273,14 +273,14 @@ export default function AnnualLeaveGuidePage() {
             {/* ── H2 10: Related Resources ── */}
             <section id="related-resources">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
-              <p>These tools and guides cover topics closely connected to annual leave entitlements, payouts, and pay calculations in Australia.</p>
+              <p>The tools and guides below cover your accrued leave balance, your termination payment, superannuation, your payslip, and the award rules for leave loading and penalty rates.</p>
               <ul>
-                <li><Link href="/leave-calculator/">Leave Calculator</Link> &mdash; Calculate your accrued annual leave balance and payout value based on salary, start date, and ordinary hours.</li>
-                <li><Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link> &mdash; Model your total termination payment including redundancy, notice period, and accrued leave.</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; See how the 12% SG rate applies to your salary and leave payments for FY{SITE_CONFIG.financialYear}.</li>
-                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; Identify your leave balance, leave loading, and year-to-date accrual on your pay statement.</li>
-                <li><Link href="/award-rates/">Award Rates Guide</Link> &mdash; Find the minimum pay rates, penalty rates, and leave loading provisions for your industry Award.</li>
-                <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> &mdash; Understand how penalty rates interact with leave loading under the &quot;better off overall&quot; test.</li>
+                <li><Link href="/leave-calculator/">Leave Calculator</Link>: Calculate your accrued annual leave balance and payout value from your annual base salary and years of service.</li>
+                <li><Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link>: Model your total termination payment including redundancy, notice period, and accrued leave.</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: See how the 12% SG rate applies to your salary and leave payments for FY{SITE_CONFIG.financialYear}.</li>
+                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link>: Identify your leave balance, leave loading, and year-to-date accrual on your pay statement.</li>
+                <li><Link href="/award-rates/">Award Rates Guide</Link>: Find the minimum pay rates, penalty rates, and leave loading provisions for your industry Award.</li>
+                <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: Understand how penalty rates interact with leave loading under the &quot;better off overall&quot; test.</li>
               </ul>
             </section>
 

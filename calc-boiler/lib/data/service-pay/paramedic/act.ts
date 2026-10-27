@@ -46,7 +46,7 @@ export const ACT_PARAMEDIC_PAY: ServicePayJurisdiction = {
       id: "paramedics",
       title: "Graduate Paramedic Intern and Ambulance Paramedic 1 (Annex A)",
       intro:
-        "Graduate Paramedic Interns (the entry level for graduates) and qualified Ambulance Paramedics. Annual base salary; roster penalties and rostered overtime are extra.",
+        "ACT Ambulance Service pays Graduate Paramedic Interns (the entry level for graduates) and qualified Ambulance Paramedics the annual base salaries in this table. Roster penalties and rostered overtime are extra.",
       stepHeading: "Classification",
       effectiveFrom: "4 December 2025",
       steps: [
@@ -97,7 +97,7 @@ export const ACT_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   notices: [
     "The ACT Ambulance Service Enterprise Agreement 2023-2026 passed its nominal expiry date on 31 March 2026. It continues to apply until a replacement agreement is approved.",
-    "In September 2026 the ACTPS Employment Portal said 17 of the 18 ACT public sector enterprise agreements were under negotiation. No pay rise after 4 December 2025 is written into the current agreement.",
+    "In September 2026 the ACTPS Employment Portal said 17 of the 18 ACT public sector enterprise agreements were under negotiation. No pay rise after 4 December 2025 is written into the current ACT Ambulance Service agreement.",
   ],
 
   unverified: [
@@ -129,11 +129,11 @@ export const ACT_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "How much does an intensive care paramedic earn in the ACT?",
-      a: "An Intensive Care Paramedic Level 1 earns $105,361 to $116,074 a year base from 4 December 2025 ($140,952 to $155,284 on the 10/14 roster including penalties and overtime).",
+      a: "An Intensive Care Paramedic Level 1 with ACT Ambulance Service earns $105,361 to $116,074 a year base from 4 December 2025 ($140,952 to $155,284 on the 10/14 roster including penalties and overtime).",
     },
     {
       q: "Is a new ACT Ambulance Service agreement coming?",
-      a: "The current agreement reached its nominal expiry on 31 March 2026 and ACT public sector agreements are being renegotiated. Until a new agreement is approved, the 4 December 2025 rates continue to apply.",
+      a: "The current ACT Ambulance Service agreement reached its nominal expiry on 31 March 2026 and ACT public sector agreements are being renegotiated. Until a new agreement is approved, the 4 December 2025 rates continue to apply.",
     },
   ],
 };

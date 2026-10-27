@@ -133,7 +133,7 @@ export const QANTAS_PAY: EmployerPay = {
     },
     {
       q: "What is the Qantas cabin crew hourly rate?",
-      a: "The agreement's single-time hourly rate is the annual salary divided by 1,677 hours: about $32.20 an hour for a first-to-third-year flight attendant. Casual flight attendants are paid a printed $47.29 an hour, which includes the casual loading and other components.",
+      a: "The Qantas short haul agreement's single-time hourly rate is the annual salary divided by 1,677 hours: about $32.20 an hour for a first-to-third-year flight attendant. Casual flight attendants are paid a printed $47.29 an hour, which includes the casual loading and other components.",
     },
     {
       q: "Is Qantas cabin crew pay below the award?",
@@ -141,11 +141,11 @@ export const QANTAS_PAY: EmployerPay = {
     },
     {
       q: "Does this apply to Qantas long haul, QantasLink or Jetstar crew?",
-      a: "No. It covers flight attendants employed by Qantas Airways Limited on domestic routes. Long haul crew, Qantas Domestic Pty Ltd, QantasLink and Jetstar crew each have separate agreements with different pay.",
+      a: "No. The Qantas short haul agreement covers flight attendants employed by Qantas Airways Limited on domestic routes. Long haul crew, Qantas Domestic Pty Ltd, QantasLink and Jetstar crew each have separate agreements with different pay.",
     },
     {
       q: "Do Qantas cabin crew get weekend penalty rates?",
-      a: "Not as a percentage. The agreement pays bands payments for unsociable hours, weekends and public holidays: a point value times $3.03 for a flight attendant, from 1 point on a weekday daytime duty to 9 points late at night on weekends and 18 points on Christmas Day.",
+      a: "Qantas short haul cabin crew get no percentage weekend penalty rate. Instead, the agreement pays bands payments for unsociable hours, weekends and public holidays: a point value times $3.03 for a flight attendant, from 1 point on a weekday daytime duty to 9 points late at night on weekends and 18 points on Christmas Day.",
     },
   ],
 };

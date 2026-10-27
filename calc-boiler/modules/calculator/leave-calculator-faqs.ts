@@ -52,7 +52,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "Who gets leave loading?",
-    a: `Leave loading applies to employees covered by an award or enterprise agreement that includes a ${LOADING_PCT} leave loading clause. Common awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award. Award-free employees on individual contracts (common in professional services, banking, and technology) typically do not receive leave loading unless their contract specifies it. Check your payslip or employment contract to confirm your entitlement.`,
+    a: `Leave loading applies to employees covered by an award or enterprise agreement that includes a ${LOADING_PCT} leave loading clause. Common awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award. Award-free employees on individual contracts (common in professional services, banking, and technology) do not receive leave loading unless their contract specifies it. Check the leave loading clause in your award, agreement or employment contract to confirm your entitlement.`,
   },
   {
     q: "Is leave loading taxed?",
@@ -68,7 +68,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "How is leave payout taxed?",
-    a: `Annual leave payouts are taxed as ordinary income at your marginal tax rate. The ATO treats the payout as assessable income in the financial year it is received. A large payout can push part of your income into a higher bracket. In FY${SITE_CONFIG.financialYear}, income between ${formatAUD(BRACKET_30.min)} and ${formatAUD(BRACKET_30.max)} is taxed at ${PCT(BRACKET_30.rate)}, so a $12,000 payout on top of a $128,000 salary lifts assessable income to $140,000 and the portion above ${formatAUD(BRACKET_30.max)} is taxed at ${PCT(BRACKET_37.rate)} instead of ${PCT(BRACKET_30.rate)}.`,
+    a: `Annual leave payouts are taxed as ordinary income at your marginal tax rate. The ATO treats the payout as assessable income in the financial year it is received. A large payout can push part of your income into a higher bracket. In FY${SITE_CONFIG.financialYear}, income between ${formatAUD(BRACKET_30.min)} and ${formatAUD(BRACKET_30.max)} is taxed at ${PCT(BRACKET_30.rate)}. A $12,000 payout on top of a $128,000 salary lifts assessable income to $140,000. The portion above ${formatAUD(BRACKET_30.max)} is then taxed at ${PCT(BRACKET_37.rate)} instead of ${PCT(BRACKET_30.rate)}.`,
   },
   {
     q: "Do I get tax back on unused annual leave?",
@@ -88,7 +88,7 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "When do I qualify for long service leave?",
-    a: `Long service leave qualification depends on state legislation. In NSW, QLD, WA, and TAS, the full entitlement of 8.67 weeks vests after 10 years of continuous service, with pro-rata payouts on termination available after 5 years in NSW and after 7 years in QLD, WA and TAS. Victoria works differently: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (worked weeks ÷ 60), and the entitlement becomes available to take, or to be paid out on termination, after just 7 years (about 6.1 weeks), reaching the same 8.67 weeks by the 10-year mark. SA and NT provide 13 weeks after 10 years, with pro-rata payouts after 7 years. The ACT provides 6.07 weeks after 7 years, with pro-rata payouts after 5 years.`,
+    a: `Long service leave qualification depends on state and territory legislation. In NSW, QLD, WA, and TAS, the full entitlement of 8.67 weeks vests after 10 years of continuous service, with pro-rata payouts on termination available after 5 years in NSW and after 7 years in QLD, WA and TAS. Victoria works differently. Under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (worked weeks ÷ 60). The Victorian entitlement can be taken, or paid out on termination, after 7 years (about 6.1 weeks) and reaches the same 8.67 weeks by the 10-year mark. SA and NT provide 13 weeks after 10 years, with pro-rata payouts after 7 years. The ACT provides 6.07 weeks after 7 years, with pro-rata payouts after 5 years.`,
   },
   {
     q: "Do casual employees get annual leave?",

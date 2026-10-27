@@ -106,7 +106,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             <HeadTermLinks terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
               {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
               <p className="text-warmgray">
-                The ATO tax rates for {PREV_FY} were {OLD_SCALE}; from {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}, with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the {MEDICARE_PCT} Medicare levy and subtracts up to {formatAUD(LITO.maxOffset)} of Low Income Tax Offset (LITO). Enter any annual, monthly, fortnightly or weekly income for FY{FY} in the calculator above.
+                The ATO resident income tax rates for {PREV_FY} were {OLD_SCALE}; from {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}, and the bracket thresholds did not change. This income tax calculator applies the new resident scale, adds the {MEDICARE_PCT} Medicare levy and subtracts up to {formatAUD(LITO.maxOffset)} of Low Income Tax Offset (LITO). Enter any annual, monthly, fortnightly or weekly income for FY{FY} in the calculator above to see your income tax and take-home pay. Below the calculator are the full bracket table, a worked example, tax on common salaries, the tax offsets and why your payslip withholding differs from your tax bill.
               </p>
               <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
                 <p className="text-base leading-relaxed">
@@ -152,7 +152,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
               <p className="mt-3 text-warmgray">The {NEW_RATE} second rate is new: it dropped from {OLD_RATE} on <strong>1 July 2026</strong> under the legislated cost-of-living tax cuts, saving up to <strong>{formatAUD(RATE_CUT_SAVING)} a year</strong> for anyone earning over {formatAUD(TAX_BRACKETS[1].max)}. It is the only bracket change from {PREV_FY}. See the <Link href="/tax-bracket-history/" className="text-eucalyptus-dark hover:underline font-medium">tax bracket history</Link> for every year since 2018.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2 mt-6">Non-Resident and Working Holiday Maker Rates</h3>
-              <p className="mb-3 text-warmgray">Different scales apply if you are not an Australian resident for tax purposes. Neither group receives the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold or LITO, and neither pays the Medicare levy.</p>
+              <p className="mb-3 text-warmgray">Foreign residents and working holiday makers are taxed on different scales from Australian residents for tax purposes. Neither group receives the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold or LITO, and neither pays the Medicare levy.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
@@ -195,7 +195,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* Tax on common salaries (with /tax-on/ links) */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Tax Do You Pay at Every Salary?</h2>
-              <p className="mb-4 text-warmgray">Quick reference for income tax, Medicare levy, take-home pay and effective tax rate across the salaries Australians most commonly search. Click any salary for the full <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline font-medium">tax on $80,000</Link>-style breakdown with weekly, fortnightly and monthly figures.</p>
+              <p className="mb-4 text-warmgray">The table below shows income tax, the Medicare levy, take-home pay and the effective tax rate at the salaries Australians search for most. Click any salary for the full <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline font-medium">tax on $80,000</Link>-style breakdown with weekly, fortnightly and monthly figures.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
@@ -233,7 +233,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* Offsets */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Tax Offsets Reduce Your Income Tax?</h2>
-              <p className="mb-4 text-warmgray">Tax offsets reduce your final tax bill dollar-for-dollar, unlike deductions, which lower assessable income before the brackets apply. Two offsets matter to most taxpayers.</p>
+              <p className="mb-4 text-warmgray">Tax offsets reduce your final tax bill dollar-for-dollar, unlike deductions, which lower assessable income before the brackets apply. Two offsets are covered here: LITO for low incomes and SAPTO for seniors and pensioners.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2">Low Income Tax Offset (LITO)</h3>
               <p className="mb-3 text-warmgray">Taxpayers earning under {formatAUD(LITO.nilOffsetIncome)} receive LITO automatically (up to <strong>{formatAUD(LITO.maxOffset)}</strong>) when their return is assessed. No form is required.</p>
@@ -262,7 +262,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* 2025-26 vs 2026-27 */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{PREV_FY} vs {FY}: What Changed on 1 July 2026?</h2>
-              <p className="mb-4 text-warmgray">One bracket changed: the rate on income between {formatAUD(TAX_BRACKETS[1].min)} and {formatAUD(TAX_BRACKETS[1].max)} fell from <strong>{OLD_RATE} to {NEW_RATE}</strong>. Because that bracket sits under everyone&apos;s income, every taxpayer earning above {formatAUD(TAX_FREE_THRESHOLD)} gets the cut, capped at <strong>{formatAUD(RATE_CUT_SAVING)} a year</strong> once income passes {formatAUD(TAX_BRACKETS[1].max)}.</p>
+              <p className="mb-4 text-warmgray">One bracket changed: the rate on income between {formatAUD(TAX_BRACKETS[1].min)} and {formatAUD(TAX_BRACKETS[1].max)} fell from <strong>{OLD_RATE} to {NEW_RATE}</strong>. That bracket is the first taxed slice of every resident income, so every resident taxpayer earning above {formatAUD(TAX_FREE_THRESHOLD)} gets the cut, capped at <strong>{formatAUD(RATE_CUT_SAVING)} a year</strong> once income passes {formatAUD(TAX_BRACKETS[1].max)}.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
@@ -289,7 +289,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-sm text-warmgray-light">Gross income tax before offsets; LITO and the Medicare levy are identical in both years, so the saving is unaffected. For the 2024 bracket overhaul that preceded this cut, see the <Link href="/stage-3-tax-cuts/" className="text-eucalyptus-dark hover:underline font-medium">Stage 3 tax cuts guide</Link>.</p>
+              <p className="mt-3 text-sm text-warmgray-light">The table shows gross income tax before offsets. LITO and the Medicare levy are identical in both years, so the saving is unaffected. For the 2024 bracket overhaul that preceded this cut, see the <Link href="/stage-3-tax-cuts/" className="text-eucalyptus-dark hover:underline font-medium">Stage 3 tax cuts guide</Link>.</p>
 
               <div className="mt-6 bg-sandstone border-l-4 border-ochre rounded-lg p-5 text-warmgray">
                 <p className="font-semibold text-navy mb-1">Lodging your {PREV_FY} tax return?</p>
@@ -388,7 +388,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
             {/* CTA */}
             <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Full Pay Breakdown</h2>
-              <p className="text-warmgray mb-6 max-w-lg mx-auto">Get the complete picture with income tax, Medicare, HECS, and super, all in one calculation.</p>
+              <p className="text-warmgray mb-6 max-w-lg mx-auto">See income tax, the Medicare levy, HECS-HELP and super on your salary in one calculation.</p>
               <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
                 Calculate Your Take-Home Pay →
               </Link>

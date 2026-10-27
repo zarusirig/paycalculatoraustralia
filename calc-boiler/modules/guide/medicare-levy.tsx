@@ -96,13 +96,13 @@ export default function MedicareLevyPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How the Medicare Levy Is Calculated</h2>
             <p>The Medicare levy funds Medicare: bulk-billed doctor visits, public hospital treatment and PBS medicines. It is charged on your <strong>taxable income</strong>, which is gross income less allowable deductions, and it sits on top of income tax rather than replacing any part of it.</p>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The part most calculators get wrong:</strong> the levy is not a flat {RATE} from the first dollar. There are three bands, and the middle one (the shade-in) catches roughly every part-time and low-income earner in the country.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The part most calculators get wrong:</strong> the levy is not a flat {RATE} from the first dollar. There are three bands, and in the middle one (the shade-in) a low-income earner pays less than the full rate.</p>
             <ul>
               <li><strong>At or under {formatAUD(LOWER)}</strong>: no levy at all.</li>
               <li><strong>Between {formatAUD(LOWER)} and {formatAUD(UPPER)}</strong>: you pay {SHADE} of the amount over {formatAUD(LOWER)}, which is always less than {RATE} of your income.</li>
               <li><strong>Above {formatAUD(UPPER)}</strong>: the full {RATE}.</li>
             </ul>
-            <p>The upper threshold is not an arbitrary number. {SHADE} of the excess and {RATE} of total income meet at exactly 1.25 times the lower threshold, which is where the shade-in stops mattering. Every threshold pair the ATO publishes follows that ratio.</p>
+            <p>The upper threshold is the income where the shade-in and the full rate give the same levy. {SHADE} of the excess and {RATE} of total income meet at exactly 1.25 times the lower threshold, which is where the shade-in stops mattering. Every threshold pair the ATO publishes follows that ratio.</p>
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable income</th><th className="px-5 py-3 text-right">Medicare levy</th><th className="px-5 py-3 text-right">Flat {RATE} would be</th><th className="px-5 py-3">Band</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {LEVY_ROWS.map((income, i) => {
@@ -128,7 +128,7 @@ export default function MedicareLevyPage() {
               <tr><td className="px-5 py-3 text-warmgray-light">What a flat {RATE} would have charged</td><td className="px-5 py-3 text-right tabular-nums text-warmgray-light">{formatAUD(ANGIE.fullRateLevy, 2)}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Medicare levy payable</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(ANGIE.levy, 2)}</td></tr>
             </tbody></table></div></div>
-            <p>The difference is {formatAUD(ANGIE.fullRateLevy - ANGIE.levy, 2)} on an income of {formatAUD(29_000)}. Getting the shade-in wrong is not a rounding error.</p>
+            <p>The difference is {formatAUD(ANGIE.fullRateLevy - ANGIE.levy, 2)} on an income of {formatAUD(29_000)}. A calculation that skips the shade-in overstates Angie&rsquo;s levy by that amount.</p>
           </section>
 
           <section>
@@ -154,8 +154,8 @@ export default function MedicareLevyPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Seniors and Pensioners</h2>
-            <p>Seniors and pensioners get materially higher thresholds: <strong>{formatAUD(MEDICARE_LEVY_SENIORS.singleThreshold)}</strong> single (full levy above {formatAUD(SENIOR_UPPER)}) and <strong>{formatAUD(MEDICARE_LEVY_SENIORS.familyThreshold)}</strong> for a family (full levy above {formatAUD(SENIOR_FAMILY_UPPER)}). A single senior on {formatAUD(40_000)} pays <strong>nothing</strong>, where anyone else on the same income pays {formatAUD(single(40_000).levy)}.</p>
-            <p>The qualifying test is the one people get wrong. It is not age. It is <strong>entitlement to at least $1 of the seniors and pensioners tax offset</strong>. Someone who reaches age-pension age but whose rebate income is too high for any SAPTO cannot use these thresholds. SAPTO for singles cuts out at {formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, which is <em>below</em> the {formatAUD(SENIOR_UPPER)} upper Medicare threshold, so the top of the seniors band is reached through the ordinary thresholds instead. Check your entitlement with the <Link href="/sapto-calculator/">SAPTO calculator</Link> first.</p>
+            <p>Seniors and pensioners get materially higher thresholds: <strong>{formatAUD(MEDICARE_LEVY_SENIORS.singleThreshold)}</strong> single (full levy above {formatAUD(SENIOR_UPPER)}) and <strong>{formatAUD(MEDICARE_LEVY_SENIORS.familyThreshold)}</strong> for a family (full levy above {formatAUD(SENIOR_FAMILY_UPPER)}). A single senior on {formatAUD(40_000)} pays <strong>nothing</strong>, where a single taxpayer without SAPTO on the same income pays {formatAUD(single(40_000).levy)}.</p>
+            <p>The qualifying test for the seniors thresholds is not age. It is <strong>entitlement to at least $1 of the seniors and pensioners tax offset</strong>. Someone who reaches age-pension age but whose rebate income is too high for any SAPTO cannot use these thresholds. SAPTO for singles cuts out at {formatAUD(MEDICARE_LEVY_SENIORS.saptoSingleCutOut)} of rebate income, which is <em>below</em> the {formatAUD(SENIOR_UPPER)} upper Medicare threshold, so the top of the seniors band is reached through the ordinary thresholds instead. Check your entitlement with the <Link href="/sapto-calculator/">SAPTO calculator</Link> first.</p>
             <p>The ATO&rsquo;s worked example shows both reductions stacking. Ashton is 68, has taxable income of {formatAUD(49_700)}, an illness-separated spouse on {formatAUD(21_700)}, no children, and is entitled to SAPTO:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Levy at {RATE} of {formatAUD(49_700)}</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(ASHTON.fullRateLevy, 2)}</td></tr>
@@ -176,7 +176,7 @@ export default function MedicareLevyPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Exempt from the Medicare Levy?</h2>
-            <p>Exemptions are separate from reductions. A reduction lowers the levy because your income is low; an exemption removes it because you were not entitled to Medicare, or were entitled to free treatment elsewhere. Some exemptions are <strong>half</strong> rather than full, which is the detail most summaries skip.</p>
+            <p>Exemptions are separate from reductions. A reduction lowers the levy because your income is low; an exemption removes it because you were not entitled to Medicare, or were entitled to free treatment elsewhere. Some exemptions are <strong>half</strong> rather than full, and each category below shows which relief it gives.</p>
             <div className="not-prose my-6 space-y-4">
               {LEVY_EXEMPTION_CATEGORIES.map((c) => (
                 <div key={c.category} className="rounded-xl border border-sandstone-dark/20 bg-white p-5">

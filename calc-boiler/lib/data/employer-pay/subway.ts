@@ -64,7 +64,7 @@ export const SUBWAY_PAY: EmployerPay = {
     { age: "21 and over", percentage: 1 },
   ],
   juniorNote:
-    "The Fast Food Award pays the full adult rate from 21 (cl 15.2). The dollar figures below are printed in the award's Schedule A for Level 1. Casual and part-time shifts must be at least 3 hours, including for school students.",
+    "Subway staff get the full adult rate from 21 under the Fast Food Industry Award (cl 15.2). The dollar figures below are printed in the award's Schedule A for Level 1. Casual and part-time shifts must be at least 3 hours, including for school students.",
   publishedJuniorRates: [
     { age: "Under 16", hourly: 11.12, casualHourly: 13.9 },
     { age: "16", hourly: 13.91, casualHourly: 17.39 },
@@ -85,7 +85,7 @@ export const SUBWAY_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Percentages are of the minimum hourly rate for your level (award cl 21, Table 6). Casual figures add the 25% loading rather than multiply it: Saturday casual is 150%, not 156.25%.",
-    "There is no evening penalty before 10pm on weekdays.",
+    "The Fast Food Industry Award pays no evening penalty on weekdays before 10pm.",
     "For an adult Level 1 sandwich artist that is $34.76 an hour on a Saturday or Sunday ($41.72 casual) and $62.57 on a public holiday ($69.53 casual).",
   ],
   overtime: [
@@ -97,7 +97,7 @@ export const SUBWAY_PAY: EmployerPay = {
   notices: [
     "Your employer is the franchisee that owns your store, not Subway's head office. These are the Fast Food Industry Award minimums; some franchisees pay more.",
     "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead, but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
-    "The Fair Work Ombudsman found 18 of 22 Subway franchisees it investigated in 2017–19 had breached workplace laws, including underpaying minimum wages, casual loadings and penalty rates. If your pay is below these figures, the Fair Work Infoline is 13 13 94.",
+    "The Fair Work Ombudsman found 18 of 22 Subway franchisees it investigated in 2017-19 had breached workplace laws, including underpaying minimum wages, casual loadings and penalty rates. If your pay is below these figures, the Fair Work Infoline is 13 13 94.",
   ],
   unverified: [
     "Whether any individual Subway franchisee currently has its own approved enterprise agreement. We could not search the Fair Work Commission register store by store.",
@@ -118,7 +118,7 @@ export const SUBWAY_PAY: EmployerPay = {
     },
     {
       q: "How much does Subway pay a 15 year old?",
-      a: "Staff under 16 are paid 40% of the adult rate: $11.12 an hour, or $13.90 as a casual. At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
+      a: "Subway staff under 16 are paid 40% of the adult rate: $11.12 an hour, or $13.90 as a casual. At 16 it is $13.91 ($17.39 casual) and at 17 $16.69 ($20.86 casual). The full adult rate applies from 21.",
     },
     {
       q: "Does Subway have an enterprise agreement?",
@@ -126,7 +126,7 @@ export const SUBWAY_PAY: EmployerPay = {
     },
     {
       q: "What are Subway penalty rates on Sunday?",
-      a: "Level 1 staff are paid 125% on Sundays ($34.76 an hour) and casuals 150% ($41.72). Levels 2 and 3 are paid 150% (casual 175%). Public holidays pay 225% (casual 250%).",
+      a: "Subway Level 1 staff are paid 125% on Sundays ($34.76 an hour) and casuals 150% ($41.72). Levels 2 and 3 are paid 150% (casual 175%). Public holidays pay 225% (casual 250%).",
     },
     {
       q: "Do Subway junior rates go up in December 2026?",

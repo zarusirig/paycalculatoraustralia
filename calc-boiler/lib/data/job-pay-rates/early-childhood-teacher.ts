@@ -83,7 +83,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
       id: "long-day-care",
       title: "Early childhood teacher pay rates: long day care centres",
       intro:
-        "Clause 17.1 long day care weekly rates and annual salaries (services open at least 8 hours a day for 48 weeks or more). Hourly is the weekly rate over 38 hours; casual is the award's 2-hour casual rate halved (Schedule B.1.4).",
+        "This table shows the clause 17.1 weekly rates and annual salaries for early childhood teachers in long day care centres (services open at least 8 hours a day for 48 weeks or more). Hourly is the weekly rate over 38 hours; casual is the award's 2-hour casual rate halved (Schedule B.1.4).",
       rows: [
         t("Level 1 (long day care)", 1513.6, 78_979, 99.58, "Graduate / provisional registration"),
         t("Level 2 (long day care)", 1654.4, 86_324, 108.84, "Proficient registration"),
@@ -96,7 +96,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
       id: "preschool",
       title: "Early childhood teacher pay rates: preschools and kindergartens",
       intro:
-        "Clause 17.1 preschools and schools weekly rates and annual salaries. Casual is the award's 2-hour casual rate for services operating fewer than 48 weeks a year, halved (Schedule B.1.3).",
+        "This table shows the clause 17.1 weekly rates and annual salaries for early childhood teachers in preschools and schools. Casual is the award's 2-hour casual rate for services operating fewer than 48 weeks a year, halved (Schedule B.1.3).",
       rows: [
         t("Level 1 — preschool", 1455.4, 75_941, 95.76),
         t("Level 2 (preschool)", 1590.7, 83_004, 104.66),
@@ -112,7 +112,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
     { when: "Long day care: Saturday", permanent: "125%", casual: "156.25%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (Schedule A.5.2). A casual's shift and Saturday rate is the same percentage of the casual rate (Schedule B.1.1), shown here as a percentage of the minimum hourly rate. The award sets no separate Sunday or public holiday penalty; public holidays are an NES entitlement (cl 28.1).",
+    "The long day care shift and Saturday penalties are percentages of the minimum hourly rate (Schedule A.5.2). A casual's shift and Saturday rate is the same percentage of the casual rate (Schedule B.1.1), shown here as a percentage of the minimum hourly rate. The award sets no separate Sunday or public holiday penalty; public holidays are an NES entitlement (cl 28.1).",
   overtime: [
     "Long day care teachers: 150% for the first 3 hours outside or beyond rostered hours, then 200% (Schedule A.4.1).",
     "A part-time teacher who agrees to extra hours during the service's ordinary opening hours is paid at ordinary time for up to 8 hours a day (A.4.1(b)).",
@@ -124,7 +124,7 @@ export const EARLY_CHILDHOOD_TEACHER: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Work in long day care? You are entitled to the long day care rate, 4% above the preschool rate: $1,513.60 a week at Level 1, not $1,455.40.",
+    "An early childhood teacher in a long day care centre is entitled to the long day care rate, 4% above the preschool rate: $1,513.60 a week at Level 1, not $1,455.40.",
   ],
   notShown: [
     "Government preschool and kindergarten teacher scales, set by each state.",

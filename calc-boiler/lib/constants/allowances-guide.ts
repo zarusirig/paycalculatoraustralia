@@ -55,31 +55,31 @@ export const ALLOWANCE_KINDS: readonly AllowanceKindInfo[] = [
   {
     id: "first-aid",
     title: "First aid allowance",
-    blurb: "Paid when you hold a current first aid qualification and are appointed to perform first aid duty.",
+    blurb: "A first aid allowance is paid when you hold a current first aid qualification and are appointed to perform first aid duty.",
     test: /first aid/i,
   },
   {
     id: "laundry-uniform",
     title: "Laundry and uniform allowances",
-    blurb: "Paid when you must launder a required uniform or special clothing, or where the employer pays an allowance instead of supplying uniforms.",
+    blurb: "Laundry and uniform allowances are paid when you must launder a required uniform or special clothing, or where the employer pays an allowance instead of supplying uniforms.",
     test: /laundry|uniform/i,
   },
   {
     id: "tool",
     title: "Tool allowance",
-    blurb: "Paid when the employer requires you to provide and use your own tools or equipment.",
+    blurb: "A tool allowance is paid when the employer requires you to provide and use your own tools or equipment.",
     test: /\btool/i,
   },
   {
     id: "split-shift",
     title: "Split shift and broken shift allowances",
-    blurb: "Paid when your shift is split into two or more periods with an unpaid break between them.",
+    blurb: "A split shift or broken shift allowance is paid when your shift is split into two or more periods with an unpaid break between them.",
     test: /split shift|broken shift/i,
   },
   {
     id: "on-call",
     title: "On-call and sleepover allowances",
-    blurb: "Paid for being available to be called in outside your rostered hours, or for sleeping at the workplace.",
+    blurb: "An on-call or sleepover allowance is paid for being available to be called in outside your rostered hours, or for sleeping at the workplace.",
     test: /on-call|sleepover/i,
   },
 ] as const;

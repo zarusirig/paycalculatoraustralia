@@ -87,7 +87,7 @@ export default function SalaryPackageCalculatorContent() {
           </table>
         </div>
         <p className={P + " mt-4"}>
-          Your tax, your HECS repayment and your take-home pay are all worked out on the <strong>base</strong>. The super never reaches your bank account. So the first thing to do with any offer is find the base, then put it through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.
+          Your tax, your HECS repayment and your take-home pay are all worked out on the <strong>base</strong>. The super goes to your super fund, not your bank account. So with any offer, find the base salary first (the calculator above does this), then put it through the <Link href="/take-home-pay-calculator/" className={LINK}>take-home pay calculator</Link>.
         </p>
       </section>
 

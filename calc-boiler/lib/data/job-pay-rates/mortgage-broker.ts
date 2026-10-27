@@ -76,7 +76,7 @@ export const MORTGAGE_BROKER: Occupation = {
   heading: "Mortgage Broker Salary Australia 2026 - Tax-Return Figures, Commission & Take-Home",
   metaTitle: `Mortgage Broker Salary Australia 2026: ${aud(FIN.medianSalary)} Median & Take-Home`,
   metaDescription: `Finance brokers, the ATO code that includes mortgage brokers, had an ${aud(FIN.medianSalary)} median salary in 2023–24. Take-home pay, commission on payslips, award coverage.`,
-  lede: `Mortgage brokers are counted by the ATO as finance brokers. On 2023–24 tax returns, finance brokers who earned wages had a median salary of ${aud(FIN.medianSalary)} and an average of ${aud(FIN.avgSalary)}, while their average taxable income (which includes business income) was ${aud(FIN.avgTaxableIncome)}. On the ${aud(FIN.medianSalary)} median, take-home pay is about ${aud(netAnnual(FIN.medianSalary))} a year after tax. No award names the job.`,
+  lede: `Mortgage brokers are counted by the ATO as finance brokers. On 2023-24 tax returns, finance brokers who earned wages had a median salary of ${aud(FIN.medianSalary)} and an average of ${aud(FIN.avgSalary)}, while their average taxable income (which includes business income) was ${aud(FIN.avgTaxableIncome)}. On the ${aud(FIN.medianSalary)} median, take-home pay is about ${aud(netAnnual(FIN.medianSalary))} a year after income tax and the Medicare levy. No modern award names mortgage brokers.`,
   coverage: [
     "No modern award names mortgage brokers. The Banking, Finance and Insurance Award 2020 [MA000019] covers employers in banking, lending and finance. Its definition of the industry includes financial intermediaries and services such as broking (cl 4.2), but only for employees whose work fits one of its classifications (cl 4.1). Whether a broker's role fits depends on the duties, and this page does not decide it.",
     "The official occupation description is of a finance broker who operates as an independent agent and arranges loans on behalf of clients (ABS, ANZSCO). Awards and the minimum wage apply to employees, not to a broker who runs their own business. A broker employed by a brokerage or a lender is an employee: if no award covers the role, the National Minimum Wage and the National Employment Standards are the floor.",
@@ -104,11 +104,11 @@ export const MORTGAGE_BROKER: Occupation = {
   faqs: [
     {
       q: "How much does a mortgage broker earn in Australia?",
-      a: `The ATO counts mortgage brokers as finance brokers. On 2023–24 tax returns, the 11,049 finance brokers had a median salary or wage income of ${aud(FIN.medianSalary)} and an average of ${aud(FIN.avgSalary)}; their average taxable income, which includes business income, was ${aud(FIN.avgTaxableIncome)}.`,
+      a: `Finance brokers, the ATO code that includes mortgage brokers, had a median salary or wage income of ${aud(FIN.medianSalary)} on 2023-24 tax returns, and an average of ${aud(FIN.avgSalary)}. The average taxable income of all 11,049 finance brokers, which includes business income, was ${aud(FIN.avgTaxableIncome)}.`,
     },
     {
       q: "What is a mortgage broker's take-home pay?",
-      a: `On the ${aud(FIN.medianSalary)} median salary, about ${aud(netAnnual(FIN.medianSalary))} a year or ${aud(netFortnightly(FIN.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
+      a: `A mortgage broker on the ${aud(FIN.medianSalary)} median salary takes home about ${aud(netAnnual(FIN.medianSalary))} a year or ${aud(netFortnightly(FIN.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover.`,
     },
     {
       q: "Is there an award for mortgage brokers?",
@@ -116,7 +116,7 @@ export const MORTGAGE_BROKER: Occupation = {
     },
     {
       q: "Do insurance brokers earn more than mortgage brokers?",
-      a: "On 2023–24 tax returns, insurance brokers' median salary or wage income was $96,439, against $81,587 for finance brokers, the code that includes mortgage brokers.",
+      a: "Yes, insurance brokers earn more on the ATO figures. On 2023-24 tax returns, insurance brokers' median salary or wage income was $96,439, against $81,587 for finance brokers, the code that includes mortgage brokers.",
     },
   ],
   sources: [

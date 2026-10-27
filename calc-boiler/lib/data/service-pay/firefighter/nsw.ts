@@ -38,7 +38,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (Schedule 1, Table 1, station based)",
       intro:
-        "Permanent firefighters from recruit through to Senior Firefighter. Progression to Qualified Firefighter needs 24 months' service from starting as a recruit, and to Senior Firefighter at least 72 months, plus the required training at each step.",
+        "This table covers Fire and Rescue NSW permanent firefighters from Recruit Firefighter to Senior Firefighter. Progression to Qualified Firefighter needs 24 months' service from starting as a recruit, and to Senior Firefighter at least 72 months, plus the required training at each step.",
       stepHeading: "Classification",
       steps: [
         { label: "Recruit Firefighter", salary: 81_118, note: "$1,555.69 per week" },
@@ -51,7 +51,7 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "leading-firefighters-and-officers",
       title: "Leading Firefighter and officers (Schedule 1, Table 1, station based)",
       intro:
-        "Leading Firefighter (reached by completing the Leading Firefighter Program) and the station-based officer ranks. Station Officer Team Member and Team Leader share one station-based rate.",
+        "The Leading Firefighter rank, reached by completing the Leading Firefighter Program, heads this table, followed by the Fire and Rescue NSW station-based officer ranks. Station Officer Team Member and Team Leader share one station-based rate.",
       stepHeading: "Classification",
       steps: [
         { label: "Leading Firefighter", salary: 116_476, note: "$2,233.78 per week" },
@@ -73,12 +73,12 @@ export const NSW_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "A recruit moves to Firefighter ($1,795.01 per week) after satisfactorily completing the required training (clause 47.2), and stays on probation until six weeks after that progression (clause 47.1).",
   ],
   penalties: [
-    "The weekly rates are composite: they already include shift allowance, weekend and public holiday loading, industry allowance and (except for recruits) a roster allowance for working a 42-hour week (clauses 13.2–13.3).",
-    "Station-based firefighters work the Standard 10/14 roster: four platoons over an 8-week cycle, day shifts 0800–1800 and night shifts 1800–0800 (clause 21.3).",
+    "The weekly rates are composite: they already include shift allowance, weekend and public holiday loading, industry allowance and (except for recruits) a roster allowance for working a 42-hour week (clauses 13.2 to 13.3).",
+    "Station-based firefighters work the Standard 10/14 roster: four platoons over an 8-week cycle, day shifts 0800 to 1800 and night shifts 1800 to 0800 (clause 21.3).",
     "Non-station-based team members are paid a 15% weekly allowance on top of their substantive rate, and team leaders 20% (clause 49.4.3).",
   ],
   notices: [
-    "The award was made on 19 December 2025, after the 26 February 2024 and 26 February 2025 increases had already fallen due, and published in the Industrial Gazette on 11 March 2026. It sets increases of 4% (26 February 2024), 4% (26 February 2025) and 6% (26 February 2026).",
+    "The Fire and Rescue NSW permanent firefighting award was made on 19 December 2025, after the 26 February 2024 and 26 February 2025 increases had already fallen due. It was published in the NSW Industrial Gazette on 11 March 2026. The award sets increases of 4% (26 February 2024), 4% (26 February 2025) and 6% (26 February 2026).",
     "The award stays in force until 25 February 2027. No increase after 26 February 2026 is written into it; the award says Fire and Rescue NSW and the FBEU will start negotiating a new award nine months before it expires.",
   ],
   unverified: [

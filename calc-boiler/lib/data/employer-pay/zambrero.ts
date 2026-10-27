@@ -62,11 +62,11 @@ export const ZAMBRERO_PAY: EmployerPay = {
     },
     {
       q: "Does Zambrero have an enterprise agreement?",
-      a: "We found none on the Fair Work Commission's lists of agreements approved since 2016. Unless the business that runs your restaurant has its own agreement, the Fast Food Industry Award sets your minimum pay.",
+      a: "No Zambrero enterprise agreement appears on the Fair Work Commission's lists of agreements approved since 2016. Unless the business that runs your restaurant has its own agreement, the Fast Food Industry Award sets your minimum pay.",
     },
     {
       q: "Who is my employer at Zambrero?",
-      a: "The business named on your payslip. If your restaurant is franchised, that is the franchisee who owns it, not Zambrero head office, and the franchisee is responsible for paying you at least the award.",
+      a: "Your employer at Zambrero is the business named on your payslip. If your restaurant is franchised, that is the franchisee who owns it, not Zambrero head office, and the franchisee is responsible for paying you at least the award.",
     },
   ],
 };

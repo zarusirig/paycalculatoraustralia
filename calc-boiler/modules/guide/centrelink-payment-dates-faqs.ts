@@ -21,7 +21,7 @@ export const CENTRELINK_DATES_FAQS: Faq[] = [
     q: "What are the Centrelink Christmas payment dates for 2026?",
     a: CHRISTMAS_2026_27_PUBLISHED
       ? "Services Australia has published the Christmas 2026 dates; see the tables on this page."
-      : `Services Australia hasn't published them yet (checked ${CENTRELINK_DATES_VERIFIED_ON}). Last year's tables were on its public holiday page in a version dated 27 October 2025. Until then, your Centrelink online account shows your own dates, and last year's official tables on this page show how the changes work.`,
+      : `Services Australia hasn't published this year's Christmas dates yet (checked ${CENTRELINK_DATES_VERIFIED_ON}). Last year's tables were on its public holiday page in a version dated 27 October 2025. Until the new dates are out, your Centrelink online account shows your own dates, and last year's official tables on this page show how the changes work.`,
   },
   {
     q: "Does Centrelink pay early at Christmas?",
@@ -37,18 +37,18 @@ export const CENTRELINK_DATES_FAQS: Faq[] = [
   },
   {
     q: "How often does Centrelink pay?",
-    a: "Most payments, including JobSeeker Payment and Age Pension, are paid every 2 weeks, and your payment day stays the same weekday each fortnight. Some people can choose to be paid weekly instead.",
+    a: "Centrelink pays most payments, including JobSeeker Payment and Age Pension, every 2 weeks, and your payment day stays the same weekday each fortnight. Some people can choose to be paid weekly instead.",
   },
   {
     q: "What time do I have to report to Centrelink?",
-    a: "By 5 pm on your reporting date, so you can be paid on time. Your reporting period is usually 14 days. You can't report before your reporting date unless a public holiday moves it. If you report late you can still do it online for up to 14 days, and you'll be paid after you report.",
+    a: "You have to report to Centrelink by 5 pm on your reporting date to be paid on time. Your reporting period is usually 14 days. You can't report before your reporting date unless a public holiday moves it. If you report late, you can still report online for up to 14 days after your reporting date, and you'll be paid after you report.",
   },
   {
     q: "Do pensioners have to report to Centrelink?",
-    a: "Only if they have income to report. An Age Pension recipient who starts working moves onto scheduled reporting and reports every 2 weeks. If you don't have to report, your payment still moves earlier (never later) when your payment day falls on a public holiday.",
+    a: "Pensioners have to report to Centrelink only if they have income to report. An Age Pension recipient who starts working moves onto scheduled reporting and reports every 2 weeks. If you don't have to report, your payment still moves earlier (never later) when your payment day falls on a public holiday.",
   },
   {
     q: "Which public holidays change Centrelink dates?",
-    a: "The national holidays Services Australia closes for: New Year's Day, Australia Day, Good Friday, Easter Monday, Anzac Day, Christmas Day and Boxing Day. It publishes the changed dates before each one.",
+    a: "Centrelink dates change for the national public holidays Services Australia closes for: New Year's Day, Australia Day, Good Friday, Easter Monday, Anzac Day, Christmas Day and Boxing Day. It publishes the changed dates before each one.",
   },
 ];

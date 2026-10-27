@@ -53,7 +53,7 @@ export default function RentAssistanceCalculatorContent() {
         <RatesTable rows={RENT_ASSISTANCE_SITUATIONS.filter((k) => RA.rows[k].paidWith === "incomeSupport")} />
         <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Paid with Family Tax Benefit Part A (families)</h3>
         <RatesTable rows={RENT_ASSISTANCE_SITUATIONS.filter((k) => RA.rows[k].paidWith === "ftb")} />
-        <p className="mt-2 text-xs text-warmgray-light">All figures per fortnight, as published by Services Australia. Indexed on {RA.indexedOn} in line with CPI; the next change is 20 March 2027. Couples: combined rent and one combined amount. A couple separated by illness, respite care or prison, or temporarily separated, with children, uses the single family threshold.</p>
+        <p className="mt-2 text-xs text-warmgray-light">All figures are per fortnight, as published by Services Australia. Rent Assistance is indexed on {RA.indexedOn} in line with CPI, and the next change is on 20 March 2027. A couple counts its combined rent and gets one combined amount. A couple separated by illness, respite care or prison, or temporarily separated, with children, uses the single family threshold.</p>
       </section>
 
       <section>
@@ -73,7 +73,7 @@ export default function RentAssistanceCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>From about {formatAUD(Math.ceil(RA.rows.single.publishedMaxRent / 2))} a week in rent, a single person gets the maximum and extra rent adds nothing.</p>
+        <p className={P + " mt-4"}>From about {formatAUD(Math.ceil(RA.rows.single.publishedMaxRent / 2))} a week in rent, a single person with no children gets the maximum Rent Assistance and extra rent adds nothing.</p>
       </section>
 
       <section>
@@ -87,7 +87,7 @@ export default function RentAssistanceCalculatorContent() {
 
       <section>
         <h2 style={FONT} className={H2}>How Extra Work Hours Affect Rent Assistance</h2>
-        <p className={P}>Rent Assistance itself isn&apos;t tested against your wages; the payment it comes with is. Because it forms part of that payment, the same income test can reduce it once your earnings are high enough, and getting Rent Assistance raises the income at which your payment cuts out. For families, more hours can push family income past the point where FTB Part A drops to the base rate, and Rent Assistance stops there. Work through your fortnightly wages with the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>, then check the payment itself in the calculator for it.</p>
+        <p className={P}>Rent Assistance itself isn&apos;t tested against your wages; the payment it comes with is. Because it forms part of that payment, the same income test can reduce it once your earnings are high enough, and getting Rent Assistance raises the income at which your payment cuts out. For families, more hours can push family income past the point where FTB Part A drops to the base rate, and Rent Assistance stops there. Work through your fortnightly wages with the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>, then check your income support payment or FTB Part A in its own calculator, listed under Related Calculators and Guides.</p>
       </section>
 
       <section>

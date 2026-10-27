@@ -21,7 +21,7 @@ const TURNOVER = `$${COMPANY_TAX.aggregatedTurnoverThreshold / 1_000_000} millio
 export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   {
     q: "When should I switch from sole trader to a company?",
-    a: `It depends on more than income. A base rate entity company pays ${COMPANY_RATE} on its taxable income, against individual marginal rates of ${pct(ABOVE_COMPANY.rate)} to ${TOP} (plus the ${ML} Medicare levy) on income above ${formatAUD(ABOVE_COMPANY.min - 1)}. Profit paid out as a franked dividend is topped up to your own marginal rate, so the saving is on profit kept in the company. If your income is produced mainly from your own skills or effort, it is personal services income (PSI), and if the PSI rules apply the company must attribute it to you, taxed at your marginal rates. Weigh any saving against the company's accounting and ASIC costs and your need for asset protection. The take-home comparison on this page shows the tax at three income levels.`,
+    a: `The switch from sole trader to company turns on more than income. A base rate entity company pays ${COMPANY_RATE} on its taxable income, against individual marginal rates of ${pct(ABOVE_COMPANY.rate)} to ${TOP} (plus the ${ML} Medicare levy) on income above ${formatAUD(ABOVE_COMPANY.min - 1)}. Profit paid out as a franked dividend is topped up to your own marginal rate, so the saving is on profit kept in the company. If your income is produced mainly from your own skills or effort, it is personal services income (PSI), and if the PSI rules apply the company must attribute it to you, taxed at your marginal rates. Weigh any saving against the company's accounting and ASIC costs and your need for asset protection. The take-home comparison on this page shows the tax at three income levels.`,
   },
   {
     q: "Do sole traders pay the same tax as employees?",
@@ -29,7 +29,7 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the company tax rate in Australia?",
-    a: `The base rate entity company tax rate is ${COMPANY_RATE} for companies with aggregated turnover under ${TURNOVER} and no more than ${pct(COMPANY_TAX.maxPassiveIncomeShare)} of assessable income from passive sources such as interest, rent and dividends; other companies pay ${FULL_RATE}. The ATO applies these rates from ${COMPANY_TAX.firstYear} onwards. This flat rate applies to all taxable company income, compared to individual marginal rates that range from 0% to ${TOP} plus the ${ML} Medicare levy. When profits are distributed as franked dividends, the shareholder receives a franking credit for the company tax already paid, avoiding double taxation.`,
+    a: `The base rate entity company tax rate is ${COMPANY_RATE} for companies with aggregated turnover under ${TURNOVER} and no more than ${pct(COMPANY_TAX.maxPassiveIncomeShare)} of assessable income from passive sources such as interest, rent and dividends; other companies pay ${FULL_RATE}. The ATO applies these rates from ${COMPANY_TAX.firstYear} onwards. This flat rate applies to all taxable company income, compared to individual marginal rates that range from 0% to ${TOP} plus the ${ML} Medicare levy. When profits are distributed as franked dividends, the shareholder receives a franking credit for the company tax already paid, so the same profit is not taxed twice.`,
   },
   {
     q: "When do I need to register for GST?",
@@ -37,7 +37,7 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do sole traders have to pay super?",
-    a: `No, super contributions are optional for sole traders, but strongly recommended. You can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. This reduces your taxable income while building retirement savings. Without employer SG, sole traders must proactively fund their own retirement.`,
+    a: `No, super contributions for yourself are optional for sole traders. You can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. The deduction reduces your taxable income and the contribution adds to your super balance. Without employer SG, sole traders fund their own super contributions.`,
   },
   {
     q: "How much does it cost to set up each structure?",

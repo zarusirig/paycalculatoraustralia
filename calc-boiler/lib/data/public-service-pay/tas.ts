@@ -66,18 +66,18 @@ export const TAS: Jurisdiction = {
     "The Tasmanian State Service Award sets the classification structure (a General Stream of Bands 1 to 9 and a Professional Stream of Bands 1 to 6), and the Public Sector Union Wages Agreement 2025, an industrial agreement under s55 of the Industrial Relations Act 1984 (Tas), sets the salaries in its Schedule 1. The agreement prevails over the award where they differ (clause 6).",
 
   payRise:
-    "The agreement makes three increases: 3% from the first full pay period on or after 1 December 2025, 3% from 1 December 2026 and 2.75% from 1 September 2027 (clause 7.1). Before each of the first two, staff up to the top of General Stream Band 5 get an $800 flat structural adjustment, Band 6 gets $600 and Bands 7 and 8 get $500 (clauses 7.2–7.7). The rates on this page are the 1 December 2025 column. The next increase is due from the first full pay period on or after 1 December 2026. For example, Band 1 Range 1 Level 1 rises to $58,108. The agreement runs to 30 June 2028.",
+    "The agreement makes three increases: 3% from the first full pay period on or after 1 December 2025, 3% from 1 December 2026 and 2.75% from 1 September 2027 (clause 7.1). Before each of the first two, staff up to the top of General Stream Band 5 get an $800 flat structural adjustment, Band 6 gets $600 and Bands 7 and 8 get $500 (clauses 7.2 to 7.7). The rates on this page are the 1 December 2025 column. The next increase is due from the first full pay period on or after 1 December 2026. For example, Band 1 Range 1 Level 1 rises to $58,108. The agreement runs to 30 June 2028.",
 
   schedules: [
     {
       id: "tas-tssa-2025",
       title: "Tasmanian State Service Award salaries, Public Sector Union Wages Agreement 2025, from 1 December 2025",
       coverage:
-        "Tasmanian State Service employees covered by the Tasmanian State Service Award in the General and Professional Streams.",
+        "This schedule covers Tasmanian State Service employees under the Tasmanian State Service Award, in the General and Professional Streams.",
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 December 2025",
       rangeMeaning:
-        "First and last salary point of the band. Range 2 of a band is reached through an advancement assessment point. Annual salary only; superannuation is paid on top.",
+        "The salary range is the first and last salary point of the band. Range 2 of a band is reached through an advancement assessment point. Figures are annual salary only, and superannuation is paid on top.",
       sourceId: "tas-psuwa-2025",
       streams: [
         {
@@ -90,7 +90,7 @@ export const TAS: Jurisdiction = {
               code: "Band 1",
               name: "General Stream Band 1",
               aliases: ["tss band 1", "tasmanian state service band 1", "tas band 1", "general stream band 1"],
-              summary: "Entry band, five salary points across two ranges.",
+              summary: "This is the entry band, with five salary points across two ranges.",
               min: 55_616,
               max: 67_344,
               payPoints: pts("Band 1", [
@@ -135,7 +135,7 @@ export const TAS: Jurisdiction = {
               code: "Band 4",
               name: "General Stream Band 4",
               aliases: ["tss band 4", "tasmanian state service band 4", "tas band 4", "general stream band 4"],
-              summary: "Seven salary points; Range 2 is reached through an advancement assessment point.",
+              summary: "This band has seven salary points, and Range 2 is reached through an advancement assessment point.",
               min: 86_325,
               max: 99_237,
               payPoints: pts("Band 4", [
@@ -152,7 +152,7 @@ export const TAS: Jurisdiction = {
               code: "Band 5",
               name: "General Stream Band 5",
               aliases: ["tss band 5", "tasmanian state service band 5", "tas band 5", "general stream band 5"],
-              summary: "Four salary points; Range 2 is reached through an advancement assessment point.",
+              summary: "This band has four salary points, and Range 2 is reached through an advancement assessment point.",
               min: 103_290,
               max: 108_307,
               payPoints: pts("Band 5", [
@@ -166,7 +166,7 @@ export const TAS: Jurisdiction = {
               code: "Band 6",
               name: "General Stream Band 6",
               aliases: ["tss band 6", "tasmanian state service band 6", "tas band 6", "general stream band 6"],
-              summary: "Seven salary points; Range 2 is reached through an advancement assessment point.",
+              summary: "This band has seven salary points, and Range 2 is reached through an advancement assessment point.",
               min: 112_990,
               max: 127_715,
               payPoints: pts("Band 6", [
@@ -183,7 +183,7 @@ export const TAS: Jurisdiction = {
               code: "Band 7",
               name: "General Stream Band 7",
               aliases: ["tss band 7", "tasmanian state service band 7", "tas band 7", "general stream band 7"],
-              summary: "Four salary points; Range 2 is reached through an advancement assessment point.",
+              summary: "This band has four salary points, and Range 2 is reached through an advancement assessment point.",
               min: 133_696,
               max: 140_687,
               payPoints: pts("Band 7", [
@@ -197,7 +197,7 @@ export const TAS: Jurisdiction = {
               code: "Band 8",
               name: "General Stream Band 8",
               aliases: ["tss band 8", "tasmanian state service band 8", "tas band 8", "general stream band 8"],
-              summary: "Four salary points; Range 2 is reached through an advancement assessment point.",
+              summary: "This band has four salary points, and Range 2 is reached through an advancement assessment point.",
               min: 145_439,
               max: 155_221,
               payPoints: pts("Band 8", [
@@ -211,7 +211,7 @@ export const TAS: Jurisdiction = {
               code: "Band 9",
               name: "General Stream Band 9",
               aliases: ["tss band 9", "tasmanian state service band 9", "tas band 9", "general stream band 9"],
-              summary: "Four salary points. The top General Stream band since Band 10 was removed on 1 December 2025.",
+              summary: "This band has four salary points and has been the top General Stream band since Band 10 was removed on 1 December 2025.",
               min: 175_521,
               max: 194_052,
               payPoints: pts("Band 9", [
@@ -249,7 +249,7 @@ export const TAS: Jurisdiction = {
               code: "Professional Band 2",
               name: "Professional Stream Band 2",
               aliases: ["tss professional band 2", "professional stream band 2"],
-              summary: "Eight salary points; entry to Band 2 and to its Range 2 is through an advancement assessment point.",
+              summary: "This band has eight salary points, and entry to Band 2 and to its Range 2 is through an advancement assessment point.",
               min: 105_852,
               max: 127_715,
               payPoints: pts("Professional Band 2", [
@@ -309,7 +309,7 @@ export const TAS: Jurisdiction = {
               code: "Professional Band 6",
               name: "Professional Stream Band 6",
               aliases: ["tss professional band 6", "professional stream band 6"],
-              summary: "Four salary points. The top of the Professional Stream.",
+              summary: "This band has four salary points and is the top of the Professional Stream.",
               min: 206_811,
               max: 228_493,
               payPoints: pts("Professional Band 6", [
@@ -386,7 +386,7 @@ export const TAS: Jurisdiction = {
     },
     {
       q: "When is the next Tasmanian State Service pay rise?",
-      a: "From the first full pay period on or after 1 December 2026: a flat structural adjustment ($800 up to the top of Band 5, $600 at Band 6, $500 at Bands 7 and 8) followed by 3%. A further 2.75% follows from 1 September 2027. The agreement runs to 30 June 2028.",
+      a: "The next Tasmanian State Service pay rise is from the first full pay period on or after 1 December 2026: a flat structural adjustment ($800 up to the top of Band 5, $600 at Band 6, $500 at Bands 7 and 8) followed by 3%. A further 2.75% follows from 1 September 2027. The agreement runs to 30 June 2028.",
     },
     {
       q: "What happened to Band 10?",
@@ -394,11 +394,11 @@ export const TAS: Jurisdiction = {
     },
     {
       q: "What is the Professional Stream?",
-      a: "A parallel stream in the Tasmanian State Service Award for positions that require a professional qualification. Professional Band 1 starts at $79,356 (above General Stream Band 1), and the stream runs to $228,493 at Professional Band 6.",
+      a: "The Professional Stream is a parallel stream in the Tasmanian State Service Award for positions that require a professional qualification. Professional Band 1 starts at $79,356 (above General Stream Band 1), and the stream runs to $228,493 at Professional Band 6.",
     },
     {
       q: "Were the December 2025 pay rises back-paid?",
-      a: "Yes. The Head of the State Service said on 5 June 2026 that agencies had begun adjusting salaries and paying back-pay to the first full pay in December 2025, with every agency to finish by the end of the 2025–26 financial year.",
+      a: "Yes. The Head of the State Service said on 5 June 2026 that agencies had begun adjusting salaries and paying back-pay to the first full pay in December 2025, with every agency to finish by the end of the 2025-26 financial year.",
     },
   ],
 };

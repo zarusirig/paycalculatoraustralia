@@ -50,7 +50,7 @@ export default function CentrelinkCrisisPaymentPage({ featuredImage }: { feature
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Crisis Payment" title="Centrelink Crisis Payment 2026: Who Can Get It and How Much">
           <p>
-            Crisis Payment is a one-off, non-taxable payment for people on (or eligible for) an income support payment who are in severe financial hardship after an extreme circumstance. It equals <strong>one week of the maximum basic rate</strong> of your payment, about {formatAUD(crisisPaymentAmount(JS.single), 2)} for a single person on JobSeeker. You must contact Services Australia within {CRISIS_PAYMENT.contactWithinDays} days.
+            The Centrelink Crisis Payment is a one-off, non-taxable payment for people on (or eligible for) an income support payment who are in severe financial hardship after an extreme circumstance. It equals <strong>one week of the maximum basic rate</strong> of your payment, about {formatAUD(crisisPaymentAmount(JS.single), 2)} for a single person on JobSeeker. You must contact Services Australia within {CRISIS_PAYMENT.contactWithinDays} days.
           </p>
         </W3Hero>
         {featuredImage}
@@ -61,7 +61,7 @@ export default function CentrelinkCrisisPaymentPage({ featuredImage }: { feature
           </Note>
 
           <W3Section title="How Much Is the Crisis Payment?">
-            <p className={P}>Services Australia: &ldquo;It&apos;s equal to a week&apos;s pay at the maximum basic rate of your income support payment or ABSTUDY Living Allowance. It doesn&apos;t include other allowances or supplements.&rdquo; A week is half the fortnightly rate, so the payment is half the fortnightly maximum basic rate, whatever your actual payment is after the income test.</p>
+            <p className={P}>Services Australia: &ldquo;It&apos;s equal to a week&apos;s pay at the maximum basic rate of your income support payment or ABSTUDY Living Allowance. It doesn&apos;t include other allowances or supplements.&rdquo; A week is half the fortnightly rate, so Crisis Payment is half the fortnightly maximum basic rate, whatever your actual payment is after the income test.</p>
             <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your payment</th><th scope="col" className={TH + " text-right"}>Maximum basic rate a fortnight</th><th scope="col" className={TH + " text-right"}>Crisis Payment (our calculation)</th></tr></thead>
@@ -80,7 +80,7 @@ export default function CentrelinkCrisisPaymentPage({ featuredImage }: { feature
           </W3Section>
 
           <W3Section title="Who Can Get a Crisis Payment">
-            <p className={P}>For every type you must be getting, or be eligible for, an income support payment or ABSTUDY Living Allowance, be in <strong>severe financial hardship</strong>, and be in Australia when you claim. Then one of these extreme circumstances must apply:</p>
+            <p className={P}>For every type of Crisis Payment, you must be getting, or be eligible for, an income support payment or ABSTUDY Living Allowance, be in <strong>severe financial hardship</strong>, and be in Australia when you claim. Then one of these extreme circumstances must apply:</p>
             <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Type</th><th scope="col" className={TH}>Circumstance</th><th scope="col" className={TH}>Time limit to contact</th><th scope="col" className={TH}>How often</th></tr></thead>

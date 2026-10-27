@@ -45,7 +45,7 @@ export const NSW_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable-to-senior-constable",
       title: "Probationary Constable to Senior Constable (Table 1b)",
       intro:
-        "Non-commissioned officers other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026 (a 5% increase).",
+        "These rates apply to NSW Police Force non-commissioned officers, other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026 (a 5% increase).",
       stepHeading: "Rank / incremental level",
       steps: [
         { label: "Probationary Constable (Level 1)", salary: 83_028, note: "Loaded salary (base + 11.5%): $92,576" },
@@ -63,7 +63,7 @@ export const NSW_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "sergeant",
       title: "Sergeant (Table 1b)",
-      intro: "Sergeants other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026.",
+      intro: "These rates apply to NSW Police Force sergeants, other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026.",
       stepHeading: "Rank / incremental level",
       steps: [
         { label: "Sergeant Level 1", salary: 128_457, note: "Loaded salary: $143,230" },
@@ -76,7 +76,7 @@ export const NSW_POLICE_PAY: ServicePayJurisdiction = {
     {
       id: "senior-sergeant",
       title: "Senior Sergeant (Table 1b)",
-      intro: "Senior sergeants other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026.",
+      intro: "These rates apply to NSW Police Force senior sergeants, other than detectives and police prosecutors, from the first full pay period on or after 1 July 2026.",
       stepHeading: "Rank / incremental level",
       steps: [
         { label: "Senior Sergeant Level 1", salary: 144_118, note: "Loaded salary: $160,692" },
@@ -97,9 +97,9 @@ export const NSW_POLICE_PAY: ServicePayJurisdiction = {
     "Clause 50 shift allowance, per full shift worked: 10% for shifts starting from 10am to before 1pm or from 4am to before 6am (\"C\" shift), 15% from 1pm to before 4pm (\"A\" shift), 17.5% from 4pm to before 4am (\"B\" shift); day shifts starting 6am to before 10am attract 0%. The percentage is applied to a formula based on the Sergeant Level 5 salary, not the officer's own salary.",
   ],
   notices: [
-    "The award's final pay increase is the 5% from the first full pay period on or after 1 July 2026, and the award runs until 30 June 2027. The NSW Government's November 2024 announcement of the deal said the loaded Probationary Constable salary would rise to $97,206 by 2027, but no 2027 rate is written into the award yet, so it is not published here as a scheduled increase.",
+    "The award's final pay increase is the 5% from the first full pay period on or after 1 July 2026, and the award runs until 30 June 2027. The NSW Government's November 2024 announcement of the deal said the loaded Probationary Constable salary would rise to $97,206 by 2027, but the award does not yet contain a 2027 rate. This page therefore does not list it as a scheduled increase.",
     "Leading Senior Constable is no longer an open classification under the 2024 award. Officers already appointed have their higher rate preserved under Table 1a; those preserved rates are not reproduced here.",
-    "Detectives (Table 2b) and police prosecutors (Table 3b) are paid on separate scales that include a special duties allowance component, and commissioned officers (Inspector and above) are on Tables 4a–4b. They are not reproduced here.",
+    "Detectives (Table 2b) and police prosecutors (Table 3b) are paid on separate scales that include a special duties allowance component, and commissioned officers (Inspector and above) are on Tables 4a and 4b. They are not reproduced here.",
   ],
   unverified: [
     "Student Police Officer pay is quoted from the NSW Police Force recruitment page, not from the award, and the page does not date the $1,360 weekly rate.",
@@ -143,11 +143,11 @@ export const NSW_POLICE_PAY: ServicePayJurisdiction = {
     },
     {
       q: "What does a sergeant earn in the NSW Police Force?",
-      a: "Sergeants earn a base salary of $128,457 at Level 1 rising to $140,989 at Level 5, and Senior Sergeants $144,118 to $148,703, from the first full pay period on or after 1 July 2026.",
+      a: "NSW Police Force Sergeants earn a base salary of $128,457 at Level 1 rising to $140,989 at Level 5, and Senior Sergeants $144,118 to $148,703, from the first full pay period on or after 1 July 2026.",
     },
     {
       q: "Are NSW student police officers paid?",
-      a: "Not during Session 1 of the Constable Education Program, which is studied by distance. NSW Police Force recruitment says students are employed for Session 2 at the Academy and paid $1,360 a week plus superannuation and allowances; the page does not say whether that weekly rate has been updated since it was introduced in March 2024.",
+      a: "NSW student police officers are not paid during Session 1 of the Constable Education Program, which is studied by distance. NSW Police Force recruitment says students are employed for Session 2 at the Academy and paid $1,360 a week plus superannuation and allowances. The recruitment page does not say whether that weekly rate has been updated since it was introduced in March 2024.",
     },
   ],
 };

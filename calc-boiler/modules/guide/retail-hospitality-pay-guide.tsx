@@ -55,7 +55,7 @@ export default function RetailHospitalityPayGuidePage() {
             Retail &amp; Hospitality Pay Guide: Award Rates, Penalties &amp; Your Rights
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The hospitality award rate is the same in Queensland as in every other state, because the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code})</a> is federal: its adult level 1 rate is {formatAUD(HOSP_L1.hourly, 2)} an hour from {HOSPITALITY_AWARD.operativeFrom}, or {formatAUD(HOSP_L1.hourly * (1 + HOSPITALITY_AWARD.casualLoading), 2)} for a casual. Retail workers are covered by the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}), where level 1 is {formatAUD(RETAIL_L1.hourly, 2)} an hour. Both add weekend penalties, and this guide covers the two awards in detail.
+            The hospitality award rate is the same in Queensland as in every other state, because the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code})</a> is federal: its adult level 1 rate is {formatAUD(HOSP_L1.hourly, 2)} an hour from {HOSPITALITY_AWARD.operativeFrom}, or {formatAUD(HOSP_L1.hourly * (1 + HOSPITALITY_AWARD.casualLoading), 2)} for a casual. Retail workers are covered by the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}), where level 1 is {formatAUD(RETAIL_L1.hourly, 2)} an hour. Both awards add weekend and public holiday penalty rates. This guide compares the two awards&apos; penalty rates, sets out your rights on shifts, breaks and casual conversion, and shows take-home pay examples.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -121,7 +121,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates</h2>
               <p>
-                Both retail and hospitality awards include penalty rate provisions for work performed outside standard weekday hours. The following table shows the rate paid as a percentage of the ordinary (base) hourly rate. Casual percentages already include the 25% casual loading. Hospitality pays weekday evening and night work as a flat amount per hour instead.
+                The retail and hospitality awards both pay penalty rates for work outside standard weekday hours. The table below shows each rate as a percentage of the ordinary (base) hourly rate. Casual percentages already include the 25% casual loading. Hospitality pays weekday evening and night work as a flat amount per hour instead.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -145,7 +145,7 @@ export default function RetailHospitalityPayGuidePage() {
                 </div>
               </div>
               <p>
-                Penalty rates make weekend and holiday shifts significantly more valuable. A Level 1 retail worker earning {formatAUD(L1, 2)}/hr base receives <strong>{formatAUD(L1 * RETAIL_PENALTIES.sunday, 2)}/hr</strong> on a Sunday shift ({pct(RETAIL_PENALTIES.sunday)}), and <strong>{formatAUD(L1 * RETAIL_PENALTIES.publicHoliday, 2)}/hr</strong> on a public holiday ({pct(RETAIL_PENALTIES.publicHoliday)}). Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your penalty rate earnings.
+                Penalty rates raise the hourly pay for retail weekend and public holiday shifts. A Level 1 retail worker earning {formatAUD(L1, 2)}/hr base receives <strong>{formatAUD(L1 * RETAIL_PENALTIES.sunday, 2)}/hr</strong> on a Sunday shift ({pct(RETAIL_PENALTIES.sunday)}), and <strong>{formatAUD(L1 * RETAIL_PENALTIES.publicHoliday, 2)}/hr</strong> on a public holiday ({pct(RETAIL_PENALTIES.publicHoliday)}). Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your penalty rate earnings.
               </p>
             </section>
 
@@ -153,7 +153,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="your-rights">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your Rights</h2>
               <p>
-                Retail and hospitality workers have specific rights under the Fair Work Act and their respective Modern Awards that employers must comply with:
+                Retail and hospitality workers have these rights under the Fair Work Act and the General Retail Industry Award or the Hospitality Industry (General) Award, and employers must comply with them:
               </p>
               <ul>
                 <li><strong>Minimum engagement:</strong> Casual employees must be engaged and paid for at least <strong>3 hours</strong> per shift under the retail award and <strong>2 consecutive hours</strong> under the hospitality award (cl 11.3), even if there is insufficient work.</li>

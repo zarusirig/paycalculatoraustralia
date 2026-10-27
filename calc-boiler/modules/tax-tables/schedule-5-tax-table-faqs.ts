@@ -17,7 +17,7 @@ export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Is there a flat tax rate on bonuses in Australia?",
-    a: "No. A bonus is ordinary assessable income taxed at your marginal rate like any other income. Schedule 5 only governs how much is withheld at the time it is paid; your final tax is settled in your annual return, where any over- or under-withholding washes out. There is no separate, higher 'bonus tax rate'. The feeling that there is comes from withholding at your top marginal rate rather than your average rate.",
+    a: "No. A bonus is ordinary assessable income taxed at your marginal rate like any other income. Schedule 5 only governs how much is withheld at the time it is paid; your final tax is settled in your annual return, where any over- or under-withholding washes out. There is no separate, higher 'bonus tax rate'. The impression of a bonus tax comes from withholding the bonus at your top marginal rate rather than your average rate.",
   },
   {
     q: "Which method will my employer use, A or B?",
@@ -37,7 +37,7 @@ export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "How is back pay for a previous financial year withheld?",
-    a: "Under Method B(ii). The payment is averaged across the pay periods in the year and applied to your average total earnings to date, which keeps the withholding close to your real marginal rate rather than spiking it. If you are paid back pay covering both the current and a previous financial year, the employer apportions it between the two years and uses the applicable method for each part. You may also qualify for a lump sum in arrears tax offset in your return so that receiving old income in one hit does not push you into a higher bracket.",
+    a: "Back pay for a previous financial year is withheld under Method B(ii). The payment is averaged across the pay periods in the year and applied to your average total earnings to date, which keeps the withholding close to your real marginal rate rather than spiking it. If you are paid back pay covering both the current and a previous financial year, the employer apportions it between the two years and uses the applicable method for each part. You may also qualify for a lump sum in arrears tax offset in your return so that receiving old income in one hit does not push you into a higher bracket.",
   },
   {
     q: "Which payments use Schedule 5 and which do not?",
@@ -49,7 +49,7 @@ export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Why does my bonus look so heavily taxed?",
-    a: "Because it is withheld at your marginal rate, and your marginal rate is higher than the average rate applied across your normal pay. Your salary has already used up the tax-free threshold and the lower brackets, so every bonus dollar sits in your top bracket: 30%, 37% or 45%, plus the Medicare levy and any study loan repayment. Schedule 5 actually reduces the withholding compared with running the lump sum through the ordinary tax table, which would annualise it and withhold far more.",
+    a: "Because it is withheld at your marginal rate, and your marginal rate is higher than the average rate applied across your normal pay. Your salary has already used up the tax-free threshold and the lower brackets, so every bonus dollar sits in your top bracket: 30%, 37% or 45%, plus the Medicare levy and any study loan repayment. Schedule 5 reduces the withholding compared with running the lump sum through the ordinary tax table, which would annualise it and withhold far more.",
   },
   {
     q: "What if the employee has not provided a TFN?",

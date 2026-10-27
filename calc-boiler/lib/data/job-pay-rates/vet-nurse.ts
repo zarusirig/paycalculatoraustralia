@@ -96,17 +96,17 @@ export const VET_NURSE: Occupation = {
     why: "a vet nurse working at AQF Certificate IV level, which the award grades at Level 4",
   },
   coverage: [
-    "Vet nurses employed by private veterinary practices and by community-based animal welfare charities are covered by the Animal Care and Veterinary Services Award 2020 [MA000118] (cl 4.2–4.3). Clause 15.2 puts veterinary nurses on one pay scale with receptionists, animal attendants, assistants and practice managers, so the level depends on your skills and duties, not your job title.",
+    "Vet nurses employed by private veterinary practices and by community-based animal welfare charities are covered by the Animal Care and Veterinary Services Award 2020 [MA000118] (cl 4.2 to 4.3). Clause 15.2 puts veterinary nurses on one pay scale with receptionists, animal attendants, assistants and practice managers, so the level depends on your skills and duties, not your job title.",
     "A vet nurse working at AQF Certificate IV level is Level 4. The award's indicative Level 4 tasks are the core of veterinary nursing: providing veterinary nursing care, preparing and supporting surgical procedures, monitoring patient anaesthesia, applying radiographic routines, performing pathology procedures and nursing hospitalised animals (Schedule A.2.5).",
     "Level 3 needs an AQF Certificate III or equivalent qualification, or the knowledge and experience to work at trade level. It covers animal care under limited supervision, routine monitoring of patients, basic animal first aid and supervising Level 1 staff (A.2.4). Levels 1 and 2 are assistant work under direct supervision, and Level 5 is the practice manager.",
-    "Vets themselves are on a separate annual salary scale in the same award (see the veterinarian page) page. The award covers private practices and animal welfare charities only, so a vet nurse employed by a university or a government agency is paid under a different instrument, and an enterprise agreement replaces the award where one applies.",
+    "Vets are on a separate annual salary scale in the same award, set out on the veterinarian page. The award covers private practices and animal welfare charities only, so a vet nurse employed by a university or a government agency is paid under a different instrument, and an enterprise agreement replaces the award where one applies.",
   ],
   tables: [
     {
       id: "vet-nurse",
       title: "Vet nurse pay rates by level, 2026–27",
       intro:
-        "Animal Care and Veterinary Services Award cl 15.2, from the first full pay period on or after 1 July 2026. Casual rates are the award's own Schedule B.2.3 column: the hourly rate plus the 25% casual loading (cl 11.1).",
+        "Vet nurse rates in this table are the Animal Care and Veterinary Services Award minimums in cl 15.2, from the first full pay period on or after 1 July 2026. Casual rates are the award's own Schedule B.2.3 column: the hourly rate plus the 25% casual loading (cl 11.1).",
       rows: [VN_L1, VN_L2, VN_L3, VN_L4, VN_L5],
     },
   ],
@@ -120,7 +120,7 @@ export const VET_NURSE: Occupation = {
     { when: "Night shift (most hours between midnight and 8 am)", permanent: "130%", casual: "155%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 21.1–21.2; Schedule B.1.4–B.1.5 and B.2.3–B.2.4). Ordinary hours can fall between 6 am and 9 pm on any day (cl 13.2), so a Saturday morning is paid at the ordinary rate and the Saturday penalty starts at 1 pm. Where most of a rostered shift falls on a Saturday, Sunday or public holiday, a shiftworker gets 150%, 200% or 250% instead of the shift loading (cl 21.3). Casual percentages include the 25% loading.",
+    "Vet nurse penalty rates are percentages of the minimum hourly rate for your level (cl 21.1 to 21.2; Schedule B.1.4 to B.1.5 and B.2.3 to B.2.4). Ordinary hours can fall between 6 am and 9 pm on any day (cl 13.2), so a Saturday morning is paid at the ordinary rate and the Saturday penalty starts at 1 pm. Where most of a rostered shift falls on a Saturday, Sunday or public holiday, a shiftworker gets 150%, 200% or 250% instead of the shift loading (cl 21.3). Casual percentages include the 25% loading.",
   overtime: [
     "Full-time and part-time: 150% for the first 3 hours Monday to Saturday, then 200%; Sunday 200% with a 3-hour minimum (cl 20.1(b)).",
     "Casual: 175% for the first 3 hours Monday to Saturday, then 225%; Sunday 225% (cl 20.1(c)). Overtime is any work outside ordinary hours, and for a shiftworker anything over 8 hours in a shift (cl 20.1(a)).",
@@ -159,7 +159,7 @@ export const VET_NURSE: Occupation = {
     },
     {
       q: "How much is the on-call allowance for vet nurses?",
-      a: "$23.17 for each 24 hours on call between weekday shifts, $34.80 on a Saturday and $40.51 on a Sunday, public holiday or rostered day off (cl 16.2(c)). If you are called back to work, you are paid overtime rates for at least 3 hours.",
+      a: "The vet nurse on-call allowance is $23.17 for each 24 hours on call between weekday shifts, $34.80 on a Saturday and $40.51 on a Sunday, public holiday or rostered day off (cl 16.2(c)). If you are called back to work, you are paid overtime rates for at least 3 hours.",
     },
     {
       q: "What do vet nurses actually earn?",

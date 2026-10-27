@@ -129,7 +129,7 @@ async function TakeHomePayOnSalaryPage({ params }: PageProps) {
             {formattedSalary} After Tax in Australia
           </h1>
           <p className="text-xl text-warmgray max-w-2xl mx-auto mb-8">
-            <strong className="text-navy">{formatAUD(breakdown.takeHomePay)} a year</strong> take-home on a {formattedSalary} salary in {SITE_CONFIG.financialYear}: {formatAUD(breakdown.fortnightly)} a fortnight or {formatAUD(breakdown.weekly)} a week, after income tax and the Medicare levy.
+            <strong className="text-navy">{formatAUD(breakdown.takeHomePay)} a year</strong> is your take-home pay on a {formattedSalary} salary in {SITE_CONFIG.financialYear}: {formatAUD(breakdown.fortnightly)} a fortnight or {formatAUD(breakdown.weekly)} a week, after income tax and the Medicare levy (no HECS-HELP).
           </p>
         </div>
       </section>

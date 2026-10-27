@@ -47,11 +47,11 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   },
   {
     q: "What is the casual retail rate?",
-    a: `Casuals receive a ${pct(LOADING)} loading, making level 1 ${formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour and level 4 ${formatAUD(casualHourly(L4.hourly, LOADING), 2)}. Casual weekend and public holiday penalties are additive rather than compounded: casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate, being ${pct(RETAIL_PENALTIES.sunday)} plus the ${pct(LOADING)} loading, not ${pct(RETAIL_PENALTIES.sunday)} multiplied by the loading.`,
+    a: `Retail casuals receive a ${pct(LOADING)} loading, making level 1 ${formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour and level 4 ${formatAUD(casualHourly(L4.hourly, LOADING), 2)}. Casual weekend and public holiday penalties are additive rather than compounded: casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate, being ${pct(RETAIL_PENALTIES.sunday)} plus the ${pct(LOADING)} loading, not ${pct(RETAIL_PENALTIES.sunday)} multiplied by the loading.`,
   },
   {
     q: "What are the retail penalty rates?",
-    a: `For permanent employees: after 6pm Monday to Friday ${pct(RETAIL_PENALTIES.eveningAfter6pm)}, Saturday ${pct(RETAIL_PENALTIES.saturday)}, Sunday ${pct(RETAIL_PENALTIES.sunday)} and public holidays ${pct(RETAIL_PENALTIES.publicHoliday)}. For casuals the same four are ${pct(RETAIL_PENALTIES.casualEveningAfter6pm)}, ${pct(RETAIL_PENALTIES.casualSaturday)}, ${pct(RETAIL_PENALTIES.casualSunday)} and ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. These are the rates for non-shiftworkers. Employees specifically engaged to work shifts are covered by a separate part of the award.`,
+    a: `Retail penalty rates for permanent employees are ${pct(RETAIL_PENALTIES.eveningAfter6pm)} after 6pm Monday to Friday, ${pct(RETAIL_PENALTIES.saturday)} on Saturday, ${pct(RETAIL_PENALTIES.sunday)} on Sunday and ${pct(RETAIL_PENALTIES.publicHoliday)} on public holidays. For casuals the same four are ${pct(RETAIL_PENALTIES.casualEveningAfter6pm)}, ${pct(RETAIL_PENALTIES.casualSaturday)}, ${pct(RETAIL_PENALTIES.casualSunday)} and ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. These are the rates for non-shiftworkers. Employees specifically engaged to work shifts are covered by a separate part of the retail award.`,
   },
   {
     q: "Do retail casuals get the casual loading on overtime?",
@@ -59,11 +59,11 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   },
   {
     q: "What is the retail overtime rate?",
-    a: `${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for the first three hours and ${pct(RETAIL_OVERTIME.weekdayAfter3Hours)} after that, and note the band is Monday to Saturday, not Monday to Friday. Sunday overtime is ${pct(RETAIL_OVERTIME.sunday)} and public holiday overtime is ${pct(RETAIL_OVERTIME.publicHoliday)}. For casuals each of those becomes ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)}, ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}, ${pct(RETAIL_OVERTIME.casualSunday)} and ${pct(RETAIL_OVERTIME.casualPublicHoliday)}.`,
+    a: `Retail overtime from Monday to Saturday (not Monday to Friday) is ${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for the first three hours and ${pct(RETAIL_OVERTIME.weekdayAfter3Hours)} after that. Sunday overtime is ${pct(RETAIL_OVERTIME.sunday)} and public holiday overtime is ${pct(RETAIL_OVERTIME.publicHoliday)}. For casuals each of those becomes ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)}, ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}, ${pct(RETAIL_OVERTIME.casualSunday)} and ${pct(RETAIL_OVERTIME.casualPublicHoliday)}.`,
   },
   {
     q: "What are the junior rates in the retail award?",
-    a: `As a percentage of the adult rate: ${RETAIL_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. Two features are unusual. The 20-year-old band splits on length of service, so a 20-year-old reaches the full adult rate after more than six months with the same employer. And ${RETAIL_JUNIOR_LEVEL_RESTRICTION.charAt(0).toLowerCase() + RETAIL_JUNIOR_LEVEL_RESTRICTION.slice(1)}`,
+    a: `Retail junior rates are a percentage of the adult rate: ${RETAIL_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. The retail junior scale has two unusual features. The 20-year-old band splits on length of service, so a 20-year-old reaches the full adult rate after more than six months with the same employer. And ${RETAIL_JUNIOR_LEVEL_RESTRICTION.charAt(0).toLowerCase() + RETAIL_JUNIOR_LEVEL_RESTRICTION.slice(1)}`,
   },
   {
     q: "What is the minimum wage for a 16 year old in retail?",
@@ -71,7 +71,7 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   },
   {
     q: "Is the retail evening rate a percentage or a flat amount?",
-    a: `A percentage. Retail pays ${pct(RETAIL_PENALTIES.eveningAfter6pm)} for ordinary hours after 6pm Monday to Friday, and ${pct(RETAIL_PENALTIES.casualEveningAfter6pm)} for casuals. This is worth stating because the Hospitality Industry (General) Award does the opposite: it adds a flat cash amount per hour for evening and night work rather than a multiplier. Applying one award's method to the other is a common payroll error in venues that run both a shop and a food business.`,
+    a: `The retail evening rate is a percentage. Retail pays ${pct(RETAIL_PENALTIES.eveningAfter6pm)} for ordinary hours after 6pm Monday to Friday, and ${pct(RETAIL_PENALTIES.casualEveningAfter6pm)} for casuals. The Hospitality Industry (General) Award does the opposite: it adds a flat cash amount per hour for evening and night work rather than a multiplier. Applying one award's method to the other is a common payroll error in venues that run both a shop and a food business.`,
   },
   {
     q: "Was the 4.75% increase applied to every retail rate?",
@@ -79,7 +79,7 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   },
   {
     q: "When did the new retail rates take effect?",
-    a: `From the first full pay period starting on or after ${RETAIL_AWARD.operativeFrom}, not universally 1 July. If your pay period began before that date, the previous rate lawfully applies to the whole of it and the increase starts with your next one. That is the most common reason a July payslip looks wrong when it is not.`,
+    a: `The new retail rates took effect from the first full pay period starting on or after ${RETAIL_AWARD.operativeFrom}, not on 1 July for every employee. If your pay period began before that date, the previous rate lawfully applies to the whole of it and the increase starts with your next one. That is the most common reason a July payslip looks wrong when it is not.`,
   },
   {
     q: "Are retail junior rates changing on 1 December 2026?",

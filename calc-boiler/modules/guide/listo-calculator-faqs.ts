@@ -13,7 +13,7 @@ const NEXT = LISTO_2027_28;
 export const LISTO_FAQS: Faq[] = [
   {
     q: "What is the low income super tax offset (LISTO)?",
-    a: `LISTO is a payment from the government into your super fund for low-income earners. It is ${Math.round(NOW.rate * 100)}% of the concessional (before-tax) super contributions you or your employer pay into your fund, up to a maximum of ${formatAUD(NOW.maxPayment)} a year. It is designed so low-income earners do not pay more tax on their super contributions than on their take-home pay.`,
+    a: `LISTO is a government payment into your super fund if you are a low-income earner. It is ${Math.round(NOW.rate * 100)}% of the concessional (before-tax) super contributions you or your employer pay into your fund, up to a maximum of ${formatAUD(NOW.maxPayment)} a year. It is designed so low-income earners do not pay more tax on their super contributions than on their take-home pay.`,
   },
   {
     q: "Who is eligible for LISTO?",
@@ -25,7 +25,7 @@ export const LISTO_FAQS: Faq[] = [
   },
   {
     q: "How is LISTO changing from 1 July 2027?",
-    a: `The income threshold rises from ${formatAUD(NOW.incomeThreshold)} to ${formatAUD(NEXT.incomeThreshold)}, matching the top of the second income tax bracket, and the maximum payment rises from ${formatAUD(NOW.maxPayment)} to ${formatAUD(NEXT.maxPayment)} to reflect the higher super guarantee rate. The ATO says the measure is now law.`,
+    a: `The LISTO income threshold rises from ${formatAUD(NOW.incomeThreshold)} to ${formatAUD(NEXT.incomeThreshold)}, matching the top of the second income tax bracket. The maximum payment rises from ${formatAUD(NOW.maxPayment)} to ${formatAUD(NEXT.maxPayment)} to reflect the higher super guarantee rate. The ATO says the measure is now law.`,
   },
   {
     q: "Do I need to apply for LISTO?",
@@ -33,7 +33,7 @@ export const LISTO_FAQS: Faq[] = [
   },
   {
     q: "When is LISTO paid?",
-    a: "If you lodge a tax return, the ATO pays your LISTO into your super fund based on your return and information from your fund. If you do not lodge a return, the ATO works out your eligibility from your fund and other sources. If you have reached your preservation age and are retired you can apply to have it paid to you.",
+    a: "The ATO pays LISTO into your super fund after you lodge your tax return, using your return and information from your fund. If you do not lodge a return, the ATO works out your eligibility from your fund and other sources. If you have reached your preservation age and are retired you can apply to have it paid to you.",
   },
   {
     q: "Does LISTO apply to salary sacrifice contributions?",

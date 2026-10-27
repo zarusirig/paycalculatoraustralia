@@ -234,14 +234,14 @@ export default function HomePageTemplate() {
             Total deductions come to {formatAUD(BD80.totalDeductions)}, leaving take-home pay of <strong>{formatAUD(BD80.takeHomePay)}</strong> a year ({formatAUD(BD80.weekly, 2)} a week or {formatAUD(BD80.monthly, 2)} a month). The effective rate on the whole salary is <strong>{formatPercent(BD80.effectiveTaxRate)}</strong>, far below the {formatPercent(BD80.marginalTaxRate)} marginal rate (including Medicare) on the next dollar earned. See the full working for <Link href="/tax-on/80000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $80,000</Link> or <Link href="/tax-on/100000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $100,000</Link>.
           </p>
           <p className="leading-relaxed text-warmgray">
-            For a bracket-by-bracket breakdown of the tax side, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>; to compare net pay across salaries, use the <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>; to check what your employer takes out of each pay, use the <Link href="/tax-withheld-calculator/" className="font-medium text-eucalyptus-dark hover:underline">tax withheld calculator</Link>; and to decode each line of your payslip, read <Link href="/understanding-your-payslip/" className="font-medium text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>.
+            For a bracket-by-bracket breakdown of the tax side, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>. To compare net pay across salaries, use the <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>. To check what your employer takes out of each pay, use the <Link href="/tax-withheld-calculator/" className="font-medium text-eucalyptus-dark hover:underline">tax withheld calculator</Link>. To decode each line of your payslip, read <Link href="/understanding-your-payslip/" className="font-medium text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>.
           </p>
 
           <MethodologyDisclosure className="mt-4">
             <ol className="list-decimal space-y-1 pl-4">
               <li>Calculate income tax using ATO resident tax brackets (progressive marginal rates). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" /></li>
               <li>Apply the Low Income Tax Offset (up to {formatAUD(LITO.maxOffset)}) for qualifying incomes below {formatAUD(LITO.nilOffsetIncome)}.</li>
-              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> (1%–1.5%) for high earners without private health insurance.</li>
+              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> (1% to 1.5%) for high earners without private hospital cover.</li>
               <li>Calculate HECS-HELP repayment using the marginal system (threshold: {formatAUD(HECS_HELP.minimumThreshold)}). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds" /></li>
               <li>Calculate employer superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} (paid on top, not deducted from salary).</li>
               <li>Take-home pay = Gross salary &minus; income tax &minus; Medicare levy &minus; HECS repayment.</li>
@@ -258,13 +258,13 @@ export default function HomePageTemplate() {
             Hourly, Casual &amp; Shift Pay
           </h2>
           <p className="mb-3 leading-relaxed text-warmgray">
-            This wage calculator converts an hourly rate to an annual salary the same way every major Australian pay tool does: rate &times; weekly hours &times; {EMPLOYMENT.weeksPerYear} weeks. A standard {EMPLOYMENT.standardWeeklyHours}-hour week is <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year</strong>, so {formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour is roughly an $80,000 salary. Use the <strong>Hourly</strong> tab in the calculator above, or the dedicated <Link href="/hourly-to-annual-salary-calculator/" className="font-medium text-eucalyptus-dark hover:underline">hourly to annual salary calculator</Link> and <Link href="/salary-vs-hourly/" className="font-medium text-eucalyptus-dark hover:underline">salary vs hourly guide</Link>.
+            This wage calculator converts an hourly rate to an annual salary as rate &times; weekly hours &times; {EMPLOYMENT.weeksPerYear} weeks. A standard {EMPLOYMENT.standardWeeklyHours}-hour week is <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year</strong>, so {formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour is roughly an $80,000 salary. Use the <strong>Hourly</strong> tab in the calculator above, or the dedicated <Link href="/hourly-to-annual-salary-calculator/" className="font-medium text-eucalyptus-dark hover:underline">hourly to annual salary calculator</Link> and <Link href="/salary-vs-hourly/" className="font-medium text-eucalyptus-dark hover:underline">salary vs hourly guide</Link>.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>Casual workers</strong> receive casual loading: an extra {pctX(EMPLOYMENT.casualLoading)} on the base hourly rate in place of paid leave and notice entitlements. On the {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is <strong>{formatAUD(CASUAL_MIN_WAGE, 2)} an hour</strong>. The loading is taxed as ordinary income, so tick the casual toggle above to see the after-tax difference. How casual work compares with permanent: <Link href="/full-time-vs-part-time-vs-casual/" className="font-medium text-eucalyptus-dark hover:underline">full-time vs part-time vs casual</Link>.
+            <strong>Casual workers</strong> receive casual loading: an extra {pctX(EMPLOYMENT.casualLoading)} on the base hourly rate in place of paid leave and notice entitlements. On the {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is <strong>{formatAUD(CASUAL_MIN_WAGE, 2)} an hour</strong>. The loading is taxed as ordinary income, so tick the casual toggle above to see the after-tax difference. To compare casual work with permanent employment, see <Link href="/full-time-vs-part-time-vs-casual/" className="font-medium text-eucalyptus-dark hover:underline">full-time vs part-time vs casual</Link>.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>Penalty rates</strong> are award-specific loadings for weekends, public holidays and late nights, commonly {pctX(EMPLOYMENT.penaltyRates.saturdayMin)}–{pctX(EMPLOYMENT.penaltyRates.saturdayMax)} on Saturdays, {pctX(EMPLOYMENT.penaltyRates.sundayMin)}–{pctX(EMPLOYMENT.penaltyRates.sundayMax)} on Sundays and {pctX(EMPLOYMENT.penaltyRates.publicHolidayMin)}–{pctX(EMPLOYMENT.penaltyRates.publicHolidayMax)} on public holidays, though every award sets its own percentages. This calculator deliberately doesn&apos;t guess them: check the <Link href="/overtime-penalty-rates-guide/" className="font-medium text-eucalyptus-dark hover:underline">penalty rates guide</Link> or your award (<Link href="/hospitality-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">hospitality</Link>, <Link href="/retail-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">retail</Link> or <Link href="/schads-award-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">SCHADS</Link>) for exact rates.
+            <strong>Penalty rates</strong> are award-specific loadings for weekends, public holidays and late nights. Common ranges are {pctX(EMPLOYMENT.penaltyRates.saturdayMin)}–{pctX(EMPLOYMENT.penaltyRates.saturdayMax)} on Saturdays, {pctX(EMPLOYMENT.penaltyRates.sundayMin)}–{pctX(EMPLOYMENT.penaltyRates.sundayMax)} on Sundays and {pctX(EMPLOYMENT.penaltyRates.publicHolidayMin)}–{pctX(EMPLOYMENT.penaltyRates.publicHolidayMax)} on public holidays, but every award sets its own percentages. This calculator deliberately doesn&apos;t guess them: check the <Link href="/overtime-penalty-rates-guide/" className="font-medium text-eucalyptus-dark hover:underline">penalty rates guide</Link> or your award (<Link href="/hospitality-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">hospitality</Link>, <Link href="/retail-award-rates/" className="font-medium text-eucalyptus-dark hover:underline">retail</Link> or <Link href="/schads-award-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">SCHADS</Link>) for exact rates.
           </p>
           <p className="leading-relaxed text-warmgray">
             Workers under 21 may be on age-based percentages of the adult rate. See <Link href="/junior-pay-rates/" className="font-medium text-eucalyptus-dark hover:underline">junior pay rates</Link>. For overtime at time-and-a-half or double time, use the <Link href="/overtime-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">overtime pay calculator</Link>, and for a week-by-week view of a casual income, the <Link href="/weekly-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">weekly pay calculator</Link>.
@@ -280,7 +280,7 @@ export default function HomePageTemplate() {
             Take-Home Pay on Common Salaries in FY{FY}
           </h2>
           <p className="mb-4 text-warmgray">
-            The table below is computed live from the FY{FY} rates: income tax (after LITO), Medicare levy, take-home pay and employer super for 10 common Australian salary levels.
+            The table below is calculated from the FY{FY} rates: income tax (after LITO), Medicare levy, take-home pay and employer super for 10 common Australian salary levels.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -311,7 +311,7 @@ export default function HomePageTemplate() {
             </table>
           </div>
           <p className="mt-3 text-xs text-warmgray-light">
-            Figures assume Australian resident, no HECS-HELP debt, private health insurance held, and LITO applied where eligible. Effective rate includes the Medicare levy. Use the pay calculator above for your exact salary, or jump to <Link href="/take-home-pay-on/60000/" className="font-medium text-eucalyptus-dark hover:underline">take-home pay on $60K</Link>, <Link href="/take-home-pay-on/90000/" className="font-medium text-eucalyptus-dark hover:underline">$90K</Link>, or <Link href="/take-home-pay-on/120000/" className="font-medium text-eucalyptus-dark hover:underline">$120K</Link>.
+            Figures assume an Australian resident with no HECS-HELP debt, private hospital cover held and LITO applied where eligible. Effective rate includes the Medicare levy. Use the pay calculator above for your exact salary, or jump to <Link href="/take-home-pay-on/60000/" className="font-medium text-eucalyptus-dark hover:underline">take-home pay on $60K</Link>, <Link href="/take-home-pay-on/90000/" className="font-medium text-eucalyptus-dark hover:underline">$90K</Link>, or <Link href="/take-home-pay-on/120000/" className="font-medium text-eucalyptus-dark hover:underline">$120K</Link>.
           </p>
         </section>
 
@@ -324,7 +324,7 @@ export default function HomePageTemplate() {
             What Comes Out of Your Pay?
           </h2>
           <p className="mb-5 text-warmgray">
-            Four components decide what lands in your bank account. Three are deducted from your salary; superannuation is paid on top of it. Each card links to its dedicated calculator or guide.
+            Four components decide what lands in your bank account. Three are deducted from your salary: income tax, the Medicare levy and HECS-HELP. Superannuation is paid on top of your salary, into your super fund.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/income-tax-calculator/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
@@ -391,7 +391,7 @@ export default function HomePageTemplate() {
             <li>{formatAUD(MEDICARE_LEVY.surcharge.tier3.min)} and above: surcharge of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 2)}</strong></li>
           </ul>
           <p className="leading-relaxed text-warmgray">
-            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year, on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, taking the total health-related levy to {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link> for the full threshold tables.
+            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year, on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy. The surcharge and the levy then total {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link> for the full threshold tables.
           </p>
         </section>
 
@@ -528,7 +528,7 @@ export default function HomePageTemplate() {
             Pay Calculator by State
           </h2>
           <p className="mb-4 text-warmgray">
-            Income tax in Australia is <strong>federal</strong>. Every state and territory uses the same tax brackets, so a pay calculator for NSW gives the same take-home pay as one for WA. State-level differences affect employers through payroll tax (a tax on total wages paid), which influences hiring costs but does not directly reduce employee take-home pay. Average salaries also vary by state due to industry composition, cost of living, and labour market conditions.
+            Income tax in Australia is <strong>federal</strong>. Every state and territory uses the same tax brackets, so a pay calculator for NSW gives the same take-home pay as one for WA. State-level differences affect employers through payroll tax (a tax on total wages paid), which influences hiring costs but does not directly reduce employee take-home pay. Average full-time salaries differ by state; the table below lists an approximate figure for each.
           </p>
           <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
@@ -603,7 +603,7 @@ export default function HomePageTemplate() {
             What Are the Most Common Pay Calculation Mistakes?
           </h2>
           <p className="mb-4 text-warmgray">
-            These 5 errors are the most frequent mistakes Australian workers make when estimating their take-home pay. Each one leads to a materially wrong expectation of net income.
+            Each of these 5 mistakes gives you a wrong estimate of your take-home pay. The worked figures below show how far off each one is.
           </p>
           <ol className="list-decimal space-y-4 pl-6 text-warmgray">
             <li>
@@ -662,7 +662,7 @@ export default function HomePageTemplate() {
             Guides and Resources
           </h2>
           <p className="mb-4 text-warmgray">
-            These guides explain the rules behind the numbers. Each guide covers the legislation, worked examples, and edge cases for a specific area of Australian tax and payroll.
+            These guides explain the ATO and Fair Work rules behind the calculators on this page. Each guide covers a separate area of Australian tax and payroll.
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <CalcLink href="/tax-brackets/" title={`Tax Brackets ${FY}`} desc="Complete bracket table with worked examples at every income level" />

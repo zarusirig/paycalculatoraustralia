@@ -82,7 +82,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
   heading: "Electrical Engineer Salary Australia 2026 - Median Pay, Award Minimum & Take-Home",
   metaTitle: `Electrical Engineer Salary 2026 - ${aud(ATO_MEDIAN)} Median, ${aud2(GRAD.hourly)}/hr Min`,
   metaDescription: `Electrical engineers' median salary was ${aud(ATO_MEDIAN)} on 2023–24 tax returns and $2,553 a week full-time (JSA). Graduate award minimum ${aud(GRAD.annual!)}; take-home on each.`,
-  lede: `Electrical engineers had a median salary of ${aud(ATO_MEDIAN)} on 2023–24 tax returns, higher than civil ($120,000) or mechanical engineers ($115,872), according to the ATO; Jobs and Skills Australia puts their median full-time pay at $2,553 a week (May 2025). The award floor for a graduate is ${aud(GRAD.annual!)} a year, ${aud2(GRAD.hourly)} an hour. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year after tax.`,
+  lede: `Electrical engineers had a median salary of ${aud(ATO_MEDIAN)} on 2023-24 tax returns according to the ATO, higher than civil ($120,000) or mechanical engineers ($115,872). Jobs and Skills Australia puts median full-time pay for electrical engineers at $2,553 a week (May 2025). The Professional Employees Award floor for a graduate electrical engineer is ${aud(GRAD.annual!)} a year, ${aud2(GRAD.hourly)} an hour. On the ${aud(ATO_MEDIAN)} median, take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year after tax.`,
   parent: {
     href: "/job-pay-rates/engineer/",
     label: "Engineer Pay Rates",
@@ -99,7 +99,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
       id: "electrical-professional",
       title: "Electrical engineer minimum salaries by level, 2026–27",
       intro:
-        "Annual wages from clause 14.1, the award's weekly conversion (annual x 6/313), and the hourly and casual rates exactly as Schedule C publishes them. A graduate engineer needs a 4 or 5-year degree, so the 3-year degree rate is not shown.",
+        "The table shows annual wages from clause 14.1, the award's weekly conversion (annual x 6/313), and the hourly and casual rates exactly as Schedule C publishes them. A graduate engineer needs a 4 or 5-year degree, so the 3-year degree rate is not shown.",
       rows: [GRAD, peaRow(PEA.pp12), peaRow(PEA.pp13), peaRow(PEA.pp14), L2, L3, peaRow(PEA.level4)],
     },
   ],
@@ -116,8 +116,8 @@ export const ELECTRICAL_ENGINEER: Occupation = {
     "Electrical engineers covered by the Electrical Power Industry Award 2020 are outside the Professional Employees Award, so the rates below are not their minimums (cl 4.2(c)).",
   ],
   payslipNotes: [
-    `Night and weekend hours: below the cl 18.6 salary line, hours you are directed to work before 6 am or after 10 pm Monday to Saturday are paid at 125%, and Sunday and public holiday hours at 150% (cl 18.4): $43.21 and $51.86 an hour for a pay point 1.1 graduate (Schedule C.1). Penalty pay must be shown as its own amount on the payslip (Fair Work Ombudsman, pay slips).`,
-    "Your pay point should rise on each anniversary as a graduate, from 1.1 to 1.4, unless your employer defers it in writing (Schedule A.1.3–A.1.4).",
+    `Night and weekend hours: below the cl 18.6 salary line, hours you are directed to work before 6 am or after 10 pm Monday to Saturday are paid at 125%. Below the same line, Sunday and public holiday hours are paid at 150% (cl 18.4). For a pay point 1.1 graduate, those rates are $43.21 and $51.86 an hour (Schedule C.1). Penalty pay must be shown as its own amount on the payslip (Fair Work Ombudsman, pay slips).`,
+    "Your pay point should rise on each anniversary as a graduate, from 1.1 to 1.4, unless your employer defers it in writing (Schedule A.1.3 to A.1.4).",
     "Vehicle allowance: agreed use of your own car on the employer's business is paid at least $1.00 a kilometre (cl 16.3), shown separately from salary.",
     PAYSLIP_SUPER_AND_DEDUCTIONS,
   ],
@@ -129,15 +129,15 @@ export const ELECTRICAL_ENGINEER: Occupation = {
   faqs: [
     {
       q: "How much does an electrical engineer earn in Australia?",
-      a: `The 34,797 people who gave their occupation as electrical engineer on 2023–24 tax returns had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO). Jobs and Skills Australia puts median full-time earnings for electrical engineers at $2,553 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
+      a: `The 34,797 people who gave their occupation as electrical engineer on 2023-24 tax returns had a median salary or wage income of ${aud(ATO_MEDIAN)} and an average of ${aud(ATO_AVERAGE)} (ATO). Jobs and Skills Australia puts median full-time earnings for electrical engineers at $2,553 a week, about ${aud(JSA_ANNUAL)} a year (May 2025).`,
     },
     {
       q: "What is the graduate electrical engineer salary in 2026?",
-      a: `The award minimum is ${aud(GRAD.annual!)} a year, or ${aud2(GRAD.hourly)} an hour, for a graduate with a 4 or 5-year degree recognised by Engineers Australia (Professional Employees Award, Level 1 pay point 1.1, from 1 July 2026). It is only a floor: half of all electrical engineers on 2023–24 tax returns earned more than ${aud(ATO_MEDIAN)}.`,
+      a: `The award minimum is ${aud(GRAD.annual!)} a year, or ${aud2(GRAD.hourly)} an hour, for a graduate with a 4 or 5-year degree recognised by Engineers Australia (Professional Employees Award, Level 1 pay point 1.1, from 1 July 2026). It is only a floor: half of all electrical engineers on 2023-24 tax returns earned more than ${aud(ATO_MEDIAN)}.`,
     },
     {
       q: "What is an electrical engineer's take-home pay?",
-      a: `About ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight, on the ${aud(ATO_MEDIAN)} ATO median salary after 2026–27 income tax and the Medicare levy, with no HECS-HELP and with private hospital cover. On the ${aud(JSA_ANNUAL)} JSA full-time median it is about ${aud(netAnnual(JSA_ANNUAL))} a year.`,
+      a: `An electrical engineer's take-home pay is about ${aud(netAnnual(ATO_MEDIAN))} a year, or ${aud(netFortnightly(ATO_MEDIAN))} a fortnight, on the ${aud(ATO_MEDIAN)} ATO median salary after 2026-27 income tax and the Medicare levy. This assumes you have private hospital cover and no HECS-HELP debt. On the ${aud(JSA_ANNUAL)} JSA full-time median it is about ${aud(netAnnual(JSA_ANNUAL))} a year.`,
     },
     {
       q: "Is an electrical engineer at a power company on the Professional Employees Award?",
@@ -145,7 +145,7 @@ export const ELECTRICAL_ENGINEER: Occupation = {
     },
     {
       q: "Do electrical engineers earn more than electronics engineers?",
-      a: "On 2023–24 tax returns, yes: the median salary or wage income was $130,630 for electrical engineers and $113,202 for electronics engineers. Both are professional engineers under the same award, so the minimums are identical.",
+      a: "On 2023-24 tax returns, yes: the median salary or wage income was $130,630 for electrical engineers and $113,202 for electronics engineers. Both are professional engineers under the same award, so the minimums are identical.",
     },
     {
       q: "Is an electrical engineer paid the same award as an electrician?",

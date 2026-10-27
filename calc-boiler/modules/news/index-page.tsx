@@ -51,9 +51,10 @@ export default function NewsIndexPage({
             Australian Pay &amp; Tax News
           </h1>
           <p className="text-xl text-warmgray leading-relaxed">
-            Wage decisions, tax changes, super rules and payment increases: what changed, when it
-            starts, and what it means for your take-home pay. Every story links to a calculator so
-            you can run your own numbers.
+            This page lists Australian pay and tax news: minimum wage, award and enterprise agreement
+            decisions, tax changes, super rules, HECS updates and Centrelink payment increases. Each
+            story says what changed, when it starts and what it means for your take-home pay. Every
+            story links to a calculator so you can run your own numbers.
           </p>
           {preferredSource}
           {featuredImage}

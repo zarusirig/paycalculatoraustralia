@@ -5,10 +5,12 @@ export default function TaxCutJuly2026() {
   return (
     <>
       <p className="lead">
-        From 1 July 2026, the tax rate on income between $18,201 and $45,000 dropped from{" "}
-        <strong>16% to 15%</strong>, the first of two further cuts legislated after the March 2025 Budget.
+        From 1 July 2026, the tax rate for Australian residents on income between $18,201 and $45,000 dropped from{" "}
+        <strong>16% to 15%</strong>. This tax cut is the first of two further rate cuts legislated after the March 2025 Budget.
         Every taxpayer earning above $45,000 saves the full <strong>$268 a year</strong>, applied
-        automatically through lower PAYG withholding.
+        automatically through lower PAYG withholding in every pay run. The key facts table below sets out the
+        bracket, the old and new rate, the maximum saving and the next scheduled cut. The rest of this page works through the saving at
+        lower incomes, the second scheduled cut and how the cut shows in your take-home pay.
       </p>
 
       <NewsKeyFacts
@@ -52,9 +54,9 @@ export default function TaxCutJuly2026() {
 
       <h2>Where the tax cuts go next</h2>
       <p>
-        This isn&apos;t the end of the schedule. The same legislation cuts the rate again, from 15% to
-        14%, from 1 July 2027, on the same $18,201 to $45,000 bracket, taking the maximum
-        annual saving to $536 a year compared with 2024-25 settings. The May 2026 Budget layered
+        The same legislation cuts the rate again from 1 July 2027, from 15% to 14% on the same
+        $18,201 to $45,000 bracket. That second cut takes the maximum annual saving to $536 a year
+        compared with 2024-25 settings. The May 2026 Budget layered
         a further $250 Working Australians Tax Offset on top from 2027-28 (work out the combined effect with the{" "}
         <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>); see our{" "}
         <Link href="/news/federal-budget-2026-27-your-pay/">Budget 2026-27 wrap</Link> for the

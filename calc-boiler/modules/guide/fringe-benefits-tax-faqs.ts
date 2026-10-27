@@ -32,11 +32,11 @@ export const FBT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are electric vehicles exempt from FBT?",
-    a: `Yes. Under the Electric Car Discount, eligible battery electric vehicles first held and used on or after 1 July 2022 are FBT-exempt (plug-in hybrids only where the arrangement was entered into before 1 April 2025), provided the car's value at first retail sale is below the luxury car tax limit for fuel-efficient vehicles (${formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)} for FY${LUXURY_CAR_TAX.financialYear}). This exemption makes novated leasing for EVs significantly more cost-effective.`,
+    a: `Yes. Under the Electric Car Discount, eligible battery electric vehicles first held and used on or after 1 July 2022 are FBT-exempt (plug-in hybrids only where the arrangement was entered into before 1 April 2025), provided the car's value at first retail sale is below the luxury car tax limit for fuel-efficient vehicles (${formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)} for FY${LUXURY_CAR_TAX.financialYear}). Under the exemption, a novated lease on an eligible EV attracts no FBT on the car benefit.`,
   },
   {
     q: "What does \"grossing up\" mean for FBT?",
-    a: `Grossing up converts the taxable value of a fringe benefit to its pre-tax salary equivalent. This reflects the gross income an employee would need to earn to purchase the same benefit after paying income tax. The Type 1 gross-up rate is ${T1} (when the employer claims GST credits) and the Type 2 rate is ${T2} (when no GST credit is claimed).`,
+    a: `Grossing up converts the taxable value of a fringe benefit to its pre-tax salary equivalent. This reflects the gross income an employee would need to earn to purchase the same benefit after paying income tax. The Type 1 gross-up rate is ${T1} (when the employer is entitled to claim a GST credit) and the Type 2 rate is ${T2} (when no GST credit is available).`,
   },
   {
     q: "What's the difference between Type 1 and Type 2 fringe benefits?",

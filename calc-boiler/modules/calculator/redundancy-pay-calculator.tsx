@@ -153,8 +153,8 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
                   </div>
                   {smallBusiness && (
                     <p className="bg-sandstone border-l-4 border-ochre/70 p-4 text-xs text-navy">
-                      Small business employers owe no NES redundancy pay. Check your award or agreement, and
-                      you are still owed notice, unused annual leave and any long service leave.
+                      Small business employers owe no NES redundancy pay. Check your award or agreement for a redundancy clause.
+                      You are still owed notice, unused annual leave and any long service leave.
                     </p>
                   )}
                   {!smallBusiness && r.weeks === 0 && (
@@ -163,7 +163,7 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
                     </p>
                   )}
                   <p className="text-xs text-warmgray-light">
-                    Excludes notice, unused leave and long service leave, which are paid and taxed separately. Use the{" "}
+                    This figure excludes notice, unused leave and long service leave, which are paid and taxed separately. Use the{" "}
                     <Link href="/final-pay-calculator/" className={LINK}>final pay calculator</Link> for the whole payout.
                   </p>
                 </div>

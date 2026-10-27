@@ -19,7 +19,7 @@ export const TAS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I get Royal Hobart Regatta or Recreation Day?",
-    a: "One or the other, depending on where in Tasmania you work. The Regatta in February is observed in certain areas including Hobart; the areas that do not observe it get Recreation Day in early November instead. Both are Tasmanian-only public holidays.",
+    a: "You get one or the other, depending on where in Tasmania you work. The Royal Hobart Regatta holiday in February is observed in certain areas including Hobart; the areas that do not observe it get Recreation Day in early November instead. Both are Tasmanian-only public holidays.",
   },
   {
     q: "What is Eight Hours Day?",
@@ -31,7 +31,7 @@ export const TAS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do Tasmanian employees pay payroll tax?",
-    a: `No. Payroll tax is charged to employers whose Australian wages exceed ${formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}. It never appears on an employee's payslip and does not reduce gross pay.`,
+    a: `No. Payroll tax is charged to employers whose Australian wages exceed ${formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}. It does not appear on an employee's payslip and does not reduce gross pay.`,
   },
   {
     q: "Do I pay the Medicare levy surcharge in TAS?",

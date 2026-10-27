@@ -63,10 +63,13 @@ export default function PayCalculatorSAPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">SA</span>
           </div>
           <p className="text-lg text-warmgray">
-            A wage calculator for South Australia, running ATO {SITE_CONFIG.financialYear} rates. Below
-            the result are the three things SA does differently: four part-day and Proclamation Day
-            holidays that other states do not have, the most generous long service leave entitlement in
-            the country, and a payroll tax threshold that is none of your business as an employee.
+            This South Australia pay calculator turns your gross salary into take-home pay per week,
+            fortnight and month, using ATO {SITE_CONFIG.financialYear} resident tax rates and the Medicare
+            levy. It opens on the ABS average full-time salary in South Australia; type your own salary to
+            replace it. Below the result are the three things SA does differently. Its calendar has four
+            state-specific holidays around Christmas and New Year: the Christmas Eve and New Year&apos;s Eve
+            part-days, Proclamation Day and its substitute day. SA has the most generous long service
+            leave entitlement in the country. SA payroll tax is paid by employers, not employees.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -110,9 +113,9 @@ export default function PayCalculatorSAPage() {
               Health care and social assistance is the largest employing industry in SA, and most of it
               runs on federal awards. Check yours in the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">award rates guide</Link> or the{" "}
-              <Link href="/schads-award-pay-rates/" className="text-eucalyptus-dark hover:underline">SCHADS award rates</Link>, and remember
-              that many SA health and charity employers offer salary packaging that changes the tax
-              maths considerably.
+              <Link href="/schads-award-pay-rates/" className="text-eucalyptus-dark hover:underline">SCHADS award rates</Link>, and check
+              whether your SA health or charity employer offers salary packaging, which lowers your
+              taxable income and the income tax on it.
             </p>
           </section>
 
@@ -121,9 +124,9 @@ export default function PayCalculatorSAPage() {
             <p className="mb-4 text-warmgray">
               SA has the most complicated holiday calendar in the country for anyone working retail or
               hospitality. Christmas Eve and New Year&apos;s Eve are both <em>part-day</em> public
-              holidays from 7 pm (so a shift that starts at 4 pm changes rate partway through) and 26
-              December is Proclamation Day rather than Boxing Day, with its own substitute day on the
-              28th. Adelaide Cup Day in March is unique to SA.
+              holidays from 7 pm to midnight, so a shift that starts at 4 pm changes rate partway through.
+              Proclamation Day takes the place of Boxing Day on 26 December, with its own substitute day
+              on the 28th. Adelaide Cup Day in March is unique to SA.
             </p>
             <PublicHolidayTable profile={PROFILE} />
             <PenaltyRateNote profile={PROFILE} />
@@ -132,10 +135,10 @@ export default function PayCalculatorSAPage() {
           <section>
             <H2>Long service leave in South Australia</H2>
             <p className="mb-4 text-warmgray">
-              This is the single best employee entitlement in any Australian state. The{" "}
-              {PROFILE.longServiceLeave.act} gives 13 weeks after 10 years (half again what NSW, WA,
-              Queensland and Tasmania pay at the same milestone) and it accrues at the same 1.3 weeks
-              a year whether you are full-time, part-time or casual.
+              South Australia gives the most generous long service leave of any Australian state. The{" "}
+              {PROFILE.longServiceLeave.act} gives 13 weeks after 10 years, half again what NSW, WA,
+              Queensland and Tasmania pay at the same milestone. SA long service leave accrues at the
+              same 1.3 weeks a year whether you are full-time, part-time or casual.
             </p>
             <LongServiceLeaveBlock profile={PROFILE} />
             <ForwardLslLinks profile={PROFILE} />
@@ -145,8 +148,8 @@ export default function PayCalculatorSAPage() {
             <H2>Does SA payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              SA also runs a variable payroll tax rate between $1.5m and $1.7m of wages, which
-              occasionally gets mistaken for a sliding deduction on employees. It is not. Employers can
+              SA payroll tax also has a variable rate between $1.5m and $1.7m of wages. That sliding
+              rate applies to the employer&apos;s wage bill and is not a deduction from employee pay. Employers can
               see how it works on the{" "}
               <Link href="/payroll-tax/sa/" className="text-eucalyptus-dark hover:underline">SA payroll tax</Link> page.
             </p>
@@ -155,11 +158,11 @@ export default function PayCalculatorSAPage() {
           <section>
             <H2>Working in a remote part of SA?</H2>
             <p className="mb-4 text-warmgray">
-              One federal offset genuinely varies by where you live in South Australia, and the
+              One federal offset, the Zone Tax Offset, varies by where you live in South Australia. The
               calculator above cannot apply it for you because it depends on your exact locality.
             </p>
             <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>Zone Tax Offset:</strong> Federal tax offset for SA residents in designated remote zones Coober Pedy, Roxby Downs, Leigh Creek and most APY Lands communities are <em>special areas</em> ({formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)} fixed amount plus {Math.round(ZONE_AREA_RATES.specialArea.basePercentage * 100)}% of any dependant base amount), while Woomera and most of the state are ordinary Zone B ({formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)} plus {Math.round(ZONE_AREA_RATES.zoneB.basePercentage * 100)}%). Amounts are for the {ZONE_OFFSET_INCOME_YEAR} income year.</li>
+              <li><strong>Zone Tax Offset:</strong> Federal tax offset for SA residents in designated remote zones. Coober Pedy, Roxby Downs, Leigh Creek and most APY Lands communities are <em>special areas</em> ({formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)} fixed amount plus {Math.round(ZONE_AREA_RATES.specialArea.basePercentage * 100)}% of any dependant base amount), while Woomera and most of the state are ordinary Zone B ({formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)} plus {Math.round(ZONE_AREA_RATES.zoneB.basePercentage * 100)}%). Amounts are for the {ZONE_OFFSET_INCOME_YEAR} income year.</li>
             </ul>
             <p className="text-sm text-warmgray">
               It reduces the tax you owe rather than your taxable income, and you claim it in your

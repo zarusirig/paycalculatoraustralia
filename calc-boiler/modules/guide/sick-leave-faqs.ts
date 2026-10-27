@@ -14,7 +14,7 @@ export const SICK_LEAVE_FAQS: Faq[] = [
   },
   {
     q: "Do casual employees get sick leave?",
-    a: "Not paid sick leave. All employees except casuals are entitled to paid sick and carer's leave. Casuals can take 2 days of unpaid carer's leave each time a family or household member needs care, and unpaid compassionate leave.",
+    a: "No, casual employees do not get paid sick leave: all employees except casuals are entitled to paid sick and carer's leave. Casuals can take 2 days of unpaid carer's leave each time a family or household member needs care, and unpaid compassionate leave.",
   },
   {
     q: "Does sick leave roll over each year?",
@@ -26,7 +26,7 @@ export const SICK_LEAVE_FAQS: Faq[] = [
   },
   {
     q: "How much are you paid for a sick day?",
-    a: "At least your base pay rate for the ordinary hours you would have worked that day. Penalty rates, loadings, allowances, bonuses and overtime are not included, so a sick day on a Sunday shift is paid at your base rate, not the Sunday rate.",
+    a: "A sick day is paid at least at your base pay rate for the ordinary hours you would have worked that day. Penalty rates, loadings, allowances, bonuses and overtime are not included, so a sick day on a Sunday shift is paid at your base rate, not the Sunday rate.",
   },
   {
     q: "Can my employer ask for a medical certificate for one day off?",
@@ -34,6 +34,6 @@ export const SICK_LEAVE_FAQS: Faq[] = [
   },
   {
     q: "Does sick leave accrue while on annual leave or unpaid leave?",
-    a: "It keeps accruing while you are on paid leave, including annual leave, sick leave, long service leave and community service leave such as jury duty. It does not accrue during unpaid leave, such as unpaid parental leave or unpaid sick or carer's leave.",
+    a: "Sick leave keeps accruing while you are on paid leave, including annual leave, sick leave, long service leave and community service leave such as jury duty. It does not accrue during unpaid leave, such as unpaid parental leave or unpaid sick or carer's leave.",
   },
 ];

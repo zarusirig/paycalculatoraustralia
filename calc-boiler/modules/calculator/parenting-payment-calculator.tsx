@@ -70,7 +70,7 @@ export default function ParentingPaymentCalculatorPage({ children: content, afte
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Parenting Payment Calculator: Single and Partnered</h1>
           <p className="text-lg text-warmgray">
-            Parenting Payment Single is <strong>{formatAUD(S.maxFortnightly, 2)} a fortnight</strong> ({formatAUD(S.basic, 2)} plus a {formatAUD(S.pensionSupplement, 2)} Pension Supplement) and Parenting Payment Partnered is <strong>{formatAUD(PT.maxFortnightly, 2)}</strong>, from {PP.ratesFrom}. Enter what you earn to see how much you keep: single parents lose 40 cents per dollar over {formatAUD(ppsFreeArea(1), 2)} a fortnight.
+            Parenting Payment Single is <strong>{formatAUD(S.maxFortnightly, 2)} a fortnight</strong> ({formatAUD(S.basic, 2)} plus a {formatAUD(S.pensionSupplement, 2)} Pension Supplement) and Parenting Payment Partnered is <strong>{formatAUD(PT.maxFortnightly, 2)}</strong>, from {PP.ratesFrom}. Enter what you earn to see how much you keep: for a single parent with one child, the payment reduces by 40 cents per dollar over {formatAUD(ppsFreeArea(1), 2)} a fortnight.
           </p>
           <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">Rates from {PP.ratesFrom} · verified {FAMILY_PAYMENT_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />

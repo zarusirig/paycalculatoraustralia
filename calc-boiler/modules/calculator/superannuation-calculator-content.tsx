@@ -81,7 +81,7 @@ export function SuperannuationCalculatorIntro() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-warmgray-light">The {formatPercent(SUPER_GUARANTEE.rate, 0)} rate is now permanent, with no further legislated increases are scheduled. Employers who fail to pay in full face the <Link href="/super-guarantee-charge/" className="text-eucalyptus-dark hover:underline font-medium">Super Guarantee Charge</Link> (SGC): since Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to {formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}.</p>
+        <p className="mt-3 text-sm text-warmgray-light">The {formatPercent(SUPER_GUARANTEE.rate, 0)} rate is now permanent, and no further legislated increases are scheduled. Employers who fail to pay in full face the <Link href="/super-guarantee-charge/" className="text-eucalyptus-dark hover:underline font-medium">Super Guarantee Charge</Link> (SGC). Since Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart}, the SGC is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to {formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}.</p>
       </section>
 
       {/* --- Super on Common Salaries --- */}
@@ -141,7 +141,7 @@ export function SuperannuationCalculatorIntro() {
             <ul className="list-disc pl-5 text-warmgray space-y-1"><li>Overtime payments</li><li>Unused leave on termination</li><li>Expense reimbursements</li><li>Workers compensation payments</li></ul>
           </div>
         </div>
-        <p className="mt-4 text-sm text-warmgray">Understanding OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base, which is <strong>$9,600</strong> in super, not $11,400. Check your payslip against our calculator to confirm your employer&apos;s calculation is correct.</p>
+        <p className="mt-4 text-sm text-warmgray">What counts as OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base, which is <strong>$9,600</strong> in super, not $11,400. Enter your OTE, without overtime, as the Gross Annual Salary in the calculator above and compare the result with the super on your payslip.</p>
       </section>
     </>
   );
@@ -154,11 +154,11 @@ export function SuperannuationCalculatorMiddle() {
       {/* --- Maximum Super Contribution Base --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Maximum Super Contribution Base ({formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}/Year)</h2>
-        <p className="mb-3 text-warmgray">There&apos;s an earnings limit above which your employer isn&apos;t legally required to pay super. With Payday Super, for FY{SITE_CONFIG.financialYear} this is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</p>
+        <p className="mb-3 text-warmgray">The maximum super contribution base is the earnings limit above which your employer isn&apos;t legally required to pay super. Under Payday Super, the FY{SITE_CONFIG.financialYear} base is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</p>
         <p className="mb-3 text-warmgray">This means the maximum SG your employer must pay is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)} per year</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} x {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}).</p>
         <p className="text-sm text-warmgray-light">If you earn above this threshold, check your employment agreement, as some employers voluntarily pay super on your full salary as part of a total remuneration package. <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer cost calculator</Link></p>
         <p className="text-warmgray mt-4">
-            Offered a &ldquo;package&rdquo; or a salary &ldquo;including super&rdquo;? The <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary package calculator</Link> splits it into base salary, super and take-home pay, and applies this cap for large packages.
+            If you are offered a salary package or a salary &quot;including super&quot;, the <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary package calculator</Link> splits it into base salary, super and take-home pay, and applies this cap for large packages.
           </p>
         </section>
 
@@ -174,7 +174,7 @@ export function SuperannuationCalculatorMiddle() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-warmgray-light"><Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline font-medium">Full superannuation guide</Link> &mdash; see our news coverage of the <Link href="/news/super-contribution-caps-2026-27/" className="text-eucalyptus-dark hover:underline font-medium">super contribution caps for 2026-27</Link> for the latest indexed figures.</p>
+        <p className="mt-3 text-sm text-warmgray-light"><Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline font-medium">Full superannuation guide</Link>. See our news coverage of the <Link href="/news/super-contribution-caps-2026-27/" className="text-eucalyptus-dark hover:underline font-medium">super contribution caps for 2026-27</Link> for the latest indexed figures.</p>
       </section>
 
       {/* --- What Changed in FY2026-27? --- */}
@@ -201,7 +201,7 @@ export function SuperannuationCalculatorMiddle() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Superannuation Mistakes?</h2>
         <p className="mb-4 text-warmgray">Australian employees lose an estimated <strong>$5.9 billion</strong> in unpaid and underpaid super each year. These 5 mistakes account for the majority of lost retirement savings.</p>
         <ol className="list-decimal pl-6 space-y-4 text-warmgray">
-          <li><strong>Not checking payslips against the 12% rate.</strong> Since Payday Super commenced on 1 July 2026 employers must pay SG every payday, with the money received by your fund within 7 business days &mdash; so a missing contribution is now visible within a fortnight rather than a quarter. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong>.</li>
+          <li><strong>Not checking payslips against the 12% rate.</strong> Since Payday Super commenced on 1 July 2026 employers must pay SG every payday, and the money must reach your fund within 7 business days. A missing contribution is now visible within a fortnight rather than a quarter. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong>.</li>
           <li><strong>Confusing &quot;plus super&quot; with &quot;including super&quot; in job offers.</strong> A $100,000 &quot;plus super&quot; role provides $100,000 salary and $12,000 super ($112,000 total). A $100,000 &quot;including super&quot; role provides $89,286 salary and $10,714 super. The difference in base pay is <strong>$10,714</strong>.</li>
           <li><strong>Exceeding the concessional cap.</strong> Employer SG plus salary sacrifice contributions that exceed the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap are taxed at your marginal rate instead of 15%. On a $150,000 salary, the employer already contributes {formatAUD(calculateSuper(150_000))} in SG, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - calculateSuper(150_000))} in cap space for salary sacrifice.</li>
           <li><strong>Holding multiple super accounts.</strong> The average Australian has <strong>1.4 super accounts</strong>. Duplicate accounts mean duplicate insurance premiums and administration fees that erode retirement balances. Consolidate via myGov or contact your fund directly.</li>
@@ -219,7 +219,7 @@ export default function SuperannuationCalculatorContent() {
       {/* --- Related Calculators --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
-        <p className="mb-4 text-warmgray">Superannuation is one component of your total pay package. These calculators cover income tax, take-home pay, and employer costs for a complete picture.</p>
+        <p className="mb-4 text-warmgray">Superannuation is one component of your total pay package. The calculators below cover income tax, take-home pay and employer costs.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link href="/" className="block rounded-xl border border-sandstone-dark/20 p-4 hover:bg-sandstone transition-colors">
             <h3 className="font-semibold text-navy mb-1" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Australian Tax Calculator</h3>

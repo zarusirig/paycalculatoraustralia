@@ -186,7 +186,7 @@ export default function LongServiceLeaveCalculator({
                 />
               </div>
               <p className="text-xs text-warmgray-light mt-1">
-                Ordinary time only &mdash; no overtime. About {formatAUD(weeklyPay * 52)} a year.
+                Use ordinary time pay only, without overtime. That is about {formatAUD(weeklyPay * 52)} a year.
               </p>
             </div>
 
@@ -353,7 +353,7 @@ export default function LongServiceLeaveCalculator({
                     <Link href={`/take-home-pay-on/${takeHomeTarget}/`} className={LINK}>
                       take-home pay on {formatAUD(takeHomeTarget)}
                     </Link>{" "}
-                    for the year that includes it, or the{" "}
+                    (the salary page closest to your yearly pay plus this payout), or the{" "}
                     <Link href="/final-pay-calculator/" className={LINK}>
                       final pay calculator
                     </Link>{" "}

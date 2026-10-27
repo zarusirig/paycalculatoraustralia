@@ -21,7 +21,7 @@ function listNames(names: string[]): string {
 export const PAY_RATES_HUB_FAQS: { q: string; a: string }[] = [
   {
     q: "Which of these employers pays the most per hour?",
-    a: `At entry level for an adult, ${highest.name} pays the most of the employers we cover: ${money(entryRate(highest).hourly)} an hour at ${entryRate(highest).level}. The lowest entry-level adult rate is ${lowest.name} at ${money(entryRate(lowest).hourly)}. Weekend and evening penalty rates, which differ between agreements, can change which job pays more for the hours you actually work.`,
+    a: `${highest.name} pays the highest entry-level adult rate of the employers we cover: ${money(entryRate(highest).hourly)} an hour at ${entryRate(highest).level}. ${lowest.name} pays the lowest entry-level adult rate, ${money(entryRate(lowest).hourly)} an hour. Weekend and evening penalty rates, which differ between agreements, can change which job pays more for the hours you actually work.`,
   },
   {
     q: "Why do fast food jobs pay less than supermarket jobs?",
@@ -29,7 +29,7 @@ export const PAY_RATES_HUB_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Do these rates include superannuation?",
-    a: "No. Hourly rates are before tax and exclude super. Your employer pays the superannuation guarantee on top of your ordinary time earnings.",
+    a: "No. Hourly rates are before tax and exclude super. Your employer pays the Superannuation Guarantee on top of your ordinary time earnings.",
   },
   {
     q: "How do I know which level I am on?",

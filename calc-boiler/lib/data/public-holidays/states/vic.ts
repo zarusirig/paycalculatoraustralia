@@ -10,7 +10,7 @@ export const VIC_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   name: "Victoria",
   inName: "in Victoria",
   standfirst:
-    "Victoria has 14 public holidays in 2026, including two found nowhere else: the Friday before the AFL Grand Final and Melbourne Cup Day. Some regional councils swap Melbourne Cup Day for a local holiday, which moves the day your public holiday rate applies. Anzac Day gets no replacement weekday when it falls on a weekend.",
+    "Victoria has 14 public holidays in 2026, including two found nowhere else: the Friday before the AFL Grand Final and Melbourne Cup Day. Some regional councils swap Melbourne Cup Day for a local holiday, which moves the day your public holiday rate applies. Anzac Day gets no replacement weekday when it falls on a weekend. The tables below list each Victorian public holiday by date, including regional council days, and the calculator works out your award pay for a shift worked on one.",
   sources: [
     {
       title: "Victorian public holidays 2026",
@@ -106,8 +106,8 @@ export const VIC_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       id: "grand-final-friday",
       heading: "AFL Grand Final Friday and Melbourne Cup Day pay",
       paragraphs: [
-        "Both are full public holidays under Victoria's Public Holidays Act 1993, so award public holiday rates apply to every hour worked, and a full-time or part-time employee who normally works a Friday or Tuesday is paid for the day off. They are Victorian holidays only. A job based in Victoria gets them even if you're working interstate that day, and a job based interstate doesn't get them even if you're working in Melbourne.",
-        "Grand Final Friday moves with the AFL fixture, which is why the 2027 date isn't published yet. Rosters for late September 2027 should be checked once Business Victoria lists it.",
+        "AFL Grand Final Friday and Melbourne Cup Day are both full public holidays under Victoria's Public Holidays Act 1993, so award public holiday rates apply to every hour worked. A full-time or part-time employee who normally works a Friday or Tuesday is paid for the day off. They are Victorian holidays only. A job based in Victoria gets them even if you're working interstate that day, and a job based interstate doesn't get them even if you're working in Melbourne.",
+        "Grand Final Friday moves with the AFL fixture, which is why the 2027 date isn't published yet. Check rosters for late September 2027 once Business Victoria lists the date.",
       ],
     },
     {

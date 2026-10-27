@@ -103,7 +103,7 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
                 </h1>
               </div>
               <p className="text-base md:text-lg text-warmgray">
-                Enter your correct rate, the rate paid, hours and weeks to see what you are owed.
+                Enter the hourly rate you should have been paid, the rate you were paid, your weekly hours and the weeks underpaid to see the backpay you are owed.
               </p>
               <TrustBar className="mt-2" />
             </div>
@@ -194,7 +194,7 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
                 <div className="mt-6">
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-sm text-warmgray">
                     <p className="font-medium mb-1">Disclaimer:</p>
-                    <p>This calculator provides estimates for wage underpayment claims. Actual amounts may vary based on overtime, penalty rates, allowances, and specific award conditions. Backpay tax is estimated using ATO Schedule 5 principles. For formal underpayment claims, consult the Fair Work Ombudsman or a workplace lawyer.</p>
+                    <p>This calculator estimates a wage underpayment claim from the correct and actual hourly rates, so it does not add overtime, penalty rates, allowances or other award conditions. The tax on your backpay is estimated at the effective tax rate on your correct annual salary, not the exact ATO Schedule 5 withholding. For a formal underpayment claim, consult the Fair Work Ombudsman or a workplace lawyer.</p>
                   </div>
                 </div>
                 <div className="mt-4 text-sm text-warmgray border-t border-sandstone-dark/20 pt-4">

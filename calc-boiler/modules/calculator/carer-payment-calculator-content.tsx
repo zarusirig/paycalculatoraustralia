@@ -114,7 +114,7 @@ export default function CarerPaymentCalculatorContent() {
       </W3Section>
 
       <W3Section title="Carer Payment Assets Test">
-        <p className={P}>Your payment is the lower of the income-test and assets-test results. Assets above the full-pension limit reduce the payment; above the cut-off it stops. Your home isn&apos;t counted, which is why homeowners have lower limits. Figures from 20 September 2026 (couples are combined).</p>
+        <p className={P}>Your Carer Payment is the lower of the income-test and assets-test results. Assets above the full-pension limit reduce the payment; above the cut-off it stops. Your home isn&apos;t counted, which is why homeowners have lower limits. Couple figures are combined, and the limits below apply from 20 September 2026.</p>
         <div className={TABLE_WRAP}>
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Situation</th><th scope="col" className={TH + " text-right"}>Full pension up to</th><th scope="col" className={TH + " text-right"}>Part pension stops above</th></tr></thead>
@@ -145,7 +145,7 @@ export default function CarerPaymentCalculatorContent() {
 
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Payment = maximum rate − 50c per $1 of assessable income over {formatAUD(IT.single.freeArea)} (single), or − 25c per combined $1 over {formatAUD(IT.couple.freeArea)} for each member of a couple, floored at $0. This is the pension income test Services Australia applies to Carer Payment, and it reproduces the published cut-offs ({formatAUD(R.publishedCutOff.single, 2)} single, {formatAUD(R.publishedCutOff.coupleCombined, 2)} couple) exactly, and the tests assert it.</li>
+          <li>Payment = maximum rate − 50c per $1 of assessable income over {formatAUD(IT.single.freeArea)} (single), or − 25c per combined $1 over {formatAUD(IT.couple.freeArea)} for each member of a couple, floored at $0. This is the pension income test Services Australia applies to Carer Payment. It reproduces the published cut-offs ({formatAUD(R.publishedCutOff.single, 2)} single, {formatAUD(R.publishedCutOff.coupleCombined, 2)} couple) exactly, and the tests assert it.</li>
           <li>Work Bonus is applied only when you tick Age Pension age, as Services Australia restricts it to carers of that age.</li>
           <li>Rates are the 20 September 2026 figures, read on {SRC.verifiedOn}. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>

@@ -77,7 +77,7 @@ export const HAIRDRESSER: Occupation = {
   coverage: [
     "Hairdressers, barbers, beauty therapists, nail technicians and salon staff working in hair and beauty salons are covered by the Hair and Beauty Industry Award 2020 [MA000005].",
     "A hairdresser who holds a Certificate III in Hairdressing (or equivalent) is Hair and beauty employee level 3. A hairdresser with a Certificate IV is level 5. Salon assistants and receptionists are level 1 (Schedule A).",
-    "The award also sets a rate for a full-time hairdressing graduate in their first 12 months: 92.5% of the standard rate: $27.24 an hour, $1,035.17 a week (cl 18.6, Table 12). After those 12 months the full level 3 rate applies.",
+    "The Hair and Beauty Industry Award also sets a rate for a full-time hairdressing graduate in their first 12 months: 92.5% of the standard rate, which is $27.24 an hour or $1,035.17 a week (cl 18.6, Table 12). After those 12 months the full level 3 rate applies.",
     "Juniors are paid 50% of the adult rate under 17 and 75% at 17; from 18 the full adult rate applies (cl 17.2).",
   ],
   tables: [
@@ -85,13 +85,13 @@ export const HAIRDRESSER: Occupation = {
       id: "hair-beauty",
       title: "Hairdresser and salon pay rates by level, 2026–27",
       intro:
-        "Hair and Beauty Industry Award cl 17.1, Table 4, from the first full pay period on or after 1 July 2026. The casual column is the rate for ordinary hours between 7 am and 9 pm Monday to Friday (cl 11.2).",
+        "These rates are from Hair and Beauty Industry Award cl 17.1, Table 4, and apply from the first full pay period on or after 1 July 2026. The casual column is the rate for ordinary hours between 7 am and 9 pm Monday to Friday (cl 11.2).",
       rows: HAIR_BEAUTY_ROWS,
     },
     {
       id: "graduate",
       title: "Hairdressing graduate rate, first 12 months",
-      intro: "Clause 18.6, Table 12: 92.5% of the standard rate for a full-time graduate. The award sets this rate for full-time graduates only, so no casual figure is shown.",
+      intro: "Clause 18.6, Table 12 sets the hairdressing graduate rate at 92.5% of the standard rate. The award sets this rate for full-time graduates only, so no casual figure is shown.",
       rows: [{ label: "Hairdressing graduate — first 12 months", weekly: 1035.17, hourly: 27.24, casualHourly: null }],
     },
   ],
@@ -104,7 +104,7 @@ export const HAIRDRESSER: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "250%" },
   ],
   penaltiesNote:
-    "Full-time and part-time rates are cl 23.1, Table 14; casual rates are cl 23.2, Table 15, and are percentages of the minimum hourly rate. The casual Saturday (7 am–6 pm) and Sunday rates include the casual loading; the casual public holiday rate is 250%, the same as for permanent staff. A rostered day off worked by agreement is paid at 200%.",
+    "Full-time and part-time rates are cl 23.1, Table 14; casual rates are cl 23.2, Table 15, and are percentages of the minimum hourly rate. The casual Saturday (7 am to 6 pm) and Sunday rates include the casual loading; the casual public holiday rate is 250%, the same as for permanent staff. A rostered day off worked by agreement is paid at 200%.",
   overtime: [
     "Full-time and part-time: 150% for the first 3 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250% (cl 22.5).",
     "Casual: 175% for the first 3 hours Monday to Saturday, then 225%; Sunday 225%; public holiday 250%.",

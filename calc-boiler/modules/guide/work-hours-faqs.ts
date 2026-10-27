@@ -18,7 +18,7 @@ export const WORK_HOURS_FAQS: readonly WorkHoursFaq[] = [
   },
   {
     q: "How does the calculator handle a shift that finishes after midnight?",
-    a: "If the finish time is earlier than the start time, the shift is treated as crossing midnight and a full day is added before the subtraction. A shift from 10:00 pm to 6:00 am is eight hours, not minus sixteen. This is the single most common bug in timesheet tools, so it is covered by automated tests. Rows that cross midnight are flagged with a \"+1 day\" marker so you can see the calculator understood what you meant.",
+    a: "If the finish time is earlier than the start time, the shift is treated as crossing midnight and a full day is added before the subtraction. A shift from 10:00 pm to 6:00 am is eight hours, not minus sixteen. The calculator's automated tests cover this case. Rows that cross midnight are flagged with a \"+1 day\" marker so you can see the calculator understood what you meant.",
   },
   {
     q: "How do I convert minutes to decimal hours?",
@@ -30,7 +30,7 @@ export const WORK_HOURS_FAQS: readonly WorkHoursFaq[] = [
   },
   {
     q: "How many hours is a full-time week in Australia?",
-    a: `${STANDARD_WEEKLY_HOURS} hours. The National Employment Standards set maximum weekly hours for a full-time employee at ${STANDARD_WEEKLY_HOURS} ordinary hours, plus reasonable additional hours. Part-time employees work fewer agreed hours with the same entitlements pro rata, and casuals have no guaranteed hours at all.`,
+    a: `A full-time week in Australia is ${STANDARD_WEEKLY_HOURS} hours. The National Employment Standards set maximum weekly hours for a full-time employee at ${STANDARD_WEEKLY_HOURS} ordinary hours, plus reasonable additional hours. Part-time employees work fewer agreed hours with the same entitlements pro rata, and casuals have no guaranteed hours at all.`,
   },
   {
     q: "When does overtime start?",
@@ -46,7 +46,7 @@ export const WORK_HOURS_FAQS: readonly WorkHoursFaq[] = [
   },
   {
     q: "How long does my employer have to keep timesheet records?",
-    a: "Seven years. The Fair Work Act requires employers to keep time and wages records for seven years, including hours worked where an employee is casual or irregular part-time, overtime hours, and the start and finish times of any penalty-rate or loading period. Employees are entitled to ask for a copy of their own records. Keeping your own timesheet is still worth doing: it is the fastest way to spot an underpayment.",
+    a: "Seven years. The Fair Work Act requires employers to keep time and wages records for seven years, including hours worked where an employee is casual or irregular part-time, overtime hours, and the start and finish times of any penalty-rate or loading period. Employees are entitled to ask for a copy of their own records. Keep your own timesheet as well, so you can check each payslip against the hours you worked and spot an underpayment.",
   },
   {
     q: "Does this calculator work out my take-home pay?",

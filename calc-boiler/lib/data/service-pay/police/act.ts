@@ -47,7 +47,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
       id: "constable-broadband",
       title: "Team Member/Constable broadband (bands 2–5)",
       intro:
-        "AFP sworn members in the constable ranks, including ACT Policing, from 9 December 2025 (the 4.0% rise). Rows follow the policing progression in section 101 of the agreement.",
+        "These rates apply to AFP sworn members in the constable ranks, including ACT Policing, from 9 December 2025 (the 4.0% rise). The rows follow the policing progression in section 101 of the AFP agreement.",
       stepHeading: "Band and increment point",
       steps: [
         {
@@ -76,7 +76,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
       id: "sergeant-broadband",
       title: "Team Leader/Sergeant broadband (bands 6–7)",
       intro:
-        "AFP sworn members in team leader/sergeant roles, from 9 December 2025. Entry is by merit selection at 6.1; advancement from 6.3 to 7.2 requires meeting assessment criteria.",
+        "These rates apply to AFP sworn members in team leader/sergeant roles, including ACT Policing, from 9 December 2025. Entry is by merit selection at 6.1, and advancement from 6.3 to 7.2 requires meeting the assessment criteria.",
       stepHeading: "Band and increment point",
       steps: [
         { label: "Band 6.1", salary: 111_861 },
@@ -95,7 +95,7 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
     "The agreement's progression table sets a minimum of 19 weeks at Band 2.3 from the start of recruit training. A current AFP employee who becomes a police recruit keeps the salary of their previous role.",
   ],
   penalties: [
-    "Core Composite (section 27): employees on the Operations or Rostered Operations working pattern receive 22% of base salary, which counts as salary for superannuation, to recognise expanded hours and shift patterns including afternoon shifts, night shifts, weekends and public holidays.",
+    "Core Composite (section 27): employees on the Operations or Rostered Operations working pattern receive 22% of base salary, which counts as salary for superannuation. It recognises expanded hours and shift patterns, including afternoon shifts, night shifts, weekends and public holidays.",
     "High-volume Operations areas identified by the Commissioner attract the 22% Core Composite plus an additional composite of 35% of base salary, which does not count for superannuation.",
     "Night Shift Allowance (section 40): $9.88 for each hour worked between midnight and 6am from 9 December 2025 ($10.15 from 9 December 2026), for roles on the Operations or Rostered Operations working pattern.",
   ],
@@ -128,19 +128,19 @@ export const ACT_POLICE_PAY: ServicePayJurisdiction = {
   faqs: [
     {
       q: "How much does a police officer earn in the ACT?",
-      a: "ACT Policing officers are paid under the AFP Enterprise Agreement 2024 - 2027. From 9 December 2025 a newly graduated officer at Band 2.4 earns $72,317 and a Leading Senior Constable at the top of the constable broadband (Band 5.3) earns $111,861. Officers on rostered operations also receive a 22% Core Composite allowance.",
+      a: "ACT Policing officers are paid under the AFP Enterprise Agreement 2024 - 2027. From 9 December 2025 a newly graduated officer at Band 2.4 earns $72,317 and a Leading Senior Constable at the top of the constable broadband (Band 5.3) earns $111,861. Officers on the Operations or Rostered Operations working pattern also receive the 22% Core Composite allowance.",
     },
     {
       q: "What do AFP police recruits get paid?",
-      a: "New police recruits are paid at Band 2.3 until they finish recruit training: $69,698 a year from 9 December 2025, rising to $71,580 from 9 December 2026.",
+      a: "New AFP police recruits, including those joining ACT Policing, are paid at Band 2.3 until they finish recruit training: $69,698 a year from 9 December 2025, rising to $71,580 from 9 December 2026.",
     },
     {
       q: "How much does a senior constable earn in the AFP?",
-      a: "A Senior Constable is paid $91,420 at Band 4.2 rising to $103,256 at Band 4.5 from 9 December 2025, according to the AFP's band-to-rank mapping.",
+      a: "An AFP Senior Constable is paid $91,420 at Band 4.2 rising to $103,256 at Band 4.5 from 9 December 2025, according to the AFP's band-to-rank mapping.",
     },
     {
       q: "When is the next AFP pay rise?",
-      a: "The final 2.7% rise under the agreement applies from 9 December 2026, taking Band 2.4 to $74,270 and Band 5.3 to $114,881.",
+      a: "The final 2.7% rise under the AFP Enterprise Agreement applies from 9 December 2026, taking Band 2.4 to $74,270 and Band 5.3 to $114,881.",
     },
   ],
 };

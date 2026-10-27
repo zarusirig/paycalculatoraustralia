@@ -270,7 +270,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "a further 4.33 weeks (one month) for each additional 5 years of service",
       proRataOnEndingYears: 5,
       summary:
-        "Ten years of continuous service with the same employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is only owed if the employer ends the employment for a reason other than serious or wilful misconduct, or you resign because of illness, incapacity, or domestic or other pressing necessity. Past 10 years it is paid out however the job ends.",
+        "Ten years of continuous service with the same employer earns 8.67 weeks (two months) of paid long service leave, then 4.33 weeks for every further 5 years. Between 5 and 10 years a pro-rata payment is only owed if the employer ends the employment for a reason other than serious or wilful misconduct, or you resign because of illness, incapacity, or domestic or other pressing necessity. Past 10 years the accrued long service leave is paid out however the job ends.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/nsw/",
   },
@@ -333,7 +333,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "a further 4.333 weeks for every 5 years of continuous employment after that",
       proRataOnEndingYears: 7,
       summary:
-        "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. WA is unusually generous at the exit: after 7 years of continuous employment a full-time, part-time, casual or seasonal employee may be owed a payment when the job ends by resignation, dismissal, redundancy or death.",
+        "WA employees can take long service leave after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. After 7 years of continuous employment a full-time, part-time, casual or seasonal employee may be owed a payment when the job ends by resignation, dismissal, redundancy or death.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/wa/",
   },
@@ -417,7 +417,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "1.3 weeks of leave for each further year of employment",
       proRataOnEndingYears: 7,
       summary:
-        "Thirteen weeks of paid leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count, and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
+        "NT employees earn thirteen weeks of paid long service leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count, and you cannot cash the leave out instead of taking it. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign because of illness, incapacity or pressing necessity.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/nt/",
   },

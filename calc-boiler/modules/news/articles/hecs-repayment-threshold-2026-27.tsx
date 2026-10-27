@@ -7,8 +7,8 @@ export default function HecsRepaymentThreshold202627() {
       <p className="lead">
         The minimum HECS and HELP repayment threshold for FY2026-27 is{" "}
         <strong>$69,528</strong>, up from $67,000 in FY2025-26. Below that, you make no
-        compulsory repayment; above it, the marginal system applies 15c in the dollar rising to
-        10% at the top band.
+        compulsory repayment. Above it, you repay 15c for each dollar over the threshold, and the
+        top band switches to 10% of your total repayment income.
       </p>
 
       <NewsKeyFacts
@@ -30,7 +30,7 @@ export default function HecsRepaymentThreshold202627() {
         each year.
       </p>
       <p>
-        Note that &ldquo;repayment income&rdquo; is broader than salary: it includes your taxable
+        Your HECS repayment income is broader than your salary: it includes your taxable
         income plus reportable fringe benefits, reportable super contributions and net investment
         losses. Salary sacrificing into super, for instance, lowers your taxable income but is
         added straight back for HECS purposes, so it cannot be used to duck under the threshold.
@@ -38,8 +38,8 @@ export default function HecsRepaymentThreshold202627() {
 
       <h2>Why $69,528, not $69,529</h2>
       <p>
-        It&apos;s a common point of confusion: $69,528 is the exempt threshold: earn up to and
-        including that amount and you owe nothing. The first dollar taxed at 15% is $69,529, the
+        $69,528 is the exempt threshold: earn up to and including that amount and you owe
+        nothing. The first dollar assessed at 15% is $69,529, the
         start of the next band. Both figures describe the same boundary, but the ATO&apos;s
         schedule names $69,528 as the threshold, which is why you&apos;ll see it quoted on
         withholding tables and in our{" "}
@@ -66,7 +66,8 @@ export default function HecsRepaymentThreshold202627() {
         marginal bands, only the income above $69,528 is assessed at the relevant rate, so the
         $70,000 earner above owes $71 rather than a lump-sum percentage of their whole salary.
         The higher threshold compounds that relief: an income that triggered repayments in
-        FY2024-25, when the threshold was $54,435, may now sit entirely inside the exempt zone.
+        FY2024-25, when the threshold was $54,435, now sits entirely inside the exempt zone if it
+        is no higher than the new threshold.
       </p>
 
       <h2>What this means for your pay</h2>

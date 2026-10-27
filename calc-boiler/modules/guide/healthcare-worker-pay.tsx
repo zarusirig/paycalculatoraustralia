@@ -117,7 +117,7 @@ export default function HealthcareWorkerPayPage() {
             Nurse Salary Australia 2026 (RN, EN, NP)
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. Below: a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then doctors, allied health, penalty rates and salary packaging for public hospital employees.
+            What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. The page starts with a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then covers doctors, allied health, penalty rates, salary packaging for public hospital employees and take-home pay after tax.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
@@ -132,7 +132,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="nurse-salary-by-state">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Nurse Salary by State: RN, EN and NP</h2>
               <p>
-                Every row is the lowest and highest annual base salary published in that state&apos;s own public health agreement or award, across the registered nurse base scale, the enrolled nurse scales and the nurse practitioner scale. The grades inside each range are named differently in every state (see the next section), so compare the ranges, not the grade numbers. Base salary only, before shift penalties and superannuation. Queensland&apos;s lowest registered nurse step is a re-entry rate that sits below the standard starting pay point; its state page shows both.
+                Every row is the lowest and highest annual base salary published in that state&apos;s own public health agreement or award, across the registered nurse base scale, the enrolled nurse scales and the nurse practitioner scale. The grades inside each range are named differently in every state (see the next section), so compare the ranges, not the grade numbers. Every range is base salary only, before shift penalties and superannuation. Queensland&apos;s lowest registered nurse step is a re-entry rate that sits below the standard starting pay point; its state page shows both.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -182,7 +182,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="healthcare-salaries">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Average Healthcare Salaries</h2>
               <p>
-                Healthcare salaries in Australia vary enormously depending on profession, classification level, and years of experience. Nurses and midwives are covered by state-based enterprise agreements that specify salary bands, while doctors progress through a separate classification system. Allied health professionals (physiotherapists, pharmacists, occupational therapists) fall under their own award or enterprise agreement structures.
+                Healthcare salaries in Australia differ by profession, classification level and years of experience. Nurses and midwives are covered by state-based enterprise agreements that specify salary bands, while doctors progress from intern and resident to registrar and specialist under the Medical Practitioners Award or a state agreement. Allied health professionals (physiotherapists, pharmacists, occupational therapists) are paid under their own award or an enterprise agreement.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -225,7 +225,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="nurse-pay-by-state">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Nurse &amp; Midwife Pay by State</h2>
               <p>
-                Most Australian nurses and midwives are paid under their state public health system&apos;s own agreement, not under the federal award, and the classification structures are genuinely different in each state. NSW pays a &ldquo;Registered Nurse/Midwife 1st Year&rdquo;, Queensland a &ldquo;Nurse Grade 5 pay point 1&rdquo;, Victoria an &ldquo;RN Grade 2 Year 1&rdquo;, Western Australia a &ldquo;Registered Nurse/Midwife Level 1.1&rdquo;, South Australia a &ldquo;Registered Nurse/Midwife (Level 1) 1st increment&rdquo; and Tasmania a &ldquo;Registered Nurse Grade 3 Year 1&rdquo;. They are all entry registered nurse roles and they are all on different money.
+                Most Australian nurses and midwives are paid under their state public health system&apos;s own agreement, not under the federal award, and each state uses its own classification structure. NSW pays a &ldquo;Registered Nurse/Midwife 1st Year&rdquo;, Queensland a &ldquo;Nurse Grade 5 pay point 1&rdquo;, Victoria an &ldquo;RN Grade 2 Year 1&rdquo;, Western Australia a &ldquo;Registered Nurse/Midwife Level 1.1&rdquo;, South Australia a &ldquo;Registered Nurse/Midwife (Level 1) 1st increment&rdquo; and Tasmania a &ldquo;Registered Nurse Grade 3 Year 1&rdquo;. Each is the entry registered nurse role in its state, and each pays a different salary.
               </p>
               <p>
                 Pick your state for the full published scale: every grade, every increment, the instrument the figures come from, the effective date and the shift penalties.
@@ -321,7 +321,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates &amp; Shift Allowances</h2>
               <p>
-                Healthcare workers, particularly nurses and midwives, are paid significant loadings for working outside standard business hours. These are set in each state&apos;s own instrument, and they do <strong>not</strong> follow a common structure, a claim you will see made often and which the table below disproves. Night shift is worth 20% in NSW, 20% in Queensland, 20.5% in South Australia, a flat dollar allowance per shift in Victoria and 35% in Western Australia. Anyone quoting one national set of nursing penalty rates is quoting a number that is wrong in at least four states.
+                Healthcare workers, nurses and midwives in particular, are paid loadings for working outside standard business hours. Each state sets these loadings in its own instrument, and they do <strong>not</strong> follow a common national structure, as the table below shows. Night shift is worth 20% in NSW, 20% in Queensland, 20.5% in South Australia, a flat dollar allowance per shift in Victoria and 35% in Western Australia. Anyone quoting one national set of nursing penalty rates is quoting a number that is wrong in at least four states.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -347,7 +347,7 @@ export default function HealthcareWorkerPayPage() {
                 </div>
               </div>
               <p>
-                Every cell above is quoted from a named clause of the instrument that sets it. The clause numbers are on the state pages. Blank cells are gaps in what the employer publishes, not zeroes. Weekend rates generally <em>replace</em> the shift loading rather than stacking on top of it, which is the single most common payslip misunderstanding in nursing. See the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model a specific roster and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings interact.
+                Every cell above is quoted from a named clause of the instrument that sets it. The clause numbers are on the state pages. Cells marked not published are gaps in the sources quoted here, not zeroes. Weekend rates generally <em>replace</em> the shift loading rather than stacking on top of it, which is the single most common payslip misunderstanding in nursing. See the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model a specific roster and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings interact.
               </p>
             </section>
 
@@ -355,12 +355,12 @@ export default function HealthcareWorkerPayPage() {
             <section id="salary-packaging">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Packaging for Health Workers</h2>
               <p>
-                Salary packaging (also called salary sacrifice) is one of the most valuable financial benefits available to healthcare workers employed in public hospitals and not-for-profit health organisations. It allows you to pay for certain expenses with <strong>pre-tax dollars</strong>, reducing your taxable income and increasing your take-home pay.
+                Salary packaging (also called salary sacrifice) is a tax benefit for healthcare workers employed in public hospitals and not-for-profit health organisations, because their employers can provide fringe benefits FBT-free up to a cap. It lets you pay for certain expenses with <strong>pre-tax dollars</strong>, so your taxable income falls and your take-home pay rises.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Public Hospital FBT Exemption</h3>
               <p>
-                Public and not-for-profit hospitals and public ambulance services can provide fringe benefits FBT-free up to a <strong>{formatAUD(CAP_HOSPITAL_GROSSED_UP)} grossed-up cap</strong> per employee each FBT year. Because the cap is a grossed-up value, it covers about <strong>{formatAUD(CAP_HOSPITAL)}</strong> of GST-free living expenses such as rent or mortgage repayments. Public benevolent institutions and health promotion charities &mdash; which include many not-for-profit community health, disability and aged care providers &mdash; have a higher <strong>{formatAUD(CAP_PBI_GROSSED_UP)}</strong> grossed-up cap (about {formatAUD(CAP_PBI)} of expenses); an organisation that is both a PBI and a hospital uses the hospital cap. On top of either, a separate <strong>{formatAUD(CAP_ENTERTAINMENT_GROSSED_UP)} grossed-up cap</strong> (about {formatAUD(CAP_ENTERTAINMENT)}) applies to salary-packaged meal entertainment and entertainment facility leasing expenses. Private-sector employers cannot offer these exemptions.
+                Public and not-for-profit hospitals and public ambulance services can provide fringe benefits FBT-free up to a <strong>{formatAUD(CAP_HOSPITAL_GROSSED_UP)} grossed-up cap</strong> per employee each FBT year. Because the cap is a grossed-up value, it covers about <strong>{formatAUD(CAP_HOSPITAL)}</strong> of GST-free living expenses such as rent or mortgage repayments. Public benevolent institutions and health promotion charities (which include many not-for-profit community health, disability and aged care providers) have a higher <strong>{formatAUD(CAP_PBI_GROSSED_UP)}</strong> grossed-up cap (about {formatAUD(CAP_PBI)} of expenses); an organisation that is both a PBI and a hospital uses the hospital cap. On top of either, a separate <strong>{formatAUD(CAP_ENTERTAINMENT_GROSSED_UP)} grossed-up cap</strong> (about {formatAUD(CAP_ENTERTAINMENT)}) applies to salary-packaged meal entertainment and entertainment facility leasing expenses. Private-sector employers cannot offer these exemptions.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Salary Packaging Impact</h3>
@@ -396,7 +396,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales and the other rows award minimums; tap a gross figure for the full breakdown.
+                This table shows take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales and the other rows award minimums. Tap a gross figure to open the full tax breakdown for the nearest round salary.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">

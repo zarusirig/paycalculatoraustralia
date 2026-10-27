@@ -100,7 +100,7 @@ export default function OvertimePenaltyRatesGuidePage() {
         </nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates Australia: Weekend, Public Holiday &amp; Overtime Loadings</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually {HOSPITALITY_OVERTIME.weekdayFirst2Hours} times for the first two or three hours beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week and double time ({HOSPITALITY_OVERTIME.weekdayAfter2Hours.toFixed(1)} times) after that, with {RETAIL_OVERTIME.publicHoliday} times for overtime on a public holiday under awards such as retail. On a {formatAUD(30)} base, 3 hours at time-and-a-half is {formatAUD(30 * RETAIL_OVERTIME.weekdayFirst3Hours * 3)}. This guide covers the multipliers by award, how casual penalties differ and how the loadings are taxed. Rates current from {AWR_EFFECTIVE}.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually {HOSPITALITY_OVERTIME.weekdayFirst2Hours} times for the first two or three hours beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week and double time ({HOSPITALITY_OVERTIME.weekdayAfter2Hours.toFixed(1)} times) after that, with {RETAIL_OVERTIME.publicHoliday} times for overtime on a public holiday under awards such as retail. On a {formatAUD(30)} base, 3 hours at time-and-a-half is {formatAUD(30 * RETAIL_OVERTIME.weekdayFirst3Hours * 3)}. This guide covers the multipliers by award, how casual penalties differ and how the loadings are taxed. The rates on this page are current from {AWR_EFFECTIVE}.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
@@ -112,7 +112,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Penalty Rates in Australia?</h2>
               <p>Penalty rates are higher pay rates that Australian employees receive for working outside standard weekday hours, including weekends, public holidays, late nights, and early mornings. The Fair Work Commission sets these rates through modern awards, which set the minimum for most Australian employees.</p>
               <p>The penalty rate system compensates employees for the social and personal cost of working unsociable hours. A retail worker on the level 1 rate of <strong>{formatAUD(RETAIL_L1.hourly, 2)} per hour</strong> under the General Retail Industry Award receives <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.saturday, 2)} per hour</strong> ({RETAIL_PENALTIES.saturday}x) on Saturdays and <strong>{formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.sunday, 2)} per hour</strong> ({RETAIL_PENALTIES.sunday}x) on Sundays. These loadings directly increase your assessable income for the financial year.</p>
-              <p>Penalty rates operate separately from overtime rates in most awards. Overtime compensates for hours worked beyond the standard <strong>38-hour week</strong>, while penalty rates compensate for <em>when</em> the work occurs. Some shifts attract both penalties simultaneously -- for example, overtime worked on a public holiday triggers the higher of the two applicable rates under most modern awards.</p>
+              <p>Penalty rates operate separately from overtime rates in most awards. Overtime compensates for hours worked beyond the standard <strong>38-hour week</strong>, while penalty rates compensate for <em>when</em> the work occurs. Some shifts meet both triggers at once. Under most modern awards, overtime worked on a public holiday is paid at the higher of the two applicable rates.</p>
               <p>To see how penalty rates affect your take-home pay and income tax brackets, use our <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> with your specific base rate and penalty multiplier.</p>
             </section>
 
@@ -149,7 +149,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             {/* ───────── SECTION 3: Penalty Rates Table by Award Type ───────── */}
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Penalty Rates by Award Type?</h2>
-              <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each links to a full classification-by-classification breakdown. To price your own roster under any award, the Fair Work Ombudsman&apos;s tool applies the same percentages; see our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide.</p>
+              <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each table links to a full classification-by-classification breakdown. The Fair Work Ombudsman&apos;s tool applies the same percentages to a roster under any award; see our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide.</p>
 
               <h3>Retail: General Retail Industry Award ({RETAIL_AWARD.code})</h3>
               <PenaltyTable
@@ -176,7 +176,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               />
               <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <p className="text-sm leading-relaxed text-navy">
-                  <strong>Hospitality evening and night work is not a multiplier.</strong> The award adds a flat <strong>{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} per hour</strong> for evening work and <strong>{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} per hour</strong> at night, on top of the ordinary rate. Guides that print &ldquo;1.15x&rdquo; for hospitality late-night work (including an earlier version of this page) are wrong. Retail, by contrast, genuinely does use a percentage for evening work.
+                  <strong>Hospitality evening and night work is not a multiplier.</strong> The award adds a flat <strong>{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} per hour</strong> for evening work and <strong>{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} per hour</strong> at night, on top of the ordinary rate. Guides that print &quot;1.15x&quot; for hospitality late-night work are wrong. The General Retail Industry Award, by contrast, does use a percentage for evening work.
                 </p>
               </div>
               <p className="text-sm text-warmgray">Full table: <Link href="/hospitality-award-rates/">hospitality award rates</Link>.</p>
@@ -197,7 +197,7 @@ export default function OvertimePenaltyRatesGuidePage() {
 
               <h3>Other awards</h3>
               <p>
-                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers, and several differ materially from the three above, and nursing weekend penalties in particular are higher. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
+                We publish penalty figures only for awards we have verified against the award text and the Fair Work pay guide. The Nurses, Clerks &mdash; Private Sector, Manufacturing and other awards each set their own multipliers. Several differ materially from the three above, and nursing weekend penalties in particular are higher. Rather than reproduce unverified numbers on a page people use to check their pay, we link you to the source: use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool, then open the pay guide for your award.
               </p>
 
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Do Penalty Rates Apply?</h2>
@@ -228,7 +228,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               {/* --- G4 public holiday pay cluster (24 Sep 2026): counts read from the state data --- */}
               <p>In 2026 the number of whole-day state-wide holidays ranges from <strong>{PH_COUNT_MIN}</strong> to <strong>{PH_COUNT_MAX}</strong>, before regional show days and the part-day Christmas Eve and New Year&apos;s Eve holidays in some states. <Link href="/public-holiday-pay/">Public holiday pay rates, your rights and a calculator</Link> &middot; dates by state: {STATE_PUBLIC_HOLIDAYS.map((st, i) => (<span key={st.slug}>{i > 0 ? ", " : ""}<Link href={statePath(st.slug)}>{st.code}</Link></span>))}.</p>
               {/* --- end G4 --- */}
-              <p>Weekend penalty rates are the most significant driver of higher pay for shift workers. A full-time hospitality worker on the level 1 rate of {formatAUD(HOSP_L1.hourly, 2)} per hour who works every Sunday receives <strong>{formatAUD(HOSP_L1.hourly * HOSPITALITY_PENALTIES.sunday, 2)} per hour</strong> ({HOSPITALITY_PENALTIES.sunday}x) for those shifts. Over 52 Sundays at 8 hours that is an extra <strong>{formatAUD(HOSP_L1.hourly * (HOSPITALITY_PENALTIES.sunday - 1) * 8 * 52, 0)}</strong> compared with weekday rates.</p>
+              <p>Weekend penalty rates add up over a year of shifts. A full-time hospitality worker on the level 1 rate of {formatAUD(HOSP_L1.hourly, 2)} per hour who works every Sunday receives <strong>{formatAUD(HOSP_L1.hourly * HOSPITALITY_PENALTIES.sunday, 2)} per hour</strong> ({HOSPITALITY_PENALTIES.sunday}x) for those shifts. Over 52 Sundays at 8 hours that is an extra <strong>{formatAUD(HOSP_L1.hourly * (HOSPITALITY_PENALTIES.sunday - 1) * 8 * 52, 0)}</strong> compared with weekday rates.</p>
             </section>
 
             {/* ───────── SECTION 5: How Are Penalty Rates Taxed ───────── */}
@@ -244,7 +244,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             <section id="award-vs-enterprise-agreement">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Difference Between Award Rate and Enterprise Agreement Penalties?</h2>
               <p>Modern award penalty rates are minimum rates set by the Fair Work Commission, while enterprise agreement penalties are negotiated rates that must meet or exceed the award &quot;Better Off Overall Test&quot; (BOOT). Many employees are paid under an enterprise agreement; the rest are paid award rates or under individual arrangements that cannot go below the award.</p>
-              <p>An enterprise agreement can structure penalties differently from the applicable award. A large supermarket chain&apos;s enterprise agreement, for example, might offer a flat <strong>1.35x</strong> loading for all weekend hours instead of the award&apos;s split between 1.25x Saturday and 1.5x Sunday. The BOOT requires that employees are better off overall -- not necessarily on every single penalty rate -- compared to the underlying modern award.</p>
+              <p>An enterprise agreement can structure penalties differently from the applicable award. A large supermarket chain&apos;s enterprise agreement, for example, might offer a flat <strong>1.35x</strong> loading for all weekend hours instead of the award&apos;s split between 1.25x Saturday and 1.5x Sunday. The BOOT requires that employees are better off overall compared with the underlying modern award, not necessarily better off on every single penalty rate.</p>
 
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -267,7 +267,7 @@ export default function OvertimePenaltyRatesGuidePage() {
                 </div>
               </div>
 
-              <p>Employees covered by enterprise agreements should check their agreement&apos;s penalty schedule directly, as it overrides the modern award rates. Expired enterprise agreements continue to apply until replaced or terminated by the Fair Work Commission.</p>
+              <p>If an enterprise agreement covers you, check the agreement&apos;s penalty schedule directly, because it overrides the modern award rates. An enterprise agreement past its nominal expiry date continues to apply until it is replaced or terminated by the Fair Work Commission.</p>
             </section>
 
             {/* ───────── SECTION 7: Casual vs Full-Time Penalty Rates ───────── */}
@@ -301,7 +301,7 @@ export default function OvertimePenaltyRatesGuidePage() {
                 </div>
               </div>
 
-              <p>Since 26 August 2024, a casual employee who has been employed for at least <strong>6 months</strong> (12 months for a small business employer) and believes they no longer fit the casual definition can notify their employer in writing that they want to become full-time or part-time, under the &quot;employee choice&quot; provisions in the Fair Work Act. Converting to permanent status trades the 25% casual loading for access to paid leave, redundancy pay, and notice of termination. To understand how this change affects your overall salary package, compare scenarios using our <Link href="/take-home-pay-calculator/">Take Home Pay Calculator</Link>.</p>
+              <p>Since 26 August 2024, the &quot;employee choice&quot; provisions in the Fair Work Act let a casual employee notify their employer in writing that they want to become full-time or part-time. To use them, the casual employee must have been employed for at least <strong>6 months</strong> (12 months for a small business employer) and believe they no longer fit the casual definition. Converting to permanent status trades the 25% casual loading for access to paid leave, redundancy pay, and notice of termination. To understand how this change affects your overall salary package, compare scenarios using our <Link href="/take-home-pay-calculator/">Take Home Pay Calculator</Link>.</p>
             </section>
 
             {/* ───────── SECTION 8: Can You Refuse Overtime ───────── */}
@@ -323,13 +323,13 @@ export default function OvertimePenaltyRatesGuidePage() {
             {/* ───────── SECTION 9: What Changed in FY2026-27 ───────── */}
             <section id="fy2026-27-changes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Penalty Rates in FY{SITE_CONFIG.financialYear}?</h2>
-              <p>The Fair Work Commission&apos;s Annual Wage Review 2026 increased modern award minimum wages by <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</strong> from {AWR_EFFECTIVE}, taking the national minimum wage to <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week). Because penalty rates are a multiple of the base award rate, every penalty figure rose with it. Note the increase was <em>not</em> uniform: it was subject to a floor, so the lowest classifications in some awards were lifted to that floor rather than escalated by {(AWR_2026_FLOORS.increase * 100).toFixed(2)}%.</p>
+              <p>The Fair Work Commission&apos;s Annual Wage Review 2026 increased modern award minimum wages by <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</strong> from {AWR_EFFECTIVE}, taking the national minimum wage to <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week). Because penalty rates are a multiple of the base award rate, every penalty figure rose with it. The increase was <em>not</em> uniform: it was subject to a floor, so the lowest classifications in some awards were lifted to that floor rather than escalated by {(AWR_2026_FLOORS.increase * 100).toFixed(2)}%.</p>
               <p>Key changes affecting penalty rates and overtime in the {SITE_CONFIG.financialYear} financial year include:</p>
               <ul>
                 <li>The superannuation guarantee rate is <strong>12%</strong>, and from 1 July 2026 super must be paid on each payday rather than quarterly. Overtime hours generally still do not attract superannuation (see FAQ below)</li>
                 <li>The <strong>$18,201&ndash;$45,000</strong> bracket is now taxed at <strong>15%</strong>, down from 16%, and the <strong>$45,001&ndash;$135,000</strong> bracket at 30%, so penalty rate income is taxed slightly more lightly this year</li>
                 <li>The &quot;Right to Disconnect&quot; provisions (effective August 2024 for large employers, August 2025 for small employers) give employees the right to refuse contact outside working hours unless the refusal is unreasonable</li>
-                <li>Casual conversion pathway changes streamline the process for casual workers to convert to permanent employment after 12 months</li>
+                <li>Casual conversion pathway changes simplify the process for casual workers to convert to permanent employment after 12 months</li>
               </ul>
               <p>Penalty rate earnings between $45,001 and $135,000 are taxed at <strong>30%</strong>. The 32.5% bracket that many older guides still quote has not existed since the Stage 3 changes. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your total earnings including penalties.</p>
             </section>
@@ -341,16 +341,16 @@ export default function OvertimePenaltyRatesGuidePage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
               <p>Explore these tools and guides to calculate your total take-home pay including overtime, penalty rates, superannuation, and income tax for the {SITE_CONFIG.financialYear} financial year.</p>
               <ul>
-                <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> -- Enter your base rate, penalty multiplier, and hours to calculate after-tax overtime earnings</li>
-                <li><Link href="/award-rates/">Award Rates Guide</Link> -- How modern awards set minimum pay, and which one covers you</li>
-                <li><Link href="/retail-award-rates/">Retail Award Rates</Link> -- Full classification table and penalty rates for {RETAIL_AWARD.code}</li>
-                <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link> -- Classification rates, flat-cash evening loadings and junior scales</li>
-                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> -- Social, community, home care and disability, with the Equal Remuneration Order applied</li>
-                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link> -- Minimum wage by age across awards</li>
-                <li><Link href="/take-home-pay-calculator/">Take Home Pay Calculator</Link> -- Calculate your net pay after tax, Medicare levy, and superannuation deductions</li>
-                <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> -- Convert hourly rates to annual salary equivalents for comparison</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> -- Model your total income tax including penalty rate earnings across FY{SITE_CONFIG.financialYear} brackets</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> -- Estimate your employer SG contributions and projected super balance at retirement</li>
+                <li><Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link>: Enter your base rate, penalty multiplier, and hours to calculate after-tax overtime earnings</li>
+                <li><Link href="/award-rates/">Award Rates Guide</Link>: How modern awards set minimum pay, and which one covers you</li>
+                <li><Link href="/retail-award-rates/">Retail Award Rates</Link>: Full classification table and penalty rates for {RETAIL_AWARD.code}</li>
+                <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link>: Classification rates, flat-cash evening loadings and junior scales</li>
+                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link>: Social, community, home care and disability, with the Equal Remuneration Order applied</li>
+                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link>: Minimum wage by age across awards</li>
+                <li><Link href="/take-home-pay-calculator/">Take Home Pay Calculator</Link>: Calculate your net pay after tax, Medicare levy, and superannuation deductions</li>
+                <li><Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>: Convert hourly rates to annual salary equivalents for comparison</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: Model your total income tax including penalty rate earnings across FY{SITE_CONFIG.financialYear} brackets</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: Estimate your employer SG contributions and projected super balance at retirement</li>
               </ul>
             </section>
 
@@ -361,7 +361,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             </section>
 
             <div className="mt-12 not-prose">
-              <MethodologyDisclosure title="How this guide works"><p>The retail, hospitality and SCHADS penalty tables on this page derive from constants verified against the Fair Work Ombudsman pay guides and consolidated award texts, and are regression-tested, including the two rules most often modelled wrongly, that hospitality evening and night loadings are flat cash rather than multipliers, and that casual penalties are additive rather than compounded. Rates are current from {AWR_EFFECTIVE}. We do not publish penalty figures for awards we have not verified; those link to Fair Work instead. Tax calculations use ATO brackets for FY{SITE_CONFIG.financialYear}.</p></MethodologyDisclosure>
+              <MethodologyDisclosure title="How this guide works"><p>The retail, hospitality and SCHADS penalty tables on this page derive from constants verified against the Fair Work Ombudsman pay guides and consolidated award texts. Regression tests cover them, including the two rules most often modelled wrongly: hospitality evening and night loadings are flat cash rather than multipliers, and casual penalties are additive rather than compounded. Rates are current from {AWR_EFFECTIVE}. We do not publish penalty figures for awards we have not verified; those link to Fair Work instead. Tax calculations use ATO brackets for FY{SITE_CONFIG.financialYear}.</p></MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("overtime-penalty-rates-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>

@@ -13,11 +13,11 @@ export interface FtbFaq { q: string; a: string }
 export const FTB_FAQS: readonly FtbFaq[] = [
   {
     q: "How much is Family Tax Benefit Part A?",
-    a: `For ${A.financialYear}, the maximum rate is ${formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight for each child aged 0 to 12 and ${formatAUD(A.maxFortnightly.age13to19, 2)} for each child aged 13 to 15, or 16 to 19 in secondary study. The base rate is ${formatAUD(A.baseFortnightly, 2)} per child. On top, an FTB Part A supplement of up to ${formatAUD(A.supplementAnnual, 2)} per child is paid after the year is balanced, if your family income is ${formatAUD(A.supplementIncomeLimit)} or less.`,
+    a: `For ${A.financialYear}, the maximum rate is ${formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight for each child aged 0 to 12 and ${formatAUD(A.maxFortnightly.age13to19, 2)} for each child aged 13 to 15, or 16 to 19 in secondary study. The base rate is ${formatAUD(A.baseFortnightly, 2)} per child. The FTB Part A supplement of up to ${formatAUD(A.supplementAnnual, 2)} per child is also paid after the year is balanced, if your family's adjusted taxable income is ${formatAUD(A.supplementIncomeLimit)} or less.`,
   },
   {
     q: "What is the income limit for Family Tax Benefit Part A?",
-    a: `You get the maximum rate if your family's adjusted taxable income is ${formatAUD(A.lowerThreshold)} or less. Above that it reduces by 20 cents per dollar until it reaches the base rate, then holds there until ${formatAUD(A.higherThreshold)}, above which it reduces by 30 cents per dollar. With one child, FTB Part A stops at ${formatAUD(A.publishedNilLimit.oneChild)}; with two children aged 0–12, at ${formatAUD(A.publishedNilLimit.twoChildren0to12)}; with three, at ${formatAUD(A.publishedNilLimit.threeChildren0to12)}.`,
+    a: `FTB Part A is paid at the maximum rate if your family's adjusted taxable income is ${formatAUD(A.lowerThreshold)} or less. Above that it reduces by 20 cents per dollar until it reaches the base rate, then holds there until ${formatAUD(A.higherThreshold)}, above which it reduces by 30 cents per dollar. With one child, FTB Part A stops at ${formatAUD(A.publishedNilLimit.oneChild)}; with two children aged 0 to 12, at ${formatAUD(A.publishedNilLimit.twoChildren0to12)}; with three, at ${formatAUD(A.publishedNilLimit.threeChildren0to12)}.`,
   },
   {
     q: "How much is Family Tax Benefit Part B?",
@@ -29,11 +29,11 @@ export const FTB_FAQS: readonly FtbFaq[] = [
   },
   {
     q: "How much FTB will we get on $100,000 with two kids?",
-    a: `Two children aged 0–12 on a family income of ${formatAUD(100_000)}: FTB Part A is about ${formatAUD(TWO_KIDS_100K.fortnightly, 2)} a fortnight (${formatAUD(TWO_KIDS_100K.annualExSupplement)} a year), down from the ${formatAUD(2 * A.maxFortnightly.age0to12, 2)} maximum by 20 cents for every dollar over ${formatAUD(A.lowerThreshold)}. No supplement is paid over ${formatAUD(A.supplementIncomeLimit)}. FTB Part B depends on who earns the ${formatAUD(100_000)}: a single-income couple with a child under 5 would get the full ${formatAUD(B.maxFortnightly.youngestUnder5, 2)} a fortnight.`,
+    a: `With two children aged 0 to 12 and a family income of ${formatAUD(100_000)}, FTB Part A is about ${formatAUD(TWO_KIDS_100K.fortnightly, 2)} a fortnight (${formatAUD(TWO_KIDS_100K.annualExSupplement)} a year), down from the ${formatAUD(2 * A.maxFortnightly.age0to12, 2)} maximum by 20 cents for every dollar over ${formatAUD(A.lowerThreshold)}. The FTB Part A supplement is not paid above ${formatAUD(A.supplementIncomeLimit)}. FTB Part B depends on who earns the ${formatAUD(100_000)}: a single-income couple whose youngest child is under 5 gets the full ${formatAUD(B.maxFortnightly.youngestUnder5, 2)} a fortnight.`,
   },
   {
     q: "Does working more reduce Family Tax Benefit?",
-    a: `It can. Between ${formatAUD(A.lowerThreshold)} and the base-rate point, every extra dollar of family income reduces Part A by 20 cents, and above ${formatAUD(A.higherThreshold)} by 30 cents. For couples, extra income earned by the lower earner above ${formatAUD(B.secondaryFreeArea)} a year also reduces Part B by 20 cents per dollar. FTB is paid on your estimate and balanced against your tax return, so update your estimate when your hours change to avoid a debt.`,
+    a: `Yes. FTB Part A starts to fall once family income is over ${formatAUD(A.lowerThreshold)}. From there to the base-rate point, every extra dollar of family income reduces Part A by 20 cents, and above ${formatAUD(A.higherThreshold)} by 30 cents. For couples, extra income earned by the lower earner above ${formatAUD(B.secondaryFreeArea)} a year also reduces Part B by 20 cents per dollar. FTB is paid on your family income estimate and balanced against your tax return, so update your estimate with Services Australia when your hours change to avoid an FTB debt.`,
   },
   {
     q: "What is adjusted taxable income for FTB?",
@@ -45,6 +45,6 @@ export const FTB_FAQS: readonly FtbFaq[] = [
   },
   {
     q: "Can I get FTB if I get Parenting Payment?",
-    a: `Yes. If you or your partner get an income support payment such as Parenting Payment or JobSeeker, and it isn't reduced to $0 by employment income, you can get the maximum rate of FTB Part A without the income test. The ${formatAUD(A.supplementIncomeLimit)} income test for the supplement still applies.`,
+    a: `Yes. If you or your partner get an income support payment such as Parenting Payment or JobSeeker, and it isn't reduced to $0 by employment income, you can get the maximum rate of FTB Part A without the income test. The ${formatAUD(A.supplementIncomeLimit)} income limit for the FTB Part A supplement still applies.`,
   },
 ];

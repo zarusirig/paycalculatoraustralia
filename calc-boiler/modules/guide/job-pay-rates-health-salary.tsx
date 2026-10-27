@@ -302,7 +302,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
             {page.staffSpecialist && (
               <section id="public-hospital">
                 <h2 style={HEADING_FONT}>Public hospital staff specialist salaries</h2>
-                <p>Base salaries before allowances, for the states whose schedule we have read from the official source.</p>
+                <p>The tables below give staff specialist base salaries before allowances, for each state whose schedule we have read from the official source.</p>
                 {STAFF_SPECIALIST_SCALES.map((scale) => (
                   <div key={scale.state} className="not-prose my-8">
                     <h3 className="mb-2 text-xl font-bold text-navy" style={HEADING_FONT} id={`staff-specialist-${scale.state.toLowerCase()}`}>
@@ -390,7 +390,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                 </tbody>
               </TableShell>
               <p>
-                Each figure treated as taxable income at 2026–27 rates, with private hospital cover (
+                Each figure is treated as taxable income at 2026-27 rates, with private hospital cover (
                 <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link> otherwise); the last column
                 applies only with a HELP debt, and super is paid on top at {Math.round(SG_RATE * 100)}%.
                 {anyOver293 ? (

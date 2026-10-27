@@ -139,7 +139,7 @@ export function SalaryHub({ copy, related }: { copy: HubCopy; related: { href: s
           ))}
 
           <p className="text-sm text-warmgray">
-            Figures beside each salary: {copy.figureLabel}. {SITE_CONFIG.financialYear} resident tax rates, Medicare levy included, no HECS-HELP and private hospital cover assumed. Every page has the per-period breakdown, the HECS-HELP case and super.
+            Figures beside each salary: {copy.figureLabel}. {SITE_CONFIG.financialYear} resident tax rates and the Medicare levy apply, with private hospital cover held and no HECS-HELP debt. Each salary page adds the per-period breakdown, the HECS-HELP case and super.
           </p>
 
           <section>

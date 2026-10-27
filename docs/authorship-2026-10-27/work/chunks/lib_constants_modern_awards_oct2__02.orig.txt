@@ -1,0 +1,531 @@
+  unverified: [
+    "Dental assistant (Levels 3, 5, 6, 7) and pathology collector (Levels 5, 6, 7) transitional rates to 31 December 2026 (cl 16.2(b)–(c))",
+    "The classification translation rules for staff who were already employed on 30 September 2026 (Schedule J.4), which can leave an individual on a higher rate than the new table",
+    "Later phase-in stages of the Health Professional rates (30 June 2027 to 2030). Do not assume this table is the rate you will be paid next year",
+    "Support Services juniors, cooking, dental technician and gardening apprentices (cl 16.3–16.7) and other special rates",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Timber Industry Award 2020 (MA000071). Consolidated to 1 July 2026 (PR799280
+// and PR799351). Three streams, each with its own classification table.
+// -----------------------------------------------------------------------------
+
+const TS = (stream: string, raw: string): string =>
+  raw
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l) => `${stream} — ${l}`)
+    .join("\n");
+
+export const TIMBER_STREAMS = {
+  general: "General Timber",
+  furniture: "Wood and Timber Furniture",
+  pulp: "Pulp and Paper",
+} as const;
+
+const TIMBER_GENERAL_RAW = `
+Level 1|978.10|25.74
+Level 2|1004.90|26.44
+Level 3|1029.10|27.08
+Level 4|1062.90|27.97
+Level 5|1119.10|29.45
+Level 6|1154.30|30.38
+Level 7|1221.10|32.13
+`;
+
+export const TIMBER_AWARD: ModernAwardData = {
+  key: "timber",
+  meta: {
+    name: "Timber Industry Award 2020",
+    shortName: "Timber Award",
+    code: "MA000071",
+    href: "/timber-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280 and PR799351)",
+    determination: "PR799351",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000071.html",
+    summaryUrl: SUMMARY("MA000071"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 12.2",
+    verifiedOn: VERIFIED_ON,
+    ratesLabel: "Adult minimum rates for the General Timber, Wood and Timber Furniture and Pulp and Paper streams",
+  },
+  // cl 20.1(a)–(c).
+  rates: parse(`
+${TS(TIMBER_STREAMS.general, TIMBER_GENERAL_RAW)}
+${TS(TIMBER_STREAMS.furniture, `
+Level 1|978.10|25.74
+Level 2|1004.90|26.44
+Level 3|1029.10|27.08
+Level 4|1062.90|27.97
+Level 4A|1080.20|28.43
+Level 5|1119.10|29.45
+Level 6|1154.30|30.38
+Level 7|1221.10|32.13
+`)}
+${TS(TIMBER_STREAMS.pulp, `
+Level 1|1013.50|26.67
+Level 2|1046.90|27.55
+Level 3|1067.30|28.09
+Level 4|1087.40|28.62
+Level 5|1119.10|29.45
+Level 6|1154.30|30.38
+Level 7|1189.40|31.30
+Level 8|1221.10|32.13
+Level 9|1256.20|33.06
+`)}
+`),
+  ratesClause: "cl 20.1(a)–(c)",
+  entryLevel: "General Timber — Level 1",
+  classificationNotes: [
+    { level: "Three streams", description: "The General Timber stream (Schedule A), the Wood and Timber Furniture stream (Schedule B) and the Pulp and Paper stream (Schedule C) each have their own classification definitions and minimum rate table. Find your stream first, then your level." },
+    { level: "Level 4A", description: "A Wood and Timber Furniture stream grade only, sitting between Level 4 and Level 5 (cl 20.1(b))." },
+    { level: "Pulp and Paper", description: "Has nine levels and starts higher: Level 1 is $26.67 an hour against $25.74 in the other two streams (cl 20.1(c))." },
+    { level: "Forest work", description: "A forest work allowance of $35.81 a week and a low loader allowance are paid for all purposes (cl 22.2) and raise the ordinary hourly rate for the employees who get them. They are not in the rows above." },
+  ],
+  matrix: [
+    { label: "Mon–Fri ordinary hours", fullTime: 1, casual: 1.25, casualBasis: "additive" },
+    { label: "Saturday — first 2 hrs", fullTime: 1.5, casual: 1.5, employment: "permanent" },
+    { label: "Saturday — after 2 hrs", fullTime: 2.0, casual: 2.0, employment: "permanent" },
+    { label: "Sunday", fullTime: 2.0, casual: 2.0, employment: "permanent" },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5, employment: "permanent" },
+    {
+      label: "Public holiday (General Timber only)",
+      fullTime: 2.5,
+      casual: 2.75,
+      casualBasis: "additive",
+      employment: "casual",
+      appliesTo: [
+        "General Timber — Level 1",
+        "General Timber — Level 2",
+        "General Timber — Level 3",
+        "General Timber — Level 4",
+        "General Timber — Level 5",
+        "General Timber — Level 6",
+        "General Timber — Level 7",
+      ],
+    },
+  ],
+  casualPenaltyBasis: "compounded",
+  casualRuleSummary:
+    "A casual's ordinary rate is the minimum plus 25% (cl 12.2). Casual overtime is then a percentage of that casual rate, so 150% becomes 187.5% and 200% becomes 250% of the minimum rate (Schedule D.3.3). The casual public holiday rate of 275% (the 250% plus the 25% loading) is tabulated for the General Timber stream only (cl 27.1(d)); for the other streams no casual public holiday dollar rate is printed.",
+  // cl 27.1, 27.3(c)–(d) and Schedule D.2.1 / D.3.1.
+  penalties: [
+    { label: "Day worker, Saturday, first 2 hours", fullTime: 1.5, casual: 1.5, employment: "permanent", note: "All Saturday work for weekly employees on the employer's instructions: minimum 3 hours (cl 27.1(a)). The casual overtime rates apply to a casual who works Saturday (see Overtime)." },
+    { label: "Day worker, Saturday, after 2 hours", fullTime: 2.0, casual: 2.0, employment: "permanent" },
+    { label: "Day worker — Sunday", fullTime: 2.0, casual: 2.0, employment: "permanent", note: "Minimum 3 hours (cl 27.1(b)). Pulp and Paper: 200% for a minimum of 4 hours (cl 27.3(c)(ii))." },
+    { label: "Day worker — public holiday (minimum 3 hours)", fullTime: 2.5, casual: 2.75, casualBasis: "additive", note: "Casual 275% applies in the General Timber stream only (cl 27.1(d))." },
+    { label: "Afternoon shift or rotating night shift", fullTime: 1.15, casual: 1.4, casualBasis: "additive", note: "Casual 140% (Schedule D.3.2)." },
+    { label: "Night shift, non-rotating", fullTime: 1.3, casual: 1.55, casualBasis: "additive", note: "Casual 155% (Schedule D.3.2)." },
+  ],
+  penaltiesClause: "cl 27 and Schedule D",
+  penaltyNotes: [
+    "Day workers' ordinary hours are 6.30 am to 6.00 pm Monday to Friday (cl 17.2(a)), and can be worked on any day by agreement (cl 17.2(c)). Without that agreement, weekend work is paid at the Saturday and Sunday rates above.",
+    "The award tabulates casual weekend rates for shiftworkers (Saturday 175%, Sunday 225%, Schedule D.3.2) but not for a casual day worker, who is paid the casual overtime rates for Saturday and Sunday work. We therefore publish no casual Saturday or Sunday dollar column for day work.",
+    "Shift loadings: afternoon shift 115%, rotating night shift 115%, non-rotating night shift 130% (cl 27.3(b)). Saturday, Sunday and public holiday ordinary shifts are 150% (Saturday), 200% (Sunday and public holiday) in substitution for the shift loading (cl 27.3(d)).",
+  ],
+  // cl 26.2 and Schedule D.2.3 / D.3.3.
+  overtime: [
+    { label: "Day work, first 2 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Day work, after 2 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Sunday", fullTime: 2.0, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: null },
+  ],
+  overtimeClause: "cl 26.2 and Schedule D.2.3 / D.3.3",
+  overtimeNotes: [
+    "Overtime is all time worked outside the 6.30 am to 6.00 pm spread or in excess of the ordinary daily hours (cl 26.1). Each day stands alone, and the hourly rate for overtime is the weekly rate divided by 38 (cl 26.2(c)–(d)).",
+    "For a casual day worker the percentages apply to the casual ordinary rate, so first-2-hours overtime is 187.5% and after-2-hours or Sunday overtime is 250% of the minimum rate (cl 12.3, Schedule D.3.3).",
+    "Shiftworkers' overtime differs: 200% on continuous work, otherwise 150% for the first 2 hours and 200% after (cl 26.3(a)). Not reproduced in the table.",
+  ],
+  junior: null,
+  noJuniorNote:
+    "Unapprenticed juniors in the Timber Industry Award are paid a percentage of the Level 2 rate for their stream (age 16, 40%; 17, 55%; 18, 70%; 19, 85%; 20, 100%), calculated in multiples of 5 cents (cl 20.6–20.7). This page does not tabulate them. Apprentices are paid a percentage of Level 5 by year (cl 20.3).",
+  juniorPhaseIn: null,
+  // Schedule E (cl 22, 23).
+  allowances: [
+    { name: "Forest work allowance (not pieceworkers)", amount: 35.81, unit: "per week", clause: "cl 22.3", note: "Paid for all purposes. NOT in the rates above." },
+    { name: "Low loader allowance", amount: 1.9, unit: "per extra tonne over 43 tonnes GCM", clause: "cl 22.4", note: "Paid for all purposes." },
+    { name: "Leading hand, supervising 2 to 6 employees", amount: 36.93, unit: "per week", clause: "cl 22.5(a)" },
+    { name: "Leading hand, supervising more than 6 employees", amount: 57.07, unit: "per week", clause: "cl 22.5(b)" },
+    { name: "First aid allowance", amount: 22.38, unit: "per week", clause: "cl 22.9" },
+    { name: "Dirty work allowance", amount: 3.69, unit: "per day", clause: "cl 22.11" },
+    { name: "Height money", amount: 2.24, unit: "per day or shift", clause: "cl 22.16" },
+    { name: "Meal allowance (overtime)", amount: 19.14, unit: "per meal", clause: "cl 23.3(a)" },
+    { name: "Vehicle allowance", amount: 1.0, unit: "per km", clause: "cl 23.2(a)" },
+    { name: "Camping allowance (including firefighters)", amount: 32.19, unit: "per working day", clause: "cl 23.5", note: "Maximum $225.36 a week." },
+  ],
+  allowancesClause: "cl 22 and cl 23",
+  hoursNotes: [
+    "A casual engaged for part of a day is paid for at least 4 hours (cl 12.1).",
+    "Ordinary hours average 38 a week over a cycle of 1 to 4 weeks, worked between 6.30 am and 6.00 pm Monday to Friday (cl 17.2).",
+    "Wood and Timber Furniture employees can be paid by results if the rates let an average worker earn at least 12.5% over the minimum weekly rate, with the weekly rate guaranteed (cl 20.2). General Timber pieceworkers are covered by cl 13 and are not in this table.",
+  ],
+  unverified: [
+    "General Timber stream piecework and the district piece rates (cl 13 and Schedule H)",
+    "Shiftworker overtime and shift Saturday, Sunday and public holiday dollar rates (Schedule D.2.2, D.2.4–D.2.5, D.3.2)",
+    "Apprentice, saw doctor apprentice and unapprenticed junior rates (cl 20.3–20.7), fire fighting employees (cl 14) and watchpersons (cl 17.4)",
+    "Casual Saturday and Sunday ordinary hours for day workers, and the casual public holiday rate in the Wood and Timber Furniture and Pulp and Paper streams, which the award does not tabulate",
+    "Whether the forest work and low loader allowances (both for all purposes) apply to you, which would raise your ordinary hourly rate",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Meat Industry Award 2020 (MA000059). Consolidated to 1 July 2026 (PR799280
+// and PR799339). Three types of establishment carry different spans of hours and
+// weekend penalties (processing, manufacturing, retail).
+// -----------------------------------------------------------------------------
+
+const MEAT_PROCESSING = ["MI 1", "MI 2", "MI 3", "MI 4", "MI 5", "MI 6", "MI 7"] as const;
+
+export const MEAT_AWARD: ModernAwardData = {
+  key: "meat-industry",
+  meta: {
+    name: "Meat Industry Award 2020",
+    shortName: "Meat Industry Award",
+    code: "MA000059",
+    href: "/meat-industry-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280 and PR799339)",
+    determination: "PR799339",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000059.html",
+    summaryUrl: SUMMARY("MA000059"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 12.4(a)",
+    verifiedOn: VERIFIED_ON,
+  },
+  // cl 16.1.
+  rates: parse(`
+MI 1|978.10|25.74
+MI 2|1004.90|26.44
+MI 3|1010.90|26.60
+MI 4|1034.60|27.23
+MI 5|1052.90|27.71
+MI 6|1074.50|28.28
+MI 7|1119.10|29.45
+MI 8|1160.20|30.53
+`),
+  ratesClause: "cl 16.1",
+  entryLevel: "MI 1",
+  classificationNotes: [
+    { level: "MI 1 to MI 7", description: "Production, processing and trade classifications in meat processing, manufacturing and retail establishments, from entry-level labour (MI 1) to trade-qualified and advanced (MI 7) (cl 13, Schedule A)." },
+    { level: "MI 8", description: "The highest classification. The award's own penalty tables for meat processing and manufacturing establishments stop at MI 7; MI 8 appears in the retail establishment tables (Schedule B.3), so the processing and manufacturing weekend columns below are not shown for MI 8." },
+    { level: "Establishment type", description: "The spread of hours and weekend rates depend on whether you work in a meat processing, meat manufacturing or meat retail establishment (cl 14.3–14.5). Retail employees of a processing or manufacturing establishment are treated as retail." },
+  ],
+  matrix: [
+    { label: "Mon–Fri ordinary hours", fullTime: 1, casual: 1.25 },
+    { label: "Saturday, processing (if agreed)", fullTime: 1.5, casual: 1.5, casualTabulated: true, appliesTo: MEAT_PROCESSING },
+    { label: "Sunday, processing (if agreed)", fullTime: 2.0, casual: 2.0, casualTabulated: true, appliesTo: MEAT_PROCESSING },
+    { label: "Saturday, manufacturing / retail", fullTime: 1.25, casual: 1.25, casualTabulated: true },
+    { label: "Sunday, retail", fullTime: 1.5, casual: 1.5, casualTabulated: true },
+  ],
+  // cl 24 and Schedule B.
+  penalties: [
+    { label: "Processing, Saturday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the same 150%, not 150% plus a loading (Schedule B.1.3)." },
+    { label: "Processing, Sunday ordinary hours (only if agreed under cl 14.3(b))", fullTime: 2.0, casual: 2.0, casualTabulated: true, note: "Casuals are paid the same 200%, with no loading on top (Schedule B.1.3)." },
+    { label: "Manufacturing, Saturday, up to 4 ordinary hours between 6 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.2(a)(ii))." },
+    { label: "Retail, Saturday ordinary hours between 4 am and 6 pm", fullTime: 1.25, casual: 1.25, casualTabulated: true, note: "A casual gets this 125% instead of the casual loading (cl 24.3(c))." },
+    { label: "Retail, Sunday ordinary hours between 8 am and 6 pm", fullTime: 1.5, casual: 1.5, casualTabulated: true, note: "Casuals are paid the weekend penalty instead of the casual loading (cl 24.3(c))." },
+  ],
+  penaltiesClause: "cl 24 and Schedule B.1–B.3",
+  penaltyNotes: [
+    "Weekend penalties are paid in place of the casual loading, not on top of it: a casual who works ordinary hours on a weekend gets the weekend rate shown (cl 24.1, 24.2(a)(ii), 24.3(c)). That is why a casual Saturday in a processing establishment is 150%, not 175%.",
+    "Spreads of hours: processing, Monday to Friday 6.00 am to 8.00 pm (Saturday and Sunday only by agreement); manufacturing, Monday to Saturday 6.00 am to 6.00 pm with up to 4 ordinary hours on Saturday; retail, Monday to Friday 4.00 am to 9.00 pm, Saturday 4.00 am to 6.00 pm and Sunday 8.00 am to 6.00 pm (cl 14.3–14.5).",
+    "Public holiday pay is not tabulated here. It is a different rate per holiday: Christmas Day and Anzac Day 200%, Good Friday 150% for the first 4 hours then 200%, any other public holiday 150% for the first 2 hours then 200%; and for employees other than casuals those rates are paid in addition to the ordinary pay for the day (cl 31.3).",
+  ],
+  // cl 22.1.
+  overtime: [
+    { label: "Monday to Saturday — first 3 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Monday to Saturday — after 3 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Sunday — all overtime in meat processing establishments", fullTime: 2.0, casual: 2.0 },
+  ],
+  overtimeClause: "cl 22.1 and Schedule B.1.2 / B.2.2 / B.3.2",
+  overtimeNotes: [
+    "Overtime is all time outside the ordinary spread of hours for the establishment type (cl 22.1(a)). Sunday overtime in a meat processing establishment has a minimum payment of 4 hours (cl 22.1(b)).",
+    "The casual loading is not paid on overtime hours, so a casual's overtime percentages are the same as a permanent employee's (cl 22.1(c)).",
+  ],
+  casualPenaltyBasis: "additive",
+  publicHolidayCasualUnpublished: true,
+  // cl 16.2.
+  junior: {
+    scale: [
+      { age: "Under 17", percentage: 0.5 },
+      { age: "17", percentage: 0.6 },
+      { age: "18", percentage: 0.75 },
+      { age: "19", percentage: 0.85 },
+      { age: "20 and over", percentage: 1 },
+    ],
+    clause: "cl 16.2",
+    appliesTo: "the adult rate for the classification (full-time juniors: the weekly rate; part-time and casual juniors: the hourly rate)",
+    adultAge: 20,
+  },
+  juniorPhaseIn: null,
+  // Schedule C.
+  allowances: [
+    { name: "Leading hand, supervising 3 to 9 employees", amount: 17.91, unit: "per week", clause: "cl 20.2(c)(i)" },
+    { name: "Leading hand, supervising 10 or more employees", amount: 25.74, unit: "per week", clause: "cl 20.2(c)(ii)" },
+    { name: "Cold temperature, below zero but not below −16°C", amount: 0.77, unit: "per hour", clause: "cl 20.2(a)", note: "Higher bands: $1.33, $1.88 and $2.56 an hour as it gets colder (cl 20.2(a))." },
+    { name: "First aid allowance", amount: 4.18, unit: "per day", clause: "cl 20.2(b)" },
+    { name: "Clothing, meat processing establishments", amount: 3.7, unit: "per week", clause: "cl 20.3(a)(i)", note: "Or $0.74 a day." },
+    { name: "Meal allowance (overtime of 1.5 hours or more)", amount: 19.14, unit: "per occasion", clause: "cl 20.3(b)" },
+  ],
+  allowancesClause: "cl 20 and Schedule C",
+  hoursNotes: [
+    "A casual's minimum engagement is 4 hours a day or shift (2 hours for casual cleaners and 3 hours for casual bookkeeping clerks) (cl 12.3, 12.2). A casual's ordinary hours cannot exceed 38 in a week (cl 14.1(c)).",
+    "A full-time employee's ordinary hours are 38 a week, or an average of 38 within 152 hours in 28 days, and no more than 10 hours on any day or shift (cl 14.1).",
+    "Cleaners can work ordinary hours from 6.30 am to midnight and get 105% for hours starting after 8.30 am and before noon, and 112.5% for hours starting at noon or later and finishing by midnight (cl 14.2, 24.4).",
+  ],
+  unverified: [
+    "Public holiday dollar rates, which differ by holiday and are paid in addition to ordinary pay for non-casuals (cl 31.3)",
+    "Daily hire employees (cl 11), payment by results (cl 18), and relieving inspection duties (cl 19)",
+    "Shiftwork rates (cl 23), load out area and cleaner rates other than those described above, and annual leave for shiftworkers",
+    "Apprentice and trainee rates (cl 16.3–16.5) and the supported wage system",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Commercial Sales Award 2020 (MA000083). Consolidated to 1 July 2026 (PR799280
+// and PR799363). An OCCUPATIONAL award: commercial travellers, merchandisers
+// and advertising sales representatives, unless another modern award has a
+// classification for the work.
+// -----------------------------------------------------------------------------
+
+export const COMMERCIAL_SALES_AWARD: ModernAwardData = {
+  key: "commercial-sales",
+  meta: {
+    name: "Commercial Sales Award 2020",
+    shortName: "Commercial Sales Award",
+    code: "MA000083",
+    href: "/commercial-sales-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280 and PR799363)",
+    determination: "PR799363",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000083.html",
+    summaryUrl: SUMMARY("MA000083"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 11.1(a)",
+    verifiedOn: VERIFIED_ON,
+  },
+  // cl 15.1.
+  rates: parse(`
+Probationary Traveller|1010.52|26.59
+Merchandiser|1044.00|27.47
+Commercial Traveller / Advertising Sales Representative|1122.80|29.55
+`),
+  ratesClause: "cl 15.1",
+  entryLevel: "Probationary Traveller",
+  classificationNotes: [
+    { level: "Probationary Traveller", description: "Paid 90% of the Commercial Traveller / Advertising Sales Representative weekly rate (cl 15.1 footnote)." },
+    { level: "Merchandiser", description: "Stocks, displays and promotes product in outlets (cl 4.1)." },
+    { level: "Commercial Traveller / Advertising Sales Representative", description: "Sells goods or advertising to customers away from the employer's premises. A Commercial Traveller can never be paid solely by commission, salary or retainer below this minimum rate (cl 15.4)." },
+  ],
+  matrix: [
+    { label: "Mon–Fri to 6 pm", fullTime: 1, casual: 1.25 },
+    { label: "Saturday", fullTime: 1.5, casual: 1.75 },
+    { label: "Sunday", fullTime: 2.0, casual: 2.25 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.75 },
+  ],
+  // cl 19.1–19.2 and 25.3; Schedule A.1.1 / A.2.1.
+  penalties: [
+    { label: "Monday to Friday after 6.00 pm", fullTime: 1.5, casual: 1.75, note: "Also any work beyond ordinary hours (cl 19.1(a), 19.2(a))." },
+    { label: "Saturday (minimum 2 hours)", fullTime: 1.5, casual: 1.75, note: "Cl 19.1(b), 19.2(b)." },
+    { label: "Sunday (minimum 3 hours)", fullTime: 2.0, casual: 2.25, note: "Cl 19.1(c), 19.2(c)." },
+    { label: "Public holiday (minimum 3 hours)", fullTime: 2.5, casual: 2.75, note: "Cl 25.3; casual 275% per Schedule A.2.1. Instead of this payment, 2.5 days' paid leave may be granted by agreement." },
+    { label: "Travelling for work on a weekend or public holiday", fullTime: 1.5, casual: 1.75, note: "150% of the minimum hourly rate for travelling time, minimum 3 hours' travelling (cl 25.4; Schedule A.1.1)." },
+  ],
+  penaltiesClause: "cl 19, cl 25.3–25.4 and Schedule A",
+  penaltyNotes: [
+    "The Commercial Sales Award lets ordinary hours be worked on any day of the week (cl 13.3), but pays a higher rate for any work after 6.00 pm on a weekday, on a Saturday or on a Sunday. In practice these are the overtime-style rates the pay guide prints in its ordinary and penalty rates table.",
+    "Casual rates are the permanent percentage plus the 25% loading: 150% becomes 175%, 200% becomes 225%, 250% becomes 275% (cl 19.2 NOTE, Schedule A.2.1).",
+  ],
+  // cl 19.1–19.2.
+  overtime: [
+    { label: "Monday to Friday, after 6.00 pm or beyond ordinary hours", fullTime: 1.5, casual: 1.75 },
+    { label: "Saturday", fullTime: 1.5, casual: 1.75 },
+    { label: "Sunday", fullTime: 2.0, casual: 2.25 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.75 },
+  ],
+  overtimeClause: "cl 19 and Schedule A.1.2 / A.2.1",
+  overtimeNotes: [
+    "Full-time and part-time employees: 150% of the minimum hourly rate after 6.00 pm or beyond ordinary hours Monday to Friday, 150% on a Saturday and 200% on a Sunday (cl 19.1). Casuals: 175%, 175% and 225% (cl 19.2).",
+    "Ordinary hours are an average of 38 a week with a maximum of 152 over 28 consecutive days and no more than 10 on any day (cl 13.2–13.4).",
+  ],
+  casualPenaltyBasis: "additive",
+  // cl 15.3; Schedule A.3.1 is hourly (percentage of the adult hourly rate).
+  junior: {
+    scale: [
+      { age: "Under 19", percentage: 0.675 },
+      { age: "19", percentage: 0.8 },
+      { age: "20", percentage: 0.9 },
+      { age: "21 and over", percentage: 1 },
+    ],
+    clause: "cl 15.3",
+    appliesTo: "the Commercial Traveller / Advertising Sales Representative rate",
+    adultAge: 21,
+    baseLevel: "Commercial Traveller / Advertising Sales Representative",
+    basis: "hourly",
+  },
+  juniorPhaseIn: null,
+  // cl 17.2; Schedule B.
+  allowances: [
+    { name: "Weekend allowance (required to be away from home or headquarters for a weekend)", amount: 66.55, unit: "per weekend", clause: "cl 17.2(a)" },
+    { name: "Living away from home (2 or more consecutive nights in a week)", amount: 83.79, unit: "per week", clause: "cl 17.2(b)" },
+    { name: "Own motor car", amount: 1.0, unit: "per km", clause: "cl 17.2(c)(i)" },
+    { name: "Own motorcycle", amount: 0.34, unit: "per km", clause: "cl 17.2(c)(ii)" },
+  ],
+  allowancesClause: "cl 17.2",
+  hoursNotes: [
+    "A casual must be engaged and paid for at least 2 consecutive hours each time they attend work (cl 11.3).",
+    "Employers must reimburse reasonable expenses actually and properly incurred, including parking, 3-star accommodation, meals when away overnight and the cost of garaging for an employee on the living-away allowance (cl 17.2(f)).",
+    "A Commercial Traveller or Probationary Traveller cannot be paid solely by commission, salary or retainer lower than the minimum rate (cl 15.4).",
+  ],
+  unverified: [
+    "Whether this award covers you: it does not cover employees under the Clerks—Private Sector, Contract Call Centres or Graphic Arts, Printing and Publishing awards, and it gives way to any other modern award with a classification for the work (cl 4)",
+    "Trainee rates (Schedule E to the Miscellaneous Award) and the supported wage system (Schedule C)",
+    "Commission arrangements, which sit above the minimum rate and are set by contract",
+  ],
+};
+
+// -----------------------------------------------------------------------------
+// Mining Industry Award 2020 (MA000011). Consolidated to 1 July 2026 (PR799280
+// and PR799292).
+//
+// Rows are the ORDINARY HOURLY RATE: the cl 15.1 minimum weekly rate plus the
+// $41.41 industry allowance paid for all purposes (cl 18.2(b)), divided by 38.
+// Pinned to Schedule B.1.3. Every casual percentage in this award is a
+// percentage of the CASUAL ordinary hourly rate (Schedule B.2.3), so the award
+// is "compounded" throughout.
+// -----------------------------------------------------------------------------
+
+const MINING_INDUSTRY_ALLOWANCE = 41.41;
+export const MINING_MIN_WEEKLY: ReadonlyArray<readonly [string, number]> = [
+  ["Entry level (Introductory)", 1004.9],
+  ["Level 1 (Basic)", 1047.3],
+  ["Level 2 (Intermediate)", 1086.2],
+  ["Level 3 (Competent)", 1119.1],
+  ["Level 4 (Advanced)", 1193.9],
+  ["Level 5 (Advanced specialist)", 1271.8],
+  ["Level 6 (Dual trade)", 1334.1],
+  ["Level 7 (Dual trade instrumentation)", 1388.1],
+];
+
+export const MINING_AWARD: ModernAwardData = {
+  key: "mining",
+  meta: {
+    name: "Mining Industry Award 2020",
+    shortName: "Mining Award",
+    code: "MA000011",
+    href: "/mining-award-rates/",
+    operativeFrom: OPERATIVE,
+    effectiveNote: EFFECTIVE_NOTE,
+    consolidatedTo: "1 July 2026 (PR799280 and PR799292)",
+    determination: "PR799292",
+    awardTextUrl: "https://awards.fairwork.gov.au/MA000011.html",
+    summaryUrl: SUMMARY("MA000011"),
+    casualLoading: 0.25,
+    standardWeeklyHours: 38,
+    casualLoadingClause: "cl 11.2(b)",
+    verifiedOn: VERIFIED_ON,
+    ratesLabel: "Ordinary hourly rates (the cl 15.1 minimum rate plus the $41.41 all-purpose industry allowance)",
+    hourlyDerivation:
+      "Weekly = the cl 15.1 minimum weekly rate plus the $41.41 industry allowance paid for all purposes (cl 18.2(b)); hourly = that total divided by 38. This is the \"ordinary hourly rate\" every percentage in the award applies to (Schedule B.1.1). Before the electrician's licence, leading hand, underground and other allowances.",
+  },
+  rates: MINING_MIN_WEEKLY.map(([level, min]) => {
+    const weekly = cents(min + MINING_INDUSTRY_ALLOWANCE);
+    return { level, weekly, hourly: cents(weekly / 38) };
+  }),
+  ratesClause: "cl 15.1(a) + cl 18.2(b), calculated as the ordinary hourly rate (Schedule B.1)",
+  entryLevel: "Entry level (Introductory)",
+  classificationNotes: [
+    { level: "Entry level to Level 3", description: "Introductory, basic, intermediate and competent mining operations employees. Level 3 (competent) has a minimum weekly rate of $1,119.10 before the industry allowance (cl 15.1, Schedule A)." },
+    { level: "Levels 4 and 5", description: "Advanced and advanced specialist operators and technicians with broader skills and responsibility (Schedule A)." },
+    { level: "Levels 6 and 7", description: "Dual trade, and dual trade instrumentation, the highest classifications (Schedule A)." },
+    { level: "Pay point arrangements", description: "The award has no pay points: you are paid by the level you are classified at (cl 15.1)." },
+  ],
+  matrix: [
+    { label: "Day work", fullTime: 1, casual: 1 },
+    { label: "Afternoon / night shift", fullTime: 1.15, casual: 1.15 },
+    { label: "Permanent night shift", fullTime: 1.3, casual: 1.3 },
+    { label: "Saturday before noon, first 3 hrs", fullTime: 1.5, casual: 1.5 },
+    { label: "Saturday before noon, after 3 hrs", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday after noon and Sunday", fullTime: 2.0, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
+  ],
+  casualPenaltyBasis: "compounded",
+  // cl 21.2–21.3 and Schedule B.1.3 / B.2.3.
+  penalties: [
+    { label: "Afternoon or night shift", fullTime: 1.15, casual: 1.15, note: "Afternoon shift finishes after 7 pm and up to midnight; night shift finishes after midnight and up to 8 am (cl 21.1)." },
+    { label: "Permanent night shift", fullTime: 1.3, casual: 1.3 },
+    { label: "Saturday before 12 noon, first 3 hours", fullTime: 1.5, casual: 1.5, note: "Ordinary hours on a Saturday (cl 21.3)." },
+    { label: "Saturday before 12 noon, after 3 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Saturday after 12 noon, and all Sunday hours", fullTime: 2.0, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
+  ],
+  penaltiesClause: "cl 21 and Schedule B.1.3 / B.2.3",
+  penaltyNotes: [
+    "Ordinary hours of a day worker can be up to 10 a day, between 6.00 am and 6.00 pm, Monday to Sunday (cl 12.4(a)); shiftworkers can work a shift of up to 10 consecutive hours on any day (cl 12.5). The weekend and public holiday rates in cl 21.3 are paid in substitution for the other penalties (cl 21.4).",
+    "For casuals EVERY percentage in this award applies to the casual ordinary hourly rate, which already includes the 25% loading and the industry allowance (Schedule B.2.1). So a casual Saturday first-3-hours rate is 150% of the casual rate, which is 187.5% of the minimum ordinary rate, and a casual public holiday is 250% of the casual rate, or 312.5%.",
+    "The casual loading forms part of the all-purpose rate (cl 11.3).",
+  ],
+  // cl 20.1–20.2.
+  overtime: [
+    { label: "Monday to 12 noon Saturday, first 3 hours", fullTime: 1.5, casual: 1.5 },
+    { label: "Monday to 12 noon Saturday, after 3 hours", fullTime: 2.0, casual: 2.0 },
+    { label: "After 12 noon Saturday and all Sunday", fullTime: 2.0, casual: 2.0 },
+    { label: "Public holiday", fullTime: 2.5, casual: 2.5 },
+    { label: "Continuous shiftworkers, all overtime, Monday to Sunday", fullTime: 2.0, casual: 2.0 },
+  ],
+  overtimeClause: "cl 20.1–20.2 and Schedule B.1.4–B.1.5, B.2.4–B.2.5",
+  overtimeNotes: [
+    "A casual's overtime is a percentage of the casual ordinary hourly rate, which includes the 25% loading (cl 20.1 NOTE). A continuous shiftworker is an employee in a continuous process who is rostered regularly on Sundays and public holidays (cl 21.1).",
+    "Meal allowance of $22.04 on each occasion an employee is entitled to a rest break during overtime, unless a meal was provided or notice was given by the previous day or shift (cl 18.3(a)).",
+  ],
+  junior: null,
+  noJuniorNote:
+    "The Mining Industry Award allows junior employees only where the law permits them to work in mining, at 75% of the adult rate for under 17s, 85% at 17 and 100% from 18 (cl 15.2). The award does not publish junior dollar rates and the interaction with the industry allowance is not tabulated, so this page does not either.",
+  juniorPhaseIn: null,
+  // cl 18; Schedule C.
+  allowances: [
+    { name: "Industry allowance", amount: 41.41, unit: "per week", clause: "cl 18.2(b)", note: "Paid for all purposes. Already in the rates above." },
+    { name: "Licence allowance, electricians required to hold an Electrical Technician licence", amount: 50.92, unit: "per week", clause: "cl 18.2(c)", note: "Paid for all purposes. NOT in the rates above." },
+    { name: "Cooks and cooks' assistants on broken shifts (drilling and prospecting)", amount: 11.97, unit: "per week", clause: "cl 18.2(d)(iii)", note: "Paid for all purposes." },
+    { name: "Drilling and exploration camp allowance, no meals provided", amount: 37.94, unit: "per day", clause: "cl 18.2(d)(i)", note: "$20.93 a day where the employer provides meals." },
+    { name: "First aid allowance (appointed first aider)", amount: 22.38, unit: "per week", clause: "cl 18.2(e)" },
+    { name: "Leading hand — in charge of 3 to 10 employees", amount: 49.24, unit: "per week", clause: "cl 18.2(f)" },
+    { name: "Leading hand — in charge of 11 to 20 employees", amount: 62.67, unit: "per week", clause: "cl 18.2(f)" },
+    { name: "Leading hand — in charge of more than 20 employees", amount: 84.27, unit: "per week", clause: "cl 18.2(f)" },
+    { name: "Underground allowance (other than underground miners)", amount: 2.06, unit: "per hour", clause: "cl 18.2(h)" },
+    { name: "Meal allowance for overtime", amount: 22.04, unit: "per occasion", clause: "cl 18.3(a)" },
+    { name: "Tool allowance (where the employer requires you to supply tools)", amount: 17.86, unit: "per week", clause: "cl 18.3(b)" },
+  ],
+  allowancesClause: "cl 18",
+  hoursNotes: [
+    "A casual must be engaged and paid for at least 2 consecutive hours each time they attend work (cl 11.6).",
+    "A full-time employee's ordinary hours are an average of 38 a week, and can be averaged over up to 26 weeks (cl 12.1, 12.3). Day workers can be required to work up to 10 hours a day, 6.00 am to 6.00 pm, Monday to Sunday (cl 12.4).",
+    "Where an employee is paid by the hour, a weekly allowance is paid as 1/38th of the weekly amount for each hour (cl 18.1).",
+  ],
+  unverified: [
+    "Mainline locomotive drivers' rail allowance, which is 30% of the minimum rate (cl 18.2(g)), and any other all-purpose allowance you may be owed on top of these rows",
+    "Recall to work for employees who are not continuous shiftworkers (cl 20.3) and rostering arrangements (cl 13)",
+    "Apprentice, school-based apprentice and trainee rates (cl 15.4–15.5, Schedules D and E)",
+    "Whether the award covers you at all: it covers mining operations and not, for example, ancillary work covered by another award",
+  ],
+};
+
+export const OCT2_AWARDS = {
+  plumbing: PLUMBING_AWARD,
+  pastoral: PASTORAL_AWARD,
+  horticulture: HORTICULTURE_AWARD,
+  "health-professionals": HEALTH_PROFESSIONALS_AWARD,
+  timber: TIMBER_AWARD,
+  "meat-industry": MEAT_AWARD,
+  "commercial-sales": COMMERCIAL_SALES_AWARD,
+  mining: MINING_AWARD,
+} as const;

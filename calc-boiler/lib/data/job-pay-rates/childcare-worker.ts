@@ -97,7 +97,7 @@ const EDUCATOR_SECTION: OccupationSection = {
   heading: "Early childhood educator pay: Certificate III and Diploma",
   paragraphs: [
     "\"Early childhood educator\" is the everyday name for the educator levels in the Children's Services Award, and your qualification sets your level. A Certificate III in Early Childhood Education and Care makes you a Level 3 Qualified Educator; a Diploma makes you a Level 5 Advanced Educator. University-qualified early childhood teachers are covered by a different award; see the early childhood teacher page.",
-    "If your centre receives the Worker Retention Payment, it must pay at least the grant's minimum hourly rate for your level, which is higher than the award. Check which applies to you, then compare it with the hourly rate on your payslip.",
+    "If your centre receives the Worker Retention Payment, it must pay at least the grant's minimum hourly rate for your level, which is higher than the award. Ask whether your centre takes the grant, then compare the rate for your level on this page with the hourly rate on your payslip.",
   ],
   table: {
     caption: "Early childhood educator pay by qualification, 2026–27",
@@ -137,13 +137,13 @@ export const CHILDCARE_WORKER: Occupation = {
       id: "educators",
       title: "Childcare worker pay rates by level, 2026–27",
       intro:
-        "Clause 14.1(b) of the Children's Services Award, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading (cl 10.5(a)), matching the Fair Work Ombudsman pay guide.",
+        "Childcare worker rates under clause 14.1(b) of the Children's Services Award apply from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading (cl 10.5(a)), matching the Fair Work Ombudsman pay guide.",
       rows: CHILDCARE_CSE_ROWS,
     },
     {
       id: "support-workers",
       title: "Childcare support worker pay rates (cooks, cleaners, admin)",
-      intro: "Clause 14.2. Support Worker Level 3 holds an AQF Certificate III or equivalent skills (Schedule B.2.3).",
+      intro: "Support Worker rates are set by clause 14.2 of the Children's Services Award. Support Worker Level 3 holds an AQF Certificate III or equivalent skills (Schedule B.2.3).",
       rows: SUPPORT_ROWS,
     },
   ],
@@ -157,7 +157,7 @@ export const CHILDCARE_WORKER: Occupation = {
     { when: "Public holiday, all time worked", permanent: "250%", casual: "Not published" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 23.4 and 23.5). Ordinary hours are Monday to Friday between 6.00 am and 6.30 pm (cl 21.2–21.3), so Saturday work by a day worker is overtime (150% for 2 hours, then 200%). Weekend and public holiday work carries a 4-hour minimum payment (cl 23.5(e)). Casual shift figures are the pay guide's casual dollar rates; neither the award nor the pay guide sets a casual Saturday, Sunday or public holiday rate, so we show none.",
+    "Childcare penalty rates are percentages of the minimum hourly rate (cl 23.4 and 23.5). Ordinary hours are Monday to Friday between 6.00 am and 6.30 pm (cl 21.2 to 21.3), so Saturday work by a day worker is overtime (150% for 2 hours, then 200%). Weekend and public holiday work carries a 4-hour minimum payment (cl 23.5(e)). Casual shift figures are the pay guide's casual dollar rates; neither the award nor the pay guide sets a casual Saturday, Sunday or public holiday rate, so we show none.",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours, then 200%; each day stands alone (cl 23.2(a)).",
     "Casual: 175% for the first 2 hours, then 225%; the casual loading is included (cl 23.2(b)). Casuals get overtime after 8 hours in a day or 38 in a week (cl 10.5(e)).",
@@ -176,9 +176,9 @@ export const CHILDCARE_WORKER: Occupation = {
     "Junior educators at Level 1 or 2 may be paid 70% (under 17), 80% (under 18) or 90% (under 19) of the Level 2 rate (cl 14.3(b)). Qualified educators at Levels 3 to 5 must be paid the adult rate at any age (cl 14.3(a)).",
   ],
   notShown: [
-    "Apprentice and trainee rates (cl 14.4–14.5 and the National Training Wage).",
+    "Apprentice and trainee rates (cl 14.4 to 14.5 and the National Training Wage).",
     "Schedule I translation rates for employees who held a pre-March 2026 classification.",
-    "Every Worker Retention Payment rate; only the Level 3 and Level 5 figures are quoted; the Department of Education publishes the full table.",
+    "Every Worker Retention Payment rate. Only the Level 3 and Level 5 figures are quoted, and the Department of Education publishes the full table.",
   ],
   sections: [EDUCATOR_SECTION],
   faqs: [

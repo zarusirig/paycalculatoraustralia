@@ -52,7 +52,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "pending publication of the Fair Work Commission's decision on the VGSA 2026",
     detail:
-      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and the department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746). On 22 October 2026 the matter was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided, and the Australian Education Union Victorian Branch says the Commission approved the agreement with effect from 23 October 2026; the Commission's decision and the department's new salary schedule had not been published when we checked. Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
+      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026). The department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746). On 22 October 2026 the matter was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided. The Australian Education Union Victorian Branch says the Commission approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked. The new agreement's Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
   },
   verifiedOn: "23 October 2026",
 
@@ -81,7 +81,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       id: "leading-teacher-learning-specialist",
       title: "Leading teachers and learning specialists, Range 3",
       intro:
-        "Both classifications sit in Range 3 and are paid identically. They are fixed-term appointments made by the principal, not a step you age into.",
+        "Leading teachers and learning specialists both sit in Range 3 and are paid identically. They are fixed-term appointments made by the principal, not a step on the classroom teacher scale.",
       stepHeading: "Subdivision",
       steps: [
         { label: "3-1", salary: 123_966 },
@@ -151,14 +151,14 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       heading: "Progression happens once a year, on 1 May",
       body: [
         "Within every teaching service classification, salary progression is available on 1 May each year, up to the maximum subdivision of your salary range. The progression cycle runs 1 May to 30 April, and a performance review is done at the end of each school year.",
-        "It is not automatic. Progression is based on the annual assessment of your performance under the performance and development process. The VGSA 2022 does, however, forbid the employer from imposing a quota on how many staff can progress in a year. The decision rests solely on each person's own assessment.",
+        "Progression is not automatic. It is based on the annual assessment of your performance under the performance and development process. The VGSA 2022 does, however, forbid the employer from imposing a quota on how many staff can progress in a year. The decision rests solely on each person's own assessment.",
       ],
     },
     {
       heading: "You need six months of eligible service",
       body: [
         "An employee with six or more months of eligible service at or above a subdivision in a progression cycle is eligible to move up. Eligible service includes duty (including time on higher duties), paid leave, and unpaid leave that has been approved to count as service.",
-        "If you were promoted in the six months before 1 May you are not eligible to progress that year, unless you had been on higher duties at or above the promotion level earlier in the same cycle, which does count.",
+        "If you were promoted in the six months before 1 May, you are not eligible to progress that year. The exception is time on higher duties at or above the promotion level earlier in the same cycle, which does count.",
       ],
     },
     {
@@ -178,7 +178,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     {
       heading: "If you are told you will not progress",
       body: [
-        "A teacher assessed as not meeting the requirements does not progress that year, but only if they were told in writing before 1 March what standard was expected, where their performance fell short, what the consequences are, and were given the chance to improve.",
+        "A teacher assessed as not meeting the requirements does not progress that year. That outcome applies only if the teacher was told in writing before 1 March what standard was expected, where their performance fell short and what the consequences are. The teacher must also have been given the chance to improve.",
         "Progression for everyone else is processed centrally on the payroll.",
       ],
     },
@@ -186,14 +186,14 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       heading: "Accelerated progression exists but is rare",
       body: [
         "Where a principal considers a teacher is performing well above normal expectations, or where retention is a concern, they can approve accelerated progression within a salary range. It takes effect from 1 May of that cycle and can only come out of the performance and development process.",
-        "It is confined to the school that granted it: change schools and your salary reverts to what it would have been without the acceleration, unless the new principal determines otherwise.",
+        "Accelerated progression is confined to the school that granted it. If you change schools, your salary reverts to what it would have been without the acceleration, unless the new principal determines otherwise.",
       ],
     },
   ],
 
   notices: [
     "The VGSA 2022's nominal expiry date was 31 December 2025 and 1 July 2025 is the last salary column it makes. The department has not published a newer schedule, so the rates below are the latest official rates.",
-    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). It was listed at \"initial assessment\" on 24 September 2026 and at \"member consideration\" on 14 October 2026. On 22 October 2026 it was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided, and the Australian Education Union Victorian Branch says the Commission has approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked, so the new rates are tabled in the 2026 pay rise section and the tables further down stay on the VGSA 2022 until they are.",
+    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). The application was listed at \"initial assessment\" on 24 September 2026 and at \"member consideration\" on 14 October 2026. On 22 October 2026 it was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided. The Australian Education Union Victorian Branch says the Commission has approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked. Until both are published, the new rates are tabled in the 2026 pay rise section and the tables further down stay on the VGSA 2022.",
   ],
 
   unverified: [
@@ -262,11 +262,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "When do Victorian teachers move up a pay step?",
-      a: "On 1 May each year, subject to the annual performance and development assessment and at least six months of eligible service at or above your current subdivision. The employer cannot impose a quota on how many teachers progress.",
+      a: "Victorian teachers move up a pay step on 1 May each year, subject to the annual performance and development assessment and at least six months of eligible service at or above their current subdivision. The employer cannot impose a quota on how many teachers progress.",
     },
     {
       q: "How do you get from Range 1 to Range 2 in Victoria?",
-      a: "Not by waiting. VGSA 2022 clause 16(3) makes advancement from classroom teacher Range 1 to Range 2 subject to satisfying the requirements of Range 2: a role expectation about improving student performance across the school and building other staff's practice, not a length-of-service test.",
+      a: "VGSA 2022 clause 16(3) makes advancement from classroom teacher Range 1 to Range 2 subject to satisfying the requirements of Range 2 rather than length of service. Those requirements are a role expectation about improving student performance across the school and building other staff's practice.",
     },
     {
       q: "What is a principal paid in Victoria?",
@@ -274,11 +274,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "When do Victorian teachers get a pay rise?",
-      a: "The Australian Education Union Victorian Branch reports that the Fair Work Commission approved the Victorian Government Schools Agreement 2026 with effect from 23 October 2026; the Commission's decision had not been published when we checked. Staff had approved it with 93.1% voting yes (announced 17 September 2026). Its salary schedule lifts a graduate at 1-1 from $79,589 to $92,882 and the top classroom step 2-6 from $118,063 to $133,456 from the first pay period on or after 1 October 2026, rising to $105,384 and $151,419 by November 2029, plus a $2,000 lump sum when it starts.",
+      a: "The Australian Education Union Victorian Branch reports that the Fair Work Commission approved the Victorian Government Schools Agreement 2026 with effect from 23 October 2026. The Commission's decision had not been published when we checked. Staff had approved it with 93.1% voting yes (announced 17 September 2026). From the first pay period on or after 1 October 2026, its salary schedule lifts a graduate at 1-1 from $79,589 to $92,882 and the top classroom step 2-6 from $118,063 to $133,456. Those steps rise to $105,384 and $151,419 by November 2029, and a $2,000 lump sum is paid when the agreement starts.",
     },
     {
       q: "When will Victorian teachers get the pay rise?",
-      a: "The agreement starts seven days after the Fair Work Commission approves it. On 22 October 2026 the matter had left the Commission's agreements-in-progress list and the Australian Education Union Victorian Branch said the Commission had approved it with effect from 23 October 2026; the Commission's decision had not been published when we checked. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026, so both are back-paid once the agreement operates, with further increases from 1 November 2027, 2028 and 2029.",
+      a: "The new Victorian Government Schools Agreement starts seven days after the Fair Work Commission approves it. On 22 October 2026 the matter had left the Commission's agreements-in-progress list. The Australian Education Union Victorian Branch said the Commission had approved it with effect from 23 October 2026. The Commission's decision had not been published when we checked. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026, so both are back-paid once the agreement operates. Further increases follow from 1 November 2027, 2028 and 2029.",
     },
   ],
 };

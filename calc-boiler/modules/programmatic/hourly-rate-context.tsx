@@ -214,7 +214,7 @@ export function BelowMinimumWageSection({
           <li>
             {rate >= entry ? (
               <>
-                <strong className="text-navy">An award entry-level rate.</strong> The 2026 review set a{" "}
+                <strong className="text-navy">An award entry-level rate.</strong> The 2026 Annual Wage Review set a{" "}
                 {money(entry)} floor for entry-level rates in an employee&apos;s first 6 months (the Hospitality
                 Award&apos;s Introductory level, for one), which {label} clears.
               </>
@@ -425,7 +425,7 @@ export function PenaltyRatesSection({ rate, label }: { rate: number; label: stri
  */
 export function aboveAwardsLead(rate: number, label: string, annual?: number): string {
   const subject = annual === undefined ? `${label} an hour is` : `${label} an hour full time is ${formatAUD(annual)} a year,`;
-  return `${subject} above every adult award minimum we track (the highest is ${money(AWARD_RATE_MAX.hourly)}, ${awardLabel(AWARD_RATE_MAX)}, ${AWARD_RATE_MAX.classification}), so pay at this level is set by agreements, contracts and salaries like these.`;
+  return `${subject} above every adult award minimum we track (the highest is ${money(AWARD_RATE_MAX.hourly)}, ${awardLabel(AWARD_RATE_MAX)}, ${AWARD_RATE_MAX.classification}), so pay at this level is set by enterprise agreements, contracts and published pay scales like these.`;
 }
 
 const KIND_WORDS: Record<PayScaleKind, string> = {

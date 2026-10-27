@@ -70,7 +70,7 @@ export const CLEANER: Occupation = {
   coverage: [
     "Cleaners employed by cleaning contractors (the businesses that clean offices, shopping centres, schools, hospitals and other buildings under contract) are covered by the Cleaning Services Award 2020 [MA000022]. It also covers shopping trolley collection contractors.",
     "Cleaners employed directly by a hotel, hospital, aged care home, school or retailer are usually covered by that industry's own award instead (for example the Hospitality Award or the Aged Care Award general stream), which has different rates.",
-    "Level 1 covers the tasks most cleaners do: sweeping, mopping, vacuuming, spot cleaning, toilet cleaning, rubbish collection, glass and dusting (Schedule A.1). Level 2 works from complex instructions and may do carpet cleaning, ride-on machinery, steam or pressure cleaning, exterior window cleaning from swing stages, or leading hand duties (Schedule A.2). Level 3 coordinates the work of Level 1 and 2 cleaners as a building supervisor or manager (Schedule A.3).",
+    "Level 1 covers general cleaning work: sweeping, mopping, vacuuming, spot cleaning, toilet cleaning, rubbish collection, glass and dusting (Schedule A.1). Level 2 works from complex instructions and may do carpet cleaning, ride-on machinery, steam or pressure cleaning, exterior window cleaning from swing stages, or leading hand duties (Schedule A.2). Level 3 coordinates the work of Level 1 and 2 cleaners as a building supervisor or manager (Schedule A.3).",
     "Part-time cleaners are paid a 15% part-time allowance on top of the minimum hourly rate for every ordinary hour (cl 10.2). A part-time Level 1 cleaner's ordinary rate is therefore $31.14 an hour, not $27.08.",
   ],
   tables: [
@@ -78,7 +78,7 @@ export const CLEANER: Occupation = {
       id: "cleaners",
       title: "Cleaner pay rates by level, 2026–27",
       intro:
-        "Clause 15.1, Table 2 of the Cleaning Services Award, from the first full pay period on or after 1 July 2026. The hourly column is the full-time rate; part-timers add 15% (cl 10.2) and casuals add 25% (cl 11.2).",
+        "These are the minimum rates in clause 15.1, Table 2 of the Cleaning Services Award, from the first full pay period on or after 1 July 2026. The hourly column is the full-time rate; part-time cleaners add 15% (cl 10.2) and casual cleaners add 25% (cl 11.2).",
       rows: CLEANER_ROWS,
     },
   ],
@@ -90,7 +90,7 @@ export const CLEANER: Occupation = {
     { when: "Public holiday", permanent: "250%", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (cl 20.2, Table 7). The \"permanent\" column is the full-time rate. Part-time cleaners have their own column that includes the 15% part-time allowance: 130% for early or late weekday shifts, 130% for non-rotating night shifts, 165% on Saturday, 215% on Sunday and 265% on public holidays. Casual rates include the 25% loading.",
+    "Cleaning Services Award penalty rates are percentages of the minimum hourly rate (cl 20.2, Table 7). The \"permanent\" column is the full-time rate. Part-time cleaners have their own column that includes the 15% part-time allowance: 130% for early or late weekday shifts, 130% for non-rotating night shifts, 165% on Saturday, 215% on Sunday and 265% on public holidays. Casual rates include the 25% loading.",
   overtime: [
     "Full-time and part-time: 150% for the first 2 hours Monday to Saturday, then 200%; Sunday 200%; public holiday 250% (cl 19.3, Table 5).",
     "Casual: 175% for the first 2 hours Monday to Saturday, then 225%; Sunday 225%; public holiday 275%. The casual loading is included.",

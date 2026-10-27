@@ -53,7 +53,7 @@ export const NOT_VERIFIED: readonly NotVerified[] = [
   {
     state: "Tasmania, the ACT and the Northern Territory",
     profession: "all",
-    reason: "Not checked yet. These public hospital scales will be added once they are read from the source.",
+    reason: "Their public hospital pay scales have not been checked yet and will be added once they are read from the source.",
   },
 ];
 

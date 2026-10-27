@@ -49,7 +49,7 @@ function plumbing(): AwardPageCopy {
     directAnswer: `A registered plumbing tradesperson Level 1 on weekly hire earns ${$(t1r.hourly)} an hour (${$(t1r.weekly)} a week) including the all-purpose allowances, or ${$(casual(a, t1r.hourly))} as a casual. A not-registered tradesperson Level 1 is ${$(t1n.hourly)}; a new-entrant worker Level 1(a) is ${$(w1a.hourly)}; a sprinkler fitter tradesperson Level 1 is ${$(sf1.hourly)}. Saturday is 150% for 2 hours then 200%, Sunday 200% and public holidays 250%.`,
     trap: {
       heading: "The 16 September 2026 variation changed one allowance clause, and no rate moved",
-      body: `On 16 September 2026 the Fair Work Commission varied clause 21 (Allowances) under its own initiative (determination PR814392, decision [2026] FWC 3528) to fix a cross-referencing error in clause 21.9(f), the mileage allowance. It now reads that the allowance is for an employee entitled to the additional travelling time allowance under cl 21.9(d) who uses their own vehicle for travel beyond the defined radius (cl 21.9(c)(ii)), at ${$(0.55)} per kilometre. The first determination printed $0.54, and a correction (PR814410) the same day restored $0.55, the figure that already applied from 1 July 2026. Every other allowance and every minimum rate on this page is unchanged. And remember the award's table in clause 18 is not what you are paid: the industry, trade, registration and special fixed allowances are paid for all purposes (cl 21.2), so they sit inside the ordinary hourly rate that every penalty and overtime percentage is applied to.`,
+      body: `On 16 September 2026 the Fair Work Commission varied clause 21 (Allowances) on its own initiative (determination PR814392, decision [2026] FWC 3528) to fix a cross-referencing error in clause 21.9(f), the mileage allowance. It now reads that the allowance is for an employee entitled to the additional travelling time allowance under cl 21.9(d) who uses their own vehicle for travel beyond the defined radius (cl 21.9(c)(ii)), at ${$(0.55)} per kilometre. The first determination printed $0.54, and a correction (PR814410) the same day restored $0.55, the figure that already applied from 1 July 2026. Every other allowance and every minimum rate on this page is unchanged. The minimum weekly rates in the clause 18 table are not what you are paid: the industry, trade, registration and special fixed allowances are paid for all purposes (cl 21.2), so they sit inside the ordinary hourly rate that every penalty and overtime percentage is applied to.`,
     },
     workedExample: {
       heading: "Worked example: a registered plumber's Saturday",
@@ -59,7 +59,7 @@ function plumbing(): AwardPageCopy {
         `Next 3 hours at 200%: ${$(t1r.hourly)} × 2 = ${$(sat2)} an hour → ${$(roundCents(sat2 * 3))}.`,
         `Total: ${$(total)} before tax. The award requires at least 3 hours' work on a Saturday, so a shorter call-in still pays for 3 hours.`,
       ],
-      outro: `A casual doing the same shift is paid 175% then 225% of the same ordinary hourly rate. A tradesperson who is not registered has the $44.76 registration allowance missing from the rate, so the same 5 hours is worth less: ${$(roundCents(x(t1n.hourly, 1.5) * 2 + x(t1n.hourly, 2) * 3))}.`,
+      outro: `A casual doing the same shift is paid 175% then 225% of the same ordinary hourly rate. A tradesperson who is not registered is not paid the $44.76 registration allowance, so the same 5 hours pays less: ${$(roundCents(x(t1n.hourly, 1.5) * 2 + x(t1n.hourly, 2) * 3))}.`,
     },
     faqs: [
       ...commonFaqs(a),
@@ -85,7 +85,7 @@ function plumbing(): AwardPageCopy {
       },
       {
         q: "Does the award cover apprentice plumbers?",
-        a: "Yes, apprentices are covered, but their rates are percentages by year of apprenticeship set out in clause 18.2 and Schedule E, which this page does not reproduce. See the apprentice pay rates page for what apprentices are paid by trade and year.",
+        a: "Yes. The Plumbing and Fire Sprinklers Award covers apprentices, but their rates are percentages by year of apprenticeship set out in clause 18.2 and Schedule E, which this page does not reproduce. See the apprentice pay rates page for what apprentices are paid by trade and year.",
       },
     ],
   };
@@ -169,7 +169,7 @@ function horticulture(): AwardPageCopy {
       `Horticulture Award MA000028 rates: Level 1 ${$(l1.hourly)}/hr, casual ${$(cas1)}, to Level 5 ${$(l5.hourly)}. How piece rates and the 15% rule work.`,
     ),
     h1: `Horticulture Award Pay Rates ${FY}`,
-    standfirst: `Hourly rates for Levels 1 to 5 under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom} and what a piece rate must still pay for fruit and vegetable pickers.`,
+    standfirst: `Hourly rates for Levels 1 to 5 under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}, and what a piece rate must still pay for fruit and vegetable pickers.`,
     directAnswer: `A Level 1 horticulture worker (including a fruit or vegetable picker) earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(cas1)} as a casual. Level 2 is ${$(l2.hourly)}, rising to ${$(l5.hourly)} at Level 5. If paid by piece rate, an average-productivity picker must earn at least 15% more than the hourly rate and every worker must receive at least their hourly rate for each hour worked. Public holidays are 200% (casuals 225%).`,
     trap: {
       heading: "Piecework is allowed, but the hourly rate is a floor you cannot be paid below",
@@ -210,7 +210,7 @@ function horticulture(): AwardPageCopy {
       },
       {
         q: "Are backpackers and working holiday makers covered?",
-        a: "Yes. The award covers employees in horticulture regardless of visa status, and the minimum rates and piecework protections apply to everyone. Employees who are underpaid can use the Fair Work Ombudsman's complaint process or our backpay calculator to estimate what is owed.",
+        a: "Yes. The Horticulture Award covers employees in horticulture regardless of visa status, and the minimum rates and piecework protections apply to everyone. An underpaid employee can estimate what is owed with our backpay calculator or lodge a complaint with the Fair Work Ombudsman.",
       },
     ],
   };
@@ -237,11 +237,11 @@ function healthProfessionals(): AwardPageCopy {
       `Health Professionals Award MA000027: AQF 7 graduate ${$(hp7.hourly)}/hr from 1 Oct 2026, support services from ${$(ss1.hourly)}. Casual, weekend and overtime rates.`,
     ),
     h1: `Health Professionals Award Pay Rates ${FY}`,
-    standfirst: `Hourly rates for Support Services employees (Levels 1–9) and the new Health Professional classification structure (AQF 5–9 and Levels 2–4) under the ${a.meta.name} (${a.meta.code}), consolidated to 1 October 2026.`,
+    standfirst: `Hourly rates for Support Services employees (Levels 1 to 9) and the new Health Professional classification structure (AQF 5 to 9 and Levels 2 to 4) under the ${a.meta.name} (${a.meta.code}), consolidated to 1 October 2026.`,
     directAnswer: `From the first full pay period on or after 1 October 2026, a Health Professional Level 1 at AQF 7 (for example a physiotherapist or occupational therapist) is paid at least ${$(hp7.hourly)} an hour (${$(hp7.weekly)} a week) in the 1st year, rising to ${$(hp7top.hourly)} from the 7th year; an AQF 9 first-year professional is ${$(hp9.hourly)} and a Level 4 manager ${$(l4.hourly)}. Support Services Level 1 is ${$(ss1.hourly)} (rates from 1 July 2026). Weekends are 150% (casuals 175%) and public holidays 250% (casuals 275%).`,
     trap: {
       heading: "The Health Professional table changed on 1 October 2026, and it is only stage one",
-      body: `Determination PR814029 substituted clause 17 from the first full pay period starting on or after 1 October 2026. Health professionals are now paid by the AQF level of their profession's standard minimum qualification (AQF 5 to 9) and years of experience in the profession, plus Levels 2.1, 2.2, 3 and 4. The increase is phased: further stages take effect on 30 June in each of 2027, 2028, 2029 and 2030, so the table below is the first-stage rate, not where it will end up. If you were classified as a Health Professional employee on 30 September 2026, you are translated into the new structure under clause J.4 and cannot be paid less than your old rate. Support Services rates (Levels 1–9) were not changed by this variation and are the 1 July 2026 rates. Dental assistants and pathology collectors at some levels have separate transitional rates to 31 December 2026 and are not in the Support Services rows.`,
+      body: `Determination PR814029 substituted clause 17 from the first full pay period starting on or after 1 October 2026. Health professionals are now paid by the AQF level of their profession's standard minimum qualification (AQF 5 to 9) and years of experience in the profession, plus Levels 2.1, 2.2, 3 and 4. The increase is phased: further stages take effect on 30 June in each of 2027, 2028, 2029 and 2030, so the table below is the first-stage rate, not where it will end up. If you were classified as a Health Professional employee on 30 September 2026, you are translated into the new structure under clause J.4 and cannot be paid less than your old rate. Support Services rates (Levels 1 to 9) were not changed by this variation and are the 1 July 2026 rates. Dental assistants and pathology collectors at some levels have separate transitional rates to 31 December 2026 and are not in the Support Services rows.`,
     },
     workedExample: {
       heading: "Worked example: a casual AQF 7 physio on a Saturday and in overtime",
@@ -257,11 +257,11 @@ function healthProfessionals(): AwardPageCopy {
       ...commonFaqs(a).slice(0, -1),
       {
         q: "What changed in the Health Professionals Award on 1 October 2026?",
-        a: "Clause 17 was replaced (determination PR814029, decision [2026] FWCFB 231). Health Professional Level 1 is now paid by the AQF level of the profession's standard minimum qualification (5 to 9) and by year of experience (1st, 2nd–3rd, 4th–6th, 7th year or more); Level 2 splits into 2.1 and 2.2, and Levels 3 and 4 have new rates. Employees classified under the old levels on 30 September 2026 are translated under clause J.4 and never receive less than their old rate. Further increases follow on 30 June 2027 to 2030.",
+        a: "Clause 17 of the Health Professionals Award was replaced (determination PR814029, decision [2026] FWCFB 231). Health Professional Level 1 is now paid by the AQF level of the profession's standard minimum qualification (5 to 9) and by year of experience (1st, 2nd to 3rd, 4th to 6th, 7th year or more); Level 2 splits into 2.1 and 2.2, and Levels 3 and 4 have new rates. Employees classified under the old levels on 30 September 2026 are translated under clause J.4 and never receive less than their old rate. Further increases follow on 30 June 2027 to 2030.",
       },
       {
         q: "What does a physiotherapist or occupational therapist earn under the award?",
-        a: `Physiotherapists and occupational therapists sit at AQF 7 (a 3-year degree entry translates under J.4.1(e)). From 1 October 2026 the minimum rate is ${$(hp7.hourly)} an hour (${$(hp7.weekly)} a week) in the first year, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 2nd–3rd year").hourly)} in years 2–3, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 4th–6th year").hourly)} in years 4–6 and ${$(hp7top.hourly)} from year 7. See the physiotherapist and occupational therapist pay pages for annual figures.`,
+        a: `Physiotherapists and occupational therapists sit at AQF 7 (a 3-year degree entry translates under J.4.1(e)). From 1 October 2026 the minimum rate is ${$(hp7.hourly)} an hour (${$(hp7.weekly)} a week) in the first year, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 2nd–3rd year").hourly)} in years 2 to 3, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 4th–6th year").hourly)} in years 4 to 6 and ${$(hp7top.hourly)} from year 7. See the physiotherapist and occupational therapist pay pages for annual figures.`,
       },
       {
         q: "What does a psychologist earn under the award?",
@@ -287,7 +287,7 @@ function healthProfessionals(): AwardPageCopy {
     related: {
       heading: "Pay pages for the health professions covered by this award",
       body: [
-        "The award sets the minimum. For what specific professions earn by year of experience, with hourly, weekly and annual pay and take-home figures, see the pay pages below, and the news explainer on the 1 October 2026 change.",
+        "The Health Professionals Award sets the minimum. The physiotherapist, occupational therapist and psychologist pay pages below show pay by year of experience, with hourly, weekly, annual and take-home figures. The news explainer covers the 1 October 2026 change.",
       ],
       links: [
         { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist pay rates", note: "AQF 7 pay by year of experience" },
@@ -341,7 +341,7 @@ function timber(): AwardPageCopy {
       nmwFaq(g1, "Level 1 is an induction grade, with a term of up to 3 months unless extended under Schedule A."),
       {
         q: "What are the three streams in the Timber Award?",
-        a: "The award has a General Timber stream (Schedule A), a Wood and Timber Furniture stream (Schedule B) and a Pulp and Paper stream (Schedule C). Each has its own classification definitions and its own minimum rate table in cl 20.1, and the Furniture stream adds a Level 4A.",
+        a: "The Timber Industry Award has a General Timber stream (Schedule A), a Wood and Timber Furniture stream (Schedule B) and a Pulp and Paper stream (Schedule C). Each has its own classification definitions and its own minimum rate table in cl 20.1, and the Furniture stream adds a Level 4A.",
       },
       {
         q: "What are Timber Award weekend rates?",
@@ -349,15 +349,15 @@ function timber(): AwardPageCopy {
       },
       {
         q: "What is the Timber Award public holiday rate?",
-        a: `250% of the ordinary hourly rate for all work, with a minimum 3 hours (cl 27.1(c)). A General Timber casual is paid 275%, the 250% plus the 25% loading (cl 27.1(d)): ${$(x(g4.hourly, 2.75))} an hour at Level 4. The award does not tabulate a casual public holiday rate for the other two streams.`,
+        a: `The Timber Industry Award public holiday rate is 250% of the ordinary hourly rate for all work, with a minimum 3 hours (cl 27.1(c)). A General Timber casual is paid 275%, the 250% plus the 25% loading (cl 27.1(d)): ${$(x(g4.hourly, 2.75))} an hour at Level 4. The award does not tabulate a casual public holiday rate for the other two streams.`,
       },
       {
         q: "What is the Timber Award forest work allowance?",
-        a: "$35.81 a week for employees (other than pieceworkers) working in forests, paid for all purposes (cl 22.3). Because it is paid for all purposes it is part of the ordinary hourly rate that penalties and overtime are calculated on, so it raises those rates for the employees who get it.",
+        a: "The Timber Industry Award forest work allowance is $35.81 a week for employees (other than pieceworkers) working in forests, paid for all purposes (cl 22.3). Because it is paid for all purposes it is part of the ordinary hourly rate that penalties and overtime are calculated on, so it raises those rates for the employees who get it.",
       },
       {
         q: "How are junior timber workers paid?",
-        a: "An unapprenticed junior is paid a percentage of the Level 2 rate for their stream: age 16, 40%; 17, 55%; 18, 70%; 19, 85%; and 100% from 20, calculated in multiples of 5 cents (cl 20.6–20.7). Apprentices are paid a percentage of the Level 5 rate by year of apprenticeship (cl 20.3).",
+        a: "An unapprenticed junior timber worker is paid a percentage of the Level 2 rate for their stream: age 16, 40%; 17, 55%; 18, 70%; 19, 85%; and 100% from 20, calculated in multiples of 5 cents (cl 20.6 to 20.7). Apprentices are paid a percentage of the Level 5 rate by year of apprenticeship (cl 20.3).",
       },
     ],
   };
@@ -417,7 +417,7 @@ function meatIndustry(): AwardPageCopy {
       },
       {
         q: "What is the meat industry public holiday rate?",
-        a: "It differs by holiday. Employees, including casuals, who work on Christmas Day and Anzac Day are paid 200% of the minimum hourly rate for all time worked; on Good Friday 150% for the first 4 hours and 200% after; and on any other public holiday 150% for the first 2 hours and 200% after. For employees other than casuals those payments are in addition to the minimum rate for the day (cl 31.3). Because of that nuance this page does not publish a single dollar figure.",
+        a: "The Meat Industry Award public holiday rate differs by holiday. Employees, including casuals, who work on Christmas Day and Anzac Day are paid 200% of the minimum hourly rate for all time worked; on Good Friday 150% for the first 4 hours and 200% after; and on any other public holiday 150% for the first 2 hours and 200% after. For employees other than casuals those payments are in addition to the minimum rate for the day (cl 31.3). Because the rate changes by holiday and by hours worked, this page does not publish a single dollar figure.",
       },
       {
         q: "What is MI 8 in the Meat Industry Award?",
@@ -425,11 +425,11 @@ function meatIndustry(): AwardPageCopy {
       },
       {
         q: "How much do meat industry juniors earn?",
-        a: `Juniors are paid a percentage of the adult weekly rate for their classification: under 17, 50%; 17, 60%; 18, 75%; 19, 85%; adult rate from 20 (cl 16.2). Part-time and casual juniors are paid the percentage of the adult hourly rate instead, so the hourly figure can differ by a cent from the weekly-based figure on this page. At MI 1 an 18-year-old is paid about ${$(roundCents((m1.weekly * 0.75) / 38))} an hour.`,
+        a: `Meat industry juniors are paid a percentage of the adult weekly rate for their classification: under 17, 50%; 17, 60%; 18, 75%; 19, 85%; adult rate from 20 (cl 16.2). Part-time and casual juniors are paid the percentage of the adult hourly rate instead, so the hourly figure can differ by a cent from the weekly-based figure on this page. At MI 1 an 18-year-old is paid about ${$(roundCents((m1.weekly * 0.75) / 38))} an hour.`,
       },
       {
         q: "What is the minimum engagement for casuals in the meat industry?",
-        a: "4 hours on each day or shift (cl 12.3). Casual cleaners may be engaged for 2 hours and casual bookkeeping clerks for 3 hours (cl 12.2). A casual's ordinary hours cannot exceed 38 in a week.",
+        a: "The minimum engagement for a meat industry casual is 4 hours on each day or shift (cl 12.3). Casual cleaners may be engaged for 2 hours and casual bookkeeping clerks for 3 hours (cl 12.2). A casual's ordinary hours cannot exceed 38 in a week.",
       },
     ],
   };
@@ -487,7 +487,7 @@ function commercialSales(): AwardPageCopy {
       },
       {
         q: "What are the junior rates in the Commercial Sales Award?",
-        a: `Juniors are paid a percentage of the Commercial Traveller / Advertising Sales Representative hourly rate: under 19, 67.5%; 19, 80%; 20, 90%; and the full rate from 21 (cl 15.3). That is ${$(roundCents(ct.hourly * 0.675))}, ${$(roundCents(ct.hourly * 0.8))} and ${$(roundCents(ct.hourly * 0.9))} an hour.`,
+        a: `Junior commercial sales employees are paid a percentage of the Commercial Traveller / Advertising Sales Representative hourly rate: under 19, 67.5%; 19, 80%; 20, 90%; and the full rate from 21 (cl 15.3). That is ${$(roundCents(ct.hourly * 0.675))}, ${$(roundCents(ct.hourly * 0.8))} and ${$(roundCents(ct.hourly * 0.9))} an hour.`,
       },
     ],
   };
@@ -531,23 +531,23 @@ function mining(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "How much does a miner earn under the Mining Award?",
-        a: `An entry-level mining employee earns ${$(entry.hourly)} an hour and a Level 3 (competent) operator ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7 (dual trade instrumentation), all including the $41.41 industry allowance. Most large mines pay under enterprise agreements at considerably higher rates than the award minimum.`,
+        a: `An entry-level mining employee earns ${$(entry.hourly)} an hour and a Level 3 (competent) operator ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7 (dual trade instrumentation), all including the $41.41 industry allowance. Most large mines pay under enterprise agreements at rates above the Mining Award minimum.`,
       },
       {
         q: "What is the Mining Award industry allowance?",
-        a: "$41.41 a week, paid to all employees for all purposes (cl 18.2(b)). It recognises the location and nature of mining operations, clothing, dirt, wet, height, fumes, heat, cold, confined space and other disabilities. Because it is paid for all purposes it is included in the rate on which shift loadings, penalties and overtime are calculated.",
+        a: "The Mining Award industry allowance is $41.41 a week, paid to all employees for all purposes (cl 18.2(b)). It recognises the location and nature of mining operations, clothing, dirt, wet, height, fumes, heat, cold, confined space and other disabilities. Because it is paid for all purposes, the allowance is part of the ordinary hourly rate that shift loadings, penalties and overtime are calculated on.",
       },
       {
         q: "What are Mining Award shift and weekend rates?",
-        a: `Afternoon and night shift is 115% and permanent night shift 130% (cl 21.2). Ordinary hours on a Saturday before noon are 150% for the first 3 hours and 200% after; all Saturday hours after noon and all Sunday hours are 200%; public holidays are 250% (cl 21.3). At Level 3 that is ${$(x(l3.hourly, 1.15))}, ${$(x(l3.hourly, 1.3))}, ${$(x(l3.hourly, 1.5))}, ${$(x(l3.hourly, 2))} and ${$(x(l3.hourly, 2.5))}.`,
+        a: `Mining Award afternoon and night shifts are paid at 115% and permanent night shift at 130% (cl 21.2). Ordinary hours on a Saturday before noon are 150% for the first 3 hours and 200% after; all Saturday hours after noon and all Sunday hours are 200%; public holidays are 250% (cl 21.3). At Level 3 that is ${$(x(l3.hourly, 1.15))}, ${$(x(l3.hourly, 1.3))}, ${$(x(l3.hourly, 1.5))}, ${$(x(l3.hourly, 2))} and ${$(x(l3.hourly, 2.5))}.`,
       },
       {
         q: "What is the Mining Award overtime rate?",
-        a: `150% for the first 3 hours, Monday to noon on Saturday, then 200%; 200% after noon on Saturday and all day Sunday; 250% on a public holiday; and 200% for continuous shiftworkers for all overtime (cl 20). A meal allowance of $22.04 applies on each occasion an employee is entitled to a rest break during overtime.`,
+        a: `Mining Award overtime is 150% for the first 3 hours, Monday to noon on Saturday, then 200%; 200% after noon on Saturday and all day Sunday; 250% on a public holiday; and 200% for continuous shiftworkers for all overtime (cl 20). A meal allowance of $22.04 applies on each occasion an employee is entitled to a rest break during overtime.`,
       },
       {
         q: "How are casuals paid in the Mining Award?",
-        a: `A casual is paid the ordinary rate plus 25% (cl 11.2) and the loading is part of the all-purpose rate (cl 11.3). Every penalty and overtime percentage is then applied to that casual rate, so a casual Level 3 working a Sunday is paid 200% of ${$(cas3)}, or ${$(x(cas3, 2))} an hour. A casual must be engaged for at least 2 consecutive hours.`,
+        a: `A Mining Award casual is paid the ordinary rate plus 25% (cl 11.2), and the loading is part of the all-purpose rate (cl 11.3). Every penalty and overtime percentage is then applied to that casual rate, so a casual Level 3 working a Sunday is paid 200% of ${$(cas3)}, or ${$(x(cas3, 2))} an hour. A casual must be engaged for at least 2 consecutive hours.`,
       },
     ],
     related: {

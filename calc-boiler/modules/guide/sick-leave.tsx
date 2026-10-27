@@ -44,7 +44,7 @@ export default function SickLeavePage() {
 
       <PageHeader title="Sick Leave Calculator: Personal/Carer's Leave in Australia">
         <p>
-          <strong>Full-time employees get 10 days of paid sick and carer&rsquo;s leave a year; part-time employees get the same pro rata.</strong> It builds up at 1/26 of your ordinary hours from your first day, so a 38-hour week earns {FT_HOURS} hours a year and a 19-hour week earns {annualSickLeaveHours(19)}. Carer&rsquo;s leave comes out of the same balance. Casuals get no paid sick leave but can take unpaid carer&rsquo;s leave. Unused leave rolls over every year and is not paid out when you leave.
+          <strong>Full-time employees get 10 days of paid sick and carer&rsquo;s leave a year; part-time employees get the same pro rata.</strong> Personal/carer&rsquo;s leave under the National Employment Standards builds up at 1/26 of your ordinary hours from your first day. A 38-hour week earns {FT_HOURS} hours a year and a 19-hour week earns {annualSickLeaveHours(19)}. Carer&rsquo;s leave comes out of the same balance as your own sick days. Casuals get no paid sick leave but can take unpaid carer&rsquo;s leave. Unused sick leave rolls over every year and is not paid out when you leave. Enter your ordinary hours, years of service, leave already taken and base hourly rate in the calculator below to see hours earned, your balance and its value. The rest of this page covers carer&rsquo;s leave, how a sick day is paid, medical certificates, when leave accrues and the rules on payout and cashing out.
         </p>
       </PageHeader>
 
@@ -65,7 +65,7 @@ export default function SickLeavePage() {
           <section>
             <H2 id="how-much">How Much Sick Leave Do You Get?</H2>
             <p>
-              The National Employment Standards (Fair Work Act s 96) give every full-time and part-time employee 10 days of paid personal/carer&rsquo;s leave for each year of service. Because it is worked out on ordinary hours, not days, a part-time employee gets exactly the share of 10 days that their hours are of full-time. How you spread the hours doesn&rsquo;t matter: 38 hours over four days earns the same {FT_HOURS} hours as 38 hours over five.
+              The National Employment Standards (Fair Work Act s 96) give every full-time and part-time employee 10 days of paid personal/carer&rsquo;s leave for each year of service. Because sick leave is worked out on ordinary hours, not days, a part-time employee gets exactly the share of 10 days that their hours are of full-time. How you spread the hours doesn&rsquo;t matter: 38 hours over four days earns the same {FT_HOURS} hours as 38 hours over five.
             </p>
             <DataTable
               head={["Ordinary hours a week", "Sick leave a year", "Each fortnight"]}
@@ -77,7 +77,7 @@ export default function SickLeavePage() {
 
           <section>
             <H2 id="sick-vs-carers">Sick Leave vs Carer&rsquo;s Leave vs Personal Leave</H2>
-            <p>They are the same entitlement. &ldquo;Personal/carer&rsquo;s leave&rdquo; is the legal name; you use it either as <strong>sick leave</strong>, when you can&rsquo;t work because of your own illness or injury (including stress and pregnancy-related illness), or as <strong>carer&rsquo;s leave</strong>, to care for or support a member of your immediate family or household who is sick, injured or has an unexpected emergency.</p>
+            <p>Sick leave, carer&rsquo;s leave and personal leave are the same entitlement. &ldquo;Personal/carer&rsquo;s leave&rdquo; is the legal name; you use it either as <strong>sick leave</strong>, when you can&rsquo;t work because of your own illness or injury (including stress and pregnancy-related illness), or as <strong>carer&rsquo;s leave</strong>, to care for or support a member of your immediate family or household who is sick, injured or has an unexpected emergency.</p>
             <p>Immediate family means your spouse or former spouse, de facto partner or former de facto partner, child, parent, grandparent, grandchild or sibling, and the same relatives of your spouse or de facto partner. Anyone who lives in your household also counts.</p>
             <p>When your paid balance runs out, you can take {SICK_LEAVE.unpaidCarersDaysPerOccasion} days of <strong>unpaid</strong> carer&rsquo;s leave each time a family or household member needs care. Casuals, who have no paid balance, can take the same unpaid carer&rsquo;s leave on each occasion.</p>
           </section>

@@ -86,7 +86,7 @@ export default function TrainDriverSalaryPage() {
           <section>
             <H2 id="after-tax">Train Driver Pay After Tax</H2>
             <p>
-              Take-home figures use 2026–27 resident tax rates with the low income tax offset and the Medicare levy, no HECS, on the base rate alone. Actual pay can be higher once shift, weekend and overtime payments under the agreement are added. Enter your own gross in the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>, or see the <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> for extra shifts.
+              Train driver take-home pay in the tables above uses 2026-27 resident tax rates with the low income tax offset and the Medicare levy, no HECS, on the base rate alone. Actual pay can be higher once shift, weekend and overtime payments under each operator&rsquo;s agreement are added. Enter your own gross in the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>, or see the <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> for extra shifts.
             </p>
           </section>
 

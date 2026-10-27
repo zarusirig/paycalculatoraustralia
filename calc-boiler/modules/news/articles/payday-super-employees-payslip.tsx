@@ -6,8 +6,9 @@ export default function PaydaySuperEmployeesPayslip() {
     <>
       <p className="lead">
         Payday super, which started 1 July 2026, doesn&apos;t change your pay rate, but it changes
-        how often super guarantee is calculated and paid. Here&apos;s what to actually look for on
-        your payslip now that super moves with every pay run instead of once a quarter.
+        how often super guarantee is calculated and paid. This page covers what your payslip should
+        show, and how to check your fund, now that super moves with every pay run instead of once a
+        quarter.
       </p>
 
       <NewsKeyFacts
@@ -28,30 +29,28 @@ export default function PaydaySuperEmployeesPayslip() {
         quarter. If you&apos;re unsure what each line on your payslip means, our{" "}
         <Link href="/understanding-your-payslip/">understanding your payslip guide</Link> breaks
         down every standard field. Some payroll systems also add a short note or reference number
-        confirming when the contribution was sent to your fund, though this isn&apos;t mandatory;
-        the safest way to confirm payment is still checking directly with your super fund rather than
-        relying solely on the payslip wording.
+        confirming when the contribution was sent to your fund, but this isn&apos;t mandatory. The
+        reliable way to confirm payment is your super fund&apos;s transaction history, not the
+        payslip wording alone.
       </p>
 
       <h2>Why quarterly super statements are disappearing</h2>
       <p>
         Some employers previously issued a super summary once a quarter alongside the SBSCH payment
-        run. Because contributions now move with every payday, that quarterly summary is being
-        replaced by payday-level reporting, so you should be able to see contributions reflected in
-        your fund&apos;s app or member portal within days of each pay, rather than waiting until the
-        next quarter to confirm the money arrived. This is a meaningful shift for employees who
-        change jobs or work multiple casual roles, since each employer&apos;s contributions now show
-        up close to when they were earned, making it far easier to spot a gap while it&apos;s still
-        recent rather than discovering a shortfall months later.
+        run. Because contributions now move with every payday, payday-level reporting is
+        replacing that quarterly summary. You should see each contribution in your fund&apos;s app or
+        member portal within days of each pay, rather than waiting until the next quarter to confirm
+        the money arrived. This matters most if you change jobs or work several casual roles: each
+        employer&apos;s contributions now show up close to when you earned them, so a gap is easier to
+        spot while it&apos;s still recent rather than months later.
       </p>
 
       <h2>What to do if a contribution looks wrong or missing</h2>
       <p>
-        Check your fund&apos;s transaction history a week or so after payday. If the expected
-        contribution hasn&apos;t appeared, first confirm the amount and date on your payslip, then
-        raise it with your payroll or HR contact. Employers now have a firm 7-business-day
-        deadline, so a missed payment is easier to identify and escalate than under the old
-        quarterly cycle. See our{" "}
+        Check your fund&apos;s transaction history once your employer&apos;s 7-business-day deadline after payday has passed. If
+        the expected contribution hasn&apos;t appeared, first confirm the amount and date on your
+        payslip, then raise it with your payroll or HR contact. That firm deadline makes a missed
+        payment easier to identify and escalate than under the old quarterly cycle. See our{" "}
         <Link href="/news/payday-super-starts-july-2026/">guide to how payday super works for employers</Link>{" "}
         for the deadline and penalty rules behind that obligation.
       </p>
@@ -60,10 +59,10 @@ export default function PaydaySuperEmployeesPayslip() {
       <p>
         Your take-home pay itself isn&apos;t affected by payday super; only your super guarantee
         timing is. More frequent contributions mean your balance starts earning investment returns
-        sooner, which compounds meaningfully over a career. Use our{" "}
+        sooner, which compounds over a career. Use our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to model how
-        regular, on-time contributions affect your balance at retirement, and keep an eye on your
-        payslip each pay cycle to confirm the new system is working as it should. If you switch
+        regular, on-time contributions affect your balance at retirement, and check the super line
+        on each payslip against your fund&apos;s transaction history. If you switch
         jobs, remember to check that your new employer has your correct fund details from your first
         payday, since a delay there can flow through to the 7-business-day deadline for your first
         contribution.

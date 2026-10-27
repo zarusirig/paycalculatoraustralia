@@ -90,8 +90,8 @@ export default function CentrelinkPaymentDatesPage() {
         <p>
           <strong>Centrelink pays most payments every 2 weeks on your own fortnightly cycle, so there is no single payment date for everyone.</strong> Your payment and reporting dates are in your Centrelink online account. Services Australia doesn&rsquo;t delay payments for public holidays; it may pay you <em>early</em> instead.{" "}
           {PUBLISHED_2026
-            ? "The Christmas 2026 dates are below."
-            : `The Christmas 2026 dates haven't been published yet (checked ${CENTRELINK_DATES_VERIFIED_ON}); below are last year's official tables so you can see how the changes work.`}
+            ? "Services Australia has published the Centrelink Christmas 2026 dates, and they are in the tables below. The date tool lists the next dates on your fortnightly cycle and flags any that fall on a public holiday or over Christmas."
+            : `Services Australia hasn't published the Centrelink Christmas 2026 payment dates yet (checked ${CENTRELINK_DATES_VERIFIED_ON}). The date tool below lists the next dates on your fortnightly cycle and flags any that fall on a public holiday or over Christmas. The rest of the page covers reporting dates, where the Christmas public holidays fall, and last year's official tables, which show how the changes work.`}
         </p>
       </PageHeader>
 
@@ -144,7 +144,7 @@ export default function CentrelinkPaymentDatesPage() {
             ) : (
               <>
                 <p><strong>Not published yet.</strong> As of {CENTRELINK_DATES_VERIFIED_ON}, Services Australia&rsquo;s <a href={CENTRELINK_DATES_SOURCES.holidayPage} target="_blank" rel="noopener noreferrer">public holiday reporting and payment dates</a> page doesn&rsquo;t list any Christmas 2026 changes. Last year&rsquo;s tables were on a version of that page dated 27 October 2025. We&rsquo;ll add the 2026 dates here when they&rsquo;re released. Until then, your online account is the only reliable source for your own dates.</p>
-                <p>What we do know is where the public holidays fall:</p>
+                <p>The Christmas and New Year public holidays already have fixed dates:</p>
                 <DataTable
                   head={["Holiday", "Date"]}
                   rows={HOLIDAYS_2026_27.slice(0, 4).map((h) => [h.name, d(h.iso)])}

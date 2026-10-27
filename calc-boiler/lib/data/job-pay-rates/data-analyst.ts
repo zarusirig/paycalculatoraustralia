@@ -63,7 +63,7 @@ export const DATA_ANALYST: Occupation = {
   heading: "Data Analyst Salary Australia 2026: Median Pay From Tax Returns & Take-Home",
   metaTitle: `Data Analyst Salary Australia 2026 - ${aud(ANALYST.medianSalary)} Median & Take-Home`,
   metaDescription: `Data analysts' median salary was ${aud(ANALYST.medianSalary)} on 2023–24 tax returns, data scientists' ${aud(SCIENTIST.medianSalary)}. Take-home pay on each, award coverage and the legal minimum.`,
-  lede: `The 14,837 people who gave their occupation as data analyst on 2023–24 tax returns had a median salary of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)}, according to the ATO; data scientists' median was ${aud(SCIENTIST.medianSalary)}. On the analyst median, take-home pay is about ${aud(netAnnual(ANALYST.medianSalary))} a year, or ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight, after tax. No award names the job, so the legal floor depends on your employer.`,
+  lede: `The 14,837 people who gave their occupation as data analyst on 2023-24 tax returns had a median salary of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)}, according to the ATO; data scientists' median was ${aud(SCIENTIST.medianSalary)}. On the analyst median, take-home pay is about ${aud(netAnnual(ANALYST.medianSalary))} a year, or ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight, after tax. No modern award names data analysts, so your legal floor depends on your employer's industry and your duties.`,
   coverage: [
     "No modern award names data analysts, and the ATO's occupation coding puts them with actuaries, mathematicians and statisticians rather than with ICT professionals. That matters because the Professional Employees Award, which covers professional engineers, scientists and IT staff, reaches IT staff only at employers principally in the IT, telecommunications services or quality auditing industry, and only for work needing an ACS-accredited degree or equivalent (cl 4.1(b), cl 2.3).",
     "So whether an award covers you turns on your employer's industry and your duties. This page does not decide that; the Fair Work Ombudsman can help you check. If no award applies, you are award-free: the National Minimum Wage and the National Employment Standards (leave, notice, redundancy and the rest) are your legal floor, and above that your contract or enterprise agreement sets the pay.",
@@ -87,23 +87,23 @@ export const DATA_ANALYST: Occupation = {
   faqs: [
     {
       q: "How much does a data analyst earn in Australia?",
-      a: `The 14,837 people who gave their occupation as data analyst on 2023–24 tax returns had a median salary or wage income of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)} (ATO Taxation statistics 2023–24). Those figures include part-time and part-year workers.`,
+      a: `The 14,837 people who gave their occupation as data analyst on 2023-24 tax returns had a median salary or wage income of ${aud(ANALYST.medianSalary)} and an average of ${aud(ANALYST.avgSalary)} (ATO Taxation statistics 2023-24). Those figures include part-time and part-year workers.`,
     },
     {
       q: "What is a data analyst's take-home pay?",
-      a: `On the ${aud(ANALYST.medianSalary)} median, about ${aud(netAnnual(ANALYST.medianSalary))} a year or ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight after 2026–27 income tax and the Medicare levy, with no HECS-HELP. A HECS-HELP debt adds a compulsory repayment on top.`,
+      a: `A data analyst on the ${aud(ANALYST.medianSalary)} median takes home about ${aud(netAnnual(ANALYST.medianSalary))} a year or ${aud(netFortnightly(ANALYST.medianSalary))} a fortnight after 2026-27 income tax and the Medicare levy, with no HECS-HELP. A HECS-HELP debt adds a compulsory repayment on top.`,
     },
     {
       q: "Do data scientists earn more than data analysts?",
-      a: `On 2023–24 tax returns, yes: data scientists' median salary or wage income was ${aud(SCIENTIST.medianSalary)}, against ${aud(ANALYST.medianSalary)} for data analysts. Statisticians' median was $111,413.`,
+      a: `On 2023-24 tax returns, yes: data scientists' median salary or wage income was ${aud(SCIENTIST.medianSalary)}, against ${aud(ANALYST.medianSalary)} for data analysts. Statisticians' median was $111,413.`,
     },
     {
       q: "Is there an award for data analysts?",
-      a: "No award names the job. Whether one covers you depends on your employer's industry and your duties: the Professional Employees Award's IT stream, for example, applies only at employers principally in the IT or telecommunications services industry. If no award applies, you are award-free and the National Minimum Wage is the legal floor.",
+      a: "No award names the job. Whether one covers you depends on your employer's industry and your duties: the Professional Employees Award's IT stream, for example, applies only at employers principally in the IT, telecommunications services or quality auditing industry, and only for work needing an ACS-accredited degree or equivalent. If no award applies, you are award-free and the National Minimum Wage is the legal floor.",
     },
     {
       q: "What is the minimum wage for a data analyst?",
-      a: "If no award covers you, the National Minimum Wage: $26.44 an hour or $1,004.90 a week for adults from the first full pay period on or after 1 July 2026. It is a floor, far below what data analysts typically report.",
+      a: "If no award covers you, a data analyst's minimum wage is the National Minimum Wage: $26.44 an hour or $1,004.90 a week for adults from the first full pay period on or after 1 July 2026. It is a floor, far below the median salary data analysts reported to the ATO.",
     },
   ],
   sources: [

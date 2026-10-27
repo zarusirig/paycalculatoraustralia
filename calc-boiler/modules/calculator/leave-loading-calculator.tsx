@@ -80,7 +80,7 @@ export default function LeaveLoadingCalculator() {
     <Card className="shadow-md not-prose" id="leave-loading-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Leave Loading Calculator</h2>
-        <p className="text-sm text-warmgray mb-6">Works out your annual leave pay and 17.5% loading, and applies your award&rsquo;s &ldquo;whichever is higher&rdquo; test against the weekend or shift penalties you&rsquo;d normally earn.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator works out your annual leave pay and 17.5% loading, then applies your award&rsquo;s &ldquo;whichever is higher&rdquo; test against the weekend or shift penalties you&rsquo;d normally earn.</p>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
@@ -124,7 +124,7 @@ export default function LeaveLoadingCalculator() {
               {!compares
                 ? `${rule ? `${rule.shortName} ${rule.clause}` : "A flat loading"}: 17.5% on top of your leave pay, with no comparison against penalty rates.`
                 : r.paidAs === "penalty rates"
-                  ? `Your weekend/shift penalties (${formatAUD(r.penaltyAlternative, 2)}) beat 17.5% (${formatAUD(r.flatLoading, 2)}), so ${rule?.clause ?? "the clause"} pays the penalties instead. Never both.`
+                  ? `Your weekend/shift penalties (${formatAUD(r.penaltyAlternative, 2)}) beat 17.5% (${formatAUD(r.flatLoading, 2)}), so ${rule?.clause ?? "the clause"} pays the penalties instead of the loading, not both.`
                   : `17.5% (${formatAUD(r.flatLoading, 2)}) is higher than the penalties you'd have earned, so the 17.5% loading is paid.`}
             </p>
             {lumpSumTax && (
@@ -134,7 +134,7 @@ export default function LeaveLoadingCalculator() {
               </dl>
             )}
             <p className="text-xs text-warmgray-light">
-              Lump-sum withholding uses ATO Schedule 5 Method B(ii) on a fortnightly pay of {formatAUD(hourly * hours * 2, 2)}, with the tax-free threshold claimed. If the loading is paid with your leave, it is simply added to that pay&rsquo;s earnings. For leave paid out when you finish, see the <Link href="/final-pay-calculator/" className="underline">final pay calculator</Link>.
+              Lump-sum withholding uses ATO Schedule 5 Method B(ii) on a fortnightly pay of {formatAUD(hourly * hours * 2, 2)}, with the tax-free threshold claimed. If the loading is paid with your leave, it is added to that pay&rsquo;s earnings and taxed with them. For leave paid out when you finish, see the <Link href="/final-pay-calculator/" className="underline">final pay calculator</Link>.
             </p>
           </div>
         </div>

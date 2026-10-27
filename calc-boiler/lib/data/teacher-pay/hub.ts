@@ -62,9 +62,9 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
   const faqs: TeacherPayFaq[] = [
     {
       q: "What is the starting salary for teachers in Australia?",
-      a: `It depends on the state, because each one sets its own public school scale. A qualified graduate starts on ${list(
+      a: `A qualified graduate teacher in an Australian public school starts on ${list(
         "graduate",
-      )} a year. The lowest is ${lowestGraduate.state.nameInSentence} at ${formatAUD(
+      )} a year. Each state and territory sets its own public school scale. The lowest is ${lowestGraduate.state.nameInSentence} at ${formatAUD(
         lowestGraduate.graduate,
       )} and the highest is ${highestGraduate.state.nameInSentence} at ${formatAUD(
         highestGraduate.graduate,
@@ -80,9 +80,9 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
     },
     {
       q: "Which state pays teachers the most?",
-      a: `For a new graduate, ${highestGraduate.state.nameInSentence} (${formatAUD(
+      a: `For a new graduate teacher, ${highestGraduate.state.nameInSentence} pays the most (${formatAUD(
         highestGraduate.graduate,
-      )}). At the top of the classroom scale, ${highestTop.state.nameInSentence} (${formatAUD(
+      )}). At the top of the classroom scale, ${highestTop.state.nameInSentence} pays the most (${formatAUD(
         highestTop.top,
       )}). Rankings move whenever a state's agreement steps up, so check the date each state's rates took effect on its page.`,
     },

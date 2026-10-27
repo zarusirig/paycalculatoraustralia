@@ -133,7 +133,7 @@ export const RETAIL_MANAGER: Occupation = {
       id: "retail-manager",
       title: "Retail manager pay rates by level, 2026–27",
       intro:
-        "General Retail Industry Award cl 17.1, Table 4, from the first full pay period on or after 1 July 2026. Casual is the hourly rate plus the 25% casual loading (cl 11.1). Levels 1 to 3 are on the retail worker page.",
+        "Retail manager minimums come from General Retail Industry Award cl 17.1, Table 4, and apply from the first full pay period on or after 1 July 2026. The casual rate is the hourly rate plus the 25% casual loading (cl 11.1). Levels 1 to 3 are on the retail worker page.",
       rows: ["Level 4", "Level 5", "Level 6", "Level 7", "Level 8"].map((level) => retailRow(level, NOTES[level])),
     },
   ],
@@ -144,7 +144,7 @@ export const RETAIL_MANAGER: Occupation = {
     { when: "Public holiday", permanent: pct(RETAIL_PENALTIES.publicHoliday), casual: pct(RETAIL_PENALTIES.casualPublicHoliday) },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate for ordinary hours (cl 22.1, Table 12). They apply to every level, managers included, for as long as the award covers the employee. Casual percentages include the 25% casual loading. Check your contract and the award for how penalties and overtime apply if you are paid an annual salary.",
+    "Retail Award penalty rates are percentages of the minimum hourly rate for ordinary hours (cl 22.1, Table 12). They apply to every level, managers included, for as long as the award covers the employee. Casual percentages include the 25% casual loading. Check your contract and the award for how penalties and overtime apply if you are paid an annual salary.",
   overtime: [
     `Full-time and part-time: ${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.weekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.sunday)}; public holiday ${pct(RETAIL_OVERTIME.publicHoliday)} (cl 21.2(c), Table 11).`,
     `Casual: ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} for the first 3 hours Monday to Saturday, then ${pct(RETAIL_OVERTIME.casualWeekdayAfter3Hours)}; Sunday ${pct(RETAIL_OVERTIME.casualSunday)}; public holiday ${pct(RETAIL_OVERTIME.casualPublicHoliday)}.`,
@@ -172,19 +172,19 @@ export const RETAIL_MANAGER: Occupation = {
     },
     {
       q: "What is a department manager paid under the retail award?",
-      a: `It depends on the size of the team. A department or section manager with up to 2 employees (including themselves) is Level 4, ${money(L4.hourly)} an hour. With 5 or more employees the award grades the role at Level 6, ${money(L6.hourly)} an hour.`,
+      a: `The retail award grades a department manager by the size of their team. A department or section manager with up to 2 employees (including themselves) is Level 4, ${money(L4.hourly)} an hour. With 5 or more employees the award grades the role at Level 6, ${money(L6.hourly)} an hour.`,
     },
     {
       q: "Do retail managers get penalty rates?",
-      a: "While the award covers them, yes. The weekend, evening and public holiday penalty rates in the General Retail Industry Award apply to every level, including managers, and overtime applies to time worked beyond ordinary hours. Managers on an enterprise agreement follow that agreement instead, and a manager paid a salary should check the contract and award for how penalties and overtime apply.",
+      a: "Yes, retail managers get penalty rates while the General Retail Industry Award covers them. The award's weekend, evening and public holiday penalty rates apply to every level, including managers, and overtime applies to time worked beyond ordinary hours. Managers on an enterprise agreement follow that agreement instead, and a manager paid a salary should check the contract and award for how penalties and overtime apply.",
     },
     {
       q: "How much does a store manager take home a week?",
-      a: `On the award minimum, a full-time manager of a shop without departments (Level 6) earns ${money0(annual52(L6.weekly))} a year and takes home about ${money0(takeHomeWeekly(annual52(L6.weekly)))} a week after tax. The manager of a shop with departments (Level 8) earns ${money0(annual52(L8.weekly))} and takes home about ${money0(takeHomeWeekly(annual52(L8.weekly)))} a week. Both assume 2026–27 resident tax rates and no HECS.`,
+      a: `On the award minimum, a full-time manager of a shop without departments (Level 6) earns ${money0(annual52(L6.weekly))} a year and takes home about ${money0(takeHomeWeekly(annual52(L6.weekly)))} a week after tax. The manager of a shop with departments (Level 8) earns ${money0(annual52(L8.weekly))} and takes home about ${money0(takeHomeWeekly(annual52(L8.weekly)))} a week. Both figures assume 2026-27 resident tax rates and no HECS.`,
     },
     {
       q: "How much do Coles, Woolworths and Kmart store managers earn?",
-      a: "Large chains set store manager salaries themselves, and they are not published in a source we can verify. We publish the award minimum only; the employer pay pages cover the agreement rates for their shop-floor staff.",
+      a: "Coles, Woolworths and Kmart set store manager salaries themselves, and those salaries are not published in a source we can verify. We publish the award minimum only; the employer pay pages cover the agreement rates for their shop-floor staff.",
     },
     {
       q: "What do retail managers actually earn?",

@@ -72,7 +72,7 @@ export default function CasualLoadingPage() {
             <section id="loading-by-award">
               <h2 style={H2}>Casual Loading Rate by Award</h2>
               <p>
-                The {pct(CASUAL_LOADING)} figure is set instrument by instrument. These are the loadings in the National Minimum Wage Order and the awards that cover the most casuals, with the casual Sunday rate as a percentage of the base rate:
+                The {pct(CASUAL_LOADING)} casual loading is set separately in each award and in the National Minimum Wage Order. The table shows the loading in the National Minimum Wage Order and in the retail, hospitality, fast food and SCHADS awards, with the casual Sunday rate as a percentage of the base rate:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -110,7 +110,7 @@ export default function CasualLoadingPage() {
             <section id="what-it-replaces">
               <h2 style={H2}>What Casual Loading Pays For</h2>
               <p>
-                Casuals do not get the paid entitlements permanent employees do, and the loading is compensation for that. It replaces:
+                Casual loading compensates casuals for the paid entitlements that permanent employees get and casuals do not. It replaces:
               </p>
               <ul>
                 <li><strong>Paid annual leave:</strong> {EMPLOYMENT.annualLeaveWeeks} weeks a year for a permanent employee.</li>

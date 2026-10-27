@@ -22,7 +22,7 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "What is the SAPTO income threshold?",
-    a: `There are two thresholds. Below the shading-out threshold you get the maximum offset: ${formatAUD(S.shadingOutThreshold)} single, ${formatAUD(C.shadingOutThreshold)} each for a couple, ${formatAUD(I.shadingOutThreshold)} each if illness-separated. At or above the cut-out threshold you get nothing: ${formatAUD(S.cutOutThreshold)} single, ${formatAUD(C.cutOutThreshold)} each for a couple, ${formatAUD(I.cutOutThreshold)} each if illness-separated.`,
+    a: `SAPTO has two rebate income thresholds. Below the shading-out threshold you get the maximum offset: ${formatAUD(S.shadingOutThreshold)} single, ${formatAUD(C.shadingOutThreshold)} each for a couple, ${formatAUD(I.shadingOutThreshold)} each if illness-separated. At or above the cut-out threshold you get nothing: ${formatAUD(S.cutOutThreshold)} single, ${formatAUD(C.cutOutThreshold)} each for a couple, ${formatAUD(I.cutOutThreshold)} each if illness-separated.`,
   },
   {
     q: "Who is eligible for SAPTO?",
@@ -34,11 +34,11 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "Can self-funded retirees get SAPTO?",
-    a: "Yes, if they are age-pension age (67) and would be eligible for the Age Pension apart from not claiming it or failing its income or assets test, meet the residence rules, and are under the SAPTO rebate income limit. Many self-funded retirees qualify this way without receiving any pension.",
+    a: "Yes, if they are age-pension age (67) and would be eligible for the Age Pension apart from not claiming it or failing its income or assets test, meet the residence rules, and are under the SAPTO rebate income limit. A self-funded retiree who qualifies this way gets SAPTO without receiving any pension.",
   },
   {
     q: "How is SAPTO calculated for a couple?",
-    a: `Two different incomes are used, which catches people out. Eligibility is tested on HALF your combined rebate income against the cut-out threshold of ${formatAUD(C.cutOutThreshold)}. But the offset amount is then worked out on your OWN rebate income against the shading-out threshold of ${formatAUD(C.shadingOutThreshold)}. So a couple can qualify while one partner still receives nothing because their individual income is too high.`,
+    a: `SAPTO for a couple uses two different incomes, which catches people out. Eligibility is tested on HALF your combined rebate income against the cut-out threshold of ${formatAUD(C.cutOutThreshold)}. But the offset amount is then worked out on your OWN rebate income against the shading-out threshold of ${formatAUD(C.shadingOutThreshold)}. So a couple can qualify while one partner still receives nothing because their individual income is too high.`,
   },
   {
     q: "What is rebate income?",
@@ -54,7 +54,7 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "Is SAPTO refundable?",
-    a: "No. SAPTO is non-refundable, so it reduces your tax payable to a minimum of zero but does not generate a cash refund on its own. Any excess is lost rather than carried forward.",
+    a: "No. SAPTO is non-refundable, so it reduces your tax payable to a minimum of zero but does not generate a cash refund on its own. Any excess that does not transfer to your spouse is lost, not carried forward.",
   },
   {
     q: "Does SAPTO affect the Medicare levy?",
@@ -66,7 +66,7 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "Which financial year do these SAPTO amounts apply to?",
-    a: `The ${SAPTO_INCOME_YEAR} income year: the return being lodged now. The ATO publishes SAPTO thresholds with each year's rates, and had not released ${"2026-27"} figures when this page was last verified.`,
+    a: `These SAPTO amounts apply to the ${SAPTO_INCOME_YEAR} income year, the return being lodged now. The ATO publishes SAPTO thresholds with each year's rates, and had not released ${"2026-27"} figures when this page was last verified.`,
   },
   {
     q: "What if I was in jail during the year?",

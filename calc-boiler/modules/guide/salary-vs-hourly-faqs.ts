@@ -15,7 +15,7 @@ const HIGH_INCOME_THRESHOLD = { amount: 190_100, from: "1 July 2026" } as const;
 export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   {
     q: "Is salary or hourly pay better in Australia?",
-    a: "Neither is universally better. Salary provides income stability, paid leave, and predictable budgeting, which suits for employees who value consistency. Hourly pay ensures compensation for every hour worked including overtime and penalty rates, which suits workers in industries with regular overtime opportunities. The best choice depends on your industry, role, and financial priorities.",
+    a: "Neither salary nor hourly pay is better for everyone in Australia. Salary provides income stability, paid leave and predictable budgeting, which suits employees who value consistency. An hourly rate pays you for every hour worked, including overtime and penalty rates, which suits workers in industries with regular overtime. Our view: choose on your industry, role and financial priorities, because those decide whether steady pay or paid overtime is worth more to you.",
   },
   {
     q: "How do I convert my salary to an hourly rate?",
@@ -24,11 +24,11 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do salaried employees get overtime in Australia?",
-    a: `It depends on the award or enterprise agreement. Many salaried employees have "reasonable additional hours" clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (${formatAUD(HIGH_INCOME_THRESHOLD.amount)} from ${HIGH_INCOME_THRESHOLD.from}, indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.`,
+    a: `Whether a salaried employee gets overtime depends on their award or enterprise agreement. Many salaried employees have "reasonable additional hours" clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (${formatAUD(HIGH_INCOME_THRESHOLD.amount)} from ${HIGH_INCOME_THRESHOLD.from}, indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.`,
   },
   {
     q: "Is casual hourly pay higher than salary?",
-    a: `Casual employees receive a ${pct(EMPLOYMENT.casualLoading)} casual loading on top of the base hourly rate, which compensates for the absence of paid leave entitlements. This means the headline hourly rate is higher, but when you account for the value of ${EMPLOYMENT.annualLeaveWeeks} weeks annual leave, ${EMPLOYMENT.personalLeaveDays} days personal leave, and other entitlements, the total package is typically comparable to a permanent role.`,
+    a: `Casual hourly pay is higher on the headline rate because casual employees receive a ${pct(EMPLOYMENT.casualLoading)} casual loading on top of the base hourly rate. The loading compensates for the absence of paid leave entitlements. Our view: the total casual package is comparable to a permanent role, because the loading stands in for ${EMPLOYMENT.annualLeaveWeeks} weeks annual leave, ${EMPLOYMENT.personalLeaveDays} days personal leave and other entitlements.`,
   },
   {
     q: "Do hourly workers get superannuation?",

@@ -132,7 +132,7 @@ export default function TaxFreeThresholdPage() {
           <section>
             <H2>What the Tax-Free Threshold Is</H2>
             <p>The tax-free threshold is the first bracket of the resident tax scale: taxable income from $0 to {T} is taxed at nil. Above it you pay 15c for each dollar up to $45,000, then the higher rates set out in our <Link href="/tax-brackets/">Australian tax brackets</Link> guide. It is not a deduction and not a refund. It&rsquo;s a zero-rate band that every resident gets once per income year, however many jobs they have.</p>
-            <p>The figure has been {T} since 1 July 2012, when it rose from $6,000.</p>
+            <p>The tax-free threshold has been {T} since 1 July 2012, when it rose from $6,000.</p>
           </section>
 
           <section>
@@ -153,13 +153,13 @@ export default function TaxFreeThresholdPage() {
 
           <section>
             <H2 id="how-to-claim">How to Claim It on Your TFN Declaration</H2>
-            <p>You claim the threshold through the <Link href="/tax-file-number-declaration/">tax file number declaration</Link> you give each new payer, including Centrelink if it pays you a taxable benefit. Question 9 asks: &ldquo;Do you want to claim the tax-free threshold from this payer?&rdquo; Answer &ldquo;Yes&rdquo; if you&rsquo;re an Australian resident for tax purposes and either aren&rsquo;t claiming it from another payer, or are but your total income from all sources will be less than the threshold. Working holiday makers must answer &ldquo;No&rdquo;. Answering &ldquo;Yes&rdquo; tells the payer to use the ATO withholding scale that builds in the {T} band; &ldquo;No&rdquo; switches to the higher scale.</p>
+            <p>You claim the threshold through the <Link href="/tax-file-number-declaration/">tax file number declaration</Link> you give each new payer, including Centrelink if it pays you a taxable benefit. Question 9 asks: &ldquo;Do you want to claim the tax-free threshold from this payer?&rdquo; Answer &ldquo;Yes&rdquo; if you&rsquo;re an Australian resident for tax purposes and aren&rsquo;t claiming it from another payer. If you&rsquo;re a resident already claiming it from another payer, answer &ldquo;Yes&rdquo; only if your total income from all sources will be less than the threshold. Working holiday makers must answer &ldquo;No&rdquo;. Answering &ldquo;Yes&rdquo; tells the payer to use the ATO withholding scale that builds in the {T} band; &ldquo;No&rdquo; switches to the higher scale.</p>
             <p>Your choice only affects <em>withholding</em> during the year. Your actual tax is worked out when you lodge, and the ATO applies the threshold once to your total income then. Claim it in the wrong place and the difference shows up as a refund or a bill.</p>
           </section>
 
           <section>
             <H2 id="claimed-vs-not">Tax Withheld: Claimed vs Not Claimed</H2>
-            <p>With the threshold claimed, nothing is withheld until you earn more than about {formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.weekly)} a week ({formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.fortnightly)} a fortnight, {formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.monthly)} a month). That is a little above {formatAUD(TFT_PER_PERIOD.weekly)} a week because the withholding scale builds in part of LITO. Without it, tax is withheld from the first dollar. On {formatAUD(900)} a week the gap is <strong>{formatAUD(w900.difference)} a week</strong>.</p>
+            <p>With the threshold claimed, nothing is withheld until you earn more than about {formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.weekly)} a week ({formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.fortnightly)} a fortnight, {formatAUD(TFT_WITHHOLDING_STARTS_ABOVE.monthly)} a month). That is a little above {formatAUD(TFT_PER_PERIOD.weekly)} a week because the withholding scale builds in part of LITO. Without the threshold claimed, tax is withheld from the first dollar. On {formatAUD(900)} a week the gap is <strong>{formatAUD(w900.difference)} a week</strong>.</p>
             <h3 style={FONT}>Weekly</h3>
             <div className="not-prose my-4"><WithholdingTable amounts={WEEKLY} frequency="weekly" /></div>
             <h3 style={FONT}>Fortnightly</h3>

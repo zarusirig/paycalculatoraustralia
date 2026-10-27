@@ -725,7 +725,7 @@ function SalaryAnswerBox({ state }: { state: NursingStateData }) {
         Nurse salary in {state.shortName}, {ratesYear(state)}
       </h2>
       <p className="mb-4 text-sm text-warmgray">
-        Base pay before tax and shift penalties, from {primary.effectiveFrom}.
+        These figures are base pay before tax and shift penalties, from {primary.effectiveFrom}.
         {state.derivation.annual ? " Annual figures are the weekly rate x 52." : ""}
       </p>
       <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">

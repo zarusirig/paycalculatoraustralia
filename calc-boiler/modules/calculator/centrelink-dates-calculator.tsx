@@ -31,7 +31,7 @@ export default function CentrelinkDatesCalculator() {
     <Card className="shadow-md not-prose" id="centrelink-dates-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Your Next Centrelink Dates</h2>
-        <p className="text-sm text-warmgray mb-6">Enter one payment or reporting date from your Centrelink online account or a letter. We&rsquo;ll list the next 12 on your fortnightly cycle and flag any that fall on a public holiday or over Christmas, when Services Australia may move them earlier.</p>
+        <p className="text-sm text-warmgray mb-6">Enter one payment or reporting date from your Centrelink online account or a letter. The calculator lists the next 12 dates on your fortnightly Centrelink cycle and flags any that fall on a public holiday or over Christmas, when Services Australia may move them earlier.</p>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField id="cl-kind" label="The date is my" value={kind} onChange={setKind} options={[{ value: "payment", label: "Payment date" }, { value: "reporting", label: "Reporting date" }]} />
@@ -63,7 +63,7 @@ export default function CentrelinkDatesCalculator() {
                 </div>
                 <p className={flagged.length ? NOTE_WARN : NOTE_OK} role="status" aria-live="polite">
                   {flagged.length
-                    ? `${flagged.length} of these dates fall on a public holiday or over Christmas–New Year. ${CHRISTMAS_2026_27_PUBLISHED ? "Check the official table below." : "Services Australia hasn't published its Christmas 2026 dates yet; last year every change moved dates earlier, never later."}`
+                    ? `${flagged.length} of these dates fall on a public holiday or over Christmas and New Year. ${CHRISTMAS_2026_27_PUBLISHED ? "Check the official table below." : "Services Australia hasn't published its Christmas 2026 dates yet; last year every change moved dates earlier, never later."}`
                     : "None of these dates fall on a national public holiday or over Christmas, so they should stay as they are."}
                 </p>
                 <p className="text-xs text-warmgray-light">These are the dates your cycle falls on without holiday changes. The dates in your <a href="https://www.servicesaustralia.gov.au/centrelink-online-account" target="_blank" rel="noopener noreferrer" className="underline">Centrelink online account</a> are the ones that count. To see what you&rsquo;ll be paid, use the <Link href="/jobseeker-payment-calculator/" className="underline">JobSeeker</Link> or <Link href="/age-pension-income-test-calculator/" className="underline">Age Pension</Link> calculator.</p>

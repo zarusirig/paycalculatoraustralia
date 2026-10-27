@@ -62,11 +62,11 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "What is the SCHADS Level 4 pay rate?",
-    a: `Level 4 pay point 1 in the social and community services stream is ${formatAUD(L4.weekly, 2)} a week, or ${formatAUD(L4.hourly, 2)} an hour. Be careful with this one: clause 15 of the award text lists ${formatAUD(CLAUSE_15_LEVEL_4, 2)} for the same classification. That is the pre-Equal Remuneration Order figure and it is not what you are owed. Equal Remuneration Order ${SCHADS_AWARD.eroReference} applies on top for Schedule B classifications, and the award's own note confirms the ERO rates form ordinary rates of pay for all purposes.`,
+    a: `Level 4 pay point 1 in the social and community services stream is ${formatAUD(L4.weekly, 2)} a week, or ${formatAUD(L4.hourly, 2)} an hour. Clause 15 of the SCHADS award text lists ${formatAUD(CLAUSE_15_LEVEL_4, 2)} for the same classification. That is the pre-Equal Remuneration Order figure and it is not what you are owed. Equal Remuneration Order ${SCHADS_AWARD.eroReference} applies on top for Schedule B classifications, and the award's own note confirms the ERO rates form ordinary rates of pay for all purposes.`,
   },
   {
     q: "Why is my SCHADS pay rate higher than the award document says?",
-    a: `Because of the Equal Remuneration Order. Social and community services and crisis accommodation classifications receive an ERO loading on top of the minimum weekly wage printed in clause 15 of the award. At Level 4 pay point 1 the difference is ${formatAUD(CLAUSE_15_LEVEL_4, 2)} against an operative ${formatAUD(L4.weekly, 2)}. The rate you are actually owed is ${((L4.weekly / CLAUSE_15_LEVEL_4 - 1) * 100).toFixed(0)}% higher than the figure printed in the clause, a gap of ${formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week. Any SCHADS rate table that does not mention the ERO is quoting the wrong number.`,
+    a: `Your SCHADS pay rate is higher because of the Equal Remuneration Order (ERO). Social and community services and crisis accommodation classifications receive an ERO loading on top of the minimum weekly wage printed in clause 15 of the award. At Level 4 pay point 1 the difference is ${formatAUD(CLAUSE_15_LEVEL_4, 2)} against an operative ${formatAUD(L4.weekly, 2)}. The rate you are actually owed is ${((L4.weekly / CLAUSE_15_LEVEL_4 - 1) * 100).toFixed(0)}% higher than the figure printed in the clause, a gap of ${formatAUD(L4.weekly - CLAUSE_15_LEVEL_4, 2)} a week. Any SCHADS rate table that does not mention the ERO is quoting the wrong number.`,
   },
   {
     q: "Does the SCHADS award have junior rates?",
@@ -86,11 +86,11 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "How much is the SCHADS sleepover allowance?",
-    a: `${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are woken and required to work, those hours are paid separately at the applicable rate. The allowance does not buy the employer any working time.`,
+    a: `The SCHADS sleepover allowance is ${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are woken and required to work, those hours are paid separately at the applicable rate. The allowance does not buy the employer any working time.`,
   },
   {
     q: "What is the difference between the SACS stream and the home care stream?",
-    a: `They are separate schedules with separate rates, and the gap is large. Social and community services (Schedule B) rates carry the Equal Remuneration Order, starting at ${formatAUD(L1.weekly, 2)} a week. Home care aged care (Schedule F) receives no ERO uplift and starts at ${formatAUD(AGED_ENTRY.weekly, 2)} a week at the introductory level. Home care disability care (Schedule E) is a third schedule again. Being classified in the wrong schedule is one of the more expensive errors in this award.`,
+    a: `The SACS stream and the home care stream are separate schedules with separate rates, and the gap is large. Social and community services (Schedule B) rates carry the Equal Remuneration Order, starting at ${formatAUD(L1.weekly, 2)} a week. Home care aged care (Schedule F) receives no ERO uplift and starts at ${formatAUD(AGED_ENTRY.weekly, 2)} a week at the introductory level. Home care disability care (Schedule E) is a third schedule again. Being classified in the wrong schedule is one of the more expensive errors in this award.`,
   },
   {
     q: "When did the new SCHADS rates start?",
@@ -98,6 +98,6 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "Why is there such a jump from SCHADS Level 1 to Level 2?",
-    a: `Because Level 1 receives no Equal Remuneration Order uplift and Level 2 does. Level 1 pay point 3 is ${formatAUD(L1_TOP.weekly, 2)} a week and Level 2 pay point 1 is ${formatAUD(L2.weekly, 2)}, a step of over ${formatAUD(L2.weekly - L1_TOP.weekly, 0)} a week between adjacent classifications. It looks like a typo and is not. It is the single largest reason getting your classification right is worth the argument.`,
+    a: `The jump exists because SCHADS Level 1 receives no Equal Remuneration Order uplift and Level 2 does. Level 1 pay point 3 is ${formatAUD(L1_TOP.weekly, 2)} a week and Level 2 pay point 1 is ${formatAUD(L2.weekly, 2)}, a step of over ${formatAUD(L2.weekly - L1_TOP.weekly, 0)} a week between adjacent classifications. The step is correct, not a typo, so check which SCHADS classification your work sits at.`,
   },
 ];

@@ -58,7 +58,7 @@ export const ACT_NURSING_PAY: NursingStateData = {
       reference: "AG2024/2516",
       source: EA_SOURCE,
       note:
-        "Schedule 1, final column \"1% + $1,000 from 04/12/2025\". Clause 11.2 lists the increases; clause 55.1 sets ordinary hours at an average of 38 a week.",
+        "The rates on this page are the final column of Schedule 1, headed \"1% + $1,000 from 04/12/2025\". Clause 11.2 lists the increases, and clause 55.1 sets ordinary hours at an average of 38 a week.",
     },
   ],
 
@@ -78,7 +78,7 @@ export const ACT_NURSING_PAY: NursingStateData = {
         { label: "Pay point 7", annual: 104873 },
         { label: "Pay point 8", annual: 108780 },
       ],
-      note: "The entry registered nurse classification: eight annual pay points.",
+      note: "This is the ACT's entry registered nurse classification, with eight annual pay points.",
     },
     {
       classification: "Midwife (RM) Level 1",
@@ -174,7 +174,7 @@ export const ACT_NURSING_PAY: NursingStateData = {
       family: "practitioner",
       instrumentId: INSTRUMENT,
       points: [{ label: "Single rate", annual: 154206 }],
-      note: "Paid the same as Registered Nurse Level 4 Grade 2.",
+      note: "An ACT nurse practitioner is paid the same as Registered Nurse Level 4 Grade 2.",
     },
     {
       classification: "Assistant in Nursing",
@@ -209,13 +209,13 @@ export const ACT_NURSING_PAY: NursingStateData = {
   unverified: [
     "Shift, weekend and public holiday penalty rates: the agreement sets them, but they have not been transcribed for this page.",
     "An hourly rate for any ACT classification: the agreement publishes annual salaries only.",
-    "Rates under a replacement agreement: the 2023–2026 agreement is being renegotiated and no replacement or interim increase had been published when this page was checked on 24 September 2026.",
+    "Rates under a replacement agreement: the 2023-2026 agreement is being renegotiated and no replacement or interim increase had been published when this page was checked on 24 September 2026.",
   ],
 
   verifiedOn: "24 September 2026",
 
   intro:
-    "ACT public sector nurses and midwives are paid under the ACT Public Sector Nursing and Midwifery Enterprise Agreement 2023–2026, approved by the Fair Work Commission. The rates below are its final column, in force from 4 December 2025 after a 1% rise plus a $1,000 flat-rate increase. The agreement passed its nominal expiry on 31 March 2026 and is being renegotiated; until a replacement is approved these remain the rates paid. The ACT publishes annual salaries only, and pays its midwife ladder exactly the same as the nursing ladder.",
+    "ACT public sector nurses and midwives, at Canberra Health Services and ACT Health, are paid under the ACT Public Sector Nursing and Midwifery Enterprise Agreement 2023-2026, approved by the Fair Work Commission. The annual salaries below are the agreement's final column, in force from 4 December 2025 after a 1% rise plus a $1,000 flat-rate increase. The ACT agreement passed its nominal expiry on 31 March 2026 and is being renegotiated. Until a replacement is approved, these remain the rates paid. The ACT publishes annual salaries only, and pays its midwife ladder exactly the same as the nursing ladder. The tables below give the annual salary for each pay point and grade shown.",
 
   highlights: [
     "Registered Nurse Level 1 starts at $82,993 and runs to $108,780 across eight pay points, from 4 December 2025.",

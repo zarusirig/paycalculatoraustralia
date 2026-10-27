@@ -154,7 +154,7 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
                   </table>
                 </div>
                 <p className="mt-2 text-xs text-warmgray-light">
-                  From the first full pay period starting on or after {NMW_ORDER.operativeFrom}, before tax, Monday&ndash;Friday rates. Which row applies to you, and how the award rows are worked out, is on the <Link href="/junior-pay-rates/#which-rate-applies" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
+                  These are before-tax Monday to Friday rates from the first full pay period starting on or after {NMW_ORDER.operativeFrom}. Which row applies to you, and how the award rows are worked out, is on the <Link href="/junior-pay-rates/#which-rate-applies" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
                 </p>
               </div>
             </section>
@@ -383,7 +383,7 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How these rates were worked out">
                 <p>
-                  Each award&rsquo;s percentage of its Level 1 weekly rate, divided by {EMPLOYMENT.standardWeeklyHours}; full method on the <Link href="/junior-pay-rates/#how-calculated" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
+                  Each award&rsquo;s junior hourly rate is its junior percentage of its Level 1 weekly rate, divided by {EMPLOYMENT.standardWeeklyHours}. The full method is on the <Link href="/junior-pay-rates/#how-calculated" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sourcesFor(age)} lastVerified="10 October 2026" />

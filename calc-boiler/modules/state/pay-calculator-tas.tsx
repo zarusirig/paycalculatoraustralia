@@ -63,10 +63,12 @@ export default function PayCalculatorTASPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">TAS</span>
           </div>
           <p className="text-lg text-warmgray">
-            Tasmanian wages are the lowest in the country, which makes the after-tax number matter more,
-            not less. This salary calculator applies ATO {SITE_CONFIG.financialYear} rates, and the rest
-            of the page covers the Tasmanian specifics: a holiday calendar that changes depending on
-            which end of the state you work in, and long service leave under the 1976 Act.
+            Take-home pay in Tasmania is your gross salary less federal income tax and the Medicare levy,
+            under the same tax rules as every other state. Tasmanian wages are the lowest in the country, which
+            makes the after-tax number matter more, not less. This salary calculator applies the
+            ATO {SITE_CONFIG.financialYear} rates and shows what you keep each week, fortnight and month. The
+            rest of the page covers the Tasmanian specifics: a holiday calendar that changes with which end
+            of the state you work in, and long service leave under the 1976 Act.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -88,14 +90,14 @@ export default function PayCalculatorTASPage() {
               Tasmania has no state income tax. What it does have is a wage distribution sitting lower
               than the mainland, which means a larger share of Tasmanians keep the{" "}
               <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">low income tax offset</Link> in full and
-              a smaller share ever reach the 37% bracket. Here is the arithmetic on{" "}
+              a smaller share ever reach the 37% bracket. The worked example below runs the numbers on{" "}
               {formatAUD(typicalSalary(PROFILE))}, the average full-time wage in Tasmania.
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              At Tasmanian wage levels the effective tax rate is meaningfully lower than the headline
-              brackets suggest, because the tax-free threshold and LITO make up a bigger fraction of a
-              smaller salary. The calculator above shows your own effective rate.
+              At Tasmanian wage levels the effective tax rate sits well below the headline bracket rates,
+              because the tax-free threshold and LITO cover a bigger fraction of a smaller salary. Enter
+              your salary in the calculator above to see your own effective tax rate.
             </p>
           </section>
 
@@ -123,8 +125,8 @@ export default function PayCalculatorTASPage() {
               No other state splits its holidays geographically the way Tasmania does. The Royal Hobart
               Regatta in February is observed in the south; the areas that do not observe it get
               Recreation Day in November instead. The Royal Hobart Show in October is likewise
-              southern-only, and Easter Tuesday is generally a Tasmanian Public Service day rather than
-              a general one. Eight Hours Day in March is Tasmania&apos;s name for Labour Day, marking
+              southern-only, and Easter Tuesday is generally a holiday for the Tasmanian Public Service
+              only. Eight Hours Day in March is Tasmania&apos;s name for Labour Day, marking
               the eight-hour-day campaign.
             </p>
             <PublicHolidayTable profile={PROFILE} />

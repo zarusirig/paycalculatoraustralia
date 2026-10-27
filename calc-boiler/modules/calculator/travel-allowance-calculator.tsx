@@ -58,7 +58,7 @@ export default function TravelAllowanceCalculator() {
     <Card className="shadow-md not-prose" id="travel-allowance-calculator">
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>ATO Reasonable Travel Allowance Calculator {TD_2026_4.incomeYear}</h2>
-        <p className="text-sm text-warmgray mb-6">The ATO&rsquo;s reasonable amounts for accommodation, meals and incidentals from {TD_2026_4.id}, for your salary and destination. Enter the allowance you were paid to see how much of it your employer should withhold tax from.</p>
+        <p className="text-sm text-warmgray mb-6">This calculator gives the ATO&rsquo;s reasonable travel allowance amounts for accommodation, meals and incidentals from {TD_2026_4.id}, matched to your salary band and destination. Enter the allowance you were paid to see how much of it your employer should withhold tax from.</p>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <NumberField id="ta-salary" label="Annual salary (excluding allowances)" hint="Part-time: use the full-time equivalent." value={salary} onChange={setSalary} step={1000} />
@@ -112,7 +112,7 @@ export default function TravelAllowanceCalculator() {
                 {r.excessOverReasonable > 0
                   ? `Your employer withholds tax from the ${formatAUD(r.excessOverReasonable, 2)} above the reasonable amount and shows the whole allowance on your income statement. `
                   : "If the other ATO conditions are met, no tax is withheld and the allowance stays off your income statement's allowance box. "}
-                {overseas && "Any part of the allowance for overseas accommodation is always withheld from."}
+                {overseas && "Your employer withholds tax from any part of the allowance that covers overseas accommodation."}
               </p>
             )}
             <p className="text-xs text-warmgray-light">

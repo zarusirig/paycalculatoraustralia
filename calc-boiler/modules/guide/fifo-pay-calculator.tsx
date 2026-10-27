@@ -49,7 +49,7 @@ export default function FifoPayCalculatorPage() {
 
       <PageHeader title="FIFO Pay Calculator">
         <p>
-          <strong>Work out what a FIFO roster pays: gross per swing, per year and after tax.</strong> Pick your roster (2:1, 8:6, even time, 4:1 or your own), enter your hourly rate and shift length, and add shift loadings and site allowances. Hours past 38 a week, averaged across the roster, are paid as overtime. On a 2:1 roster of 12-hour shifts at {formatAUD(55)} an hour, that&rsquo;s {formatAUD(EXAMPLE.annual.gross)} a year gross and {formatAUD(EXAMPLE.tax.takeHomePay)} after tax ({formatAUD(EXAMPLE.takeHomePerFortnight)} a fortnight).
+          <strong>Work out what a FIFO roster pays: gross per swing, per year and after tax.</strong> Pick your roster (2:1, 8:6, even time, 4:1 or your own), enter your hourly rate and shift length, and add shift loadings and site allowances. The calculator counts hours past 38 a week, averaged across the roster, as overtime. On a 2:1 roster of 12-hour shifts at {formatAUD(55)} an hour, that&rsquo;s {formatAUD(EXAMPLE.annual.gross)} a year gross and {formatAUD(EXAMPLE.tax.takeHomePay)} after tax ({formatAUD(EXAMPLE.takeHomePerFortnight)} a fortnight).
         </p>
       </PageHeader>
 
@@ -82,7 +82,7 @@ export default function FifoPayCalculatorPage() {
 
           <section>
             <H2 id="rosters">What Common FIFO Rosters Pay</H2>
-            <p>Gross annual pay for 12-hour shifts, overtime at time and a half past 38 hours a week, no loadings or allowances. Every figure is worked out by the calculator above, not taken from job ads.</p>
+            <p>The table shows gross annual pay on common FIFO rosters for 12-hour shifts, with overtime at time and a half past 38 hours a week and no loadings or allowances. Each figure in the table is worked out by the calculator above, not taken from job ads.</p>
             <DataTable
               head={["Hourly rate", ...rosters.map((r) => r.label)]}
               align={["l", "r", "r", "r", "r"]}
@@ -124,7 +124,7 @@ export default function FifoPayCalculatorPage() {
 
           <section>
             <H2 id="super">Super on FIFO Pay</H2>
-            <p>Your employer pays Super Guarantee on ordinary time earnings: ordinary hours, shift loadings and allowances paid for ordinary hours. Overtime is excluded, so on a long roster a large share of your pay earns no super. The calculator shows the estimate separately; it isn&rsquo;t taken out of your pay. Check what you&rsquo;re owed with the <Link href="/superannuation-calculator/">superannuation calculator</Link>.</p>
+            <p>Your employer pays Super Guarantee on ordinary time earnings: ordinary hours, shift loadings and allowances paid for ordinary hours. Overtime is excluded, so on a long roster a large share of your pay earns no super. The calculator shows the super estimate separately; it isn&rsquo;t taken out of your pay. Check what you&rsquo;re owed with the <Link href="/superannuation-calculator/">superannuation calculator</Link>.</p>
           </section>
 
           <section>

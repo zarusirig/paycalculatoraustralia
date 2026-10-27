@@ -57,7 +57,7 @@ export const ALDI_PAY: EmployerPay = {
   nextIncrease: {
     date: "First full pay period after 1 September each year",
     detail:
-      "The agreement does not fix any rise. ALDI reviews every rate of pay once a year against business performance and market conditions (cl 27), and any increase starts in the first full pay period after 1 September. The rates on this page are the minimums printed in the agreement; your payslip may show more.",
+      "The Prestons agreement does not fix any pay rise. ALDI reviews every rate of pay once a year against business performance and market conditions (cl 27), and any increase starts in the first full pay period after 1 September. The rates on this page are the minimums printed in the agreement; your payslip may show more.",
   },
   verifiedOn: "22 October 2026",
   casualLoading: 0,
@@ -128,8 +128,8 @@ export const ALDI_PAY: EmployerPay = {
     "Store Assistant and Duty Store Manager rates are otherwise inclusive of all allowances, including laundry, meal, dairy-room and freezer-room allowances (Schedule 2 cl 10).",
   notices: [
     "ALDI has a separate agreement for each of its regions, named after the region's distribution centre. They include Prestons and Minchinbury in New South Wales, Derrimut in Victoria, Stapylton and Brendale in Queensland, and Jandakot in Western Australia. They share one structure but print the rates current when each was made. The Minchinbury agreement, approved in July 2024, prints $29.04 for a Full-time Store Assistant, $28.50 Limited Roster and $31.46 for a Duty Store Manager. That is about 4% below the Prestons figures here. Your payslip names the agreement that covers you.",
-    "These are printed minimums, not ALDI's current pay. The agreement fixes no pay rise; ALDI reviews every rate each year and increases start in the first full pay period after 1 September (cl 27). The Prestons rates were approved in January 2026, so a September 2026 review may have lifted them.",
-    "The agreement also prints $26.79 an hour for a Fixed Roster Store Assistant (set days, times and hours each week). That is below the General Retail Industry Award's $27.81 Level 1 rate from 1 July 2026. An agreement cannot pay a base rate below the award (Fair Work Act s 206), so Fixed Roster Store Assistants must get at least $27.81 for ordinary hours. The role is left out of the table above because its printed figure no longer applies.",
+    "The rates on this page are printed minimums, not ALDI's current pay. The agreement fixes no pay rise; ALDI reviews every rate each year and increases start in the first full pay period after 1 September (cl 27). The Prestons rates were approved in January 2026, so a September 2026 review may have lifted them.",
+    "The agreement also prints $26.79 an hour for a Fixed Roster Store Assistant (set days, times and hours each week). That is below the General Retail Industry Award's $27.81 Level 1 rate from 1 July 2026. An agreement cannot pay a base rate below the award (Fair Work Act s 206), so Fixed Roster Store Assistants must get at least $27.81 for ordinary hours. The role is left out of the hourly rates table below because its printed figure no longer applies.",
     "The Fair Work Commission approved this agreement only after specifying its own amendment under s 191A of the Fair Work Act. ALDI must agree hours, days and start and finish times in writing with each hourly-paid warehouse employee within 8 weeks. The amendment changes Schedule 3 (warehouse) and does not alter store rates.",
   ],
   unverified: [
@@ -153,7 +153,7 @@ export const ALDI_PAY: EmployerPay = {
     },
     {
       q: "Does ALDI hire casuals?",
-      a: "Not adults. Under the agreement, casual Store Assistants are juniors only. They move to a Limited Roster, Fixed Roster, Flexible or Full-time role in the first full pay period after turning 18. Adults who want part-time hours are employed as Limited Roster Store Assistants on up to 30 contract hours a fortnight.",
+      a: "ALDI stores do not hire adult casuals. Under the agreement, casual Store Assistants are juniors only. They move to a Limited Roster, Fixed Roster, Flexible or Full-time role in the first full pay period after turning 18. Adults who want part-time hours are employed as Limited Roster Store Assistants on up to 30 contract hours a fortnight.",
     },
     {
       q: "How much does ALDI pay a 16 or 17 year old?",
@@ -169,7 +169,7 @@ export const ALDI_PAY: EmployerPay = {
     },
     {
       q: "Does ALDI pay more than the award?",
-      a: "For most store staff, yes. The printed $30.21 for a Full-time or Flexible Store Assistant is about 8.6% above the General Retail Industry Award's $27.81 Level 1 rate from 1 July 2026. The $29.64 Limited Roster rate is 6.6% above it. The one exception is the printed $26.79 Fixed Roster rate, which the award now overtakes, so $27.81 is the floor for that role.",
+      a: "Yes, ALDI's printed Store Assistant rates are above the award, with one exception. The printed $30.21 for a Full-time or Flexible Store Assistant is about 8.6% above the General Retail Industry Award's $27.81 Level 1 rate from 1 July 2026. The $29.64 Limited Roster rate is 6.6% above it. The one exception is the printed $26.79 Fixed Roster rate, which the award now overtakes, so $27.81 is the floor for that role.",
     },
   ],
 };

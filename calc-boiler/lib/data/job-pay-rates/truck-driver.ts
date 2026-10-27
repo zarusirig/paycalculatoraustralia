@@ -61,7 +61,7 @@ export const TRUCK_DRIVER: Occupation = {
       id: "transport-workers",
       title: "Truck driver pay rates by grade, 2026–27",
       intro:
-        "Clause 17.1(a) of the award, for transport employees. Casual rates from the award's Schedule C.4.1. The vehicle each grade covers is from Schedule B.",
+        "The table shows the clause 17.1(a) minimum weekly and hourly rates for transport employees under the Road Transport and Distribution Award. Casual rates are from the award's Schedule C.4.1, and the vehicle each grade covers is from Schedule B.",
       rows: [
         { label: "Transport Worker Grade 1", weekly: 1021.0, hourly: 26.87, casualHourly: 33.59, note: "Yardperson, driver's assistant, loader" },
         { label: "Transport Worker Grade 2", weekly: 1045.5, hourly: 27.51, casualHourly: 34.39, note: "Rigid vehicle up to 4.5 t GVM" },
@@ -83,7 +83,7 @@ export const TRUCK_DRIVER: Occupation = {
     { when: "Any other public holiday", permanent: "150%*", casual: "275%" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate (Schedule C.2.1 and C.4.1). *For full-time and part-time employees, public holiday payment is in addition to the amount payable for the weekly wage (cl 23.2(b)). Casual percentages include the 25% loading.",
+    "Truck driver penalty rates are percentages of the minimum hourly rate (Schedule C.2.1 and C.4.1). *For full-time and part-time employees, public holiday payment is in addition to the amount payable for the weekly wage (cl 23.2(b)). Casual percentages include the 25% loading.",
   overtime: [
     "150% for the first 2 hours, then 200% (Schedule C.3.1).",
     "Public holiday overtime: 250%. Good Friday and Christmas Day overtime: 300%.",
@@ -102,7 +102,7 @@ export const TRUCK_DRIVER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a truck driver in 2026?",
-      a: "It depends on the vehicle. A semi-trailer driver (Transport Worker Grade 6) must be paid at least $29.00 an hour, or $1,102.00 a week, under the Road Transport and Distribution Award from the first full pay period on or after 1 July 2026. That is $57,304 a year before tax. A B-double driver (Grade 7) gets at least $29.42 an hour.",
+      a: "A truck driver's award rate is set by the vehicle they drive. A semi-trailer driver (Transport Worker Grade 6) must be paid at least $29.00 an hour, or $1,102.00 a week, under the Road Transport and Distribution Award from the first full pay period on or after 1 July 2026. That is $57,304 a year before tax. A B-double driver (Grade 7) gets at least $29.42 an hour.",
     },
     {
       q: "What grade is a truck driver on?",

@@ -82,7 +82,7 @@ export const WA_PUBLIC_HEALTH_PAY: StatePublicHealthPay = {
       ],
       entry: "P-1.1",
       entryRule:
-        "Clause 21.5(b): a three-year degree starts on P-1.1 and a four-year degree on P-1.2. A graduate-entry master's that qualifies you for the profession starts on the same step as the bachelor's degree for that profession, and a further master's or a PhD starts on P-1.3. Higher levels are set by the position's classification (clause 21.5(e)).",
+        "Under clause 21.5(b), a three-year degree starts on P-1.1 and a four-year degree on P-1.2. A graduate-entry master's that qualifies you for the profession starts on the same step as the bachelor's degree for that profession. A further master's or a PhD starts on P-1.3. Higher levels are set by the position's classification (clause 21.5(e)).",
       top: "P-9",
       topNote: "P-9 is the top of the Professional Division scale",
       professionNotes: {

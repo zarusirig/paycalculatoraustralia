@@ -36,7 +36,7 @@ const SECOND = TAX_BRACKETS[1];
 
 const perYear = (rate: number): FaqItem => ({
   q: `$${rate} an hour is how much a year in Australia?`,
-  a: `$${rate}/hr full-time (${H}h/week, ${W} weeks) = ${formatAUD(annualAt(rate))} gross per year, ${formatAUD(netAt(rate))} after tax (FY${FY}).`,
+  a: `$${rate} an hour full-time (${H} hours a week, ${W} weeks) is ${formatAUD(annualAt(rate))} gross a year and ${formatAUD(netAt(rate))} after tax in FY${FY}.`,
 });
 
 // People Also Ask (Google AU, Sept 2026) for "hourly to annual salary
@@ -71,7 +71,7 @@ export const HOURLY_TO_ANNUAL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is a standard working week in Australia?",
-    a: `The National Employment Standards (NES) define maximum ordinary hours as ${H} hours per week for full-time employees. This equates to ${H / 5} hours per day over a 5-day working week, producing ${HOURS_LABEL} ordinary hours per year.`,
+    a: `The National Employment Standards (NES) define maximum ordinary hours as ${H} hours per week for full-time employees. That is ${H / 5} hours a day over a 5-day working week, or ${HOURS_LABEL} ordinary hours a year.`,
   },
   {
     q: "Does my hourly rate include superannuation?",
@@ -79,7 +79,7 @@ export const HOURLY_TO_ANNUAL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I include overtime in my annual salary calculation?",
-    a: `The standard conversion (hourly × hours × ${W}) covers only ordinary time earnings. Overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed weekly. Calculate overtime separately and add it to your base annual salary. Superannuation is generally calculated on ordinary time earnings only, not on overtime hours.`,
+    a: `The standard conversion (hourly × hours × ${W}) covers only ordinary time earnings. Overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed weekly. Calculate overtime separately and add it to your base annual salary. Superannuation is calculated on ordinary time earnings only, not on overtime hours.`,
   },
   {
     q: "How do I convert a part-time hourly rate to a full-time equivalent?",

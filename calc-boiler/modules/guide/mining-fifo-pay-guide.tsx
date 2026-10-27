@@ -67,7 +67,7 @@ export default function MiningFIFOPayGuidePage() {
             <section id="mining-salaries-by-role">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Average Mining Salaries by Role</h2>
               <p>
-                Mining salaries in Australia are significantly higher than the national full-time average of about {formatAUD(NATIONAL_AVG)} a year; the ABS puts average full-time ordinary earnings in mining at about {formatAUD(MINING_AVG)} ({AWE_RELEASE.referencePeriod}). The combination of remote location, physically demanding work, and specialised skills drives salaries well above $100,000 for most roles. The table below shows typical annual salary ranges for common mining positions, including base salary and typical overtime or allowances.
+                Mining salaries in Australia are significantly higher than the national full-time average of about {formatAUD(NATIONAL_AVG)} a year; the ABS puts average full-time ordinary earnings in mining at about {formatAUD(MINING_AVG)} ({AWE_RELEASE.referencePeriod}). Remote sites, physically demanding work and specialised skills push salaries for most mining roles well above $100,000. The table below shows typical annual salary ranges for common mining positions, including base salary and typical overtime or allowances.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -91,7 +91,7 @@ export default function MiningFIFOPayGuidePage() {
                 </div>
               </div>
               <p>
-                These figures reflect total packages including base salary, overtime, and site-specific loadings. The Pilbara region in Western Australia and the Bowen Basin in Queensland consistently offer the highest pay due to labour shortages and high commodity prices. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare mining pay against other industries.
+                These salary ranges are total packages: base salary plus overtime and site-specific loadings. The Pilbara region in Western Australia and the Bowen Basin in Queensland consistently offer the highest pay due to labour shortages and high commodity prices. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare mining pay against other industries.
               </p>
             </section>
 
@@ -102,9 +102,9 @@ export default function MiningFIFOPayGuidePage() {
                 FIFO rosters determine how many days you spend on-site versus at home, and directly affect your total earnings. The most common roster structures in Australian mining are:
               </p>
               <ul>
-                <li><strong>2 weeks on / 1 week off (2/1):</strong> The most common roster. Workers spend 14 days on-site followed by 7 days off. This &quot;even time&quot; roster means you work approximately 243 days per year and maximises earning potential.</li>
-                <li><strong>8 days on / 6 days off (8/6):</strong> A popular roster offering better work-life balance. Workers spend 8 days on-site followed by 6 days at home, working approximately 209 days per year.</li>
-                <li><strong>4 days on / 3 days off (4/3):</strong> Common for drive-in, drive-out (DIDO) roles closer to regional centres. Workers spend 4 days on-site and 3 days at home, working approximately 208 days per year.</li>
+                <li><strong>2 weeks on / 1 week off (2/1):</strong> This is the most common roster: 14 days on-site, then 7 days off. This &quot;even time&quot; roster means you work approximately 243 days per year, the most working days of the rosters listed here.</li>
+                <li><strong>8 days on / 6 days off (8/6):</strong> This roster gives you more days at home for each day on-site than the roster above: 8 days on-site, then 6 days at home, for approximately 209 working days per year.</li>
+                <li><strong>4 days on / 3 days off (4/3):</strong> This roster is common for drive-in, drive-out (DIDO) roles closer to regional centres: 4 days on-site, then 3 days at home, for approximately 208 working days per year.</li>
               </ul>
               <p>
                 Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings: a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
@@ -115,11 +115,11 @@ export default function MiningFIFOPayGuidePage() {
             <section id="fifo-allowances">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FIFO Allowances</h2>
               <p>
-                FIFO workers receive several allowances on top of their base salary that can significantly increase total remuneration. Understanding these allowances is important for calculating your true take-home pay.
+                FIFO workers receive several allowances on top of their base salary. LAFHA, the travel allowance and on-site accommodation each have their own tax treatment, and that treatment changes your take-home pay.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Living Away From Home Allowance (LAFHA)</h3>
               <p>
-                LAFHA compensates FIFO workers for the additional costs of living away from their usual place of residence. It covers food and accommodation expenses incurred while on-site. LAFHA can be <strong>tax-free</strong> if the worker maintains a home elsewhere and the allowance is paid under a structured arrangement that meets ATO requirements. Typical LAFHA amounts range from <strong>$50 to $100 per day</strong> on-site, adding $7,000–$14,000 per year in tax-free income on a 2/1 roster.
+                LAFHA compensates FIFO workers for the additional costs of living away from their usual place of residence. It covers food and accommodation expenses incurred while on-site. LAFHA can be <strong>tax-free</strong> if the worker maintains a home elsewhere and the allowance is paid under a structured arrangement that meets ATO requirements. Typical LAFHA amounts range from <strong>$50 to $100 per day</strong> on-site, adding $7,000 to $14,000 per year in tax-free income on a 2/1 roster.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Travel Allowance</h3>
               <p>
@@ -135,7 +135,7 @@ export default function MiningFIFOPayGuidePage() {
             <section id="tax-mining-fifo">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax for Mining &amp; FIFO Workers</h2>
               <p>
-                Mining and FIFO workers pay income tax on the same marginal tax brackets as all other Australian employees. However, there are specific tax considerations that FIFO workers should understand.
+                Mining and FIFO workers pay income tax on the same marginal tax brackets as all other Australian employees. The tax rules that affect FIFO workers in particular are the zone tax offset and the deductions for travel to site.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset: Key Change for FIFO Workers</h3>
@@ -146,7 +146,7 @@ export default function MiningFIFOPayGuidePage() {
                 <div>
                   <h3 className="text-base font-bold text-navy mb-1">Important: FIFO Workers Generally NOT Eligible</h3>
                   <p className="text-navy text-sm mb-0">
-                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot;. Simply flying in to work does not qualify. Only workers who genuinely relocate to a remote town and maintain their primary residence there can claim the offset.
+                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot;. Flying in to work from a home outside the zone does not qualify. Only workers who genuinely relocate to a remote town and maintain their primary residence there can claim the offset.
                   </p>
                 </div>
               </div>

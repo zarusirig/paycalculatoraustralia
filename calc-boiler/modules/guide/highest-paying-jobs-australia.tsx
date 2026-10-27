@@ -73,7 +73,7 @@ export default function HighestPayingJobsPage() {
 
       <PageHeader featuredImage title={`Highest Paying Jobs in Australia ${FY}: Median Pay and Take-Home`}>
         <p>
-          <strong>Across the {jobs.length} occupations we cover, median full-time pay runs from {formatAUD(jobs[jobs.length - 1].medianWeekly)} to {formatAUD(first.medianWeekly)} a week.</strong> This page ranks them by median weekly pay and shows what each takes home after tax, with a link to the award rates and take-home table for every job. The all-occupations median is {formatAUD(ALL_OCCUPATIONS_MEDIAN_WEEKLY)} a week. The ranking covers only the jobs we publish pay pages for, so it is a ranking of those, not of every job in the country.
+          <strong>Across the {jobs.length} occupations we cover, median full-time pay runs from {formatAUD(jobs[jobs.length - 1].medianWeekly)} to {formatAUD(first.medianWeekly)} a week.</strong> This page ranks them by median weekly pay and shows what each takes home after tax, with a link to the award rates and take-home table for every job. The all-occupations median is {formatAUD(ALL_OCCUPATIONS_MEDIAN_WEEKLY)} a week. The ranking covers only the jobs we publish pay pages for, not every job in Australia.
         </p>
       </PageHeader>
 

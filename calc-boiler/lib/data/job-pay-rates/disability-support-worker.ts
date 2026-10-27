@@ -152,7 +152,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
       id: "sacs",
       title: "Disability support worker pay rates: group homes, day programs and residential settings",
       intro:
-        "SCHADS Award Schedule B (Social and community services), Levels 1 to 4. Weekly and hourly rates as published, including the Equal Remuneration Order for Levels 2 and up. Casual is the hourly rate plus the 25% loading.",
+        "This table shows SCHADS Award Schedule B (Social and community services) rates for Levels 1 to 4. The weekly and hourly rates are as published and include the Equal Remuneration Order for Levels 2 and up. Casual is the hourly rate plus the 25% loading.",
       rows: SCHADS_SACS.filter((r) => /^Level [1-4] /.test(r.classification)).map((r) =>
         toRow(r, SACS_NOTES[r.classification]),
       ),
@@ -173,7 +173,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     { when: "Night shift", permanent: pct(1 + SCHADS_PENALTIES.nightShiftLoading), casual: "—" },
   ],
   penaltiesNote:
-    "Percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2).",
+    "SCHADS penalty rates are percentages of the minimum hourly rate. Casual weekend and public holiday rates include the 25% loading. Weekend rates replace shift loadings rather than adding to them (cl 26.2).",
   overtime: [
     "Disability services, home care and day care employees: time and a half for the first 2 hours of overtime Monday to Saturday, then double time (cl 28.1(a)(i)).",
     "Sunday overtime is double time and public holiday overtime is double time and a half.",
@@ -185,7 +185,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     {
       name: "Vehicle allowance",
       amount: `$${SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm.toFixed(2)} per km (1 Sep 2026 – 28 Feb 2027)`,
-      note: `When you are required and authorised to use your own car for work. A temporary rate under cl ${SCHADS_VEHICLE_ALLOWANCE.clause} (${SCHADS_VEHICLE_ALLOWANCE.determination}), from the first full pay period starting on or after ${SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel}; the ordinary rate of $${SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm.toFixed(2)} per km applies again from ${SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}.`,
+      note: `The SCHADS vehicle allowance is paid when you are required and authorised to use your own car for work. It is a temporary rate under cl ${SCHADS_VEHICLE_ALLOWANCE.clause} (${SCHADS_VEHICLE_ALLOWANCE.determination}), from the first full pay period starting on or after ${SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel}; the ordinary rate of $${SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm.toFixed(2)} per km applies again from ${SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}.`,
     },
   ],
   median: MEDIAN,
@@ -212,7 +212,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     },
     {
       q: "What is the award rate for a support worker?",
-      a: `It depends on where you work. A support worker with a relevant certificate in a group home or day program is SCHADS Level 2, ${money2(SCHADS_SACS.find((r) => r.classification === "Level 2 pay point 1")!.hourly)} an hour. In-home disability support runs from ${money2(SCHADS_HOME_CARE_DISABILITY[0].hourly)} to ${money2(SCHADS_HOME_CARE_DISABILITY[SCHADS_HOME_CARE_DISABILITY.length - 1].hourly)} an hour, and a Level 3 Qualified home carer for older people gets ${money2(SCHADS_HOME_CARE_AGED.find((r) => r.classification === "Level 3 Qualified")!.hourly)}. Support workers in residential aged care are under the Aged Care Award.`,
+      a: `A support worker with a relevant certificate in a group home or day program is SCHADS Level 2, on ${money2(SCHADS_SACS.find((r) => r.classification === "Level 2 pay point 1")!.hourly)} an hour. In-home disability support runs from ${money2(SCHADS_HOME_CARE_DISABILITY[0].hourly)} to ${money2(SCHADS_HOME_CARE_DISABILITY[SCHADS_HOME_CARE_DISABILITY.length - 1].hourly)} an hour, and a Level 3 Qualified home carer for older people gets ${money2(SCHADS_HOME_CARE_AGED.find((r) => r.classification === "Level 3 Qualified")!.hourly)}. Support workers in residential aged care are under the Aged Care Award.`,
     },
     {
       q: "How much is the sleepover allowance?",

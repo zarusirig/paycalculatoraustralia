@@ -107,10 +107,10 @@ export default function PAYGTablesGuidePage() {
             PAYG Withholding Tax Tables {PAYG_FINANCIAL_YEAR}: Which ATO Table to Use
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-3">
-            The ATO publishes a separate tax table for each pay cycle. Pick yours below for the full {PAYG_FINANCIAL_YEAR} table,
-            an instant lookup and a CSV download &mdash; or read on for how the PAYG withholding schedules fit together.
+            The PAYG withholding tax tables are the ATO schedules that set how much income tax your employer withholds from each pay. Use the table that matches how often you are paid: weekly, fortnightly or monthly. Each table lists the amount withheld with the tax-free threshold claimed and without it. Pick your pay cycle below for the full {PAYG_FINANCIAL_YEAR} table,
+            an instant lookup for your exact pay and a CSV download. Further down, this page shows sample rows from each table, explains how PAYG withholding works, lists the other ATO withholding schedules and sets out what changed this financial year.
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED}: all tables reflect the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000)</p>
+          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED}: all tables reflect the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000)</p>
 
           <nav aria-label="Tax tables by pay cycle" id="tables-by-pay-cycle" className="grid sm:grid-cols-2 gap-4 mb-8">
             {PAY_CYCLE_TABLES.map((t) => (
@@ -139,7 +139,7 @@ export default function PAYGTablesGuidePage() {
             <section id="sample-tax-table-rows">
               <h2>Sample Rows From Each ATO Pay-Cycle Table, {PAYG_FINANCIAL_YEAR}</h2>
               <p>
-                A few rows from each ATO table for {PAYG_FINANCIAL_YEAR}, for an Australian resident. To work out the tax taken from one pay and your likely refund, use the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link>. The tables were last updated on {PAYG_TABLES_UPDATED}. Column 2 is the amount withheld when the tax-free threshold is claimed; column 3 when it is not. The study and training support loan (STSL) column is on each full-table page. Method: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview" target="_blank" rel="noopener noreferrer">ATO tax tables overview</a>.
+                The rows below come from each ATO pay-cycle table for {PAYG_FINANCIAL_YEAR} and apply to an Australian resident. To work out the tax taken from one pay and your likely refund, use the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link>. The tables were last updated on {PAYG_TABLES_UPDATED}. Column 2 is the amount withheld when the tax-free threshold is claimed; column 3 when it is not. The study and training support loan (STSL) column is on each full-table page. Method: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview" target="_blank" rel="noopener noreferrer">ATO tax tables overview</a>.
               </p>
               {SAMPLE_TABLES.map((t) => (
                 <div key={t.frequency}>
@@ -173,20 +173,20 @@ export default function PAYGTablesGuidePage() {
                 </div>
               ))}
               <p className="text-sm text-warmgray-light">
-                Fortnightly method as stated on the <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly" target="_blank" rel="noopener noreferrer">ATO fortnightly tax table</a> page.
+                The fortnightly method described above is taken from the <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly" target="_blank" rel="noopener noreferrer">ATO fortnightly tax table</a> page.
               </p>
             </section>
 
             <section id="what-are-payg-withholding-tables">
               <h2>What Are PAYG Withholding Tables?</h2>
               <p>
-                PAYG withholding tables are ATO-published lookup schedules that tell employers the <strong>exact dollar amount of income tax to deduct</strong> from each employee payment. The Australian Taxation Office reissues these tables when income tax rates, the Medicare levy thresholds or offsets such as the Low Income Tax Offset (LITO) change &mdash; usually from 1 July. The regular tables applied unchanged from 1 July 2024 to 30 June 2026 and were reissued for payments from 1 July 2026.
+                PAYG withholding tables are ATO-published lookup schedules that tell employers the <strong>exact dollar amount of income tax to deduct</strong> from each employee payment. The Australian Taxation Office reissues these tables when income tax rates, the Medicare levy thresholds or offsets such as the Low Income Tax Offset (LITO) change, and a new edition usually starts on 1 July. The regular tables applied unchanged from 1 July 2024 to 30 June 2026 and were reissued for payments from 1 July 2026.
               </p>
               <p>
-                Every Australian employer, payroll software provider, and business accountant relies on these PAYG withholding tax tables to calculate the correct deduction for wages, salary, commissions, bonuses, and director fees. The tables cover weekly, fortnightly, and monthly pay cycles, and separate schedules exist for residents, non-residents, working holiday makers, and payments subject to study and training loan repayments. For FY2026-27, every table was reissued to incorporate the legislated cost-of-living tax cut that reduced the rate on $18,201&ndash;$45,000 from 16% to <strong>15%</strong> on 1 July 2026.
+                Employers and payroll software use these PAYG withholding tax tables to calculate the deduction from wages, salary, commissions, bonuses and director fees. The tables cover weekly, fortnightly, and monthly pay cycles, and separate schedules exist for residents, non-residents, working holiday makers, and payments subject to study and training loan repayments. For FY2026-27, every table was reissued to include the legislated cost-of-living tax cut that reduced the rate on income from $18,201 to $45,000 from 16% to <strong>15%</strong> on 1 July 2026.
               </p>
               <p>
-                Employees do not need to manually consult the tables themselves. Payroll systems apply the correct withholding automatically based on the employee&apos;s TFN declaration answers. However, understanding how the tables work helps you verify your payslip, estimate your take-home pay before accepting a job offer, and anticipate your annual tax refund or tax debt. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to check your withholding against the ATO tables instantly.
+                You do not need to read the tables yourself: payroll software applies them automatically from the answers on your TFN declaration. Knowing how they work lets you check the PAYG withholding line on your payslip, estimate your take-home pay before accepting a job offer and see whether a tax refund or tax debt is coming. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to check your withholding against the ATO tables instantly.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -194,7 +194,7 @@ export default function PAYGTablesGuidePage() {
                   <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-navy mb-1">Interactive PAYG Calculator</h3>
-                    <p className="text-navy text-sm mb-3">Instead of checking static tables, enter your exact salary to see your PAYG withheld right now.</p>
+                    <p className="text-navy text-sm mb-3">Enter your exact salary in the take-home pay calculator to see the PAYG withheld for any pay cycle.</p>
                     <Link href="/take-home-pay-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
                       Calculate exact PAYG Withholding <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
@@ -206,19 +206,19 @@ export default function PAYGTablesGuidePage() {
             <section id="how-payg-withholding-works">
               <h2>How Does PAYG Withholding Work?</h2>
               <p>
-                PAYG withholding works by requiring employers to deduct estimated income tax from every payment and remit it to the ATO <strong>before the employee receives their net pay</strong>. The system ensures that taxation occurs incrementally throughout the year rather than as a single lump-sum bill in July.
+                PAYG withholding works by requiring employers to deduct estimated income tax from every payment and remit it to the ATO <strong>before the employee receives their net pay</strong>. Your income tax is collected pay by pay through the year, not as a single lump-sum bill in July.
               </p>
               <p>
-                The withholding process follows a precise sequence from the moment an employee starts a new job through to the end of the financial year:
+                PAYG withholding runs in this order, from the day an employee starts a new job to the end of the financial year:
               </p>
               <ol>
-                <li><strong>Employee submits a TFN declaration</strong> &mdash; The employee completes a Tax File Number declaration form (NAT 3092) providing their TFN, residency status, tax-free threshold claim, and study loan status. This form determines which withholding schedule the employer applies.</li>
-                <li><strong>Employer identifies the correct schedule</strong> &mdash; Based on the declaration, the employer selects from Schedule 1 (standard), Schedule 2 (no TFN), Schedule 3 (actors/performers), Schedule 4 (return-to-work), or Schedule 15 (working holiday makers).</li>
-                <li><strong>Payroll calculates gross earnings</strong> &mdash; The employer totals the employee&apos;s ordinary time earnings, overtime, allowances, bonuses, and commissions for that pay period.</li>
-                <li><strong>Withholding amount is looked up or calculated</strong> &mdash; The employer uses the ATO coefficient formula or a direct lookup table to determine the exact PAYG withholding for that gross amount. The formula uses two coefficients (a and b) applied to weekly earnings brackets.</li>
-                <li><strong>Net pay is deposited</strong> &mdash; The employer pays the employee the gross amount minus PAYG withholding, minus superannuation (paid separately to a super fund at the SG rate of <strong>12%</strong>), and minus any salary sacrifice or other deductions.</li>
-                <li><strong>Employer remits withheld amounts to the ATO</strong> &mdash; Withheld tax is reported and paid to the ATO, either monthly (for businesses withholding over $25,000 per year) or quarterly (for smaller withholders), via the Business Activity Statement (BAS).</li>
-                <li><strong>Annual reconciliation via tax return</strong> &mdash; At year-end, the employee lodges a tax return. The ATO compares total PAYG withheld against the actual tax liability. Any overpayment results in a tax refund; any shortfall results in a tax debt.</li>
+                <li><strong>Employee submits a TFN declaration</strong>: The employee completes a Tax File Number declaration form (NAT 3092) providing their TFN, residency status, tax-free threshold claim, and study loan status. This form determines which withholding schedule the employer applies.</li>
+                <li><strong>Employer identifies the correct schedule</strong>: Based on the declaration, the employer selects from Schedule 1 (standard), Schedule 2 (no TFN), Schedule 3 (actors/performers), Schedule 4 (return-to-work), or Schedule 15 (working holiday makers).</li>
+                <li><strong>Payroll calculates gross earnings</strong>: The employer totals the employee&apos;s ordinary time earnings, overtime, allowances, bonuses, and commissions for that pay period.</li>
+                <li><strong>Withholding amount is looked up or calculated</strong>: The employer uses the ATO coefficient formula or a direct lookup table to determine the exact PAYG withholding for that gross amount. The formula uses two coefficients (a and b) applied to weekly earnings brackets.</li>
+                <li><strong>Net pay is deposited</strong>: The employer pays the employee the gross amount minus PAYG withholding, minus superannuation (paid separately to a super fund at the SG rate of <strong>12%</strong>), and minus any salary sacrifice or other deductions.</li>
+                <li><strong>Employer remits withheld amounts to the ATO</strong>: Withheld tax is reported and paid to the ATO, either monthly (for businesses withholding over $25,000 per year) or quarterly (for smaller withholders), via the Business Activity Statement (BAS).</li>
+                <li><strong>Annual reconciliation via tax return</strong>: At year-end, the employee lodges a tax return. The ATO compares total PAYG withheld against the actual tax liability. Any overpayment results in a tax refund; any shortfall results in a tax debt.</li>
               </ol>
               <p>
                 The withholding tables assume you earn the same gross amount in every pay period for the full 52 weeks (or 26 fortnights, or 12 months). Employees with irregular income, multiple jobs, or mid-year start dates frequently receive a refund because the annualised projection overestimates their total taxable income. Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> to estimate whether you are likely to receive a refund or owe additional tax.
@@ -228,7 +228,7 @@ export default function PAYGTablesGuidePage() {
             <section id="withholding-at-a-glance">
               <h2>PAYG Withholding at a Glance, {PAYG_FINANCIAL_YEAR}</h2>
               <p>
-                One example per pay cycle, for an Australian resident with no study loan. Each tax table page has the full
+                The table below gives one example per pay cycle for an Australian resident with no study loan. Each tax table page has the full
                 table in both threshold columns, a {PAYG_FINANCIAL_YEAR} / 2025-26 toggle and a lookup for your exact pay.
               </p>
               <div className="not-prose my-6">
@@ -320,19 +320,19 @@ export default function PAYGTablesGuidePage() {
                 </div>
               </div>
               <p>
-                Schedule 1 applies to the vast majority of Australian employees. It contains scales for claiming and not claiming the tax-free threshold, foreign residents and Medicare levy exemptions. Study and training support loan components (HELP, VSL, FS, SSL and AASL debts) come from a separate schedule, Schedule 8 (NAT 3539), and are added on top. For more on study loan repayments and their withholding effect, see our <Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link>. Working holiday makers operate under a completely different tax regime &mdash; our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link> explains the rates and thresholds in detail.
+                Schedule 1 applies to the vast majority of Australian employees. It contains scales for claiming and not claiming the tax-free threshold, foreign residents and Medicare levy exemptions. Study and training support loan components (HELP, VSL, FS, SSL and AASL debts) come from a separate schedule, Schedule 8 (NAT 3539), and are added on top. For more on study loan repayments and their withholding effect, see our <Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link>. Working holiday makers have their own withholding schedule, and our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link> explains the rates and thresholds in detail.
               </p>
             </section>
 
             <section id="how-to-use-tax-tables">
               <h2>How Do You Use the PAYG Tax Tables?</h2>
               <p>
-                Employers use the PAYG tax tables by matching an employee&apos;s gross pay period earnings to a corresponding withholding amount using <strong>either a lookup table or a coefficient formula</strong>. Modern payroll software performs this calculation automatically, but manual users follow a specific process.
+                Employers use the PAYG tax tables by matching an employee&apos;s gross pay period earnings to a corresponding withholding amount using <strong>either a lookup table or a coefficient formula</strong>. Payroll software does this automatically. An employer working it out by hand uses the lookup table or the coefficient formula, as set out below.
               </p>
 
               <h3>Lookup Table Method</h3>
               <p>
-                For each pay cycle the ATO publishes a printable PDF look-up table and an XLSX look-up tool. The employer adds allowances and irregular payments to normal earnings for the period, ignores the cents, finds that amount and reads across to the right column: column 2 if the payee claimed the tax-free threshold, column 3 if not. A study loan component comes from a separate table and is added on top. Use the <Link href="/weekly-tax-table/">weekly tax table</Link>, <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or <Link href="/monthly-tax-table/">monthly tax table</Link> that matches the pay cycle &mdash; the fortnightly and monthly amounts are derived from the weekly formula by the ATO, not by the employer.
+                For each pay cycle the ATO publishes a printable PDF look-up table and an XLSX look-up tool. The employer adds allowances and irregular payments to normal earnings for the period, ignores the cents, finds that amount and reads across to the right column: column 2 if the payee claimed the tax-free threshold, column 3 if not. A study loan component comes from a separate table and is added on top. Use the <Link href="/weekly-tax-table/">weekly tax table</Link>, <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or <Link href="/monthly-tax-table/">monthly tax table</Link> that matches the pay cycle. The ATO, not the employer, derives the fortnightly and monthly amounts from the weekly formula.
               </p>
 
               <h3>Coefficient Formula Method</h3>
@@ -400,7 +400,7 @@ export default function PAYGTablesGuidePage() {
             <section id="tfn-declaration">
               <h2>How Do TFN Declarations and Withholding Variations Affect Your Tax?</h2>
               <p>
-                The TFN declaration form is the <strong>single document that controls which withholding rate your employer applies</strong> to your pay. Every answer on this form shifts the calculation in a measurable way.
+                The TFN declaration form is the <strong>single document that controls which withholding rate your employer applies</strong> to your pay. Each answer below changes which withholding scale or rate your employer applies.
               </p>
               <ul>
                 <li><strong>Tax-Free Threshold:</strong> Claiming this threshold (usually on your primary job) instructs your employer to use the standard table where the first <strong>$18,200</strong> of your annual income is untaxed. This reduces your weekly withholding by approximately <strong>$67</strong> compared to not claiming it.</li>
@@ -414,7 +414,7 @@ export default function PAYGTablesGuidePage() {
                 A &quot;Withholding Variation&quot; (also called a Section 15-15 variation) is a formal ATO approval that allows your employer to withhold a <strong>different amount</strong> than the standard tax tables prescribe. Common reasons for applying include large work-related deductions (such as $5,000+ in tools or uniforms), significant rental property losses creating negative gearing, or salary sacrifice arrangements that reduce assessable income. The employee applies directly to the ATO, which issues a letter specifying the varied withholding rate. The employer then applies that rate instead of the standard tables until the variation expires at the end of the financial year.
               </p>
               <p>
-                One change to plan for if a variation rests on rental losses. Under the {NEGATIVE_GEARING_REFORM.law.name} (assented to on {NEGATIVE_GEARING_REFORM.law.assent}), from {NEGATIVE_GEARING_REFORM.law.quarantiningStarts} losses on a residential dwelling acquired at or after {NEGATIVE_GEARING_REFORM.law.grandfatheredBefore} are quarantined to income and capital gains from residential property investments, so they will no longer reduce the tax withheld from wages. Dwellings acquired before that time keep negative gearing. The exemptions for new dwellings and for specified uses such as affordable housing sit in {NEGATIVE_GEARING_REFORM.bill.schedule} of the <a href={NEGATIVE_GEARING_REFORM.bill.url} target="_blank" rel="noopener noreferrer">{NEGATIVE_GEARING_REFORM.bill.name}</a>, which was {NEGATIVE_GEARING_REFORM.bill.status} and not yet law when checked on {NEGATIVE_GEARING_REFORM.verifiedOn}.
+                One law change affects a withholding variation that rests on rental losses. Under the {NEGATIVE_GEARING_REFORM.law.name} (assented to on {NEGATIVE_GEARING_REFORM.law.assent}), from {NEGATIVE_GEARING_REFORM.law.quarantiningStarts} losses on a residential dwelling acquired at or after {NEGATIVE_GEARING_REFORM.law.grandfatheredBefore} are quarantined to income and capital gains from residential property investments, so they will no longer reduce the tax withheld from wages. Dwellings acquired before that time keep negative gearing. The exemptions for new dwellings and for specified uses such as affordable housing sit in {NEGATIVE_GEARING_REFORM.bill.schedule} of the <a href={NEGATIVE_GEARING_REFORM.bill.url} target="_blank" rel="noopener noreferrer">{NEGATIVE_GEARING_REFORM.bill.name}</a>, which was {NEGATIVE_GEARING_REFORM.bill.status} and not yet law when checked on {NEGATIVE_GEARING_REFORM.verifiedOn}.
               </p>
               <p>
                 Salary sacrifice arrangements for superannuation, novated leases, and other pre-tax benefits also modify the withholding calculation. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for the impact on your take-home pay and taxable income.
@@ -427,7 +427,7 @@ export default function PAYGTablesGuidePage() {
                 The FY2026-27 PAYG withholding tables reflect the legislated <strong>cost-of-living tax cut</strong> that
                 took effect on 1 July 2026: the marginal rate on income between $18,201 and $45,000 fell from
                 16% to <strong>15%</strong>, worth up to $268 a year. A further cut to <strong>14%</strong> follows on 1 July 2027.
-                The tables also continue the Stage 3 bracket structure and the 12% superannuation guarantee rate.
+                The tables also keep the Stage 3 bracket structure, and the 12% superannuation guarantee rate is unchanged.
               </p>
               <p>
                 The ATO reissued all 15 withholding schedules and 12 tax tables for 1 July 2026, so a pay dated on or after that day must
@@ -483,14 +483,14 @@ export default function PAYGTablesGuidePage() {
               </div>
               <p>
                 The practical impact for anyone earning <strong>$45,000 or more</strong> is a reduction in annual tax of
-                {" "}<strong>$268</strong> compared with FY2025-26 &mdash; roughly <strong>$5 more per week</strong> in take-home pay,
-                delivered automatically through lower withholding from the first pay after 1 July 2026. The withholding
+                {" "}<strong>$268</strong> compared with FY2025-26 and roughly <strong>$5 more per week</strong> in take-home pay,
+                delivered automatically through lower withholding from the first pay dated on or after 1 July 2026. The withholding
                 coefficients in every ATO schedule have been recalculated accordingly. Check the full breakdown of each
                 marginal rate in our <Link href="/tax-brackets/">Tax Brackets Guide</Link> and the year-by-year timeline in
                 the <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
               <p>
-                The superannuation guarantee increase to 12% does not directly change the withholding tables, but it affects the total employer cost per employee. Your employer now contributes <strong>$10,800</strong> in super on a $90,000 salary. Our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> shows the exact SG contribution based on your salary.
+                The 12% superannuation guarantee rate does not change the withholding tables, but it adds to the total employer cost per employee. Your employer contributes <strong>$10,800</strong> in super on a $90,000 salary. Our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> shows the exact SG contribution based on your salary.
               </p>
             </section>
 
@@ -499,7 +499,7 @@ export default function PAYGTablesGuidePage() {
             <section id="net-to-gross">
               <h2>How Do You Convert Net Pay Back to Gross Salary?</h2>
               <p>
-                Reverse-engineering your gross salary from a known take-home figure requires working <strong>backwards through the PAYG withholding tables</strong>, adding back the tax, Medicare levy, and any HECS repayments that were deducted. Job advertisements increasingly quote &quot;take-home&quot; or &quot;net&quot; amounts, making this conversion essential for comparing offers.
+                Reverse-engineering your gross salary from a known take-home figure requires working <strong>backwards through the PAYG withholding tables</strong>, adding back the tax, Medicare levy, and any HECS repayments that were deducted. This conversion lets you compare a take-home figure with a gross salary offer.
               </p>
               <p>
                 A net weekly pay of <strong>{formatAUD(example1500.netPerPeriod)}</strong> corresponds to a gross weekly salary of approximately <strong>$1,500</strong> (or $78,000 per year) for a resident claiming the tax-free threshold with no study loan. The relationship between net and gross is non-linear because of progressive marginal rates &mdash; each additional dollar of gross pay is taxed at a higher marginal rate. Use our <Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> to reverse-engineer the PAYG withholding instantly from any net figure.
@@ -511,16 +511,16 @@ export default function PAYGTablesGuidePage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <p>
-                The PAYG withholding tables connect to several other Australian tax and payroll topics. The following resources provide deeper information on specific areas referenced in this guide.
+                Each page below covers a topic this PAYG withholding guide touches on, from take-home pay to the PAYG withholding line on your payslip.
               </p>
               <ul>
-                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Enter your gross salary and instantly see your PAYG withholding, Medicare levy, superannuation, and net pay for any pay cycle.</li>
-                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; Full breakdown of the current marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
-                <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link> &mdash; How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
-                <li><Link href="/schedule-5-tax-table/">Schedule 5 Tax Table</Link> &mdash; The withholding method for bonuses, commissions, and back payments, with a Method B(ii) calculator.</li>
-                <li><Link href="/bonus-tax-calculator/">Bonus Tax Guide</Link> &mdash; How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Schedule 5 (Method A or Method B(ii)).</li>
-                <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; The SG rate, contribution caps, employer obligations, and how super interacts with your gross-to-net calculation.</li>
-                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; Line-by-line explanation of every item on an Australian payslip, including the PAYG withholding line.</li>
+                <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>: Enter your gross salary and instantly see your PAYG withholding, Medicare levy, superannuation, and net pay for any pay cycle.</li>
+                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link>: Full breakdown of the current marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link>: How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
+                <li><Link href="/schedule-5-tax-table/">Schedule 5 Tax Table</Link>: The withholding method for bonuses, commissions, and back payments, with a Method B(ii) calculator.</li>
+                <li><Link href="/bonus-tax-calculator/">Bonus Tax Guide</Link>: How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Schedule 5 (Method A or Method B(ii)).</li>
+                <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: The SG rate, contribution caps, employer obligations, and how super interacts with your gross-to-net calculation.</li>
+                <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link>: Line-by-line explanation of every item on an Australian payslip, including the PAYG withholding line.</li>
               </ul>
             </section>
 
@@ -532,7 +532,7 @@ export default function PAYGTablesGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Every withholding figure on this page is computed from the ATO&apos;s Schedule 1 (NAT 1004) coefficient formulas for {PAYG_FINANCIAL_YEAR} &mdash; the same method that produces the printed weekly, fortnightly and monthly tax tables &mdash; and our engine is tested against every row of the ATO&apos;s published sample data. Figures assume no tax offset or Medicare levy adjustment claimed on a withholding declaration.</p>
+                <p>Every withholding figure on this page is computed from the ATO&apos;s Schedule 1 (NAT 1004) coefficient formulas for {PAYG_FINANCIAL_YEAR} (the same method that produces the printed weekly, fortnightly and monthly tax tables), and our engine is tested against every row of the ATO&apos;s published sample data. Figures assume no tax offset or Medicare levy adjustment claimed on a withholding declaration.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("payg-withholding-tables"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

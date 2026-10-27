@@ -38,7 +38,7 @@ export const ACT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       id: "firefighters",
       title: "Firefighters (Annex A, Table 1.1)",
       intro:
-        "ACT Fire & Rescue firefighters from recruit (FB1) to Senior Fire Fighter (FB5). Salaries are composite annual amounts that already include shift loading and several allowances.",
+        "ACT Fire & Rescue firefighter salaries run from recruit (FB1) to Senior Fire Fighter (FB5). Each is a composite annual amount that already includes shift loading, standard overtime, industry allowance and several other allowances.",
       stepHeading: "Classification",
       steps: [
         { label: "FB1 - Fire Fighter Fourth Class In Training", salary: 90_054 },
@@ -51,7 +51,7 @@ export const ACT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     {
       id: "officers",
       title: "Officers (Annex A, Table 1.1)",
-      intro: "Station Officer and the command ranks.",
+      intro: "ACT Fire & Rescue officer salaries cover the Station Officer rank and the command ranks of Commander and Superintendent.",
       stepHeading: "Classification",
       steps: [
         { label: "FB6 - Station Officer", salary: 129_596 },
@@ -73,7 +73,7 @@ export const ACT_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "For overtime, the hourly rate is the fortnightly rate divided by 86.3240 (Annex A para 3).",
   ],
   notices: [
-    "The agreement reached its nominal expiry date on 30 June 2026 and no increase after 4 December 2025 is written into it. It keeps applying until it is replaced.",
+    "The ACT Fire & Rescue agreement reached its nominal expiry date on 30 June 2026 and no increase after 4 December 2025 is written into it. The agreement keeps applying until it is replaced.",
     "The ACT Government's agreements page said on 24 September 2026 that 17 of its 18 ACTPS enterprise agreements are being renegotiated. Any new ACT Fire & Rescue agreement may set new rates and back-pay.",
   ],
   unverified: [

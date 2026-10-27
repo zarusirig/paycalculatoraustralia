@@ -18,11 +18,11 @@ export const FAIR_WORK_PAY_CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "What if my enterprise agreement pays more than the award?",
-    a: `Then the agreement applies and PACT does not calculate your pay. An enterprise agreement replaces the award for the employees it covers, but its base rate cannot be lower than the award base rate for the same classification, so the award figure is still the floor to check against. Find your agreement in the Fair Work Commission's document search and read its pay table.`,
+    a: `Your enterprise agreement applies, and PACT does not calculate agreement pay. An enterprise agreement replaces the award for the employees it covers, but its base rate cannot be lower than the award base rate for the same classification, so the award figure is still the floor to check against. Find your agreement in the Fair Work Commission's document search and read its pay table.`,
   },
   {
     q: "How often do Fair Work pay rates change?",
-    a: `Once a year. The Fair Work Commission's Annual Wage Review sets new minimums that apply from the first full pay period on or after 1 July. The 2026 review lifted the national minimum wage to ${formatAUD(NMW.hourly, 2)} an hour and award rates by ${(AWR_2026_FLOORS.increase * 100).toFixed(2)}% from ${NMW_DECISION.operativeFrom}; the next changes apply from ${NMW_DECISION.nextReviewOperativeFrom}. Some awards also change on other dates: junior rates in the retail, fast food and pharmacy awards start a phase-in on ${JUNIOR_PHASE_IN.commences}, and SCHADS home care disability rates rise on ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom}.`,
+    a: `Fair Work pay rates change once a year. The Fair Work Commission's Annual Wage Review sets new minimums that apply from the first full pay period on or after 1 July. The 2026 review lifted the national minimum wage to ${formatAUD(NMW.hourly, 2)} an hour and award rates by ${(AWR_2026_FLOORS.increase * 100).toFixed(2)}% from ${NMW_DECISION.operativeFrom}; the next changes apply from ${NMW_DECISION.nextReviewOperativeFrom}. Some awards also change on other dates: junior rates in the retail, fast food and pharmacy awards start a phase-in on ${JUNIOR_PHASE_IN.commences}, and SCHADS home care disability rates rise on ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom}.`,
   },
   {
     q: "What should I do if the calculator shows I am being underpaid?",

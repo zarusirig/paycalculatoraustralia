@@ -24,7 +24,7 @@ export default function Stage3TaxCutsPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Stage 3 Tax Cuts</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Stage 3 Tax Cuts: How Much More You Take Home</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">The revised Stage 3 tax cuts took effect on 1 July 2024, changing tax brackets for every Australian taxpayer earning above $18,200. This guide shows exactly how much you save compared to the old rates, with a full before-and-after comparison at every income level.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">The revised Stage 3 tax cuts took effect on 1 July 2024, with new tax brackets for every Australian resident taxpayer earning above $18,200. The tables below compare your income tax under the old and revised rates and show your annual and weekly saving at each income level listed.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -38,7 +38,7 @@ export default function Stage3TaxCutsPage() {
                 The Stage 3 tax cuts were originally legislated in 2019 as part of a three-stage plan. The original design collapsed three tax brackets into two, creating a single <strong>30% rate from $45,001 to $200,000</strong>. In January 2024, the government announced a <strong>revised plan</strong> that instead reduced the bottom rate from 19% to 16%, kept more brackets, and spread the benefit more widely.
               </p>
               <p>
-                The 16% rate in this table applied for FY2024-25 and FY2025-26 only. A separate law passed in March 2025 cut it again to <strong>15% from 1 July 2026</strong> and legislates <strong>14% from 1 July 2027</strong>. See <Link href="/tax-brackets/">current tax brackets</Link> for the FY{SITE_CONFIG.financialYear} rates.
+                The 16% rate in the table below applied for FY2024-25 and FY2025-26 only. A separate law passed in March 2025 cut it again to <strong>15% from 1 July 2026</strong> and legislates <strong>14% from 1 July 2027</strong>. See <Link href="/tax-brackets/">current tax brackets</Link> for the FY{SITE_CONFIG.financialYear} rates.
               </p>
 
               <div className="not-prose my-6">
@@ -59,7 +59,7 @@ export default function Stage3TaxCutsPage() {
                 </div>
               </div>
               <p>
-                The key differences in the revised plan: the lowest rate dropped from <strong>19% to 16%</strong> (benefiting everyone earning $18,201–$45,000), the 30% bracket now extends to $135,000 instead of $120,000, and the 37% bracket was retained (the original plan eliminated it entirely). The 45% threshold moved from $180,001 to $190,001.
+                The key differences in the revised plan: the lowest rate dropped from <strong>19% to 16%</strong> (lowering the tax on every dollar earned from $18,201 to $45,000), the 30% bracket now extends to $135,000 instead of $120,000, and the 37% bracket was retained (the original plan eliminated it entirely). The 45% threshold moved from $180,001 to $190,001.
               </p>
             </section>
 
@@ -67,7 +67,7 @@ export default function Stage3TaxCutsPage() {
             <section id="before-after">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before &amp; After: Tax Savings at Every Income Level</h2>
               <p>
-                The following table compares the income tax payable under the <strong>pre-Stage 3 rates (FY2023-24)</strong> versus the <strong>revised Stage 3 rates (FY2024-25 and FY2025-26)</strong>. All figures exclude Medicare levy and tax offsets, showing pure income tax only. From 1 July 2026 the 15% rate adds up to $268 a year on top of these savings (1 percentage point on the $26,800 between $18,200 and $45,000).
+                The following table compares the income tax payable under the <strong>pre-Stage 3 rates (FY2023-24)</strong> versus the <strong>revised Stage 3 rates (FY2024-25 and FY2025-26)</strong>. All figures exclude the Medicare levy and tax offsets, so they show income tax only. From 1 July 2026 the 15% rate adds up to $268 a year on top of these savings (1 percentage point on the $26,800 between $18,200 and $45,000).
               </p>
 
               <div className="not-prose my-6">
@@ -119,27 +119,27 @@ export default function Stage3TaxCutsPage() {
             <section id="who-benefits">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Benefits Most?</h2>
               <p>
-                The revised Stage 3 tax cuts deliver benefits across all income levels, but the distribution differs significantly from the original plan:
+                The revised Stage 3 tax cuts give a saving at every income level in the table above, but they split the savings differently from the original plan:
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Low-Income Earners ($18,201 – $45,000)</h3>
               <p>
-                This group benefits from the reduction in the bottom marginal rate from <strong>19% to 16%</strong>. The maximum saving in this bracket is <strong>$804</strong> (3% on $26,800). Under the original Stage 3 plan, this group received zero additional benefit. The revised plan delivers the most proportional benefit to low and middle-income earners.
+                Low-income earners benefit from the cut in the bottom marginal rate from <strong>19% to 16%</strong>. The maximum saving in this bracket is <strong>$804</strong> (3% on $26,800). Under the original Stage 3 plan, this group received zero additional benefit. Measured against the tax they paid before, low and middle-income earners get the largest percentage cuts under the revised plan.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Middle-Income Earners ($45,001 – $135,000)</h3>
               <p>
-                This group benefits from the 16% rate cut <strong>plus</strong> the reduction in the second bracket from 32.5% to 30%. For someone earning $90,000, the combined saving is <strong>$1,929 per year</strong> ($37.10 per week). The 30% bracket also extends to $135,000 (up from $120,000), providing additional savings for those earning $120,001-$135,000 who previously paid 37%. To see what that leaves in hand partway up this band, see <Link href="/take-home-pay-on/100000/">$100,000 After Tax in Australia</Link>.
+                Middle-income earners benefit from the 16% rate cut <strong>plus</strong> the reduction in the second bracket from 32.5% to 30%. For someone earning $90,000, the combined saving is <strong>$1,929 per year</strong> ($37.10 per week). The 30% bracket also extends to $135,000 (up from $120,000), so income from $120,001 to $135,000 that was previously taxed at 37% now gets the lower rate. To see what that leaves in hand partway up this band, see <Link href="/take-home-pay-on/100000/">$100,000 After Tax in Australia</Link>.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>High-Income Earners ($135,001 – $190,000)</h3>
               <p>
-                This group receives smaller savings under the revised plan compared to the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong>, still substantial, but less than the $3,975 that the original plan would have delivered.
+                High-income earners get smaller savings under the revised plan than under the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong>, less than the $3,975 that the original plan would have delivered.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Very High-Income Earners ($190,001+)</h3>
               <p>
-                The top tax rate of 45% now applies from $190,001 (moved from $180,001). This provides a <strong>$4,529</strong> annual saving compared to the pre-Stage 3 rates. Under the original plan, the 45% rate would not have applied until $200,001, providing a larger benefit. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your exact take-home amount under the current rates, or the <Link href="/pay-rise-calculator/">calculator for a salary increase</Link> to see how much of a raise the lower rates let you keep.
+                The top tax rate of 45% now applies from $190,001 (moved from $180,001). Very high-income earners save <strong>$4,529</strong> a year compared to the pre-Stage 3 rates. Under the original plan, the 45% rate would not have applied until $200,001, so this group would have saved more. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your exact take-home amount under the current rates, or the <Link href="/pay-rise-calculator/">calculator for a salary increase</Link> to see how much of a raise the lower rates let you keep.
               </p>
             </section>
 

@@ -93,7 +93,7 @@ export function commonFaqs(a: ModernAwardData): AwardFaq[] {
       a: a.casualRuleSummary
         ? `${a.entryLevel} is ${$(casual(a, entry.hourly))} an hour as a casual. ${a.casualRuleSummary}`
         : a.casualPenaltyBasis === "compounded"
-          ? `Casuals receive a ${pct(a.meta.casualLoading)} loading, so ${a.entryLevel} becomes ${$(casual(a, entry.hourly))} an hour. In this award penalty, shift and overtime percentages for casuals are applied to that casual rate, so they compound: a casual paid 150% receives 150% of ${$(casual(a, entry.hourly))}, which is ${$(roundCents(casual(a, entry.hourly) * 1.5))}.`
+          ? `Casuals receive a ${pct(a.meta.casualLoading)} loading, so ${a.entryLevel} becomes ${$(casual(a, entry.hourly))} an hour. Under this award, casual penalty, shift and overtime percentages are applied to that casual rate, so they compound: a casual paid 150% receives 150% of ${$(casual(a, entry.hourly))}, which is ${$(roundCents(casual(a, entry.hourly) * 1.5))}.`
           : `Casuals receive a ${pct(a.meta.casualLoading)} loading on the minimum hourly rate, so ${a.entryLevel} becomes ${$(casual(a, entry.hourly))} an hour. Casual penalty rates add the loading rather than multiplying by it: the casual column in the award is the permanent percentage plus 25 percentage points${casualExceptions(a)}.`,
     },
     {
@@ -143,17 +143,17 @@ function fastFood(): AwardPageCopy {
     title: `Fast Food Industry Award Pay Rates ${FY} - Casual & Junior`,
     description: `Fast Food Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr (${$(casual(a, l1.hourly))} casual) to ${$(top.hourly)} at Level 3. Weekend, late-night, public holiday and junior rates.`,
     h1: `Fast Food Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering takeaway shops, burger and pizza chains, food courts and delivery, operative from ${a.meta.operativeFrom}.`,
-    directAnswer: `A Level 1 fast food employee aged 21 or over earns at least ${$(l1.hourly)} an hour, or ${$(casual(a, l1.hourly))} as a casual. Level 2 (supervisors, trainers and trade-skilled staff) is ${$(l2.hourly)}, and a Level 3 store manager is ${$(findAwardRate(a, "Level 3 (in charge of one or no person)").hourly)}–${$(top.hourly)}. Saturday is 125% for everyone, but Sunday is 125% at Level 1 and 150% at Levels 2 and 3.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers takeaway shops, burger and pizza chains, food courts and delivery. Every classification rate on this page is operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Level 1 fast food employee aged 21 or over earns at least ${$(l1.hourly)} an hour, or ${$(casual(a, l1.hourly))} as a casual. Level 2 (supervisors, trainers and trade-skilled staff) is ${$(l2.hourly)}, and a Level 3 store manager is ${$(findAwardRate(a, "Level 3 (in charge of one or no person)").hourly)} to ${$(top.hourly)}. Saturday is 125% at every level, but Sunday is 125% at Level 1 and 150% at Levels 2 and 3.`,
     trap: {
       heading: "Junior rates change on 1 December 2026, gradually",
-      body: `From the first full pay period on or after 1 December 2026, fast food workers aged 18–20 who have been with their employer for more than 6 months move up 5 percentage points (18: ${s.qualifyingPeriod.age18}% → ${s.age18[0]}%, 19: ${s.qualifyingPeriod.age19}% → ${s.age19[0]}%, 20: ${s.qualifyingPeriod.age20}% → ${s.age20[0]}%), then 5 more each July and December until they reach the adult rate. It is not the full adult rate on 1 December. Under-18s are unchanged: a 16-year-old at Level 1 stays on ${$(j16)} an hour.`,
+      body: `From the first full pay period on or after 1 December 2026, fast food workers aged 18 to 20 who have been with their employer for more than 6 months move up 5 percentage points (18: ${s.qualifyingPeriod.age18}% → ${s.age18[0]}%, 19: ${s.qualifyingPeriod.age19}% → ${s.age19[0]}%, 20: ${s.qualifyingPeriod.age20}% → ${s.age20[0]}%), then 5 more each July and December until they reach the adult rate. It is not the full adult rate on 1 December. Under-18s are unchanged: a 16-year-old at Level 1 stays on ${$(j16)} an hour.`,
     },
     faqs: [
       ...commonFaqs(a),
       {
         q: "What is the fast food Sunday rate?",
-        a: `It depends on your level. Level 1 employees are paid 125% on a Sunday (casuals 150%): ${$(roundCents(l1.hourly * 1.25))} an hour for a permanent adult, ${$(roundCents(l1.hourly * 1.5))} for a casual. Levels 2 and 3 are paid 150% (casuals 175%). Saturday is 125% (casuals 150%) at every level, and public holidays are 225% (casuals 250%).`,
+        a: `The fast food Sunday rate for Level 1 is 125% (casuals 150%): ${$(roundCents(l1.hourly * 1.25))} an hour for a permanent adult, ${$(roundCents(l1.hourly * 1.5))} for a casual. Levels 2 and 3 are paid 150% on a Sunday (casuals 175%). Saturday is 125% (casuals 150%) at every level, and public holidays are 225% (casuals 250%).`,
       },
       {
         q: "Do fast food workers get paid more for late nights?",
@@ -184,11 +184,11 @@ function pharmacy(): AwardPageCopy {
     title: `Pharmacy Award Pay Rates ${FY} (${a.meta.code}) - Assistant Rates`,
     description: `Pharmacy Industry Award rates from ${a.meta.operativeFrom}: pharmacy assistant ${$(pa1.hourly)}–${$(pa4.hourly)}/hr, pharmacist ${$(ph.hourly)}, manager ${$(mgr.hourly)}. Casual, penalty and junior rates.`,
     h1: `Pharmacy Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering pharmacy assistants, students, interns and pharmacists in community pharmacy, operative from ${a.meta.operativeFrom}.`,
-    directAnswer: `A pharmacy assistant earns ${$(pa1.hourly)} to ${$(pa4.hourly)} an hour depending on level, or ${$(casual(a, pa1.hourly))} to ${$(casual(a, pa4.hourly))} as a casual. A registered pharmacist earns at least ${$(ph.hourly)} an hour (${$(ph.weekly)} a week), rising to ${$(mgr.hourly)} for a pharmacist manager. Penalty rates depend on the time of day: Saturday 8am–6pm is 125%, but before 8am it is 200%.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers pharmacy assistants, students, interns and pharmacists in community pharmacy. Every classification rate on this page is operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A pharmacy assistant earns ${$(pa1.hourly)} to ${$(pa4.hourly)} an hour depending on level, or ${$(casual(a, pa1.hourly))} to ${$(casual(a, pa4.hourly))} as a casual. A registered pharmacist earns at least ${$(ph.hourly)} an hour (${$(ph.weekly)} a week), rising to ${$(mgr.hourly)} for a pharmacist manager. Penalty rates depend on the time of day: Saturday 8am to 6pm is 125%, but before 8am it is 200%.`,
     trap: {
       heading: "Casuals do not get the loading on overtime, and junior pharmacy assistant rates rise from 1 December 2026",
-      body: `The Pharmacy award says in terms that the casual loading is not payable on overtime (cl 11.3), which is the opposite of the Fast Food and Clerks awards. And from 1 December 2026 pharmacy assistants at levels 1–2 aged 18–20 with more than 6 months' service move up on an annual schedule: 18-year-olds to ${s.age18[0]}%, then ${s.age18[1]}% from 1 July 2027, reaching the adult rate on 1 July 2029. That is a different, slower-stepped schedule from retail and fast food.`,
+      body: `The Pharmacy award says in terms that the casual loading is not payable on overtime (cl 11.3), which is the opposite of the Fast Food and Clerks awards. And from 1 December 2026 pharmacy assistants at levels 1 and 2 aged 18 to 20 with more than 6 months' service move up on an annual schedule: 18-year-olds to ${s.age18[0]}%, then ${s.age18[1]}% from 1 July 2027, reaching the adult rate on 1 July 2029. That is a different, slower-stepped schedule from retail and fast food.`,
     },
     faqs: [
       ...commonFaqs(a),
@@ -198,7 +198,7 @@ function pharmacy(): AwardPageCopy {
       },
       {
         q: "What are the pharmacy award penalty rates?",
-        a: `Monday to Friday: 7–8am 150%, 7–9pm 125%, 9pm–midnight 150%. Saturday: 7–8am 200%, 8am–6pm 125%, 6–9pm 150%, 9pm–midnight 175%. Sunday: 7am–9pm 150%, and before 7am or after 9pm 200%. Public holidays are 225%. Casuals are paid 25 percentage points more in each band.`,
+        a: `Monday to Friday: 7am to 8am 150%, 7pm to 9pm 125%, 9pm to midnight 150%. Saturday: 7am to 8am 200%, 8am to 6pm 125%, 6pm to 9pm 150%, 9pm to midnight 175%. Sunday: 7am to 9pm 150%, and before 7am or after 9pm 200%. Public holidays are 225%. Casuals are paid 25 percentage points more in each band.`,
       },
       {
         q: "Do junior rates apply to all pharmacy employees?",
@@ -225,7 +225,7 @@ function manufacturing(): AwardPageCopy {
     title: `Manufacturing Award Pay Guide ${FY} (${a.meta.code}) - C14 to C2`,
     description: `Manufacturing Award rates from ${a.meta.operativeFrom}: C14 ${$(c14.hourly)}/hr, C10 tradesperson ${$(c10.hourly)}, up to ${$(top.hourly)} at C2(b). Casual, shift and overtime rates.`,
     h1: `Manufacturing Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering the C14–C2 structure, vehicle manufacturing V levels and driver grades, operative from ${a.meta.operativeFrom}.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) uses the C14 to C2 classification structure, plus vehicle manufacturing V levels and driver grades. Every classification rate on this page is operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A new manufacturing employee at C14 earns at least ${$(c14.hourly)} an hour (${$(c14.weekly)} a week), moving to C13 at ${$(c13.hourly)}. A qualified tradesperson at C10 earns ${$(c10.hourly)} an hour (${$(c10.weekly)} a week), and the top classification, C2(b), is ${$(top.hourly)}. Casuals get 25% on top (${$(cas)} at C14), and in this award their penalties and overtime are calculated on that casual rate.`,
     trap: {
       heading: "In this award casual penalties compound",
@@ -234,7 +234,7 @@ function manufacturing(): AwardPageCopy {
     related: {
       heading: "Trade and apprentice pay under this award",
       body: [
-        "The C10 trade rate is the base for most engineering trades, and the award's apprentice percentages in clause 21.6 are read against it. These pages show what each trade is paid at every C level, and what an apprentice earns on the way there:",
+        "The C10 trade rate is the base for most engineering trades, and the award's apprentice percentages in clause 21.6 are read against it. These pages show what each trade is paid at the C levels it is classified at, and what an apprentice earns on the way there:",
       ],
       links: [
         { href: "/job-pay-rates/boilermaker/", label: "Boilermaker pay rates", note: "C10 to C5 for fabrication tradespeople" },
@@ -257,7 +257,7 @@ function manufacturing(): AwardPageCopy {
       },
       {
         q: "How is overtime paid under the manufacturing award?",
-        a: "150% for the first 3 hours and 200% after that. Saturday overtime for a day worker is 150% for 3 hours then 200%, with a minimum payment of 4 hours. Sunday overtime is 200% with a 3-hour minimum, and public holiday overtime is 250% for a day worker. Continuous shiftworkers are paid 200% for all overtime.",
+        a: "Manufacturing award overtime is 150% for the first 3 hours and 200% after that. Saturday overtime for a day worker is 150% for 3 hours then 200%, with a minimum payment of 4 hours. Sunday overtime is 200% with a 3-hour minimum, and public holiday overtime is 250% for a day worker. Continuous shiftworkers are paid 200% for all overtime.",
       },
     ],
   };
@@ -274,7 +274,7 @@ function security(): AwardPageCopy {
     title: `Security Award Pay Rates ${FY} (${a.meta.code}) - Levels 1–5, Nights`,
     description: `Security Services Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 5 ${$(l5.hourly)}/hr. Night 121.7%, Saturday 150%, Sunday 200% and casual rates.`,
     h1: `Security Award Pay Rates ${FY}`,
-    standfirst: `Every Security Officer level under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}, with night, weekend and public holiday rates for permanent and casual guards.`,
+    standfirst: `This page sets out every Security Officer level under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}, with night, weekend and public holiday rates for permanent and casual guards.`,
     directAnswer: `A Security Officer Level 1 earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 3 is ${$(l3.hourly)} and Level 5 is ${$(l5.hourly)}. Weeknight hours between 6pm and 6am are paid at 121.7% (130% on permanent nights), Saturday at 150%, Sunday at 200% and public holidays at 250%.`,
     trap: {
       heading: "The night rate is 121.7%, not 115% or 125%",
@@ -306,7 +306,7 @@ function clerks(): AwardPageCopy {
     title: `Clerks Private Sector Award Pay Guide ${FY} - Levels 1 to 5`,
     description: `Clerks—Private Sector Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr to Level 5 ${$(l5.hourly)}/hr. Casual, weekend, public holiday, overtime and junior rates.`,
     h1: `Clerks Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering administration, reception, office and call-centre staff in the private sector, operative from ${a.meta.operativeFrom}.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers administration, reception, office and call-centre staff in the private sector. Every classification rate on this page is operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 clerk in their first year earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 2 starts at ${$(l2.hourly)}, Level 3 is ${$(l3.hourly)} and Level 5 is ${$(l5.hourly)}. Saturday morning ordinary hours are 125%, Sunday 200% and public holidays 250%.`,
     trap: {
       heading: "Levels 1 and 2 step up by year of service, and prior experience counts",
@@ -342,11 +342,11 @@ function restaurant(): AwardPageCopy {
     title: `Restaurant Award Rates ${FY} (${a.meta.code}) - Chef, Cook & Casual`,
     description: `Restaurant Industry Award rates from ${a.meta.operativeFrom}: Level 1 ${$(l1.hourly)}/hr (${$(casual(a, l1.hourly))} casual), cook grade 3 ${$(l4.hourly)}, chef de partie ${$(l6.hourly)}. Weekend and holiday rates.`,
     h1: `Restaurant Award Pay Rates ${FY}`,
-    standfirst: `Every classification rate under the ${a.meta.name} (${a.meta.code}), covering waiters, bar and kitchen staff, cooks and chefs in restaurants and cafés, operative from ${a.meta.operativeFrom}.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers waiters, bar and kitchen staff, cooks and chefs in restaurants and cafés. Every classification rate on this page is operative from ${a.meta.operativeFrom}.`,
     directAnswer: `A Level 1 restaurant employee (food and beverage or kitchen attendant grade 1) earns at least ${$(l1.hourly)} an hour, or ${$(casual(a, l1.hourly))} as a casual. A qualified cook (grade 3, Level 4) earns ${$(l4.hourly)} and a chef de partie (Level 6) ${$(l6.hourly)}. Saturday is 125% (casuals 150%) and Sunday 150%, but a casual on Levels 3 to 6 gets 175% on Sunday while a casual on Levels 1 and 2 gets 150%.`,
     trap: {
       heading: "Casual Sunday rates split by level, and late nights are a flat dollar amount",
-      body: `A casual at Introductory Level, Level 1 or Level 2 is paid 150% on a Sunday (${$(roundCents(l1.hourly * 1.5))} at Level 1, the same as a full-timer), while a casual at Level 3 and above gets 175% (${$(roundCents(l3.hourly * 1.75))} at Level 3). Weeknight work after 10.00 pm is not a percentage: it is ${$(2.95)} an hour extra until midnight and ${$(4.42)} an hour extra after midnight. And the adult rate applies from 20, not 21.`,
+      body: `A casual at Introductory Level, Level 1 or Level 2 is paid 150% on a Sunday (${$(roundCents(l1.hourly * 1.5))} at Level 1, the same as a full-timer), while a casual at Level 3 and above gets 175% (${$(roundCents(l3.hourly * 1.75))} at Level 3). Weeknight work after 10.00 pm is not a percentage: it is ${$(2.95)} an hour extra until midnight and ${$(4.42)} an hour extra after midnight. The restaurant award adult rate also applies from age 20, not 21.`,
     },
     faqs: [
       ...commonFaqs(a),
@@ -360,7 +360,7 @@ function restaurant(): AwardPageCopy {
       },
       {
         q: "What are restaurant award junior rates?",
-        a: `Under 17: 50% of the adult rate; 17: 60%; 18: 70%; 19: 85%; 20 and over: the full adult rate. At Level 1 that is ${$(juniorHourlyFor(a, l1, 0.5))}, ${$(juniorHourlyFor(a, l1, 0.6))}, ${$(juniorHourlyFor(a, l1, 0.7))} and ${$(juniorHourlyFor(a, l1, 0.85))} an hour. A junior working as a liquor service employee must be paid the adult rate.`,
+        a: `Restaurant award junior rates are 50% of the adult rate under 17 and 60% at age 17. They rise to 70% at 18 and 85% at 19. The full adult rate applies from age 20. At Level 1 those junior rates are ${$(juniorHourlyFor(a, l1, 0.5))}, ${$(juniorHourlyFor(a, l1, 0.6))}, ${$(juniorHourlyFor(a, l1, 0.7))} and ${$(juniorHourlyFor(a, l1, 0.85))} an hour. A junior working as a liquor service employee must be paid the adult rate.`,
       },
       {
         q: "Do casual restaurant workers get the casual loading on overtime?",
@@ -386,7 +386,7 @@ function nurses(): AwardPageCopy {
     title: `Nurses Award Pay Rates ${FY} (${a.meta.code}) - RN, EN & AIN Rates`,
     description: `Nurses Award 2020 rates: RN level 1 ${$(rn1.hourly)}/hr (${$(rn1.weekly)}/wk), enrolled nurse ${$(en1.hourly)}, aged care RN ${$(acRn1.hourly)} from 1 August 2026. Shift and casual rates.`,
     h1: `Nurses Award Pay Rates ${FY}`,
-    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}), covering nursing assistants, enrolled and registered nurses, nurse practitioners and occupational health nurses, in both the general and aged care rate streams.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers nursing assistants, enrolled and registered nurses, nurse practitioners and occupational health nurses. This page lists every classification in both the general and aged care rate streams.`,
     directAnswer: `A registered nurse on level 1 pay point 1 earns at least ${$(rn1.hourly)} an hour (${$(rn1.weekly)} a week), rising to ${$(rn1top.hourly)} at pay point 8. An enrolled nurse starts at ${$(en1.hourly)} and a first-year nursing assistant at ${$(na1.hourly)}. Registered nurses in aged care have their own, higher scale: ${$(acRn1.hourly)} an hour in the first year at level 1 from 1 August 2026. These are minimums. Nurses in state public hospitals are paid under state agreements that are well above the award.`,
     trap: {
       heading: "Two rate streams, and casual weekend rates compound",
@@ -445,7 +445,7 @@ function agedCare(): AwardPageCopy {
     title: `Aged Care Award Pay Rates & Pay Guide ${FY} (${a.meta.code})`,
     description: `Aged Care Award rates from ${a.meta.operativeFrom}: direct care (personal care worker) ${$(dc1.hourly)} to ${$(dc6.hourly)}/hr, general staff ${$(g1.hourly)} to ${$(g7.hourly)}. Casual, shift and weekend rates.`,
     h1: `Aged Care Award Pay Rates ${FY}`,
-    standfirst: `Every classification under the ${a.meta.name} (${a.meta.code}): personal care workers and other direct care staff, plus the general stream for administration, cleaning, laundry, kitchen and maintenance staff in residential aged care.`,
+    standfirst: `The ${a.meta.name} (${a.meta.code}) covers personal care workers and other direct care staff, plus a general stream for administration, cleaning, laundry, kitchen and maintenance staff in residential aged care. This page lists every classification in both streams.`,
     directAnswer: `A direct care worker (personal care worker) earns at least ${$(dc1.hourly)} an hour at Introductory level, ${$(dc2.hourly)} as a Direct Carer and ${$(dc3.hourly)} once Qualified, or ${$(casual(a, dc3.hourly))} as a casual. General staff earn ${$(g1.hourly)} to ${$(g7.hourly)}. Saturday is 150% (casuals 175%), Sunday 175% (casuals 200%) and public holidays 250% (casuals 275%).`,
     trap: {
       heading: "The work value increases are finished, and these rates include them",
@@ -465,7 +465,7 @@ function agedCare(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "How much does a personal care worker earn in aged care?",
-        a: `Personal care workers are direct care employees. From ${a.meta.operativeFrom} they earn ${$(dc1.hourly)} an hour at level 1 (Introductory), ${$(dc2.hourly)} at level 2 (Direct Carer), ${$(dc3.hourly)} at level 3 (Qualified), ${$(findAwardRate(a, "Direct care — level 4 (Senior)").hourly)} at level 4 (Senior), ${$(findAwardRate(a, "Direct care — level 5 (Specialist)").hourly)} at level 5 (Specialist) and ${$(dc6.hourly)} as a Team Leader. On a full-time 38-hour week a Qualified carer earns ${$(dc3.weekly)}.`,
+        a: `From ${a.meta.operativeFrom} a personal care worker, who is a direct care employee under the Aged Care Award, earns ${$(dc1.hourly)} an hour at level 1 (Introductory), ${$(dc2.hourly)} at level 2 (Direct Carer), ${$(dc3.hourly)} at level 3 (Qualified), ${$(findAwardRate(a, "Direct care — level 4 (Senior)").hourly)} at level 4 (Senior), ${$(findAwardRate(a, "Direct care — level 5 (Specialist)").hourly)} at level 5 (Specialist) and ${$(dc6.hourly)} as a Team Leader. On a full-time 38-hour week a Qualified carer earns ${$(dc3.weekly)}.`,
       },
       {
         q: "What are aged care award shift penalties?",
@@ -473,7 +473,7 @@ function agedCare(): AwardPageCopy {
       },
       {
         q: "What is the aged care award casual overtime rate?",
-        a: `The award sets it in terms: 187.5% of the hourly rate for the first 2 hours Monday to Friday, 250% after that and on weekends, and 312.5% on public holidays. For a Qualified direct care worker that is ${$(roundCents(dc3.hourly * 1.875))}, ${$(roundCents(dc3.hourly * 2.5))} and ${$(roundCents(dc3.hourly * 3.125))} an hour.`,
+        a: `The Aged Care Award sets casual overtime at 187.5% of the hourly rate for the first 2 hours Monday to Friday, 250% after that and on weekends, and 312.5% on public holidays. For a Qualified direct care worker that is ${$(roundCents(dc3.hourly * 1.875))}, ${$(roundCents(dc3.hourly * 2.5))} and ${$(roundCents(dc3.hourly * 3.125))} an hour.`,
       },
       {
         q: "Is there a sleepover allowance under the aged care award?",
@@ -503,7 +503,7 @@ function hairAndBeauty(): AwardPageCopy {
     related: {
       heading: "Apprentice and qualified hairdresser pay",
       body: [
-        "Clause 18 pays apprentice hairdressers a percentage of the Level 3 rate, with a 77% third year and a separate 30-month scale for pre-apprentices. The year-by-year figures, the Saturday rate and the tool allowance are on the apprentice page; the qualified hairdresser page sets Level 3 and above against what hairdressers actually earn:",
+        "Clause 18 pays apprentice hairdressers a percentage of the Level 3 rate, with a 77% third year and a separate 30-month scale for pre-apprentices. The year-by-year figures, the Saturday rate and the tool allowance are on the apprentice page; the qualified hairdresser page sets Level 3 and above against median hairdresser pay:",
       ],
       links: [
         { href: "/apprentice-pay/hairdresser/", label: "Apprentice hairdresser pay", note: "year 1 to 4, junior and pre-apprentice scales" },
@@ -515,11 +515,11 @@ function hairAndBeauty(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "How much does a hairdresser earn under the award?",
-        a: `A qualified hairdresser is typically classified at Level 3 or above: ${$(l3.hourly)} an hour (${$(l3.weekly)} a week) at Level 3, ${$(findAwardRate(a, "Level 4").hourly)} at Level 4, ${$(findAwardRate(a, "Level 5").hourly)} at Level 5 and ${$(l6.hourly)} at Level 6. Apprentice hairdressers are paid a percentage of the Level 3 rate under clause 18, which this page does not reproduce.`,
+        a: `A qualified hairdresser is typically classified at Level 3 or above: ${$(l3.hourly)} an hour (${$(l3.weekly)} a week) at Level 3, ${$(findAwardRate(a, "Level 4").hourly)} at Level 4, ${$(findAwardRate(a, "Level 5").hourly)} at Level 5 and ${$(l6.hourly)} at Level 6. Apprentice hairdressers are paid a percentage of the Level 3 rate under clause 18, and the year-by-year figures are on the apprentice hairdresser page.`,
       },
       {
         q: "What are hair and beauty junior rates?",
-        a: `Under 17: 50% of the adult rate; 17: 75%; 18 and over: the full adult rate. At Level 1 that is ${$(juniorHourlyFor(a, l1, 0.5))} and ${$(juniorHourlyFor(a, l1, 0.75))} an hour, the award's own Schedule B figures.`,
+        a: `A hair and beauty employee under 17 is paid 50% of the adult rate, a 17-year-old 75%, and an employee aged 18 or over the full adult rate. At Level 1 that is ${$(juniorHourlyFor(a, l1, 0.5))} and ${$(juniorHourlyFor(a, l1, 0.75))} an hour, the award's own Schedule B figures.`,
       },
       {
         q: "Do salon workers get paid more for late nights?",
@@ -559,7 +559,7 @@ function cleaning(): AwardPageCopy {
       },
       {
         q: "What is the minimum shift for a cleaner?",
-        a: "It depends on the site. A part-time or casual cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more, and paid for the minimum even if the job finishes early.",
+        a: "The Cleaning Services Award sets a part-time or casual cleaner's minimum shift by the size of the site. The cleaner must be rostered for at least 1 hour if working alone at a stand-alone site of up to 300 square metres, 2 hours at a site up to 2,000 square metres, 3 hours from 2,000 to 5,000 square metres and 4 hours at 5,000 square metres or more. The cleaner must be paid for the minimum even if the job finishes early.",
       },
       {
         q: "Is there a toilet cleaning allowance?",
@@ -597,7 +597,7 @@ function roadTransport(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "How much does a truck driver earn under the award?",
-        a: `It depends on the vehicle. A rigid truck up to 4.5 tonnes is Grade 2 (${$(g2.hourly)} an hour); a two-axle rigid up to 13.9 tonnes Grade 3 (${$(g3.hourly)}); a three-axle rigid Grade 4 (${$(findAwardRate(a, "Transport Worker Grade 4").hourly)}); a semi-trailer over 22.4 tonnes Grade 6 (${$(g6.hourly)}); a B-double up to 53.4 tonnes Grade 7 (${$(g7.hourly)}); and heavier combinations Grades 8 to 10 (up to ${$(g10.hourly)}). Full-time, Grade 6 is ${$(g6.weekly)} a week.`,
+        a: `Under the Road Transport Award, a truck driver's grade and minimum rate are set by the vehicle they drive. A rigid truck up to 4.5 tonnes is Grade 2 (${$(g2.hourly)} an hour); a two-axle rigid up to 13.9 tonnes Grade 3 (${$(g3.hourly)}); a three-axle rigid Grade 4 (${$(findAwardRate(a, "Transport Worker Grade 4").hourly)}); a semi-trailer over 22.4 tonnes Grade 6 (${$(g6.hourly)}); a B-double up to 53.4 tonnes Grade 7 (${$(g7.hourly)}); and heavier combinations Grades 8 to 10 (up to ${$(g10.hourly)}). Full-time, Grade 6 is ${$(g6.weekly)} a week.`,
       },
       {
         q: "What are the road transport award shift rates?",

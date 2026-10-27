@@ -25,7 +25,7 @@ export default function NewJobChecklistPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">New Job Checklist</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>New Job Pay Checklist: Set Up Your Pay Correctly From Day One</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Starting a new job involves more than just showing up. From TFN declarations to super fund choice and verifying your first pay, this checklist ensures you get paid correctly and do not leave money on the table.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">This new job pay checklist covers what an Australian employee should check and complete when starting a new job. Before your first day, you confirm your salary package, the award or enterprise agreement that covers the role, and your contract terms. In your first week, you complete the TFN declaration and give your employer your super fund and bank details. On your first payslip, you check gross pay, PAYG withholding, super and leave against your contract. The Pay Calculator linked in that section shows the PAYG withholding you should expect for your salary. The guide ends with a total package value table and answers to common new job pay questions.</p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
@@ -36,20 +36,20 @@ export default function NewJobChecklistPage() {
             <section id="before-first-day">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before Your First Day</h2>
               <p>
-                Use this checklist before you start to understand the full value of your new role and avoid common pay mistakes.
+                Before you start, check how your salary package is quoted, which award or enterprise agreement covers the role, and what your employment contract says.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Understand Your Salary Package</h3>
               <ul>
                 <li>{"✅"} <strong>Confirm total package vs base salary.</strong> Some offers quote a &quot;total remuneration package&quot; that includes super. A $100,000 total package means your cash salary is approximately <strong>$89,286</strong> with $10,714 going to super (12%). A $100,000 base salary plus super means you receive $100,000 in cash and $12,000 in super, a total value of $112,000.</li>
-                <li>{"✅"} <strong>Check for salary sacrifice availability.</strong> Ask whether your new employer offers salary sacrifice into super or a novated lease. Pre-tax salary sacrifice reduces your taxable income and can save thousands in tax. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings.</li>
+                <li>{"✅"} <strong>Check for salary sacrifice availability.</strong> Ask whether your new employer offers salary sacrifice into super or a novated lease. Pre-tax salary sacrifice reduces your taxable income and the income tax you pay on it. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings.</li>
                 <li>{"✅"} <strong>Verify the applicable award or enterprise agreement.</strong> If your role is covered by a modern award, check the minimum pay rates for your classification level. Use our <Link href="/award-rates/">Award Rates Guide</Link> to confirm your offer meets or exceeds the award minimum.</li>
               </ul>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Review Your Employment Contract</h3>
               <ul>
                 <li>{"✅"} <strong>Employment type:</strong> Full-time, part-time, or casual. Casual employees receive a <strong>25% loading</strong> but do not receive paid leave entitlements.</li>
-                <li>{"✅"} <strong>Pay frequency:</strong> Weekly, fortnightly, or monthly. This affects your cash flow planning.</li>
+                <li>{"✅"} <strong>Pay frequency:</strong> Weekly, fortnightly, or monthly. Your pay frequency sets when money reaches your account and which PAYG withholding table your employer uses.</li>
                 <li>{"✅"} <strong>Notice period:</strong> Standard is 1-4 weeks depending on tenure, but contracts may specify different terms.</li>
                 <li>{"✅"} <strong>Probation period:</strong> Most new roles include a 3-6 month probationary period with reduced notice requirements.</li>
                 <li>{"✅"} <strong>Leave entitlements:</strong> Full-time employees receive 4 weeks annual leave and 10 days personal/carer&apos;s leave per year under the National Employment Standards.</li>
@@ -60,7 +60,7 @@ export default function NewJobChecklistPage() {
             <section id="first-week-paperwork">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Week Paperwork</h2>
               <p>
-                Complete these administrative tasks in your first week to ensure your pay, tax, and super are set up correctly.
+                In your first week, give your employer a TFN declaration, your super fund details and your bank details so your pay, tax, and super are set up correctly.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>TFN Declaration</h3>
@@ -88,7 +88,7 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Provide your bank account details</strong> (BSB and account number) for salary deposits.</li>
                 <li>{"✅"} <strong>Emergency contact details</strong> for workplace safety records.</li>
-                <li>{"✅"} <strong>Tax residency status:</strong> confirm you are an Australian resident for tax purposes to ensure correct withholding rates.</li>
+                <li>{"✅"} <strong>Tax residency status:</strong> answer the residency question on your TFN declaration correctly, because your employer withholds tax at different rates for Australian residents and foreign residents.</li>
               </ul>
             </section>
 
@@ -96,13 +96,13 @@ export default function NewJobChecklistPage() {
             <section id="first-pay-checks">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Pay: What to Check</h2>
               <p>
-                When you receive your first payslip, verify these items immediately. Errors caught early are easiest to fix.
+                Check these items on your first payslip as soon as it arrives, while any error affects only your first pay.
               </p>
               <ul>
                 <li>{"✅"} <strong>Verify gross pay matches your contract.</strong> For salaried employees, divide your annual salary by the number of pay periods (26 for fortnightly, 12 for monthly). For hourly workers, check hours multiplied by your rate.</li>
                 <li>{"✅"} <strong>Check tax withholding is reasonable.</strong> Use our <Link href="/">Pay Calculator</Link> to compare expected vs actual PAYG withholding. If tax seems too high, confirm your TFN declaration was processed and the tax-free threshold applied.</li>
-                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Since Payday Super started on 1 July 2026, contributions must reach your fund within <strong>7 business days of each payday</strong> (20 business days for a new employee&apos;s first contribution), so check your super fund online portal a few weeks after starting to confirm it arrived.</li>
-                <li>{"✅"} <strong>Check leave balances are accruing.</strong> Full-time employees accrue annual leave from day one. After your first pay period, you should see leave balance appearing on your payslip or in your employer&apos;s HR system.</li>
+                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Since Payday Super started on 1 July 2026, contributions must reach your fund within <strong>7 business days of each payday</strong> (20 business days for a new employee&apos;s first contribution). Check your super fund&apos;s online portal a few weeks after starting to confirm it arrived.</li>
+                <li>{"✅"} <strong>Check leave balances are accruing.</strong> Full-time employees accrue annual leave from day one. After your first pay period, your payslip or your employer&apos;s HR system should show your leave balance.</li>
                 <li>{"✅"} <strong>Review allowances and loadings.</strong> If your contract or award includes shift penalties, overtime rates, or allowances (meal, travel, uniform), verify these are being applied correctly.</li>
               </ul>
 
@@ -111,7 +111,7 @@ export default function NewJobChecklistPage() {
                   <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-navy mb-1">Verify Your Pay</h3>
-                    <p className="text-navy text-sm mb-3">Enter your salary to check that your payslip deductions match what you should be paying in tax.</p>
+                    <p className="text-navy text-sm mb-3">Enter your salary in the Pay Calculator to check that the PAYG withholding on your payslip matches the tax you should pay.</p>
                     <Link href="/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
                       Use our Pay Calculator <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
@@ -124,7 +124,7 @@ export default function NewJobChecklistPage() {
             <section id="salary-negotiation">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Understanding Total Package Value</h2>
               <p>
-                When evaluating a job offer, look beyond the base salary number. The total value of a compensation package includes several components:
+                Compare a job offer on its total package value, not the base salary alone. The table below shows each component for an example base salary:
               </p>
 
               <div className="not-prose my-6">

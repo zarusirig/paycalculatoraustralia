@@ -1,0 +1,277 @@
+    trap: {
+      heading: "The Health Professional table changed on 1 October 2026, and it is only stage one",
+      body: `Determination PR814029 substituted clause 17 from the first full pay period starting on or after 1 October 2026. Health professionals are now paid by the AQF level of their profession's standard minimum qualification (AQF 5 to 9) and years of experience in the profession, plus Levels 2.1, 2.2, 3 and 4. The increase is phased: further stages take effect on 30 June in each of 2027, 2028, 2029 and 2030, so the table below is the first-stage rate, not where it will end up. If you were classified as a Health Professional employee on 30 September 2026, you are translated into the new structure under clause J.4 and cannot be paid less than your old rate. Support Services rates (Levels 1 to 9) were not changed by this variation and are the 1 July 2026 rates. Dental assistants and pathology collectors at some levels have separate transitional rates to 31 December 2026 and are not in the Support Services rows.`,
+    },
+    workedExample: {
+      heading: "Worked example: a casual AQF 7 physio on a Saturday and in overtime",
+      intro: `Priya is a casual health professional at Level 1, AQF 7, first year: ${$(hp7.hourly)} an hour minimum (${$(casual(a, hp7.hourly))} as a casual).`,
+      steps: [
+        `Saturday ordinary hours: a casual is paid 175% of the minimum rate for all time worked and does NOT also get the 25% loading (cl 26.1(b)). ${$(hp7.hourly)} × 1.75 = ${$(satCas)} an hour. A permanent employee is paid 150%: ${$(x(hp7.hourly, 1.5))}.`,
+        `Weekday overtime, first 2 hours: for a casual, the 25% loading is added first and then 150% is applied to that, so ${$(casual(a, hp7.hourly))} × 1.5 = ${$(otFirst)} an hour (cl 25.3).`,
+        `So 4 hours on a Saturday is ${$(roundCents(satCas * 4))} before tax, a higher hourly rate than 2 hours of weekday overtime.`,
+      ],
+      outro: "The weekend rate is flat 150% for all ordinary hours between midnight Friday and midnight Sunday (casuals 175%), and overtime rates are paid in place of the weekend penalty, not on top of it.",
+    },
+    faqs: [
+      ...commonFaqs(a).slice(0, -1),
+      {
+        q: "What changed in the Health Professionals Award on 1 October 2026?",
+        a: "Clause 17 of the Health Professionals Award was replaced (determination PR814029, decision [2026] FWCFB 231). Health Professional Level 1 is now paid by the AQF level of the profession's standard minimum qualification (5 to 9) and by year of experience (1st, 2nd to 3rd, 4th to 6th, 7th year or more); Level 2 splits into 2.1 and 2.2, and Levels 3 and 4 have new rates. Employees classified under the old levels on 30 September 2026 are translated under clause J.4 and never receive less than their old rate. Further increases follow on 30 June 2027 to 2030.",
+      },
+      {
+        q: "What does a physiotherapist or occupational therapist earn under the award?",
+        a: `Physiotherapists and occupational therapists sit at AQF 7 (a 3-year degree entry translates under J.4.1(e)). From 1 October 2026 the minimum rate is ${$(hp7.hourly)} an hour (${$(hp7.weekly)} a week) in the first year, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 2nd–3rd year").hourly)} in years 2 to 3, ${$(level("health-professionals", "Health Professional Level 1 — AQF 7, 4th–6th year").hourly)} in years 4 to 6 and ${$(hp7top.hourly)} from year 7. See the physiotherapist and occupational therapist pay pages for annual figures.`,
+      },
+      {
+        q: "What does a psychologist earn under the award?",
+        a: `Psychologists are classified at AQF 9. From 1 October 2026 the minimum is ${$(hp9.hourly)} an hour (${$(hp9.weekly)} a week) in the first year, up to ${$(level("health-professionals", "Health Professional Level 1 — AQF 9, 7th year+").hourly)} an hour from the 7th year. Most psychologists in private practice or under an enterprise agreement or State public sector agreement are paid more than the award minimum.`,
+      },
+      {
+        q: "What is the Support Services Level 1 rate?",
+        a: `Support Services Level 1 is ${$(ss1.hourly)} an hour (${$(ss1.weekly)} a week), ${$(casual(a, ss1.hourly))} as a casual, from 1 July 2026. Level 4 is ${$(ss4.hourly)}. Level 8 and Level 9 each have three pay points; progression is by annual movement for full-time staff or after 1,824 hours of similar experience for part-time and casual staff (cl 16.1).`,
+      },
+      {
+        q: "Do casuals get penalty rates under the Health Professionals Award?",
+        a: `Yes, but they are calculated differently. A casual who works a Saturday or Sunday is paid 175% of the minimum rate for all time worked, with no extra 25% loading. A casual public holiday is 275%. Casual overtime applies the percentage to the casual rate, so 150% becomes 187.5% and 200% becomes 250% of the minimum rate. For an AQF 7 first-year casual that is ${$(satCas)} on a weekend and ${$(otFirst)} for the first 2 hours of overtime.`,
+      },
+      {
+        q: "Are these rates what I will be paid?",
+        a: "Not necessarily. Many health professionals are covered by an enterprise agreement or a State public sector award or agreement that pays more. The award is the minimum safety net. The first-stage 1 October 2026 rates are also lower than the later phase-in stages, and a higher existing rate is protected by clause J.4.",
+      },
+      {
+        q: "When did the new rates start?",
+        a: "Support Services rates apply from the first full pay period starting on or after 1 July 2026 (determination PR799308, following the Annual Wage Review 2026). Health Professional rates apply from the first full pay period starting on or after 1 October 2026 (PR814029). If your pay period began before the relevant date, the old rate applies for that whole pay period.",
+      },
+    ],
+    related: {
+      heading: "Pay pages for the health professions covered by this award",
+      body: [
+        "The Health Professionals Award sets the minimum. The physiotherapist, occupational therapist and psychologist pay pages below show pay by year of experience, with hourly, weekly, annual and take-home figures. The news explainer covers the 1 October 2026 change.",
+      ],
+      links: [
+        { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist pay rates", note: "AQF 7 pay by year of experience" },
+        { href: "/job-pay-rates/occupational-therapist/", label: "Occupational therapist pay rates", note: "AQF 7 pay by year of experience" },
+        { href: "/job-pay-rates/psychologist/", label: "Psychologist pay rates", note: "AQF 9 pay by year of experience" },
+        { href: "/job-pay-rates/dental-assistant/", label: "Dental assistant pay rates", note: "Support Services transitional rates" },
+        { href: "/news/health-professionals-award-changes-october-2026/", label: "Health Professionals Award changes from 1 October 2026", note: "What changed and who is affected" },
+      ],
+    },
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function timber(): AwardPageCopy {
+  const a = MODERN_AWARDS.timber;
+  const g1 = level("timber", "General Timber — Level 1");
+  const g4 = level("timber", "General Timber — Level 4");
+  const g7 = level("timber", "General Timber — Level 7");
+  const p1 = level("timber", "Pulp and Paper — Level 1");
+  const p9 = level("timber", "Pulp and Paper — Level 9");
+  const cas = casual(a, g4.hourly);
+  const otCas = roundCents(cas * 1.5);
+  return {
+    slug: "timber-award-rates",
+    crumb: "Timber Award Rates",
+    title: `Timber Industry Award Pay Rates ${FY} (${a.meta.code})`,
+    description: fitDescription(
+      `Timber Industry Award (MA000071) rates from ${a.meta.operativeFrom}: General Timber Level 1 ${$(g1.hourly)}/hr to Level 7 ${$(g7.hourly)}/hr, plus furniture and pulp & paper streams. Casual, weekend, overtime.`,
+      `Timber Industry Award MA000071 rates: ${$(g1.hourly)}–${$(p9.hourly)}/hr across three streams, with casual, weekend and overtime rates.`,
+    ),
+    h1: `Timber Industry Award Pay Rates ${FY}`,
+    standfirst: `Every classification rate in the General Timber, Wood and Timber Furniture and Pulp and Paper streams of the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A General Timber Level 1 worker earns at least ${$(g1.hourly)} an hour (${$(g1.weekly)} a week), or ${$(casual(a, g1.hourly))} as a casual; Level 4 is ${$(g4.hourly)} and Level 7 ${$(g7.hourly)}. Pulp and Paper starts higher: Level 1 is ${$(p1.hourly)}, up to ${$(p9.hourly)} at Level 9. Saturday is 150% for the first 2 hours then 200%, Sunday 200% and public holidays 250% (General Timber casuals 275%).`,
+    trap: {
+      heading: "Find your stream first: the three tables are different",
+      body: `The Timber Industry Award has separate minimum rates for the General Timber stream, the Wood and Timber Furniture stream (which adds a Level 4A) and the Pulp and Paper stream (nine levels, starting at ${$(p1.hourly)} rather than ${$(g1.hourly)}). The casual public holiday rate of 275% is tabulated only for the General Timber stream (cl 27.1(d)), and casual day workers are paid casual overtime rates (not weekend penalty rates) for Saturday and Sunday work unless ordinary weekend hours have been agreed. Forest work and low loader allowances are paid for all purposes and are not in the rate tables.`,
+    },
+    workedExample: {
+      heading: "Worked example: a casual Level 4 sawmill worker on overtime",
+      intro: `Tom is a casual General Timber Level 4 (${$(g4.hourly)} an hour minimum). His casual ordinary rate is ${$(cas)} (the minimum plus 25%). He works 3 hours beyond the ordinary daily hours on a Wednesday.`,
+      steps: [
+        `A casual's overtime percentages apply to the casual rate (cl 12.3, Schedule D.3.3). First 2 hours at 150%: ${$(cas)} × 1.5 = ${$(otCas)} an hour → ${$(roundCents(otCas * 2))}.`,
+        `The third hour at 200%: ${$(cas)} × 2 = ${$(roundCents(cas * 2))}.`,
+        `Total: ${$(roundCents(otCas * 2 + cas * 2))} before tax. A permanent Level 4 doing the same overtime would earn ${$(x(g4.hourly, 1.5))} an hour for 2 hours and ${$(x(g4.hourly, 2))} for the third.`,
+      ],
+      outro: "Casual overtime in this award is the casual rate times the overtime percentage, so it compounds: 150% becomes 187.5% and 200% becomes 250% of the minimum rate.",
+    },
+    faqs: [
+      ...commonFaqs(a),
+      nmwFaq(g1, "Level 1 is an induction grade, with a term of up to 3 months unless extended under Schedule A."),
+      {
+        q: "What are the three streams in the Timber Award?",
+        a: "The Timber Industry Award has a General Timber stream (Schedule A), a Wood and Timber Furniture stream (Schedule B) and a Pulp and Paper stream (Schedule C). Each has its own classification definitions and its own minimum rate table in cl 20.1, and the Furniture stream adds a Level 4A.",
+      },
+      {
+        q: "What are Timber Award weekend rates?",
+        a: `For weekly employees (not casuals), Saturday is 150% for the first 2 hours and 200% after, with a 3-hour minimum, and Sunday is 200% with a 3-hour minimum (cl 27.1). At General Timber Level 4 that is ${$(x(g4.hourly, 1.5))}, ${$(x(g4.hourly, 2))} and ${$(x(g4.hourly, 2))}. Pulp and Paper employees working Sunday get 200% for a minimum 4 hours (cl 27.3(c)(ii)).`,
+      },
+      {
+        q: "What is the Timber Award public holiday rate?",
+        a: `The Timber Industry Award public holiday rate is 250% of the ordinary hourly rate for all work, with a minimum 3 hours (cl 27.1(c)). A General Timber casual is paid 275%, the 250% plus the 25% loading (cl 27.1(d)): ${$(x(g4.hourly, 2.75))} an hour at Level 4. The award does not tabulate a casual public holiday rate for the other two streams.`,
+      },
+      {
+        q: "What is the Timber Award forest work allowance?",
+        a: "The Timber Industry Award forest work allowance is $35.81 a week for employees (other than pieceworkers) working in forests, paid for all purposes (cl 22.3). Because it is paid for all purposes it is part of the ordinary hourly rate that penalties and overtime are calculated on, so it raises those rates for the employees who get it.",
+      },
+      {
+        q: "How are junior timber workers paid?",
+        a: "An unapprenticed junior timber worker is paid a percentage of the Level 2 rate for their stream: age 16, 40%; 17, 55%; 18, 70%; 19, 85%; and 100% from 20, calculated in multiples of 5 cents (cl 20.6 to 20.7). Apprentices are paid a percentage of the Level 5 rate by year of apprenticeship (cl 20.3).",
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function meatIndustry(): AwardPageCopy {
+  const a = MODERN_AWARDS["meat-industry"];
+  const m1 = level("meat-industry", "MI 1");
+  const m4 = level("meat-industry", "MI 4");
+  const m7 = level("meat-industry", "MI 7");
+  const m8 = level("meat-industry", "MI 8");
+  return {
+    slug: "meat-industry-award-rates",
+    crumb: "Meat Industry Award Rates",
+    title: `Meat Industry Award Pay Rates ${FY} (${a.meta.code}) - MI 1 to MI 8`,
+    description: fitDescription(
+      `Meat Industry Award (MA000059) rates from ${a.meta.operativeFrom}: MI 1 ${$(m1.hourly)}/hr to MI 8 ${$(m8.hourly)}/hr. Casual loading, weekend rates by establishment type, overtime and junior rates.`,
+      `Meat Industry Award MA000059 rates: MI 1 ${$(m1.hourly)} to MI 8 ${$(m8.hourly)} an hour. Casual, weekend and overtime rates by establishment type.`,
+    ),
+    h1: `Meat Industry Award Pay Rates ${FY}`,
+    standfirst: `Every classification rate (MI 1 to MI 8) under the ${a.meta.name} (${a.meta.code}) for meat processing, manufacturing and retail establishments, operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `An MI 1 meat industry employee earns at least ${$(m1.hourly)} an hour (${$(m1.weekly)} a week), or ${$(casual(a, m1.hourly))} as a casual. MI 4 is ${$(m4.hourly)}, MI 7 (the tradesperson level) ${$(m7.hourly)} and MI 8 ${$(m8.hourly)}. Overtime is 150% for 3 hours then 200%, and the casual loading is not paid on overtime. Weekend rates depend on the type of establishment: in a processing plant Saturday and Sunday ordinary hours (if agreed) are 150% and 200%.`,
+    trap: {
+      heading: "Your weekend rate depends on the type of establishment, and casuals lose the loading on weekends",
+      body: `The Meat Industry Award has three sets of ordinary hours and weekend rates. Meat processing establishments work ordinary hours Monday to Friday, with Saturday at 150% and Sunday at 200% only if agreed. Meat manufacturing establishments can work up to 4 ordinary hours on a Saturday at 125%. Meat retail (including retail staff of a processing or manufacturing business) is paid 125% on a Saturday and 150% on a Sunday. For a casual working a weekend, the weekend penalty is paid instead of the 25% loading, not on top of it, so a casual Saturday in retail is 125%, the same as a permanent employee.`,
+    },
+    workedExample: {
+      heading: "Worked example: a casual MI 3 in a processing plant doing overtime",
+      intro: `Jess is a casual MI 3 in a meat processing establishment. Her minimum rate is ${$(level("meat-industry", "MI 3").hourly)} an hour and her casual ordinary rate is ${$(casual(a, level("meat-industry", "MI 3").hourly))}. She works 5 hours beyond her ordinary hours on a Wednesday.`,
+      steps: [
+        `The casual loading is not paid on overtime (cl 22.1(c)), so overtime is worked out on the minimum rate: ${$(level("meat-industry", "MI 3").hourly)}.`,
+        `The first 3 hours at 150%: ${$(level("meat-industry", "MI 3").hourly)} × 1.5 = ${$(x(level("meat-industry", "MI 3").hourly, 1.5))} an hour → ${$(roundCents(x(level("meat-industry", "MI 3").hourly, 1.5) * 3))}.`,
+        `The next 2 hours at 200%: ${$(x(level("meat-industry", "MI 3").hourly, 2))} an hour → ${$(roundCents(x(level("meat-industry", "MI 3").hourly, 2) * 2))}.`,
+        `Total: ${$(roundCents(x(level("meat-industry", "MI 3").hourly, 1.5) * 3 + x(level("meat-industry", "MI 3").hourly, 2) * 2))} before tax.`,
+      ],
+      outro: "A permanent MI 3 is paid exactly the same overtime rates, which is why the Meat award's casual overtime column matches the permanent one.",
+    },
+    related: {
+      heading: "Apprentice butcher pay under this award",
+      body: [
+        "Clause 16.3 pays apprentices a percentage of the MI 7 rate: 50% (55% with Year 12), 60% (65%), 85% and 95% for an apprenticeship that started on or after 1 January 2014, with the steepest third-year step of any trade on this site. The year-by-year dollars, the butcher shop weekend rates and the cold temperature allowance are on the apprentice page:",
+      ],
+      links: [
+        { href: "/apprentice-pay/butcher/", label: "Apprentice butcher pay", note: "year 1 to 4 under clause 16.3, with take-home" },
+        { href: "/apprentice-pay-rates/", label: "Apprentice pay rates by trade", note: "every trade side by side, with a wages calculator" },
+        { href: "/pastoral-award-rates/", label: "Pastoral Award rates", note: "the award for the farm and station work upstream of processing" },
+      ],
+    },
+    faqs: [
+      ...commonFaqs(a),
+      nmwFaq(m1, "Check your classification in Schedule A: the award sets MI 1 as its lowest grade."),
+      {
+        q: "What are meat industry weekend penalty rates?",
+        a: `In a meat processing establishment, ordinary hours may be worked on a Saturday (150%) and Sunday (200%) if agreed (cl 24.1): ${$(x(m1.hourly, 1.5))} and ${$(x(m1.hourly, 2))} at MI 1. In meat manufacturing, up to 4 ordinary hours on a Saturday are 125% (cl 24.2). In meat retail, Saturday is 125% and Sunday 150% (cl 24.3). Casuals receive the weekend rate instead of the 25% loading.`,
+      },
+      {
+        q: "What is the meat industry public holiday rate?",
+        a: "The Meat Industry Award public holiday rate differs by holiday. Employees, including casuals, who work on Christmas Day and Anzac Day are paid 200% of the minimum hourly rate for all time worked; on Good Friday 150% for the first 4 hours and 200% after; and on any other public holiday 150% for the first 2 hours and 200% after. For employees other than casuals those payments are in addition to the minimum rate for the day (cl 31.3). Because the rate changes by holiday and by hours worked, this page does not publish a single dollar figure.",
+      },
+      {
+        q: "What is MI 8 in the Meat Industry Award?",
+        a: `MI 8 is the highest classification at ${$(m8.hourly)} an hour (${$(m8.weekly)} a week). The award's own processing and manufacturing penalty tables stop at MI 7, while the retail establishment tables include MI 8.`,
+      },
+      {
+        q: "How much do meat industry juniors earn?",
+        a: `Meat industry juniors are paid a percentage of the adult weekly rate for their classification: under 17, 50%; 17, 60%; 18, 75%; 19, 85%; adult rate from 20 (cl 16.2). Part-time and casual juniors are paid the percentage of the adult hourly rate instead, so the hourly figure can differ by a cent from the weekly-based figure on this page. At MI 1 an 18-year-old is paid about ${$(roundCents((m1.weekly * 0.75) / 38))} an hour.`,
+      },
+      {
+        q: "What is the minimum engagement for casuals in the meat industry?",
+        a: "The minimum engagement for a meat industry casual is 4 hours on each day or shift (cl 12.3). Casual cleaners may be engaged for 2 hours and casual bookkeeping clerks for 3 hours (cl 12.2). A casual's ordinary hours cannot exceed 38 in a week.",
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function commercialSales(): AwardPageCopy {
+  const a = MODERN_AWARDS["commercial-sales"];
+  const pt = level("commercial-sales", "Probationary Traveller");
+  const mer = level("commercial-sales", "Merchandiser");
+  const ct = level("commercial-sales", "Commercial Traveller / Advertising Sales Representative");
+  const sat = x(ct.hourly, 1.5);
+  return {
+    slug: "commercial-sales-award-rates",
+    crumb: "Commercial Sales Award Rates",
+    title: `Commercial Sales Award Pay Rates ${FY} (${a.meta.code})`,
+    description: fitDescription(
+      `Commercial Sales Award (MA000083) rates from ${a.meta.operativeFrom}: commercial traveller / advertising sales rep ${$(ct.hourly)}/hr, merchandiser ${$(mer.hourly)}/hr. Casual, weekend and junior rates.`,
+      `Commercial Sales Award MA000083: sales rep ${$(ct.hourly)}/hr, merchandiser ${$(mer.hourly)}/hr, casual, weekend and junior rates.`,
+    ),
+    h1: `Commercial Sales Award Pay Rates ${FY}`,
+    standfirst: `Minimum rates for commercial travellers, merchandisers and advertising sales representatives under the ${a.meta.name} (${a.meta.code}), operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `A Commercial Traveller or Advertising Sales Representative earns at least ${$(ct.hourly)} an hour (${$(ct.weekly)} a week), or ${$(casual(a, ct.hourly))} as a casual. A Merchandiser is ${$(mer.hourly)} and a Probationary Traveller ${$(pt.hourly)}. Work after 6.00 pm Monday to Friday and on Saturday is 150% (casuals 175%), Sunday is 200% (casuals 225%) and public holidays 250% (casuals 275%).`,
+    trap: {
+      heading: "Check this award actually covers your job: it is an occupational award that often gives way",
+      body: "The Commercial Sales Award covers only commercial travellers, merchandisers and advertising sales representatives, and only where no other modern award has a classification for the work. It does not cover employees under the Clerks—Private Sector Award, the Contract Call Centres Award or the Graphic Arts, Printing and Publishing Award, or anyone covered by an enterprise agreement. Many sales roles are paid by commission on top of a base; the award sets the minimum, and a commercial traveller cannot be paid solely by commission, salary or retainer lower than the award minimum (cl 15.4).",
+    },
+    workedExample: {
+      heading: "Worked example: a sales rep's Saturday trade show",
+      intro: `Chen is a full-time Commercial Traveller (${$(ct.hourly)} an hour) who works 8 hours on a Saturday at a trade show.`,
+      steps: [
+        `Saturday work is paid at 150% of the minimum hourly rate, with a minimum payment of 2 hours (cl 19.1(b)): ${$(ct.hourly)} × 1.5 = ${$(sat)} an hour.`,
+        `8 hours × ${$(sat)} = ${$(roundCents(sat * 8))} before tax.`,
+      ],
+      outro: `A casual Commercial Traveller doing the same shift is paid 175% (${$(x(ct.hourly, 1.75))} an hour, ${$(roundCents(x(ct.hourly, 1.75) * 8))}). If Chen also travelled to the event on a public holiday, the travel time is paid at 150% with a 3-hour minimum (cl 25.4).`,
+    },
+    faqs: [
+      ...commonFaqs(a),
+      {
+        q: "Who is covered by the Commercial Sales Award?",
+        a: "Commercial travellers, merchandisers and advertising sales representatives, unless another modern award contains classifications that apply to them. It does not cover employees under the Clerks—Private Sector Award, the Contract Call Centres Award, or the Graphic Arts, Printing and Publishing Award, or those covered by a modern enterprise award, enterprise instrument or State reference public sector award (cl 4).",
+      },
+      {
+        q: "What is a probationary traveller paid?",
+        a: `A Probationary Traveller is paid ${$(pt.hourly)} an hour (${$(pt.weekly)} a week), which is 90% of the Commercial Traveller / Advertising Sales Representative weekly rate (cl 15.1).`,
+      },
+      {
+        q: "Do commercial sales employees get weekend penalty rates?",
+        a: `Yes. Ordinary hours can be worked on any day (cl 13.3), but any work after 6.00 pm Monday to Friday, on a Saturday or on a Sunday is paid at a higher rate: 150% on weekdays after 6 pm and on Saturday (minimum 2 hours on a Saturday), and 200% on a Sunday (minimum 3 hours). At ${$(ct.hourly)} an hour that is ${$(sat)} and ${$(x(ct.hourly, 2))}. Casuals are paid 175% and 225%.`,
+      },
+      {
+        q: "What allowances do sales reps get?",
+        a: "Employers must pay $1.00 a kilometre for the use of an employee's own car and $0.34 a kilometre for a motorcycle, a $66.55 weekend allowance for being away from home for a weekend, and $83.79 a week for 2 or more consecutive nights away from home. They must also reimburse reasonable expenses such as parking, accommodation and meals while away overnight (cl 17.2).",
+      },
+      {
+        q: "What are the junior rates in the Commercial Sales Award?",
+        a: `Junior commercial sales employees are paid a percentage of the Commercial Traveller / Advertising Sales Representative hourly rate: under 19, 67.5%; 19, 80%; 20, 90%; and the full rate from 21 (cl 15.3). That is ${$(roundCents(ct.hourly * 0.675))}, ${$(roundCents(ct.hourly * 0.8))} and ${$(roundCents(ct.hourly * 0.9))} an hour.`,
+      },
+    ],
+  };
+}
+
+// -----------------------------------------------------------------------------
+
+function mining(): AwardPageCopy {
+  const a = MODERN_AWARDS.mining;
+  const entry = level("mining", "Entry level (Introductory)");
+  const l3 = level("mining", "Level 3 (Competent)");
+  const l7 = level("mining", "Level 7 (Dual trade instrumentation)");
+  const cas3 = casual(a, l3.hourly);
+  return {
+    slug: "mining-award-rates",
+    crumb: "Mining Award Rates",
+    title: `Mining Award Pay Rates ${FY} (${a.meta.code}) - Entry to Level 7`,
+    description: fitDescription(
+      `Mining Industry Award (MA000011) rates from ${a.meta.operativeFrom}: entry ${$(entry.hourly)}/hr to Level 7 ${$(l7.hourly)}/hr incl. industry allowance. Shift, weekend, casual and overtime rates.`,
+      `Mining Industry Award MA000011 rates: ${$(entry.hourly)}–${$(l7.hourly)}/hr incl. industry allowance, with shift, weekend, casual and overtime rates.`,
+    ),
+    h1: `Mining Award Pay Rates ${FY}`,
+    standfirst: `Ordinary hourly rates for every classification under the ${a.meta.name} (${a.meta.code}), with the $41.41 industry allowance built in, operative from ${a.meta.operativeFrom}.`,
+    directAnswer: `An entry-level mining employee earns ${$(entry.hourly)} an hour (${$(entry.weekly)} a week) including the industry allowance, or ${$(casual(a, entry.hourly))} as a casual. Level 3 (competent) is ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7. Afternoon and night shifts are 115%, permanent night 130%, Saturday before noon 150% for 3 hours then 200%, and Sunday and public holidays 200% and 250%. For casuals every percentage applies to the casual rate.`,
+    trap: {
+      heading: "The award's table is not what you are paid: the industry allowance is part of the rate",
+      body: `The weekly rates in clause 15.1 are minimum classification rates ($1,119.10 at Level 3). The $41.41 weekly industry allowance (cl 18.2(b)) is paid for all purposes, so it is part of the ordinary hourly rate that every shift, weekend, overtime and public holiday percentage is applied to: Level 3 is ${$(l3.hourly)} an hour here, not $29.45. The electrician's licence allowance ($50.92 a week) is also all-purpose but is not in these rows. For casuals every percentage in the award is applied to the CASUAL rate (${$(cas3)} at Level 3), which is why a casual Sunday at 200% of the casual rate is ${$(x(cas3, 2))}, or 250% of the permanent rate.`,
+    },

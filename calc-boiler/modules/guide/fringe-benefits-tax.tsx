@@ -39,8 +39,8 @@ export default function FringeBenefitsTaxPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Fringe Benefits Tax (FBT)?</h2>
             <p>Fringe Benefits Tax is a <strong>47% tax paid by employers</strong> on the taxable value of non-cash benefits provided to current, former, or future employees in connection with their employment.</p>
-            <p>FBT operates as a separate tax system from income tax. The employer, not the employee, lodges the FBT return and pays the liability directly to the ATO. The FBT year runs from <strong>1 April to 31 March</strong>, which differs from the standard income tax year of 1 July to 30 June. Employers lodge FBT returns and remit payment by <strong>21 May</strong> each year (or 25 June if lodged through a registered tax agent).</p>
-            <p>A &quot;fringe benefit&quot; is any non-salary benefit provided to an employee. Common examples include company cars, private health insurance premiums paid by the employer, gym memberships, and discounted loans. Even benefits provided to an employee&apos;s associate, such as a spouse or child, attract FBT if the benefit arises from the employment relationship. An employer must register for FBT once it provides benefits that create an FBT liability. Separately, once an employee&apos;s taxable fringe benefits exceed <strong>{formatAUD(FBT.reportableThreshold)}</strong> in an FBT year, the grossed-up amount must go on their income statement. To understand how fringe benefits interact with your overall salary, use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> for a complete after-tax breakdown.</p>
+            <p>FBT is a separate tax from income tax. The employer, not the employee, lodges the FBT return and pays the liability directly to the ATO. The FBT year runs from <strong>1 April to 31 March</strong>, which differs from the standard income tax year of 1 July to 30 June. Employers lodge FBT returns and remit payment by <strong>21 May</strong> each year (or 25 June if lodged through a registered tax agent).</p>
+            <p>A &quot;fringe benefit&quot; is any non-salary benefit provided to an employee. Common examples include company cars, private health insurance premiums paid by the employer, gym memberships, and discounted loans. Even benefits provided to an employee&apos;s associate, such as a spouse or child, attract FBT if the benefit arises from the employment relationship. An employer must register for FBT once it provides benefits that create an FBT liability. Separately, once an employee&apos;s taxable fringe benefits exceed <strong>{formatAUD(FBT.reportableThreshold)}</strong> in an FBT year, the grossed-up amount must go on their income statement. Fringe benefits are not part of your cash wages, so use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your cash salary after tax.</p>
           </section>
 
           {/* ===== SECTION 2 ===== */}
@@ -86,7 +86,7 @@ export default function FringeBenefitsTaxPage() {
             <p>Car fringe benefits are the most common category, accounting for the majority of all FBT revenue collected. For a detailed breakdown of how novated leasing reduces the taxable value of car benefits, see our <Link href="/novated-lease-guide/">Novated Lease Guide</Link>. To structure a tax-effective benefits package around FBT, employees should also read our <Link href="/salary-packaging-guide/">Salary Packaging Guide</Link>.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common FBT Benefits and Their Treatment</h3>
-            <p>The table below summarises the most common fringe benefits employees actually receive, the gross-up Type that applies, the standard ATO treatment, and whether the benefit is reportable on the employee&apos;s income statement.</p>
+            <p>The table below lists common fringe benefits, the gross-up Type that applies to each, the standard ATO treatment, and whether the benefit is reportable on the employee&apos;s income statement.</p>
             <div className="not-prose overflow-x-auto my-6">
               <table className="w-full text-sm border-collapse border border-sandstone-dark/30">
                 <thead><tr className="bg-sandstone">
@@ -131,7 +131,7 @@ export default function FringeBenefitsTaxPage() {
               <li><strong>Family Tax Benefit and Centrelink income tests</strong>: RFBA counts toward income-tested family assistance entitlements.</li>
               <li><strong>Division 293 tax</strong>: for high-income earners with combined income plus low-tax super above $250,000.</li>
             </ul>
-            <p>This is why salary packaging quotes always model the <em>combined</em> impact on take-home pay <em>and</em> RFBA, not just the headline tax saving.</p>
+            <p>This is why a salary packaging quote needs to model the <em>combined</em> impact on take-home pay <em>and</em> RFBA, not just the headline tax saving.</p>
           </section>
 
           {/* ===== SECTION 4 ===== */}
@@ -236,7 +236,7 @@ export default function FringeBenefitsTaxPage() {
               <li><strong>Income tax cuts do not affect FBT</strong>: the 1 July 2026 cut lowered the 16% rate to 15%, not the top rate, so FBT stays pegged at the top marginal rate (45%) plus the Medicare levy (2%), unchanged since 2017</li>
               <li><strong>Gross-up rates unchanged</strong>: Type 1 stays at 2.0802 and Type 2 at 1.8868 because the FBT rate has not changed</li>
             </ul>
-            <p>The ATO updates its FBT rates and thresholds page for each new FBT year. Employers should review fringe benefit arrangements annually to capture any threshold changes and ensure compliance with reporting obligations.</p>
+            <p>The ATO publishes a new benchmark interest rate and car parking threshold for each FBT year. Employers who provide low-interest loans or car parking apply the new figures from the start of each FBT year.</p>
           </section>
 
           {/* ===== SECTION 10 ===== */}
@@ -265,7 +265,7 @@ export default function FringeBenefitsTaxPage() {
           {/* ===== SECTION 11 ===== */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
-            <p>These Australian tax calculators and guides provide additional detail on topics connected to fringe benefits tax, salary packaging, and employer obligations.</p>
+            <p>These calculators and guides cover novated leases, salary packaging, super, employer costs and income tax alongside fringe benefits tax.</p>
             <ul>
               <li><Link href="/novated-lease-guide/">Novated Lease Guide</Link>: how novated leasing works, ECM vs statutory method, and when a novated lease saves you tax</li>
               <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: salary packaging strategies for super contributions, cars, and other benefits</li>

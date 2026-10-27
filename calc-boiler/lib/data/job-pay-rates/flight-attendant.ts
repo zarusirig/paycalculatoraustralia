@@ -70,7 +70,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
       id: "cabin-crew",
       title: "Flight attendant pay rates, Aircraft Cabin Crew Award, 2026–27",
       intro:
-        "Aircraft Cabin Crew Award cl 14.2, from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule D.2.1 ordinary rates (125% of the minimum hourly rate). These rates exclude the flying allowance and other allowances below.",
+        "The cabin crew minimums below are set by Aircraft Cabin Crew Award cl 14.2 and apply from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule D.2.1 ordinary rates (125% of the minimum hourly rate). These rates exclude the flying allowance and other allowances below.",
       rows: [CREW, SUPERVISOR, MANAGER],
     },
   ],
@@ -81,7 +81,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
   penaltiesNote:
     "Schedule D lists ordinary rates and overtime only, with no separate weekend or public holiday percentage for cabin crew. Overtime applies to time worked beyond 1,872 hours in a year or beyond the crew member's roster cycle maximum, at 100% additional to the minimum hourly rate. Schedule D publishes no casual overtime rate.",
   overtime: [
-    "Domestic and international flying: time worked in excess of 1,872 hours in a year, or beyond the roster cycle maximum, is paid at a penalty of 100% additional to the minimum hourly rate (Schedules A.6.1 and C.6.1), which is $57.76 an hour for a cabin crew member.",
+    "Domestic and international flying: time worked in excess of 1,872 hours in a year, or beyond the roster cycle maximum, is paid at a penalty of 100% additional to the minimum hourly rate (Schedules A.6.1 and C.6.1). For a cabin crew member, the overtime rate is $57.76 an hour.",
     "Full-time cabin crew are rostered between 1,716 and 1,872 hours a year (cl 9), so the 38-hour week used to convert the weekly rate to hourly is a pay convention, not the rostered week.",
     "Part-time cabin crew must be rostered for at least 4 consecutive hours a shift (cl 10.4), and a casual cabin crew member has a minimum payment of 4 hours (cl 11.2).",
   ],
@@ -95,7 +95,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
   ],
   median: null,
   notices: [
-    "Jobs and Skills Australia publishes no median earnings figure for flight attendants (the profile is marked N/A), and we have not verified current airline enterprise agreement rates, so this page shows the award minimum only. Real pay at the major airlines is set by their agreements and depends on base, aircraft type, hours flown and allowances.",
+    "Jobs and Skills Australia publishes no median earnings figure for flight attendants (the profile is marked N/A). We have not verified current airline enterprise agreement rates either, so this page shows the Aircraft Cabin Crew Award minimum only. Real pay at the major airlines is set by their agreements and depends on base, aircraft type, hours flown and allowances.",
     "The annual figure on this page is the weekly rate times 52 and excludes allowances. Cabin crew are rostered 1,716 to 1,872 hours a year, and the domestic flying allowance is paid on top for each scheduled block hour.",
   ],
   notShown: [

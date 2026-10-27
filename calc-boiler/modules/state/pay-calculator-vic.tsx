@@ -72,7 +72,9 @@ export default function PayCalculatorVICPage() {
             {PROFILE.longServiceLeave.weeksAtEntitlement.toFixed(1)} weeks after{" "}
             {PROFILE.longServiceLeave.takeAfterYears} years, and payroll tax of{" "}
             {PAYROLL_TAX_STATES.vic.headlineRate} above {formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)} is
-            paid by employers, not deducted from wages.
+            paid by employers, not deducted from wages. The calculator below shows what you keep from your
+            salary each week, fortnight and month. The rest of the page covers Victorian earnings from the
+            ABS, the state&apos;s public holidays, long service leave and payroll tax.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -93,14 +95,14 @@ export default function PayCalculatorVICPage() {
             <H2>How much of a Victorian salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
               On {formatAUD(typicalSalary(PROFILE))} (the average full-time wage in Victoria) you
-              keep a little over three-quarters of it. Victoria has no state income tax; nobody in
-              Australia does. Your income tax, Medicare levy and HECS-HELP repayment are set by the
+              keep a little over three-quarters of it. Victoria has no state income tax, and no other
+              Australian state or territory does either. Your income tax, Medicare levy and HECS-HELP repayment are set by the
               ATO and are identical whether you work in Melbourne, Geelong, Ballarat or Bendigo.
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              The salary calculator above will redo this for your number. To see how the brackets
-              stack up, read the {SITE_CONFIG.financialYear}{" "}
+              Enter your salary in the calculator above to see the same breakdown for your own pay. To
+              see how the brackets stack up, read the {SITE_CONFIG.financialYear}{" "}
               <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax brackets</Link>, or model a
               {" "}<Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> arrangement; many
               Victorian health and charity employers offer packaging that cuts taxable income.
@@ -111,9 +113,9 @@ export default function PayCalculatorVICPage() {
           <section>
             <H2>Is your Victorian salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
-              Victoria sits just below the national average. Full-time adults here earn{" "}
-              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week before overtime, behind NSW and WA,
-              a shade ahead of Queensland.
+              Victoria sits just below the national average. Full-time adults in Victoria earn{" "}
+              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week before overtime. Among the states,
+              that puts Victoria behind NSW and WA and a shade ahead of Queensland.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
@@ -143,7 +145,7 @@ export default function PayCalculatorVICPage() {
           <section>
             <H2>Long service leave in Victoria</H2>
             <p className="mb-4 text-warmgray">
-              This is where Victoria is genuinely more generous than most of the country. The{" "}
+              Victorian long service leave starts sooner than in most of the country. The{" "}
               {PROFILE.longServiceLeave.act} sets the qualifying period at 7 years, not the 10 years
               used in NSW, Queensland, WA, SA, Tasmania and the NT.
             </p>
@@ -156,8 +158,8 @@ export default function PayCalculatorVICPage() {
             <H2>Does VIC payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              The same goes for WorkSafe premiums and the Mental Health and Wellbeing Surcharge:
-              employer costs, not payslip deductions. Employers will find both on the{" "}
+              WorkSafe premiums and the Mental Health and Wellbeing Surcharge work the same way: both
+              are employer costs, not payslip deductions. Employers will find both on the{" "}
               <Link href="/payroll-tax/vic/" className="text-eucalyptus-dark hover:underline">VIC payroll tax</Link> page.
               What <em>does</em> come out of your pay is set out in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.

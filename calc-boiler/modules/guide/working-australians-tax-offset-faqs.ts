@@ -10,11 +10,11 @@ import type { Faq } from "./t3-shared";
 export const WATO_FAQS: Faq[] = [
   {
     q: "What is the Working Australians Tax Offset?",
-    a: `It is a new non-refundable tax offset of up to ${formatAUD(WATO.maxOffset)} a year for Australian residents who earn labour income, available from the ${WATO.firstIncomeYear} income year (1 July 2027 to 30 June 2028). The ATO says the measure is now law, following Royal Assent on ${WATO.royalAssent}.`,
+    a: `The Working Australians Tax Offset is a new non-refundable tax offset of up to ${formatAUD(WATO.maxOffset)} a year for Australian residents who earn labour income. It is available from the ${WATO.firstIncomeYear} income year (1 July 2027 to 30 June 2028). The ATO says the measure is now law, following Royal Assent on ${WATO.royalAssent}.`,
   },
   {
     q: "Who gets the $250 offset?",
-    a: `Individuals who are Australian residents for tax purposes during the 2027-28 income year and whose net labour income (labour amounts less labour deductions) is above the tax-free threshold of ${formatAUD(WATO.incomeThreshold)}. The maximum ${formatAUD(WATO.maxOffset)} applies if the income tax payable on your net labour income is above ${formatAUD(WATO.maxOffset)}.`,
+    a: `The offset goes to individuals who are Australian residents for tax purposes during the 2027-28 income year and whose net labour income (labour amounts less labour deductions) is above the tax-free threshold of ${formatAUD(WATO.incomeThreshold)}. The maximum ${formatAUD(WATO.maxOffset)} applies if the income tax payable on your net labour income is above ${formatAUD(WATO.maxOffset)}.`,
   },
   {
     q: "Is the Working Australians Tax Offset refundable?",

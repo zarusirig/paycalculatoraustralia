@@ -70,7 +70,7 @@ export const ARCHITECT: Occupation = {
     {
       id: "architects",
       title: "Architect pay rates by level, 2026–27",
-      intro: "Annual, weekly and hourly minimums exactly as clause 13.1 publishes them; casual rates from Schedule B.2 (hourly rate plus 25%).",
+      intro: "The annual, weekly and hourly architect minimums are exactly as Architects Award clause 13.1 publishes them, and casual rates come from Schedule B.2 (hourly rate plus 25%).",
       rows: [
         arch("Level 1 Graduate of Architecture — Entry", 68_191, 1307.2, 34.4, 43.0, "Graduate, not yet registered"),
         arch("Level 1 Graduate of Architecture — 1st pay point", 71_798, 1376.3, 36.22, 45.28),
