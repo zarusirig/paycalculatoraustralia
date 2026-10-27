@@ -13,3 +13,4 @@
   3. This pass: A/B wording (all 710) and fact fixes (files in docs/fact-fix-2026-10-27/1-CHANGES.md).
   Cohorts 1 and 2 also got this pass, so their 23 Oct effect is no longer isolated after 27 Oct.
 - Not shipped yet: Step 6 structure pass (44 pages), merge proposals (95, need owner OK), 4-NEEDS-DECISION items.
+- Step 6 structure pass deployed 27 Oct 2026, same day (commit 1216e35): 128 pages, list in docs/structure-2026-10-27/CHANGED-PAGES.txt. Same measure window; treat it as part of the 27 Oct cohort (it cannot be separated from the wording and fact passes in GSC).
