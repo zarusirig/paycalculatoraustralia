@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
-import { formatAUD, formatPercent, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatPercent, MEDICARE_LEVY, SITE_CONFIG, TAX_BRACKETS } from "@/lib/constants";
 import {
   EV_EXEMPTION,
   FBT,
@@ -356,7 +356,7 @@ export default function NovatedLeaseCalculatorPage({
               That is why ECM works. A dollar paid from post-tax salary removes a dollar of taxable value, and with it
               {" "}{formatAUD(FBT.grossUpType1 * FBT.rate, 2)} of FBT that would otherwise have come out of your pre-tax
               budget. The methods break even at a marginal rate of {formatPercent(breakEven, 1)}, which is above the
-              {" "}{formatPercent(0.47, 0)} top rate including the Medicare levy, so in {SITE_CONFIG.financialYear}, for
+              {" "}{formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate, 0)} top rate including the Medicare levy, so in {SITE_CONFIG.financialYear}, for
               a resident employee, ECM is the cheaper method at every income.
             </p>
             <div className={TABLE_WRAP}>

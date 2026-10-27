@@ -1,0 +1,103 @@
+{
+ "name": "ff-069-employer-cost-calculator",
+ "files": [
+  "modules/guide/employer-cost-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:94",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "94",
+   "page": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "claims": [
+    "Casual employees receive a 25% loading on their base hourly rate under the Fair Work Act"
+   ],
+   "whys": [
+    "The 25% casual loading is set by modern awards (and agreements), not directly by the Fair Work Act. The FAQ file builds it from EMPLOYMENT.casualLoading, but this text hard-codes 25% and names the Act as the source."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:196",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "196",
+   "page": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "claims": [
+    "Every employee now receives superannuation regardless of how little they earn."
+   ],
+   "whys": [
+    "Too broad. Employees under 18, and private or domestic workers, are still only eligible for SG if they work more than 30 hours a week."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (eligibility notes)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.22,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:105",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "105",
+   "page": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "claims": [
+    "a 1.5% workers compensation premium"
+   ],
+   "whys": [
+    "This is hard-coded in the prose while the table uses TABLE_WORKCOVER (currently 0.015). The two agree today but will drift if the constant changes."
+   ],
+   "constants": [
+    "TABLE_WORKCOVER (modules/guide/employer-cost-calculator-faqs.ts line 29)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:160",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "160",
+   "page": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "claims": [
+    "Administrative uplift of up to 60% that falls to nil on a voluntary disclosure within 30 days"
+   ],
+   "whys": [
+    "The 30-day voluntary-disclosure condition for a nil uplift under the Payday Super SGC needs checking against the final legislation or ATO guidance. It is a hard-coded figure with no constant."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (SGC settings)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.6,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-content.tsx:89",
+   "file": "modules/guide/employer-cost-calculator-content.tsx",
+   "line": "89",
+   "page": "https://pay-calculator-australia.com/employer-cost-calculator/",
+   "claims": [
+    "Leave provisions (annual leave at 7.69%, personal leave at 3.85%) are added on top of base salary as on-costs, and the worked example (lines 325-326, 335) adds them to the $95,000 salary to reach the total cost."
+   ],
+   "whys": [
+    "For a salaried employee, paid annual and personal leave is already paid out of the base salary. Adding the leave provisions on top counts that leave twice, unless the page says these are the cost of backfilling the role while the employee is on leave. The line 335 claim that the gap to take-home pay is partly 'made up of ... leave provisions' has the same problem. This is a methodology question for the owner, so I did not edit it."
+   ],
+   "constants": [
+    "WORKED_ANNUAL_LEAVE / WORKED_PERSONAL_LEAVE / MULT_100K (employer-cost-calculator-content.tsx)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.25,
+   "needsOwner": true
+  }
+ ]
+}

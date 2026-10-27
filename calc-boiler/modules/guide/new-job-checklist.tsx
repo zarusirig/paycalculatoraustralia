@@ -6,7 +6,11 @@ import { NEW_JOB_FAQS } from "./new-job-checklist-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatPercent, HECS_HELP, SUPER_GUARANTEE, TAX_FREE_THRESHOLD } from "@/lib/constants";
+import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
+import { CASUAL_LOADING } from "@/lib/constants/junior-rates";
+import { NES_NOTICE_BANDS, OVER_45_MIN_YEARS } from "@/lib/constants/notice-pilon";
+import { COMPASSIONATE_LEAVE } from "@/lib/constants/compassionate-leave";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
@@ -48,10 +52,10 @@ export default function NewJobChecklistPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Review Your Employment Contract</h3>
               <ul>
-                <li>{"✅"} <strong>Employment type:</strong> Full-time, part-time, or casual. Casual employees receive a <strong>25% loading</strong> but do not receive paid leave entitlements.</li>
+                <li>{"✅"} <strong>Employment type:</strong> Full-time, part-time, or casual. Casual employees get a casual loading (or a set casual pay rate) from their award, agreement or contract instead of paid annual leave and paid personal/carer&apos;s leave. For award-free casuals, the National Minimum Wage Order sets the loading at <strong>{formatPercent(CASUAL_LOADING, 0)}</strong>. Casuals still get {COMPASSIONATE_LEAVE.fdvDaysPerYear} days of paid family and domestic violence leave a year under the National Employment Standards.</li>
                 <li>{"✅"} <strong>Pay frequency:</strong> Weekly, fortnightly, or monthly. Your pay frequency sets when money reaches your account and which PAYG withholding table your employer uses.</li>
-                <li>{"✅"} <strong>Notice period:</strong> Standard is 1-4 weeks depending on tenure, but contracts may specify different terms.</li>
-                <li>{"✅"} <strong>Probation period:</strong> Most new roles include a 3-6 month probationary period with reduced notice requirements.</li>
+                <li>{"✅"} <strong>Notice period:</strong> The National Employment Standards set the minimum notice your employer must give: {NES_NOTICE_BANDS[0].weeks} to {NES_NOTICE_BANDS[NES_NOTICE_BANDS.length - 1].weeks} weeks based on your years of service, plus 1 extra week if you are over 45 with at least {OVER_45_MIN_YEARS} years of service. Your contract, award or agreement can give you more notice than this, never less.</li>
+                <li>{"✅"} <strong>Probation period:</strong> Your employer sets the length of any probation period, which the Fair Work Ombudsman says often runs 3 to 6 months. On probation you keep all your National Employment Standards entitlements, including notice if your employment ends.</li>
                 <li>{"✅"} <strong>Leave entitlements:</strong> Full-time employees receive 4 weeks annual leave and 10 days personal/carer&apos;s leave per year under the National Employment Standards.</li>
               </ul>
             </section>
@@ -66,9 +70,9 @@ export default function NewJobChecklistPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>TFN Declaration</h3>
               <ul>
                 <li>{"✅"} <strong>Complete the TFN Declaration form</strong> (NAT 3092). Your employer will provide this or you can download it from the ATO website.</li>
-                <li>{"✅"} <strong>Tax-free threshold:</strong> Claim the $18,200 tax-free threshold only if this is your <strong>highest-paying job</strong> (or only job). If you have another job where you already claim it, select &quot;No&quot;.</li>
-                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot;. Your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ($69,528 in FY2026-27).</li>
-                <li>{"✅"} <strong>Submit within 28 days</strong> of starting. Without this form, your employer withholds tax at the highest rate (47%).</li>
+                <li>{"✅"} <strong>Tax-free threshold:</strong> Claim the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold only if this is your <strong>highest-paying job</strong> (or only job). If you have another job where you already claim it, select &quot;No&quot;.</li>
+                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot;. Your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ({formatAUD(HECS_HELP.minimumThreshold)} in FY{SITE_CONFIG.financialYear}).</li>
+                <li>{"✅"} <strong>Give your TFN.</strong> If you have applied for a TFN but do not have it yet, say so on the form: your employer withholds at the standard rate for 28 days while you get your TFN to them. With no TFN declaration, or no TFN after those 28 days, your employer withholds tax at the top rate of <strong>{formatPercent(NO_TFN_RATES.resident, 0)}</strong> from every payment ({formatPercent(NO_TFN_RATES.foreignResident, 0)} for a foreign resident).</li>
               </ul>
               <p>
                 For a complete walkthrough, see our <Link href="/tax-file-number-declaration/">TFN Declaration Guide</Link>.
@@ -81,7 +85,7 @@ export default function NewJobChecklistPage() {
                 <li>{"✅"} <strong>Consolidate multiple accounts.</strong> If you have super from previous jobs in different funds, consider rolling them into one fund to reduce fees. You can do this through myGov.</li>
               </ul>
               <p>
-                Your employer must pay super at the <strong>12% SG rate</strong> into your chosen fund. Learn more in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+                Your employer must pay super at the <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate</strong> into your chosen fund. Learn more in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Bank Details and Other Setup</h3>
@@ -155,7 +159,7 @@ export default function NewJobChecklistPage() {
               <FaqAccordion faqs={NEW_JOB_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY{SITE_CONFIG.financialYear} SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY{SITE_CONFIG.financialYear} SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("new-job-checklist"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">

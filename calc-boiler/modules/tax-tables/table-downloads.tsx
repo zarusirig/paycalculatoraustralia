@@ -65,7 +65,7 @@ export default function TableDownloads({ frequency, doc, fy, className = "" }: T
       <p className="mt-2 text-xs text-warmgray">
         Free {period.toLowerCase()} tax table {manifest.fy} as a printable PDF ({files.pdf.pages} pages) or a spreadsheet, every row the
         ATO prints ({files.rows.toLocaleString("en-AU")} rows), with and without the tax-free threshold, plus study loan and foreign
-        resident columns. We calculated it from the ATO Schedule 1 formula. It is not an official ATO document.
+        resident columns. We calculated it from the ATO Schedule 1 formula, with the study loan column from the Schedule 8 formula. It is not an official ATO document.
       </p>
     </div>
   );

@@ -14,8 +14,9 @@ import {
   RESOLUTION_SCHEME,
   advanceRepayment,
   crisisPaymentAmount,
+  resolutionSchemePayment,
 } from "@/lib/constants/centrelink-carer-and-support";
-import { AGE_PENSION_INCOME_TEST, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
+import { AGE_PENSION_INCOME_TEST, JOBSEEKER_RATES, SEPTEMBER_2026, WORK_BONUS } from "@/lib/constants/centrelink-income-test";
 import { PPL_ENTITLEMENT, PPL_INCOME_TEST, PPL_RATES, PPL_RULES, PPL_WORK_TEST, pplGross } from "@/lib/constants/paid-parental-leave";
 
 export interface W3Faq { q: string; a: string }
@@ -53,7 +54,7 @@ export const CARER_PAYMENT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Does the Work Bonus apply to Carer Payment?",
-    a: "The Work Bonus applies to Carer Payment only if you are Age Pension age. Then the first $300 of employment income each fortnight, and any Work Bonus balance, is taken out of the income test, but you still have to stay within the 100-hour work rule.",
+    a: `The Work Bonus applies to Carer Payment only if you are Age Pension age. Then the first ${formatAUD(WORK_BONUS.fortnightlyCredit)} of employment income each fortnight, and any Work Bonus balance, is taken out of the income test, but you still have to stay within the ${CP.workHoursLimit}-hour work rule.`,
   },
 ];
 
@@ -129,7 +130,7 @@ export const DEBT_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What is the Income Apportionment Resolution Scheme?",
-    a: `The Income Apportionment Resolution Scheme is a one-off payment of up to ${formatAUD(RESOLUTION_SCHEME.maxPayment)} per eligible debt for people whose employment income debts between ${RESOLUTION_SCHEME.debtPeriodFrom} and ${RESOLUTION_SCHEME.debtPeriodTo} were likely affected by income apportionment. Applications opened ${RESOLUTION_SCHEME.opened} and close ${RESOLUTION_SCHEME.closes}. Debts under $200 get the full debt amount; $200 to $1,999 gets $200; $2,000 to $4,999 gets $400; $5,000 or more gets $600. The payment isn't taxable or counted as income.`,
+    a: `The Income Apportionment Resolution Scheme is a one-off payment of up to ${formatAUD(RESOLUTION_SCHEME.maxPayment)} per eligible debt for people whose employment income debts between ${RESOLUTION_SCHEME.debtPeriodFrom} and ${RESOLUTION_SCHEME.debtPeriodTo} were likely affected by income apportionment. Applications opened ${RESOLUTION_SCHEME.opened} and close ${RESOLUTION_SCHEME.closes}. Debts under $200 get the full debt amount; $200 to $1,999 gets ${formatAUD(resolutionSchemePayment(200))}; $2,000 to $4,999 gets ${formatAUD(resolutionSchemePayment(2_000))}; $5,000 or more gets ${formatAUD(resolutionSchemePayment(5_000))}. The payment isn't taxable or counted as income.`,
   },
   {
     q: "Is income apportionment the same as Robodebt?",

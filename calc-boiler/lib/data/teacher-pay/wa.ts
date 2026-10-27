@@ -26,6 +26,13 @@
 // scheduled increase live in that agreement, not on the department's salary
 // page, so neither is published here. See `unverified`. Nothing has been
 // estimated to fill the gap.
+//
+// Re-checked 27 October 2026: the department's salary page still shows the
+// "as of December 2025" table with the same figures, its Awards and
+// agreements page still lists the 2023 agreement, and the agreement's Schedule
+// A (now readable at downloads.wairc.wa.gov.au/agreements/sch013.pdf) lists no
+// increase after 6 December 2025. The SSTUWA's 2026 log of claims is still
+// before the government, so no successor agreement exists. Only verifiedOn moved.
 
 import type { TeacherPayState } from "./types";
 
@@ -43,7 +50,7 @@ export const WA_TEACHER_PAY: TeacherPayState = {
   agreementUrl: "https://www.education.wa.edu.au/teacher-salaries",
   ratesEffectiveFrom: "6 December 2025",
   nextIncrease: null,
-  verifiedOn: "28 August 2026",
+  verifiedOn: "27 October 2026",
 
   scales: [
     {

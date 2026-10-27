@@ -34,7 +34,7 @@ import {
 import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: `${TD_2026_4.id}: reasonable travel and overtime meal allowance expense amounts for the 2026-27 income year`, url: TD_2026_4.url, publisher: SOURCES.ato.name },
+  { title: `${TD_2026_4.id}: reasonable travel and overtime meal allowance expense amounts for the ${TD_2026_4.incomeYear} income year`, url: TD_2026_4.url, publisher: SOURCES.ato.name },
   { title: "Travel allowances – PAYG withholding (QC18645)", url: TRAVEL_SOURCES.atoTravelAllowances, publisher: SOURCES.ato.name },
   { title: "Withholding for allowances (QC51680)", url: TRAVEL_SOURCES.atoWithholdingForAllowances, publisher: SOURCES.ato.name },
 ];
@@ -57,16 +57,16 @@ export default function TravelAllowancePage() {
 
       <PageHeader title={`Travel Allowance ${TD_2026_4.incomeYear}: ATO Reasonable Amounts`}>
         <p>
-          <strong>The ATO&rsquo;s reasonable travel allowance amounts for {TD_2026_4.incomeYear} are in {TD_2026_4.id}, issued {TD_2026_4.issued}.</strong> On a salary of $153,210 or less, a day in Sydney is {money(PUBLISHED_DAILY_TOTALS[1].Sydney!)}: {formatAUD(T1.accommodation.Sydney)} accommodation, {money(mealSum(1))} meals and {money(T1.incidentals)} incidentals. The overtime meal amount is {formatAUD(OVERTIME_MEAL_REASONABLE)}. These aren&rsquo;t rates your employer must pay: they decide whether tax is withheld from your allowance and whether you need receipts to claim what you spent.
+          <strong>The ATO&rsquo;s reasonable travel allowance amounts for {TD_2026_4.incomeYear} are in {TD_2026_4.id}, issued {TD_2026_4.issued}.</strong> On a salary of {SALARY_BANDS[1].label}, a day in Sydney is {money(PUBLISHED_DAILY_TOTALS[1].Sydney!)}: {formatAUD(T1.accommodation.Sydney)} accommodation, {money(mealSum(1))} meals and {money(T1.incidentals)} incidentals. The overtime meal amount is {formatAUD(OVERTIME_MEAL_REASONABLE)}. These aren&rsquo;t rates your employer must pay: they decide whether tax is withheld from your allowance and whether you need receipts to claim what you spent.
         </p>
       </PageHeader>
 
       <KeyFigures
         items={[
-          { k: "Sydney, per day", v: money(PUBLISHED_DAILY_TOTALS[1].Sydney!), s: "Salary $153,210 or less" },
+          { k: "Sydney, per day", v: money(PUBLISHED_DAILY_TOTALS[1].Sydney!), s: `Salary ${SALARY_BANDS[1].label}` },
           { k: "Country centres", v: money(PUBLISHED_DAILY_TOTALS[1]["Other country centres"]!), s: "Not in the high-cost list" },
-          { k: "Overtime meal", v: formatAUD(OVERTIME_MEAL_REASONABLE), s: "Per meal, 2026-27" },
-          { k: "Salary bands", v: "3", s: "$153,210 and $272,680 cut-offs" },
+          { k: "Overtime meal", v: formatAUD(OVERTIME_MEAL_REASONABLE), s: `Per meal, ${TD_2026_4.incomeYear}` },
+          { k: "Salary bands", v: "3", s: `${formatAUD(SALARY_BANDS[1].max!)} and ${formatAUD(SALARY_BANDS[2].max!)} cut-offs` },
         ]}
       />
 
@@ -83,9 +83,9 @@ export default function TravelAllowancePage() {
               align={["l", "r", "r", "r"]}
               rows={[
                 ...CAPITAL_CITIES.map((c) => [c, ...BANDS.map((b) => money(PUBLISHED_DAILY_TOTALS[b][c]!))]),
-                ["Other country centres", money(PUBLISHED_DAILY_TOTALS[1]["Other country centres"]!), money(PUBLISHED_DAILY_TOTALS[2]["Other country centres"]!), `${money(207 + mealSum(3) + DOMESTIC_TABLES[3].incidentals)}+`],
+                ["Other country centres", money(PUBLISHED_DAILY_TOTALS[1]["Other country centres"]!), money(PUBLISHED_DAILY_TOTALS[2]["Other country centres"]!), `${money(DOMESTIC_TABLES[3].allCountryAccommodationFloor! + mealSum(3) + DOMESTIC_TABLES[3].incidentals)}+`],
               ]}
-              caption={<>For the top salary band every country centre uses $207 accommodation, or the high-cost figure below if higher. Source: <a href={TD_2026_4.url} target="_blank" rel="noopener noreferrer">{TD_2026_4.id}</a>, read {TD_2026_4.verifiedOn}.</>}
+              caption={<>For the top salary band every country centre uses {formatAUD(DOMESTIC_TABLES[3].allCountryAccommodationFloor!)} accommodation, or the high-cost figure below if higher. Source: <a href={TD_2026_4.url} target="_blank" rel="noopener noreferrer">{TD_2026_4.id}</a>, read {TD_2026_4.verifiedOn}.</>}
             />
             <DataTable
               head={["Per day", ...BANDS.map((b) => SALARY_BANDS[b].label)]}
@@ -99,7 +99,7 @@ export default function TravelAllowancePage() {
                 ["Accommodation: Melbourne", ...BANDS.map((b) => formatAUD(DOMESTIC_TABLES[b].accommodation.Melbourne))],
                 ["Accommodation: Brisbane", ...BANDS.map((b) => formatAUD(DOMESTIC_TABLES[b].accommodation.Brisbane))],
               ]}
-              caption={`Capital cities and high-cost country centres. In other country centres the lower bands use ${money(OTHER1.meals.breakfast)} / ${money(OTHER1.meals.lunch)} / ${money(OTHER1.meals.dinner)} for meals (salary $153,210 or less) and ${formatAUD(OTHER1.accommodation)} accommodation.`}
+              caption={`Capital cities and high-cost country centres. In other country centres, a salary of ${SALARY_BANDS[1].label} uses ${money(OTHER1.meals.breakfast)} / ${money(OTHER1.meals.lunch)} / ${money(OTHER1.meals.dinner)} for meals and ${formatAUD(OTHER1.accommodation)} accommodation.`}
             />
             <p>Meals only count if they fall within your trip: leave at 10 am Monday and return at 3 pm Tuesday and you can use lunch and dinner on Monday and breakfast and lunch on Tuesday. Incidentals apply in full to every day, including part days. The accommodation amount applies only to hotels, motels and serviced apartments, not hostels or caravan parks.</p>
           </section>
@@ -169,7 +169,7 @@ export default function TravelAllowancePage() {
             sources={SOURCES_LIST}
             methodology={<>
               <p>Every amount is transcribed from {TD_2026_4.id} (the authorised PDF and the ATO legal database page were compared figure by figure). A trip&rsquo;s reasonable amount is accommodation × nights plus (meals + incidentals) × days, where days = nights + 1. The meals figure is a maximum, because meals outside the travel period on the first and last day don&rsquo;t count. The withheld portion is the allowance minus that reasonable amount.</p>
-              <p>{TD_2026_4.id} applies to the 2026-27 income year only. For 2025-26 returns use <a href={TD_2026_4.previous.url} target="_blank" rel="noopener noreferrer">{TD_2026_4.previous.id}</a>. General information, not tax advice.</p>
+              <p>{TD_2026_4.id} applies to the {TD_2026_4.incomeYear} income year only. For 2025-26 returns use <a href={TD_2026_4.previous.url} target="_blank" rel="noopener noreferrer">{TD_2026_4.previous.id}</a>. General information, not tax advice.</p>
             </>}
           />
         </article>

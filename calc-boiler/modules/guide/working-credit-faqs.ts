@@ -33,6 +33,6 @@ export const WORKING_CREDIT_FAQS: Faq[] = [
   },
   {
     q: "What happens when my payment stops because I'm working?",
-    a: "Once your income is over the cut-off and your credits have run out, your payment stops. You may keep your concession card and some other benefits for up to 12 fortnights.",
+    a: `Once your income is over the cut-off and your credits have run out, your payment stops. You may keep your concession card and some other benefits for up to ${WORKING_CREDIT.concessionFortnights} fortnights.`,
   },
 ];

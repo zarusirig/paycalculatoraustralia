@@ -1,7 +1,15 @@
+import { formatAUD, formatPercent } from "@/lib/constants";
+import { netPay } from "@/lib/constants/net-pay";
+import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Withholding follows the ATO
 // PAYG Schedule 1 tables for 2026-27 (lib/constants/payg-withholding.ts).
+
+// Same basis as the page's net-per-hour table: 38 hours a week, paid fortnightly.
+const AT_40 = netPay({ hourlyRate: 40, hoursPerWeek: 38, frequency: "fortnightly" }).netPerHour;
+const AT_80 = netPay({ hourlyRate: 80, hoursPerWeek: 38, frequency: "fortnightly" }).netPerHour;
+const centsKept = (net: number, rate: number) => `${Math.round((net / rate) * 100)}c`;
 
 export const NET_PAY_CALCULATOR_FAQS: Faq[] = [
   {
@@ -18,7 +26,7 @@ export const NET_PAY_CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "Why is my net pay lower than the calculator shows?",
-    a: "The usual causes are: you did not claim the tax-free threshold or have a second job (so more tax is withheld), you have a HELP/HECS-HELP or other study loan, you have not given your employer a tax file number declaration (the withholding rate without one is 47% for residents), you salary sacrifice, or you have after-tax deductions such as union fees. Check each line on your payslip.",
+    a: `The usual causes are: you did not claim the tax-free threshold or have a second job (so more tax is withheld), you have a HELP/HECS-HELP or other study loan, you have not given your employer a tax file number declaration (the withholding rate without one is ${formatPercent(NO_TFN_RATES.resident, 0)} for residents), you salary sacrifice, or you have after-tax deductions such as union fees. Check each line on your payslip.`,
   },
   {
     q: "Is net pay the same each pay?",
@@ -26,7 +34,7 @@ export const NET_PAY_CALCULATOR_FAQS: Faq[] = [
   },
   {
     q: "How much of an hour's pay do I keep after tax?",
-    a: "On $40 an hour for 38 hours a week you keep about 80c in the dollar, or about $32 an hour; at $80 an hour you keep about 73c. Both figures assume the tax-free threshold is claimed and there is no HELP debt. The share you keep falls as your hourly rate rises, because each higher tax band is taxed at a higher rate. The table on this page shows net pay per hour at common hourly rates.",
+    a: `On $40 an hour for 38 hours a week you keep about ${centsKept(AT_40, 40)} in the dollar, or about ${formatAUD(AT_40)} an hour; at $80 an hour you keep about ${centsKept(AT_80, 80)}. Both figures assume the tax-free threshold is claimed and there is no HELP debt. The share you keep falls as your hourly rate rises, because each higher tax band is taxed at a higher rate. The table on this page shows net pay per hour at common hourly rates.`,
   },
   {
     q: "Does casual loading count as part of my gross pay?",

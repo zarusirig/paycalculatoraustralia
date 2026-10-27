@@ -3,6 +3,7 @@
 // structured data cannot drift from the page. Rates come from lib/constants.
 
 import { EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
+import { COMPASSIONATE_LEAVE } from "@/lib/constants/compassionate-leave";
 import type { FaqItem } from "@/lib/faq";
 
 const LOADING = formatPercent(EMPLOYMENT.casualLoading, 0);
@@ -23,11 +24,11 @@ export const EMPLOYMENT_TYPE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do part-time employees get the same leave as full-time?",
-    a: `Part-time employees receive the same types of leave but calculated on a pro-rata basis. For example, a part-time employee working 20 hours per week accrues annual leave at 20/${HOURS} of the full-time rate. The same principle applies to personal/carer's leave, compassionate leave, and long-service leave.`,
+    a: `Part-time employees receive the same types of leave but calculated on a pro-rata basis. For example, a part-time employee working 20 hours per week accrues annual leave at 20/${HOURS} of the full-time rate. Paid personal/carer's leave is pro rata in the same way. Compassionate leave is not pro rata: a part-time employee gets the full ${COMPASSIONATE_LEAVE.daysPerOccasion} days of paid compassionate leave each time it applies, the same as a full-time employee. For most employees, long service leave comes from state and territory laws.`,
   },
   {
     q: "Do casual employees get superannuation?",
-    a: `Yes. Since 1 July 2022, all employees, including casuals, receive the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee (FY${SITE_CONFIG.financialYear}) regardless of how much they earn per month. The previous $450/month minimum earnings threshold was removed.`,
+    a: `Yes. Since 1 July 2022, there is no minimum earnings threshold: the previous $450/month threshold was removed. Employees aged 18 or over, including casuals, receive the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee (FY${SITE_CONFIG.financialYear}) however much they earn. Employees under 18 receive it only for a week in which they work more than 30 hours, and the same 30-hour rule applies to private or domestic workers such as nannies.`,
   },
   {
     q: "Is casual or part-time better financially?",
@@ -36,6 +37,6 @@ export const EMPLOYMENT_TYPE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can a casual employee be fired without notice?",
-    a: "Casual employment can end without notice from either party, because a casual has no firm advance commitment to ongoing work. However, a casual employed on a regular and systematic basis for at least 6 months (12 months with a small business) who reasonably expected that work to continue may be protected by unfair dismissal laws. The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights.",
+    a: "Casual employment can end without notice from either party, because a casual has no firm advance commitment to ongoing work. However, a casual employed on a regular and systematic basis for at least 6 months (12 months with a small business) who reasonably expected that work to continue may be protected by unfair dismissal laws. An employer also cannot end a casual's employment, reduce or vary their hours, or change their pattern of work to avoid the casual's right to change to permanent employment.",
   },
 ];

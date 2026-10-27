@@ -26,7 +26,9 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation } from "./types";
+import { formatAUD } from "../../constants/australian-tax";
+import { annual52, money0, money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "5421",
@@ -36,6 +38,9 @@ const MEDIAN: MedianEarnings = {
   allOccupationsWeekly: ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   url: jsaUrl("5421-receptionists"),
 };
+
+const LEVEL_3: RateRow = { label: "Level 3", weekly: 1106.2, hourly: 29.11, casualHourly: 36.39, note: "Receptionist" };
+const LEVEL_5: RateRow = { label: "Level 5", weekly: 1157.2, hourly: 30.45, casualHourly: 38.06, note: "Medical terminology / health insurance knowledge required" };
 
 export const MEDICAL_RECEPTIONIST: Occupation = {
   slug: "medical-receptionist",
@@ -66,9 +71,9 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
       rows: [
         { label: "Level 1", weekly: 1024.7, hourly: 26.97, casualHourly: 33.71, note: "General clerk, under 3 months' experience" },
         { label: "Level 2", weekly: 1065.2, hourly: 28.03, casualHourly: 35.04, note: "General clerk/typist, 3 months to under 1 year" },
-        { label: "Level 3", weekly: 1106.2, hourly: 29.11, casualHourly: 36.39, note: "Receptionist" },
+        LEVEL_3,
         { label: "Level 4", weekly: 1119.1, hourly: 29.45, casualHourly: 36.81, note: "Clerk (ward, casualty, medical records)" },
-        { label: "Level 5", weekly: 1157.2, hourly: 30.45, casualHourly: 38.06, note: "Medical terminology / health insurance knowledge required" },
+        LEVEL_5,
       ],
     },
   ],
@@ -87,7 +92,7 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
-    "Receptionists in public hospitals are generally paid under state public-sector health agreements rather than this award.",
+    "Receptionists employed by the state public health system in New South Wales, Queensland, South Australia, Western Australia and Tasmania are state public sector employees outside the national Fair Work system, so this award does not cover them: their state award or agreement sets their pay. In Victoria, the ACT and the Northern Territory, public sector health staff are in the national system, and an enterprise agreement that covers you applies instead of this award (Fair Work Act s 57).",
   ],
   notShown: [
     "Junior rates for receptionists under 21.",
@@ -96,11 +101,11 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a medical receptionist in 2026?",
-      a: "A medical receptionist is Level 3 under the Health Professionals and Support Services Award, with a minimum of $29.11 an hour or $1,106.20 a week from the first full pay period on or after 1 July 2026. That is $57,522 a year before tax.",
+      a: `A medical receptionist is Level 3 under the Health Professionals and Support Services Award, with a minimum of ${money2(LEVEL_3.hourly)} an hour or ${formatAUD(LEVEL_3.weekly, 2)} a week from the first full pay period on or after 1 July 2026. That is ${money0(annual52(LEVEL_3.weekly))} a year before tax.`,
     },
     {
       q: "What is the casual rate for a medical receptionist?",
-      a: "A casual Level 3 receptionist earns at least $36.39 an hour for ordinary hours, which includes the 25% casual loading. Weekend hours are 175% and public holidays 275% of the minimum hourly rate for casuals.",
+      a: `A casual Level 3 receptionist earns at least ${money2(LEVEL_3.casualHourly!)} an hour for ordinary hours, which includes the 25% casual loading. Weekend hours are 175% and public holidays 275% of the minimum hourly rate for casuals.`,
     },
     {
       q: "Is a medical receptionist covered by the Clerks Award?",
@@ -108,16 +113,17 @@ export const MEDICAL_RECEPTIONIST: Occupation = {
     },
     {
       q: "Can a medical receptionist be paid at Level 5?",
-      a: "Yes, if the job requires it. Level 5 covers administrative and clerical staff who need a comprehensive knowledge of medical terminology and/or a working knowledge of health insurance schemes. The Level 5 minimum is $30.45 an hour.",
+      a: `Yes, if the job requires it. Level 5 covers administrative and clerical staff who need a comprehensive knowledge of medical terminology and/or a working knowledge of health insurance schemes. The Level 5 minimum is ${money2(LEVEL_5.hourly)} an hour.`,
     },
     {
       q: "What do medical receptionists actually earn?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,229 a week for receptionists, a group that includes medical, hotel and general receptionists (ABS, May 2025). No separate medical receptionist median is published.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for receptionists, a group that includes medical, hotel and general receptionists (ABS, May 2025). No separate medical receptionist median is published.`,
     },
   ],
   sources: [
     { title: "Health Professionals and Support Services Award 2020 [MA000027], consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000027") },
     FWO_PAY_GUIDES,
+    { title: "Fair Work system: who is covered", publisher: "Fair Work Ombudsman", url: "https://www.fairwork.gov.au/about-us/workplace-laws/fair-work-system" },
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
   ],

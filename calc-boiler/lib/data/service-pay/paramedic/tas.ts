@@ -18,8 +18,16 @@
 // Schedule 1 Table 1 prints ANNUAL salaries, ending in the column "Base salary
 // effective ffppcooa date of registration of this Agreement", which is what
 // this file publishes. The companion award variation ([2026] TASIC 46) gives
-// the registration date as 6 August 2026. Table 2 prints the 1 December 2026
-// and 1 September 2027 rates.
+// the registration date as 6 August 2026. For every existing classification,
+// the dollar figure in that column equals the "3% Salary increase effective
+// ffppcooa 1 Dec 2025" column (or, for relativity-adjusted roles, the 1 Dec 2025
+// structural adjustment column), and clause 7.1(iv) says Schedule 1 sets out
+// the rates effective ffppcooa 1 December 2025. Only the new classification
+// names (P2, renumbered ICP, BSO-1/BSO-2, clause 8) and the new roles in
+// clause 7.4 (MHERP, Primary Care, Secondary Triage, Communications Centre
+// Educator; not published here) start at registration. Hence ratesEffectiveFrom
+// is 1 December 2025 for the roles this file publishes. Table 2 prints the 1 December 2026 and 1 September 2027
+// rates.
 //
 // Superseded source NOT used: the Tasmanian Department of Health "Ambulance
 // salary rates" page still showed 8 December 2024 rates when read.

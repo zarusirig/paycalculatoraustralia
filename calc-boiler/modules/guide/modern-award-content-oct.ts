@@ -7,9 +7,16 @@
 
 import { fitDescription } from "@/lib/seo-title";
 import { MODERN_AWARDS, findAwardRate, roundCents } from "@/lib/constants/modern-awards";
+import { CONSTRUCTION_MIN_WEEKLY, ELECTRICAL_MIN_HOURLY } from "@/lib/constants/modern-awards-oct";
 import { $, FY, casual, commonFaqs, type AwardPageCopy } from "@/modules/guide/modern-award-content";
 
 const level = (key: keyof typeof MODERN_AWARDS, name: string) => findAwardRate(MODERN_AWARDS[key], name);
+/** An allowance amount from the award's constants, matched by its exact name. */
+const allow = (key: keyof typeof MODERN_AWARDS, name: string): number => {
+  const hit = MODERN_AWARDS[key].allowances.find((r) => r.name === name);
+  if (!hit) throw new Error(`unknown ${key} allowance: ${name}`);
+  return hit.amount;
+};
 const x = (hourly: number, mult: number) => roundCents(hourly * mult);
 
 // -----------------------------------------------------------------------------
@@ -75,7 +82,15 @@ function buildingConstruction(): AwardPageCopy {
   const l1a = level("building-construction", "Level 1(a) (CW/ECW 1)");
   const l3 = level("building-construction", "Level 3 (CW/ECW 3)");
   const l9 = level("building-construction", "Level 9 (ECW 9)");
-  const resiL3 = roundCents((1119.1 + 53.72) / 38);
+  const ind = allow("building-construction", "Industry allowance — general building, civil and metal and engineering construction");
+  const resi = allow("building-construction", "Industry allowance — residential building and construction");
+  const toolCarp = allow("building-construction", "Tool allowance — carpenter, joiner, tilelayer, stonemason and similar");
+  const toolBrick = allow("building-construction", "Tool allowance — bricklayer");
+  const toolPaint = allow("building-construction", "Tool allowance — painter, signwriter, glazier");
+  const l3Min = CONSTRUCTION_MIN_WEEKLY.find(([name]) => name === "Level 3 (CW/ECW 3)");
+  if (!l3Min) throw new Error("unknown MA000020 minimum rate: Level 3 (CW/ECW 3)");
+  const [, l3MinWeekly, l3MinHourly] = l3Min;
+  const resiL3 = roundCents((l3MinWeekly + resi) / 38);
   const sat1 = x(l3.hourly, 1.5);
   const sat2 = x(l3.hourly, 2);
   const total = roundCents(sat1 * 2 + sat2 * 3);
@@ -89,20 +104,20 @@ function buildingConstruction(): AwardPageCopy {
     ),
     h1: `Building and Construction Award Pay Rates ${FY}`,
     standfirst: `Hourly rates for every CW/ECW level under the ${a.meta.name} (${a.meta.code}) on a weekly hire basis, with the industry allowance built in, operative from ${a.meta.operativeFrom}.`,
-    directAnswer: `A Level 1(a) construction worker on weekly hire earns ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week), or ${$(casual(a, l1a.hourly))} as a casual, including the $67.15 weekly industry allowance. A Level 3 (the trade rate) is ${$(l3.hourly)}. Ordinary hours are Monday to Friday only: Saturday is overtime at 150% then 200%, Sunday is 200% and public holidays 250%.`,
+    directAnswer: `A Level 1(a) construction worker on weekly hire earns ${$(l1a.hourly)} an hour (${$(l1a.weekly)} a week), or ${$(casual(a, l1a.hourly))} as a casual, including the ${$(ind)} weekly industry allowance. A Level 3 (the trade rate) is ${$(l3.hourly)}. Ordinary hours are Monday to Friday only: Saturday is overtime at 150% then 200%, Sunday is 200% and public holidays 250%.`,
     trap: {
       heading: "The award's rate table is not what you are paid: the allowance is on top, for all purposes",
-      body: `The weekly rates in clause 19.1(a) are minimum classification rates only. The industry allowance of $67.15 a week (general building, civil and engineering construction; $53.72 for residential) is paid for all purposes, so it is part of the "ordinary hourly rate" that every penalty and overtime percentage applies to (cl 19.1(b), 19.3(b), 22.3). That is why a CW3 is ${$(l3.hourly)} an hour here, not the ${$(29.45)} in the award's table. Tradespeople who get tool allowances, and daily hire employees, are paid more again (see the notes below).`,
+      body: `The weekly rates in clause 19.1(a) are minimum classification rates only. The industry allowance of ${$(ind)} a week (general building, civil and engineering construction; ${$(resi)} for residential) is paid for all purposes, so it is part of the "ordinary hourly rate" that every penalty and overtime percentage applies to (cl 19.1(b), 19.3(b), 22.3). That is why a CW3 is ${$(l3.hourly)} an hour here, not the ${$(l3MinHourly)} in the award's table. Tradespeople who get tool allowances, and daily hire employees, are paid more again (see the notes below).`,
     },
     workedExample: {
       heading: "Worked example: a Level 3 carpenter's Saturday",
-      intro: `Dan is a weekly hire CW3 in general building who is asked to work 5 hours on a Saturday. His ordinary hourly rate is ${$(l3.hourly)} (${$(1119.1)} + $67.15 = ${$(roundCents(1119.1 + 67.15))} a week, divided by 38). Ordinary hours are Monday to Friday, so Saturday is overtime.`,
+      intro: `Dan is a weekly hire CW3 in general building who is asked to work 5 hours on a Saturday. His ordinary hourly rate is ${$(l3.hourly)} (${$(l3MinWeekly)} + ${$(ind)} = ${$(roundCents(l3MinWeekly + ind))} a week, divided by 38). Ordinary hours are Monday to Friday, so Saturday is overtime.`,
       steps: [
         `First 2 hours at 150%: ${$(l3.hourly)} × 1.5 = ${$(sat1)} an hour → ${$(roundCents(sat1 * 2))}.`,
         `Next 3 hours at 200%: ${$(l3.hourly)} × 2 = ${$(sat2)} an hour → ${$(roundCents(sat2 * 3))}.`,
         `Total: ${$(total)} before tax. The minimum payment for Saturday overtime is 3 hours, so a short call-in still pays at least that.`,
       ],
-      outro: "A carpenter or joiner also receives the $41.22 weekly tool allowance for all purposes, which lifts the ordinary rate and every percentage on top of it. See the carpenter pay page for the version with tools included.",
+      outro: `A carpenter or joiner also receives the ${$(toolCarp)} weekly tool allowance for all purposes, which lifts the ordinary rate and every percentage on top of it. See the carpenter pay page for the version with tools included.`,
     },
     related: {
       heading: "Apprentice and trade pay under this award",
@@ -110,9 +125,9 @@ function buildingConstruction(): AwardPageCopy {
         "Clause 19.7 pays apprentices a percentage of the standard rate plus the clause 21.1 tool allowance for their trade and the industry allowance, for all purposes. The Fair Work Ombudsman prints one apprentice table per tool allowance group, and these pages carry those tables year by year with take-home pay:",
       ],
       links: [
-        { href: "/apprentice-pay/carpenter/", label: "Apprentice carpenter pay", note: "the $41.22 carpenter and joiner group" },
-        { href: "/apprentice-pay/bricklayer/", label: "Apprentice bricklayer pay", note: "the $29.26 bricklayer and refractory bricklayer group" },
-        { href: "/apprentice-pay/painter/", label: "Apprentice painter pay", note: "the $9.89 glazier, painter and signwriter group" },
+        { href: "/apprentice-pay/carpenter/", label: "Apprentice carpenter pay", note: `the ${$(toolCarp)} carpenter and joiner group` },
+        { href: "/apprentice-pay/bricklayer/", label: "Apprentice bricklayer pay", note: `the ${$(toolBrick)} bricklayer and refractory bricklayer group` },
+        { href: "/apprentice-pay/painter/", label: "Apprentice painter pay", note: `the ${$(toolPaint)} glazier, painter and signwriter group` },
         { href: "/job-pay-rates/carpenter/", label: "Carpenter pay rates", note: "the CW3 rate with the tool allowance included" },
         { href: "/job-pay-rates/bricklayer/", label: "Bricklayer pay rates", note: "CW3, with the bricklayer tool allowance" },
         { href: "/job-pay-rates/excavator-operator/", label: "Excavator operator pay rates", note: "the civil stream grades by machine size" },
@@ -122,7 +137,7 @@ function buildingConstruction(): AwardPageCopy {
     faqs: [
       {
         q: `What are the building and construction award pay rates for ${FY}?`,
-        a: `On a weekly hire basis in general building, civil and metal and engineering construction, the ordinary hourly rate runs from ${$(l1a.hourly)} (Level 1(a), ${$(l1a.weekly)} a week) to ${$(l9.hourly)} (Level 9, ${$(l9.weekly)} a week). That is the cl 19.1(a) minimum weekly rate plus the $67.15 industry allowance, divided by 38. The rates apply from the first full pay period starting on or after ${a.meta.operativeFrom}.`,
+        a: `On a weekly hire basis in general building, civil and metal and engineering construction, the ordinary hourly rate runs from ${$(l1a.hourly)} (Level 1(a), ${$(l1a.weekly)} a week) to ${$(l9.hourly)} (Level 9, ${$(l9.weekly)} a week). That is the cl 19.1(a) minimum weekly rate plus the ${$(ind)} industry allowance, divided by 38. The rates apply from the first full pay period starting on or after ${a.meta.operativeFrom}.`,
       },
       ...commonFaqs(a).slice(1),
       {
@@ -131,7 +146,7 @@ function buildingConstruction(): AwardPageCopy {
       },
       {
         q: "What is the residential industry allowance?",
-        a: `Work on single or dual occupancy residential buildings that are not multi-storey attracts a $53.72 weekly industry allowance instead of $67.15 (cl 22.1(b), 22.2). At Level 3 on weekly hire that gives ${$(resiL3)} an hour instead of ${$(l3.hourly)}.`,
+        a: `Work on single or dual occupancy residential buildings that are not multi-storey attracts a ${$(resi)} weekly industry allowance instead of ${$(ind)} (cl 22.1(b), 22.2). At Level 3 on weekly hire that gives ${$(resiL3)} an hour instead of ${$(l3.hourly)}.`,
       },
       {
         q: "How is a daily hire employee's rate different?",
@@ -155,6 +170,7 @@ function legalServices(): AwardPageCopy {
   const l6 = level("legal-services", "Level 6 — Law clerk");
   const ot1 = x(l2.hourly, 1.5);
   const ot2 = x(l2.hourly, 2);
+  const meal = allow("legal-services", "Meal allowance (1 hour or more of weekday overtime)");
   return {
     slug: "legal-services-award-rates",
     crumb: "Legal Services Award Rates",
@@ -176,7 +192,7 @@ function legalServices(): AwardPageCopy {
       steps: [
         `The first 3 hours of overtime are 150%: ${$(l2.hourly)} × 1.5 = ${$(ot1)} an hour → ${$(roundCents(ot1 * 3))}.`,
         `The 4th hour is 200%: ${$(l2.hourly)} × 2 = ${$(ot2)} → ${$(ot2)}.`,
-        `Overtime for the evening: ${$(roundCents(ot1 * 3 + ot2))} before tax, on top of her ordinary pay. She is also entitled to a meal allowance of $20.75 if the overtime runs 1.5 hours past normal finishing time.`,
+        `Overtime for the evening: ${$(roundCents(ot1 * 3 + ot2))} before tax, on top of her ordinary pay. She is also entitled to a meal allowance of ${$(meal)}, because she worked 1 hour or more of weekday overtime and it finished at least 1.5 hours after her normal finishing time (cl 18.2(a)(i)).`,
       ],
       outro: `A casual doing the same overtime is paid 175% for the first 3 hours (${$(x(l2.hourly, 1.75))} an hour) and 225% after (${$(x(l2.hourly, 2.25))}), because the casual loading is included in the overtime rate.`,
     },
@@ -211,6 +227,12 @@ function electrical(): AwardPageCopy {
   const g10 = level("electrical", "Electrical worker grade 10");
   const ot1 = x(g5.hourly, 1.5);
   const ot2 = x(g5.hourly, 2);
+  const ind = allow("electrical", "Industry allowance");
+  const tool = allow("electrical", "Tool allowance (grade 5 and above)");
+  const licence = allow("electrical", "Electrician's licence allowance");
+  const min1 = ELECTRICAL_MIN_HOURLY["Electrical worker grade 1"];
+  const min5 = ELECTRICAL_MIN_HOURLY["Electrical worker grade 5"];
+  const min10 = ELECTRICAL_MIN_HOURLY["Electrical worker grade 10"];
   return {
     slug: "electrical-award-rates",
     crumb: "Electrical Award Rates",
@@ -224,7 +246,7 @@ function electrical(): AwardPageCopy {
     directAnswer: `A grade 1 electrical worker is paid ${$(g1.hourly)} an hour (${$(g1.weekly)} a week), or ${$(casual(a, g1.hourly))} as a casual. A grade 5 tradesperson (the standard trade rate) is ${$(g5.hourly)} and a grade 10 is ${$(g10.hourly)}. These include the industry allowance (and the tool allowance from grade 5). Sunday work is 200% (casuals 250%), public holidays 250% (casuals 312.5%).`,
     trap: {
       heading: "The hourly rate you are paid is higher than the award's minimum rate table",
-      body: `Clause 16.2 lists minimum rates ($29.45 an hour for a grade 5). But the award adds an all-purpose industry allowance of $41.41 a week to every grade and a $22.31 tool allowance from grade 5, and its ordinary hourly rate (the figure every penalty and overtime percentage applies to) includes both (Schedule B.2.1). So a grade 5 is ${$(g5.hourly)} an hour, not $29.45. Licensed electricians on an unrestricted licence get a further $40.29 a week all-purpose on top, which is not in the table.`,
+      body: `Clause 16.2 lists minimum rates (${$(min5)} an hour for a grade 5). But the award adds an all-purpose industry allowance of ${$(ind)} a week to every grade and a ${$(tool)} tool allowance from grade 5, and its ordinary hourly rate (the figure every penalty and overtime percentage applies to) includes both (Schedule B.2.1). So a grade 5 is ${$(g5.hourly)} an hour, not ${$(min5)}. Licensed electricians on an unrestricted licence get a further ${$(licence)} a week all-purpose on top, which is not in the table.`,
     },
     workedExample: {
       heading: "Worked example: a grade 5 electrician's Saturday call-out",
@@ -238,7 +260,7 @@ function electrical(): AwardPageCopy {
     faqs: [
       {
         q: `What are the electrical award pay rates for ${FY}?`,
-        a: `The ordinary hourly rate, which includes the industry allowance and (for grade 5 and above) the tool allowance, runs from ${$(g1.hourly)} an hour for grade 1 to ${$(g10.hourly)} for grade 10 (Schedule B.2.1). The bare minimum rates in cl 16.2 are $26.44 to $37.24 an hour. The rates apply from the first full pay period starting on or after ${a.meta.operativeFrom}.`,
+        a: `The ordinary hourly rate, which includes the industry allowance and (for grade 5 and above) the tool allowance, runs from ${$(g1.hourly)} an hour for grade 1 to ${$(g10.hourly)} for grade 10 (Schedule B.2.1). The bare minimum rates in cl 16.2 are ${$(min1)} to ${$(min10)} an hour. The rates apply from the first full pay period starting on or after ${a.meta.operativeFrom}.`,
       },
       ...commonFaqs(a).slice(1),
       {
@@ -251,7 +273,7 @@ function electrical(): AwardPageCopy {
       },
       {
         q: "Is the electrician's licence allowance in the table?",
-        a: "No. The $40.29 weekly electrician's licence allowance (cl 18.3(b)) is paid to an electrical mechanic who holds, and may be required to use, an unrestricted licence. It is all-purpose, so it is added to the ordinary hourly rate before overtime and penalties. Leading hand, nominee and other all-purpose allowances work the same way.",
+        a: `No. The ${$(licence)} weekly electrician's licence allowance (cl 18.3(b)) is paid to an electrical mechanic who holds, and may be required to use, an unrestricted licence. It is all-purpose, so it is added to the ordinary hourly rate before overtime and penalties. Leading hand, nominee and other all-purpose allowances work the same way.`,
       },
     ],
   };
@@ -322,6 +344,9 @@ function realEstate(): AwardPageCopy {
   const l2 = level("real-estate", "Level 2 (Representative)");
   const l4 = level("real-estate", "Level 4 (In-Charge)");
   const ph = x(l2.hourly, 2);
+  const car = allow("real-estate", "Vehicle allowance (alternative to standing charges)");
+  const moto = allow("real-estate", "Motor cycle allowance");
+  const phonePlan = allow("real-estate", "Mobile telephone allowance (maximum plan reimbursed)");
   return {
     slug: "real-estate-award-rates",
     crumb: "Real Estate Award Rates",
@@ -362,7 +387,7 @@ function realEstate(): AwardPageCopy {
       },
       {
         q: "What allowances do real estate staff get?",
-        a: "Employees who use their own motor vehicle can claim $1.00 a kilometre up to 400 km a week as an alternative to the standing-charge scale, motorcycles are $0.34 a kilometre, and a mobile phone plan can be reimbursed up to $100 a month (cl 17). Engine-size standing charges and per-kilometre rates also apply; check cl 17.2.",
+        a: `If your employer requires you to use your own car for work, you are paid a weekly standing charge plus a per-kilometre rate set by the car's age and engine size (cl 17.2). Instead of that scale, your employer can choose to pay ${$(car)} a kilometre for all work use of your car, to a maximum of 400 km a week (cl 17.3(a)). A motor scooter or motorcycle is ${$(moto)} a kilometre, to a maximum of 400 km a week (cl 17.5(a)). If you must use your own mobile phone on a plan, your employer must reimburse at least 50% of the monthly plan cost, counting a plan of up to ${$(phonePlan)} a month, at an amount agreed in writing (cl 17.7(a)(i)).`,
       },
     ],
   };
@@ -377,6 +402,9 @@ function localGovernment(): AwardPageCopy {
   const l4 = level("local-government", "Level 4");
   const l11 = level("local-government", "Level 11");
   const sun = x(l3.hourly, 1.75);
+  const onCallWeekday = allow("local-government", "On-call allowance — Monday to Friday");
+  const onCallSat = allow("local-government", "On-call allowance — Saturday");
+  const onCallSun = allow("local-government", "On-call allowance — Sunday or public holiday");
   return {
     slug: "local-government-award-rates",
     crumb: "Local Government Award Rates",
@@ -390,7 +418,7 @@ function localGovernment(): AwardPageCopy {
     directAnswer: `A Level 1 council employee earns at least ${$(l1.hourly)} an hour (${$(l1.weekly)} a week), or ${$(casual(a, l1.hourly))} as a casual. Level 4 is ${$(l4.hourly)} and Level 11 ${$(l11.hourly)}. Saturday is 150% and Sunday 175% only for roles with weekend ordinary hours (airports, libraries, customer service, hospitality, cleaning and similar); everyone else's weekend work is overtime. Public holidays are 250%.`,
     trap: {
       heading: "Weekend penalty rates depend on your role, and many councils pay under an enterprise agreement",
-      body: "Most council employees work Monday to Friday, 6.00 am to 6.00 pm, and anything outside that is overtime. Saturday 150% and Sunday 175% apply to ordinary hours worked in the specific roles listed in cl 13.1(e) to (g), and community services and recreation centre employees are not paid weekend penalties between 5.00 am and 10.00 pm (cl 22.3). If a council enterprise agreement covers you, it replaces this award, as long as it leaves you better off overall.",
+      body: "Unless your role has its own span, ordinary hours are worked Monday to Friday between 6.00 am and 6.00 pm (cl 13.1(d)). Ordinary hours worked on a weekday outside your span are paid 120% (cl 22.1), and work on a day that is not an ordinary working day for your role is overtime (cl 21.1(b)). Saturday 150% and Sunday 175% apply to ordinary hours worked in the specific roles listed in cl 13.1(e) to (g), and community services and recreation centre employees are not paid weekend penalties between 5.00 am and 10.00 pm (cl 22.3). If a council enterprise agreement covers you, it replaces this award, as long as it leaves you better off overall.",
     },
     workedExample: {
       heading: "Worked example: a library assistant on a Sunday",
@@ -413,7 +441,7 @@ function localGovernment(): AwardPageCopy {
       },
       {
         q: "What is the on-call allowance for council staff?",
-        a: `An employee directed to be on call and who receives the on-call allowance is paid $29.45 a day Monday to Friday, $44.18 on a Saturday and $58.90 on a Sunday or public holiday (cl 19.2(e)), and is paid at overtime rates for time worked.`,
+        a: `An employee directed to be on call and who receives the on-call allowance is paid ${$(onCallWeekday)} a day Monday to Friday, ${$(onCallSat)} on a Saturday and ${$(onCallSun)} on a Sunday or public holiday (cl 19.2(e)), and is paid at overtime rates for time worked.`,
       },
       {
         q: "Is a council worker's casual public holiday rate 275%?",

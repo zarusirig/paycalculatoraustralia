@@ -169,7 +169,7 @@ export default function ApsGradePage({ data }: { data: ApsGradeData }) {
           <section>
             <H2 id="super">{grade.label} Superannuation: {APS_SUPER_RATE}%</H2>
             <p>
-              APS agencies pay employer super well above the 12% Superannuation Guarantee. The APSC reports a median employer contribution of {APS_SUPER_RATE}% of base salary at every classification in 2025, and the Defence agreement puts it in writing: &ldquo;{DEFENCE_SUPER_CLAUSE}&rdquo; (clause C7.4). On the {grade.label} threshold minimum of {formatSalary(threshold.min)}, {APS_SUPER_RATE}% is {formatSalary(threshold.min * 0.154)} a year; on the median of {formatSalary(median)} it is {formatSalary(median * 0.154)}. Super is paid on top of salary and is not part of take-home pay.
+              APS agencies pay employer super well above the 12% Superannuation Guarantee. The APSC reports a median employer contribution of {APS_SUPER_RATE}% of base salary at every classification in 2025, and the Defence agreement puts it in writing: &ldquo;{DEFENCE_SUPER_CLAUSE}&rdquo; (clause C7.4). On the {grade.label} threshold minimum of {formatSalary(threshold.min)}, {APS_SUPER_RATE}% is {formatSalary((threshold.min * APS_SUPER_RATE) / 100)} a year; on the median of {formatSalary(median)} it is {formatSalary((median * APS_SUPER_RATE) / 100)}. Super is paid on top of salary and is not part of take-home pay.
             </p>
             <p>
               To compare an APS offer with a private-sector job quoted as a package, use the <Link href="/salary-package-calculator/">salary package calculator</Link>, and the <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> for extra contributions.

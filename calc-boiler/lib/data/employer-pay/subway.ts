@@ -114,7 +114,7 @@ export const SUBWAY_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does Subway pay an hour in 2026?",
-      a: "An adult Subway sandwich artist (Fast food employee level 1) must be paid at least $27.81 an hour, or $34.76 as a casual, from 1 July 2026. Staff who supervise or train others (Level 2) get $29.45, and a person put in charge of a store (Level 3) gets $29.91 or $30.27.",
+      a: "An adult Subway sandwich artist (Fast food employee level 1) must be paid at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. Staff who supervise or train others (Level 2) get $29.45, and a person put in charge of a store (Level 3) gets $29.91 or $30.27.",
     },
     {
       q: "How much does Subway pay a 15 year old?",

@@ -627,8 +627,8 @@ export default function PublicServicePayJurisdictionPage({
                 </li>
                 <li>
                   <Link href="/fortnightly-pay-calculator/">Fortnightly pay calculator</Link>:
-                  most public service payrolls pay fortnightly, and the classification tables above
-                  are published as fortnightly rates.
+                  converts an annual salary from the classification tables above into
+                  fortnightly pay.
                 </li>
                 <li>
                   <Link href="/pay-rise-calculator/">Pay rise calculator</Link>: what an

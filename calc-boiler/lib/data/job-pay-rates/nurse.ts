@@ -39,7 +39,8 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import { annual52, money0, money2 } from "./j8-common";
+import { formatAUD } from "../../constants/australian-tax";
+import { annual52, atPercent, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -94,6 +95,13 @@ const EN_JSA_URL = jsaUrl("4114-enrolled-and-mothercraft-nurses");
 
 const EN_AWARD = scale("Enrolled nurse", NURSES_AWARD_GENERAL).points;
 const EN_AGED = scale("Enrolled nurse — aged care", NURSES_AWARD_AGED_CARE).points[0];
+
+// RN figures quoted in the FAQs, read from the same award scales as the tables.
+const RN1_POINTS = scale("Registered nurse — level 1", NURSES_AWARD_GENERAL).points;
+const RN1_PP1 = RN1_POINTS[0];
+const RN1_TOP = RN1_POINTS[RN1_POINTS.length - 1];
+const RN1_PP1_CASUAL = casualFromHourly(RN1_PP1.hourly);
+const RN_AGED_1 = scale("Registered nurse — aged care level 1", NURSES_AWARD_AGED_CARE).points[0];
 
 export interface EnrolledNurseStateRow {
   code: string;
@@ -234,11 +242,11 @@ export const NURSE: Occupation = {
   faqs: [
     {
       q: "How much do nurses get paid in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,192 a week for registered nurses (ABS, May 2025), about $113,984 a year. The award minimum is lower: $1,219.50 a week for a registered nurse level 1 pay point 1 from 1 July 2026. State public hospital pay sits above the award.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for registered nurses (ABS, May 2025), about ${money0(annual52(MEDIAN.medianWeekly))} a year. The award minimum is lower: ${formatAUD(RN1_PP1.weekly, 2)} a week for a registered nurse level 1 pay point 1 from 1 July 2026. State public hospital pay sits above the award.`,
     },
     {
       q: "What is the award rate for a registered nurse in 2026?",
-      a: "Under the Nurses Award, a registered nurse level 1 pay point 1 must be paid at least $32.09 an hour, or $1,219.50 a week, from the first full pay period on or after 1 July 2026, which is $63,414 a year full-time before tax. It rises to $38.57 an hour at pay point 8. Aged care registered nurses start higher, at $41.36 an hour.",
+      a: `Under the Nurses Award, a registered nurse level 1 pay point 1 must be paid at least ${money2(RN1_PP1.hourly)} an hour, or ${formatAUD(RN1_PP1.weekly, 2)} a week, from the first full pay period on or after 1 July 2026, which is ${money0(annual52(RN1_PP1.weekly))} a year full-time before tax. It rises to ${money2(RN1_TOP.hourly)} an hour at pay point 8. Aged care registered nurses start higher, at ${money2(RN_AGED_1.hourly)} an hour.`,
     },
     {
       q: "Do public hospital nurses get paid the award rate?",
@@ -246,11 +254,11 @@ export const NURSE: Occupation = {
     },
     {
       q: "What is the casual rate for a nurse?",
-      a: "A casual registered nurse level 1 pay point 1 earns at least $40.11 an hour under the award, the $32.09 rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate, which is $60.17 an hour.",
+      a: `A casual registered nurse level 1 pay point 1 earns at least ${money2(RN1_PP1_CASUAL)} an hour under the award, the ${money2(RN1_PP1.hourly)} rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate, which is ${money2(atPercent(RN1_PP1_CASUAL, 1.5))} an hour.`,
     },
     {
       q: "How much is a nurse paid on a Sunday?",
-      a: "Under the Nurses Award, Sunday ordinary hours are paid at 175% of the minimum hourly rate, or $56.16 an hour for an RN level 1 pay point 1. Public holidays are 200%.",
+      a: `Under the Nurses Award, Sunday ordinary hours are paid at 175% of the minimum hourly rate, or ${money2(atPercent(RN1_PP1.hourly, 1.75))} an hour for an RN level 1 pay point 1. Public holidays are 200%.`,
     },
     {
       q: "How much does an enrolled nurse earn in Australia?",
@@ -258,7 +266,7 @@ export const NURSE: Occupation = {
     },
     {
       q: "What do registered nurses actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,192 a week for registered nurses (ABS, May 2025), about $113,984 a year. That reflects state public sector agreements and above-award pay, not the award minimum.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for registered nurses (ABS, May 2025), about ${money0(annual52(MEDIAN.medianWeekly))} a year. That reflects state public sector agreements and above-award pay, not the award minimum.`,
     },
   ],
   sources: [

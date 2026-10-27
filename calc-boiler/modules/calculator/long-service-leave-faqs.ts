@@ -53,11 +53,11 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "Do you get long service leave paid out if you resign?",
-    a: "In Victoria, WA and South Australia, yes. Once you pass 7 years the accrued balance is paid however the employment ends, resignation included (WA and SA except where you are dismissed for serious misconduct). In NSW, Queensland, Tasmania and the NT a plain resignation only pays out once you reach 10 years; below that you have to fall inside a defined list, such as illness, incapacity, domestic or other pressing necessity, redundancy or death.",
+    a: "In Victoria, WA, South Australia and the ACT, yes. Once you pass 7 years the accrued balance is paid however the employment ends, resignation included (WA and SA except where you are dismissed for serious misconduct). In NSW, Queensland, Tasmania and the NT a plain resignation only pays out once you reach 10 years; below that you have to fall inside a defined list, such as illness, incapacity, domestic or other pressing necessity, redundancy or death.",
   },
   {
     q: "How is a long service leave payout taxed?",
-    a: `Long service leave you take as leave is taxed like ordinary pay. An unused balance paid out when the job ends follows the ATO's separate schedule. For service after 17 August 1993 (which is everyone who started in the last 33 years), the payout is taxed at your marginal rate. If you leave through genuine redundancy, invalidity or an early retirement scheme, everything accrued after 15 August 1978 is instead withheld at a flat ${LSL_TAX.flatRate * 100}%. Service between 16 August 1978 and 17 August 1993 is withheld at ${LSL_TAX.flatRate * 100}% whatever the reason, and only 5% of any pre-16 August 1978 service is taxed at all.`,
+    a: `Long service leave you take as leave is taxed like ordinary pay. An unused balance paid out when the job ends follows the ATO's separate schedule. The part that accrued for service after ${LSL_TAX.aug1993Cutover} is taxed at your marginal rate, whenever you started. If you leave through genuine redundancy, invalidity or an early retirement scheme, everything accrued from ${LSL_TAX.preAug1978Cutover} is instead withheld at a flat ${LSL_TAX.flatRate * 100}%. Service from ${LSL_TAX.preAug1978Cutover} to ${LSL_TAX.aug1993Cutover} is withheld at ${LSL_TAX.flatRate * 100}% whatever the reason, and only ${LSL_TAX.pre1978IncludedProportion * 100}% of any service before ${LSL_TAX.preAug1978Cutover} is taxed at all.`,
   },
   {
     q: "Can you cash out long service leave?",
@@ -73,7 +73,7 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "Is long service leave the same as annual leave?",
-    a: "No. Annual leave is federal and identical everywhere: four weeks a year (five for some shift workers) under the National Employment Standards, accruing from your first day. Long service leave comes from a separate state or territory Act, takes 7 to 10 years to qualify for, and accrues at 0.8667 or 1.3 weeks a year. They are paid out together in your final pay but calculated separately.",
+    a: "No. Annual leave is federal and identical everywhere: four weeks a year (five for some shift workers, none for casuals) under the National Employment Standards, accruing from your first day. Long service leave comes from a separate state or territory Act, takes 7 to 10 years to qualify for, and accrues at 0.8667 or 1.3 weeks a year. They are paid out together in your final pay but calculated separately.",
   },
   {
     q: "What if my award or enterprise agreement covers long service leave?",

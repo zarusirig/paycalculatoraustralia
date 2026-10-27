@@ -1,0 +1,169 @@
+{
+ "name": "ff-119-hecs-marginal-repayment-",
+ "files": [
+  "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx",
+  "modules/news/articles/july-1-2026-money-changes.tsx",
+  "modules/news/articles/minimum-wage-increase-july-2026.tsx",
+  "modules/news/articles/new-minimum-wage-take-home-pay.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx:8",
+   "file": "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx",
+   "line": "8",
+   "page": "/news/hecs-marginal-repayment-first-tax-time/",
+   "claims": [
+    "Debtors are 'lodging tax returns that reconcile a full year of PAYG withholding against the FY2026-27 marginal repayment bands for the first time, with 15% charged only on income above $69,528' (repeated at line 16 key facts, line 27 'applies the FY2026-27 marginal bands', line 44-46 $80,000 example with $10,472 excess and ~$1,571, line 57 two jobs under $69,528).",
+    "'Millions of HECS debtors are lodging tax returns...'"
+   ],
+   "whys": [
+    "The article was published 2 July 2026. Returns lodged at tax time 2026 reconcile FY2025-26 income, where the marginal system's first year applied with a $67,000 threshold. FY2026-27 ($69,528) returns are not lodged until July 2027. On $80,000 the FY2025-26 excess is $13,000, so the repayment is about $1,950, not $1,571, and the $30/week STSL example no longer reconciles. The lib/news.ts FAQ for this slug ('second full financial year ... first where the FY2026-27 threshold ... interact') contradicts itself on the same point.",
+    "Population claim with no figure, and this article's sources (ATO compulsory repayments, ATO thresholds) do not cite a debtor count. The 3.2 million figure appears only in the sources for the 20% cut article."
+   ],
+   "constants": [
+    "HECS_HELP_2025_26.minimumThreshold and HECS_HELP_2025_26.bands in lib/constants/australian-tax.ts (line 476 onward); FY2026-27 is HECS_HELP.minimumThreshold (line 462)",
+    "lib/news.ts sources for hecs-marginal-repayment-first-tax-time"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's main fact question. Returns lodged at tax time 2026 reconcile FY2025-26 income ($67,000 threshold). The page applies FY2026-27 $69,528 bands throughout: the lead, key facts, the $80,000 example ($10,472 excess, about $1,571) and the two-jobs paragraph. The fix belongs in the source and constants, not in this prose pass."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx:44",
+   "file": "modules/news/articles/hecs-marginal-repayment-first-tax-time.tsx",
+   "line": "44",
+   "page": "/news/hecs-marginal-repayment-first-tax-time/",
+   "claims": [
+    "The $80,000 worked example: excess $10,472, repayment about $1,571, $30/week STSL (about $1,560) 'within a few dollars'."
+   ],
+   "whys": [
+    "If the tax-time year is corrected to FY2025-26 ($67,000 threshold), the excess becomes $13,000 and the repayment about $1,950. The $30/week STSL figure would then no longer reconcile, so the whole example has to be recomputed from constants, not patched."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/july-1-2026-money-changes.tsx:43",
+   "file": "modules/news/articles/july-1-2026-money-changes.tsx",
+   "line": "43",
+   "page": "https://pay-calculator-australia.com/news/july-1-2026-money-changes/",
+   "claims": [
+    "Division 296 tax, an extra 15% on earnings from balances above $3 million, applies from the same date."
+   ],
+   "whys": [
+    "The figures are correct, but the sentence leaves out the extra 10% tier above $10 million that DIVISION_296 holds (veryLargeBalanceThreshold, additionalRate). Readers with very large balances get only part of the rule.",
+    "The writer flagged this and I confirm it: DIVISION_296 in lib/constants/super-contributions.ts (lines 201-208) also holds veryLargeBalanceThreshold 10,000,000 with additionalRate 0.10, and this sentence leaves that tier out."
+   ],
+   "constants": [
+    "lib/constants/super-contributions.ts:201-208 DIVISION_296"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.92,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/minimum-wage-increase-july-2026.tsx:8",
+   "file": "modules/news/articles/minimum-wage-increase-july-2026.tsx",
+   "line": "8",
+   "page": "https://pay-calculator-australia.com/news/minimum-wage-increase-july-2026/",
+   "claims": [
+    "lifted the national minimum wage by 6%"
+   ],
+   "whys": [
+    "The exact figure is 5.97% ($24.95 to $26.44). The rounding is consistent across the headline, the title and the key facts '+6%' (line 18). Listed only so a reviewer can decide whether a YMYL page should show the exact figure."
+   ],
+   "constants": [
+    "Annual Wage Review 2026 NMW increase (5.97%)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/minimum-wage-increase-july-2026.tsx:50",
+   "file": "modules/news/articles/minimum-wage-increase-july-2026.tsx",
+   "line": "50",
+   "page": "https://pay-calculator-australia.com/news/minimum-wage-increase-july-2026/",
+   "claims": [
+    "If your pay cycle runs Wednesday to Tuesday, the new rate begins on the first Wednesday in July: your first full July payslip may still show a few days at the old rate."
+   ],
+   "whys": [
+    "1 July 2026 is itself a Wednesday. A Wednesday-to-Tuesday cycle therefore starts the new rate on 1 July, and no July pay period carries days at the old rate. The example needs a different start day (for example Monday). The lib/news.ts FAQ answer uses the same Wednesday example."
+   ],
+   "constants": [
+    "Example text only; first full pay period on or after 1 July 2026"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.26,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/new-minimum-wage-take-home-pay.tsx:77",
+   "file": "modules/news/articles/new-minimum-wage-take-home-pay.tsx",
+   "line": "77",
+   "page": "https://pay-calculator-australia.com/news/new-minimum-wage-take-home-pay/",
+   "claims": [
+    "On a $52,254.80 annual income ... the Medicare levy is shaded rather than charged in full, because earnings sit close to the low-income threshold."
+   ],
+   "whys": [
+    "The singles shade-in band ends at $35,013, so the full 2% levy applies at $52,254.80. The page's own $7,025 annual tax only reconciles with the full levy: 6,196.44 bracket tax, minus 216.18 LITO, plus 1,045.10 full Medicare levy, equals 7,025.36. Line 30 ('the shaded Medicare levy') and the lib/news.ts FAQ answer ('Medicare levy shading') repeat the same error."
+   ],
+   "constants": [
+    "Medicare levy low-income thresholds / shade-in upper bound (singles $28,011 to $35,013) in the tax constants"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's factQuestions are valid and left the text unchanged per the rules. The 'shaded Medicare levy' claim at $52,254.80 is wrong because the full 2% applies. 'Very little' taxed at 30% is misleading. 'Your figures will differ if you have a study loan' conflicts with the HECS section. The Wednesday pay-cycle example fails because 1 July 2026 is a Wednesday. The population claims and the $450m costing also remain on the writer's list."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/new-minimum-wage-take-home-pay.tsx:85",
+   "file": "modules/news/articles/new-minimum-wage-take-home-pay.tsx",
+   "line": "85",
+   "page": "https://pay-calculator-australia.com/news/new-minimum-wage-take-home-pay/",
+   "claims": [
+    "A full-time minimum-wage income sits only just above that $45,000 mark, so very little of it is taxed at the higher 30% rate."
+   ],
+   "whys": [
+    "$7,254.80 is taxed at 30%. That produces about $2,176 of the $6,196 bracket tax (around a third), so 'very little' misleads the reader."
+   ],
+   "constants": [
+    "FY2026-27 resident tax brackets"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/new-minimum-wage-take-home-pay.tsx:123",
+   "file": "modules/news/articles/new-minimum-wage-take-home-pay.tsx",
+   "line": "123",
+   "page": "https://pay-calculator-australia.com/news/new-minimum-wage-take-home-pay/",
+   "claims": [
+    "Your figures will differ if you have a study loan, salary sacrifice arrangements or additional income."
+   ],
+   "whys": [
+    "This contradicts the HECS section at line 111, which says the take-home figures apply whether or not you carry a HECS-HELP debt, because $52,254.80 is below the $69,528 threshold. A study loan changes the figures only when combined with other income."
+   ],
+   "constants": [
+    "HELP repayment threshold 2026-27 ($69,528)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.55,
+   "needsOwner": false
+  }
+ ]
+}

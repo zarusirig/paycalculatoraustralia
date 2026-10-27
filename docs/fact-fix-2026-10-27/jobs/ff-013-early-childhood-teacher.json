@@ -1,0 +1,173 @@
+{
+ "name": "ff-013-early-childhood-teacher",
+ "files": [
+  "lib/data/job-pay-rates/early-childhood-teacher.ts",
+  "lib/data/job-pay-rates/engineer.ts",
+  "lib/data/job-pay-rates/flight-attendant.ts",
+  "lib/data/job-pay-rates/forklift-operator.ts",
+  "lib/data/job-pay-rates/hairdresser.ts",
+  "lib/data/job-pay-rates/lab-technician.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/early-childhood-teacher.ts:76",
+   "file": "lib/data/job-pay-rates/early-childhood-teacher.ts",
+   "line": "76",
+   "page": "/job-pay-rates/early-childhood-teacher/",
+   "claims": [
+    "Aides, assistants and directors who are not university-qualified ECTs: \"most of them are covered by the Children's Services Award 2010\""
+   ],
+   "whys": [
+    "This is a claim about how many people it covers, with no figure and no cited source. The award text excludes them (cl 4.4(c)) but does not say how many fall under MA000120. Either cite FWO coverage guidance or cut it back to 'are generally covered by the Children's Services Award 2010 [MA000120]', which is an editorial call."
+   ],
+   "constants": [
+    "coverage[0] in early-childhood-teacher.ts (no constant; source would be FWO award-coverage guidance)"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestion on the coverage claim 'most of them are covered by the Children's Services Award 2010' is valid. It is a population claim with no source. This string is unchanged in this pass."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.65,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/job-pay-rates/engineer.ts:136",
+   "file": "lib/data/job-pay-rates/engineer.ts",
+   "line": "136",
+   "page": "/job-pay-rates/engineer/",
+   "claims": [
+    "\"far above the award, because most engineers are paid market salaries\"",
+    "\"median full-time earnings of $2,217 a week for civil engineering professionals\" is the answer to \"What do engineers actually earn in Australia?\""
+   ],
+   "whys": [
+    "A population claim with no figure or cited source. The JSA median shows earnings sit above the award, but it does not show that most engineers are on market salaries.",
+    "It is a scope mismatch: a single ANZSCO group (civil engineering professionals) stands in for all engineers. This is separate from the writer's unsourced \"most engineers are paid market salaries\" point."
+   ],
+   "constants": [
+    "MEDIAN (engineer.ts) / jsaSource; needs a cited share or a rewording to what the median shows",
+    "MEDIAN (engineer.ts) / jsaSource; label the figure as civil, or use an all-engineering-professionals median"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's factQuestion: \"because most engineers are paid market salaries\" is an unsourced population claim. The median is also for civil engineering professionals but is presented as the answer for \"engineers\"."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.31,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/engineer.ts:76",
+   "file": "lib/data/job-pay-rates/engineer.ts",
+   "line": "76",
+   "page": "/job-pay-rates/engineer/",
+   "claims": [
+    "Engineering technicians and draftspersons \"are usually covered by the Manufacturing Award or an industry award instead\""
+   ],
+   "whys": [
+    "A hedged coverage statement with no clause cited. The page gives clause numbers for every other coverage rule."
+   ],
+   "constants": [
+    "coverage[3] in engineer.ts; cite the Manufacturing Award classification (Schedule A) or the relevant industry award"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.59,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/flight-attendant.ts:116",
+   "file": "lib/data/job-pay-rates/flight-attendant.ts",
+   "line": "116",
+   "page": "/job-pay-rates/flight-attendant/",
+   "claims": [
+    "In the award's own example, about 90 block hours in a roster period adds roughly $1,656 a month."
+   ],
+   "whys": [
+    "The unit changes partway through the sentence, from 'a roster period' to 'a month'. The maths works (90 x $18.40 = $1,656), but the period is only right if the award's example roster period is one month. Check against Schedule A.1.7 of the award."
+   ],
+   "constants": [
+    "FLIGHT_ATTENDANT.faqs[2].a (Schedule A.1.7 example)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact questions. faqs[2].a moves from 'a roster period' to 'a month' ($1,656 = 90 x $18.40). The coverage[1] and faqs[1].a claim 'generally employed under enterprise agreements' cites no figure. forklift paragraphs[1] gives an unsourced cause for the median gap. forklift notices[0] and faqs[4].a say 'many' with no figure. The writer did not edit any of these strings, which is correct."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.76,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/forklift-operator.ts:118",
+   "file": "lib/data/job-pay-rates/forklift-operator.ts",
+   "line": "118",
+   "page": "/job-pay-rates/forklift-operator/",
+   "claims": [
+    "A forklift driver in a factory is generally C12 or C11 under the Manufacturing Award, and in a transport business may be a Transport Worker Grade 3."
+   ],
+   "whys": [
+    "'generally' and 'may be' are hedges on a classification rule, and no figure or source supports them. A pass that can change facts should check them against the award's classification definitions."
+   ],
+   "constants": [
+    "FORKLIFT_OPERATOR.coverage[2]"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/hairdresser.ts:79",
+   "file": "lib/data/job-pay-rates/hairdresser.ts",
+   "line": "79",
+   "page": "/job-pay-rates/hairdresser/",
+   "claims": [
+    "Juniors are paid 50% of the adult rate under 17 and 75% at 17; from 18 the full adult rate applies (cl 17.2)."
+   ],
+   "whys": [
+    "This is a coarse junior scale for the Hair and Beauty Award. Please re-check it against cl 17.2 Table 5, since most award junior tables have more age bands. I did not change it."
+   ],
+   "constants": [
+    "HAIR_BEAUTY_AWARD junior table in lib/constants/modern-awards.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.82,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/hairdresser.ts:81",
+   "file": "lib/data/job-pay-rates/hairdresser.ts",
+   "line": "81",
+   "page": "/job-pay-rates/hairdresser/",
+   "claims": [
+    "Juniors are paid 50% of the adult rate under 17 and 75% at 17; from 18 the full adult rate applies (cl 17.2)."
+   ],
+   "whys": [
+    "This is the writer's question with the line number corrected: the sentence is on source line 81, not 79. Check the age bands against cl 17.2."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/lab-technician.ts:115",
+   "file": "lib/data/job-pay-rates/lab-technician.ts",
+   "line": "115",
+   "page": "/job-pay-rates/lab-technician/",
+   "claims": [
+    "Under the Manufacturing Award, weekend work is overtime unless agreed as ordinary hours (150% Saturday, 200% Sunday)"
+   ],
+   "whys": [
+    "Manufacturing Award Saturday overtime is normally 150% for the first 3 hours and 200% after that, so a flat '150% Saturday' looks incomplete. Please check it against the Manufacturing Award overtime clause.",
+    "This confirms the writer's question. Manufacturing Award Saturday overtime is normally 150% for the first 3 hours and 200% after that, so a flat 150% leaves that out."
+   ],
+   "constants": [
+    "MANUFACTURING_AWARD in lib/constants/modern-awards.ts (penalty/overtime data), or the penaltiesNote in lab-technician.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.49,
+   "needsOwner": false
+  }
+ ]
+}

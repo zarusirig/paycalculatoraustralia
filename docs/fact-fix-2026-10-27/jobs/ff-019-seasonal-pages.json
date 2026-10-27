@@ -1,0 +1,95 @@
+{
+ "name": "ff-019-seasonal-pages",
+ "files": [
+  "lib/data/public-holidays/seasonal-pages.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:209",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "209",
+   "page": "https://pay-calculator-australia.com/christmas-day-pay-rates/",
+   "claims": [
+    "Payslip line paid 'at a multiple of your base rate such as 2.25 or 2.5 times'",
+    "Payslip line paid 'at a multiple of your base rate such as 2.25 or 2.5 times'; typed '25% casual loading' at lines 155, 218 (also 357, 408, 420, 729); typed Nurses Award 'extra 50%' at line 156"
+   ],
+   "whys": [
+    "The multiples are typed by hand while every other rate on the page comes from getAwardPublicHolidayRate. They match 225%/250% today, but they will go stale without warning if the award data changes. The same applies to the typed '25% casual loading' (lines 155, 218) and the Nurses Award 'extra 50%' (line 156).",
+    "These figures are typed by hand. Every other rate comes from getAwardPublicHolidayRate, so they will go stale silently if the award data changes. They should be built from RETAIL_P/RETAIL_C and the casual-loading constant."
+   ],
+   "constants": [
+    "RETAIL_P / RETAIL_C (getAwardPublicHolidayRate('retail')) and the casual loading in lib/constants/modern-awards",
+    "getAwardPublicHolidayRate('retail') multiples and the casual loading constant in lib/constants/modern-awards"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid and I confirmed it against the source. The multiples '2.25 or 2.5 times' (line 209), the '25% casual loading' (lines 155 and 218, also 357, 408, 420 and 729 outside this unit) and the Nurses Award 'extra 50%' (line 156) are typed by hand. Every other rate on the page comes from getAwardPublicHolidayRate, so these will go stale without warning if the award constants change."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:477",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "477",
+   "page": "https://pay-calculator-australia.com/public-holidays-2027/",
+   "claims": [
+    "New South Wales, Western Australia and the ACT keep the Sunday and add Monday 26 April [2027 Anzac Day]."
+   ],
+   "whys": [
+    "As I recall, NSW law has no substitute day when Anzac Day falls on a weekend (no Monday holiday was added in 2021, for example). The Queensland and NT treatment should also be checked against the FWO 2027 list. I did not verify this."
+   ],
+   "constants": [
+    "2027 public holiday matrix data (matrix2027) / FW_2027 source"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's question: NSW has historically added no Monday when Anzac Day falls on a Sunday. The 2027 matrix data should be checked against the FWO 2027 list. The text was left unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.73,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:626",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "626",
+   "page": "https://pay-calculator-australia.com/easter-public-holiday-pay/",
+   "claims": [
+    "Standfirst: 'Good Friday and Easter Monday are public holidays nearly everywhere; Easter Saturday and Easter Sunday are not.'"
+   ],
+   "whys": [
+    "This contradicts the same page's directAnswer and FAQ. Those say Good Friday and Easter Monday are public holidays in every state, Easter Saturday is a holiday in six jurisdictions, and Easter Sunday is a holiday everywhere except Tasmania. The standfirst should probably say 'in every state and territory' and that Easter Saturday and Easter Sunday are holidays in some states only. I left it unchanged because the brief says not to change facts."
+   ],
+   "constants": [
+    "standfirst for easter-public-holiday-pay"
+   ],
+   "reviewerNotes": [
+    "Writer's factQuestion is valid. The Easter standfirst says Good Friday and Easter Monday are holidays 'nearly everywhere' and Easter Saturday and Sunday 'are not'. That contradicts the same page's FAQ (Good Friday and Easter Monday in every state; Easter Saturday in 6 jurisdictions; Easter Sunday everywhere except Tasmania). I did not change it."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/seasonal-pages.ts:636",
+   "file": "lib/data/public-holidays/seasonal-pages.ts",
+   "line": "636",
+   "page": "https://pay-calculator-australia.com/easter-public-holiday-pay/",
+   "claims": [
+    "Footnote: 'Most Tasmanian private-sector workers work it [Easter Tuesday] at ordinary rates unless their award or agreement says otherwise.'",
+    "'Tasmania also lists Easter Tuesday (30 March), but generally only for the Tasmanian Public Service'. The FAQ 'Which Easter days are public holidays?' repeats it as 'generally for the Tasmanian Public Service only'."
+   ],
+   "whys": [
+    "This is a population claim ('most') with no figure, and the page cites no source for it. The same footnote also says 'generally only for the Tasmanian Public Service', which is a hedge. It needs a Business Tasmania or WorkSafe Tasmania source, or a rewording.",
+    "'generally' is a hedge on a rule, and it appears in two places. Who Easter Tuesday covers in Tasmania needs a Business Tasmania or Tasmanian Government source so both strings can state it definitively."
+   ],
+   "constants": [
+    "topics[0].footnote for easter-public-holiday-pay"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.1,
+   "needsOwner": false
+  }
+ ]
+}

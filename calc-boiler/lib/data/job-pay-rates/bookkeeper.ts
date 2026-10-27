@@ -31,6 +31,8 @@ import {
   CLERKS_SOURCE_TITLE,
   clerksRow,
 } from "./clerks-common";
+import { formatAUD } from "../../constants/australian-tax";
+import { annual52, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -41,6 +43,9 @@ const MEDIAN: MedianEarnings = {
   allOccupationsWeekly: ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   url: jsaUrl("5512-bookkeepers"),
 };
+
+const LEVEL_3 = clerksRow("Level 3");
+const LEVEL_4 = clerksRow("Level 4");
 
 export const BOOKKEEPER: Occupation = {
   slug: "bookkeeper",
@@ -88,11 +93,11 @@ export const BOOKKEEPER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a bookkeeper in 2026?",
-      a: "A bookkeeper doing Level 3 work under the Clerks—Private Sector Award (posting journals to ledgers, preparing bank statements, maintaining wage records) must be paid at least $31.11 an hour, or $1,182.10 a week, from the first full pay period on or after 1 July 2026. That is $61,469 a year full-time before tax. Level 4 work pays at least $32.67 an hour.",
+      a: `A bookkeeper doing Level 3 work under the Clerks—Private Sector Award (posting journals to ledgers, preparing bank statements, maintaining wage records) must be paid at least ${money2(LEVEL_3.hourly)} an hour, or ${formatAUD(LEVEL_3.weekly, 2)} a week, from the first full pay period on or after 1 July 2026. That is ${money0(annual52(LEVEL_3.weekly))} a year full-time before tax. Level 4 work pays at least ${money2(LEVEL_4.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a bookkeeper?",
-      a: "A casual Level 3 bookkeeper earns at least $38.89 an hour, the $31.11 rate plus the 25% casual loading.",
+      a: `A casual Level 3 bookkeeper earns at least ${money2(LEVEL_3.casualHourly ?? 0)} an hour, the ${money2(LEVEL_3.hourly)} rate plus the 25% casual loading.`,
     },
     {
       q: "Which Clerks Award level is a bookkeeper?",
@@ -100,7 +105,7 @@ export const BOOKKEEPER: Occupation = {
     },
     {
       q: "What do bookkeepers actually earn?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,400 a week for bookkeepers (ABS Survey of Employee Earnings and Hours, May 2025), about $72,800 a year.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for bookkeepers (ABS Survey of Employee Earnings and Hours, May 2025), about ${money0(annual52(MEDIAN.medianWeekly))} a year.`,
     },
   ],
   sources: [

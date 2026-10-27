@@ -174,7 +174,7 @@ export function ageNote(age: MinWageAge): string {
     case 19:
       return "At 19 the awards split. Hospitality, Restaurant, Fitness, Local Government and Meat Industry pay 85% of the adult rate, while Retail, Fast Food, Pharmacy and Clerks pay 80% and the National Minimum Wage 82.5%. Road Transport moves from its under-19 band to 80%, and Real Estate to 70%.";
     case 20:
-      return "Twenty is where most awards reach the adult rate, but not all of them. Hospitality, Restaurant, Fitness, Meat Industry, Pastoral, Horticulture and Road Transport pay 100% at 20. Retail pays 90% in the first six months with the employer and 100% after that. Fast Food and Pharmacy pay 90% for now, rising for those with more than six months' service from 1 December 2026, and the National Minimum Wage pays 97.7% until 21.";
+      return "At 20 some award scales reach the adult rate and others still pay a junior percentage. Hospitality, Restaurant, Fitness, Meat Industry, Pastoral, Horticulture and Road Transport pay 100% at 20. Retail pays 90% in the first six months with the employer and 100% after that. Fast Food and Pharmacy pay 90% for now, rising for those with more than six months' service from 1 December 2026, and the National Minimum Wage pays 97.7% until 21.";
   }
 }
 
@@ -301,10 +301,11 @@ const AWARD_SHORT: Record<string, string> = {
 export function phaseInMeaning(age: 18 | 19 | 20): string {
   const t = phaseInTable(age);
   if (age === 18) {
-    return `${t.firstStepDollars} The 18-year-old column only reaches 100% from ${t.fullFrom}. A year at 18 spans at most one December step and one July step, so most 18-year-olds collect one or two of these steps and then move to the 19-year-old column on their birthday. The July 2027 wage review will also change the adult rate the percentages apply to.`;
+    return `${t.firstStepDollars} The 18-year-old column only reaches 100% from ${t.fullFrom}. A year at 18 spans at most one December step and one July step, so an 18-year-old collects at most two of these steps before moving to the 19-year-old column on their birthday. The percentages apply to the adult rate in force at each step, and the next Annual Wage Review decides that rate from July 2027.`;
   }
   if (age === 19) {
-    return `${t.firstStepDollars} All three awards pay a 19-year-old with more than 6 months' service 100% from ${t.fullFrom}, a year before the 18-year-old column gets there. Pharmacy moves in bigger, yearly steps (85%, then 95%), Retail and Fast Food in five-point steps every December and July.`;
+    const pharmacy = phaseInForAge(19).find((r) => r.key === "pharmacy")!;
+    return `${t.firstStepDollars} All three awards pay a 19-year-old with more than 6 months' service 100% from ${t.fullFrom}, a year before the 18-year-old column gets there. Pharmacy's steps are ${listJoin(pharmacy.steps.map((st) => `${st.percentage}% from ${st.effective}`))}, while Retail and Fast Food move in five-point steps every December and July.`;
   }
   const gap = Math.round((mainLevel1Hourly("MA000003", 0.95)! - mainLevel1Hourly("MA000003", 0.9)!) * 100) / 100;
   return `${t.firstStepDollars} Twenty is the shortest phase-in: Fast Food and Pharmacy pay 95% from ${PHASE_IN.start} and 100% from ${t.fullFrom}. A 20-year-old with 6 months or less stays on 90%, so the 6-month mark is worth ${money(gap)} an hour at Fast Food Level 1 from December. Retail has no column because it already pays 100% after 6 months.`;
@@ -467,7 +468,7 @@ function phaseInFaq(age: 18 | 19 | 20): Faq {
   const full = listJoin([...new Set(rows.map((r) => r.steps[r.steps.length - 1].effective))]);
   return {
     q: `Is the minimum wage for ${age} year olds going up?`,
-    a: `Yes, in stages, but only for ${age}-year-olds with ${PHASE_IN.serviceQualifier} under the ${listJoin(rows.map((r) => AWARD_SHORT[r.key]))} award${rows.length > 1 ? "s" : ""}: ${first.present}% becomes ${first.steps[0].percentage}% from the first full pay period starting on or after ${PHASE_IN.start}, and the ${age}-year-old band reaches 100% from ${full}. That follows ${PHASE_IN.decision}. It is not a one-step jump to the adult rate, and ${age}-year-olds with 6 months or less stay on ${first.present}%. No rate has changed yet.${age === 20 ? " Retail is not included because a 20-year-old with more than 6 months' service already gets the retail adult rate." : ""}`,
+    a: `Yes, in stages, but only for ${age}-year-olds with ${PHASE_IN.serviceQualifier} under the ${listJoin(rows.map((r) => AWARD_SHORT[r.key]))} award${rows.length > 1 ? "s" : ""}: ${first.present}% becomes ${first.steps[0].percentage}% from the first full pay period starting on or after ${PHASE_IN.start}, and the ${age}-year-old band reaches 100% from ${full}. That follows ${PHASE_IN.decision}. It is not a one-step jump to the adult rate, and ${age}-year-olds with 6 months or less stay on ${first.present}%.${PHASE_IN.inForce ? "" : " No rate has changed yet."}${age === 20 ? " Retail is not included because a 20-year-old with more than 6 months' service already gets the retail adult rate." : ""}`,
   };
 }
 
@@ -476,7 +477,7 @@ export function spokeFaqs(age: MinWageAge): Faq[] {
   const faqs: Faq[] = [
     {
       q: `What is the minimum wage for ${aAge(age)} year old in Australia?`,
-      a: `${money(s.nmw.hourly)} an hour (${money(s.nmw.casualHourly)} casual) with no award, ${pctLabel(s.nmw.percentage)} of the adult ${money(EMPLOYMENT.minimumWageHourly)}, from ${NMW_ORDER.operativeFrom}. Most jobs fall under an award that pays more: ${retailText(s)}, ${money(s.fastFood.hourly)} in fast food and ${money(s.hospitality.hourly)} in hospitality at Level 1.`,
+      a: `${money(s.nmw.hourly)} an hour (${money(s.nmw.casualHourly)} casual) with no award, ${pctLabel(s.nmw.percentage)} of the adult ${money(EMPLOYMENT.minimumWageHourly)}, from ${NMW_ORDER.operativeFrom}. If an award covers the job, its junior rate applies instead: ${retailText(s)}, ${money(s.fastFood.hourly)} in fast food and ${money(s.hospitality.hourly)} in hospitality at Level 1.`,
     },
   ];
 
@@ -549,9 +550,13 @@ export function spokeFaqs(age: MinWageAge): Faq[] {
         q: "Why does a 19 year old earn more in hospitality than in retail?",
         a: `Because the scales differ at 19: Hospitality pays 85% of its adult rate and Retail pays 80% of its own. At Level 1 that is ${money(h)} an hour in hospitality and ${money(r)} in retail, even though retail's adult Level 1 rate is higher. Restaurant, Fitness, Local Government and Meat Industry also pay 85% at 19; Fast Food, Pharmacy and Clerks pay 80%. From ${PHASE_IN.start}, a 19-year-old with more than 6 months' service under Retail or Fast Food moves to 85%.`,
       });
+      const rows19 = phaseInForAge(19);
+      const ff19 = rows19.find((x) => x.key === "fastFood")!;
+      const ph19 = rows19.find((x) => x.key === "pharmacy")!;
+      const laterSteps = (row: typeof ff19) => listJoin(row.steps.slice(1).map((st) => `${st.percentage}% from ${st.effective}`));
       faqs.push({
         q: "Does a 19 year old with more than 6 months' service get paid more?",
-        a: `Not yet: no award pays a 19-year-old more for length of service today. From the first full pay period starting on or after ${PHASE_IN.start}, the Retail, Fast Food and Pharmacy awards will: 85% of the adult rate instead of 80% once you have been with the employer more than 6 months, then 90% from 1 July 2027 under Retail and Fast Food, or 95% under Pharmacy, and 100% from 1 July 2028 under all three. With 6 months or less the 19-year-old rate stays 80%. Service with a previous owner of the business counts if the business was transferred.`,
+        a: `${PHASE_IN.inForce ? "Yes, under the Retail, Fast Food and Pharmacy awards." : "Not yet: no award pays a 19-year-old more for length of service today, but the Retail, Fast Food and Pharmacy awards will."} From the first full pay period starting on or after ${PHASE_IN.start}, a 19-year-old who has been with the employer more than 6 months gets ${ff19.steps[0].percentage}% of the adult rate instead of ${ff19.present}%. After that, Retail and Fast Food pay ${laterSteps(ff19)}, and Pharmacy pays ${laterSteps(ph19)}. With 6 months or less the 19-year-old rate stays ${ff19.present}%. Service with a previous owner of the business counts if the business was transferred.`,
       });
       break;
     }

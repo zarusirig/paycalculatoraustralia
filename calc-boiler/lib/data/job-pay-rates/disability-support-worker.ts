@@ -31,6 +31,7 @@
 // is still 4.9% of the standard rate (cl 25.7(d)).
 
 import {
+  SCHADS_ALLOWANCES,
   SCHADS_AWARD,
   SCHADS_HOME_CARE_AGED,
   SCHADS_HOME_CARE_DISABILITY,
@@ -101,13 +102,16 @@ function schadsRow(stream: string, list: readonly SchadsRate[], classification: 
 }
 
 const HCD_L2 = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 2 pay point 1")!;
+const HCD_FIRST = SCHADS_HOME_CARE_DISABILITY[0];
+const HCD_LAST = SCHADS_HOME_CARE_DISABILITY[SCHADS_HOME_CARE_DISABILITY.length - 1];
+const SACS_L2 = SCHADS_SACS.find((r) => r.classification === "Level 2 pay point 1")!;
 
 const SUPPORT_WORKER_SECTION: OccupationSection = {
   id: "support-worker-pay",
   heading: "Support worker pay rates: which SCHADS stream applies",
   paragraphs: [
     "\"Support worker\" is not a classification in the SCHADS Award. Your minimum depends on the stream your work falls in and then your level. Support in group homes, supported accommodation, respite and day programs is the Social and community services stream (Schedule B). Support in a person's own home is Home care — disability (Schedule E), or Home care — aged care (Schedule F) when the client is older. Support workers in residential aged care homes are covered by the Aged Care Award instead; see the aged care worker page.",
-    `Home care — disability rates are about to rise. The Fair Work Commission's gender undervaluation decision (${SCHADS_SCHEDULE_E_INCREASE.decision}) lifts Schedule E rates by up to ${Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}% from ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (${SCHADS_SCHEDULE_E_INCREASE.determination}): Level 2 pay point 1 goes to ${money2(HCD_L2.weekly)} a week. The rest of the increase comes with a new classification structure from ${SCHADS_SCHEDULE_E_INCREASE.remainderFrom}.`,
+    `Home care — disability rates rise in two steps. The Fair Work Commission's gender undervaluation decision (${SCHADS_SCHEDULE_E_INCREASE.decision}) lifts Schedule E rates by up to ${Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}% from ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (${SCHADS_SCHEDULE_E_INCREASE.determination}): Level 2 pay point 1 goes to ${money2(HCD_L2.weekly)} a week. The rest of the increase comes with a new classification structure from ${SCHADS_SCHEDULE_E_INCREASE.remainderFrom}.`,
   ],
   table: {
     caption: "Support worker minimum rates by SCHADS stream",
@@ -180,8 +184,8 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     "Overtime rates replace, rather than add to, shift premiums and weekend penalties.",
   ],
   allowances: [
-    { name: "Sleepover allowance", amount: "$62.87 per sleepover", note: "4.9% of the standard rate (cl 25.7(d))." },
-    { name: "Broken shift allowance", amount: "$21.81 (one break) or $28.87 (two breaks)", note: "Per broken shift." },
+    { name: "Sleepover allowance", amount: `${money2(SCHADS_ALLOWANCES.sleepover)} per sleepover`, note: "4.9% of the standard rate (cl 25.7(d))." },
+    { name: "Broken shift allowance", amount: `${money2(SCHADS_ALLOWANCES.brokenShiftOneBreak)} (one break) or ${money2(SCHADS_ALLOWANCES.brokenShiftTwoBreaks)} (two breaks)`, note: "Per broken shift." },
     {
       name: "Vehicle allowance",
       amount: `$${SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm.toFixed(2)} per km (1 Sep 2026 – 28 Feb 2027)`,
@@ -208,7 +212,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     },
     {
       q: "Why is home care disability pay lower?",
-      a: "Support delivered in a client's own home is covered by the Home care — disability stream, which carries no Equal Remuneration Order uplift. Its rates run from $27.28 to $35.81 an hour, compared with $36.22 for Level 2 in the social and community services stream.",
+      a: `Support delivered in a client's own home is covered by the Home care — disability stream, which carries no Equal Remuneration Order uplift. Its rates run from ${money2(HCD_FIRST.hourly)} to ${money2(HCD_LAST.hourly)} an hour, compared with ${money2(SACS_L2.hourly)} for Level 2 in the social and community services stream. From the first full pay period starting on or after ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom}, Schedule E rates rise by up to ${Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}% (${SCHADS_SCHEDULE_E_INCREASE.determination}).`,
     },
     {
       q: "What is the award rate for a support worker?",
@@ -216,7 +220,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     },
     {
       q: "How much is the sleepover allowance?",
-      a: "The SCHADS sleepover allowance is $62.87 per sleepover from 1 July 2026, which is 4.9% of the award's standard rate.",
+      a: `The SCHADS sleepover allowance is ${money2(SCHADS_ALLOWANCES.sleepover)} per sleepover from 1 July 2026, which is 4.9% of the award's standard rate.`,
     },
     {
       q: "What do disability support workers actually earn?",

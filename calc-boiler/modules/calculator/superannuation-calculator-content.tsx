@@ -17,13 +17,28 @@ import {
   SOURCES,
   SITE_CONFIG,
   annualToWeekly,
+  annualToFortnightly,
 } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
+import { LISTO_CURRENT, LISTO_2027_28 } from "@/lib/constants/listo";
 import { SUPERANNUATION_FAQS } from "./superannuation-faqs";
+
+// Worked figures, all derived from SUPER_GUARANTEE.rate so they follow the constant.
+const EX_SALARY = 85_000;
+const EX_SUPER = calculateSuper(EX_SALARY);
+/** A $100,000 "including super" package: base = package / (1 + SG rate). */
+const INCL_PACKAGE = 100_000;
+const INCL_BASE = Math.round(INCL_PACKAGE / (1 + SUPER_GUARANTEE.rate));
+const INCL_SUPER = INCL_PACKAGE - INCL_BASE;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
   { title: "Maximum super contribution base", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
   { title: "Contribution caps", url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/contributions-caps", publisher: SOURCES.ato.name },
+  { title: "Work out if you have to pay super (employees under 18)", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/work-out-if-you-have-to-pay-super", publisher: SOURCES.ato.name },
+  { title: "Division 293 tax on concessional contributions by high-income earners", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/division-293-tax-on-concessional-contributions-by-high-income-earners", publisher: SOURCES.ato.name },
+  { title: "Latest estimate and trends for the super guarantee gap", url: "https://www.ato.gov.au/about-ato/research-and-statistics/in-detail/tax-gap/q-z-tax-gaps/superannuation-guarantee-gap/latest-estimate-and-trends", publisher: SOURCES.ato.name },
+  { title: "$21 billion in lost super: find yours, fund your future", url: "https://www.ato.gov.au/media-centre/21-billion-dollars-in-lost-super-find-yours", publisher: SOURCES.ato.name },
   { title: "Employee earnings (median full-time earnings)", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings/latest-release", publisher: SOURCES.abs.name },
 ];
 
@@ -38,7 +53,7 @@ export function SuperannuationCalculatorIntro() {
         <p className="mb-4 text-warmgray">The calculation follows 3 steps:</p>
         <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
           <li><strong>Identify your OTE</strong>: base salary, commissions, shift loadings, and paid leave. Overtime payments, expense reimbursements, and workers&apos; compensation are excluded.</li>
-          <li><strong>Apply the SG rate</strong>: multiply your OTE by <strong>0.12</strong> (12%).</li>
+          <li><strong>Apply the SG rate</strong>: multiply your OTE by <strong>{SUPER_GUARANTEE.rate}</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)}).</li>
           <li><strong>Check the maximum super contribution base</strong>: employers are not required to pay SG on annual earnings above <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</li>
         </ol>
 
@@ -47,15 +62,15 @@ export function SuperannuationCalculatorIntro() {
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Step</th><th className="px-4 py-3 text-left font-semibold text-navy">Calculation</th><th className="px-4 py-3 text-right font-semibold text-navy">Result</th></tr></thead>
             <tbody className="divide-y divide-gray-100">
-              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">1. Gross salary (OTE)</td><td className="px-4 py-3 text-warmgray">Base annual salary</td><td className="px-4 py-3 text-right font-medium text-navy">$85,000</td></tr>
-              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">2. SG contribution</td><td className="px-4 py-3 text-warmgray">$85,000 x 12%</td><td className="px-4 py-3 text-right font-bold text-navy">$10,200</td></tr>
-              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">3. Total package</td><td className="px-4 py-3 text-warmgray">$85,000 + $10,200</td><td className="px-4 py-3 text-right font-bold text-navy">$95,200</td></tr>
-              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">4. Weekly super</td><td className="px-4 py-3 text-warmgray">$10,200 / 52</td><td className="px-4 py-3 text-right text-navy">$196.15</td></tr>
-              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">5. Fortnightly super</td><td className="px-4 py-3 text-warmgray">$10,200 / 26</td><td className="px-4 py-3 text-right text-navy">$392.31</td></tr>
+              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">1. Gross salary (OTE)</td><td className="px-4 py-3 text-warmgray">Base annual salary</td><td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(EX_SALARY)}</td></tr>
+              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">2. SG contribution</td><td className="px-4 py-3 text-warmgray">{formatAUD(EX_SALARY)} x {formatPercent(SUPER_GUARANTEE.rate, 0)}</td><td className="px-4 py-3 text-right font-bold text-navy">{formatAUD(EX_SUPER)}</td></tr>
+              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">3. Total package</td><td className="px-4 py-3 text-warmgray">{formatAUD(EX_SALARY)} + {formatAUD(EX_SUPER)}</td><td className="px-4 py-3 text-right font-bold text-navy">{formatAUD(EX_SALARY + EX_SUPER)}</td></tr>
+              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">4. Weekly super</td><td className="px-4 py-3 text-warmgray">{formatAUD(EX_SUPER)} / 52</td><td className="px-4 py-3 text-right text-navy">{formatAUD(annualToWeekly(EX_SUPER), 2)}</td></tr>
+              <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy">5. Fortnightly super</td><td className="px-4 py-3 text-warmgray">{formatAUD(EX_SUPER)} / 26</td><td className="px-4 py-3 text-right text-navy">{formatAUD(annualToFortnightly(EX_SUPER), 2)}</td></tr>
             </tbody>
           </table>
         </div>
-        <p className="text-sm text-warmgray">On an $85,000 salary, your employer contributes <strong>$10,200 per year</strong> into your super fund. This is not deducted from your take-home pay. Use our <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">Australian tax calculator</Link> to see your full net pay after income tax and Medicare levy deductions.</p>
+        <p className="text-sm text-warmgray">On an {formatAUD(EX_SALARY)} salary, your employer contributes <strong>{formatAUD(EX_SUPER)} per year</strong> into your super fund. This is not deducted from your take-home pay. Use our <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">Australian tax calculator</Link> to see your full net pay after income tax and Medicare levy deductions.</p>
       </section>
 
       {/* --- What Is the SG Rate for FY2026-27? --- */}
@@ -112,10 +127,10 @@ export function SuperannuationCalculatorIntro() {
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Superannuation Calculator?</h2>
         <p className="mb-4 text-warmgray">This superannuation calculator serves <strong>5 primary user groups</strong> across employment types, salary levels, and career stages.</p>
         <ul className="list-disc pl-6 space-y-3 text-warmgray">
-          <li><strong>Full-time employees</strong> comparing job offers: a $90,000 &quot;plus super&quot; package is worth <strong>$100,800</strong> total, while a $100,800 &quot;including super&quot; package provides only $90,000 in base salary.</li>
-          <li><strong>Casual and part-time workers</strong> verifying their employer pays the correct SG amount. Since 1 July 2022, all employees receive super regardless of monthly earnings.</li>
+          <li><strong>Full-time employees</strong> comparing job offers: a {formatAUD(90_000)} &quot;plus super&quot; package is worth <strong>{formatAUD(90_000 + calculateSuper(90_000))}</strong> total, while a {formatAUD(90_000 + calculateSuper(90_000))} &quot;including super&quot; package provides only {formatAUD(90_000)} in base salary.</li>
+          <li><strong>Casual and part-time workers</strong> verifying their employer pays the correct SG amount. Since 1 July 2022 there is no minimum monthly earnings threshold for super. If you are under 18, you get super only for a week in which you work more than 30 hours.</li>
           <li><strong>Salary sacrifice planners</strong> calculating how much concessional cap space remains after employer SG contributions. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> to model specific arrangements.</li>
-          <li><strong>Low-income earners</strong> checking the government top-up on their employer contributions. The <Link href="/listo-calculator/" className="text-eucalyptus-dark hover:underline font-medium">LISTO Calculator</Link> shows the low income super tax offset, $500 now and $810 from 1 July 2027.</li>
+          <li><strong>Low-income earners</strong> checking the government top-up on their employer contributions. The <Link href="/listo-calculator/" className="text-eucalyptus-dark hover:underline font-medium">LISTO Calculator</Link> shows the low income super tax offset: up to {formatAUD(LISTO_CURRENT.maxPayment)} now and up to {formatAUD(LISTO_2027_28.maxPayment)} from 1 July 2027.</li>
           <li><strong>Small business owners</strong> budgeting total employment costs including superannuation, payroll tax, and workers&apos; compensation. The <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer Cost Calculator</Link> provides a complete breakdown.</li>
           <li><strong>Pre-retirees aged 55-67</strong> confirming employer contributions are correct and working out how much concessional cap space is left for catch-up contributions before retirement.</li>
         </ul>
@@ -132,7 +147,7 @@ export function SuperannuationCalculatorIntro() {
       {/* --- What Counts as Ordinary Time Earnings --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Counts as Ordinary Time Earnings?</h2>
-        <p className="mb-4 text-warmgray">&quot;Ordinary Time Earnings&quot; (OTE) is the earnings base your employer uses to calculate the 12% SG contribution. The ATO defines OTE as the amount your employer pays you for your ordinary hours of work.</p>
+        <p className="mb-4 text-warmgray">&quot;Ordinary Time Earnings&quot; (OTE) is the earnings base your employer uses to calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution. The ATO defines OTE as the amount your employer pays you for your ordinary hours of work.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div><h3 className="font-semibold text-eucalyptus-dark mb-2">Included in OTE</h3>
             <ul className="list-disc pl-5 text-warmgray space-y-1"><li>Base salary and wages</li><li>Commissions</li><li>Shift loadings</li><li>Paid leave (annual, personal, long service)</li><li>Some allowances and bonuses</li></ul>
@@ -141,7 +156,7 @@ export function SuperannuationCalculatorIntro() {
             <ul className="list-disc pl-5 text-warmgray space-y-1"><li>Overtime payments</li><li>Unused leave on termination</li><li>Expense reimbursements</li><li>Workers compensation payments</li></ul>
           </div>
         </div>
-        <p className="mt-4 text-sm text-warmgray">What counts as OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base, which is <strong>$9,600</strong> in super, not $11,400. Enter your OTE, without overtime, as the Gross Annual Salary in the calculator above and compare the result with the super on your payslip.</p>
+        <p className="mt-4 text-sm text-warmgray">What counts as OTE directly affects how much super you receive. An employee earning $80,000 base salary plus $15,000 in overtime receives SG only on the $80,000 base, which is <strong>{formatAUD(calculateSuper(80_000))}</strong> in super, not {formatAUD(calculateSuper(95_000))}. Enter your OTE, without overtime, as the Gross Annual Salary in the calculator above and compare the result with the super on your payslip.</p>
       </section>
     </>
   );
@@ -169,7 +184,7 @@ export function SuperannuationCalculatorMiddle() {
           <table className="w-full text-sm">
             <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Cap Type</th><th className="px-4 py-3 text-right font-semibold text-navy">Annual Limit</th><th className="px-4 py-3 text-right font-semibold text-navy">Tax Rate</th></tr></thead>
             <tbody className="divide-y divide-gray-100">
-              <tr><td className="px-4 py-3 text-navy">Concessional (pre-tax)</td><td className="px-4 py-3 text-right text-navy">{formatAUD(SUPER_GUARANTEE.concessionalCap)}</td><td className="px-4 py-3 text-right text-navy">15%</td></tr>
+              <tr><td className="px-4 py-3 text-navy">Concessional (pre-tax)</td><td className="px-4 py-3 text-right text-navy">{formatAUD(SUPER_GUARANTEE.concessionalCap)}</td><td className="px-4 py-3 text-right text-navy">{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</td></tr>
               <tr><td className="px-4 py-3 text-navy">Non-concessional (after-tax)</td><td className="px-4 py-3 text-right text-navy">{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</td><td className="px-4 py-3 text-right text-navy">0%</td></tr>
             </tbody>
           </table>
@@ -199,13 +214,13 @@ export function SuperannuationCalculatorMiddle() {
       {/* --- Common Super Mistakes --- */}
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Superannuation Mistakes?</h2>
-        <p className="mb-4 text-warmgray">Australian employees lose an estimated <strong>$5.9 billion</strong> in unpaid and underpaid super each year. These 5 mistakes account for the majority of lost retirement savings.</p>
+        <p className="mb-4 text-warmgray">The ATO estimates the net super guarantee gap for 2022-23 at about <strong>$6.2 billion</strong>, or 6% of the super employers should have paid. Check your own super for these 5 mistakes.</p>
         <ol className="list-decimal pl-6 space-y-4 text-warmgray">
-          <li><strong>Not checking payslips against the 12% rate.</strong> Since Payday Super commenced on 1 July 2026 employers must pay SG every payday, and the money must reach your fund within 7 business days. A missing contribution is now visible within a fortnight rather than a quarter. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong>.</li>
-          <li><strong>Confusing &quot;plus super&quot; with &quot;including super&quot; in job offers.</strong> A $100,000 &quot;plus super&quot; role provides $100,000 salary and $12,000 super ($112,000 total). A $100,000 &quot;including super&quot; role provides $89,286 salary and $10,714 super. The difference in base pay is <strong>$10,714</strong>.</li>
-          <li><strong>Exceeding the concessional cap.</strong> Employer SG plus salary sacrifice contributions that exceed the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap are taxed at your marginal rate instead of 15%. On a $150,000 salary, the employer already contributes {formatAUD(calculateSuper(150_000))} in SG, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - calculateSuper(150_000))} in cap space for salary sacrifice.</li>
-          <li><strong>Holding multiple super accounts.</strong> The average Australian has <strong>1.4 super accounts</strong>. Duplicate accounts mean duplicate insurance premiums and administration fees that erode retirement balances. Consolidate via myGov or contact your fund directly.</li>
-          <li><strong>Ignoring &quot;Division 293&quot; tax.</strong> Employees with combined income and concessional contributions above <strong>$250,000</strong> pay an additional 15% tax on concessional super contributions (30% total). High earners must factor this into salary sacrifice planning.</li>
+          <li><strong>Not checking payslips against the {formatPercent(SUPER_GUARANTEE.rate, 0)} rate.</strong> Since Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart} employers must pay SG every payday, and the money must reach your fund within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days. A missing contribution is now visible within a fortnight rather than a quarter. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong>.</li>
+          <li><strong>Confusing &quot;plus super&quot; with &quot;including super&quot; in job offers.</strong> A {formatAUD(INCL_PACKAGE)} &quot;plus super&quot; role provides {formatAUD(INCL_PACKAGE)} salary and {formatAUD(calculateSuper(INCL_PACKAGE))} super ({formatAUD(INCL_PACKAGE + calculateSuper(INCL_PACKAGE))} total). A {formatAUD(INCL_PACKAGE)} &quot;including super&quot; role provides {formatAUD(INCL_BASE)} salary and {formatAUD(INCL_SUPER)} super. The difference in base pay is <strong>{formatAUD(INCL_PACKAGE - INCL_BASE)}</strong>.</li>
+          <li><strong>Exceeding the concessional cap.</strong> Employer SG plus salary sacrifice contributions that exceed the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap are taxed at your marginal rate instead of {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}. On a $150,000 salary, the employer already contributes {formatAUD(calculateSuper(150_000))} in SG, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - calculateSuper(150_000))} in cap space for salary sacrifice.</li>
+          <li><strong>Holding multiple super accounts.</strong> At 30 June 2026, around <strong>4 million people</strong> held 2 or more super accounts (ATO). Duplicate accounts mean duplicate insurance premiums and administration fees that erode retirement balances. Consolidate via myGov or contact your fund directly.</li>
+          <li><strong>Ignoring &quot;Division 293&quot; tax.</strong> If your income plus concessional contributions is more than <strong>{formatAUD(DIVISION_293.threshold)}</strong>, you pay an extra {formatPercent(DIVISION_293.rate, 0)} tax on the excess over that threshold or on your concessional contributions, whichever is less ({formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} in total on that part). High earners must factor this into salary sacrifice planning.</li>
         </ol>
       </section>
     </>

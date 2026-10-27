@@ -14,6 +14,7 @@ import {
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+import { ZONE_QUALIFYING_DAYS } from "@/lib/constants/zone-tax-offset";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
@@ -95,17 +96,19 @@ export default function PayCalculatorWAPage() {
             <H2>How much of a WA salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
               Income tax is federal, so a Perth payslip is taxed exactly like a Hobart one. The
-              difference is that WA salaries are bigger, which pushes more of them into the 37% bracket.
+              difference is that WA salaries are bigger.
               The worked example below uses {formatAUD(typicalSalary(PROFILE))}, the average full-time
               ordinary time wage in Western Australia.
             </p>
             <WorkedExample profile={PROFILE} />
             <p className="text-sm text-warmgray">
-              If you work in the Pilbara, the Kimberley or the Goldfields, you may also be entitled to
-              the federal{" "}
+              If your usual place of residence is in a zone area, such as parts of the Pilbara, the
+              Kimberley or the Goldfields, for {ZONE_QUALIFYING_DAYS} days or more in the income year,
+              you can also claim the federal{" "}
               <Link href="/zone-tax-offset/" className="text-eucalyptus-dark hover:underline">zone tax offset</Link>, which the
-              calculator above does not apply because it depends on your specific locality. It reduces
-              tax payable rather than income, so it lands at tax time.
+              calculator above does not apply because it depends on your specific locality. Working in a
+              zone is not enough: a fly-in fly-out worker whose usual home is outside the zone cannot
+              claim it. It reduces tax payable rather than income, so it lands at tax time.
             </p>
           </section>
 
@@ -148,9 +151,10 @@ export default function PayCalculatorWAPage() {
           <section>
             <H2>Long service leave in Western Australia</H2>
             <p className="mb-4 text-warmgray">
-              WA is the most generous state at the exit. Under the {PROFILE.longServiceLeave.act}, a
-              payment can be owed after 7 years of continuous employment when the job ends (including
-              by plain resignation), even though the leave itself cannot be taken until 10 years.
+              Under the {PROFILE.longServiceLeave.act}, a payment can be owed after{" "}
+              {PROFILE.longServiceLeave.proRataOnEndingYears} years of continuous employment when the job
+              ends (including by plain resignation), even though the leave itself cannot be taken until{" "}
+              {PROFILE.longServiceLeave.takeAfterYears} years.
               Full-time, part-time, casual and seasonal employees are all covered.
             </p>
             <LongServiceLeaveBlock profile={PROFILE} />
@@ -182,9 +186,11 @@ export default function PayCalculatorWAPage() {
               own state minimum wage, not the national minimum wage.
             </p>
             <p className="text-sm text-warmgray">
-              If your employer is a Pty Ltd company, you are in the national system and the{" "}
+              If your employer is a Pty Ltd company that is a trading or financial corporation, you are
+              in the national system and the{" "}
               <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">federal award rates</Link> apply. If it is a
-              sole trader or a partnership, check the WA state award instead, as its base rate and penalty
+              sole trader, a partnership of individuals or a non-trading corporation, check the WA state
+              award instead, as its base rate and penalty
               rates can differ from the federal award.
             </p>
           </section>

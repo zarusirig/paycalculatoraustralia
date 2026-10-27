@@ -1,0 +1,168 @@
+{
+ "name": "ff-085-modern-award-content",
+ "files": [
+  "modules/guide/modern-award-content.ts",
+  "modules/guide/net-pay-calculator-faqs.ts",
+  "modules/guide/new-job-checklist-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/modern-award-content.ts:349",
+   "file": "modules/guide/modern-award-content.ts",
+   "line": "349",
+   "page": "https://pay-calculator-australia.com/restaurant-award-rates/",
+   "claims": [
+    "Weeknight work after 10.00 pm is ${$(2.95)} an hour extra until midnight and ${$(4.42)} an hour extra after midnight."
+   ],
+   "whys": [
+    "The two flat amounts are typed into the page copy as literals, not read from the award data. They match the constants today, but the 1 July rate update will not reach this sentence. The constants set them as 10% and 15% of the Level 4 standard hourly rate, so they change every year."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts lines 1010-1011 (MODERN_AWARDS.restaurant penalties[].flatPerHour)"
+   ],
+   "reviewerNotes": [
+    "The restaurant weeknight flat amounts $(2.95) and $(4.42) are typed as literals instead of being read from MODERN_AWARDS.restaurant penalties[].flatPerHour (lib/constants/modern-awards.ts lines 1010-1011). The writer's factQuestion is valid."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.82,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content.ts:612",
+   "file": "modules/guide/modern-award-content.ts",
+   "line": "612",
+   "page": "/road-transport-award-rates/",
+   "claims": [
+    "Dangerous goods allowance \"$25.07 a day\" (bulk or explosives) and \"$10.47 a day\" (placarded packaged goods)"
+   ],
+   "whys": [
+    "These are typed literals, not read from the award data. Check that they are the 1 July 2026 figures and move them into data."
+   ],
+   "constants": [
+    "MODERN_AWARDS[\"road-transport\"].allowances (Dangerous goods)"
+   ],
+   "reviewerNotes": [
+    "Writer factQuestion confirmed. On /road-transport-award-rates/, the dangerous goods allowances of $25.07 and $10.47 a day are typed literals, not read from MODERN_AWARDS['road-transport'].allowances."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content.ts:566",
+   "file": "modules/guide/modern-award-content.ts",
+   "line": "566",
+   "page": "/cleaning-award-rates/",
+   "claims": [
+    "Toilet cleaning allowance \"$18.17 a week\", broken shift allowance \"$4.71 a day\", leading hand allowance \"from $61.73 a week\""
+   ],
+   "whys": [
+    "These are typed literals, not read from a.allowances like the per-shift toilet figure in the same sentence. They will not update with the 1 July 2026 Annual Wage Review and need checking against the current Cleaning Services Award pay guide."
+   ],
+   "constants": [
+    "MODERN_AWARDS.cleaning.allowances (Toilet weekly, Broken shift, Leading hand)"
+   ],
+   "reviewerNotes": [
+    "Writer factQuestion confirmed. On /cleaning-award-rates/, $18.17 a week (toilet), $4.71 a day (broken shift) and $61.73 a week (leading hand) are typed literals, not read from MODERN_AWARDS.cleaning.allowances. Check them against the pay guide from 1 July 2026."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content.ts:472",
+   "file": "modules/guide/modern-award-content.ts",
+   "line": "472",
+   "page": "/aged-care-award-rates/",
+   "claims": [
+    "\"An afternoon shift starting between 10.00 am and 1.00 pm is paid an extra 10%\""
+   ],
+   "whys": [
+    "The start-time windows for the aged care shift allowances (10.00 am to 1.00 pm afternoon, 4.00 am to 6.00 am at 10%) are typed prose. They look unusual and should be checked against the Aged Care Award shift allowance clause. The 10/12.5/15/10% figures are also typed literals, not data."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/net-pay-calculator-faqs.ts:29",
+   "file": "modules/guide/net-pay-calculator-faqs.ts",
+   "line": "29",
+   "page": "/net-pay-calculator/",
+   "claims": [
+    "On $40 an hour for 38 hours a week you keep about 80c in the dollar (about $32 an hour); at $80 an hour you keep about 73c."
+   ],
+   "whys": [
+    "I checked these figures against 2026-27 rates and they are correct now. But they are hard-coded in the FAQ, while the page body works out the same figures with netPay(). They will be wrong after the next tax change. Line 21 also hard-codes 47% where the page uses NO_TFN_RATES.resident."
+   ],
+   "constants": [
+    "lib/constants/net-pay.ts netPay() and NO_TFN_RATES in lib/constants/payg-withholding.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist-faqs.ts:19",
+   "file": "modules/guide/new-job-checklist-faqs.ts",
+   "line": "19",
+   "page": "/new-job-checklist/",
+   "claims": [
+    "Use your existing fund, or switch to the employer's default if it has lower fees.",
+    "In most cases, use your existing fund ... If the employer's default fund has significantly lower fees, it may be worth switching."
+   ],
+   "whys": [
+    "The answer leaves out super stapling (in force since 1 November 2021). If a new employee makes no choice, the employer must ask the ATO for the employee's stapled fund before it can use its default fund. So the either/or framing is incomplete.",
+    "'In most cases' is a population or advice claim with no source. Recommending a super fund also sits close to financial product advice. The answer should be checked together with the stapling gap the writer flagged."
+   ],
+   "constants": [
+    "lib/constants (super choice and stapling rule, ATO source)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist-faqs.ts:35",
+   "file": "modules/guide/new-job-checklist-faqs.ts",
+   "line": "35",
+   "page": "/new-job-checklist/",
+   "claims": [
+    "On your TFN Declaration, tick \"Yes\" if you have a HELP, VSL, SFSS, or TSL debt."
+   ],
+   "whys": [
+    "The current ATO TFN declaration lists HELP, VSL, FS (Financial Supplement), SSL (Student Start-up Loan) and TSL. 'SFSS' is the old name, and SSL is missing from the list."
+   ],
+   "constants": [
+    "HECS_HELP in lib/constants (study-loan list for the TFN declaration)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.59,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist-faqs.ts:31",
+   "file": "modules/guide/new-job-checklist-faqs.ts",
+   "line": "31",
+   "page": "/new-job-checklist/",
+   "claims": [
+    "The only difference during probation is that the notice period for termination is typically shorter (usually 1 week)."
+   ],
+   "whys": [
+    "The NES notice period depends on length of service (1 week under 1 year), not on probation. The main legal effect of probation is the unfair dismissal minimum employment period (6 months, or 12 months for a small business). 'The only difference' looks wrong."
+   ],
+   "constants": [
+    "lib/constants (NES notice periods and unfair dismissal minimum employment period, FWO source)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.79,
+   "needsOwner": false
+  }
+ ]
+}

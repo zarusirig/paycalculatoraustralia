@@ -1,7 +1,8 @@
 // FAQ copy for /award-rates/, shared by the rendered accordion and the
 // FAQPage JSON-LD in app/award-rates/page.tsx. Figures come from constants.
 
-import { EMPLOYMENT, SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, formatAUD } from "@/lib/constants";
+import { PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
 import { AWR_2026_FLOORS, RETAIL_PENALTIES, RETAIL_RATES } from "@/lib/constants/hospitality-award";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import { SECURITY_AWARD } from "@/lib/constants/modern-awards";
@@ -36,7 +37,7 @@ export const AWARD_HUB_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Do junior employees get lower award rates?",
-    a: "Junior employees get lower rates in many awards, paid as a percentage of the adult rate, but the scales differ. Hospitality reaches the adult rate at 20; retail, fast food, pharmacy and clerks at 21. The Security and SCHADS awards have no junior rates, so a young employee gets the full adult rate. From 1 December 2026 retail, fast food and pharmacy rates for 18 to 20 year olds with more than 6 months' service begin rising towards the adult rate.",
+    a: `Junior employees get lower rates in many awards, paid as a percentage of the adult rate, but the scales differ. Hospitality reaches the adult rate at 20; retail, fast food, pharmacy and clerks at 21, except that a retail 20 year old at levels 1 to 3 with more than 6 months' service already gets the adult rate. The Security and SCHADS awards have no junior rates, so a young employee gets the full adult rate. From the first full pay period starting on or after ${PENDING_JUNIOR_CHANGE.earliestStart}, junior rates for employees with ${PENDING_JUNIOR_CHANGE.serviceQualifier} begin rising towards the adult rate: 18 and 19 year olds in retail, and 18 to 20 year olds in fast food and pharmacy.`,
   },
   {
     q: "Are penalty rates the same in every award?",
@@ -48,6 +49,6 @@ export const AWARD_HUB_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Is superannuation included in award rates?",
-    a: "No. The 12% superannuation guarantee is paid by the employer on top of award wages. From 1 July 2026 it must be paid with each pay rather than quarterly.",
+    a: `No. The ${Math.round(SUPER_GUARANTEE.rate * 100)}% superannuation guarantee is paid by the employer on top of award wages. From ${SUPER_GUARANTEE.paydaySuperStart} (Payday Super) it is due each payday rather than quarterly, and it must reach the employee's fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of payday (${SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for a new employee's first contribution, or the first contribution to a new fund).`,
   },
 ];

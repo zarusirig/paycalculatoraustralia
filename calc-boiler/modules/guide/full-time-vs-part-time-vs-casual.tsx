@@ -6,17 +6,32 @@ import { EMPLOYMENT_TYPE_GUIDE_FAQS } from "./full-time-vs-part-time-vs-casual-f
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
 import { EMPLOYMENT } from "@/lib/constants/australian-tax";
+import { COMPASSIONATE_LEAVE } from "@/lib/constants/compassionate-leave";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
+
+const LOADING = formatPercent(EMPLOYMENT.casualLoading, 0);
+const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
+
+// Cost example: $30/hour base rate at full-time hours. Every figure comes from
+// EMPLOYMENT, so the table follows the casual loading and leave constants.
+const EX_BASE = 30;
+const EX_HOURS = EMPLOYMENT.standardWeeklyHours;
+const EX_CASUAL = EX_BASE * (1 + EMPLOYMENT.casualLoading);
+const EX_FT_ANNUAL = EX_BASE * EX_HOURS * EMPLOYMENT.weeksPerYear;
+const EX_CASUAL_ANNUAL = EX_CASUAL * EX_HOURS * EMPLOYMENT.weeksPerYear;
+const EX_ANNUAL_LEAVE = EX_BASE * EX_HOURS * EMPLOYMENT.annualLeaveWeeks;
+const EX_PERSONAL_LEAVE = EX_BASE * (EX_HOURS / 5) * EMPLOYMENT.personalLeaveDays;
+const EX_CASUAL_LOST = EX_CASUAL * EX_HOURS * EMPLOYMENT.annualLeaveWeeks;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Types of employees", url: "https://www.fairwork.gov.au/starting-employment/types-of-employees", publisher: SOURCES.fwo.name },
   { title: "Casual employees", url: "https://www.fairwork.gov.au/starting-employment/types-of-employees/casual-employees", publisher: SOURCES.fwo.name },
   { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwo.name },
-  { title: "Fair Work Act 2009", url: "https://www.legislation.gov.au/Details/C2024C00311", publisher: "Federal Register of Legislation" },
+  { title: "Fair Work Act 2009", url: "https://www.legislation.gov.au/C2009A00028/latest/text", publisher: "Federal Register of Legislation" },
 ];
 
 export default function FullTimeVsPartTimeVsCasualPage() {
@@ -102,13 +117,13 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                         <td className="px-4 py-3 font-semibold bg-sandstone">Casual loading</td>
                         <td className="px-4 py-3 border-l text-center">N/A</td>
                         <td className="px-4 py-3 border-l text-center">N/A</td>
-                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark">25%</td>
+                        <td className="px-4 py-3 border-l text-center font-bold text-eucalyptus-dark">{LOADING}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">Superannuation (SG)</td>
-                        <td className="px-4 py-3 border-l text-center">12%</td>
-                        <td className="px-4 py-3 border-l text-center">12%</td>
-                        <td className="px-4 py-3 border-l text-center">12%</td>
+                        <td className="px-4 py-3 border-l text-center">{SG}</td>
+                        <td className="px-4 py-3 border-l text-center">{SG}</td>
+                        <td className="px-4 py-3 border-l text-center">{SG}</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold bg-sandstone">Overtime access</td>
@@ -154,7 +169,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>12 months</strong> unpaid parental leave (plus the right to request an additional 12 months)</li>
                 <li>Notice of termination of <strong>1 to 5 weeks</strong> depending on length of service (plus 1 extra week if over 45 and employed 2+ years)</li>
                 <li>Redundancy pay of <strong>4 to 16 weeks</strong> pay depending on years of service</li>
-                <li><strong>12%</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
+                <li><strong>{SG}</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Workers seeking maximum job security, full leave entitlements and predictable income. Full-time work suits anyone with a fixed financial commitment such as a mortgage.
@@ -169,13 +184,13 @@ export default function FullTimeVsPartTimeVsCasualPage() {
               </p>
               <ul>
                 <li>Guaranteed minimum hours agreed in the employment contract</li>
-                <li>All NES leave entitlements calculated pro-rata (e.g., a 20-hour/week employee receives 2 weeks equivalent paid annual leave)</li>
+                <li>Paid annual leave and paid personal/carer&apos;s leave calculated pro-rata on ordinary hours (a 20-hour/week employee gets {EMPLOYMENT.annualLeaveWeeks} weeks of paid annual leave at 20 hours a week, which is {EMPLOYMENT.annualLeaveWeeks * 20} hours a year). Compassionate leave is not pro-rata: it is the full {COMPASSIONATE_LEAVE.daysPerOccasion} days paid per occasion.</li>
                 <li>Same notice of termination and redundancy pay rights as full-time</li>
                 <li>Overtime rates apply when working <strong>beyond agreed hours</strong> (not just beyond 38 hours), depending on the applicable award</li>
-                <li><strong>12%</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
+                <li><strong>{SG}</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Workers who want stability and leave entitlements but need a schedule that accommodates study, caring responsibilities, or a second job. Parents returning from parental leave often transition to part-time.
+                <strong>Best for:</strong> Workers who want stability and leave entitlements but need a schedule that accommodates study, caring responsibilities, or a second job. A parent returning from parental leave can request part-time hours (see Changing Employment Type below).
               </p>
             </section>
 
@@ -183,18 +198,18 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             <section id="casual">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Employment</h2>
               <p>
-                Casual employees have <strong>no firm advance commitment</strong> to continuing and indefinite work according to an agreed pattern. In return, they receive a <strong>25% casual loading</strong> on top of the base hourly rate to compensate for the absence of paid leave and other entitlements.
+                Casual employees have <strong>no firm advance commitment</strong> to continuing and indefinite work according to an agreed pattern. In return, they receive a <strong>{LOADING} casual loading</strong> on top of the base hourly rate to compensate for the absence of paid leave and other entitlements.
               </p>
               <ul>
-                <li><strong>25% loading</strong> on the applicable base rate (this compensates for no annual leave, personal leave, notice period, or redundancy pay)</li>
+                <li><strong>{LOADING} loading</strong> on the applicable base rate (this compensates for no annual leave, personal leave, notice period, or redundancy pay)</li>
                 <li><strong>2 days unpaid</strong> carer&apos;s leave per occasion and 2 days unpaid compassionate leave</li>
                 <li>No notice period required from either party to end the engagement</li>
                 <li>Minimum engagement per shift of <strong>2 to 4 hours</strong> depending on the award</li>
-                <li><strong>12%</strong> Super Guarantee on qualifying earnings (no minimum earnings threshold since 1 July 2022)</li>
+                <li><strong>{SG}</strong> Super Guarantee on qualifying earnings (no minimum earnings threshold since 1 July 2022). A casual under 18 gets it only for a week in which they work more than 30 hours.</li>
                 <li><strong>Casual conversion right:</strong> After 6 months of employment (12 months with a small business employer), a casual who believes they no longer fit the casual definition can notify their employer in writing that they want to become full-time or part-time. Since 26 August 2024 employers are no longer required to offer conversion.</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Workers who prioritise flexibility over stability, such as students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation. For what the loading is worth in dollars in the largest casual workforce, see the <Link href="/retail-award-rates/">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link>.
+                <strong>Best for:</strong> Workers who prioritise flexibility over stability, such as students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation. For what the loading is worth in dollars for retail workers, see the <Link href="/retail-award-rates/">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link>.
               </p>
             </section>
 
@@ -202,7 +217,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             <section id="cost-comparison">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Real Cost Comparison</h2>
               <p>
-                The 25% casual loading lifts the hourly rate, but casuals get no paid annual leave or personal leave, so part of that extra pay covers their time off. For a worker earning <strong>$30/hour base rate</strong> working 38 hours per week:
+                The {LOADING} casual loading lifts the hourly rate, but casuals get no paid annual leave or personal leave, so part of that extra pay covers their time off. For a worker earning <strong>{formatAUD(EX_BASE)}/hour base rate</strong> working {EX_HOURS} hours per week:
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -211,39 +226,39 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                       <tr>
                         <th className="px-6 py-4">Component</th>
                         <th className="px-6 py-4 border-l text-right">Full-Time/Part-Time</th>
-                        <th className="px-6 py-4 border-l text-right">Casual (25% loading)</th>
+                        <th className="px-6 py-4 border-l text-right">Casual ({LOADING} loading)</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Hourly rate</td>
-                        <td className="px-6 py-4 border-l text-right">$30.00</td>
-                        <td className="px-6 py-4 border-l text-right">$37.50</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_BASE, 2)}</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_CASUAL, 2)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Gross annual pay (38 hrs x 52 wks)</td>
-                        <td className="px-6 py-4 border-l text-right">$59,280</td>
-                        <td className="px-6 py-4 border-l text-right">$74,100</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_FT_ANNUAL)}</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_CASUAL_ANNUAL)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Paid annual leave value (4 wks)</td>
-                        <td className="px-6 py-4 border-l text-right">$4,560 (included)</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_ANNUAL_LEAVE)} (included)</td>
                         <td className="px-6 py-4 border-l text-right">$0 (unpaid)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Paid personal leave value (10 days)</td>
-                        <td className="px-6 py-4 border-l text-right">$2,280 (included)</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_PERSONAL_LEAVE)} (included)</td>
                         <td className="px-6 py-4 border-l text-right">$0 (unpaid)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Casual takes 4 wks off (lost income)</td>
                         <td className="px-6 py-4 border-l text-right">&mdash;</td>
-                        <td className="px-6 py-4 border-l text-right">&minus;$5,700</td>
+                        <td className="px-6 py-4 border-l text-right">&minus;{formatAUD(EX_CASUAL_LOST)}</td>
                       </tr>
                       <tr className="bg-sandstone/50 font-semibold">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Effective annual value (if casual takes leave)</td>
-                        <td className="px-6 py-4 border-l text-right">$59,280</td>
-                        <td className="px-6 py-4 border-l text-right">$68,400</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_FT_ANNUAL)}</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(EX_CASUAL_ANNUAL - EX_CASUAL_LOST)}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -271,11 +286,11 @@ export default function FullTimeVsPartTimeVsCasualPage() {
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Requesting Part-Time After Parental Leave</h3>
               <p>
-                Under the NES, an employee returning from parental leave can request a change to part-time hours. The employer can only refuse on &ldquo;reasonable business grounds&rdquo; and must discuss the request in good faith. This right extends until the child reaches school age (or 18 for a child with a disability).
+                Under the NES, an employee returning from parental leave can request a change to part-time hours. The employer can only refuse on &ldquo;reasonable business grounds&rdquo; and must discuss the request in good faith. The employee needs at least 12 months of service with the employer, and the employer must reply in writing within 21 days. The parent category covers a child who is school age or younger. A carer under the <em>Carer Recognition Act 2010</em> is a separate category.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full-Time to Part-Time</h3>
               <p>
-                There is no automatic right to reduce hours, but many Modern Awards and Enterprise Agreements include provisions for flexible working arrangements. Employees with 12 months&apos; service can request flexible arrangements under the NES if they are a parent, carer, over 55, experiencing domestic violence, or have a disability.
+                There is no automatic right to reduce hours. Under the NES, full-time and part-time employees with at least 12 months&apos; service can request flexible working arrangements, such as fewer hours, if they: are the parent of, or care for, a child who is school age or younger; are a carer under the <em>Carer Recognition Act 2010</em>; have a disability; are 55 or older; are pregnant; are experiencing family and domestic violence; or care for or support an immediate family or household member who is experiencing family and domestic violence. A casual who meets one of these criteria can also request, after at least 12 months of regular and systematic work with a reasonable expectation that it will continue.
               </p>
             </section>
 
@@ -287,7 +302,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Employment type comparisons on this page are based on the Fair Work Act 2009 (as amended), the National Employment Standards, and general Modern Award conditions. Specific entitlements may vary under individual Awards or Enterprise Agreements. Financial comparisons assume a 38-hour week and standard casual loading of 25%.</p>
+                <p>Employment type comparisons on this page are based on the Fair Work Act 2009 (as amended), the National Employment Standards, and general Modern Award conditions. Specific entitlements may vary under individual Awards or Enterprise Agreements. Financial comparisons assume a {EX_HOURS}-hour week and standard casual loading of {LOADING}.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("full-time-vs-part-time-vs-casual"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

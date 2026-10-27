@@ -346,7 +346,7 @@ function restaurant(): AwardPageCopy {
     directAnswer: `A Level 1 restaurant employee (food and beverage or kitchen attendant grade 1) earns at least ${$(l1.hourly)} an hour, or ${$(casual(a, l1.hourly))} as a casual. A qualified cook (grade 3, Level 4) earns ${$(l4.hourly)} and a chef de partie (Level 6) ${$(l6.hourly)}. Saturday is 125% (casuals 150%) and Sunday 150%, but a casual on Levels 3 to 6 gets 175% on Sunday while a casual on Levels 1 and 2 gets 150%.`,
     trap: {
       heading: "Casual Sunday rates split by level, and late nights are a flat dollar amount",
-      body: `A casual at Introductory Level, Level 1 or Level 2 is paid 150% on a Sunday (${$(roundCents(l1.hourly * 1.5))} at Level 1, the same as a full-timer), while a casual at Level 3 and above gets 175% (${$(roundCents(l3.hourly * 1.75))} at Level 3). Weeknight work after 10.00 pm is not a percentage: it is ${$(2.95)} an hour extra until midnight and ${$(4.42)} an hour extra after midnight. The restaurant award adult rate also applies from age 20, not 21.`,
+      body: `A casual at Introductory Level, Level 1 or Level 2 is paid 150% on a Sunday (${$(roundCents(l1.hourly * 1.5))} at Level 1, the same as a full-timer), while a casual at Level 3 and above gets 175% (${$(roundCents(l3.hourly * 1.75))} at Level 3). Weeknight work after 10.00 pm is not a percentage: it is ${$(a.penalties.find((p) => p.label.startsWith("Monday to Friday — 10.00 pm"))!.flatPerHour!)} an hour extra until midnight and ${$(a.penalties.find((p) => p.label.startsWith("Monday to Friday — midnight"))!.flatPerHour!)} an hour extra after midnight. The restaurant award adult rate also applies from age 20, not 21.`,
     },
     faqs: [
       ...commonFaqs(a),
@@ -563,7 +563,7 @@ function cleaning(): AwardPageCopy {
       },
       {
         q: "Is there a toilet cleaning allowance?",
-        a: `Yes. A cleaner employed for the major part of a shift to clean toilets is paid ${$(a.allowances.find((x) => x.name.startsWith("Toilet"))!.amount)} a shift or $18.17 a week. Other allowances include a broken shift allowance of $4.71 a day and a leading hand allowance from $61.73 a week.`,
+        a: `Yes. A cleaner employed for the major part of a shift to clean toilets is paid ${$(a.allowances.find((x) => x.name.startsWith("Toilet"))!.amount)} a shift or $18.17 a week. Other allowances include a broken shift allowance of ${$(a.allowances.find((x) => x.name.startsWith("Broken shift"))!.amount)} a day and a leading hand allowance from ${$(a.allowances.find((x) => x.name.startsWith("Leading hand"))!.amount)} a week.`,
       },
       {
         q: "Do junior cleaners get paid less?",
@@ -609,7 +609,7 @@ function roadTransport(): AwardPageCopy {
       },
       {
         q: "Is there a dangerous goods allowance?",
-        a: "Yes. A driver carrying bulk dangerous goods or explosives by public road is paid $25.07 a day, and one carrying packaged dangerous goods that require placards $10.47 a day. The employer must also reimburse training and medical costs for a dangerous goods licence.",
+        a: `Yes. A driver carrying bulk dangerous goods or explosives by public road is paid ${$(a.allowances.find((x) => x.name.startsWith("Bulk dangerous goods"))!.amount)} a day, and one carrying packaged dangerous goods that require placards ${$(a.allowances.find((x) => x.name.startsWith("Packaged dangerous goods"))!.amount)} a day. Where a weekly employee must hold a dangerous goods licence, the employer must reimburse the training and medical costs.`,
       },
     ],
   };

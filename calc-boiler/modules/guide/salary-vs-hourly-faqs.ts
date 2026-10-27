@@ -3,19 +3,17 @@
 // structured data cannot drift from the page. Rates come from lib/constants.
 
 import { EMPLOYMENT, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import { HIGH_INCOME_THRESHOLD } from "@/lib/constants/ote-salary";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const EX_SALARY = 75_000;
 const EX_HOURLY = EX_SALARY / EMPLOYMENT.weeksPerYear / EMPLOYMENT.standardWeeklyHours;
-// Fair Work high income threshold from 1 July 2026 (fwc.gov.au/high-income-threshold).
-// No lib/constants entry exists yet; indexed each 1 July.
-const HIGH_INCOME_THRESHOLD = { amount: 190_100, from: "1 July 2026" } as const;
 
 export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   {
     q: "Is salary or hourly pay better in Australia?",
-    a: "Neither salary nor hourly pay is better for everyone in Australia. Salary provides income stability, paid leave and predictable budgeting, which suits employees who value consistency. An hourly rate pays you for every hour worked, including overtime and penalty rates, which suits workers in industries with regular overtime. Our view: choose on your industry, role and financial priorities, because those decide whether steady pay or paid overtime is worth more to you.",
+    a: "Neither salary nor hourly pay is better for everyone in Australia. A salary pays you the same amount each pay cycle, which makes budgeting predictable and suits employees who value consistency. Paid leave is not a salary advantage: permanent (full-time or part-time) hourly employees get the same paid leave under the National Employment Standards as salaried employees, and casuals don't get most types of paid leave. An hourly rate pays you for every hour worked, including overtime and penalty rates, which suits workers in industries with regular overtime. Our view: choose on your industry, role and financial priorities, because those decide whether steady pay or paid overtime is worth more to you.",
   },
   {
     q: "How do I convert my salary to an hourly rate?",
@@ -24,7 +22,7 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do salaried employees get overtime in Australia?",
-    a: `Whether a salaried employee gets overtime depends on their award or enterprise agreement. Many salaried employees have "reasonable additional hours" clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (${formatAUD(HIGH_INCOME_THRESHOLD.amount)} from ${HIGH_INCOME_THRESHOLD.from}, indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.`,
+    a: `Whether a salaried employee gets overtime depends on their award or enterprise agreement. Under the National Employment Standards, your employer can ask a full-time employee to work reasonable additional hours beyond ${EMPLOYMENT.standardWeeklyHours} a week. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (${formatAUD(HIGH_INCOME_THRESHOLD.current)} from ${HIGH_INCOME_THRESHOLD.from}, indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.`,
   },
   {
     q: "Is casual hourly pay higher than salary?",
@@ -32,7 +30,7 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do hourly workers get superannuation?",
-    a: `Yes. All employees (salaried, hourly permanent, and hourly casual) receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on qualifying earnings, which for most people means ordinary time earnings (OTE). There is no minimum earnings threshold. OTE includes base rate, shift loadings, and casual loading, but generally excludes overtime.`,
+    a: `Yes. Employees aged 18 or over (salaried, hourly permanent and hourly casual) receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on qualifying earnings, whatever their hours. Employees under 18, and workers paid for private or domestic work such as a nanny, receive it only for a week in which they work more than 30 hours. There is no minimum earnings threshold. Qualifying earnings are built on ordinary time earnings (OTE), which include base rate, shift loadings and casual loading. Overtime is excluded when your ordinary hours are clearly set in an award or agreement.`,
   },
   {
     q: "Which is better for getting a mortgage?",

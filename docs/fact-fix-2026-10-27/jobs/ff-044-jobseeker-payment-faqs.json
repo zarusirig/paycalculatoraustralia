@@ -1,0 +1,66 @@
+{
+ "name": "ff-044-jobseeker-payment-faqs",
+ "files": [
+  "modules/calculator/jobseeker-payment-faqs.ts",
+  "modules/calculator/jury-duty-pay-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/jobseeker-payment-faqs.ts:45",
+   "file": "modules/calculator/jobseeker-payment-faqs.ts",
+   "line": "45",
+   "page": "https://pay-calculator-australia.com/jobseeker-payment-calculator/",
+   "claims": [
+    "${formatAUD(53)} on the first band plus ${formatAUD(0.6 * 344)} at 60 cents"
+   ],
+   "whys": [
+    "The figures are correct today ((256-150) x 0.5 = 53, 600-256 = 344), but they are typed into the code and not worked out from T.freeArea and T.band1End. If the thresholds change, this answer will be wrong while the rest of the page updates."
+   ],
+   "constants": [
+    "JOBSEEKER_INCOME_TEST.freeArea / band1End / taper1"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.49,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/jobseeker-payment-faqs.ts:37",
+   "file": "modules/calculator/jobseeker-payment-faqs.ts",
+   "line": "37",
+   "page": "https://pay-calculator-australia.com/jobseeker-payment-calculator/",
+   "claims": [
+    "the allowance income test (the $150 free area and 50c/60c tapers); many people still call it the JobSeeker allowance"
+   ],
+   "whys": [
+    "$150 is typed into the prose, not taken from T.freeArea. 'Many people' is a population claim and the page cites no source for it."
+   ],
+   "constants": [
+    "JOBSEEKER_INCOME_TEST.freeArea"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/jury-duty-pay-calculator.tsx:71",
+   "file": "modules/calculator/jury-duty-pay-calculator.tsx",
+   "line": "71",
+   "page": "https://pay-calculator-australia.com/jury-duty-pay/",
+   "claims": [
+    "you aren't entitled to employer pay for the first 10 days (and line 76: up to 10 days)"
+   ],
+   "whys": [
+    "'10' is typed into the text in two notes, while line 73 uses JURY_DUTY_PAID_DAYS. They should come from the same constant."
+   ],
+   "constants": [
+    "lib/constants/jury-duty.ts JURY_DUTY_PAID_DAYS"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.68,
+   "needsOwner": false
+  }
+ ]
+}

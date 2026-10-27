@@ -13,7 +13,10 @@ import {
   MEDICARE_LEVY,
   GENERAL_INTEREST_CHARGE,
   PAYDAY_SUPER_CAP_RELIEF,
+  TAX_BRACKETS,
   TAX_BRACKETS_2025_26,
+  LITO,
+  EMPLOYMENT,
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
@@ -21,6 +24,9 @@ import {
 } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import { CGT_REFORM_2027 } from "@/lib/constants/capital-gains-tax";
+import { CARRY_FORWARD } from "@/lib/constants/super-contributions";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE, WATO } from "@/lib/constants/tax-2027-28";
 import { TAX_CHANGES_2026_27_FAQS } from "./tax-changes-2026-27-faqs";
 import FeaturedImage from "@/components/common/featured-image";
 
@@ -58,6 +64,17 @@ function takeHomePrevious(gross: number): number {
 }
 
 const TAKE_HOME_SALARIES = [60_000, 80_000, 100_000, 120_000, 150_000, 200_000] as const;
+
+const pct = (rate: number) => `${Math.round(rate * 100)}%`;
+const SECOND_RATE_OLD = pct(TAX_BRACKETS_2025_26[1].rate);
+const SECOND_RATE_NEW = pct(TAX_BRACKETS[1].rate);
+const SECOND_BRACKET_FROM = formatAUD(TAX_BRACKETS[1].min);
+const SECOND_BRACKET_TO = formatAUD(TAX_BRACKETS[1].max);
+/** Max annual saving from the 1 July 2026 second-bracket cut. */
+const RATE_CUT_MAX_SAVING = Math.round(
+  (TAX_BRACKETS_2025_26[1].rate - TAX_BRACKETS[1].rate) * (TAX_BRACKETS[1].max - TAX_BRACKETS[0].max)
+);
+const RATE_CUT_WEEKLY = RATE_CUT_MAX_SAVING / EMPLOYMENT.weeksPerYear;
 
 export default function TaxChanges202627Page() {
   return (
@@ -102,10 +119,10 @@ export default function TaxChanges202627Page() {
             <section id="overview">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2026-27 Tax Year Overview</h2>
               <p>
-                The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. The year&apos;s settings are now confirmed. The legislated rate cut took effect on 1 July 2026, and the ATO has published the 2026-27 HELP repayment thresholds and super contribution caps. The headline measures from the 12 May 2026 federal budget have passed into law, including the CGT changes that start on 1 July 2027.
+                The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. The legislated rate cut took effect on 1 July 2026, and the ATO has published the 2026-27 HELP repayment thresholds and super contribution caps. Two settings on this page are still pending: the 2026-27 Medicare levy low-income thresholds and the Payday Super cap relief (both covered below). The CGT and negative gearing changes from the 12 May 2026 federal budget are law and start on {CGT_REFORM_2027.startDate}.
               </p>
               <p>
-                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>16% to 15%</strong> on 1 July 2026 (and to 14% from 1 July 2027). For anyone earning $45,000 or more, that is a tax cut of <strong>$268 per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26. For the dates of every change through 1 July 2027, see the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>. The 14% rate arrives with a new $250 offset in 2027-28: see the <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>.
+                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>{SECOND_RATE_OLD} to {SECOND_RATE_NEW}</strong> on 1 July 2026 (and to {pct(RATE_2027_28)} from {RATE_CUT_EFFECTIVE}). For anyone earning {SECOND_BRACKET_TO} or more, that is a tax cut of <strong>{formatAUD(RATE_CUT_MAX_SAVING)} per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26. For the dates of every change through 1 July 2027, see the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>. The {pct(RATE_2027_28)} rate arrives with a new {formatAUD(WATO.maxOffset)} offset in {WATO.firstIncomeYear}: see the <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>.
               </p>
             </section>
 
@@ -115,12 +132,12 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Tax Rate Drops from 16% to 15%</h3>
               <p>
-                Under the cost-of-living tax cuts legislated in 2025, the marginal rate on income between <strong>$18,201 and $45,000</strong> falls from 16% to <strong>15%</strong> on 1 July 2026. This delivers up to <strong>$268</strong> in annual tax savings, with the full amount going to anyone earning $45,000 or more. A further cut to <strong>14%</strong> is legislated for 1 July 2027. The ATO&apos;s PAYG withholding schedules have been updated for the new rate. See our<Link href="/payg-withholding-tables/">PAYG withholding tables</Link> for the new weekly, fortnightly and monthly amounts.
+                Under the cost-of-living tax cuts legislated in 2025, the marginal rate on income between <strong>{SECOND_BRACKET_FROM} and {SECOND_BRACKET_TO}</strong> falls from {SECOND_RATE_OLD} to <strong>{SECOND_RATE_NEW}</strong> on 1 July 2026. This delivers up to <strong>{formatAUD(RATE_CUT_MAX_SAVING)}</strong> in annual tax savings, with the full amount going to anyone earning {SECOND_BRACKET_TO} or more. A further cut to <strong>{pct(RATE_2027_28)}</strong> is legislated for {RATE_CUT_EFFECTIVE}. The ATO&apos;s PAYG withholding schedules have been updated for the new rate. See our<Link href="/payg-withholding-tables/">PAYG withholding tables</Link> for the new weekly, fortnightly and monthly amounts.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Guarantee Stays at 12%</h3>
               <p>
-                The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>12%</strong> on 1 July 2025 after a decade-long incremental increase from 9.5%. No further increases are legislated for FY2026-27 or beyond. From 1 July 2026 employers calculate SG on <strong>qualifying earnings</strong> (ordinary time earnings plus commissions for work done entirely outside ordinary hours), up to the annual maximum super contribution base.
+                The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>{pct(SUPER_GUARANTEE.rate)}</strong> on {SUPER_GUARANTEE.effectiveDate}, after rising every 1 July from 2021. It was 9.5% until 30 June 2021. No further increases are legislated for FY2026-27 or beyond. From 1 July 2026 employers calculate SG on <strong>qualifying earnings</strong> (ordinary time earnings plus commissions for work done entirely outside ordinary hours), up to the annual maximum super contribution base.
               </p>
               <p>
                 The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY2026-27 (up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong>, both confirmed by the ATO and applying from 1 July 2026. These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.
@@ -139,7 +156,7 @@ export default function TaxChanges202627Page() {
                 The ATO has published the 2026-27 HELP/STSL repayment thresholds: see <a href={HECS_SOURCE_URL}>Study and training support loans rates and repayment thresholds</a>. You repay nothing on repayment income up to <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> (up from {formatAUD(HECS_HELP.previousThreshold)} in FY2025-26). Above that, repayments are <strong>{(HECS_HELP.bands[1].marginalRate * 100).toFixed(0)}c for each $1 over {formatAUD(HECS_HELP.minimumThreshold)}</strong> up to {formatAUD(HECS_HELP.bands[1].max)}, then <strong>{formatAUD(HECS_HELP.bands[2].base)} plus {(HECS_HELP.bands[2].marginalRate * 100).toFixed(0)}c for each $1 over {formatAUD(HECS_HELP.bands[1].max)}</strong> up to {formatAUD(HECS_HELP.bands[2].max)}, and <strong>{(HECS_HELP.bands[3].marginalRate * 100).toFixed(0)}% of total repayment income</strong> from {formatAUD(HECS_HELP.bands[3].min)}.
               </p>
               <p>
-                Under this marginal system, introduced in FY2025-26, you only pay the repayment percentage on income <em>above</em> each threshold, not on your entire income. Work out your exact repayment with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>, or see our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full breakdown.
+                Under this marginal system, introduced in FY2025-26, the {(HECS_HELP.bands[1].marginalRate * 100).toFixed(0)}c and {(HECS_HELP.bands[2].marginalRate * 100).toFixed(0)}c rates apply only to income <em>above</em> each threshold, not to your entire income. The top rate is different: from {formatAUD(HECS_HELP.bands[3].min)}, you repay {(HECS_HELP.bands[3].marginalRate * 100).toFixed(0)}% of your total repayment income. Work out your exact repayment with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>, or see our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full breakdown.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Thresholds</h3>
@@ -189,12 +206,12 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Low Income Tax Offset (LITO)</h3>
               <p>
-                LITO provides up to <strong>$700</strong> in tax offset for low-to-middle income earners. The offset phases out between $37,500 and $66,667. These thresholds are not automatically indexed, so any changes would require budget legislation. No changes have been flagged.
+                LITO provides up to <strong>{formatAUD(LITO.maxOffset)}</strong> in tax offset for low-to-middle income earners. The offset phases out between {formatAUD(LITO.fullOffsetCeiling)} and {formatAUD(LITO.nilOffsetIncome)}. These thresholds are not automatically indexed, so any changes would require budget legislation. No changes have been flagged.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage &mdash; FWC Annual Review</h3>
               <p>
-                The Fair Work Commission conducts its Annual Wage Review each financial year, typically announcing the new national minimum wage in June for effect from 1 July. The FWC&apos;s 2 June 2026 decision lifted the national minimum wage from $24.95 to <strong>$26.44 per hour</strong> ($1,004.90 per week), effective 1 July 2026, alongside a 4.75% award wage increase.
+                The Fair Work Commission conducts its Annual Wage Review each financial year, typically announcing the new national minimum wage in June for effect from 1 July. The FWC&apos;s 2 June 2026 decision lifted the national minimum wage from {formatAUD(EMPLOYMENT.minimumWageHourlyPrevious, 2)} to <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week), effective 1 July 2026, alongside a 4.75% award wage increase.
               </p>
             </section>
 
@@ -202,7 +219,7 @@ export default function TaxChanges202627Page() {
             <section id="impact-take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Impact on Take-Home Pay</h2>
               <p>
-                The legislated rate cut lifts take-home pay by up to <strong>$268 a year</strong> (about $5.15 a week) for employees at the same nominal salary, with the full benefit reaching anyone earning $45,000 or more. If you have a HECS-HELP debt, the indexed repayment threshold also changes your final figure. If you are paid the minimum wage or an award rate, so does the FWC minimum wage decision.
+                The legislated rate cut lifts take-home pay by up to <strong>{formatAUD(RATE_CUT_MAX_SAVING)} a year</strong> (about {formatAUD(RATE_CUT_WEEKLY, 2)} a week) for employees at the same nominal salary, with the full benefit reaching anyone earning {SECOND_BRACKET_TO} or more. If you have a HECS-HELP debt, the indexed repayment threshold also changes your final figure. If you are paid the minimum wage or an award rate, so does the FWC minimum wage decision.
               </p>
               <p>
                 The table below compares annual take-home pay at each salary for both years. The FY2026-27 column comes from the same tax engine that powers the site&apos;s calculators. The comparison column applies the previous year&apos;s tax brackets with the same settings (LITO and the 2% Medicare levy included; no HECS debt, no MLS, resident status).
@@ -234,7 +251,7 @@ export default function TaxChanges202627Page() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">*Reflects the legislated 16% &rarr; 15% rate cut on income between $18,201 and $45,000 from 1 July 2026. Excludes HECS, MLS, and salary sacrifice.</p>
+                <p className="text-xs text-warmgray mt-2">*Reflects the legislated {SECOND_RATE_OLD} &rarr; {SECOND_RATE_NEW} rate cut on income between {SECOND_BRACKET_FROM} and {SECOND_BRACKET_TO} from 1 July 2026. Excludes HECS, MLS, and salary sacrifice.</p>
               </div>
             </section>
 
@@ -249,7 +266,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Contribution Planning</h3>
               <p>
-                With the SG rate locked at 12%, any additional super contributions must come from salary sacrifice or personal after-tax contributions. The carry-forward rule allows you to use unused concessional cap amounts from the previous 5 years if your total super balance is under <strong>$500,000</strong>. In a year with a one-off bonus, those carried-forward amounts let you make concessional contributions above the annual cap.
+                With the SG rate locked at {pct(SUPER_GUARANTEE.rate)}, any additional super contributions must come from salary sacrifice or personal after-tax contributions. The carry-forward rule allows you to use unused concessional cap amounts from up to {CARRY_FORWARD.years} previous financial years if your total super balance was under <strong>{formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}</strong> at 30 June of the previous financial year. In a year with a one-off bonus, those carried-forward amounts let you make concessional contributions above the annual cap.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6">

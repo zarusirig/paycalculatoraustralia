@@ -23,6 +23,7 @@ import {
   PAY_PERIODS,
   SCHEDULE_5_WITHHOLDING_LIMIT,
 } from "@/lib/constants/payg-withholding";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import {
   COMMISSION_TAX_FAQS,
   EX_ANNUAL_TAX,
@@ -126,14 +127,14 @@ export default function CommissionTaxCalculatorContent() {
       <section>
         <h2 style={FONT} className={H2}>Is Super Paid on Commission?</h2>
         <p className={P}>
-          Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission ({formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission), up to the quarterly maximum contribution base. Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be. Comparing a sales offer quoted as OTE (on-target earnings)? See <Link href="/ote-salary/" className={LINK}>what OTE salary means</Link>.
+          Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission ({formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission), up to the annual maximum contribution base ({formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} in {SITE_CONFIG.financialYear}). Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be. Comparing a sales offer quoted as OTE (on-target earnings)? See <Link href="/ote-salary/" className={LINK}>what OTE salary means</Link>.
         </p>
       </section>
 
       <section>
         <h2 style={FONT} className={H2}>Commission as a Contractor</h2>
         <p className={P}>
-          Real estate, recruitment and sales agents often earn commission under an ABN rather than as employees. Then nothing is withheld: the commission is business income, GST applies once turnover passes $75,000, and the ATO may ask for PAYG instalments through the year. The tax rate is the same individual rate. The difference is who sets the money aside. The <Link href="/contractor-pay-calculator/" className={LINK}>contractor pay calculator</Link> shows commission income after tax and GST, and <Link href="/contractor-vs-employee-calculator/" className={LINK}>contractor vs employee</Link> compares the two on the same money.
+          Real estate, recruitment and sales agents often earn commission under an ABN rather than as employees. Then nothing is withheld: the commission is business income, GST applies once your GST turnover reaches {formatAUD(GST_REGISTRATION_THRESHOLD)}, and the ATO may ask for PAYG instalments through the year. The tax rate is the same individual rate. The difference is who sets the money aside. The <Link href="/contractor-pay-calculator/" className={LINK}>contractor pay calculator</Link> shows commission income after tax and GST, and <Link href="/contractor-vs-employee-calculator/" className={LINK}>contractor vs employee</Link> compares the two on the same money.
         </p>
       </section>
 

@@ -1,17 +1,23 @@
+import { EMPLOYMENT, formatPercent } from "@/lib/constants";
+import { EMPLOYEE_CHOICE, compareCasualToPermanent } from "@/lib/constants/casual-conversion";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Every statement is sourced
 // in lib/constants/casual-conversion.ts (Fair Work Ombudsman "Becoming a
 // permanent employee", content last updated 7 August 2026; "Casual employees").
 
+const LOADING = formatPercent(EMPLOYMENT.casualLoading, 0);
+/** Weeks a full-time casual must be paid for to match 52 paid weeks: 52 / (1 + loading). */
+const BREAK_EVEN_WEEKS = Math.round(compareCasualToPermanent(100, EMPLOYMENT.standardWeeklyHours, EMPLOYMENT.weeksPerYear).breakEvenWeeks * 10) / 10;
+
 export const CASUAL_CONVERSION_FAQS: Faq[] = [
   {
     q: "How do I convert from casual to permanent in Australia?",
-    a: "You give your employer written notice under the employee choice pathway. You can do this if you have been employed for at least 6 months (12 months if your employer is a small business) and you believe you no longer meet the definition of a casual employee. You can also change to permanent at any time if you and your employer agree.",
+    a: `You give your employer written notice under the employee choice pathway. You can do this if you have been employed for at least ${EMPLOYEE_CHOICE.minMonths} months (${EMPLOYEE_CHOICE.minMonthsSmallBusiness} months if your employer is a small business) and you believe you no longer meet the definition of a casual employee. You can also change to permanent at any time if you and your employer agree.`,
   },
   {
     q: "How long does my employer have to respond?",
-    a: "The employer must consult with you first, then respond in writing within 21 days of receiving your notice, either accepting the change or not accepting it. If accepted, the response must say whether you will be full-time or part-time, your new hours, and when the change takes effect.",
+    a: `The employer must consult with you first, then respond in writing within ${EMPLOYEE_CHOICE.responseDays} days of receiving your notice, either accepting the change or not accepting it. If accepted, the response must say whether you will be full-time or part-time, your new hours, and when the change takes effect.`,
   },
   {
     q: "Can my employer refuse to make me permanent?",
@@ -23,7 +29,7 @@ export const CASUAL_CONVERSION_FAQS: Faq[] = [
   },
   {
     q: "What am I no longer paid when I become permanent?",
-    a: "Your casual loading, usually 25% on top of the base rate, stops. In return you get paid annual leave, paid sick and carer's leave, paid public holidays when you would have worked, and notice and redundancy entitlements, subject to your award or agreement.",
+    a: `Your casual loading, usually ${LOADING} on top of the base rate, stops. In return you get paid annual leave, paid sick and carer's leave, paid public holidays when you would have worked, and notice and redundancy entitlements, subject to your award or agreement.`,
   },
   {
     q: "Is a regular roster enough to make me permanent?",
@@ -35,10 +41,10 @@ export const CASUAL_CONVERSION_FAQS: Faq[] = [
   },
   {
     q: "Is it better to stay casual or become permanent?",
-    a: "Whether casual or permanent pays more comes down to how many weeks you are paid in a year. With a 25% loading, a full-time casual needs to be paid for about 41.6 weeks of the year to earn as much as a permanent employee on the same base rate who is paid for all 52 weeks, including leave. If you work steady hours all year, permanent usually gives you more security for similar pay; if you take unpaid time off or your hours vary, casual loading can pay more.",
+    a: `Whether casual or permanent pays more comes down to how many weeks you are paid in a year. With a ${LOADING} loading, a full-time casual needs to be paid for about ${BREAK_EVEN_WEEKS} weeks of the year to earn as much as a permanent employee on the same base rate who is paid for all ${EMPLOYMENT.weeksPerYear} weeks, including leave. If you work steady hours all year, permanent usually gives you more security for similar pay; if you take unpaid time off or your hours vary, casual loading can pay more.`,
   },
   {
     q: "I started casual before August 2024. Does that count?",
-    a: "Employment before 26 August 2024 is not counted when working out whether you meet the 6 or 12 month requirement under the employee choice pathway. Different pathways applied to some casuals up to 26 August 2025; the Fair Work Ombudsman explains the transitional rules.",
+    a: `Employment before ${EMPLOYEE_CHOICE.startDate} is not counted when working out whether you meet the ${EMPLOYEE_CHOICE.minMonths} or ${EMPLOYEE_CHOICE.minMonthsSmallBusiness} month requirement under the employee choice pathway. If you were a casual immediately before ${EMPLOYEE_CHOICE.startDate} and were eligible, you could give notice under the employee choice pathway from 26 February 2025, or from 26 August 2025 if your employer is a small business. The old casual conversion pathways stayed open for some of these casuals up to 26 August 2025; the Fair Work Ombudsman explains the transitional rules.`,
   },
 ];

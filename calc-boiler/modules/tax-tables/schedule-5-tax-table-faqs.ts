@@ -3,12 +3,16 @@
 // Read by BOTH the rendered accordion (plus its sr-only crawlable mirror) and
 // the FAQPage JSON-LD, so the structured data cannot drift from the page.
 
-import { formatAUD, formatPercent } from "@/lib/constants";
+import { formatAUD, formatPercent, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
 import { calculateSchedule5MethodB, NO_TFN_RATES } from "@/lib/constants/payg-withholding";
 import type { TaxTableFaq } from "./weekly-tax-table-faqs";
 import { ATO_SCHEDULE_5, SCHEDULE_5_WITHHOLDING_LIMIT } from "./ato-schedules";
 
 const worked = calculateSchedule5MethodB(2_000, 5_000, "fortnightly");
+
+// Every taxed resident bracket for the current year, from the bracket constants: "15%, 30%, 37% or 45%".
+const TAXED_RATES = TAX_BRACKETS.filter((b) => b.rate > 0).map((b) => formatPercent(b.rate, 0));
+const TAXED_RATE_LIST = `${TAXED_RATES.slice(0, -1).join(", ")} or ${TAXED_RATES[TAXED_RATES.length - 1]}`;
 
 export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   {
@@ -49,7 +53,7 @@ export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Why does my bonus look so heavily taxed?",
-    a: "Because it is withheld at your marginal rate, and your marginal rate is higher than the average rate applied across your normal pay. Your salary has already used up the tax-free threshold and the lower brackets, so every bonus dollar sits in your top bracket: 30%, 37% or 45%, plus the Medicare levy and any study loan repayment. Schedule 5 reduces the withholding compared with running the lump sum through the ordinary tax table, which would annualise it and withhold far more.",
+    a: `Because it is withheld at your marginal rate, and your marginal rate is higher than the average rate applied across your normal pay. Your salary uses up the tax-free threshold and the lower brackets first, so each bonus dollar is withheld at your marginal rate: ${TAXED_RATE_LIST} for ${SITE_CONFIG.financialYear}, plus the Medicare levy and any study loan repayment. Schedule 5 reduces the withholding compared with running the lump sum through the ordinary tax table, which would annualise it and withhold far more.`,
   },
   {
     q: "What if the employee has not provided a TFN?",
@@ -57,6 +61,6 @@ export const SCHEDULE_5_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Is superannuation paid on a bonus?",
-    a: "Usually yes. Performance and incentive bonuses are generally ordinary time earnings, so the 12% superannuation guarantee applies on top of the gross bonus. Bonuses tied specifically to overtime can be excluded. Schedule 5 governs only the PAYG withholding. It says nothing about super, which is calculated and paid separately by your employer.",
+    a: `Usually yes. Performance and incentive bonuses are generally ordinary time earnings, so the ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee applies on top of the gross bonus. Bonuses tied specifically to overtime can be excluded. Schedule 5 governs only the PAYG withholding. It says nothing about super, which is calculated and paid separately by your employer.`,
   },
 ] as const;

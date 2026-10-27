@@ -50,6 +50,9 @@ const example1500stsl = calculatePAYGWithholding(1_500, "weekly", { hasSTSL: tru
 const example800noTft = calculatePAYGWithholding(800, "weekly", { claimsTaxFreeThreshold: false });
 const example800tft = calculatePAYGWithholding(800, "weekly");
 const example1000Foreign = calculatePAYGWithholding(1_000, "weekly", { foreignResident: true });
+// Lowest whole-dollar weekly amount with tax withheld (threshold claimed), so the "starts at" figure follows the engine.
+let firstWithheldWeekly = 0;
+while (calculatePAYGWithholding(firstWithheldWeekly, "weekly").totalWithheld === 0) firstWithheldWeekly += 1;
 
 export default function WeeklyTaxTablePage() {
   return (
@@ -172,7 +175,7 @@ export default function WeeklyTaxTablePage() {
                 income across your pays, which is why column 2 is so much lower than column 3.
               </p>
               <ul>
-                <li><strong>Column 2: tax-free threshold claimed.</strong> Use this for your main job. Withholding does not start until your weekly earnings pass about {formatAUD(362)}, and it builds in the Medicare levy with low-income shading.</li>
+                <li><strong>Column 2: tax-free threshold claimed.</strong> Use this for your main job. Withholding starts at {formatAUD(firstWithheldWeekly)} a week (nothing is withheld below that), and it builds in the Medicare levy with low-income shading.</li>
                 <li><strong>Column 3: no tax-free threshold.</strong> Use this for a second or subsequent job, or where the payee has not claimed the threshold. Withholding starts at the very first dollar. At {formatAUD(800)} a week, column 2 withholds {formatAUD(example800tft.totalWithheld)} while column 3 withholds {formatAUD(example800noTft.totalWithheld)}, a difference of {formatAUD(example800noTft.totalWithheld - example800tft.totalWithheld)} a week.</li>
               </ul>
               <p>
@@ -310,7 +313,7 @@ export default function WeeklyTaxTablePage() {
                 <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts. The ATO reissued all 15 withholding
                 schedules and 12 tax tables to match, and also lifted the Medicare levy low-income thresholds and re-indexed the
                 study and training loan repayment thresholds. The 2026-27 weekly table therefore withholds slightly less than the
-                2025-26 version: up to about <strong>$5 a week</strong> ({formatAUD(268)} a year) for anyone earning $45,000 or more.
+                2025-26 version: <strong>$5 or $6 a week</strong> ({formatAUD(268)} a year) for anyone earning $45,000 or more.
                 A further cut to 14% is legislated for 1 July 2027. See the full timeline in our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>

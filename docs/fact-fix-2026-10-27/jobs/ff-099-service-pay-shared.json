@@ -1,0 +1,160 @@
+{
+ "name": "ff-099-service-pay-shared",
+ "files": [
+  "modules/guide/service-pay-shared.tsx",
+  "modules/guide/stage-3-tax-cuts.tsx",
+  "modules/guide/stsl-on-payslip-faqs.ts",
+  "modules/guide/super-co-contribution-faqs.ts",
+  "modules/guide/super-co-contribution.tsx",
+  "modules/guide/super-guarantee-charge-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/service-pay-shared.tsx:140",
+   "file": "modules/guide/service-pay-shared.tsx",
+   "line": "140",
+   "page": "/paramedic-pay/, /police-pay/, /firefighter-pay/, /prison-officer-pay/ hubs, plus the aviation-pay pages (TakeHomeLinkNote)",
+   "claims": [
+    "Take-home pages exist for every $1,000 up to $150,000 and in wider steps above that"
+   ],
+   "whys": [
+    "The code says otherwise. TAKE_HOME_SALARIES keeps only multiples of $5,000 ($20k to $200k, then $250k, $300k, $400k and $500k). The $1k pages were pruned in Oct 2026 and now 301 to the nearest kept page. The SalaryLink JSDoc in the same file also says '$5,000 steps to $200k'. The figures are wrong on every page that renders this note, but I could not change numbers in this pass.",
+    "I confirmed this in the code. TAKE_HOME_SALARIES (lib/data/salary-pages/index.ts, around lines 69-74) is SALARY_GRID filtered to multiples of $5,000, and the $1k pages 301 to the nearest kept page. The note should read its step and ceiling from TAKE_HOME_SALARIES, for example '$5,000 steps from $20,000 to $200,000, then $250k, $300k, $400k and $500k'."
+   ],
+   "constants": [
+    "TAKE_HOME_SALARIES in calc-boiler/lib/data/salary-pages/index.ts (lines 69-74); the note should read its step and ceiling from there"
+   ],
+   "reviewerNotes": [
+    "The first sentence was narrowed correctly to 'Each salary in the table links to a take-home pay page'. The second sentence still says take-home pages exist 'for every $1,000 up to $150,000', which is false. TAKE_HOME_SALARIES in lib/data/salary-pages/index.ts keeps only $5,000 multiples ($20k to $200k, then $250k, $300k, $400k and $500k). I confirmed the writer's fact question. The numbers cannot be changed in this pass, so the claim is left as it is and flagged."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/stage-3-tax-cuts.tsx:157",
+   "file": "modules/guide/stage-3-tax-cuts.tsx",
+   "line": "157",
+   "page": "https://pay-calculator-australia.com/stage-3-tax-cuts/",
+   "claims": [
+    "Stage 1: Low and Middle Income Tax Offset (LMITO) introduced, worth up to $530",
+    "Stage 1: LMITO introduced, worth up to $530"
+   ],
+   "whys": [
+    "$530 was the LMITO maximum as first announced in the 2018-19 Budget. It was raised to $1,080 (2019) and then to $1,500 for 2021-22. The table gives the original figure with no note, so readers may take it as the offset's real value. This is a locked table cell.",
+    "This confirms the writer's flag. $530 was the maximum first announced in 2018-19. It was raised to $1,080 (2019 Budget, backdated to 2018-19) and was $1,500 for 2021-22. The locked table cell has no note explaining this."
+   ],
+   "constants": [
+    "Hard-coded table cell; there is no LMITO constant. Confirm against the ATO LMITO page."
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/stsl-on-payslip-faqs.ts:39",
+   "file": "modules/guide/stsl-on-payslip-faqs.ts",
+   "line": "39",
+   "page": "https://pay-calculator-australia.com/stsl-on-payslip/",
+   "claims": [
+    "If each job individually pays under the threshold, neither withholds STSL"
+   ],
+   "whys": [
+    "The ATO STSL component tables use different (lower) earnings thresholds when the employee has not claimed the tax-free threshold. A second job (no tax-free threshold claimed, study loan declared) can therefore withhold STSL below the annualised threshold. Please verify against ATO Schedule 8 before keeping this as a definite rule. The same claim is at stsl-on-payslip.tsx line 149: '(no STSL withheld if each job is under the threshold)'.",
+    "This confirms the writer's flag. ATO Schedule 8 uses different STSL thresholds when no tax-free threshold is claimed, so a second job can withhold STSL below the annualised threshold. The same claim is at stsl-on-payslip.tsx line 149."
+   ],
+   "constants": [
+    "ATO Schedule 8 (STSL component tax tables). No constant in lib/constants holds the no-tax-free-threshold STSL thresholds."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-co-contribution-faqs.ts:19",
+   "file": "modules/guide/super-co-contribution-faqs.ts",
+   "line": "19",
+   "page": "/super-co-contribution/",
+   "claims": [
+    "the co-contribution is paid directly into your super fund, usually within 60 days of your tax return being processed"
+   ],
+   "whys": [
+    "The 60-day timing has no source on the page. The ATO pages cited do not obviously give this figure, and the payment also depends on the fund reporting the contribution. The same claim is repeated at modules/guide/super-co-contribution.tsx line 83."
+   ],
+   "constants": [
+    "CO_CONTRIBUTION in lib/constants/super-contributions.ts (add a sourced payment-timing note) or remove the figure"
+   ],
+   "reviewerNotes": [
+    "The writer's question is forwarded. The claim 'usually within 60 days of your tax return being processed' has no source on the page. It is repeated at modules/guide/super-co-contribution.tsx line 83. 'Usually' is an existing hedge and was not added in this pass."
+   ],
+   "kind": "citation-or-source",
+   "severity": 3.49,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-co-contribution.tsx:131",
+   "file": "modules/guide/super-co-contribution.tsx",
+   "line": "131",
+   "page": "/super-co-contribution/",
+   "claims": [
+    "This produces a linear phase-out from $500 to $0 across the $15,000 income range."
+   ],
+   "whys": [
+    "$500 and $15,000 are hard-coded literals. They should come from CO_CONTRIBUTION (maxEntitlement, HIGHER minus LOWER) so the text stays in sync when the thresholds are indexed."
+   ],
+   "constants": [
+    "CO_CONTRIBUTION in lib/constants/super-contributions.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-guarantee-charge-faqs.ts:86",
+   "file": "modules/guide/super-guarantee-charge-faqs.ts",
+   "line": "86",
+   "page": "https://pay-calculator-australia.com/super-guarantee-charge/",
+   "claims": [
+    "Under Payday Super contributions should land within roughly a fortnight of each payday",
+    "the liability does not lapse quietly with time"
+   ],
+   "whys": [
+    "The deadline is SUPER_GUARANTEE_CHARGE.current.businessDaysToPay (7 business days), which is about 9 to 11 calendar days. It is 20 business days (about four weeks) for new employees or a new fund. 'Roughly a fortnight' overstates the standard deadline and understates the extended one. Consider rendering the business-day constants here instead.",
+    "The writer's flag holds. SUPER_GUARANTEE_CHARGE.current.businessDaysToPay is 7 business days, and businessDaysNewEmployee is 20. The answer should render those constants instead of 'roughly a fortnight'.",
+    "No source in this file backs it. The ATO's amendment and limitation period for SGC assessments should be confirmed before this wording is made any stronger."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE_CHARGE.current.businessDaysToPay / businessDaysNewEmployee (lib/constants/australian-tax.ts:172,178)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact question. 'Roughly a fortnight' does not match businessDaysToPay = 7, and it misstates the 20-business-day extended deadline. The text was left unchanged because the brief allows no new numbers."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-guarantee-charge-faqs.ts:46",
+   "file": "modules/guide/super-guarantee-charge-faqs.ts",
+   "line": "46",
+   "page": "https://pay-calculator-australia.com/super-guarantee-charge/",
+   "claims": [
+    "a public holiday anywhere in Australia removes a day nationally"
+   ],
+   "whys": [
+    "No constant or cited source backs this. The ATO's Payday Super business-day definition should be checked to confirm whether any state or territory public holiday excludes the day nationally, or only a holiday that applies in the relevant place.",
+    "The writer's flag holds. No constant or sourceUrl backs this business-day definition, so it should be checked against the ATO Payday Super guidance."
+   ],
+   "constants": [
+    "none (could be added to SUPER_GUARANTEE_CHARGE.current with a sourceUrl)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.93,
+   "needsOwner": false
+  }
+ ]
+}

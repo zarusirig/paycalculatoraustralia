@@ -881,7 +881,7 @@ Level 11|1865.60|49.09
   penaltiesClause: "cl 22, cl 28 and Schedule B.1 / B.2.1",
   penaltyNotes: [
     "The Local Government Award's standard span of ordinary hours is Monday to Friday, 6.00 am to 6.00 pm (cl 13.1(d)). Weekend ordinary hours exist only for the roles listed in cl 13.1(e) to (g): airports, caretakers and caravan parks, catering and hospitality, cleaners, community services, garbage and sanitary services, livestock and saleyards, local law enforcement, parking, recreation centres and golf courses, tourism, libraries and customer service centres. Everyone else's weekend work is overtime.",
-    "Under the Local Government Award, a casual's penalty rate is the permanent percentage plus the 25% casual loading: 120% becomes 145%, 150% becomes 175%, and 175% becomes 200% (Schedule B.2.1; cl 11.2).",
+    "Under the Local Government Award, a casual's penalty rate is the permanent percentage plus the 25% casual loading: 120% becomes 145%, 150% becomes 175%, and 175% becomes 200% (Schedule B.2.1; cl 11.1 and 11.2).",
     "Different spans apply by role: 5.00 am to 10.00 pm Monday to Sunday for the cl 13.1(e) roles, 8.00 am to 9.00 pm for libraries, and 6.00 am to 7.00 pm for childcare. Work outside the span for your role attracts the 120% weekday rate (cl 22.1).",
   ],
   // cl 21.2; Schedule B.1.4.
@@ -1003,7 +1003,7 @@ Level 10 — Production and Support Staff 8|1309.40|34.46
   ],
   penaltiesClause: "cl 21.5, cl 63.3(c) and cl 63.4",
   penaltyNotes: [
-    "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so evenings and weekend daytime hours inside a normal week carry no loading. Saturday has no penalty rate.",
+    "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so weekday evenings and Saturday hours in that window carry no loading. Sunday is different: once you start work on a Sunday, all time worked is paid at the Sunday rate in the table above (cl 63.4).",
     "Live Performance Award casuals get the permanent penalty percentage plus their 25% casual loading, so 200% becomes 225% (notes to cl 21.5 and 63.3).",
     "Touring sound and lighting employees get a 17.5% loading instead of overtime and penalty rates (cl 63.6(a)), and crewing services employees get a 52.5% loading for work between 11.00 pm and 6.00 am (cl 63.7). Those special arrangements replace the table above.",
   ],

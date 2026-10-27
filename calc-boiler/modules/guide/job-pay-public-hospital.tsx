@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MEDICARE_LEVY, formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { afterTax, annualFromWeekly, headlineRow, rowAnnual, type Occupation } from "@/lib/data/job-pay-rates";
 import {
   PUBLIC_HEALTH_PAY_VERIFIED_ON,
@@ -44,7 +44,12 @@ export function PublicHospitalAnswerBox({ occ }: { occ: Occupation }) {
       <h2 id="salary-answer-heading" className="mb-1 text-lg font-bold text-navy" style={HEADING_FONT}>
         {occ.answerQuestion ?? `How much does a ${occ.name.toLowerCase()} earn in Australia?`}
       </h2>
-      <p className="mb-4 text-sm text-warmgray">Full-time pay before tax. Each label links to its table or section further down this page.</p>
+      <p className="mb-4 text-sm text-warmgray">
+        {atoRows.length > 0
+          ? "Pay before tax. The median, award and public hospital figures are full-time; the ATO average counts everyone who gave this occupation on a tax return, part-time included."
+          : "Full-time pay before tax."}{" "}
+        Each label links to its table or section further down this page.
+      </p>
       <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
         {occ.median ? (
           <div className="border-b border-sandstone-dark/20 pb-2">
@@ -247,7 +252,7 @@ export function PublicHospitalSection({ occ }: { occ: Occupation }) {
       <p className="text-base">
         Yearly figures are the instrument&rsquo;s own salary, or the weekly rate x 52 where it sets weekly pay.
         Fortnightly figures are the published fortnightly rate, or the weekly rate x 2; scales that set only a yearly
-        salary have no fortnightly column. After-tax pay uses 2026-27 resident tax rates, the Medicare levy and no
+        salary have no fortnightly column. After-tax pay uses {SITE_CONFIG.financialYear} resident tax rates, the Medicare levy and no
         HECS-HELP
         {anyOverSurcharge ? ", assuming private hospital cover above the Medicare levy surcharge threshold" : ""}, the
         same as our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>. Shift penalties,

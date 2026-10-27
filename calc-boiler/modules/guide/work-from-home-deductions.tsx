@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, formatAUD } from "@/lib/constants";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 
 // ATO fixed rate method page (last updated 8 Jun 2026, checked 24 Sep 2026):
@@ -115,7 +115,7 @@ export default function WorkFromHomeDeductionsPage() {
                 <li><strong>Repairs to home office equipment:</strong> Repair costs for work-related equipment are immediately deductible at the work-use percentage.</li>
               </ul>
               <p>
-                <strong>Occupancy expenses</strong> (rent, mortgage interest, property insurance, land tax, rates) are only deductible if you have a dedicated home office used exclusively or primarily for work, and you run a business from home. Most employees working from home for an employer cannot claim occupancy expenses.
+                <strong>Occupancy expenses</strong> (rent, mortgage interest, house insurance, land tax, council and water rates) are deductible only if an area of your home is set aside as a place of business. As an employee, you must show that your work requires a place of business, that your employer gives you no other place to work, and that the area is used exclusively or almost exclusively for work and cannot readily be used for anything else. If your employer provides a place to work, you cannot claim occupancy expenses, even if you choose to work from home.
               </p>
             </section>
 
@@ -142,14 +142,14 @@ export default function WorkFromHomeDeductionsPage() {
             <section id="wfh-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will You Save?</h2>
               <p>
-                The table below shows annual deduction amounts and tax savings using the <strong>fixed rate method ({WFH_CENTS}c/hour, {RETURN_2026.incomeYear})</strong>, based on a standard 7.6-hour work day across 48 working weeks per year. Tax saved uses the {RETURN_2026.incomeYear} marginal rates and excludes the 2% Medicare levy.
+                The table below shows annual deduction amounts and tax savings using the <strong>fixed rate method ({WFH_CENTS}c/hour, {RETURN_2026.incomeYear})</strong>, based on a standard 7.6-hour work day across 48 working weeks per year. Tax saved uses the {RETURN_2026.incomeYear} marginal rates and excludes the {Math.round(MEDICARE_LEVY.rate * 100)}% Medicare levy.
               </p>
 
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">WFH Days/Week</th><th className="px-5 py-3 text-right">Annual Hours</th><th className="px-5 py-3 text-right">Deduction ({WFH_CENTS}c/hr)</th><th className="px-5 py-3 text-right">Tax Saved @ 16%</th><th className="px-5 py-3 text-right">Tax Saved @ 30%</th><th className="px-5 py-3 text-right">Tax Saved @ 37%</th><th className="px-5 py-3 text-right">Tax Saved @ 45%</th></tr>
+                      <tr><th className="px-5 py-3">WFH Days/Week</th><th className="px-5 py-3 text-right">Annual Hours</th><th className="px-5 py-3 text-right">Deduction ({WFH_CENTS}c/hr)</th>{SAVING_RATES.map((rate) => (<th key={rate} className="px-5 py-3 text-right">Tax Saved @ {Math.round(rate * 100)}%</th>))}</tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {WFH_ROWS.map((r) => (
@@ -173,7 +173,7 @@ export default function WorkFromHomeDeductionsPage() {
               <ul>
                 <li><strong>Claiming phone/internet separately under the fixed rate method.</strong> The {WFH_CENTS}c/hr rate already includes phone and internet costs. Claiming them again separately results in double-counting and ATO adjustment.</li>
                 <li><strong>No record of hours.</strong> You must maintain a record of hours worked from home for the <strong>entire income year</strong>. A 4-week representative period is not sufficient under the revised fixed rate method. The ATO requires a full-year record.</li>
-                <li><strong>Claiming occupancy expenses as an employee.</strong> Rent, mortgage interest, and property rates are only deductible for home-based businesses, not employees working from home for their employer.</li>
+                <li><strong>Claiming occupancy expenses as an employee.</strong> Rent, mortgage interest and council rates are deductible only when an area of your home is a place of business. If your employer provides a place to work, you cannot claim them.</li>
                 <li><strong>Claiming 100% of shared expenses.</strong> If you share your home with a partner who also works from home, each person can only claim their own proportion of expenses or hours.</li>
                 <li><strong>Not adjusting for leave periods.</strong> You cannot claim WFH deductions for hours when you were on annual leave, sick leave, or public holidays, even if your home office equipment was still set up.</li>
               </ul>

@@ -79,7 +79,7 @@ export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculat
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Family Tax Benefit Calculator: FTB Part A and Part B ({A.financialYear})</h1>
           <p className="text-lg text-warmgray">
-            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0–12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a teenager; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your adjusted taxable income (and your partner&apos;s) and your children&apos;s ages to estimate both payments, and see how a pay rise or extra hours changes them.
+            FTB Part A is up to <strong>{formatAUD(A.maxFortnightly.age0to12, 2)} a fortnight per child aged 0 to 12</strong> and {formatAUD(A.maxFortnightly.age13to19, 2)} for a child aged 13 to 15, or 16 to 19 and meeting the study requirements; FTB Part B is up to <strong>{formatAUD(B.maxFortnightly.youngestUnder5, 2)} per family</strong>. Enter your adjusted taxable income (and your partner&apos;s) and your children&apos;s ages to estimate both payments, and see how a pay rise or extra hours changes them.
           </p>
           <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">{A.financialYear} rates and thresholds (from 1 July 2026) · verified {FAMILY_PAYMENT_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />

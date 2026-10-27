@@ -278,6 +278,10 @@ const [RADIOLOGIST, RADIOLOGIST_F, RADIOLOGIST_M] = ATO_15A.radiologist;
 const OTHER_MP_JSA = jsa("2539", "Other Medical Practitioners", "other-medical-practitioners", 5_013, 101, 0.77, 46,
   "This is the median for the whole ANZSCO group radiologists belong to, which also counts dermatologists, emergency medicine specialists, ophthalmologists, pathologists and other specialists, so it is not a radiologist figure, and it covers employees only.");
 
+/** Employed people in unit group 2539, JSA profile (ABS Labour Force Survey, 2025 four-quarter average). */
+const OTHER_MP_EMPLOYED = 23_400;
+const pc = (share: number) => `${Math.round(share * 100)}%`;
+
 const radiologist: HealthSalaryPage = {
   slug: "radiologist",
   name: "Radiologist",
@@ -328,8 +332,8 @@ const radiologist: HealthSalaryPage = {
       id: "workforce",
       heading: "The group the labour statistics put radiologists in",
       paragraphs: [
-        "There is no employee median for radiologists on their own. Jobs and Skills Australia publishes its earnings data for unit group 2539, Other Medical Practitioners, which gathers dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, diagnostic and interventional radiologists, radiation oncologists and medical practitioners not covered elsewhere into one profile of 23,400 employed people (ABS Labour Force Survey, 2025 four-quarter average). On the May 2025 Survey of Employee Earnings and Hours that group's median full-time employee earned $5,013 a week, or $101 an hour, against $1,852 and $47 for all occupations. The ATO's occupation code 253917 above is the only published figure that is radiologists alone.",
-        "The Other Medical Practitioners group works part-time more often than surgeons or anaesthetists do. 77% work full-time hours and the part-time share is 23%, the highest of the medical specialties on this site; the average full-time week is 46 hours. Women are 55% of the group, against 48% of all workers, and the median age is 43. By state, 32.6% work in New South Wales and 29.2% in Victoria. Jobs and Skills Australia projects employment in the group to grow by about 1,400 a year. Within that profile, Jobs and Skills Australia describes the radiologist's task as providing diagnostic medical services and managing patients with radiant energy techniques: general radiography, angiography, fluoroscopy, mammography, ultrasound and computed tomography among them.",
+        `There is no employee median for radiologists on their own. Jobs and Skills Australia publishes its earnings data for unit group 2539, Other Medical Practitioners, which gathers dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, diagnostic and interventional radiologists, radiation oncologists and medical practitioners not covered elsewhere into one profile of ${OTHER_MP_EMPLOYED.toLocaleString("en-AU")} employed people (ABS Labour Force Survey, 2025 four-quarter average). On the May 2025 Survey of Employee Earnings and Hours that group's median full-time employee earned ${$(OTHER_MP_JSA.medianWeekly)} a week, or ${$(OTHER_MP_JSA.medianHourly)} an hour, against $1,852 and $47 for all occupations. The ATO's occupation code 253917 above is the only published figure that is radiologists alone.`,
+        `The Other Medical Practitioners group works part-time more often than surgeons or anaesthetists do. ${pc(OTHER_MP_JSA.fullTimeShare)} work full-time hours and the part-time share is ${pc(1 - OTHER_MP_JSA.fullTimeShare)}; the average full-time week is ${OTHER_MP_JSA.averageFullTimeHours} hours. Women are 55% of the group, against 48% of all workers, and the median age is 43. By state, 32.6% work in New South Wales and 29.2% in Victoria. Jobs and Skills Australia projects employment in the group to grow by about 1,400 a year. Within that profile, Jobs and Skills Australia describes the radiologist's task as providing diagnostic medical services and managing patients with radiant energy techniques: general radiography, angiography, fluoroscopy, mammography, ultrasound and computed tomography among them.`,
         "A radiologist comparing a job offer therefore has three pay reference points rather than one: the ATO's radiologist-only tax-return figures above, the staff specialist scales below for public hospital employment, and the Other Medical Practitioners employee median as the best available guide to a salaried specialist's weekly pay. None of them is a market rate for private radiology practice, which no primary source publishes.",
       ],
     },
@@ -369,7 +373,7 @@ const radiologist: HealthSalaryPage = {
     },
     {
       q: "Why is there no employee median salary for radiologists?",
-      a: "Jobs and Skills Australia publishes earnings for unit group 2539, Other Medical Practitioners, not for radiologists alone. That group of 23,400 people includes dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, radiologists and radiation oncologists, and its median full-time employee earned $5,013 a week in May 2025. The ATO's occupation code 253917 is the only published radiologist-only figure.",
+      a: `Jobs and Skills Australia publishes earnings for unit group 2539, Other Medical Practitioners, not for radiologists alone. That group of ${OTHER_MP_EMPLOYED.toLocaleString("en-AU")} people includes dermatologists, emergency medicine specialists, obstetricians and gynaecologists, eye specialists, pathologists, radiologists and radiation oncologists, and its median full-time employee earned ${$(OTHER_MP_JSA.medianWeekly)} a week in May 2025. The ATO's occupation code 253917 is the only published radiologist-only figure.`,
     },
     {
       q: "Does Division 293 tax apply to radiologists?",
@@ -393,6 +397,8 @@ const radiologist: HealthSalaryPage = {
 
 const [ANAESTHETIST, ANAESTHETIST_F, ANAESTHETIST_M] = ATO_15A.anaesthetist;
 const ANAESTHETIST_JSA = jsa("2532", "Anaesthetists", "anaesthetists", 8_293, 218, 0.9, 46);
+/** Employed anaesthetists, JSA profile (ABS Labour Force Survey, 2025 four-quarter average). */
+const ANAESTHETIST_EMPLOYED = 7_400;
 const ANAESTHETIST_STATES = ATO_15D.anaesthetist;
 
 const anaesthetist: HealthSalaryPage = {
@@ -442,7 +448,7 @@ const anaesthetist: HealthSalaryPage = {
       id: "workforce",
       heading: "Who the anaesthetist figures describe",
       paragraphs: [
-        "Jobs and Skills Australia's profile for unit group 2532 counts 7,400 employed anaesthetists (ABS Labour Force Survey, 2025 four-quarter average) and includes anaesthetic registrars who are still training, which is one reason its employee median sits below the ATO averages for established specialists. It is an overwhelmingly full-time profession: 90% work full-time hours, the part-time share is 10%, and the average full-time week is 46 hours against 44 for all occupations. On the May 2025 Survey of Employee Earnings and Hours the median full-time employee earned $8,293 a week, or $218 an hour, against $1,852 and $47 for all occupations.",
+        `Jobs and Skills Australia's profile for unit group 2532 counts ${ANAESTHETIST_EMPLOYED.toLocaleString("en-AU")} employed anaesthetists (ABS Labour Force Survey, 2025 four-quarter average) and includes anaesthetic registrars who are still training, which is one reason its employee median sits below the ATO averages for established specialists. It is an overwhelmingly full-time profession: ${pc(ANAESTHETIST_JSA.fullTimeShare)} work full-time hours, the part-time share is ${pc(1 - ANAESTHETIST_JSA.fullTimeShare)}, and the average full-time week is ${ANAESTHETIST_JSA.averageFullTimeHours} hours against 44 for all occupations. On the May 2025 Survey of Employee Earnings and Hours the median full-time employee earned ${$(ANAESTHETIST_JSA.medianWeekly)} a week, or ${$(ANAESTHETIST_JSA.medianHourly)} an hour, against $1,852 and $47 for all occupations.`,
         "The workforce is older and more male than the labour force as a whole. The median age is 49 against 39 for all occupations, and women are 32% of anaesthetists against 48% of all workers. The 2021 Census age profile puts the largest group, 32.8%, between 35 and 44, with 27.2% aged 45 to 54, 17.2% aged 25 to 34 and 6.4% aged 65 and over; there is no one under 25, which follows from the length of medical training. Half of anaesthetists (50.3%) report a postgraduate qualification as their highest level of education, and registration with the Medical Board of Australia is required to practise.",
         "By state, 31.5% of anaesthetists work in New South Wales, 21.5% in Victoria, 17.9% in Queensland, 12.7% in Western Australia and 11.1% in South Australia, with Tasmania at 2.2%, the ACT at 1.8% and the Northern Territory at 1.5% (ABS Labour Force Survey, Detailed, February 2026, Jobs and Skills Australia trend data). Set against the ATO state table above, that means the two largest anaesthetist workforces, NSW and Victoria, sit at opposite ends of the average income range. Jobs and Skills Australia projects employment to grow by about 200 a year.",
       ],
@@ -482,7 +488,7 @@ const anaesthetist: HealthSalaryPage = {
     },
     {
       q: "How many anaesthetists are there in Australia, and how many work full-time?",
-      a: "Jobs and Skills Australia counts 7,400 employed anaesthetists in unit group 2532, including anaesthetic registrars in training (ABS Labour Force Survey, 2025 four-quarter average). 90% work full-time hours, the part-time share is 10%, and the average full-time week is 46 hours. The median age is 49 and women make up 32% of the workforce.",
+      a: `Jobs and Skills Australia counts ${ANAESTHETIST_EMPLOYED.toLocaleString("en-AU")} employed anaesthetists in unit group 2532, including anaesthetic registrars in training (ABS Labour Force Survey, 2025 four-quarter average). ${pc(ANAESTHETIST_JSA.fullTimeShare)} work full-time hours, the part-time share is ${pc(1 - ANAESTHETIST_JSA.fullTimeShare)}, and the average full-time week is ${ANAESTHETIST_JSA.averageFullTimeHours} hours. The median age is 49 and women make up 32% of the workforce.`,
     },
     {
       q: "Can a public hospital anaesthetist salary package?",

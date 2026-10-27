@@ -66,7 +66,7 @@ export const VIC_NURSING_PAY: NursingStateData = {
       id: "vic-ea-2024",
       name: "Nurses and Midwives (Victorian Public Sector) Single Interest Employer Agreement 2024-2028",
       effectiveFrom: "first full pay period on or after 11 May 2026",
-      nextIncrease: "first full pay period on or after 30 November 2026 (+1.06%)",
+      nextIncrease: "on and from 30 November 2026 (the agreement's column is headed 1.06%, but some steps rise by less, and Grade 2 Year 1 does not rise)",
       tribunal: "Fair Work Commission",
       reference: "AE526693, matter AG2024/3737, approved 8 November 2024, [2024] FWCA 3908",
       source: FWC_SOURCE,
@@ -245,7 +245,7 @@ export const VIC_NURSING_PAY: NursingStateData = {
         { label: "On call, Sunday or weekday public holiday", value: "$147.90 per 12-hour period" },
       ],
       incomplete:
-        "The Victorian allowance amounts are from the Appendix 2 Part 2 column headed FFPPOOA 11 May 2026 (the first full pay period on or after that date). They step up again on 23 November 2026. Public holiday and overtime rates sit in clauses 49 and 56 and are not reproduced here.",
+        "The Victorian allowance amounts are from the Appendix 2 Part 2 column headed FFPPOOA 11 May 2026 (the first full pay period on or after that date). They step up again from the first full pay period on or after 23 November 2026. Public holiday and overtime rates sit in clauses 49 and 56 and are not reproduced here.",
     },
   ],
 
@@ -332,7 +332,7 @@ export const VIC_NURSING_PAY: NursingStateData = {
     points: [
       "Clause 25.2 of the 2024-2028 agreement sets eight pay dates. Three are left: 30 November 2026, the first full pay period on or after 10 May 2027, and 29 November 2027.",
       "The 30 November 2026 rise does not apply to every step. A graduate RN (Grade 2 Year 1) stays on $1,619.00 a week until May 2027.",
-      "Shift and on-call allowances move on their own dates. The next allowance column starts on 23 November 2026.",
+      "Shift and on-call allowances move on their own dates. The next allowance column starts from the first full pay period on or after 23 November 2026.",
     ],
     source: AGREEMENT_TEXT,
   },

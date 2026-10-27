@@ -12,6 +12,7 @@ import {
   AWARD_DETERMINATIONS,
   AWARD_UNVERIFIED,
   AWR_2026_FLOORS,
+  HOSPITALITY_JUNIOR_SCALE,
   HOSPITALITY_PENALTIES,
   RETAIL_AWARD,
   RETAIL_JUNIOR_LEVEL_RESTRICTION,
@@ -253,13 +254,13 @@ export default function RetailAwardRatesPage() {
                   <div>
                     <h3 className="mb-2 text-base font-bold text-navy">Junior rates stop at level 3</h3>
                     <p className="text-sm leading-relaxed text-navy">
-                      {RETAIL_JUNIOR_LEVEL_RESTRICTION} This is the award&rsquo;s own rule, not a gap in what Fair Work publishes. A 17-year-old doing level 4 work is therefore entitled to the full level 4 rate, not 60% of it.
+                      {RETAIL_JUNIOR_LEVEL_RESTRICTION} This is the award&rsquo;s own rule, not a gap in what Fair Work publishes. A 17-year-old doing level 4 work is therefore entitled to the full level 4 rate, not {pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "17")!.percentage)} of it.
                     </p>
                   </div>
                 </div>
               </div>
               <p>
-                Two other features of the retail junior scale are unusual. The <strong>20-year-old band splits on length of service</strong>, so a 20-year-old moves to the full adult rate after more than six months with the same employer. And retail 19-year-olds receive {pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}, where the Hospitality Industry (General) Award pays 85%.
+                Two other features of the retail junior scale are unusual. The <strong>20-year-old band splits on length of service</strong>, so a 20-year-old moves to the full adult rate after more than six months with the same employer. And retail 19-year-olds receive {pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}, where the Hospitality Industry (General) Award pays {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}.
               </p>
               <h3>Junior rates from 1 December 2026: a phase-in, not the adult rate</h3>
               <p>
@@ -369,7 +370,7 @@ export default function RetailAwardRatesPage() {
                 </div>
               </div>
               <p>
-                Award minimums sit above the national floor because each award sets its own classification rates. The Fair Work Commission&rsquo;s <a href="https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews" target="_blank" rel="noopener noreferrer">Annual Wage Review 2026</a> lifted the national minimum wage and award rates by {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% from 1 July 2026, so the gap of {formatAUD(toCents(L1.hourly - NMW.hourly), 2)} an hour carried over from the previous year.
+                Award minimums sit above the national floor because each award sets its own classification rates. The Fair Work Commission&rsquo;s <a href="https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews" target="_blank" rel="noopener noreferrer">Annual Wage Review 2026</a> lifted award rates by {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% and the national minimum wage by {(NMW.increase * 100).toFixed(1)}% from 1 July 2026. The national minimum wage rose faster, so the gap narrowed to {formatAUD(toCents(L1.hourly - NMW.hourly), 2)} an hour.
               </p>
               <p>
                 A level 1 casual is paid {formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour, the base rate plus the {pct(LOADING)} loading; the casual rate for every level and day is in <a href="#pay-guide">Retail Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</a>. Juniors are paid a percentage of the level 1 rate: {pct(JUNIOR_16.pct)} at 16 ({formatAUD(JUNIOR_16.hourly, 2)} an hour) and {pct(JUNIOR_18.pct)} at 18 ({formatAUD(JUNIOR_18.hourly, 2)}). Junior rates stop at level 3, so a junior classified at level 4 or above gets the full adult rate; the full scale is in our <Link href="/junior-pay-rates/">junior pay rates</Link> guide.

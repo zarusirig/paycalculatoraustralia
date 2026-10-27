@@ -8,11 +8,30 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatPercent,
   EMPLOYMENT,
+  SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
+import { LSL_TAX } from "@/lib/constants/long-service-leave";
+import { COMPASSIONATE_LEAVE } from "@/lib/constants/compassionate-leave";
 import { LEAVE_FAQS, LEAVE_LOADING_RATE } from "./leave-calculator-faqs";
+
+// Figures rendered in the prose below, all from lib/constants.
+const SG_RATE = formatPercent(SUPER_GUARANTEE.rate, 0);
+/** ATO Schedule 7 flat withholding rate on unused annual leave and loading. */
+const FLAT_RATE = formatPercent(TERMINATION_LOADING_WITHHOLDING.flatRate, 0);
+const LSL_FLAT_RATE = formatPercent(LSL_TAX.flatRate, 0);
+const LSL_PRE1978_SHARE = formatPercent(LSL_TAX.pre1978IncludedProportion, 0);
+const CUTOVER_1978 = LSL_TAX.preAug1978Cutover; // "16 August 1978"
+const CUTOVER_1993 = LSL_TAX.aug1993Cutover; // "17 August 1993"
+const LEAVE_WEEKS = EMPLOYMENT.annualLeaveWeeks;
+const LEAVE_HOURS = LEAVE_WEEKS * EMPLOYMENT.standardWeeklyHours; // 152
+const WEEKLY_ACCRUAL = LEAVE_HOURS / EMPLOYMENT.weeksPerYear; // 2.923 hours
+const FORTNIGHT_ACCRUAL = WEEKLY_ACCRUAL * 2; // 5.85 hours
+const DAY_HOURS = EMPLOYMENT.standardWeeklyHours / 5; // 7.6 hours
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Annual leave", url: "https://www.fairwork.gov.au/leave/annual-leave", publisher: SOURCES.fwo.name },
@@ -49,12 +68,12 @@ export default function LeaveCalculatorContent() {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Who Gets Leave Loading?</h3>
         <p className="mb-4 text-warmgray">
-          Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Employees on Award-free contracts, common in professional services, banking, and technology, receive leave loading only if their contract or enterprise agreement provides for it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
+          Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Award-free employees receive leave loading only if their contract or enterprise agreement provides for it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Is Leave Loading Taxed?</h3>
         <p className="mb-4 text-warmgray">
-          Yes. Leave loading is <strong>ordinary income</strong>: your employer applies PAYG withholding to it the same way as salary, and it is taxed at your marginal rate. There is no concessional tax treatment for leave loading, whether it is paid while you take leave or paid out on termination. Estimate the tax with the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
+          Yes. Leave loading is <strong>ordinary income</strong> when it is paid while you take leave: your employer applies PAYG withholding to it the same way as salary, and it is taxed at your marginal rate. Unused leave loading paid out on termination is taxed with the unused annual leave it comes with: at your marginal rate on a normal termination for leave accrued after {CUTOVER_1993}, and withheld at a flat {FLAT_RATE} for leave accrued on or before {CUTOVER_1993} or paid because of a genuine redundancy, invalidity or an early retirement scheme. Estimate the tax with the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
         </p>
       </section>
 
@@ -65,10 +84,10 @@ export default function LeaveCalculatorContent() {
           Leave in Australia is calculated by accruing <strong>4 weeks (152 hours) of paid annual leave per year</strong> of continuous service for full-time employees under the National Employment Standards (NES).
         </p>
         <p className="mb-4 text-warmgray">
-          Leave accrues progressively from the first day of employment, not as a lump sum at year-end. A full-time employee working a standard 38-hour week earns <strong>2.923 hours of leave per week</strong>, or approximately 0.833 days per fortnight. This leave calculator uses the same ordinary hours figure to convert your accrued weeks of annual leave into hours.
+          Leave accrues progressively from the first day of employment, not as a lump sum at year-end. A full-time employee working a standard 38-hour week earns <strong>{WEEKLY_ACCRUAL.toFixed(3)} hours of leave per week</strong>, or {FORTNIGHT_ACCRUAL.toFixed(2)} hours per fortnight (about {(FORTNIGHT_ACCRUAL / DAY_HOURS).toFixed(2)} days of {DAY_HOURS} hours). This leave calculator uses the same ordinary hours figure to convert your accrued weeks of annual leave into hours.
         </p>
         <p className="mb-4 text-warmgray">
-          Part-time employees accrue leave on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours (2.1 weeks)</strong> of annual leave per year instead of the full 152 hours. Casual employees do not accrue annual leave and instead receive a <strong>25% casual loading</strong> on their base hourly rate.
+          Part-time employees get the same {LEAVE_WEEKS} weeks of annual leave, based on their own ordinary hours. An employee working 20 ordinary hours per week accrues <strong>{20 * LEAVE_WEEKS} hours</strong> of annual leave per year ({LEAVE_WEEKS} weeks of 20 hours), compared with {LEAVE_HOURS} hours for a full-time employee on {EMPLOYMENT.standardWeeklyHours} hours. Casual employees do not accrue annual leave and instead receive a <strong>{formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading</strong> on their base hourly rate.
         </p>
         <p className="text-warmgray">
           Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to convert your gross salary to after-tax income, then return here to calculate the value of your accrued leave entitlements for FY{SITE_CONFIG.financialYear}.
@@ -82,7 +101,7 @@ export default function LeaveCalculatorContent() {
           Australian employees are entitled to <strong>7 distinct types of leave</strong> under the National Employment Standards, enterprise agreements, and state legislation.
         </p>
         <p className="mb-4 text-warmgray">
-          The table below summarises the 3 leave types with cash value on termination: annual leave, personal/carer&apos;s leave, and long service leave. Entitlements vary between full-time, part-time, and shift workers. Super at the 12% SG rate is paid on annual leave taken during employment and on leave loading (unless the award loading only compensates for lost overtime), but not on unused annual leave or long service leave paid out on termination. See the <Link href="/leave-loading-calculator/">leave loading calculator</Link> for award-by-award loading rules.
+          The table below summarises each leave type. Only 2 have cash value on termination: annual leave and long service leave. Entitlements vary between full-time, part-time, and shift workers. Super at the {SG_RATE} SG rate is paid on annual leave taken during employment and on leave loading (unless the award loading only compensates for lost overtime), but not on unused annual leave or long service leave paid out on termination. See the <Link href="/leave-loading-calculator/">leave loading calculator</Link> for award-by-award loading rules.
         </p>
         <div className="overflow-x-auto mb-4">
           <table className="min-w-full border border-sandstone-dark/20 text-sm">
@@ -137,11 +156,17 @@ export default function LeaveCalculatorContent() {
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">As required</td>
                 <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>No</strong></td>
               </tr>
+              <tr className="bg-sandstone/30">
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray font-medium">Family and Domestic Violence Leave</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>{COMPASSIONATE_LEAVE.fdvDaysPerYear} days paid</strong></td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">Full amount from day 1, resets each work anniversary, does not accumulate</td>
+                <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>No</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
         <p className="text-warmgray">
-          Income tax brackets apply to leave payouts the same way they apply to regular salary. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to determine the tax payable on your leave payout amount.
+          On a normal termination, income tax brackets apply to unused annual leave accrued after {CUTOVER_1993} the same way they apply to regular salary. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to determine the tax payable on your leave payout amount.
         </p>
       </section>
 
@@ -182,7 +207,7 @@ export default function LeaveCalculatorContent() {
           </table>
         </div>
         <p className="text-sm text-warmgray-light">
-          Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference and applies only if your Award or contract provides for it.
+          Figures show gross payout before income tax. On a normal termination, tax on leave accrued after {CUTOVER_1993} is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference and applies only if your Award or contract provides for it.
         </p>
       </section>
 
@@ -213,7 +238,7 @@ export default function LeaveCalculatorContent() {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Tax Treatment of Leave Payouts</h3>
         <p className="mb-4 text-warmgray">
-          Annual leave payouts are taxed as <strong>ordinary income at the employee&apos;s marginal tax rate</strong>. The ATO does not apply any concessional treatment to annual leave payouts. Long service leave payouts receive different treatment: the pre-16 August 1978 component is taxed at <strong>5%</strong>, and the post-1978 component is taxed at the marginal rate. Use the <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page to find the applicable rate for your income level in FY{SITE_CONFIG.financialYear}.
+          On a normal termination (such as resignation, termination for inefficiency or retirement), unused annual leave and leave loading accrued after {CUTOVER_1993} are taxed as <strong>ordinary income at the employee&apos;s marginal tax rate</strong>. Two cases are withheld at a flat <strong>{FLAT_RATE}</strong> under the ATO&apos;s Schedule 7: leave accrued on or before {CUTOVER_1993}, and all unused annual leave paid because of a genuine redundancy, invalidity or an early retirement scheme. Unused long service leave is split by service period: only <strong>{LSL_PRE1978_SHARE}</strong> of the part for service before {CUTOVER_1978} is added to your income and taxed at marginal rates, the part for service from {CUTOVER_1978} to {CUTOVER_1993} is withheld at {LSL_FLAT_RATE}, and the part for service after {CUTOVER_1993} is taxed at marginal rates on a normal termination or withheld at {LSL_FLAT_RATE} in a genuine redundancy, invalidity or early retirement scheme. Use the <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page to find the applicable rate for your income level in FY{SITE_CONFIG.financialYear}.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Long Service Leave Payout by State</h3>
@@ -286,10 +311,10 @@ export default function LeaveCalculatorContent() {
         </p>
         <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
           <li><strong>Confusing calendar days with working days</strong>: 4 weeks of annual leave equals <strong>20 working days</strong>, not 28 calendar days. Leave accrues based on ordinary working hours (38 hours per week for full-time), not 7-day weeks.</li>
-          <li><strong>Including leave loading when the Award does not provide for it</strong>: Award-free employees on individual contracts rarely receive the 17.5% leave loading. Adding it incorrectly inflates the expected payout by <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong> per year at an $80,000 salary.</li>
-          <li><strong>Forgetting to pro-rate for part-time hours</strong>: a part-time employee working 25 hours per week accrues <strong>2.63 weeks</strong> of leave per year (25/38 x 4 weeks), not the full 4 weeks.</li>
+          <li><strong>Including leave loading when the Award does not provide for it</strong>: Award-free employees on individual contracts get the {formatPercent(LEAVE_LOADING_RATE, 1)} leave loading only if the contract provides for it. Adding it incorrectly inflates the expected payout by <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong> per year at an $80,000 salary.</li>
+          <li><strong>Forgetting to pro-rate for part-time hours</strong>: a part-time employee working 25 hours per week accrues {LEAVE_WEEKS} weeks of their own ordinary hours, which is <strong>{25 * LEAVE_WEEKS} hours</strong> of leave per year (25 x {LEAVE_WEEKS}), not the full-time {LEAVE_HOURS} hours.</li>
           <li><strong>Expecting sick leave to be paid out</strong>: Personal/carer&apos;s leave (10 days per year) carries over indefinitely but has <strong>zero cash value</strong> on termination. Only annual leave and long service leave are paid out.</li>
-          <li><strong>Applying the wrong tax rate to leave payouts</strong>: leave payouts are added to assessable income for the financial year and taxed at marginal rates, not at a flat rate. A large payout can push the employee into a higher <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax bracket</Link>.</li>
+          <li><strong>Applying the wrong tax rate to leave payouts</strong>: on a normal termination, leave accrued after {CUTOVER_1993} is added to assessable income for the financial year and taxed at marginal rates. The flat {FLAT_RATE} applies only to annual leave accrued on or before {CUTOVER_1993}, long service leave for service from {CUTOVER_1978} to {CUTOVER_1993}, and leave accrued after {CUTOVER_1993} that is paid because of a genuine redundancy, invalidity or an early retirement scheme. A large payout taxed at marginal rates can push the employee into a higher <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax bracket</Link>.</li>
         </ol>
       </section>
 
@@ -302,7 +327,7 @@ export default function LeaveCalculatorContent() {
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
           <li><Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link>: calculate severance pay based on years of service and combine it with your leave payout total</li>
           <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: convert your gross annual salary to after-tax take-home pay for FY{SITE_CONFIG.financialYear}</li>
-          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG rate of 12% on your ordinary time earnings and see the concessional cap space left for salary sacrifice</li>
+          <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate the employer SG rate of {SG_RATE} on your qualifying earnings and see the concessional cap space left for salary sacrifice</li>
           <li><Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link>: determine penalty rates for overtime, weekend, and public holiday work under your Award</li>
           <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: estimate how much tax you pay on salary and leave payouts combined in the {SITE_CONFIG.financialYear} financial year</li>
         </ul>

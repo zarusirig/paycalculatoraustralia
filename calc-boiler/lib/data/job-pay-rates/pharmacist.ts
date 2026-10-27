@@ -82,6 +82,10 @@ export const PHARMACIST_ATO: AtoOccupationStats = {
 };
 
 const AWARD_ROW = rowFromModernAward(PHARMACY_AWARD, "Pharmacist", "Pharmacist", "Registered pharmacist");
+const EXPERIENCED_ROW = rowFromModernAward(PHARMACY_AWARD, "Experienced pharmacist");
+const MANAGER_ROW = rowFromModernAward(PHARMACY_AWARD, "Pharmacist manager");
+/** Weekly gap between the JSA median and an award minimum, to the nearest $10. */
+const gapToMedian = (weekly: number): number => Math.round((MEDIAN.medianWeekly - weekly) / 10) * 10;
 const MEDIAN_YEAR = medianAnnual(MEDIAN);
 const MEDIAN_NET = takeHome(MEDIAN_YEAR);
 
@@ -183,7 +187,7 @@ export const PHARMACIST: Occupation = {
     },
     {
       q: "How much does a hospital pharmacist earn in each state?",
-      a: `From the first registered step to the top of the scale: NSW ${stateRangeWords("pharmacist", "NSW")}; Victoria ${stateRangeWords("pharmacist", "VIC")}; Queensland ${stateRangeWords("pharmacist", "QLD")}; WA ${stateRangeWords("pharmacist", "WA")}; SA ${stateRangeWords("pharmacist", "SA")}. Victoria's rates have not risen since December 2024: a new agreement was announced on 20 August 2026 but had not been approved as at 19 October 2026.`,
+      a: `From the first registered step to the top of the scale: NSW ${stateRangeWords("pharmacist", "NSW")}; Victoria ${stateRangeWords("pharmacist", "VIC")}; Queensland ${stateRangeWords("pharmacist", "QLD")}; WA ${stateRangeWords("pharmacist", "WA")}; SA ${stateRangeWords("pharmacist", "SA")}. Victoria's rates have not risen since December 2024: a new agreement was announced on 20 August 2026 but had not been approved by the Fair Work Commission as at 23 October 2026.`,
     },
     {
       q: "How much does a pharmacist earn in Perth?",
@@ -195,19 +199,19 @@ export const PHARMACIST: Occupation = {
     },
     {
       q: "What is the minimum pay rate for a pharmacist in Australia in 2026?",
-      a: "Under the Pharmacy Industry Award 2020, a registered pharmacist must be paid at least $41.74 an hour, or $1,586.30 for a full-time 38-hour week, from the first full pay period on or after 1 July 2026. That is $82,488 a year before tax.",
+      a: `Under the Pharmacy Industry Award 2020, a registered pharmacist must be paid at least ${aud2(AWARD_ROW.hourly)} an hour, or ${aud2(AWARD_ROW.weekly)} for a full-time 38-hour week, from the first full pay period on or after 1 July 2026. That is ${aud(Math.round(AWARD_ROW.weekly * 52))} a year before tax.`,
     },
     {
       q: "How much does an experienced pharmacist earn under the award?",
-      a: "An Experienced pharmacist (4 or more years' full-time experience in community pharmacy) has a minimum of $45.72 an hour or $1,737.40 a week, about $90,345 a year. A Pharmacist manager's minimum is $52.15 an hour or $1,981.60 a week.",
+      a: `An Experienced pharmacist (4 or more years' full-time experience in community pharmacy) has a minimum of ${aud2(EXPERIENCED_ROW.hourly)} an hour or ${aud2(EXPERIENCED_ROW.weekly)} a week, about ${aud(Math.round(EXPERIENCED_ROW.weekly * 52))} a year. A Pharmacist manager's minimum is ${aud2(MANAGER_ROW.hourly)} an hour or ${aud2(MANAGER_ROW.weekly)} a week.`,
     },
     {
       q: "What is the casual pay rate for a pharmacist?",
-      a: "A casual pharmacist earns at least $52.18 an hour for ordinary weekday hours between 8 am and 7 pm, which is the $41.74 minimum plus the 25% casual loading. Evenings, weekends and public holidays attract higher casual rates.",
+      a: `A casual pharmacist earns at least ${aud2(AWARD_ROW.casualHourly ?? 0)} an hour for ordinary weekday hours between 8 am and 7 pm, which is the ${aud2(AWARD_ROW.hourly)} minimum plus the 25% casual loading. Evenings, weekends and public holidays attract higher casual rates.`,
     },
     {
       q: "What do pharmacists actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,956 a week for pharmacists (ABS Survey of Employee Earnings and Hours, May 2025). That is about $370 a week above the award minimum for a Pharmacist and about $220 above the Experienced pharmacist minimum. The median covers community and hospital pharmacists together.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${aud(MEDIAN.medianWeekly)} a week for pharmacists (ABS Survey of Employee Earnings and Hours, May 2025). That is about ${aud(gapToMedian(AWARD_ROW.weekly))} a week above the award minimum for a Pharmacist and about ${aud(gapToMedian(EXPERIENCED_ROW.weekly))} above the Experienced pharmacist minimum. The median covers community and hospital pharmacists together.`,
     },
     {
       q: "Are hospital pharmacists covered by the Pharmacy Industry Award?",

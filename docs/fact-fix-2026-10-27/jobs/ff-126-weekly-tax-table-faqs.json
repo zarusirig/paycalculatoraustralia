@@ -1,0 +1,51 @@
+{
+ "name": "ff-126-weekly-tax-table-faqs",
+ "files": [
+  "modules/tax-tables/weekly-tax-table-faqs.ts",
+  "modules/tax-tables/weekly-tax-table.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/tax-tables/weekly-tax-table-faqs.ts:84",
+   "file": "modules/tax-tables/weekly-tax-table-faqs.ts",
+   "line": "84",
+   "page": "https://pay-calculator-australia.com/weekly-tax-table/",
+   "claims": [
+    "The 'Download CSV' button above the table builds the weekly table in $1 steps up to $5,000 a week, for whichever financial year is selected."
+   ],
+   "whys": [
+    "The weekly page has two 'Download CSV' buttons. TableDownloads (table-downloads.tsx:51, using downloads-manifest.json) serves a fixed 2026-27 file covering $1 to $3,400 (3,400 rows). FullTaxTable (full-tax-table.tsx:74) builds the file in the browser up to CSV_TABLE_RANGES.weekly.to ($5,000) for the selected year. The FAQ only describes the second button, so a reader can click the wrong one. The fortnightly and monthly FAQs say the same thing."
+   ],
+   "constants": [
+    "CSV_TABLE_RANGES (lib/constants/payg-withholding.ts:701) vs modules/tax-tables/downloads-manifest.json"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/weekly-tax-table.tsx:175",
+   "file": "modules/tax-tables/weekly-tax-table.tsx",
+   "line": "175",
+   "page": "https://pay-calculator-australia.com/weekly-tax-table/",
+   "claims": [
+    "Column 2: withholding does not start until your weekly earnings pass about {formatAUD(362)}",
+    "Withholding does not start until your weekly earnings pass about {formatAUD(362)}"
+   ],
+   "whys": [
+    "The figure is typed into the page as formatAUD(362) and is not computed. Running calculatePAYGWithholding(g, 'weekly') for 2026-27 gives $0 withheld for every amount from $358 to $364 and $1 at $365. So withholding starts above $364, not $362. The $362 may be left over from the 2025-26 table.",
+    "Reviewer re-ran calculatePAYGWithholding for 2026-27 weekly amounts from 355 to 370: $0 is withheld up to $364 and $1 from $365. The typed 362 does not match the engine and may be left over from 2025-26."
+   ],
+   "constants": [
+    "Work it out from lib/constants/payg-withholding.ts (the first gross amount where calculatePAYGWithholding(..., 'weekly').totalWithheld > 0), not a typed 362"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. calculatePAYGWithholding(g,'weekly') returns 0 for every amount from $355 to $364 and 1 from $365, so withholding starts above $364. The typed formatAUD(362) is stale. I did not change it (the rule is never to change wrong-looking facts)."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.81,
+   "needsOwner": false
+  }
+ ]
+}

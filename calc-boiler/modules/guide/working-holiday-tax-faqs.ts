@@ -40,7 +40,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do working holiday makers pay the Medicare levy?",
-    a: `Usually no. Most working holiday makers are foreign residents for tax purposes, and foreign residents do not pay the ${pct(MEDICARE_LEVY.rate)} Medicare levy. They are not eligible for Medicare benefits (with limited exceptions under reciprocal health care agreements). The Medicare Levy Surcharge also does not apply.`,
+    a: `Usually no. The ATO says most people who come to Australia for a working holiday are foreign residents for tax purposes, and foreign residents do not pay the ${pct(MEDICARE_LEVY.rate)} Medicare levy. They are not eligible for Medicare benefits (with limited exceptions under reciprocal health care agreements). The Medicare Levy Surcharge also does not apply.`,
   },
   {
     q: "What happens if my employer is not registered as a WHM employer?",
@@ -56,7 +56,7 @@ export const WORKING_HOLIDAY_TAX_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can working holiday makers claim tax deductions?",
-    a: "Yes. WHMs can claim work-related deductions including protective clothing, tools and equipment, travel between work sites (not home-to-work), sun protection for outdoor work, and union fees. Deductions reduce your assessable income, which reduces tax payable. Keep all receipts and records for expenses over $300.",
+    a: "Yes. WHMs can claim work-related deductions including protective clothing, tools and equipment, travel between work sites (not home-to-work), sun protection for outdoor work, and union fees. Deductions reduce your taxable income, which reduces the tax you pay. If your total work-related expense claims are more than $300, you need written evidence, such as receipts, for all of them, not just the amount over $300.",
   },
   {
     q: "Do working holiday makers pay HECS-HELP repayments?",

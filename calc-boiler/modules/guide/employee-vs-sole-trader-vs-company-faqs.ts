@@ -37,7 +37,7 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do sole traders have to pay super?",
-    a: `No, super contributions for yourself are optional for sole traders. You can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. The deduction reduces your taxable income and the contribution adds to your super balance. Without employer SG, sole traders fund their own super contributions.`,
+    a: `Not for yourself: a sole trader does not have to pay super guarantee on their own income, so super for yourself is optional. If you employ staff, you must pay super guarantee of ${pct(SUPER_GUARANTEE.rate)} for each eligible employee: employees aged 18 or over regardless of hours, and employees under 18 who work more than 30 hours in a week. From ${SUPER_GUARANTEE.paydaySuperStart} you pay it to their fund each payday. For yourself, you can contribute up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year in concessional (tax-deductible) contributions in FY${FY} and claim the full amount as a deduction on your tax return. The deduction reduces your taxable income and the contribution adds to your super balance. Without employer SG, sole traders fund their own super contributions.`,
   },
   {
     q: "How much does it cost to set up each structure?",

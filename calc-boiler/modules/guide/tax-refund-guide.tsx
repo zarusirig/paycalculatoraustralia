@@ -131,7 +131,7 @@ export default function TaxRefundGuidePage() {
                 There is no single typical refund. For most employees the refund is roughly their deductions multiplied by their marginal rate (plus the Medicare levy), plus any offset such as LITO that the withholding tables did not fully build in, plus any over-withholding from part-year work. Averages quoted in the media are early-season snapshots and move week to week, so we don&apos;t repeat them here.
               </p>
               <p>
-                Taxpayers in higher income tax brackets tend to receive larger refunds in dollar terms because deductions save tax at a higher marginal rate. For FY{RY}, a $3,000 deduction saves <strong>{formatAUD(3_000 * BRACKET_2.rate)}</strong> in income tax for someone in the {formatPercent(BRACKET_2.rate, 0)} bracket but <strong>{formatAUD(3_000 * TOP_BRACKET.rate)}</strong> for someone in the {formatPercent(TOP_BRACKET.rate, 0)} bracket. Part-year workers and those with multiple income sources also tend to receive above-average refunds due to withholding mismatches.
+                Taxpayers in higher income tax brackets tend to receive larger refunds in dollar terms because deductions save tax at a higher marginal rate. For FY{RY}, a $3,000 deduction saves <strong>{formatAUD(3_000 * BRACKET_2.rate)}</strong> in income tax for someone in the {formatPercent(BRACKET_2.rate, 0)} bracket but <strong>{formatAUD(3_000 * TOP_BRACKET.rate)}</strong> for someone in the {formatPercent(TOP_BRACKET.rate, 0)} bracket. Part-year workers can get a refund even with no deductions, because withholding on each pay assumes you earn that amount for the full year.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What $1,000 of Deductions Is Worth by Bracket (FY{RY})</h3>
@@ -150,7 +150,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Individuals below the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold who had PAYG tax withheld receive a full refund of all tax paid. This commonly applies to students, part-time workers, and people who started employment partway through the year. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify which marginal rate applies to your assessable income.
+                Individuals below the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold who had PAYG tax withheld receive a full refund of all tax paid. This commonly applies to students, part-time workers, and people who started employment partway through the year. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify which marginal rate applies to your taxable income.
               </p>
             </section>
 
@@ -182,7 +182,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements are a separate way to reduce taxable income. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details.
+                Claims without receipts are limited to <strong>$300 total</strong> for work-related expenses under the no-receipt threshold. The ATO uses data matching to compare your claims against others in the same occupation and income bracket. Unusually high claims relative to peers trigger review. Salary sacrifice arrangements are a separate way to reduce taxable income. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> for details.
               </p>
             </section>
 
@@ -190,7 +190,7 @@ export default function TaxRefundGuidePage() {
             <section id="how-to-lodge">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do You Lodge Your Tax Return?</h2>
               <p>
-                Most Australians lodge their tax return through <strong>myTax</strong>, the ATO&apos;s free online tool accessible via myGov. For a straightforward return with pre-filled employer data and no complex investments, it is usually a short job.
+                You can lodge your own tax return through <strong>myTax</strong>, the ATO&apos;s free online tool accessible via myGov. For a straightforward return with pre-filled employer data and no complex investments, it is usually a short job.
               </p>
               <ol>
                 <li><strong>Log into myGov</strong> at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> and navigate to the ATO section. Link your ATO account if you have not done so previously.</li>
@@ -201,7 +201,7 @@ export default function TaxRefundGuidePage() {
                 <li><strong>Submit and receive your Notice of Assessment.</strong> The ATO issues a Notice of Assessment confirming your refund amount or tax debt. The ATO says most myTax returns process in {RETURN_2026.onlineProcessingBusinessDays} business days and most refunds issue within {RETURN_2026.onlineRefundTypical}, paid by direct deposit.</li>
               </ol>
               <p>
-                Alternatively, a registered tax agent can lodge on your behalf. If you are on an agent&apos;s lodgment program (contact them before 31 October), most individuals have until <strong>{RETURN_2026.agentDueDateMostPeople}</strong>. Complex returns involving investment properties, capital gains, foreign income, or business income benefit from professional preparation.
+                Alternatively, a registered tax agent can lodge on your behalf. If you are on an agent&apos;s lodgment program (contact them before {RETURN_2026.selfLodgeDueDate}), most individuals have until <strong>{RETURN_2026.agentDueDateMostPeople}</strong>. Complex returns involving investment properties, capital gains, foreign income, or business income benefit from professional preparation.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Key Deadlines for the FY{RY} Return</h3>
@@ -294,7 +294,7 @@ export default function TaxRefundGuidePage() {
             <section id="changes-fy2025-26">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Tax Refunds in FY2025-26?</h2>
               <p>
-                The FY2025-26 financial year retains the Stage 3 tax cuts introduced on 1 July 2024, keeping the <strong>30% marginal rate</strong> for incomes between $45,001 and $135,000. No new changes to individual income tax brackets apply for the 2025-26 year. The next change applies to the 2026-27 return you lodge from July 2027: the {formatPercent(BRACKET_2.rate, 0)} rate fell to {formatPercent(TAX_BRACKETS[1].rate, 0)} from 1 July 2026 (see <Link href="/tax-brackets/">tax brackets</Link>).
+                The FY2025-26 financial year retains the Stage 3 tax cuts introduced on 1 July 2024, keeping the <strong>{formatPercent(BRACKET_3.rate, 0)} marginal rate</strong> for incomes between {formatAUD(BRACKET_3.min)} and {formatAUD(BRACKET_3.max)}. No new changes to individual income tax brackets apply for the 2025-26 year. The next change applies to the 2026-27 return you lodge from July 2027: the {formatPercent(BRACKET_2.rate, 0)} rate fell to {formatPercent(TAX_BRACKETS[1].rate, 0)} from 1 July 2026 (see <Link href="/tax-brackets/">tax brackets</Link>).
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -303,21 +303,22 @@ export default function TaxRefundGuidePage() {
                       <tr><th className="px-5 py-3">Item</th><th className="px-5 py-3">FY2024-25</th><th className="px-5 py-3">FY2025-26</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Tax-free threshold</td><td className="px-5 py-3">$18,200</td><td className="px-5 py-3">$18,200 (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">16% bracket</td><td className="px-5 py-3">$18,201 – $45,000</td><td className="px-5 py-3">$18,201 – $45,000 (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">30% bracket</td><td className="px-5 py-3">$45,001 – $135,000</td><td className="px-5 py-3">$45,001 – $135,000 (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">37% bracket</td><td className="px-5 py-3">$135,001 – $190,000</td><td className="px-5 py-3">$135,001 – $190,000 (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">45% bracket</td><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3">$190,001+ (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">Superannuation Guarantee (SG) rate</td><td className="px-5 py-3">11.5%</td><td className="px-5 py-3"><strong>12%</strong></td></tr>
+                      <tr><td className="px-5 py-3">Tax-free threshold</td><td className="px-5 py-3">{formatAUD(TAX_FREE_THRESHOLD)}</td><td className="px-5 py-3">{formatAUD(TAX_FREE_THRESHOLD)} (unchanged)</td></tr>
+                      {/* 2024-25 used the same scale as 2025-26 (see the TAX_BRACKETS_2025_26 comment in australian-tax.ts). */}
+                      {TAX_BRACKETS_2025_26.slice(1).map((b) => {
+                        const range = b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)} to ${formatAUD(b.max)}`;
+                        return <tr key={b.min}><td className="px-5 py-3">{formatPercent(b.rate, 0)} bracket</td><td className="px-5 py-3">{range}</td><td className="px-5 py-3">{range} (unchanged)</td></tr>;
+                      })}
+                      <tr><td className="px-5 py-3">Superannuation Guarantee (SG) rate</td><td className="px-5 py-3">{formatPercent(SUPER_GUARANTEE.previousRate, 1)}</td><td className="px-5 py-3"><strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong></td></tr>
                       <tr><td className="px-5 py-3">Concessional super contributions cap</td><td className="px-5 py-3">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}</td><td className="px-5 py-3">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">Medicare levy</td><td className="px-5 py-3">2%</td><td className="px-5 py-3">2% (unchanged)</td></tr>
+                      <tr><td className="px-5 py-3">Medicare levy</td><td className="px-5 py-3">{formatPercent(MEDICARE_LEVY.rate, 0)}</td><td className="px-5 py-3">{formatPercent(MEDICARE_LEVY.rate, 0)} (unchanged)</td></tr>
                       <tr><td className="px-5 py-3">Work from home fixed rate</td><td className="px-5 py-3">{RETURN_2026.wfhFixedRateCents}c per hour</td><td className="px-5 py-3">{RETURN_2026.wfhFixedRateCents}c per hour (unchanged)</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. The higher SG rate affects employees who salary sacrifice into super: a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
+                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>{formatPercent(SUPER_GUARANTEE.previousRate, 1)} to {formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on {SUPER_GUARANTEE.effectiveDate}. The higher SG rate affects employees who salary sacrifice into super: a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
               </p>
               <p>
                 The ATO receives third-party transaction data from cryptocurrency exchanges, ride-share platforms, short-term rental platforms (Airbnb, Stayz), and the sharing economy reporting regime. Unreported income from these sources is increasingly detected during return processing.
@@ -334,7 +335,7 @@ export default function TaxRefundGuidePage() {
                 <li><Link href="/tax-return-calculator/">Tax Return Estimator</Link>: calculate your expected refund or tax debt based on income, deductions, and PAYG withheld.</li>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link>: compute income tax, Medicare levy, and take-home pay at any salary level for FY{SITE_CONFIG.financialYear}.</li>
                 <li><Link href="/tax-brackets/">Tax Brackets Guide</Link>: view all Australian income tax brackets with marginal rates, base amounts, and worked examples.</li>
-                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>: learn how salary packaging into superannuation or novated leases reduces taxable income and increases your refund.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: work out how salary sacrificing into super lowers your taxable income. The sacrificed amount is not subject to PAYG withholding, so the saving shows up in each pay, not as a bigger refund.</li>
                 <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link>: understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: review employer SG rate obligations, contribution caps, and the impact of super on your overall tax position.</li>
                 <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link>: check whether LITO applies to your income and how it reduces your assessed tax liability.</li>

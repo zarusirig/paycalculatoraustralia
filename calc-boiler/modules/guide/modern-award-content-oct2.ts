@@ -9,9 +9,16 @@
 import { fitDescription } from "@/lib/seo-title";
 import { NMW } from "@/lib/constants/minimum-wage";
 import { MODERN_AWARDS, findAwardRate, roundCents } from "@/lib/constants/modern-awards";
+import { MINING_MIN_WEEKLY } from "@/lib/constants/modern-awards-oct2";
 import { $, FY, casual, commonFaqs, type AwardPageCopy } from "@/modules/guide/modern-award-content";
 
 const level = (key: keyof typeof MODERN_AWARDS, name: string) => findAwardRate(MODERN_AWARDS[key], name);
+/** An allowance amount from the award's constants, matched by its exact name. */
+const allow = (key: keyof typeof MODERN_AWARDS, name: string): number => {
+  const hit = MODERN_AWARDS[key].allowances.find((r) => r.name === name);
+  if (!hit) throw new Error(`unknown ${key} allowance: ${name}`);
+  return hit.amount;
+};
 const x = (hourly: number, mult: number) => roundCents(hourly * mult);
 
 /**
@@ -249,7 +256,7 @@ function healthProfessionals(): AwardPageCopy {
       steps: [
         `Saturday ordinary hours: a casual is paid 175% of the minimum rate for all time worked and does NOT also get the 25% loading (cl 26.1(b)). ${$(hp7.hourly)} × 1.75 = ${$(satCas)} an hour. A permanent employee is paid 150%: ${$(x(hp7.hourly, 1.5))}.`,
         `Weekday overtime, first 2 hours: for a casual, the 25% loading is added first and then 150% is applied to that, so ${$(casual(a, hp7.hourly))} × 1.5 = ${$(otFirst)} an hour (cl 25.3).`,
-        `So 4 hours on a Saturday is ${$(roundCents(satCas * 4))} before tax, a higher hourly rate than 2 hours of weekday overtime.`,
+        `So 4 hours on a Saturday is ${$(roundCents(satCas * 4))} before tax. The Saturday hourly rate (${$(satCas)}, 175% of the minimum rate) is lower than the casual rate for the first 2 hours of weekday overtime (${$(otFirst)}, 187.5% of the minimum rate).`,
       ],
       outro: "The weekend rate is flat 150% for all ordinary hours between midnight Friday and midnight Sunday (casuals 175%), and overtime rates are paid in place of the weekend penalty, not on top of it.",
     },
@@ -501,6 +508,12 @@ function mining(): AwardPageCopy {
   const l3 = level("mining", "Level 3 (Competent)");
   const l7 = level("mining", "Level 7 (Dual trade instrumentation)");
   const cas3 = casual(a, l3.hourly);
+  const ind = allow("mining", "Industry allowance");
+  const licence = allow("mining", "Licence allowance, electricians required to hold an Electrical Technician licence");
+  const meal = allow("mining", "Meal allowance for overtime");
+  const l3Min = MINING_MIN_WEEKLY.find(([name]) => name === "Level 3 (Competent)");
+  if (!l3Min) throw new Error("unknown MA000011 minimum rate: Level 3 (Competent)");
+  const l3MinWeekly = l3Min[1];
   return {
     slug: "mining-award-rates",
     crumb: "Mining Award Rates",
@@ -510,15 +523,15 @@ function mining(): AwardPageCopy {
       `Mining Industry Award MA000011 rates: ${$(entry.hourly)}–${$(l7.hourly)}/hr incl. industry allowance, with shift, weekend, casual and overtime rates.`,
     ),
     h1: `Mining Award Pay Rates ${FY}`,
-    standfirst: `Ordinary hourly rates for every classification under the ${a.meta.name} (${a.meta.code}), with the $41.41 industry allowance built in, operative from ${a.meta.operativeFrom}.`,
+    standfirst: `Ordinary hourly rates for every classification under the ${a.meta.name} (${a.meta.code}), with the ${$(ind)} industry allowance built in, operative from ${a.meta.operativeFrom}.`,
     directAnswer: `An entry-level mining employee earns ${$(entry.hourly)} an hour (${$(entry.weekly)} a week) including the industry allowance, or ${$(casual(a, entry.hourly))} as a casual. Level 3 (competent) is ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7. Afternoon and night shifts are 115%, permanent night 130%, Saturday before noon 150% for 3 hours then 200%, and Sunday and public holidays 200% and 250%. For casuals every percentage applies to the casual rate.`,
     trap: {
       heading: "The award's table is not what you are paid: the industry allowance is part of the rate",
-      body: `The weekly rates in clause 15.1 are minimum classification rates ($1,119.10 at Level 3). The $41.41 weekly industry allowance (cl 18.2(b)) is paid for all purposes, so it is part of the ordinary hourly rate that every shift, weekend, overtime and public holiday percentage is applied to: Level 3 is ${$(l3.hourly)} an hour here, not $29.45. The electrician's licence allowance ($50.92 a week) is also all-purpose but is not in these rows. For casuals every percentage in the award is applied to the CASUAL rate (${$(cas3)} at Level 3), which is why a casual Sunday at 200% of the casual rate is ${$(x(cas3, 2))}, or 250% of the permanent rate.`,
+      body: `The weekly rates in clause 15.1 are minimum classification rates (${$(l3MinWeekly)} at Level 3). The ${$(ind)} weekly industry allowance (cl 18.2(b)) is paid for all purposes, so it is part of the ordinary hourly rate that every shift, weekend, overtime and public holiday percentage is applied to: Level 3 is ${$(l3.hourly)} an hour here, not ${$(roundCents(l3MinWeekly / 38))}. The electrician's licence allowance (${$(licence)} a week) is also all-purpose but is not in these rows. For casuals every percentage in the award is applied to the CASUAL rate (${$(cas3)} at Level 3), which is why a casual Sunday at 200% of the casual rate is ${$(x(cas3, 2))}, or 250% of the permanent rate.`,
     },
     workedExample: {
       heading: "Worked example: a Level 3 operator's Saturday and Sunday",
-      intro: `Lee is a permanent Level 3 operator (${$(l3.hourly)} ordinary hourly rate including the industry allowance: $1,119.10 + $41.41 = ${$(l3.weekly)} a week, divided by 38). He works 6 hours on a Saturday morning, then 8 hours on Sunday.`,
+      intro: `Lee is a permanent Level 3 operator (${$(l3.hourly)} ordinary hourly rate including the industry allowance: ${$(l3MinWeekly)} + ${$(ind)} = ${$(l3.weekly)} a week, divided by 38). He works 6 hours on a Saturday morning, then 8 hours on Sunday.`,
       steps: [
         `Saturday before noon: the first 3 hours at 150%, ${$(l3.hourly)} × 1.5 = ${$(x(l3.hourly, 1.5))} → ${$(roundCents(x(l3.hourly, 1.5) * 3))}.`,
         `The next 3 hours at 200%: ${$(x(l3.hourly, 2))} → ${$(roundCents(x(l3.hourly, 2) * 3))}.`,
@@ -531,11 +544,11 @@ function mining(): AwardPageCopy {
       ...commonFaqs(a),
       {
         q: "How much does a miner earn under the Mining Award?",
-        a: `An entry-level mining employee earns ${$(entry.hourly)} an hour and a Level 3 (competent) operator ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7 (dual trade instrumentation), all including the $41.41 industry allowance. Most large mines pay under enterprise agreements at rates above the Mining Award minimum.`,
+        a: `An entry-level mining employee earns ${$(entry.hourly)} an hour and a Level 3 (competent) operator ${$(l3.hourly)}, rising to ${$(l7.hourly)} at Level 7 (dual trade instrumentation), all including the ${$(ind)} industry allowance. Most large mines pay under enterprise agreements at rates above the Mining Award minimum.`,
       },
       {
         q: "What is the Mining Award industry allowance?",
-        a: "The Mining Award industry allowance is $41.41 a week, paid to all employees for all purposes (cl 18.2(b)). It recognises the location and nature of mining operations, clothing, dirt, wet, height, fumes, heat, cold, confined space and other disabilities. Because it is paid for all purposes, the allowance is part of the ordinary hourly rate that shift loadings, penalties and overtime are calculated on.",
+        a: `The Mining Award industry allowance is ${$(ind)} a week, paid to all employees for all purposes (cl 18.2(b)). It recognises the location and nature of mining operations, clothing, dirt, wet, height, fumes, heat, cold, confined space and other disabilities. Because it is paid for all purposes, the allowance is part of the ordinary hourly rate that shift loadings, penalties and overtime are calculated on.`,
       },
       {
         q: "What are Mining Award shift and weekend rates?",
@@ -543,7 +556,7 @@ function mining(): AwardPageCopy {
       },
       {
         q: "What is the Mining Award overtime rate?",
-        a: `Mining Award overtime is 150% for the first 3 hours, Monday to noon on Saturday, then 200%; 200% after noon on Saturday and all day Sunday; 250% on a public holiday; and 200% for continuous shiftworkers for all overtime (cl 20). A meal allowance of $22.04 applies on each occasion an employee is entitled to a rest break during overtime.`,
+        a: `Mining Award overtime is 150% for the first 3 hours, Monday to noon on Saturday, then 200%; 200% after noon on Saturday and all day Sunday; 250% on a public holiday; and 200% for continuous shiftworkers for all overtime (cl 20). A meal allowance of ${$(meal)} is paid on each occasion an employee is entitled to a rest break during overtime, unless the employer provides a meal or meal-making facilities or gave notice of the overtime by the previous day or shift (cl 18.3(a)).`,
       },
       {
         q: "How are casuals paid in the Mining Award?",

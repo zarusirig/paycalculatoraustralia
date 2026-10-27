@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
-import { calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import {
   APPRENTICE_PAY_VERIFIED_ON,
   APPRENTICE_RATES_FROM,
@@ -129,7 +129,7 @@ export default function ApprenticePayRatesPage() {
           <section>
             <H2 id="how-it-works">How Apprentice Wages Are Set</H2>
             <p>
-              Apprentices are not paid the adult minimum wage. Each modern award sets an apprentice wage as a percentage of its tradesperson rate, usually $1,119.10 a week (for 2026-27), and the percentage steps up each year. In most trades on this page, a first-year apprentice is on 50% (55% if they finished Year 12), and by fourth year it is 82% to 95%, depending on the trade. Because the National Minimum Wage order does not bind apprentice rates under a training contract, a first-year apprentice can lawfully earn less than $26.44 an hour. Many employers pay more, and enterprise agreements often do.
+              Apprentices are not paid the adult minimum wage. Each modern award sets an apprentice wage as a percentage of its tradesperson rate, usually {f2(STANDARD_WEEKLY_RATE)} a week (for 2026-27), and the percentage steps up each year. In most trades on this page, a first-year apprentice is on 50% (55% if they finished Year 12), and by fourth year it is 82% to 95%, depending on the trade. Because the National Minimum Wage order does not bind apprentice rates under a training contract, a first-year apprentice can lawfully earn less than {f2(EMPLOYMENT.minimumWageHourly)} an hour. These are minimums: an employer or an enterprise agreement can pay more.
             </p>
             <p>
               Three details change the number on a payslip. <strong>Year 12</strong> matters in most trades: finishing it lifts the first two years by five percentage points. <strong>Allowances</strong> matter too: electrical and plumbing apprentice rates already include them, but in building and construction, automotive, hairdressing and cookery the tables show the wage only, with tool and industry allowances added on top. And <strong>stage progression</strong> can be by calendar year or, where the award allows, by completing training competencies earlier.

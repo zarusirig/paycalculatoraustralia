@@ -144,7 +144,7 @@ export default function EmployerCostCalculatorPage({
                           <span className="text-warmgray-light text-sm">%</span>
                         </div>
                       </div>
-                      <p className="text-xs text-warmgray-light leading-tight">The premium rate varies by industry risk, from 0.5% to 10%.</p>
+                      <p className="text-xs text-warmgray-light leading-tight">Your state&apos;s workers compensation insurer sets the rate, based on your industry&apos;s risk.</p>
                     </div>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import { EMPLOYMENT, MEDICARE_LEVY, SITE_CONFIG, SOURCES, SUPER_GUARANTEE, TAX_B
 import { DEFAULT_CONTRACTOR_ASSUMPTIONS as CA, WORKING_DAYS_PER_YEAR } from "@/lib/constants/contractor-rate";
 import { CGT_DISCOUNT_RATES, CGT_MINIMUM_OWNERSHIP_MONTHS } from "@/lib/constants/capital-gains-tax";
 import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
+import { COMPANY_TAX } from "@/lib/constants/company-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
@@ -23,6 +24,9 @@ const EX110 = calculatePayBreakdown({ grossSalary: 110_000 });
 const EX110_SACRIFICE = calculatePayBreakdown({ grossSalary: 110_000, salarySacrifice: 10_000 });
 // Tax and Medicare saved, less the 15% contributions tax the fund pays.
 const SACRIFICE_SAVING = (EX110.totalDeductions - EX110_SACRIFICE.totalDeductions) - 10_000 * CONTRIBUTIONS_TAX_RATE;
+
+// "2021–22" in the constant; prose uses a plain hyphen for financial years.
+const COMPANY_RATE_FIRST_YEAR = COMPANY_TAX.firstYear.replace("–", "-");
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const SG = pct(SUPER_GUARANTEE.rate);
@@ -42,7 +46,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Employee share schemes: employees", url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees", publisher: SOURCES.ato.name },
   { title: "Employee share schemes: tax-deferred schemes and the deferred taxing point", url: ATO_ESS_DEFERRED_URL, publisher: SOURCES.ato.name },
   { title: "ESS and capital gains tax", url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/ess-and-your-tax/ess-and-capital-gains-tax", publisher: SOURCES.ato.name },
-  { title: "Company tax rates 2025–26", url: "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rates/tax-rates-2025-26", publisher: SOURCES.ato.name },
+  { title: "Changes to company tax rates", url: COMPANY_TAX.sources.rateChanges, publisher: SOURCES.ato.name },
   { title: "Personal services income: how to attribute PSI", url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/personal-services-income/what-to-do-when-the-psi-rules-apply/how-to-attribute-psi", publisher: SOURCES.ato.name },
 ];
 
@@ -168,7 +172,7 @@ export default function TechSalaryGuideAustraliaPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>ABN vs Pty Ltd Considerations</h3>
               <p>
-                Sole traders (ABN) are simpler to set up and pay tax at personal marginal rates on all business income. A <strong>Pty Ltd company</strong> has its own tax rate, <strong>{BASE_RATE_ENTITY_TAX}</strong> for a base rate entity in 2025-26 (ATO), but income produced mainly from your own skills or effort is personal services income (PSI). If the PSI rules apply, the company must attribute that income to you and it is taxed at your marginal rates. A company also carries its own accounting and reporting costs. Use the <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> and the <Link href="/employee-vs-sole-trader-vs-company/">Entity Structure Comparison</Link> to model the best structure for your situation.
+                Sole traders (ABN) are simpler to set up and pay tax at personal marginal rates on all business income. A <strong>Pty Ltd company</strong> has its own tax rate, <strong>{BASE_RATE_ENTITY_TAX}</strong> for a base rate entity in FY{SITE_CONFIG.financialYear}, the rate the ATO sets for every income year from {COMPANY_RATE_FIRST_YEAR} (ATO), but income produced mainly from your own skills or effort is personal services income (PSI). If the PSI rules apply, the company must attribute that income to you and it is taxed at your marginal rates. A company also carries its own accounting and reporting costs. Use the <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> and the <Link href="/employee-vs-sole-trader-vs-company/">Entity Structure Comparison</Link> to model the best structure for your situation.
               </p>
             </section>
 
@@ -227,7 +231,7 @@ export default function TechSalaryGuideAustraliaPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Occupation medians are from the ATO&rsquo;s Taxation statistics {TECH_INCOME_YEAR}, Individuals Table 15A: the median salary or wages of everyone who gave that occupation on their {TECH_INCOME_YEAR} tax return, read from the same data as our role pages. The contractor day rates are our calculation: salary plus the {SG} Super Guarantee plus {formatAUD(CA.insurancePerYear + CA.adminPerYear)} a year of insurance and admin, divided by {DR110.billableDays} billable days ({WORKING_DAYS_PER_YEAR} weekdays less {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave and {CA.publicHolidayDays} public holidays). Take-home figures use ATO resident tax rates and the Medicare levy for FY{SITE_CONFIG.financialYear}, with no HELP debt, no deductions, and private hospital cover so no Medicare levy surcharge. The RSU and ESS explanation follows ATO employee share scheme guidance, and the company tax rate is the ATO&rsquo;s 2025-26 rate. This guide quotes no recruiter or job-board salary data.</p>
+                <p>Occupation medians are from the ATO&rsquo;s Taxation statistics {TECH_INCOME_YEAR}, Individuals Table 15A: the median salary or wages of everyone who gave that occupation on their {TECH_INCOME_YEAR} tax return, read from the same data as our role pages. The contractor day rates are our calculation: salary plus the {SG} Super Guarantee plus {formatAUD(CA.insurancePerYear + CA.adminPerYear)} a year of insurance and admin, divided by {DR110.billableDays} billable days ({WORKING_DAYS_PER_YEAR} weekdays less {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave and {CA.publicHolidayDays} public holidays). Take-home figures use ATO resident tax rates and the Medicare levy for FY{SITE_CONFIG.financialYear}, with no HELP debt, no deductions, and private hospital cover so no Medicare levy surcharge. The RSU and ESS explanation follows ATO employee share scheme guidance, and the company tax rate is the ATO&rsquo;s base rate entity rate for {COMPANY_RATE_FIRST_YEAR} and later years. This guide quotes no recruiter or job-board salary data.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tech-salary-guide-australia"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

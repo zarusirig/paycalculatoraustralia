@@ -1,4 +1,6 @@
 import type { Faq } from "./t3-shared";
+import { formatAUD, SUPER_GUARANTEE } from "@/lib/constants";
+import { HIGH_INCOME_THRESHOLD } from "@/lib/constants/ote-salary";
 
 // Shared by the page body and the FAQPage JSON-LD. Legal points are sourced
 // in lib/constants/ote-salary.ts (ATO, FWC, FWO; read 24 September 2026).
@@ -18,7 +20,7 @@ export const OTE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "Is super paid on commission in Australia?",
-    a: "Yes. The ATO lists commission payments as ordinary time earnings, so the 12% super guarantee applies to commission as well as base salary. From 1 July 2026 super is calculated on qualifying earnings, which also include commission for work done entirely outside ordinary hours.",
+    a: `Yes. The ATO lists commission payments as ordinary time earnings, so the ${Math.round(SUPER_GUARANTEE.rate * 100)}% super guarantee applies to commission as well as base salary. From 1 July 2026 super is calculated on qualifying earnings, which also include commission for work done entirely outside ordinary hours.`,
   },
   {
     q: "What does OTE mean for super?",
@@ -26,7 +28,7 @@ export const OTE_SALARY_FAQS: Faq[] = [
   },
   {
     q: "Does commission count towards the high income threshold?",
-    a: "No. The Fair Work Commission says earnings for the $190,100 high income threshold exclude payments that can't be determined in advance, such as commissions, incentive payments and bonuses. Only your base and other guaranteed pay count.",
+    a: `No. The Fair Work Commission says earnings for the ${formatAUD(HIGH_INCOME_THRESHOLD.current)} high income threshold exclude payments that can't be determined in advance, such as commissions, incentive payments and bonuses. Only your base and other guaranteed pay count.`,
   },
   {
     q: "Can I be paid commission only?",

@@ -4,7 +4,7 @@
 // data cannot drift from the visible page. Every figure interpolates from the
 // constants file — no rate is typed as a literal here.
 
-import { formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, TAX_BRACKETS, formatAUD } from "@/lib/constants";
 import {
   ABSENCE_RULE,
   CGT_AFFORDABLE_HOUSING,
@@ -18,6 +18,8 @@ import {
 } from "@/lib/constants/capital-gains-tax";
 
 const PCT = (n: number) => `${Number((n * 100).toFixed(2))}%`;
+const BOTTOM_RATE = TAX_BRACKETS[0].rate;
+const TOP_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
 
 // Worked figures derived from the engine so the copy cannot drift from the
 // calculator sitting above it.
@@ -51,7 +53,7 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: "What is the capital gains tax rate in Australia?",
-    a: `Australia has no separate capital gains tax rate. The gain is taxed at whatever marginal rate applies once it is stacked on top of your other income, which for ${CGT_INCOME_YEAR} means anywhere from 0% to 45% plus the 2% Medicare levy. Because the ${PCT(CGT_DISCOUNT_RATES.individual)} discount halves the taxable portion, the effective rate on the full gain for a top-bracket taxpayer works out at roughly ${PCT(0.45 * (1 - CGT_DISCOUNT_RATES.individual) + 0.02 * (1 - CGT_DISCOUNT_RATES.individual))}, but that is an outcome of the marginal rates, not a rate the ATO publishes. From ${CGT_REFORM_2027.firstAffectedYear} there is also a floor: Australian resident individuals pay at least ${PCT(CGT_REFORM_2027.minimumTaxRate)} on gains that build up from ${CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year.`,
+    a: `Australia has no separate capital gains tax rate. The gain is taxed at whatever marginal rate applies once it is stacked on top of your other income, which for ${CGT_INCOME_YEAR} means anywhere from ${PCT(BOTTOM_RATE)} to ${PCT(TOP_RATE)} plus the ${PCT(MEDICARE_LEVY.rate)} Medicare levy. Because the ${PCT(CGT_DISCOUNT_RATES.individual)} discount halves the taxable portion, the effective rate on the full gain for a top-bracket taxpayer works out at roughly ${PCT((TOP_RATE + MEDICARE_LEVY.rate) * (1 - CGT_DISCOUNT_RATES.individual))}, but that is an outcome of the marginal rates, not a rate the ATO publishes. From ${CGT_REFORM_2027.firstAffectedYear} there is also a floor: Australian resident individuals pay at least ${PCT(CGT_REFORM_2027.minimumTaxRate)} on gains that build up from ${CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year.`,
   },
   {
     q: "How does the 50% CGT discount work?",
@@ -59,7 +61,7 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: `Do I pay capital gains tax if I sell within ${CGT_MINIMUM_OWNERSHIP_MONTHS} months?`,
-    a: `Yes, and you get no discount at all. The ${PCT(CGT_DISCOUNT_RATES.individual)} discount is unavailable for any asset held less than ${CGT_MINIMUM_OWNERSHIP_MONTHS} months, so the entire gain is added to your taxable income. There is no partial or pro-rata discount for holding an asset for eleven months. On the same ${formatAUD(EXAMPLE.grossGain)} gain used above, selling early takes the tax from about ${formatAUD(EXAMPLE.totalTaxOnGain)} to about ${formatAUD(SHORT_HOLD.totalTaxOnGain)}, a difference of roughly ${formatAUD(SHORT_HOLD.totalTaxOnGain - EXAMPLE.totalTaxOnGain)} from signing the sale contract too early.`,
+    a: `Yes, and you get no discount at all. The ${PCT(CGT_DISCOUNT_RATES.individual)} discount is unavailable for any asset held less than ${CGT_MINIMUM_OWNERSHIP_MONTHS} months, so the entire gain is added to your taxable income. There is no partial or pro-rata discount for an asset held just short of ${CGT_MINIMUM_OWNERSHIP_MONTHS} months. On the same ${formatAUD(EXAMPLE.grossGain)} gain used above, selling early takes the tax from about ${formatAUD(EXAMPLE.totalTaxOnGain)} to about ${formatAUD(SHORT_HOLD.totalTaxOnGain)}, a difference of roughly ${formatAUD(SHORT_HOLD.totalTaxOnGain - EXAMPLE.totalTaxOnGain)} from signing the sale contract too early.`,
   },
   {
     q: "What can I include in the cost base?",
@@ -87,11 +89,11 @@ export const CGT_FAQS: readonly CgtFaq[] = [
   },
   {
     q: "When does the CGT event happen: contract date or settlement?",
-    a: "For a sale under a contract, the CGT event happens on the date of the contract, not when the sale settles. Property sales usually work this way and the distinction decides which financial year the gain falls in. The ATO's own example: if contracts are exchanged on 4 June 2026 and settlement happens on 6 July 2026, the gain belongs in the return for the year ending 30 June 2026. If there is no contract of sale, the CGT event happens at the time of sale.",
+    a: "For a sale under a contract, the CGT event happens on the date of the contract, not when the sale settles. Property sales usually work this way and the distinction decides which financial year the gain falls in. The ATO's own example: Sue entered into a contract to sell land in June 2025 and the contract settled in October 2025, so she made the capital gain in the 2024-25 income year, not 2025-26. If there is no contract of sale, the CGT event happens at the time of sale.",
   },
   {
     q: "How is CGT calculated on shares?",
-    a: "CGT on shares is calculated exactly the same way as on property. Your capital proceeds are what you sold the shares for; your cost base is what you paid plus brokerage and stamp duty on both the purchase and the sale. Subtract the cost base from the proceeds to get the gain, subtract any capital losses, then apply the discount if you held the shares at least 12 months. Shares are usually bought in parcels at different times, so you need to track each parcel separately: each parcel has its own cost base and its own holding period.",
+    a: `CGT on shares is calculated exactly the same way as on property. Your capital proceeds are what you sold the shares for; your cost base is what you paid plus incidental costs of buying and selling them, such as brokerage on both the purchase and the sale. Subtract the cost base from the proceeds to get the gain, subtract any capital losses, then apply the discount if you held the shares at least ${CGT_MINIMUM_OWNERSHIP_MONTHS} months. Shares are usually bought in parcels at different times, so you need to track each parcel separately: each parcel has its own cost base and its own holding period.`,
   },
   {
     q: "Do I get a bigger discount for affordable housing?",

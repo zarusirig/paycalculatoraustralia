@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
+import { pageDateModified } from "@/lib/page-dates";
 import { ShieldCheck, Database, RefreshCw, ExternalLink } from "lucide-react";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
@@ -11,6 +12,14 @@ import FeaturedImage from "@/components/common/featured-image";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/about/`;
 const TITLE = "About Pay Calculator Australia - Methodology & Sources";
+// Last commit that touched this page (git), the same date the sitemap shows.
+const MODIFIED_ISO = pageDateModified("about");
+const MODIFIED_LABEL = new Intl.DateTimeFormat("en-AU", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(`${MODIFIED_ISO}T00:00:00Z`));
 const DESCRIPTION =
   "Learn how Pay Calculator Australia ensures accuracy. Our methodology, data sources (ATO, Fair Work), and commitment to free, up-to-date Australian pay calculators.";
 
@@ -264,10 +273,10 @@ function AboutPage() {
             </h2>
             <ul className="space-y-3">
               {[
-                { name: SOURCES.ato.name, url: SOURCES.ato.url, desc: "Tax rates, brackets, HECS thresholds, super rates" },
+                { name: SOURCES.ato.name, url: SOURCES.ato.url, desc: "Tax rates, brackets, Medicare levy thresholds, HECS thresholds, super rates" },
                 { name: SOURCES.fwc.name, url: SOURCES.fwc.url, desc: "Minimum wage, award rate decisions" },
                 { name: "Fair Work Ombudsman", url: SOURCES.fwo.url, desc: "Award rates, penalty rates, employment entitlements" },
-                { name: SOURCES.servicesAustralia.name, url: SOURCES.servicesAustralia.url, desc: "Medicare levy thresholds" },
+                { name: SOURCES.servicesAustralia.name, url: SOURCES.servicesAustralia.url, desc: "Centrelink payment rates and income tests, Paid Parental Leave, Child Care Subsidy" },
                 { name: SOURCES.abs.name, url: SOURCES.abs.url, desc: "Average wage statistics" },
               ].map((source) => (
                 <li key={source.url} className="flex items-start gap-3">
@@ -304,7 +313,7 @@ function AboutPage() {
             <ul className="grid gap-2 text-warmgray sm:grid-cols-2">
               {[
                 "Income tax brackets and rates",
-                "Superannuation Guarantee (12%)",
+                `Superannuation Guarantee (${formatPercent(SUPER_GUARANTEE.rate, 0)})`,
                 "Medicare levy and surcharge",
                 "HECS-HELP repayments (new marginal system)",
                 "Salary sacrifice into super",
@@ -367,9 +376,9 @@ function AboutPage() {
           >
             <p>
               Last updated:{" "}
-              <time dateTime="2026-03-14">14 March 2026</time>. All rates apply
-              for FY{SITE_CONFIG.financialYear} ({SITE_CONFIG.financialYearStart}{" "}
-              – {SITE_CONFIG.financialYearEnd}).
+              <time dateTime={MODIFIED_ISO}>{MODIFIED_LABEL}</time>. All rates apply
+              for FY{SITE_CONFIG.financialYear} ({SITE_CONFIG.financialYearStart} to{" "}
+              {SITE_CONFIG.financialYearEnd}).
             </p>
           </aside>
         </article>

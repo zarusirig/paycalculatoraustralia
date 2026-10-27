@@ -5,14 +5,17 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27, TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE } from "@/lib/constants/tax-2027-28";
 import {
   calculatePAYGWithholding,
+  firstWholeDollarWithheld,
   NO_TFN_RATES,
   PAYG_TABLES_UPDATED,
   PAYG_FINANCIAL_YEAR,
   PAYG_PREVIOUS_FINANCIAL_YEAR,
   PAYG_YEAR_INFO,
+  SCALE_2_MEDICARE,
 } from "@/lib/constants/payg-withholding";
 import TaxTableLookupWidget from "./lookup-widget";
 import FullTaxTable from "./full-tax-table";
@@ -49,6 +52,11 @@ const example3000stsl = calculatePAYGWithholding(3_000, "fortnightly", { hasSTSL
 const example1600noTft = calculatePAYGWithholding(1_600, "fortnightly", { claimsTaxFreeThreshold: false });
 const example1600tft = calculatePAYGWithholding(1_600, "fortnightly");
 const example2000Foreign = calculatePAYGWithholding(2_000, "fortnightly", { foreignResident: true });
+// Rate-cut figures, read from the bracket constants so the prose cannot drift.
+const cutBand = TAX_BRACKETS_2026_27[1];
+const ratePct = (rate: number) => `${Math.round(rate * 100)}%`;
+const medicarePct = ratePct(SCALE_2_MEDICARE.rate);
+const yearlyCutSaving = TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS_2026_27[2].base;
 
 export default function FortnightlyTaxTablePage() {
   return (
@@ -81,7 +89,7 @@ export default function FortnightlyTaxTablePage() {
           <TableDownloads frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_FORTNIGHTLY} className="mb-6" />
           <TaxTableLookupWidget frequency="fortnightly" defaultGross={2_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
-            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
+            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut ({ratePct(cutBand.rate)} on {formatAUD(cutBand.min)} to {formatAUD(cutBand.max)}) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage placement="content" className="mb-0 mt-6" />
@@ -106,7 +114,7 @@ export default function FortnightlyTaxTablePage() {
                 {" "}{ATO_FORTNIGHTLY.nat} columns: tax-free threshold claimed (column 2 of the ATO
                 table) and not claimed (column 3, typical for a{" "}
                 <Link href="/second-job-tax-calculator/">second job</Link>), plus the total with a study loan.
-                Fortnightly is Australia&apos;s most common pay cycle, with 26 pays a year. Switch to{" "}
+                The fortnightly table assumes {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays a year. Switch to{" "}
                 {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an older pay run, or download the full table as a CSV.
               </p>
               <FullTaxTable
@@ -180,16 +188,16 @@ export default function FortnightlyTaxTablePage() {
             <section id="threshold-columns">
               <h2>&quot;With Tax-Free Threshold&quot; vs &quot;Without&quot;: What the Columns Mean</h2>
               <p>
-                The first {formatAUD(18_200)} of annual income is tax-free, but only one employer may apply it. Claiming the
-                threshold spreads about {formatAUD(700)} a fortnight of tax-free income across your pays, which is the entire
+                The first {formatAUD(TAX_FREE_THRESHOLD)} of annual income is tax-free, but only one employer may apply it. Claiming the
+                threshold spreads about {formatAUD(TAX_FREE_THRESHOLD / FORTNIGHTLY_EXTRA_PAY.standardPayCount)} a fortnight of tax-free income across your pays, which is the entire
                 reason column 2 sits so far below column 3.
               </p>
               <ul>
-                <li><strong>Column 2: tax-free threshold claimed.</strong> The normal column for your main job. Nothing is withheld until fortnightly earnings pass roughly {formatAUD(724)}, and the 2% Medicare levy is built in with its low-income shading.</li>
+                <li><strong>Column 2: tax-free threshold claimed.</strong> The normal column for your main job. Nothing is withheld until fortnightly earnings reach {formatAUD(firstWholeDollarWithheld("fortnightly"))}, and the {medicarePct} Medicare levy is built in with its low-income shading.</li>
                 <li><strong>Column 3: no tax-free threshold.</strong> Used for second jobs and anyone who has not claimed the threshold. Withholding starts from the first dollar. At {formatAUD(1_600)} a fortnight, column 2 withholds {formatAUD(example1600tft.totalWithheld)} while column 3 withholds {formatAUD(example1600noTft.totalWithheld)} &mdash; {formatAUD(example1600noTft.totalWithheld - example1600tft.totalWithheld)} more per pay.</li>
               </ul>
               <p>
-                Claiming the threshold at two jobs simultaneously is the most common cause of an unexpected tax bill: each
+                Claiming the threshold at two jobs at the same time leads to an unexpected tax bill: each
                 employer withholds as though the other did not exist. Our{" "}
                 <Link href="/second-job-tax-calculator/">second job tax calculator</Link> shows the size of the gap. When column
                 3 applies, the ATO says to allow <em>no</em> tax offsets and make <em>no</em> Medicare levy adjustment.
@@ -298,11 +306,11 @@ export default function FortnightlyTaxTablePage() {
             <section id="how-much-tax-per-fortnight">
               <h2>How Much Tax Is Withheld From Your Fortnightly Pay?</h2>
               <p>
-                Under the 2026-27 fortnightly tax table, withholding at {formatAUD(2_000)} a fortnight is{" "}
+                Under the {PAYG_FINANCIAL_YEAR} fortnightly tax table, withholding at {formatAUD(2_000)} a fortnight is{" "}
                 {formatAUD(example2000.totalWithheld)} ({Math.round((example2000.totalWithheld / 2_000) * 100)}% of gross), and at{" "}
                 {formatAUD(3_000)} a fortnight {formatAUD(example3000.totalWithheld)} (
                 {Math.round((example3000.totalWithheld / 3_000) * 100)}%). The percentage climbs with income because each extra
-                dollar above roughly {formatAUD(45_000 / 26)} a fortnight (annualised $45,000) is withheld at the 30% marginal rate
+                dollar above roughly {formatAUD(cutBand.max / FORTNIGHTLY_EXTRA_PAY.standardPayCount)} a fortnight (annualised {formatAUD(cutBand.max)}) is withheld at the {ratePct(TAX_BRACKETS_2026_27[2].rate)} marginal rate
                 plus the Medicare levy. Check where your income lands in the{" "}
                 <Link href="/tax-brackets/">tax brackets guide</Link>, or model a salary change with the{" "}
                 <Link href="/income-tax-calculator/">income tax calculator</Link>.
@@ -312,12 +320,12 @@ export default function FortnightlyTaxTablePage() {
             <section id="what-changed">
               <h2>What Changed in the Fortnightly Tax Table for 2026-27?</h2>
               <p>
-                From 1 July 2026 the marginal rate on income between $18,201 and $45,000 dropped from{" "}
-                <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts, and the ATO reissued all 15 withholding
+                From {PAYG_TABLES_UPDATED} the marginal rate on income between {formatAUD(cutBand.min)} and {formatAUD(cutBand.max)} dropped from{" "}
+                <strong>{ratePct(TAX_BRACKETS_2025_26[1].rate)} to {ratePct(cutBand.rate)}</strong> under the legislated cost-of-living tax cuts, and the ATO reissued all 15 withholding
                 schedules and 12 tax tables, including {ATO_FORTNIGHTLY.nat}, to match. The same update raised the
-                Medicare levy low-income thresholds and re-indexed the study and training loan repayment thresholds. Compared with
-                2025-26, withholding falls by up to about <strong>{formatAUD(268 / 26)} per fortnight</strong> for anyone earning
-                $45,000 a year or more. A further cut to 14% arrives on 1 July 2027. The details are in our{" "}
+                Medicare levy low-income thresholds and re-indexed the study and training loan repayment thresholds. Compared with{" "}
+                {PAYG_PREVIOUS_FINANCIAL_YEAR}, withholding falls by up to about <strong>{formatAUD(yearlyCutSaving / FORTNIGHTLY_EXTRA_PAY.standardPayCount)} per fortnight</strong> for anyone earning{" "}
+                {formatAUD(cutBand.max)} a year or more. A further cut to {ratePct(RATE_2027_28)} arrives on {RATE_CUT_EFFECTIVE}. The details are in our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
             </section>

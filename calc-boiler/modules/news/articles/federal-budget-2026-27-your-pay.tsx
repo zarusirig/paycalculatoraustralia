@@ -54,9 +54,8 @@ export default function FederalBudget202627YourPay() {
         The Working Australians Tax Offset works differently to a rate cut. Instead of changing a
         bracket, it&apos;s applied as a direct reduction to the tax you&apos;d otherwise owe, up to $250,
         once you&apos;ve calculated your liability under the ordinary rates and thresholds. Treasury
-        says it effectively lifts the point at which a typical worker starts paying net tax to
-        almost $19,985, or up to $24,985 for workers who also qualify for the low income tax
-        offset. Because it doesn&apos;t start until the 2027-28 income year, it won&apos;t appear on a
+        says it lifts the effective tax-free threshold for workers by nearly $1,800 to $19,985, or
+        up to $24,985 for workers eligible for the low income tax offset. Because it doesn&apos;t start until the 2027-28 income year, it won&apos;t appear on a
         2026-27 notice of assessment. The first year it shows up is the return lodged from July
         2028.
       </p>

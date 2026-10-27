@@ -9,6 +9,7 @@ import {
   formatAUD,
   formatPercent,
   HECS_HELP,
+  QUALIFYING_EARNINGS,
   SITE_CONFIG,
   SUPER_GUARANTEE,
   TAX_BRACKETS,
@@ -75,11 +76,11 @@ export const HOURLY_TO_ANNUAL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does my hourly rate include superannuation?",
-    a: `No. For permanent employees, the employer pays an additional ${SG} superannuation guarantee on top of your ordinary time earnings. Casual employees also receive the ${SG} SG rate on top of their hourly rate, which already includes ${LOADING} casual loading.`,
+    a: `No. For permanent employees, the employer pays an additional ${SG} superannuation guarantee on top of your qualifying earnings (ordinary time earnings plus ${QUALIFYING_EARNINGS.onlyChangeFromOTE}). Casual employees also receive the ${SG} SG rate on top of their hourly rate, which already includes ${LOADING} casual loading.`,
   },
   {
     q: "Should I include overtime in my annual salary calculation?",
-    a: `The standard conversion (hourly × hours × ${W}) covers only ordinary time earnings. Overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed weekly. Calculate overtime separately and add it to your base annual salary. Superannuation is calculated on ordinary time earnings only, not on overtime hours.`,
+    a: `The standard conversion (hourly × hours × ${W}) covers only ordinary time earnings. Overtime is paid at the higher rate your award or agreement sets, such as 1.5x or 2x, and is not guaranteed weekly. Calculate overtime separately and add it to your base annual salary. The super guarantee is calculated on qualifying earnings, which leave out overtime when your award or agreement clearly sets out your ordinary hours.`,
   },
   {
     q: "How do I convert a part-time hourly rate to a full-time equivalent?",

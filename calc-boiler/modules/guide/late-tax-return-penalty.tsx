@@ -70,7 +70,7 @@ export default function LateTaxReturnPenaltyPage() {
       <KeyFigures
         items={[
           { k: "Penalty unit", v: formatAUD(PENALTY_UNIT.amount), s: `From ${PENALTY_UNIT.from} (was ${formatAUD(PENALTY_UNIT.previousAmount)})` },
-          { k: "Rate", v: `1 per ${FTL_RULES.daysPerUnit} days`, s: "Or part of 28 days overdue" },
+          { k: "Rate", v: `1 per ${FTL_RULES.daysPerUnit} days`, s: `Or part of ${FTL_RULES.daysPerUnit} days overdue` },
           { k: "Maximum", v: formatAUD(FTL_MAX_INDIVIDUAL), s: `${FTL_RULES.maxUnits} units, for an individual` },
           { k: "Self-lodge deadline", v: `${DUE.iso.slice(8)} Oct`, s: `Effective ${formatIso(EFFECTIVE)} (weekend rule)` },
         ]}
@@ -104,7 +104,7 @@ export default function LateTaxReturnPenaltyPage() {
               The due date for the {RETURN_2026.incomeYear} return is <strong>{RETURN_2026.selfLodgeDueDate}</strong> if you lodge it yourself. That date falls on a {weekdayOf(DUE.iso)}, and when a due date is on a weekend or public holiday the ATO treats the next business day as the due date. Here that is <strong>{weekdayOf(EFFECTIVE)} {formatIso(EFFECTIVE, "long")}</strong>, and the penalty clock starts the day after. The calculator applies this rule for you. Do not count on the extra day if you can lodge earlier.
             </p>
             <p>
-              A registered tax agent changes the deadline. If you are a new client, or switching agents, contact them before 31 October so you are included in their lodgment program. Most agent clients then have until <strong>{RETURN_2026.agentDueDateMostPeople}</strong>, with earlier dates in a few cases: <strong>{RETURN_2026.agentDueDateLargeLiability}</strong> where your latest return had a liability of $20,000 or more, and 31 October 2026 if you had a return outstanding at 30 June 2026. See the <Link href="/tax-calendar/">tax calendar</Link> for every date.
+              A registered tax agent changes the deadline. If you are a new client, or switching agents, contact them before {RETURN_2026.selfLodgeDueDate} so you are included in their lodgment program. Most agent clients then have until <strong>{RETURN_2026.agentDueDateMostPeople}</strong>, with earlier dates in a few cases: <strong>{RETURN_2026.agentDueDateLargeLiability}</strong> where your latest return had a liability of $20,000 or more, and {RETURN_2026.selfLodgeDueDate} if you had a return outstanding at {RETURN_2026.incomeYearEnd}. See the <Link href="/tax-calendar/">tax calendar</Link> for every date.
             </p>
           </section>
 
@@ -115,10 +115,10 @@ export default function LateTaxReturnPenaltyPage() {
               head={["Lodged on", "Days overdue", "Units", "Maximum penalty"]}
               align={["l", "r", "r", "r"]}
               rows={EXAMPLES.map((e) => [`${formatIso(e.lodged, "long")} (${e.note})`, String(e.r.daysOverdue), String(e.r.units), formatAUD(e.r.penalty ?? 0)])}
-              caption={<>Maximum amounts if the ATO applies the penalty. Many late returns that end in a refund attract nothing.</>}
+              caption={<>Maximum amounts if the ATO applies the penalty. The ATO generally does not issue the penalty for a late return that ends in a refund or nil result.</>}
             />
             <p>
-              Lodging 3 days late or 28 days late costs the same, because both fall inside the first block. Day 29 adds a full extra unit ({formatAUD(PENALTY_UNIT.amount)}). That is why a few days can matter when you are close to a block boundary.
+              Lodging 3 days late or {FTL_RULES.daysPerUnit} days late costs the same, because both fall inside the first block. Day {FTL_RULES.daysPerUnit + 1} adds a full extra unit ({formatAUD(PENALTY_UNIT.amount)}). That is why a few days can matter when you are close to a block boundary.
             </p>
           </section>
 
@@ -128,7 +128,7 @@ export default function LateTaxReturnPenaltyPage() {
               The penalty is a maximum, not an automatic bill. The ATO says it generally does not apply penalties in isolated cases of late lodgement, and it looks at your circumstances first. If you miss a due date it will warn you by phone or in writing and issue a notice to lodge before applying a penalty, so you have a chance to lodge or talk to it.
             </p>
             <p>
-              The most useful rule for employees: the ATO generally will not issue a failure-to-lodge penalty notice for a late return that results in <strong>a refund or a nil result</strong>. The exceptions are where the penalty was applied before you lodged, where the document is a third-party data report, and where you are classified as a large withholder. Most PAYG employees owed a refund can lodge late without a penalty, but they wait longer for the money. If you owe tax, or the ATO has already sent a notice to lodge, treat the penalty as real. Estimate which side you are on with the <Link href="/tax-return-calculator/">tax return calculator</Link>.
+              The most useful rule for employees: the ATO generally will not issue a failure-to-lodge penalty notice for a late return that results in <strong>a refund or a nil result</strong>. The exceptions are where the penalty was applied before you lodged, where the document is a third-party data report, and where you are classified as a large withholder. Lodging late still delays your refund. If you owe tax, or the ATO has already sent a notice to lodge, treat the penalty as real. Estimate which side you are on with the <Link href="/tax-return-calculator/">tax return calculator</Link>.
             </p>
             <p>
               A late penalty is separate from interest. If you owe tax, the general interest charge runs on the unpaid amount until you pay, and the rate resets every quarter. See the <Link href="/tax-refund-guide/">tax refund guide</Link> for how a refund or bill is worked out.
@@ -138,7 +138,7 @@ export default function LateTaxReturnPenaltyPage() {
           <section>
             <H2 id="remission">How to Get a Late Lodgement Penalty Removed</H2>
             <p>
-              You can ask the ATO to remit (cancel) all or part of the penalty. You are expected to lodge the outstanding return first. Each request is decided on its merits. The ATO gives these examples of what it would likely accept: a registered agent or a person you care for with a severe illness, not receiving information such as an income statement from an employer despite a genuine attempt to get it, a disaster such as a fire or flood, or financial abuse, coercive control or family violence. It would likely decline if you were on holiday, busy with work, had a short-term illness such as a cold, or did not get a reminder.
+              You can ask the ATO to remit (cancel) all or part of the penalty. You are expected to lodge the outstanding return first. Each request is decided on its merits. The ATO gives these examples of what it would likely accept: a severe illness affecting you, a person you care for or your registered agent, not receiving information such as an income statement from an employer despite a genuine attempt to get it, a disaster such as a fire or flood, or financial abuse, coercive control or family violence. It would likely decline if you were on holiday, busy with work, had a short-term illness such as a cold, or did not get a reminder.
             </p>
             <p>
               If a registered tax or BAS agent was meant to lodge for you, ask about <strong>safe harbour</strong>. You are not liable for the penalty if you gave the agent everything they needed to lodge on time and their failure was not reckless or an intentional disregard of the law. You will need evidence that you supplied the information.

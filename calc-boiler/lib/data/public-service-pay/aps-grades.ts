@@ -22,6 +22,7 @@
 // APS 6 base of $99,733 is $1 under the $99,734 threshold.
 // =============================================================================
 
+import { SUPER_GUARANTEE } from "../../constants";
 import { APS } from "./aps";
 import type { ClassificationBand, PayFaq, PayPoint, PaySource } from "./types";
 import { formatSalary } from "./types";
@@ -293,7 +294,7 @@ export function apsGradeFaqs(d: ApsGradeData): PayFaq[] {
     },
     {
       q: `How much super does an ${grade.label} get?`,
-      a: `The median APS employer superannuation contribution was ${APS_SUPER_RATE}% of base salary at every classification in 2025, well above the 12% Superannuation Guarantee. On the ${grade.label} threshold minimum of ${formatSalary(threshold.min)}, 15.4% is ${formatSalary(threshold.min * 0.154)} a year on top of salary.`,
+      a: `The median APS employer superannuation contribution was ${APS_SUPER_RATE}% of base salary at every classification in 2025, well above the ${SUPER_GUARANTEE.rate * 100}% Superannuation Guarantee. On the ${grade.label} threshold minimum of ${formatSalary(threshold.min)}, ${APS_SUPER_RATE}% is ${formatSalary(threshold.min * (APS_SUPER_RATE / 100))} a year on top of salary.`,
     },
   ];
   return faqs;

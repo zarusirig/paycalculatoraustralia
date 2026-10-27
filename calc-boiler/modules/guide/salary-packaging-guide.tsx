@@ -6,11 +6,12 @@ import { SALARY_PACKAGING_FAQS } from "./salary-packaging-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, TAX_BRACKETS, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
 import {
   FBT,
   FBT_CAPS,
   FBT_CAPS_SOURCES,
+  LUXURY_CAR_TAX,
   NOVATED_LEASE_SOURCES,
   capFaceValue,
   reportableFringeBenefitsAmount,
@@ -24,8 +25,12 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Fringe benefits tax, rates and thresholds (Table 5: capping thresholds)", url: FBT_CAPS_SOURCES.ratesAndThresholds, publisher: SOURCES.ato.name },
   { title: "Fringe benefits tax, a guide for employers, ch 6.3–6.5 (capping, salary packaged entertainment)", url: FBT_CAPS_SOURCES.fbtGuideChapter6, publisher: SOURCES.ato.name },
   { title: "Salary sacrificing for employees", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
+  { title: "Work-related items exempt from FBT (including changes from 1 April 2027)", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/exemptions-concessions-and-other-ways-to-reduce-fbt/work-related-items-exempt-from-fbt", publisher: SOURCES.ato.name },
+  { title: "Expense payment fringe benefits (otherwise deductible rule, changes from 1 April 2027)", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/expense-payment-fringe-benefits", publisher: SOURCES.ato.name },
   { title: "Reportable fringe benefits for employees", url: NOVATED_LEASE_SOURCES.reportableFringeBenefits, publisher: SOURCES.ato.name },
+  { title: "Consequences of having a reportable fringe benefits amount", url: NOVATED_LEASE_SOURCES.reportableConsequences, publisher: SOURCES.ato.name },
   { title: "Family Assistance Guide 3.2.3, adjusted fringe benefits total", url: "https://guides.dss.gov.au/family-assistance-guide/3/2/3", publisher: "Department of Social Services" },
+  { title: "Child Support Guide 1.1.R.70, reportable fringe benefits total", url: "https://guides.dss.gov.au/child-support-guide/1/1/r/70", publisher: "Department of Social Services" },
 ];
 
 // Every cap is a GROSSED-UP value (ATO FBT rates and thresholds, Table 5).
@@ -43,6 +48,9 @@ const HOSPITAL_RFBA = reportableFringeBenefitsAmount(HOSPITAL_FACE);
 /** Centrelink counts RFBA from s57A employers at (1 − FBT rate) for FTB, CCS and PLP. */
 const CENTRELINK_FACTOR = 1 - FBT.rate;
 const MLS_SINGLE_THRESHOLD = MEDICARE_LEVY.surcharge.tier1.min - 1;
+// Laptop example: taxed at the 30% bracket, plus the Medicare levy.
+const LAPTOP_PRICE = 2_000;
+const LAPTOP_RATE = TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate;
 
 // Worked example, on the current income year's tax engine.
 const EXAMPLE_SALARY = 80_000;
@@ -96,7 +104,7 @@ export default function SalaryPackagingGuidePage() {
             Salary Packaging Guide: Benefits Beyond Novated Leases
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Salary packaging lets your employer pay some of your expenses from your pre-tax salary, which lowers your taxable income, and it covers far more than novated car leases. Employees of public benevolent institutions (PBIs), health promotion charities, public and not-for-profit hospitals and public ambulance services can package everyday living expenses free of fringe benefits tax (FBT). The cap depends on the employer type and applies per FBT year. A separate meal entertainment cap sits on top, and rebatable employers can offer it too. Whatever your employer type, you can package a portable electronic device used primarily for work. Employer-provided education connected to your current role is also an exempt benefit. The sections below give each cap, a worked take-home pay example, and how your Reportable Fringe Benefits Amount (RFBA) counts in Centrelink, HECS-HELP and Medicare Levy Surcharge income tests.
+            Salary packaging lets your employer pay some of your expenses from your pre-tax salary, which lowers your taxable income, and it covers far more than novated car leases. Employees of public benevolent institutions (PBIs), health promotion charities, public and not-for-profit hospitals and public ambulance services can package everyday living expenses free of fringe benefits tax (FBT). The cap depends on the employer type and applies per FBT year. A separate meal entertainment cap sits on top, and rebatable employers can offer it too. Whatever your employer type, you can package a portable electronic device used mainly for work free of FBT until 31 March 2027. Work-related education your employer pays for can have its FBT value reduced to nil under the otherwise deductible rule. The sections below give each cap, a worked take-home pay example, and how your Reportable Fringe Benefits Amount (RFBA) counts in Centrelink, HECS-HELP and Medicare Levy Surcharge income tests.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -110,13 +118,13 @@ export default function SalaryPackagingGuidePage() {
             <section id="what-is">
               <h2>What Is Salary Packaging?</h2>
               <p>
-                Salary packaging is an arrangement where your employer pays for certain expenses or benefits from your <strong>pre-tax salary</strong>, reducing your taxable income. While the terms &quot;salary packaging&quot; and &quot;salary sacrifice&quot; are often used interchangeably, salary packaging is the broader concept: it covers all pre-tax benefits including living expenses, meal entertainment, novated leases, portable devices, and superannuation contributions.
+                Salary packaging is an arrangement where your employer pays for certain expenses or benefits from your <strong>pre-tax salary</strong>, reducing your taxable income. The ATO treats &quot;salary packaging&quot; and &quot;salary sacrifice&quot; as the same arrangement (it also calls it total remuneration packaging). It covers all pre-tax benefits including living expenses, meal entertainment, novated leases, portable devices, and superannuation contributions.
               </p>
               <p>
-                Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation. Salary packaging encompasses the full range of benefits an employer can provide from pre-tax earnings. The distinction matters because different benefits have different FBT treatment, caps, and eligibility rules.
+                The ATO places no restriction on the types of benefits you can include, as long as they form part of your pay and replace salary you would otherwise receive. What differs between benefits is the FBT treatment, the caps and the eligibility rules.
               </p>
               <p>
-                In the private sector, salary packaging options are generally limited to superannuation, novated leases, and portable electronic devices. Salary packaging gives the largest tax savings in the <strong>not-for-profit (NFP)</strong> and <strong>public hospital</strong> sectors, where special FBT exemptions allow employees to package everyday living expenses tax-free.
+                In the private sector there is no FBT-free living expenses cap. Super contributions paid to a complying fund are not fringe benefits, and work-related items such as a portable electronic device are FBT-exempt until 31 March 2027. Other benefits, including a novated car lease, attract FBT unless an exemption applies, such as the electric car exemption. Salary packaging gives the largest tax savings in the <strong>not-for-profit (NFP)</strong> and <strong>public hospital</strong> sectors, where special FBT exemptions allow employees to package everyday living expenses tax-free.
               </p>
             </section>
 
@@ -129,7 +137,7 @@ export default function SalaryPackagingGuidePage() {
                 <li><strong>Public benevolent institutions (PBIs) and health promotion charities</strong>: Registered charities such as community services and disability organisations, endorsed by the ATO. FBT-exempt cap: <strong>{formatAUD(PBI_CAP)} grossed-up</strong> per employee per FBT year, which covers about <strong>{formatAUD(PBI_FACE)}</strong> of rent, mortgage or other GST-free expenses</li>
                 <li><strong>Public and not-for-profit hospitals and public ambulance services</strong>: FBT-exempt cap: <strong>{formatAUD(HOSPITAL_CAP)} grossed-up</strong>, which covers about <strong>{formatAUD(HOSPITAL_FACE)}</strong> of GST-free expenses. An organisation that is both a PBI and a hospital uses the hospital cap</li>
                 <li><strong>Rebatable employers</strong>: Certain registered charities and other non-government not-for-profit organisations. They get a {formatPercent(FBT.rate, 0)} FBT <em>rebate</em>, not an exemption, on up to {formatAUD(FBT_CAPS.rebatableEmployer)} grossed-up per employee, so FBT is reduced rather than removed</li>
-                <li><strong>Private sector employers</strong>: Salary packaging limited to super, novated leases (with FBT unless EV), and portable devices</li>
+                <li><strong>Private sector employers</strong>: No FBT-free living expenses cap. You can package super, a novated lease (FBT applies unless the car qualifies for the electric car exemption, which among other conditions requires that luxury car tax has never been payable on the car, so a value under the fuel-efficient threshold of {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold)} in {LUXURY_CAR_TAX.financialYear}), work-related items such as a portable device, and work-related education under the otherwise deductible rule. Both of the last two attract FBT when salary sacrificed from 1 April 2027</li>
               </ul>
               <p>
                 Exempt and rebatable employers can also offer a separate <strong>{formatAUD(ENT_CAP)} grossed-up cap</strong> for salary-packaged meal entertainment and entertainment facility leasing expenses, on top of the general cap.
@@ -142,7 +150,7 @@ export default function SalaryPackagingGuidePage() {
             <section id="fbt-exempt-benefits">
               <h2>FBT-Exempt Benefits</h2>
               <p>
-                The following salary packaging benefits are exempt from fringe benefits tax (FBT), subject to the cap or condition listed for each:
+                The following salary packaging benefits are exempt from fringe benefits tax (FBT), or have their FBT value reduced to nil, subject to the cap or condition listed for each:
               </p>
 
               <h3>NFP Living Expenses (about {formatAUD(PBI_FACE)} or {formatAUD(HOSPITAL_FACE)})</h3>
@@ -158,7 +166,7 @@ export default function SalaryPackagingGuidePage() {
                 <li>Health insurance premiums</li>
               </ul>
               <p>
-                On a {formatAUD(EXAMPLE_SALARY)} salary at FY{SITE_CONFIG.financialYear} rates, packaging the full PBI amount leaves you about <strong>{formatAUD(PBI_BENEFIT)} a year</strong> better off, and the full hospital amount about <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong>. On {formatAUD(HIGHER_SALARY)} (a 37% marginal rate before packaging) the figures rise to about {formatAUD(PBI_BENEFIT_HIGH)} and {formatAUD(HOSPITAL_BENEFIT_HIGH)}. These are before any fee your packaging provider charges.
+                On a {formatAUD(EXAMPLE_SALARY)} salary at FY{SITE_CONFIG.financialYear} rates, packaging the full PBI amount leaves you about <strong>{formatAUD(PBI_BENEFIT)} a year</strong> better off, and the full hospital amount about <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong>. On {formatAUD(HIGHER_SALARY)} (a {formatPercent(TAX_BRACKETS[3].rate, 0)} marginal rate before packaging) the figures rise to about {formatAUD(PBI_BENEFIT_HIGH)} and {formatAUD(HOSPITAL_BENEFIT_HIGH)}. These are before any fee your packaging provider charges.
               </p>
 
               <h3>Meal Entertainment (separate {formatAUD(ENT_CAP)} grossed-up cap)</h3>
@@ -177,7 +185,7 @@ export default function SalaryPackagingGuidePage() {
 
               <h3>Portable Electronic Devices</h3>
               <p>
-                All employees, regardless of employer type, can salary package <strong>one portable electronic device per category per FBT year</strong> when the device is used primarily for work. Eligible categories include:
+                Until 31 March 2027, all employees, regardless of employer type, can salary package a portable electronic device free of FBT when the device is used mainly for work. The exemption covers <strong>one item per FBT year for devices with the same or a substantially identical function</strong>, unless the second item is a replacement. A small business (aggregated turnover under $50 million) can provide more than one. The ATO&apos;s examples include:
               </p>
               <ul>
                 <li>Laptop or notebook computer</li>
@@ -187,12 +195,12 @@ export default function SalaryPackagingGuidePage() {
                 <li>Portable printer</li>
               </ul>
               <p>
-                A $2,000 laptop packaged at the 30% marginal rate saves <strong>$600</strong> in income tax. The device must be used primarily (more than 50%) for employment duties.
+                A {formatAUD(LAPTOP_PRICE)} laptop packaged at the {formatPercent(TAX_BRACKETS[2].rate, 0)} marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy saves <strong>{formatAUD(LAPTOP_PRICE * LAPTOP_RATE)}</strong> in tax. The device must be used mainly (more than 50%) for employment duties. From 1 April 2027, work-related items provided through salary sacrifice are no longer exempt from FBT, so a device packaged from that date attracts FBT.
               </p>
 
               <h3>Self-Education Expenses</h3>
               <p>
-                Employer-provided education that is sufficiently connected to the employee&apos;s current role is an exempt benefit. This includes course fees, textbooks, and related travel for work-related education. The education must maintain or improve skills required in the employee&apos;s <strong>current</strong> employment. Courses for a completely new career direction do not qualify.
+                Employer-paid education that is sufficiently connected to the employee&apos;s current role is not on the list of exempt benefits. Instead, the otherwise deductible rule reduces its FBT taxable value by the amount the employee could have claimed as a tax deduction had they paid for it themselves, which brings a fully deductible course to nil. This includes course fees, textbooks, and related travel for work-related education. The education must maintain or improve skills required in the employee&apos;s <strong>current</strong> employment. Courses for a completely new career direction do not qualify. From 1 April 2027, the otherwise deductible rule no longer applies to salary sacrificed work-related expenses covered by the standard deduction, which includes self-education, so salary-packaged course fees attract FBT from that date.
               </p>
             </section>
 
@@ -247,13 +255,13 @@ export default function SalaryPackagingGuidePage() {
             <section id="rfba-reporting">
               <h2>RFBA Reporting: How It Affects Other Obligations</h2>
               <p>
-                When you salary package benefits (other than super), your employer reports the grossed-up taxable value as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong> on your income statement. While RFBA does not increase your income tax, it is added back for the following means-tested calculations:
+                When the fringe benefits you receive have a total taxable value of more than {formatAUD(FBT.reportableThreshold)} in an FBT year, your employer reports their grossed-up value as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong> on your income statement. Super contributions are not fringe benefits, and FBT-exempt work-related items such as a portable electronic device are not reported. Living expenses packaged at a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service are reported even though no FBT is payable. While RFBA does not increase your income tax, it is added back for the following means-tested calculations:
               </p>
               <ul>
                 <li><strong>Centrelink income tests</strong>: Services Australia adds RFBA to your adjusted taxable income (ATI) for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service is counted at {formatPercent(CENTRELINK_FACTOR, 0)} (1 minus the FBT rate), which strips out the gross-up. See our <Link href="/centrelink-income-test/">Centrelink Income Test Guide</Link></li>
                 <li><strong>HECS-HELP repayments</strong>: The ATO includes the full RFBA in repayment income, so it can lift you above a repayment threshold</li>
                 <li><strong>Medicare Levy Surcharge</strong>: RFBA is included in the income test for the MLS, which applies to singles with MLS income over {formatAUD(MLS_SINGLE_THRESHOLD)} in FY{SITE_CONFIG.financialYear} who don&apos;t hold private hospital cover</li>
-                <li><strong>Child support assessments</strong>: The Child Support Agency includes RFBA in adjusted taxable income</li>
+                <li><strong>Child support assessments</strong>: Services Australia (Child Support) includes your full RFBA in adjusted taxable income. The reduced {formatPercent(CENTRELINK_FACTOR, 0)} rate used for family assistance does not apply</li>
               </ul>
               <p>
                 The RFBA is grossed up at the type 2 rate ({FBT.grossUpType2}), so it is close to the cap, not to what you spent. A PBI employee who packages {formatAUD(PBI_FACE)} of rent has an RFBA of about <strong>{formatAUD(PBI_RFBA)}</strong>; a public hospital employee who packages {formatAUD(HOSPITAL_FACE)} has an RFBA of about <strong>{formatAUD(HOSPITAL_RFBA)}</strong>. This amount appears on your income statement but does <strong>not</strong> increase the tax you owe; it only affects the income tests listed above.
@@ -278,7 +286,7 @@ export default function SalaryPackagingGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>FBT capping thresholds are from the ATO&apos;s &quot;Fringe benefits tax — rates and thresholds&quot; (Table 5, unchanged for the FBT years ending 31 March 2023 to 31 March 2027) and chapter 6 of the ATO&apos;s FBT guide for employers, checked {FBT_CAPS_SOURCES.verifiedOn}. The caps are grossed-up values; face-value figures divide them by the type 2 gross-up rate ({FBT.grossUpType2}), or the type 1 rate ({FBT.grossUpType1}) where stated. The worked example uses FY{SITE_CONFIG.financialYear} resident tax rates, the low income tax offset and the 2% Medicare levy from the site&apos;s shared tax engine, and ignores packaging provider fees. NFP packaging caps are per FBT year (1 April to 31 March), not per financial year.</p>
+                <p>FBT capping thresholds are from the ATO&apos;s &quot;Fringe benefits tax — rates and thresholds&quot; (Table 5, unchanged for the FBT years ending 31 March 2023 to 31 March 2027) and chapter 6 of the ATO&apos;s FBT guide for employers, checked {FBT_CAPS_SOURCES.verifiedOn}. The caps are grossed-up values; face-value figures divide them by the type 2 gross-up rate ({FBT.grossUpType2}), or the type 1 rate ({FBT.grossUpType1}) where stated. The worked example uses FY{SITE_CONFIG.financialYear} resident tax rates, the low income tax offset and the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy from the site&apos;s shared tax engine, and ignores packaging provider fees. NFP packaging caps are per FBT year (1 April to 31 March), not per financial year.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("salary-packaging-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

@@ -9,6 +9,7 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
+  formatPercent,
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
@@ -98,7 +99,7 @@ export default function ContractorVsEmployeeCalculatorPage({ children, afterCalc
                   <div>
                     <label className="flex items-start space-x-3 text-sm">
                       <input type="checkbox" checked={fundSuper} onChange={(e) => setFundSuper(e.target.checked)} className="mt-1 h-4 w-4 text-eucalyptus-dark border-gray-300 rounded focus:ring-eucalyptus/20" />
-                      <span className="text-gray-700">Self-fund 12% Superannuation (Recommended for contractors)</span>
+                      <span className="text-gray-700">Self-fund {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation (Recommended for contractors)</span>
                     </label>
                   </div>
                 </form>

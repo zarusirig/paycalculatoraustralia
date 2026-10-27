@@ -14,6 +14,7 @@ import {
   CONTRIBUTIONS_TAX_RATE,
   DIVISION_293,
   ECC_MAX_RELEASE,
+  ECC_TAX_OFFSET_RATE,
   annualSuperGuarantee,
   carryForwardWindow,
 } from "@/lib/constants/super-contributions";
@@ -69,7 +70,7 @@ export default function ConcessionalContributionsCapPage() {
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Concessional Contributions Cap {FY}: {formatAUD(CAP)}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
-          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])} the year before. The cap applies per person, across all your super funds combined. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, you can carry forward unused cap from the last five years. The calculator below totals your concessional contributions, shows the room left under the cap and works out what salary sacrifice saves in tax. The rest of the page covers what counts towards the cap, the cap by year, the room left after employer super, carry-forward, salary sacrifice examples and the tax on contributions.
+          The concessional (before-tax) contributions cap is <strong>{formatAUD(CAP)}</strong> from 1 July 2026, up from {formatAUD(CONCESSIONAL_CAP_BY_YEAR[PREV_FY])} the year before. The cap applies per person, across all your super funds combined. It covers your employer&rsquo;s {SG} super guarantee, salary sacrifice and personal contributions you claim a deduction for, all taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in your fund. With a total super balance under {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}, you can carry forward unused cap from the last {CARRY_FORWARD.years} years. The calculator below totals your concessional contributions, shows the room left under the cap and works out what salary sacrifice saves in tax. The rest of the page covers what counts towards the cap, the cap by year, the room left after employer super, carry-forward, salary sacrifice examples and the tax on contributions.
         </p>
         <TrustBar className="!max-w-none" />
       </header>
@@ -142,14 +143,14 @@ export default function ConcessionalContributionsCapPage() {
               {WINDOW.map((w, i) => (
                 <tr key={w.year} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{w.year}</td><td className="px-4 py-3 text-right tabular-nums">{formatAUD(w.cap)}</td><td className="px-4 py-3">{expiryYear(w.year)}</td></tr>
               ))}
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Someone who contributed nothing in those five years could in theory add {formatAUD(WINDOW_TOTAL)} of carry-forward to the {formatAUD(CAP)} cap. In practice you carry forward only what you didn&rsquo;t use each year.</p></div>
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Someone who contributed nothing in those {WINDOW.length} years could in theory add {formatAUD(WINDOW_TOTAL)} of carry-forward to the {formatAUD(CAP)} cap. In practice you carry forward only what you didn&rsquo;t use each year.</p></div>
             <p>Carry-forward is useful in a year with a bonus, a capital gain or a return to work, when a large deductible contribution can cut tax at a high marginal rate. Contributions made using carried-forward amounts still count for <Link href="/division-293-tax/">Division 293</Link>. To see each year&rsquo;s unused amount and when it expires, use the <Link href="/carry-forward-concessional-contributions-calculator/">carry-forward contributions calculator</Link>.</p>
           </section>
 
           <section>
             <H2 id="salary-sacrifice">Salary Sacrifice Super, Within the Cap</H2>
             <p>Salary sacrifice sends part of your pre-tax pay to super instead of your bank account. You pay no income tax or Medicare levy on it, and the fund pays {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} instead. Your employer must still pay the full {SG} super guarantee as if you hadn&rsquo;t sacrificed; the sacrifice can&rsquo;t count towards it.</p>
-            <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Salary</th><th className="px-4 py-3 text-right">Tax saved</th><th className="px-4 py-3 text-right">Take-home falls by</th><th className="px-4 py-3 text-right">Into super after 15%</th><th className="px-4 py-3 text-right">Net gain</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+            <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Salary</th><th className="px-4 py-3 text-right">Tax saved</th><th className="px-4 py-3 text-right">Take-home falls by</th><th className="px-4 py-3 text-right">Into super after {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</th><th className="px-4 py-3 text-right">Net gain</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {SACRIFICE_SALARIES.map((sal, i) => {
                 const r = sacrificeRow(sal);
                 return (
@@ -165,7 +166,7 @@ export default function ConcessionalContributionsCapPage() {
             <ul>
               <li><strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax</strong> on concessional contributions, deducted by your fund.</li>
               <li><strong>Division 293: another {formatPercent(DIVISION_293.rate, 0)}</strong> if your income plus concessional contributions is over {formatAUD(DIVISION_293.threshold)}. It applies to the lesser of your concessional contributions and the amount over {formatAUD(DIVISION_293.threshold)}. See <Link href="/division-293-tax/">Division 293 tax</Link>.</li>
-              <li><strong>Over the cap:</strong> the excess is added to your assessable income and taxed at your marginal rate, less a 15% offset for the tax the fund already paid. The old excess contributions charge stopped from 1 July 2021. You can release up to {formatPercent(ECC_MAX_RELEASE, 0)} of the excess from your fund to pay the bill; any you leave in counts towards the {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} non-concessional cap.</li>
+              <li><strong>Over the cap:</strong> the excess is added to your assessable income and taxed at your marginal rate, less a {formatPercent(ECC_TAX_OFFSET_RATE, 0)} offset for the tax the fund already paid. The old excess contributions charge stopped from 1 July 2021. You can release up to {formatPercent(ECC_MAX_RELEASE, 0)} of the excess from your fund to pay the bill; any you leave in counts towards the {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} non-concessional cap.</li>
             </ul>
           </section>
 
@@ -175,7 +176,7 @@ export default function ConcessionalContributionsCapPage() {
               <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>: sacrifice per pay and what it does to take-home</li>
               <li><Link href="/superannuation-calculator/">Super Calculator</Link>: what your employer pays at {SG}</li>
               <li><Link href="/super-guarantee-rate-history/">Super Guarantee Rate</Link>: {SG} from 1 July 2025, and every rate since 1992</li>
-              <li><Link href="/division-293-tax/">Division 293 Tax</Link>: the extra 15% above {formatAUD(DIVISION_293.threshold)}</li>
+              <li><Link href="/division-293-tax/">Division 293 Tax</Link>: the extra {formatPercent(DIVISION_293.rate, 0)} above {formatAUD(DIVISION_293.threshold)}</li>
               <li><Link href="/superannuation-guide/">Superannuation Guide</Link>: how super works</li>
             </ul>
           </section>
@@ -218,7 +219,7 @@ function previousOf(fy: string): string {
   return `${start}-${String((start + 1) % 100).padStart(2, "0")}`;
 }
 
-/** An unused amount from `fy` is last usable five years later. */
+/** An unused amount from `fy` is last usable CARRY_FORWARD.years later. */
 function expiryYear(fy: string): string {
   const start = Number(fy.slice(0, 4)) + CARRY_FORWARD.years;
   return `${start}-${String((start + 1) % 100).padStart(2, "0")}`;

@@ -1,0 +1,108 @@
+{
+ "name": "ff-115-home-faqs",
+ "files": [
+  "modules/home/home-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/home/home-faqs.ts:120",
+   "file": "modules/home/home-faqs.ts",
+   "line": "120",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "Working holiday makers (417 and 462 visas) and non-residents ... their take-home pay is lower at the same salary.",
+    "Australian resident tax rates ... apply to most migrants who ... are residents for tax purposes."
+   ],
+   "whys": [
+    "Working holiday makers pay 15% from the first dollar up to $45,000 and then the resident rates, but as non-residents they pay no Medicare levy (2%). The extra tax compared with a resident is about $2,730 plus LITO, so above roughly $136,500 a working holiday maker's take-home pay can be HIGHER than a resident's. The sentence is not true at every salary. Check it against the engine's WHM and non-resident modes.",
+    "Working holiday makers who are residents for tax purposes are still taxed at the WHM rates. The answer would be more precise if it named that exception instead of relying on 'most'. That needs a content decision, so the wording was not changed in this pass."
+   ],
+   "constants": [
+    "lib/constants (WHM / non-resident rate schedules, MEDICARE_LEVY)",
+    "WHM rate schedule in lib/constants"
+   ],
+   "reviewerNotes": [
+    "The writer's WHM question holds up. WHM is 15% from $0 to $45,000 and resident is 0% up to $18,200, then 15%, so the WHM pays about $2,730 more plus the LITO they don't get. But a WHM pays no 2% Medicare levy. Above roughly $136,500, a WHM takes home more than a resident. Non-residents (30% from the first dollar, no Medicare levy) cross over too, at about $474,000. So 'their take-home pay is lower at the same salary' is not true at every salary. Left for the owner to check against the engine."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.47,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/home/home-faqs.ts:80",
+   "file": "modules/home/home-faqs.ts",
+   "line": "80",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "Under most awards Saturday work pays around {saturdayMin} to {saturdayMax} of the base rate ... penalty rates apply ... typically weekends, public holidays, overtime and late nights."
+   ],
+   "whys": [
+    "This is a population claim ('most awards') and the page cites no source for it. The ranges come from EMPLOYMENT.penaltyRates, but the 'most awards' coverage cannot be checked."
+   ],
+   "constants": [
+    "EMPLOYMENT.penaltyRates in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.63,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/home/home-faqs.ts:76",
+   "file": "modules/home/home-faqs.ts",
+   "line": "76",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "{casualLoading} is the standard loading under most awards"
+   ],
+   "whys": [
+    "This is a population claim with no cited source. It is true for the 25% casual loading under modern awards, but the claim has no attribution."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/home/home-faqs.ts:132",
+   "file": "modules/home/home-faqs.ts",
+   "line": "132",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "Divide your annual salary by 260 working days (${EMPLOYMENT.weeksPerYear} weeks \u00d7 5 days). ... formatAUD(80_000 / 260, 2)"
+   ],
+   "whys": [
+    "260 is typed in as a literal number, but the text says it equals EMPLOYMENT.weeksPerYear \u00d7 5. If weeksPerYear ever changes, the two figures will disagree. It should be computed from the constant."
+   ],
+   "constants": [
+    "EMPLOYMENT.weeksPerYear"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/home/home-faqs.ts:124",
+   "file": "modules/home/home-faqs.ts",
+   "line": "124",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "Your employer's contribution must now reach your fund within 7 business days of each payday."
+   ],
+   "whys": [
+    "The 7-business-day Payday Super deadline is typed into the prose instead of coming from SUPER_GUARANTEE. That breaks the file's own rule that 'nothing is typed as a literal'. Move it to a constant and check it against the ATO's Payday Super guidance."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (add a paydaySuperDueDays field)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.82,
+   "needsOwner": false
+  }
+ ]
+}

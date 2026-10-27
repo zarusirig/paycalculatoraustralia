@@ -49,6 +49,7 @@ import {
   longDate,
 } from "./fy-tax-table-data";
 import { SUPER_GUARANTEE } from "@/lib/constants";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE, WATO } from "@/lib/constants/tax-2027-28";
 import FeaturedImage from "@/components/common/featured-image";
 
 const COMPARE_ROWS: Record<PayFrequency, readonly number[]> = {
@@ -362,7 +363,8 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
                   </p>
                   <ul>
                     <li>
-                      <strong>Rate cut:</strong> the rate on taxable income from $18,201 to $45,000 fell from 16% to 15%. The higher brackets
+                      <strong>Rate cut:</strong> the rate on taxable income from {formatAUD(TAX_BRACKETS_2026_27[1].min)} to {formatAUD(TAX_BRACKETS_2026_27[1].max)} fell from{" "}
+                      {Math.round(TAX_BRACKETS_2025_26[1].rate * 100)}% to {Math.round(TAX_BRACKETS_2026_27[1].rate * 100)}%. The higher brackets
                       kept their rates and thresholds, but the tax on the first $45,000 is{" "}
                       {formatAUD(TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS_2026_27[2].base)} lower ({formatAUD(TAX_BRACKETS_2025_26[2].base)}{" "}
                       down to {formatAUD(TAX_BRACKETS_2026_27[2].base)}).
@@ -386,7 +388,7 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
                   <p>
                     Study loan withholding (Schedule 8) was also reissued with indexed repayment thresholds. This page carries that one
                     2026-27 edition, so its lookup can add a study-loan amount; the 2024-25 and 2025-26 page cannot, because those two years
-                    spanned three Schedule 8 editions. A further cut to 14% is legislated for 1 July 2027: see the{" "}
+                    spanned three Schedule 8 editions. A further cut to {Math.round(RATE_2027_28 * 100)}% is legislated for {RATE_CUT_EFFECTIVE}: see the{" "}
                     <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>. For the {cycle.label.toLowerCase()} table with the year
                     toggle and ATO downloads, use the <Link href={`/${cycle.slug}/`}>{cycle.label.toLowerCase()} tax table</Link>.
                   </p>
@@ -453,8 +455,9 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
                     </li>
                   </ul>
                   <p>
-                    The next edition is already legislated. From 1 July 2027 the 15% rate falls to 14% and the{" "}
-                    <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> of $250 begins, so a {cycle.period}ly pay
+                    The next edition is already legislated. From {RATE_CUT_EFFECTIVE} the {Math.round(TAX_BRACKETS_2026_27[1].rate * 100)}% rate falls to{" "}
+                    {Math.round(RATE_2027_28 * 100)}% and the{" "}
+                    <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> of {formatAUD(WATO.maxOffset)} begins, so a {cycle.period}ly pay
                     dated on or after that day will need the 2027-28 table, not this one. Every dated change is on the{" "}
                     <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
                   </p>

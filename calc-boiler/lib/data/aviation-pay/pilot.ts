@@ -81,7 +81,7 @@ export const PILOT_PAY: AviationPayPage = {
       id: "larger-aircraft",
       title: "Larger aircraft minimum salaries (clause A.1.2)",
       intro:
-        "Schedule A sets minimum annual salaries for full-time pilots on jet and wide-body aircraft. Airline pilots are usually paid above these minimums under their airline's enterprise agreement.",
+        "Schedule A sets minimum annual salaries for full-time pilots on jet and wide-body aircraft. A pilot covered by an airline enterprise agreement is paid under that agreement, and its base rates cannot be below these minimums (Fair Work Act s 206).",
       stepHeading: "Aircraft and rank",
       steps: [
         { label: "Fokker 28 — Captain", salary: 161_088 },
@@ -174,7 +174,7 @@ export const PILOT_PAY: AviationPayPage = {
         "Schedule C sets minimum salaries for full-time aerial application pilots by their aerial application flying hours in the industry. The award prints weekly rates; commission on the aircraft's charge-out price is paid on top.",
       stepHeading: "Industry flying hours",
       steps: [
-        { label: "0–1000", salary: 51_001, note: "$978.10 a week × 52.143" },
+        { label: "0–1000", salary: 51_001, note: "$978.10 a week × 52.143; first 6 months' industry experience only (clause C.9.2)" },
         { label: "1001–2000", salary: 52_399, note: "$1004.90 a week × 52.143" },
         { label: "2001–3000", salary: 54_010, note: "$1035.80 a week × 52.143" },
         { label: "Over 3000", salary: 58_233, note: "$1116.80 a week × 52.143" },
@@ -185,7 +185,7 @@ export const PILOT_PAY: AviationPayPage = {
   topStep: "Multi engine 19000 kg & above—unless otherwise listed",
 
   traineePay: [
-    "The award has no separate cadet or student-pilot rate for general aviation. A pilot covered by the award must hold a commercial pilot's licence or airline transport pilot's licence, and the lowest minimum salary is First Officer/Second Pilot on a single engine aircraft UTBNI 1360 kg at $52,257 a year.",
+    "The award has no separate cadet or student-pilot rate for general aviation. A pilot covered by the award must hold a commercial pilot's licence or airline transport pilot's licence. The lowest airline and general aviation minimum salary (clause A.1.1) is First Officer/Second Pilot on a single engine aircraft UTBNI 1360 kg at $52,257 a year. The lowest pilot rate in the award is the aerial application rate for 0 to 1000 flying hours, $978.10 a week, which applies only until the pilot has more than 6 months' industry experience (clause C.9.2).",
     "Second Officer under Training (defined as \"a pilot under initial training for a second officer position\") has a minimum of $75,738 a year on wide-body aircraft from the first full pay period on or after 14 July 2026.",
     "Flight instructors (clause A.1.7) are paid on appointment as follows: Grade III at the single engine (or multi engine) charter salary; Grade II at that charter salary plus $4669.27 per annum; Grade I plus $9338.55 per annum. A Grade I single-engine instructor gets increments of $1186.91 per annum in the sixth, seventh and eighth year of service with the same employer.",
     "An aerial application pilot with more than 6 months' industry experience must be paid at least the 1001 to 2000 flying hours rate ($1004.90 a week) (clause C.9.2).",
@@ -204,7 +204,7 @@ export const PILOT_PAY: AviationPayPage = {
   ],
   otherInstruments: [],
   notices: [
-    "The salaries on this page are Air Pilots Award minimums. Most airline pilots (Qantas, Virgin Australia, Jetstar, Rex, QantasLink and others) are paid under their airline's enterprise agreement, which usually pays above the award.",
+    "The salaries on this page are Air Pilots Award minimums. A pilot whose airline (such as Qantas, Virgin Australia, Jetstar, Rex or QantasLink) has an enterprise agreement is paid under that agreement, and its base rates cannot be below the award (Fair Work Act s 206).",
     "Additions to salary (instrument rating, aircraft type, licence and supervisory additions) are paid on top of the minimum salary and count as salary for all purposes.",
     "Schedule D prints other helicopter minimums: on-shore twin (0 to 9000 lbs) $76,871 (1st year) to $90,362 (9th year); on-shore twin (over 9000 lbs) $80,241 to $93,733; off-shore single engine command UTBNI 9000 lbs $75,183 (1st year) to $98,797 (15th year); off-shore all other operations command $83,617 to $107,226, plus the all-purpose special duties addition.",
     "Award minimum rates change each year after the Fair Work Commission's Annual Wage Review, usually from the first full pay period on or after 1 July.",
@@ -224,7 +224,7 @@ export const PILOT_PAY: AviationPayPage = {
   faqs: [
     {
       q: "How much does a pilot earn in Australia?",
-      a: "Under the Air Pilots Award 2020, the minimum salary for a full-time captain in general aviation runs from $58,226 a year (single engine up to 1360 kg) to $100,233 (multi engine 19000 kg and above). Larger aircraft minimums reach $182,826 for a narrow body captain and $236,988 for a double-deck wide body captain. Airline pilots are usually paid more under their airline's enterprise agreement.",
+      a: "Under the Air Pilots Award 2020, the minimum salary for a full-time captain in general aviation runs from $58,226 a year (single engine up to 1360 kg) to $100,233 (multi engine 19000 kg and above). Larger aircraft minimums reach $182,826 for a narrow body captain and $236,988 for a double-deck wide body captain. A pilot on an airline enterprise agreement is paid that agreement's rates, which cannot be below the award's base rates (Fair Work Act s 206).",
     },
     {
       q: "How are casual pilots paid?",

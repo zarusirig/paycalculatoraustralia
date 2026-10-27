@@ -3,7 +3,7 @@
 // data cannot drift from the page. Rates come from lib/constants.
 
 import { HECS_HELP, MEDICARE_LEVY, SUPER_GUARANTEE, TAX_BRACKETS, formatAUD } from "@/lib/constants";
-import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 import type { FaqItem } from "@/lib/faq";
 
 const CONTRIBUTIONS_TAX = CONTRIBUTIONS_TAX_RATE;
@@ -30,11 +30,11 @@ export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do voluntary HECS repayments reduce my compulsory repayments?",
-    a: "Voluntary repayments reduce your outstanding balance but do not change the compulsory repayment percentage applied to your income. Once voluntary payments bring your HECS balance to zero, compulsory repayments stop, which raises your take-home pay.",
+    a: "Voluntary repayments reduce your outstanding balance. While you still owe money and your repayment income is above the minimum repayment income, they do not change your compulsory repayment, which is worked out from your repayment income, not your balance. Once your HECS balance reaches zero, compulsory repayments stop. Give your employer a new Withholding declaration (NAT 3093) saying you no longer have a loan, so they stop withholding the extra amount and your take-home pay rises.",
   },
   {
     q: "What tax benefit do I get from extra super contributions?",
-    a: `Salary sacrifice or personal deductible contributions are taxed at ${pct(CONTRIBUTIONS_TAX)} inside super instead of your marginal rate. The income tax saving per dollar is ${savings}, plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy you no longer pay on that dollar (up to ${cents(TOP + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX)} in total at the top rate). For a worker in the ${pct(EXAMPLE_RATE)} bracket contributing ${formatAUD(MONTHLY)}/month, the annual saving including Medicare levy is about ${formatAUD(exampleSaving)}.`,
+    a: `Salary sacrifice or personal deductible contributions are taxed at ${pct(CONTRIBUTIONS_TAX)} inside super instead of your marginal rate. The income tax saving per dollar is ${savings}, plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy you no longer pay on that dollar (up to ${cents(TOP + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX)} in total at the top rate). If your income for Division 293 purposes plus your concessional contributions is over ${formatAUD(DIVISION_293.threshold)}, Division 293 tax adds another ${pct(DIVISION_293.rate)} on the lesser of your concessional contributions and the amount over that threshold. Those contributions are taxed at ${pct(CONTRIBUTIONS_TAX + DIVISION_293.rate)} in total, so the saving on them at the top rate falls to ${cents(TOP + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX - DIVISION_293.rate)}. For a worker in the ${pct(EXAMPLE_RATE)} bracket contributing ${formatAUD(MONTHLY)}/month, the annual saving including Medicare levy is about ${formatAUD(exampleSaving)}.`,
   },
   {
     q: "Can I do both extra super and voluntary HECS payments?",

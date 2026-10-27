@@ -124,7 +124,7 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
                 </h1>
               </div>
               <p className="text-base md:text-lg text-warmgray">
-                Final pay adds outstanding wages, unused annual leave, notice in lieu, long service leave and any redundancy pay, taxed at your marginal rate in {SITE_CONFIG.financialYear}.
+                Final pay adds outstanding wages, unused annual leave, notice in lieu, long service leave and any redundancy pay. This estimate taxes every part except redundancy pay at your average {SITE_CONFIG.financialYear} tax rate. The ATO taxes pay in lieu of notice, and genuine redundancy pay above the tax-free limit, as an employment termination payment (ETP).
               </p>
               <TrustBar className="mt-2" />
             </div>

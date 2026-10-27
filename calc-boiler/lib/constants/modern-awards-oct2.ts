@@ -196,7 +196,7 @@ export const PLUMBING_AWARD: ModernAwardData = {
   ],
   penaltiesClause: "cl 23 and Schedules C.1.3–C.1.7, D.1.3–D.1.7",
   penaltyNotes: [
-    "Plumbing Award ordinary hours are 7.00 am to 6.00 pm, Monday to Friday. They are worked in a 20-day, 4-week cycle of 8-hour days, with 0.4 of an hour a day accruing towards a rostered day off (cl 15.2). By agreement the day can start between 6.00 am and 8.00 am (cl 15.3).",
+    "Plumbing Award ordinary hours are 7.00 am to 6.00 pm, Monday to Friday. They are worked in a 20-day, 4-week cycle, Monday to Friday: 19 days of 8 hours, with 0.4 of an hour each day accruing to a paid rostered day off (cl 15.2). By agreement the day can start between 6.00 am and 8.00 am (cl 15.3).",
     "Every percentage applies to the ordinary hourly rate, which already includes the all-purpose allowances. That is why the dollar figures on this page are higher than the percentages of the bare cl 18.1 minimum would give.",
     "Casual penalties are the permanent percentage plus the 25% loading: 150% becomes 175%, 200% becomes 225%, 250% becomes 275% (Schedule C.1.6, cl 22.1(a) NOTE). Penalty rates are not cumulative: only one applies at a time, and none applies where overtime is payable (cl 23.5).",
     "Sprinkler fitters are paid the same percentages on their own ordinary hourly rate, but Saturday work for sprinkler fitters outside ordinary hours is overtime at 200% from the first hour (cl 22.1(a)).",

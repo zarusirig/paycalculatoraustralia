@@ -1,0 +1,125 @@
+{
+ "name": "ff-045-leave-calculator-content",
+ "files": [
+  "modules/calculator/leave-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:216",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "216",
+   "page": "/leave-calculator/",
+   "claims": [
+    "Annual leave payouts are taxed as ordinary income at the employee's marginal tax rate. The ATO does not apply any concessional treatment to annual leave payouts. ... the pre-16 August 1978 component is taxed at 5%, and the post-1978 component is taxed at the marginal rate."
+   ],
+   "whys": [
+    "ATO rules: unused annual leave accrued before 18 Aug 1993, or paid out in a genuine redundancy, invalidity or approved early retirement, is taxed at a maximum of 30% plus Medicare levy. For long service leave, only 5% of the pre-16 Aug 1978 amount is added to assessable income (it is not taxed at a 5% rate), and the 16 Aug 1978 to 17 Aug 1993 portion is capped at 30% plus Medicare levy. The leave-calculator.tsx tax note also says long service leave 'may qualify for concessional tax treatment', which contradicts this paragraph."
+   ],
+   "constants": [
+    "Unused leave payment tax rules (ATO 'Unused leave payments on termination') should sit in a tax constants file, e.g. lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:85",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "85",
+   "page": "/leave-calculator/",
+   "claims": [
+    "The table below summarises the 3 leave types with cash value on termination: annual leave, personal/carer's leave, and long service leave.",
+    "Super at the 12% SG rate ..."
+   ],
+   "whys": [
+    "Personal/carer's leave has no cash value on termination (the table's own row says 'No: no cash value', and line 291 says it has zero cash value). The table also shows 7 rows, not 3.",
+    "The SG rate is typed into the prose (also on line 305). It should render from SUPER_GUARANTEE.rate so that it updates when the rate changes."
+   ],
+   "constants": [
+    "n/a (copy contradiction)",
+    "SUPER_GUARANTEE.rate in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.47,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:82",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "82",
+   "page": "/leave-calculator/",
+   "claims": [
+    "Australian employees are entitled to 7 distinct types of leave"
+   ],
+   "whys": [
+    "The 7-row table counts annual leave twice (standard and shift workers) and leaves out NES family and domestic violence leave (10 days paid). The count does not match the NES list."
+   ],
+   "constants": [
+    "n/a (copy and table content)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.57,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:290",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "290",
+   "page": "/leave-calculator/",
+   "claims": [
+    "a part-time employee working 25 hours per week accrues 2.63 weeks of leave per year (25/38 x 4 weeks), not the full 4 weeks"
+   ],
+   "whys": [
+    "Under the NES a part-time employee accrues 4 weeks of their own ordinary hours (100 hours at 25 h/week). 2.63 is the equivalent in full-time weeks, so saying they do not get 'the full 4 weeks' is misleading. Line 71 ('80 hours (2.1 weeks)' at 20 hours per week) has the same framing."
+   ],
+   "constants": [
+    "EMPLOYMENT.annualLeaveWeeks / standardWeeklyHours"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.47,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:68",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "68",
+   "page": "/leave-calculator/",
+   "claims": [
+    "2.923 hours of leave per week, or approximately 0.833 days per fortnight"
+   ],
+   "whys": [
+    "152 hours / 26 fortnights = 5.85 hours = 0.769 days of 7.6 hours per fortnight, not 0.833. 0.833 days would be about 20 days over 24 periods (half-monthly)."
+   ],
+   "constants": [
+    "Derive from EMPLOYMENT.annualLeaveWeeks, standardWeeklyHours and weeksPerYear in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-content.tsx:57",
+   "file": "modules/calculator/leave-calculator-content.tsx",
+   "line": "57",
+   "page": "/leave-calculator/",
+   "claims": [
+    "There is no concessional tax treatment for leave loading, whether it is paid while you take leave or paid out on termination."
+   ],
+   "whys": [
+    "Leave loading paid out with unused annual leave in a genuine redundancy, or accrued before 18 Aug 1993, follows the same capped (30% plus Medicare levy) treatment as the leave itself. Same issue on line 292 ('taxed at marginal rates, not at a flat rate')."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (unused leave termination rules)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.55,
+   "needsOwner": false
+  }
+ ]
+}

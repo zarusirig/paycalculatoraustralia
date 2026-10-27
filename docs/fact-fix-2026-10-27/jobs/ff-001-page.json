@@ -1,0 +1,84 @@
+{
+ "name": "ff-001-page",
+ "files": [
+  "app/about/page.tsx"
+ ],
+ "questions": [
+  {
+   "key": "app/about/page.tsx:267",
+   "file": "app/about/page.tsx",
+   "line": "267",
+   "page": "https://pay-calculator-australia.com/about/",
+   "claims": [
+    "Services Australia: Medicare levy thresholds"
+   ],
+   "whys": [
+    "The ATO publishes the Medicare levy and its low-income thresholds, which are set in Treasury legislation. Services Australia runs Medicare enrolment, not the levy thresholds. The source label looks wrong."
+   ],
+   "constants": [
+    "SOURCES.servicesAustralia / SOURCES.ato (lib/constants/australian-tax.ts:632)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.19,
+   "needsOwner": false
+  },
+  {
+   "key": "app/about/page.tsx:304",
+   "file": "app/about/page.tsx",
+   "line": "304",
+   "page": "https://pay-calculator-australia.com/about/",
+   "claims": [
+    "Superannuation Guarantee (12%)"
+   ],
+   "whys": [
+    "The rate is typed into the string instead of coming from the super constant. It is correct now, but it will go stale silently if the rate changes."
+   ],
+   "constants": [
+    "Super Guarantee rate constant in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.89,
+   "needsOwner": false
+  },
+  {
+   "key": "app/about/page.tsx:147",
+   "file": "app/about/page.tsx",
+   "line": "147",
+   "page": "https://pay-calculator-australia.com/about/",
+   "claims": [
+    "We update our calculators within 48 hours of any rate change announcement."
+   ],
+   "whys": [
+    "This is a firm process commitment on a YMYL trust page. Nothing in code backs it up, and the stale 14 March 2026 'Last updated' date works against it. The owner should confirm it is true or soften it."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.09,
+   "needsOwner": true
+  },
+  {
+   "key": "app/about/page.tsx:367",
+   "file": "app/about/page.tsx",
+   "line": "367",
+   "page": "https://pay-calculator-australia.com/about/",
+   "claims": [
+    "Last updated: 14 March 2026. All rates apply for FY2026-27 (1 July 2026 - 30 June 2027)."
+   ],
+   "whys": [
+    "The hard-coded 'Last updated' date is earlier than the start of the financial year the page says its rates cover. That reads as stale or inconsistent. Either bump the dated line or tie it to a constant."
+   ],
+   "constants": [
+    "SITE_CONFIG (lib/constants/australian-tax.ts:638-640) or a page last-reviewed date"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact questions and they should go to the owner. The hard-coded 'Last updated: 14 March 2026' is earlier than the FY2026-27 rates claim. The Services Australia label for Medicare levy thresholds looks wrong (the ATO publishes them). The 12% Super Guarantee rate is typed in instead of taken from a constant. The '48 hours' update promise has nothing in the code behind it. 'Over 5 years' at Prime Bookkeeping is relative to an unstated date. All of these are locked or out of scope for this pass."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.49,
+   "needsOwner": true
+  }
+ ]
+}

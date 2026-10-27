@@ -296,7 +296,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
 
   notReproduced: [
     "Assistant in Nursing - Sterilising Services (Nurse Grade 1 Band 2)",
-    "Allowance schedules: hyperbaric, laundry, mental health environment, operating theatre, pharmacy, relieving in-charge, targeted training, X-ray and radium, endorsed midwife, RANIP isolation bonuses, on-call and professional development",
+    "Allowance schedules: hyperbaric, laundry, mental health environment, operating theatre, pharmacy, relieving in-charge, targeted training, X-ray and radium, RANIP isolation bonuses, on-call and professional development",
   ],
 
   unverified: [

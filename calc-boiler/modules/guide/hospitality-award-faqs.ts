@@ -14,6 +14,8 @@ import {
   HOSPITALITY_OVERTIME,
   HOSPITALITY_PENALTIES,
   HOSPITALITY_RATES,
+  RETAIL_JUNIOR_SCALE,
+  RETAIL_OVERTIME,
   type AwardRate,
 } from "@/lib/constants/hospitality-award";
 import { roundCents } from "@/lib/constants/modern-awards";
@@ -45,6 +47,8 @@ const L6 = findRate(HOSPITALITY_RATES, "Level 6");
 
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
 const age19 = HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!;
+const retailAge19 = RETAIL_JUNIOR_SCALE.find((b) => b.age === "19")!;
+const retailAge20New = RETAIL_JUNIOR_SCALE.find((b) => b.age === "20 (6 months or less)")!;
 
 export interface HospitalityFaq {
   q: string;
@@ -76,7 +80,7 @@ export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
   },
   {
     q: "What are the hospitality penalty rates?",
-    a: `Hospitality Award penalty rates for permanent employees are Saturday ${pct(HOSPITALITY_PENALTIES.saturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.sunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.publicHoliday)} of the ordinary rate. Casuals are paid Saturday ${pct(HOSPITALITY_PENALTIES.casualSaturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.casualSunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)}. Evening and night work are handled differently: see the next question. Where more than one penalty could apply to the same hours, only the highest is paid.`,
+    a: `Hospitality Award penalty rates for permanent employees are Saturday ${pct(HOSPITALITY_PENALTIES.saturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.sunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.publicHoliday)} of the ordinary rate. Casuals are paid Saturday ${pct(HOSPITALITY_PENALTIES.casualSaturday)}, Sunday ${pct(HOSPITALITY_PENALTIES.casualSunday)} and public holidays ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)}. Evening and night work are handled differently: see the next question. Where more than one penalty could apply to the same hours, only the highest is paid (cl 29.3(b)). ${HOSPITALITY_PENALTIES.highestOnlyException}`,
   },
   {
     q: "How do hospitality evening and night rates work?",
@@ -84,7 +88,7 @@ export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
   },
   {
     q: "Do casuals get the casual loading on overtime in hospitality?",
-    a: `No. In hospitality the overtime clause operates on the "ordinary hourly rate", and the award's definitions clause excludes the casual loading from that term. As a result, a casual and a full-time employee on the same classification are paid identical overtime dollars. This is the opposite of the General Retail Industry Award, where the loading is included and casual overtime is ${pct(1.75)} against ${pct(1.5)} for permanents. One payroll rule cannot serve both awards.`,
+    a: `No. In hospitality the overtime clause operates on the "ordinary hourly rate", and the award's definitions clause excludes the casual loading from that term. As a result, a casual and a full-time employee on the same classification are paid identical overtime dollars. This is the opposite of the General Retail Industry Award, where the loading is included and casual overtime for the first three hours, Monday to Saturday, is ${pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} against ${pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for permanents. One payroll rule cannot serve both awards.`,
   },
   {
     q: "What is the hospitality overtime rate?",
@@ -92,7 +96,7 @@ export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
   },
   {
     q: "What are the junior rates in the hospitality award?",
-    a: `Junior rates are a percentage of the adult rate for the classification: ${HOSPITALITY_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. In hospitality, 19-year-olds receive ${pct(age19.percentage)} where the retail award pays 80%, and hospitality reaches the full adult rate at 20 rather than 21. Junior office employees are on a different scale again. Juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the full adult rate regardless of age.`,
+    a: `Junior rates are a percentage of the adult rate for the classification: ${HOSPITALITY_JUNIOR_SCALE.map((b) => `${b.age}: ${pct(b.percentage)}`).join(", ")}. In hospitality, 19-year-olds receive ${pct(age19.percentage)} where the retail award pays ${pct(retailAge19.percentage)}, and hospitality pays every 20-year-old the full adult rate, where retail pays a 20-year-old with 6 months' service or less ${pct(retailAge20New.percentage)}. Junior office employees are on a different scale again. Juniors with a trade qualification, and any junior working as a liquor service employee, must be paid the full adult rate regardless of age.`,
   },
   {
     q: "Is there a food and beverage attendant grade 5?",

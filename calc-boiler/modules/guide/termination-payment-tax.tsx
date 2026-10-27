@@ -103,7 +103,7 @@ export default function TerminationPaymentTaxPage() {
               head={["Completed years", `Tax-free limit ${Y.incomeYear}`, `Tax-free limit ${REDUNDANCY_TAX_2025_26.incomeYear}`]}
               align={["l", "r", "r"]}
               rows={YEARS.map((n) => [`${n} year${n === 1 ? "" : "s"}`, formatAUD(genuineRedundancyTaxFreeLimit(n, Y)), formatAUD(genuineRedundancyTaxFreeLimit(n, REDUNDANCY_TAX_2025_26))])}
-              caption={<>{formatAUD(Y.taxFreeBase)} + {formatAUD(Y.taxFreePerYear)} × completed years (ATO, <a href={TERMINATION_SOURCES.caps} target="_blank" rel="noopener noreferrer">employment termination payments</a>, updated 17 April 2026). The 2025-26 column is for payments made before 1 July 2026.</>}
+              caption={<>{formatAUD(Y.taxFreeBase)} + {formatAUD(Y.taxFreePerYear)} × completed years (ATO, <a href={TERMINATION_SOURCES.caps} target="_blank" rel="noopener noreferrer">employment termination payments</a>, updated 17 April 2026). The {REDUNDANCY_TAX_2025_26.incomeYear} column is for payments made before 1 July 2026.</>}
             />
             <p>
               <strong>Worked example.</strong> After 6 completed years, a $60,000 genuine redundancy payment has a tax-free limit of {formatAUD(G.taxFreeLimit)}, so {formatAUD(G.taxFree)} is tax-free and {formatAUD(G.etpTaxable)} is an ETP. Under preservation age that is taxed at {pct(ETP_RATES.underPreservationAge)}, which is {formatAUD(G.tax)} of tax, leaving {formatAUD(G.net)}. At preservation age or over the rate is {pct(ETP_RATES.atOrOverPreservationAge)}, which is {formatAUD(G.etpTaxable * ETP_RATES.atOrOverPreservationAge)}. To see the redundancy pay you are owed in the first place, use the <Link href="/redundancy-pay-calculator/">redundancy pay calculator</Link>.
@@ -123,7 +123,7 @@ export default function TerminationPaymentTaxPage() {
                 ["Under preservation age, up to the cap", pct(ETP_RATES.underPreservationAge)],
                 [`Above the ${formatAUD(Y.etpCap)} cap`, pct(ETP_RATES.aboveCap)],
               ]}
-              caption={<>ETP cap {formatAUD(Y.etpCap)} for {Y.incomeYear} ({formatAUD(REDUNDANCY_TAX_2025_26.etpCap)} in {REDUNDANCY_TAX_2025_26.incomeYear}), indexed each year. Preservation age is 60 for anyone born after 30 June 1964.</>}
+              caption={<>ETP cap {formatAUD(Y.etpCap)} for {Y.incomeYear} ({formatAUD(REDUNDANCY_TAX_2025_26.etpCap)} in {REDUNDANCY_TAX_2025_26.incomeYear}), indexed each year. Preservation age is {PRESERVATION_AGE} for anyone born after 30 June 1964.</>}
             />
           </section>
 
@@ -133,7 +133,7 @@ export default function TerminationPaymentTaxPage() {
               A genuine redundancy above the tax-free limit is an &ldquo;excluded&rdquo; ETP and only the {formatAUD(Y.etpCap)} ETP cap applies. Every other ETP, such as a golden handshake, severance or a non-genuine redundancy, is also tested against a <strong>{formatAUD(WHOLE_OF_INCOME_CAP)} whole-of-income cap</strong>, reduced by your other taxable income in the same income year, whether you earn it before or after the payment. The lesser of the two caps applies. Other taxable income counts salary, overtime, bonuses, interest and accrued leave paid out when you leave. It does not count super guarantee, salary sacrifice or reportable fringe benefits.
             </p>
             <p>
-              <strong>Worked example.</strong> A $100,000 golden handshake is paid in August to someone under preservation age who had earned $25,000 that year, so the cap is {formatAUD(H_WITHOUT.wholeOfIncomeCapRemaining ?? 0)} and the whole payment is taxed at {pct(ETP_RATES.underPreservationAge)}: {formatAUD(H_WITHOUT.tax)}. If they then take a new job and earn a further $60,000 before 30 June, their other income is $85,000, the cap falls to {formatAUD(H.wholeOfIncomeCapRemaining ?? 0)} and {formatAUD(H.aboveCap)} is taxed at {pct(ETP_RATES.aboveCap)}. The tax becomes {formatAUD(H.tax)}, so the extra {formatAUD(H.tax - H_WITHOUT.tax)} is due when the return is assessed. This follows the ATO&rsquo;s own worked example for the cap, using the 2026-27 cap and rates.
+              <strong>Worked example.</strong> A $100,000 golden handshake is paid in August to someone under preservation age who had earned $25,000 that year, so the cap is {formatAUD(H_WITHOUT.wholeOfIncomeCapRemaining ?? 0)} and the whole payment is taxed at {pct(ETP_RATES.underPreservationAge)}: {formatAUD(H_WITHOUT.tax)}. If they then take a new job and earn a further $60,000 before 30 June, their other income is $85,000, the cap falls to {formatAUD(H.wholeOfIncomeCapRemaining ?? 0)} and {formatAUD(H.aboveCap)} is taxed at {pct(ETP_RATES.aboveCap)}. The tax becomes {formatAUD(H.tax)}, so the extra {formatAUD(H.tax - H_WITHOUT.tax)} is due when the return is assessed. This follows the ATO&rsquo;s own worked example for the cap, using the {Y.incomeYear} cap and rates.
             </p>
           </section>
 
@@ -142,7 +142,7 @@ export default function TerminationPaymentTaxPage() {
             <ul>
               <li><strong>Split the payment correctly.</strong> Check the payment summary or income statement. Leave and notice pay are separate lines from the redundancy payment.</li>
               <li><strong>Timing matters.</strong> The caps are by income year (1 July to 30 June). Two ETPs in one year share the caps.</li>
-              <li><strong>Check your age cut-offs.</strong> Turning 60 before 30 June moves the rate from {pct(ETP_RATES.underPreservationAge)} to {pct(ETP_RATES.atOrOverPreservationAge)}. Being {GENUINE_REDUNDANCY_AGE_LIMIT} or older on the day of dismissal removes the genuine redundancy tax-free amount.</li>
+              <li><strong>Check your age cut-offs.</strong> Turning {PRESERVATION_AGE} before 30 June moves the rate from {pct(ETP_RATES.underPreservationAge)} to {pct(ETP_RATES.atOrOverPreservationAge)}. Being {GENUINE_REDUNDANCY_AGE_LIMIT} or older on the day of dismissal removes the genuine redundancy tax-free amount.</li>
               <li><strong>Centrelink.</strong> A termination payment can delay income support. See the <Link href="/jobseeker-payment-calculator/">JobSeeker payment calculator</Link> and the redundancy page for the income maintenance period.</li>
             </ul>
           </section>

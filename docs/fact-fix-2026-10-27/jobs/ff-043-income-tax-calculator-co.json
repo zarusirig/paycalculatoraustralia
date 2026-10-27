@@ -1,0 +1,142 @@
+{
+ "name": "ff-043-income-tax-calculator-co",
+ "files": [
+  "modules/calculator/income-tax-calculator-content.tsx",
+  "modules/calculator/jobseeker-payment-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/income-tax-calculator-content.tsx:113",
+   "file": "modules/calculator/income-tax-calculator-content.tsx",
+   "line": "113",
+   "page": "/income-tax-calculator/",
+   "claims": [
+    "Most workers also pay the 2% Medicare levy"
+   ],
+   "whys": [
+    "The 2% is typed into the text instead of using MEDICARE_PCT (MEDICARE_LEVY.rate), so it will go stale if the rate changes. 'Most workers' is also a population claim with no source."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate / MEDICARE_PCT"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/income-tax-calculator-content.tsx:292",
+   "file": "modules/calculator/income-tax-calculator-content.tsx",
+   "line": "292",
+   "page": "/income-tax-calculator/",
+   "claims": [
+    "LITO and the Medicare levy are identical in both years, so the saving is unaffected"
+   ],
+   "whys": [
+    "The Medicare levy low-income thresholds are indexed every year, so the Medicare levy is not necessarily identical in 2025-26 and 2026-27 at low incomes. Check the constants for both years."
+   ],
+   "constants": [
+    "MEDICARE_LEVY low-income thresholds (2025-26 vs 2026-27)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.08,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/income-tax-calculator-content.tsx:296",
+   "file": "modules/calculator/income-tax-calculator-content.tsx",
+   "line": "296",
+   "page": "/income-tax-calculator/",
+   "claims": [
+    "Returns lodged between July and October 2026 cover FY2025-26, which used the old 16% rate \u2014 income tax on $80,000 was ...; the deductions most people forget to claim"
+   ],
+   "whys": [
+    "This is time-bound copy that goes stale after 31 Oct 2026 (agent-lodged returns run later). The locked segment contains an em dash I could not change. 'Most people forget' is a population claim with no source."
+   ],
+   "constants": [
+    "lodgement-season dates (SITE_CONFIG or a constants file)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.75,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/income-tax-calculator-content.tsx:379",
+   "file": "modules/calculator/income-tax-calculator-content.tsx",
+   "line": "379",
+   "page": "/income-tax-calculator/",
+   "claims": [
+    "Your employer's 12% SG contribution on top of salary"
+   ],
+   "whys": [
+    "The rate is typed in by hand instead of using SUPER_GUARANTEE.rate, so it can drift from the engine."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/income-tax-calculator-content.tsx:313",
+   "file": "modules/calculator/income-tax-calculator-content.tsx",
+   "line": "313",
+   "page": "/income-tax-calculator/",
+   "claims": [
+    "Medicare Levy Surcharge of 1\u20131.5% applies above ...; working holiday makers have their own 15% schedule (line 315)"
+   ],
+   "whys": [
+    "The MLS tier rates and the WHM rate are typed in by hand. The comment at line 173 says no WHM constant exists. They should come from MEDICARE_LEVY.surcharge tiers and a WHM constant."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge tier rates; new WHM constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.9,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/jobseeker-payment-calculator-content.tsx:200",
+   "file": "modules/calculator/jobseeker-payment-calculator-content.tsx",
+   "line": "200",
+   "page": "https://pay-calculator-australia.com/jobseeker-payment-calculator/",
+   "claims": [
+    "The free area and tapers index on 1 July and did not change on 20 September 2026."
+   ],
+   "whys": [
+    "Taper rates (50c, 60c, 40c) are fixed percentages and cannot index. The $150 and $256 allowance thresholds also appear to have stayed the same for several years, so it is not clear they index on 1 July at all. The same claim is in the code comments at line 49 of this file and lines 266 and 537 of the constants file."
+   ],
+   "constants": [
+    "lib/constants/centrelink-income-test.ts JOBSEEKER_INCOME_TEST (line 270)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/jobseeker-payment-calculator-content.tsx:202",
+   "file": "modules/calculator/jobseeker-payment-calculator-content.tsx",
+   "line": "202",
+   "page": "https://pay-calculator-australia.com/jobseeker-payment-calculator/",
+   "claims": [
+    "cut-off = (typical total rate \u2212 $53) \u00f7 0.6 + $256, or \u00f7 0.4 + $150"
+   ],
+   "whys": [
+    "The $53, $256 and $150 in the methodology formula are typed in, not taken from the constants (the same drift risk as the FAQ)."
+   ],
+   "constants": [
+    "JOBSEEKER_INCOME_TEST"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.88,
+   "needsOwner": false
+  }
+ ]
+}

@@ -69,7 +69,7 @@ export default function ListoCalculatorPage() {
               Contributions your employer pays into super are taxed at {pct(NOW.rate)} inside the fund. For someone paying little or no income tax, that {pct(NOW.rate)} can be more than the tax on their take-home pay. LISTO fixes this: the government pays an amount equal to {pct(NOW.rate)} of your concessional (before-tax) contributions into your super account, up to a yearly cap. It is paid for you automatically, so there is nothing to claim.
             </p>
             <p>
-              Concessional contributions include your employer&rsquo;s super guarantee ({SG_PCT}% of your pay), salary sacrifice, and personal contributions you claim a tax deduction for. For most low-income employees the super guarantee on their pay is the main part.
+              Concessional contributions include your employer&rsquo;s super guarantee ({SG_PCT}% of your pay), salary sacrifice, and personal contributions you claim a tax deduction for. If your employer pays only the super guarantee and you make no salary sacrifice or deductible personal contributions, the super guarantee on your pay is the only part.
             </p>
           </section>
 
@@ -104,7 +104,7 @@ export default function ListoCalculatorPage() {
             </p>
             <ul>
               <li><strong>More people qualify.</strong> Workers with income between {formatAUD(NOW.incomeThreshold + 1)} and {formatAUD(NEXT.incomeThreshold)} are newly eligible.</li>
-              <li><strong>A bigger cap.</strong> {formatAUD(NEXT.maxPayment)} is exactly {pct(NOW.rate)} of {SG_PCT}% of {formatAUD(NEXT.incomeThreshold)}, so a full-time worker on $45,000 gets the maximum from super guarantee alone. The official wording changes only the threshold and the cap, so we have assumed the {pct(NOW.rate)} rate and the {formatAUD(NOW.minPayment)} minimum carry over. Check the ATO if the final detail matters to you.</li>
+              <li><strong>A bigger cap.</strong> {formatAUD(NEXT.maxPayment)} is exactly {pct(NOW.rate)} of {SG_PCT}% of {formatAUD(NEXT.incomeThreshold)}, so a worker on {formatAUD(NEXT.incomeThreshold)} gets the maximum from super guarantee alone. The official wording changes only the threshold and the cap, so we have assumed the {pct(NOW.rate)} rate and the {formatAUD(NOW.minPayment)} minimum carry over. Check the ATO if the final detail matters to you.</li>
             </ul>
             <DataTable
               head={["Salary", `Super at ${SG_PCT}%`, "LISTO now", "LISTO from 1 July 2027"]}

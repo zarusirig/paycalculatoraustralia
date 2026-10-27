@@ -42,6 +42,7 @@ import {
   jsaUrl,
   toCents,
 } from "./common";
+import { annual52, money0 } from "./j8-common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -79,7 +80,7 @@ export const CRANE_OPERATOR: Occupation = {
     "Which award covers a crane operator depends on who employs them. Operators employed by a crane hire company are covered by the Mobile Crane Hiring Award 2020 [MA000032], which grades them from MCE1 to MCE7 by the size and type of crane they are licensed and required to operate.",
     "The Mobile Crane Hiring Award does not apply to an employer covered by the Building and Construction General On-site Award. A crane operator employed directly by a builder or construction contractor is classified under that award instead, from CW3 for small cranes to CW7 for tower cranes and the largest mobile cranes.",
     "Both awards add an all-purpose industry allowance to the classification rate ($63.79 a week under the Mobile Crane Hiring Award, $67.15 in general building), so the rates below include it.",
-    "Crane operators on major projects and in mining are very often paid under enterprise agreements, which is why the market median is far above either award.",
+    "If your employer has an enterprise agreement approved by the Fair Work Commission, its rates apply instead of the award. The agreement must leave you better off overall than the award (Fair Work Act s 193).",
   ],
   tables: [
     {
@@ -131,12 +132,12 @@ export const CRANE_OPERATOR: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "The Jobs and Skills Australia median of $3,411 a week is more than double the award minimum. Most crane operators on major construction and resources projects are paid under enterprise agreements.",
+    `The Jobs and Skills Australia median of ${money0(MEDIAN.medianWeekly)} a week is more than double the award minimum. Full-time crane, hoist and lift operators average 50 hours a week (JSA, ABS Census 2021), against 44 hours across all occupations.`,
   ],
   notShown: [
     "Shiftwork rates (Schedule B.2.2), standby and call-back payments, and trainee rates.",
     "Building award crane capacity adjustments above 100 tonnes, and allowances such as the multistorey allowance.",
-    "Enterprise agreement rates, which cover most large crane hire and construction employers.",
+    "Enterprise agreement rates.",
   ],
   faqs: [
     {
@@ -157,7 +158,7 @@ export const CRANE_OPERATOR: Occupation = {
     },
     {
       q: "What do crane operators actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $3,411 a week for crane, hoist and lift operators (ABS, May 2025), about $177,372 a year, far above the award, because most work under enterprise agreements with long hours and project allowances.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for crane, hoist and lift operators (ABS, May 2025), about ${money0(annual52(MEDIAN.medianWeekly))} a year, far above the award. Full-time crane, hoist and lift operators average 50 hours a week, against 44 hours across all occupations (JSA, ABS Census 2021).`,
     },
   ],
   sources: [

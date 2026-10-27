@@ -12,7 +12,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, TAX_BRACKETS } from "@/lib/constants";
 import {
   TEACHER_PAY_STATES,
   graduateSalary,
@@ -36,6 +36,13 @@ import { JURISDICTION_SLUGS } from "@/lib/data/public-service-pay";
 import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+
+/** The current-year resident scale rate (0.30, 0.37, ...) on a salary, from TAX_BRACKETS. */
+function scaleRateAt(salary: number): number {
+  return TAX_BRACKETS.find((b) => salary >= b.min && salary <= b.max)?.rate ?? 0;
+}
+
+const pctLabel = (rate: number) => `${Math.round(rate * 100)}%`;
 
 /**
  * A salary that also links to its take-home page. The site only generates
@@ -125,7 +132,7 @@ function AtAGlance({ state }: { state: TeacherPayState }) {
         {state.code} teacher salary {teacherRatesYear(state)} at a glance
       </h2>
       <p>
-        Each row below gives the full-time annual salary range from {state.ratesEffectiveFrom}, read from the {state.agreementName}.
+        Each row below gives the full-time annual salary range from {state.ratesEffectiveFrom}, read from the {state.agreementName} or from {state.employer}&rsquo;s own published salary schedule.
         Tap a classification to jump to its full step table, or a salary to see take-home pay at or near that figure.
       </p>
       <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -249,8 +256,9 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               A graduate teacher in a {state.nameInSentence} public school is paid{" "}
               <strong className="text-navy">{formatAUD(grad)}</strong> a year, rising to{" "}
               <strong className="text-navy">{formatAUD(top)}</strong> at the top of the classroom
-              teacher scale. Every salary on this page is read from the {state.agreementName} and
-              applies from {state.ratesEffectiveFrom}.
+              teacher scale. Every salary on this page is read from the {state.agreementName} or
+              from {state.employer}&rsquo;s own published salary schedule, and applies from{" "}
+              {state.ratesEffectiveFrom}.
             </p>
           ) : (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
@@ -309,7 +317,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 </h2>
                 <p>
                   Principals are paid on their own scale, separate from the classroom teacher steps above.
-                  The figures below are read from the same {state.agreementName} schedule as the rest of this
+                  The figures below are read from the same source as the rest of this
                   page and apply from {state.ratesEffectiveFrom}.
                 </p>
                 <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -367,7 +375,8 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                   {state.agreementName}
                 </a>
                 , the instrument {state.employer} pays against. The rates on this page took effect from{" "}
-                {state.ratesEffectiveFrom} and were read from that instrument on {state.verifiedOn}.
+                {state.ratesEffectiveFrom} and were read from the primary sources listed at the end of this page on{" "}
+                {state.verifiedOn}.
               </p>
               {state.nextIncrease && (
                 <p>
@@ -431,9 +440,8 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               <section id="which-step">
                 <h2 style={HEADING_FONT}>Which step am I on?</h2>
                 <p>
-                  This is the part most teachers get wrong on their own payslip. Progression in{" "}
-                  {state.nameInSentence} is not simply one step per calendar year. The rules below are what{" "}
-                  {state.employer} actually applies.
+                  These are the rules {state.employer} applies to move a teacher from one step to the
+                  next.
                 </p>
                 {state.progression.map((rule) => (
                   <div key={rule.heading} className="mb-6">
@@ -466,8 +474,8 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 <p>
                   Gross salary is not what lands in your account. A graduate on{" "}
                   {formatAUD(grad)} and a top-of-scale teacher on {formatAUD(top)} both pay income
-                  tax and the Medicare levy, and most also have a compulsory HECS-HELP repayment
-                  deducted at these income levels. Every salary in the tables above
+                  tax and the Medicare levy, and a teacher with a study loan also has a compulsory
+                  HECS-HELP repayment deducted at these income levels. Every salary in the tables above
                   links to take-home pay at or near that figure: start with{" "}
                   <Link href={takeHomeHref(grad)}>
                     take-home pay on {formatAUD(nearestTakeHomeAmount(grad))}
@@ -516,9 +524,13 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               <h2 style={HEADING_FONT}>Salary packaging available to {state.code} teachers</h2>
               <p>
                 Public school teachers can salary sacrifice into superannuation, which reduces
-                taxable income at your marginal rate. Because the classroom teacher scale runs
-                through the 30% and 37% brackets, the saving is meaningful at the top of the scale
-                and smaller at the graduate step. Work out your own number with the{" "}
+                taxable income at your marginal rate.{" "}
+                {hasScales && grad !== null && top !== null
+                  ? scaleRateAt(grad) === scaleRateAt(top)
+                    ? `A graduate on ${formatAUD(grad)} and a top-of-scale teacher on ${formatAUD(top)} are both in the ${pctLabel(scaleRateAt(top))} tax bracket, so each dollar sacrificed saves the same income tax at both ends of the classroom scale.`
+                    : `The classroom scale runs from the ${pctLabel(scaleRateAt(grad))} tax bracket at the graduate step (${formatAUD(grad)}) to the ${pctLabel(scaleRateAt(top))} bracket at the top (${formatAUD(top)}), so each dollar sacrificed saves more income tax at the top of the scale.`
+                  : null}{" "}
+                Work out your own number with the{" "}
                 <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link>.
               </p>
               <p>

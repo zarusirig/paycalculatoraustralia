@@ -1,0 +1,138 @@
+{
+ "name": "ff-053-salary-package-faqs",
+ "files": [
+  "modules/calculator/salary-package-faqs.ts",
+  "modules/calculator/salary-sacrifice-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/salary-package-faqs.ts:51",
+   "file": "modules/calculator/salary-package-faqs.ts",
+   "line": "51",
+   "page": "https://pay-calculator-australia.com/salary-package-calculator/",
+   "claims": [
+    "The super guarantee is calculated on ordinary time earnings."
+   ],
+   "whys": [
+    "The comment at lib/constants/australian-tax.ts (around lines 130-135) says that from 1 July 2026, under Payday Super, SG is calculated on qualifying earnings rather than ordinary time earnings. The FAQ wording looks out of date."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "New question: the FAQ says SG 'is calculated on ordinary time earnings'. The comment in lib/constants/australian-tax.ts says that under Payday Super (from 1 July 2026) SG is calculated on qualifying earnings, not ordinary time earnings. The wording looks stale. Not changed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.07,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:152",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "152",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "Concessional contributions taxed at 15% is 'lower than every income tax bracket above the tax-free threshold in FY{financialYear}'."
+   ],
+   "whys": [
+    "In FY2026-27 the second bracket is 15% (TAX_BRACKETS[1].rate; the file's own comment says the saving there is nil). 15% is equal to that rate, not lower. The sentence is also the protected first answer after the H2."
+   ],
+   "constants": [
+    "TAX_BRACKETS[1].rate in @/lib/constants; derive the wording from SECOND_RATE_PCT / SECOND_SAVING"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.53,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:155",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "155",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "Earners above $190,000 save 30 cents per dollar 'even after accounting for the 2% Medicare levy'."
+   ],
+   "whys": [
+    "45% minus 15% is 30 cents before the Medicare levy. The note at line 199 says the table savings exclude the Medicare levy, which adds about 2 cents. 'Even after accounting for' contradicts that note. It should read 'before the Medicare levy' or give 32 cents."
+   ],
+   "constants": [
+    "TAX_BRACKETS top rate, CONTRIBUTIONS_TAX_RATE, Medicare levy rate constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.9,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:255",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "255",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "The 'Net Benefit' column in the comparison table shows formatAUD(saved), the same value as the 'Tax Saved' column (line 253)."
+   ],
+   "whys": [
+    "Two columns with identical figures look like a bug. Net benefit should probably be the tax saved less the 15% contributions tax, or super added minus the take-home drop. This is code, so it is outside this pass."
+   ],
+   "constants": [
+    "calculatePayBreakdown output + CONTRIBUTIONS_TAX_RATE"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:478",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "478",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "Employees in the 15% bracket 'are better served by claiming the Low Income Tax Offset instead'."
+   ],
+   "whys": [
+    "LITO is applied automatically at assessment, so nobody claims it. It is also not an alternative to salary sacrifice. As written, the advice is misleading."
+   ],
+   "constants": [
+    "LITO constants in @/lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:520",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "520",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "Centrelink use of adjusted taxable income (which includes reportable super contributions) is 'potentially reducing eligibility for Family Tax Benefit, childcare subsidies'."
+   ],
+   "whys": [
+    "Adjusted taxable income adds the sacrificed amount back, so it stays roughly the same with or without the sacrifice. The risk is that the sacrifice does not raise benefit eligibility. It does not reduce it. The wording is hedged ('may', 'potentially') and the program name should be 'Child Care Subsidy'. Needs a factual rewrite against Services Australia guidance."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.62,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-content.tsx:321",
+   "file": "modules/calculator/salary-sacrifice-calculator-content.tsx",
+   "line": "321",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "For the second bracket, 'The reduced liquidity is rarely worth the minimal tax saving.'"
+   ],
+   "whys": [
+    "This is an unlabelled judgment ('rarely') on a factual-structured page. Either label it as editorial guidance or state the figure: a 2 cent Medicare saving per dollar, with the money preserved until a condition of release."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.03,
+   "needsOwner": true
+  }
+ ]
+}

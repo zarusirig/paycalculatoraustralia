@@ -1,0 +1,127 @@
+{
+ "name": "ff-046-leave-calculator-faqs",
+ "files": [
+  "modules/calculator/leave-calculator-faqs.ts",
+  "modules/calculator/leave-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:91",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "91",
+   "page": "https://pay-calculator-australia.com/leave-calculator/",
+   "claims": [
+    "Pro-rata payouts on termination available after 5 years in NSW and after 7 years in QLD, WA and TAS; SA and NT pro-rata after 7 years; ACT after 5 years."
+   ],
+   "whys": [
+    "The FAQ states these thresholds with no conditions. The site's constants (proRataUnconditionalFromYears: NSW 10, QLD 10, TAS 10, NT 10, ACT 7) say that below those years a payout is owed only on defined grounds, and a plain resignation does not qualify. The FAQ also types 8.67, 13 and 6.07 weeks as literals instead of reading LSL_JURISDICTIONS."
+   ],
+   "constants": [
+    "LSL_JURISDICTIONS[*].proRataFromYears / proRataUnconditionalFromYears / weeksAtQualifying in lib/constants/long-service-leave.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's pro-rata question against the constants. proRataUnconditionalFromYears is NSW 10, QLD 10, TAS 10, NT 10 and ACT 7, so the FAQ's pro-rata thresholds leave out the grounds a payout needs below those years."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.85,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:95",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "95",
+   "page": "https://pay-calculator-australia.com/leave-calculator/",
+   "claims": [
+    "Casual employees do not accrue annual leave, personal leave, or long service leave under the NES."
+   ],
+   "whys": [
+    "State and territory LSL Acts cover casuals with continuous service. The site's own lib/constants/long-service-leave.ts sets casualsCovered: true (line 195 for NSW, with a casualsNote). As written, the FAQ tells casuals they get no LSL."
+   ],
+   "constants": [
+    "LSL_JURISDICTIONS[*].casualsCovered / casualsNote in lib/constants/long-service-leave.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's casual-LSL question. LSL_JURISDICTIONS sets casualsCovered: true in all 8 jurisdictions, yet the FAQ tells casuals they get no LSL."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:55",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "55",
+   "page": "https://pay-calculator-australia.com/leave-calculator/",
+   "claims": [
+    "Award-free employees on individual contracts (common in professional services, banking, and technology) do not receive leave loading unless their contract specifies it."
+   ],
+   "whys": [
+    "The parenthetical is a population claim with no source. Banking staff are often covered by the Banking, Finance and Insurance Award, which I believe has its own annual leave loading clause, so naming banking as typically award-free looks wrong. Suggest dropping or sourcing it. I removed only the hedge 'typically' because the rule (no NES leave loading without an award, agreement or contract term) is definitive."
+   ],
+   "constants": [
+    "LEAVE_LOADING_RULES in lib/constants/leave-loading.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:71",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "71",
+   "page": "https://pay-calculator-australia.com/leave-calculator/",
+   "claims": [
+    "Annual leave payouts are taxed as ordinary income at your marginal tax rate."
+   ],
+   "whys": [
+    "This leaves out the ATO rule that unused annual leave (and loading) paid on genuine redundancy, invalidity or early retirement is withheld at a flat 32%, as are pre-18 Aug 1993 amounts. The LSL calculator on the site already models the equivalent rule for LSL."
+   ],
+   "constants": [
+    "ATO Schedule 7 unused leave rates (no constant for annual leave found; LSL equivalent is lslWithholding in lib/constants/long-service-leave.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.24,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator-faqs.ts:75",
+   "file": "modules/calculator/leave-calculator-faqs.ts",
+   "line": "75",
+   "page": "https://pay-calculator-australia.com/leave-calculator/",
+   "claims": [
+    "Possibly. Annual leave payouts are taxed as lump-sum income at your marginal rate, which can over-withhold tax..."
+   ],
+   "whys": [
+    "This answer opens with a hedge ('Possibly'). It also contradicts the line 71 answer: one says payouts are taxed as ordinary income, the other calls them lump-sum income. Withholding on unused leave uses ATO Schedule 7, so the two answers should agree."
+   ],
+   "constants": [
+    "none (ATO Schedule 7)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.02,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/leave-calculator.tsx:73",
+   "file": "modules/calculator/leave-calculator.tsx",
+   "line": "73",
+   "page": "/leave-calculator/",
+   "claims": [
+    "This calculator uses {SITE_CONFIG.financialYear} rates and shows the tax on the lump sum."
+   ],
+   "whys": [
+    "The calculator shows only 'Total Payout (Before Tax)' (line 154), and the methodology disclosure in leave-calculator-content.tsx line 319 says 'Tax on payout is not calculated here'. The hero claim is false. It is outside this unit."
+   ],
+   "constants": [
+    "n/a (hero copy in another unit)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.2,
+   "needsOwner": true
+  }
+ ]
+}

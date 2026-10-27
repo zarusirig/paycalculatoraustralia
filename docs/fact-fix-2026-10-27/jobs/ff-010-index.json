@@ -1,0 +1,90 @@
+{
+ "name": "ff-010-index",
+ "files": [
+  "lib/data/graduate-salary/index.ts",
+  "lib/data/health-salary/pages.ts",
+  "lib/data/health-salary/staff-specialists.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/graduate-salary/index.ts:180",
+   "file": "lib/data/graduate-salary/index.ts",
+   "line": "180",
+   "page": "/graduate-salary-australia/",
+   "claims": [
+    "NSW Health intern salary $80,638 a year from the first full pay period on or after 1 July 2025 (IB2026_007, 20 January 2026), an interim increase pending the NSW IRC's final decision."
+   ],
+   "whys": [
+    "This is an interim rate that awaits a final NSW IRC decision. On 27 Oct 2026 it is more than 9 months old and may have been replaced. The same figure is also typed as a literal in modules/guide/graduate-salary-australia.tsx line 147 (f0(80_638)) rather than read from GRADUATE_PROFESSIONS[5].published.annual."
+   ],
+   "constants": [
+    "lib/data/graduate-salary/index.ts GRADUATE_PROFESSIONS doctor.published.annual (and lib/data/job-pay-rates/doctor.ts if NSW intern data lives there)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.28,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/health-salary/pages.ts:331",
+   "file": "lib/data/health-salary/pages.ts",
+   "line": "331",
+   "page": "/job-pay-rates/radiologist/ and /job-pay-rates/anaesthetist/",
+   "claims": [
+    "Workforce paragraphs and FAQ answers type figures by hand ($5,013 a week, $101 an hour, 23,400 people at line 331 and 372; $8,293, $218, 7,400, 90%, 46 hours at lines 445 and 485)"
+   ],
+   "whys": [
+    "The file header says prose that quotes a figure builds it from the data, but these strings retype values held in OTHER_MP_JSA and ANAESTHETIST_JSA. The values match today. They will drift if the jsa() inputs change. Not a wrong fact, a source-of-truth risk."
+   ],
+   "constants": [
+    "OTHER_MP_JSA.medianWeekly/medianHourly, ANAESTHETIST_JSA.medianWeekly/medianHourly/fullTimeShare/averageFullTimeHours; employment counts have no constant yet"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.37,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/health-salary/staff-specialists.ts:66",
+   "file": "lib/data/health-salary/staff-specialists.ts",
+   "line": "66",
+   "page": "radiologist / anaesthetist / surgeon salary pages (public hospital section, NSW)",
+   "claims": [
+    "NSW staff specialist rates are interim (IB2026_006, from 1 July 2025) and the Staff Specialists (State) Award is before the NSW IRC"
+   ],
+   "whys": [
+    "The source is dated 20 January 2026 and was read 9 October 2026. If the NSW IRC has since decided, the interim rates and the 'before the NSW IRC' statement are stale."
+   ],
+   "constants": [
+    "STAFF_SPECIALIST_SCALES[0] (NSW steps, effectiveFrom, note)"
+   ],
+   "reviewerNotes": [
+    "Writer's fact question is valid. The NSW interim rates (IB2026_006) and the claim that the award is 'before the NSW IRC' depend on a 9 Oct 2026 read of a 20 Jan 2026 bulletin, and an IRC decision since then would make them stale."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/health-salary/staff-specialists.ts:76",
+   "file": "lib/data/health-salary/staff-specialists.ts",
+   "line": "76",
+   "page": "radiologist / anaesthetist / surgeon salary pages (public hospital section, VIC)",
+   "claims": [
+    "The Victorian Medical Specialists agreement 2022-2026 rates from 1 March 2025 are current, and the agreement continues past its 28 February 2026 nominal expiry"
+   ],
+   "whys": [
+    "The nominal expiry date has passed. Check whether a replacement agreement or a further pay increase has been approved since the 9 October 2026 read."
+   ],
+   "constants": [
+    "VIC_WEEKLY / STAFF_SPECIALIST_SCALES[1]"
+   ],
+   "reviewerNotes": [
+    "Writer's fact question is valid. The VIC agreement passed its 28 Feb 2026 nominal expiry, so someone should check whether a replacement agreement or a new pay increase has been approved."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.51,
+   "needsOwner": false
+  }
+ ]
+}

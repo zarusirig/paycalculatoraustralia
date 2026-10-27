@@ -396,7 +396,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
       thereafter: "a further 1/5 of a month for each subsequent year of continuous service",
       proRataOnEndingYears: 5,
       summary:
-        "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years of continuous service, then a further fifth of a month each year. If a public holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or dismissal for anything short of serious and wilful misconduct.",
+        "The ACT shares the shortest qualifying period in the country with Victoria: 7 years of continuous service earns 6.0667 weeks of paid leave, then a further fifth of a month for each further year. If a public holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or dismissal for anything short of serious and wilful misconduct.",
     },
     lslCalculatorPath: "/long-service-leave-calculator/act/",
   },

@@ -8,7 +8,10 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { BACKPAY_FAQS, EXAMPLE } from "@/modules/calculator/backpay-calculator-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { formatAUD, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatPercent, SOURCES, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { CASUAL_LOADING } from "@/lib/constants/junior-rates";
+
+const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
 
 // Google AU "related searches" for "back pay calculator" and "back pay"
 // (Sept 2026), each pointed at the page that answers it.
@@ -48,13 +51,13 @@ export default function BackpayCalculatorContent() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Backpay Calculated in Australia?</h2>
-              <p className="mb-4 text-warmgray">Backpay is the difference between what you <strong>should have been paid</strong> and what you <strong>were actually paid</strong>, multiplied by the total hours worked during the underpayment period. The Fair Work Ombudsman uses this formula:</p>
+              <p className="mb-4 text-warmgray">Backpay is the difference between what you <strong>should have been paid</strong> and what you <strong>were actually paid</strong>, multiplied by the total hours worked during the underpayment period. The formula is:</p>
               <p className="mb-4 text-warmgray font-medium">(Correct hourly rate - Actual hourly rate) x Total hours worked = Wage shortfall</p>
               <p className="mb-4 text-warmgray">On top of the wage shortfall, your employer owes:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
-                <li><strong>Unpaid superannuation:</strong> The 12% SG applies to the underpaid amount. If you were paid {formatAUD(EXAMPLE.actual, 2)}/hr instead of {formatAUD(EXAMPLE.correct, 2)}/hr, your employer owes an additional <strong>{formatAUD(EXAMPLE.superPerHour, 2)}/hr</strong> in super on the {formatAUD(EXAMPLE.diff, 2)} difference.</li>
+                <li><strong>Unpaid superannuation:</strong> The {SG} SG applies to the underpaid amount. If you were paid {formatAUD(EXAMPLE.actual, 2)}/hr instead of {formatAUD(EXAMPLE.correct, 2)}/hr, your employer owes an additional <strong>{formatAUD(EXAMPLE.superPerHour, 2)}/hr</strong> in super on the {formatAUD(EXAMPLE.diff, 2)} difference.</li>
                 <li><strong>Unpaid leave accrual:</strong> Annual leave accrues on ordinary hours. If your hourly rate was underpaid, any annual leave you took or cashed out was also paid at the wrong rate.</li>
-                <li><strong>Interest:</strong> In some cases, the Fair Work Ombudsman or courts may award interest on unpaid wages, particularly for prolonged underpayments.</li>
+                <li><strong>Interest:</strong> Interest is not part of a standard Fair Work claim. If you take the claim to court, the court can order interest on the unpaid wages.</li>
               </ul>
               <p className="mt-4 text-warmgray">Check the correct rate for your role using the <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Award Rates</Link> page, which lists minimum pay rates by industry classification, or run your award, level and hours through the <Link href="/fair-work-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Fair Work pay calculator</Link>.</p>
             </section>
@@ -72,7 +75,7 @@ export default function BackpayCalculatorContent() {
               <ol className="list-decimal pl-6 space-y-3 text-warmgray">
                 <li><strong>Check your correct rate.</strong> Find your award or enterprise agreement on the Fair Work website. Use the <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Award Rates</Link> page to look up your classification and minimum rate.</li>
                 <li><strong>Gather evidence.</strong> Collect payslips, time sheets, rosters, bank statements, and your employment contract. Compare the hours worked against the pay received.</li>
-                <li><strong>Raise it with your employer.</strong> Many underpayments are genuine errors. Write to your employer (keep a copy) requesting they review your pay and rectify the shortfall.</li>
+                <li><strong>Raise it with your employer.</strong> Write to your employer (keep a copy) requesting they review your pay and rectify the shortfall.</li>
                 <li><strong>Lodge a complaint.</strong> If your employer does not resolve the issue, lodge a complaint with the <strong>Fair Work Ombudsman</strong> online at fairwork.gov.au or call <strong>13 13 94</strong>.</li>
               </ol>
               <p className="mt-4 text-warmgray">Under the Fair Work Act, you generally have <strong>6 years</strong> from when an underpayment happened to recover it. Since 1 January 2025, intentional underpayment can also be a federal criminal offence.</p>
@@ -80,20 +83,20 @@ export default function BackpayCalculatorContent() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common Types of Underpayment</h2>
-              <p className="mb-4 text-warmgray">The Fair Work Ombudsman identifies <strong>5 common underpayment types</strong> in Australian workplaces:</p>
+              <p className="mb-4 text-warmgray">These are <strong>5 common underpayment types</strong> in Australian workplaces:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
                 <li><strong>Below-award base rates:</strong> Paying less than the minimum hourly rate for the employee&apos;s classification level.</li>
-                <li><strong>Missing penalty rates:</strong> Not paying weekend, public holiday, or overtime loadings as required by the award. Cafes, pubs and restaurants are the most common source of these claims; check the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link> if that is your industry.</li>
+                <li><strong>Missing penalty rates:</strong> Not paying weekend, public holiday, or overtime loadings as required by the award. If you work in cafes, pubs or restaurants, check the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link>.</li>
                 <li><strong>Unpaid overtime:</strong> Requiring employees to work before or after shifts without recording or paying the hours.</li>
-                <li><strong>Incorrect casual loading:</strong> Paying casual employees without the required 25% casual loading on top of the base rate.</li>
-                <li><strong>Super shortfall:</strong> Not paying the 12% superannuation guarantee on all ordinary time earnings. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> to verify your employer&apos;s contributions.</li>
+                <li><strong>Incorrect casual loading:</strong> Paying casual employees without the casual loading their award or agreement requires on top of the base rate. Casuals with no award or agreement get {formatPercent(CASUAL_LOADING, 0)} under the National Minimum Wage Order.</li>
+                <li><strong>Super shortfall:</strong> Not paying the {SG} superannuation guarantee on all ordinary time earnings. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> to verify your employer&apos;s contributions.</li>
               </ul>
             </section>
 
             <MethodologyDisclosure>
               <ol className="list-decimal space-y-1 pl-4">
                 <li>Wage shortfall = (correct rate - actual rate) x hours per week x weeks underpaid.</li>
-                <li>Unpaid super = wage shortfall x 12% (SG rate).</li>
+                <li>Unpaid super = wage shortfall x {SG} (SG rate).</li>
                 <li>Unpaid leave accrual = wage shortfall x (4/52) for annual leave component.</li>
                 <li>Tax estimated at the effective rate derived from the correct annual salary using ATO progressive brackets.</li>
                 <li>Super goes directly to the super fund, not to the employee as cash.</li>
@@ -123,7 +126,7 @@ export default function BackpayCalculatorContent() {
                 </Link>
                 <Link href="/superannuation-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                   <h3 className="font-medium text-navy mb-1">Superannuation Calculator</h3>
-                  <p className="text-sm text-warmgray">Verify your employer is paying the correct 12% SG rate</p>
+                  <p className="text-sm text-warmgray">Verify your employer is paying the correct {SG} SG rate</p>
                 </Link>
                 <Link href="/bonus-tax-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                   <h3 className="font-medium text-navy mb-1">Bonus Tax Guide</h3>

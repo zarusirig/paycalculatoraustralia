@@ -23,7 +23,7 @@ import {
   schadsVehiclePerKm,
   type SchadsRate,
 } from "@/lib/constants/schads-award";
-import { SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-faqs";
+import { CLAUSE_15_LEVEL_4, SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-faqs";
 import { toCents } from "@/modules/guide/hospitality-award-faqs";
 import { AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
@@ -69,8 +69,6 @@ const L2 = find(SCHADS_SACS, "Level 2 pay point 1");
 const L4 = find(SCHADS_SACS, "Level 4 pay point 1");
 const L8 = find(SCHADS_SACS, "Level 8 pay point 3");
 
-/** The pre-ERO clause 15 figure, shown only so it can be corrected. */
-const CLAUSE_15_LEVEL_4 = 1_344.5;
 const ERO_UPLIFT_PCT = ((L4.weekly / CLAUSE_15_LEVEL_4 - 1) * 100).toFixed(0);
 
 const PCT = (v: number) => `${(v * 100).toFixed(v * 100 % 1 === 0 ? 0 : 1)}%`;
@@ -173,7 +171,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="sacs-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Social and Community Services Pay Rates (Schedule B)</h2>
               <p>
-                Schedule B is the stream most people mean by &ldquo;SCHADS rates&rdquo;. It covers social workers, case managers, community development workers, youth workers and most disability support work delivered outside the home. Levels {SCHADS_AWARD.eroLowestLevel} to 8 carry the Equal Remuneration Order; Level 1 does not.
+                Schedule B covers social workers, case managers, community development workers, youth workers and most disability support work delivered outside the home. Levels {SCHADS_AWARD.eroLowestLevel} to 8 carry the Equal Remuneration Order; Level 1 does not.
               </p>
               <RateTable rows={SCHADS_SACS} caption={`SCHADS social and community services pay rates from ${SCHADS_AWARD.operativeFrom}`} />
               <p className="text-sm text-warmgray">
@@ -197,7 +195,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <section id="home-care-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Home Care Pay Rates (Schedules E and F)</h2>
               <p>
-                Home care is paid under different schedules with <strong>no ERO uplift</strong>, so the rates are materially lower than the social and community services table above. Being classified into the wrong schedule is one of the more expensive errors in this award.
+                Home care is paid under different schedules with <strong>no ERO uplift</strong>, so the rates are materially lower than the social and community services table above.
               </p>
               <p>
                 <strong>Schedule E rates rise from {SCHADS_SCHEDULE_E_INCREASE.operativeFrom}.</strong> The Fair Work Commission ({SCHADS_SCHEDULE_E_INCREASE.decision}, {SCHADS_SCHEDULE_E_INCREASE.decidedOn}) deferred the home care disability increase from {SCHADS_SCHEDULE_E_INCREASE.deferredFrom} to {SCHADS_SCHEDULE_E_INCREASE.operativeFrom}, an interim rise of up to {Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}%. The table below shows the rates in force today. See <Link href="/news/schads-home-care-disability-pay-rise-december-2026/">SCHADS home care disability pay rise from 1 December 2026</Link> for the new rates.
@@ -298,7 +296,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 A note on wording: the award does not say &ldquo;{PCT(SCHADS_PENALTIES.publicHoliday)}&rdquo; for public holidays. Clause 34.2(a) says <strong>&ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo;</strong>. The percentage is the arithmetic, and the two agree. If you are quoting the award in a pay dispute, quote the phrase.
               </p>
               <p>
-                <strong>Casual penalties are additive, not compounded.</strong> Casual Sunday is {PCT(SCHADS_PENALTIES.casualSunday)} of the base rate: the {PCT(SCHADS_PENALTIES.sunday)} Sunday rate plus the {PCT(SCHADS_AWARD.casualLoading)} loading. It is not {PCT(SCHADS_PENALTIES.sunday)} multiplied by {(1 + SCHADS_AWARD.casualLoading).toFixed(2)}, which would give {PCT(SCHADS_PENALTIES.sunday * (1 + SCHADS_AWARD.casualLoading))}. Compounding is the most common overpayment error in SCHADS payroll, and the most common basis for a disputed underpayment claim in the other direction.
+                <strong>Casual penalties are additive, not compounded.</strong> Casual Sunday is {PCT(SCHADS_PENALTIES.casualSunday)} of the base rate: the {PCT(SCHADS_PENALTIES.sunday)} Sunday rate plus the {PCT(SCHADS_AWARD.casualLoading)} loading. It is not {PCT(SCHADS_PENALTIES.sunday)} multiplied by {(1 + SCHADS_AWARD.casualLoading).toFixed(2)}, which would give {PCT(SCHADS_PENALTIES.sunday * (1 + SCHADS_AWARD.casualLoading))}.
               </p>
               <p>
                 For how penalty rates work across other awards, see our <Link href="/overtime-penalty-rates-guide/">penalty rates guide</Link>.
@@ -348,7 +346,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 Clause {SCHADS_VEHICLE_ALLOWANCE.clause} sets a temporary vehicle allowance of {formatAUD(SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm, 2)} per kilometre from {SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel} to {SCHADS_VEHICLE_ALLOWANCE.temporaryToLabel}, inserted by <a href={SCHADS_VEHICLE_ALLOWANCE.sourceUrl} target="_blank" rel="noopener noreferrer">{SCHADS_VEHICLE_ALLOWANCE.determination}</a>. {SCHADS_VEHICLE_ALLOWANCE.payPeriodNote} The ordinary {formatAUD(SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm, 2)} per kilometre rate applies again from {SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}. All other allowances above apply from {SCHADS_AWARD.operativeFrom}.
               </p>
               <p>
-                The sleepover allowance pays for the sleepover itself. <strong>If you are woken and required to work, those hours are paid separately</strong> at the rate applying at that time. The sleepover allowance does not buy the employer any working time.
+                The sleepover allowance pays for the sleepover itself. <strong>If you are required to work during the sleepover, that time is paid separately</strong> at the overtime rate, with a minimum of one hour&rsquo;s pay (cl 25.7(e)). The sleepover allowance does not buy the employer any working time.
               </p>
             </section>
 
@@ -402,7 +400,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 The Annual Wage Review {SCHADS_AWARD.decision} lifted modern award minimum rates by {(SCHADS_AWARD.increase * 100).toFixed(2)}%, given effect for SCHADS by determination {SCHADS_AWARD.determination}. The Fair Work Ombudsman published the updated pay guide on {SCHADS_AWARD.payGuidePublished}.
               </p>
               <p>
-                <strong>{SCHADS_AWARD.effectiveNote}</strong> If your pay period began before {SCHADS_AWARD.operativeFrom}, the previous rate lawfully applies to that entire period and the increase starts with the next one. This is the most common reason a July payslip looks wrong when it is not. If you think you have been underpaid across a longer stretch, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed.
+                <strong>{SCHADS_AWARD.effectiveNote}</strong> If your pay period began before {SCHADS_AWARD.operativeFrom}, the previous rate lawfully applies to that entire period and the increase starts with the next one. If you think you have been underpaid across a longer stretch, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed.
               </p>
             </section>
 
@@ -511,7 +509,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 <CardContent className="p-6">
                   <h2 className="mb-2 text-lg font-bold">What you actually take home</h2>
                   <p className="mb-4 text-sm text-eucalyptus-light">
-                    Level 4 pay point 1 is {formatAUD(L4.weekly, 2)} a week before tax. See what lands in your account after income tax, Medicare and super.
+                    Level 4 pay point 1 is {formatAUD(L4.weekly, 2)} a week before tax. See what lands in your account after income tax and the Medicare levy.
                   </p>
                   <Link href="/take-home-pay-calculator/" className="block w-full rounded-md bg-white px-4 py-2.5 text-center text-sm font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone/50">
                     Calculate Take-Home Pay

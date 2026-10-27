@@ -248,8 +248,9 @@ export function LongServiceLeaveHub() {
             </p>
             <p className={P}>
               The catch is at the other end: SA and the NT pay on{" "}
-              <strong>completed years only</strong>, so 8½ years is paid as 8. Everywhere except the
-              ACT (completed years and months) the part year counts down to the day.
+              <strong>completed years only</strong>, so 8½ years is paid as 8. The ACT counts completed
+              years and months, Queensland uses its own years, months, weeks and days tables, and NSW,
+              Victoria, WA and Tasmania count the part year down to the day.
             </p>
           </section>
 
@@ -355,7 +356,7 @@ export function LongServiceLeaveHub() {
               Long Service Leave Payout on Resignation
             </h2>
             <p className={P}>
-              A long service leave payout on resignation is where the state Acts differ most. In <strong>Victoria, WA and South Australia</strong> a plain resignation past 7
+              A long service leave payout on resignation is where the state Acts differ most. In <strong>Victoria, WA, South Australia and the ACT</strong> a plain resignation past 7
               years pays out the accrued balance. In <strong>NSW, Queensland, Tasmania and the
               NT</strong> a plain resignation pays nothing until you reach 10 years. Below that, each
               of those Acts pays only on the grounds it lists, such as redundancy or illness.
@@ -551,8 +552,9 @@ export function LongServiceLeaveHub() {
                 own years/months/weeks/days table, and the rest count it down to the day.
               </li>
               <li>
-                Payout = weeks × your ordinary weekly rate. Ordinary pay excludes overtime everywhere;
-                Tasmania and Victoria include shift penalties and casual loading in it.
+                Payout = weeks × your ordinary weekly rate. Ordinary pay excludes overtime rates
+                everywhere. Tasmania includes shift penalties in it, and NSW, Victoria, WA, SA and
+                Tasmania include casual loading.
               </li>
               <li>
                 Tax follows the ATO&apos;s unused-leave withholding schedule (last updated{" "}

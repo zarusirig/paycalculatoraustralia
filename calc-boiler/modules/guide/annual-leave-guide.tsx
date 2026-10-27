@@ -6,7 +6,12 @@ import { ANNUAL_LEAVE_FAQS } from "./annual-leave-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, EMPLOYMENT, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, EMPLOYMENT, TAX_BRACKETS, TAX_BRACKETS_2025_26, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, formatAUD } from "@/lib/constants";
+import { COMPASSIONATE_LEAVE } from "@/lib/constants/compassionate-leave";
+import { TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
+import { LSL_TAX } from "@/lib/constants/long-service-leave";
+
+const pc = (r: number) => `${Math.round(r * 1000) / 10}%`;
 
 // Payout example: $90,000 over 1,976 hours (38 x 52). The old copy used
 // $45.53/hr; the correct figure is $45.55.
@@ -42,7 +47,7 @@ export default function AnnualLeaveGuidePage() {
             <section id="entitlements">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Annual Leave Do You Get in Australia?</h2>
               <p>Full-time and part-time employees in Australia receive <strong>4 weeks (20 days) of paid annual leave per year</strong> under the National Employment Standards (NES).</p>
-              <p>The entitlement is set by the <em>Fair Work Act 2009</em> and applies to every permanent employee regardless of industry, state, or salary level. Shift workers covered by an Award or registered agreement receive <strong>5 weeks (25 days)</strong> per year. Annual leave accrues progressively from an employee&apos;s first day of work, so a new hire does not need to wait 12 months before requesting time off.</p>
+              <p>The entitlement is set by the <em>Fair Work Act 2009</em> and applies to every full-time and part-time employee in the national workplace relations system, which covers most employees in Australia, whatever their industry or salary. Shift workers covered by an Award or registered agreement receive <strong>5 weeks (25 days)</strong> per year. Annual leave accrues progressively from an employee&apos;s first day of work, so a new hire does not need to wait 12 months before requesting time off.</p>
               <p>Part-time employees receive the same 4-week entitlement on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours</strong> of annual leave per year instead of the 152 hours a full-time employee on a 38-hour week accumulates. Casual employees do not accrue annual leave at all; their <strong>25% casual loading</strong> compensates for the absence of leave entitlements, redundancy pay, and notice periods. Use our <Link href="/leave-calculator/">Leave Calculator</Link> to see your accrued balance and its payout value from your annual base salary and years of service.</p>
             </section>
 
@@ -61,14 +66,14 @@ export default function AnnualLeaveGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Pro-Rata Accrual for a Part-Time Employee</h3>
               <p>A part-time employee works 24 ordinary hours per week. The annual leave entitlement is 24 &times; 4 = <strong>96 hours per year</strong>. After 7 months of employment, the accrued balance is 96 &times; (7 &divide; 12) = <strong>56 hours (7 days)</strong>. This accrual happens automatically regardless of whether the employee has requested leave.</p>
-              <p>Accrual continues during periods of paid leave (annual leave, personal leave, long service leave) but does not accrue during unpaid leave, unpaid parental leave, or community service leave (except jury duty). Your employer&apos;s payroll system calculates accrual each pay cycle. Check your payslip: our <Link href="/understanding-your-payslip/">Payslip Guide</Link> explains where to find your leave balance.</p>
+              <p>Accrual continues during paid leave (annual leave, personal leave, family and domestic violence leave, long service leave) and during community service leave, including jury duty. It does not accrue during unpaid annual leave, unpaid sick or carer&apos;s leave, or unpaid parental leave. Your employer&apos;s payroll system calculates accrual each pay cycle. Check your payslip: our <Link href="/understanding-your-payslip/">Payslip Guide</Link> explains where to find your leave balance.</p>
             </section>
 
             {/* ── H2 3: What Is Leave Loading? ── */}
             <section id="leave-loading">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Leave Loading?</h2>
               <p>Leave loading is an additional <strong>17.5% payment on top of base pay</strong> that eligible employees receive when they take annual leave.</p>
-              <p>The 17.5% rate originated in the 1970s to compensate shift workers, weekend workers, and overtime-dependent employees for the penalty rates and allowances they forgo while on leave. Leave loading is not a universal NES entitlement: it depends on the applicable Award, enterprise agreement, or individual employment contract. Approximately <strong>60% of Award-covered employees</strong> receive leave loading.</p>
+              <p>The 17.5% rate originated in the 1970s to compensate shift workers, weekend workers, and overtime-dependent employees for the penalty rates and allowances they forgo while on leave. Leave loading is not a universal NES entitlement: it depends on the applicable Award, enterprise agreement, or individual employment contract.</p>
               <p>Some modern enterprise agreements replace leave loading with a higher base hourly rate. Employees covered by the General Retail Industry Award, the Hospitality Industry Award, and the Clerks&mdash;Private Sector Award all receive 17.5% leave loading. Employees on individual contracts without Award coverage receive leave loading only if their contract specifically includes it.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Leave Loading Worked Example</h3>
@@ -82,7 +87,7 @@ export default function AnnualLeaveGuidePage() {
               </div>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Leave Loading vs Penalty Rates: Which Is Higher?</h3>
-              <p>Some Awards contain a &quot;better off overall&quot; clause. The employee receives either 17.5% leave loading <strong>or</strong> the penalty rates and shift loadings they would have earned, whichever amount is higher. The employer calculates both scenarios and pays the greater sum. For a nurse regularly working Saturday and Sunday shifts at 150% and 175% penalty rates, the penalty-rate comparison often exceeds the 17.5% loading. For a Monday-to-Friday office worker, the 17.5% loading is typically the higher amount. Consult our <Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> for a full breakdown of penalty rate calculations.</p>
+              <p>Some Awards pay the greater of two amounts on annual leave: the employee receives either 17.5% leave loading <strong>or</strong> the penalty rates and shift loadings they would have earned, whichever amount is higher. The employer calculates both scenarios and pays the greater sum. For a nurse regularly working Saturday and Sunday shifts at 150% and 175% penalty rates, the penalty-rate comparison often exceeds the 17.5% loading. For a Monday-to-Friday office worker, the 17.5% loading is typically the higher amount. Consult our <Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> for a full breakdown of penalty rate calculations.</p>
             </section>
 
             {/* ── H2 4: How Is Annual Leave Paid Out on Termination? ── */}
@@ -98,7 +103,7 @@ export default function AnnualLeaveGuidePage() {
               </ol>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is the Annual Leave Payout Taxed?</h3>
-              <p>Annual leave payouts are taxed at the employee&apos;s <Link href="/tax-brackets/">marginal tax rate</Link>. The ATO treats the payout as ordinary income in the pay period it is received, which can push the employee into a higher income tax bracket for that period. PAYG withholding applies at the marginal rate, and the Medicare levy of <strong>2%</strong> is also deducted. Employees with redundancy may receive concessional treatment on certain payments, but the annual leave component itself remains fully taxable. Use the <Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link> to model your total final pay including leave, notice, and redundancy amounts.</p>
+              <p>If you resign, retire or are dismissed, unused annual leave and leave loading that accrued on or after 18 August 1993 are taxed at your <Link href="/tax-brackets/">marginal tax rate</Link>. Your employer works out the withholding by spreading the payout across a year of normal pay periods, so it is not withheld as if a whole year&apos;s income arrived in one pay. Any part that accrued before 18 August 1993 is withheld at <strong>{pc(TERMINATION_LOADING_WITHHOLDING.flatRate)}</strong>. If you leave because of a genuine redundancy, invalidity or an early retirement scheme, your employer withholds <strong>{pc(TERMINATION_LOADING_WITHHOLDING.flatRate)}</strong> of the whole unused annual leave and leave loading payment, whatever date it accrued. Use the <Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link> to model your total final pay including leave, notice, and redundancy amounts.</p>
             </section>
 
             {/* ── H2 5: Can Your Employer Force You to Take Leave? ── */}
@@ -221,7 +226,7 @@ export default function AnnualLeaveGuidePage() {
                 </table>
               </div>
               <p>Personal leave has no cash value at the end of employment. An employee with 45 accumulated sick days who resigns receives <strong>$0</strong> for that balance. Annual leave, by contrast, converts to a cash payment in the final pay. This distinction makes annual leave a more valuable financial entitlement. Employees should use personal leave when genuinely unwell rather than drawing on annual leave, which preserves the leave balance and its eventual payout value.</p>
-              <p>Compassionate leave (2 days per occasion) and unpaid family and domestic violence leave (10 days per year) are separate NES entitlements that do not reduce annual or personal leave balances.</p>
+              <p>Compassionate leave ({COMPASSIONATE_LEAVE.daysPerOccasion} days per occasion) and paid family and domestic violence leave ({COMPASSIONATE_LEAVE.fdvDaysPerYear} days per year) are separate NES entitlements that do not reduce annual or personal leave balances.</p>
             </section>
 
             {/* ── CONTEXT BORDER ── */}
@@ -253,16 +258,16 @@ export default function AnnualLeaveGuidePage() {
                   </tbody>
                 </table>
               </div>
-              <p>South Australia and the Northern Territory offer the most generous long service leave at <strong>13 weeks after 10 years</strong>. Victoria and the ACT have the shortest qualifying periods at <strong>7 years</strong>. Long service leave payouts on termination may qualify for concessional tax treatment: pre-16 August 1978 service is taxed at a flat <strong>5%</strong>, while post-1978 service is taxed at <strong>32%</strong> (up to the whole-of-income cap). The remaining long service leave balance is taxed at the employee&apos;s marginal rate. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model how a long service leave payout affects your overall take-home pay.</p>
+              <p>South Australia and the Northern Territory offer the most generous long service leave at <strong>13 weeks after 10 years</strong>. Victoria and the ACT have the shortest qualifying periods at <strong>7 years</strong>. Tax on an unused long service leave payout depends on when the leave accrued. For service before {LSL_TAX.preAug1978Cutover}, only <strong>{pc(LSL_TAX.pre1978IncludedProportion)}</strong> of that part is taxed, at your marginal rates. For service from {LSL_TAX.preAug1978Cutover} to {LSL_TAX.aug1993Cutover}, your employer withholds <strong>{pc(LSL_TAX.flatRate)}</strong>. Service after {LSL_TAX.aug1993Cutover} is taxed at your marginal rates, or withheld at <strong>{pc(LSL_TAX.flatRate)}</strong> if you leave because of a genuine redundancy, invalidity or an early retirement scheme. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model how a long service leave payout affects your overall take-home pay.</p>
             </section>
 
             {/* ── H2 9: What Changed in FY2026-27? ── */}
             <section id="changes-2026-27">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Annual Leave in FY{SITE_CONFIG.financialYear}?</h2>
-              <p>The core annual leave entitlement of 4 weeks per year is <strong>unchanged for FY{SITE_CONFIG.financialYear}</strong>, but several related changes from 1 July 2026 affect how leave interacts with pay, tax, and superannuation.</p>
+              <p>The core annual leave entitlement of 4 weeks per year is <strong>unchanged for FY{SITE_CONFIG.financialYear}</strong>, but several related rules affect how leave interacts with pay, tax, and superannuation. The first three below started on 1 July 2026.</p>
               <ul>
-                <li><strong>Lower tax on the second bracket:</strong> The rate on income from $18,201 to $45,000 fell from 16% to <strong>{Math.round(TAX_BRACKETS[1].rate * 100)}%</strong>, worth up to $268 a year. Leave payouts are taxed at your marginal rate, so the change reaches leave pay too.</li>
-                <li><strong>Payday Super:</strong> The SG rate stays at <strong>12%</strong> (it reached 12% on 1 July 2025), but from 1 July 2026 super on leave payments is due with the pay that includes them and must reach the fund within 7 business days. Leave loading attracts super unless it is paid only to make up for lost overtime.</li>
+                <li><strong>Lower tax on the second bracket:</strong> The rate on income from {formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)} fell from {pc(TAX_BRACKETS_2025_26[1].rate)} to <strong>{pc(TAX_BRACKETS[1].rate)}</strong>, worth up to {formatAUD(Math.round((TAX_BRACKETS[1].max - TAX_BRACKETS[0].max) * (TAX_BRACKETS_2025_26[1].rate - TAX_BRACKETS[1].rate)))} a year. Leave you take, and unused leave paid out when you resign or are dismissed, is taxed at your marginal rate, so the change reaches that pay too.</li>
+                <li><strong>Payday Super:</strong> The SG rate stays at <strong>{pc(SUPER_GUARANTEE.rate)}</strong> (it reached {pc(SUPER_GUARANTEE.rate)} on {SUPER_GUARANTEE.effectiveDate}), but from {SUPER_GUARANTEE.paydaySuperStart} super on annual leave you take while employed is due with the pay that includes it and must reach the fund within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days. Leave loading attracts super unless it is clearly linked to a lost opportunity to work overtime. Unused annual leave and leave loading paid out when your job ends are not ordinary time earnings, so no SG is due on that payout unless your award or agreement requires it.</li>
                 <li><strong>National minimum wage increase:</strong> The Fair Work Commission&apos;s 2026 Annual Wage Review set the national minimum wage at <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week) from 1 July 2026. Leave loading calculations for minimum-wage workers now use this higher base.</li>
                 <li><strong>Right to disconnect:</strong> From 26 August 2024 (small businesses from 26 August 2025), employees have the right to refuse contact outside working hours unless the refusal is unreasonable, and that includes periods of annual leave.</li>
                 <li><strong>Casual conversion:</strong> Casual employees who convert to permanent employment begin accruing annual leave from the conversion date. Prior casual service does not generate retrospective leave accrual.</li>
@@ -277,10 +282,10 @@ export default function AnnualLeaveGuidePage() {
               <ul>
                 <li><Link href="/leave-calculator/">Leave Calculator</Link>: Calculate your accrued annual leave balance and payout value from your annual base salary and years of service.</li>
                 <li><Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link>: Model your total termination payment including redundancy, notice period, and accrued leave.</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: See how the 12% SG rate applies to your salary and leave payments for FY{SITE_CONFIG.financialYear}.</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link>: See how the {pc(SUPER_GUARANTEE.rate)} SG rate applies to your salary and to annual leave you take while employed for FY{SITE_CONFIG.financialYear}.</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link>: Identify your leave balance, leave loading, and year-to-date accrual on your pay statement.</li>
                 <li><Link href="/award-rates/">Award Rates Guide</Link>: Find the minimum pay rates, penalty rates, and leave loading provisions for your industry Award.</li>
-                <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: Understand how penalty rates interact with leave loading under the &quot;better off overall&quot; test.</li>
+                <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link>: Understand how penalty rates interact with leave loading when your Award pays the greater of the two.</li>
               </ul>
             </section>
 

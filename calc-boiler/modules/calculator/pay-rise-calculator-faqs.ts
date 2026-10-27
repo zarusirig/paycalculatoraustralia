@@ -61,6 +61,8 @@ export const CPI_ANNUAL = 0.038;
 // People Also Ask (Google AU, Sept 2026) for "pay rise calculator" and "salary
 // increase calculator": docs/seo/2026-09-24-paa-optimisation.md.
 const AWR = NMW_DECISION.awardIncrease;
+/** National Minimum Wage rise in the 2026 review, from the before and after hourly rates. */
+const NMW_RISE = EMPLOYMENT.minimumWageHourly / EMPLOYMENT.minimumWageHourlyPrevious - 1;
 /** Percentage pay rises on an $80,000 salary, for the "how to calculate" table and FAQ. */
 export const RAISE_BASE = 80_000;
 export const RAISE_PERCENTAGES = [0.03, AWR, 0.05, 0.1] as const;
@@ -81,11 +83,11 @@ export const PAY_RISE_FAQS: readonly FaqItem[] = [
   CALCULATE_PAY_RISE_ANSWER,
   {
     q: "Are Australians getting a pay rise in 2026?",
-    a: `Award and minimum wage workers are. The Fair Work Commission's ${NMW_DECISION.name} lifted award rates and the National Minimum Wage by ${pct(AWR)} from ${NMW_DECISION.operativeFrom}, taking the minimum to ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. Across all jobs, the ABS Wage Price Index rose ${pct(WPI_ANNUAL)} in the year to June 2026. For everyone else, the pay rise depends on their enterprise agreement or employer.`,
+    a: `Award and minimum wage workers are. The Fair Work Commission's ${NMW_DECISION.name} lifted modern award minimum rates by ${pct(AWR)} and the National Minimum Wage by ${pct(NMW_RISE)} from ${NMW_DECISION.operativeFrom}, taking the minimum to ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. Across all jobs, the ABS Wage Price Index rose ${pct(WPI_ANNUAL)} in the year to June 2026. For everyone else, the pay rise depends on their enterprise agreement or employer.`,
   },
   {
     q: `Who gets the ${pct(AWR)} pay increase?`,
-    a: `Employees paid under a modern award, and award-free employees on the National Minimum Wage, got the ${pct(AWR)} increase from the first full pay period starting on or after ${NMW_DECISION.operativeFrom} (${NMW_DECISION.citation}). People on enterprise agreements or above-award salaries get whatever their agreement or employer sets, but their base pay can never fall below the new award rate.`,
+    a: `Employees paid under a modern award got the ${pct(AWR)} increase from the first full pay period starting on or after ${NMW_DECISION.operativeFrom} (${NMW_DECISION.citation}). Award-free employees on the National Minimum Wage got a ${pct(NMW_RISE)} rise from the same date, to ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. People on enterprise agreements or above-award salaries get whatever their agreement or employer sets, but their base pay can never fall below the new award rate.`,
   },
   {
     q: "Is a 3% raise good in 2026?",
@@ -101,7 +103,7 @@ export const PAY_RISE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can a pay rise push me into a higher tax bracket and leave me worse off?",
-    a: `No. Progressive taxation means only the portion of income above each threshold is taxed at the higher rate. A pay rise that crosses from ${formatAUD(CROSS_FROM)} to ${formatAUD(CROSS_TO)} applies the ${pct0(B3.rate)} rate only to the ${formatAUD(CROSS_TO - B2.max)} above ${formatAUD(B2.max)}, not to the entire salary. On the income tax brackets alone, a pay rise increases your take-home pay.`,
+    a: `Not because of income tax. Progressive taxation means only the portion of income above each threshold is taxed at the higher rate. A pay rise that crosses from ${formatAUD(CROSS_FROM)} to ${formatAUD(CROSS_TO)} applies the ${pct0(B3.rate)} rate only to the ${formatAUD(CROSS_TO - B2.max)} above ${formatAUD(B2.max)}, not to the entire salary. On the income tax brackets alone, a pay rise increases your take-home pay. The exception is the Medicare Levy Surcharge: if you are single with no private hospital cover, reaching ${formatAUD(MLS.tier1.min)} adds ${pct(MLS.tier1.rate)} of your whole income, so a small rise just past that threshold leaves you with less.`,
   },
   {
     q: "Can salary sacrifice boost my pay rise benefit?",

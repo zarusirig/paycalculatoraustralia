@@ -4,6 +4,14 @@
 
 import { EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { INDUSTRY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
+import { BOILERMAKER } from "@/lib/data/job-pay-rates/boilermaker";
+import { BRICKLAYER } from "@/lib/data/job-pay-rates/bricklayer";
+import { CARPENTER } from "@/lib/data/job-pay-rates/carpenter";
+import { CRANE_OPERATOR } from "@/lib/data/job-pay-rates/crane-operator";
+import { ELECTRICIAN } from "@/lib/data/job-pay-rates/electrician";
+import { FITTER_AND_TURNER } from "@/lib/data/job-pay-rates/fitter-and-turner";
+import { PLUMBER } from "@/lib/data/job-pay-rates/plumber";
+import type { MedianEarnings, Occupation } from "@/lib/data/job-pay-rates/types";
 import type { FaqItem } from "@/lib/faq";
 
 // Apprentice electrician minimums, Electrical, Electronic and Communications
@@ -20,10 +28,24 @@ export const APPRENTICE_ELECTRICIAN = [
 const pctList = APPRENTICE_ELECTRICIAN.map((r) => `${Math.round(r.pct * 100)}%`);
 const annual = (hourly: number) => formatAUD(hourly * EMPLOYMENT.hoursPerYear);
 
+// Market medians, Jobs and Skills Australia occupation profiles (ABS Survey of
+// Employee Earnings and Hours, May 2025), as held in lib/data/job-pay-rates.
+// The old answers quoted $65K to $250K+ ranges with no source.
+const median = (o: Occupation): MedianEarnings => {
+  if (!o.median) throw new Error(`No JSA median for ${o.slug}`);
+  return o.median;
+};
+const weekly = (o: Occupation) => formatAUD(median(o).medianWeekly);
+const yearly = (o: Occupation) => formatAUD(median(o).medianWeekly * 52);
+const title = (o: Occupation) => median(o).anzscoTitle.toLowerCase();
+const TRADES_BY_MEDIAN = [ELECTRICIAN, PLUMBER, CARPENTER, BRICKLAYER, FITTER_AND_TURNER, BOILERMAKER].sort(
+  (a, b) => median(b).medianWeekly - median(a).medianWeekly,
+);
+
 export const CONSTRUCTION_TRADES_FAQS: readonly FaqItem[] = [
   {
     q: "How much do tradies earn in Australia?",
-    a: "Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K to $110K), plumbers ($75K to $105K) and boilermakers ($85K to $120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K to $250K+ but have higher business costs.",
+    a: `Jobs and Skills Australia reports median full-time earnings of ${weekly(ELECTRICIAN)} a week for electricians (about ${yearly(ELECTRICIAN)} a year), ${weekly(PLUMBER)} for plumbers (${yearly(PLUMBER)}), ${weekly(CARPENTER)} for carpenters and joiners (${yearly(CARPENTER)}) and ${weekly(BOILERMAKER)} for structural steel and welding trades workers, which includes boilermakers (${yearly(BOILERMAKER)}). These figures are from the ABS Survey of Employee Earnings and Hours (May 2025) and cover full-time, non-managerial adult employees before tax. They include enterprise agreement and above-award pay, so they are market figures, not minimums.`,
   },
   {
     q: "How much do apprentices get paid?",
@@ -43,6 +65,6 @@ export const CONSTRUCTION_TRADES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the highest-paid trade in Australia?",
-    a: "Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K to $120K. Electricians working in mining or oil and gas can earn $130K to $170K+. Crane operators are not a traditional trade, but they can earn $100K to $150K+ on major construction projects.",
+    a: `Of the trades this site covers, ${title(TRADES_BY_MEDIAN[0])} have the highest Jobs and Skills Australia median: ${weekly(TRADES_BY_MEDIAN[0])} a week full-time, about ${yearly(TRADES_BY_MEDIAN[0])} a year. Next are ${title(TRADES_BY_MEDIAN[1])} (${weekly(TRADES_BY_MEDIAN[1])} a week) and ${title(TRADES_BY_MEDIAN[2])} (${weekly(TRADES_BY_MEDIAN[2])} a week). Crane, hoist and lift operators are not a trade, but their median is ${weekly(CRANE_OPERATOR)} a week (about ${yearly(CRANE_OPERATOR)} a year). These are market medians from the ABS Survey of Employee Earnings and Hours (May 2025), not award minimums.`,
   },
 ];

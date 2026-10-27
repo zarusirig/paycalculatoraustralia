@@ -98,7 +98,7 @@ export default function YTDIncomeCalculatorContent() {
         <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
           <li><strong>Home loan and rental applications</strong>: lenders annualise the YTD gross on your two most recent payslips to verify the income you declared. A YTD figure that annualises below your stated salary triggers follow-up questions, so check the maths before you apply.</li>
           <li><strong>Estimating your tax refund</strong>: comparing YTD tax withheld against the tax actually payable on your projected annual income reveals whether you are heading for a refund or a bill. Run your projected income through the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">income tax calculator</Link> to see the target figure.</li>
-          <li><strong>Catching payroll errors early</strong>: if YTD gross ÷ pays received does not equal your contracted per-period pay, something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment. YTD totals make errors visible that individual payslips hide.</li>
+          <li><strong>Catching payroll errors early</strong>: if YTD gross ÷ pays received does not equal your contracted per-period pay, something is off: a missed pay rise or unpaid overtime. Allow for any unpaid leave and any pay rise part-way through the year first. YTD totals make errors visible that individual payslips hide.</li>
         </ul>
       </section>
 

@@ -4,7 +4,9 @@
 // the Minister administering the State Service Act 2000 and the United
 // Firefighters Union of Australia Tasmania Branch, filed with the Tasmanian
 // Industrial Commission as T15342 of 2026 ([2026] TASIC 25). Read in full on
-// 24 September 2026.
+// 24 September 2026. Re-checked 27 October 2026: the Tasmanian Industrial
+// Commission public sector agreements list still shows this agreement (T15342)
+// and no replacement firefighting agreement.
 //
 // Schedule 1 (clause 16.1.1) prints ANNUAL salaries: the 1 December 2024 rate,
 // then a 1% structural adjustment and a 3% increase, both from the first full
@@ -29,7 +31,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "https://www.tic.tas.gov.au/__data/assets/pdf_file/0007/900637/Firefighting-Industrial-Agreement-of-2025.pdf",
   ratesEffectiveFrom: "1 December 2025",
   nextIncrease: null,
-  verifiedOn: "24 September 2026",
+  verifiedOn: "27 October 2026",
 
   scales: [
     {
@@ -80,7 +82,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   ],
   notices: [
     "The Firefighting Industrial Agreement of 2025 applied from 1 July 2025 and was in force until 30 June 2026 (clause 1.3.2). The parties agreed to start negotiating a replacement from December 2025.",
-    "No replacement agreement was listed by the Tasmanian Industrial Commission when we checked on 24 September 2026, so the 1 December 2025 salaries remain the latest published rates. A new agreement may bring a back-dated increase.",
+    "No replacement agreement was listed by the Tasmanian Industrial Commission when we checked on 27 October 2026, so the 1 December 2025 salaries remain the latest published rates. A new agreement may bring a back-dated increase.",
   ],
   unverified: [
     "No recruit-course (trainee) rate is published separately; the entry row is Firefighter Year 1.",
@@ -119,7 +121,7 @@ export const TAS_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "Is a new Tasmanian firefighter agreement coming?",
-      a: "The Firefighting Industrial Agreement of 2025 was in force until 30 June 2026 and negotiations for a replacement were due to begin from December 2025. No new agreement had been registered when we checked on 24 September 2026.",
+      a: "The Firefighting Industrial Agreement of 2025 was in force until 30 June 2026 and negotiations for a replacement were due to begin from December 2025. No new agreement had been registered when we checked on 27 October 2026.",
     },
   ],
 };

@@ -1,0 +1,151 @@
+{
+ "name": "ff-112-work-from-home-deduction",
+ "files": [
+  "modules/guide/work-from-home-deductions.tsx",
+  "modules/guide/work-hours-calculator-page.tsx",
+  "modules/guide/work-hours-faqs.ts",
+  "modules/guide/working-credit-faqs.ts",
+  "modules/guide/working-holiday-tax-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/work-from-home-deductions.tsx:118",
+   "file": "modules/guide/work-from-home-deductions.tsx",
+   "line": "118",
+   "page": "/work-from-home-deductions/",
+   "claims": [
+    "Occupancy expenses are only deductible if you have a dedicated home office used exclusively or primarily for work, and you run a business from home."
+   ],
+   "whys": [
+    "The ATO test is that the home is your principal place of business and an area is set aside exclusively for business activities. 'or primarily' looks too loose."
+   ],
+   "constants": [
+    "Prose only; no constant. Check against the ATO occupancy expenses page."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.85,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/work-from-home-deductions.tsx:152",
+   "file": "modules/guide/work-from-home-deductions.tsx",
+   "line": "152",
+   "page": "/work-from-home-deductions/",
+   "claims": [
+    "Table headers 'Tax Saved @ 16% / 30% / 37% / 45%'"
+   ],
+   "whys": [
+    "The header percentages are hard-coded, but the cells come from TAX_BRACKETS_2025_26 via SAVING_RATES. They match today, but they will drift if the table moves to the 2026-27 brackets (15%)."
+   ],
+   "constants": [
+    "TAX_BRACKETS_2025_26 rates (SAVING_RATES)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.26,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/work-hours-calculator-page.tsx:177",
+   "file": "modules/guide/work-hours-calculator-page.tsx",
+   "line": "177",
+   "page": "https://pay-calculator-australia.com/work-hours-calculator/",
+   "claims": [
+    "Under the Hospitality Industry (General) Award overtime is computed on the ordinary hourly rate excluding the casual loading, so casual and full-time employees get identical overtime; 'If your award works the hospitality way, leave the casual box unticked and enter the loaded rate manually for the ordinary hours.'",
+    "'If your award works the hospitality way, leave the casual box unticked and enter the loaded rate manually for the ordinary hours.'"
+   ],
+   "whys": [
+    "The Hospitality Award casual overtime treatment needs checking against the current FWO pay guide. The workaround also looks self-contradictory: if the reader enters the loaded rate, the calculator applies the overtime multipliers to the loaded rate, which is the Retail method the sentence is trying to avoid. The phrase 'the two biggest casual-employing awards' is a population claim with no cited source.",
+    "This confirms the writer's flag. Entering the loaded rate makes the calculator apply the overtime multipliers to the loaded rate, which is the Retail method the sentence is trying to avoid. The workaround gives the opposite of the Hospitality treatment it describes. The 'two biggest casual-employing awards' claim also has no source."
+   ],
+   "constants": [
+    "Hospitality/Retail award overtime data (e.g. lib/constants award files) plus a source for the 'two biggest' claim",
+    "Hospitality/Retail award overtime data in lib/constants, plus a source for the population claim"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/work-hours-faqs.ts:41",
+   "file": "modules/guide/work-hours-faqs.ts",
+   "line": "41",
+   "page": "/work-hours-calculator/",
+   "claims": [
+    "This calculator applies the loading first and then the overtime multiplier, which matches the common approach."
+   ],
+   "whys": [
+    "This is a population claim with no source. Several major awards (for example Retail and Hospitality) set casual overtime as an additive percentage (such as 175%) rather than compounding 125% x 150%, so 'the common approach' may be wrong."
+   ],
+   "constants": [
+    "CASUAL_LOADING in lib/constants/work-hours.ts and the calculator's overtime logic"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-credit-faqs.ts:36",
+   "file": "modules/guide/working-credit-faqs.ts",
+   "line": "36",
+   "page": "https://pay-calculator-australia.com/centrelink-working-credit-calculator/",
+   "claims": [
+    "You may keep your concession card and some other benefits for up to 12 fortnights."
+   ],
+   "whys": [
+    "The value is right, but '12' is typed into the FAQ while the page body renders WORKING_CREDIT.concessionFortnights (12). The FAQ and the FAQPage JSON-LD will drift if the constant changes."
+   ],
+   "constants": [
+    "WORKING_CREDIT.concessionFortnights in lib/constants/working-credit.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax-faqs.ts:43",
+   "file": "modules/guide/working-holiday-tax-faqs.ts",
+   "line": "43",
+   "page": "https://pay-calculator-australia.com/working-holiday-tax/",
+   "claims": [
+    "Usually no. Most working holiday makers are foreign residents for tax purposes"
+   ],
+   "whys": [
+    "A population claim with no figure and no source cited on the page. It is probably right (ATO guidance), but under the brief it needs a source or a review."
+   ],
+   "constants": [
+    "n/a (needs ATO source in SOURCES)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.19,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax-faqs.ts:59",
+   "file": "modules/guide/working-holiday-tax-faqs.ts",
+   "line": "59",
+   "page": "https://pay-calculator-australia.com/working-holiday-tax/",
+   "claims": [
+    "Deductions reduce your assessable income, which reduces tax payable.",
+    "Keep all receipts and records for expenses over $300."
+   ],
+   "whys": [
+    "Deductions reduce taxable income (assessable income minus deductions), not assessable income. The WATO page on the same site says 'A deduction lowers your taxable income'. Left unchanged because it is a terminology/fact correction.",
+    "The ATO $300 rule applies to total work-related expense claims: above $300 in total you need written evidence for all claims, and records must be kept for every claim. Reading it as a per-expense threshold misstates the rule. $300 is also a hardcoded figure, not from a constant."
+   ],
+   "constants": [
+    "n/a (prose)",
+    "a records-threshold constant in lib/constants (none exists today)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.82,
+   "needsOwner": false
+  }
+ ]
+}

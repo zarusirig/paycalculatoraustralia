@@ -1,3 +1,5 @@
+import { LITO, MEDICARE_LEVY, TAX_BRACKETS_2026_27, formatAUD } from "@/lib/constants";
+import { marginalRateAt } from "@/lib/constants/marginal-rates";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Rates are the ATO 2026-27
@@ -5,10 +7,19 @@ import type { Faq } from "./t3-shared";
 // 13 August 2026); the all-in bands are derived from them in
 // lib/constants/marginal-rates.ts.
 
+const B = TAX_BRACKETS_2026_27;
+const m = (n: number) => formatAUD(n);
+/** A rate as a whole or one-decimal percentage: 0.3 -> "30%", 0.335 -> "33.5%". */
+const p = (r: number) => `${Number((r * 100).toFixed(1))}%`;
+/** A rate as cents per $1: 0.05 -> "5c", 0.015 -> "1.5c". */
+const c = (r: number) => `${Number((r * 100).toFixed(1))}c`;
+const LEVY = p(MEDICARE_LEVY.rate);
+const MLS_SINGLE = m(MEDICARE_LEVY.surcharge.tier1.min - 1);
+
 export const MARGINAL_TAX_RATES_FAQS: Faq[] = [
   {
     q: "What is a marginal tax rate?",
-    a: "Your marginal tax rate is the tax rate on your next dollar of taxable income: the rate of the bracket your income finishes in. In 2026-27 the resident scale is 0% to $18,200, 15% to $45,000, 30% to $135,000, 37% to $190,000 and 45% above that, before the 2% Medicare levy. Only the dollars inside each bracket are taxed at that bracket's rate.",
+    a: `Your marginal tax rate is the tax rate on your next dollar of taxable income: the rate of the bracket your income finishes in. In 2026-27 the resident scale is ${p(B[0].rate)} to ${m(B[0].max)}, ${p(B[1].rate)} to ${m(B[1].max)}, ${p(B[2].rate)} to ${m(B[2].max)}, ${p(B[3].rate)} to ${m(B[3].max)} and ${p(B[4].rate)} above that, before the ${LEVY} Medicare levy. Only the dollars inside each bracket are taxed at that bracket's rate.`,
   },
   {
     q: "What is the difference between marginal and average tax rate?",
@@ -16,7 +27,7 @@ export const MARGINAL_TAX_RATES_FAQS: Faq[] = [
   },
   {
     q: "Can a pay rise push me into a higher bracket and reduce my take-home pay?",
-    a: "No. Moving into a higher bracket only taxes the part of your income above the threshold at the higher rate. Your existing income is taxed exactly as before, so a raise always increases take-home pay. The one thing that can make a raise feel small is the combined cost of tax, Medicare levy, HELP repayments and, without private hospital cover, the Medicare levy surcharge.",
+    a: `Not through the tax brackets. Moving into a higher bracket only taxes the part of your income above the threshold at the higher rate. Your existing income is taxed exactly as before, so crossing a bracket never lowers take-home pay. The exception is the Medicare levy surcharge: without private hospital cover, a single who goes over ${MLS_SINGLE} pays it on their whole income, not just the part above ${MLS_SINGLE}, so a small raise across that line lowers take-home pay. Tax, the Medicare levy and HELP repayments together can also make a raise feel small.`,
   },
   {
     q: "How much of a $10,000 raise do I keep?",
@@ -28,11 +39,11 @@ export const MARGINAL_TAX_RATES_FAQS: Faq[] = [
   },
   {
     q: "Why does the next dollar cost more than the bracket rate at lower incomes?",
-    a: "Two things stack on top of the scale rate between about $28,000 and $67,000: the Medicare levy phases in at 10c per $1 above $28,011 until it reaches the full 2%, and the low income tax offset is withdrawn at 5c per $1 from $37,500 to $45,000 and 1.5c per $1 from $45,000 to $66,667. The all-in marginal rate in those ranges is 25%, 22% and 33.5%.",
+    a: `Two things stack on top of the scale rate between ${m(MEDICARE_LEVY.lowIncomeThreshold)} and ${m(LITO.nilOffsetIncome)}: the Medicare levy phases in at ${c(MEDICARE_LEVY.shadeInRate)} per $1 above ${m(MEDICARE_LEVY.lowIncomeThreshold)} until it reaches the full ${LEVY}, and the low income tax offset is withdrawn at ${c(LITO.phaseOut1.rate)} per $1 from ${m(LITO.fullOffsetCeiling)} to ${m(LITO.phaseOut1.end)} and ${c(LITO.phaseOut2.rate)} per $1 from ${m(LITO.phaseOut1.end)} to ${m(LITO.nilOffsetIncome)}. The all-in marginal rate in those ranges is ${p(marginalRateAt(MEDICARE_LEVY.lowIncomeThreshold))}, ${p(marginalRateAt(LITO.fullOffsetCeiling))} and ${p(marginalRateAt(LITO.phaseOut1.end))}.`,
   },
   {
     q: "What is my marginal tax rate at $100,000?",
-    a: "At $100,000 taxable income your scale rate is 30%, and with the 2% Medicare levy the all-in marginal rate is 32%. Your average rate is lower, around 22% including Medicare. Without private hospital cover, crossing $105,000 adds the Medicare levy surcharge on your whole income.",
+    a: `At $100,000 taxable income your scale rate is ${p(B[2].rate)}, and with the ${LEVY} Medicare levy the all-in marginal rate is ${p(marginalRateAt(100_000))}. Your average rate is lower, around 22% including Medicare. Without private hospital cover, crossing ${MLS_SINGLE} adds the Medicare levy surcharge on your whole income.`,
   },
   {
     q: "Does salary sacrifice save tax at my marginal rate?",

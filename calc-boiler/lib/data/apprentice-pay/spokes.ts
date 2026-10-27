@@ -13,8 +13,10 @@
 //   Awards (Fair Work Commission consolidated text, awards.fairwork.gov.au):
 //   Building      MA000020 cl 19.7(b), (c): apprentice = % of the CW3 standard rate PLUS the cl 21.1 tool allowance
 //                 and the cl 22 industry allowance, "as part of the ordinary weekly rate for all purposes". The tool
-//                 allowance is paid in full (no apprentice percentage). cl 21.1(a) carpenter/joiner $41.22,
-//                 bricklayer/refractory bricklayer $29.26, signwriter/painter/glazier $9.89; cl 22.1 $67.15 general,
+//                 allowance is paid in full (no apprentice percentage). cl 21.1(a) has five groups (read 27 Oct 2026):
+//                 carpenter/joiner group $41.22 (the highest), caster/fixer/floorlayer specialist/plasterer $34.10,
+//                 bricklayer/refractory bricklayer $29.26, roof tiler/slate-ridger/roof fixer/metals and engineering
+//                 construction tradespersons $21.59, signwriter/painter/glazier $9.89 (the lowest); cl 22.1 $67.15 general,
 //                 $53.72 residential (varied ppc 01Jul26). Schedule A.2.1, A.2.3, A.2.4, A.2.5, A.2.8 classifications.
 //   Automotive    MA000089 cl 19.6(b), (c) apprentice tool allowance; cl 16.9, 16.10; Schedule B.5.1 penalty rates.
 //   Manufacturing MA000010 cl 30.2(c)(ii) $17.90 a week tradesperson tool allowance (varied ppc 01Jul24, not since),
@@ -44,7 +46,7 @@
 // meat-retail public holiday rates (cl 31.3 sets several different ones), and any trade not in a spoke.
 // =============================================================================
 
-import { APPRENTICE_RATES_FROM, type ApprenticeRate, type ApprenticeStage, apprenticeRate, getTrade, roundCent } from "./index";
+import { APPRENTICE_RATES_FROM, type ApprenticeRate, type ApprenticeStage, apprenticeRate, getTrade, roundCent, STANDARD_WEEKLY_RATE } from "./index";
 
 export type SpokeSlug =
   | "carpenter"
@@ -203,6 +205,36 @@ const PAINTER_PG: BuildingPayGuide = {
   residential: pg({ "1n": [623.16, 16.4], "1y": [679.12, 17.87], "2n": [735.07, 19.34], "2y": [791.03, 20.82], "3": [902.94, 23.76], "4": [1070.8, 28.18] }),
   adult: { general: [1090.54, 28.7], residential: [1077.11, 28.35] },
 };
+/** Dollars to the cent ("$1,013.50"); declared here because the later `money` helper is not yet initialised when the spokes are built. */
+const dollars = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const andList = (xs: readonly (string | number)[]) => `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+
+/**
+ * What each stage marker is worth in the wage part of a building apprentice's rate (MA000020 cl 19.7(b)(i)(A)),
+ * derived from the BUILDING rows in ./index.ts: weekly dollars and percentage points, stage 1 to 2, 2 to 3, 3 to 4.
+ */
+function buildingStageSteps(year12: "completed" | "not-completed"): { dollars: string; points: string } {
+  const trade = getTrade("building");
+  if (!trade) throw new Error("Missing building trade");
+  const r = STAGES.map((s) => {
+    const row = apprenticeRate(trade, "junior", s, year12);
+    if (!row || row.pct === undefined) throw new Error(`Missing building row ${s} ${year12}`);
+    return row;
+  });
+  const steps = [1, 2, 3].map((i) => ({ dollars: roundCent(r[i].weekly - r[i - 1].weekly), points: (r[i].pct as number) - (r[i - 1].pct as number) }));
+  return { dollars: andList(steps.map((x) => dollars(x.dollars))), points: andList(steps.map((x) => x.points)) };
+}
+const BUILDING_STEPS_Y12 = buildingStageSteps("completed");
+const BUILDING_STEPS_NO_Y12 = buildingStageSteps("not-completed");
+
+/** MA000089 cl 16.9(b): the junior stage 3 percentage, which an apprentice reaches by completing the stage 2 competencies (cl 16.8). */
+const AUTOMOTIVE_STAGE3_PCT = (() => {
+  const t = getTrade("automotive");
+  const row = t ? apprenticeRate(t, "junior", 3, "completed") : undefined;
+  if (!row || row.pct === undefined) throw new Error("Missing automotive stage 3 row");
+  return row.pct;
+})();
+
 /** FWO MA000020 pay guide "All others" (no cl 21.1(a) tool allowance), general building, stage 1 with Year 12. */
 export const BUILDING_ALL_OTHERS_1Y_GENERAL = [682.66, 17.96] as const;
 
@@ -251,9 +283,9 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       {
         heading: "TAFE Fees, Textbooks and Block Release",
         paragraphs: [
-          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. The employer must reimburse all fees charged by the registered training organisation (RTO) and the cost of every prescribed textbook that the apprentice has paid for. Clause 14.6(a) sets the time limit, counted from the start of the apprenticeship or of the stage the fees relate to. An employer who pays the RTO directly meets the same obligation.",
-          "Time at the RTO is paid time. Under clause 14.3 an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training. Any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated. A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site. The tool and industry allowances stay in the rate because the award pays them for all purposes.",
-          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.3(e)). If the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
+          "Clause 14.6 of the Building and Construction General On-site Award makes the employer pay for the formal training. The employer must reimburse all fees charged by the registered training organisation (RTO) and the cost of every prescribed textbook that the apprentice has paid for. Clause 14.6(a) sets the time limit: 6 months from the start of the apprenticeship or of the stage the fees relate to, or 3 months from the start of the RTO training, whichever is later, unless there is unsatisfactory progress. An employer who pays the RTO directly meets the same obligation.",
+          "Time at the RTO is paid time. Under clause 14.2(b) an apprentice is permitted to be absent from work, without loss of pay or continuity of employment, to attend the off-the-job training in the contract of training. Any time spent attending training and assessment specified in or associated with the training contract counts as time worked for the employer when wages are calculated (cl 14.2(c)). A carpentry apprentice doing a block week at TAFE is therefore paid the same minimum for that week as for a week on site. The tool and industry allowances stay in the rate because the award pays them for all purposes.",
+          "Where block release training needs an overnight stay, clause 14.8 makes the employer pay the excess reasonable travel costs of getting there and back, less any amount the apprentice is eligible to receive from a government apprentice travel scheme. Redundancy provisions do not apply during the apprenticeship (cl 14.2(e)). If the employer keeps the carpenter on after completion, the years of the apprenticeship count as service for redundancy later.",
         ],
       },
       {
@@ -267,7 +299,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     faqs: [
       {
         q: "Does my employer have to pay my TAFE fees as an apprentice carpenter?",
-        a: "Yes. Clause 14.6 of the Building and Construction General On-site Award requires the employer to reimburse all RTO fees and prescribed textbook costs the apprentice has paid, within the time limit in clause 14.6(a), or to pay the RTO directly. Time at the RTO for training and assessment in the training contract is paid as time worked (cl 14.3).",
+        a: "Yes. Clause 14.6 of the Building and Construction General On-site Award requires the employer to reimburse all RTO fees and prescribed textbook costs the apprentice has paid, within the time limit in clause 14.6(a), or to pay the RTO directly. Time at the RTO for training and assessment in the training contract is paid as time worked (cl 14.2(c)).",
       },
       {
         q: "What if my carpentry apprenticeship is a three-year term?",
@@ -313,23 +345,23 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       {
         heading: "Moving Up a Stage Early: How the Competency Test Works",
         paragraphs: [
-          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying). Any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience must also be met. The third condition is that either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees.",
-          "If the employer disagrees with the RTO's assessment and the three parties cannot resolve it by agreement, the matter goes through the award's dispute procedure rather than sitting unresolved on the payslip (cl 14.9(b)). Once agreement is reached or a determination is made, the new rate is paid from the first full pay period starting on or after that date (cl 14.9(d)). The training package for the qualification named in the contract of training decides how competency is assessed (cl 14.9(c)).",
-          "For a bricklaying apprentice the three markers are worth $55.95, $111.91 and $167.86 a week respectively in the wage part of the rate (5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12, 10 points between stages 2 and 3, and 15 points between stages 3 and 4), with the $29.26 tool allowance and the industry allowance unchanged. These dollar figures are our arithmetic on clause 19.7(b).",
+          "Bricklaying apprentices often reach the competency marker before the 12 months are up, and clause 14.9 of the Building and Construction General On-site Award sets out exactly when the higher rate must start. The apprentice is paid at the next stage rate once competency has been achieved in the relevant proportion of the units of competency (25%, 50% or 75% of the training plan for the Certificate III in Bricklaying and Blocklaying). Any requirements of the state or territory apprenticeship authority and the training package for demonstrating competency and minimum work experience must also be met. The third condition is that either the RTO, the employer and the apprentice agree that those requirements have been met, or the employer has written advice from the RTO that the apprentice has been assessed as competent in all the relevant units and has not told the RTO and the apprentice that it disagrees within 21 days of receiving that advice.",
+          "If the employer disagrees with the RTO's assessment and the three parties cannot resolve it by agreement, the matter can be referred to the state or territory apprenticeship authority for determination. If that authority cannot deal with it, it goes through the award's dispute resolution clause rather than sitting unresolved on the payslip (cl 14.9(b)). Once agreement is reached or a determination is made, the new rate is paid from the first full pay period starting on or after that date (cl 14.9(d)). The training package for the qualification named in the contract of training decides how competency is assessed (cl 14.9(c)).",
+          `For a bricklaying apprentice who completed Year 12, the three markers are worth ${BUILDING_STEPS_Y12.dollars} a week respectively in the wage part of the rate (${BUILDING_STEPS_Y12.points} percentage points of the ${dollars(STANDARD_WEEKLY_RATE)} standard rate). Without Year 12 they are worth ${BUILDING_STEPS_NO_Y12.dollars} (${BUILDING_STEPS_NO_Y12.points} points). The ${dollars(BRICKLAYER_PG.toolAllowance)} tool allowance and the industry allowance stay the same. These dollar figures are our arithmetic on clause 19.7(b).`,
         ],
       },
       {
         heading: "Labourers, Adult Apprentices and the Rates Around You on Site",
         paragraphs: [
           "Not everyone laying bricks or carrying them is on the apprentice table. A labourer on a pick and shovel, or a plasterer's, terrazzo or stonemason's assistant, is a CW/ECW 1 classification in Schedule A.2.1, paid at least $1,013.50 a week plus the industry allowance, with no tool allowance. Because a first-year apprentice with Year 12 is on $711.92 a week on a general site, an apprentice can be paid less than the labourer passing them bricks; the difference is the training contract and the trade rate at the end of it.",
-          "An apprentice who signs the contract of training at 21 or older is an adult apprentice (cl 14.1(a)). The Fair Work Ombudsman pay guide prints one adult apprentice bricklayer rate for every year of the apprenticeship: $1,109.91 a week ($29.21 an hour) on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, both including the $29.26 tool allowance and the industry allowance. Under clause 19.8(a), someone who already worked for the employer before becoming its adult apprentice keeps the ordinary hourly rate of their old classification if it is higher.",
+          "An apprentice who signs the contract of training at 21 or older is an adult apprentice (cl 14.1(a)). The Fair Work Ombudsman pay guide prints one adult apprentice bricklayer rate for every year of the apprenticeship: $1,109.91 a week ($29.21 an hour) on a general building, civil or engineering construction site and $1,096.48 ($28.85) on residential work, both including the $29.26 tool allowance and the industry allowance. Under clause 19.8(a), someone who already worked for the employer before becoming its adult apprentice keeps the ordinary hourly rate of their old classification if it is higher. On general building and civil construction work this applies only to someone employed by that employer for at least 6 months full-time (weekly or daily hire), or 12 months part-time or as a regular casual, immediately before the apprenticeship (cl 19.8(b)).",
         ],
       },
     ],
     faqs: [
       {
         q: "What happens if my employer disagrees that I have reached the next stage?",
-        a: "Clause 14.9 of the award pays the next stage rate once the RTO has assessed the apprentice as competent in the required proportion of units, unless the employer tells the RTO and the apprentice it disagrees. A disagreement that cannot be settled between the RTO, the employer and the apprentice goes through the award's dispute procedure. Once agreed or determined, the higher rate starts from the first full pay period on or after that date.",
+        a: "Clause 14.9 of the award pays the next stage rate once the RTO has assessed the apprentice as competent in the required proportion of units, unless the employer tells the RTO and the apprentice it disagrees within 21 days of receiving the RTO's advice. A disagreement that cannot be settled between the RTO, the employer and the apprentice can go to the state or territory apprenticeship authority, or through the award's dispute procedure if that authority cannot deal with it. Once agreed or determined, the higher rate starts from the first full pay period on or after that date.",
       },
       {
         q: "How much is an adult apprentice bricklayer paid?",
@@ -373,22 +405,22 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       {
         heading: "Overtime, Shiftwork and Days Away for Painting Apprentices",
         paragraphs: [
-          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter more here than in most trades. Under clause 14.4 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate. An apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to. No apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results.",
-          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship. Absences on paid leave, or on leave without pay taken in accordance with the award's leave provisions, do not add a day. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked unpaid overtime on a push to finish a job, then been stood down in a wet fortnight, needs both halves of that rule.",
+          "Painting work runs to the weather and to handover dates, so the award's rules on an apprentice's hours matter. Under clause 14.3 the normal overtime and shiftwork penalties apply to an apprentice, calculated on the apprentice's own ordinary hourly rate. An apprentice must not work overtime or shiftwork on their own. An apprentice under 18 cannot be required to work overtime or shiftwork at all unless they choose to. No apprentice can be made to work hours that would stop them attending the RTO as the training contract requires, except in an emergency. An apprentice also cannot be put on any system of payment by results (cl 14.4).",
+          "Absences change the length of the apprenticeship rather than the pay. Clause 14.5 requires an apprentice to serve an additional day for each day of absence during each year of the apprenticeship. Absences on paid leave, or on leave without pay taken in accordance with the award's leave provisions, do not add a day. Against that, any time the apprentice worked in excess of ordinary hours during the year is credited back when the extra time is calculated (cl 14.5(b)). A painting apprentice who has worked beyond ordinary hours on a push to finish a job has that time credited against any extra days owed for absences in the same year.",
         ],
       },
       {
         heading: "Adult Apprentice Painters",
         paragraphs: [
           "The Fair Work Ombudsman pay guide prints a single adult apprentice rate for the glazier, painter and signwriter group that applies in every year of the apprenticeship: $1,090.54 a week ($28.70 an hour) on a general building, civil or engineering construction site and $1,077.11 ($28.35) on residential work, each including the $9.89 tool allowance and the industry allowance. An adult apprentice is a person who is 21 or over when the contract of training is signed (cl 14.1(a)).",
-          "Because the adult rate is close to the $1,119.10 standard rate a qualified painter must get after completion (cl 19.7(a)), the pay rise at the end of an adult painting apprenticeship is small: $28.59 a week in the wage part before allowances, by our arithmetic. The bigger difference is for the junior: a first-year with Year 12 moves from $692.55 a week on a general site to the trade rate over four stages.",
+          `Take the allowances out and the adult rate's wage part is ${dollars(PAINTER_PG.adult.general[0] - PAINTER_PG.toolAllowance - INDUSTRY_ALLOWANCE.general)} a week, the award's lowest classification rate (cl 19.8(d)). On completion the wage part rises to the ${dollars(STANDARD_WEEKLY_RATE)} standard rate a qualified painter must get (cl 19.7(a)), with the tool and industry allowances still on top: a rise of ${dollars(roundCent(STANDARD_WEEKLY_RATE - (PAINTER_PG.adult.general[0] - PAINTER_PG.toolAllowance - INDUSTRY_ALLOWANCE.general)))} a week, by our arithmetic. The bigger difference is for the junior: a first-year with Year 12 moves from $692.55 a week on a general site to the trade rate over four stages.`,
         ],
       },
     ],
     faqs: [
       {
         q: "Can an apprentice painter be made to work overtime?",
-        a: "Not alone, and not if under 18 unless they choose to. Clause 14.4 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate. It also says no apprentice will work overtime or shiftwork on their own, and no apprentice under 18 can be required to work it. No apprentice can be required to work at times that would prevent attendance at the RTO, except in an emergency.",
+        a: "Not alone, and not if under 18 unless they choose to. Clause 14.3 of the Building and Construction General On-site Award applies the normal overtime and shiftwork penalties to an apprentice's ordinary hourly rate. It also says no apprentice will work overtime or shiftwork on their own, and no apprentice under 18 can be required to work it. No apprentice can be required to work at times that would prevent attendance at the RTO, except in an emergency.",
       },
       {
         q: "Do I have to serve extra time if I am away from work?",
@@ -490,7 +522,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
       detail: "It is current on training.gov.au: 36 units, 20 core and 16 elective.",
     },
     facts: [
-      "A motor mechanic apprentice in a workshop, dealership or service centre is usually covered by the Vehicle Repair, Services and Retail Award 2020. The award splits apprentices at 21: a junior apprentice is under 21 (cl 16.9(a)) and an adult apprentice is over 21 when the apprenticeship starts (cl 16.10(a)). Junior rates are a percentage of the Level R6 tradesperson rate of $1,119.10 a week.",
+      "The Vehicle Repair, Services and Retail Award 2020 covers a motor mechanic apprentice whose employer's business is principally connected with selling, repairing, maintaining or servicing motor vehicles (cl 4.1, 4.2(a)), such as a workshop, dealership or service centre. The award splits apprentices at 21: a junior apprentice is under 21 (cl 16.9(a)) and an adult apprentice is over 21 when the apprenticeship starts (cl 16.10(a)). Junior rates are a percentage of the Level R6 tradesperson rate of $1,119.10 a week.",
       "Adult apprentices are paid by reference to award classification levels instead of percentages: 80% of R6 in first year, then Level 1, Level 2 and Level 3, and the full R6 rate after the apprenticeship (cl 16.10(b)). A person already employed in the vehicle industry before becoming an adult apprentice with that employer cannot have their pay cut by signing the contract (cl 16.10(c)).",
       "The tool allowance for apprentices rises by year, from $5.88 to $12.14 a week, against $13.86 for a tradesperson, and is payable only where the apprentice is required to provide their own tools (cl 19.6(a), (b)).",
     ],
@@ -499,15 +531,15 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
         heading: "The 21 Trades on the Same Apprentice Table",
         paragraphs: [
           "The Vehicle Repair, Services and Retail Award does not have a mechanic-only apprentice scale. Clause 13.2 lists 21 apprenticeship trades, and every junior apprentice in any of them is paid from the one table in clause 16.9: $559.55 a week in first year ($615.51 with Year 12), $671.46 ($727.42) in second year, $839.33 in third year and $984.81 in fourth. The trades are automotive electrician, automotive engine reconditioner, automotive parts interpreter (specialist), bodymaker and wheelwright, brake mechanic, electrical fitter and armature winder (auto), electroplater, electrical mechanic, fitter and turner, machinist (metal), motorcycle or motor scooter mechanic, motor mechanic or automotive technician, painter (tradesperson), panel beater, plant mechanic, signwriter, smith, trimmer (tradesperson), welder (tradesperson), wheel aligner and wood machinist.",
-          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums. It is also why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)). The only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13).",
-          "The employer carries the training costs. Fees for prescribed courses and prescribed textbooks that the apprentice pays must be reimbursed, and the employer can instead pay the training provider directly within six months of the start of the apprenticeship or of the relevant stage (cl 13.3). Where block release training needs an overnight stay, the employer pays the excess reasonable travel costs, less any government apprentice travel assistance the apprentice can claim (cl 13.4). Attendance at training and assessment under the training contract is paid as time worked (cl 13).",
+          "That single table is why a panel beating apprentice, a spray painting apprentice and a light vehicle mechanic apprentice in the same workshop are on identical minimums. It is also why the award bars a workshop from employing an unapprenticed junior in any of those trades (cl 12.2(a)). The only way into the trade under this award is the training contract. An apprentice cannot be put on payment by results, but the award says that does not stop an employer paying an above-award bonus (cl 13.6).",
+          "The employer carries the training costs. Fees for prescribed courses and prescribed textbooks that the apprentice pays must be reimbursed, and the employer can instead pay the training provider directly within six months of the start of the apprenticeship or of the relevant stage (cl 13.3). Where block release training needs an overnight stay, the employer pays the excess reasonable travel costs, less any government apprentice travel assistance the apprentice can claim (cl 13.4). Attendance at training and assessment under the training contract is paid as time worked (cl 13.8(b)).",
         ],
       },
       {
         heading: "Where the Penalty Percentages Come From",
         paragraphs: [
           "Schedule B of the Vehicle Repair, Services and Retail Award prints three separate tables for junior apprentices: B.5.1 for ordinary hours and weekend and public holiday penalties, B.5.2 for shiftwork and B.5.3 for overtime, each expressed as a percentage of the junior apprentice hourly rate. Adult apprentices have their own set at B.6.1 to B.6.3, worked as a percentage of the adult apprentice hourly rate. The penalty table above is B.5.1 applied to the Year 12 rates. An apprentice on afternoon or night shift, or working overtime, should read the B.5.2 and B.5.3 percentages instead.",
-          "Apprentice mechanic progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year. A mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up.",
+          `Apprentice mechanic progression is competency based or by time. Clause 16.8 lets a junior or adult apprentice advance a stage either by completing the competencies for that stage under the agreed training plan or by serving the year. A junior apprentice who completes the stage 2 competencies early moves to the stage 3 rate of ${AUTOMOTIVE_STAGE3_PCT}% before 24 months are up.`,
         ],
       },
     ],

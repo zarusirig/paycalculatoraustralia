@@ -1,0 +1,172 @@
+{
+ "name": "ff-081-listo-calculator",
+ "files": [
+  "modules/guide/listo-calculator.tsx",
+  "modules/guide/low-income-tax-offset-faqs.ts",
+  "modules/guide/marginal-tax-rates-faqs.ts",
+  "modules/guide/marginal-tax-rates.tsx",
+  "modules/guide/medicare-levy-faqs.ts",
+  "modules/guide/medicare-levy-surcharge.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/listo-calculator.tsx:101",
+   "file": "modules/guide/listo-calculator.tsx",
+   "line": "101",
+   "page": "https://pay-calculator-australia.com/listo-calculator/",
+   "claims": [
+    "H2 'The 1 July 2027 Boost: $37,000 to $45,000, $500 to $810' and the list item 'a full-time worker on $45,000 gets the maximum'"
+   ],
+   "whys": [
+    "The heading (line 101) and the list item on line 107 type in $37,000, $45,000, $500 and $810 by hand. The body text around them uses NOW.incomeThreshold, NEXT.incomeThreshold, NOW.maxPayment and NEXT.maxPayment. The figures match today, but they will drift if the constants change. Constants: LISTO_CURRENT and LISTO_2027_28 in lib/constants/listo.ts."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/low-income-tax-offset-faqs.ts:20",
+   "file": "modules/guide/low-income-tax-offset-faqs.ts",
+   "line": "20",
+   "page": "https://pay-calculator-australia.com/low-income-tax-offset/",
+   "claims": [
+    "reduces by 5 cents for each dollar ... then by 1.5 cents per dollar"
+   ],
+   "whys": [
+    "The cents-per-dollar rates are typed in by hand, but the dollar figures come from LITO.phaseOut1.rate and similar constants. The values are correct for current LITO but could drift."
+   ],
+   "constants": [
+    "LITO.phaseOut1.rate / LITO phaseOut2 rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.74,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/marginal-tax-rates-faqs.ts:31",
+   "file": "modules/guide/marginal-tax-rates-faqs.ts",
+   "line": "31",
+   "page": "/marginal-tax-rates/",
+   "claims": [
+    "Medicare levy phases in at 10c per $1 above $28,011 ... LITO withdrawn at 5c per $1 from $37,500 to $45,000 and 1.5c per $1 from $45,000 to $66,667"
+   ],
+   "whys": [
+    "The figures are correct today, but they are typed into the FAQ strings (and so into the JSON-LD) instead of coming from constants. They will drift when the ATO publishes the 2026-27 levy thresholds. The same applies to $105,000 at line 35 and to the scale at line 11."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.lowIncomeThreshold / shadeInThreshold, LITO.fullOffsetCeiling / phaseOut1.end / nilOffsetIncome, MEDICARE_LEVY.surcharge.tier1.min, TAX_BRACKETS_2026_27"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.47,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/marginal-tax-rates-faqs.ts:19",
+   "file": "modules/guide/marginal-tax-rates-faqs.ts",
+   "line": "19",
+   "page": "/marginal-tax-rates/",
+   "claims": [
+    "Moving into a higher bracket ... so a raise always increases take-home pay."
+   ],
+   "whys": [
+    "The claim is true for brackets but wrong for the Medicare levy surcharge cliff at $105,001 (whole income, no private hospital cover). The answer names the surcharge only as something that makes a raise 'feel small'. The FAQ also feeds FAQPage JSON-LD."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge.tier1 in lib/constants/australian-tax.ts:116"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/marginal-tax-rates.tsx:58",
+   "file": "modules/guide/marginal-tax-rates.tsx",
+   "line": "58",
+   "page": "/marginal-tax-rates/",
+   "claims": [
+    "a raise never lowers your take-home pay"
+   ],
+   "whys": [
+    "The Medicare levy surcharge is charged on the whole income from $105,001 for a single without private hospital cover (line 135 of the same page says so). A $1 raise from $105,000 to $105,001 adds about $1,050 of surcharge, so take-home pay falls. The claim holds only with private hospital cover. The same claim appears in the FAQ (see next item)."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge.tier1 in lib/constants/australian-tax.ts:116"
+   ],
+   "reviewerNotes": [
+    "The writer's Medicare levy surcharge cliff question is valid. 'A raise never lowers your take-home pay' (tsx:58) and 'a raise always increases take-home pay' (faqs.ts:19) are both wrong for a single without private hospital cover who crosses $105,000. The writer correctly left them unchanged. They are for the owner to decide. The writer's average-rate question is a false alarm: the tax on $90,000 is $17,520, plus $1,800 Medicare, which is $19,320, or 21.47%. That correctly rounds to 'about 21%'. On $100,000 the rate is 22.52%, so 'around 22%' is also correct."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/medicare-levy-faqs.ts:63",
+   "file": "modules/guide/medicare-levy-faqs.ts",
+   "line": "63",
+   "page": "https://pay-calculator-australia.com/medicare-levy/",
+   "claims": [
+    "The Medicare levy starts at ${LOWER} of taxable income for most people."
+   ],
+   "whys": [
+    "The checker flags 'most people' as a population claim. The wording is unchanged from the original. In context it means 'unless you are entitled to SAPTO'. Saying that directly would be more exact than 'for most people'. Please confirm, or reword in a later pass."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.lowIncomeThreshold (lib/constants/australian-tax.ts:110); MEDICARE_LEVY_SENIORS (lib/constants/medicare-levy-extra.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/medicare-levy-surcharge.tsx:201",
+   "file": "modules/guide/medicare-levy-surcharge.tsx",
+   "line": "201",
+   "page": "https://pay-calculator-australia.com/medicare-levy-surcharge-calculator/",
+   "claims": [
+    "The surcharge ... isn't withheld from your pay. The ATO adds it when you lodge.",
+    "The Medicare levy is paid by almost every resident"
+   ],
+   "whys": [
+    "It is not withheld by default. But the ATO's Medicare levy variation declaration (NAT 0929) has a Medicare levy surcharge part that lets an employee ask the employer to withhold extra for the MLS. Saying it 'isn't withheld' is too absolute. Suggested wording: 'isn't withheld unless you ask your employer to'.",
+    "This is a population claim with no figure or source. Low-income earners below the Medicare levy threshold and exempt groups do not pay the levy.",
+    "The surcharge is not withheld by default, but the NAT 0929 Medicare levy variation declaration lets an employee ask the employer to withhold extra for the MLS, so 'isn't withheld' is too absolute. Suggested wording: 'isn't withheld unless you ask your employer to'."
+   ],
+   "constants": [
+    "none (static prose); NAT 0929 would need adding to SOURCES_LIST if cited",
+    "none; either cite the ATO or narrow it to 'resident taxpayers above the low-income threshold'"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact questions and pass them on: (1) 'isn't withheld from your pay' is too absolute, because the NAT 0929 Medicare levy variation declaration lets an employee ask for extra withholding for the MLS; (2) 'paid by almost every resident' is a population claim with no source (see the line 201 entries in extraFactQuestions); (3) 'Foster children don't count' (line 194) needs checking against ATO_FAMILY."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.43,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/medicare-levy-surcharge.tsx:194",
+   "file": "modules/guide/medicare-levy-surcharge.tsx",
+   "line": "194",
+   "page": "https://pay-calculator-australia.com/medicare-levy-surcharge-calculator/",
+   "claims": [
+    "Foster children don't count."
+   ],
+   "whys": [
+    "The ATO dependant definition for MLS purposes (QC27044) should be checked. Foster children are treated differently across Medicare levy reduction, MLS and the PHI rebate. This sentence decides whether a family threshold applies, so it should be checked against the ATO page.",
+    "This sentence decides whether a family threshold applies. Check it against the ATO's MLS family and dependants page (ATO_FAMILY), because foster children are treated differently for the levy reduction, the MLS and the PHI rebate."
+   ],
+   "constants": [
+    "none (static prose); source ATO_FAMILY"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.62,
+   "needsOwner": false
+  }
+ ]
+}

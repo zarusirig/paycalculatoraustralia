@@ -57,6 +57,7 @@ const A = PLUMBING_ALLOWANCES;
 const WORKER_L1 = [A.industry, A.specialFixed];
 const TRADE_UNREGISTERED = [A.industry, A.plumbingTrade, A.specialFixed];
 const TRADE_REGISTERED = [A.industry, A.plumbingTrade, A.registration, A.specialFixed];
+const aud = (x: number) => `$${x.toFixed(2)}`;
 
 /** cl 18.1 base weekly + all-purpose allowances; hourly and casual as Schedule C prints them. */
 function row(label: string, base: number, allowances: number[], hourly: number, casualHourly: number, note?: string): RateRow {
@@ -81,7 +82,7 @@ export const PLUMBER: Occupation = {
   },
   coverage: [
     "Plumbers employed by plumbing, gasfitting, drainage and mechanical services contractors are covered by the Plumbing and Fire Sprinklers Award 2020 [MA000036]. A qualified plumber is a plumbing and mechanical services tradesperson; levels 2, special class and advanced tradesperson recognise further qualifications set out in Schedule A.",
-    "A plumber's minimum is more than the clause 18.1 rate. Every plumbing employee gets an industry allowance ($41.41 a week) and a special fixed allowance ($7.70); tradespersons also get the plumbing trade allowance ($33.57); and a tradesperson registered under state plumbing legislation gets a registration allowance ($44.76). All four are paid for all purposes, so they flow into overtime, penalties and leave.",
+    `A plumber's minimum is more than the clause 18.1 rate. Every plumbing and mechanical services employee gets an industry allowance (${aud(A.industry)} a week, cl 21.3(a)), and every one except an apprentice gets a special fixed allowance (${aud(A.specialFixed)}, cl 21.3(d)). Plumbing worker level 2 and tradespersons also get the plumbing trade allowance (${aud(A.plumbingTrade)}, cl 21.3(b)), and a tradesperson registered under state plumbing legislation gets a registration allowance (${aud(A.registration)}). All four are paid for all purposes, so they flow into overtime, penalties and leave.`,
     "The table rates are for weekly hire employees. Daily hire employees receive an additional lost time loading (cl 21.3(i)) and have their own Schedule C.2 rates.",
     "Fire sprinkler fitters are covered by the same award but have different allowances; their rates are not shown here.",
   ],

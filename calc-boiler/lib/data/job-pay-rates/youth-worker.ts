@@ -10,8 +10,8 @@
 //   Level 2 (B.2.1(e)–(f)) — a relevant certificate is appointed at this level
 //     (pay point 2 for a level 4 certificate); a diploma commences at the second
 //     pay point and advances after 12 full-time equivalent months.
-//   Level 3 (B.3.1(d), (g)) — supervising staff or volunteers, including day-to-day
-//     operation of a group of residential facilities; a three-year degree
+//   Level 3 (B.3.1(d), (g)) — supervising lower classified staff or volunteers
+//     in their day-to-day work; a three-year degree
 //     commences no lower than pay point 3, a four-year degree no lower than
 //     pay point 4.
 //   Level 4 (B.4.1) — knowledge and skills gained through qualifications or
@@ -27,6 +27,7 @@
 // (the profile prints N/A, "high standard error"), so none is shown.
 
 import {
+  SCHADS_ALLOWANCES,
   SCHADS_AWARD,
   SCHADS_PENALTIES,
   SCHADS_SACS,
@@ -92,9 +93,9 @@ export const YOUTH_WORKER: Occupation = {
   },
   coverage: [
     "Youth workers employed by community organisations, youth services, youth refuges and similar non-government providers are covered by the Social, Community, Home Care and Disability Services Industry Award 2010, the SCHADS Award [MA000100]. The award's definition of the social and community services sector includes youth work by name.",
-    "The award has no classification called youth worker. It grades roles in the Social and community services stream (Schedule B) by qualification and responsibility. A youth worker with a relevant certificate is appointed at Level 2; with a Certificate IV the minimum is pay point 2, and a diploma commences at pay point 2 too. A youth worker who supervises staff or volunteers, including managing the day-to-day operations of a group of residential facilities for persons with a disability, is at Level 3. A three-year degree at this level commences no lower than pay point 3, and a four-year degree no lower than pay point 4.",
+    "The award has no classification called youth worker. It grades roles in the Social and community services stream (Schedule B) by qualification and responsibility. A youth worker with a relevant certificate is appointed at Level 2; with a Certificate IV the minimum is pay point 2, and a diploma commences at pay point 2 too. A youth worker who supervises lower classified staff or volunteers in their day-to-day work is at Level 3 (cl B.3.1(d)). A three-year degree at this level commences no lower than pay point 3, and a four-year degree no lower than pay point 4.",
     "Rates for Levels 2 and up already include the Equal Remuneration Order uplift, which the award says forms part of ordinary pay for all purposes. Level 1 carries no uplift and is for entry-level work under close direction.",
-    "State government youth justice and child protection workers are generally employed under state public sector awards or agreements rather than this award, so use this page for community sector youth work only.",
+    "In NSW, Queensland, South Australia, Western Australia and Tasmania, state public sector employees are in the state industrial relations system (Fair Work Ombudsman), so government youth justice and child protection workers there are paid under state public sector awards or agreements, not this award. Use this page for community sector youth work.",
   ],
   tables: [
     {
@@ -120,8 +121,8 @@ export const YOUTH_WORKER: Occupation = {
     "Overtime rates replace, rather than add to, shift premiums and weekend penalties.",
   ],
   allowances: [
-    { name: "Sleepover allowance", amount: "$62.87 per sleepover", note: "4.9% of the standard rate (cl 25.7(d)); relevant to residential youth programs." },
-    { name: "Broken shift allowance", amount: "$21.81 (one break) or $28.87 (two breaks)", note: "Per broken shift." },
+    { name: "Sleepover allowance", amount: `${money(SCHADS_ALLOWANCES.sleepover)} per sleepover`, note: "4.9% of the standard rate (cl 25.7(d)); relevant to residential youth programs." },
+    { name: "Broken shift allowance", amount: `${money(SCHADS_ALLOWANCES.brokenShiftOneBreak)} (one break) or ${money(SCHADS_ALLOWANCES.brokenShiftTwoBreaks)} (two breaks)`, note: "Per broken shift." },
     {
       name: "Vehicle allowance",
       amount: `$${SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm.toFixed(2)} per km (1 Sep 2026 – 28 Feb 2027)`,
@@ -130,7 +131,7 @@ export const YOUTH_WORKER: Occupation = {
   ],
   median: null,
   notices: [
-    "Jobs and Skills Australia does not publish a median earnings figure for youth workers (the profile is marked N/A because of high statistical error), so this page shows award minimums only. Many youth services pay under enterprise agreements, which must leave employees better off overall than the award.",
+    "Jobs and Skills Australia does not publish a median earnings figure for youth workers (the profile is marked N/A because of high statistical error), so this page shows award minimums only. An enterprise agreement that covers a youth service must leave employees better off overall than the award.",
     "The SCHADS Award has no junior rates, so the age percentages that apply to some jobs do not apply here.",
   ],
   notShown: [
@@ -145,7 +146,7 @@ export const YOUTH_WORKER: Occupation = {
     },
     {
       q: "Does the SCHADS Award have a youth worker classification?",
-      a: "No. The SCHADS Award names youth work in its definition of the social and community services sector, but it classifies roles by qualification and responsibility under Level 1 to Level 8. Most youth workers sit at Level 2 or Level 3, depending on their qualification and whether they supervise others.",
+      a: "No. The SCHADS Award names youth work in its definition of the social and community services sector, but it classifies roles by qualification and responsibility under Level 1 to Level 8. A youth worker with a relevant certificate or diploma is at Level 2, and one who supervises lower classified staff or volunteers in their day-to-day work is at Level 3.",
     },
     {
       q: "What does a youth worker with a degree earn?",
@@ -153,11 +154,11 @@ export const YOUTH_WORKER: Occupation = {
     },
     {
       q: "What is the casual rate for a youth worker?",
-      a: `A casual Level 2 pay point 2 youth worker earns at least ${money(casual(L2P2.hourly))} an hour, which is ${money(L2P2.hourly)} plus the 25% casual loading. Casual Saturday work is 175% and casual Sunday work 225% of the minimum hourly rate.`,
+      a: `A casual Level 2 pay point 2 youth worker earns at least ${money(casual(L2P2.hourly))} an hour, which is ${money(L2P2.hourly)} plus the 25% casual loading. Casual Saturday work is ${pct(SCHADS_PENALTIES.casualSaturday)} and casual Sunday work ${pct(SCHADS_PENALTIES.casualSunday)} of the minimum hourly rate.`,
     },
     {
       q: "Are youth justice and child protection workers on this award?",
-      a: "Generally not. Government youth justice and child protection workers are usually employed under state public sector awards and agreements. This page covers community-sector youth work under the SCHADS Award.",
+      a: "Not in NSW, Queensland, South Australia, Western Australia or Tasmania. The Fair Work Ombudsman states that state public sector employees there remain in the state industrial relations system, so government youth justice and child protection workers are paid under state public sector awards and agreements. Victorian, ACT and NT government employees are in the national system, so check the enterprise agreement that covers your department. This page covers community-sector youth work under the SCHADS Award.",
     },
   ],
   sources: [

@@ -80,7 +80,7 @@ export const VETERINARIAN: Occupation = {
     "Veterinarians employed in the veterinary surgery industry are covered by the Animal Care and Veterinary Services Award 2020 [MA000118], which calls them veterinary surgeons (or associates) and sets annual salaries for them in clause 15.3.",
     "Level 1A is the commencement level for a graduate veterinary surgeon, working under supervision; the award requires progression to Level 1B no later than 6 months after starting, and a competent Level 1B associate can expect Level 2 within 2 years (Schedule A.3).",
     "Level 2 works without detailed supervision, Level 3 is an experienced vet handling more difficult work, and Level 4 is a senior vet with supervisory or practice management responsibilities.",
-    "Vets employed by government, universities or under an enterprise agreement may be paid under other instruments. A vet working as a genuine contractor (locum on an ABN) has no award minimum.",
+    "The award covers private veterinary practices and animal welfare charities only (cl 4.2 and 4.3), so a vet employed by a university or a government agency is paid under a different instrument, and an enterprise agreement replaces the award where one applies. A vet working as a genuine contractor (locum on an ABN) has no award minimum.",
   ],
   tables: [
     {

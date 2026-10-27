@@ -18,13 +18,16 @@ const SUPER_NET = (0.075 - 0.007) * 0.85;
 const fv = (annual: number, rate: number, years: number) => (annual * ((1 + rate) ** years - 1)) / rate;
 const SUPER_10Y = fv(MONTHLY * 12 * 0.85, SUPER_NET, 10);
 const HECS_10Y = fv(MONTHLY * 12 * (1 - MARGINAL), HECS_HELP.indexationRate, 10);
+// Same $200/month salary sacrifice from age 25 to 60, on the same net assumptions as the table.
+const SUPER_35Y = fv(MONTHLY * 12 * 0.85, SUPER_NET, 35);
+const INDEX_PCT = `${(HECS_HELP.indexationRate * 100).toFixed(1)}%`;
 const HECS_AT_90K = calculateHECS(90_000);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Study and training loan indexation rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: SOURCES.ato.name },
+  { title: "Study and training loan indexation rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-indexation-rates", publisher: SOURCES.ato.name },
   { title: "APRA Annual Fund-level Superannuation Statistics", url: "https://www.apra.gov.au/annual-fund-level-superannuation-statistics", publisher: "APRA" },
   { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
   { title: "Voluntary repayments of study and training loans", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/voluntary-repayments", publisher: SOURCES.ato.name },
@@ -74,7 +77,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
               </p>
               <ul>
                 <li><strong>Voluntary super contributions:</strong> Salary sacrifice or personal deductible contributions are taxed at just <strong>15%</strong> inside super (vs your marginal rate of up to 45%). Super then grows with compound returns over decades. The trade-off: the money is <strong>locked until preservation age</strong> (currently 60).</li>
-                <li><strong>Voluntary HECS repayments:</strong> Extra payments reduce your outstanding HECS-HELP balance, so no future indexation applies to the amount you repay and you reach a $0 balance sooner. Once the debt is cleared, compulsory repayments stop and your take-home pay rises. The return on voluntary HECS repayments equals the <strong>indexation rate avoided</strong> (typically 3 to 4% under the CPI/WPI cap).</li>
+                <li><strong>Voluntary HECS repayments:</strong> Extra payments reduce your outstanding HECS-HELP balance, so no future indexation applies to the amount you repay and you reach a $0 balance sooner. Once the debt is cleared, compulsory repayments stop and your take-home pay rises. The return on voluntary HECS repayments equals the <strong>indexation rate avoided</strong> ({INDEX_PCT} on {HECS_HELP.indexationDate}, under the CPI/WPI cap).</li>
               </ul>
               <p>
                 Side by side, extra super offers a <strong>larger tax benefit and higher expected returns</strong> but locks your money away. HECS repayment offers a <strong>modest guaranteed return</strong> (avoiding indexation) and frees up future cash flow once the debt is cleared.
@@ -89,10 +92,10 @@ export default function ExtraSuperVsHecsRepaymentPage() {
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Indexation</h3>
               <p>
-                HECS-HELP debt is indexed on <strong>1 June each year</strong> to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024 after the 7.1% indexation of June 2023, and applied retrospectively from 1 June 2023. The rate applied on 1 June 2026 was {(HECS_HELP.indexationRate * 100).toFixed(1)}%.
+                HECS-HELP debt is indexed on <strong>1 June each year</strong> to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024 after the 7.1% indexation of June 2023, and applied retrospectively from 1 June 2023. The rate applied on {HECS_HELP.indexationDate} was {INDEX_PCT}.
               </p>
               <p>
-                Recent rates have been around <strong>3% to 4%</strong> or lower ({(HECS_HELP.indexationRate * 100).toFixed(1)}% in 2026). Your HECS debt grows by that rate on the balance as at 1 June. It does not compound monthly like a mortgage: indexation is a single annual adjustment.
+                Under the cap the ATO has applied <strong>3.2% in 2023, 4% in 2024 and 3.2% in 2025</strong>, then {INDEX_PCT} on {HECS_HELP.indexationDate}. Your HECS debt grows by that rate on the part of the balance that has been unpaid for more than 11 months. It does not compound monthly like a mortgage: indexation is a single annual adjustment.
               </p>
               <p>
                 HECS-HELP is an <strong>interest-free loan</strong>. Indexation maintains the real value of the debt but does not add a profit margin. The financial gain from paying it off early is the indexation you avoid on the amount repaid.
@@ -103,7 +106,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                 Balanced and growth super options have historically returned around <strong>7&ndash;8% per year</strong> before fees over long periods, though past returns do not predict future returns. After fees (typically 0.5 to 1.0%) and the 15% earnings tax inside super, the net return is closer to <strong>5.5&ndash;6.5%</strong> for a growth or balanced option.
               </p>
               <p>
-                That net super return is above the 3 to 4% HECS indexation rate in most years. However, super returns are <strong>not guaranteed</strong>. In any given year, returns could be negative. HECS indexation, by contrast, is a known cost: each voluntary repayment removes it on the amount repaid.
+                That assumed net super return of about {(SUPER_NET * 100).toFixed(1)}% is above the {INDEX_PCT} indexation applied on {HECS_HELP.indexationDate}, and above every capped rate since 2023. However, super returns are <strong>not guaranteed</strong>. In any given year, returns could be negative. HECS indexation, by contrast, is a known cost: each voluntary repayment removes it on the amount repaid.
               </p>
             </section>
 
@@ -111,7 +114,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="when-super-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Extra Super Wins</h2>
               <ul>
-                <li><strong>Young with a long time to retirement (25+ years):</strong> More time means more compounding. A $200/month contribution starting at age 25 could grow to over <strong>$200,000</strong> by age 60 at 7% gross returns, while indexation avoided on a HECS balance stops as soon as the debt is cleared.</li>
+                <li><strong>Young with a long time to retirement (25+ years):</strong> More time means more compounding. A $200/month salary sacrifice starting at age 25 grows to about <strong>{formatAUD(Math.round(SUPER_35Y / 1000) * 1000)}</strong> by age 60 on this page&apos;s assumptions (contributions tax taken off each contribution, then {(SUPER_NET * 100).toFixed(1)}% a year after fees and earnings tax, before inflation), while indexation avoided on a HECS balance stops as soon as the debt is cleared.</li>
                 <li><strong>Higher marginal tax rate (30%+):</strong> Each dollar contributed to super saves 15 to 30 cents in tax (17 to 32 cents with the Medicare levy), which outweighs the indexation saving on HECS.</li>
                 <li><strong>Small HECS balance relative to income:</strong> If your HECS is under $20,000 and your compulsory repayments will clear it within 3 to 5 years anyway, the indexation cost is minimal and super contributions provide far more long-term value.</li>
                 <li><strong>Unused concessional cap space:</strong> If you have unused carry-forward cap amounts from previous years (available when your total super balance is under $500,000), you can make larger concessional contributions this year and get the tax saving on all of them.</li>
@@ -122,10 +125,10 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="when-hecs-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Paying HECS Faster Wins</h2>
               <ul>
-                <li><strong>Large HECS balance ($50,000+):</strong> A $60,000 HECS debt indexed at 4% costs $2,400 per year in indexation alone. Reducing the balance by $10,000 saves $400/year in indexation, a risk-free return.</li>
-                <li><strong>High indexation environment:</strong> If CPI or WPI is running above 4%, the known return from avoiding indexation becomes more attractive relative to the uncertainty of super returns.</li>
-                <li><strong>Close to paying off HECS:</strong> If you owe $5,000 to $15,000 and a lump-sum payment would clear the debt entirely, the compulsory repayment stops and your take-home pay rises straight away. Under the marginal repayment system that repayment is {formatAUD(HECS_AT_90K)} a year at a $90,000 income in FY{SITE_CONFIG.financialYear}, and up to 10% of repayment income at the top band.</li>
-                <li><strong>About to cross a repayment threshold:</strong> If your income is close to a higher HECS repayment band, paying down the debt before 1 June can reduce the indexation amount applied that year.</li>
+                <li><strong>Large HECS balance ($50,000+):</strong> A $60,000 HECS debt indexed at {INDEX_PCT} costs {formatAUD(60_000 * HECS_HELP.indexationRate)} in indexation that year. Reducing the balance by $10,000 saves {formatAUD(10_000 * HECS_HELP.indexationRate)} of it, a risk-free return.</li>
+                <li><strong>High indexation environment:</strong> Indexation is the lower of CPI and WPI growth, so it is high only when both indices are high. The higher the rate, the more the known return from avoiding it is worth against the uncertainty of super returns.</li>
+                <li><strong>Close to paying off HECS:</strong> If you owe $5,000 to $15,000 and a lump-sum payment would clear the debt entirely, compulsory repayments stop. Your take-home pay rises once you give your employer a new Withholding declaration saying you no longer have a loan. Under the marginal repayment system that repayment is {formatAUD(HECS_AT_90K)} a year at a $90,000 income in FY{SITE_CONFIG.financialYear}, and up to 10% of repayment income at the top band.</li>
+                <li><strong>Paying before 1 June:</strong> Indexation applies on 1 June to the part of your balance unpaid for more than 11 months. A voluntary repayment the ATO has received and processed before 1 June is not indexed that year. Electronic payments can take up to 4 business days to reach your ATO account, so allow enough time for the payment to be processed before 1 June.</li>
                 <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches your 15% rate, so the super tax saving is at most the 2c Medicare levy per dollar, which barely justifies locking money away when you could eliminate a debt that grows with indexation each year.</li>
               </ul>
             </section>
@@ -165,7 +168,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Growth rate assumption</td>
                         <td className="px-6 py-4 border-l text-right">~{(SUPER_NET * 100).toFixed(1)}% net after tax/fees</td>
-                        <td className="px-6 py-4 border-l text-right">{(HECS_HELP.indexationRate * 100).toFixed(1)}% (indexation avoided, 1 June 2026 rate)</td>
+                        <td className="px-6 py-4 border-l text-right">{(HECS_HELP.indexationRate * 100).toFixed(1)}% (indexation avoided, {HECS_HELP.indexationDate} rate)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">10-year value created</td>
@@ -185,7 +188,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {(HECS_HELP.indexationRate * 100).toFixed(1)}% applied on 1 June 2026. Figures are approximate illustrations.</p>
+                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {INDEX_PCT} applied on {HECS_HELP.indexationDate}. Figures are approximate illustrations.</p>
               </div>
               <p>
                 At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: once the HECS debt is cleared, compulsory repayments stop and your take-home pay rises, while the super balance stays locked until preservation age. At higher tax brackets (37% or 45%), super pulls further ahead because the tax saving on each dollar is larger.
@@ -200,7 +203,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Comparisons on this page use illustrative assumptions: 7.5% gross super return (long-term median from APRA data), 15% contributions tax, 15% earnings tax, and 0.7% fees inside super. HECS indexation is modelled at the 1 June 2026 rate. All figures are approximate and do not constitute financial advice.</p>
+                <p>Comparisons on this page use illustrative assumptions: 7.5% gross super return, 15% contributions tax, 15% earnings tax, and 0.7% fees inside super. HECS indexation is modelled at the {HECS_HELP.indexationDate} rate. All figures are approximate and do not constitute financial advice.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("extra-super-vs-hecs-repayment"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

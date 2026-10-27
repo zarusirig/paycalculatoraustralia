@@ -1,0 +1,112 @@
+{
+ "name": "ff-067-delivery-driver-pay-rate",
+ "files": [
+  "modules/guide/delivery-driver-pay-rate.tsx",
+  "modules/guide/division-293-tax-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/delivery-driver-pay-rate.tsx:56",
+   "file": "modules/guide/delivery-driver-pay-rate.tsx",
+   "line": "56",
+   "page": "https://pay-calculator-australia.com/delivery-driver-pay-rate/",
+   "claims": [
+    "H1/title hard-codes \"the $31.30 an Hour Minimum\"",
+    "PageHeader title hard-codes \"the $31.30 an Hour Minimum\""
+   ],
+   "whys": [
+    "The figure is correct now, but it is typed rather than taken from deliveryRate(\"bicycle-or-none\"). It will go stale when the 1 January 2027 rates start, while the intro, which reads from the constant, updates by itself.",
+    "The figure is typed rather than read from deliveryRate(\"bicycle-or-none\"), so it will go stale when the 1 January 2027 rates start (the KeyFigures already say 'Rates rise 1 January 2027')."
+   ],
+   "constants": [
+    "lib/constants/delivery-minimum-pay.ts DELIVERY_RATE_PERIODS / deliveryRate()"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestions are valid; the line numbers are now confirmed against the source. Line 56 H1 has $31.30 typed in. Line 129 has 7 years typed with no constant. Line 169 has 7 days typed although DELIVERY_MSO.topUpDueDays exists. Line 178 has the 'usually work under an ABN' population claim and the $75,000 GST threshold typed in."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/delivery-driver-pay-rate.tsx:169",
+   "file": "modules/guide/delivery-driver-pay-rate.tsx",
+   "line": "169",
+   "page": "https://pay-calculator-australia.com/delivery-driver-pay-rate/",
+   "claims": [
+    "Top-up \"due in the next earnings period or within 7 days after it\"; records kept \"for 7 years\" (line 129)",
+    "Top-up 'due in the next earnings period or within 7 days after it'"
+   ],
+   "whys": [
+    "The 7 days is typed, but DELIVERY_MSO.topUpDueDays already holds it and line 82 uses the constant. The 7-year record-keeping period has no constant at all.",
+    "7 is typed here, but line 82 renders the same rule from DELIVERY_MSO.topUpDueDays. If the constant changes, the two lines will disagree."
+   ],
+   "constants": [
+    "lib/constants/delivery-minimum-pay.ts DELIVERY_MSO.topUpDueDays (add a recordKeepingYears field)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/delivery-driver-pay-rate.tsx:178",
+   "file": "modules/guide/delivery-driver-pay-rate.tsx",
+   "line": "178",
+   "page": "https://pay-calculator-australia.com/delivery-driver-pay-rate/",
+   "claims": [
+    "\"Independent delivery workers usually work under an ABN\"; GST threshold $75,000 typed",
+    "'Independent delivery workers usually work under an ABN'; the GST threshold of $75,000 is typed"
+   ],
+   "whys": [
+    "This is a population claim with no figure; the FWO's description of them as independent contractors partly supports it. The $75,000 GST threshold is correct but typed, not taken from a constant.",
+    "The first is a population claim with no figure; the FWO's description of these workers as independent contractors only partly supports it. The $75,000 is correct but has no constant behind it."
+   ],
+   "constants": [
+    "lib/constants (GST registration threshold)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax-faqs.ts:45",
+   "file": "modules/guide/division-293-tax-faqs.ts",
+   "line": "45",
+   "page": "/division-293-tax/",
+   "claims": [
+    "You can elect to release the amount from your super fund 'by giving the ATO a release authority within 60 days'"
+   ],
+   "whys": [
+    "In the ATO process you lodge an election with the ATO, and the ATO then issues the release authority to your fund. You do not give the ATO a release authority. Please check the wording against the ATO Division 293 page."
+   ],
+   "constants": [
+    "(prose, ATO source)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax-faqs.ts:57",
+   "file": "modules/guide/division-293-tax-faqs.ts",
+   "line": "57",
+   "page": "/division-293-tax/",
+   "claims": [
+    "'Yes, for most people... That's still a {TOP_RATE - COMBINED} tax saving on each dollar contributed'"
+   ],
+   "whys": [
+    "The saving uses the top marginal rate (47%), but Division 293 can apply to someone on the 37% bracket. For that person the saving is smaller (39% vs 30%). 'For most people' is also an unsourced population claim."
+   ],
+   "constants": [
+    "TAX_BRACKETS / MEDICARE_LEVY in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.72,
+   "needsOwner": false
+  }
+ ]
+}

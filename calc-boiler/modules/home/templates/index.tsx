@@ -241,7 +241,7 @@ export default function HomePageTemplate() {
             <ol className="list-decimal space-y-1 pl-4">
               <li>Calculate income tax using ATO resident tax brackets (progressive marginal rates). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" /></li>
               <li>Apply the Low Income Tax Offset (up to {formatAUD(LITO.maxOffset)}) for qualifying incomes below {formatAUD(LITO.nilOffsetIncome)}.</li>
-              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> (1% to 1.5%) for high earners without private hospital cover.</li>
+              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> ({formatPercent(MEDICARE_LEVY.surcharge.tier1.rate, 0)} to {formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 1)}) for high earners without private hospital cover.</li>
               <li>Calculate HECS-HELP repayment using the marginal system (threshold: {formatAUD(HECS_HELP.minimumThreshold)}). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds" /></li>
               <li>Calculate employer superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} (paid on top, not deducted from salary).</li>
               <li>Take-home pay = Gross salary &minus; income tax &minus; Medicare levy &minus; HECS repayment.</li>
@@ -383,7 +383,7 @@ export default function HomePageTemplate() {
             What Is the Medicare Levy Surcharge?
           </h3>
           <p className="mb-3 leading-relaxed text-warmgray">
-            The &quot;Medicare Levy Surcharge&quot; (MLS) is an additional levy of <strong>1% to 1.5%</strong> charged to high-income earners who do not hold private hospital cover. For FY{FY} it applies to singles earning above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> and families above {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}. Three tiers apply:
+            The &quot;Medicare Levy Surcharge&quot; (MLS) is an additional levy of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier1.rate, 0)} to {formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 1)}</strong> charged to high-income earners who do not hold private hospital cover. For FY{FY} it applies to singles earning above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> and families above {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}. Three tiers apply:
           </p>
           <ul className="mb-3 list-disc space-y-1 pl-6 text-warmgray">
             <li>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min)} – {formatAUD(MEDICARE_LEVY.surcharge.tier1.max)}: surcharge of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier1.rate, 2)}</strong></li>
@@ -666,7 +666,7 @@ export default function HomePageTemplate() {
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <CalcLink href="/tax-brackets/" title={`Tax Brackets ${FY}`} desc="Complete bracket table with worked examples at every income level" />
-            <CalcLink href="/medicare-levy/" title="Medicare Levy Guide" desc="2% levy, low-income exemption, surcharge thresholds, and family rates" />
+            <CalcLink href="/medicare-levy/" title="Medicare Levy Guide" desc={`${formatPercent(MEDICARE_LEVY.rate, 0)} levy, low-income exemption, surcharge thresholds, and family rates`} />
             <CalcLink href="/superannuation-guide/" title="Superannuation Guide" desc="SG rates, contribution caps, employer obligations, and withdrawal rules" />
             <CalcLink href="/salary-sacrifice-calculator/" title="Salary Sacrifice Guide" desc="How pre-tax super contributions reduce your tax bill" />
             <CalcLink href="/hecs-help-calculator/" title="HECS-HELP Guide" desc="Marginal repayment system, thresholds, and indexation rules" />

@@ -5,6 +5,9 @@
 
 import { EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { CASUAL_LOADING, STANDARD_WEEKLY_HOURS, decimalHoursToHm } from "@/lib/constants/work-hours";
+import { HOSPITALITY_OVERTIME, RETAIL_OVERTIME } from "@/lib/constants/hospitality-award";
+
+const pctOf = (m: number) => `${Math.round(m * 1000) / 10}%`;
 
 export interface WorkHoursFaq {
   q: string;
@@ -38,7 +41,7 @@ export const WORK_HOURS_FAQS: readonly WorkHoursFaq[] = [
   },
   {
     q: "Do casual employees get the 25% loading on overtime hours?",
-    a: `The ${CASUAL_LOADING * 100}% casual loading applies to a casual's ordinary hourly rate in place of paid leave. How it interacts with overtime is award-specific: some awards calculate overtime on the base rate plus loading, others compound the loading and the overtime multiplier differently, and a few pay overtime on the ordinary rate alone. This calculator applies the loading first and then the overtime multiplier, which matches the common approach. Verify it against your award before relying on the figure.`,
+    a: `The ${CASUAL_LOADING * 100}% casual loading applies to a casual's ordinary hourly rate in place of paid leave. How it interacts with overtime is award-specific. The Retail Award adds the loading to the overtime percentage, so casuals get ${pctOf(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} for the first 3 hours Monday to Saturday. The Hospitality Award pays overtime on the ordinary rate without the loading, so casuals get ${pctOf(HOSPITALITY_OVERTIME.weekdayFirst2Hours)} for the first 2 hours Monday to Friday, the same as full-time staff. This calculator applies the loading first and then the overtime multiplier, so time and a half for a casual comes out at ${pctOf((1 + CASUAL_LOADING) * 1.5)} of the base rate, higher than either award. Check your award before you rely on the figure.`,
   },
   {
     q: "Is 9am to 5pm eight hours or seven and a half?",

@@ -172,8 +172,10 @@ export default function TaxTableLookupWidget({ frequency, defaultGross, fixedFy 
               </div>
             </div>
             <p className="text-xs text-warmgray pt-3">
-              Same result as the ATO look-up table: cents are ignored and the Schedule 1 formula is applied
-              exactly. The result excludes tax offsets and Medicare levy adjustments claimed on a withholding declaration.{" "}
+              {frequency === "monthly"
+                ? "Same result as the ATO look-up table: cents are kept (an amount ending in exactly 33 cents has 1 cent added) and the Schedule 1 formula is applied exactly."
+                : "Same result as the ATO look-up table: cents are ignored and the Schedule 1 formula is applied exactly."}{" "}
+              The result excludes tax offsets and Medicare levy adjustments claimed on a withholding declaration.{" "}
               <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">
                 Full annual breakdown
               </Link>

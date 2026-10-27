@@ -17,6 +17,7 @@ import { getAwardPublicHolidayRate } from "./award-rates";
 import { multipleWords, pctLabel } from "./calc";
 import { publicHolidayRateRange } from "./award-rates";
 import { MODERN_AWARDS } from "../../constants/modern-awards";
+import { HOSPITALITY_AWARD, RETAIL_AWARD } from "../../constants/hospitality-award";
 import type { PhSource } from "./types";
 import type { SeasonalTopic } from "./seasonal";
 
@@ -106,6 +107,14 @@ const HOSP_C = pc("hospitality", "casual");
 // "double time and a half": the wording searchers use for the casual rate.
 const RETAIL_C_WORDS = multipleWords(getAwardPublicHolidayRate("retail")!.casual);
 const RETAIL_C_NAMED = RETAIL_C_WORDS ? `${RETAIL_C} (${RETAIL_C_WORDS})` : RETAIL_C;
+// Retail public holiday multiples as payslips print them ("2.25 times").
+const RETAIL_RATE = getAwardPublicHolidayRate("retail")!;
+const times = (m: number) => String(Math.round(m * 100) / 100);
+const RETAIL_P_TIMES = times(RETAIL_RATE.permanent);
+const RETAIL_C_TIMES = times(RETAIL_RATE.casual);
+// The casual loading already inside the Retail and Hospitality casual rates.
+if (RETAIL_AWARD.casualLoading !== HOSPITALITY_AWARD.casualLoading) throw new Error("retail and hospitality casual loadings differ");
+const CASUAL_LOADING = pctLabel(RETAIL_AWARD.casualLoading);
 
 // Road Transport's Good Friday / Christmas Day rows, read from the award data.
 const ROAD = MODERN_AWARDS["road-transport"];
@@ -152,8 +161,8 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "rates",
         heading: "What Christmas Day pays under the main awards",
         paragraphs: [
-          `Christmas Day is paid at the same public holiday rate as any other public holiday under most awards. The General Retail Award and the Hospitality Award both pay ${RETAIL_P} of the minimum hourly rate to full-time and part-time staff and ${RETAIL_C} to casuals, and the casual figure already contains the 25% casual loading, so nothing more is added. Across the 14 awards this site publishes the permanent range is ${RANGE_PERM}, and the casual range ${RANGE_CASUAL}.`,
-          `Two awards single Christmas Day out. The Road Transport and Distribution Award's day-work rates are higher on Good Friday and Christmas Day than on other public holidays: ${ROAD_GF_XMAS_PERM} of the weekly wage rate for full-time and part-time day workers and ${ROAD_GF_XMAS_CASUAL} for casual day workers. Under the Nurses Award, Christmas Day falling on a weekend adds an extra 50% in businesses that operate seven days a week (cl 28.2(b)), which is relevant in 2027 when Christmas Day is a Saturday.`,
+          `Christmas Day is paid at the same public holiday rate as any other public holiday under most awards. The General Retail Award and the Hospitality Award both pay ${RETAIL_P} of the minimum hourly rate to full-time and part-time staff and ${RETAIL_C} to casuals, and the casual figure already contains the ${CASUAL_LOADING} casual loading, so nothing more is added. Across the 14 awards this site publishes the permanent range is ${RANGE_PERM}, and the casual range ${RANGE_CASUAL}.`,
+          `Two awards single Christmas Day out. The Road Transport and Distribution Award's day-work rates are higher on Good Friday and Christmas Day than on other public holidays: ${ROAD_GF_XMAS_PERM} of the weekly wage rate for full-time and part-time day workers and ${ROAD_GF_XMAS_CASUAL} for casual day workers. Under the Nurses Award, a business that operates seven days a week pays an extra 50% of the minimum hourly rate (50% of the casual hourly rate for casuals) on top of the Saturday or Sunday rate for work on 25 December when it falls on a weekend and is not a public holiday because the holiday has moved to another day (cl 28.2(b)). In 2027 Christmas Day is a Saturday: where your state keeps Saturday 25 December as a public holiday, the award's public holiday rate applies to it instead.`,
           "If an enterprise agreement covers you, its rate replaces the award's. Pick the enterprise agreement option in the calculator and type in the percentage from your agreement. The full 14-award table is on the public holiday pay guide.",
         ],
       },
@@ -206,7 +215,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "payslip",
         heading: "Checking your Christmas pay on the payslip",
         paragraphs: [
-          "Hours worked on Christmas Day should appear as their own line, marked public holiday or paid at a multiple of your base rate such as 2.25 or 2.5 times, rather than inside ordinary hours. Multiply those hours by your base rate and the percentage for your award to check the line. Casuals should see a single rate with the loading already inside it. If the numbers don't match, raise it with payroll first, then use the back pay calculator to total what you are owed.",
+          `Hours worked on Christmas Day should appear as their own line, marked public holiday or paid at a multiple of your base rate such as ${RETAIL_P_TIMES} or ${RETAIL_C_TIMES} times, rather than inside ordinary hours. Multiply those hours by your base rate and the percentage for your award to check the line. Casuals should see a single rate with the loading already inside it. If the numbers don't match, raise it with payroll first, then use the back pay calculator to total what you are owed.`,
           "Public holiday pay is ordinary income and is taxed through PAYG with the rest of your pay, so a big Christmas week can look smaller after tax than you expect. The take-home pay calculator shows the after-tax figure.",
         ],
       },
@@ -215,7 +224,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
       { q: "What is the Christmas Day pay rate in Australia?", a: `The Christmas Day pay rate is the public holiday rate in your award or agreement. Retail and hospitality workers are paid ${RETAIL_P} of the base rate if they are full-time or part-time and ${RETAIL_C} if they are casual. Across 14 modern awards the permanent range is ${RANGE_PERM}. Road Transport day workers get a higher rate on Christmas Day than on other public holidays.` },
       { q: "Is Christmas Eve a public holiday?", a: "Christmas Eve is a part-day public holiday in Queensland, South Australia and the Northern Territory only. The holiday runs from 6pm to midnight in Queensland and from 7pm to midnight in South Australia and the Northern Territory. In New South Wales, Victoria, Western Australia, Tasmania and the ACT Christmas Eve is an ordinary day, although your award may still pay evening or weekend rates." },
       { q: "Do I get paid if Christmas Day is a day I don't work?", a: NOT_WORKING_ANSWER },
-      { q: "Do casuals get paid extra on Christmas Day?", a: `Casuals who work Christmas Day are paid the public holiday rate, ${RETAIL_C} of the base rate under the Retail and Hospitality awards, and that figure already includes the 25% casual loading. They are not paid for Christmas Day if they don't work.` },
+      { q: "Do casuals get paid extra on Christmas Day?", a: `Casuals who work Christmas Day are paid the public holiday rate, ${RETAIL_C} of the base rate under the Retail and Hospitality awards, and that figure already includes the ${CASUAL_LOADING} casual loading. They are not paid for Christmas Day if they don't work.` },
       { q: "When is Christmas Day in 2027 and is there an extra public holiday?", a: "Christmas Day 2027 is Saturday 25 December. New South Wales, Victoria, Queensland, Western Australia, South Australia, the ACT and the Northern Territory add Monday 27 December as an additional public holiday for Christmas Day, and Tuesday 28 December for Boxing Day. Tasmania's list shows Monday 27 December and Tuesday 28 December." },
       { q: "Can my employer make me work on Christmas Day?", a: "Your employer can ask, but the request has to be reasonable, and you can refuse if the request is unreasonable or you have reasonable grounds. Factors include your role, your personal and caring circumstances, the notice you were given and the penalty rates on offer." },
     ],
@@ -354,7 +363,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "rates",
         heading: "What New Year's Day pays",
         paragraphs: [
-          `New Year's Day carries the same public holiday rate as any other public holiday under your award: ${RETAIL_P} of the base rate for full-time and part-time retail and hospitality staff and ${RETAIL_C} for casuals. The casual figure already includes the 25% casual loading. The permanent range across the 14 awards on this site is ${RANGE_PERM}; the casual range is ${RANGE_CASUAL}.`,
+          `New Year's Day carries the same public holiday rate as any other public holiday under your award: ${RETAIL_P} of the base rate for full-time and part-time retail and hospitality staff and ${RETAIL_C} for casuals. The casual figure already includes the ${CASUAL_LOADING} casual loading. The permanent range across the 14 awards on this site is ${RANGE_PERM}; the casual range is ${RANGE_CASUAL}.`,
           "Because 1 January 2027 is a Friday, it is an ordinary working day for any full-time employee who works Monday to Friday. If you are one of them and have the day off, you are paid your base rate for your ordinary hours (Fair Work Act s 116). If you are on annual leave around the holiday, the day is not deducted from your leave balance.",
         ],
       },
@@ -405,7 +414,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "casuals",
         heading: "Casuals and New Year",
         paragraphs: [
-          "A casual who works New Year's Day is paid the casual public holiday rate, which already includes the 25% casual loading. A casual who is not rostered on is not paid for the day. Whether you can refuse a request to work depends on the Fair Work Ombudsman's reasonableness factors. They include whether you are full-time, part-time or casual, your personal circumstances and the notice you were given.",
+          `A casual who works New Year's Day is paid the casual public holiday rate, which already includes the ${CASUAL_LOADING} casual loading. A casual who is not rostered on is not paid for the day. Whether you can refuse a request to work depends on the Fair Work Ombudsman's reasonableness factors. They include whether you are full-time, part-time or casual, your personal circumstances and the notice you were given.`,
         ],
       },
       {
@@ -417,7 +426,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
       },
     ],
     faqs: [
-      { q: "What is the New Year's Day pay rate?", a: `The New Year's Day pay rate is your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, which already includes the 25% casual loading. The permanent range across 14 awards is ${RANGE_PERM}.` },
+      { q: "What is the New Year's Day pay rate?", a: `The New Year's Day pay rate is your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, which already includes the ${CASUAL_LOADING} casual loading. The permanent range across 14 awards is ${RANGE_PERM}.` },
       { q: "Is New Year's Eve a public holiday?", a: "New Year's Eve is a public holiday only in South Australia and the Northern Territory, and only from 7pm to midnight. In every other state and territory New Year's Eve is an ordinary day, and the public holiday rate starts at midnight when New Year's Day begins." },
       { q: "When is New Year's Day in 2027?", a: "New Year's Day is Friday 1 January 2027, a public holiday in every state and territory. Because it is a weekday, no state needs to add an extra holiday." },
       { q: "How is a shift across midnight on New Year's Eve paid?", a: "Only the hours inside a public holiday are paid at the public holiday rate. In South Australia and the Northern Territory that is 7pm to midnight and then all of New Year's Day, so a 6pm to 1am shift has one ordinary hour and six public holiday hours. In the other states only the hours after midnight are public holiday hours." },
@@ -542,7 +551,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "rates",
         heading: "Melbourne Cup Day pay rates",
         paragraphs: [
-          `Melbourne Cup Day is a full public holiday under Victoria's Public Holidays Act, so the award public holiday rate applies to every hour worked. Hospitality and retail workers earn ${HOSP_P} of the base rate if full-time or part-time and ${HOSP_C} if casual. The casual figure already includes the 25% casual loading. Across the 14 awards on this site the permanent range is ${RANGE_PERM}.`,
+          `Melbourne Cup Day is a full public holiday under Victoria's Public Holidays Act, so the award public holiday rate applies to every hour worked. Hospitality and retail workers earn ${HOSP_P} of the base rate if full-time or part-time and ${HOSP_C} if casual. The casual figure already includes the ${CASUAL_LOADING} casual loading. Across the 14 awards on this site the permanent range is ${RANGE_PERM}.`,
           "Many Melbourne Cup Day workers are in hospitality: pubs, clubs and restaurants run big days around the race. If you are casual, you are paid only for the hours you work on Melbourne Cup Day. A permanent employee who normally works Tuesdays but is not rostered still gets the day's base pay.",
         ],
       },
@@ -623,7 +632,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
       `Easter 2027 runs 26 to 29 March. Which days are public holidays by state, and the pay (retail ${RETAIL_P}, casual ${RETAIL_C}). Calculator inside.`,
     ],
     standfirst:
-      "Easter is four days long on the calendar, but the number that are public holidays depends on where you work. Good Friday and Easter Monday are public holidays nearly everywhere; Easter Saturday and Easter Sunday are not.",
+      "Easter is four days long on the calendar, but the number that are public holidays depends on where you work. In 2027 Good Friday, Easter Sunday and Easter Monday are public holidays in every state and territory, and Easter Saturday is a public holiday in six of the eight.",
     directAnswer: `Easter 2027 is Good Friday 26 March, Easter Saturday 27 March, Easter Sunday 28 March and Easter Monday 29 March. Good Friday and Easter Monday are public holidays in every state, and every hour worked is paid at your award's public holiday rate: ${RETAIL_P} for retail and hospitality staff, ${RETAIL_C} for casuals. Easter Saturday is a holiday in NSW, VIC, QLD, SA, the ACT and the NT, and Easter Sunday in every state except Tasmania.`,
     topics: [
       {
@@ -633,7 +642,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         intro:
           "Easter Sunday 2027 is 28 March, so Good Friday is 26 March and Easter Monday 29 March. Each row below lists the Easter days that state treats as public holidays. Victoria calls the Saturday the Saturday before Easter Sunday and Queensland the day after Good Friday.",
         footnote:
-          "Tasmania also lists Easter Tuesday (30 March), but generally only for the Tasmanian Public Service, so it is left out of the table. Most Tasmanian private-sector workers work it at ordinary rates unless their award or agreement says otherwise.",
+          "Tasmania also lists Easter Tuesday (30 March), which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\", so it is left out of the table. WorkSafe Tasmania says a listed holiday does not by itself give you the day off or a higher rate: check your award, agreement and the National Employment Standards to see whether Easter Tuesday applies to your workplace.",
       },
     ],
     sectionsBeforeCalculator: [
@@ -682,7 +691,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
     ],
     faqs: [
       { q: "When is Easter in 2027?", a: "Good Friday is Friday 26 March 2027, Easter Saturday is 27 March, Easter Sunday is 28 March and Easter Monday is 29 March." },
-      { q: "Which Easter days are public holidays?", a: "Good Friday and Easter Monday are public holidays in every state and territory. Easter Saturday is a public holiday in New South Wales, Victoria, Queensland, South Australia, the ACT and the Northern Territory but not in Western Australia or Tasmania. Easter Sunday is a public holiday everywhere except Tasmania. Tasmania also lists Easter Tuesday, generally for the Tasmanian Public Service only." },
+      { q: "Which Easter days are public holidays?", a: "Good Friday and Easter Monday are public holidays in every state and territory. Easter Saturday is a public holiday in New South Wales, Victoria, Queensland, South Australia, the ACT and the Northern Territory but not in Western Australia or Tasmania. Easter Sunday is a public holiday everywhere except Tasmania. Tasmania also lists Easter Tuesday, which WorkSafe Tasmania marks as \"generally Tasmanian Public Service only\"." },
       { q: "How much do you get paid on Good Friday?", a: `Good Friday is paid at your award's public holiday rate. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals. Road Transport day workers get a higher rate on Good Friday than on other public holidays.` },
       { q: "Do I get paid for Easter public holidays if I don't work?", a: NOT_WORKING_ANSWER },
       { q: "Is Easter Sunday paid at public holiday rates?", a: `Where it is a public holiday in your state, yes. Easter Sunday is a public holiday in every state and territory except Tasmania, so an hour worked is paid at your award's public holiday rate (${RETAIL_P} in retail and hospitality, ${RETAIL_C} for casuals).` },
@@ -726,7 +735,7 @@ export const SEASONAL_PAGES: readonly SeasonalPage[] = [
         id: "rates",
         heading: "What Australia Day pays",
         paragraphs: [
-          `Australia Day is paid at your award's public holiday rate, the same as any other public holiday. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, with the 25% casual loading already in the casual figure. Across the 14 awards on this site the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}.`,
+          `Australia Day is paid at your award's public holiday rate, the same as any other public holiday. Retail and hospitality pay ${RETAIL_P} of the base rate to full-time and part-time staff and ${RETAIL_C} to casuals, with the ${CASUAL_LOADING} casual loading already in the casual figure. Across the 14 awards on this site the permanent range is ${RANGE_PERM} and the casual range ${RANGE_CASUAL}.`,
           "An enterprise agreement's rate replaces the award rate. Pick the enterprise agreement option in the calculator below and enter your own percentage.",
         ],
       },

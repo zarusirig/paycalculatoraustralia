@@ -1,0 +1,132 @@
+{
+ "name": "ff-021-aps-grades",
+ "files": [
+  "lib/data/public-service-pay/aps-grades.ts",
+  "lib/data/public-service-pay/nsw.ts",
+  "lib/data/public-service-pay/qld.ts",
+  "lib/data/public-service-pay/sa.ts",
+  "lib/data/public-service-pay/tas.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/public-service-pay/aps-grades.ts:296",
+   "file": "lib/data/public-service-pay/aps-grades.ts",
+   "line": "296",
+   "page": "/public-service-pay-scales/aps/{aps-3..el2}/ (FAQ 'How much super does an APS 6 get?')",
+   "claims": [
+    "On the {grade} threshold minimum of {min}, 15.4% is {min * 0.154} a year on top of salary.",
+    "...well above the 12% Superannuation Guarantee."
+   ],
+   "whys": [
+    "The first sentence reads the rate from APS_SUPER_RATE, but the second sentence types '15.4%' and multiplies by a literal 0.154. If APS.superannuation.rate changes, the two sentences in this answer will disagree. The same literal 0.154 is used in modules/guide/aps-grade-page.tsx line 172.",
+    "The 12% Superannuation Guarantee rate is typed as a literal in the same answer that reads APS_SUPER_RATE from code. It should come from the SUPER_GUARANTEE constant, the one state-level-page.tsx already uses, so this text cannot fall out of step with the rate."
+   ],
+   "constants": [
+    "APS_SUPER_RATE (aps-grades.ts, from APS.superannuation.rate in ./aps.ts)"
+   ],
+   "reviewerNotes": [
+    "Writer's question confirmed. The super FAQ answer reads ${APS_SUPER_RATE}% in the first sentence but types '15.4%' and a literal 0.154 in the second. It also types '12% Superannuation Guarantee' instead of reading the SG constant. If either constant changes, the answer will contradict itself."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.48,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/nsw.ts:394",
+   "file": "lib/data/public-service-pay/nsw.ts",
+   "line": "394",
+   "page": "/public-service-pay-scales/nsw/",
+   "claims": [
+    "The Clerk Grade 9/10 FAQ dates the rates 'From 1 July 2026', while the 5/6 FAQ and the schedule say 'the first full pay period on or after 1 July 2026'."
+   ],
+   "whys": [
+    "The effective date is worded two ways on one page, and the Crown award's operative date is the first full pay period on or after 1 July 2026. Wording consistency should be checked against the source (not changed in this pass)."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.57,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/qld.ts:64",
+   "file": "lib/data/public-service-pay/qld.ts",
+   "line": "64",
+   "page": "Queensland public service pay hub (pay rise paragraph and 'When is the next Queensland public service pay rise?' FAQ)",
+   "claims": [
+    "The State Government Entities Certified Agreement 2023 continues to apply; the offer lapsed 31 July 2026; under the wages policy the first increase applies from the month in-principle agreement is reached (also line 1152)"
+   ],
+   "whys": [
+    "Status comes from the forgov.qld.gov.au page last updated 5 August 2026 and verified 28 August 2026. Core Agreement negotiations were live then, so by 27 October 2026 an in-principle agreement or new offer may exist. Re-verify before republishing."
+   ],
+   "constants": [
+    "QLD.payRise and QLD.faqs[4].a, source qld-core-status (verifiedOn 28 August 2026)"
+   ],
+   "reviewerNotes": [
+    "Writer fact question carried forward: the status of the State Government Entities Certified Agreement negotiations was verified on 28 August 2026 and may be stale by 27 October 2026. Re-verify the qld-core-status source before republishing."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.93,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/sa.ts:270",
+   "file": "lib/data/public-service-pay/sa.ts",
+   "line": "270",
+   "page": "/public-service-pay-scales/sa/",
+   "claims": [
+    "OPS-2 starts at $66,441 a year."
+   ],
+   "whys": [
+    "ASO-2 increment 1 is $66,442 and every other matched OPS level (OPS-3 = ASO-3, OPS-4 = ASO-4, OPS-7 = ASO-6, OPS-2 top = ASO-2 top $69,504) is identical to the dollar. A $1 difference at the bottom of OPS-2 looks like a transcription slip. Check Schedule 1.11, p. 82 of the Salaried 2026 agreement."
+   ],
+   "constants": [
+    "sa-ops stream, OPS-2 min in lib/data/public-service-pay/sa.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.99,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/tas.ts:330",
+   "file": "lib/data/public-service-pay/tas.ts",
+   "line": "330",
+   "page": "/public-service-pay-scales/tas/",
+   "claims": [
+    "Bands 4 to 8 of the General Stream have a second range."
+   ],
+   "whys": [
+    "The data contradicts this. Band 1 has Range 2 pay points (Range 2 Level 2, 4 and 5 at lines 98-100), and the Band 1 summary at line 93 says 'five salary points across two ranges'. Either Band 1 belongs in the sentence, or the sentence means only bands where you reach Range 2 through an advancement assessment point. The locked General Stream description at line 87 says the same 'Bands 4 to 8'."
+   ],
+   "constants": [
+    "TAS.progression[1] and the tas-general stream description in lib/data/public-service-pay/tas.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question against the data. The Band 1 pay points include Range 2 Level 2, 4 and 5 (tas.ts lines 99-101), but progression[1] at line 330 and the stream description at line 87 say only 'Bands 4 to 8' have a second range."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.53,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/tas.ts:214",
+   "file": "lib/data/public-service-pay/tas.ts",
+   "line": "214",
+   "page": "/public-service-pay-scales/tas/",
+   "claims": [
+    "Band 9 summary: 'has been the top General Stream band since Band 10 was removed on 1 December 2025'."
+   ],
+   "whys": [
+    "Elsewhere the removal is dated 'from the first full pay period on or after 1 December 2025' (line 87, clause 15, Band 10 FAQ). This summary gives a calendar date, which may not be the effective date. The wording was there before this pass."
+   ],
+   "constants": [
+    "tas.ts General Stream Band 9 summary vs the tas-general stream description"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.27,
+   "needsOwner": false
+  }
+ ]
+}

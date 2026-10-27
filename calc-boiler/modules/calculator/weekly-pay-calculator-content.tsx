@@ -9,14 +9,18 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   calculatePayBreakdown,
+  EMPLOYMENT,
   formatAUD,
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
+  LITO,
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
+import { MEDICARE_LEVY_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { WEEKLY_PAY_FAQS, WEEKLY_TAX_ANSWER, WEEKLY_WITHHOLDING_ROWS } from "./weekly-pay-calculator-faqs";
@@ -28,6 +32,8 @@ const EX_70K = calculatePayBreakdown({ grossSalary: 70_000, includeHECS: false, 
 const EX_180K = calculatePayBreakdown({ grossSalary: 180_000, includeHECS: false, hasPrivateHealth: true });
 const EX_WEEKLY_GAP = 80_000 / 52 - EX.weekly;
 const MLS = MEDICARE_LEVY.surcharge;
+const ML = formatPercent(MEDICARE_LEVY.rate, 0);
+const MLS_PCT = (rate: number) => `${+(rate * 100).toFixed(2)}%`;
 
 // Google AU "related searches" for "weekly pay calculator" and "weekly pay
 // after tax calculator" (Sept 2026), each pointed at the page that answers it.
@@ -59,15 +65,15 @@ export default function WeeklyPayCalculatorContent() {
               Weekly take-home pay equals your gross annual salary divided by 52, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld each week.
             </p>
             <p className="text-warmgray mb-4">
-              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the &quot;Low Income Tax Offset&quot; (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
+              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong>, the &quot;Low Income Tax Offset&quot; (LITO) of up to <strong>{formatAUD(LITO.maxOffset)}</strong>, and the applicable marginal tax rates.
             </p>
             <p className="text-warmgray mb-4">
               The calculation follows 4 steps:
             </p>
             <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
-              <li><strong>Gross weekly pay:</strong> Divide your annual salary by 52. An <strong>$80,000</strong> salary produces gross weekly pay of <strong>$1,538.46</strong>.</li>
+              <li><strong>Gross weekly pay:</strong> Divide your annual salary by 52. An <strong>$80,000</strong> salary produces gross weekly pay of <strong>{formatAUD(80_000 / 52, 2)}</strong>.</li>
               <li><strong>Income tax:</strong> Apply the FY{SITE_CONFIG.financialYear} income tax brackets to your annual salary, then divide the total tax by 52. At $80,000, annual income tax is <strong>{formatAUD(EX.netIncomeTax)}</strong>, or <strong>{formatAUD(EX.netIncomeTax / 52, 2)}</strong> per week.</li>
-              <li><strong>Medicare levy:</strong> Calculate <strong>2%</strong> of your gross weekly pay. At $80,000, the Medicare levy costs <strong>$30.77</strong> per week.</li>
+              <li><strong>Medicare levy:</strong> Calculate <strong>{ML}</strong> of your gross weekly pay. At $80,000, the Medicare levy costs <strong>{formatAUD(EX.medicareLevy / 52, 2)}</strong> per week.</li>
               <li><strong>HECS-HELP:</strong> If you carry a student loan and earn above the minimum repayment threshold of <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, the repayment amount is withheld proportionally each week.</li>
             </ol>
             <p className="text-warmgray">
@@ -148,7 +154,7 @@ export default function WeeklyPayCalculatorContent() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><strong>Weekly-paid employees:</strong> Retail, hospitality, and construction workers are commonly paid each week under their Modern Award. A weekly calculator confirms the exact net amount expected on each pay slip.</li>
-              <li><strong>Casual workers:</strong> Casuals receiving an hourly rate plus a 25% casual loading benefit from converting their expected hours into a weekly after-tax figure. Our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> handles this conversion.</li>
+              <li><strong>Casual workers:</strong> Casuals receiving an hourly rate plus a {formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading benefit from converting their expected hours into a weekly after-tax figure. Our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> handles this conversion.</li>
               <li><strong>Budget planners:</strong> Many household expenses, including rent, groceries, and transport, are billed weekly. Your weekly take-home amount shows what is left to split across those 3 costs each week.</li>
               <li><strong>Job seekers:</strong> Breaking each annual salary offer down to a weekly net figure lets you compare job offers, including roles paid at different pay frequencies.</li>
               <li><strong>Contractors considering PAYG employment:</strong> Sole traders transitioning to permanent roles use this calculator to compare their current invoiced income against a weekly after-tax salary. See our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a side-by-side comparison.</li>
@@ -161,7 +167,7 @@ export default function WeeklyPayCalculatorContent() {
               Weekly pay divides your annual salary into 52 payments, fortnightly pay into 26 payments, and monthly pay into 12 payments. The annual take-home total is identical regardless of frequency.
             </p>
             <p className="text-warmgray mb-4">
-              The difference is cash flow timing and budgeting. Weekly pay arrives most often, which suits employees who manage expenses week to week. Fortnightly pay is the most common cycle in Australia, used by approximately 45% of employers. Monthly pay is standard for salaried professionals in corporate, government, and finance sectors.
+              The difference is cash flow timing and budgeting. Weekly pay arrives most often, which suits employees who manage expenses week to week.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
@@ -209,17 +215,17 @@ export default function WeeklyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Deductions Apply to Your Weekly Pay?</h2>
             <p className="text-warmgray mb-4">
-              Three mandatory deductions reduce your gross weekly pay: PAYG income tax, the Medicare levy of <strong>2%</strong>, and HECS-HELP repayments if your income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>.
+              Three mandatory deductions reduce your gross weekly pay: PAYG income tax, the Medicare levy of <strong>{ML}</strong>, and HECS-HELP repayments if your income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax</h3>
             <p className="text-warmgray mb-4">
-              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
+              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below <strong>{formatAUD(LITO.nilOffsetIncome)}</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
             <p className="text-warmgray mb-4">
-              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &quot;Medicare Levy Surcharge&quot; (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
+              The Medicare levy is <strong>{ML}</strong> of your taxable income, withheld weekly. Under the {MEDICARE_LEVY_INCOME_YEAR} thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &quot;Medicare Levy Surcharge&quot; (MLS) adds an additional <strong>{MLS_PCT(MLS.tier1.rate)} to {MLS_PCT(MLS.tier3.rate)}</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>{MLS_PCT(MLS.tier1.rate)}</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>{MLS_PCT(MLS.tier2.rate)}</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>{MLS_PCT(MLS.tier3.rate)}</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
@@ -236,8 +242,8 @@ export default function WeeklyPayCalculatorContent() {
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><strong>Dividing by 48 instead of 52:</strong> Full-time employees receive 4 weeks of paid annual leave. The salary already covers 52 weeks, so dividing by 52 is correct for calculating gross weekly pay.</li>
               <li><strong>Subtracting super from take-home pay:</strong> The super guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid by your employer on top of your salary. It does not reduce your weekly take-home amount unless you make voluntary salary sacrifice contributions.</li>
-              <li><strong>Using the wrong financial year rates:</strong> Tax brackets, LITO thresholds, and HECS repayment rates change at the start of each financial year on 1 July. Calculations using the previous year&apos;s rates produce incorrect weekly figures. This Australian tax calculator uses the current FY{SITE_CONFIG.financialYear} rates.</li>
-              <li><strong>Ignoring the Medicare levy:</strong> Excluding the 2% Medicare levy understates total deductions by <strong>{formatAUD(EX.medicareLevy / 52, 2)}</strong> per week on an $80,000 salary.</li>
+              <li><strong>Using the wrong financial year rates:</strong> Tax rates and HECS-HELP repayment thresholds are set for each financial year, and changes start on 1 July. Calculations using the previous year&apos;s rates produce incorrect weekly figures. This Australian tax calculator uses the current FY{SITE_CONFIG.financialYear} rates.</li>
+              <li><strong>Ignoring the Medicare levy:</strong> Excluding the {ML} Medicare levy understates total deductions by <strong>{formatAUD(EX.medicareLevy / 52, 2)}</strong> per week on an $80,000 salary.</li>
               <li><strong>Confusing gross and net pay:</strong> Job advertisements quote gross (pre-tax) salaries. The actual weekly amount deposited into your bank account is the net pay after all deductions. At $80,000 gross, the difference between gross and net weekly pay is <strong>{formatAUD(EX_WEEKLY_GAP)}</strong>.</li>
             </ul>
           </section>

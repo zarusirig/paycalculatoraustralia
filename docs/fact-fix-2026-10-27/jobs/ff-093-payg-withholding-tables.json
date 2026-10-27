@@ -1,0 +1,177 @@
+{
+ "name": "ff-093-payg-withholding-tables",
+ "files": [
+  "modules/guide/payg-withholding-tables.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:216",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "216",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Schedule 2 (no TFN)"
+   ],
+   "whys": [
+    "The schedules table on the same page (line 294-295) says Schedule 2 (NAT 1013) covers horticulture and shearing workers, and the no-TFN rates sit inside Schedule 1 (line 291). The ordered list contradicts the table."
+   ],
+   "constants": [
+    "Hard-coded in the page; a shared PAYG schedules list in lib/constants/payg-withholding.ts would stop the two drifting"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:219",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "219",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Net pay is the gross amount minus PAYG withholding, minus superannuation (paid separately at the SG rate of 12%)"
+   ],
+   "whys": [
+    "The employer pays SG on top of ordinary time earnings. It is not taken out of the employee's gross pay unless the salary is quoted as a package. The 12% is also typed in, not taken from the SG constant."
+   ],
+   "constants": [
+    "SG rate constant in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.56,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:220",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "220",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Withheld tax is paid monthly (over $25,000 a year) or quarterly (smaller withholders) via the BAS"
+   ],
+   "whys": [
+    "This leaves out large withholders (over $1 million a year), who pay electronically within days of each pay and do not report on the BAS. The $25,000 threshold is typed in."
+   ],
+   "constants": [
+    "PAYG withholder-size thresholds, which belong in lib/constants/payg-withholding.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.08,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:406",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "406",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Claiming the tax-free threshold reduces your weekly withholding by approximately $67"
+   ],
+   "whys": [
+    "The figure is typed in and the gap between the two scales changes with income and financial year. It should be worked out with withholdingForPeriod(gross, 'weekly', 'noTft') minus withholdingForPeriod(gross, 'weekly', 'tft') at a stated gross."
+   ],
+   "constants": [
+    "lib/constants/payg-withholding.ts (withholdingForPeriod)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.56,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:414",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "414",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Common reasons for a withholding variation include ... salary sacrifice arrangements that reduce assessable income; example '$5,000+ in tools or uniforms'"
+   ],
+   "whys": [
+    "Salary sacrifice already lowers taxable gross through payroll and does not need a section 15-15 variation. The $5,000 example has no source."
+   ],
+   "constants": [
+    "None; confirm against the ATO PAYG withholding variation page"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:408",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "408",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Study loan repayment rates range from 1% to 10% depending on your assessable income bracket"
+   ],
+   "whys": [
+    "This looks out of date. From 2025-26 the HELP/STSL compulsory repayment is a marginal system on repayment income above the threshold, not a 1% to 10% share of total income. It is also based on repayment income, not assessable income."
+   ],
+   "constants": [
+    "HELP/STSL repayment constants (the module used by /hecs-help-calculator/)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:505",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "505",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "each additional dollar of gross pay is taxed at a higher marginal rate; net corresponds to a gross of approximately $1,500 (or $78,000 per year)"
+   ],
+   "whys": [
+    "Under progressive rates, only income above each bracket threshold is taxed at the higher rate, not every extra dollar. $1,500 is exact, not approximate, because example1500 is worked out from 1_500, and $1,500 and $78,000 are typed in rather than rendered with formatAUD."
+   ],
+   "constants": [
+    "example1500 input (1_500) in the page"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:389",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "389",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "PAYG instalments threshold to enter: tax liability of $1,000+"
+   ],
+   "whys": [
+    "This is a locked table cell and it is incomplete. For individuals, the ATO entry test also needs instalment income of $4,000 or more, and notional tax must be $1,000 or more."
+   ],
+   "constants": [
+    "None; check the ATO PAYG instalments entry rules"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/payg-withholding-tables.tsx:409",
+   "file": "modules/guide/payg-withholding-tables.tsx",
+   "line": "409",
+   "page": "/payg-withholding-tables/",
+   "claims": [
+    "Failing to supply a valid TFN within 28 days triggers the top marginal rate of 47% from dollar one"
+   ],
+   "whys": [
+    "47% is the no-TFN rate for residents only. The ATO no-TFN rate for foreign residents is 45%, and the 47% is typed in rather than taken from a constant."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.64,
+   "needsOwner": false
+  }
+ ]
+}

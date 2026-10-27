@@ -1,0 +1,146 @@
+{
+ "name": "ff-120-payday-super-employees-p",
+ "files": [
+  "modules/news/articles/payday-super-employees-payslip.tsx",
+  "modules/news/articles/payday-super-starts-july-2026.tsx",
+  "modules/news/articles/super-contribution-caps-2026-27.tsx",
+  "modules/news/articles/super-tax-changes-explained.tsx",
+  "modules/news/articles/tax-cut-july-2026.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/news/articles/payday-super-employees-payslip.tsx:68",
+   "file": "modules/news/articles/payday-super-employees-payslip.tsx",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/news/payday-super-employees-payslip/",
+   "claims": [
+    "If you switch jobs, a delay in fund details 'can flow through to the 7-business-day deadline for your first contribution'.",
+    "A delay in fund details 'can flow through to the 7-business-day deadline for your first contribution' (new job)."
+   ],
+   "whys": [
+    "The sibling article (payday-super-starts-july-2026.tsx line 30) says there is a longer window for some new employees while their fund details are confirmed. The two pages contradict each other on the new-employee deadline. The longer new-employee window under the payday super rules should be checked and one wording used on both pages.",
+    "This contradicts payday-super-starts-july-2026.tsx line 30, which gives a longer window for some new employees while their fund details are confirmed. The new-employee deadline should come from one shared constant."
+   ],
+   "constants": [
+    "No constant; payday super new-employee deadline should live in a super constants file (e.g. lib/constants super/payday-super) and feed both articles"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.85,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/payday-super-employees-payslip.tsx:25",
+   "file": "modules/news/articles/payday-super-employees-payslip.tsx",
+   "line": "25",
+   "page": "https://pay-calculator-australia.com/news/payday-super-employees-payslip/",
+   "claims": [
+    "Qualifying earnings are '(for most people, ordinary time earnings)'."
+   ],
+   "whys": [
+    "Population claim with no figure or source. Qualifying earnings is OTE plus salary-sacrificed amounts; the 'most people' qualifier is unsourced.",
+    "This is an unsourced population claim. Qualifying earnings is OTE plus salary-sacrificed amounts."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.75,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/payday-super-starts-july-2026.tsx:41",
+   "file": "modules/news/articles/payday-super-starts-july-2026.tsx",
+   "line": "41",
+   "page": "https://pay-calculator-australia.com/news/payday-super-starts-july-2026/",
+   "claims": [
+    "SBSCH closed because it could not process contributions fast enough, and historical data access ended 1 July 2026. 'Other advisory bodies' urged downloads."
+   ],
+   "whys": [
+    "The closure reason and the end of data access are stated without an ATO citation, and 'other advisory bodies' is a vague attribution. Verify both against the ATO's SBSCH closure guidance."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.14,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/payday-super-starts-july-2026.tsx:42",
+   "file": "modules/news/articles/payday-super-starts-july-2026.tsx",
+   "line": "42",
+   "page": "https://pay-calculator-australia.com/news/payday-super-starts-july-2026/",
+   "claims": [
+    "SBSCH closed because it couldn't process contributions fast enough to meet the 7-business-day deadline; access to historical data disappeared on 1 July 2026 (line 47); 'other advisory bodies' urged downloads."
+   ],
+   "whys": [
+    "The reason for closure and the loss of historical-data access are stated as fact with no ATO citation, and 'other advisory bodies' is a vague attribution. Verify against ATO SBSCH closure guidance."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/super-contribution-caps-2026-27.tsx:50",
+   "file": "modules/news/articles/super-contribution-caps-2026-27.tsx",
+   "line": "50",
+   "page": "/news/super-contribution-caps-2026-27/",
+   "claims": [
+    "Concessional and non-concessional caps are indexed periodically in line with wage growth, via increments to the general transfer balance cap. ... the general transfer balance cap moving from $2.0 million to $2.1 million, which flows through to lift both contribution caps (line 53)"
+   ],
+   "whys": [
+    "The concessional cap is indexed to AWOTE in $2,500 steps and the non-concessional cap is set at 4x the concessional cap. The general transfer balance cap is CPI-indexed and lifts the total super balance eligibility threshold, not the contribution caps. The causal chain in this paragraph looks wrong."
+   ],
+   "constants": [
+    "lib/constants/super-contributions.ts (CONCESSIONAL_CAP_BY_YEAR) and SUPER_GUARANTEE.concessionalCap"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question: the paragraph wrongly says the transfer balance cap drives contribution-cap indexation (source lines 50-53)."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/super-tax-changes-explained.tsx:39",
+   "file": "modules/news/articles/super-tax-changes-explained.tsx",
+   "line": "39",
+   "page": "/news/super-tax-changes-explained/",
+   "claims": [
+    "the law as passed uses realised earnings that each super fund calculates and reports to the ATO"
+   ],
+   "whys": [
+    "The page states that the revised Division 296 law has passed. Check its passage and start date against the ATO 'Better targeted superannuation concessions' page this article cites, because the reviewer could not confirm the bill's status."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.57,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/tax-cut-july-2026.tsx:64",
+   "file": "modules/news/articles/tax-cut-july-2026.tsx",
+   "line": "64",
+   "page": "/news/tax-cut-july-2026/",
+   "claims": [
+    "Combined with the $1,000 instant work-related deduction ..., Treasury estimates a worker on average earnings ... would be about $2,701 better off in 2027-28 compared with 2023-24 settings, or up to $2,816"
+   ],
+   "whys": [
+    "The figure in the lib/news.ts budget FAQ (line 420) includes every tax cut AND the $250 Working Australians Tax Offset. This article credits it to the rate cut plus the deduction only, so the attribution looks incomplete."
+   ],
+   "constants": [
+    "lib/news.ts federal-budget-2026-27-your-pay FAQ (line 420); a Budget 2026-27 constant if one exists"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.4,
+   "needsOwner": false
+  }
+ ]
+}

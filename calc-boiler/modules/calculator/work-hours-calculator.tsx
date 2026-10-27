@@ -768,7 +768,9 @@ export default function WorkHoursCalculator() {
               {OVERTIME_DEFAULTS.secondTierMultiplier}× after that) are a common pattern, not a
               universal rule. <strong>Your award sets the real thresholds.</strong> Retail bands
               overtime differently from Monday to Saturday; hospitality pays the first two hours at
-              time and a half then double time; many awards also trigger overtime on a daily limit.
+              time and a half then double time; some awards also pay overtime past a daily limit, such as
+              the Miscellaneous Award 2020 after 10 ordinary hours in a day (12 by agreement, cl 13.5 and
+              cl 19.1).
               Check the{" "}
               <Link
                 href="/overtime-penalty-rates-guide/"

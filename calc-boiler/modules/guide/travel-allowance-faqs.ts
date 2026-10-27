@@ -1,5 +1,5 @@
 import { formatAUD } from "@/lib/constants";
-import { DOMESTIC_TABLES, OVERTIME_MEAL_REASONABLE, PUBLISHED_DAILY_TOTALS, TD_2026_4 } from "@/lib/constants/travel-allowance";
+import { DOMESTIC_TABLES, OVERTIME_MEAL_REASONABLE, PUBLISHED_DAILY_TOTALS, SALARY_BANDS, TD_2026_4 } from "@/lib/constants/travel-allowance";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Figures come from
@@ -12,7 +12,7 @@ const T1 = DOMESTIC_TABLES[1];
 export const TRAVEL_ALLOWANCE_FAQS: Faq[] = [
   {
     q: "What is the ATO travel allowance rate for 2026-27?",
-    a: `The ATO doesn't set a rate employers must pay. It publishes "reasonable amounts" in ${TD_2026_4.id}. For a salary of $153,210 or less, the daily amount is ${formatAUD(SYD, 2)} in Sydney (${formatAUD(T1.accommodation.Sydney)} accommodation, ${formatAUD(T1.meals.breakfast + T1.meals.lunch + T1.meals.dinner, 2)} meals and ${formatAUD(T1.incidentals, 2)} incidentals), and it varies by city and salary band.`,
+    a: `The ATO doesn't set a rate employers must pay. It publishes "reasonable amounts" in ${TD_2026_4.id}. For a salary of ${SALARY_BANDS[1].label}, the daily amount is ${formatAUD(SYD, 2)} in Sydney (${formatAUD(T1.accommodation.Sydney)} accommodation, ${formatAUD(T1.meals.breakfast + T1.meals.lunch + T1.meals.dinner, 2)} meals and ${formatAUD(T1.incidentals, 2)} incidentals), and it varies by city and salary band.`,
   },
   {
     q: "Is a travel allowance taxed?",
@@ -20,7 +20,7 @@ export const TRAVEL_ALLOWANCE_FAQS: Faq[] = [
   },
   {
     q: "What is the overtime meal allowance for 2026-27?",
-    a: `The ATO's reasonable amount for an overtime meal in 2026-27 is ${formatAUD(OVERTIME_MEAL_REASONABLE)}. An award overtime meal allowance up to that amount isn't withheld from and isn't reported on your income statement.`,
+    a: `The ATO's reasonable amount for an overtime meal in ${TD_2026_4.incomeYear} is ${formatAUD(OVERTIME_MEAL_REASONABLE)}. An award overtime meal allowance up to that amount isn't withheld from and isn't reported on your income statement.`,
   },
   {
     q: "Do I need receipts if I get a travel allowance?",

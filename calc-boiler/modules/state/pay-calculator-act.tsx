@@ -66,7 +66,7 @@ export default function PayCalculatorACTPage() {
           <p className="text-lg text-warmgray">
             Canberra take-home pay is your gross salary minus federal income tax and the Medicare
             levy: the Australian Capital Territory (ACT) sets no income tax of its own. Canberra has the highest
-            earnings in the country and the shortest wait for long service leave. This salary
+            earnings in the country and, with Victoria, the shortest wait for long service leave. This salary
             calculator applies the ATO {SITE_CONFIG.financialYear} rates to your gross pay and shows
             your weekly, fortnightly and monthly take-home pay. The sections below cover the ACT-only
             parts: Canberra Day, Reconciliation Day, 7-year long service leave, and the public service
@@ -107,9 +107,9 @@ export default function PayCalculatorACTPage() {
             <H2>Is your Canberra salary normal? What the ABS says</H2>
             <p className="mb-4 text-warmgray">
               The ACT posts the highest full-time ordinary time earnings in Australia at{" "}
-              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week. It also has by some distance the
-              smallest gender gap of any jurisdiction, because classified public service pay scales,
-              not negotiated private rates, dominate the ACT workforce.
+              {formatAUD(PROFILE.awote.personsFullTime, 2)} a week. Its gap between men and women is{" "}
+              {formatAUD(PROFILE.awote.malesFullTime - PROFILE.awote.femalesFullTime, 2)} a week, the second
+              smallest of any state or territory after Tasmania.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
@@ -127,7 +127,7 @@ export default function PayCalculatorACTPage() {
               this if you tick the package box.
             </p>
             <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>APS Superannuation</strong>: federal public servants under the PSSap scheme receive employer super contributions of <strong>15.4%</strong>, compared to the standard SG rate of 12%. This adds <strong>$3,400 per year</strong> in additional super for an employee on $100,000. Learn more in our <Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline">Superannuation Guide</Link>.</li>
+              <li><strong>APS Superannuation</strong>: federal public servants under the PSSap scheme receive employer super contributions of <strong>15.4%</strong>, compared to the standard SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. This adds <strong>{formatAUD((0.154 - SUPER_GUARANTEE.rate) * 100_000)} per year</strong> in additional super for an employee on {formatAUD(100_000)}. Learn more in our <Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline">Superannuation Guide</Link>.</li>
             </ul>
             <p className="text-sm text-warmgray">
               The calculator above uses the statutory guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)},
@@ -141,7 +141,7 @@ export default function PayCalculatorACTPage() {
           <section>
             <H2>ACT public holidays and what they do to your pay</H2>
             <p className="mb-4 text-warmgray">
-              The ACT has 15 gazetted public holidays, more than NSW, which surrounds it. Two are
+              The ACT has {PROFILE.publicHolidays2026.length} public holidays in 2026, more than NSW, which surrounds it. Two are
               unique to the Territory: Canberra Day in March and Reconciliation Day, held on the first
               Monday on or after 27 May. A retail or hospitality worker in Civic therefore gets two
               penalty-rate days a year that a colleague fifteen minutes away in Queanbeyan does not.
@@ -153,8 +153,10 @@ export default function PayCalculatorACTPage() {
           <section>
             <H2>Long service leave in the ACT</H2>
             <p className="mb-4 text-warmgray">
-              ACT employees reach the long service leave entitlement faster than anywhere else in
-              Australia: after 7 years, and a pro-rata payment can be owed from as little as 5. If a
+              ACT employees reach the long service leave entitlement after{" "}
+              {PROFILE.longServiceLeave.takeAfterYears} years, the shortest wait in Australia alongside
+              Victoria, and a pro-rata payment can be owed from as little as{" "}
+              {PROFILE.longServiceLeave.proRataOnEndingYears}. If a
               public holiday falls during your long service leave in the ACT, the leave is extended by
               a day.
             </p>
@@ -172,8 +174,9 @@ export default function PayCalculatorACTPage() {
             <H2>Does ACT payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              The ACT charges the highest general payroll tax rate in the country (6.75%, rising with
-              payroll size), but only on employers with more than $1.75 million of Australian wages. The employer
+              The ACT charges the highest general payroll tax rate in the country ({PAYROLL_TAX_STATES.act.headlineRate}, rising with
+              payroll size), but only on employers with more than{" "}
+              {formatAUD(PAYROLL_TAX_STATES.act.annualThreshold)} of Australian wages. The employer
               pays it, and it is not deducted from ACT wages. The{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link> lists
               the deductions that do come out of your pay.

@@ -37,17 +37,20 @@ export default function TransferBalanceCapIncrease2026() {
         account has ever reached. Members who have already used their full $2.0 million cap don&apos;t
         get any extra room, as the indexation only benefits those with unused capacity. The ATO
         calculates each member&apos;s proportional indexation from their transfer balance account
-        history. Updated personal caps aren&apos;t expected to display in ATO online services until
-        13 July 2026, so there can be a short lag before your exact figure is confirmed.
+        history. The ATO said updated personal caps would display in ATO online services from 13
+        July 2026. You can view your personal cap in ATO online services through myGov (Super, then
+        Information, then Transfer balance cap).
       </p>
 
       <h2>Flow-on effects to contribution caps</h2>
       <p>
         The transfer balance cap increase also lifts the total super balance (TSB) threshold used to
         determine eligibility for non-concessional contributions, which rises in step to $2.1
-        million. This links directly to the wider{" "}
-        <Link href="/news/super-contribution-caps-2026-27/">2026-27 contribution cap increases</Link>,
-        including higher concessional and non-concessional contribution limits. The transfer balance
+        million, and it sets the total super balance thresholds for the non-concessional
+        bring-forward arrangement. The concessional and non-concessional caps are separate limits
+        that also rose for 2026-27 (see the{" "}
+        <Link href="/news/super-contribution-caps-2026-27/">2026-27 contribution cap increases</Link>
+        ). The transfer balance
         cap limits how much of your super can ever move into a tax-free retirement income stream, so
         its increase matters most for members already close to or above the previous $2.0 million
         limit.
@@ -55,9 +58,9 @@ export default function TransferBalanceCapIncrease2026() {
 
       <h2>Why the cap is indexed at all</h2>
       <p>
-        The transfer balance cap is indexed periodically in $100,000 increments to keep pace with
-        broader movements in average balances and cost of living, rather than being reviewed and
-        adjusted every year. The rise from $2.0 million to $2.1 million on 1 July 2026 is the latest
+        The general transfer balance cap is indexed in line with the consumer price index (CPI) in
+        $100,000 increments, so it does not rise every year (it stayed at $1.6 million from 2017-18
+        to 2020-21). The rise from $2.0 million to $2.1 million on 1 July 2026 is the latest
         of these increases. Indexation applies only to the general cap, and each member&apos;s personal
         cap is calculated proportionally. As a result, two people who started a pension in different
         years can have different personal transfer balance caps, even though the general cap is the

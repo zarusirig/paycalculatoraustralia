@@ -3,7 +3,7 @@
 // app/salary-sacrifice-calculator/page.tsx, so the structured data cannot drift
 // from the page. Caps, rates and thresholds come from lib/constants.
 
-import { EMPLOYMENT, MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS, TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
 import { EV_EXEMPTION, FBT, FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
 import {
   CARRY_FORWARD,
@@ -30,13 +30,21 @@ const TAKE_HOME_DROP = SACRIFICE * (1 - MID_RATE - MEDICARE_LEVY.rate);
 const SECOND = TAX_BRACKETS[1];
 const TOP_RATES = TAX_BRACKETS.slice(3).map((b) => b.rate);
 const DIV293_TOTAL = CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate;
+// How the second-bracket rate compares with the contributions tax (15% vs 15% in
+// 2026-27, 16% vs 15% in 2025-26), so the wording follows the constants.
+const SECOND_VS_CONTRIB =
+  SECOND.rate === CONTRIBUTIONS_TAX_RATE
+    ? "the same as"
+    : SECOND.rate > CONTRIBUTIONS_TAX_RATE
+      ? `${pct(SECOND.rate - CONTRIBUTIONS_TAX_RATE)} above`
+      : `${pct(CONTRIBUTIONS_TAX_RATE - SECOND.rate)} below`;
 
 const LAPTOP = 2_500;
 
 export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   {
     q: "What is salary sacrificing?",
-    a: "Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value, such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, so their income tax and PAYG withholding are lower.",
+    a: "Salary sacrificing is an arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value, such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee's assessable income, so their income tax and PAYG withholding are lower.",
   },
   {
     q: "How much can I salary sacrifice into super?",
@@ -52,15 +60,15 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is salary sacrificing suitable for everyone?",
-    a: `No. Salary sacrificing into super is most beneficial for middle-to-high income earners. Up to ${formatAUD(SECOND.max)}, your marginal income tax rate is ${pct(SECOND.rate)} for ${FY}, the same as the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax, so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
+    a: `No. Salary sacrificing into super is most beneficial for middle-to-high income earners. On income from ${formatAUD(TAX_FREE_THRESHOLD)} to ${formatAUD(SECOND.max)}, your marginal income tax rate for ${FY} is ${pct(SECOND.rate)}, ${SECOND_VS_CONTRIB} the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax, so salary sacrificing into super saves little beyond the ${pct(MEDICARE_LEVY.rate)} Medicare levy, and the money is locked away until you reach preservation age.`,
   },
   {
     q: "Can I salary sacrifice into things other than super?",
-    a: `Yes. Salary sacrifice arrangements can cover novated car leases, portable electronic devices, and additional employer super contributions. Non-super items attract Fringe Benefits Tax (FBT) unless they qualify for an exemption. Super sacrifice is the most tax-effective option for most Australian employees because concessional contributions are taxed at only ${pct(CONTRIBUTIONS_TAX_RATE)}.`,
+    a: `Yes. Salary sacrifice arrangements can cover novated car leases, portable electronic devices, and additional employer super contributions. Non-super items attract Fringe Benefits Tax (FBT) unless they qualify for an exemption. Super sacrifice saves tax when your marginal rate plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy is higher than the ${pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on concessional contributions.`,
   },
   {
     q: "Does salary sacrifice reduce my HECS-HELP repayment?",
-    a: "No. The ATO calculates HECS-HELP repayments against your repayment income, which includes taxable income plus reportable employer super contributions plus reportable fringe benefits. Salary sacrifice reduces taxable income but the sacrificed amounts are added back as reportable items, so the net effect on your HECS repayment is zero. Use the HECS-HELP Calculator to model your repayment obligation.",
+    a: "Not for super. The ATO calculates HECS-HELP repayments against your repayment income, which includes taxable income plus reportable super contributions plus reportable fringe benefits. Salary sacrificed super comes off taxable income and is added back dollar for dollar as a reportable super contribution, so your HECS repayment stays the same. Non-super benefits such as a novated lease are added back at the grossed-up reportable fringe benefits amount, which can differ from the salary you gave up, so your repayment can change. Use the HECS-HELP Calculator to model your repayment obligation.",
     links: { "HECS-HELP Calculator": "/hecs-help-calculator/" },
   },
   {
@@ -77,7 +85,7 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I salary sacrifice or pay off my mortgage faster?",
-    a: `Compare your mortgage interest rate with your expected after-tax super return. At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the ${pct(CONTRIBUTIONS_TAX_RATE)} concessional tax rate is significantly lower than the ${pct(MID_RATE)}+ marginal rate on the same income used for extra mortgage repayments. If your mortgage rate is higher than your expected super return after the tax advantage, prioritise the mortgage. Enter your salary and sacrifice amount in the calculator above to see the tax saving at your income.`,
+    a: `Compare your mortgage interest rate with your expected after-tax super return. A dollar of salary sacrificed into super is taxed at ${pct(CONTRIBUTIONS_TAX_RATE)}, while a dollar used for extra mortgage repayments is first taxed at your marginal rate plus the Medicare levy (${pct(MID_RATE + MEDICARE_LEVY.rate)} in the ${pct(MID_RATE)} bracket), so more of each dollar reaches super. If your mortgage rate is higher than your expected super return after the tax advantage, prioritise the mortgage. Enter your salary and sacrifice amount in the calculator above to see the tax saving at your income.`,
   },
   {
     q: "Can I salary sacrifice a car?",
@@ -89,7 +97,7 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice affect Centrelink payments?",
-    a: "Salary sacrifice has little effect on Centrelink payments tested on adjusted taxable income (ATI). Services Australia calculates eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments using ATI, which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice reduces taxable income but increases those reportable items, so ATI remains similar. The net impact on Centrelink eligibility is typically minimal.",
+    a: "It depends on what you sacrifice. Services Australia uses adjusted taxable income (ATI) for family assistance payments such as Family Tax Benefit and Child Care Subsidy, and for Carer Allowance and the Commonwealth Seniors Health Card. ATI adds back reportable super contributions and reportable fringe benefits. Salary sacrificed super is added back dollar for dollar, so your ATI stays the same. Non-super benefits such as a novated lease are added back at the grossed-up reportable fringe benefits amount, which can differ from the salary you gave up, so your ATI can change.",
   },
   {
     q: "Do not-for-profit employees get extra salary sacrifice benefits?",
@@ -98,6 +106,6 @@ export const SALARY_SACRIFICE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I salary sacrifice a laptop or phone?",
-    a: `Yes. Portable electronic devices used primarily for employment duties are FBT-exempt. Eligible items include laptops, tablets, mobile phones, and GPS devices. The exemption applies to 1 device per category per FBT year (${FBT.yearStart} to ${FBT.yearEnd}). The employer purchases the device from your pre-tax salary, reducing your taxable income by the device cost. A ${formatAUD(LAPTOP)} laptop at a ${pct(MID_RATE)} marginal rate saves ${formatAUD(LAPTOP * MID_RATE)} in income tax.`,
+    a: `Yes. Portable electronic devices used primarily for employment duties are FBT-exempt. Eligible items include laptops, tablets, mobile phones, and GPS devices. The exemption applies to 1 device per category per FBT year (${FBT.yearStart} to ${FBT.yearEnd}). From 1 April 2027, work-related items provided through a salary sacrifice arrangement are no longer exempt and are subject to FBT. The employer purchases the device from your pre-tax salary, reducing your taxable income by the device cost. A ${formatAUD(LAPTOP)} laptop at a ${pct(MID_RATE)} marginal rate saves ${formatAUD(LAPTOP * MID_RATE)} in income tax.`,
   },
 ];

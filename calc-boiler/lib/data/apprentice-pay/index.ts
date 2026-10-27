@@ -342,7 +342,7 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
     adult: AUTOMOTIVE_ADULT,
     notes: [
       "A tool allowance applies to tradespeople and is reduced for apprentices (cl 19.6); it is not in these figures.",
-      "Adult apprentices cannot have their pay cut if they were already employed in the vehicle industry before starting (cl 16.10(c)).",
+      "Adult apprentices cannot have their pay cut if they were employed in the vehicle industry by the same employer immediately before starting (cl 16.10(c)).",
       SCHOOL_BASED_NOTE,
     ],
     tradePageHref: "/job-pay-rates/mechanic/",

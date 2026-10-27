@@ -12,12 +12,23 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
+import { PART_YEAR_TFT } from "@/lib/constants/tax-free-threshold";
 import { WHM_TAX_BRACKETS_2025_26 } from "@/lib/constants/tax-rates-reference";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const [NR1, NR2, NR3] = NON_RESIDENT_TAX_BRACKETS;
+// The 2025-26 WHM scale is unchanged for 2026-27: ATO Schedule 15 (published
+// 17 June 2026, applies to payments from 1 July 2026), Table A "Working holiday
+// makers income tax rates for 2026-27": "$0 - $45,000 | 15% on each $1".
 const WHM1 = WHM_TAX_BRACKETS_2025_26[0];
+/**
+ * DASP tax rates. ATO "Departing Australia superannuation payment (DASP)",
+ * last updated 21 April 2026, table "DASP tax rates": tax-free component nil;
+ * taxable component taxed element 35% (non-WHM) / 65% (WHM); untaxed element
+ * 45% (non-WHM) / 65% (WHM). Read 27 October 2026.
+ */
+const DASP_RATES = { taxedElement: 0.35, untaxedElement: 0.45, whm: 0.65 } as const;
 const FY = SITE_CONFIG.financialYear;
 
 export const NON_RESIDENT_FAQS: readonly FaqItem[] = [
@@ -35,11 +46,11 @@ export const NON_RESIDENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What if my residency status changes mid-year?",
-    a: `Your tax return is split into resident and non-resident periods. Resident rates apply to income earned during the resident period, and non-resident rates to income during the non-resident period. The ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold is pro-rated based on the number of months you were a resident.`,
+    a: `You become a part-year resident, and resident tax rates apply to your taxable income for the year. Your tax-free threshold is reduced: a flat ${formatAUD(PART_YEAR_TFT.flat)}, plus ${formatAUD(PART_YEAR_TFT.proRata)} divided by 12 and multiplied by the months you were a resident (counting the month you arrived or left). Only a full 12 months as a resident gives the full ${formatAUD(TAX_FREE_THRESHOLD)}. In your tax return you give the date your residency changed and the number of months you were a resident, and the ATO works out your threshold.`,
   },
   {
     q: "Do non-residents receive superannuation?",
-    a: `Yes. Employers must pay the ${pct(SUPER_GUARANTEE.rate)} superannuation guarantee on top of gross salary for all employees, regardless of residency status. Non-residents who leave Australia permanently can apply for a Departing Australia Superannuation Payment (DASP). The tax rate on DASP is 35% for non-residents (65% for working holiday makers).`,
+    a: `Yes. Employers must pay the ${pct(SUPER_GUARANTEE.rate)} superannuation guarantee on top of gross salary, regardless of your residency status. If you worked here on a temporary visa, you can claim your super as a Departing Australia Superannuation Payment (DASP) once you have left Australia and your visa has ended. Australian and New Zealand citizens and permanent residents cannot claim a DASP. The fund withholds DASP tax of ${pct(DASP_RATES.taxedElement)} on the taxed element and ${pct(DASP_RATES.untaxedElement)} on the untaxed element of the taxable component. If the payment includes super from contributions made while you held a working holiday visa (subclass 417 or 462), ${pct(DASP_RATES.whm)} applies to the whole taxable component.`,
   },
   {
     q: "Do non-residents need a Tax File Number?",
@@ -67,7 +78,7 @@ export const NON_RESIDENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is a working holiday maker a non-resident?",
-    a: `Not for tax purposes. Working holiday makers (subclass 417/462) have their own tax schedule with a ${pct(WHM1.rate)} rate on the first ${formatAUD(WHM1.max)}. Standard non-resident rates (${pct(NR1.rate)} from dollar one) only apply if the employer has not registered as an employer of working holiday makers with the ATO. WHMs are treated as a distinct taxpayer category, separate from both residents and standard non-residents.`,
+    a: `A working holiday maker (subclass 417 or 462) can be either an Australian resident or a foreign resident for tax purposes, and the ATO says most are foreign residents. For most WHMs, residency does not change the tax: working holiday maker rates apply either way, starting at ${pct(WHM1.rate)} on the first ${formatAUD(WHM1.max)} for FY${FY}. The exception is a WHM who is an Australian resident for tax purposes and comes from a non-discrimination article (NDA) country, who can be taxed like a resident Australian national. If your employer is not registered with the ATO as a WHM employer, it must withhold at foreign resident rates (${pct(NR1.rate)} from the first dollar). That changes only the tax taken from each pay, not the WHM rates your income is assessed at in your tax return.`,
   },
   {
     q: "Do I need to lodge a tax return after leaving Australia?",

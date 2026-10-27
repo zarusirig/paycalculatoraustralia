@@ -4,7 +4,7 @@ import HECSHelpCalculatorPage, { type CalculatorFaq } from "@/modules/calculator
 import WhatsNextInline from "@/components/common/whats-next-inline";
 import HECSHelpCalculatorContent from "@/modules/calculator/hecs-help-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
-import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD } from "@/lib/constants";
+import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD, formatPercent } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -16,6 +16,8 @@ const URL = `${BASE}/hecs-help-calculator/`;
 const T = HECS_HELP.minimumThreshold;
 const B2 = HECS_HELP.bands[2];
 const B3 = HECS_HELP.bands[3];
+/** "2.8%". Raw indexationRate * 100 renders as 2.8000000000000003. */
+const IDX = formatPercent(HECS_HELP.indexationRate, 1);
 
 // Meta intent pass 23 Oct 2026: "hecs calculator" (110 impr) is the head query,
 // ahead of "hecs repayment calculator"; "how much hecs do i pay" is answered first.
@@ -74,7 +76,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "Is HECS interest free?",
-    a: `Yes. No interest is charged on a HECS-HELP debt. Instead the ATO applies indexation each 1 June to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. The 1 June 2026 rate was ${HECS_HELP.indexationRate * 100}%, so a balance of ${formatAUD(30_000)} carried over 11 months rose by ${formatAUD(30_000 * HECS_HELP.indexationRate)}.`,
+    a: `Yes. No interest is charged on a HECS-HELP debt. Instead the ATO applies indexation each 1 June to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. The ${HECS_HELP.indexationDate} rate was ${IDX}, so a balance of ${formatAUD(30_000)} carried over 11 months rose by ${formatAUD(30_000 * HECS_HELP.indexationRate)}.`,
   },
   {
     q: "How do I calculate my HECS repayment?",
@@ -110,7 +112,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "What was the indexation rate in 2026?",
-    a: `The HELP indexation rate was ${HECS_HELP.indexationRate * 100}%, applied on ${HECS_HELP.indexationDate} to the part of the balance unpaid for more than 11 months. Indexation is the lower of CPI or the Wage Price Index, so a study loan cannot grow faster than wages.`,
+    a: `The HELP indexation rate was ${IDX}, applied on ${HECS_HELP.indexationDate} to the part of the balance unpaid for more than 11 months. Indexation is the lower of CPI or the Wage Price Index, so a study loan cannot grow faster than wages.`,
   },
   {
     q: `What is the HECS repayment threshold for ${SITE_CONFIG.financialYear}?`,
@@ -122,7 +124,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "Is HECS interest free?",
-    a: "Yes, in the sense that there is no interest rate. The government charges no interest on study and training support loans. What it does apply is indexation each 1 June, at the lower of CPI or the Wage Price Index, which stops the debt losing value rather than adding a profit margin. The indexation applied on 1 June 2026 was 2.8%.",
+    a: `Yes, in the sense that there is no interest rate. The government charges no interest on study and training support loans. What it does apply is indexation each 1 June, at the lower of CPI or the Wage Price Index, which stops the debt losing value rather than adding a profit margin. The indexation applied on ${HECS_HELP.indexationDate} was ${IDX}.`,
   },
   {
     q: "How much HECS do I have to pay?",
@@ -142,7 +144,7 @@ const FAQS: readonly CalculatorFaq[] = [
   },
   {
     q: "Is it worth paying off HECS early?",
-    a: `There is no discount or bonus for voluntary repayments, so it is purely a rate comparison: ${HECS_HELP.indexationRate * 100}% indexation against what the money would earn or save elsewhere. Higher-cost debt like credit cards and car loans should come first. The strongest cases for paying early are an imminent mortgage application, a nearly-cleared balance, or moving overseas.`,
+    a: `There is no discount or bonus for voluntary repayments, so it is purely a rate comparison: ${IDX} indexation against what the money would earn or save elsewhere. Higher-cost debt like credit cards and car loans should come first. The strongest cases for paying early are an imminent mortgage application, a nearly-cleared balance, or moving overseas.`,
   },
   {
     q: "Are HECS repayments tax-deductible?",

@@ -5,7 +5,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatPercent, TAX_BRACKETS, TAX_BRACKETS_2025_26 } from "@/lib/constants";
 import {
   calculatePAYGWithholding,
   NO_TFN_RATES,
@@ -47,6 +47,12 @@ const example8000stsl = calculatePAYGWithholding(8_000, "monthly", { hasSTSL: tr
 const example6500noTft = calculatePAYGWithholding(6_500, "monthly", { claimsTaxFreeThreshold: false });
 const example6500Foreign = calculatePAYGWithholding(6_500, "monthly", { foreignResident: true });
 
+// The 2026-27 cut to the second bracket, from the bracket constants: the 30% bracket's
+// base tax fell by this much (2025-26 base minus 2026-27 base).
+const SECOND_BRACKET_NOW = TAX_BRACKETS[1];
+const SECOND_BRACKET_BEFORE = TAX_BRACKETS_2025_26[1];
+const ANNUAL_CUT = TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS[2].base;
+
 // The weekly-times-four error, quantified from the engine rather than asserted.
 const weeklyEquivalentOfMonth = calculatePAYGWithholding(6_500 / 4, "weekly").totalWithheld * 4;
 
@@ -79,7 +85,7 @@ export default function MonthlyTaxTablePage() {
           <TableDownloads frequency="monthly" fy={PAYG_FINANCIAL_YEAR} doc={ATO_MONTHLY} className="mb-6" />
           <TaxTableLookupWidget frequency="monthly" defaultGross={6_500} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
-            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201 to $45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
+            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut ({formatPercent(SECOND_BRACKET_NOW.rate, 0)} on {formatAUD(SECOND_BRACKET_NOW.min)} to {formatAUD(SECOND_BRACKET_NOW.max)}) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage placement="content" className="mb-0 mt-6" />
@@ -111,8 +117,9 @@ export default function MonthlyTaxTablePage() {
                 caption={`Monthly tax table: PAYG withholding by monthly earnings, ATO ${ATO_MONTHLY.nat}`}
               />
               <p className="text-sm text-warmgray-light">
-                Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
-                sample amounts exactly.{" "}
+                Each withholding amount is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
+                sample amounts exactly. The study loan total adds the component worked out from the separate Schedule 8
+                ({ATO_SCHEDULE_8.nat}) coefficients.{" "}
                 <Link href="/monthly-pay-calculator/">Calculate your exact monthly pay here.</Link>
               </p>
             </section>
@@ -306,11 +313,14 @@ export default function MonthlyTaxTablePage() {
             <section id="what-changed">
               <h2>What Changed in the Monthly Tax Table for 2026-27?</h2>
               <p>
-                From 1 July 2026 the marginal rate on income between $18,201 and $45,000 fell from{" "}
-                <strong>16% to 15%</strong> under the legislated cost-of-living tax cuts, so the reissued {ATO_MONTHLY.nat} withholds
-                up to about <strong>{formatAUD(268 / 12)} less per month</strong> than 2025-26 for anyone earning $45,000 a year or more.
-                The same update lifted the Medicare levy low-income thresholds and re-indexed the study and training loan repayment
-                thresholds across all 15 withholding schedules. A further cut to 14% is legislated for 1 July 2027. See our{" "}
+                From 1 July 2026 the marginal rate on income between {formatAUD(SECOND_BRACKET_NOW.min)} and{" "}
+                {formatAUD(SECOND_BRACKET_NOW.max)} fell from{" "}
+                <strong>{formatPercent(SECOND_BRACKET_BEFORE.rate, 0)} to {formatPercent(SECOND_BRACKET_NOW.rate, 0)}</strong> under the legislated cost-of-living
+                tax cuts, so the reissued {ATO_MONTHLY.nat} withholds about <strong>{formatAUD(ANNUAL_CUT / 12)} less per month</strong> than
+                2025-26 for anyone earning {formatAUD(SECOND_BRACKET_NOW.max)} a year or more (the {formatAUD(ANNUAL_CUT)} annual tax cut
+                spread over 12 pays). The ATO reissued all 15 withholding schedules and 12 tax tables for payments from 1 July 2026. The
+                same update lifted the Medicare levy low-income thresholds and indexed the study and training loan repayment
+                thresholds. A further cut to 14% is legislated for 1 July 2027. See our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
             </section>

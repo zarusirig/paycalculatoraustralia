@@ -1,0 +1,143 @@
+{
+ "name": "ff-117-award-wage-increase-2026",
+ "files": [
+  "modules/news/articles/award-wage-increase-2026-industries.tsx",
+  "modules/news/articles/c13-classification-phase-out.tsx",
+  "modules/news/articles/centrelink-changes-july-2026.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/news/articles/award-wage-increase-2026-industries.tsx:9",
+   "file": "modules/news/articles/award-wage-increase-2026-industries.tsx",
+   "line": "9",
+   "page": "/news/award-wage-increase-2026-industries/",
+   "claims": [
+    "\"separate from the 6% national minimum wage increase\" (also line 38: \"rose 6% to $26.44 an hour\")"
+   ],
+   "whys": [
+    "$24.95 to $26.44 is +5.97%, which is the figure the brief lists as correct. 6% is a rounded, hard-coded figure, not a value derived from code. lib/news.ts line 70 also says 6%."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts EMPLOYMENT.minimumWageHourly / minimumWageHourlyPrevious (derive the % from these)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's fact questions: the rounded 6% vs 5.97% NMW; 'uniformly across every modern award' vs the C13/C14 5.95% rise; junior rates moving by the 'same 4.75%'; 'after' vs 'on or after 1 July'; C13 5.95% vs 5.97%; and the C13 article claiming 3 stages while also saying 'could complete it over two more reviews or spread it further'. These were left for a human to decide, not changed in this pass."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.56,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/award-wage-increase-2026-industries.tsx:25",
+   "file": "modules/news/articles/award-wage-increase-2026-industries.tsx",
+   "line": "25",
+   "page": "/news/award-wage-increase-2026-industries/",
+   "claims": [
+    "\"The 4.75% increase applies uniformly across every modern award\" (also lead line 8: \"Every modern award minimum rate rises 4.75%\")"
+   ],
+   "whys": [
+    "The sibling C13 article says C13 and C14 rose 5.95% (4.75% plus an extra 1.2%) in the same review. So not every award minimum rate rose a uniform 4.75%."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts AWR_2026_FLOORS.increase; lib/constants/modern-awards.ts C14/C13 rows (lines 778-779)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/award-wage-increase-2026-industries.tsx:64",
+   "file": "modules/news/articles/award-wage-increase-2026-industries.tsx",
+   "line": "64",
+   "page": "/news/award-wage-increase-2026-industries/",
+   "claims": [
+    "\"apply the new rates from the first full pay period after 1 July 2026\""
+   ],
+   "whys": [
+    "The decision says \"on or after 1 July 2026\" (minimum-wage.ts NMW_DECISION.operativeNote), and so do the lead and the key facts on this page. lib/news.ts line 119 (description) also says \"after\"."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts NMW_DECISION.operativeNote"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/award-wage-increase-2026-industries.tsx:57",
+   "file": "modules/news/articles/award-wage-increase-2026-industries.tsx",
+   "line": "57",
+   "page": "/news/award-wage-increase-2026-industries/",
+   "claims": [
+    "\"Junior, apprentice and trainee rates ... move by the same 4.75%\""
+   ],
+   "whys": [
+    "Under the Manufacturing Award, junior percentages attach to the C13 / V2 rate (modern-awards.ts lines 753-754 and 867-869), and C13 rose more than 4.75%. The 18 to 20 junior transition from 1 Dec 2026 (minimum-wage.ts header) also changes junior rates separately."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts junior base level; lib/constants/junior-rates.ts JUNIOR_TRANSITION_SCHEDULES"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/c13-classification-phase-out.tsx:35",
+   "file": "modules/news/articles/c13-classification-phase-out.tsx",
+   "line": "35",
+   "page": "/news/c13-classification-phase-out/",
+   "claims": [
+    "\"C13 rates rise by 5.95% in total\" (also lead line 10, key facts line 16, and lib/news.ts line 160 FAQ)"
+   ],
+   "whys": [
+    "modern-awards.ts line 779 gives C13 / V2 as $26.44, which equals the NMW. The NMW and C13 were both $24.95 before, and $24.95 to $26.44 is +5.97%, not 5.95%. Check whether the extra amount is 1.2% or about 1.22%."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts C13 / V2 row (line 779); lib/constants/australian-tax.ts EMPLOYMENT.minimumWageHourlyPrevious"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.03,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/c13-classification-phase-out.tsx:50",
+   "file": "modules/news/articles/c13-classification-phase-out.tsx",
+   "line": "50",
+   "page": "/news/c13-classification-phase-out/",
+   "claims": [
+    "\"junior, apprentice and trainee loadings continue to be calculated off the adjusted base rate at each stage\""
+   ],
+   "whys": [
+    "Apprentice rates in many awards are a percentage of the tradesperson (C10) rate, not the C13 base. Check whether the claim holds for apprentices."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/centrelink-changes-july-2026.tsx:27",
+   "file": "modules/news/articles/centrelink-changes-july-2026.tsx",
+   "line": "27",
+   "page": "/news/centrelink-changes-july-2026/",
+   "claims": [
+    "FTB Part A $306.46 \"for each child aged 13 to 15\", \"up a few dollars on last year's rates\""
+   ],
+   "whys": [
+    "The constant is age13to19 (centrelink-family-payments.ts:197), so the 13 to 15 band is narrower than the rate's real coverage (16 to 19 in secondary study gets it too). 'A few dollars' has no 2025-26 figure to back it."
+   ],
+   "constants": [
+    "FTB_A maxFortnightly.age13to19 (lib/constants/centrelink-family-payments.ts:197)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.32,
+   "needsOwner": false
+  }
+ ]
+}

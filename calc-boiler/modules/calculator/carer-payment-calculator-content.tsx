@@ -34,7 +34,7 @@ function source(title: string, url: string): SourceLink {
 const R = CARER_PAYMENT_RATES;
 const IT = AGE_PENSION_INCOME_TEST;
 const CP = CARER_PAYMENT;
-const TABLE_INCOMES = [0, 226, 400, 600, 800, 1_000, 1_500, 2_000, 2_400, R.publishedCutOff.single];
+const TABLE_INCOMES = [0, IT.single.freeArea, 400, 600, 800, 1_000, 1_500, 2_000, 2_400, R.publishedCutOff.single];
 
 const SOURCES_LIST = [
   source("How much Carer Payment you can get", SRC.carerPaymentRates),

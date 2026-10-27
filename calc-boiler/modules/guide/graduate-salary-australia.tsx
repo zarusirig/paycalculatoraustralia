@@ -11,8 +11,9 @@ import {
   nurseStarts,
   teacherStarts,
 } from "@/lib/data/graduate-salary";
+import { rowAnnual } from "@/lib/data/job-pay-rates";
 import { takeHomeHref } from "@/lib/data/teacher-pay";
-import { GRADUATE_SALARY_FAQS } from "./graduate-salary-australia-faqs";
+import { ENGINEER_LEVEL1, GRADUATE_SALARY_FAQS, LAW_GRADUATE_ROW, NSW_INTERN } from "./graduate-salary-australia-faqs";
 import {
   ARTICLE_CLASS,
   Breadcrumbs,
@@ -66,7 +67,7 @@ export default function GraduateSalaryAustraliaPage() {
         items={[
           { k: "All undergraduates", v: f0(QILT_MEDIANS_2025.all), s: "Median full-time, QILT 2025" },
           { k: "Medicine", v: f0(QILT_MEDIANS_2025.medicine), s: "Highest of the six fields" },
-          { k: "Engineering award start", v: f0(68_538), s: "Level 1, pay point 1.1 minimum" },
+          { k: "Engineering award start", v: f0(rowAnnual(ENGINEER_LEVEL1.pp11)), s: "Level 1, pay point 1.1 minimum" },
           { k: "Data from", v: "Official only", s: "QILT, awards, state agreements" },
         ]}
       />
@@ -97,7 +98,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="lawyer">Graduate Lawyer Salary</H2>
             <p>
-              Law and paralegal studies graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.law)}. The Legal Services Award covers fewer law graduates than the survey does: a law graduate doing practical legal training in a private firm is covered at Level 5, at least {f2(GRADUATE_PROFESSIONS[0].published!.annual / 52 / 38)} an hour, about {f0(GRADUATE_PROFESSIONS[0].published!.annual)} a year. Once admitted, a lawyer is award-free, so pay comes from the contract. We don&rsquo;t publish firm salary bands, because no official source does. See <Link href={GRADUATE_PROFESSIONS[0].detailHref}>{GRADUATE_PROFESSIONS[0].detailLabel}</Link> and, for take-home on {f0(QILT_MEDIANS_2025.law)}, <Link href={takeHomeHref(QILT_MEDIANS_2025.law)}>the take-home page for {f0(takeHomeAmount(QILT_MEDIANS_2025.law))}</Link>.
+              Law and paralegal studies graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.law)}. The Legal Services Award covers fewer law graduates than the survey does: a law graduate doing practical legal training in a private firm is covered at Level 5, at least {f2(LAW_GRADUATE_ROW.hourly)} an hour, about {f0(GRADUATE_PROFESSIONS[0].published!.annual)} a year. Once admitted, a lawyer is award-free, so pay comes from the contract. We don&rsquo;t publish firm salary bands, because no official source does. See <Link href={GRADUATE_PROFESSIONS[0].detailHref}>{GRADUATE_PROFESSIONS[0].detailLabel}</Link> and, for take-home on {f0(QILT_MEDIANS_2025.law)}, <Link href={takeHomeHref(QILT_MEDIANS_2025.law)}>the take-home page for {f0(takeHomeAmount(QILT_MEDIANS_2025.law))}</Link>.
             </p>
           </section>
 
@@ -117,7 +118,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="engineer">Graduate Engineer Salary</H2>
             <p>
-              Engineering graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.engineering)}. The legal floor is the Professional Employees Award: a graduate engineer with a 4 or 5-year degree recognised by Engineers Australia is Level 1, pay point 1.1, at least {f0(68_538)} a year ({f2(34.57)} an hour), then moves through pay points 1.2 to 1.4 ($69,688, $72,590 and $76,267) as they are assessed competent. A 3-year degree starts at $66,825. Employers commonly pay above the award, which the survey median reflects. See <Link href={GRADUATE_PROFESSIONS[2].detailHref}>{GRADUATE_PROFESSIONS[2].detailLabel}</Link>.
+              Engineering graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.engineering)}. The legal floor is the Professional Employees Award: a graduate engineer with a 4 or 5-year degree recognised by Engineers Australia is Level 1, pay point 1.1, at least {f0(rowAnnual(ENGINEER_LEVEL1.pp11))} a year ({f2(ENGINEER_LEVEL1.pp11.hourly)} an hour), then moves through pay points 1.2 to 1.4 ({f0(rowAnnual(ENGINEER_LEVEL1.pp12))}, {f0(rowAnnual(ENGINEER_LEVEL1.pp13))} and {f0(rowAnnual(ENGINEER_LEVEL1.pp14))}) as they are assessed competent. A 3-year degree starts at {f0(rowAnnual(ENGINEER_LEVEL1.pp11Degree3))}. The survey median shows that at least half of engineering graduates in full-time work were paid above the award minimum. See <Link href={GRADUATE_PROFESSIONS[2].detailHref}>{GRADUATE_PROFESSIONS[2].detailLabel}</Link>.
             </p>
           </section>
 
@@ -144,7 +145,7 @@ export default function GraduateSalaryAustraliaPage() {
           <section>
             <H2 id="doctor">Intern Doctor Salary</H2>
             <p>
-              Medicine graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.medicine)}. NSW Health pays interns {f0(80_638)} a year from the first full pay period on or after 1 July 2025 (Information Bulletin IB2026_007, an interim increase pending the NSW Industrial Relations Commission&rsquo;s decision, so check NSW Health for any later rate). The Medical Practitioners Award sets a lower national-system minimum of {f0(NMW_INTERN_AWARD_MINIMUM.annual)} ({f2(NMW_INTERN_AWARD_MINIMUM.hourly)} an hour) for employers such as private hospitals. Other states&rsquo; intern salaries aren&rsquo;t shown because we couldn&rsquo;t verify them from an official source. See <Link href={GRADUATE_PROFESSIONS[5].detailHref}>{GRADUATE_PROFESSIONS[5].detailLabel}</Link>.
+              Medicine graduates in full-time work reported a median of {f0(QILT_MEDIANS_2025.medicine)}. NSW Health pays interns {f0(NSW_INTERN.annual)} a year from the first full pay period on or after 1 July 2025 (Information Bulletin IB2026_007). This is an interim rate while the NSW Industrial Relations Commission arbitrates the doctors&rsquo; awards, and any further increase follows the Commission&rsquo;s final decision. The Medical Practitioners Award sets a lower national-system minimum of {f0(NMW_INTERN_AWARD_MINIMUM.annual)} ({f2(NMW_INTERN_AWARD_MINIMUM.hourly)} an hour) for employers such as private hospitals. Other states&rsquo; intern salaries aren&rsquo;t shown because we couldn&rsquo;t verify them from an official source. See <Link href={GRADUATE_PROFESSIONS[5].detailHref}>{GRADUATE_PROFESSIONS[5].detailLabel}</Link>.
             </p>
           </section>
 

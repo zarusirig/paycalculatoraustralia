@@ -33,8 +33,25 @@
 // none is AG2026/2746): still unofficial. The FAQ and notice wording now says
 // what every other page says: the AEU reports approval from 23 October 2026
 // and the decision is not yet published.
+// 27 October 2026: official. [2026] FWCA 2836 (AG2026/2746, Deputy President
+// Millhouse, 16 October 2026) approves the VGSA 2026 with undertakings; it
+// operates from 23 October 2026 (s 54), nominal expiry 10 August 2030
+// (AE534356, PR815386). The department's Enterprise Bargaining overview
+// ("Updated 26 October 2026") confirms it. Its Salary Rates page ("Updated
+// 26 October 2026") says the policy "is under review" and no VGSA 2026
+// schedule is published, so the scales below stay on the VGSA 2022 1 July 2025
+// column for now. Notices, nextIncrease and FAQs now state the approval as
+// official. Moving the scales to the VGSA 2026 is an owner decision (see the
+// steps in vic-2026-agreement.ts).
 
 import type { TeacherPayState } from "./types";
+import { formatAUD } from "../../constants/australian-tax";
+import { proposedRate } from "./vic-2026-agreement";
+
+/** VGSA 2026 Schedule 1 rate, formatted, from the first pay period on or after 1 October 2026 (column 1). */
+const oct2026 = (scaleId: string, label: string) => formatAUD(proposedRate(scaleId, label, 1)!);
+/** VGSA 2026 Schedule 1 rate, formatted, from the first pay period on or after 1 November 2029 (column 4). */
+const nov2029 = (label: string) => formatAUD(proposedRate("classroom-teachers-2026", label, 4)!);
 
 export const VIC_TEACHER_PAY: TeacherPayState = {
   slug: "vic",
@@ -50,9 +67,9 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   agreementUrl: "https://www2.education.vic.gov.au/pal/salary-rates/overview",
   ratesEffectiveFrom: "the first pay period on or after 1 July 2025",
   nextIncrease: {
-    date: "pending publication of the Fair Work Commission's decision on the VGSA 2026",
+    date: "the first pay period on or after 1 November 2027",
     detail:
-      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026). The department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746). On 22 October 2026 the matter was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided. The Australian Education Union Victorian Branch says the Commission approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked. The new agreement's Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. See the 2026 pay rise section.",
+      "The Fair Work Commission approved the Victorian Government Schools Agreement 2026 on 16 October 2026 ([2026] FWCA 2836, matter AG2026/2746), and it operates from 23 October 2026 in place of the VGSA 2022. Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029. The department had not published its VGSA 2026 salary schedule when we checked on 27 October 2026, so the tables on this page still show the VGSA 2022 rates from 1 July 2025. The VGSA 2026 rates are in the 2026 pay rise section.",
   },
   verifiedOn: "23 October 2026",
 
@@ -192,12 +209,12 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "The VGSA 2022's nominal expiry date was 31 December 2025 and 1 July 2025 is the last salary column it makes. The department has not published a newer schedule, so the rates below are the latest official rates.",
-    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). The application was listed at \"initial assessment\" on 24 September 2026 and at \"member consideration\" on 14 October 2026. On 22 October 2026 it was no longer on the Commission's agreements-in-progress list, which is what happens once an application has been decided. The Australian Education Union Victorian Branch says the Commission has approved the agreement with effect from 23 October 2026. The Commission's decision and the department's new salary schedule had not been published when we checked. Until both are published, the new rates are tabled in the 2026 pay rise section and the tables further down stay on the VGSA 2022.",
+    "The Victorian Government Schools Agreement 2026 replaced the VGSA 2022 from 23 October 2026, after the Fair Work Commission approved it on 16 October 2026. The department had not published its VGSA 2026 salary schedule when we checked on 27 October 2026, so the tables below still show the last VGSA 2022 rates, from 1 July 2025. The VGSA 2026 rates are in the 2026 pay rise section.",
+    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746). The Commission approved the agreement on 16 October 2026 ([2026] FWCA 2836), and it operates from 23 October 2026. The department's new salary schedule had not been published when we checked on 27 October 2026, so the new rates are tabled in the 2026 pay rise section and the tables further down stay on the VGSA 2022.",
   ],
 
   unverified: [
-    "Principal, assistant principal and liaison principal rates under the proposed VGSA 2026, published in its Schedule 1 but not tabled here; read them in the proposed agreement itself.",
+    "Principal, assistant principal and liaison principal rates under the VGSA 2026, published in its Schedule 1 but not tabled here; read them in the agreement itself.",
     "Casual relief teacher (CRT) rates, published on a separate departmental schedule not read for this page.",
     "Paraprofessional and education support class scales, which are separate classifications.",
     "Liaison principal rates, which mirror the principal ranges but are a distinct classification.",
@@ -210,12 +227,17 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615",
     },
     {
+      title: "State of Victoria (Department of Education) T/A Department of Education [2026] FWCA 2836 (AG2026/2746, approved 16 October 2026, operative 23 October 2026)",
+      publisher: "Fair Work Commission",
+      url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwca2836.pdf",
+    },
+    {
       title: "Agreements in progress: Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026; no longer listed on 22 October 2026)",
       publisher: "Fair Work Commission",
       url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",
     },
     {
-      title: "Enterprise Bargaining: Overview (ballot result, updated 17 September 2026)",
+      title: "Enterprise Bargaining: Overview (FWC approval and 23 October 2026 start, updated 26 October 2026)",
       publisher: "Victorian Department of Education",
       url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/overview",
     },
@@ -254,11 +276,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "What is the graduate teacher salary in Victoria?",
-      a: "A graduate teacher starts at classroom teacher subdivision 1-1, $79,589 a year, under the Victorian Government Schools Agreement 2022 schedule effective from the first pay period on or after 1 July 2025.",
+      a: `A graduate teacher starts at classroom teacher subdivision 1-1. Under the Victorian Government Schools Agreement 2026, which operates from 23 October 2026, 1-1 is ${oct2026("classroom-teachers-2026", "1-1")} a year from the first pay period on or after 1 October 2026. The tables below still show the VGSA 2022 rate of $79,589 from 1 July 2025, because the department had not published its new schedule when we checked.`,
     },
     {
       q: "What is the top of the Victorian teacher pay scale?",
-      a: "Subdivision 2-6, $118,063 a year, is the top of the classroom teacher scale. Above it, leading teachers and learning specialists are paid $123,966 at 3-1 and $129,544 at 3-2, but those are fixed-term appointments rather than steps.",
+      a: `Subdivision 2-6 is the top of the classroom teacher scale: ${oct2026("classroom-teachers-2026", "2-6")} a year under the VGSA 2026 from the first pay period on or after 1 October 2026 ($118,063 under the VGSA 2022 tables below). Above it, leading teachers and learning specialists are paid ${oct2026("leading-teacher-learning-specialist-2026", "3-1")} at 3-1 and ${oct2026("leading-teacher-learning-specialist-2026", "3-2")} at 3-2 under the VGSA 2026, but those are fixed-term appointments rather than steps.`,
     },
     {
       q: "When do Victorian teachers move up a pay step?",
@@ -270,15 +292,15 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is a principal paid in Victoria?",
-      a: "Principal salaries run from $156,335 at Range 2 subdivision 2-1 to $238,676 at Range 6 subdivision 6-4. The range a principal position sits in is set by the school's Student Resource Package budget and reviewed each year.",
+      a: "Under the VGSA 2022 schedule from 1 July 2025, principal salaries run from $156,335 at Range 2 subdivision 2-1 to $238,676 at Range 6 subdivision 6-4. The VGSA 2026, which operates from 23 October 2026, sets new principal rates in its Schedule 1, which this page does not yet table. The range a principal position sits in is set by the school's Student Resource Package budget and reviewed each year.",
     },
     {
       q: "When do Victorian teachers get a pay rise?",
-      a: "The Australian Education Union Victorian Branch reports that the Fair Work Commission approved the Victorian Government Schools Agreement 2026 with effect from 23 October 2026. The Commission's decision had not been published when we checked. Staff had approved it with 93.1% voting yes (announced 17 September 2026). From the first pay period on or after 1 October 2026, its salary schedule lifts a graduate at 1-1 from $79,589 to $92,882 and the top classroom step 2-6 from $118,063 to $133,456. Those steps rise to $105,384 and $151,419 by November 2029, and a $2,000 lump sum is paid when the agreement starts.",
+      a: `The department reports that the Fair Work Commission approved the Victorian Government Schools Agreement 2026 on 16 October 2026 ([2026] FWCA 2836) and that it came into effect on 23 October 2026. Staff had approved it with 93.1% voting yes (announced 17 September 2026). From the first pay period on or after 1 October 2026, its salary schedule lifts a graduate at 1-1 from $79,589 to ${oct2026("classroom-teachers-2026", "1-1")} and the top classroom step 2-6 from $118,063 to ${oct2026("classroom-teachers-2026", "2-6")}. Those steps rise to ${nov2029("1-1")} and ${nov2029("2-6")} by November 2029, and a $2,000 lump sum is paid when the agreement starts.`,
     },
     {
       q: "When will Victorian teachers get the pay rise?",
-      a: "The new Victorian Government Schools Agreement starts seven days after the Fair Work Commission approves it. On 22 October 2026 the matter had left the Commission's agreements-in-progress list. The Australian Education Union Victorian Branch said the Commission had approved it with effect from 23 October 2026. The Commission's decision had not been published when we checked. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026, so both are back-paid once the agreement operates. Further increases follow from 1 November 2027, 2028 and 2029.",
+      a: "The Victorian Government Schools Agreement 2026 starts seven days after the Fair Work Commission approves it. The Commission approved it on 16 October 2026 ([2026] FWCA 2836), so it operates from 23 October 2026. Its Schedule 1 dates the first two increases from the first pay period on or after 10 August 2026 and 1 October 2026. Further increases follow from 1 November 2027, 2028 and 2029. The department had not published its new salary schedule or when the new rates reach pay when we checked on 27 October 2026.",
     },
   ],
 };

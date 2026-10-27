@@ -60,7 +60,7 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "What income do you start paying the Medicare levy at?",
-    a: `The Medicare levy starts at ${LOWER} of taxable income for most people. Between ${LOWER} and ${UPPER} you pay a reduced levy; the full ${RATE} only applies above ${UPPER}. If you are entitled to the seniors and pensioners tax offset the thresholds are ${SENIOR_SINGLE} and ${SENIOR_SINGLE_UPPER}. Families are tested on combined taxable income against ${FAMILY}, plus ${CHILD} for each dependent child.`,
+    a: `If you have no spouse or dependants and are not entitled to the seniors and pensioners tax offset, the Medicare levy starts once your taxable income is above ${LOWER}. Between ${LOWER} and ${UPPER} you pay a reduced levy; the full ${RATE} only applies above ${UPPER}. If you are entitled to the seniors and pensioners tax offset the thresholds are ${SENIOR_SINGLE} and ${SENIOR_SINGLE_UPPER}. Families are tested on combined taxable income against ${FAMILY}, plus ${CHILD} for each dependent child.`,
   },
   {
     q: "What is the Medicare levy family threshold?",
@@ -72,7 +72,7 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "Is the Medicare levy the same as the Medicare levy surcharge?",
-    a: `No, and they are charged for different reasons. The Medicare levy is ${RATE} and almost every Australian resident pays it. The Medicare levy surcharge is an extra 1%, 1.25% or 1.5% charged only to higher earners who do not hold private patient hospital cover — above ${MLS_BASE} for singles and ${MLS_FAMILY_BASE} for families in ${MLS_INCOME_YEAR}. You can owe both at once. Buying hospital cover removes the surcharge and changes the levy by nothing at all. Our Medicare levy surcharge calculator works out the surcharge separately.`,
+    a: `No, and they are charged for different reasons. The Medicare levy is ${RATE} of taxable income for every Australian resident who does not qualify for a reduction or exemption. The Medicare levy surcharge is an extra 1%, 1.25% or 1.5% charged only to higher earners who do not hold private patient hospital cover — above ${MLS_BASE} for singles and ${MLS_FAMILY_BASE} for families in ${MLS_INCOME_YEAR}. You can owe both at once. Buying hospital cover removes the surcharge and changes the levy by nothing at all. Our Medicare levy surcharge calculator works out the surcharge separately.`,
   },
   {
     q: "Who is exempt from the Medicare levy?",
@@ -84,7 +84,7 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "Does the Medicare levy come out of my pay?",
-    a: `Yes, but not as its own line. Employers use the ATO's PAYG withholding tables, which bundle the ${RATE} levy into the single "tax withheld" figure on your payslip. The surcharge is different: it is not withheld at all unless you ask for an upward variation, so people who cross the ${MLS_BASE} threshold without hospital cover usually meet it as a bill at lodgment.`,
+    a: `Yes, but not as its own line. Employers use the ATO's PAYG withholding tables, which bundle the ${RATE} levy into the single "tax withheld" figure on your payslip. The surcharge is different: it is not withheld at all unless you ask for an upward variation, so if you cross the ${MLS_BASE} threshold without hospital cover and have not asked for that variation, the surcharge is added when you lodge and you meet it as a bill or a smaller refund.`,
   },
   {
     q: "Which income year do these Medicare levy thresholds apply to?",

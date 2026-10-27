@@ -147,7 +147,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
 
   traineePay: [
     "Recruits are paid a base rate of $2,291.00 per fortnight from 1 September 2026, the award minimum, which is higher than the CA25 recruit rate of $2,241.63 from 1 August 2026. That is about $59,730 a year before shift allowances.",
-    "The award sets the Recruit stage at 16 weeks, followed by 32 months as a Firefighter and 12 months as a First Class Firefighter before Senior Firefighter.",
+    "The award sets a minimum time in each rank, on top of the qualifications needed to move up: 16 weeks as a Recruit, 32 months as a Firefighter and 12 months as a First Class Firefighter before Senior Firefighter, which is optional. The CA25 pay points in the table are separate steps within a rank, so a First Class Firefighter can move through several First Class pay points.",
   ],
   penalties: [
     "Firefighters on the 10/14 continuous shift roster (the recognised continuous shift roster under CA25 clause 49) are also paid a weekend shift allowance of 21.43% of base rate (clause 73) and a night shift allowance of 6.45% of base rate (clause 72).",

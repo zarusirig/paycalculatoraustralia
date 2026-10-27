@@ -5,11 +5,12 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, TAX_BRACKETS, formatAUD, formatPercent } from "@/lib/constants";
 import {
   calculateSchedule5MethodB,
   NO_TFN_RATES,
   PAY_PERIODS,
+  PAYG_FINANCIAL_YEAR,
   PAYG_TABLES_UPDATED,
 } from "@/lib/constants/payg-withholding";
 
@@ -41,6 +42,13 @@ const SOURCES_LIST: SourceLink[] = [
   },
   { title: `${ATO_SCHEDULE_1.title} (${ATO_SCHEDULE_1.nat})`, url: ATO_SCHEDULE_1.pageUrl, publisher: SOURCES.ato.name },
 ];
+
+// Every taxed resident bracket for the current year, from the bracket constants: "15%, 30%, 37% or 45%".
+const TAXED_RATES = TAX_BRACKETS.filter((b) => b.rate > 0).map((b) => formatPercent(b.rate, 0));
+const TAXED_RATE_LIST = `${TAXED_RATES.slice(0, -1).join(", ")} or ${TAXED_RATES[TAXED_RATES.length - 1]}`;
+
+// Ready reckoner: regular fortnightly pay, shared by the prose, the table prop and its caption.
+const RECKONER_REGULAR = 2_000;
 
 // Worked example used in the prose, computed from the shared engine.
 const workedExample = calculateSchedule5MethodB(2_000, 5_000, "fortnightly");
@@ -112,16 +120,16 @@ export default function Schedule5TaxTablePage() {
             <section id="schedule-5-table-2026-27">
               <h2>Schedule 5 Ready Reckoner 2026-27</h2>
               <p>
-                The table below applies the Schedule 5 apportionment to a worker earning {formatAUD(2_000)} a fortnight
-                ({formatAUD(52_000)} a year) who claims the tax-free threshold and has no study loan. Read it as a guide to
+                The table below applies the Schedule 5 apportionment to a worker earning {formatAUD(RECKONER_REGULAR)} a fortnight
+                ({formatAUD(RECKONER_REGULAR * PAY_PERIODS.fortnightly)} a year) who claims the tax-free threshold and has no study loan. Read it as a guide to
                 the shape of the result: the effective rate stays close to the employee&apos;s marginal rate rather than
                 spiking. That is the purpose of the schedule.
               </p>
               <Schedule5Table
-                regularGross={2_000}
+                regularGross={RECKONER_REGULAR}
                 frequency="fortnightly"
                 amounts={SCHEDULE_5_BONUS_ROWS}
-                caption="ATO Schedule 5 (NAT 3348) withholding on additional payments, 2026-27, for an employee earning $2,000 a fortnight"
+                caption={`ATO Schedule 5 (${ATO_SCHEDULE_5.nat}) withholding on additional payments, ${PAYG_FINANCIAL_YEAR}, for an employee earning ${formatAUD(RECKONER_REGULAR)} a fortnight`}
               />
               <p className="text-sm text-warmgray-light">
                 Each withholding amount in the table is calculated from the ATO Schedule 1 coefficients and the Schedule 5
@@ -273,9 +281,9 @@ export default function Schedule5TaxTablePage() {
               <h2>Why Does Your Bonus Look So Heavily Taxed?</h2>
               <p>
                 A bonus is not taxed at a special punitive rate. It is <strong>withheld</strong> at your marginal rate, which is
-                higher than the average rate applied to your normal pay. Because the tax-free threshold and lower brackets are already
-                consumed by your salary, every bonus dollar sits in your top bracket (30%, 37% or 45%) plus the Medicare levy and any
-                study loan repayment. If payroll skipped Schedule 5 and ran the lump sum through the regular table, withholding would be
+                higher than the average rate applied to your normal pay. Because your salary uses up the tax-free threshold and the lower
+                brackets first, each bonus dollar is withheld at your marginal rate ({TAXED_RATE_LIST} for {SITE_CONFIG.financialYear})
+                plus the Medicare levy and any study loan repayment. If payroll skipped Schedule 5 and ran the lump sum through the regular table, withholding would be
                 higher still, and the excess would only come back at{" "}
                 <Link href="/tax-return-calculator/">tax return time</Link>.
               </p>

@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { TAX_BRACKETS_2023_24, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27, type TaxBracket } from "@/lib/constants/australian-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
@@ -14,24 +15,23 @@ import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates for Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Stage 3 Personal Income Tax Plan", url: "https://treasury.gov.au/tax-cuts", publisher: "Australian Treasury" },
-  { title: "Low and Middle Income Tax Offset (LMITO)", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets", publisher: SOURCES.ato.name },
+  { title: "Low and middle income earner tax offsets", url: "https://www.ato.gov.au/forms-and-instructions/low-and-middle-income-earner-tax-offsets", publisher: SOURCES.ato.name },
 ];
 
-const PRE_STAGE3 = [
-  { bracket: "$0 \u2013 $18,200", rate: "0%" },
-  { bracket: "$18,201 \u2013 $45,000", rate: "19%" },
-  { bracket: "$45,001 \u2013 $120,000", rate: "32.5%" },
-  { bracket: "$120,001 \u2013 $180,000", rate: "37%" },
-  { bracket: "$180,001+", rate: "45%" },
-];
+const pct = (r: number) => `${Math.round(r * 10_000) / 100}%`;
+const OLD = TAX_BRACKETS_2023_24;
+const S3 = TAX_BRACKETS_2025_26;
+const NOW = TAX_BRACKETS_2026_27;
 
-const POST_STAGE3 = [
-  { bracket: "$0 \u2013 $18,200", rate: "0%" },
-  { bracket: "$18,201 \u2013 $45,000", rate: "16%" },
-  { bracket: "$45,001 \u2013 $135,000", rate: "30%" },
-  { bracket: "$135,001 \u2013 $190,000", rate: "37%" },
-  { bracket: "$190,001+", rate: "45%" },
-];
+function rows(scale: readonly TaxBracket[]) {
+  return scale.map((b) => ({
+    bracket: b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)} \u2013 ${formatAUD(b.max)}`,
+    rate: pct(b.rate),
+  }));
+}
+
+const PRE_STAGE3 = rows(OLD);
+const POST_STAGE3 = rows(S3);
 
 export default function TaxBracketHistoryPage() {
   return (
@@ -73,7 +73,7 @@ export default function TaxBracketHistoryPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2020-21 to FY2023-24</h3>
               <p>
-                The resident tax brackets were identical in all four of these years. The main change in this period was the removal of the Low and Middle Income Tax Offset (LMITO) from FY2022-23 onwards, which raised the tax payable by earners between $37,000 and $126,000.
+                The resident tax brackets were identical in all four of these years. The main change in this period was the removal of the Low and Middle Income Tax Offset (LMITO) from FY2022-23 onwards, which raised the tax payable by taxpayers with taxable income up to $126,000 who had received it.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -99,7 +99,7 @@ export default function TaxBracketHistoryPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2024-25 &amp; FY2025-26 (Revised Stage 3)</h3>
               <p>
-                The revised Stage 3 tax cuts lowered the 19% rate to <strong>16%</strong>, replaced the 32.5% rate with <strong>30%</strong>, extended the middle bracket to $135,000, and raised the top threshold to $190,001. These brackets applied for FY2024-25 and FY2025-26; from 1 July 2026 the 16% rate fell again to 15%.
+                The revised Stage 3 tax cuts lowered the {pct(OLD[1].rate)} rate to <strong>{pct(S3[1].rate)}</strong>, replaced the {pct(OLD[2].rate)} rate with <strong>{pct(S3[2].rate)}</strong>, extended the middle bracket to {formatAUD(S3[2].max)}, and raised the top threshold from {formatAUD(OLD[3].max)} to {formatAUD(S3[3].max)}. These brackets applied for FY2024-25 and FY2025-26; from 1 July 2026 the {pct(S3[1].rate)} rate fell again to {pct(NOW[1].rate)}.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -120,7 +120,7 @@ export default function TaxBracketHistoryPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy (2%). Applies from 1 July 2024 onwards.</p>
+                <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy (2%). Applied for FY2024-25 and FY2025-26. From 1 July 2026 the second rate is {pct(NOW[1].rate)}.</p>
               </div>
             </section>
 
@@ -213,10 +213,10 @@ export default function TaxBracketHistoryPage() {
                 Australia&apos;s Personal Income Tax Plan was legislated in 2018 as a three-stage reform spanning seven years. The timeline below captures the major milestones.
               </p>
               <ul>
-                <li><strong>FY2018-19 &mdash; Stage 1:</strong> Increased the Low Income Tax Offset (LITO) from $445 to $700 and introduced the temporary Low and Middle Income Tax Offset (LMITO) worth up to $530 (later increased to $1,500).</li>
-                <li><strong>FY2020-21 &mdash; Stage 2:</strong> Raised the upper limit of the 19% bracket from $37,000 to $45,000 and the 32.5% bracket from $90,000 to $120,000. These changes were brought forward from the originally planned FY2022-23.</li>
-                <li><strong>FY2022-23 &mdash; LMITO Removed:</strong> The temporary Low and Middle Income Tax Offset was not extended beyond FY2021-22, so earners between $37,000 and $126,000 paid up to $1,500 more tax.</li>
-                <li><strong>FY2024-25 &mdash; Revised Stage 3:</strong> The original Stage 3 plan (a flat 30% rate from $45,001 to $200,000) was replaced with the revised version: 16% for $18,201 to $45,000, 30% for $45,001 to $135,000, 37% for $135,001 to $190,000, and 45% above $190,001. Every taxpayer earning above $18,200 received a cut.</li>
+                <li><strong>FY2018-19 &mdash; Stage 1:</strong> Introduced the temporary Low and Middle Income Tax Offset (LMITO) for taxable incomes up to $126,000. From FY2018-19 to FY2020-21 it was worth $255 to $1,080, and for FY2021-22 it rose to $675 to $1,500.</li>
+                <li><strong>FY2020-21 &mdash; Stage 2:</strong> Raised the upper limit of the 19% bracket from $37,000 to $45,000 and the 32.5% bracket from $90,000 to $120,000, and raised the Low Income Tax Offset (LITO) to $700. These changes were brought forward from the originally planned FY2022-23.</li>
+                <li><strong>FY2022-23 &mdash; LMITO Removed:</strong> The temporary Low and Middle Income Tax Offset was not extended beyond FY2021-22, so taxpayers with taxable income up to $126,000 lost it. Tax rose by up to $1,500, the full amount for incomes from $48,001 to $90,000.</li>
+                <li><strong>FY2024-25 &mdash; Revised Stage 3:</strong> The original Stage 3 plan (a flat 30% rate from $45,001 to $200,000) was replaced with the revised version: {pct(S3[1].rate)} for {formatAUD(S3[1].min)} to {formatAUD(S3[1].max)}, {pct(S3[2].rate)} for {formatAUD(S3[2].min)} to {formatAUD(S3[2].max)}, {pct(S3[3].rate)} for {formatAUD(S3[3].min)} to {formatAUD(S3[3].max)}, and {pct(S3[4].rate)} above {formatAUD(S3[3].max)}. Every taxpayer earning above {formatAUD(S3[0].max)} received a cut.</li>
               </ul>
               <p>
                 Read the full breakdown of Stage 3 savings at every income level in our <Link href="/stage-3-tax-cuts/">Stage 3 Tax Cuts</Link> guide.
@@ -278,7 +278,7 @@ export default function TaxBracketHistoryPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy and all offsets (LITO, LMITO). LMITO would have reduced the FY2020-21 and FY2021-22 figures by up to $1,080 at lodgement.</p>
+                <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy and all offsets (LITO, LMITO). At $80,000, LMITO reduced the tax by $1,080 in FY2020-21 and $1,500 in FY2021-22.</p>
               </div>
               <p>
                 The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Enter your own taxable income in the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
@@ -296,7 +296,7 @@ export default function TaxBracketHistoryPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Tax brackets and rates on this page are sourced directly from the ATO&apos;s published individual income tax rate schedules for each financial year. Tax calculations exclude the Medicare Levy (2%) and any offsets unless explicitly noted. Stage 3 figures reflect the revised legislation passed in March 2024.</p>
+                <p>Tax brackets and rates on this page are sourced directly from the ATO&apos;s published individual income tax rate schedules for each financial year. Tax calculations exclude the Medicare Levy (2%) and any offsets unless explicitly noted. Stage 3 figures reflect the revised legislation, which became law on 5 March 2024.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-bracket-history"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -322,7 +322,7 @@ export default function TaxBracketHistoryPage() {
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-bold mb-2">Calculate Your Tax</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">See exactly how much tax you owe under the current FY2025-26 brackets and how much you save compared to previous years.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">See exactly how much tax you owe under the current FY{SITE_CONFIG.financialYear} brackets.</p>
                   <Link href="/income-tax-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Calculate Now <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>

@@ -18,6 +18,8 @@ import {
   TAX_BRACKETS_2025_26,
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
+import { SCALE_1_NO_TFT } from "@/lib/constants/payg-withholding";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
 import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
@@ -64,6 +66,9 @@ const RATE_3 = formatPercent(TAX_BRACKETS[2].rate, 0);
 const RATE_4 = formatPercent(TAX_BRACKETS[3].rate, 0);
 const RATE_5 = formatPercent(TAX_BRACKETS[4].rate, 0);
 const OLD_RATE_2 = formatPercent(TAX_BRACKETS_2025_26[1].rate, 0); // 16% in FY2025-26
+/** First Schedule 1 scale 1 (no tax-free threshold) coefficient: 15% in FY2026-27. */
+const NO_TFT_START = formatPercent(SCALE_1_NO_TFT[0].a ?? 0, 0);
+const MLS = MEDICARE_LEVY.surcharge;
 const T1 = formatAUD(TAX_FREE_THRESHOLD);
 const T2 = formatAUD(TAX_BRACKETS[1].max);
 const T3 = formatAUD(TAX_BRACKETS[2].max);
@@ -119,15 +124,15 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How is income tax calculated if I have two jobs?",
-    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total. The same income is not taxed twice, but claiming the threshold on both jobs leaves too little tax withheld and a tax debt when you lodge.`,
+    a: `You claim the ${T1} tax-free threshold on one job only. Your second employer withholds with no tax-free threshold, starting at ${NO_TFT_START} from the first dollar under the FY${FY} schedules. At tax time the ATO combines all income and applies the normal brackets to the total. The same income is not taxed twice, but claiming the threshold on both jobs leaves too little tax withheld and a tax debt when you lodge.`,
   },
   {
     q: "Do I pay the Medicare levy on top of income tax?",
-    a: `Yes. The Medicare levy is ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income, paid on top of income tax: ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of 1 to 1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover.`,
+    a: `Yes. The Medicare levy is ${formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income, paid on top of income tax: ${formatAUD(S80.medicare)} on ${formatAUD(80_000)}. Low-income earners pay a reduced levy or none at all, and a Medicare Levy Surcharge of ${formatPercent(MLS.tier1.rate, 0)} to ${formatPercent(MLS.tier3.rate, 1)} applies if you do not hold private hospital cover and your income for MLS purposes is above ${formatAUD(MLS.tier1.min - 1)} (singles) or ${formatAUD(MLS.familyTier1.min - 1)} (families).`,
   },
   {
     q: "Is superannuation included in taxable income?",
-    a: `No. The ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee your employer pays goes to your fund on top of your salary and is not part of your assessable income. Concessional contributions, including salary sacrifice, are taxed at 15% inside the fund instead of at your marginal rate, which is why salary sacrificing can cut your income tax.`,
+    a: `No. The ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee your employer pays goes to your fund on top of your salary and is not part of your assessable income. Concessional contributions, including salary sacrifice, are taxed at ${formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} inside the fund instead of at your marginal rate, which is why salary sacrificing can cut your income tax.`,
   },
   {
     q: "What happens if I don't lodge a tax return?",

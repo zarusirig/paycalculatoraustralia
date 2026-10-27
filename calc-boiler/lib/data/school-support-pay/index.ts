@@ -429,7 +429,7 @@ const QLD: SchoolSupportState = {
     },
   ],
   notes: [
-    "The agreement adds a CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase, capped at 0.5% for the first period (cl 6.1(b)). The Schedule 1 tables exclude it. The ABS reported Brisbane annual inflation of 4.2% for March 2026, above the 3% increase. We have not found the department's table with the uplift applied, so the rates shown are before any uplift.",
+    "The agreement adds a CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase, capped at 0.5% for the first period (cl 6.1(b)). The Schedule 1 tables exclude it. The ABS reported Brisbane annual inflation of 4.2% for March 2026, above the 3% increase, so the first uplift is triggered at its 0.5% cap. It is paid as if it formed part of the 1 November 2025 increase (cl 6.3(b)(i)), and the 1 November 2026 increase is paid on the rate that includes it (cl 6.5(g)). We have not found the department's table with the uplift applied, so the rates shown are before the uplift.",
     "Casual teacher aides are paid the hourly rate plus a 25% loading; at OO2 pay point 1 that is $39.62 an hour from 1 November 2025 ($39.6151 as printed).",
     "The Teacher Aides' Certified Agreement sets pay rises of 3% from 1 November 2025, 2.5% from 1 November 2026 and 2.5% from 1 November 2027, each with the capped CPI uplift where it applies.",
   ],
@@ -459,7 +459,7 @@ const QLD: SchoolSupportState = {
     },
     {
       q: "When do Queensland teacher aides get a pay rise?",
-      a: "The Teacher Aides' Certified Agreement 2025 gives 2.5% from 1 November 2026, taking OO2 pay point 1 to $32.4842 an hour ($64,409 full-time), and another 2.5% from 1 November 2027. The agreement also adds a capped CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase.",
+      a: "The Teacher Aides' Certified Agreement 2025 gives 2.5% from 1 November 2026, taking OO2 pay point 1 to $32.4842 an hour ($64,409 full-time), and another 2.5% from 1 November 2027. The agreement also adds a capped CPI uplift adjustment when Brisbane's March-quarter inflation is higher than the scheduled increase: Brisbane's 4.2% for March 2026 triggers a 0.5% uplift, paid as if it formed part of the 1 November 2025 increase, which the rates on this page do not include.",
     },
     {
       q: "What is the casual teacher aide rate in Queensland?",
@@ -521,6 +521,7 @@ const WA: SchoolSupportState = {
   notes: [
     "The agreement added $65 a week to every rate from 1 January 2025 and again from 1 January 2026. It expires on 31 December 2026 and no later rate has been published.",
     "Casual EAs get a 25% loading instead of personal leave and paid student vacation time (cl 13.2).",
+    "You are not required to attend on days your school is closed, and unless you are casual you are paid your ordinary wages for student vacation days. The entitlement accrues for each day you work in the school year, pro rata for part-time EAs, and the summer vacation includes your four weeks of annual leave (cl 47).",
   ],
   sources: [
     {
@@ -530,7 +531,7 @@ const WA: SchoolSupportState = {
       url: "https://downloads.wairc.wa.gov.au/agreements/edu018.pdf",
       effectiveFrom: "1 January 2026",
       verifiedOn: SCHOOL_SUPPORT_VERIFIED_ON,
-      note: "Clauses 6.1, 13.2, 22.1, 25, 26 and 29.1; Schedule 2.",
+      note: "Clauses 6.1, 13.2, 22.1, 25, 26, 29.1 and 47; Schedule 2.",
     },
   ],
   faqs: [
@@ -715,7 +716,7 @@ const TAS: SchoolSupportState = {
   faqs: [
     {
       q: "How much does a teacher assistant earn in Tasmania?",
-      a: "From the first full pay period on or after 1 December 2025, a Teacher Assistant in a Tasmanian government school is paid $36.2775 an hour at Band 2 Range 1 Level 2 and $39.0111 at Level 6. The department prints those as $69,593 to $74,837 a year full-time. Most Teacher Assistants are paid for school terms only, so a year's pay is the hourly rate times the hours and weeks actually worked.",
+      a: "From the first full pay period on or after 1 December 2025, a Teacher Assistant in a Tasmanian government school is paid $36.2775 an hour at Band 2 Range 1 Level 2 and $39.0111 at Level 6. The department prints those as $69,593 to $74,837 a year full-time. Appendix 16 of the award pays Teacher Assistants for school terms only (clause 4), so a year's pay is the hourly rate times the hours and weeks you work, plus recreation leave and public holidays, unless you elect in writing to annualise your salary over 52 weeks (clause 2).",
     },
     {
       q: "Are Tasmanian teacher assistants paid in the school holidays?",
@@ -999,11 +1000,11 @@ export { derive as deriveFullTimeAnnual };
 export const SCHOOL_SUPPORT_HUB_FAQS: readonly PayFaq[] = [
   {
     q: "How much do teacher aides get paid in Australia?",
-    a: `Teacher aide pay in Australia is set state by state for government schools, with a separate award for non-government schools. In government schools the entry rate is $38.33 an hour for an SLSO 1 in NSW (from 1 July 2026), $36.2775 for a Tasmanian Teacher Assistant at Band 2 Level 2 (from 1 December 2025), $31.6921 for a Queensland OO2 teacher aide (from 1 November 2025), $34.75 for a WA Education Assistant (from 1 January 2026), ${formatSalary(SSO1.min)} a year for a South Australian SSO-1 (from May 2026), $51,622 a year full-time for Victorian ES 1-1, $59,725 for an ACT School Assistant 2/3 (from 4 December 2025) and $58,817 for an NT school-based AO2 on the 92% arrangement (from 13 August 2026). Private and Catholic schools use the Educational Services (Schools) General Staff Award.`,
+    a: `Teacher aide pay in Australia is set state by state for government schools, with a separate award for non-government schools. In government schools the entry rate is $38.33 an hour for an SLSO 1 in NSW (from 1 July 2026), $36.2775 for a Tasmanian Teacher Assistant at Band 2 Level 2 (from 1 December 2025), $31.6921 for a Queensland OO2 teacher aide (from 1 November 2025), $34.75 for a WA Education Assistant (from 1 January 2026), ${formatSalary(SSO1.min)} a year for a South Australian SSO-1 (from May 2026), ${formatSalary(VIC_ROWS[0][1])} a year full-time for Victorian ES 1-1 (from 1 July 2025 under the 2022 agreement; the 2026 agreement sets ${formatSalary(VIC_ROWS[0][3])} from 1 October 2026), $59,725 for an ACT School Assistant 2/3 (from 4 December 2025) and $58,817 for an NT school-based AO2 on the 92% arrangement (from 13 August 2026). Private and Catholic schools use the Educational Services (Schools) General Staff Award.`,
   },
   {
     q: "Are teacher aides paid during school holidays?",
-    a: "Teacher aides' pay during school holidays differs by state and by type of contract. NSW permanent SLSOs are paid in 26 equal fortnightly pays across the year, and long-term temporaries are paid in school vacations; short-term temporaries get a 15% loading instead of recreation leave. Casual Education Assistants in WA get a 25% loading instead of personal leave and paid student vacation time. Victorian ES staff on a term-time fraction are paid a proportion of the full-time salary. Tasmanian Teacher Assistants are paid for school terms only unless they elect to annualise their pay over 52 weeks. ACT School Assistants are on paid stand-down between terms, with annual leave in the December to January block. NT school-based AOs on the 92% or 96% arrangement are paid at ordinary rates for the days the school is closed.",
+    a: "Teacher aides' pay during school holidays differs by state and by type of contract. NSW permanent SLSOs are paid in 26 equal fortnightly pays across the year, and long-term temporaries are paid in school vacations; short-term temporaries get a 15% loading instead of recreation leave. Full-time and part-time WA Education Assistants are paid their ordinary wages for student vacation days, accrued for each day they work in the school year; casual Education Assistants get a 25% loading instead of personal leave and paid student vacation time. Victorian ES staff on a term-time fraction are paid a proportion of the full-time salary. Tasmanian Teacher Assistants are paid for school terms only unless they elect to annualise their pay over 52 weeks. ACT School Assistants are on paid stand-down between terms, with annual leave in the December to January block. NT school-based AOs on the 92% or 96% arrangement are paid at ordinary rates for the days the school is closed.",
   },
   {
     q: "What is a teacher aide called in each state?",
@@ -1011,6 +1012,6 @@ export const SCHOOL_SUPPORT_HUB_FAQS: readonly PayFaq[] = [
   },
   {
     q: "Which states pay teacher aides across the school holidays?",
-    a: "NSW permanent SLSOs, Victorian ES staff on a 52/52 basis, Queensland teacher aides, SA SSOs with leave conditions, ACT School Assistants and NT school-based AOs on 92% or 96% all receive their annual salary across the year, with the school holidays covered by paid stand-down or recreation leave. WA Education Assistants and Tasmanian Teacher Assistants are paid for the weeks they work, with recreation leave and public holidays paid on top, unless they choose to annualise.",
+    a: "NSW permanent SLSOs, Victorian ES staff on a 52/52 basis, Queensland teacher aides, SA SSOs with leave conditions, ACT School Assistants and NT school-based AOs on 92% or 96% all receive their annual salary across the year, with the school holidays covered by paid stand-down or recreation leave. Full-time and part-time WA Education Assistants are paid their ordinary wages for student vacation days, accrued for each day they work in the school year (clause 47 of their agreement). Tasmanian Teacher Assistants are paid for school terms only, with recreation leave and public holidays paid on top, unless they elect in writing to annualise their salary over 52 weeks.",
   },
 ];

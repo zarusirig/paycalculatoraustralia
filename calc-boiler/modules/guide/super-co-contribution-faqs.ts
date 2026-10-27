@@ -16,7 +16,7 @@ export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to apply for the super co-contribution?",
-    a: "No. The ATO automatically determines your eligibility when you lodge your income tax return. If you qualify, the co-contribution is paid directly into your super fund, usually within 60 days of your tax return being processed. Make sure your super fund has your tax file number and your details are up to date with the ATO via your myGov account.",
+    a: "No. The ATO automatically determines your eligibility when you lodge your income tax return. If you qualify, the ATO pays the co-contribution directly into your super fund. The ATO makes most payments between November and January for personal contributions made in the previous financial year. Make sure your super fund has your tax file number and your details are up to date with the ATO via your myGov account.",
   },
   {
     q: "What is the spouse super contribution tax offset?",

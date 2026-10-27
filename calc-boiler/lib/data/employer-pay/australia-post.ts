@@ -23,8 +23,8 @@
 // in listed classifications get 50/60/70/81/91% (under 17 to 20), so the page
 // shows no junior table; the Booklet's junior trainee salaries are in the note.
 //
-// Not covered: Licensed Post Offices (privately owned; staff usually on the
-// Retail Award) and StarTrack (its own agreements).
+// Not covered: Licensed Post Offices (privately owned; staff employed by the
+// licensee, not Australia Post) and StarTrack (its own agreements).
 
 import type { EmployerPay } from "./types";
 
@@ -91,7 +91,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   notices: [
     "Australia Post prints annual salaries, not hourly rates. The hourly rates here use the agreement's own formula (annual salary ÷ 313 × 6 ÷ 36.75) and match the union's September 2026 table. Full-time hours are 36.75 a week, so the full-time year shown is the printed salary, not 38 hours × 52 weeks.",
     "The 4% rise in September 2026 is the last pay rise this agreement schedules. The Australia Post agreement reaches its nominal expiry on 9 October 2027; any later rise depends on a new agreement.",
-    "These rates are for Australia Post itself. Staff at Licensed Post Offices work for the private licensee and are usually paid under the General Retail Industry Award, and StarTrack has its own agreements.",
+    "These rates are for Australia Post itself. Staff at Licensed Post Offices work for the private licensee, not Australia Post, so this agreement does not set their pay. StarTrack has its own agreements.",
   ],
   unverified: [
     "The exact date the September 2026 rise started: \"the first full pay period in September\", which Australia Post does not print.",
@@ -109,7 +109,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
     },
     {
       q: "What does Australia Post pay Post Office counter staff?",
-      a: "A Postal Services Officer at a corporate Post Office earns $60,903 to $73,050 a year ($31.77 to $38.10 an hour) from September 2026, and a trainee $56,979 ($29.72). Licensed Post Offices are privately owned and set their own pay, usually under the Retail Award.",
+      a: "A Postal Services Officer at a corporate Post Office earns $60,903 to $73,050 a year ($31.77 to $38.10 an hour) from September 2026, and a trainee $56,979 ($29.72). Licensed Post Offices are privately owned: their staff are employed by the licensee, not Australia Post, so this agreement does not set their pay.",
     },
     {
       q: "What is the casual rate at Australia Post?",

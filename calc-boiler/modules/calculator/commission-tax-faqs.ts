@@ -16,6 +16,7 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import { calculateSchedule5MethodB, PAY_PERIODS, SCHEDULE_5_WITHHOLDING_LIMIT } from "@/lib/constants/payg-withholding";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 
 const TOP = TAX_BRACKETS[TAX_BRACKETS.length - 1];
 
@@ -47,7 +48,7 @@ export const COMMISSION_TAX_FAQS: readonly CommissionTaxFaq[] = [
   },
   {
     q: "Are commissions taxed differently from bonuses?",
-    a: "No. The ATO treats commissions, bonuses, back pay and similar one-off payments identically: all are assessable income taxed at your marginal rate, and all are withheld under Schedule 5 when paid on top of normal earnings. The only difference is the label on your payslip.",
+    a: "No. The ATO treats commissions and bonuses the same way: both are assessable income taxed at your marginal rate, and both are withheld under Schedule 5 when paid on top of normal earnings. The only difference is the label on your payslip. Back pay is also withheld under Schedule 5, but back pay for salary or wages earned more than 12 months before it is paid is a lump sum payment in arrears, and the ATO considers you for a tax offset on it when you lodge.",
   },
   {
     q: "Is superannuation paid on commission?",
@@ -59,7 +60,7 @@ export const COMMISSION_TAX_FAQS: readonly CommissionTaxFaq[] = [
   },
   {
     q: "Do contractors pay tax on commission?",
-    a: "Yes. Commission earned under an ABN is business income: you include it in your tax return, register for and charge GST once your turnover passes $75,000, and may need to pay PAYG instalments during the year. No tax is withheld by the payer unless you have not quoted an ABN. Use the contractor pay calculator to see the take-home after tax and GST.",
+    a: `Yes. Commission earned under an ABN is business income: you include it in your tax return, register for and charge GST once your GST turnover reaches ${formatAUD(GST_REGISTRATION_THRESHOLD)}, and may need to pay PAYG instalments during the year. No tax is withheld by the payer unless you have not quoted an ABN. Use the contractor pay calculator to see the take-home after tax and GST.`,
   },
   {
     q: "Does commission affect my HECS-HELP repayment?",

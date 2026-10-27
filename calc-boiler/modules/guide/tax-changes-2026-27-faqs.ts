@@ -15,6 +15,8 @@
 // as a literal.
 
 import { formatAUD, EMPLOYMENT, HECS_HELP, LITO, SUPER_GUARANTEE, TAX_BRACKETS, TAX_BRACKETS_2025_26 } from "@/lib/constants";
+import { CGT_PENDING_BILLS, CGT_REFORM_2027 } from "@/lib/constants/capital-gains-tax";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE } from "@/lib/constants/tax-2027-28";
 
 const PCT = (rate: number) => `${Math.round(rate * 100)}%`;
 
@@ -35,11 +37,11 @@ export const TAX_CHANGES_2026_27_FAQS: readonly TaxChangesFaq[] = [
   },
   {
     q: "Will tax brackets change in 2026-27?",
-    a: `Yes. The legislated cost-of-living tax cuts reduce the rate on income between ${formatAUD(TAX_BRACKETS[1].min - 1)} and ${formatAUD(TAX_BRACKETS[1].max)} from ${PCT(TAX_BRACKETS_2025_26[1].rate)} to ${PCT(TAX_BRACKETS[1].rate)} on 1 July 2026 (worth up to ${formatAUD(RATE_CUT_MAX_SAVING)} a year), with a further cut to 14% on 1 July 2027. Bracket thresholds themselves are unchanged.`,
+    a: `Yes. The legislated cost-of-living tax cuts reduce the rate on income between ${formatAUD(TAX_BRACKETS[1].min - 1)} and ${formatAUD(TAX_BRACKETS[1].max)} from ${PCT(TAX_BRACKETS_2025_26[1].rate)} to ${PCT(TAX_BRACKETS[1].rate)} on 1 July 2026 (worth up to ${formatAUD(RATE_CUT_MAX_SAVING)} a year), with a further cut to ${PCT(RATE_2027_28)} on ${RATE_CUT_EFFECTIVE}. Bracket thresholds themselves are unchanged.`,
   },
   {
     q: "What is the super guarantee rate for 2026-27, and is it going up again?",
-    a: `No. The super guarantee rate remains at ${PCT(SUPER_GUARANTEE.rate)} for FY2026-27. It reached its legislated ceiling of ${PCT(SUPER_GUARANTEE.rate)} on 1 July 2025 after a decade-long increase from 9.5%, and no further increases are currently scheduled. Any additional rise would require new legislation from Parliament.`,
+    a: `No. The super guarantee rate remains at ${PCT(SUPER_GUARANTEE.rate)} for FY2026-27. It reached its legislated ceiling of ${PCT(SUPER_GUARANTEE.rate)} on ${SUPER_GUARANTEE.effectiveDate}, after rising every 1 July from 2021 (it was 9.5% until 30 June 2021), and no further increases are scheduled. Any additional rise would require new legislation from Parliament.`,
   },
   {
     q: "What will the HECS threshold be in 2026-27?",
@@ -47,7 +49,7 @@ export const TAX_CHANGES_2026_27_FAQS: readonly TaxChangesFaq[] = [
   },
   {
     q: "When is the 2026 federal budget?",
-    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its CGT and negative gearing reforms, which apply from 1 July 2027, passed Parliament in June 2026 and are now law. The proposed 30% minimum tax on discretionary trusts is still a bill before Parliament.`,
+    a: `The 2026-27 federal budget was delivered on 12 May 2026. Its CGT and negative gearing reforms, which apply from ${CGT_REFORM_2027.startDate}, passed Parliament in June 2026 and became law on ${CGT_REFORM_2027.assentDate} (${CGT_REFORM_2027.actName}). The proposal for ${CGT_PENDING_BILLS.proposals[0]} is not law: it is in the ${CGT_PENDING_BILLS.billName}, introduced on ${CGT_PENDING_BILLS.introduced} and still before Parliament.`,
   },
   {
     q: "Will LITO change in 2026-27?",

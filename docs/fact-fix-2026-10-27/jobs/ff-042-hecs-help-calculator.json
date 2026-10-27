@@ -1,0 +1,160 @@
+{
+ "name": "ff-042-hecs-help-calculator",
+ "files": [
+  "modules/calculator/hecs-help-calculator.tsx",
+  "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+  "modules/calculator/hourly-to-annual-salary-calculator-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/hecs-help-calculator.tsx:81",
+   "file": "modules/calculator/hecs-help-calculator.tsx",
+   "line": "81",
+   "page": "/hecs-help-calculator/",
+   "claims": [
+    "They all share one threshold of {T}, and the marginal system charges only on the income above it."
+   ],
+   "whys": [
+    "The same file's top band row (line 35) says the top band pays a percentage of TOTAL repayment income, not only the income above the threshold. The hero sentence is wrong for repayment income in the top band."
+   ],
+   "constants": [
+    "HECS_HELP.bands (B3) in lib/constants; the hero wording should carry the top-band exception"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.19,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:351",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "351",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July."
+   ],
+   "whys": [
+    "Line 458 on the same page says increases apply from the first full pay period on or after the operative date. The two lines are inconsistent."
+   ],
+   "constants": [
+    "NMW_DECISION.operativeFrom (lib/constants/minimum-wage.ts:64)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:139",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "139",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "Hard-coded 12% SG in prose and code: line 139 '12% superannuation guarantee', line 202 'Super (12%)', line 209 'annual * 0.12', line 227 '12% applies from 1 July 2025', line 445, line 511"
+   ],
+   "whys": [
+    "The figure is correct today, but it does not come from the constant. It will drift if the SG rate changes, while SG_PCT elsewhere on the page will update."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate / SG_PCT (lib/constants/australian-tax.ts:136)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:437",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "437",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "overtime is paid at penalty rates of 1.5x or 2x"
+   ],
+   "whys": [
+    "Awards treat overtime rates and penalty rates as separate terms. The multipliers also vary by award, so this reads as a universal rule."
+   ],
+   "constants": [
+    "none (terminology)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.56,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:449",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "449",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "The marginal tax rate on $90,000 is {TAX_BRACKETS[2].rate}% plus the 2% Medicare levy."
+   ],
+   "whys": [
+    "The 2% Medicare levy is hard-coded rather than taken from the constant. The bracket is picked by index [2] rather than looked up by income. Both are correct for 2026-27 but fragile."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate, TAX_BRACKETS (lib/constants/australian-tax.ts:31)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:412",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "412",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "Their hourly rate normally includes a 25% casual loading"
+   ],
+   "whys": [
+    "'Normally' hedges a figure that line 355 states as a rule for minimum-wage casuals. The 25% is also typed by hand and not taken from a casual-loading constant, so the two lines can drift apart."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx:482",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-content.tsx",
+   "line": "482",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "Superannuation Calculator card: 'Calculate employer SG contributions at 12%' and Overtime card: 'penalty rates at 1.5x and 2x ... beyond 38 hours per week'"
+   ],
+   "whys": [
+    "These are locked link-card descriptions. The SG rate is typed by hand rather than taken from SG_PCT, and the card calls overtime 'penalty rates', the same terminology problem as line 437."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.1,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/hourly-to-annual-salary-calculator-faqs.ts:82",
+   "file": "modules/calculator/hourly-to-annual-salary-calculator-faqs.ts",
+   "line": "82",
+   "page": "https://pay-calculator-australia.com/hourly-to-annual-salary-calculator/",
+   "claims": [
+    "\"Overtime is paid at penalty rates of 1.5x or 2x\"",
+    "Superannuation is calculated on ordinary time earnings only, not on overtime hours."
+   ],
+   "whys": [
+    "The multipliers are typed into the prose, not taken from code. Overtime rates are set per award and are not penalty rates as such.",
+    "This is correct for the Superannuation Guarantee minimum, but some awards and agreements require super on overtime. A human should confirm the unqualified rule, now that 'generally' is removed, is the wording they want, or whether it should say 'The Superannuation Guarantee is calculated on...'."
+   ],
+   "constants": [
+    "none (award overtime rates)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.35,
+   "needsOwner": true
+  }
+ ]
+}

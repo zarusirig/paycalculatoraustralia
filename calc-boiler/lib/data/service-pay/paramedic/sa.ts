@@ -63,7 +63,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
     {
       id: "intensive-care",
       title: "Intensive Care Paramedic (Schedule 1, Part 2.5)",
-      intro: "This table covers SAAS Intensive Care Paramedics (ICPs) and ICP interns. ICP pay points 3.2 and 3.3 were deleted from 1 July 2026.",
+      intro: "This table covers SAAS Intensive Care Paramedics (ICPs) and ICP interns. From 1 July 2026 the ICP Intern pay point 3.1 and the Intensive Care Paramedic pay points 3.2 and 3.3 were deleted, and ICP Interns are now paid at pay point 3.3.",
       stepHeading: "Classification and pay point",
       steps: [
         { label: "Intensive Care Paramedic Intern - pay point 3.3", salary: 107_878, note: "From 1 July 2026" },
@@ -109,7 +109,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
 
   penalties: [
     "Shift workers not on a rolled-in rate get an early morning penalty of 17% for work between midnight and 6:30am, or a night shift penalty of 20.5% for night shifts between 7pm and 7am (clause 18).",
-    "Most rostered emergency staff are paid a rolled-in rate (RIR) allowance on top of base salary instead of separate shift penalties: 37.57% of base for the Metro Emergency Operations Day/Night roster (Schedule 4).",
+    "Employees who meet the criteria in clause 17.9 of the SA Ambulance Service Award are paid a rolled-in rate (RIR) allowance on top of base salary, and it includes the early morning and night shift penalties (clauses 5.4 and 18.1). The rate depends on the roster and location: 37.57% of base for the Metro Emergency Operations Day/Night roster (Schedule 4).",
     "Casual employees receive a 25% loading (clause 14.6); casuals working weekends get the 50% weekend penalty under clause 17.10.2 of the Award (clause 38.2).",
     "Work on part-day public holidays (Christmas Eve and New Year's Eve from 7pm) and Easter Sunday attracts Award penalty rates even for employees on the rolled-in rate (clause 20).",
   ],
@@ -134,7 +134,7 @@ export const SA_PARAMEDIC_PAY: ServicePayJurisdiction = {
   faqs: [
     {
       q: "How much does a paramedic earn in SA?",
-      a: "Under the SA Ambulance Service Enterprise Agreement 2025, a SAAS Paramedic earns $83,904 (pay point 2.1) to $104,458 (pay point 2.7) a year in base salary. Most rostered paramedics also receive a rolled-in rate allowance of 37.57% of base on the metropolitan day/night roster.",
+      a: "Under the SA Ambulance Service Enterprise Agreement 2025, a SAAS Paramedic earns $83,904 (pay point 2.1) to $104,458 (pay point 2.7) a year in base salary. Paramedics on the Metro Emergency Operations Day/Night roster also receive a rolled-in rate allowance of 37.57% of base (Schedule 4).",
     },
     {
       q: "What does a graduate paramedic earn in SA?",

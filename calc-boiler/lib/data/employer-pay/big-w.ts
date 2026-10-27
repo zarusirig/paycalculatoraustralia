@@ -127,7 +127,7 @@ export const BIG_W_PAY: EmployerPay = {
     },
     {
       q: "What is Boosted Leave at Big W, and does it lower my hourly rate?",
-      a: "No, Boosted Leave does not lower your BIG W base rate. Permanent staff can use the above-award part of each pay rise to buy extra leave, up to 3 days in 2026-27 for a full-timer. The value of that leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
+      a: "No, Boosted Leave does not lower your BIG W base rate. Permanent staff can take the Boosted Leave part of each pay rise (the margin above the Annual Wage Review percentage) as extra leave, up to 3 days in 2026-27 for a full-timer. The value of that leave is deducted from pay in equal weekly amounts, and anything unused is paid out at the end of the financial year. If you do not choose by 31 May, you are treated as opting in.",
     },
     {
       q: "How much does Big W pay a 16 or 17 year old?",

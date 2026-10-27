@@ -1,0 +1,87 @@
+{
+ "name": "ff-028-wa",
+ "files": [
+  "lib/data/teacher-pay/wa.ts",
+  "lib/data/train-driver-pay/index.ts",
+  "lib/data/zones/nt.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/teacher-pay/wa.ts:45",
+   "file": "lib/data/teacher-pay/wa.ts",
+   "line": "45",
+   "page": "/teacher-pay-australia/wa/",
+   "claims": [
+    "nextIncrease: null, verifiedOn 28 August 2026, rates 'as of December 2025' with the 2023 agreement's increases exhausted."
+   ],
+   "whys": [
+    "This may be stale. The last increase under the 2023 agreement was in December 2025. A successor WA teachers' agreement or a new increase date may have been registered since the 28 August 2026 check."
+   ],
+   "constants": [
+    "wa.ts nextIncrease / ratesEffectiveFrom / verifiedOn"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/train-driver-pay/index.ts:77",
+   "file": "lib/data/train-driver-pay/index.ts",
+   "line": "77",
+   "page": "https://pay-calculator-australia.com/train-driver-salary/",
+   "claims": [
+    "From 1 July 2027 a driver (thereafter) moves to $1,935.80 a week, or $2,038.00 with the industry allowance."
+   ],
+   "whys": [
+    "$1,959.60 x 1.04 = $2,037.98 (and $1,935.80 + $98.25 x 1.04 = $2,037.98), so $2,038.00 is 2c off. It may be the figure printed in Schedule 4A, or a rounding slip. Please confirm against the agreement.",
+    "The reviewer confirmed the writer's arithmetic: 1,959.60 x 1.04 = 2,037.98 and 1,861.35 x 1.04 = 1,935.80, so $2,038.00 is 2c higher than a straight 4% rise. Check Schedule 4A (AE529763) for the printed 1 July 2027 rate. The Metro Jan 2027 figures at line 104 do agree with Schedule B x 1.0175."
+   ],
+   "constants": [
+    "SYDNEY_TRAINS.payRises (better derived in code from rows[3].weekly and weeklyWithAllowance x 1.04)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/zones/nt.ts:518",
+   "file": "lib/data/zones/nt.ts",
+   "line": "518",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "Wurrumiyanga (Melville Island)|A"
+   ],
+   "whys": [
+    "Wurrumiyanga is the current name of Nguiu, which is listed as AS (line 340), and Melville Island is listed as AS (line 290). The same community has two different zone codes, so a lookup could return Zone A instead of the Zone A special area. Check this against the ATO NT zone list. It may be the ATO's own inconsistency, transcribed verbatim."
+   ],
+   "constants": [
+    "NT_RAW in lib/data/zones/nt.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.43,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/zones/nt.ts:298",
+   "file": "lib/data/zones/nt.ts",
+   "line": "298",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "Minjilang|A"
+   ],
+   "whys": [
+    "Minjilang is the community on Croker Island, which is listed as AS (line 108). The two codes disagree, and a remote island community is more likely to be the special area. Check against the ATO NT list."
+   ],
+   "constants": [
+    "NT_RAW in lib/data/zones/nt.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.3,
+   "needsOwner": false
+  }
+ ]
+}

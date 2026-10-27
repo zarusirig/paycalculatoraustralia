@@ -74,7 +74,7 @@ export default function WorkingHolidayTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Classified as a Working Holiday Maker?</h2>
               <p>A &quot;Working Holiday Maker&quot; is any individual holding a subclass <strong>417</strong> or subclass <strong>462</strong> visa, regardless of whether they meet the ATO&apos;s standard residency test.</p>
-              <p>The WHM tax classification overrides the normal resident or non-resident determination. A backpacker who has lived in Australia for 11 months and passes the 183-day residency test still pays 15% on the first $45,000 instead of the resident rates with the tax-free threshold. The classification is determined solely by visa subclass, not by days spent in the country, accommodation arrangements, or intention to remain.</p>
+              <p>For most WHMs, tax residency does not change the rate. A WHM who is an Australian resident for tax purposes still pays 15% on the first $45,000 instead of the resident rates with the tax-free threshold. The one exception follows the High Court&apos;s 2021 decision in <em>Addy v Commissioner of Taxation</em>: if you are an Australian resident for tax purposes and a national of an eligible non-discrimination article (NDA) country (Chile, Finland, Germany, Israel from 2020-21, Japan, Norway, Turkey or the United Kingdom), you pay the lower of the WHM tax and the tax a resident Australian national pays on the same income. Your employer still withholds at 15%, and you get any difference back when you lodge your tax return.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Subclass 417 vs 462: What Is the Difference?</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Feature</th><th className="px-5 py-3">Subclass 417</th><th className="px-5 py-3">Subclass 462</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -94,9 +94,9 @@ export default function WorkingHolidayTaxPage() {
             {/* ───────── SECTION 4: Do Working Holiday Makers Pay Medicare Levy? ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do Working Holiday Makers Pay Medicare Levy?</h2>
-              <p>Working holiday makers are <strong>exempt from the 2% Medicare levy</strong> because they are classified as non-residents for Medicare purposes.</p>
-              <p>WHM visa holders are not eligible for Medicare benefits unless they come from a country with a reciprocal health care agreement: the United Kingdom, Ireland, Belgium, Finland, Italy, Malta, the Netherlands, New Zealand, Norway, Slovenia, and Sweden. Even backpackers from these 11 reciprocal countries do not pay the Medicare levy. The exemption applies to all WHMs regardless of country of origin. The &quot;Medicare Levy Surcharge&quot; (MLS) also does not apply to WHMs.</p>
-              <p>This exemption means the effective tax rate on a $45,000 income is exactly <strong>15%</strong> ($6,750), with no additional Medicare levy on top. By comparison, an Australian resident earning $45,000 pays {formatAUD(RES_TAX_45K)} in income tax plus {formatAUD(RES_MEDICARE_45K)} in Medicare levy (before LITO), totalling {formatAUD(RES_TAX_45K + RES_MEDICARE_45K)}. For more detail on how the levy affects residents, see our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
+              <p>Working holiday makers who are foreign residents for tax purposes, which is most WHMs, <strong>do not pay the 2% Medicare levy</strong>. You claim the foreign resident exemption in your tax return for the days you were a foreign resident.</p>
+              <p>WHM visa holders are not eligible for Medicare benefits unless they come from a country with a reciprocal health care agreement: the United Kingdom, Ireland, Belgium, Finland, Italy, Malta, the Netherlands, New Zealand, Norway, Slovenia, and Sweden. A WHM who is an Australian resident for tax purposes pays the Medicare levy unless they qualify for an exemption. One exemption needs a Medicare Entitlement Statement from Services Australia showing you were not entitled to Medicare benefits, and either no dependants or all your dependants (including your spouse) in a Medicare levy exemption category. The &quot;Medicare Levy Surcharge&quot; (MLS) also does not apply to WHMs.</p>
+              <p>For a foreign-resident WHM, this exemption means the effective tax rate on a $45,000 income is exactly <strong>15%</strong> ($6,750), with no additional Medicare levy on top. By comparison, an Australian resident earning $45,000 pays {formatAUD(RES_TAX_45K)} in income tax plus {formatAUD(RES_MEDICARE_45K)} in Medicare levy (before LITO), totalling {formatAUD(RES_TAX_45K + RES_MEDICARE_45K)}. For more detail on how the levy affects residents, see our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
             </section>
 
             {/* ───────── SECTION 5: Worked Example at $45,000 ───────── */}
@@ -141,7 +141,7 @@ export default function WorkingHolidayTaxPage() {
                 <li>Consolidate multiple super accounts into one fund via myGov (optional, but reduces paperwork)</li>
                 <li>Apply online through the ATO&apos;s DASP application portal at <strong>ato.gov.au</strong></li>
                 <li>Provide your passport, visa details, TFN, and super fund membership numbers</li>
-                <li>The ATO processes claims within <strong>28 business days</strong> of receiving a complete application</li>
+                <li>Your DASP is generally paid within <strong>28 days</strong> of a complete application being received</li>
               </ol>
               <p>DASP claims must be lodged after departure. Applications submitted while still in Australia on a valid visa are rejected. For a deeper understanding of super guarantee obligations, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.</p>
             </section>
@@ -173,7 +173,7 @@ export default function WorkingHolidayTaxPage() {
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Step-by-Step Process</h3>
               <ol>
                 <li><strong>Create a myGov account</strong> and link it to the ATO: you need your TFN, bank details, and a recent payment summary or income statement from your employer</li>
-                <li><strong>Select &quot;non-resident&quot;</strong> as your residency status when prompted (WHMs are treated as non-residents for tax purposes)</li>
+                <li><strong>Answer the residency questions</strong> using the ATO residency tests, not your visa type. Most WHMs are foreign residents for tax purposes, and WHM rates apply either way unless you are a resident from an eligible NDA country (see above)</li>
                 <li><strong>Verify your income</strong>: your employer&apos;s STP data pre-fills in myTax from mid-July each year</li>
                 <li><strong>Claim deductions</strong> for work-related expenses such as protective clothing, tools, travel between work sites, and sun protection for outdoor work</li>
                 <li><strong>Submit the return</strong>: the ATO processes most WHM returns within <strong>12 business days</strong></li>

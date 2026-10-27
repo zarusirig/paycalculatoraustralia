@@ -1,0 +1,173 @@
+{
+ "name": "ff-094-payment-in-lieu-of-notic",
+ "files": [
+  "modules/guide/payment-in-lieu-of-notice.tsx",
+  "modules/guide/private-health-insurance-medicare.tsx",
+  "modules/guide/public-holiday-hub.tsx",
+  "modules/guide/public-service-pay-jurisdiction.tsx",
+  "modules/guide/public-service-pay-scales.tsx",
+  "modules/guide/retail-award-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/payment-in-lieu-of-notice.tsx:136",
+   "file": "modules/guide/payment-in-lieu-of-notice.tsx",
+   "line": "136",
+   "page": "https://pay-calculator-australia.com/payment-in-lieu-of-notice/",
+   "claims": [
+    "Someone on $90,000 gets the 32% rate ... similar to the 32% marginal rate ... Someone already above $180,000 ... (also line 172: 32%, 17%, $180,000, 47%)"
+   ],
+   "whys": [
+    "The figures are correct for 2026-27, but they are typed into the prose by hand. WHOLE_OF_INCOME_CAP and ETP_RATES exist and already drive the table and KeyFigures. If those constants are updated, this prose will go stale."
+   ],
+   "constants": [
+    "lib/constants/notice-pilon.ts WHOLE_OF_INCOME_CAP; lib/constants/redundancy.ts ETP_RATES"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's factQuestion. The figures 32%, $180,000 and 'top rate' in the line 136 prose, and 32%, 17%, $180,000 and 47% in the line 172 methodology, are typed in by hand. ETP_RATES and WHOLE_OF_INCOME_CAP should drive them. The values are correct for 2026-27, so nothing was changed."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.06,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/private-health-insurance-medicare.tsx:124",
+   "file": "modules/guide/private-health-insurance-medicare.tsx",
+   "line": "124",
+   "page": "/private-health-insurance-medicare/",
+   "claims": [
+    "The thresholds have risen every year since 2022-23, when the singles threshold was $90,000. Family thresholds rise $1,500 for each dependent child after the first."
+   ],
+   "whys": [
+    "The figures look correct, but they are typed into the prose. The FAQ file takes the same child increment from MLS_CHILD_INCREMENT, so this paragraph will drift when the constant changes.",
+    "Typed figures. The FAQ takes the child increment from MLS_CHILD_INCREMENT, so the page and the FAQ will drift apart when the constant changes."
+   ],
+   "constants": [
+    "MLS_CHILD_INCREMENT in lib/constants/medicare-levy-extra.ts; a historical singles threshold constant in lib/constants/medicare-levy-surcharge.ts"
+   ],
+   "reviewerNotes": [
+    "Writer fact question passed through. The 2022-23 singles threshold of $90,000 and the $1,500 child increment are typed into the prose, while the FAQ file uses MLS_CHILD_INCREMENT. The page can drift when the constants change."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/private-health-insurance-medicare.tsx:206",
+   "file": "modules/guide/private-health-insurance-medicare.tsx",
+   "line": "206",
+   "page": "/private-health-insurance-medicare/",
+   "claims": [
+    "The LHC figures 2% per year, 70% maximum, age 40 and 20% loading are typed into the prose (lines 206 to 212), as is the 2% Medicare levy at line 124."
+   ],
+   "whys": [
+    "The FAQ uses LHC_PER_YEAR / LHC_MAX and the hero uses MEDICARE_LEVY.rate, so these figures should come from those constants. LHC_PER_YEAR and LHC_MAX should move into lib/constants/medicare-levy-surcharge.ts."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.45,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/public-holiday-hub.tsx:142",
+   "file": "modules/guide/public-holiday-hub.tsx",
+   "line": "142",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/",
+   "claims": [
+    "many awards set a minimum paid shift (for example 4 hours under the Clerks Award)"
+   ],
+   "whys": [
+    "This is a population claim ('many awards') with no source on the page, and the 4-hour Clerks Award minimum on a public holiday is not backed by any constant I could find. The Clerks Award minimum engagement is usually given as 3 hours for part-time and casual staff, so check the clause."
+   ],
+   "constants": [
+    "Clerks Award entry in lib/constants/modern-awards*.ts (minimum engagement / public holiday clause)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.97,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/public-holiday-hub.tsx:143",
+   "file": "modules/guide/public-holiday-hub.tsx",
+   "line": "143",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/",
+   "claims": [
+    "many awards set a minimum paid shift (for example 4 hours under the Clerks Award)"
+   ],
+   "whys": [
+    "I disagree with the writer's question on the figure. The 4-hour Clerks example is backed by lib/constants/modern-awards.ts:686: 'to work on a public holiday, is entitled to not less than 4 hours' pay (cl 24.3(c), 24.4(d))'. The 3-hour minimum the writer recalled is the general part-time and casual engagement rule, not the public holiday clause. What remains open is only the unsourced population claim 'many awards'. It should either be backed by the minimum-engagement or public-holiday clauses in the award constants or narrowed to the awards the site holds data for."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts (CLERKS_AWARD notes, line 686) and the per-award minimum engagement notes in lib/constants/modern-awards*.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.07,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/public-service-pay-jurisdiction.tsx:630",
+   "file": "modules/guide/public-service-pay-jurisdiction.tsx",
+   "line": "630",
+   "page": "/public-service-pay-scales/{aps,vic,qld,nsw,wa,sa,tas,act,nt}/",
+   "claims": [
+    "Fortnightly pay calculator item: 'most public service payrolls pay fortnightly, and the classification tables above are published as fortnightly rates.'",
+    "'the classification tables above are published as fortnightly rates'"
+   ],
+   "whys": [
+    "ClassificationBand stores 'Full-time annual salary in dollars' (lib/data/public-service-pay/types.ts line 63) and the schedule tables render annual salaries, so on all 9 jurisdiction pages the tables are not fortnightly rates. 'Most public service payrolls' is also a population claim with no cited source. Suggest: 'most public service payrolls pay fortnightly; this converts the annual salaries above to fortnightly net pay'.",
+    "ClassificationBand.annual is the full-time annual salary (lib/data/public-service-pay/types.ts line 63-64), and the tables show annual figures, so this statement is false."
+   ],
+   "constants": [
+    "lib/data/public-service-pay/types.ts (ClassificationBand.annual)",
+    "lib/data/public-service-pay/types.ts ClassificationBand.annual"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's flag. ClassificationBand.annual (lib/data/public-service-pay/types.ts line 63-64) is 'Full-time annual salary', and the tables render annual salaries. The claim that 'the classification tables above are published as fortnightly rates' is therefore wrong on all 9 jurisdiction pages. 'Most public service payrolls' is also unsourced. The owner needs to decide the fix."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.54,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/public-service-pay-scales.tsx:294",
+   "file": "modules/guide/public-service-pay-scales.tsx",
+   "line": "294",
+   "page": "https://pay-calculator-australia.com/public-service-pay-scales/",
+   "claims": [
+    "the same gross salary is worth more in the APS than in the VPS once the 15.4% employer superannuation contribution is counted"
+   ],
+   "whys": [
+    "15.4% is the APS median employer contribution (aps.ts:402-404, and the table on this page says '15.4% (median)'). The prose states it as the APS contribution without 'median'."
+   ],
+   "constants": [
+    "lib/data/public-service-pay/aps.ts:402 (rate: 15.4)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.77,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-award-faqs.ts:86",
+   "file": "modules/guide/retail-award-faqs.ts",
+   "line": "86",
+   "page": "https://pay-calculator-australia.com/retail-award-rates/",
+   "claims": [
+    "Junior phase-in lifts 18-year-olds 'from 70%' and 19-year-olds 'from 80%', then '5 points more each July and December', reaching adult rate on 1 July 2029 (18) and 1 July 2028 (19)."
+   ],
+   "whys": [
+    "The starting percentages, step size and end dates are typed into the prose while the first step comes from JUNIOR_PHASE_IN. They will drift if the scale or determination changes."
+   ],
+   "constants": [
+    "RETAIL_JUNIOR_SCALE and JUNIOR_PHASE_IN.retail in lib/constants/modern-awards.ts / hospitality-award.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.64,
+   "needsOwner": false
+  }
+ ]
+}

@@ -3,11 +3,20 @@
 // so the structured data cannot drift from the page. LAFHA and zone-offset
 // treatment follows the ATO sources cited in lib/constants/fifo-pay.ts.
 
-import { EMPLOYMENT } from "@/lib/constants";
-import { LAFHA_STATUTORY_FOOD } from "@/lib/constants/fifo-pay";
+import { formatPercent } from "@/lib/constants";
+import { FIFO_DAYS_PER_YEAR, LAFHA_STATUTORY_FOOD } from "@/lib/constants/fifo-pay";
+import { MINING_AWARD } from "@/lib/constants/modern-awards-oct2";
 import type { FaqItem } from "@/lib/faq";
 
-const DAILY_HOURS = EMPLOYMENT.standardWeeklyHours / 5;
+// Days on site a year for a roster, on the same 364-day year the FIFO
+// calculator uses (lib/constants/fifo-pay.ts).
+const daysOnSite = (on: number, off: number) => Math.round((on * FIFO_DAYS_PER_YEAR) / (on + off));
+
+// Mining Industry Award 2020 overtime rates (cl 20.1 to 20.2), from the award
+// data verified in lib/constants/modern-awards-oct2.ts.
+const MINING_OVERTIME = MINING_AWARD.overtime
+  .map((r) => `${r.label}: ${formatPercent(r.fullTime, 0)}`)
+  .join("; ");
 
 export const MINING_FIFO_FAQS: readonly FaqItem[] = [
   {
@@ -28,7 +37,7 @@ export const MINING_FIFO_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the best FIFO roster for earning?",
-    a: "The 2 weeks on / 1 week off (2/1) roster maximises earning potential because you work approximately 243 days per year. However, 8/6 and 4/3 rosters offer better work-life balance. The highest-paying rosters are typically those with longer swings (3/1 or 4/1), though these are less common and can impact wellbeing.",
+    a: `On the same hourly rate, the roster with the most days on site pays the most. A 4/1 roster (28 on, 7 off) puts you on site about ${daysOnSite(28, 7)} days a year, a 3/1 (21 on, 7 off) about ${daysOnSite(21, 7)} and a 2/1 (14 on, 7 off) about ${daysOnSite(14, 7)}. An 8/6 roster gives about ${daysOnSite(8, 6)} days and a 4/3 about ${daysOnSite(4, 3)}, so you earn less but spend more days at home.`,
   },
   {
     q: "Can FIFO workers claim travel to the airport as a deduction?",
@@ -36,6 +45,6 @@ export const MINING_FIFO_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How does overtime work in mining?",
-    a: `Mining overtime depends on your employment agreement. Under the Mining Industry Award, overtime is generally paid at time-and-a-half for the first 2 hours and double time after that. Many mining enterprise agreements offer annualised salaries that include overtime, while others pay hourly rates with overtime loading for hours beyond ${DAILY_HOURS} per day or ${EMPLOYMENT.standardWeeklyHours} per week.`,
+    a: `Under the ${MINING_AWARD.meta.name} (${MINING_AWARD.meta.code}), overtime is work in addition to your ordinary hours, which for a full-time employee average ${MINING_AWARD.meta.standardWeeklyHours} hours a week (cl 12.1). Overtime is paid as a percentage of your ordinary hourly rate (cl 20.1 and 20.2):${MINING_OVERTIME}. If an enterprise agreement covers you, its overtime terms apply instead, so check your agreement.`,
   },
 ];

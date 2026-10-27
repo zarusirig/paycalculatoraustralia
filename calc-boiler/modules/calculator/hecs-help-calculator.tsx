@@ -78,7 +78,7 @@ export default function HECSHelpCalculatorPage({ children, afterCalculator }: { 
             HECS Repayment Calculator and Thresholds {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
-            Work out your compulsory repayment for {SITE_CONFIG.financialYear} on any study or training support loan: HELP, VSL, SFSS, SSL, ABSTUDY SSL or AASL. They all share one minimum repayment threshold of {formatAUD(T)}, and the marginal system charges only on the income above it.
+            Work out your compulsory repayment for {SITE_CONFIG.financialYear} on any study or training support loan: HELP, VSL, SFSS, SSL, ABSTUDY SSL or AASL. They all share one minimum repayment threshold of {formatAUD(T)}. Up to {formatAUD(B2.max)}, the marginal system charges only on the income above it. From {formatAUD(B3.min)}, you repay {Math.round(B3.marginalRate * 100)}% of your total repayment income.
           </p>
           {/* Above-the-fold answer for "hecs repayment thresholds" — the full table with context is #threshold below. */}
           <div className="mt-5 overflow-x-auto rounded-xl border border-sandstone-dark/20 bg-white">

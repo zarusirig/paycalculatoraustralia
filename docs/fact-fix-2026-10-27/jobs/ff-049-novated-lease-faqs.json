@@ -1,0 +1,124 @@
+{
+ "name": "ff-049-novated-lease-faqs",
+ "files": [
+  "modules/calculator/novated-lease-faqs.ts",
+  "modules/calculator/ote-salary-calculator.tsx",
+  "modules/calculator/overtime-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/novated-lease-faqs.ts:74",
+   "file": "modules/calculator/novated-lease-faqs.ts",
+   "line": "74",
+   "page": "/novated-lease-calculator/",
+   "claims": [
+    "ECM break-even is above the ${formatPercent(0.47, 0)} top rate including the Medicare levy"
+   ],
+   "whys": [
+    "0.47 is typed by hand in code, even though the file header says no figure is typed by hand. It should come from the top TAX_BRACKETS rate + MEDICARE_LEVY.rate. The sentence also uses LUXURY_CAR_TAX.financialYear as the income year label."
+   ],
+   "constants": [
+    "TAX_BRACKETS, MEDICARE_LEVY in lib/constants; SITE_CONFIG.financialYear"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.77,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/ote-salary-calculator.tsx:52",
+   "file": "modules/calculator/ote-salary-calculator.tsx",
+   "line": "52",
+   "page": "/ote-salary/",
+   "claims": [
+    "Take-home uses 2026-27 resident tax rates ... ; result label 'Super guarantee on it (12%)' (line 42)"
+   ],
+   "whys": [
+    "The year and the SG rate are typed into prose and a label, not taken from constants, so they will go stale on rollover."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear; SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.77,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-content.tsx:42",
+   "file": "modules/calculator/overtime-pay-calculator-content.tsx",
+   "line": "42",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Full-time employees trigger overtime after exceeding 38 ordinary hours per week or 7.6 hours per day"
+   ],
+   "whys": [
+    "7.6 is the average daily hours in a 38-hour week, not a daily overtime trigger. Most awards set the daily trigger at the award's maximum ordinary hours per day (often 8 to 12 hours, depending on the award and roster), so this could mislead readers."
+   ],
+   "constants": [
+    "EMPLOYMENT (standardWeeklyHours); 7.6 is a hard-coded literal"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.77,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-content.tsx:132",
+   "file": "modules/calculator/overtime-pay-calculator-content.tsx",
+   "line": "132",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Penalty Rates by Award Type table: Sunday 2.0x for General Retail, Hospitality (General) and Nurses awards"
+   ],
+   "whys": [
+    "For ordinary hours, the Sunday rate for full-time and part-time staff is 150% under the General Retail and Hospitality awards and 175% under the Nurses Award, not 200%. The intro says the table covers weekday overtime, so the Sunday column's basis (ordinary hours or overtime) is unclear. The Hospitality public holiday rate for full-time staff is 225%, not 250%."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts (per-award penalty multipliers)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-content.tsx:98",
+   "file": "modules/calculator/overtime-pay-calculator-content.tsx",
+   "line": "98",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Casual overtime (first 2-3 hrs) 1.5x and (after 2-3 hrs) 2.0x, same as full-time; mistake list line 280 says the overtime multiplier applies to the base rate only, not base plus 25% casual loading"
+   ],
+   "whys": [
+    "Several awards set casual overtime as a loaded percentage of the minimum hourly rate (for example, the General Retail Award gives casuals 175% for the first 3 hours and 225% after that). A flat 1.5x/2.0x for casuals, and the base-only rule, do not hold for every award."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts (casual overtime multipliers)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-content.tsx:203",
+   "file": "modules/calculator/overtime-pay-calculator-content.tsx",
+   "line": "203",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Overtime pay table base rates start at hard-coded 26.44"
+   ],
+   "whys": [
+    "The value matches the 1 July 2026 award minimum ($26.44/hr), but it is a literal while the footnote on line 215 uses EMPLOYMENT.minimumWageHourly. The footnote calls this 'the national minimum wage', and that figure differs from the award minimum after the 2026 Annual Wage Review. The table and footnote can drift apart at the next annual wage review."
+   ],
+   "constants": [
+    "EMPLOYMENT.minimumWageHourly / award minimum constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.73,
+   "needsOwner": false
+  }
+ ]
+}

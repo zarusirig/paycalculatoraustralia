@@ -1,5 +1,14 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { formatAUD } from "@/lib/constants/australian-tax";
+import { FTB_A, FTB_B } from "@/lib/constants/centrelink-family-payments";
+
+const money = (n: number) => formatAUD(n, 2);
+const ftbAUnder13 = money(FTB_A.maxFortnightly.age0to12);
+const ftbA13to19 = money(FTB_A.maxFortnightly.age13to19);
+const ftbBUnder5 = money(FTB_B.maxFortnightly.youngestUnder5);
+const ftbB5Plus = money(FTB_B.maxFortnightly.youngest5to18);
+const ftbBLimit = formatAUD(FTB_B.primaryEarnerLimit);
 
 export default function CentrelinkChangesJuly2026() {
   return (
@@ -7,27 +16,27 @@ export default function CentrelinkChangesJuly2026() {
       <p className="lead">
         Family Tax Benefit rates and income limits rose from <strong>1 July 2026</strong> under
         the standard annual indexation cycle for family payments. Part A climbed to{" "}
-        <strong>$235.48</strong> a fortnight per child under 13, and the Part B primary earner
-        income limit lifted to <strong>$124,327</strong>.
+        <strong>{ftbAUnder13}</strong> a fortnight per child under 13, and the Part B primary
+        earner income limit lifted to <strong>{ftbBLimit}</strong>.
       </p>
 
       <NewsKeyFacts
         rows={[
-          { label: "FTB Part A, per child under 13", after: "$235.48/fortnight" },
-          { label: "FTB Part A, per child 13–15", after: "$306.46/fortnight" },
-          { label: "FTB Part B, youngest under 5", after: "$200.34/fortnight" },
-          { label: "FTB Part B, youngest 5 and over", after: "$139.86/fortnight" },
-          { label: "FTB Part B primary earner limit", after: "$124,327" },
+          { label: "FTB Part A, per child under 13", after: `${ftbAUnder13}/fortnight` },
+          { label: "FTB Part A, per child 13 to 15 (or 16 to 19 in secondary study)", after: `${ftbA13to19}/fortnight` },
+          { label: "FTB Part B, youngest under 5", after: `${ftbBUnder5}/fortnight` },
+          { label: "FTB Part B, youngest 5 and over", after: `${ftbB5Plus}/fortnight` },
+          { label: "FTB Part B primary earner limit", after: ftbBLimit },
         ]}
       />
 
       <h2>Family Tax Benefit rates from 1 July</h2>
       <p>
-        Family Tax Benefit Part A&apos;s maximum rate rose to $235.48 a fortnight for each child
-        under 13 and $306.46 for each child aged 13 to 15, up a few dollars on last year&apos;s
-        rates. Family Tax Benefit Part B, paid to single parents and single-income couple
-        families, rose to $200.34 a fortnight where the youngest child is under 5, and $139.86
-        where the youngest is 5 or older. Both parts index every 1 July, in line with the
+        Family Tax Benefit Part A&apos;s maximum rate rose to {ftbAUnder13} a fortnight for each
+        child under 13 and {ftbA13to19} for each child aged 13 to 15, or 16 to 19 and in full-time
+        secondary study. Family Tax Benefit Part B, paid to single parents and single-income couple
+        families, rose to {ftbBUnder5} a fortnight where the youngest child is under 5, and{" "}
+        {ftbB5Plus} where the youngest is 5 or older. Both parts index every 1 July, in line with the
         financial year, so families see the new rate in their first payment of the new financial
         year rather than partway through it.
       </p>
@@ -41,7 +50,7 @@ export default function CentrelinkChangesJuly2026() {
       <h2>Income limits moved too</h2>
       <p>
         Alongside the rate rises, the Family Tax Benefit Part B primary earner income limit lifted
-        to $124,327 for 2026-27. Families where the primary earner earns more than that aren&apos;t
+        to {ftbBLimit} for 2026-27. Families where the primary earner earns more than that aren&apos;t
         eligible for Part B at all. Family Tax Benefit Part A&apos;s income-free areas and taper
         thresholds were indexed on the same date. That can lift the Part A payment for some families
         already receiving a part rate, and may bring some higher-income families back into

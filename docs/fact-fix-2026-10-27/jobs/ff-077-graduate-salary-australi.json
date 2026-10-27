@@ -1,0 +1,149 @@
+{
+ "name": "ff-077-graduate-salary-australi",
+ "files": [
+  "modules/guide/graduate-salary-australia-faqs.ts",
+  "modules/guide/graduate-salary-australia.tsx",
+  "modules/guide/healthcare-worker-pay-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/graduate-salary-australia-faqs.ts:24",
+   "file": "modules/guide/graduate-salary-australia-faqs.ts",
+   "line": "24",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "Legal Services Award ... at $33.99 an hour or about $67,174 a year"
+   ],
+   "whys": [
+    "Hard-coded award rate in an FAQ answer that also feeds the FAQPage JSON-LD. Award minimums rose 4.75% from 1 July 2026, so this could be the 2025-26 rate. It should come from lib/data/graduate-salary."
+   ],
+   "constants": [
+    "lib/data/graduate-salary (Legal Services Award law graduate rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia-faqs.ts:32",
+   "file": "modules/guide/graduate-salary-australia-faqs.ts",
+   "line": "32",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "The Professional Employees Award sets a minimum of $68,538 a year for a graduate engineer ... (Level 1, pay point 1.1)"
+   ],
+   "whys": [
+    "Hard-coded award figure. Check whether it reflects the 1 July 2026 increase. It should come from the data file."
+   ],
+   "constants": [
+    "lib/data/graduate-salary (Professional Employees Award L1 PP1.1)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.52,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia-faqs.ts:44",
+   "file": "modules/guide/graduate-salary-australia-faqs.ts",
+   "line": "44",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "NSW Health pays interns $80,638 a year from the first full pay period on or after 1 July 2025, an interim rate that may have been updated."
+   ],
+   "whys": [
+    "The answer admits the rate may be stale ('may have been updated'), which hedges against its own currency. Confirm the current NSW Health intern rate, put it in the data file and remove the hedge."
+   ],
+   "constants": [
+    "lib/data/graduate-salary (NSW Health intern rate, IB2026_007)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.04,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia-faqs.ts:48",
+   "file": "modules/guide/graduate-salary-australia-faqs.ts",
+   "line": "48",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "On $80,000 a resident pays about $14,520 in income tax and $1,600 Medicare levy in 2026-27, leaving about $63,880 a year, or $1,228 a week"
+   ],
+   "whys": [
+    "The figures check out for 2026-27 (15% first bracket), but they are hard-coded in the FAQ and JSON-LD, so they go stale when rates change. Generate them with calculatePayBreakdown({grossSalary: 80000}). The same applies to the $1,571 HELP figure at line 56."
+   ],
+   "constants": [
+    "calculatePayBreakdown in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia.tsx:147",
+   "file": "modules/guide/graduate-salary-australia.tsx",
+   "line": "147",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "NSW Health pays interns $80,638 a year from the first full pay period on or after 1 July 2025 (IB2026_007, an interim increase pending the NSW Industrial Relations Commission's decision).",
+    "NSW Health intern salary of $80,638 from 1 July 2025 (IB2026_007, interim, pending the NSW IRC decision)"
+   ],
+   "whys": [
+    "This is an interim rate from a bulletin dated 20 January 2026 and backdated to 1 July 2025. By late October 2026 the NSW IRC decision or a 2026-27 rise has probably replaced it. The figure is also hard-coded as 80_638 in the JSX and not held in a data constant.",
+    "I agree with the writer. This is an interim January 2026 bulletin and is probably superseded by October 2026. The figure is a hard-coded literal 80_638 in the JSX."
+   ],
+   "constants": [
+    "lib/data/graduate-salary/index.ts (add an NSW intern constant with its effective date and source)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.26,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/graduate-salary-australia.tsx:120",
+   "file": "modules/guide/graduate-salary-australia.tsx",
+   "line": "120",
+   "page": "https://pay-calculator-australia.com/graduate-salary-australia/",
+   "claims": [
+    "Professional Employees Award Level 1 pay point 1.1 is $68,538 ($34.57/hr), pay points 1.2 to 1.4 are $69,688, $72,590 and $76,267, and a 3-year degree starts at $66,825.",
+    "Professional Employees Award Level 1 pay points ($68,538, $34.57/hr, $69,688, $72,590, $76,267; 3-year degree $66,825)"
+   ],
+   "whys": [
+    "These look consistent with the 4.75% rise from 1 July 2026, but they are typed literals in prose and in KeyFigures (line 69). They are not award constants, so they will go stale at the next Annual Wage Review. Please confirm them against MA000065 clause 14.1.",
+    "I agree with the writer. These are typed literals in the prose and in KeyFigures (line 69), not data constants, so they will go stale at the next Annual Wage Review. Confirm them against MA000065 clause 14.1."
+   ],
+   "constants": [
+    "lib/data/graduate-salary/index.ts or the shared award-rates data for MA000065"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/healthcare-worker-pay-faqs.ts:128",
+   "file": "modules/guide/healthcare-worker-pay-faqs.ts",
+   "line": "128",
+   "page": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "claims": [
+    "Nurse penalty rates typed as prose: night +20% NSW/Qld, +20.5% SA, +35% WA, flat allowance Vic; Saturday time and a half NSW/Vic/Qld, +50% WA; Sunday time and three quarters NSW/Qld, +75% WA, time and a half in Victoria."
+   ],
+   "whys": [
+    "Every figure is hard-coded in the FAQ answer, not read from the state scales in lib/data/nursing-pay. Victoria's Sunday rate at time and a half sits below the Nurses Award 2020 Sunday rate of 175%, so it needs checking against the Victorian public sector nurses and midwives agreement."
+   ],
+   "constants": [
+    "lib/data/nursing-pay (per-state penalty fields)"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. The nurse penalty percentages are hard-coded prose, not read from lib/data/nursing-pay, and the Victorian Sunday rate of 'time and a half' needs checking against the Victorian public sector nurses and midwives agreement."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.88,
+   "needsOwner": false
+  }
+ ]
+}

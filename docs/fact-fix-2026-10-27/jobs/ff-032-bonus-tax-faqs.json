@@ -1,0 +1,161 @@
+{
+ "name": "ff-032-bonus-tax-faqs",
+ "files": [
+  "modules/calculator/bonus-tax-faqs.ts",
+  "modules/calculator/carer-allowance-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:78",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "78",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "any refund attributable to a bonus is typically small, usually under $200 for a $10,000 bonus"
+   ],
+   "whys": [
+    "The $200 figure is a typed literal with no source or engine calculation behind it, so it reads as a population claim. The string is locked because it has an em dash."
+   ],
+   "constants": [
+    "compute from calculateSchedule5MethodB vs calculatePayBreakdown (payg-withholding.ts), or remove"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:126",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "126",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "If a bonus pushes your combined income and super above this threshold, any concessional contributions (including salary-sacrificed bonus amounts) are taxed at 30% instead of 15% inside super."
+   ],
+   "whys": [
+    "Division 293 tax applies to the lesser of your concessional contributions and the amount your Division 293 income exceeds $250,000, not to all of your concessional contributions. The $250,000, 15% and 30% are also typed literals, although the header says every figure comes from lib/constants. The string is locked because it has an em dash."
+   ],
+   "constants": [
+    "a DIVISION_293 constant (threshold and rate) in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:114",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "114",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "Each bonus is taxed using Schedule 5 based on your year-to-date earnings at the time of payment."
+   ],
+   "whys": [
+    "This contradicts line 128 of the same file and the calculator's own Method B, which divide the bonus by the number of pay periods and add the slice to one normal pay. That method does not use year-to-date earnings. The $130,000 and $140,000 in the same answer are also typed literals, while the bracket edge comes from MIDDLE.max, so the example drifts if the brackets change."
+   ],
+   "constants": [
+    "calculateSchedule5MethodB / SCHEDULE_5 docs in lib/constants/payg-withholding.ts; TAX_BRACKETS"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.61,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:110",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "110",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "The ATO treats commissions, bonuses, incentive payments, and profit-share distributions identically for PAYG withholding purposes. All are supplementary payments subject to Schedule 5 withholding at your marginal tax rate."
+   ],
+   "whys": [
+    "Schedule 5 covers back payments, commissions, bonuses and similar payments. Profit-share distributions are not obviously in scope, and Schedule 5 does not withhold 'at your marginal tax rate' (it uses the period-slice method and has a cap). Needs a check against the ATO Schedule 5 text."
+   ],
+   "constants": [
+    "lib/constants/payg-withholding.ts (Schedule 5 scope note)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:122",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "122",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "Non-resident rates 30% to $135,000, 37% to $190,000, 45% above; no $18,200 tax-free threshold"
+   ],
+   "whys": [
+    "These figures look correct for 2026-27 but are typed literals, although the file header says no figure is typed here. They will go stale silently if the rates change."
+   ],
+   "constants": [
+    "a NON_RESIDENT_TAX_BRACKETS constant plus TAX_FREE_THRESHOLD in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:86",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "86",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "taxed at only 15% inside super instead of your marginal rate"
+   ],
+   "whys": [
+    "15% is a typed literal (it also appears at line 98 and in the Division 293 answer at line 126), although the file header says figures come from lib/constants. It should come from a super contributions tax constant so it cannot drift."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.14,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-faqs.ts:74",
+   "file": "modules/calculator/bonus-tax-faqs.ts",
+   "line": "74",
+   "page": "/bonus-tax-calculator/",
+   "claims": [
+    "Performance, Christmas, sign-on and referral bonuses all count as qualifying earnings under Payday Super"
+   ],
+   "whys": [
+    "Sign-on bonuses are not clearly ordinary time earnings or qualifying earnings under ATO guidance (SGR 2009/2 ties OTE to ordinary hours of work). Please confirm before relying on this. The same claim appears again at line 102."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE notes in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/carer-allowance-content.tsx:73",
+   "file": "modules/calculator/carer-allowance-content.tsx",
+   "line": "73",
+   "page": "/carer-allowance/",
+   "claims": [
+    "Comparison table cell: 'Pension income test: 50c per $1 over $226 a fortnight (single)'"
+   ],
+   "whys": [
+    "The $226 single income free area is typed by hand in a table cell. It matches AGE_PENSION_INCOME_TEST.single.freeArea (226) today, but it will go stale when the free area is indexed on 1 July. It is a locked table cell, so this pass cannot change it."
+   ],
+   "constants": [
+    "AGE_PENSION_INCOME_TEST.single.freeArea in lib/constants/centrelink-income-test.ts (line 542)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. A table cell has '$226 a fortnight (single)' typed in by hand instead of AGE_PENSION_INCOME_TEST.single.freeArea, so it will go stale at indexation."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.51,
+   "needsOwner": false
+  }
+ ]
+}

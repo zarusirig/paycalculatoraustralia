@@ -78,7 +78,7 @@ export const ACT_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   topStep: "Class 1, Cert IV Correctional Practice",
 
   traineePay: [
-    "A Correctional Officer Trainee is paid $65,146 a year while on the course, from the first full pay period on or after 1 December 2025 (Annex A).",
+    "A Correctional Officer Trainee is paid $65,146 a year while on the course, from 4 December 2025, the first full pay period on or after 1 December 2025 (clause C2.2.7 and Annex A).",
   ],
   penalties: [
     "ACT correctional officers on shift work get an extra 15% of the ordinary hourly rate for a shift any part of which falls between 6 pm and 6.30 am, or 30% when working continuously for more than 4 weeks on shifts wholly between 6 pm and 8 am (clauses C8.1 to C8.2).",

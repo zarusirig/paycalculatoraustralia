@@ -1,0 +1,132 @@
+{
+ "name": "ff-068-division-293-tax",
+ "files": [
+  "modules/guide/division-293-tax.tsx",
+  "modules/guide/employee-vs-sole-trader-vs-company-faqs.ts",
+  "modules/guide/employee-vs-sole-trader-vs-company.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/division-293-tax.tsx:70",
+   "file": "modules/guide/division-293-tax.tsx",
+   "line": "70",
+   "page": "https://pay-calculator-australia.com/division-293-tax/",
+   "claims": [
+    "An employee earning $230,000 with $30,000 concessional contributions ($27,600 SG plus $2,400 salary sacrifice) has a combined income of $260,000 and pays Division 293 tax on $10,000.",
+    "Division 293 primarily impacts high-income professionals, executives, and business owners."
+   ],
+   "whys": [
+    "If $230,000 is gross salary, the $2,400 salary sacrifice comes out of taxable income ($227,600), so Division 293 income plus contributions is $257,600 and the taxed amount is $7,600, not $10,000. SG on OTE also counts sacrificed salary. The example needs to say whether $230,000 is taxable income or gross salary.",
+    "Population claim with no figure or source cited on the page."
+   ],
+   "constants": [
+    "Worked example figures are hard-coded in the TSX; SG rate should come from SUPER_GUARANTEE in lib/constants",
+    "none (needs an ATO source or removal)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax.tsx:197",
+   "file": "modules/guide/division-293-tax.tsx",
+   "line": "197",
+   "page": "https://pay-calculator-australia.com/division-293-tax/",
+   "claims": [
+    "Top marginal rate 45% plus 2% Medicare levy = 47%; super saves 17% compared with salary."
+   ],
+   "whys": [
+    "These figures are typed into prose rather than taken from TAX_BRACKETS and MEDICARE_LEVY, so they will drift if the rates change. They are correct for FY2025-26."
+   ],
+   "constants": [
+    "TAX_BRACKETS, MEDICARE_LEVY in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax.tsx:161",
+   "file": "modules/guide/division-293-tax.tsx",
+   "line": "161",
+   "page": "https://pay-calculator-australia.com/division-293-tax/",
+   "claims": [
+    "The due date is shown on your assessment notice, typically 21 days from the date of issue."
+   ],
+   "whys": [
+    "A hedged rule ('typically') on a payment due date. The ATO sets a specific due date for Division 293 assessments, and the 60-day release window and 21-day due date should be checked against the current ATO page and held as constants."
+   ],
+   "constants": [
+    "lib/constants (a DIVISION_293 constant block alongside the hard-coded DIV293_THRESHOLD at line 14)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.96,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/division-293-tax.tsx:42",
+   "file": "modules/guide/division-293-tax.tsx",
+   "line": "42",
+   "page": "https://pay-calculator-australia.com/division-293-tax/",
+   "claims": [
+    "Hero: 'exceed $250,000 ... an extra 15% tax'. Lines 60 and 189 also type '15%', '30%', 'up to 45%' and '$250,000' into the prose."
+   ],
+   "whys": [
+    "The page already imports DIV293_THRESHOLD (line 14) and uses it in section 1 and the formula list, but the hero and the strategies text hard-code $250,000 and the rates. They will drift if the constant changes."
+   ],
+   "constants": [
+    "DIV293_THRESHOLD (move to lib/constants/super-contributions.ts with a DIV293_RATE), TAX_BRACKETS"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employee-vs-sole-trader-vs-company-faqs.ts:40",
+   "file": "modules/guide/employee-vs-sole-trader-vs-company-faqs.ts",
+   "line": "40",
+   "page": "https://pay-calculator-australia.com/employee-vs-sole-trader-vs-company/",
+   "claims": [
+    "Do sole traders have to pay super? No.",
+    "Do sole traders have to pay super? 'No, super contributions for yourself are optional.'"
+   ],
+   "whys": [
+    "Correct only for the sole trader's own income. A sole trader who employs staff must pay SG for eligible employees, and the page's top pre-crash query is 'payroll for sole trader with employees'. I narrowed the answer to 'super contributions for yourself' but could not add the employer obligation, because this pass cannot add new facts.",
+    "I agree with the writer. The page's top query is 'payroll for sole trader with employees', and the answer leaves out the SG obligation for a sole trader's employees. That needs a content addition in a later pass."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate in lib/constants",
+    "SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.9,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employee-vs-sole-trader-vs-company.tsx:44",
+   "file": "modules/guide/employee-vs-sole-trader-vs-company.tsx",
+   "line": "44",
+   "page": "https://pay-calculator-australia.com/employee-vs-sole-trader-vs-company/",
+   "claims": [
+    "Source list cites \"Company tax rates 2025\u201326\" (COMPANY_TAX.sources.rates2025_26)",
+    "Source list cites \"Company tax rates 2025\u201326\" (COMPANY_TAX.sources.rates2025_26 at calc-boiler/lib/constants/company-tax.ts:27)"
+   ],
+   "whys": [
+    "The page computes everything at FY2026-27 rates, but the cited ATO company tax rate page is the 2025-26 one. Check whether a 2026-27 ATO page exists and should replace it. The title also has an en dash, which this pass could not edit because it is locked.",
+    "The page computes at FY2026-27 rates but cites the ATO 2025-26 company tax rates page. Check whether the ATO 2026-27 page is live and switch to it. The locked title also contains an en dash."
+   ],
+   "constants": [
+    "COMPANY_TAX.sources.rates2025_26 in calc-boiler/lib/constants/company-tax.ts:27"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.16,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1,0 +1,151 @@
+{
+ "name": "ff-031-bonus-tax-calculator-con",
+ "files": [
+  "modules/calculator/bonus-tax-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:386",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "386",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "Frequent commission payments can trigger PAYG instalment obligations if your total income exceeds ATO thresholds."
+   ],
+   "whys": [
+    "PAYG instalments apply to business and investment income. An employee's commission is covered by PAYG withholding (Schedule 5), not instalments, so the sentence looks wrong for employees. It is also vague: it names no threshold."
+   ],
+   "constants": [
+    "none (prose claim); verify against ATO PAYG instalments guidance"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:405",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "405",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "work-related expenses, salary sacrifice contributions, or the \"Low Income Tax Offset\" reduce your assessable income below the projected amount"
+   ],
+   "whys": [
+    "LITO is a tax offset. It reduces tax payable, not assessable income. Salary sacrifice reduces assessable salary but is not a tax deduction, so the item lumps three different mechanisms together under 'Significant tax deductions'."
+   ],
+   "constants": [
+    "LITO constants in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:326",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "326",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "from 1 July 2027 the 15% rate falls to 14% and a new Working Australians Tax Offset of $250 starts"
+   ],
+   "whys": [
+    "The figures look correct, but they are typed into the text instead of read from constants. lib/constants/tax-2027-28.ts already holds maxOffset: 250 and the 2027-28 rates, so this text can drift from the data."
+   ],
+   "constants": [
+    "lib/constants/tax-2027-28.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:357",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "357",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "qualifying earnings, which include performance, Christmas, sign-on and referral bonuses",
+    "Only a bonus paid solely for work performed entirely outside your ordinary hours is excluded."
+   ],
+   "whys": [
+    "Under ATO SGR 2009/2, a sign-on bonus (paid to start work, not for ordinary hours) and some referral bonuses are not listed as OTE. Please check them against the qualifying earnings definition that applies from 1 July 2026.",
+    "'Only' overstates the exclusions. Super guarantee also does not apply to earnings above the maximum super contribution base, or to employees under 18 who work 30 hours a week or less. It also conflicts with the hedged 'generally applies' at line 371."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (lib/constants); ATO SGR 2009/2",
+    "SUPER_GUARANTEE (lib/constants), maximum contribution base"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.45,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:418",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "418",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "The contribution is taxed at only 15% inside the super fund, compared to marginal rates of 30% to 47% outside super.",
+    "Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income.",
+    "... minus $1,500 in super contributions tax"
+   ],
+   "whys": [
+    "The range mixes two bases. 47% is the top 45% rate plus the 2% Medicare levy, but 30% is the bare bracket rate without Medicare (it would be 32% on the same basis). The 30, 47 and 15 figures are also hard-coded, not taken from TAX_BRACKETS.",
+    "A missing condition. Under the ATO rules, salary sacrificing a bonus only works if the arrangement is in place before you become entitled to the bonus. The page does not say this, and readers could ask for it after the bonus has already been determined.",
+    "Hard-coded. It is 15% of $10,000. If the contributions-tax rate or the example amount changes in code, this figure will no longer match SS_SAVING_120K."
+   ],
+   "constants": [
+    "TAX_BRACKETS / allIn() in the tax constants; a contributions-tax constant for the 15%",
+    "n/a (prose condition; needs an owner-approved sentence citing the ATO)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's six factQuestions: the 30%/47% basis mismatch, the missing condition that the salary-sacrifice arrangement must be in place before the bonus entitlement, the hard-coded $1,500, $45,000, $370 (not on the same basis as the Medicare-inclusive figures), and $500,000/5 years. No source edits were made. Owner and constants work."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.37,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:426",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "426",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "The same bonus taxed at the {TAX_BRACKETS[1]} bracket (if income drops below $45,000)"
+   ],
+   "whys": [
+    "The $45,000 threshold is hard-coded, while the rate next to it comes from TAX_BRACKETS[1]."
+   ],
+   "constants": [
+    "TAX_BRACKETS[1].max"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/bonus-tax-calculator-content.tsx:431",
+   "file": "modules/calculator/bonus-tax-calculator-content.tsx",
+   "line": "431",
+   "page": "https://pay-calculator-australia.com/bonus-tax-calculator/",
+   "claims": [
+    "Every $1,000 in deductions at the 37% marginal rate reduces tax by $370."
+   ],
+   "whys": [
+    "Both figures are hard-coded. The example also leaves out the Medicare levy, while the Strategy 1 and Strategy 2 figures on the same page include it ($390 on that basis), so the three strategies are worked out on different bases."
+   ],
+   "constants": [
+    "TAX_BRACKETS[3].rate (and allIn() if Medicare should be included)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.74,
+   "needsOwner": false
+  }
+ ]
+}

@@ -6,7 +6,8 @@ import { NOVATED_LEASE_GUIDE_FAQS } from "./novated-lease-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { FBT } from "@/lib/constants/novated-lease";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
@@ -17,6 +18,11 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "FBT on plug-in hybrid electric vehicles", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/fbt-on-plug-in-hybrid-electric-vehicles", publisher: SOURCES.ato.name },
   { title: "TD 93/142 \u2013 minimum residual values", url: "https://www.ato.gov.au/law/view/document?docid=TXD/TD93142/NAT/ATO/00001", publisher: SOURCES.ato.name },
 ];
+
+const pct = (r: number) => `${Math.round(r * 10_000) / 100}%`;
+const cents = (r: number) => `${Math.round(r * 100)}c`;
+const LOW = TAX_BRACKETS[1];
+const HIGH37 = TAX_BRACKETS[3];
 
 export default function NovatedLeaseGuidePage() {
   return (
@@ -35,7 +41,7 @@ export default function NovatedLeaseGuidePage() {
             <p>A novated lease is a three-way agreement between an employee, their employer, and a finance company that allows car costs to be paid from <strong>pre-tax salary</strong>, which reduces taxable income and the after-tax cost of running the car.</p>
             <p>The word &quot;novation&quot; is a legal term meaning the substitution of one party to a contract for another. In a novated lease, the employer assumes the employee&apos;s payment obligations to the leasing company for the duration of employment. The employee chooses the vehicle, negotiates the price, and selects the lease term, typically <strong>1 to 5 years</strong>. The employer then deducts lease payments and bundled running costs directly from the employee&apos;s gross salary each pay cycle.</p>
             <p>Three documents form the arrangement: a finance lease between the employee and the leasing company, a novation agreement transferring payment responsibility to the employer, and a salary packaging agreement between the employee and employer. The vehicle remains registered in the employee&apos;s name throughout the lease term, and full private use is permitted.</p>
-            <p>Unlike a standard car loan, a novated lease bundles all vehicle expenses, including fuel, registration, insurance, tyres and scheduled servicing, into a single fortnightly or monthly deduction. This bundling is where the saving comes from: the deduction is taken before tax, and the employer claims the GST credits. How much that is worth depends on your marginal rate, the car and the FBT treatment. The <Link href="/novated-lease-calculator/">novated lease calculator</Link> works it out on your own figures, and the <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> shows what any pre-tax deduction does to take-home pay.</p>
+            <p>Unlike a standard car loan, a novated lease bundles all vehicle expenses, including fuel, registration, insurance, tyres and scheduled servicing, into a single fortnightly or monthly deduction. This bundling is where the saving comes from: the deduction is taken before tax, and an employer entitled to GST credits claims them. How much that is worth depends on your marginal rate, the car and the FBT treatment. The <Link href="/novated-lease-calculator/">novated lease calculator</Link> works it out on your own figures, and the <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> shows what any pre-tax deduction does to take-home pay.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is a Novated Lease Different from a Finance Lease?</h3>
             <p>A finance lease is a two-party agreement between a borrower and a lender. A novated lease adds a third party, the employer, and shifts the payment obligation from the employee to the employer through the novation deed. The income tax treatment differs: finance lease payments come from after-tax income, while novated lease payments use pre-tax salary and reduce assessable income. The ownership structure is the same in both cases (the employee takes title after paying the residual), but only a novated lease saves income tax at the employee&apos;s marginal rate.</p>
@@ -54,9 +60,9 @@ export default function NovatedLeaseGuidePage() {
               <li><strong>Choose a vehicle</strong>. It can be new or used, subject to the provider&apos;s age limit at lease end. If it is an electric car, the price decides whether the FBT exemption applies: it has to sit under the luxury car tax threshold for fuel-efficient vehicles, which the <Link href="/novated-lease-calculator/">calculator</Link> carries for the current year.</li>
               <li><strong>Get a lease quote</strong>. The leasing company provides a quote covering the finance cost, residual value, and a running cost budget covering fuel, insurance, registration, maintenance, and tyres.</li>
               <li><strong>Sign three agreements</strong>. The finance lease, novation deed, and salary packaging agreement are executed. No deposit is required in most novated lease arrangements.</li>
-              <li><strong>Salary deductions begin</strong>. Your employer deducts the total lease budget from your gross pay each period. The pre-tax portion reduces your assessable income. A smaller post-tax portion covers the employee contribution to reduce or eliminate FBT liability.</li>
+              <li><strong>Salary deductions begin</strong>. Your employer deducts the total lease budget from your gross pay each period. The pre-tax portion reduces your assessable income. The post-tax portion is the employee contribution, which reduces or eliminates the FBT. To remove the FBT on a car that is not FBT-exempt, it is {pct(FBT.statutoryRate)} of the car&apos;s base value for a full FBT year, so it can be the larger part of the budget.</li>
               <li><strong>Drive and claim</strong>. You use the car for both personal and work purposes. Running cost invoices go to the leasing company, which pays them from your budgeted running cost pool.</li>
-              <li><strong>End of lease</strong>. At lease end, you pay the residual value to own the car outright, refinance the residual into a new lease, or return the vehicle to the dealer.</li>
+              <li><strong>End of lease</strong>. At lease end, you pay the residual value to own the car outright, refinance the residual into a new lease, or trade the car in and start a new lease on a different vehicle.</li>
             </ol>
             <p>Throughout the lease, your employer handles all payments to the finance company. Your payslip shows the pre-tax and post-tax deductions as separate line items, and our <Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> guide shows how they appear.</p>
 
@@ -85,12 +91,12 @@ export default function NovatedLeaseGuidePage() {
                   <tr className="border-b border-sandstone-dark/20">
                     <td className="p-3 font-medium text-navy">Comprehensive insurance</td>
                     <td className="p-3 text-right">$1,200</td>
-                    <td className="p-3">Fleet-rate pricing, typically 20&ndash;30% below retail</td>
+                    <td className="p-3">Fleet-rate pricing</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
                     <td className="p-3 font-medium text-navy">Registration &amp; CTP</td>
                     <td className="p-3 text-right">$400</td>
-                    <td className="p-3">Varies by state &mdash; NSW and VIC are highest</td>
+                    <td className="p-3">Varies by state and territory</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20">
                     <td className="p-3 font-medium text-navy">Servicing &amp; maintenance</td>
@@ -105,7 +111,7 @@ export default function NovatedLeaseGuidePage() {
                 </tbody>
               </table>
             </div>
-            <p>The total annual budget of approximately <strong>$12,000</strong> translates to <strong>$461 per fortnight</strong> or <strong>$1,000 per month</strong>. Any surplus remaining in the running cost account at lease end is refunded to the employee. Any shortfall is the employee&apos;s responsibility.</p>
+            <p>The total annual budget of approximately <strong>$12,000</strong> translates to <strong>$462 per fortnight</strong> or <strong>$1,000 per month</strong>. Any surplus remaining in the running cost account at lease end is refunded to the employee. Any shortfall is the employee&apos;s responsibility.</p>
           </section>
 
           {/* ============================================================ */}
@@ -116,8 +122,8 @@ export default function NovatedLeaseGuidePage() {
             <p>A novated lease has <strong>three</strong> separate money effects, and they do not all pull the same way: the income tax saving and the GST credits lower the cost of the car, while FBT adds to it.</p>
             <ol>
               <li><strong>Income tax on the pre-tax deduction.</strong> The lease and running-cost budget comes off your gross pay before tax is worked out, so you keep the tax you would have paid on that slice of salary. The higher your marginal rate, the more the slice is worth.</li>
-              <li><strong>GST credits.</strong> The employer is registered for GST and claims credits on the lease payments and packaged running costs. Whether that credit lands in your budget, and how much of it, is set by the packaging arrangement, so read it off your quote rather than assuming it.</li>
-              <li><strong>FBT, in the other direction.</strong> Giving an employee a car for private use is a fringe benefit, and FBT is charged at 47% on the grossed-up taxable value. Either the employee contribution method cancels it, or it is funded out of the same budget. An eligible electric car is exempt from FBT altogether.</li>
+              <li><strong>GST credits.</strong> An employer that is registered for GST and entitled to GST credits claims them on the lease payments and packaged running costs. Whether that credit lands in your budget, and how much of it, is set by the packaging arrangement, so read it off your quote rather than assuming it.</li>
+              <li><strong>FBT, in the other direction.</strong> Giving an employee a car for private use is a fringe benefit, and FBT is charged at {pct(FBT.rate)} on the grossed-up taxable value. Either the employee contribution method cancels it, or it is funded out of the same budget. An eligible electric car is exempt from FBT altogether.</li>
             </ol>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Fourth Effect Most Explanations Leave Out</h3>
@@ -144,7 +150,7 @@ export default function NovatedLeaseGuidePage() {
                 <tbody>
                   <tr className="border-b border-sandstone-dark/20">
                     <td className="p-3 font-medium text-navy">Payment source</td>
-                    <td className="p-3">Pre-tax + small post-tax component</td>
+                    <td className="p-3">Pre-tax + post-tax employee contribution</td>
                     <td className="p-3">100% after-tax income</td>
                   </tr>
                   <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
@@ -189,7 +195,7 @@ export default function NovatedLeaseGuidePage() {
                   </tr>
                   <tr>
                     <td className="p-3 font-medium text-navy rounded-bl-lg">Best for</td>
-                    <td className="p-3">Employees on $45,000+ with supportive employer</td>
+                    <td className="p-3">Employees earning over {formatAUD(LOW.max)} with supportive employer</td>
                     <td className="p-3 rounded-br-lg">Self-employed or employer does not offer packaging</td>
                   </tr>
                 </tbody>
@@ -259,11 +265,11 @@ export default function NovatedLeaseGuidePage() {
           {/* ============================================================ */}
           <section id="who-benefits-most">
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Benefits Most from a Novated Lease?</h2>
-            <p>The saving on the pre-tax deduction is worth your marginal rate, so the same car and the same budget are worth more to someone on 37c in the dollar than to someone on 15c. Below the tax-free threshold there is nothing to save at all, and around the bottom bracket the post-tax employee contribution can swallow most of the benefit.</p>
+            <p>The saving on the pre-tax deduction is worth your marginal rate, so the same car and the same budget are worth more to someone on {cents(HIGH37.rate)} in the dollar than to someone on {cents(LOW.rate)}. Below the tax-free threshold there is nothing to save at all, and around the bottom bracket the post-tax employee contribution can swallow most of the benefit.</p>
             <p>But the marginal rate is only half of it. On a car that is not FBT-exempt, the FBT taxable value is fixed at 20% of the price no matter what you earn, so a cheap car on a high salary looks very different from an expensive car on a modest one. And the reportable fringe benefits amount lands hardest on people with a study loan, because it lifts repayment income without lifting take-home pay. Rather than reading a range off a table, put your own salary and car through the <Link href="/novated-lease-calculator/">novated lease calculator</Link>: it prices the deductions, the FBT, the reported amount and the HECS-HELP effect together.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Not Eligible for a Novated Lease?</h3>
-            <p>A novated lease is less beneficial for employees earning under <strong>$45,000</strong>, those within 2 years of retirement (insufficient time to realise savings), and casual employees without a guaranteed salary. Self-employed workers and sole traders are ineligible because the arrangement requires an employer-employee relationship. Contractors on ABN-only arrangements cannot access novated leasing. Employees on fixed-term contracts shorter than the proposed lease term face additional risk, though most leasing providers offer portability and payout options to mitigate this.</p>
+            <p>A novated lease saves the least income tax for employees earning <strong>{formatAUD(LOW.max)}</strong> or less, where the marginal rate is {cents(LOW.rate)} in the dollar or lower. It is a poor fit for casual employees without a guaranteed salary to deduct from. Self-employed workers and sole traders are ineligible because the arrangement requires an employer-employee relationship. Contractors on ABN-only arrangements cannot access novated leasing. Employees on fixed-term contracts shorter than the proposed lease term face additional risk, because the novation ends when the job does (see below).</p>
             <p>Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare your current after-tax pay with and without salary packaging. The <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> explains the employment classification requirements for accessing salary packaging benefits including novated leases.</p>
           </section>
 
@@ -317,7 +323,7 @@ export default function NovatedLeaseGuidePage() {
             <p>A longer term means a lower balloon payment but more years of finance charges. The residual is paid from after-tax money, which is why the <Link href="/novated-lease-calculator/">calculator</Link> counts it in the total. A comparison against buying the car that stops at the end of the lease is not a fair one.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Happens If You Leave Your Job Mid-Lease?</h3>
-            <p>The novation deed automatically unwinds when employment ends. The lease reverts to a standard finance lease between the employee and the leasing company. The employee has <strong>3 options</strong> at that point: transfer the lease to a new employer (if the new employer offers salary packaging), continue paying the lease personally from after-tax income, or pay out the remaining balance and residual in a lump sum. Most leasing companies offer a portability guarantee that allows a smooth transfer to a new employer within <strong>60 to 90 days</strong>. No early termination fee applies when transferring to a new employer. Paying out early incurs a break cost equal to the remaining lease payments plus the residual, minus a discount for early settlement typically worth <strong>1 to 3 months of interest</strong>.</p>
+            <p>The novation deed automatically unwinds when employment ends. The lease reverts to a standard finance lease between the employee and the leasing company. The employee has <strong>3 options</strong> at that point: transfer the lease to a new employer (if the new employer offers salary packaging), continue paying the lease personally from after-tax income, or pay out the remaining balance and residual in a lump sum. Any fee for moving the lease to a new employer, and how an early payout figure is worked out, are set by your lease contract, so ask the provider for both in writing before you sign.</p>
           </section>
 
           {/* ============================================================ */}

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
-import { FREQUENCY_LABELS, type PayFrequency } from "@/lib/constants/payg-withholding";
+import { FREQUENCY_LABELS, PAYG_FINANCIAL_YEAR, PAYG_YEAR_INFO, type PayFrequency } from "@/lib/constants/payg-withholding";
 import { estimateYearEnd } from "@/lib/constants/tax-rates-reference";
 
 // Tax withheld calculator. Per-pay withholding is the ATO Schedule 1 / 8
@@ -46,7 +46,7 @@ export default function TaxWithheldCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Tax Withheld Calculator {FY}</h2>
         <p className="text-sm text-warmgray mb-6">
-          Enter your gross pay (before tax) for one pay period. The calculator uses the ATO&rsquo;s PAYG withholding formulas for payments made from 1 July 2026.
+          Enter your gross pay (before tax) for one pay period. The calculator uses the ATO&rsquo;s PAYG withholding formulas for {PAYG_YEAR_INFO[PAYG_FINANCIAL_YEAR].appliesTo}.
         </p>
 
         <form onSubmit={(ev) => ev.preventDefault()} className="grid grid-cols-1 gap-5 sm:grid-cols-2">

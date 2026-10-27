@@ -83,7 +83,7 @@ export const SA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "Clause 15C lifted the Recruit Firefighter rate to 85% of the Fourth Class Firefighter rank from the first full pay period on or after 1 January 2026. The recruit rate went from $1,187.12 per week (1 January 2025) to $1,575.97 per week (1 January 2026).",
   ],
   penalties: [
-    "The MFS rates in Appendix A are total weekly wages. The 1 January 2026 column also includes a 1.8925% public holiday adjustment, and from 1 July 2026 a $3,000-a-year base uplift reflecting rescue qualification and advanced skills (clause 15B).",
+    "The MFS rates in Appendix A are total weekly wages. The 1 January 2026 column also includes a 1.8925% public holiday adjustment. From 1 July 2026, clause 15B adds $3,000 a year to base salary for rescue qualification and advanced skills. In Appendix A that step lifts every total weekly wage by $81.21 to $81.22 (about $4,235 a year), so the rise in total pay is more than $3,000.",
     "The normal hourly rate is the Appendix A total wage divided by 40 (clause 6 definitions).",
     "Senior Firefighter Level 2A employees who are eligible and willing to act up to Station Officer are paid an extra amount (set at $50.23 per week and increased in line with the agreement's wage increases) on top of their total wage (clause 31.4).",
   ],

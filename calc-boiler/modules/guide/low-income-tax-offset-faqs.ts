@@ -9,6 +9,8 @@ import { litoBreakdown, nilTaxIncomeOnScale } from "@/lib/constants/tax-rates-re
 const FY = SITE_CONFIG.financialYear;
 const PREV = SITE_CONFIG.previousFinancialYear;
 const m = (n: number) => formatAUD(n);
+/** A withdrawal rate as cents per $1: 0.05 -> "5", 0.015 -> "1.5". */
+const c = (rate: number) => `${Number((rate * 100).toFixed(1))}`;
 export const LITO_MID = LITO.maxOffset - (LITO.phaseOut1.end - LITO.fullOffsetCeiling) * LITO.phaseOut1.rate;
 export const NIL_NOW = nilTaxIncomeOnScale(TAX_BRACKETS_2026_27);
 export const NIL_PREV = nilTaxIncomeOnScale(TAX_BRACKETS_2025_26);
@@ -17,7 +19,7 @@ const l50 = litoBreakdown(50_000);
 export const LITO_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `How much is the low income tax offset for ${FY}?`,
-    a: `Up to ${m(LITO.maxOffset)}. You get the full ${m(LITO.maxOffset)} if your taxable income is ${m(LITO.fullOffsetCeiling)} or less. It then reduces by 5 cents for each dollar above ${m(LITO.fullOffsetCeiling)} to ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)}, then by 1.5 cents per dollar until it runs out at ${m(LITO.nilOffsetIncome)}.`,
+    a: `Up to ${m(LITO.maxOffset)}. You get the full ${m(LITO.maxOffset)} if your taxable income is ${m(LITO.fullOffsetCeiling)} or less. It then reduces by ${c(LITO.phaseOut1.rate)} cents for each dollar above ${m(LITO.fullOffsetCeiling)} to ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)}, then by ${c(LITO.phaseOut2.rate)} cents per dollar until it runs out at ${m(LITO.nilOffsetIncome)}.`,
   },
   {
     q: "At what income does LITO cut out?",
@@ -53,6 +55,6 @@ export const LITO_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How much LITO do I get on $50,000?",
-    a: `${m(l50.offset)}. $50,000 is in the second phase-out band: ${m(LITO_MID)} minus 1.5c for each of the ${m(50_000 - LITO.phaseOut1.end)} over ${m(LITO.phaseOut1.end)}.`,
+    a: `${m(l50.offset)}. $50,000 is in the second phase-out band: ${m(LITO_MID)} minus ${c(LITO.phaseOut2.rate)}c for each of the ${m(50_000 - LITO.phaseOut1.end)} over ${m(LITO.phaseOut1.end)}.`,
   },
 ];

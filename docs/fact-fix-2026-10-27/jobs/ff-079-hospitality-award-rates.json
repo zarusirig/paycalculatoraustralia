@@ -1,0 +1,113 @@
+{
+ "name": "ff-079-hospitality-award-rates",
+ "files": [
+  "modules/guide/hospitality-award-rates.tsx",
+  "modules/guide/job-pay-public-hospital.tsx",
+  "modules/guide/job-pay-rates-hub.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/hospitality-award-rates.tsx:97",
+   "file": "modules/guide/hospitality-award-rates.tsx",
+   "line": "97",
+   "page": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "claims": [
+    "The opening says MA000009 is 'the federal award covering cafes, restaurants, pubs, clubs and hotels in every state.'",
+    "Opening: MA000009 is 'the federal award covering cafes, restaurants, pubs, clubs and hotels in every state.'"
+   ],
+   "whys": [
+    "The same page says something different further down. Line 235 puts a restaurant or cafe outside a hotel under the Restaurant Industry Award. Line 237 says registered and licensed clubs are not under the hospitality award. Line 252 says registered clubs and Restaurant Industry Award restaurants are excluded. The opening sentence is too broad. I left it unchanged because of the never-change-facts rule.",
+    "This contradicts the same page's 'Which award' list on lines 233-238. That list puts standalone restaurants and cafes under the Restaurant Industry Award 2020 and registered or licensed clubs under the Clubs Award. A reader whose query is the casual rate for a cafe would be sent to the wrong award."
+   ],
+   "constants": [
+    "Hard-coded JSX on line 97. Coverage wording could be added as a HOSPITALITY_AWARD.coverageSummary field in calc-boiler/lib/constants/hospitality-award.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer. The opening's coverage claim ('cafes, restaurants, pubs, clubs and hotels') conflicts with the 'Which award' list on lines 233-238. That list sends standalone restaurants and cafes to the Restaurant Industry Award and registered or licensed clubs to the Clubs Award. The claim was left unchanged under the never-change-facts rule and goes to a human."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.96,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/hospitality-award-rates.tsx:413",
+   "file": "modules/guide/hospitality-award-rates.tsx",
+   "line": "413",
+   "page": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "claims": [
+    "Retail casual overtime is '175% against 150% for permanents' (typed into the prose). Line 431 also types in '80%' as the retail rate for 19-year-olds.",
+    "Retail casual overtime is '175% against 150% for permanents', and line 431 says the retail award pays 19-year-olds '80%'."
+   ],
+   "whys": [
+    "These retail figures are typed into the text instead of coming from the retail award constants, so they will go stale silently if the retail rates change. They look correct today.",
+    "These figures are typed into the prose instead of coming from the retail award constants, so they will go stale silently. They look correct for 2026-27."
+   ],
+   "constants": [
+    "Retail award overtime and junior-scale constants (the General Retail Industry Award block in calc-boiler/lib/constants/hospitality-award.ts, and the retail junior scale)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/job-pay-public-hospital.tsx:250",
+   "file": "modules/guide/job-pay-public-hospital.tsx",
+   "line": "250",
+   "page": "https://pay-calculator-australia.com/job-pay-rates/pharmacist/ (and 73 other job pages)",
+   "claims": [
+    "After-tax pay uses 2026-27 resident tax rates"
+   ],
+   "whys": [
+    "The financial year is typed into the template instead of read from SITE_CONFIG.financialYear, so it will go stale on 74 pages at the next financial-year rollover."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.27,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/job-pay-public-hospital.tsx:47",
+   "file": "modules/guide/job-pay-public-hospital.tsx",
+   "line": "47",
+   "page": "https://pay-calculator-australia.com/job-pay-rates/pharmacist/ (and 73 other job pages)",
+   "claims": [
+    "Full-time pay before tax."
+   ],
+   "whys": [
+    "The answer box also shows the ATO average taxable income, which covers every taxpayer with that occupation code, part-time included. Labelling the whole box as full-time pay overstates that row."
+   ],
+   "constants": [
+    "occ.ato rows (lib/data/job-pay-rates)"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. The heading 'Full-time pay before tax' also covers the ATO average taxable income row, which includes part-time filers. Line 250 also types 2026-27 by hand instead of reading SITE_CONFIG.financialYear, which will go stale on 74 pages."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.13,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/job-pay-rates-hub.tsx:98",
+   "file": "modules/guide/job-pay-rates-hub.tsx",
+   "line": "98",
+   "page": "https://pay-calculator-australia.com/job-pay-rates/",
+   "claims": [
+    "The opening says each rate 'is read from the job's modern award' (this was also in the original wording)."
+   ],
+   "whys": [
+    "Award-free jobs such as accountant show the National Minimum Wage, not an award rate, so the claim does not cover every row. The wording could exclude the award-free jobs, or the opening could count them."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates (occ.award / coverageMode)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.13,
+   "needsOwner": false
+  }
+ ]
+}

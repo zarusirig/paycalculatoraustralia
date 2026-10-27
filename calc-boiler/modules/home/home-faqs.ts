@@ -25,10 +25,12 @@ import {
   HECS_HELP,
   MEDICARE_LEVY,
   SUPER_GUARANTEE,
+  SUPER_GUARANTEE_CHARGE,
   SITE_CONFIG,
   TAX_BRACKETS,
   TAX_BRACKETS_2025_26,
 } from "@/lib/constants";
+import { WORKING_DAYS_PER_YEAR } from "@/lib/constants/contractor-rate";
 
 const FY = SITE_CONFIG.financialYear;
 
@@ -73,11 +75,11 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "What is casual loading and why do casuals get 25% extra?",
-    a: `Casual loading is an extra ${pct(EMPLOYMENT.casualLoading)} on top of the base hourly rate, paid because casual employees miss out on paid annual leave, paid personal leave and notice of termination. On the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is ${formatAUD(CASUAL_MIN_WAGE, 2)} an hour. ${pct(EMPLOYMENT.casualLoading)} is the standard loading under most awards, but your award or agreement sets the exact figure.`,
+    a: `Casual loading is an extra ${pct(EMPLOYMENT.casualLoading)} on top of the base hourly rate, paid because casual employees miss out on paid annual leave, paid personal leave and notice of termination. On the ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} national minimum wage, the casual rate is ${formatAUD(CASUAL_MIN_WAGE, 2)} an hour. That ${pct(EMPLOYMENT.casualLoading)} loading is the rule for casuals on the national minimum wage. If an award or agreement covers you, it sets your exact loading.`,
   },
   {
     q: "When do penalty rates apply?",
-    a: `Penalty rates apply when your award or agreement says so, typically weekends, public holidays, overtime and late nights. Under most awards Saturday work pays around ${pct(EMPLOYMENT.penaltyRates.saturdayMin)} to ${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)} to ${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)} to ${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so check the award that covers your job.`,
+    a: `Penalty rates apply when your award or agreement says so, for work such as weekends, public holidays, overtime and late nights. As a guide, Saturday work pays ${pct(EMPLOYMENT.penaltyRates.saturdayMin)} to ${pct(EMPLOYMENT.penaltyRates.saturdayMax)} of the base rate, Sundays ${pct(EMPLOYMENT.penaltyRates.sundayMin)} to ${pct(EMPLOYMENT.penaltyRates.sundayMax)}, and public holidays ${pct(EMPLOYMENT.penaltyRates.publicHolidayMin)} to ${pct(EMPLOYMENT.penaltyRates.publicHolidayMax)}. The exact percentages depend on your award, your classification and whether you are casual, so check the award that covers your job.`,
   },
   {
     q: "Is super included in my salary, or paid on top?",
@@ -117,11 +119,11 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "Can new migrants and visa holders use this pay calculator?",
-    a: `Yes. The calculator uses Australian resident tax rates, which apply to most migrants who live and work in Australia and are residents for tax purposes. Working holiday makers (417 and 462 visas) and non-residents are taxed under different rate schedules with no tax-free threshold, so their take-home pay is lower at the same salary.`,
+    a: `Yes, if you are an Australian resident for tax purposes, because the calculator uses Australian resident tax rates. Working holiday makers (417 and 462 visas) are taxed at working holiday maker rates, apart from some tax residents from countries with a non-discrimination tax treaty, and non-residents are taxed at non-resident rates. Neither schedule has a tax-free threshold, so this calculator does not show their take-home pay.`,
   },
   {
     q: "How often should my employer pay super?",
-    a: `Your employer must pay super on every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines. Your employer's contribution must now reach your fund within 7 business days of each payday. Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
+    a: `Your employer must pay super on every payday. Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart} and replaced the old quarterly deadlines. Your employer's contribution must now reach your fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of each payday (${SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for the first contribution for a new employee or to a new fund). Late payments attract the Superannuation Guarantee Charge, which adds interest compounding daily plus an administrative uplift.`,
   },
   {
     q: "Do I pay tax differently in different states?",
@@ -129,7 +131,7 @@ export const HOME_FAQS: readonly HomeFaq[] = [
   },
   {
     q: "How do I calculate my daily rate from an annual salary?",
-    a: `Divide your annual salary by 260 working days (${EMPLOYMENT.weeksPerYear} weeks × 5 days). On $80,000, the daily rate is ${formatAUD(80_000 / 260, 2)}. For an hourly rate, divide by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours instead, about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour on the same salary.`,
+    a: `Divide your annual salary by ${WORKING_DAYS_PER_YEAR} working days (${EMPLOYMENT.weeksPerYear} weeks × 5 days). On $80,000, the daily rate is ${formatAUD(80_000 / WORKING_DAYS_PER_YEAR, 2)}. For an hourly rate, divide by ${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours instead, about ${formatAUD(80_000 / EMPLOYMENT.hoursPerYear, 2)} an hour on the same salary.`,
   },
   {
     q: "What deductions come out of my pay before it reaches my bank account?",

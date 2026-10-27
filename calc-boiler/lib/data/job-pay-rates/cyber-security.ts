@@ -83,6 +83,7 @@ const L3 = peaRow(PEA.level3);
 const ROWS = CYBER_SECURITY_ATO.rows;
 const ANALYST = ROWS[0];
 const ENGINEER_ROW = ROWS[1];
+const ADVICE = ROWS[2];
 const ARCHITECT = ROWS[4];
 const PEOPLE = ROWS.reduce((n, r) => n + r.individuals, 0);
 
@@ -138,7 +139,7 @@ export const CYBER_SECURITY: Occupation = {
   faqs: [
     {
       q: "How much do cyber security professionals earn in Australia?",
-      a: `Cyber security pay in Australia depends on the role. On 2023-24 tax returns the median salary or wage income was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers, $147,590 for advice and assessment specialists and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO Taxation statistics 2023-24).`,
+      a: `Cyber security pay in Australia depends on the role. On 2023-24 tax returns the median salary or wage income was ${aud(ANALYST.medianSalary)} for cyber security analysts, ${aud(ENGINEER_ROW.medianSalary)} for cyber security engineers, ${aud(ADVICE.medianSalary)} for advice and assessment specialists and ${aud(ARCHITECT.medianSalary)} for cyber security architects (ATO Taxation statistics 2023-24).`,
     },
     {
       q: "What is a cyber security analyst's salary?",

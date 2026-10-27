@@ -88,7 +88,7 @@ export default function MedicareLevySurchargePage() {
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Medicare Levy Surcharge Calculator {MLS_INCOME_YEAR}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
-          The Medicare levy surcharge (MLS) is an extra <strong>1% to 1.5%</strong> charged on top of the {RATE} Medicare levy if your income for MLS purposes is over <strong>{formatAUD(SINGLE_BASE)}</strong> (singles) or <strong>{formatAUD(FAMILY_BASE)}</strong> (families) in {MLS_INCOME_YEAR} and you don&rsquo;t hold private patient hospital cover. The calculator below works out your MLS tier, your surcharge, and whether a hospital policy would cost less after the rebate.
+          The Medicare levy surcharge (MLS) is an extra <strong>{mlsPct(S.tier1.rate)} to {mlsPct(S.tier3.rate)}</strong> charged on top of the {RATE} Medicare levy if your income for MLS purposes is over <strong>{formatAUD(SINGLE_BASE)}</strong> (singles) or <strong>{formatAUD(FAMILY_BASE)}</strong> (families) in {MLS_INCOME_YEAR} and you don&rsquo;t hold private patient hospital cover. The calculator below works out your MLS tier, your surcharge, and whether a hospital policy would cost less after the rebate.
         </p>
         <TrustBar className="!max-w-none" />
       </header>
@@ -198,7 +198,7 @@ export default function MedicareLevySurchargePage() {
 
           <section>
             <H2 id="vs-levy">The Surcharge vs the Medicare Levy</H2>
-            <p>The Medicare levy surcharge and the Medicare levy are separate charges. The {RATE} <Link href="/medicare-levy/">Medicare levy</Link> is paid by almost every resident, has low-income and family reductions, and is included in the tax your employer withholds. The surcharge is extra, applies only above the thresholds on this page, can be removed entirely by hospital cover, and isn&rsquo;t withheld from your pay. The ATO adds it when you lodge, and your notice of assessment shows the two together as &ldquo;Medicare levy and surcharge&rdquo;.</p>
+            <p>The Medicare levy surcharge and the Medicare levy are separate charges. The {RATE} <Link href="/medicare-levy/">Medicare levy</Link> is charged on the taxable income of every resident who does not qualify for a reduction or exemption, has low-income and family reductions, and is included in the tax your employer withholds. The surcharge is extra, applies only above the thresholds on this page, can be removed entirely by hospital cover, and isn&rsquo;t withheld from your pay unless you ask your employer to with a Medicare levy variation declaration. The ATO adds it when you lodge, and your notice of assessment shows the two together as &ldquo;Medicare levy and surcharge&rdquo;.</p>
           </section>
 
           <section>

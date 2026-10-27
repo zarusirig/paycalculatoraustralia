@@ -1,0 +1,159 @@
+{
+ "name": "ff-083-mining-fifo-pay-guide-fa",
+ "files": [
+  "modules/guide/mining-fifo-pay-guide-faqs.ts",
+  "modules/guide/mining-fifo-pay-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/mining-fifo-pay-guide-faqs.ts:31",
+   "file": "modules/guide/mining-fifo-pay-guide-faqs.ts",
+   "line": "31",
+   "page": "/mining-fifo-pay-guide/",
+   "claims": [
+    "The 2/1 roster maximises earning potential (about 243 days a year), but the highest-paying rosters are those with longer swings (3/1 or 4/1)."
+   ],
+   "whys": [
+    "The answer contradicts itself. A 3/1 or 4/1 roster works a larger share of the year than 2/1, so 2/1 cannot be the roster that maximises earnings. The 243 days figure is also hard-coded rather than derived."
+   ],
+   "constants": [
+    "lib/constants/fifo-pay.ts (roster definitions with days worked)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide-faqs.ts:39",
+   "file": "modules/guide/mining-fifo-pay-guide-faqs.ts",
+   "line": "39",
+   "page": "/mining-fifo-pay-guide/",
+   "claims": [
+    "Under the Mining Industry Award, overtime is generally paid at time-and-a-half for the first 2 hours and double time after that. Many mining enterprise agreements offer annualised salaries that include overtime."
+   ],
+   "whys": [
+    "The overtime multipliers and the 2-hour trigger are hard-coded and do not cite the Mining Industry Award 2020 clause. They need checking against the current award. 'Many mining enterprise agreements' is a population claim with no source."
+   ],
+   "constants": [
+    "an award-overtime constant for the Mining Industry Award (MA000011) with its clause reference"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.83,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:167",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "167",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "\"...see your after-tax position for FY2025-26.\""
+   ],
+   "whys": [
+    "The FY is hard-coded and stale. The $150,000 example in the same section uses calculatePayBreakdown, which is the FY2026-27 engine, and it is labelled FY{SITE_CONFIG.financialYear} (2026-27). I could not change it because the rules forbid editing years."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear (lib/constants/australian-tax.ts:638); render as FY{SITE_CONFIG.financialYear}"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:122",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "122",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "LAFHA of \"$50 to $100 per day on-site, adding $7,000 to $14,000 per year in tax-free income on a 2/1 roster\""
+   ],
+   "whys": [
+    "The figures don't add up. The page says a 2/1 roster is about 243 days a year. At $50 to $100 a day, that comes to about $12,150 to $24,300, not $7,000 to $14,000. The claim that LAFHA is tax-free also clashes with the FAQ, which says LAFHA is a fringe benefit taxed to the employer under FBT and that only the exempt food and accommodation parts reduce the taxable value."
+   ],
+   "constants": [
+    "lib/constants/fifo-pay.ts (next to LAFHA_STATUTORY_FOOD); the roster day counts should be derived, not typed"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:126",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "126",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "\"Most FIFO employers cover the cost of flights\"; the travel allowance \"is generally taxable unless the employer books and pays for travel directly, in which case it is a fringe benefit to the employer\"",
+    "Travel allowance of \"$200\u2013$500 per swing\""
+   ],
+   "whys": [
+    "\"Most FIFO employers\" is a population claim with no source. Also, travel the employer books and pays for directly is not an allowance, and FIFO flights are often exempt from FBT under the otherwise-deductible rule. The sentence mixes up two different things.",
+    "The range is hard-coded and has no source or date."
+   ],
+   "constants": [
+    "ATO travel allowance vs LAFHA guidance (cited in lib/constants/fifo-pay.ts comments)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:110",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "110",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "Overtime on 12-hour shifts \"can add $20,000\u2013$40,000 per year above the base salary\""
+   ],
+   "whys": [
+    "This is the site's own estimate. It has no source and no worked basis (no hourly rate or number of overtime hours)."
+   ],
+   "constants": [
+    "derive from an example in lib/constants/fifo-pay.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.27,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:160",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "160",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "\"Adding tax-free LAFHA of $10,000 per year brings the effective take-home to approximately ...\""
+   ],
+   "whys": [
+    "The $10,000 is a hard-coded literal. The example also inherits the 'LAFHA is tax-free' claim, which clashes with the FAQ: LAFHA is a fringe benefit taxed to the employer under FBT, and only the exempt food and accommodation parts reduce its taxable value."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/mining-fifo-pay-guide.tsx:163",
+   "file": "modules/guide/mining-fifo-pay-guide.tsx",
+   "line": "163",
+   "page": "https://pay-calculator-australia.com/mining-fifo-pay-guide/",
+   "claims": [
+    "\"Superannuation at 12% adds another ...\""
+   ],
+   "whys": [
+    "The 12% is typed into the text, but the amounts next to it are computed from SUPER_GUARANTEE.rate. If the constant changes, the text and the computed figures will disagree. It should render from SUPER_GUARANTEE.rate."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.28,
+   "needsOwner": false
+  }
+ ]
+}

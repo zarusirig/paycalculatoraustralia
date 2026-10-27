@@ -16,9 +16,12 @@ import {
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { COMMON_LEAVE_LOADING, TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
+import { ANNUAL_LEAVE } from "@/lib/constants/annual-leave";
+import { LSL_JURISDICTIONS, LSL_TAX } from "@/lib/constants/long-service-leave";
 
 /** 17.5% annual leave loading — award/agreement dependent, not an NES entitlement. */
-export const LEAVE_LOADING_RATE = 0.175;
+export const LEAVE_LOADING_RATE = COMMON_LEAVE_LOADING;
 
 const LOADING_PCT = `${(LEAVE_LOADING_RATE * 100).toFixed(1)}%`;
 
@@ -36,6 +39,16 @@ const BRACKET_30 = TAX_BRACKETS[2];
 const BRACKET_37 = TAX_BRACKETS[3];
 const PCT = (rate: number) => `${Math.round(rate * 100)}%`;
 
+// ATO Schedule 7 (payments from 1 July 2026): unused annual leave and loading.
+const FLAT_32 = PCT(TERMINATION_LOADING_WITHHOLDING.flatRate);
+const CUTOVER_1993 = LSL_TAX.aug1993Cutover; // "17 August 1993"
+
+// Long service leave figures, read from the state and territory Acts' guidance.
+const LSL = LSL_JURISDICTIONS;
+/** Weeks as the authorities print them: 8.6667 -> "8.67", 13 -> "13". */
+const wk = (n: number) => String(Number(n.toFixed(2)));
+const SHIFT_WEEKS = ANNUAL_LEAVE.shiftworkerWeeksPerYear;
+
 export interface LeaveFaq {
   q: string;
   a: string;
@@ -52,15 +65,15 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "Who gets leave loading?",
-    a: `Leave loading applies to employees covered by an award or enterprise agreement that includes a ${LOADING_PCT} leave loading clause. Common awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award. Award-free employees on individual contracts (common in professional services, banking, and technology) do not receive leave loading unless their contract specifies it. Check the leave loading clause in your award, agreement or employment contract to confirm your entitlement.`,
+    a: `Leave loading applies to employees covered by an award or enterprise agreement that includes a ${LOADING_PCT} leave loading clause. Common awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award. Award-free employees on individual contracts do not receive leave loading unless their contract specifies it. Check the leave loading clause in your award, agreement or employment contract to confirm your entitlement.`,
   },
   {
     q: "Is leave loading taxed?",
-    a: `Yes. Leave loading is ordinary income, taxed at your marginal rate with PAYG withholding applied by your employer the same way as salary. The historical concessional tax treatment for leave loading was removed decades ago. Loading paid out on termination is added to your taxable income for the financial year it is received.`,
+    a: `Yes. Leave loading is ordinary income, taxed at your marginal rate with PAYG withholding applied by your employer the same way as salary. The historical concessional tax treatment for leave loading was removed decades ago. Loading paid out on termination is taxed with the unused annual leave it comes with: at your marginal rate on a normal termination, or withheld at a flat ${FLAT_32} if the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or if the loading accrued on or before ${CUTOVER_1993}.`,
   },
   {
     q: "How much annual leave do I get in Australia?",
-    a: `Full-time employees get ${WEEKS} weeks (${WEEKS * 5} days or ${LEAVE_HOURS} hours) of paid annual leave per year under the National Employment Standards. Part-time employees accrue leave on a pro-rata basis proportional to their ordinary hours. Shift workers who work a rotating roster including weekends and nights receive 5 weeks (190 hours) under their award.`,
+    a: `Full-time employees get ${WEEKS} weeks (${WEEKS * 5} days or ${LEAVE_HOURS} hours) of paid annual leave per year under the National Employment Standards. Part-time employees accrue leave on a pro-rata basis proportional to their ordinary hours. Shift workers, as defined in their award or enterprise agreement, get ${SHIFT_WEEKS} weeks (${SHIFT_WEEKS * EMPLOYMENT.standardWeeklyHours} hours) under the National Employment Standards.`,
   },
   {
     q: "How is annual leave calculated pro-rata?",
@@ -68,11 +81,11 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "How is leave payout taxed?",
-    a: `Annual leave payouts are taxed as ordinary income at your marginal tax rate. The ATO treats the payout as assessable income in the financial year it is received. A large payout can push part of your income into a higher bracket. In FY${SITE_CONFIG.financialYear}, income between ${formatAUD(BRACKET_30.min)} and ${formatAUD(BRACKET_30.max)} is taxed at ${PCT(BRACKET_30.rate)}. A $12,000 payout on top of a $128,000 salary lifts assessable income to $140,000. The portion above ${formatAUD(BRACKET_30.max)} is then taxed at ${PCT(BRACKET_37.rate)} instead of ${PCT(BRACKET_30.rate)}.`,
+    a: `On a normal termination, such as resignation or retirement, unused annual leave and leave loading that accrued after ${CUTOVER_1993} are taxed as ordinary income at your marginal tax rate, in the financial year you receive them. A large payout can push part of your income into a higher bracket. In FY${SITE_CONFIG.financialYear}, income between ${formatAUD(BRACKET_30.min)} and ${formatAUD(BRACKET_30.max)} is taxed at ${PCT(BRACKET_30.rate)}. A $12,000 payout on top of a $128,000 salary lifts assessable income to $140,000. The portion above ${formatAUD(BRACKET_30.max)} is then taxed at ${PCT(BRACKET_37.rate)} instead of ${PCT(BRACKET_30.rate)}. Two cases are withheld at a flat ${FLAT_32} instead, under the ATO's Schedule 7: leave paid out because of a genuine redundancy, invalidity or an early retirement scheme (whenever it accrued), and leave that accrued on or before ${CUTOVER_1993}.`,
   },
   {
     q: "Do I get tax back on unused annual leave?",
-    a: `Possibly. Annual leave payouts are taxed as lump-sum income at your marginal rate, which can over-withhold tax if the payout temporarily pushes you into a higher bracket for that pay period. When you lodge your annual tax return, any over-withheld tax is refunded based on actual annual income.`,
+    a: `Only if more tax was withheld across the year than you owe on your actual taxable income. On a normal termination your employer uses the ATO's marginal rate method in Schedule 7: the payout is divided across a full year of pay periods (52 weekly, 26 fortnightly or 12 monthly), the extra tax on one share is worked out from the normal tax table, and that amount is multiplied back up. This stops the whole payout being taxed at a higher rate in a single pay period. Your tax return then settles the difference: if the tax withheld is more than the tax on your income for the year, the ATO refunds the excess.`,
   },
   {
     q: "Is annual leave paid out when I leave my job?",
@@ -88,10 +101,10 @@ export const LEAVE_FAQS: readonly LeaveFaq[] = [
   },
   {
     q: "When do I qualify for long service leave?",
-    a: `Long service leave qualification depends on state and territory legislation. In NSW, QLD, WA, and TAS, the full entitlement of 8.67 weeks vests after 10 years of continuous service, with pro-rata payouts on termination available after 5 years in NSW and after 7 years in QLD, WA and TAS. Victoria works differently. Under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (worked weeks ÷ 60). The Victorian entitlement can be taken, or paid out on termination, after 7 years (about 6.1 weeks) and reaches the same 8.67 weeks by the 10-year mark. SA and NT provide 13 weeks after 10 years, with pro-rata payouts after 7 years. The ACT provides 6.07 weeks after 7 years, with pro-rata payouts after 5 years.`,
+    a: `Long service leave qualification depends on state and territory legislation. In NSW, Queensland, WA and Tasmania, ${wk(LSL.nsw.weeksAtQualifying)} weeks vests after ${LSL.nsw.takeAfterYears} years of continuous service, and SA and the NT give ${wk(LSL.sa.weeksAtQualifying)} weeks after ${LSL.sa.takeAfterYears} years. Victoria and the ACT let you take leave after ${LSL.vic.takeAfterYears} years, when ${wk(LSL.vic.weeksAtQualifying)} weeks has accrued. Under the Long Service Leave Act 2018 (Vic), leave accrues from day one at one week for every 60 weeks worked. If your job ends before the full entitlement, a pro-rata payout is paid however the job ends after ${LSL.vic.proRataUnconditionalFromYears} years in Victoria, WA and SA (WA and SA do not pay it before ${LSL.wa.takeAfterYears} years if you are dismissed for serious misconduct, and SA also does not pay it before ${LSL.sa.takeAfterYears} years if you end the contract unlawfully, such as by walking out without working your notice). In NSW from ${LSL.nsw.proRataFromYears} years, and in Queensland, Tasmania and the NT from ${LSL.qld.proRataFromYears} years, a payout before ${LSL.nsw.proRataUnconditionalFromYears} years is owed only on defined grounds, such as resigning because of illness, incapacity or a domestic or other pressing necessity, or some dismissals. The ACT works the same way from ${LSL.act.proRataFromYears} years until ${LSL.act.proRataUnconditionalFromYears} years. A plain resignation inside these windows pays nothing.`,
   },
   {
     q: "Do casual employees get annual leave?",
-    a: `No. Casual employees do not accrue annual leave, personal leave, or long service leave under the NES. Instead, casuals receive a ${PCT(EMPLOYMENT.casualLoading)} casual loading on top of their base hourly rate to compensate for the absence of paid leave, notice of termination, and redundancy pay entitlements.`,
+    a: `No. Casual employees do not get paid annual leave or paid personal/carer's leave under the NES. Instead, casuals receive a ${PCT(EMPLOYMENT.casualLoading)} casual loading on top of their base hourly rate to compensate for the absence of paid leave, notice of termination, and redundancy pay entitlements. Long service leave is different: casuals with continuous service can qualify for it under the long service leave law of every state and territory.`,
   },
 ];

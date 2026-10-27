@@ -1,0 +1,164 @@
+{
+ "name": "ff-102-tax-bracket-history",
+ "files": [
+  "modules/guide/tax-bracket-history.tsx",
+  "modules/guide/tax-calendar-faqs.ts",
+  "modules/guide/tax-calendar.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-bracket-history.tsx:76",
+   "file": "modules/guide/tax-bracket-history.tsx",
+   "line": "76",
+   "page": "/tax-bracket-history/",
+   "claims": [
+    "Removing LMITO from FY2022-23 raised the tax payable by earners between $37,000 and $126,000 (also line 218: 'up to $1,500 more tax for earners between $37,000 and $126,000')."
+   ],
+   "whys": [
+    "LMITO also paid a base amount ($255, or $675 in FY2021-22) to earners at or below $37,000, so they lost it too. The $1,500 maximum applied only from about $48,001 to $90,000. The range looks too narrow."
+   ],
+   "constants": [
+    "none (historical; LMITO is not held in lib/constants)"
+   ],
+   "reviewerNotes": [
+    "I confirm the writer's fact questions. LMITO also paid the $255/$675 base amount at or below $37,000, so 'earners between $37,000 and $126,000' (lines 76 and 218) is too narrow. In the table note at line 281, the FY2021-22 LMITO at $80,000 was $1,500, not $1,080. Line 219 '45% above $190,001' (and line 102) is off by one dollar against TAX_BRACKETS_2025_26[4].min. The FY2025-26 sidebar at line 325 is stale."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.25,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-bracket-history.tsx:325",
+   "file": "modules/guide/tax-bracket-history.tsx",
+   "line": "325",
+   "page": "/tax-bracket-history/",
+   "claims": [
+    "Sidebar: 'See exactly how much tax you owe under the current FY2025-26 brackets'."
+   ],
+   "whys": [
+    "Today is 27 Oct 2026, so the current year is FY2026-27 and the 15% second rate applies. The copy is stale. It should take its year from SITE_CONFIG.financialYear."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear / TAX_BRACKETS_2026_27"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-bracket-history.tsx:219",
+   "file": "modules/guide/tax-bracket-history.tsx",
+   "line": "219",
+   "page": "/tax-bracket-history/",
+   "claims": [
+    "Revised Stage 3: '45% above $190,001' (line 102 also says 'raised the top threshold to $190,001')."
+   ],
+   "whys": [
+    "The 45% rate applies above $190,000 (from $190,001). 'Above $190,001' is off by one dollar."
+   ],
+   "constants": [
+    "TAX_BRACKETS_2025_26[4].min"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-calendar-faqs.ts:26",
+   "file": "modules/guide/tax-calendar-faqs.ts",
+   "line": "26",
+   "page": "/tax-calendar/",
+   "claims": [
+    "With a registered tax agent, most people have until {agentDueDateMostPeople}"
+   ],
+   "whys": [
+    "The checker flagged a population claim with no figure. It reflects the ATO lodgement program, but the page does not name it as the source."
+   ],
+   "constants": [
+    "RETURN_2026 (lib/constants/tax-return-2025-26.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-calendar.tsx:190",
+   "file": "modules/guide/tax-calendar.tsx",
+   "line": "190",
+   "page": "https://pay-calculator-australia.com/tax-calendar/",
+   "claims": [
+    "If you pay one annual instalment and a tax agent lodges your return, your annual instalment is due 21 October 2026. If you lodge your own return, you just lodge it by 31 October 2026."
+   ],
+   "whys": [
+    "The self-lodger half of the sentence does not say when the annual PAYG instalment is actually paid. It suggests self-lodgers have no 21 October date, which is the opposite of how the ATO usually describes annual instalments. Check the ATO 'When are PAYG instalments due?' page and make the rule explicit."
+   ],
+   "constants": [
+    "RETURN_DATES_2026.annualPaygInstalment in lib/constants/tax-calendar-2026-27.ts (line 180, hard-coded '2026-10-21')"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-calendar.tsx:135",
+   "file": "modules/guide/tax-calendar.tsx",
+   "line": "135",
+   "page": "https://pay-calculator-australia.com/tax-calendar/",
+   "claims": [
+    "Businesses with GST turnover of $20 million or more must lodge BAS monthly; STP finalisation 14 July; closely held payees 30 September for employers with 20 or more employees."
+   ],
+   "whys": [
+    "These thresholds and dates are typed into the prose instead of coming from a constant. They look correct, but nothing ties them to a source."
+   ],
+   "constants": [
+    "lib/constants/tax-calendar-2026-27.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.67,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-calendar.tsx:126",
+   "file": "modules/guide/tax-calendar.tsx",
+   "line": "126",
+   "page": "https://pay-calculator-australia.com/tax-calendar/",
+   "claims": [
+    "Agent clients whose latest return had a tax liability of $20,000 or more are due 31 March 2027."
+   ],
+   "whys": [
+    "$20,000 is typed into the prose here and again in the TAX_CALENDAR_2026_27 event title. It is not taken from a constant, so the two copies can drift apart."
+   ],
+   "constants": [
+    "RETURN_2026 in lib/constants/tax-return-2025-26.ts (add something like agentLargeLiabilityThreshold)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-calendar.tsx:232",
+   "file": "modules/guide/tax-calendar.tsx",
+   "line": "232",
+   "page": "https://pay-calculator-australia.com/tax-calendar/",
+   "claims": [
+    "Second tax bracket: 15% on income from $18,201 to $45,000"
+   ],
+   "whys": [
+    "The bracket limits are typed into the text. They do not come from TAX_BRACKETS_2026_27[1], so they would not update if the brackets changed."
+   ],
+   "constants": [
+    "TAX_BRACKETS_2026_27[1].min/max in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.65,
+   "needsOwner": false
+  }
+ ]
+}

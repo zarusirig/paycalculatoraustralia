@@ -105,7 +105,7 @@ export const OFFICEWORKS_PAY: EmployerPay = {
     },
     {
       q: "How much does Officeworks pay a 16 or 17 year old?",
-      a: "At Level 1, Officeworks staff under 18 get 60% of the adult rate: about $17.10 an hour. At 18 it is 70% ($19.95) and at 19 it is 85%. Juniors at Level 2 or 3 get the adult rate.",
+      a: "At Level 1, Officeworks staff under 18 get 60% of the adult rate: about $17.10 an hour. At 18 it is 70% ($19.95) and at 19 it is 85%. From the first full pay period on or after 1 December 2026, an 18-year-old with more than 6 months' service must get at least the Retail Award's $20.86 instead. Juniors at Level 2 or 3 get the adult rate.",
     },
     {
       q: "What does Officeworks pay on Sundays and public holidays?",

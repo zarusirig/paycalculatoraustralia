@@ -11,7 +11,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "age-pension-assets-test-calculator";
 const TITLE = "Age Pension Assets Test Calculator 2026 — Limits From 20 Sep";
-const DESCRIPTION = `Full Age Pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner); $3 a fortnight less per $1,000 above, nil at ${formatAUD(AT.partPensionCutOff.single.homeowner)} from 20 Sep 2026. See which test applies.`;
+const DESCRIPTION = `Full Age Pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner); ${formatAUD(AT.taperPerThousand.single)} a fortnight less per ${formatAUD(1_000)} above, nil at ${formatAUD(AT.partPensionCutOff.single.homeowner)} from ${AT.ratesFrom}. See which test applies.`;
 
 export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 

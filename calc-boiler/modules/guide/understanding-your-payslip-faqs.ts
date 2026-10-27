@@ -49,7 +49,7 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does my HECS-HELP repayment show separately on my payslip?",
-    a: `Often not. If you ticked "Yes" to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your HECS-HELP repayment, and many payslips bundle this amount into the PAYG withholding line. The FY${FY} repayment threshold is ${formatAUD(HECS_HELP.minimumThreshold)}. Below this income level, no repayment is withheld.`,
+    a: `It is part of your tax withheld. If you ticked "Yes" to having a study/training loan on your TFN Declaration, your employer withholds an extra amount under the PAYG withholding system to cover your compulsory HECS-HELP repayment. If your payslip has no separate study loan line, that extra amount is inside the PAYG withholding figure. The FY${FY} repayment threshold is ${formatAUD(HECS_HELP.minimumThreshold)}. Below this income level, no repayment is withheld.`,
     links: { "HECS-HELP": "/hecs-help-calculator/" },
   },
   {
@@ -58,7 +58,7 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should overtime appear separately on my payslip?",
-    a: "Yes. The Fair Work Act requires employers to itemise each component of pay separately, including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. An itemised payslip lets you check your overtime and penalty rates against the Award Rates for your job.",
+    a: "Yes. Under the Fair Work Regulations, if you are paid by the hour, a payslip must show your ordinary hourly rate, the hours worked at that rate and the amount paid at that rate. It must also show each loading, allowance, bonus, penalty rate or other paid entitlement that can be separated out from your ordinary hourly rate, and overtime paid above your ordinary rate is one of those amounts. If your overtime is combined with standard hours, ask payroll to itemise it. An itemised payslip lets you check your overtime and penalty rates against the Award Rates for your job.",
     links: { "Award Rates": "/award-rates/" },
   },
   {
@@ -67,15 +67,15 @@ export const PAYSLIP_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is an electronic payslip as valid as a paper payslip?",
-    a: "Yes. Electronic payslips (PDF, email, payroll portal access) carry the same legal weight as printed payslips under the Fair Work Act. The employer must ensure the electronic payslip is accessible to the employee and contains all the mandatory items. Most Australian employers now use electronic payslips through STP-compliant payroll software.",
+    a: "Yes. Electronic payslips (PDF, email, payroll portal access) carry the same legal weight as printed payslips under the Fair Work Act. The employer must ensure the electronic payslip is accessible to the employee and contains all the mandatory items.",
   },
   {
     q: "Do casual employees receive payslips?",
-    a: `Yes. Casual employees are entitled to a payslip within 1 working day of being paid, the same as full-time and part-time employees. A casual payslip must show the hourly rate including the ${EMPLOYMENT.casualLoading * 100}% casual loading, hours worked, PAYG withholding, and super contributions. Super is payable on casual earnings at the ${SG} SG rate regardless of hours worked.`,
+    a: `Yes. Casual employees are entitled to a payslip within 1 working day of being paid, the same as full-time and part-time employees. A casual payslip must show the hourly rate including the ${EMPLOYMENT.casualLoading * 100}% casual loading, hours worked, PAYG withholding, and super contributions. If you are 18 or over, super is payable on casual earnings at the ${SG} SG rate regardless of hours worked. If you are under 18, your employer owes super only for a week in which you work more than 30 hours.`,
   },
   {
     q: "How long should I keep my payslips?",
-    a: "The ATO recommends keeping payslips for a minimum of 5 years from the date you lodge the relevant tax return. Employers must retain payroll records for 7 years. Storing payslips digitally (scanned PDFs or payroll portal exports) satisfies record-keeping requirements and provides evidence in the event of a Fair Work dispute.",
+    a: "Keep them for 5 years from the date you lodge the tax return they relate to. The ATO rule is that you must keep the records behind your tax return for 5 years from the date you lodge it. Employers must retain payroll records for 7 years. Storing payslips digitally (scanned PDFs or payroll portal exports) satisfies record-keeping requirements and provides evidence in the event of a Fair Work dispute.",
   },
   {
     q: "Do I need payslips to lodge my tax return?",

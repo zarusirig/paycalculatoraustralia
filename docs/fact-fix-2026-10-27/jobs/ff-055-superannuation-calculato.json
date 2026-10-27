@@ -1,0 +1,125 @@
+{
+ "name": "ff-055-superannuation-calculato",
+ "files": [
+  "modules/calculator/superannuation-calculator-content.tsx",
+  "modules/calculator/superannuation-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/superannuation-calculator-content.tsx:116",
+   "file": "modules/calculator/superannuation-calculator-content.tsx",
+   "line": "116",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Since 1 July 2022, all employees receive super regardless of monthly earnings."
+   ],
+   "whys": [
+    "'All employees' is too broad. Employees under 18 still get SG only if they work more than 30 hours in a week."
+   ],
+   "constants": [
+    "none (prose qualifier)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.58,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-calculator-content.tsx:204",
+   "file": "modules/calculator/superannuation-calculator-content.tsx",
+   "line": "204",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Since Payday Super commenced on 1 July 2026 ... within 7 business days"
+   ],
+   "whys": [
+    "The values are right but typed in by hand. The same values exist as SUPER_GUARANTEE.paydaySuperStart and SUPER_GUARANTEE_CHARGE.current.businessDaysToPay (lib/constants/australian-tax.ts:153, 172), and line 189 of the same file already uses the constant."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE_CHARGE.current.businessDaysToPay"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-calculator-content.tsx:205",
+   "file": "modules/calculator/superannuation-calculator-content.tsx",
+   "line": "205",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "A $100,000 'including super' role provides $89,286 salary and $10,714 super. The difference in base pay is $10,714."
+   ],
+   "whys": [
+    "These figures are typed by hand rather than computed with calculateSuper or SUPER_GUARANTEE.rate, unlike the other figures nearby. They will go stale if the SG rate changes."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate (derive from calculateSuper)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-calculator-content.tsx:208",
+   "file": "modules/calculator/superannuation-calculator-content.tsx",
+   "line": "208",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Division 293 applies above $250,000 and adds 15% (30% total)"
+   ],
+   "whys": [
+    "The threshold and rate are typed by hand, with no constant and no source on this page."
+   ],
+   "constants": [
+    "a Division 293 constant in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-calculator.tsx:118",
+   "file": "modules/calculator/superannuation-calculator.tsx",
+   "line": "118",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Hardcoded '15%' contributions tax, '45%' top marginal rate and '12% of OTE' (lines 118, 123, 124, 132, 141)",
+    "'Sacrificing this full amount saves you tax at your marginal rate minus the 15% contributions tax.'"
+   ],
+   "whys": [
+    "These figures are typed into the prose and table instead of coming from constants, so they will drift when a rate changes. The hero on the same page already uses SUPER_GUARANTEE.rate.",
+    "This leaves out the Medicare levy, which the /salary-sacrifice-calculator/ FAQ counts in the saving. It is also untrue below the tax-free threshold and under Division 293, and the 15% is hardcoded."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate, CONTRIBUTIONS_TAX_RATE, TAX_BRACKETS top rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-calculator.tsx:128",
+   "file": "modules/calculator/superannuation-calculator.tsx",
+   "line": "128",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Table cell: 'Tax saving at $100K salary: $1,500 per $10,000 sacrificed'"
+   ],
+   "whys": [
+    "$1,500 is only 30% minus 15%. It leaves out the 2% Medicare levy, so it is $1,700. The /salary-sacrifice-calculator/ hero and FAQ count the Medicare levy in the saving, so the two pages disagree. The figure is also hardcoded."
+   ],
+   "constants": [
+    "Derive from TAX_BRACKETS[2].rate, MEDICARE_LEVY.rate and CONTRIBUTIONS_TAX_RATE (lib/constants/super-contributions)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.06,
+   "needsOwner": false
+  }
+ ]
+}

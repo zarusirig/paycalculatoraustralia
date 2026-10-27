@@ -1,0 +1,168 @@
+{
+ "name": "ff-095-retail-award-rates",
+ "files": [
+  "modules/guide/retail-award-rates.tsx",
+  "modules/guide/retail-hospitality-pay-guide-faqs.ts",
+  "modules/guide/retail-hospitality-pay-guide.tsx",
+  "modules/guide/rideshare-delivery-earnings-after-tax-faqs.ts",
+  "modules/guide/rideshare-delivery-earnings-after-tax.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/retail-award-rates.tsx:372",
+   "file": "modules/guide/retail-award-rates.tsx",
+   "line": "372",
+   "page": "https://pay-calculator-australia.com/retail-award-rates/",
+   "claims": [
+    "The Annual Wage Review 2026 lifted the national minimum wage and award rates by {AWR_2026_FLOORS.increase}% (4.75%) from 1 July 2026, so the retail level 1 vs NMW gap of {L1.hourly - NMW.hourly} an hour carried over from the previous year.",
+    "Annual Wage Review 2026 lifted the national minimum wage and award rates by {AWR_2026_FLOORS.increase}% ... so the gap of {L1.hourly - NMW.hourly} an hour carried over from the previous year."
+   ],
+   "whys": [
+    "The NMW went from $948.00 to $1,004.90 a week (EMPLOYMENT.minimumWageWeeklyPrevious to minimumWageWeekly), which is about 6.0%. The brief also says the NMW rose 5.97% while award minimums rose 4.75%. So the NMW did not rise by the award percentage, and the gap narrowed (about $1.60 to about $1.37 an hour at level 1). It did not carry over. The sentence should use NMW.increase for the NMW and drop or recompute the 'carried over' clause.",
+    "Confirmed. NMW.increase (lib/constants/minimum-wage.ts:102) computes about 5.97%, while award rates rose 4.75%. Because the NMW rose faster, the level 1 vs NMW gap narrowed and did not carry over. Use NMW.increase for the NMW and recompute or drop the 'carried over' clause."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts NMW.increase (computed) vs lib/constants/hospitality-award.ts AWR_2026_FLOORS.increase; EMPLOYMENT.minimumWageWeekly/minimumWageWeeklyPrevious in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. Line 372 says the AWR 2026 lifted 'the national minimum wage and award rates' by AWR_2026_FLOORS.increase (4.75%) and that the level 1 vs NMW gap 'carried over'. The NMW rose about 5.97% (948.00 to 1,004.90 a week, NMW.increase in lib/constants/minimum-wage.ts:102), so the gap narrowed. The string is unchanged in this pass, which the no-fact-change rule requires. It needs a source fix."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.96,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-award-rates.tsx:262",
+   "file": "modules/guide/retail-award-rates.tsx",
+   "line": "262",
+   "page": "https://pay-calculator-australia.com/retail-award-rates/",
+   "claims": [
+    "...where the Hospitality Industry (General) Award pays 85%. (Line 256 also types 60% for a 17-year-old.)"
+   ],
+   "whys": [
+    "Both figures are correct against the constants (the hospitality age 19 band is 0.85, the retail age 17 band is 0.6). But they are typed into the prose, not taken from HOSPITALITY junior scale / RETAIL_JUNIOR_SCALE. If an AWR or the junior phase-in changes a band, the prose will go stale without anyone noticing."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts hospitality junior scale (age 19) and RETAIL_JUNIOR_SCALE (age 17)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-hospitality-pay-guide-faqs.ts:52",
+   "file": "modules/guide/retail-hospitality-pay-guide-faqs.ts",
+   "line": "52",
+   "page": "https://pay-calculator-australia.com/retail-hospitality-pay-guide/",
+   "claims": [
+    "Full-time employees who don't work on the public holiday are entitled to their ordinary pay for the day."
+   ],
+   "whys": [
+    "Under the NES (Fair Work Act s116), part-time employees whose ordinary day falls on the public holiday are paid too. Naming only full-time employees understates who is covered."
+   ],
+   "constants": [
+    "FAQ answer text (no constant)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-hospitality-pay-guide.tsx:80",
+   "file": "modules/guide/retail-hospitality-pay-guide.tsx",
+   "line": "80",
+   "page": "https://pay-calculator-australia.com/retail-hospitality-pay-guide/",
+   "claims": [
+    "The Hospitality Industry (General) Award (MA000009) covers \"cafes, restaurants, pubs and hotels\" and \"almost everyone in these two industries\" is covered by one of the two awards."
+   ],
+   "whys": [
+    "Most restaurants and cafes are covered by the Restaurant Industry Award 2020 (MA000119), not MA000009. Fast Food, Registered and Licensed Clubs and other awards also cover parts of both industries. 'Almost everyone' is also a population claim with no source on the page."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts (HOSPITALITY_AWARD coverage text) or a coverage note"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.53,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-hospitality-pay-guide.tsx:156",
+   "file": "modules/guide/retail-hospitality-pay-guide.tsx",
+   "line": "156",
+   "page": "https://pay-calculator-australia.com/retail-hospitality-pay-guide/",
+   "claims": [
+    "The new lead-in says retail and hospitality workers have these rights under the Fair Work Act and the General Retail Industry Award or the Hospitality Industry (General) Award."
+   ],
+   "whys": [
+    "Restaurant and many cafe workers are covered by the Restaurant Industry Award (MA000119), and fast food and club workers by other awards, not MA000009. The rights list (2-hour casual minimum engagement, break table) quotes MA000009 clauses that do not apply to them. Resolve this together with the writer's line 80 coverage question."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The rights lead-in now names the General Retail Industry Award and the Hospitality Industry (General) Award instead of 'their respective Modern Awards'. This matches the list items, which cite each award's clauses. But it ties all hospitality workers to MA000009, which is the same coverage concern the writer raised for line 80 (restaurant workers fall under MA000119). The sentence is about 30 words, at the limit. Left in place; see the extra fact question."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/retail-hospitality-pay-guide.tsx:113",
+   "file": "modules/guide/retail-hospitality-pay-guide.tsx",
+   "line": "113",
+   "page": "https://pay-calculator-australia.com/retail-hospitality-pay-guide/",
+   "claims": [
+    "Juniors aged 19 get 85% in hospitality against 80% in retail; also line 124 '25% casual loading', line 179 '1 July 2026 award rates', line 216 '2% Medicare levy' and 'MA000004'/'MA000009'."
+   ],
+   "whys": [
+    "These figures are typed into the prose instead of coming from the constants used elsewhere on the page (HOSPITALITY_JUNIOR_SCALE, RETAIL_JUNIOR_SCALE, RETAIL_AWARD.casualLoading, operativeFrom, Medicare constant). Correct today but will go stale on the next review."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts and lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.72,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/rideshare-delivery-earnings-after-tax-faqs.ts:18",
+   "file": "modules/guide/rideshare-delivery-earnings-after-tax-faqs.ts",
+   "line": "18",
+   "page": "https://pay-calculator-australia.com/rideshare-delivery-earnings-after-tax/",
+   "claims": [
+    "0% to $18,200, 15% to $45,000, 30% to $135,000, then 37% and 45%, plus the 2% Medicare levy"
+   ],
+   "whys": [
+    "These figures are correct for 2026-27, but they are typed into the FAQ string instead of coming from TAX_BRACKETS and MEDICARE_LEVY the way the page body does. The FAQ (and its FAQPage JSON-LD) will go stale on 1 July 2027, when 15% becomes 14% (lib/constants/tax-2027-28.ts). The same applies to $75,000, $82.50, 5,000 km and 15% in the other answers."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts TAX_BRACKETS, MEDICARE_LEVY; lib/constants/gig-tax.ts GST_REGISTRATION_THRESHOLD, RIDE_SOURCING_TAX_INVOICE_THRESHOLD; lib/constants/cents-per-km.ts CPK_KM_CAP"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/rideshare-delivery-earnings-after-tax.tsx:179",
+   "file": "modules/guide/rideshare-delivery-earnings-after-tax.tsx",
+   "line": "179",
+   "page": "https://pay-calculator-australia.com/rideshare-delivery-earnings-after-tax/",
+   "claims": [
+    "Delivery Driver Pay Rate: the $31.30 an hour minimum"
+   ],
+   "whys": [
+    "The delivery minimum differs by vehicle. $31.30 covers bicycle and e-bike only. Motorcycle or scooter is $31.50 and car or van is $32.00 (17 Aug to 31 Dec 2026), and all rates rise on 1 January 2027. A car-based delivery driver reading this page gets the wrong floor, and the figure goes stale on 1 Jan 2027."
+   ],
+   "constants": [
+    "lib/constants/delivery-minimum-pay.ts DELIVERY_RATE_PERIODS"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.89,
+   "needsOwner": false
+  }
+ ]
+}

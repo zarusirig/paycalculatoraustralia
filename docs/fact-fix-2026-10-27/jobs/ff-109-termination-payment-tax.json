@@ -1,0 +1,112 @@
+{
+ "name": "ff-109-termination-payment-tax",
+ "files": [
+  "modules/guide/termination-payment-tax.tsx",
+  "modules/guide/time-in-lieu.tsx",
+  "modules/guide/train-driver-salary.tsx",
+  "modules/guide/travel-allowance-faqs.ts",
+  "modules/guide/travel-allowance.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/termination-payment-tax.tsx:145",
+   "file": "modules/guide/termination-payment-tax.tsx",
+   "line": "145",
+   "page": "/termination-payment-tax-calculator/",
+   "claims": [
+    "Turning 60 before 30 June moves the rate from 32% to 17%."
+   ],
+   "whys": [
+    "Correct today, but the 60 is typed into the text while the same file imports PRESERVATION_AGE. The caption at line 126 ('Preservation age is 60 for anyone born after 30 June 1964') also types the age instead of using the constant."
+   ],
+   "constants": [
+    "lib/constants/redundancy.ts PRESERVATION_AGE"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/time-in-lieu.tsx:134",
+   "file": "modules/guide/time-in-lieu.tsx",
+   "line": "134",
+   "page": "/time-in-lieu/",
+   "claims": [
+    "A TOIL day is 'often shown as its own line with a running balance' on your payslip.",
+    "When untaken TOIL is paid out, it must be paid at the overtime rate that applied when you worked it (the FAQ at time-in-lieu-faqs.ts lines 25 and 29 says the same)."
+   ],
+   "whys": [
+    "This is a claim about how often payslips show TOIL, and the page gives no source for it. Payslip rules (Fair Work Regulations reg 3.46) do not require a TOIL balance line. Either cite a source or reword it as a check the reader can make.",
+    "lib/constants/time-in-lieu.ts lines 23-25 and the SCHADS rule note (line 172) say SCHADS pays untaken TOIL 'based on the rates of pay applying at the time payment is made' (cl 28.2(e)-(f),(j)). Under SCHADS, the rate used is the one in force at payout, not the one in force when the overtime was worked. The blanket statement does not hold for SCHADS. The constants header (line 27-30, 'Common to all eight') contradicts its own SCHADS note."
+   ],
+   "constants": [
+    "lib/constants/time-in-lieu.ts (or remove the claim)",
+    "lib/constants/time-in-lieu.ts TOIL_AWARD_RULES (SCHADS note) and header comment"
+   ],
+   "reviewerNotes": [
+    "Writer's question, still open: 'often shown as its own line with a running balance' is a population claim about payslips with no source given. It is in the original text and the writer did not change it."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.53,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/train-driver-salary.tsx:89",
+   "file": "modules/guide/train-driver-salary.tsx",
+   "line": "89",
+   "page": "/train-driver-salary/",
+   "claims": [
+    "Take-home figures use 2026-27 resident tax rates"
+   ],
+   "whys": [
+    "The year is typed into the prose rather than taken from the tax-year constant that afterTax() uses, so it will go stale at the next financial year."
+   ],
+   "constants": [
+    "the tax-year constant behind afterTax() in train-driver-salary.tsx"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/travel-allowance-faqs.ts:15",
+   "file": "modules/guide/travel-allowance-faqs.ts",
+   "line": "15",
+   "page": "/travel-allowance/",
+   "claims": [
+    "For a salary of $153,210 or less ..."
+   ],
+   "whys": [
+    "The figure is correct (it matches SALARY_BANDS[1].max), but it is typed into the FAQ answer instead of coming from the constant, so it will go stale when TD 2027 changes the bands. The same typed figure is in travel-allowance.tsx at lines 60, 66, 69 and 102."
+   ],
+   "constants": [
+    "lib/constants/travel-allowance.ts SALARY_BANDS[1].max"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.04,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/travel-allowance.tsx:88",
+   "file": "modules/guide/travel-allowance.tsx",
+   "line": "88",
+   "page": "https://pay-calculator-australia.com/travel-allowance/",
+   "claims": [
+    "For the top salary band every country centre uses $207 accommodation"
+   ],
+   "whys": [
+    "The $207 figure is hard-coded in the caption and in the row calculation on line 86, and does not come from DOMESTIC_TABLES[3]. It should come from a constant so it cannot drift."
+   ],
+   "constants": [
+    "DOMESTIC_TABLES[3] other-country accommodation in lib/constants/travel-allowance"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.4,
+   "needsOwner": false
+  }
+ ]
+}

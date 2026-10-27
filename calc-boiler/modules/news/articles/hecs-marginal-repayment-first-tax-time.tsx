@@ -1,20 +1,30 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { HECS_HELP, HECS_HELP_2025_26, formatAUD, formatPercent } from "@/lib/constants/australian-tax";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+
+// Tax time 2026 reconciles 2025-26 income, so this page uses the 2025-26 bands.
+const THRESHOLD = HECS_HELP_2025_26.minimumThreshold;
+const FIRST_RATE = HECS_HELP_2025_26.bands[1].marginalRate;
+const EXAMPLE_INCOME = 80_000;
+const EXAMPLE_EXCESS = EXAMPLE_INCOME - THRESHOLD;
+const EXAMPLE_REPAYMENT = EXAMPLE_EXCESS * FIRST_RATE;
 
 export default function HecsMarginalRepaymentFirstTaxTime() {
   return (
     <>
       <p className="lead">
-        Millions of HECS debtors are lodging tax returns that reconcile a full year of PAYG
-        withholding against the FY2026-27 marginal repayment bands for the first time, with{" "}
-        <strong>15%</strong> charged only on income above <strong>$69,528</strong>. Before you
-        lodge, check whether enough STSL was withheld across all your jobs.
+        HECS debtors are lodging their first tax returns under the marginal repayment system,
+        which began in 2025-26. These returns reconcile a full year of PAYG withholding against
+        the 2025-26 bands, with <strong>{formatPercent(FIRST_RATE, 0)}</strong> charged only on
+        income above <strong>{formatAUD(THRESHOLD)}</strong>. Before you lodge, check whether
+        enough STSL was withheld across all your jobs.
       </p>
 
       <NewsKeyFacts
         rows={[
-          { label: "Minimum threshold", after: "$69,528" },
-          { label: "First marginal rate", after: "15% above threshold" },
+          { label: "Minimum threshold", after: `${formatAUD(THRESHOLD)} (2025-26)` },
+          { label: "First marginal rate", after: `${formatPercent(FIRST_RATE, 0)} above threshold` },
           { label: "Withholding method", after: "STSL, per employer, per pay period" },
           { label: "Reconciled at", after: "Tax return assessment" },
         ]}
@@ -24,7 +34,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
       <p>
         Your employer withholds STSL each pay period based on that job&apos;s income alone. At tax
         time, the ATO adds up your total repayment income across all employers and any investment
-        income, applies the FY2026-27 marginal bands, and works out your actual compulsory
+        income, applies the 2025-26 marginal bands, and works out your actual compulsory
         repayment. Any gap between what was withheld and what you actually owe shows up as a
         refund or a bill on your notice of assessment.
       </p>
@@ -41,11 +51,14 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
 
       <h2>How the repayment is actually worked out</h2>
       <p>
-        Take a graduate on $80,000 with no other income. Their repayment income exceeds the
-        threshold by $10,472, and 15c in the dollar on that excess comes to roughly $1,571 for the
-        year. If their employer withheld $30 a week in STSL (about $1,560 across 52 weeks), the
-        assessment lands within a few dollars of what was withheld, and the notice of assessment
-        simply moves the credit onto the loan. Repayment income is broader than salary.
+        Take a graduate on {formatAUD(EXAMPLE_INCOME)} in 2025-26 with no other income. Their
+        repayment income exceeds the {formatAUD(THRESHOLD)} threshold by{" "}
+        {formatAUD(EXAMPLE_EXCESS)}, and {Math.round(FIRST_RATE * 100)}c in the dollar on that
+        excess comes to {formatAUD(EXAMPLE_REPAYMENT)} for the year. The notice of assessment sets
+        that amount against the STSL their employer withheld. Employers moved to the marginal
+        withholding tables for payments made from 24 September 2025, so pays before that date
+        were withheld under the earlier tables, and any gap shows up as a refund or a bill.
+        Repayment income is broader than salary.
         Reportable fringe benefits, reportable super contributions and net investment
         losses are all added back, which is a common reason assessments come in higher than the
         payslip maths suggests. Our <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> walks
@@ -54,9 +67,10 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
 
       <h2>Two jobs, two separate calculations</h2>
       <p>
-        If you held two jobs that each paid under $69,528, neither employer would have withheld
-        any STSL, but your combined repayment income from both jobs can still exceed the
-        threshold. That produces an unexpected compulsory repayment at tax time. Ticking the HELP
+        If you held two jobs that each paid under {formatAUD(THRESHOLD)}, each employer worked out
+        STSL on that job&apos;s pay alone, but your combined repayment income from both jobs can
+        still exceed the threshold. Any shortfall shows up as a bill on your notice of
+        assessment. Ticking the HELP
         debt box on every TFN declaration doesn&apos;t eliminate this, since withholding tables
         only ever look at income from that one job. If you keep working both jobs, you can ask
         one employer to withhold extra each pay, or set aside the shortfall yourself once you
@@ -65,8 +79,11 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
 
       <h2>What the 20% cut and indexation don&apos;t change here</h2>
       <p>
-        The 20% debt reduction and the 2.8% indexation applied on 1 June 2026 both adjust your
-        outstanding loan balance directly through the ATO. Neither appears as a line item on your
+        The 20% debt reduction (taken off balances as they stood on{" "}
+        {RETURN_2026.helpReductionDebtsAsAt}) and the{" "}
+        {formatPercent(HECS_HELP.indexationRate, 1)} indexation applied on{" "}
+        {HECS_HELP.indexationDate} both adjust your outstanding loan balance directly through the
+        ATO. Neither appears as a line item on your
         tax return. Your compulsory repayment for the year is your repayment income run through
         the bands, applied against whatever balance remains after those adjustments. They matter
         at tax time in one case: if your remaining balance is smaller than your calculated

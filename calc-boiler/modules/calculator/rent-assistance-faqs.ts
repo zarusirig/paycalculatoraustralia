@@ -6,6 +6,16 @@ import { RENT_ASSISTANCE, rentAssistanceFortnightly } from "@/lib/constants/cent
 
 const R = RENT_ASSISTANCE.rows;
 
+/**
+ * The next indexation date after the rates in force. Rent Assistance is indexed
+ * on 20 March and 20 September (RENT_ASSISTANCE.indexedOn), so the date follows
+ * from RENT_ASSISTANCE.effectiveFrom and moves on when that constant is updated.
+ */
+export function nextRentAssistanceIndexation(): string {
+  const [year, month] = RENT_ASSISTANCE.effectiveFrom.split("-").map(Number);
+  return month >= 9 ? `20 March ${year + 1}` : `20 September ${year}`;
+}
+
 export interface RentFaq { q: string; a: string }
 
 export const RENT_FAQS: readonly RentFaq[] = [
@@ -15,7 +25,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "How is Rent Assistance calculated?",
-    a: `You get 75 cents for every dollar of fortnightly rent above a threshold, up to a maximum. For a single person with no children the threshold is ${formatAUD(R.single.threshold, 2)}, so rent of ${formatAUD(400)} a fortnight gives ${formatAUD(rentAssistanceFortnightly(400, "single"), 2)}. You reach the ${formatAUD(R.single.max, 2)} maximum at ${formatAUD(R.single.publishedMaxRent, 2)} of rent.`,
+    a: `You get ${Math.round(RENT_ASSISTANCE.rate * 100)} cents for every dollar of fortnightly rent above a threshold, up to a maximum. For a single person with no children the threshold is ${formatAUD(R.single.threshold, 2)}, so rent of ${formatAUD(400)} a fortnight gives ${formatAUD(rentAssistanceFortnightly(400, "single"), 2)}. You reach the ${formatAUD(R.single.max, 2)} maximum at ${formatAUD(R.single.publishedMaxRent, 2)} of rent.`,
   },
   {
     q: "What is the minimum rent for Rent Assistance?",
@@ -35,7 +45,7 @@ export const RENT_FAQS: readonly RentFaq[] = [
   },
   {
     q: "When do Rent Assistance rates change?",
-    a: `Rent Assistance rates change on ${RENT_ASSISTANCE.indexedOn} each year, in line with the Consumer Price Index. The figures here apply from ${RENT_ASSISTANCE.ratesFrom}; the next change is on 20 March 2027.`,
+    a: `Rent Assistance rates change on ${RENT_ASSISTANCE.indexedOn} each year, in line with the Consumer Price Index. The figures here apply from ${RENT_ASSISTANCE.ratesFrom}; the next change is on ${nextRentAssistanceIndexation()}.`,
   },
   {
     q: "What if I pay board and lodging?",

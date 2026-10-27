@@ -1,0 +1,164 @@
+{
+ "name": "ff-097-salary-sacrifice-vs-mort",
+ "files": [
+  "modules/guide/salary-sacrifice-vs-mortgage-faqs.ts",
+  "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+  "modules/guide/salary-vs-hourly-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/salary-sacrifice-vs-mortgage-faqs.ts:21",
+   "file": "modules/guide/salary-sacrifice-vs-mortgage-faqs.ts",
+   "line": "21",
+   "page": "/salary-sacrifice-vs-mortgage/",
+   "claims": [
+    "Salary sacrifice wins when your mortgage rate is below 5-6%, and extra mortgage payments win when rates are high (also the 'High mortgage interest rate (6%+)' item at salary-sacrifice-vs-mortgage.tsx line 156)."
+   ],
+   "whys": [
+    "The page's own computed scenario table (30% bracket) shows super ahead at 7% over both 10 years (about $68K vs $56K) and 20 years (about $195K vs $167K). The 5-6% threshold is not supported by the model on the page."
+   ],
+   "constants": [
+    "SCENARIOS in modules/guide/salary-sacrifice-vs-mortgage.tsx"
+   ],
+   "reviewerNotes": [
+    "I checked the writer's factQuestion against SCENARIOS. At 7%, super comes to about $68K and the mortgage to about $56K after 10 years, and super stays ahead after 20 years. The 'below 5-6%' threshold is contradicted by the page's own table. The writer did not change the claim, so the question stands."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-sacrifice-vs-mortgage.tsx:88",
+   "file": "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+   "line": "88",
+   "page": "/salary-sacrifice-vs-mortgage/",
+   "claims": [
+    "The tax benefit of super \"could be 22% to 32% per dollar for those in the 37% or 45% brackets\" (repeated as \"22 to 32 cents per dollar\" at line 145)."
+   ],
+   "whys": [
+    "The range is internally inconsistent. 22 is 37% minus 15% without Medicare, and 32 is 45% plus the 2% Medicare levy minus 15%. It should be either 22 to 30 cents (no Medicare) or 24 to 32 cents (with Medicare)."
+   ],
+   "constants": [
+    "Derive from TAX_BRACKETS, CONTRIBUTIONS_TAX_RATE and MEDICARE_LEVY.rate, as the FAQ file already does with cents()"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.82,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-sacrifice-vs-mortgage.tsx:188",
+   "file": "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+   "line": "188",
+   "page": "/salary-sacrifice-vs-mortgage/",
+   "claims": [
+    "Methodology: 'Mortgage comparisons assume interest savings on a standard variable rate loan.'"
+   ],
+   "whys": [
+    "The table model actually taxes the same $6,000 at 30% plus the 2% Medicare levy before it goes to the loan, and the 7.5% return is described as the 'long-term average for a balanced/growth fund' with no source. The methodology does not match the code."
+   ],
+   "constants": [
+    "PRE_TAX, MARGINAL, SUPER_NET_RETURN in salary-sacrifice-vs-mortgage.tsx"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.89,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-sacrifice-vs-mortgage.tsx:84",
+   "file": "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+   "line": "84",
+   "page": "/salary-sacrifice-vs-mortgage/",
+   "claims": [
+    "Money is 'locked until preservation age (currently 60)'."
+   ],
+   "whys": [
+    "60 is typed into JSX here. The FAQ file derives preservation age from PRESERVATION_AGE_TABLE, so this copy can drift from that constant."
+   ],
+   "constants": [
+    "PRESERVATION_AGE_TABLE in lib/constants/pension-age"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-sacrifice-vs-mortgage.tsx:166",
+   "file": "modules/guide/salary-sacrifice-vs-mortgage.tsx",
+   "line": "166",
+   "page": "/salary-sacrifice-vs-mortgage/",
+   "claims": [
+    "'If your employer contributes $12,000 in SG, you can salary sacrifice up to {formatAUD(CAP - 12_000)}'"
+   ],
+   "whys": [
+    "The $12,000 SG example is typed with no link to the SG rate or a salary. It is fine as an illustration, but it should be derived (for example, the SG rate times an example salary) so it stays consistent if the cap or the SG rate changes."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-vs-hourly-faqs.ts:35",
+   "file": "modules/guide/salary-vs-hourly-faqs.ts",
+   "line": "35",
+   "page": "/salary-vs-hourly/",
+   "claims": [
+    "All employees (salaried, hourly permanent and hourly casual) receive the SG from their employer, and there is no minimum earnings threshold."
+   ],
+   "whys": [
+    "Employees under 18 who work 30 hours or less a week are not entitled to SG (and private or domestic workers have a similar hours rule). 'All employees' is too wide."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE eligibility notes in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.52,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-vs-hourly-faqs.ts:18",
+   "file": "modules/guide/salary-vs-hourly-faqs.ts",
+   "line": "18",
+   "page": "/salary-vs-hourly/",
+   "claims": [
+    "Salary provides income stability, paid leave and predictable budgeting."
+   ],
+   "whys": [
+    "Permanent hourly employees get the same NES paid leave. Only casuals miss out, so presenting paid leave as a salary advantage over hourly pay is misleading."
+   ],
+   "constants": [
+    "n/a (copy question)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.28,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-vs-hourly-faqs.ts:27",
+   "file": "modules/guide/salary-vs-hourly-faqs.ts",
+   "line": "27",
+   "page": "/salary-vs-hourly/",
+   "claims": [
+    "Many salaried employees have 'reasonable additional hours' clauses, and the high income threshold is hard-coded as $190,100 from 1 July 2026."
+   ],
+   "whys": [
+    "'Many' is a population claim with no source. Reasonable additional hours come from the NES (s 62), not only contract clauses. HIGH_INCOME_THRESHOLD is typed in this file with a comment saying no lib/constants entry exists, so it should be checked against the FWC figure and moved into constants."
+   ],
+   "constants": [
+    "Add HIGH_INCOME_THRESHOLD to lib/constants (EMPLOYMENT or a fair-work constants file)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.66,
+   "needsOwner": false
+  }
+ ]
+}

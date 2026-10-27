@@ -1,0 +1,85 @@
+{
+ "name": "ff-121-tax-time-2026-whats-new",
+ "files": [
+  "modules/news/articles/tax-time-2026-whats-new.tsx",
+  "modules/news/articles/transfer-balance-cap-increase-2026.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/news/articles/tax-time-2026-whats-new.tsx:74",
+   "file": "modules/news/articles/tax-time-2026-whats-new.tsx",
+   "line": "74",
+   "page": "https://pay-calculator-australia.com/news/tax-time-2026-whats-new/",
+   "claims": [
+    "this is the first full year the marginal repayment system and the FY2026-27 threshold settings interact with an assessment, after 2.8% indexation was applied on 1 June 2026"
+   ],
+   "whys": [
+    "Tax time 2026 assesses 2025-26 income, so the 2025-26 HELP repayment thresholds apply, not FY2026-27 settings. The marginal repayment system started 1 July 2025, so this is the first year it is assessed at all, not the 'first full year'. Please also confirm the 2.8% 1 June 2026 indexation figure."
+   ],
+   "constants": [
+    "HELP repayment threshold and indexation constants (lib/constants or HECS data file used by /news/hecs-indexation-2026/)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact questions are confirmed as worth asking. HECS: tax time 2026 assesses 2025-26 income under the 2025-26 thresholds, not 'FY2026-27 threshold settings'. 2025-26 is the first year of the marginal system, not the 'first full year'. The 2.8% figure for 1 June 2026 is unconfirmed. Gift $2 minimum removal: no known enacted change matches it. TBC: the general cap is indexed to CPI, not 'average balances'. TBC: 'links directly' to the concessional and non-concessional caps overstates the link. TBC: the 13 July 2026 display date is in stale future tense. I left all of them unchanged, as the brief requires."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/tax-time-2026-whats-new.tsx:66",
+   "file": "modules/news/articles/tax-time-2026-whats-new.tsx",
+   "line": "66",
+   "page": "https://pay-calculator-australia.com/news/tax-time-2026-whats-new/",
+   "claims": [
+    "The $2 minimum donation threshold for deductible gift recipients has been removed, backdated to gifts made from 1 July 2024"
+   ],
+   "whys": [
+    "I could not match this to a known enacted change, and neither ATO source listed for the article (What's new for individuals, Fixed rate method) is a page about gift deductions. Please confirm against the ATO gifts and donations page. If it is backdated to 1 July 2024, it also affects 2024-25 returns (amendments), which the page does not mention."
+   ],
+   "constants": [
+    "Prose plus the FAQ answer in lib/news.ts line 520 and the NewsKeyFacts row in the article"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/tax-time-2026-whats-new.tsx:33",
+   "file": "modules/news/articles/tax-time-2026-whats-new.tsx",
+   "line": "33",
+   "page": "https://pay-calculator-australia.com/news/tax-time-2026-whats-new/",
+   "claims": [
+    "employer, bank and health insurer data typically flows through automatically by late July"
+   ],
+   "whys": [
+    "The writer's rewrite now has the ATO as subject ('The ATO prefills a large part of your return'). The prefill timing ('by late July') is uncited, and the 'typically' hedge was already in the original. Confirm against the ATO prefill availability page for 2026."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.2,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/transfer-balance-cap-increase-2026.tsx:49",
+   "file": "modules/news/articles/transfer-balance-cap-increase-2026.tsx",
+   "line": "49",
+   "page": "https://pay-calculator-australia.com/news/transfer-balance-cap-increase-2026/",
+   "claims": [
+    "This links directly to the wider 2026-27 contribution cap increases, including higher concessional and non-concessional contribution limits"
+   ],
+   "whys": [
+    "Concessional and non-concessional caps are indexed to AWOTE separately from the transfer balance cap. Only the total super balance thresholds (and bring-forward thresholds) are tied to the general TBC, so 'links directly' overstates the link."
+   ],
+   "constants": [
+    "Prose only; contribution cap figures live in the data behind /news/super-contribution-caps-2026-27/"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.09,
+   "needsOwner": false
+  }
+ ]
+}

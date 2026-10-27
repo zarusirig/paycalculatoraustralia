@@ -1,0 +1,137 @@
+{
+ "name": "ff-024-hub",
+ "files": [
+  "lib/data/service-pay/hub.ts",
+  "lib/data/service-pay/firefighter/qld.ts",
+  "lib/data/service-pay/firefighter/sa.ts",
+  "lib/data/service-pay/firefighter/tas.ts",
+  "lib/data/service-pay/firefighter/vic.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/service-pay/hub.ts:30",
+   "file": "lib/data/service-pay/hub.ts",
+   "line": "30",
+   "page": "https://pay-calculator-australia.com/prison-officer-pay/",
+   "claims": [
+    "Every state starts new officers on a trainee or probationary rate while they complete entry training"
+   ],
+   "whys": [
+    "This universal claim covers all 8 jurisdictions. It should be checked against each prison-officer state file, since some of those tables may not be verified (see verifiedJurisdictions)."
+   ],
+   "constants": [
+    "lib/data/service-pay/prison-officer/*.ts"
+   ],
+   "reviewerNotes": [
+    "Writer's question is valid: 'Every state starts new officers on a trainee or probationary rate' is a universal claim. It needs checking against each prison-officer state file, including the ones that are not verified."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/firefighter/qld.ts:150",
+   "file": "lib/data/service-pay/firefighter/qld.ts",
+   "line": "150",
+   "page": "/firefighter-pay/qld/",
+   "claims": [
+    "The award sets the Recruit stage at 16 weeks, followed by 32 months as a Firefighter and 12 months as a First Class Firefighter before Senior Firefighter."
+   ],
+   "whys": [
+    "The scale intro (line 56) says pay points are reached by time served at 1 year per point, and the table has 4 First Class Firefighter pay points (PP1 to PP4) and 2 Firefighter points. That does not obviously fit 12 months at First Class or 32 months at Firefighter. Both may be right (award minimum progression vs CA25 pay points), but the page does not explain the difference.",
+    "This is the writer's question, and it is valid. The scale intro (line 56) says 1 year per pay point, with 2 Firefighter and 4 First Class pay points. That does not match 32 months at Firefighter or 12 months at First Class, and the page does not explain award progression against CA25 pay points."
+   ],
+   "constants": [
+    "QLD_FIREFIGHTER_PAY.traineePay[1] and scales[0].intro (check against award clause and CA25 Schedule 1)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.03,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/firefighter/sa.ts:86",
+   "file": "lib/data/service-pay/firefighter/sa.ts",
+   "line": "86",
+   "page": "/firefighter-pay/sa/",
+   "claims": [
+    "from 1 July 2026 a $3,000-a-year base uplift reflecting rescue qualification and advanced skills (clause 15B)",
+    "from 1 July 2026 a $3,000-a-year base uplift (clause 15B)"
+   ],
+   "whys": [
+    "In Appendix A as transcribed, both the Recruit (from $1,575.97 to $1,657.19) and the Fourth Class total wage rise by $81.22 a week at 1 July 2026, which is about $4,235 a year, not $3,000. The difference is probably loadings inside the total wage built on a $3,000 base uplift. Check this so readers do not expect a $3,000 rise in total pay.",
+    "This is the writer's question, and I confirmed the arithmetic. The Recruit total wage goes from $1,575.97 to $1,657.19 (+$81.22 a week, about $4,235 a year), not $3,000 a year ($57.53 a week). Loadings inside the total wage probably explain the gap, but the page could mislead readers."
+   ],
+   "constants": [
+    "SA_FIREFIGHTER_PAY.penalties[0]; Appendix A 1 July 2026 column"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.32,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/firefighter/tas.ts:83",
+   "file": "lib/data/service-pay/firefighter/tas.ts",
+   "line": "83",
+   "page": "/firefighter-pay/tas/",
+   "claims": [
+    "No replacement agreement was listed by the Tasmanian Industrial Commission when we checked on 24 September 2026, so the 1 December 2025 salaries remain the latest published rates.",
+    "No replacement agreement was listed by the Tasmanian Industrial Commission when we checked on 24 September 2026"
+   ],
+   "whys": [
+    "The agreement ended on 30 June 2026 and was last checked on 24 September 2026. The TIC list needs a fresh check before this page is relied on, because a replacement agreement could bring back-dated rates. The FAQ answer at line 122 has the same claim.",
+    "This is the writer's question, and it is valid. The agreement ended on 30 June 2026 and the last check was more than a month ago, so a replacement with back-dated rates may now be listed. The FAQ answer at line 122 makes the same claim."
+   ],
+   "constants": [
+    "TAS_FIREFIGHTER_PAY.verifiedOn / notices[1] / faqs[3].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.66,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/firefighter/vic.ts:35",
+   "file": "lib/data/service-pay/firefighter/vic.ts",
+   "line": "35",
+   "page": "/firefighter-pay/vic/",
+   "claims": [
+    "ratesEffectiveFrom: \"15 July 2026 (the date FRV published them; FRV does not say when they took effect)\""
+   ],
+   "whys": [
+    "The header renders this as \"Under the ..., from 15 July 2026 (...), the Recruit Firefighter rate is ...\", which reads as an effective date. But unverified[0] (line 93) says \"no effective date is given\". The two contradict each other. Also, the source comment says the FRV page is marked \"Updated 15 July 2026\". That is the page's update date, so calling it \"the date FRV published them\" is an inference."
+   ],
+   "constants": [
+    "VIC_FIREFIGHTER_PAY.ratesEffectiveFrom (vic.ts line 35) vs unverified[0] (line 93)"
+   ],
+   "reviewerNotes": [
+    "Endorse the writer's fact question. ratesEffectiveFrom ('15 July 2026 (the date FRV published them...)') renders as an effective date in the header, but unverified[0] (line 93) says no effective date is given. '15 July 2026' is the page's 'Updated' date, not a confirmed publication date. Owner should decide which constant holds."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.18,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/firefighter/vic.ts:37",
+   "file": "lib/data/service-pay/firefighter/vic.ts",
+   "line": "37",
+   "page": "/firefighter-pay/vic/",
+   "claims": [
+    "verifiedOn \"24 September 2026\"; FAQ answer says no determination published \"when we checked on 24 September 2026\"; notice cites FWC case page \"last updated 1 May 2026\""
+   ],
+   "whys": [
+    "VIC was last checked on 24 Sep 2026. WA was re-checked on 22 Oct 2026. The FWC B2023/771 page should be re-read to confirm that no workplace determination has been made since. If one has, the notices and FAQ are stale."
+   ],
+   "constants": [
+    "VIC_FIREFIGHTER_PAY.verifiedOn, notices[1], faqs[3].a"
+   ],
+   "reviewerNotes": [
+    "Endorse. VIC verifiedOn is 24 September 2026, a month older than WA's re-check. The FWC B2023/771 case page should be re-read to confirm no workplace determination exists (notices[1], faqs[3].a)."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.1,
+   "needsOwner": false
+  }
+ ]
+}

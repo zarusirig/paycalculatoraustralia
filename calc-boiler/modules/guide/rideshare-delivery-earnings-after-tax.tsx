@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
-import { MEDICARE_LEVY, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { LITO, MEDICARE_LEVY, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { DELIVERY_MSO, DELIVERY_RATE_PERIODS } from "@/lib/constants/delivery-minimum-pay";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
 import { CENTS_PER_KM_RATES, CPK_KM_CAP, CURRENT_CPK_YEAR } from "@/lib/constants/cents-per-km";
 import {
   GIG_TAX_SOURCES,
@@ -41,6 +43,9 @@ const SOURCES_LIST: SourceLink[] = [
 
 const CPK = CENTS_PER_KM_RATES[CURRENT_CPK_YEAR];
 const KM_CAP = CPK_KM_CAP.toLocaleString("en-AU");
+// Delivery minimum for the first rate period (cl 14.2(a)); same period the delivery guide uses.
+const DELIVERY_NOW = DELIVERY_RATE_PERIODS[0];
+const DELIVERY_RATES = Object.values(DELIVERY_NOW.rates);
 
 // Made-up illustration 1: GST-registered rideshare driver.
 const A = gigTax({ grossPayments: 60_000, expenses: 18_000, expensesIncludeGst: true, gstRegistered: true });
@@ -89,7 +94,7 @@ export default function RideshareDeliveryAfterTaxPage() {
                 b.max === Infinity ? `Over ${formatAUD(b.min - 1, 0)}` : `${formatAUD(b.min === 0 ? 0 : b.min - 1, 0)} to ${formatAUD(b.max, 0)}`,
                 b.rate === 0 ? "Nil" : pct(b.rate),
               ])}
-              caption={<>2026-27 resident rates, from the ATO. The {pct(MEDICARE_LEVY.rate)} Medicare levy is on top, with a low income offset (LITO) of up to $700 that can cancel tax at lower incomes. See <Link href="/tax-brackets/">tax brackets</Link> and <Link href="/low-income-tax-offset/">LITO</Link>.</>}
+              caption={<>2026-27 resident rates, from the ATO. The {pct(MEDICARE_LEVY.rate)} Medicare levy is on top, with a low income offset (LITO) of up to {formatAUD(LITO.maxOffset, 0)} that can cancel tax at lower incomes. See <Link href="/tax-brackets/">tax brackets</Link> and <Link href="/low-income-tax-offset/">LITO</Link>.</>}
             />
           </section>
 
@@ -162,21 +167,21 @@ export default function RideshareDeliveryAfterTaxPage() {
               <li><strong>Prepay the ATO.</strong> The ATO says you can make a prepayment regularly or once off, at any time and as often as you like, towards a potential bill. It stays on your account until used unless you ask for a refund.</li>
               <li><strong>BAS dates.</strong> If you are GST-registered, lodge your activity statement monthly or quarterly and pay the GST then.</li>
               <li><strong>Check any HELP debt.</strong> Compulsory repayments are worked out on your total income at tax time; see the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>.</li>
-              <li><strong>Super is yours to arrange.</strong> No platform pays it. Personal contributions you claim as a deduction are taxed at 15% in the fund; see the <Link href="/superannuation-calculator/">super calculator</Link> and <Link href="/concessional-contributions-cap/">concessional contributions cap</Link>.</li>
+              <li><strong>Super is yours to arrange.</strong> No platform pays it. Personal contributions you claim as a deduction are taxed at {pct(CONTRIBUTIONS_TAX_RATE)} in the fund; see the <Link href="/superannuation-calculator/">super calculator</Link> and <Link href="/concessional-contributions-cap/">concessional contributions cap</Link>.</li>
             </ul>
           </section>
 
           <section>
             <H2 id="floor">If You Deliver Food or Groceries</H2>
             <p>
-              Since 17 August 2026 delivery workers on apps also have a legal minimum hourly rate for engaged time, before costs. See the <Link href="/delivery-driver-pay-rate/">delivery driver pay rate guide</Link> for the rates and a calculator that checks a payout against the floor. The tax sums above apply to what you actually receive.
+              Since {DELIVERY_MSO.commences} delivery workers on apps also have a legal minimum hourly rate for engaged time, before costs. See the <Link href="/delivery-driver-pay-rate/">delivery driver pay rate guide</Link> for the rates and a calculator that checks a payout against the floor. The tax sums above apply to what you actually receive.
             </p>
           </section>
 
           <section>
             <H2>Related Calculators and Guides</H2>
             <ul>
-              <li><Link href="/delivery-driver-pay-rate/">Delivery Driver Pay Rate</Link>: the $31.30 an hour minimum</li>
+              <li><Link href="/delivery-driver-pay-rate/">Delivery Driver Pay Rate</Link>: the minimum of {formatAUD(Math.min(...DELIVERY_RATES), 2)} to {formatAUD(Math.max(...DELIVERY_RATES), 2)} an hour by vehicle, {DELIVERY_NOW.label}</li>
               <li><Link href="/gig-economy-pay-guide/">Gig Economy Pay Guide</Link>: ABN, BAS and deductions in more detail</li>
               <li><Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link>: convert a contractor rate to a salary</li>
               <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link></li>

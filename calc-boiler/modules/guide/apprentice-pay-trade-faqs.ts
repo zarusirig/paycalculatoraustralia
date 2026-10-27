@@ -3,6 +3,7 @@ import { getTrade } from "@/lib/data/apprentice-pay";
 import {
   ADULT_FAQ_ANSWERS,
   STAGES,
+  INDUSTRY_ALLOWANCE,
   headlineRate,
   spokeAdultRate,
   type ApprenticeSpoke,
@@ -58,7 +59,7 @@ export function spokeFaqs(spoke: ApprenticeSpoke): Faq[] {
   if (pg) {
     const r1y = headlineRate(spoke, 1, "completed", "residential");
     const r1n = headlineRate(spoke, 1, "not-completed", "residential");
-    firstAnswer = `From 1 July 2026 the minimum for a first-year apprentice ${label} on a general building, civil or engineering construction site is ${f2(y1n.hourly)} an hour (${f2(y1n.weekly)} a week) without Year 12 and ${f2(y1y.hourly)} an hour (${f2(y1y.weekly)} a week) with it. That includes the $${pg.toolAllowance.toFixed(2)} tool allowance and the $67.15 industry allowance, which the award pays apprentices for all purposes. On residential building work the first-year minimums are ${f2(r1n.hourly)} and ${f2(r1y.hourly)} an hour respectively.`;
+    firstAnswer = `From 1 July 2026 the minimum for a first-year apprentice ${label} on a general building, civil or engineering construction site is ${f2(y1n.hourly)} an hour (${f2(y1n.weekly)} a week) without Year 12 and ${f2(y1y.hourly)} an hour (${f2(y1y.weekly)} a week) with it. That includes the ${f2(pg.toolAllowance)} tool allowance and the ${f2(INDUSTRY_ALLOWANCE.general)} industry allowance, which the award pays apprentices for all purposes. On residential building work the first-year minimums are ${f2(r1n.hourly)} and ${f2(r1y.hourly)} an hour respectively.`;
   } else if (split) {
     firstAnswer = `From 1 July 2026 the award minimum for a first-year apprentice ${label} is ${f2(y1n.hourly)} an hour (${f2(y1n.weekly)} a week) if they did not complete Year 12 and ${f2(y1y.hourly)} an hour (${f2(y1y.weekly)} a week) if they did, for a 38-hour week. ${trade.includesAllowances ? "That rate already includes the all-purpose allowances." : "Allowances are paid on top where they apply."} An enterprise agreement or the employer may pay more.`;
   } else {

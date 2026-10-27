@@ -43,7 +43,7 @@ export const SGC_FAQS: readonly SgcFaq[] = [
   },
   {
     q: "When does super have to be paid under Payday Super?",
-    a: `Under Payday Super, the employer's contribution must be RECEIVED by the employee's fund within ${C.businessDaysToPay} business days of payday, not merely sent by then. Clearing house and fund processing time counts against that deadline. A longer ${C.businessDaysNewEmployee} business day deadline covers two situations: a new employee, and a first contribution to a new fund for an existing employee after you stopped contributing to another one. A business day excludes weekends and public holidays, and a public holiday anywhere in Australia removes a day nationally.`,
+    a: `Under Payday Super, the employer's contribution must be RECEIVED by the employee's fund within ${C.businessDaysToPay} business days of payday, not merely sent by then. Clearing house and fund processing time counts against that deadline. A longer ${C.businessDaysNewEmployee} business day deadline covers two situations: a new employee, and a first contribution to a new fund for an existing employee after you stopped contributing to another one. A business day excludes weekends and any public holiday that applies to the whole of a state or territory. Such a holiday is not a business day anywhere in Australia, even if you are not in that state or territory. A holiday in only part of a state or territory (Royal Hobart Show Day, for example) still counts as a business day.`,
   },
   {
     q: "Is the super guarantee charge tax-deductible?",
@@ -83,6 +83,6 @@ export const SGC_FAQS: readonly SgcFaq[] = [
   },
   {
     q: "What happens if my employer has not paid my super?",
-    a: `Check your payslips and your myGov ATO account first. Under Payday Super contributions should land within roughly a fortnight of each payday, so a gap is now visible in weeks rather than months. Raise it with your employer. If it is not resolved, lodge an unpaid super enquiry with the ATO, which can be done anonymously. The ATO can audit the employer and raise the charge, and the employer's liability does not lapse quietly with time.`,
+    a: `Check your payslips and your myGov ATO account first. Under Payday Super your fund must receive each contribution within ${C.businessDaysToPay} business days of payday (${C.businessDaysNewEmployee} business days for a new employee, or for a first contribution to a new fund after you stopped contributing to another one), so a gap is now visible in weeks rather than months. Raise it with your employer. If it is not resolved, report it with the ATO's unpaid super referral tool, which asks for your tax file number. To keep your identity confidential, use the ATO tip-off form instead. The ATO can audit the employer and raise the charge, and there is no time limit on when the ATO can make the first charge assessment for a payday.`,
   },
 ];

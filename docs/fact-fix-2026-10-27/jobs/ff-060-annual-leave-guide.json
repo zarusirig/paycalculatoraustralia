@@ -1,0 +1,160 @@
+{
+ "name": "ff-060-annual-leave-guide",
+ "files": [
+  "modules/guide/annual-leave-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:224",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "224",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "unpaid family and domestic violence leave (10 days per year)"
+   ],
+   "whys": [
+    "Since 1 Feb 2023 (1 Aug 2023 for small business) the NES gives 10 days of PAID family and domestic violence leave a year (FWO). Calling it unpaid is out of date."
+   ],
+   "constants": [
+    "Text in annual-leave-guide.tsx; ideally an NES leave constant in lib/constants (EMPLOYMENT)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:64",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "64",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "Annual leave does not accrue during ... community service leave (except jury duty)"
+   ],
+   "whys": [
+    "Under Fair Work Act s22(3), community service leave counts as service even when unpaid, so annual leave accrues during all community service leave (jury duty and voluntary emergency management), not only jury duty. The FAQ in annual-leave-guide-faqs.ts line 39 only names jury duty, so check that too."
+   ],
+   "constants": [
+    "Text only"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.11,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:101",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "101",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "Employees with redundancy may receive concessional treatment on certain payments, but the annual leave component itself remains fully taxable."
+   ],
+   "whys": [
+    "For a genuine redundancy, invalidity or early retirement, unused annual leave (and loading) accrued after 17 Aug 1993 is taxed at a maximum 32% (ATO). The site's own annual-leave-calculator.tsx withholds at 32% for genuine-redundancy, so the guide contradicts the calculator."
+   ],
+   "constants": [
+    "Text; align with the genuine-redundancy rate used in modules/calculator/annual-leave-calculator.tsx"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.75,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:85",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "85",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "Some Awards contain a \"better off overall\" clause (leave loading or penalty rates, whichever is higher). Line 283 also says \"better off overall\" test."
+   ],
+   "whys": [
+    "The better off overall test (BOOT) is the Fair Work Commission test for approving enterprise agreements. The award term that pays 17.5% loading or the shift/weekend penalties, whichever is greater, is not called that. This mislabels a legal test."
+   ],
+   "constants": [
+    "Text only (lines 85 and 283)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.09,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:256",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "256",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "pre-16 August 1978 service is taxed at a flat 5%, while post-1978 service is taxed at 32% (up to the whole-of-income cap)"
+   ],
+   "whys": [
+    "ATO rules: for pre-16 Aug 1978 service, 5% of the amount is included in assessable income and taxed at marginal rates, so it is not a flat 5% tax. 16 Aug 1978 to 17 Aug 1993 service is taxed at a maximum 32%. Post-17 Aug 1993 service is taxed at marginal rates unless the termination is a genuine redundancy. The whole-of-income cap applies to ETPs, not to unused long service leave."
+   ],
+   "constants": [
+    "Text; ideally a termination-tax constant shared with the long-service-leave calculator"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:265",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "265",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "super on leave payments is due with the pay that includes them (also line 280: the 12% SG rate applies to your salary and leave payments)"
+   ],
+   "whys": [
+    "Annual leave taken during employment is ordinary time earnings (OTE), but unused annual leave paid out on termination is not OTE and attracts no SG. In a guide about payouts, the unqualified wording implies super is paid on the payout."
+   ],
+   "constants": [
+    "Text only"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:262",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "262",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "several related changes from 1 July 2026 affect how leave interacts with pay, tax, and superannuation"
+   ],
+   "whys": [
+    "The list below includes the right to disconnect (26 Aug 2024 / 26 Aug 2025) and casual conversion, which did not start on 1 July 2026. Either narrow the intro or move those items out of the list."
+   ],
+   "constants": [
+    "Text only"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.17,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide.tsx:45",
+   "file": "modules/guide/annual-leave-guide.tsx",
+   "line": "45",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "applies to every permanent employee regardless of industry, state, or salary level"
+   ],
+   "whys": [
+    "The NES covers national-system employees only. WA state-system employees (sole traders, partnerships, some trusts) are covered by WA law instead. The 4 weeks is the same, but the statement is too broad."
+   ],
+   "constants": [
+    "Text only"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.42,
+   "needsOwner": false
+  }
+ ]
+}

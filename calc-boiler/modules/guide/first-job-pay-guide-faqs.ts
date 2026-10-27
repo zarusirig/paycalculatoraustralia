@@ -21,7 +21,7 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How long does it take to get a TFN?",
-    a: "Online applications take 10-28 business days. You can start work before receiving your TFN. You have 28 days to provide it to your employer. In the meantime, your employer withholds tax at the higher no-TFN rate, but this is corrected once you provide your TFN.",
+    a: `Allow up to 28 days for your TFN to arrive. You can start work before it does: tell your employer on your TFN Declaration that you have applied, and you then have 28 days to give them your TFN. During those 28 days your employer withholds tax at the standard rate. If you still have not given your TFN after 28 days, your employer withholds ${formatPercent(NO_TFN_RATES.resident, 0)} from future pays.`,
   },
   {
     q: "What is the tax-free threshold?",
@@ -42,7 +42,7 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the minimum wage for my first job?",
-    a: `The national minimum wage for adults (21+) is ${formatAUD(NMW.hourly, 2)} per hour or ${formatAUD(NMW.weekly, 2)} per week (from 1 July 2026). Casual employees receive an additional ${formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading, making the casual minimum ${formatAUD(NMW.casualHourly, 2)}/hr. Many industries have award rates that are higher than the minimum wage. Check our Award Rates Guide.`,
+    a: `The national minimum wage for adults (21+) is ${formatAUD(NMW.hourly, 2)} per hour or ${formatAUD(NMW.weekly, 2)} per week (from 1 July 2026). Casual employees receive an additional ${formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading, making the casual minimum ${formatAUD(NMW.casualHourly, 2)}/hr. If an award covers your job, you must be paid at least the award rate for your classification. Check our Award Rates Guide.`,
     links: { "Award Rates Guide": "/award-rates/" },
   },
   {

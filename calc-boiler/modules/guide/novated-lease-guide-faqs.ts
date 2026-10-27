@@ -33,7 +33,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I novate a used car?",
-    a: "Yes, most leasing providers accept used vehicles that are under 7 years old at the end of the proposed lease term. The vehicle must have a clear title, current registration, and pass a mechanical inspection. Used car novated leases deliver smaller GST savings (no GST credit on private-sale used cars) but still provide income tax savings through pre-tax deductions.",
+    a: "Yes. Leasing providers set their own conditions for used cars, so check them with your provider before you choose a car. Used car novated leases deliver smaller GST savings (no GST credit on private-sale used cars) but still provide income tax savings through pre-tax deductions.",
   },
   {
     q: "How much FBT do I pay on a novated lease?",
@@ -59,7 +59,7 @@ export const NOVATED_LEASE_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is there a kilometre limit on a novated lease?",
-    a: "No. Unlike an operating lease or car subscription, a novated lease has no kilometre cap. The running cost budget is set based on estimated annual kilometres (typically 15,000 to 20,000 km), but exceeding the estimate does not incur penalties. Higher kilometres use up the fuel and tyre budget faster, and that budget is adjusted at the annual budget review.",
+    a: "No. Unlike an operating lease or car subscription, a novated lease has no kilometre cap. The running cost budget is set based on your estimated annual kilometres, but exceeding the estimate does not incur penalties. Higher kilometres use up the fuel and tyre budget faster, and that budget is adjusted at the annual budget review.",
   },
   {
     q: "Does a novated lease reduce my HECS-HELP repayment?",

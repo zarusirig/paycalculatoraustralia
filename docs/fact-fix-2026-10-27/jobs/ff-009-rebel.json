@@ -1,0 +1,88 @@
+{
+ "name": "ff-009-rebel",
+ "files": [
+  "lib/data/employer-pay/rebel.ts",
+  "lib/data/employer-pay/subway.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/employer-pay/rebel.ts:62",
+   "file": "lib/data/employer-pay/rebel.ts",
+   "line": "62",
+   "page": "/pay-rates/rebel/",
+   "claims": [
+    "A junior acting as a Supervisor at Level 4 gets the adult rate (undertaking, Annexure A)."
+   ],
+   "whys": [
+    "The rates table on the same page (line 52) lists the Supervisor / Shift Supervisor role as Level 3, and the agreement's tables are described as Levels 1 to 3. 'Level 4' looks like a level mismatch or a different classification that the page never defines.",
+    "The rates table at line 52 labels Supervisor / Shift Supervisor as Level 3, and the same note says the agreement prints Levels 1 to 3. The note never defines 'Level 4', so it is either the wrong level or a classification the page does not explain."
+   ],
+   "constants": [
+    "REBEL_PAY.juniorNote, checked against REBEL_PAY.rates and Annexure A of AE524487"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. juniorNote says 'Supervisor at Level 4', but the rates table (line 52) lists Supervisor / Shift Supervisor as Level 3 and the note itself says Levels 1 to 3. Left unchanged for the owner to check against Annexure A of AE524487."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.6,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/rebel.ts:112",
+   "file": "lib/data/employer-pay/rebel.ts",
+   "line": "112",
+   "page": "/pay-rates/rebel/",
+   "claims": [
+    "At 18 the rate is $19.74 and at 19 it is $22.56."
+   ],
+   "whys": [
+    "The page's notices (line 92) say that from the first full pay period on or after 1 December 2026, 18 and 19-year-olds with more than 6 months' service must get at least the Retail Award's $20.86 / $23.64 (PR813655). The FAQ answer gives no condition, so it will understate pay for those staff from 1 December 2026. The FAQ needs a date-conditioned update, which a human should make because it needs new wording around figures."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The FAQ answer states 18 and 19-year-old rates of $19.74 and $22.56 with no condition. The page's own notice says that from 1 December 2026 the Retail Award floor ($20.86 / $23.64) applies to staff with more than 6 months' service. The FAQ goes stale on that date. This is not caused by the writer's edit."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/subway.ts:117",
+   "file": "lib/data/employer-pay/subway.ts",
+   "line": "117",
+   "page": "https://pay-calculator-australia.com/pay-rates/subway/",
+   "claims": [
+    "An adult Subway sandwich artist ... must be paid at least $27.81 an hour ... from 1 July 2026."
+   ],
+   "whys": [
+    "ratesEffectiveFrom says 'the first full pay period on or after 1 July 2026', but this FAQ answer says plain '1 July 2026'. It is a small precision mismatch on a date condition."
+   ],
+   "constants": [
+    "lib/data/employer-pay/subway.ts ratesEffectiveFrom"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/subway.ts:133",
+   "file": "lib/data/employer-pay/subway.ts",
+   "line": "133",
+   "page": "https://pay-calculator-australia.com/pay-rates/subway/",
+   "claims": [
+    "18 to 20 year olds ... move five percentage points closer to the adult rate, reaching it in stages by July 2029."
+   ],
+   "whys": [
+    "No data field, header comment or nextIncrease.detail supports the July 2029 end date. The file records only the 1 December 2026 step (PR813654). Check the phase-in schedule against PR813654 and the FWC decision."
+   ],
+   "constants": [
+    "lib/data/employer-pay/subway.ts nextIncrease / PR813654 source"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.19,
+   "needsOwner": false
+  }
+ ]
+}

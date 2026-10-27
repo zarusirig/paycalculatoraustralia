@@ -16,7 +16,7 @@ import { PHARMACIST } from "@/lib/data/job-pay-rates/pharmacist";
 import { PHYSIOTHERAPIST } from "@/lib/data/job-pay-rates/physiotherapist";
 import { NURSING_PAY_BY_STATE, NURSING_PAY_STATES, annualFor, registeredNurseRange } from "@/lib/data/nursing-pay";
 import { NURSES_AWARD, NURSES_AWARD_AGED_CARE, NURSES_AWARD_GENERAL } from "@/lib/data/nursing-pay/nurses-award-2020";
-import type { ScaleFamily } from "@/lib/data/nursing-pay/types";
+import type { NursingStateSlug, ScaleFamily } from "@/lib/data/nursing-pay/types";
 
 export const STATES = NURSING_PAY_STATES.map((slug) => NURSING_PAY_BY_STATE[slug]).filter(
   (s): s is NonNullable<typeof s> => Boolean(s),
@@ -110,6 +110,15 @@ export const AWARD_AGED_RN1 = NURSES_AWARD_AGED_CARE.find((s) => s.classificatio
 /** Extra spendable income from packaging: packaged expenses are paid pre-tax. */
 export const PACKAGING_BENEFIT = salaryPackagingBenefit(PACKAGE_SALARY, PACKAGED);
 
+/** A state's penalty value read from lib/data/nursing-pay (row label matched exactly), lower-cased for a sentence. */
+function penalty(slug: NursingStateSlug, label: string): string {
+  for (const set of NURSING_PAY_BY_STATE[slug]?.penalties ?? []) {
+    const row = set.rows.find((r) => r.label === label);
+    if (row) return row.value.charAt(0).toLowerCase() + row.value.slice(1);
+  }
+  throw new Error(`Healthcare FAQs: no ${slug} penalty row "${label}"`);
+}
+
 export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   {
     q: "How much do registered nurses earn in Australia?",
@@ -125,7 +134,7 @@ export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What penalty rates do nurses receive?",
-    a: "Nurse penalty rates differ by state, so there is no single national rate, and you need your own state's rates to check a nurse payslip. Weekday night shift is +20% in NSW and Queensland, +20.5% in South Australia, +35% in Western Australia, and a flat dollar allowance per shift in Victoria. Weekend ordinary hours are time and a half on Saturday in NSW, Victoria and Queensland, +50% in WA; Sunday is time and three quarters in NSW and Queensland, +75% in WA and time and a half in Victoria. Weekend rates normally replace the shift loading rather than adding to it. The state pages carry the clause references.",
+    a: `Nurse penalty rates differ by state, so there is no single national rate, and you need your own state's rates to check a nurse payslip. Weekday night shift is ${penalty("nsw", "Night shift starting 4pm to before 4am")} in NSW, ${penalty("qld", "Night shift")} in Queensland, ${penalty("sa", "Rostered night shift, Monday to Friday")} in South Australia, ${penalty("wa", "Night shift")} in Western Australia, and a flat dollar allowance per shift in Victoria. Weekend ordinary hours are paid ${penalty("nsw", "Saturday ordinary hours")} on Saturday and ${penalty("nsw", "Sunday ordinary hours")} on Sunday in NSW, ${penalty("qld", "Saturday ordinary hours")} and ${penalty("qld", "Sunday ordinary hours")} in Queensland, ${penalty("wa", "Saturday ordinary hours")} and ${penalty("wa", "Sunday ordinary hours")} in WA, and ${penalty("vic", "All ordinary hours, midnight Friday to midnight Sunday")} on both days in Victoria. In NSW, Queensland and WA the weekend rate replaces the shift loading rather than adding to it. The state pages carry the clause references.`,
   },
   {
     q: "How much do aged care workers earn?",

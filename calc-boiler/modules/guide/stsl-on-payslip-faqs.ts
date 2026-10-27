@@ -4,15 +4,19 @@
 // from HECS_HELP in lib/constants.
 
 import { HECS_HELP, SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { STSL_NO_TFT, STSL_TFT } from "@/lib/constants/payg-withholding";
 import type { FaqItem } from "@/lib/faq";
 
 const THRESHOLD = formatAUD(HECS_HELP.minimumThreshold);
 const FY = `FY${SITE_CONFIG.financialYear}`;
+// Schedule 8 weekly earnings at which STSL withholding starts.
+const WEEKLY_TFT = formatAUD(STSL_TFT[0].lessThan);
+const WEEKLY_NO_TFT = formatAUD(STSL_NO_TFT[0].lessThan);
 
 export const STSL_FAQS: readonly FaqItem[] = [
   {
     q: "What does STSL mean on a payslip?",
-    a: `STSL stands for Study and Training Support Loans. It is the extra PAYG amount your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Student Loan, or other government study loan. It only applies once your earnings pass the repayment threshold (${THRESHOLD} for ${FY}).`,
+    a: `STSL stands for Study and Training Support Loans. It is the extra PAYG amount your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Student Loan, or other government study loan. It only applies once your earnings pass the repayment threshold (${THRESHOLD} for ${FY}), or ${WEEKLY_NO_TFT} a week at a job where you do not claim the tax-free threshold.`,
   },
   {
     q: "Is STSL the same as HECS?",
@@ -36,6 +40,6 @@ export const STSL_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why is no STSL withheld at my second job?",
-    a: "STSL schedules apply per employer. If each job individually pays under the threshold, neither withholds STSL, but your combined repayment income may still trigger a compulsory repayment at tax time. Budget for this or ask one employer to withhold extra.",
+    a: `STSL schedules apply per employer, and the starting point depends on the tax-free threshold. A job where you claim it withholds STSL from ${WEEKLY_TFT} a week. A second job, where you do not claim it, withholds from ${WEEKLY_NO_TFT} a week, as long as you declared your study loan to that employer. So your second job withholds no STSL if it pays you under ${WEEKLY_NO_TFT} a week or does not know about your loan. Your combined repayment income can still trigger a compulsory repayment at tax time. Budget for this or ask one employer to withhold extra.`,
   },
 ];

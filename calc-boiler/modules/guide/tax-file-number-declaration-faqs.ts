@@ -3,17 +3,19 @@
 // app/tax-file-number-declaration/page.tsx, so the structured data cannot drift
 // from the page. No-TFN rates come from NO_TFN_RATES (payg-withholding.ts).
 
-import { TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, TAX_BRACKETS, TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
 import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
 import type { FaqItem } from "@/lib/faq";
 
 const RES = `${Math.round(NO_TFN_RATES.resident * 100)}%`;
 const FOREIGN = `${Math.round(NO_TFN_RATES.foreignResident * 100)}%`;
+const TOP_RATE = `${Math.round(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate * 100)}%`;
+const MEDICARE = `${Math.round(MEDICARE_LEVY.rate * 100)}%`;
 
 export const TFN_DECLARATION_FAQS: readonly FaqItem[] = [
   {
     q: "What happens if I don't provide my TFN?",
-    a: `Your employer must withhold tax at ${RES} from every dollar you earn (${FOREIGN} if you are a foreign resident). The ${RES} is the 45% top tax rate plus the 2% Medicare levy. If you have told your employer on the declaration that you have applied for a TFN, you have 28 days to provide it before that rate applies. You get the over-withheld tax back when you lodge your annual tax return, but your take-home pay is much lower until then.`,
+    a: `Your employer must withhold tax at ${RES} from every dollar you earn (${FOREIGN} if you are a foreign resident). The ${RES} is the ${TOP_RATE} top tax rate plus the ${MEDICARE} Medicare levy. If you have told your employer on the declaration that you have applied for a TFN, you have 28 days to provide it before that rate applies. You get the over-withheld tax back when you lodge your annual tax return, but your take-home pay is much lower until then.`,
   },
   {
     q: "Should I claim the tax-free threshold on my TFN declaration?",

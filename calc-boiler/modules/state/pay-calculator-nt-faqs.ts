@@ -24,11 +24,11 @@ export const NT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is Picnic Day?",
-    a: "Picnic Day is a Northern Territory public holiday held on the first Monday in August (3 August in 2026). It is observed nowhere else in Australia and attracts full public holiday entitlements, including penalty rates under most awards if you work it.",
+    a: "Picnic Day is a Northern Territory public holiday held on the first Monday in August (3 August in 2026). It is observed nowhere else in Australia and attracts full public holiday entitlements, including any public holiday penalty rate your award or agreement sets if you work it.",
   },
   {
     q: "When do I get long service leave in the NT?",
-    a: "In the NT, you are entitled to 13 weeks of long service leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign for illness, incapacity or pressing necessity.",
+    a: `If the ${PROFILE.longServiceLeave.act} covers you, you are entitled to 13 weeks of long service leave after 10 years of continuous service, calculated at 1.3 weeks for each year of employment. Part years do not count. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign for illness, incapacity or pressing necessity. NT Government and Australian Government employees, and construction workers under NT Build, are not covered by the Act: their award, agreement or the NT Build scheme sets their leave.`,
   },
   {
     q: "Are district allowances included in my long service leave pay?",

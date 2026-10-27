@@ -101,6 +101,8 @@ const NMW_SOURCE: MwSource = {
 
 const money = (n: number) => `$${n.toFixed(2)}`;
 const wholeMoney = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+/** "$1,023.00": two decimals with a thousands separator. */
+const moneyAU = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const NMW_HOURLY = money(NMW.hourly);
 
 // --- Sources read 10 October 2026 -------------------------------------------
@@ -139,6 +141,11 @@ const SAET_SWC_2026_NOTICE: MwSource = {
   publisher: "South Australian Employment Tribunal",
   url: "https://www.saet.sa.gov.au/app/uploads/2026/07/StateWageCase2026Notice.pdf",
 };
+const SA_LGE_AWARD_2026: MwSource = {
+  title: "Local Government Employees Award, cl 5.2.5 State Minimum Award Wage (2026 State Wage Case and Minimum Standard for Remuneration)",
+  publisher: "South Australian Employment Tribunal",
+  url: "https://www.saet.sa.gov.au/app/uploads/2026/10/251p.pdf",
+};
 const SA_MIN_AGE: MwSource = {
   title: "Minimum working age",
   publisher: "SafeWork SA",
@@ -148,6 +155,11 @@ const TAS_SSMO_UPDATE: MwSource = {
   title: "Wages and conditions update for State Service agreements",
   publisher: "Tasmanian Department of Premier and Cabinet",
   url: "https://www.dpac.tas.gov.au/working-in-the-state-service/messages-from-the-head-of-the-state-service/wages-and-conditions-update-for-state-service-agreements",
+};
+const TAS_MINIMUM_WAGE_2026: MwSource = {
+  title: "Variation of Public Sector Awards [2026] TASICFB 2 (T15280 of 2025)",
+  publisher: "Tasmanian Industrial Commission",
+  url: "https://www.tic.tas.gov.au/__data/assets/pdf_file/0008/849599/2026-TASICFB2-T15280-of-2025-Variation-of-the-Tasmanian-minimum-wage.pdf",
 };
 const TAS_TIC_WAGE_CASES: MwSource = {
   title: "State wage cases",
@@ -170,11 +182,19 @@ const NT_WAGES: MwSource = {
   url: "https://nt.gov.au/employ/for-employees-in-nt/your-rights,-health-and-safety/wages-and-conditions-of-employment",
 };
 
+/** 2026 State Wage order cl 6: apprentices aged 21 or over (read again 27 Oct 2026: the order itself sets the same $828.90 as the cl 5(b) third-year rate). */
 const WA_APPRENTICE_ADULT = 828.9;
 /** 2026 State Wage order cl 5(b): award-free apprentices, four-year term, by reference to the Manufacturing, Maintenance and Metal Trades Award. */
 const WA_APPRENTICE_FOUR_YEAR = [464.2, 607.9, 828.9, 972.6] as const;
-/** Tasmanian Industrial Commission state wage cases page: latest Tasmanian minimum wage decision listed (T14984 of 2022). */
-const TAS_LAST_MINIMUM = { weekly: 812.6, decided: "22 December 2022", operative: "1 August 2022" } as const;
+/** [2026] TASICFB 2 (T15280 of 2025), reasons issued 25 Feb 2026, [6]: s 47AB Tasmanian minimum wage $948.00 a week (read 27 Oct 2026). */
+const TAS_LAST_MINIMUM = {
+  weekly: 948,
+  citation: "[2026] TASICFB 2",
+  decided: "25 February 2026",
+  operative: "the first full pay period starting on or after 1 August 2025",
+} as const;
+/** SA state awards, 2026 State Wage Case and Minimum Standard for Remuneration: SAET Local Government Employees Award cl 5.2.5.1 (read 27 Oct 2026). */
+const SA_STATE_MINIMUM_AWARD_WAGE = { weekly: 1023, hourly: 26.92, casualHourly: 33.65 } as const;
 
 export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
   nsw: {
@@ -359,7 +379,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     stateWage: [
       `No separate South Australian minimum wage applies to private-sector employees. South Australia referred its private-sector industrial relations powers to the Commonwealth, so the Fair Work Commission's ${NMW_HOURLY} floor and its modern awards apply, and SafeWork SA sends private-sector pay claims to the Fair Work Ombudsman (13 13 94).`,
       "South Australia's state system has its own wage floor. Under section 100A of the Fair Work Act 1994 (SA), a Full Bench of the South Australian Employment Tribunal must review each year the minimum standard of remuneration (section 69), the minimum wage rates in state awards and their work-related allowances and loadings. SafeWork SA says this State Wage Case safety net cannot be overridden by an award or agreement, and that most state-system staff have their pay set by enterprise agreements or state awards.",
-      `For 2026 the Tribunal gave notice on 22 June 2026 (ET-26-02424) that, unless someone objected by 14 July 2026, it could adopt the Fair Work Commission's outcome: a minimum standard of remuneration of $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages, allowances and loadings. We have not read the final declaration, so treat those figures as the proposal. If you are unsure whether a South Australian state award or agreement covers you, ring the SafeWork SA Help Centre on 1300 365 255.`,
+      `For 2026 the Tribunal gave notice on 22 June 2026 (ET-26-02424) that, unless someone objected by 14 July 2026, it could adopt the Fair Work Commission's outcome of ${moneyAU(NMW.weekly)} a week. The final figure is higher: after the 2026 State Wage Case and Minimum Standard for Remuneration, South Australian state awards set a State Minimum Award Wage of ${moneyAU(SA_STATE_MINIMUM_AWARD_WAGE.weekly)} a week (${money(SA_STATE_MINIMUM_AWARD_WAGE.hourly)} an hour, or ${money(SA_STATE_MINIMUM_AWARD_WAGE.casualHourly)} an hour for adult casuals) from the first pay period starting on or after 1 July 2026. If you are unsure whether a South Australian state award or agreement covers you, ring the SafeWork SA Help Centre on 1300 365 255.`,
     ],
     youngWorkers: [
       "South Australia has no minimum working age, so a child of any age may do paid work. SafeWork SA's own example is a newsagent employing a 12-year-old to deliver newspapers before school. Some businesses set their own minimum age, and liquor licensing and mining laws restrict some duties for younger workers.",
@@ -370,7 +390,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
       { title: "SafeWork SA Help Centre (1300 365 255)", publisher: "Government of South Australia", url: "https://www.safework.sa.gov.au/" },
       { title: "Current notices, including the State Wage Case", publisher: "South Australian Employment Tribunal", url: "https://www.saet.sa.gov.au/resources/current-notices-2/" },
     ],
-    sources: [FWO_SYSTEM, SA_IR_SYSTEM, SAET_SWC_2026_NOTICE, SA_MIN_AGE],
+    sources: [FWO_SYSTEM, SA_IR_SYSTEM, SAET_SWC_2026_NOTICE, SA_LGE_AWARD_2026, SA_MIN_AGE],
     faqs: [
       {
         q: "Is there a minimum working age in South Australia?",
@@ -378,7 +398,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
       },
       {
         q: "Is there a state minimum wage for South Australian public sector and council workers?",
-        a: `Yes, within the state system: the minimum standard of remuneration under section 69 of the Fair Work Act 1994 (SA), which the South Australian Employment Tribunal reviews every year. Its 22 June 2026 notice proposed adopting the national $1,004.90 a week (${NMW_HOURLY} an hour) and a 4.75% rise in state award wages if no objection was lodged by 14 July 2026.`,
+        a: `Yes, within the state system: the minimum standard of remuneration under section 69 of the Fair Work Act 1994 (SA), which the South Australian Employment Tribunal reviews every year. After the 2026 State Wage Case, South Australian state awards set a State Minimum Award Wage of ${moneyAU(SA_STATE_MINIMUM_AWARD_WAGE.weekly)} a week (${money(SA_STATE_MINIMUM_AWARD_WAGE.hourly)} an hour) from the first pay period starting on or after 1 July 2026, above the national ${moneyAU(NMW.weekly)}.`,
       },
       {
         q: "Who handles minimum wage complaints in South Australia?",
@@ -405,7 +425,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     stateWage: [
       `No separate Tasmanian minimum wage applies to private-sector employees, and Tasmanian local government employees are also in the national system, so the ${NMW_HOURLY} National Minimum Wage and modern awards apply to them.`,
       "Tasmanian State Service pay comes from State Service awards and from agreements registered with the Tasmanian Industrial Commission. The Head of the State Service reported in 2026 that agencies had begun adjusting salaries, with back pay to the first full pay in December 2025, under seven State Service agreements including the Public Sector Unions Wages Agreement and the Allied Health Professionals Public Sector Unions Wages Agreement. Most State Service awards were also varied to add reproductive leave, pregnancy loss leave and a right to disconnect, after a Commission hearing on 1 June 2026.",
-      `The Commission also determines a Tasmanian minimum wage for public sector awards (s 47AB). Its state wage case page lists the most recent decision as ${TAS_LAST_MINIMUM.decided}: ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. We have not found a later decision, so we do not quote a current Tasmanian state-system minimum.`,
+      `The Commission also determines a Tasmanian minimum wage for public sector awards (s 47AB). Its most recent decision, ${TAS_LAST_MINIMUM.citation} (${TAS_LAST_MINIMUM.decided}), set ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. It was the latest decision the Commission had published when we checked on 27 October 2026.`,
     ],
     youngWorkers: [
       "Junior and apprentice pay for Tasmanian private-sector employees follows the national junior percentages or the scale in the relevant modern award.",
@@ -415,7 +435,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
       { title: "Wages and conditions update for State Service agreements", publisher: "Tasmanian Department of Premier and Cabinet", url: TAS_SSMO_UPDATE.url },
       { title: "State wage cases", publisher: "Tasmanian Industrial Commission", url: TAS_TIC_WAGE_CASES.url },
     ],
-    sources: [FWO_SYSTEM, TAS_SSMO_UPDATE, TAS_TIC_WAGE_CASES],
+    sources: [FWO_SYSTEM, TAS_SSMO_UPDATE, TAS_MINIMUM_WAGE_2026, TAS_TIC_WAGE_CASES],
     faqs: [
       {
         q: "Are Tasmanian council workers in the state or national system?",
@@ -423,7 +443,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
       },
       {
         q: "Does the Tasmanian Industrial Commission set a state minimum wage?",
-        a: `For public sector awards, yes (s 47AB). Its state wage case page lists the latest decision as ${TAS_LAST_MINIMUM.decided}, setting ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. Private-sector and council employees in Tasmania get the National Minimum Wage of ${NMW_HOURLY} an hour instead.`,
+        a: `For public sector awards, yes (s 47AB). Its latest decision, ${TAS_LAST_MINIMUM.citation} (${TAS_LAST_MINIMUM.decided}), set ${money(TAS_LAST_MINIMUM.weekly)} a week from ${TAS_LAST_MINIMUM.operative}. Private-sector and council employees in Tasmania get the National Minimum Wage of ${NMW_HOURLY} an hour instead.`,
       },
     ],
   },
@@ -466,7 +486,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     faqs: [
       {
         q: "How old do you have to be to work in Queensland?",
-        a: "The general minimum working age in Queensland is 13. Children from 11 can do supervised delivery of newspapers or advertising material between 6am and 6pm. Under the Child Employment Act 2006 a school-aged child can work at most 4 hours on a school day and 12 hours in a school week, and no child can work between 10pm and 6am.",
+        a: "The general minimum working age in Queensland is 13. Children from 11 can do supervised delivery of newspapers or advertising material between 6am and 6pm. Under the Child Employment Act 2006 a school-aged child can work at most 4 hours on a school day and 12 hours in a school week, and an employer must not let a school-aged or young child work between 10pm and 6am.",
       },
       {
         q: "Who is in the Queensland state industrial relations system?",
@@ -492,7 +512,7 @@ export const MW_STATES: Readonly<Record<MwStateSlug, MwStateInfo>> = {
     stateWageHeading: "Is there an ACT minimum wage?",
     stateWage: [
       `No. The Fair Work Ombudsman states that generally all employees and employers in the Australian Capital Territory are covered by the national system, so the ${NMW_HOURLY} National Minimum Wage and modern award rates are the only wage floors.`,
-      "Where the ACT does differ is around the wage: the ACT has its own long service leave scheme, its own public holiday list (including Canberra Day and Reconciliation Day) and a payroll tax threshold that was cut from $2 million to $1.75 million on 1 July 2026.",
+      `Where the ACT does differ is around the wage: the ACT has its own long service leave scheme, its own public holiday list (including Canberra Day and Reconciliation Day) and a payroll tax threshold that was cut from $2 million to $${(PAYROLL_TAX_STATES.act.annualThreshold / 1_000_000).toLocaleString("en-AU")} million on 1 July 2026.`,
     ],
     youngWorkers: [
       "The ACT Government's guidance for young workers sets the limits: the work must be light work, can total up to 10 hours a week, cannot be during school hours, and needs a parent's agreement, given in writing for a child under 15. The same rules apply to volunteering or helping in a family business without pay.",

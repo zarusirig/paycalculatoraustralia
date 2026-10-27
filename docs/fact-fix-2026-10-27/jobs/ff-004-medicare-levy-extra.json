@@ -1,0 +1,171 @@
+{
+ "name": "ff-004-medicare-levy-extra",
+ "files": [
+  "lib/constants/medicare-levy-extra.ts",
+  "lib/constants/modern-awards-oct.ts",
+  "lib/constants/modern-awards-oct2.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/medicare-levy-extra.ts:463",
+   "file": "lib/constants/medicare-levy-extra.ts",
+   "line": "463",
+   "page": "/medicare-levy/",
+   "claims": [
+    "\"Where both spouses would otherwise be liable and one is in a Category 1 exemption category, a signed family agreement decides which of you claims the full exemption and which claims the half.\""
+   ],
+   "whys": [
+    "The condition reads oddly. If only one spouse is in Category 1, the other has no exemption to split. The ATO family agreement (QC27036) seems to apply when both spouses qualify for an exemption and have dependants. Check the wording against the ATO page."
+   ],
+   "constants": [
+    "LEVY_EXEMPTION_CATEGORIES[3].detail"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct.ts:106",
+   "file": "lib/constants/modern-awards-oct.ts",
+   "line": "106",
+   "page": "/miscellaneous-award-rates/ and /fitness-industry-award-rates/",
+   "claims": [
+    "Miscellaneous Award Level 1 is $978.10 a week ($25.74/hr). Fitness Industry Award Level 1 (line 613) is the same."
+   ],
+   "whys": [
+    "This is below the 2026 award minimum of $1,004.90/wk ($26.44/hr) and below the 2026 National Minimum Wage after its 5.97% rise. It is also not a 4.75% uplift on the 2025 Level 1 rate if that rate equalled the 2025 NMW. Please confirm it against cl 15.1 of each consolidated award and Schedule A.1 of the Miscellaneous Award."
+   ],
+   "constants": [
+    "MISC_AWARD.rates / FITNESS_AWARD.rates (pinned in lib/constants/__tests__/modern-awards-oct.test.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.95,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct.ts:1006",
+   "file": "lib/constants/modern-awards-oct.ts",
+   "line": "1006",
+   "page": "/live-performance-award-rates/",
+   "claims": [
+    "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so evenings and weekend daytime hours inside a normal week carry no loading. Saturday has no penalty rate.",
+    "Production and support staff ordinary hours can be worked Monday to Sunday between 7.00 am and midnight (cl 61.1(b)), so evenings and weekend daytime hours inside a normal week carry no loading."
+   ],
+   "whys": [
+    "The penalty table for the same award (line 1001, cl 63.4) pays 200% (casual 225%) for all time worked once work starts on a Sunday. 'Weekend daytime hours ... carry no loading' contradicts that for Sunday. Only Saturday daytime seems to carry no loading.",
+    "This contradicts the Sunday penalty row at line 1001 (cl 63.4: 200%, casual 225% for all time worked once work starts on a Sunday). Only Saturday daytime seems to carry no loading. The constant is LIVE_PERFORMANCE_AWARD.penaltyNotes[0]."
+   ],
+   "constants": [
+    "LIVE_PERFORMANCE_AWARD.penaltyNotes[0] in lib/constants/modern-awards-oct.ts"
+   ],
+   "reviewerNotes": [
+    "I confirm the writer's question. LIVE_PERFORMANCE_AWARD.penaltyNotes[0] says 'weekend daytime hours inside a normal week carry no loading'. The penalty table on the same page (cl 63.4) pays 200% (casual 225%) for all time worked on a Sunday. Only Saturday daytime carries no penalty. The writer did not change this string, which is correct under the no-fact-change rule."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.74,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct.ts:884",
+   "file": "lib/constants/modern-awards-oct.ts",
+   "line": "884",
+   "page": "/local-government-award-rates/",
+   "claims": [
+    "Casual penalty = permanent percentage plus the 25% casual loading (Schedule B.2.1; cl 11.2)."
+   ],
+   "whys": [
+    "The note cites cl 11.2 for the casual loading, but LOCAL_GOVERNMENT_AWARD.meta.casualLoadingClause (line 837) is 'cl 11.1'. One of the two clause citations may be wrong. Check against the MA000112 award text."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct2.ts:713",
+   "file": "lib/constants/modern-awards-oct2.ts",
+   "line": "713",
+   "page": "https://pay-calculator-australia.com/timber-award-rates/",
+   "claims": [
+    "Forest work allowance of $35.81 a week ... paid for all purposes (cl 22.2)",
+    "Forest work allowance ... paid for all purposes (cl 22.2)",
+    "Forest work classification note says the forest work and low loader allowances are paid for all purposes under cl 22.2"
+   ],
+   "whys": [
+    "Same allowance is cited as cl 22.3 at modern-awards-oct2.ts line 775 and in the timber FAQ (modern-award-content-oct2.ts line 356). One of the clause references is wrong.",
+    "The same allowance is cl 22.3 at line 775 of the same file and in the timber FAQ (modern-award-content-oct2.ts line 356).",
+    "The allowances table in the same award cites the forest work allowance as cl 22.3 and the low loader allowance as cl 22.4 (line 775-776). One of the two clause references is wrong. This string is locked (description prop), so it was not changed."
+   ],
+   "constants": [
+    "TIMBER award allowances / level notes in lib/constants/modern-awards-oct2.ts",
+    "TIMBER_AWARD.classificationNotes[3].description vs TIMBER_AWARD.allowances (forest work, low loader)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct2.ts:199",
+   "file": "lib/constants/modern-awards-oct2.ts",
+   "line": "199",
+   "page": "/plumbing-award-rates/",
+   "claims": [
+    "Ordinary hours are worked in a 20-day, 4-week cycle of 8-hour days, with 0.4 of an hour a day accruing towards a rostered day off (cl 15.2)."
+   ],
+   "whys": [
+    "20 days of 8 hours is 160 hours, not 152. The hoursNotes entry at line 251 says 19 days of 8 hours plus a paid rostered day off. The two notes on the same page describe the cycle differently. The wording should say the 20-day cycle is 19 working days of 8 hours plus 1 rostered day off. That needs the figure 19, which this pass cannot add."
+   ],
+   "constants": [
+    "PLUMBING_AWARD.penaltyNotes[0] (cl 15.2) in lib/constants/modern-awards-oct2.ts"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. PLUMBING_AWARD.penaltyNotes[0] (source line 199) says '20-day, 4-week cycle of 8-hour days', but hoursNotes (source line 251) says 19 days of 8 hours plus a paid rostered day off. A human should reconcile the two against cl 15.2."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.02,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct2.ts:896",
+   "file": "lib/constants/modern-awards-oct2.ts",
+   "line": "896",
+   "page": "/meat-industry-award-rates/",
+   "claims": [
+    "Leading hand supervising 10 or more employees: $25.74 per week (cl 20.2(c)(ii))"
+   ],
+   "whys": [
+    "The amount is identical to the MI 1 hourly rate ($25.74) in the same award, which suggests a copy error. Please check against the Meat Industry Award Schedule C."
+   ],
+   "constants": [
+    "MEAT_AWARD.allowances[1].amount"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.69,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards-oct2.ts:784",
+   "file": "lib/constants/modern-awards-oct2.ts",
+   "line": "784",
+   "page": "/timber-award-rates/",
+   "claims": [
+    "Camping allowance $32.19 per working day, maximum $225.36 a week (cl 23.5)"
+   ],
+   "whys": [
+    "Seven days at $32.19 is $225.33, not $225.36. The weekly cap may be a separately rounded award figure, but it is worth a check against Schedule E."
+   ],
+   "constants": [
+    "TIMBER_AWARD.allowances (Camping allowance) amount and note"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.72,
+   "needsOwner": false
+  }
+ ]
+}

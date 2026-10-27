@@ -31,6 +31,10 @@ import {
   RESTAURANT_AWARD_REF,
   hospitalityRow,
 } from "./hospitality-common";
+import { HOSPITALITY_ALLOWANCES, HOSPITALITY_PENALTIES } from "../../constants/hospitality-award";
+import { RESTAURANT_AWARD } from "../../constants/modern-awards";
+import { formatAUD } from "../../constants/australian-tax";
+import { annual52, atPercent, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation } from "./types";
 
 export const BAR_ATTENDANTS_MEDIAN: MedianEarnings = {
@@ -41,6 +45,30 @@ export const BAR_ATTENDANTS_MEDIAN: MedianEarnings = {
   allOccupationsWeekly: ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   url: jsaUrl("4311-bar-attendants-and-baristas"),
 };
+
+const GRADE_2 = hospitalityRow("Level 2", "Food and beverage attendant grade 2");
+const GRADE_3 = hospitalityRow("Level 3", "Food and beverage attendant grade 3");
+const P = HOSPITALITY_PENALTIES;
+
+function hospAllowance(name: string): number {
+  const a = HOSPITALITY_ALLOWANCES.find((x) => x.name === name);
+  if (!a) throw new Error(`bartender: no Hospitality allowance ${name}`);
+  return a.amount;
+}
+
+function restaurantFlat(labelStart: string): number {
+  const r = RESTAURANT_AWARD.penalties.find((x) => x.label.startsWith(labelStart));
+  if (!r || r.flatPerHour === undefined) throw new Error(`bartender: no Restaurant flat loading ${labelStart}`);
+  return r.flatPerHour;
+}
+
+const MEAL = hospAllowance("Meal allowance (overtime of more than 2 hours, not advised the previous day)");
+const SPLIT_2_3 = hospAllowance("Split shift allowance (2 to 3 hours between shifts)");
+const SPLIT_3_PLUS = hospAllowance("Split shift allowance (more than 3 hours between shifts)");
+const FIRST_AID_FT = hospAllowance("First aid allowance (full-time)");
+const FIRST_AID_DAY = hospAllowance("First aid allowance (part-time or casual)");
+const REST_EVENING = restaurantFlat("Monday to Friday — 10.00 pm to midnight");
+const REST_NIGHT = restaurantFlat("Monday to Friday — midnight to 6.00 am");
 
 export const BARTENDER: Occupation = {
   slug: "bartender",
@@ -81,12 +109,12 @@ export const BARTENDER: Occupation = {
     },
   ],
   penalties: HOSPITALITY_PENALTY_ROWS,
-  penaltiesNote: `The bartender penalty rates above come from Hospitality Award cl 29.2, Table 14. ${HOSPITALITY_EVENING_NOTE} Under the Restaurant Award the $2.95 loading starts at 10 pm, the $4.42 loading runs midnight to 6 am, and a casual at grade 1 or 2 gets 150% (not 175%) on Sunday (Table 8).`,
+  penaltiesNote: `The bartender penalty rates above come from Hospitality Award cl 29.2, Table 14. ${HOSPITALITY_EVENING_NOTE} Under the Restaurant Award the ${money2(REST_EVENING)} loading starts at 10 pm, the ${money2(REST_NIGHT)} loading runs midnight to 6 am, and a casual at grade 1 or 2 gets 150% (not 175%) on Sunday (Table 8).`,
   overtime: HOSPITALITY_OVERTIME_LINES,
   allowances: [
-    { name: "Meal allowance", amount: "$17.42", note: "Overtime of more than 2 hours without notice the previous day, unless a meal is supplied (cl 26.4(b)(i))." },
-    { name: "Split shift allowance", amount: "$3.69 per day", note: "2 to 3 hours between shifts; $5.60 for more than 3 hours (cl 26.14)." },
-    { name: "First aid allowance", amount: "$13.43 per week", note: "Full-time; $2.69 a day for part-time and casual staff, up to $13.43 a week (cl 26.12)." },
+    { name: "Meal allowance", amount: money2(MEAL), note: "Overtime of more than 2 hours without notice the previous day, unless a meal is supplied (cl 26.4(b)(i))." },
+    { name: "Split shift allowance", amount: `${money2(SPLIT_2_3)} per day`, note: `2 to 3 hours between shifts; ${money2(SPLIT_3_PLUS)} for more than 3 hours (cl 26.14).` },
+    { name: "First aid allowance", amount: `${money2(FIRST_AID_FT)} per week`, note: `Full-time; ${money2(FIRST_AID_DAY)} a day for part-time and casual staff, up to ${money2(FIRST_AID_FT)} a week (cl 26.12).` },
   ],
   median: BAR_ATTENDANTS_MEDIAN,
   notices: [
@@ -100,15 +128,15 @@ export const BARTENDER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a bartender in 2026?",
-      a: "A bartender (Food and beverage attendant grade 2) must be paid at least $27.08 an hour, or $1,029.10 a week, under the Hospitality Award from the first full pay period on or after 1 July 2026: $53,513 a year full-time before tax. A cocktail bartender or cellar hand at grade 3 gets $27.97 an hour.",
+      a: `A bartender (Food and beverage attendant grade 2) must be paid at least ${money2(GRADE_2.hourly)} an hour, or ${formatAUD(GRADE_2.weekly, 2)} a week, under the Hospitality Award from the first full pay period on or after 1 July 2026: ${money0(annual52(GRADE_2.weekly))} a year full-time before tax. A cocktail bartender or cellar hand at grade 3 gets ${money2(GRADE_3.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a bartender?",
-      a: "A casual grade 2 bartender earns at least $33.85 an hour on weekdays before 7 pm, the $27.08 rate plus the 25% casual loading. Casuals get 150% on Saturday ($40.62), 175% on Sunday ($47.39) and 250% on public holidays ($67.70).",
+      a: `A casual grade 2 bartender earns at least ${money2(GRADE_2.casualHourly ?? 0)} an hour on weekdays before 7 pm, the ${money2(GRADE_2.hourly)} rate plus the 25% casual loading. Casuals get ${Math.round(P.casualSaturday * 100)}% on Saturday (${money2(atPercent(GRADE_2.hourly, P.casualSaturday))}), ${Math.round(P.casualSunday * 100)}% on Sunday (${money2(atPercent(GRADE_2.hourly, P.casualSunday))}) and ${Math.round(P.casualPublicHoliday * 100)}% on public holidays (${money2(atPercent(GRADE_2.hourly, P.casualPublicHoliday))}).`,
     },
     {
       q: "How much do bartenders get paid at night?",
-      a: "Under the Hospitality Award, hours between 7 pm and midnight on a weekday earn an extra $2.95 an hour, and hours between midnight and 7 am an extra $4.42 an hour, on top of the ordinary (or casual) rate. They are flat amounts, not percentages.",
+      a: `Under the Hospitality Award, hours between 7 pm and midnight on a weekday earn an extra ${money2(P.eveningPerHour)} an hour, and hours between midnight and 7 am an extra ${money2(P.nightPerHour)} an hour, on top of the ordinary (or casual) rate. They are flat amounts, not percentages.`,
     },
     {
       q: "Do junior bartenders get paid less?",
@@ -116,7 +144,7 @@ export const BARTENDER: Occupation = {
     },
     {
       q: "What do bartenders actually earn?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,500 a week for bar attendants and baristas (ABS Survey of Employee Earnings and Hours, May 2025). The group combines bar staff and baristas and includes above-award pay.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(BAR_ATTENDANTS_MEDIAN.medianWeekly)} a week for bar attendants and baristas (ABS Survey of Employee Earnings and Hours, May 2025). The group combines bar staff and baristas and includes above-award pay.`,
     },
   ],
   sources: [

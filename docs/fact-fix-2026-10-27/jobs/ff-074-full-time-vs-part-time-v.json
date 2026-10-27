@@ -1,0 +1,144 @@
+{
+ "name": "ff-074-full-time-vs-part-time-v",
+ "files": [
+  "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+  "modules/guide/full-time-vs-part-time-vs-casual.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts:26",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+   "line": "26",
+   "page": "/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "The same pro-rata principle applies to personal/carer's leave, compassionate leave, and long-service leave."
+   ],
+   "whys": [
+    "Under the NES, compassionate leave is 2 days per occasion for every employee (part-time employees get the full 2 days paid). It is not pro rata."
+   ],
+   "constants": [
+    "none (NES rule); fix the wording in the FAQ data"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts:30",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+   "line": "30",
+   "page": "/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "All employees, including casuals, receive the Super Guarantee regardless of how much they earn per month."
+   ],
+   "whys": [
+    "The claim is too broad. Employees under 18, and private or domestic workers, are only eligible when they work more than 30 hours in a week."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE in lib/constants (could hold the under-18 30-hour rule)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts:39",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual-faqs.ts",
+   "line": "39",
+   "page": "/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights."
+   ],
+   "whys": [
+    "Casuals have no NES notice or redundancy entitlement. The actual protection under the Fair Work Act (s66L) stops an employer from ending employment or cutting hours to avoid the casual's right to change to permanent employment. The current wording misstates what the protection is."
+   ],
+   "constants": [
+    "none; reword the FAQ data"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual.tsx:274",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual.tsx",
+   "line": "274",
+   "page": "https://pay-calculator-australia.com/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "The right to request part-time after parental leave 'extends until the child reaches school age (or 18 for a child with a disability)'."
+   ],
+   "whys": [
+    "The 'under 18 with a disability' limit is the old s65 wording, from before the 2013 amendments. Current s65 covers a parent or carer of a child of school age or younger, and a separate carer category covers a child with disability. The 18 cut-off looks out of date."
+   ],
+   "constants": [
+    "Guide prose; a NES flexible-working constant or a FWO-sourced note should hold this"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact questions. The 'or 18 for a child with a disability' cut-off is the pre-2013 s65 wording. The flexible-working eligibility list at line 278 leaves out pregnant employees and people supporting a family member experiencing family and domestic violence (Secure Jobs Better Pay, 6 June 2023). '2 weeks equivalent' at line 172 is misleading. The 'largest casual workforce' (197) and 'parents returning ... often transition' (178) claims have no source. The 25% loading and 12% SG are hard-coded copies. None of these was changed."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual.tsx:278",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual.tsx",
+   "line": "278",
+   "page": "https://pay-calculator-australia.com/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "Employees with 12 months' service can request flexible arrangements if they are a parent, carer, over 55, experiencing domestic violence, or have a disability."
+   ],
+   "whys": [
+    "The NES list since the 6 June 2023 Secure Jobs Better Pay changes also covers pregnant employees and people supporting a family or household member who is experiencing family and domestic violence. The NES term is 'family and domestic violence'. The list looks incomplete."
+   ],
+   "constants": [
+    "Guide prose; NES flexible-working eligibility list"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual.tsx:172",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual.tsx",
+   "line": "172",
+   "page": "https://pay-calculator-australia.com/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "A 20-hour/week employee receives '2 weeks equivalent paid annual leave'."
+   ],
+   "whys": [
+    "Under the NES a part-timer gets 4 weeks of their own ordinary hours (80 hours here). Calling that '2 weeks equivalent' reads as if they get only 2 weeks off. This string is locked because it contains a hyphen."
+   ],
+   "constants": [
+    "Guide prose (locked string)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/full-time-vs-part-time-vs-casual.tsx:105",
+   "file": "modules/guide/full-time-vs-part-time-vs-casual.tsx",
+   "line": "105",
+   "page": "https://pay-calculator-australia.com/full-time-vs-part-time-vs-casual/",
+   "claims": [
+    "The 25% casual loading and 12% SG are hard-coded in the table, list items, cost example and methodology (lines 105, 109-111, 157, 175, 186, 189, 193, 205, 214, 290)."
+   ],
+   "whys": [
+    "The values are correct now, but only the hero reads EMPLOYMENT.casualLoading. If a constant changes, these copies will drift out of step with it."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading (lib/constants/australian-tax.ts:502) and the SG rate constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.04,
+   "needsOwner": false
+  }
+ ]
+}

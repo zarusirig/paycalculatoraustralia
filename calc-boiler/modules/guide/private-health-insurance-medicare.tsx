@@ -6,7 +6,7 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { PHI_MEDICARE_FAQS } from "./private-health-insurance-medicare-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, formatAUD, formatPercent } from "@/lib/constants";
 import {
   MLS_APPROPRIATE_COVER_MAX_EXCESS,
   MLS_INCOME_YEAR,
@@ -16,7 +16,7 @@ import {
   formatMlsRate,
   phiRebateRate,
 } from "@/lib/constants/medicare-levy-surcharge";
-import type { MlsTier } from "@/lib/constants/medicare-levy-extra";
+import { MLS_CHILD_INCREMENT, type MlsTier } from "@/lib/constants/medicare-levy-extra";
 
 // Corrected 23 Sep 2026 (W2): this page carried 2023-24 surcharge thresholds
 // ($93,000 / $186,000) and rebate rates next to 2026-27 tier bounds, plus
@@ -121,7 +121,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
                 </div>
               </div>
               <p>
-                The thresholds have risen every year since 2022-23, when the singles threshold was $90,000. Family thresholds rise $1,500 for each dependent child after the first. Work out your own tier and surcharge with the <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge calculator</Link>; the standard 2% levy is covered by our <Link href="/medicare-levy/">Medicare levy calculator</Link>.
+                The thresholds have risen every year since 2022-23, when the singles threshold was $90,000. Family thresholds rise {formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. Work out your own tier and surcharge with the <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge calculator</Link>; the standard {formatPercent(MEDICARE_LEVY.rate, 0)} levy is covered by our <Link href="/medicare-levy/">Medicare levy calculator</Link>.
               </p>
             </section>
 

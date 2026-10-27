@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { HECS_HELP_2025_26, MEDICARE_LEVY, SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 // Cents-per-km and WFH fixed rates per ATO pages cited in tax-return-2025-26.ts
 // (verified 23 Sep 2026): 88c/km for 2024-25 and 2025-26, 91c/km for 2026-27;
 // WFH 70c/hour for 2024-25 and 2025-26.
@@ -48,7 +48,7 @@ export default function TaxDeductionsGuidePage() {
               <ol>
                 <li><strong>You must have spent the money yourself</strong> and not been reimbursed by your employer. If your employer paid for the expense or reimbursed you, it is not deductible.</li>
                 <li><strong>The expense must be directly related to earning your assessable income.</strong> There must be a clear connection between the expense and your work duties. Private or domestic expenses are not deductible.</li>
-                <li><strong>You must have a record to prove it.</strong> The ATO requires written evidence such as receipts, invoices, bank statements or diary entries. For total work-related expenses of <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount.</li>
+                <li><strong>You must have a record to prove it.</strong> The ATO requires written evidence such as receipts, invoices, bank statements or diary entries. For 2025-26 and earlier income years, if your total work-related expenses are <strong>$300 or less</strong>, you do not need written evidence but must be able to show how you calculated the amount. This exception ends from the 2026-27 income year.</li>
               </ol>
               <p>
                 You claim deductions in your annual tax return. Your employer does not approve them, because the claim is between you and the ATO. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model how deductions affect your take-home pay.
@@ -86,7 +86,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Clothing and Laundry</h3>
               <p>
-                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing, even if you only wear it for work, is not deductible. Laundry of eligible work clothing can be claimed at <strong>$1 per load</strong> (if washed with other items) or <strong>$2 per load</strong> (exclusive wash), up to <strong>$150</strong> without written records.
+                Only three types of clothing are deductible: <strong>occupation-specific clothing</strong> (chef&apos;s checked pants, nurse&apos;s uniform), <strong>protective clothing</strong> (steel-capped boots, high-vis vests, sun protection for outdoor workers), and <strong>clothing with your employer&apos;s logo</strong> that is compulsory to wear. Conventional clothing, even if you only wear it for work, is not deductible. Laundry of eligible work clothing can be claimed at <strong>$1 per load</strong> (work clothing only) or <strong>50c per load</strong> (mixed with other clothes). For 2025-26 and earlier years, a laundry claim of <strong>$150</strong> or less needs no written evidence, even if your total work-related claim is over $300. From the 2026-27 income year that exception ends: if you claim at these per-load rates, keep a record of the number of loads, whether each was work-only or mixed, and evidence that you had laundry costs.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tools, Equipment and Technology</h3>
@@ -111,7 +111,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Union Fees and Professional Memberships</h3>
               <p>
-                Membership fees for trade unions, professional associations, and registration boards required for your employment are fully deductible. This includes fees for organisations like CPA Australia, the Law Society, medical boards, and teaching registration bodies. The fees must relate to your <strong>current</strong> employment. Joining a professional body for a career you do not yet work in is not deductible.
+                Union fees and subscriptions to trade, business or professional associations for the industry you work in are deductible, for example CPA Australia or the Law Society. You can also claim the cost of renewing a registration or practising certificate you need for your <strong>current</strong> job, such as nurse, teacher or doctor registration, but not the initial cost of getting it. A subscription to an association that does not directly relate to your current job is deductible only up to $42 per subscription each income year.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function TaxDeductionsGuidePage() {
                 </div>
               </div>
               <p>
-                These savings include only the income tax reduction. Deductions also reduce the <strong>Medicare levy</strong> (2% of taxable income), adding approximately $10 per $500 of deductions. For employees with HECS-HELP debt, deductions can also reduce your compulsory repayment amount by lowering your repayment income below a threshold. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify your marginal rate.
+                These savings include only the income tax reduction. Deductions also reduce the <strong>Medicare levy</strong> ({MEDICARE_LEVY.rate * 100}% of taxable income), adding approximately {formatAUD(500 * MEDICARE_LEVY.rate)} per $500 of deductions. If you have a HELP debt, deductions also lower your repayment income. For 2025-26 no compulsory repayment is due on repayment income of {formatAUD(HECS_HELP_2025_26.minimumThreshold)} or less, and above that threshold every dollar of deductions lowers your repayment. A deduction does not need to bring your income below the threshold to cut your repayment. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify your marginal rate.
               </p>
             </section>
 

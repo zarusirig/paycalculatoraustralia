@@ -12,7 +12,21 @@ import {
   SUPER_GUARANTEE,
   SITE_CONFIG,
   annualToWeekly,
+  calculateIncomeTax,
+  calculateMedicareLevy,
+  MEDICARE_LEVY,
+  TAX_BRACKETS,
 } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
+
+const TOP_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
+/** Net tax saved by sacrificing $10,000 from a $100,000 salary: income tax and Medicare levy saved, less contributions tax. */
+const EX_SAC_SALARY = 100_000;
+const EX_SAC_AMOUNT = 10_000;
+const EX_SAC_SAVING =
+  calculateIncomeTax(EX_SAC_SALARY) + calculateMedicareLevy(EX_SAC_SALARY)
+  - calculateIncomeTax(EX_SAC_SALARY - EX_SAC_AMOUNT) - calculateMedicareLevy(EX_SAC_SALARY - EX_SAC_AMOUNT)
+  - EX_SAC_AMOUNT * CONTRIBUTIONS_TAX_RATE;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -115,21 +129,21 @@ export default function SuperannuationCalculatorPage({
           {/* --- Superannuation vs Salary Sacrifice --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Salary Sacrifice Into Super Compare to Standard SG?</h2>
-            <p className="mb-4 text-warmgray">Salary sacrifice redirects pre-tax salary into your super fund at a concessional tax rate of <strong>15%</strong> instead of your marginal tax rate, which can be as high as 45% depending on income.</p>
+            <p className="mb-4 text-warmgray">Salary sacrifice redirects pre-tax salary into your super fund at a concessional tax rate of <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> instead of your marginal tax rate, which can be as high as {formatPercent(TOP_RATE, 0)} depending on income.</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Feature</th><th className="px-4 py-3 text-left font-semibold text-navy">Employer SG (Mandatory)</th><th className="px-4 py-3 text-left font-semibold text-navy">Salary Sacrifice (Voluntary)</th></tr></thead>
                 <tbody className="divide-y divide-gray-100">
-                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Rate</td><td className="px-4 py-3 text-warmgray">12% of OTE</td><td className="px-4 py-3 text-warmgray">Any amount up to cap</td></tr>
-                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax on contribution</td><td className="px-4 py-3 text-warmgray">15% in fund</td><td className="px-4 py-3 text-warmgray">15% in fund</td></tr>
+                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Rate</td><td className="px-4 py-3 text-warmgray">{formatPercent(SUPER_GUARANTEE.rate, 0)} of OTE</td><td className="px-4 py-3 text-warmgray">Any amount up to cap</td></tr>
+                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax on contribution</td><td className="px-4 py-3 text-warmgray">{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in fund</td><td className="px-4 py-3 text-warmgray">{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in fund</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Impact on take-home pay</td><td className="px-4 py-3 text-warmgray">None, paid on top of salary</td><td className="px-4 py-3 text-warmgray">Reduces gross salary</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Concessional cap</td><td className="px-4 py-3 text-warmgray">Counts toward {formatAUD(SUPER_GUARANTEE.concessionalCap)}</td><td className="px-4 py-3 text-warmgray">Counts toward {formatAUD(SUPER_GUARANTEE.concessionalCap)}</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Who initiates</td><td className="px-4 py-3 text-warmgray">Employer (legal obligation)</td><td className="px-4 py-3 text-warmgray">Employee (voluntary agreement)</td></tr>
-                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax saving at $100K salary</td><td className="px-4 py-3 text-warmgray">N/A (employer cost)</td><td className="px-4 py-3 text-warmgray">$1,500 per $10,000 sacrificed</td></tr>
+                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Tax saving at $100K salary</td><td className="px-4 py-3 text-warmgray">N/A (employer cost)</td><td className="px-4 py-3 text-warmgray">{formatAUD(EX_SAC_SAVING)} per {formatAUD(EX_SAC_AMOUNT)} sacrificed</td></tr>
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray mb-3">On a salary of {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in mandatory SG, leaving <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in concessional cap space. Sacrificing this full amount saves you tax at your marginal rate minus the 15% contributions tax.</p>
+            <p className="text-warmgray mb-3">On a salary of {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in mandatory SG, leaving <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in concessional cap space. Each dollar you sacrifice saves tax at your marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, minus the {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax ({formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} on any part caught by Division 293).</p>
             <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link>: model exact take-home pay differences before and after sacrifice.</p>
           </section>
 
@@ -138,7 +152,7 @@ export default function SuperannuationCalculatorPage({
           {/* --- Salary Sacrifice Into Super (existing, preserved) --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Sacrifice Into Super</h2>
-            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at 15% inside the fund instead of at your marginal rate (up to 45%).</p>
+            <p className="mb-3 text-warmgray">You can voluntarily redirect part of your pre-tax salary into super through a salary sacrifice arrangement. These contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} inside the fund instead of at your marginal rate (up to {formatPercent(TOP_RATE, 0)}).</p>
             <p className="mb-3 text-warmgray">Your salary sacrifice counts towards the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap along with your employer&apos;s SG contributions. On {formatAUD(salary)}, your employer pays {formatAUD(result.superContrib)} in SG, leaving you <strong>{formatAUD(result.concessionalCapRemaining)}</strong> in cap space for voluntary contributions.</p>
             <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
           </section>

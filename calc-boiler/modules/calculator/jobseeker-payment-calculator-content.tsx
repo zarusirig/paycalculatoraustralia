@@ -46,8 +46,12 @@ function source(title: string, url: string): SourceLink {
   return { title, url, publisher: SOURCES.servicesAustralia.name };
 }
 
-/** Free area and tapers — these index on 1 July, not 20 September. */
+/** Free area, band threshold and tapers. None of them index (DSS Social Security Guide 4.10.2, Note L). */
 const T = JOBSEEKER_INCOME_TEST;
+/** A taper as cents per $1: 0.6 -> "60c". */
+const c = (rate: number) => `${Math.round(rate * 100)}c`;
+/** Reduction absorbed by the 50c band before the 60c taper starts: (256 - 150) x 0.5 = $53. */
+const BAND1_REDUCTION = (T.band1End - T.freeArea) * T.taper1;
 const MAR = JOBSEEKER_RATES[MARCH_2026];
 const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
 
@@ -98,8 +102,8 @@ export default function JobseekerPaymentCalculatorContent() {
             <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your income per fortnight</th><th scope="col" className={TH}>Most recipients</th><th scope="col" className={TH}>Single principal carer</th></tr></thead>
             <tbody className="divide-y divide-sandstone-dark/10">
               <tr><td className={TD}>Up to {formatAUD(T.freeArea)}</td><td className={TD}>$0</td><td className={TD}>$0</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(T.freeArea)} to {formatAUD(T.band1End)}</td><td className={TD}>50c for each dollar</td><td className={TD}>40c for each dollar over {formatAUD(T.freeArea)}</td></tr>
-              <tr><td className={TD}>Over {formatAUD(T.band1End)}</td><td className={TD}>60c for each dollar</td><td className={TD}>40c for each dollar over {formatAUD(T.freeArea)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className={TD}>{formatAUD(T.freeArea)} to {formatAUD(T.band1End)}</td><td className={TD}>{c(T.taper1)} for each dollar</td><td className={TD}>{c(T.principalCarerTaper)} for each dollar over {formatAUD(T.freeArea)}</td></tr>
+              <tr><td className={TD}>Over {formatAUD(T.band1End)}</td><td className={TD}>{c(T.taper2)} for each dollar</td><td className={TD}>{c(T.principalCarerTaper)} for each dollar over {formatAUD(T.freeArea)}</td></tr>
             </tbody>
           </table>
         </div>
@@ -132,7 +136,7 @@ export default function JobseekerPaymentCalculatorContent() {
                 <td className={TD}>Partner income free area (partner 22 to Age Pension age)</td>
                 <td className={TD + " text-right"}>{formatAUD(MAR.partnerIncomeLimit.partner22ToPensionAge, 2)}</td>
                 <td className={TD + " text-right font-semibold"}>{formatAUD(SEP.partnerIncomeLimit.partner22ToPensionAge, 2)}</td>
-                <td className={TD + " text-right"} colSpan={2}>60c per $1 above it, either way</td>
+                <td className={TD + " text-right"} colSpan={2}>{c(SEP.partnerIncomeLimit.taper)} per $1 above it, either way</td>
               </tr>
             </tbody>
           </table>
@@ -166,7 +170,7 @@ export default function JobseekerPaymentCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you 40 cents better off, before tax and before working credits. Working more always raises your wages plus JobSeeker total, but by less than the extra wage while any JobSeeker is still paid. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
+        <p className={P + " mt-4"}>Every extra dollar you earn above {formatAUD(T.band1End)} leaves you {Math.round((1 - T.taper2) * 100)} cents better off, before tax and before working credits. Working more always raises your wages plus JobSeeker total, but by less than the extra wage while any JobSeeker is still paid. The 20 September increase of {formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)} a fortnight for a single recipient flows through at every income up to the cut-off.</p>
       </section>
 
       <section>
@@ -197,9 +201,9 @@ export default function JobseekerPaymentCalculatorContent() {
 
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Reduction = 50c × income between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)} + 60c × income over {formatAUD(T.band1End)}; single principal carers 40c × income over {formatAUD(T.freeArea)}. Partner income (partner not on a pension): 60c × income over the limit for their age. The free area and tapers index on 1 July and did not change on 20 September 2026.</li>
+          <li>Reduction = {c(T.taper1)} × income between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)} + {c(T.taper2)} × income over {formatAUD(T.band1End)}; single principal carers {c(T.principalCarerTaper)} × income over {formatAUD(T.freeArea)}. Partner income (partner not on a pension): {c(SEP.partnerIncomeLimit.taper)} × income over the limit for their age. The free area, the {formatAUD(T.band1End)} threshold and the tapers do not index, so they did not change on 20 September 2026.</li>
           <li>Payment = maximum rate for the situation minus the reduction, floored at $0. Two dated rate sets are held: {RATE_SET_LABELS[MARCH_2026]} (Services Australia, read {CENTRELINK_SOURCES.marchSetReadOn}) and {RATE_SET_LABELS[SEPTEMBER_2026]} (DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}). The calculator reads today&apos;s date in your browser and applies whichever set is in force, so it changes over on 20 September by itself.</li>
-          <li>Both sets of cut-offs are Services Australia&apos;s published figures; the {RATE_SET_LABELS[SEPTEMBER_2026]} ones were re-checked on its income test page on {CENTRELINK_SOURCES.verifiedOn}. Each reconciles to cut-off = (typical total rate − $53) ÷ 0.6 + $256, or ÷ 0.4 + $150 for a single principal carer, to within a cent, and the tests assert it.</li>
+          <li>Both sets of cut-offs are Services Australia&apos;s published figures; the {RATE_SET_LABELS[SEPTEMBER_2026]} ones were re-checked on its income test page on {CENTRELINK_SOURCES.verifiedOn}. Each reconciles to cut-off = (typical total rate − {formatAUD(BAND1_REDUCTION)}) ÷ {T.taper2} + {formatAUD(T.band1End)}, or typical total rate ÷ {T.principalCarerTaper} + {formatAUD(T.freeArea)} for a single principal carer, to within a cent, and the tests assert it.</li>
           <li>Not modelled: working credits, assets test, Rent Assistance and other supplements, partners receiving a pension. {SITE_CONFIG.name} is not Services Australia. Use their Payment Finder for a claim estimate.</li>
         </ul>
       </MethodologyDisclosure>

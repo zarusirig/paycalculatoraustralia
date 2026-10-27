@@ -1,0 +1,66 @@
+{
+ "name": "ff-065-concessional-contributio",
+ "files": [
+  "modules/guide/concessional-contributions-cap.tsx",
+  "modules/guide/construction-trades-pay-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/concessional-contributions-cap.tsx:152",
+   "file": "modules/guide/concessional-contributions-cap.tsx",
+   "line": "152",
+   "page": "https://pay-calculator-australia.com/concessional-contributions-cap/",
+   "claims": [
+    "Table header 'Into super after 15%', and line 168 '15% offset' and line 178 'the extra 15%' (also FAQ file line 44 '15% tax offset')"
+   ],
+   "whys": [
+    "These are correct today, but they are literal 15% figures and are not tied to CONTRIBUTIONS_TAX_RATE / DIVISION_293.rate. They will drift if those constants change."
+   ],
+   "constants": [
+    "CONTRIBUTIONS_TAX_RATE and DIVISION_293.rate in lib/constants/super-contributions.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/concessional-contributions-cap.tsx:72",
+   "file": "modules/guide/concessional-contributions-cap.tsx",
+   "line": "72",
+   "page": "https://pay-calculator-australia.com/concessional-contributions-cap/",
+   "claims": [
+    "'unused cap from the last five years' and FAQ line 36 'each expires after five years' use the literal word 'five'"
+   ],
+   "whys": [
+    "The rule is correct today, but 'five' is not tied to CARRY_FORWARD.years, which the same text uses elsewhere through an expression. The two will drift if the constant changes."
+   ],
+   "constants": [
+    "CARRY_FORWARD.years in lib/constants/super-contributions.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.6,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay-faqs.ts:26",
+   "file": "modules/guide/construction-trades-pay-faqs.ts",
+   "line": "26",
+   "page": "https://pay-calculator-australia.com/construction-trades-pay/",
+   "claims": [
+    "Qualified tradies earn between $65,000 and $120,000; electricians $80K to $110K, plumbers $75K to $105K, boilermakers $85K to $120K; self-employed tradies gross $150K to $250K+"
+   ],
+   "whys": [
+    "These are hard-coded market salary ranges with no cited source (no ABS, Jobs and Skills Australia or award figure behind them). On a YMYL page they read as invented population figures. The apprentice FAQ on the same page was already rebuilt from award data for this reason."
+   ],
+   "constants": [
+    "A sourced earnings dataset (for example lib/data/job-pay-rates/* award rates or a cited ABS/JSA median) instead of literal strings"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.05,
+   "needsOwner": false
+  }
+ ]
+}

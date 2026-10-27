@@ -61,8 +61,9 @@ export const FWO_SOURCE: SourceLink = {
 export function NotAnnualLeave() {
   return (
     <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-4 text-sm text-navy">
-      <strong>This is not annual leave.</strong> Annual leave is federal (four weeks a year for
-      everyone under the National Employment Standards), and it is worked out on a different page:
+      <strong>This is not annual leave.</strong> Annual leave is federal (four weeks a year under the
+      National Employment Standards, five for some shift workers, none for casuals), and it is worked
+      out on a different page:
       the{" "}
       <Link href="/leave-calculator/" className={LINK}>
         annual leave calculator

@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
-import { JUNIOR_BANDS } from "@/lib/constants/junior-rates";
+import { formatAUD, formatPercent, SUPER_GUARANTEE } from "@/lib/constants";
+import { CASUAL_LOADING, JUNIOR_BANDS } from "@/lib/constants/junior-rates";
 import {
   basesFor,
   minimumWageTakeHome,
@@ -19,7 +19,7 @@ import { CALC_FONT, NOTE_OK, NOTE_WARN, NumberField, RESULT_LIST, ResultRow, Sel
 
 const EMPLOYMENT_OPTIONS = [
   { value: "permanent", label: "Full-time or part-time" },
-  { value: "casual", label: "Casual (25% loading)" },
+  { value: "casual", label: `Casual (${formatPercent(CASUAL_LOADING, 0)} loading)` },
 ] as const;
 
 const AGE_OPTIONS = JUNIOR_BANDS.slice()
@@ -92,12 +92,12 @@ export default function MinimumWageStateCalculator({ state, stateName }: { state
               <ResultRow label="Take-home each week" value={m(r.weeklyNet)} bold />
               <ResultRow label="Take-home each fortnight" value={m(r.fortnightlyNet)} />
               <ResultRow label="Take-home each year" value={formatAUD(r.annualNet)} />
-              <ResultRow label="Employer super on top (12%)" value={formatAUD(r.superAnnual)} muted />
+              <ResultRow label={`Employer super on top (${formatPercent(SUPER_GUARANTEE.rate, 0)})`} value={formatAUD(r.superAnnual)} muted />
             </dl>
 
             {casual ? (
               <p className={NOTE_WARN} role="status">
-                Casuals get the 25% loading instead of paid leave, so there is no paid public holiday and no long service leave accrual shown. In {stateName}, check whether your state long service leave law covers casuals on the long service leave page.
+                Casuals get the {formatPercent(CASUAL_LOADING, 0)} loading instead of paid annual and personal leave, and are paid for a public holiday only when they work it, so none of these is shown here. The loading does not replace long service leave. See the long service leave page for how {stateName} covers casual service.
               </p>
             ) : (
               <p className={NOTE_OK} role="status">

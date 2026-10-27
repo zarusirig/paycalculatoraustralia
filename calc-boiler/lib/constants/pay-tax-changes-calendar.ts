@@ -25,6 +25,7 @@ import { EMPLOYMENT, HECS_HELP, SITE_CONFIG, TAX_BRACKETS_2025_26, TAX_BRACKETS_
 import { LEGISLATED_CUT_2027_28, TAX_BRACKETS_2027_28 } from "./tax-rates-reference";
 import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "./junior-rates";
 import { NMW_DECISION } from "./minimum-wage";
+import { CGT_DISCOUNT_RATES, CGT_REFORM_2027 } from "./capital-gains-tax";
 import { PENALTY_UNIT, TAX_CALENDAR_2026_27, formatIso } from "./tax-calendar-2026-27";
 
 export type ChangeStatus = "in-force" | "upcoming" | "none-verified";
@@ -70,7 +71,7 @@ export const CHANGES_SOURCES = [
   { title: "Study and training loan repayment thresholds and rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "Australian Taxation Office" },
   { title: "Payment deadlines for Payday Super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-on-payday/payment-deadlines-for-payday-super", publisher: "Australian Taxation Office" },
   { title: "Penalty units", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/penalties/penalty-units", publisher: "Australian Taxation Office" },
-  { title: "CGT discount", url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cgt-discount", publisher: "Australian Taxation Office" },
+  { title: "CGT discount", url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/calculating-your-cgt/cgt-discount", publisher: "Australian Taxation Office" },
   { title: `${NMW_DECISION.name} (${NMW_DECISION.citation})`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: "Fair Work Commission" },
   { title: `General Retail, Fast Food and Pharmacy award junior determinations (${PENDING_JUNIOR_CHANGE.implementationDecision})`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb222.pdf", publisher: "Fair Work Commission" },
 ] as const;
@@ -138,7 +139,7 @@ export const CHANGE_DATES: readonly ChangeDate[] = [
       { text: `The legislated cut takes the rate on $18,201 to $45,000 from ${pct(LEGISLATED_CUT_2027_28.fromRate)} to ${pct(LEGISLATED_CUT_2027_28.toRate)} (${LEGISLATED_CUT_2027_28.actNumber}). Thresholds are unchanged.`, href: "/stage-3-tax-cuts/" },
       { text: `The ${NMW_DECISION.nextReview} outcome operates from ${NMW_DECISION.nextReviewOperativeFrom}. The new rate is not known until the Fair Work Commission decides it (the 2026 decision was made on ${NMW_DECISION.decidedOn}).`, href: "/minimum-wage-history-australia/" },
       { text: `At the next junior step, retail and fast food 18, 19 and 20 year olds move to ${fastFood.rows[1].age18}%, ${fastFood.rows[1].age19}% and ${fastFood.rows[1].age20}% (retail 20 year olds stay at 100%); pharmacy assistants to ${pharmacy.rows[1].age18}%, ${pharmacy.rows[1].age19}% and ${pharmacy.rows[1].age20}%.`, href: "/junior-pay-rates/" },
-      { text: "The 50% CGT discount for resident individuals and trusts, including partnership gains, is replaced with cost base indexation on gains that build up on and after this date. Resident individuals pay a 30% minimum tax on those gains. New residential dwellings and affordable housing keep a discount. Nothing changes for assets sold in 2026-27.", href: "/capital-gains-tax-calculator/" },
+      { text: `The ${pct(CGT_DISCOUNT_RATES.individual)} CGT discount for resident individuals and trusts, including partnership gains, is replaced with cost base indexation on gains that build up on and after this date. Resident individuals pay a ${pct(CGT_REFORM_2027.minimumTaxRate)} minimum tax on those gains, unless they receive a payment such as the Age Pension that year. New residential dwellings and affordable housing keep a discount. Nothing changes for assets sold in 2026-27.`, href: "/capital-gains-tax-calculator/" },
     ],
   },
 ];

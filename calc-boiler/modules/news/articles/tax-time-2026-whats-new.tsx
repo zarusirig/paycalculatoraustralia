@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { HECS_HELP, HECS_HELP_2025_26, formatAUD, formatPercent } from "@/lib/constants";
 
 export default function TaxTime2026WhatsNew() {
   return (
@@ -31,10 +32,11 @@ export default function TaxTime2026WhatsNew() {
         early if you think you&apos;ll run late.
       </p>
       <p>
-        The ATO prefills a large part of your return in myGov, since employer, bank and health
-        insurer data typically flows through automatically by late July. Waiting a couple of weeks
-        after 1 July before lodging often means less manual entry and fewer amendments later,
-        particularly if you have income from multiple sources.
+        The ATO prefills part of your return in myTax with data from employers, banks, health funds
+        and government agencies. Prefill data is available from 1 July, with most of it finalised by
+        the end of July; some data, such as partnership and trust distributions, arrives later.
+        Waiting until the end of July before lodging means less manual entry and fewer amendments
+        later, particularly if you have income from multiple sources.
       </p>
 
       <h2>Medicare levy thresholds are higher</h2>
@@ -72,9 +74,15 @@ export default function TaxTime2026WhatsNew() {
         longer claim that interest as a tax deduction on your 2025-26 or later returns.
       </p>
       <p>
-        HECS and HELP debtors also face a new element this tax time: this is the first
-        full year the marginal repayment system and the FY2026-27 threshold settings interact with
-        an assessment, after 2.8% indexation was applied on 1 June 2026. See our{" "}
+        HECS and HELP debtors also face a new element this tax time: your 2025-26 return is the
+        first one assessed under the marginal repayment system, which started with the 2025-26
+        income year. Your compulsory repayment is worked out only on the part of your repayment
+        income above {formatAUD(HECS_HELP_2025_26.minimumThreshold)}, unless your repayment income is{" "}
+        {formatAUD(HECS_HELP_2025_26.bands[3].min)} or more, when it is{" "}
+        {formatPercent(HECS_HELP_2025_26.bands[3].marginalRate, 0)} of your total repayment income.
+        Separately, indexation of{" "}
+        {formatPercent(HECS_HELP.indexationRate)} was applied on {HECS_HELP.indexationDate} to the
+        part of your loan unpaid for more than 11 months. See our{" "}
         <Link href="/news/hecs-marginal-repayment-first-tax-time/">
           first tax return under the new HECS system
         </Link>{" "}

@@ -1,0 +1,107 @@
+{
+ "name": "ff-106-tax-free-threshold",
+ "files": [
+  "modules/guide/tax-free-threshold.tsx",
+  "modules/guide/tax-refund-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-free-threshold.tsx:134",
+   "file": "modules/guide/tax-free-threshold.tsx",
+   "line": "134",
+   "page": "https://pay-calculator-australia.com/tax-free-threshold/",
+   "claims": [
+    "Above it you pay 15c for each dollar up to $45,000",
+    "It's a zero-rate band that every resident gets once per income year"
+   ],
+   "whys": [
+    "The rate and the bracket ceiling are typed into the prose, not taken from the tax scale constants. 15% is right for 2026-27, but the legislated rate falls to 14% from 1 July 2027, so this goes stale silently when SITE_CONFIG.financialYear moves on.",
+    "Scope is too wide: the same page (line 181) says part-year residents get a reduced, pro-rated threshold, not the full {T} band. Could read 'every full-year resident'. Left unchanged because it narrows a factual claim."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (resident tax brackets for SITE_CONFIG.financialYear)",
+    "PART_YEAR_TFT in lib/constants/tax-free-threshold.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-free-threshold.tsx:140",
+   "file": "modules/guide/tax-free-threshold.tsx",
+   "line": "140",
+   "page": "https://pay-calculator-australia.com/tax-free-threshold/",
+   "claims": [
+    "At the {FY} rate of 15% above {T}, ... cancels the tax on the next {formatAUD(LITO.maxOffset / 0.15)} of income"
+   ],
+   "whys": [
+    "Both the printed 15% and the 0.15 divisor are hard-coded, while FY and the NIL figure are derived. When the second bracket rate changes (14% from 1 July 2027) the sentence and the computed slice will disagree with the {NIL} figure."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (second resident bracket rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-free-threshold.tsx:156",
+   "file": "modules/guide/tax-free-threshold.tsx",
+   "line": "156",
+   "page": "https://pay-calculator-australia.com/tax-free-threshold/",
+   "claims": [
+    "answer Yes only if total income from all sources will be less than the threshold"
+   ],
+   "whys": [
+    "Boundary is inconsistent across the page: line 156 says 'less than the threshold', while line 175 and the FAQ answers (tax-free-threshold-faqs.ts lines 29 and 33) say '{T} or less'. One wording should be checked against the ATO TFN declaration and multiple-jobs pages and used everywhere."
+   ],
+   "constants": [
+    "none (prose); ATO QC50527 / TFN declaration question 9"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-refund-guide-faqs.ts:60",
+   "file": "modules/guide/tax-refund-guide-faqs.ts",
+   "line": "60",
+   "page": "https://pay-calculator-australia.com/tax-refund-guide/",
+   "claims": [
+    "For work-related expenses under $300 in total, you are not required to provide written evidence"
+   ],
+   "whys": [
+    "The ATO wording is a total claim of $300 or less, so 'under $300' leaves out a claim of exactly $300. The $300 and $150 laundry figures are also typed into the prose rather than coming from a constant."
+   ],
+   "constants": [
+    "lib/constants (add WRE_NO_EVIDENCE_LIMIT and LAUNDRY_NO_EVIDENCE_LIMIT)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-refund-guide-faqs.ts:44",
+   "file": "modules/guide/tax-refund-guide-faqs.ts",
+   "line": "44",
+   "page": "https://pay-calculator-australia.com/tax-refund-guide/",
+   "claims": [
+    "Even if you earned less than the tax-free threshold, lodging gets you a full refund of the PAYG tax withheld"
+   ],
+   "whys": [
+    "A full refund holds only for a full-year resident (the threshold is pro-rated for part-year residents, and minors' unearned income is taxed differently). The tax-return-2026 FAQ (line 52) already gives these exceptions, but this page does not."
+   ],
+   "constants": [
+    "TAX_FREE_THRESHOLD in lib/constants (resident-only condition)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.59,
+   "needsOwner": false
+  }
+ ]
+}

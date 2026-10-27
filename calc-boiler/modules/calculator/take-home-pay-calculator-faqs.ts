@@ -15,6 +15,7 @@ import {
 import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
 import { PRESERVATION_AGE_TABLE } from "@/lib/constants/pension-age";
 import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+import { formatIso } from "@/lib/constants/tax-calendar-2026-27";
 import type { FaqItem } from "@/lib/faq";
 
 const FY = SITE_CONFIG.financialYear;
@@ -32,7 +33,9 @@ const MLS = MEDICARE_LEVY.surcharge;
 const SACRIFICE = 10_000;
 const SACRIFICE_SAVING =
   EX100.netIncomeTax + EX100.medicareLevy - (EX90.netIncomeTax + EX90.medicareLevy) - SACRIFICE * CONTRIBUTIONS_TAX_RATE;
-const PRESERVATION_AGE = PRESERVATION_AGE_TABLE[PRESERVATION_AGE_TABLE.length - 1].years;
+const PRESERVATION_BAND = PRESERVATION_AGE_TABLE[PRESERVATION_AGE_TABLE.length - 1];
+const PRESERVATION_AGE = PRESERVATION_BAND.years;
+const PRESERVATION_BORN_FROM = formatIso(PRESERVATION_BAND.bornFrom ?? "", "long");
 
 export const TAKE_HOME_PAY_FAQS: readonly FaqItem[] = [
   {
@@ -63,7 +66,7 @@ export const TAKE_HOME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does salary sacrifice increase take-home pay?",
-    a: `Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing ${formatAUD(SACRIFICE)} saves ${formatAUD(SACRIFICE_SAVING)} in tax overall. The trade-off is that the sacrificed amount is preserved in super until your preservation age (${PRESERVATION_AGE} for most Australians).`,
+    a: `Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing ${formatAUD(SACRIFICE)} saves ${formatAUD(SACRIFICE_SAVING)} in tax overall. The trade-off is that the sacrificed amount is preserved in super until your preservation age (${PRESERVATION_AGE} if you were born on or after ${PRESERVATION_BORN_FROM}).`,
   },
   {
     q: "Do I pay the Medicare Levy Surcharge?",

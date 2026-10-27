@@ -1,0 +1,117 @@
+{
+ "name": "ff-018-index",
+ "files": [
+  "lib/data/open-data/index.ts",
+  "lib/data/public-health-allied-pay/nsw.ts",
+  "lib/data/public-holidays/award-rates.ts",
+  "lib/data/public-holidays/hub.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/open-data/index.ts:254",
+   "file": "lib/data/open-data/index.ts",
+   "line": "254",
+   "page": "https://pay-calculator-australia.com/australian-tax-and-pay-data/",
+   "claims": [
+    "Medicare levy low-income thresholds are the 2025-26 figures because the ATO had not published 2026-27 levy thresholds. (Same claim in the medicare-levy.csv description at line 78.)"
+   ],
+   "whys": [
+    "This status claim is tied to a date and will go stale once the ATO publishes 2026-27 thresholds. OPEN_DATA.updatedOn is 5 October 2026, so someone should check that it still holds. Also check that the values in MEDICARE_LEVY (28,011 / 35,013 / 47,238 / 4,338) really are the 2025-26 income-year figures and not another year's."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts MEDICARE_LEVY (line 108)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.17,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-health-allied-pay/nsw.ts:196",
+   "file": "lib/data/public-health-allied-pay/nsw.ts",
+   "line": "196",
+   "page": "/job-pay-rates/radiographer/ (NSW table)",
+   "claims": [
+    "Under NSW Health Determination 25 of 2023, a new graduate who is already fully registered starts on Level 2, year 1 instead. The determination is in force until 30 October 2026 unless it is replaced."
+   ],
+   "whys": [
+    "The determination expires on 30 October 2026, three days after this pass. Unless it is renewed, the entryRule text and the NSW radiographer entry step ('Level 2, year 1', which feeds the summary start figure and the shaded row) will be stale from 31 October 2026.",
+    "The determination ends on 30 October 2026. If it is not renewed, the NSW radiographer entry step (entry: 'Level 2, year 1', which feeds the start figure and the shaded row) and this entryRule will be wrong from 31 October 2026. Re-verify after 30 October."
+   ],
+   "constants": [
+    "nsw.ts nsw-radiographers scale: entry and entryRule; nsw-mrs-2025 extraSources (Determination 25 of 2023)"
+   ],
+   "reviewerNotes": [
+    "I am passing on the writer's factQuestion. NSW Health Determination 25 of 2023 is in force until 30 October 2026, three days from now. The radiographer entry 'Level 2, year 1' and its entryRule will be stale if the determination is not renewed."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.69,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/award-rates.ts:73",
+   "file": "lib/data/public-holidays/award-rates.ts",
+   "line": "73",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/ (award rates table) and the restaurant and clerks award calculator notes",
+   "claims": [
+    "Restaurant note cites cl 24.4(d), and the Clerks note on line 84 cites the same cl 24.4(d)"
+   ],
+   "whys": [
+    "Two different awards share an identical clause reference. One of them may be a copy-paste error, so check each against its own award text."
+   ],
+   "constants": [
+    "NOTES in lib/data/public-holidays/award-rates.ts (clause refs could move to penaltiesClause in lib/constants/modern-awards.ts)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's flag. The restaurant and clerks notes both cite cl 24.4(d). Both awards keep their penalties in cl 24 (penaltiesClause: restaurant 'cl 24.2, Table 8', clerks 'cl 24 and Schedule B.3.1'), so the match is plausible, but each reference should be checked against its own award text."
+   ],
+   "kind": "citation-or-source",
+   "severity": 3.61,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/award-rates.ts:81",
+   "file": "lib/data/public-holidays/award-rates.ts",
+   "line": "81",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/ (cleaning award row)",
+   "claims": [
+    "Part-time employees are paid 265% because their 15% part-time allowance applies too (cl 10.2)."
+   ],
+   "whys": [
+    "The Cleaning Services Award extra 15% for part-time employees looks like a loading, not an allowance. The term and the clause number (10.2) should be checked against the award. The string has a hyphen, so the checker locks it in this pass.",
+    "The site's own constants call this a 'part-time loading' (calc-boiler/lib/constants/modern-awards.ts:77, partTimeLoading). The note calls it an 'allowance', so the site uses two different terms for one entitlement."
+   ],
+   "constants": [
+    "NOTES.cleaning in lib/data/public-holidays/award-rates.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's flag. The cleaning note calls the 15% a part-time 'allowance', but modern-awards.ts:77 calls the same cl 10.2 15% a 'part-time loading'. The term should be checked against the award. The string has a hyphen, so it is locked and was not edited."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.34,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/hub.ts:57",
+   "file": "lib/data/public-holidays/hub.ts",
+   "line": "57",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/",
+   "claims": [
+    "Two awards on this site work the other way: Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate"
+   ],
+   "whys": [
+    "award-rates.ts NOTES gives Mining the same structure ('Casual rate is 250% of the casual hourly rate (Schedule B.2.3), which is 312.5% of the minimum rate'), and MINING_AWARD in lib/constants/modern-awards-oct2.ts (around line 1086) has casualPenaltyBasis: \"compounded\". Other awards also have compounded bases (modern-awards.ts lines 822 and 1223, modern-awards-oct2.ts lines 577 and 738, modern-awards-oct.ts lines 754 and 762). The hard-coded count 'Two' and the names 'Manufacturing and Nurses' look stale. The sentence should be generated from PUBLIC_HOLIDAY_AWARD_RATES.filter(r => r.casualCompounded).",
+    "lib/data/public-holidays/award-rates.ts line 87 NOTES.mining says the Mining casual rate is 250% of the casual hourly rate (312.5% of the minimum rate), so Mining is compounded too. casualCompounded is computed per award in fromModernAward (line 101), so the count and the names should come from PUBLIC_HOLIDAY_AWARD_RATES.filter(r => r.casualCompounded)."
+   ],
+   "constants": [
+    "PUBLIC_HOLIDAY_AWARD_RATES[].casualCompounded in lib/data/public-holidays/award-rates.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. The answer hard-codes 'Two awards ... Manufacturing and Nurses' as the compounded casual awards. In award-rates.ts, NOTES.mining (line 87) describes Mining the same way (250% of the casual hourly rate), and fromModernAward derives casualCompounded per award, so the count and the names may be stale. The text is unchanged and the question goes to the owner."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.13,
+   "needsOwner": false
+  }
+ ]
+}

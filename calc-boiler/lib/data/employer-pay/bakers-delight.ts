@@ -114,7 +114,7 @@ export const BAKERS_DELIGHT_PAY: EmployerPay = {
   faqs: [
     {
       q: "How much does Bakers Delight pay an hour in 2026?",
-      a: "Bakers Delight bakeries fall under the General Retail Industry Award. From the first full pay period after 1 July 2026, an adult sales assistant at Level 1 must get at least $27.81 an hour ($34.76 casual). A qualified baker at Level 4 must get at least $29.45 ($36.81 casual), plus the early-start rates below.",
+      a: "Bakers Delight bakeries fall under the General Retail Industry Award. From the first full pay period on or after 1 July 2026, an adult sales assistant at Level 1 must get at least $27.81 an hour ($34.76 casual). A qualified baker at Level 4 must get at least $29.45 ($36.81 casual), plus the early-start rates below.",
     },
     {
       q: "What do Bakers Delight bakers get for early starts?",

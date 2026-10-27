@@ -18,6 +18,8 @@ import {
   SOURCES,
   SITE_CONFIG,
   TAX_BRACKETS,
+  MEDICARE_LEVY,
+  QUALIFYING_EARNINGS,
 } from "@/lib/constants";
 import { NMW, NMW_DECISION } from "@/lib/constants/minimum-wage";
 import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
@@ -37,6 +39,12 @@ const NMW_CASUAL_WEEKLY = Math.round(NMW.casualHourly * NMW.hoursPerWeek * 100) 
 const NMW_CASUAL_ANNUAL = Math.round(NMW_CASUAL_WEEKLY * 52 * 100) / 100;
 const NMW_NET = calculatePayBreakdown({ grossSalary: NMW.annual }).takeHomePay;
 const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
+const CASUAL_PCT = `${Math.round(EMPLOYMENT.casualLoading * 100)}%`;
+const MEDICARE_PCT = `${Math.round(MEDICARE_LEVY.rate * 100)}%`;
+// Bracket looked up by income, not by array index, so a re-cut scale cannot
+// silently pair $90,000 with the wrong rate.
+const EXAMPLE_INCOME = 90_000;
+const EXAMPLE_BRACKET = TAX_BRACKETS.find((b) => EXAMPLE_INCOME >= b.min && EXAMPLE_INCOME <= b.max)!;
 
 // ── "How many hours in a year" ──────────────────────────────────────────────
 // Pure arithmetic on EMPLOYMENT (38-hour NES week, 52 weeks, 4 weeks' annual
@@ -136,7 +144,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               The formula applies to permanent full-time and part-time employees paid a fixed hourly rate. The 52-week multiplier counts the paid leave those employees receive under the National Employment Standards, including 4 weeks of annual leave, 10 days of personal leave, and paid public holidays.
             </p>
             <p className="mb-4 text-warmgray">
-              A worker earning <strong>$35 per hour</strong> at 38 hours per week has an annual gross salary of <strong>$69,160</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays the <strong>12% superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
+              A worker earning <strong>$35 per hour</strong> at 38 hours per week has an annual gross salary of <strong>$69,160</strong>. The ATO taxes this assessable income across the FY{SITE_CONFIG.financialYear} income tax brackets, and the employer pays the <strong>{SG_PCT} superannuation guarantee</strong> on top. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Income Tax Calculator</Link> to see the exact tax withheld at any salary level.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: $45.50 per Hour at 38 Hours</h3>
@@ -199,14 +207,14 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
                     <th className="px-4 py-3 text-left font-semibold text-navy">Hourly Rate</th>
                     <th className="px-4 py-3 text-right font-semibold text-navy">Weekly Gross</th>
                     <th className="px-4 py-3 text-right font-semibold text-navy">Annual Salary</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Super (12%)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Super ({SG_PCT})</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
                   {FEATURED_HOURLY_RATES.map((rate) => {
                     const weekly = rate * 38;
                     const annual = weekly * 52;
-                    const superAmt = annual * 0.12;
+                    const superAmt = annual * SUPER_GUARANTEE.rate;
                     return (
                       <tr key={rate} className="hover:bg-sandstone/50">
                         <td className="px-4 py-2.5 font-medium text-gray-700">
@@ -224,7 +232,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </table>
             </div>
             <p className="mt-3 text-sm text-warmgray-light">
-              All figures assume 38 ordinary hours per week, 52 weeks per year. Overtime, penalty rates, and casual loading are excluded. The superannuation guarantee rate of 12% applies from 1 July 2025.
+              All figures assume 38 ordinary hours per week, 52 weeks per year. Overtime, penalty rates, and casual loading are excluded. The superannuation guarantee rate of {SG_PCT} applies from {SUPER_GUARANTEE.effectiveDate}.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-8" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Hourly Rate From $20 to $100 as an Annual Salary</h3>
@@ -348,10 +356,10 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               The national minimum wage is <strong>{formatAUD(NMW.hourly, 2)} per hour</strong> ({formatAUD(NMW.weekly, 2)} a week), which equals <strong>{formatAUD(NMW.annual, 2)} per year</strong> for a full-time 38-hour week from {NMW_DECISION.operativeFrom}.
             </p>
             <p className="mb-4 text-warmgray">
-              The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July. At {formatAUD(NMW.hourly, 2)}/hr, a full-time worker earns {formatAUD(NMW.weekly, 2)} per week before tax. After income tax and the Medicare levy, the take-home pay on the minimum wage is approximately <strong>{formatAUD(NMW_NET)} per year</strong>, or <strong>{formatAUD(NMW_NET / 52)} per week</strong> in FY{SITE_CONFIG.financialYear}.
+              The Fair Work Commission reviews the national minimum wage annually. {NMW_DECISION.operativeNote} At {formatAUD(NMW.hourly, 2)}/hr, a full-time worker earns {formatAUD(NMW.weekly, 2)} per week before tax. After income tax and the Medicare levy, the take-home pay on the minimum wage is approximately <strong>{formatAUD(NMW_NET)} per year</strong>, or <strong>{formatAUD(NMW_NET / 52)} per week</strong> in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              Casual employees on the minimum wage receive an additional 25% casual loading, bringing their minimum hourly rate to <strong>{formatAUD(NMW.casualHourly, 2)}/hr</strong>. This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. Use the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Annual Pay Calculator</Link> to calculate take-home pay at any annual salary, including the minimum wage equivalent.
+              Casual employees on the minimum wage receive an additional {CASUAL_PCT} casual loading, bringing their minimum hourly rate to <strong>{formatAUD(NMW.casualHourly, 2)}/hr</strong>. This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. Use the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Annual Pay Calculator</Link> to calculate take-home pay at any annual salary, including the minimum wage equivalent.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage Breakdown (FY{SITE_CONFIG.financialYear})</h3>
@@ -361,7 +369,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Metric</th>
                     <th className="px-4 py-3 text-right font-semibold text-navy">Permanent</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Casual (+25%)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Casual (+{CASUAL_PCT})</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
@@ -409,7 +417,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </div>
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-navy mb-2">Casual Employees</h3>
-                <p className="text-sm mb-3">Casuals do not get paid annual leave or sick leave. Their hourly rate normally includes a <strong>25% casual loading</strong> to make up for the missing paid leave and notice of termination.</p>
+                <p className="text-sm mb-3">Casuals do not get paid annual leave or sick leave. Their hourly rate includes a casual loading to make up for the missing paid leave and notice of termination: <strong>{CASUAL_PCT}</strong> on the National Minimum Wage, or the loading your award or agreement sets.</p>
                 <p className="text-sm mb-3">If a casual takes 4 weeks of holiday, they only get paid for 48 weeks of the year.</p>
                 <p className="text-sm font-medium text-ochre">You must adjust your annual salary down based on how much unpaid time off you plan to take.</p>
               </div>
@@ -434,7 +442,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">2.</span>
-                <span><strong>Including overtime in the base calculation</strong>: overtime is paid at penalty rates of 1.5x or 2x and is not guaranteed. Convert ordinary time earnings first, then add overtime as its own line item.</span>
+                <span><strong>Including overtime in the base calculation</strong>: overtime is paid at the higher rate your award or agreement sets, such as 1.5x or 2x, and is not guaranteed. Convert ordinary time earnings first, then add overtime as its own line item.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">3.</span>
@@ -442,11 +450,11 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">4.</span>
-                <span><strong>Assuming super is included in the hourly rate</strong>: for employees, the employer pays the 12% superannuation guarantee on top of ordinary time earnings. Only some contractor arrangements bundle super into the quoted rate.</span>
+                <span><strong>Assuming super is included in the hourly rate</strong>: for employees, the employer pays the {SG_PCT} superannuation guarantee on top of qualifying earnings (ordinary time earnings plus {QUALIFYING_EARNINGS.onlyChangeFromOTE}). Only some contractor arrangements bundle super into the quoted rate.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">5.</span>
-                <span><strong>Ignoring tax bracket impacts at the annual level</strong>: an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is {Math.round(TAX_BRACKETS[2].rate * 100)}% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
+                <span><strong>Ignoring tax bracket impacts at the annual level</strong>: an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>{formatAUD(EXAMPLE_INCOME)}</strong> is {Math.round(EXAMPLE_BRACKET.rate * 100)}% plus the {MEDICARE_PCT} Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
               </li>
             </ul>
           </section>
@@ -508,11 +516,11 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
               </Link>
               <Link href="/superannuation-calculator/" className="block bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy mb-1">Superannuation Calculator</h3>
-                <p className="text-sm text-warmgray">Calculate employer SG contributions at 12% and project your super balance at retirement based on your annual salary.</p>
+                <p className="text-sm text-warmgray">Calculate employer SG contributions at {SG_PCT} and project your super balance at retirement based on your annual salary.</p>
               </Link>
               <Link href="/overtime-pay-calculator/" className="block bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy mb-1">Overtime Pay Calculator</h3>
-                <p className="text-sm text-warmgray">Calculate penalty rates at 1.5x and 2x your base hourly rate for overtime hours worked beyond 38 hours per week.</p>
+                <p className="text-sm text-warmgray">Calculate overtime pay at 1.5x, 2x or 2.5x your base hourly rate for hours worked outside your ordinary hours.</p>
               </Link>
               <Link href="/salary-sacrifice-calculator/" className="block bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy mb-1">Salary Sacrifice Calculator</h3>

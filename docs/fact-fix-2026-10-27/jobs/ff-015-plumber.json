@@ -1,0 +1,180 @@
+{
+ "name": "ff-015-plumber",
+ "files": [
+  "lib/data/job-pay-rates/plumber.ts",
+  "lib/data/job-pay-rates/retail-manager.ts",
+  "lib/data/job-pay-rates/retail-worker.ts",
+  "lib/data/job-pay-rates/veterinarian.ts",
+  "lib/data/job-pay-rates/welder.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/plumber.ts:84",
+   "file": "lib/data/job-pay-rates/plumber.ts",
+   "line": "84",
+   "page": "/job-pay-rates/plumber/",
+   "claims": [
+    "Every plumbing employee gets an industry allowance ($41.41 a week) and a special fixed allowance ($7.70); tradespersons also get the plumbing trade allowance ($33.57)",
+    "Every plumbing employee gets ... a special fixed allowance ($7.70); tradespersons also get the plumbing trade allowance ($33.57)"
+   ],
+   "whys": [
+    "This conflicts with the page's own allowance table and the file header. The special fixed allowance goes to all employees except apprentices (cl 21.3(d), line 141), and the plumbing trade allowance also goes to plumbing worker level 2 (cl 21.3(b), line 139). I left the wording alone because the brief says not to change facts. A suggested fix: 'every employee except an apprentice gets a special fixed allowance', and 'worker level 2 and tradespersons get the plumbing trade allowance'.",
+    "This conflicts with the page's own allowance notes (lines 139 and 141) and the workers table intro (line 107). The special fixed allowance excludes apprentices (cl 21.3(d)), and worker level 2 also gets the plumbing trade allowance (cl 21.3(b))."
+   ],
+   "constants": [
+    "PLUMBING_ALLOWANCES / allowances[] notes in lib/data/job-pay-rates/plumber.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's question. The coverage paragraph says every plumbing employee gets the special fixed allowance and only tradespersons get the plumbing trade allowance. That conflicts with the allowances[] notes in plumber.ts (lines 139 and 141), which apply the special fixed allowance to everyone except apprentices (cl 21.3(d)) and also pay the plumbing trade allowance to worker level 2 (cl 21.3(b)). Under the brief this is a human fact decision, so I left the text as it is."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.67,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/retail-manager.ts:128",
+   "file": "lib/data/job-pay-rates/retail-manager.ts",
+   "line": "128",
+   "page": "/job-pay-rates/retail-manager/",
+   "claims": [
+    "An assistant, deputy or second-in-charge manager is graded one step below the manager they assist: Level 4 in a shop without departments, Level 6 in a shop with departments."
+   ],
+   "whys": [
+    "The levels given are two classification levels below the manager (Level 6 to Level 4, Level 8 to Level 6), and Levels 5 and 7 exist between them, so 'one step below' reads as wrong. The Level 4 and Level 6 figures themselves match Schedule A.4.3 and A.6.2 as quoted in the file header. I did not change the wording because the fix removes or changes a count."
+   ],
+   "constants": [
+    "Schedule A.4.3 / A.6.2 indicative titles (header comment of retail-manager.ts)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. 'One step below' does not match the Schedule A levels the coverage line gives: Level 6 to Level 4 and Level 8 to Level 6 are two levels apart. Left for a human to decide."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/retail-worker.ts:80",
+   "file": "lib/data/job-pay-rates/retail-worker.ts",
+   "line": "80",
+   "page": "/job-pay-rates/retail-worker/",
+   "claims": [
+    "Most shop assistants, checkout operators, store workers, trolley collectors and merchandisers are Retail Employee Level 1 (Schedule A.1.3)."
+   ],
+   "whys": [
+    "'Most' is a population qualifier with no source. Schedule A.1.3 lists these as indicative Level 1 titles, so a definite 'are classified at Level 1 by the award's indicative titles' may be what was meant."
+   ],
+   "constants": [
+    "Schedule A.1.3"
+   ],
+   "reviewerNotes": [
+    "The writer's population-claim questions are valid: 'Most shop assistants' (retail-worker.ts:80), 'usually pay under an enterprise agreement' (retail-worker.ts:81) and 'Many store managers are paid an annual salary' (retail-manager.ts:129). None has a source on the page. Left for a human to decide."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.38,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/job-pay-rates/veterinarian.ts:83",
+   "file": "lib/data/job-pay-rates/veterinarian.ts",
+   "line": "83",
+   "page": "/job-pay-rates/veterinarian/",
+   "claims": [
+    "Vets employed by government, universities or under an enterprise agreement may be paid under other instruments."
+   ],
+   "whys": [
+    "This is a hedged coverage rule. The sibling vet-nurse page says definitively that university and government staff fall outside the award, which covers private practices and charities only. The two pages should agree. I left the wording as it is because removing 'may' would be a new factual claim."
+   ],
+   "constants": [
+    "coverage[3] in veterinarian.ts. Check the award coverage in cl 4.2 to 4.3."
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.17,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/welder.ts:48",
+   "file": "lib/data/job-pay-rates/welder.ts",
+   "line": "48",
+   "page": "/job-pay-rates/welder/",
+   "claims": [
+    "A welder employed ... in vehicle manufacturing may be under a different award or an enterprise agreement",
+    "A welder employed ... in shipbuilding or in vehicle manufacturing may be under a different award or an enterprise agreement"
+   ],
+   "whys": [
+    "The same page (line 82, Schedule B V levels) and METAL_NOT_SHOWN (Part 9) say vehicle manufacturing is a stream inside the Manufacturing Award itself, so naming vehicle manufacturing as a possible 'different award' contradicts the page. Shipbuilding coverage under MA000010 is also worth confirming.",
+    "Vehicle manufacturing is a stream within the Manufacturing Award (Schedule B, V levels), and the same page says so at lines 82 and 101. MA000010 coverage also appears to include ship building and repair. Naming both as 'a different award' contradicts the page."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/welder.ts coverage[2]; cf. METAL_NOT_SHOWN in lib/data/job-pay-rates/metal-trades-common.ts",
+    "lib/data/job-pay-rates/welder.ts coverage[2]; METAL_NOT_SHOWN in lib/data/job-pay-rates/metal-trades-common.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. coverage[2] lists vehicle manufacturing (and shipbuilding) as possibly falling under 'a different award'. The same page (line 82, Schedule B V levels; FAQ line 101 'V2 and V3 in vehicle manufacturing') treats vehicle manufacturing as a stream inside MA000010, so the page contradicts itself. This needs an owner or fact check. The string was not changed in this pass."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/welder.ts:121",
+   "file": "lib/data/job-pay-rates/welder.ts",
+   "line": "121",
+   "page": "/job-pay-rates/welder/",
+   "claims": [
+    "it reflects the many people paid under enterprise agreements and with overtime",
+    "$1,688 a week ... about $87,776 a year before tax (also $1,688 in notices[0], line 71)"
+   ],
+   "whys": [
+    "Population claim with no figure or source; JSA/ABS median does not break out agreement or overtime share.",
+    "Figures are typed into prose instead of read from METAL_MEDIAN.medianWeekly (currently 1_688, so they match today) and will go stale on the next JSA update."
+   ],
+   "constants": [
+    "METAL_MEDIAN (lib/data/job-pay-rates/metal-trades-common.ts)",
+    "METAL_MEDIAN.medianWeekly in lib/data/job-pay-rates/metal-trades-common.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.33,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/job-pay-rates/welder.ts:116",
+   "file": "lib/data/job-pay-rates/welder.ts",
+   "line": "116",
+   "page": "/job-pay-rates/welder/",
+   "claims": [
+    "$17.90 a week tool allowance, $1.12 an hour confined spaces, $0.85 an hour dirty work, $48.98 a week leading hand 3 to 10"
+   ],
+   "whys": [
+    "Hard-coded copies of MANUFACTURING_AWARD.allowances (lib/constants/modern-awards.ts lines 874-887). They match today but will drift at the next Annual Wage Review."
+   ],
+   "constants": [
+    "MANUFACTURING_AWARD.allowances in lib/constants/modern-awards.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.48,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/welder.ts:117",
+   "file": "lib/data/job-pay-rates/welder.ts",
+   "line": "117",
+   "page": "/job-pay-rates/welder/",
+   "claims": [
+    "$17.90 a week tool allowance, $1.12 an hour confined spaces ... (writer cited line 116; the answer string is on line 117)"
+   ],
+   "whys": [
+    "These are hard-coded copies of MANUFACTURING_AWARD.allowances. They will go stale at the next Annual Wage Review."
+   ],
+   "constants": [
+    "MANUFACTURING_AWARD.allowances in lib/constants/modern-awards.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.35,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+ "name": "ff-051-parenting-payment-faqs",
+ "files": [
+  "modules/calculator/parenting-payment-faqs.ts",
+  "modules/calculator/pay-rise-calculator-content.tsx",
+  "modules/calculator/pay-rise-calculator-faqs.ts",
+  "modules/calculator/payslip-generator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/parenting-payment-faqs.ts:38",
+   "file": "modules/calculator/parenting-payment-faqs.ts",
+   "line": "38",
+   "page": "/parenting-payment-calculator/",
+   "claims": [
+    "combined income test: 25 cents per dollar over the free area, then ${formatAUD(53)} plus 30 cents per dollar over band1End"
+   ],
+   "whys": [
+    "$53 is hard-coded. It is correct today (0.25 x (512 - 300)), but it will drift silently if PT.combined.freeArea or band1End change."
+   ],
+   "constants": [
+    "lib/constants/centrelink-family-payments.ts PARENTING_PAYMENT.partnered.combined (derive as (band1End - freeArea) * taper1)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/parenting-payment-faqs.ts:46",
+   "file": "modules/calculator/parenting-payment-faqs.ts",
+   "line": "46",
+   "page": "/parenting-payment-calculator/",
+   "claims": [
+    "JobSeeker for a single principal carer of a child under 16 has the same 40-cent taper over ${formatAUD(150)} a fortnight",
+    "Most parents then move to JobSeeker Payment"
+   ],
+   "whys": [
+    "$150, the 40-cent taper and the under-16 age are typed into the FAQ rather than read from constants (the constants file comment at line 16 holds the allowance free area $150/$256).",
+    "Population claim with no cited figure or source. Consider 'You can then claim JobSeeker Payment' or citing Services Australia."
+   ],
+   "constants": [
+    "lib/constants/centrelink-family-payments.ts (allowance free area / JobSeeker principal-carer taper)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.25,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/pay-rise-calculator-content.tsx:241",
+   "file": "modules/calculator/pay-rise-calculator-content.tsx",
+   "line": "241",
+   "page": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "claims": [
+    "employer superannuation obligations at the 12% SG rate"
+   ],
+   "whys": [
+    "The 12% figure is typed into the JSX. Mistake item 3 on the same page uses pct0(SUPER_GUARANTEE.rate), so this one will go stale if the SG rate constant changes."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate (lib/constants/australian-tax.ts:136)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.49,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/pay-rise-calculator-content.tsx:174",
+   "file": "modules/calculator/pay-rise-calculator-content.tsx",
+   "line": "174",
+   "page": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "claims": [
+    "The 2% Medicare levy applies on top of all these rates."
+   ],
+   "whys": [
+    "The bracket list includes the 0% tax-free bracket, and the Medicare levy is reduced or nil below the low-income threshold, so 'on top of all these rates' overstates it. The '2%' is also typed here and on lines 78, 179 and 276 instead of coming from MEDICARE_LEVY.rate, while line 179 already uses that constant for the combined rate."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate and the Medicare low-income threshold in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/pay-rise-calculator-faqs.ts:84",
+   "file": "modules/calculator/pay-rise-calculator-faqs.ts",
+   "line": "84",
+   "page": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "claims": [
+    "The Annual Wage Review 2026 \"lifted award rates and the National Minimum Wage by ${pct(AWR)}\" (renders 4.75%)."
+   ],
+   "whys": [
+    "The National Minimum Wage rose 5.97% in the 2026 Annual Wage Review. Only modern award minimums rose 4.75%. The sentence gives the NMW the award figure."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts NMW_DECISION (add an nmwIncrease field next to awardIncrease)"
+   ],
+   "reviewerNotes": [
+    "Valid: the answer gives the National Minimum Wage the 4.75% award increase. Per the brief's known-correct facts, the NMW rose 5.97%. The same issue is at line 88. Not changed (no new numbers)."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/pay-rise-calculator-faqs.ts:88",
+   "file": "modules/calculator/pay-rise-calculator-faqs.ts",
+   "line": "88",
+   "page": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "claims": [
+    "\"award-free employees on the National Minimum Wage, got the ${pct(AWR)} increase\" (4.75%)."
+   ],
+   "whys": [
+    "Award-free employees on the NMW got 5.97%, not the 4.75% award increase. The question \"Who gets the 4.75% pay increase?\" is locked, but this answer should limit the 4.75% to award employees."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts NMW_DECISION.awardIncrease vs a new NMW increase constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/pay-rise-calculator-faqs.ts:104",
+   "file": "modules/calculator/pay-rise-calculator-faqs.ts",
+   "line": "104",
+   "page": "https://pay-calculator-australia.com/pay-rise-calculator/",
+   "claims": [
+    "\"Can a pay rise ... leave me worse off?\" is answered \"No\" (the old closing line said \"You always take home more money after a pay rise\")."
+   ],
+   "whys": [
+    "The page's own MLS answer (line 121) says the Medicare Levy Surcharge applies to TOTAL income once you cross the tier 1 threshold. A single with no private hospital cover who gets a small rise just past that threshold takes home less. I narrowed the closing sentence to \"On the income tax brackets alone...\" but the bare \"No\" still needs a human decision."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge.tier1 in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.99,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/payslip-generator-content.tsx:23",
+   "file": "modules/calculator/payslip-generator-content.tsx",
+   "line": "23",
+   "page": "/payslip-generator/",
+   "claims": [
+    "the business name and ABN that must appear on every Australian payslip"
+   ],
+   "whys": [
+    "Fair Work Regulations require the ABN only if the employer has one. The table on the same page says so ('if the employer has one'), but this list item, the paragraph at line 39 and the FAQ answer at payslip-generator-faqs.ts line 15 say the ABN is required on every payslip."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.09,
+   "needsOwner": false
+  }
+ ]
+}

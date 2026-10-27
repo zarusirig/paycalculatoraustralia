@@ -1,0 +1,172 @@
+{
+ "name": "ff-052-redundancy-pay-calculato",
+ "files": [
+  "modules/calculator/redundancy-pay-calculator-content.tsx",
+  "modules/calculator/redundancy-pay-faqs.ts",
+  "modules/calculator/rent-assistance-calculator-content.tsx",
+  "modules/calculator/rent-assistance-faqs.ts",
+  "modules/calculator/salary-package-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/redundancy-pay-calculator-content.tsx:404",
+   "file": "modules/calculator/redundancy-pay-calculator-content.tsx",
+   "line": "404",
+   "page": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "claims": [
+    "Unused annual leave paid on a genuine redundancy is taxed at no more than 32%"
+   ],
+   "whys": [
+    "The rate is correct (30% plus the 2% Medicare levy), but it is hardcoded. Line 35 of the same file warns against a hardcoded 32%. It should render from a constant."
+   ],
+   "constants": [
+    "lib/constants/redundancy.ts or the leave-tax constants (unused leave on genuine redundancy rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.06,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/redundancy-pay-calculator-content.tsx:283",
+   "file": "modules/calculator/redundancy-pay-calculator-content.tsx",
+   "line": "283",
+   "page": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "claims": [
+    "A non-genuine payment can also be limited by the $180,000 whole-of-income cap"
+   ],
+   "whys": [
+    "The figure is correct today, but it is typed into the prose. The file header (line 35) says no local figures. If the ATO changes the cap, this sentence will not update."
+   ],
+   "constants": [
+    "lib/constants/redundancy.ts (add a WHOLE_OF_INCOME_CAP constant next to etpCap)"
+   ],
+   "reviewerNotes": [
+    "I agree with all three of the writer's fact questions. The source has $180,000 hardcoded at line 283, 32% at line 404 and the 2% Medicare levy at line 281, but the file header at line 35 forbids local figures. Each should render from a constant in lib/constants/redundancy.ts."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.97,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/redundancy-pay-faqs.ts:94",
+   "file": "modules/calculator/redundancy-pay-faqs.ts",
+   "line": "94",
+   "page": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "claims": [
+    "Services Australia may apply an income maintenance period based on the redundancy and leave payments ... a liquid assets waiting period of up to 13 weeks"
+   ],
+   "whys": [
+    "Services Australia applies the income maintenance period mainly to leave payments and to redundancy amounts paid in lieu of notice or wages. Saying it is 'based on the redundancy' payment may overstate it, so check the current Services Australia wording. The 10-week and 13-week figures are typed into prose, not taken from constants."
+   ],
+   "constants": [
+    "a Centrelink waiting-period constant (e.g. in lib/constants/centrelink-family-payments.ts) if one exists"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.9,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/redundancy-pay-faqs.ts:42",
+   "file": "modules/calculator/redundancy-pay-faqs.ts",
+   "line": "42",
+   "page": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "claims": [
+    "4 weeks' pay at 1 year, 6 at 2, 7 at 3, 8 at 4, 10 at 5, 11 at 6, 13 at 7, 14 at 8, 16 at 9, and 12 weeks from 10 years"
+   ],
+   "whys": [
+    "The figures match the NES table, but they are typed into the prose. Other answers on the same page use nesRedundancyWeeks(), so this one could drift from the tested table."
+   ],
+   "constants": [
+    "nesRedundancyWeeks in lib/constants/redundancy.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.37,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/redundancy-pay-faqs.ts:112",
+   "file": "modules/calculator/redundancy-pay-faqs.ts",
+   "line": "112",
+   "page": "https://pay-calculator-australia.com/redundancy-pay-calculator/",
+   "claims": [
+    "If your job really is being made redundant, taking the redundancy is usually worth more."
+   ],
+   "whys": [
+    "This is a judgment ('usually worth more'), but the AUDIT row is factual-structured and does not mark it as labelled editorial judgment. Either label it as our view, or state it as the fact behind it: resigning forfeits NES redundancy pay and the genuine redundancy tax-free amount."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.38,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/rent-assistance-calculator-content.tsx:56",
+   "file": "modules/calculator/rent-assistance-calculator-content.tsx",
+   "line": "56",
+   "page": "https://pay-calculator-australia.com/rent-assistance-calculator/",
+   "claims": [
+    "the next change is on 20 March 2027"
+   ],
+   "whys": [
+    "This date is typed into the prose. It goes stale after the 20 March 2027 indexation unless someone edits it by hand. RA.indexedOn and RA.ratesFrom already live in constants, so this date should too."
+   ],
+   "constants": [
+    "RENT_ASSISTANCE (e.g. a nextIndexation field) in lib/constants/centrelink-family-payments.ts"
+   ],
+   "reviewerNotes": [
+    "The date '20 March 2027' is typed into the prose. It should come from a RENT_ASSISTANCE constant. The writer's factQuestion stands."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.67,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/rent-assistance-faqs.ts:38",
+   "file": "modules/calculator/rent-assistance-faqs.ts",
+   "line": "38",
+   "page": "https://pay-calculator-australia.com/rent-assistance-calculator/",
+   "claims": [
+    "the next change is on 20 March 2027"
+   ],
+   "whys": [
+    "The date is correct today (indexedOn is \"20 March and 20 September\", ratesFrom is \"20 September 2026\"), but it is typed into the copy and not read from a constant. It goes stale on the next indexation unless someone updates it by hand.",
+    "Agreed with the writer: the date is correct today but typed into the copy. It should come from a new RENT_ASSISTANCE.nextIndexation constant."
+   ],
+   "constants": [
+    "RENT_ASSISTANCE.nextIndexation (new field) in lib/constants/centrelink-family-payments.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-package-calculator.tsx:62",
+   "file": "modules/calculator/salary-package-calculator.tsx",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/salary-package-calculator/",
+   "claims": [
+    "\"$112,000 package\", \"$100,000 plus super\" and \"$100,000 including super\" are three different offers."
+   ],
+   "whys": [
+    "At SUPER_GUARANTEE.rate 0.12, a $112,000 package splits into $100,000 base and $12,000 super, which is exactly $100,000 plus super. The page's own worked example (content line 101) shows this. So two of the three are the same offer, not three different ones. I left the claim unchanged. Possible fix: say they are three phrasings, or swap the $112,000 example for a figure that really differs.",
+    "Reviewer confirms: at SUPER_GUARANTEE.rate 0.12, splitPackage(112000) returns $100,000 base + $12,000 super, which is the same as packageFromBase(100000). Two of the three are the same offer. Possible fixes: call them 'three phrasings, two different offers', or change the $112,000 example."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate (lib/constants/australian-tax.ts:137); splitPackage in lib/constants/salary-package.ts"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's point. SUPER_GUARANTEE.rate is 0.12, so splitPackage(112000) = $100,000 base + $12,000 super, and packageFromBase(100000) = $112,000. '$112,000 package' and '$100,000 plus super' are the same offer, so 'three different offers' is wrong. Text left as is for the owner."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.1,
+   "needsOwner": false
+  }
+ ]
+}

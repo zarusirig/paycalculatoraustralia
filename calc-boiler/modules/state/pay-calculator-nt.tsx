@@ -64,8 +64,8 @@ export default function PayCalculatorNTPage() {
           <p className="text-lg text-warmgray">
             This Northern Territory pay calculator works out your take-home pay on
             ATO {SITE_CONFIG.financialYear} rates. Two things change NT pay more than anywhere else in
-            Australia: the zone tax offset, which NT residents claim in their tax return, and Picnic
-            Day and May Day, which nobody outside the Territory gets.
+            Australia: the zone tax offset, which eligible NT residents claim in their tax return, and
+            Picnic Day, which nobody outside the Territory gets.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -120,14 +120,13 @@ export default function PayCalculatorNTPage() {
             <p className="mb-4 text-warmgray">
               The Territory has an unusual earnings shape. Full-time ordinary time earnings of{" "}
               {formatAUD(PROFILE.awote.personsFullTime, 2)} a week sit below the national average, but
-              the all-employees figure of {formatAUD(PROFILE.awote.allEmployees, 2)} is the second
-              highest in the country, because the NT has proportionally far less part-time work than
-              anywhere else.
+              the all-employees figure of {formatAUD(PROFILE.awote.allEmployees, 2)} is the third
+              highest in the country, after the ACT and Western Australia.
             </p>
             <AbsEarningsTable profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Overtime adds more than {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
-              a week to the full-time figure, the second largest overtime gap of any jurisdiction. If
+              Overtime adds {formatAUD(PROFILE.awote.personsFullTimeTotal - PROFILE.awote.personsFullTime, 2)}{" "}
+              a week to the full-time figure, the largest overtime gap of any state or territory. If
               you work a roster, the{" "}
               <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">overtime calculator</Link> and the{" "}
               <Link href="/mining-fifo-pay-guide/" className="text-eucalyptus-dark hover:underline">mining and FIFO pay guide</Link> will get
@@ -138,8 +137,10 @@ export default function PayCalculatorNTPage() {
           <section>
             <H2>Northern Territory public holidays and what they do to your pay</H2>
             <p className="mb-4 text-warmgray">
-              The NT gazettes 15 public holidays, more than any state. Two are Territory-only: May Day
-              in early May and Picnic Day on the first Monday in August. Christmas Eve and New
+              The NT has {PROFILE.publicHolidays2026.length} public holidays in 2026, level with South
+              Australia and the ACT for the most in Australia. Picnic Day on the first Monday in August
+              is Territory-only. May Day in early May falls on the same Monday as Queensland&apos;s
+              Labour Day. Christmas Eve and New
               Year&apos;s Eve are both part-day holidays from 7 pm, so an evening shift changes rate
               partway through. Regional show days in Darwin, Katherine, Tennant Creek and Alice Springs
               are declared separately and are not in the Territory-wide list.
@@ -170,8 +171,9 @@ export default function PayCalculatorNTPage() {
             <H2>Does NT payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              The Territory has the highest payroll tax threshold in the country, so most NT employers
-              never pay it. Either way, it is not a payslip line: see the{" "}
+              The Territory has the highest payroll tax threshold in the country,{" "}
+              {formatAUD(PAYROLL_TAX_STATES.nt.annualThreshold)} of Australian wages, and an employer
+              at or below it pays none. Either way, it is not a payslip line: see the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
           </section>

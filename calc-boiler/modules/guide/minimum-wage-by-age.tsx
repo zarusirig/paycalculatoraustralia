@@ -108,7 +108,7 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
           </h1>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> With no award, {aAge(age)}-year-old must be paid at least <strong>{money(s.nmw.hourly)} an hour</strong>, or <strong>{money(s.nmw.casualHourly)} as a casual</strong>, from {NMW_ORDER.operativeFrom}. Most {age}-year-olds are covered by an award instead, which sets its own junior rate: <strong>{money(s.retail.hourly)}</strong> in retail{age === 20 ? " for the first six months" : ""}, <strong>{money(s.fastFood.hourly)}</strong> in fast food and <strong>{money(s.hospitality.hourly)}</strong> in hospitality ({money(s.retail.casualHourly)}, {money(s.fastFood.casualHourly)} and {money(s.hospitality.casualHourly)} casual).
+              <strong>Direct answer:</strong> With no award, {aAge(age)}-year-old must be paid at least <strong>{money(s.nmw.hourly)} an hour</strong>, or <strong>{money(s.nmw.casualHourly)} as a casual</strong>, from {NMW_ORDER.operativeFrom}. If an award covers the job, it sets its own junior rate instead: <strong>{money(s.retail.hourly)}</strong> in retail{age === 20 ? " for the first six months" : ""}, <strong>{money(s.fastFood.hourly)}</strong> in fast food and <strong>{money(s.hospitality.hourly)}</strong> in hospitality ({money(s.retail.casualHourly)}, {money(s.fastFood.casualHourly)} and {money(s.hospitality.casualHourly)} casual).
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -236,7 +236,7 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
                   <div className="flex items-start gap-4">
                     <AlertTriangle className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" aria-hidden="true" />
                     <p className="text-sm leading-relaxed text-navy">
-                      {PHASE_IN.inForce ? "In force" : "Decided, not yet in force"} ({PHASE_IN.decision}): a four-year phase-in for <strong>{PHASE_IN.serviceQualifier}</strong>, from the first full pay period on or after <strong>{PHASE_IN.start}</strong>, not a jump to the adult rate.
+                      {PHASE_IN.inForce ? "In force" : "Decided, not yet in force"} ({PHASE_IN.decision}): a phase-in in steps for <strong>{PHASE_IN.serviceQualifier}</strong>, from the first full pay period on or after <strong>{PHASE_IN.start}</strong>, not a jump to the adult rate.
                     </p>
                   </div>
                 </div>

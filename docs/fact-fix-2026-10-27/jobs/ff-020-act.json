@@ -1,0 +1,135 @@
+{
+ "name": "ff-020-act",
+ "files": [
+  "lib/data/public-holidays/states/act.ts",
+  "lib/data/public-holidays/states/nsw.ts",
+  "lib/data/public-holidays/states/tas.ts",
+  "lib/data/public-holidays/states/wa.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/public-holidays/states/act.ts:89",
+   "file": "lib/data/public-holidays/states/act.ts",
+   "line": "89",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/act/",
+   "claims": [
+    "The ACT Government notes that bank holidays do not apply to everyone, so for most employees it is an ordinary working day."
+   ],
+   "whys": [
+    "Population claim with no figure. The cited source only says bank holidays 'do not apply to everyone'. 'Most employees' is the site's inference. The same claim opens the FAQ answer at line 112 ('Not for most employees.')."
+   ],
+   "constants": [
+    "ACT_PUBLIC_HOLIDAYS.specifics[bank-holiday] and faqs[2].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/states/act.ts:16",
+   "file": "lib/data/public-holidays/states/act.ts",
+   "line": "16",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/act/",
+   "claims": [
+    "When Anzac Day, Christmas Day or Boxing Day lands on a weekend, the ACT keeps the weekend day and adds a weekday"
+   ],
+   "whys": [
+    "The rule leaves out New Year's Day, but the same page (new-year-2028 section, line ~95) says the ACT lists both Saturday 1 and Monday 3 January 2028. Either the standfirst rule is incomplete or the 2028 section is wrong."
+   ],
+   "constants": [
+    "ACT_PUBLIC_HOLIDAYS.standfirst (check against the act.gov.au page)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's factQuestions on act.ts. The weekend-substitution rule in the standfirst (line 16) leaves out New Year's Day, but line 95 (the new-year-2028 section) lists Saturday 1 and Monday 3 January 2028. Line 89 and FAQ line 112 say 'most employees' about the bank holiday without a source. NSW line 92 says 'most' awards pay the public holiday rate on both days without a source."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.08,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/states/nsw.ts:92",
+   "file": "lib/data/public-holidays/states/nsw.ts",
+   "line": "92",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/nsw/",
+   "claims": [
+    "If you work both the weekend day and the additional day, check your award: most pay the public holiday rate on each day that is a declared public holiday."
+   ],
+   "whys": [
+    "A population claim about awards ('most') with no source. Some awards have substitution clauses for weekend holidays, so this needs checking against the award data or rewording to cite a specific award."
+   ],
+   "constants": [
+    "NSW_PUBLIC_HOLIDAYS.specifics[additional-days].paragraphs[1]"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/states/tas.ts:53",
+   "file": "lib/data/public-holidays/states/tas.ts",
+   "line": "53",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/tas/",
+   "claims": [
+    "2027 holiday list has Christmas Day (observed) Monday 27 December but no entry for Saturday 25 December 2027, and the standfirst (line 14) says 9 state-wide holidays in 2027.",
+    "2027 list has 'Christmas Day (observed)' on Monday 27 December only. The standfirst says 9 state-wide holidays in 2027."
+   ],
+   "whys": [
+    "The note on the same entry and the weekend-rules paragraph both say WorkSafe Tasmania's rules make both the Saturday and the following Monday holidays when 25 December is a Saturday. If so, Saturday 25 December 2027 is missing from the list and the 2027 count may be 10, not 9. The standfirst count is tested against the data, so both must change together.",
+    "The note on the same entry (line 58) and the weekend-rules paragraph (line 177) say both Saturday 25 December and Monday 27 December 2027 are holidays. If so, the Saturday entry is missing and the 2027 count may be 10. The test ties the standfirst count to the data."
+   ],
+   "constants": [
+    "lib/data/public-holidays/states/tas.ts years[2027].holidays"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question against the source. The 2027 list has only Monday 27 December, but the note on that entry and the weekend-rules paragraph both say Saturday 25 December is also a holiday. So the 2027 count of 9 may be wrong, and the standfirst count and the data must change together."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-holidays/states/tas.ts:68",
+   "file": "lib/data/public-holidays/states/tas.ts",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/tas/",
+   "claims": [
+    "\"most private sector employees work them at ordinary rates\" (regional intro) and \"Most private sector employees work it at ordinary rates\" (Easter Tuesday FAQ, line 202).",
+    "'generally observed by the Tasmanian State Service only, so most private sector employees work them at ordinary rates'"
+   ],
+   "whys": [
+    "A population claim ('most') with no cited figure. The source only says these days are generally observed by the State/Public Service. Also, the page says 'Tasmanian State Service' in some places and 'Tasmanian Public Service' in others for the same group.",
+    "'Most private sector employees' is a population claim with no source. The page also says 'Tasmanian State Service' here and 'Tasmanian Public Service' at lines 28, 49, 184 and 202 for the same group."
+   ],
+   "constants": [
+    "lib/data/public-holidays/states/tas.ts regional intro + faqs[2].a"
+   ],
+   "reviewerNotes": [
+    "The population claim 'most private sector employees' has no cited figure (regional intro and Easter Tuesday FAQ). The page also names the same group 'Tasmanian State Service' in the regional intro and 'Tasmanian Public Service' in the FAQ, the easter paragraph and the data notes. I confirmed both and left them for a human decision."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.42,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/public-holidays/states/wa.ts:142",
+   "file": "lib/data/public-holidays/states/wa.ts",
+   "line": "142",
+   "page": "https://pay-calculator-australia.com/public-holiday-pay/wa/",
+   "claims": [
+    "Probably not. Sole traders, partnerships and trusts without a company trustee are generally in the WA state system."
+   ],
+   "whys": [
+    "The state-system paragraph at line 109 and the standfirst at line 14 say definitely that sole traders and unincorporated partnerships are in the WA state system. The FAQ hedges the same rule with 'Probably not' and 'generally'. Check the WA Government 'Which system of employment law applies' source and either make the answer definite or name the specific exception."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The FAQ 3 answer says 'Probably not. Sole traders, partnerships and trusts without a company trustee are generally in the WA state system.' That hedge conflicts with the definite wording at wa.ts:109 and in the new standfirst. It is the protected first sentence, and the hedge was in the original, so I left it. The owner should check the exceptions on the WA 'Which system of employment law applies' page and then make it definite or name the exception."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.86,
+   "needsOwner": false
+  }
+ ]
+}

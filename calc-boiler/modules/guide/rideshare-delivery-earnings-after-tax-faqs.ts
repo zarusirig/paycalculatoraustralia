@@ -1,4 +1,12 @@
 import type { Faq } from "./t3-shared";
+import { MEDICARE_LEVY, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { CPK_KM_CAP } from "@/lib/constants/cents-per-km";
+import { GST_REGISTRATION_THRESHOLD, RIDE_SOURCING_TAX_INVOICE_THRESHOLD } from "@/lib/constants/gig-tax";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+
+const pct = (n: number) => `${Math.round(n * 100)}%`;
+const [B0, B1, B2, B3, B4] = TAX_BRACKETS;
+const RESIDENT_RATES = `${pct(B0.rate)} to ${formatAUD(B0.max, 0)}, ${pct(B1.rate)} to ${formatAUD(B1.max, 0)}, ${pct(B2.rate)} to ${formatAUD(B2.max, 0)}, then ${pct(B3.rate)} and ${pct(B4.rate)}`;
 
 // Shared by the page body and the FAQPage JSON-LD. Rules are from ato.gov.au
 // (read 5 October 2026); see lib/constants/gig-tax.ts. No answer makes a claim
@@ -11,11 +19,11 @@ export const RIDESHARE_AFTER_TAX_FAQS: Faq[] = [
   },
   {
     q: "Do food delivery riders have to register for GST?",
-    a: "Food delivery riders must register for GST only when their GST turnover reaches $75,000. Delivery is not taxi or limousine travel, so the rideshare rule of registering from the first trip does not apply. GST turnover is your gross business income less GST, not your profit. If you pass the threshold you register within 21 days.",
+    a: `Food delivery riders must register for GST only when their GST turnover reaches ${formatAUD(GST_REGISTRATION_THRESHOLD, 0)}. Delivery is not taxi or limousine travel, so the rideshare rule of registering from the first trip does not apply. GST turnover is your gross business income less GST, not your profit. If you pass the threshold you register within 21 days.`,
   },
   {
     q: "How much tax do rideshare and delivery drivers pay?",
-    a: "Rideshare and delivery drivers pay income tax on their profit, which is their income less the expenses they can claim for the work. The resident rates are the same as for everyone else: 0% to $18,200, 15% to $45,000, 30% to $135,000, then 37% and 45%, plus the 2% Medicare levy. The low income tax offset can reduce the tax when your total taxable income is low. The calculator on this page does the sums on your own payments and expenses.",
+    a: `Rideshare and delivery drivers pay income tax on their profit, which is their income less the expenses they can claim for the work. The resident rates are the same as for everyone else: ${RESIDENT_RATES}, plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy. The low income tax offset can reduce the tax when your total taxable income is low. The calculator on this page does the sums on your own payments and expenses.`,
   },
   {
     q: "Is tax withheld from Uber or delivery payments?",
@@ -23,11 +31,11 @@ export const RIDESHARE_AFTER_TAX_FAQS: Faq[] = [
   },
   {
     q: "What expenses can I claim as a rideshare or delivery driver?",
-    a: "You can claim costs related to doing the rideshare or delivery work, apportioned for private use. For rideshare the ATO says to claim only deductions related to transporting passengers for a fare and to apportion expenses to the time you are providing the service. Keep records. The two car methods are cents per kilometre (capped at 5,000 km) and the logbook method, which uses your business-use percentage of actual costs.",
+    a: `You can claim costs related to doing the rideshare or delivery work, apportioned for private use. For rideshare the ATO says to claim only deductions related to transporting passengers for a fare and to apportion expenses to the time you are providing the service. Keep records. The two car methods are cents per kilometre (capped at ${CPK_KM_CAP.toLocaleString("en-AU")} km) and the logbook method, which uses your business-use percentage of actual costs.`,
   },
   {
     q: "Do I charge GST on top of the fare?",
-    a: "If you are registered, GST is included in the fare, not added on top, and applies to every dollar you earn from ride-sourcing. You must issue a tax invoice for fares over $82.50 if a passenger asks for one. Your income for income tax purposes is the fare less the GST, and your GST credits reduce what you pay.",
+    a: `If you are registered, GST is included in the fare, not added on top, and applies to every dollar you earn from ride-sourcing. You must issue a tax invoice for fares over ${formatAUD(RIDE_SOURCING_TAX_INVOICE_THRESHOLD, 2)} if a passenger asks for one. Your income for income tax purposes is the fare less the GST, and your GST credits reduce what you pay.`,
   },
   {
     q: "How much should I set aside for tax?",
@@ -35,7 +43,7 @@ export const RIDESHARE_AFTER_TAX_FAQS: Faq[] = [
   },
   {
     q: "Do I get super as a rideshare or delivery driver?",
-    a: "You do not get super from the rideshare or delivery platform. A sole trader does not receive compulsory super guarantee on their own income, so contributions are voluntary. Personal contributions you claim as a deduction are taxed at 15% in the fund and count toward the concessional contributions cap.",
+    a: `You do not get super from the rideshare or delivery platform. A sole trader does not receive compulsory super guarantee on their own income, so contributions are voluntary. Personal contributions you claim as a deduction are taxed at ${pct(CONTRIBUTIONS_TAX_RATE)} in the fund and count toward the concessional contributions cap.`,
   },
   {
     q: "Am I an employee or a contractor?",

@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
-import { FREQUENCY_LABELS, type PayFrequency } from "@/lib/constants/payg-withholding";
+import { FREQUENCY_LABELS, PAYG_FINANCIAL_YEAR, PAYG_YEAR_INFO, type PayFrequency } from "@/lib/constants/payg-withholding";
+import { WHM_TAX_BRACKETS_2025_26 } from "@/lib/constants/tax-rates-reference";
 import {
   adviseTaxFreeThresholdClaim,
   tftWithholdingRow,
@@ -21,12 +22,14 @@ const INPUT =
   "block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm";
 
 const T = formatAUD(TAX_FREE_THRESHOLD);
+const WHM_FIRST = WHM_TAX_BRACKETS_2025_26[0];
+const WHM_FIRST_RATE = `${Math.round(WHM_FIRST.rate * 100)}%`;
 
 const ADVICE: Record<TftAdviceCode, { headline: string; text: React.ReactNode }> = {
   whm: {
     headline: "Answer “No”",
     text: (
-      <>The TFN declaration says working holiday makers must answer &ldquo;No&rdquo;. Working holiday maker income is taxed at 15% from the first dollar, so there is no threshold to claim. See <Link href="/working-holiday-tax/" className="underline">working holiday tax</Link>.</>
+      <>The TFN declaration says working holiday makers must answer &ldquo;No&rdquo;. Working holiday maker income is taxed from the first dollar, at {WHM_FIRST_RATE} on the first {formatAUD(WHM_FIRST.max)}, so there is no threshold to claim. See <Link href="/working-holiday-tax/" className="underline">working holiday tax</Link>.</>
     ),
   },
   foreignResident: {
@@ -188,7 +191,7 @@ export default function TaxFreeThresholdHelper() {
               </div>
             </dl>
             <p className="mt-3 text-xs text-warmgray-light">
-              These figures assume resident withholding rates from 1 July 2026, with no study loan. The difference isn&rsquo;t lost: it&rsquo;s credited against your tax when you lodge, so over-withholding comes back as a refund and under-withholding becomes a bill.
+              These figures assume resident withholding rates for {PAYG_YEAR_INFO[PAYG_FINANCIAL_YEAR].appliesTo}, with no study loan. The difference isn&rsquo;t lost: it&rsquo;s credited against your tax when you lodge, so over-withholding comes back as a refund and under-withholding becomes a bill.
             </p>
           </div>
         )}

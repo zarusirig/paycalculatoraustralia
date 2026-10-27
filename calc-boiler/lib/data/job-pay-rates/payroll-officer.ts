@@ -44,6 +44,8 @@ import {
   CLERKS_SOURCE_TITLE,
   clerksRow,
 } from "./clerks-common";
+import { SUPER_GUARANTEE_CHARGE } from "../../constants/australian-tax";
+import { PENDING_JUNIOR_CHANGE } from "../../constants/junior-rates";
 import { annual52, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation } from "./types";
 
@@ -108,9 +110,9 @@ export const PAYROLL_OFFICER: Occupation = {
       id: "year-ahead",
       heading: "Payroll in 2026-27: what changed on 1 July and what comes next",
       paragraphs: [
-        "For payroll officers, the 2026-27 year changed both when super is paid and which tax tables apply. From 1 July 2026 the superannuation guarantee must be paid with each pay run under Payday Super, rather than within 28 days of the end of each quarter. The SG line moves from a quarterly reconciliation to a per-pay calculation on the same cycle as PAYG withholding. On the same date the ATO reissued all 15 withholding schedules and 12 tax tables to carry the Treasury Laws Amendment (More Cost of Living Relief) Act 2025. The 16% rate on income between $18,201 and $45,000 fell to 15%, the Medicare levy low-income thresholds rose, and the repayment income thresholds for study and training support loans were indexed. A pay dated on or after 1 July 2026 takes the new tables even where the work was done in June.",
+        `For payroll officers, the 2026-27 year changed both when super is paid and which tax tables apply. From 1 July 2026, under Payday Super, the superannuation guarantee is owed on each payday and must reach the employee's fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days after payday (${SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for the first contribution for a new employee or to a new fund), rather than within 28 days of the end of each quarter. The SG line moves from a quarterly reconciliation to a per-pay calculation on the same cycle as PAYG withholding. On the same date the ATO reissued all 15 withholding schedules and 12 tax tables. The Treasury Laws Amendment (More Cost of Living Relief) Act 2025 cut the 16% rate on income between $18,201 and $45,000 to 15% and raised the Medicare levy low-income thresholds, and the repayment income thresholds for study and training support loans went up with their annual indexation. A pay dated on or after 1 July 2026 takes the new tables even where the work was done in June.`,
         "The 2026-27 fortnightly study and training support loans table (NAT 2185) applies a loan component only once fortnightly income reaches $2,674 for a payee who claims the tax-free threshold, or $1,974 for one who does not; the weekly table (NAT 2173) starts at $1,337 and $987, and the monthly table (NAT 2186) at $5,793.67 and $4,277.00. The component is withheld on all earnings including taxable allowances, bonuses and commissions, but not from lump sum termination payments. Schedule 5, the table for back payments, commissions and bonuses, was reissued at the same time.",
-        "Two dates are already in the 2026-27 diary. From the first full pay period on or after 1 December 2026, employees aged 18 to 20 with more than six months' service under the retail, fast food and pharmacy awards move onto a new junior rate schedule, the first step of a phase-in to the adult rate. And from 1 July 2027 the 15% rate falls to 14% and a $250 Working Australians Tax Offset starts, which means another full reissue of the withholding schedules twelve months after this one.",
+        `Two dates are already in the 2026-27 diary. From the first full pay period on or after ${PENDING_JUNIOR_CHANGE.earliestStart}, under the Fair Work Commission's junior rates decision (${PENDING_JUNIOR_CHANGE.implementationDecision}), employees with more than six months' service move onto a new junior rate schedule: ages 18 to 20 under the Fast Food Award and at pharmacy assistant levels 1 and 2 under the Pharmacy Award, and ages 18 and 19 at Retail Award levels 1 to 3. It is the first step of a phase-in to the adult rate. And from 1 July 2027 the 15% rate falls to 14% and a $250 Working Australians Tax Offset starts, which means another full reissue of the withholding schedules twelve months after this one.`,
       ],
     },
     {
@@ -129,7 +131,7 @@ export const PAYROLL_OFFICER: Occupation = {
     },
     {
       q: "What changed for payroll on 1 July 2026?",
-      a: "Payday Super began, so the superannuation guarantee is paid with each pay run instead of quarterly. The ATO also reissued all 15 withholding schedules and 12 tax tables to carry the 15% rate on income between $18,201 and $45,000, higher Medicare levy low-income thresholds and indexed study loan repayment thresholds. A pay dated on or after 1 July 2026 uses the new tables, and the 2026-27 fortnightly study loan table starts withholding at $2,674 of fortnightly income for a payee who claims the tax-free threshold.",
+      a: `Payday Super began, so the superannuation guarantee is owed on each payday and must reach the fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days, instead of quarterly. The ATO also reissued all 15 withholding schedules and 12 tax tables to carry the 15% rate on income between $18,201 and $45,000, higher Medicare levy low-income thresholds and indexed study loan repayment thresholds. A pay dated on or after 1 July 2026 uses the new tables, and the 2026-27 fortnightly study loan table starts withholding at $2,674 of fortnightly income for a payee who claims the tax-free threshold.`,
     },
     {
       q: "What is the award rate for a payroll officer in 2026?",
@@ -149,7 +151,7 @@ export const PAYROLL_OFFICER: Occupation = {
     },
     {
       q: "What do payroll officers actually earn?",
-      a: `Jobs and Skills Australia reports median full-time earnings of $1,606 a week for payroll clerks (ABS, May 2025), about ${money0(annual52(1_606))} a year before tax, above the award's Level 5 minimum of ${money2(PO_L5.weekly)} a week.`,
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(PAYROLL_MEDIAN.medianWeekly)} a week for payroll clerks (ABS, May 2025), about ${money0(annual52(PAYROLL_MEDIAN.medianWeekly))} a year before tax, above the award's Level 5 minimum of ${money2(PO_L5.weekly)} a week.`,
     },
   ],
   sources: [

@@ -1,0 +1,95 @@
+{
+ "name": "ff-026-nsw",
+ "files": [
+  "lib/data/service-pay/police/nsw.ts",
+  "lib/data/service-pay/police/qld.ts",
+  "lib/data/service-pay/prison-officer/act.ts",
+  "lib/data/service-pay/prison-officer/nsw.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/service-pay/police/nsw.ts:93",
+   "file": "lib/data/service-pay/police/nsw.ts",
+   "line": "93",
+   "page": "/police-salary/nsw (NSW police pay page)",
+   "claims": [
+    "Student Police Officers are paid $1,360 per week for Session 2, an arrangement introduced \"from March 2024\"."
+   ],
+   "whys": [
+    "The rate dates from March 2024 and the award has since given rises of 4% (2024), 4% (2025) and 5% (2026). The page already marks it as undated, but it is probably stale and should be checked again against the NSW Police recruitment page."
+   ],
+   "constants": [
+    "NSW_POLICE_PAY.traineePay in lib/data/service-pay/police/nsw.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact question. The $1,360 a week Student Police Officer rate dates from March 2024 and is probably stale. It is already marked as undated in the unverified section."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.26,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/police/qld.ts:123",
+   "file": "lib/data/service-pay/police/qld.ts",
+   "line": "123",
+   "page": "/police-pay/qld/",
+   "claims": [
+    "QPS says back payments began in the pay fortnight of 24 June 2026 with all adjustments expected to be finished by 5 August 2026."
+   ],
+   "whys": [
+    "This is stale. As of 27 Oct 2026 the 5 August 2026 completion date has passed, but the notice still describes it as a future expectation. Someone needs to confirm with the QPS CPI Uplift Adjustment page that the back payments are finished, then reword it in the past tense or remove it."
+   ],
+   "constants": [
+    "QLD_POLICE_PAY.notices[0]"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestion is valid. On 27 Oct 2026 the notice still calls the 5 August 2026 completion date of the back payments an expectation, which is stale. Fixing it needs the QPS CUA page, so the wording was not changed in this pass."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.25,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/prison-officer/act.ts:81",
+   "file": "lib/data/service-pay/prison-officer/act.ts",
+   "line": "81",
+   "page": "/prison-officer pay, ACT state page",
+   "claims": [
+    "A Correctional Officer Trainee is paid $65,146 a year ... from the first full pay period on or after 1 December 2025 (Annex A)."
+   ],
+   "whys": [
+    "Every other ACT figure, ratesEffectiveFrom and the Annex A column heading ('1% + $1,000 from 4/12/2025') date the rates from 4 December 2025. The trainee line says 1 December 2025. One of the two dates is likely a transcription slip."
+   ],
+   "constants": [
+    "ACT_PRISON_OFFICER_PAY.traineePay[0] vs ratesEffectiveFrom in lib/data/service-pay/prison-officer/act.ts"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's factQuestion. The ACT traineePay item at act.ts:81 dates the $65,146 rate from 1 December 2025, but ratesEffectiveFrom (act.ts:33) and the Annex A column say 4 December 2025."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.24,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/prison-officer/nsw.ts:69",
+   "file": "lib/data/service-pay/prison-officer/nsw.ts",
+   "line": "69",
+   "page": "/prison-officer pay, NSW state page",
+   "claims": [
+    "Industries and maintenance allowance: Overseer 1st year $12,491, Overseer 2nd year and thereafter $5,543 (line 70), Senior Overseer $10,907 (line 71)."
+   ],
+   "whys": [
+    "The allowance falls by more than half from the 1st to the 2nd year, then rises again for Senior Overseer. That pattern does not fit an allowance scale and may be a misread column or swapped figures in the C9875 table."
+   ],
+   "constants": [
+    "NSW_PRISON_OFFICER_PAY.scales[1].steps[].note in lib/data/service-pay/prison-officer/nsw.ts (source: Crown Employees (Public Sector - Salaries 2024) Award, Serial C9875, Part B)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's factQuestion. The NSW overseer industries and maintenance allowance runs $12,491 (1st year), then $5,543 (2nd year+), then $10,907 (Senior) at nsw.ts:69-71. That is a non-monotonic pattern and suggests a misread of the C9875 table."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.61,
+   "needsOwner": false
+  }
+ ]
+}

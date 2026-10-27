@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   APPRENTICE_RATES_FROM,
   APPRENTICE_TRADES,
@@ -89,7 +89,7 @@ export default function ApprenticePayCalculator({
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>{heading}</h2>
         <p className="text-sm text-warmgray mb-6">
-          {lockTrade ? "Pick your year" : "Pick your trade and year"} to see the award minimum, then check it against your payslip. Rates are the minimums in force from {APPRENTICE_RATES_FROM}; many employers pay more.
+          {lockTrade ? "Pick your year" : "Pick your trade and year"} to see the award minimum, then check it against your payslip. Rates are the minimums in force from {APPRENTICE_RATES_FROM}; an employer can pay more.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -140,7 +140,7 @@ export default function ApprenticePayCalculator({
                 )}
                 <p className="text-xs text-warmgray-light">
                   {siteOption ? `${siteOption.note} ` : `${r.trade.rateIncludes} `}Award: {r.trade.award.name} [{r.trade.award.code}], {r.trade.award.clause}.
-                  {!r.trade.includesAllowances && !siteOption ? " Allowances are extra, so your actual minimum is higher." : ""} Take-home assumes a resident on the tax-free threshold for 2026-27, private hospital cover, and no HELP debt. An enterprise agreement can pay more.
+                  {!r.trade.includesAllowances && !siteOption ? " Allowances are extra, so your actual minimum is higher." : ""} Take-home assumes a resident on the tax-free threshold for {SITE_CONFIG.financialYear}, private hospital cover, and no HELP debt. An enterprise agreement can pay more.
                 </p>
               </>
             ) : (

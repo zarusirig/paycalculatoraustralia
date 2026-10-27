@@ -3,7 +3,7 @@
 // so the structured data cannot drift from the page. Caps, gross-up rates and
 // tax rates come from lib/constants.
 
-import { TAX_BRACKETS, formatAUD, formatPercent } from "@/lib/constants";
+import { MEDICARE_LEVY, TAX_BRACKETS, formatAUD, formatPercent } from "@/lib/constants";
 import { FBT, FBT_CAPS, capFaceValue, reportableFringeBenefitsAmount } from "@/lib/constants/novated-lease";
 import type { FaqItem } from "@/lib/faq";
 
@@ -23,11 +23,11 @@ const MID_RATE = TAX_BRACKETS[2].rate;
 export const SALARY_PACKAGING_FAQS: readonly FaqItem[] = [
   {
     q: "What is the difference between salary packaging and salary sacrifice?",
-    a: "Salary packaging is the broad term for any arrangement where your employer provides benefits from your pre-tax salary, including living expenses, meal entertainment, novated leases, and devices. Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation. All salary sacrifice is salary packaging, but not all salary packaging is salary sacrifice.",
+    a: "They are the same arrangement. The ATO says salary sacrificing is also known as salary packaging or total remuneration packaging: you agree to take less pre-tax salary and your employer pays for benefits of similar value instead. The benefits can be extra super contributions, a novated car lease, a work-related laptop and, at some not-for-profit employers, living expenses and meal entertainment. What changes from one benefit to another is the FBT treatment, not the name.",
   },
   {
     q: "Who can package living expenses free of FBT, and how much?",
-    a: `Employees of public benevolent institutions (PBIs) and health promotion charities have a ${formatAUD(PBI_CAP)} grossed-up cap per FBT year, about ${formatAUD(PBI_FACE)} of rent, mortgage or other GST-free expenses. Employees of public and not-for-profit hospitals and public ambulance services have a ${formatAUD(HOSPITAL_CAP)} grossed-up cap, about ${formatAUD(HOSPITAL_FACE)}. Both can add a separate ${formatAUD(ENT_CAP)} grossed-up cap (about ${formatAUD(capFaceValue(ENT_CAP))} face value) for salary-packaged meal entertainment. Rebatable employers get a partial FBT rebate rather than an exemption. Private sector employees cannot access these caps. Their packaging options are limited to super, novated leases, and portable devices.`,
+    a: `Employees of public benevolent institutions (PBIs) and health promotion charities have a ${formatAUD(PBI_CAP)} grossed-up cap per FBT year, about ${formatAUD(PBI_FACE)} of rent, mortgage or other GST-free expenses. Employees of public and not-for-profit hospitals and public ambulance services have a ${formatAUD(HOSPITAL_CAP)} grossed-up cap, about ${formatAUD(HOSPITAL_FACE)}. Both can add a separate ${formatAUD(ENT_CAP)} grossed-up cap (about ${formatAUD(capFaceValue(ENT_CAP))} face value) for salary-packaged meal entertainment. Rebatable employers get a partial FBT rebate rather than an exemption. Private sector employees cannot access these caps. They can still package super, a novated car lease and FBT-exempt work-related items such as a laptop. Other benefits can be packaged too, but the employer pays FBT on them unless an exemption applies.`,
   },
   {
     q: "What counts as meal entertainment?",
@@ -43,7 +43,7 @@ export const SALARY_PACKAGING_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can private sector employees salary package a laptop?",
-    a: `Yes. Portable electronic devices used primarily for work are FBT-exempt regardless of employer type. You can package one laptop, one tablet, one mobile phone, and one GPS device per FBT year (${FBT.yearStart} to ${FBT.yearEnd}). The device must be used more than 50% for employment duties. A ${formatAUD(LAPTOP)} laptop at the ${formatPercent(MID_RATE, 0)} tax bracket saves ${formatAUD(LAPTOP * MID_RATE)} in income tax.`,
+    a: `Yes. Until 31 March 2027, portable electronic devices used mainly for work are FBT-exempt regardless of employer type. You can package one laptop, one tablet, one mobile phone, and one GPS device per FBT year (${FBT.yearStart} to ${FBT.yearEnd}). The device must be used more than 50% for employment duties. A ${formatAUD(LAPTOP)} laptop at the ${formatPercent(MID_RATE, 0)} tax bracket plus the ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy saves ${formatAUD(LAPTOP * (MID_RATE + MEDICARE_LEVY.rate))} in tax. From 1 April 2027, work-related items provided through salary sacrifice are no longer exempt, so a laptop packaged from that date attracts FBT.`,
   },
   {
     q: "When does the FBT year run?",

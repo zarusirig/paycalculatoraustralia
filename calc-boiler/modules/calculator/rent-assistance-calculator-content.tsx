@@ -18,7 +18,7 @@ import {
   type RentAssistanceSituation,
 } from "@/lib/constants/centrelink-family-payments";
 import { CentrelinkRelated } from "./centrelink-shared";
-import { RENT_FAQS } from "./rent-assistance-faqs";
+import { RENT_FAQS, nextRentAssistanceIndexation } from "./rent-assistance-faqs";
 
 // Same values as the exports of centrelink-shared.tsx, which is a "use client"
 // module and so cannot supply plain values to a server component.
@@ -53,7 +53,7 @@ export default function RentAssistanceCalculatorContent() {
         <RatesTable rows={RENT_ASSISTANCE_SITUATIONS.filter((k) => RA.rows[k].paidWith === "incomeSupport")} />
         <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Paid with Family Tax Benefit Part A (families)</h3>
         <RatesTable rows={RENT_ASSISTANCE_SITUATIONS.filter((k) => RA.rows[k].paidWith === "ftb")} />
-        <p className="mt-2 text-xs text-warmgray-light">All figures are per fortnight, as published by Services Australia. Rent Assistance is indexed on {RA.indexedOn} in line with CPI, and the next change is on 20 March 2027. A couple counts its combined rent and gets one combined amount. A couple separated by illness, respite care or prison, or temporarily separated, with children, uses the single family threshold.</p>
+        <p className="mt-2 text-xs text-warmgray-light">All figures are per fortnight, as published by Services Australia. Rent Assistance is indexed on {RA.indexedOn} in line with CPI, and the next change is on {nextRentAssistanceIndexation()}. A couple counts its combined rent and gets one combined amount. A couple separated by illness, respite care or prison, or temporarily separated, with children, uses the single family threshold.</p>
       </section>
 
       <section>
@@ -97,7 +97,7 @@ export default function RentAssistanceCalculatorContent() {
 
       <MethodologyDisclosure>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Rent Assistance = the lesser of the maximum for your situation and 75c × (fortnightly rent − threshold), floored at $0.</li>
+          <li>Rent Assistance = the lesser of the maximum for your situation and {Math.round(RA.rate * 100)}c × (fortnightly rent − threshold), floored at $0.</li>
           <li>Weekly rent × 2 = fortnightly; monthly rent × 12 ÷ 26 = fortnightly.</li>
           <li>Thresholds and maximums are Services Australia&apos;s figures from {RA.ratesFrom}, read on {FAMILY_PAYMENT_SOURCES.verifiedOn}. Our tests rebuild each published &ldquo;rent for the maximum&rdquo; figure from them to within a cent.</li>
           <li>{SITE_CONFIG.name} is not Services Australia. Use their Payment Finder to estimate your full payment including Rent Assistance.</li>

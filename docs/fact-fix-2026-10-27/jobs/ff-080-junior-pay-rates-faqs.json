@@ -1,0 +1,167 @@
+{
+ "name": "ff-080-junior-pay-rates-faqs",
+ "files": [
+  "modules/guide/junior-pay-rates-faqs.ts",
+  "modules/guide/late-tax-return-penalty-faqs.ts",
+  "modules/guide/late-tax-return-penalty.tsx",
+  "modules/guide/listo-calculator-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/junior-pay-rates-faqs.ts:106",
+   "file": "modules/guide/junior-pay-rates-faqs.ts",
+   "line": "106",
+   "page": "/junior-pay-rates/",
+   "claims": [
+    "the Fast Food Industry Award currently holds 20-year-olds at 90% until 21"
+   ],
+   "whys": [
+    "Correct today (27 Oct 2026) but goes stale on 1 December 2026, when eligible 20-year-olds with more than 6 months move to 95%. The 90% is a typed literal, not read from data.",
+    "This goes stale on 1 December 2026, when eligible 20-year-olds with more than 6 months' service move to 95%. The figure is a typed literal, not read from the schedule data."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts JUNIOR_TRANSITION_SCHEDULES / PENDING_JUNIOR_CHANGE.phaseIn (present.age20)",
+    "lib/constants/junior-rates.ts JUNIOR_TRANSITION_SCHEDULES / PENDING_JUNIOR_CHANGE"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/junior-pay-rates-faqs.ts:122",
+   "file": "modules/guide/junior-pay-rates-faqs.ts",
+   "line": "122",
+   "page": "/junior-pay-rates/",
+   "claims": [
+    "an employee wrongly placed a level down ... can be owed thousands over a year"
+   ],
+   "whys": [
+    "Unsourced dollar-scale claim; no calculation on the page backs 'thousands'."
+   ],
+   "constants": [
+    "could be derived from retail award level 1 vs level 2 rate difference x hours; otherwise reword"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/junior-pay-rates-faqs.ts:114",
+   "file": "modules/guide/junior-pay-rates-faqs.ts",
+   "line": "114",
+   "page": "/junior-pay-rates/",
+   "claims": [
+    "on that date an eligible 19-year-old moves from 80% to 85% ... reaching the adult rate from 1 July 2027 ... 1 July 2028 ... 1 July 2029"
+   ],
+   "whys": [
+    "Figures and dates are typed literals that duplicate the schedule data; they match SIX_MONTHLY_STEPS today but can drift. Same for 50%/45%/40% award percentages at lines 82 and 86."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts SIX_MONTHLY_STEPS, JUNIOR_TRANSITION_SCHEDULES, AWARD_JUNIOR_SCALES"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/junior-pay-rates-faqs.ts:90",
+   "file": "modules/guide/junior-pay-rates-faqs.ts",
+   "line": "90",
+   "page": "/junior-pay-rates/",
+   "claims": [
+    "NSW, South Australia and Tasmania set no minimum age; Victoria and Queensland set 13 ...; Western Australia and the Northern Territory restrict ..."
+   ],
+   "whys": [
+    "Hard-coded list duplicates MINIMUM_WORKING_AGE (line 94 uses the computed noMinimum instead). Both FAQ 4 and FAQ 5 omit the ACT, whose data summary is 'No minimum age stated; hours capped by age'.",
+    "The ACT is missing from this list and from FAQ 5 (line 94). lib/constants/junior-rates.ts around line 391 has an ACT row: no floor stated, hours capped by age. The hard-coded list also duplicates MINIMUM_WORKING_AGE."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts MINIMUM_WORKING_AGE (ACT row, line ~391)",
+    "lib/constants/junior-rates.ts MINIMUM_WORKING_AGE (ACT row ~391)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.77,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/late-tax-return-penalty-faqs.ts:33",
+   "file": "modules/guide/late-tax-return-penalty-faqs.ts",
+   "line": "33",
+   "page": "/late-tax-return-penalty/",
+   "claims": [
+    "Circumstances it would likely accept include severe illness of you, a carer or your agent"
+   ],
+   "whys": [
+    "The page body (late-tax-return-penalty.tsx line 141) gives the ATO example as 'a registered agent or a person you care for with a severe illness'. 'A carer' (someone who cares for you) and 'a person you care for' are different people, and the body does not mention your own illness. One of the two is wrong. Check against the ATO remission of penalties page."
+   ],
+   "constants": [
+    "lib/constants/late-lodgement.ts (remission examples are not held as data; consider adding them there so FAQ and body share one list)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/late-tax-return-penalty-faqs.ts:17",
+   "file": "modules/guide/late-tax-return-penalty-faqs.ts",
+   "line": "17",
+   "page": "/late-tax-return-penalty/",
+   "claims": [
+    "so in practice it is Monday 2 November 2026 ... sign up with them before 31 October"
+   ],
+   "whys": [
+    "Correct today, but the effective date is typed as text while the body computes it from RETURN_DATES_2026.selfLodge.effectiveIso with weekdayOf/formatIso. It will drift when RETURN_2026 rolls to the next year. Same for '31 October' and '31 October 2026 ... at 30 June 2026' and '$20,000 or more' in late-tax-return-penalty.tsx line 107, and 'Or part of 28 days overdue' in the KeyFigures item at line 73 (FTL_RULES.daysPerUnit exists)."
+   ],
+   "constants": [
+    "lib/constants/tax-calendar-2026-27.ts RETURN_DATES_2026.selfLodge.effectiveIso; lib/constants/tax-return-2025-26.ts RETURN_2026 (agent cut-off, large-liability threshold, outstanding-return date)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/late-tax-return-penalty.tsx:131",
+   "file": "modules/guide/late-tax-return-penalty.tsx",
+   "line": "131",
+   "page": "/late-tax-return-penalty/",
+   "claims": [
+    "Most PAYG employees owed a refund can lodge late without a penalty"
+   ],
+   "whys": [
+    "Population claim with no figure. It also reads as more certain than the ATO rule it follows from, which says the ATO 'generally' will not issue the notice. Consider 'A PAYG employee owed a refund generally will not be charged the penalty...'."
+   ],
+   "constants": [
+    "lib/constants/late-lodgement.ts (FTL refund/nil rule)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/listo-calculator-faqs.ts:48",
+   "file": "modules/guide/listo-calculator-faqs.ts",
+   "line": "48",
+   "page": "https://pay-calculator-australia.com/listo-calculator/",
+   "claims": [
+    "At a 12% super guarantee rate the full $500 needs about $27,778 of salary today."
+   ],
+   "whys": [
+    "The figure is correct now (500 / 0.15 / 0.12), but 12% and $27,778 are typed in by hand. The page body uses salaryForFullListo(NOW) and SG_PCT, so if the SG rate changes the FAQ and FAQPage schema will drift from the body."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate and salaryForFullListo(LISTO_CURRENT) in lib/constants/listo.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4,
+   "needsOwner": false
+  }
+ ]
+}

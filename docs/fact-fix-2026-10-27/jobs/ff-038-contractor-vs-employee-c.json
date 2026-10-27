@@ -1,0 +1,297 @@
+{
+ "name": "ff-038-contractor-vs-employee-c",
+ "files": [
+  "modules/calculator/contractor-vs-employee-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:286",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "286",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "The contractor needs to charge approximately $138,000-$145,000 (before GST) to match the employee's total package (line 310 says $135,000 to $145,000; line 217 says 30-45% more; line 69 and 319 say at least 30%)."
+   ],
+   "whys": [
+    "Three different hand-typed ranges sit on one page. The page's own worked example (FY2026-27 brackets, 12% SG, $3,000 expenses) gives a package gap of about $21,600, which needs roughly $132,000 gross to close. The calculator's own gapToMatch ((gross + super + expenses) x 1.15) shows $132,250 at $100,000. None of the prose ranges match either figure."
+   ],
+   "constants": [
+    "Derive from EX_EMP_TOTAL / EX_CON_TOTAL in this file, or from the gapToMatch formula in contractor-vs-employee-calculator.tsx line 44"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.03,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:347",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "347",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Comparing gross rates ignores the $25,000-$40,000 gap in hidden entitlements and costs."
+   ],
+   "whys": [
+    "The worked example on the same page computes the gap as {formatAUD(EX_EMP_TOTAL - EX_CON_TOTAL)}, about $21,600 at $100,000, which sits below the stated range. The range has no source."
+   ],
+   "constants": [
+    "EX_EMP_TOTAL - EX_CON_TOTAL in this file"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.5,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:72",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "72",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "12% superannuation guarantee and total package value $112,000 typed by hand (also 12% at lines 75, 102, 166, 301, 350, 494; $12,000 at 301 and 350; 2% Medicare at 75, 166, 176)."
+   ],
+   "whys": [
+    "These are correct for FY2026-27 (SUPER_GUARANTEE.rate 0.12), but they are hand-typed. The file already defines SG_PCT and EX_SUPER, and the header comment says figures should roll over from lib/constants."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate / SG_PCT, EX_SUPER, MEDICARE_LEVY.rate in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.14,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:366",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "366",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Following the High Court's 2022 decisions (Personnel Contracting, Jamsek), courts now prioritise the terms of the written contract."
+   ],
+   "whys": [
+    "Since 26 Aug 2024 the Fair Work Act (s 15AA, Closing Loopholes No. 2) decides employee status for Fair Work purposes on the real substance, practical character and true nature of the relationship, and looks beyond the contract terms. The 2022 contract-first approach still applies to tax and super. The page talks about Fair Work Act sham-contracting penalties, so this sentence looks stale for that context."
+   ],
+   "constants": [
+    "n/a (legal text; needs an ATO and FWO source check)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:377",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "377",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "A worker who satisfies 4 or more of these indicators as a contractor is more likely to be genuinely independent."
+   ],
+   "whys": [
+    "No source gives a 4-of-6 threshold. The ATO says no single factor decides status and the whole relationship is weighed. The same section says this two paragraphs earlier, so the line contradicts the page."
+   ],
+   "constants": [
+    "n/a"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:350",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "350",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Skipping $12,000 a year of super compounds to over $400,000 across a 20-year career at average fund returns."
+   ],
+   "whys": [
+    "This projection has no source, return rate or tax-on-contributions assumption, and nothing in the code computes it."
+   ],
+   "constants": [
+    "n/a (would need a computed projection)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.2,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:175",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "175",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "GST registration is mandatory once annual turnover exceeds $75,000 (also 'above $75,000' at 352 and 478)."
+   ],
+   "whys": [
+    "The ATO test is a GST turnover of $75,000 or more, not more than $75,000. This is a boundary-wording issue."
+   ],
+   "constants": [
+    "GST threshold (no constant found; hand-typed)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:304",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "304",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Workers compensation insurance costs contractors $500-$3,000 annually depending on industry and risk classification."
+   ],
+   "whys": [
+    "In most states a sole-trader contractor cannot take out workers compensation cover for themselves. They buy personal accident and illness or income protection insurance. The cost range has no source."
+   ],
+   "constants": [
+    "n/a"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:302",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "302",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Annual leave (4 weeks) is approx 7.6% of yearly working value ($7,600); personal leave (10 days) is approx 3.8% ($3,800)."
+   ],
+   "whys": [
+    "4/52 is 7.69% and 10/260 is 3.85%. The 11.4% total matches EX_LEAVE, but the split is rounded down and hand-typed."
+   ],
+   "constants": [
+    "EX_LEAVE (0.114) in this file"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.06,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:353",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "353",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Many new contractors discover these costs only after their first BAS quarter (also line 481 'Many first-time contractors underestimate this cash-flow requirement', line 484 'often benefit').",
+    "Admin costs (BAS, bookkeeping, insurance, software) are $3,000-$6,000 annually."
+   ],
+   "whys": [
+    "These are population claims with no figure and no cited source.",
+    "Line 306 on the same page puts accounting and software at $1,500-$4,000 and lists insurance separately. The two ranges do not reconcile, and neither has a source."
+   ],
+   "constants": [
+    "n/a"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.37,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:384",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "384",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Classifying an employee as a contractor to avoid paying super, leave or minimum wage is illegal under the Fair Work Act, and the business must back pay the superannuation it withheld."
+   ],
+   "whys": [
+    "Sham contracting is a Fair Work Act contravention (s357-359). Unpaid super, however, is recovered through the ATO's Superannuation Guarantee Charge under the SG (Administration) Act, not as Fair Work back pay. A source check should confirm how the page should describe super recovery."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:527",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "527",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "There is no 'innocent mistake' defence if the employer 'reasonably should have known' the worker was an employee."
+   ],
+   "whys": [
+    "Since the Closing Loopholes amendments (2024), the s357 Fair Work Act defence is that the employer 'reasonably believed' the contract was one for services. The page's wording roughly inverts that test, so check it against the current s357."
+   ],
+   "constants": [
+    "n/a (legal wording; confirm against FW Act s357)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's s357 flag. Since the Closing Loopholes amendments, the Fair Work Act s357 defence is that the employer 'reasonably believed' the contract was one for services. The page's 'reasonably should have known' wording does not state that test. The text is unchanged and left for human review."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.37,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:520",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "520",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Backpayment of leave entitlements: the employer owes all accumulated annual leave, personal leave, and any applicable redundancy pay."
+   ],
+   "whys": [
+    "Personal/carer's leave is not paid out in money under the NES. Saying it is 'owed' as a backpayment looks wrong. It may only need re-crediting as a leave balance."
+   ],
+   "constants": [
+    "n/a"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's flag that personal/carer's leave is not paid out in money under the NES, so 'owes ... personal leave' as a backpayment looks wrong. The text is unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.43,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:561",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "561",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Lost leave and insurance add $15,000 to $25,000 per year for a $100,000-equivalent contractor; commercial contracting rates are set 25% to 50% higher than employee salaries."
+   ],
+   "whys": [
+    "Unsourced typed figures. They are not derived from the calculator constants."
+   ],
+   "constants": [
+    "derive from calculator constants or cite"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.46,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-content.tsx:497",
+   "file": "modules/calculator/contractor-vs-employee-calculator-content.tsx",
+   "line": "497",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Hardcoded '12% Super Guarantee' (also at lines 519, 539 and 598) instead of the SG_PCT expression used elsewhere on the page."
+   ],
+   "whys": [
+    "The figure is correct now, but it is typed by hand. These four places will go stale if the rate constant changes."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate via SG_PCT"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.45,
+   "needsOwner": false
+  }
+ ]
+}

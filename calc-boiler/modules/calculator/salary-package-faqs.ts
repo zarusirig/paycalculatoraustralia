@@ -44,11 +44,11 @@ export const SALARY_PACKAGE_FAQS: readonly SalaryPackageFaq[] = [
   },
   {
     q: "Is super included in salary in Australia?",
-    a: `Usually not unless the offer says so. Awards, enterprise agreements and most job ads quote a base salary with super paid on top. If an offer says "package", "total remuneration" or "including super", the ${RATE} is inside the number. If it is not clear, ask which it is before you accept: on ${formatAUD(90_000)} the difference is ${formatAUD(B90.superAmount)} a year.`,
+    a: `Usually not unless the offer says so. Awards and enterprise agreements quote a base salary with super paid on top. If an offer says "package", "total remuneration" or "including super", the ${RATE} is inside the number. If it is not clear, ask which it is before you accept: on ${formatAUD(90_000)} the difference is ${formatAUD(B90.superAmount)} a year.`,
   },
   {
     q: "Does the super guarantee rate apply to the package or the base?",
-    a: `To the base. The ${RATE} is calculated on ordinary time earnings, and the package is the base plus that super. That is why splitting a package uses ÷${(1 + SUPER_GUARANTEE.rate).toFixed(2)} rather than taking ${RATE} off the top.`,
+    a: `To the base. From ${SUPER_GUARANTEE.paydaySuperStart} (Payday Super) the ${RATE} is calculated on qualifying earnings. For a salaried employee that is the base salary, and the package is the base plus that super. That is why splitting a package uses ÷${(1 + SUPER_GUARANTEE.rate).toFixed(2)} rather than taking ${RATE} off the top.`,
   },
   {
     q: "Does the super cap change the split for high packages?",

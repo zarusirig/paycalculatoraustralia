@@ -13,6 +13,7 @@ import {
   PAYG_PREVIOUS_FINANCIAL_YEAR,
 } from "@/lib/constants/payg-withholding";
 import { ATO_WEEKLY, ATO_WORKED_EXAMPLES, WEEKLY_EXTRA_PAY } from "./ato-schedules";
+import downloads from "./downloads-manifest.json";
 
 export interface TaxTableFaq {
   q: string;
@@ -25,6 +26,13 @@ const at1500 = calculatePAYGWithholding(1_500, "weekly", { hasSTSL: true });
 const at1000Foreign = calculatePAYGWithholding(1_000, "weekly", { foreignResident: true });
 const at1500Now = withholdingForPeriod(1_500, "weekly", "tft", PAYG_FINANCIAL_YEAR);
 const at1500Prev = withholdingForPeriod(1_500, "weekly", "tft", PAYG_PREVIOUS_FINANCIAL_YEAR);
+const csvBuilt = CSV_TABLE_RANGES.weekly;
+const csvFile = downloads.files.weekly;
+// The ready-made file at the top of the page only renders when it matches the current year (see table-downloads.tsx).
+const csvFileText =
+  downloads.fy === PAYG_FINANCIAL_YEAR
+    ? `The "Download CSV" link at the top of the page is a ready-made ${downloads.fy} file with every dollar from ${formatAUD(csvFile.from)} to ${formatAUD(csvFile.to)} a week (${csvFile.rows.toLocaleString("en-AU")} rows). `
+    : "";
 
 export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
@@ -81,6 +89,6 @@ export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   },
   {
     q: "Can I download the weekly tax table as a spreadsheet?",
-    a: `Yes. The "Download CSV" button above the table builds the weekly table in $1 steps up to ${formatAUD(CSV_TABLE_RANGES.weekly.to)} a week, for whichever financial year is selected, with columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents. It opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
+    a: `Yes. ${csvFileText}The "Download CSV" button beside the year toggle on the full table builds the table in your browser in ${formatAUD(csvBuilt.step)} steps up to ${formatAUD(csvBuilt.to)} a week, for whichever financial year is selected. Each file has columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents, and opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
   },
 ] as const;

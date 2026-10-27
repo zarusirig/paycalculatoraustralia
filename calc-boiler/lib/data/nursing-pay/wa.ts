@@ -217,7 +217,7 @@ export const WA_NURSING_PAY: NursingStateData = {
         {
           label: "Night shift",
           value: "+35%",
-          note: "A complete rostered night shift between 1830 and 0730 on a weekday. The highest night loading of any state on this site.",
+          note: "A complete rostered night shift between 1830 and 0730 on a weekday.",
         },
         { label: "Saturday ordinary hours", value: "+50%", note: "Midnight Friday to midnight Saturday, on actual hours worked." },
         { label: "Sunday ordinary hours", value: "+75%", note: "Midnight Saturday to midnight Sunday, on actual hours worked." },
@@ -255,7 +255,7 @@ export const WA_NURSING_PAY: NursingStateData = {
     "Western Australia splits its nursing workforce across two industrial agreements registered with the WA Industrial Relations Commission. Registered nurses, midwives and enrolled mental health nurses sit under the ANF agreement, which pays an annual salary. Enrolled nurses and assistants in nursing sit under the United Workers Union agreement, which pays a weekly rate. WA also folds the clinical nurse, consultant and unit manager roles into one Senior Registered Nurse/Midwife ladder rather than giving each its own scale.",
 
   highlights: [
-    "WA pays the highest night shift loading of the six states on this site: 35% on a weekday night shift.",
+    "WA pays a 35% loading on a weekday night shift.",
     "In WA, Saturday ordinary hours are +50% and Sunday ordinary hours +75%, and those weekend rates replace the afternoon or night shift loading rather than adding to it.",
     "Registered nurses and midwives progress through Level 1.1 to 2.4, then into Senior Registered Nurse/Midwife Levels 1 to 10.",
     "The ANF agreement's last scheduled rise applied from 12 October 2026, taking RN/M Level 1.1 to $85,848 and Level 2.4 to $124,087 a year.",

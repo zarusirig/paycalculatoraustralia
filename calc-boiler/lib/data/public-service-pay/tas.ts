@@ -77,14 +77,14 @@ export const TAS: Jurisdiction = {
       basis: "agreement",
       effectiveFrom: "the first full pay period on or after 1 December 2025",
       rangeMeaning:
-        "The salary range is the first and last salary point of the band. Range 2 of a band is reached through an advancement assessment point. Figures are annual salary only, and superannuation is paid on top.",
+        "The salary range is the first and last salary point of the band. Range 2 of a band is reached through an advancement assessment point, except in General Stream Band 1. Figures are annual salary only, and superannuation is paid on top.",
       sourceId: "tas-psuwa-2025",
       streams: [
         {
           id: "tas-general",
           name: "General Stream (Bands 1–9)",
           description:
-            "Nine bands, written Band.Range.Level (B4-R2-3 is Band 4, Range 2, Level 3). Bands 4 to 8 have a second range reached through an advancement assessment point. Band 10 was removed from the General Stream from 1 December 2025 (clause 15).",
+            "Nine bands, written Band.Range.Level (B4-R2-3 is Band 4, Range 2, Level 3). Band 1 and Bands 4 to 8 have a second range. In Bands 4 to 8 it is reached through an advancement assessment point. Band 10 was removed from the General Stream from 1 December 2025 (clause 15).",
           bands: [
             {
               code: "Band 1",
@@ -211,7 +211,7 @@ export const TAS: Jurisdiction = {
               code: "Band 9",
               name: "General Stream Band 9",
               aliases: ["tss band 9", "tasmanian state service band 9", "tas band 9", "general stream band 9"],
-              summary: "This band has four salary points and has been the top General Stream band since Band 10 was removed on 1 December 2025.",
+              summary: "This band has four salary points and has been the top General Stream band since Band 10 was removed from the first full pay period on or after 1 December 2025.",
               min: 175_521,
               max: 194_052,
               payPoints: pts("Band 9", [
@@ -327,7 +327,7 @@ export const TAS: Jurisdiction = {
 
   progression: [
     "Salary points within a range are written Band, Range and Level: Band 4 Range 1 Level 2 is the first Band 4 point. Movement between levels within a range is by annual increment under the Tasmanian State Service Award.",
-    "Bands 4 to 8 of the General Stream have a second range. Crossing from Range 1 to Range 2 is not automatic: the schedule marks an advancement assessment point between them, so the employee has to be assessed as meeting the higher range's requirements.",
+    "Band 1 and Bands 4 to 8 of the General Stream have a second range. In Bands 4 to 8, crossing from Range 1 to Range 2 is not automatic: the schedule marks an advancement assessment point between them, so the employee has to be assessed as meeting the higher range's requirements. The schedule marks no assessment point between the two ranges of Band 1.",
     "Moving from one band to the next is a promotion to a position classified at the higher band. The bands do not overlap: the top of Band 5 is $108,307 and the bottom of Band 6 is $112,990.",
   ],
 

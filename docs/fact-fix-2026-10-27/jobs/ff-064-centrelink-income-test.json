@@ -1,0 +1,172 @@
+{
+ "name": "ff-064-centrelink-income-test",
+ "files": [
+  "modules/guide/centrelink-income-test.tsx",
+  "modules/guide/centrelink-payment-rates-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:98",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "98",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "For Parenting Payment Single, it is $202.60 per fortnight.",
+    "For JobSeeker and Youth Allowance (job seeker), the free area is $150 per fortnight. For Age Pension (single), it is $226 per fortnight."
+   ],
+   "whys": [
+    "The figure is typed in by hand and does not match the constant. PARENTING_PAYMENT.single.freeAreaOneChild is 232.60, and line 64 of the same page renders ppsFreeArea(1) from it, so the page shows two different PPS free areas.",
+    "These are hand-typed beside the $202.60 PPS figure the writer flagged. The same page renders JOBSEEKER.incomeTest.freeArea and AGE_PENSION.incomeTest.single.freeArea elsewhere (lines 180, 219). Line 219 says the free areas index on 1 July, so these hard-coded figures will go stale."
+   ],
+   "constants": [
+    "lib/constants/centrelink-family-payments.ts line 82 (PARENTING_PAYMENT.single.freeAreaOneChild)"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's question. The hand-typed PPS free area of $202.60 conflicts with PARENTING_PAYMENT.single.freeAreaOneChild of 232.60, which the family table renders through ppsFreeArea(1). The $150 and $226 on the same line are also hand-typed and should come from constants."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:159",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "159",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Any pre-tax salary sacrifice to superannuation reduces your gross employment income reported to Centrelink, potentially keeping your payment higher."
+   ],
+   "whys": [
+    "This contradicts the page's own FAQ (centrelink-income-test-faqs.ts line 51: Centrelink adds salary-sacrificed amounts back to income) and step 3 on line 197 (report pay before salary sacrifice deductions). Services Australia counts salary-sacrificed amounts as income."
+   ],
+   "constants": [
+    "none (prose); align with modules/guide/centrelink-income-test-faqs.ts line 51"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's question. The salary sacrifice paragraph says sacrifice lowers the income reported to Centrelink. That contradicts the FAQ (faqs.ts line 51) and step 3 (line 197)."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.56,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:152",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "152",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Lump-sum leave payments on termination of employment are listed as income that is not counted."
+   ],
+   "whys": [
+    "Services Australia assesses unused leave paid on termination as income. For JobSeeker it triggers an income maintenance period, so listing it as not counted looks wrong."
+   ],
+   "constants": [
+    "none (prose list)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.5,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:200",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "200",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Submit your report before 7:00 pm AEST on your reporting day to avoid payment delays."
+   ],
+   "whys": [
+    "No source is cited, and AEST is wrong during daylight saving. The same section (line 202) also says late reports are processed the next business day and that failing to report on time suspends your payment, with no source for either. The menu name 'Report Employment Income' on line 196 is also unverified."
+   ],
+   "constants": [
+    "none (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:191",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "191",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Report by phone on 13 28 50."
+   ],
+   "whys": [
+    "Services Australia's phone self-service reporting line is 136 240. 132 850 is the Employment Services line. Check which number the page means."
+   ],
+   "constants": [
+    "CENTRELINK_SOURCES (no phone constant exists)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:267",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "267",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Rates are indexed twice yearly (20 March and 20 September)."
+   ],
+   "whys": [
+    "This is too broad. The page itself says student payments index on 1 January, Family Tax Benefit on 1 July and free areas on 1 July (lines 86 and 219)."
+   ],
+   "constants": [
+    "none (methodology prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.46,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test.tsx:53",
+   "file": "modules/guide/centrelink-income-test.tsx",
+   "line": "53",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "The Australian tax calculator treats Centrelink payments as assessable income for tax purposes."
+   ],
+   "whys": [
+    "This is too broad. Family Tax Benefit, Rent Assistance and Carer Allowance are not taxable. Only some payments, such as JobSeeker (line 185), are assessable income. I left it unchanged because 'Australian tax calculator' is a mapped query variant."
+   ],
+   "constants": [
+    "none (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-payment-rates-faqs.ts:25",
+   "file": "modules/guide/centrelink-payment-rates-faqs.ts",
+   "line": "25",
+   "page": "https://pay-calculator-australia.com/centrelink-payment-rates/",
+   "claims": [
+    "The higher JobSeeker rate (singleWithChildren) also goes to 'people 55 or older who have been on the payment for 9 months or more, or who have a partial capacity to work'.",
+    "The payment reduces once your income goes over $150 a fortnight.",
+    "The higher JobSeeker rate (singleWithChildren) also goes to people 55 or older who have been on the payment for 9 months or more, or who have a partial capacity to work."
+   ],
+   "whys": [
+    "Services Australia pays this higher rate only to SINGLE people in those groups, and the partial-capacity group is limited to people assessed at 0 to 14 hours. The text does not say 'single' or give the hours band, so a partnered 55+ reader could read it as applying to them. I kept the original scope because adding these facts would mean new figures.",
+    "The figure is correct (it matches freeArea: 150) but it is typed into the prose and not read from the constant, so it will not move if the constant changes.",
+    "I endorse the writer's question. Services Australia pays this higher rate only to SINGLE recipients in those groups, and the partial-capacity group is limited to people assessed at 0 to 14 hours. A partnered reader aged 55 or over could read the text as applying to them."
+   ],
+   "constants": [
+    "lib/constants/centrelink-income-test.ts JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.singleWithChildren (eligibility note)",
+    "lib/constants/centrelink-income-test.ts freeArea (line 271)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.09,
+   "needsOwner": false
+  }
+ ]
+}

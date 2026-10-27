@@ -1,0 +1,162 @@
+{
+ "name": "ff-011-bartender",
+ "files": [
+  "lib/data/job-pay-rates/bartender.ts",
+  "lib/data/job-pay-rates/boilermaker.ts",
+  "lib/data/job-pay-rates/bookkeeper.ts",
+  "lib/data/job-pay-rates/bricklayer.ts",
+  "lib/data/job-pay-rates/building-construction-common.ts",
+  "lib/data/job-pay-rates/carpenter.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/bartender.ts:103",
+   "file": "lib/data/job-pay-rates/bartender.ts",
+   "line": "103",
+   "page": "/job-pay-rates/bartender/",
+   "claims": [
+    "$27.08 an hour, or $1,029.10 a week ... $53,513 a year ... grade 3 gets $27.97 an hour (also casual $33.85/$40.62/$47.39/$67.70 at line 107)",
+    "$27.08 / $1,029.10 / $53,513 / $27.97 and casual $33.85 / $40.62 / $47.39 / $67.70 (line 107)"
+   ],
+   "whys": [
+    "These are hard-coded dollar literals. The table and the opening derive the same figures from HOSPITALITY_RATES, so the FAQ will go stale at the next wage review. The arithmetic checks out today.",
+    "These are hard-coded literals, not derived from HOSPITALITY_RATES. The arithmetic is correct today but will go stale at the next wage review."
+   ],
+   "constants": [
+    "HOSPITALITY_RATES via lib/data/job-pay-rates/hospitality-common.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.37,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/boilermaker.ts:40",
+   "file": "lib/data/job-pay-rates/boilermaker.ts",
+   "line": "40",
+   "page": "/job-pay-rates/boilermaker/",
+   "claims": [
+    "A boilermaker employed on a building site by a builder or contractor ... may be under a different award",
+    "A boilermaker employed on a building site ... may be under a different award"
+   ],
+   "whys": [
+    "The coverage text hedges ('may be under a different award'), but the workforce section at line 83 says it definitively: the Building and Construction General On-site Award applies to a boilermaker on a building site. The two statements should use the same modality.",
+    "The coverage text hedges ('may'), but sections.workforce at line 83 states without a hedge that the Building and Construction General On-site Award applies on a building site. The two places use different modality for the same rule."
+   ],
+   "constants": [
+    "none (prose in coverage[2] vs sections.workforce)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/bookkeeper.ts:91",
+   "file": "lib/data/job-pay-rates/bookkeeper.ts",
+   "line": "91",
+   "page": "/job-pay-rates/bookkeeper/",
+   "claims": [
+    "$31.11 an hour, or $1,182.10 a week ... $61,469 a year ... Level 4 $32.67 (casual $38.89 at line 95; median $72,800 at line 103)",
+    "$31.11 / $1,182.10 / $61,469 / $32.67, casual $38.89 (line 95), median $72,800 (line 103)"
+   ],
+   "whys": [
+    "These are hard-coded literals, not derived from CLERKS_AWARD or MEDIAN.medianWeekly, so they will drift at the next wage review. The arithmetic checks out today.",
+    "These are hard-coded literals, not derived from CLERKS_AWARD or MEDIAN.medianWeekly. The arithmetic is correct today but will drift at the next wage review."
+   ],
+   "constants": [
+    "CLERKS_AWARD via lib/data/job-pay-rates/clerks-common.ts; MEDIAN.medianWeekly in bookkeeper.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.58,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/bricklayer.ts:86",
+   "file": "lib/data/job-pay-rates/bricklayer.ts",
+   "line": "86",
+   "page": "/job-pay-rates/bricklayer/",
+   "claims": [
+    "a bricklayer's minimum is ${money2(toCents(41.22 - tool))} a week below a carpenter's on the same site"
+   ],
+   "whys": [
+    "The carpenter tool allowance is typed in as 41.22 instead of using the CARPENTER_TOOL_ALLOWANCE constant. When the allowance changes on 1 July, this gap will drift away from the carpenter page. The comparison also holds only for the CW3 bricklayer, not for the CW5 refractory bricklayer.",
+    "The literal 41.22 duplicates the CARPENTER_TOOL_ALLOWANCE constant, so the two will drift at the next review. The comparison also does not hold for the CW5 refractory bricklayer shown in the same table."
+   ],
+   "constants": [
+    "CARPENTER_TOOL_ALLOWANCE in lib/data/job-pay-rates/building-construction-common.ts line 67"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's fact question. The literal 41.22 should be the CARPENTER_TOOL_ALLOWANCE constant (building-construction-common.ts line 67), and the carpenter comparison holds only for the CW3 bricklayer."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/building-construction-common.ts:89",
+   "file": "lib/data/job-pay-rates/building-construction-common.ts",
+   "line": "89",
+   "page": "/job-pay-rates/bricklayer/ (also carpenter, crane-operator, excavator-operator, fitter-and-turner)",
+   "claims": [
+    "so all weekend work is overtime (cl 29.12, 30.1)"
+   ],
+   "whys": [
+    "The clause cited here (cl 29.12) does not match the clauses used for the same rule in the same file: the header comment (lines 29-31) and BUILDING_OVERTIME (line 92) cite cl 29.4 and 30.1. Check which clause number is right.",
+    "The same file cites cl 29.4 and 30.1 for this rule in its header comment and in BUILDING_OVERTIME. Check the clause numbers against MA000020."
+   ],
+   "constants": [
+    "BUILDING_PENALTIES_NOTE, building-construction-common.ts"
+   ],
+   "reviewerNotes": [
+    "Confirmed. BUILDING_PENALTIES_NOTE cites cl 29.12 for the weekend-overtime rule, but the header comment cites cl 29.4 and 30.1, and BUILDING_OVERTIME cites 29.4(a) and 30.1. I left the clause unchanged, as the brief requires."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.72,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/carpenter.ts:68",
+   "file": "lib/data/job-pay-rates/carpenter.ts",
+   "line": "68",
+   "page": "/job-pay-rates/carpenter/",
+   "claims": [
+    "The carpenter table intro cites the 25% casual loading as cl 12.4."
+   ],
+   "whys": [
+    "BUILDING_PENALTIES_NOTE in building-construction-common.ts (line 89), which renders on the same page, cites cl 12.5 and 12.6 for casual rates. Please confirm cl 12.4 is the right clause for the 25% loading in MA000020 as consolidated to 1 July 2026."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/building-construction-common.ts BUILDING_PENALTIES_NOTE"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's question. The intro cites cl 12.4 for the 25% casual loading. BUILDING_PENALTIES_NOTE cites cl 12.5 and 12.6 for casual rates, and BUILDING_OVERTIME cites cl 12.5, and both render on the same page. The citation needs owner verification against MA000020 as consolidated to 1 July 2026. Left unchanged."
+   ],
+   "kind": "citation-or-source",
+   "severity": 3.92,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/carpenter.ts:117",
+   "file": "lib/data/job-pay-rates/carpenter.ts",
+   "line": "117",
+   "page": "/job-pay-rates/carpenter/",
+   "claims": [
+    "Casuals get 175% for the first 2 hours of Saturday overtime, then 225% after that and on Sundays."
+   ],
+   "whys": [
+    "The FAQ leaves out the 'after 12 noon' trigger for 225% that the BUILDING_PENALTIES table (line 84) and the weekend FAQ (line 125) include. It is incomplete rather than wrong. I left it alone because adding the condition would change a rule statement."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/building-construction-common.ts BUILDING_PENALTIES"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's question. The casual FAQ leaves out the 'after 12 noon' trigger for 225% on Saturday, which BUILDING_PENALTIES and the weekend FAQ both include. The FAQ is incomplete rather than wrong. Leaving it unchanged in this pass was correct, because adding the condition would change a rule statement."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.02,
+   "needsOwner": false
+  }
+ ]
+}

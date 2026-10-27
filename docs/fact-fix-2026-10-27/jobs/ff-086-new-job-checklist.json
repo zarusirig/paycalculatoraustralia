@@ -1,0 +1,146 @@
+{
+ "name": "ff-086-new-job-checklist",
+ "files": [
+  "modules/guide/new-job-checklist.tsx",
+  "modules/guide/non-resident-tax-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/new-job-checklist.tsx:54",
+   "file": "modules/guide/new-job-checklist.tsx",
+   "line": "54",
+   "page": "https://pay-calculator-australia.com/new-job-checklist/",
+   "claims": [
+    "Most new roles include a 3-6 month probationary period with reduced notice requirements."
+   ],
+   "whys": [
+    "This is a population claim ('Most new roles') with no cited source. The National Employment Standards notice minimums also do not stop applying during probation. Only the contract or the unfair dismissal minimum employment period differs."
+   ],
+   "constants": [
+    "none (copy claim); needs an FWO source or rewording by a human"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist.tsx:71",
+   "file": "modules/guide/new-job-checklist.tsx",
+   "line": "71",
+   "page": "https://pay-calculator-australia.com/new-job-checklist/",
+   "claims": [
+    "Submit within 28 days of starting. Without this form, your employer withholds tax at the highest rate (47%)."
+   ],
+   "whys": [
+    "In ATO guidance the 28-day window is for giving your TFN after you declare you have applied for one. It is not a deadline for the declaration form. The 47% is also typed by hand when it should come from code."
+   ],
+   "constants": [
+    "NO_TFN_RATES.resident in lib/constants/payg-withholding.ts:231"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact question, which needs a human. The 28-day window applies to giving your TFN after you have applied for one. It is not a deadline for the declaration form. The 47% is also typed by hand when it should come from NO_TFN_RATES. Both are unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.59,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist.tsx:53",
+   "file": "modules/guide/new-job-checklist.tsx",
+   "line": "53",
+   "page": "https://pay-calculator-australia.com/new-job-checklist/",
+   "claims": [
+    "Notice period: Standard is 1-4 weeks depending on tenure, but contracts may specify different terms."
+   ],
+   "whys": [
+    "Under the National Employment Standards, employees over 45 with at least 2 years of service get an extra week, so the minimum can be 5 weeks. A contract can also only give more than the NES minimum, not less."
+   ],
+   "constants": [
+    "none (copy claim); needs an NES notice table constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.99,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/new-job-checklist.tsx:51",
+   "file": "modules/guide/new-job-checklist.tsx",
+   "line": "51",
+   "page": "https://pay-calculator-australia.com/new-job-checklist/",
+   "claims": [
+    "Casual employees receive a 25% loading"
+   ],
+   "whys": [
+    "The 25% casual loading is set by most modern awards, not by every employment arrangement. The rate is also typed by hand."
+   ],
+   "constants": [
+    "needs a CASUAL_LOADING constant in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.39,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax-faqs.ts:38",
+   "file": "modules/guide/non-resident-tax-faqs.ts",
+   "line": "38",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Your tax return is split into resident and non-resident periods... The tax-free threshold is pro-rated based on the number of months you were a resident."
+   ],
+   "whys": [
+    "For part-year residents the ATO sets the threshold as $13,464 plus $4,736 x months resident / 12. That is not a straight pro-rata of $18,200. Part-year residents are also taxed at resident rates on the year's taxable income, not on two split periods."
+   ],
+   "constants": [
+    "needs a PART_YEAR_TFT constant in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax-faqs.ts:42",
+   "file": "modules/guide/non-resident-tax-faqs.ts",
+   "line": "42",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "The tax rate on DASP is 35% for non-residents (65% for working holiday makers)."
+   ],
+   "whys": [
+    "The rates are typed by hand. The 35% rate applies only to the taxed element. The untaxed element is taxed at 45%."
+   ],
+   "constants": [
+    "needs a DASP_TAX_RATES constant in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.92,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax-faqs.ts:70",
+   "file": "modules/guide/non-resident-tax-faqs.ts",
+   "line": "70",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Is a working holiday maker a non-resident? Not for tax purposes... Standard non-resident rates only apply if the employer has not registered as an employer of working holiday makers."
+   ],
+   "whys": [
+    "A WHM can be a resident or a non-resident for tax, and WHM rates apply either way. An unregistered employer changes only the withholding rate, because the income is still assessed at WHM rates. The figure also comes from WHM_TAX_BRACKETS_2025_26 while the page is labelled FY2026-27."
+   ],
+   "constants": [
+    "WHM_TAX_BRACKETS_2025_26 / WHM_TABLE_YEAR in lib/constants/tax-rates-reference.ts:142"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact question on the working holiday maker answer. A WHM can be a resident or a non-resident for tax, and an unregistered employer changes only the withholding rate. The figure also comes from WHM_TAX_BRACKETS_2025_26 while the page is labelled FY2026-27. These are human decisions, so the text is unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.57,
+   "needsOwner": false
+  }
+ ]
+}

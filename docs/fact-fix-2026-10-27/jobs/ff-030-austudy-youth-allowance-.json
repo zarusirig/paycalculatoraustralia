@@ -1,0 +1,102 @@
+{
+ "name": "ff-030-austudy-youth-allowance-",
+ "files": [
+  "modules/calculator/austudy-youth-allowance-calculator-content.tsx",
+  "modules/calculator/backpay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/austudy-youth-allowance-calculator-content.tsx:162",
+   "file": "modules/calculator/austudy-youth-allowance-calculator-content.tsx",
+   "line": "162",
+   "page": "https://pay-calculator-australia.com/austudy-youth-allowance-calculator/",
+   "claims": [
+    "The long-term rate applies after 26 of the last 39 weeks on a non-student income support payment, with no dependent child, starting study or an apprenticeship after turning 22 (21 for Austudy)."
+   ],
+   "whys": [
+    "Austudy is only for people aged 25 and over, so an age condition of '21 for Austudy' looks wrong or garbled. Check the long-term income support student rate conditions against Services Australia."
+   ],
+   "constants": [
+    "AUSTUDY / YOUTH_ALLOWANCE_STUDENT in lib/constants/centrelink-income-test.ts (add the long-term rate age conditions as data)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's fact question about '21 for Austudy' in the long-term rate conditions. Austudy is for people aged 25 and over. The text is unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/backpay-calculator-content.tsx:54",
+   "file": "modules/calculator/backpay-calculator-content.tsx",
+   "line": "54",
+   "page": "/backpay-calculator/",
+   "claims": [
+    "In some cases, the Fair Work Ombudsman or courts may award interest on unpaid wages, particularly for prolonged underpayments."
+   ],
+   "whys": [
+    "The FWO is a regulator and does not award interest; only a court can order it. This contradicts the page's own FAQ ('Interest is not part of a standard Fair Work claim, but a court can order interest'). The phrase 'particularly for prolonged underpayments' has no source."
+   ],
+   "constants": [
+    "n/a (prose); align with BACKPAY_FAQS interest answer in backpay-calculator-faqs.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.24,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/backpay-calculator-content.tsx:53",
+   "file": "modules/calculator/backpay-calculator-content.tsx",
+   "line": "53",
+   "page": "/backpay-calculator/",
+   "claims": [
+    "The 12% SG applies to the underpaid amount (also '12% superannuation guarantee' line ~86, '12% SG rate' in the methodology and the Related card)"
+   ],
+   "whys": [
+    "The percentage is typed into the prose instead of coming from SUPER_GUARANTEE.rate. It is correct today but will go stale when the SG changes. The FAQ file already uses formatPercent(SUPER_GUARANTEE.rate)."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/backpay-calculator-content.tsx:52",
+   "file": "modules/calculator/backpay-calculator-content.tsx",
+   "line": "52",
+   "page": "/backpay-calculator/",
+   "claims": [
+    "The 12% SG applies to the underpaid amount (also hard-coded at lines 86, 93 and 123)"
+   ],
+   "whys": [
+    "Correction to the writer's line 53: the SG claim is on source line 52. The percentage is typed into the prose rather than taken from SUPER_GUARANTEE.rate, which the FAQ file and the calculator's breakdown row already use."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.08,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/backpay-calculator-content.tsx:85",
+   "file": "modules/calculator/backpay-calculator-content.tsx",
+   "line": "85",
+   "page": "/backpay-calculator/",
+   "claims": [
+    "Paying casual employees without the required 25% casual loading on top of the base rate."
+   ],
+   "whys": [
+    "The 25% is typed into the prose instead of coming from a constant. It is correct for most modern awards but is not universal (some awards and agreements differ), and it will not update from lib/constants."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.98,
+   "needsOwner": false
+  }
+ ]
+}

@@ -460,6 +460,6 @@ export const LEVY_EXEMPTION_CATEGORIES: readonly LevyExemptionCategory[] = [
     category: "Spouse and dependant tests",
     relief: "Full or half",
     detail:
-      "Where both spouses would otherwise be liable and one is in a Category 1 exemption category, a signed family agreement decides which of you claims the full exemption and which claims the half. Under a shared-care arrangement the exemption splits by day: half for the days you had care of the dependant, full for the days you did not.",
+      "Where you and your spouse both meet a Category 1 medical condition and you have a dependent child who is not exempt and depends on both of you, a signed family agreement decides which of you claims the full exemption and which claims the half. You need one only if both of you would pay the levy without the exemption. If you were single or separated, were entitled to Family Tax Benefit Part A for a dependent child who was not exempt and shared care of that child, the exemption splits by day: half for the days you had care of the child, full for the days you did not.",
   },
 ] as const;

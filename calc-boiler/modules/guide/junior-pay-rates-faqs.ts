@@ -13,6 +13,7 @@ import {
   AWARD_JUNIOR_SCALES,
   CASUAL_LOADING,
   JUNIOR_RATES,
+  JUNIOR_TRANSITION_SCHEDULES,
   MINIMUM_WORKING_AGE,
   NMW_ORDER,
   PENDING_JUNIOR_CHANGE,
@@ -30,9 +31,23 @@ const A19 = byAge("19");
 const A20 = byAge("20");
 
 const pctOf = (v: number) => `${(v * 100).toFixed(1)}%`;
-const noMinimum = MINIMUM_WORKING_AGE.filter((j) => j.summary === "No minimum age")
-  .map((j) => j.jurisdiction)
-  .join(", ");
+const noMinimumList = MINIMUM_WORKING_AGE.filter((j) => j.summary === "No minimum age").map((j) => j.jurisdiction);
+const noMinimum = `${noMinimumList.slice(0, -1).join(", ")} and ${noMinimumList[noMinimumList.length - 1]}`;
+
+// Award junior percentages, read from AWARD_JUNIOR_SCALES so the FAQ cannot
+// drift from the award table on the page.
+type ScaleRow = { age: string; percentage: number };
+const awardScale = (code: string) =>
+  AWARD_JUNIOR_SCALES.find((s) => s.code === code)!.scale as readonly ScaleRow[];
+const awardPct = (code: string, age: string) =>
+  `${Math.round(awardScale(code).find((r) => r.age === age)!.percentage * 100)}%`;
+const RETAIL = "MA000004";
+const FAST_FOOD = "MA000003";
+
+// Fast food transition schedule (PR813654): current rate, first step, and the
+// first step at which each age reaches 100%.
+const FF_SCHEDULE = JUNIOR_TRANSITION_SCHEDULES.fastFood;
+const adultFrom = (key: "age18" | "age19" | "age20") => FF_SCHEDULE.rows.find((r) => r[key] === 100)!.effective;
 
 // ---------------------------------------------------------------------------
 // Big-employer junior rates (PAA on "junior pay rates" / "minimum wage for 16
@@ -79,19 +94,19 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "What is the minimum wage for a 16 year old in Australia?",
-    a: `For an employee covered by no award or agreement, a 16-year-old receives ${pctOf(A16.percentage)} of the National Minimum Wage: ${formatAUD(A16.hourly, 2)} an hour, or ${formatAUD(A16.casualHourly, 2)} an hour as a casual. Most 16-year-olds, though, work in retail or fast food and are covered by an award, which sets its own junior percentage against the award classification rate rather than against the National Minimum Wage. Under the General Retail Industry Award a 16-year-old gets 50% of the adult rate; under the Fast Food Industry Award, also 50%. Check which award covers you before using the national figure.`,
+    a: `For an employee covered by no award or agreement, a 16-year-old receives ${pctOf(A16.percentage)} of the National Minimum Wage: ${formatAUD(A16.hourly, 2)} an hour, or ${formatAUD(A16.casualHourly, 2)} an hour as a casual. Most 16-year-olds, though, work in retail or fast food and are covered by an award, which sets its own junior percentage against the award classification rate rather than against the National Minimum Wage. Under the General Retail Industry Award a 16-year-old gets ${awardPct(RETAIL, "16")} of the adult rate; under the Fast Food Industry Award, ${awardPct(FAST_FOOD, "16")}. Check which award covers you before using the national figure.`,
   },
   {
     q: "What is the minimum wage for a 15 year old in Australia?",
-    a: `A 15-year-old falls in the "under 16" band: ${pctOf(U16.percentage)} of the National Minimum Wage, which is ${formatAUD(U16.hourly, 2)} an hour, or ${formatAUD(U16.casualHourly, 2)} as a casual. That is the award-free rate. If an award applies, the under-16 percentage of the award rate applies instead: 45% under the General Retail Industry Award and 40% under the Fast Food Industry Award, one of the few junior rates where those two awards differ.`,
+    a: `A 15-year-old falls in the "under 16" band: ${pctOf(U16.percentage)} of the National Minimum Wage, which is ${formatAUD(U16.hourly, 2)} an hour, or ${formatAUD(U16.casualHourly, 2)} as a casual. That is the award-free rate. If an award applies, the under-16 percentage of the award rate applies instead: ${awardPct(RETAIL, "Under 16")} under the General Retail Industry Award and ${awardPct(FAST_FOOD, "Under 16")} under the Fast Food Industry Award, one of the few junior rates where those two awards differ.`,
   },
   {
     q: "What is the minimum wage for a 14 year old in Australia?",
-    a: `The same "under 16" band applies: ${formatAUD(U16.hourly, 2)} an hour award-free, or ${formatAUD(U16.casualHourly, 2)} casual. There is no separate 14-year-old rate. The bigger question for a 14-year-old is whether they can legally be employed at all, and that depends on the state or territory. There is no national minimum working age. NSW, South Australia and Tasmania set no minimum age; Victoria and Queensland set 13 for most work; Western Australia and the Northern Territory restrict what under-15s may do rather than setting a floor. Every jurisdiction separately prohibits work during school hours.`,
+    a: `The same "under 16" band applies: ${formatAUD(U16.hourly, 2)} an hour award-free, or ${formatAUD(U16.casualHourly, 2)} casual. There is no separate 14-year-old rate. The bigger question for a 14-year-old is whether they can legally be employed at all, and that depends on the state or territory. There is no national minimum working age. ${noMinimum} set no minimum age; the ACT states no minimum age but caps working hours by age; Victoria and Queensland set 13 for most work; Western Australia and the Northern Territory restrict what under-15s may do rather than setting a floor. Every jurisdiction separately prohibits work during school hours.`,
   },
   {
     q: "What is the minimum working age in Australia?",
-    a: `There is no national minimum working age. The Fair Work Ombudsman says directly that the minimum age depends on the state or territory. ${noMinimum} set no minimum age at all. Victoria sets 13 for most work and 11 for delivering newspapers or advertising material; Queensland sets 13, or 11 for supervised delivery work. Western Australia and the Northern Territory instead restrict which jobs under-15s may do. In WA a 13 or 14-year-old may work in a shop, cafe or fast food outlet with written parental permission. The often-repeated claim that "the minimum age in Australia is 15" appears only in secondary sources and is not stated on any government page.`,
+    a: `There is no national minimum working age. The Fair Work Ombudsman says directly that the minimum age depends on the state or territory. ${noMinimum} set no minimum age at all, and the ACT states none but caps working hours by age. Victoria sets 13 for most work and 11 for delivering newspapers or advertising material; Queensland sets 13, or 11 for supervised delivery work. Western Australia and the Northern Territory instead restrict which jobs under-15s may do. In WA a 13 or 14-year-old may work in a shop, cafe or fast food outlet with written parental permission. The often-repeated claim that "the minimum age in Australia is 15" appears only in secondary sources and is not stated on any government page.`,
   },
   {
     q: "What are the junior pay rates for 2026-27?",
@@ -103,7 +118,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "At what age do you get full adult pay in Australia?",
-    a: `The age for full adult pay depends on which award or agreement covers you, if any. Under the National Minimum Wage the full adult rate applies from ${ADULT_AGE}. Awards set their own ages, and they differ sharply: the Hair and Beauty Industry Award reaches the adult rate at 18, the earliest of any common award; the Hospitality Industry (General) Award pays 100% from 20; the General Retail Industry Award reaches 100% at 20 but only after more than six months with the same employer; and the Fast Food Industry Award currently holds 20-year-olds at 90% until 21. From ${PENDING_JUNIOR_CHANGE.earliestStart}, 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier} under the retail, fast food and pharmacy awards start moving to the adult rate in stages. There is no single national answer.`,
+    a: `The age for full adult pay depends on which award or agreement covers you, if any. Under the National Minimum Wage the full adult rate applies from ${ADULT_AGE}. Awards set their own ages, and they differ sharply: the Hair and Beauty Industry Award reaches the adult rate at 18, the earliest of any common award; the Hospitality Industry (General) Award pays 100% from 20; the General Retail Industry Award reaches 100% at 20 but only after more than six months with the same employer; and the Fast Food Industry Award currently holds 20-year-olds at ${awardPct(FAST_FOOD, "20")} until 21. From ${PENDING_JUNIOR_CHANGE.earliestStart}, 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier} under the retail, fast food and pharmacy awards start moving to the adult rate in stages. There is no single national answer.`,
   },
   {
     q: "Do junior rates apply to every job?",
@@ -111,7 +126,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "Are junior rates being abolished?",
-    a: `Junior rates are being phased out gradually for 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier}, under the Retail, Fast Food and Pharmacy awards only. The Fair Work Commission made the determinations on ${PENDING_JUNIOR_CHANGE.implementationDecidedOn} (${PENDING_JUNIOR_CHANGE.implementationDecision}), and the first step applies from the first full pay period on or after ${PENDING_JUNIOR_CHANGE.earliestStart}. It is a phase-in, not a jump to the adult rate: on that date an eligible 19-year-old moves from 80% to 85%. Under the retail and fast food awards, rates then rise five percentage points every 1 July and 1 December, reaching the adult rate from 1 July 2027 for 20-year-olds in fast food (retail 20-year-olds with more than 6 months already get it), 1 July 2028 for 19-year-olds and 1 July 2029 for 18-year-olds. Pharmacy moves in larger annual steps on a different timetable. Employees with 6 months or less with their employer, and all under-18s, keep the current rates.`,
+    a: `Junior rates are being phased out gradually for 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier}, under the Retail, Fast Food and Pharmacy awards only. The Fair Work Commission made the determinations on ${PENDING_JUNIOR_CHANGE.implementationDecidedOn} (${PENDING_JUNIOR_CHANGE.implementationDecision}), and the first step applies from the first full pay period on or after ${PENDING_JUNIOR_CHANGE.earliestStart}. It is a phase-in, not a jump to the adult rate: on that date an eligible 19-year-old moves from ${FF_SCHEDULE.present.age19}% to ${FF_SCHEDULE.rows[0].age19}%. Under the retail and fast food awards, rates then rise five percentage points every 1 July and 1 December, reaching the adult rate from ${adultFrom("age20")} for 20-year-olds in fast food (retail 20-year-olds with more than 6 months already get it), ${adultFrom("age19")} for 19-year-olds and ${adultFrom("age18")} for 18-year-olds. Pharmacy moves in larger annual steps on a different timetable. Employees with 6 months or less with their employer, and all under-18s, keep the current rates.`,
   },
   {
     q: "How are junior rates calculated?",
@@ -119,7 +134,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "Can an employer pay a junior less than these rates?",
-    a: `No. These are legal minimums, not guidelines, and paying below them is underpayment regardless of whether the employee agreed to it. Since 1 January 2025 intentional underpayment has been a federal criminal offence. Check the classification as well as the age: an employee wrongly placed a level down, or given a junior rate under an award that has none, can be owed thousands over a year. Underpayments can generally be recovered for up to six years.`,
+    a: `No. These are legal minimums, not guidelines, and paying below them is underpayment regardless of whether the employee agreed to it. Since 1 January 2025 intentional underpayment has been a federal criminal offence. Check the classification as well as the age: an employee wrongly placed a level down, or given a junior rate under an award that has none, is underpaid for every hour they work. Underpayments can generally be recovered for up to six years.`,
   },
   {
     q: "How much do McDonald's, Kmart, Woolworths and Coles pay juniors?",

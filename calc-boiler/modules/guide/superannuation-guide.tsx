@@ -6,7 +6,7 @@ import { SUPERANNUATION_GUIDE_FAQS } from "./superannuation-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, SG_RATE_HISTORY, QUALIFYING_EARNINGS, MEDICARE_LEVY, calculateIncomeTax, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, SG_RATE_HISTORY, QUALIFYING_EARNINGS, MEDICARE_LEVY, TAX_BRACKETS, TAX_BRACKETS_2025_26, calculateIncomeTax, formatAUD, formatPercent } from "@/lib/constants";
 import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE, DIVISION_293, DIVISION_296, LOW_RATE_CAP, TRANSFER_BALANCE_CAP_PREVIOUS, bringForwardThresholds } from "@/lib/constants/super-contributions";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -27,11 +27,45 @@ const SOURCES_LIST: SourceLink[] = [
 // Worked-example figures are derived from the current-year constants, never typed in.
 const EX_SALARY = 85_000;
 const EX_SG = EX_SALARY * SUPER_GUARANTEE.rate;
-const EX_CONTRIB_TAX = EX_SG * 0.15;
+const EX_CONTRIB_TAX = EX_SG * CONTRIBUTIONS_TAX_RATE;
 const EX_INCOME_TAX = calculateIncomeTax(EX_SALARY);
 const EX_LEVY = EX_SALARY * MEDICARE_LEVY.rate;
 const EX_TAKE_HOME = EX_SALARY - EX_INCOME_TAX - EX_LEVY;
-const SECOND_BRACKET = 45_000;
+const SECOND_BRACKET = TAX_BRACKETS[1].max;
+
+// Rates, all from the bracket constants, CONTRIBUTIONS_TAX_RATE and MEDICARE_LEVY.
+const CTAX = formatPercent(CONTRIBUTIONS_TAX_RATE, 0);
+const LEVY = formatPercent(MEDICARE_LEVY.rate, 0);
+const SECOND_RATE = TAX_BRACKETS[1].rate;
+const PREV_SECOND_RATE = TAX_BRACKETS_2025_26[1].rate;
+const TOP_RATE_WITH_LEVY = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate;
+const RATES_ABOVE_CTAX = TAX_BRACKETS.filter((b) => b.rate > CONTRIBUTIONS_TAX_RATE);
+/** Income tax and Medicare levy saved, less contributions tax, on each $1,000 sacrificed in a bracket. */
+const savingPer1000 = (rate: number) => Math.round((rate + MEDICARE_LEVY.rate - CONTRIBUTIONS_TAX_RATE) * 1_000);
+/** Most the 1 July 2026 second-rate cut can save: the rate drop across the whole second bracket. */
+const SECOND_RATE_CUT_MAX = TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS[2].base;
+
+/** Marginal income tax rate (no levy) for a taxable income. */
+function bracketRate(income: number): number {
+  return TAX_BRACKETS.find((b) => income >= b.min && income <= b.max)?.rate ?? 0;
+}
+
+/** ["30%", "37%", "45%"] -> "30%, 37% or 45%". */
+function orList(items: string[]): string {
+  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items[items.length - 1]}`;
+}
+
+// Salary sacrifice examples, derived from the same constants.
+const EX_SAC = 5_000;
+const EX_SAC_TAX = EX_INCOME_TAX - calculateIncomeTax(EX_SALARY - EX_SAC);
+const EX_SAC_LEVY = EX_SAC * MEDICARE_LEVY.rate;
+const EX_SAC_CTAX = EX_SAC * CONTRIBUTIONS_TAX_RATE;
+const SS_SALARY = 100_000;
+const SS_SG = SS_SALARY * SUPER_GUARANTEE.rate;
+const SS_SAC = 10_000;
+const SS_TAX = calculateIncomeTax(SS_SALARY) - calculateIncomeTax(SS_SALARY - SS_SAC);
+const SS_LEVY = SS_SAC * MEDICARE_LEVY.rate;
+const SS_CTAX = SS_SAC * CONTRIBUTIONS_TAX_RATE;
 const BRING_FORWARD = bringForwardThresholds();
 const FY_END_YEAR = SITE_CONFIG.financialYearEnd.slice(-4);
 const FY_START_YEAR = SITE_CONFIG.financialYearStart.slice(-4);
@@ -87,7 +121,7 @@ export default function SuperannuationGuidePage() {
                 Commonly called &quot;super,&quot; the system was introduced under the Superannuation Guarantee (Administration) Act 1992 by the Keating Government. Employers pay contributions on top of gross salary, and the money is invested by the fund across asset classes including Australian equities, international shares, fixed interest, and property. The balance grows through a combination of employer contributions, voluntary contributions, and investment returns until the member reaches preservation age and retires.
               </p>
               <p>
-                Super contributions directly reduce the income tax you pay today through concessional tax treatment. Employer super guarantee payments and salary sacrifice contributions are taxed at a flat <strong>15%</strong> inside the fund, compared to marginal rates of 30%, 37%, or 45% outside super. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how your marginal rate compares to the 15% super rate.
+                Concessional contributions (employer SG, salary sacrifice and personal contributions you claim as a tax deduction) are taxed at a flat <strong>{CTAX}</strong> inside the fund instead of at your marginal rate. Salary sacrifice and deductible personal contributions also lower your taxable income, so they cut the income tax you pay today. Employer SG is paid on top of your salary and does not change your income tax. Above {formatAUD(SECOND_BRACKET)} your marginal rate is {orList(RATES_ABOVE_CTAX.map((b) => formatPercent(b.rate, 0)))}, plus the {LEVY} Medicare levy. In the {formatPercent(SECOND_RATE, 0)} bracket the income tax rate is the same as the {CTAX} contributions tax, so there is no rate gap. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how your marginal rate compares to the {CTAX} super rate.
               </p>
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
                 <div className="flex items-start gap-4">
@@ -106,10 +140,10 @@ export default function SuperannuationGuidePage() {
             <section id="sg-rate">
               <h2>How Much Super Does Your Employer Pay?</h2>
               <p>
-                The <Link href="/super-guarantee-rate-history/">superannuation guarantee rate</Link> is <strong>12%</strong>, paid on top of your earnings. Since <strong>Payday Super commenced on 1 July 2026</strong>, employers must pay it <strong>every payday</strong> rather than quarterly, and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong> of each payday (20 business days for a new employee or a first contribution to a new fund).
+                The <Link href="/super-guarantee-rate-history/">superannuation guarantee rate</Link> is <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong>, paid on top of your earnings. Since <strong>Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart}</strong>, employers must pay it <strong>every payday</strong> rather than quarterly, and the contribution must be <em>received</em> by your fund within <strong>{SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days</strong> of each payday ({SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee} business days for a new employee or a first contribution to a new fund).
               </p>
               <p>
-                The SG rate increased by 0.5 percentage points each year from 2021 to reach the legislated ceiling of 12% on {SUPER_GUARANTEE.effectiveDate}, and it stays at 12% for FY{SITE_CONFIG.financialYear}. No further increases are legislated. On a salary of {formatAUD(EX_SALARY)}, the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG adds <strong>{formatAUD(EX_SG)} per year</strong> to your super balance. The previous rate of {formatPercent(SUPER_GUARANTEE.previousRate, 1)} applied during FY2024-25.
+                The SG rate increased by 0.5 percentage points each year from 2021 to reach the legislated ceiling of {formatPercent(SUPER_GUARANTEE.rate, 0)} on {SUPER_GUARANTEE.effectiveDate}, and it stays at {formatPercent(SUPER_GUARANTEE.rate, 0)} for FY{SITE_CONFIG.financialYear}. No further increases are legislated. On a salary of {formatAUD(EX_SALARY)}, the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG adds <strong>{formatAUD(EX_SG)} per year</strong> to your super balance. The previous rate of {formatPercent(SUPER_GUARANTEE.previousRate, 1)} applied during FY2024-25.
               </p>
 
               <h3>SG Rate History Table ({SG_RATE_HISTORY[0].year} to {SG_RATE_HISTORY[SG_RATE_HISTORY.length - 1].year})</h3>
@@ -147,17 +181,17 @@ export default function SuperannuationGuidePage() {
             <section id="who-pays">
               <h2>Who Has to Pay Super?</h2>
               <p>
-                Every Australian employer must pay the 12% SG for <strong>all employees regardless of earnings level</strong>, employment type, or hours worked. The previous $450-per-month minimum threshold was abolished on 1 July 2022, so low-income and part-time workers now receive super too.
+                Every Australian employer must pay the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG for <strong>all eligible employees regardless of earnings level</strong> or employment type. Hours worked matter for two groups only: under 18s and private or domestic workers, who are eligible in a week where they work more than 30 hours for you. The previous $450-per-month minimum threshold was abolished on 1 July 2022, so low-income and part-time workers now receive super too.
               </p>
               <ul>
                 <li><strong>Full-time, part-time, and casual workers:</strong> Entitled to super on every dollar of qualifying earnings, with no minimum monthly income requirement.</li>
                 <li><strong>Under 18s:</strong> Entitled to super if they work more than <strong>30 hours in a week</strong> for that employer.</li>
                 <li><strong>Contractors:</strong> If you are hired wholly or principally for your labour (even with an ABN), you are an employee for superannuation purposes and entitled to the SG. Use our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> to compare the financial difference.</li>
                 <li><strong>Temporary residents and working holiday makers:</strong> Entitled to SG on the same basis as permanent residents. Super is payable from the first dollar earned. See our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link> for the tax treatment of departing temporary residents.</li>
-                <li><strong>Company directors:</strong> Entitled to SG if they are also an employee of the company. Directors paid solely as officeholders (director&apos;s fees) are not covered unless an employment relationship exists.</li>
+                <li><strong>Company directors:</strong> Entitled to SG. The ATO lists directors&apos; fees as ordinary time earnings, so they count as qualifying earnings and attract super.</li>
               </ul>
               <p>
-                Self-employed sole traders and partners in a partnership have no obligation to pay themselves super, though they can make voluntary contributions and claim a tax deduction. Domestic workers employed for fewer than 30 hours per week are also exempt.
+                Self-employed sole traders and partners in a partnership have no obligation to pay themselves super, though they can make voluntary contributions and claim a tax deduction. Private or domestic workers (such as a nanny or housekeeper) get no SG for a week in which they work 30 hours or less for you.
               </p>
             </section>
 
@@ -219,14 +253,14 @@ export default function SuperannuationGuidePage() {
                       <tr>
                         <td className="px-6 py-4 font-medium">Concessional</td>
                         <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.concessionalCap)}</td>
-                        <td className="px-6 py-4">15%</td>
+                        <td className="px-6 py-4">{CTAX}</td>
                         <td className="px-6 py-4">Excess added to assessable income, taxed at marginal rate</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Non-concessional</td>
                         <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</td>
                         <td className="px-6 py-4">0% (already taxed)</td>
-                        <td className="px-6 py-4">47% tax on excess, or withdraw and pay marginal rate</td>
+                        <td className="px-6 py-4">{formatPercent(TOP_RATE_WITH_LEVY, 0)} tax on excess, or withdraw and pay marginal rate</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Bring-forward (non-concessional)</td>
@@ -244,7 +278,7 @@ export default function SuperannuationGuidePage() {
                 The {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap includes three contribution types: employer SG payments, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> amounts, and personal contributions for which you claim a tax deduction. All three count toward the single cap. On an {formatAUD(EX_SALARY)} salary, the employer SG of {formatAUD(EX_SG)} leaves <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - EX_SG)}</strong> of unused cap space for voluntary concessional contributions. Our <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide has a calculator for your own salary, including carry-forward.
               </p>
               <p>
-                Concessional contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year, for example after receiving a bonus or inheritance.
+                Concessional contributions are taxed at <strong>{CTAX}</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to {CARRY_FORWARD.years} years, provided your total super balance is below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year, for example after receiving a bonus or inheritance.
               </p>
 
               <h3>Non-Concessional Contributions Cap ({formatAUD(SUPER_GUARANTEE.nonConcessionalCap)})</h3>
@@ -252,12 +286,12 @@ export default function SuperannuationGuidePage() {
                 Non-concessional contributions are amounts you deposit from after-tax income. These contributions attract <strong>no additional tax</strong> when entering the fund because income tax has already been paid. The annual cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong>.
               </p>
               <p>
-                The &quot;bring-forward&quot; rule allows contributors under 75 to use up to 3 years of non-concessional cap in a single year (up to <strong>{formatAUD(SUPER_GUARANTEE.bringForwardCap)}</strong>), provided total super balance is below {millions(BRING_FORWARD.threeYear)} at 30 June of the prior year. A balance from {millions(BRING_FORWARD.threeYear)} to below {millions(BRING_FORWARD.twoYear)} allows 2 years ({formatAUD(SUPER_GUARANTEE.nonConcessionalCap * 2)}); from {millions(BRING_FORWARD.twoYear)} there is no bring-forward, and at {millions(BRING_FORWARD.nilCap)} or more the non-concessional cap is nil. Exceeding the non-concessional cap results in the excess being taxed at <strong>47%</strong> (top marginal rate plus Medicare Levy), or you can elect to withdraw the excess and pay tax at your marginal rate plus an earnings component.
+                The &quot;bring-forward&quot; rule allows contributors under 75 to use up to 3 years of non-concessional cap in a single year (up to <strong>{formatAUD(SUPER_GUARANTEE.bringForwardCap)}</strong>), provided total super balance is below {millions(BRING_FORWARD.threeYear)} at 30 June of the prior year. A balance from {millions(BRING_FORWARD.threeYear)} to below {millions(BRING_FORWARD.twoYear)} allows 2 years ({formatAUD(SUPER_GUARANTEE.nonConcessionalCap * 2)}); from {millions(BRING_FORWARD.twoYear)} there is no bring-forward, and at {millions(BRING_FORWARD.nilCap)} or more the non-concessional cap is nil. Exceeding the non-concessional cap results in the excess being taxed at <strong>{formatPercent(TOP_RATE_WITH_LEVY, 0)}</strong> (top marginal rate plus Medicare Levy), or you can elect to withdraw the excess and pay tax at your marginal rate plus an earnings component.
               </p>
 
               <h3>Division 293 Tax for High-Income Earners</h3>
               <p>
-                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the tax on those concessional contributions to <strong>30%</strong> for people above the threshold, so super gives them a smaller tax advantage. The ATO issues Division 293 assessments automatically after tax returns are lodged. You can pay the assessment from your super fund or from personal funds.
+                &quot;Division 293&quot; imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals with income plus concessional contributions exceeding <strong>{formatAUD(DIVISION_293.threshold)}</strong>. This brings the tax on those concessional contributions to <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)}</strong> for people above the threshold, so super gives them a smaller tax advantage. The ATO issues Division 293 assessments automatically after tax returns are lodged. You can pay the assessment from your super fund or from personal funds.
               </p>
 
               <h3>Division 296 Tax on Large Super Balances</h3>
@@ -269,7 +303,7 @@ export default function SuperannuationGuidePage() {
             <section id="how-super-taxed">
               <h2>How Is Super Taxed?</h2>
               <p>
-                Super is taxed at 3 distinct stages: contributions, investment earnings, and withdrawals. The combined tax treatment makes super a lower-tax way to save for retirement than saving outside it, with rates of <strong>15% or less</strong> at each stage compared to marginal rates up to 47%.
+                Super is taxed at 3 distinct stages: contributions, investment earnings, and withdrawals. The combined tax treatment makes super a lower-tax way to save for retirement than saving outside it, with <strong>{CTAX}</strong> tax on concessional contributions and fund earnings in accumulation, compared to marginal rates up to {formatPercent(TOP_RATE_WITH_LEVY, 0)} including the Medicare levy.
               </p>
 
               <div className="not-prose my-8">
@@ -285,7 +319,7 @@ export default function SuperannuationGuidePage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-medium">Concessional contributions</td>
-                        <td className="px-6 py-4 font-bold">15%</td>
+                        <td className="px-6 py-4 font-bold">{CTAX}</td>
                         <td className="px-6 py-4">Employer SG, salary sacrifice, and deductible personal contributions. Division 293 adds {formatPercent(DIVISION_293.rate, 0)} above {formatAUD(DIVISION_293.threshold)} income.</td>
                       </tr>
                       <tr>
@@ -325,13 +359,13 @@ export default function SuperannuationGuidePage() {
             <section id="max-contribution-base">
               <h2>Is There a Maximum Super Contribution Base?</h2>
               <p>
-                With Payday Super from 1 July 2026, the maximum super contribution base is an annual figure: <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} for FY{SITE_CONFIG.financialYear}</strong> (previously {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter). Employers are not legally required to pay the 12% SG on earnings above this threshold.
+                With Payday Super from {SUPER_GUARANTEE.paydaySuperStart}, the maximum super contribution base is an annual figure: <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} for FY{SITE_CONFIG.financialYear}</strong> (previously {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter). Employers are not legally required to pay the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG on earnings above this threshold.
               </p>
               <p>
                 The maximum SG your employer must pay for the year is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} &times; {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}). This cap affects employees earning above {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} per year. Some employers voluntarily pay super on total salary including amounts above the maximum contribution base as part of an executive remuneration package.
               </p>
               <p>
-                The maximum contribution base is indexed annually in line with Average Weekly Ordinary Time Earnings (AWOTE). Until 30 June 2026 it was a quarterly figure ({formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter in FY{SITE_CONFIG.previousFinancialYear}). Use our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> to determine whether the cap applies to your salary.
+                Until 30 June 2026 it was a quarterly figure indexed to Average Weekly Ordinary Time Earnings (AWOTE) ({formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter in FY{SITE_CONFIG.previousFinancialYear}). From {SUPER_GUARANTEE.paydaySuperStart} the ATO works it out from the concessional contributions cap divided by the SG rate ({formatAUD(SUPER_GUARANTEE.concessionalCap)} &divide; {formatPercent(SUPER_GUARANTEE.rate, 0)}), so it moves when the cap or the SG rate moves. Use our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> to determine whether the cap applies to your salary.
               </p>
             </section>
 
@@ -385,9 +419,9 @@ export default function SuperannuationGuidePage() {
                         <td className="px-6 py-4">{formatAUD(EX_SALARY)} + {formatAUD(EX_SG)}</td>
                       </tr>
                       <tr>
-                        <td className="px-6 py-4">Tax on SG inside super (15%)</td>
+                        <td className="px-6 py-4">Tax on SG inside super ({CTAX})</td>
                         <td className="px-6 py-4 font-bold">{formatAUD(EX_CONTRIB_TAX)}</td>
-                        <td className="px-6 py-4">{formatAUD(EX_SG)} &times; 15%</td>
+                        <td className="px-6 py-4">{formatAUD(EX_SG)} &times; {CTAX}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4">Net SG added to super balance</td>
@@ -402,7 +436,7 @@ export default function SuperannuationGuidePage() {
                       <tr>
                         <td className="px-6 py-4">Income tax on {formatAUD(EX_SALARY)} salary (FY{SITE_CONFIG.financialYear} rates)</td>
                         <td className="px-6 py-4 font-bold">{formatAUD(EX_INCOME_TAX)}</td>
-                        <td className="px-6 py-4">{formatAUD(calculateIncomeTax(SECOND_BRACKET))} + ({formatAUD(EX_SALARY)} &minus; {formatAUD(SECOND_BRACKET)}) &times; 30%</td>
+                        <td className="px-6 py-4">{formatAUD(calculateIncomeTax(SECOND_BRACKET))} + ({formatAUD(EX_SALARY)} &minus; {formatAUD(SECOND_BRACKET)}) &times; {formatPercent(bracketRate(EX_SALARY), 0)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4">Medicare Levy ({formatPercent(MEDICARE_LEVY.rate, 0)})</td>
@@ -419,14 +453,14 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                If this employee salary sacrifices $5,000 into super, taxable income drops to {formatAUD(EX_SALARY - 5_000)} and income tax falls by approximately <strong>$1,500</strong> (the $5,000 at the 30% marginal rate). The $5,000 is taxed at 15% inside super ($750), so the net tax saving is <strong>$750</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>.
+                If this employee salary sacrifices {formatAUD(EX_SAC)} into super, taxable income drops to {formatAUD(EX_SALARY - EX_SAC)}. Income tax falls by <strong>{formatAUD(EX_SAC_TAX)}</strong> (the {formatAUD(EX_SAC)} at the {formatPercent(bracketRate(EX_SALARY), 0)} marginal rate) and the Medicare levy falls by {formatAUD(EX_SAC_LEVY)} ({LEVY}). The {formatAUD(EX_SAC)} is taxed at {CTAX} inside super ({formatAUD(EX_SAC_CTAX)}), so the net tax saving is <strong>{formatAUD(EX_SAC_TAX + EX_SAC_LEVY - EX_SAC_CTAX)}</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>.
               </p>
             </section>
 
             <section id="salary-sacrifice">
               <h2>How Does Salary Sacrifice Into Super Work?</h2>
               <p>
-                Salary sacrifice redirects a portion of your pre-tax salary into your super fund, where it is taxed at <strong>15%</strong> instead of your marginal rate. The tax saving ranges from <strong>$150 per $1,000 sacrificed</strong> (at the 30% bracket) to <strong>$300 per $1,000</strong> (at the 45% bracket), so the saving grows with your marginal rate.
+                Salary sacrifice redirects a portion of your pre-tax salary into your super fund, where it is taxed at <strong>{CTAX}</strong> instead of your marginal rate. Counting income tax and the {LEVY} Medicare levy, each {formatAUD(1_000)} you sacrifice saves <strong>{formatAUD(savingPer1000(RATES_ABOVE_CTAX[0].rate))}</strong> in the {formatPercent(RATES_ABOVE_CTAX[0].rate, 0)} bracket, rising to <strong>{formatAUD(savingPer1000(RATES_ABOVE_CTAX[RATES_ABOVE_CTAX.length - 1].rate))}</strong> in the {formatPercent(RATES_ABOVE_CTAX[RATES_ABOVE_CTAX.length - 1].rate, 0)} bracket, so the saving grows with your marginal rate. In the {formatPercent(SECOND_RATE, 0)} bracket the income tax rate is the same as the {CTAX} contributions tax, so salary sacrifice gives no income tax rate saving there. Above the {formatAUD(DIVISION_293.threshold)} Division 293 threshold, the contributions tax rises to {formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} and the saving shrinks.
               </p>
               <p>
                 Salary sacrifice contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap alongside employer SG payments. Exceeding the cap triggers additional tax at your marginal rate on the excess amount. Before arranging salary sacrifice with your employer, calculate your available cap space by subtracting your annual SG from {formatAUD(SUPER_GUARANTEE.concessionalCap)}, or use the <Link href="/concessional-contributions-cap/">concessional cap calculator</Link>.
@@ -434,14 +468,14 @@ export default function SuperannuationGuidePage() {
 
               <h3>Worked Example: Salary Sacrifice on $100,000</h3>
               <p>
-                An employee earning $100,000 receives 12% SG ($12,000), leaving {formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)} of concessional cap space ({formatAUD(SUPER_GUARANTEE.concessionalCap)} &minus; $12,000). If they salary sacrifice $10,000:
+                An employee earning {formatAUD(SS_SALARY)} receives {formatPercent(SUPER_GUARANTEE.rate, 0)} SG ({formatAUD(SS_SG)}), leaving {formatAUD(SUPER_GUARANTEE.concessionalCap - SS_SG)} of concessional cap space ({formatAUD(SUPER_GUARANTEE.concessionalCap)} &minus; {formatAUD(SS_SG)}). If they salary sacrifice {formatAUD(SS_SAC)}:
               </p>
               <ul>
-                <li>Taxable income drops from $100,000 to <strong>$90,000</strong></li>
-                <li>Income tax saving at the 30% marginal rate: <strong>$3,000</strong></li>
-                <li>The $10,000 is taxed at 15% inside super: <strong>$1,500 contributions tax</strong></li>
-                <li><strong>Net benefit:</strong> $1,500 more in super than taking the income as salary</li>
-                <li>Take-home pay reduces by approximately <strong>$7,000</strong> ($10,000 minus the $3,000 tax saving)</li>
+                <li>Taxable income drops from {formatAUD(SS_SALARY)} to <strong>{formatAUD(SS_SALARY - SS_SAC)}</strong></li>
+                <li>Income tax saving at the {formatPercent(bracketRate(SS_SALARY), 0)} marginal rate: <strong>{formatAUD(SS_TAX)}</strong>, plus <strong>{formatAUD(SS_LEVY)}</strong> less Medicare levy ({LEVY})</li>
+                <li>The {formatAUD(SS_SAC)} is taxed at {CTAX} inside super: <strong>{formatAUD(SS_CTAX)} contributions tax</strong></li>
+                <li><strong>Net benefit:</strong> {formatAUD(SS_TAX + SS_LEVY - SS_CTAX)} more in super than you would keep by taking the income as salary</li>
+                <li>Take-home pay falls by <strong>{formatAUD(SS_SAC - SS_TAX - SS_LEVY)}</strong> ({formatAUD(SS_SAC)} minus the {formatAUD(SS_TAX + SS_LEVY)} tax and levy saving)</li>
               </ul>
               <p>
                 Use the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model your own scenario with exact dollar amounts.
@@ -530,7 +564,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                For employees on a &quot;base + super&quot; structure, Payday Super changes when super arrives, not how much. On a {formatAUD(EX_SALARY)} salary the employer still pays {formatAUD(EX_SG)} for the year, but a fortnightly-paid employee should now see a contribution after every pay rather than four times a year. The higher {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap gives {formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)} more room for <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link>. Separately, the second income tax rate fell from 16% to 15% on 1 July 2026, so most taxpayers pay slightly less tax (see <Link href="/tax-brackets/">tax brackets</Link>).
+                For employees on a &quot;base + super&quot; structure, Payday Super changes when super arrives, not how much. On a {formatAUD(EX_SALARY)} salary the employer still pays {formatAUD(EX_SG)} for the year, but a fortnightly-paid employee should now see a contribution after every pay rather than four times a year. The higher {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap gives {formatAUD(SUPER_GUARANTEE.concessionalCap - SUPER_GUARANTEE.concessionalCapPrevious)} more room for <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link>. Separately, the second income tax rate fell from {formatPercent(PREV_SECOND_RATE, 0)} to {formatPercent(SECOND_RATE, 0)} on {SITE_CONFIG.financialYearStart}. Taxable income from {formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)} is now taxed at the lower rate, a saving of up to {formatAUD(SECOND_RATE_CUT_MAX)} a year (see <Link href="/tax-brackets/">tax brackets</Link>).
               </p>
             </section>
 
@@ -597,14 +631,14 @@ export default function SuperannuationGuidePage() {
               </p>
               <h3>Comparing Funds</h3>
               <p>
-                When choosing a fund, compare investment fees (target under 1% p.a.), insurance premiums, investment performance over 5 to 10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/calculators-and-tools/super-yoursuper-comparison-tool" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> compares MySuper products on fees and net returns.
+                When choosing a fund, compare investment fees, insurance premiums, investment performance over 5 to 10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/calculators-and-tools/super-yoursuper-comparison-tool" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> compares MySuper products on fees and net returns.
               </p>
             </section>
 
             <section id="key-dates">
               <h2>What Are the Key Super Dates and Deadlines?</h2>
               <p>
-                Employers must pay SG contributions <strong>every payday</strong>, with the money received by the fund within <strong>{SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days</strong>. Missing that deadline triggers the Superannuation Guarantee Charge (SGC): the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on voluntary disclosure within 30 days. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>.
+                Employers must pay SG contributions <strong>every payday</strong>, with the money received by the fund within <strong>{SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days</strong>. Missing that deadline triggers the Superannuation Guarantee Charge (SGC), which has {SUPER_GUARANTEE_CHARGE.current.components.length} parts: the shortfall, notional earnings at the general interest charge rate compounded daily, an administrative uplift of up to {formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}, and a choice loading if you did not follow the choice of fund rules. A voluntary disclosure within 30 days of payday cuts the uplift to {SUPER_GUARANTEE_CHARGE.current.upliftSchedule[0].noPriorAssessment}% if the ATO has not made its own SGC assessment against you in the 2 years before that payday, and to {SUPER_GUARANTEE_CHARGE.current.upliftSchedule[0].priorAssessment}% if it has. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>.
               </p>
 
               <div className="not-prose my-8">

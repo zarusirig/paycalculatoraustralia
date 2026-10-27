@@ -23,7 +23,10 @@ import {
   HOSPITALITY_JUNIOR_ADULT_RATE_SOURCE,
   HOSPITALITY_RATES,
   HOSPITALITY_ALLOWANCES,
+  RETAIL_JUNIOR_SCALE,
+  RETAIL_OVERTIME,
 } from "@/lib/constants/hospitality-award";
+import { JUNIOR_TRANSITION_SCHEDULES } from "@/lib/constants/junior-rates";
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
 import { AllowanceTable, AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { HOSPITALITY_FAQS, casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
@@ -57,6 +60,8 @@ const dutiesFor = (level: string) => HOSPITALITY_CLASSIFICATIONS.filter((c) => c
 const juniorPct = (age: string) => HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === age)?.percentage ?? 1;
 
 const LOADING = HOSPITALITY_AWARD.casualLoading;
+/** First step of the retail junior phase-in (PR813655), for 19-year-olds with more than 6 months' service. */
+const RETAIL_JUNIOR_STEP = JUNIOR_TRANSITION_SCHEDULES.retail.rows[0];
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
 
 const MATRIX_ROWS = HOSPITALITY_RATES.map((r) => ({ level: r.level, hourly: r.hourly }));
@@ -94,7 +99,7 @@ export default function HospitalityAwardRatesPage() {
             Hospitality Award Rates {SITE_CONFIG.financialYear}: Levels 1&ndash;6
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount per hour on top of these rates. The tables below give the hourly rate for each level on weekdays, Saturdays, Sundays and public holidays, for full-time, part-time and casual employees. The rest of this page covers which award applies to your venue, penalty rates, overtime, junior rates and allowances.
+            The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering hotels and pubs, taverns, motels, resorts, casinos, caterers and accommodation businesses throughout Australia, including restaurants run in those venues. Registered clubs and restaurants or cafes that stand alone have their own awards (see <a href="#award-for-hospitality" className="text-eucalyptus-dark hover:underline">which award applies</a>). For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount per hour on top of these rates. The tables below give the hourly rate for each level on weekdays, Saturdays, Sundays and public holidays, for full-time, part-time and casual employees. The rest of this page covers which award applies to your venue, penalty rates, overtime, junior rates and allowances.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -329,7 +334,7 @@ export default function HospitalityAwardRatesPage() {
 
               <h3>Evening and night work is a flat cash amount</h3>
               <p>
-                Evening and night loadings in the hospitality award work differently from weekend penalties: they are <strong>not multipliers</strong>. This is the part most hospitality pay calculators get wrong. You are paid your ordinary rate <em>plus a fixed number of dollars per hour</em>:
+                Evening and night loadings in the hospitality award work differently from weekend penalties: they are <strong>not multipliers</strong>. You are paid your ordinary rate <em>plus a fixed number of dollars per hour</em>:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -410,7 +415,7 @@ export default function HospitalityAwardRatesPage() {
                 <strong>Public holidays are the exception.</strong> There the two rates diverge: full-time overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime)} and casual overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual)}, or {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime), 2)} against {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual), 2)} on Level 1. Stating the rule without that carve-out understates casual public holiday pay.
               </p>
               <p>
-                The <Link href="/retail-award-rates/">General Retail Industry Award</Link> does the opposite: the loading <em>is</em> included, so retail casual overtime is 175% against 150% for permanents. One payroll configuration cannot apply both awards&apos; overtime rules. This is a common source of underpayment when a venue runs a bistro under one award and a shop under the other.
+                The <Link href="/retail-award-rates/">General Retail Industry Award</Link> does the opposite: the loading <em>is</em> included, so retail casual overtime for the first 3 hours Monday to Saturday is {pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} against {pct(RETAIL_OVERTIME.weekdayFirst3Hours)} for permanents. One payroll configuration cannot apply both awards&apos; overtime rules.
               </p>
             </section>
 
@@ -428,7 +433,7 @@ export default function HospitalityAwardRatesPage() {
                 casualLoading={LOADING}
               />
               <p>
-                Two junior rules set the hospitality award apart from the retail award. <strong>19-year-olds receive {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}</strong> where the retail award pays 80%. And the <strong>full adult rate starts at 20</strong>, not 21.
+                Two junior rules set the hospitality award apart from the retail award. <strong>19-year-olds receive {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}</strong> where the retail award pays {pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)} (rising to {RETAIL_JUNIOR_STEP.age19}% from the first full pay period on or after {RETAIL_JUNIOR_STEP.effective} for 19-year-olds with more than 6 months&rsquo; service). And the <strong>full adult rate starts at 20</strong> with no service condition, where a retail 20-year-old gets it only after more than 6 months with the employer ({pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "20 (6 months or less)")!.percentage)} before that).
               </p>
               <p>
                 {HOSPITALITY_JUNIOR_ADULT_RATE_EXCEPTIONS} {HOSPITALITY_JUNIOR_ADULT_RATE_SOURCE}
@@ -581,7 +586,7 @@ export default function HospitalityAwardRatesPage() {
                   Every rate comes from a single constants file checked against the Fair Work Ombudsman pay guide for {HOSPITALITY_AWARD.code} effective {HOSPITALITY_AWARD.operativeFrom} (published {HOSPITALITY_AWARD.payGuidePublished}) and the consolidated award text. Hourly is the published weekly rate divided by {EMPLOYMENT.standardWeeklyHours}; casual rates add the {pct(LOADING)} loading.
                 </p>
                 <p>
-                  Automated tests assert the three rules this award is most often modelled wrongly on: that evening and night loadings are flat cash rather than multipliers, that casual penalties are additive rather than compounded, and that the casual loading is excluded from overtime. Junior figures are the award percentage applied to the weekly classification rate and then divided by {EMPLOYMENT.standardWeeklyHours}. This is the order Fair Work uses. Classifications we could not verify are listed as gaps rather than estimated.
+                  Automated tests assert three rules of this award: that evening and night loadings are flat cash rather than multipliers, that casual penalties are additive rather than compounded, and that the casual loading is excluded from overtime. Junior figures are the award percentage applied to the weekly classification rate and then divided by {EMPLOYMENT.standardWeeklyHours}. This is the order Fair Work uses. Classifications we could not verify are listed as gaps rather than estimated.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

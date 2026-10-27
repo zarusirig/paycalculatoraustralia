@@ -1,0 +1,174 @@
+{
+ "name": "ff-048-long-service-leave-state",
+ "files": [
+  "modules/calculator/long-service-leave-state-detail.ts",
+  "modules/calculator/marginal-rate-calculator.tsx",
+  "modules/calculator/minimum-wage-state-calculator.tsx",
+  "modules/calculator/monthly-pay-calculator-faqs.ts",
+  "modules/calculator/novated-lease-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/long-service-leave-state-detail.ts:217",
+   "file": "modules/calculator/long-service-leave-state-detail.ts",
+   "line": "217",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/wa/",
+   "claims": [
+    "Wageline's example: 27,040 hours over 10 years \u00f7 521.7 weeks = 52 hours a week, so 8.667 weeks is 450.684 hours of leave."
+   ],
+   "whys": [
+    "The arithmetic does not match. 27,040 \u00f7 521.7 is about 51.83, not 52. 27,040 \u00f7 520 is exactly 52, and 52 \u00d7 8.667 = 450.684, so either the divisor should be 520 weeks or the hours total is wrong. Check it against the Wageline 'Payment of long service leave' page (WA_PAY)."
+   ],
+   "constants": [
+    "LSL_STATE_DETAIL.wa.payCalc[1] in modules/calculator/long-service-leave-state-detail.ts"
+   ],
+   "reviewerNotes": [
+    "I support the writer's fact question on the WA example (LSL_STATE_DETAIL.wa.payCalc[1]): 27,040 \u00f7 521.7 = 51.83, not 52. 27,040 \u00f7 520 = 52 exactly, and 52 \u00d7 8.667 = 450.684. Either the divisor or the hours total needs checking against Wageline's 'Payment of long service leave' page (WA_PAY). The text was left unchanged as the rules require."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-state-detail.ts:357",
+   "file": "modules/calculator/long-service-leave-state-detail.ts",
+   "line": "357",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/act/",
+   "claims": [
+    "On 3 May 2026 the ACT Government delayed the entry of hairdressing and beauty, and accommodation and food services, into the Services Industry Scheme until 1 January 2027."
+   ],
+   "whys": [
+    "3 May 2026 is a Sunday, which is an unusual date for a government decision or notifiable instrument. Check the date against the ACT Leave or ACT Legislation Register notice."
+   ],
+   "constants": [
+    "act.portableIntro in long-service-leave-state-detail.ts (source: https://actleave.act.gov.au/)"
+   ],
+   "reviewerNotes": [
+    "Writer's fact question confirmed: 3 May 2026 is a Sunday. The date of the ACT Government delay should be checked against the notice. The text is unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-state-detail.ts:266",
+   "file": "modules/calculator/long-service-leave-state-detail.ts",
+   "line": "266",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/sa/",
+   "claims": [
+    "13 weeks starting Monday 1 August ends Monday 31 October."
+   ],
+   "whys": [
+    "13 weeks is 91 days. Counted from Monday 1 August, the 91st day of leave is Sunday 30 October, and Monday 31 October is the day the employee returns to work. Check SafeWork SA's exact wording (it probably says 'returns on Monday 31 October') and say 'ends Sunday 30 October' or 'returns to work Monday 31 October'."
+   ],
+   "constants": [
+    "sa.takingLeave[1] in long-service-leave-state-detail.ts (source: SA_REQ, SafeWork SA 'Requesting and taking leave')"
+   ],
+   "reviewerNotes": [
+    "Writer's fact question confirmed: 13 weeks (91 days) starting Monday 1 August ends Sunday 30 October, and 31 October is the day the employee returns to work. The text is unchanged, as the brief requires."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.57,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-state-detail.ts:225",
+   "file": "modules/calculator/long-service-leave-state-detail.ts",
+   "line": "225",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/wa/",
+   "claims": [
+    "wa.continuity[0] is about cashing out long service leave, but it renders under the 'Casual, Part-Time and Continuous Service in WA' heading."
+   ],
+   "whys": [
+    "The content does not match the section it sits in. The page also has a separate cashing-out section, so this looks like the wrong field. It is a structure question, not a wording one."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.02,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/marginal-rate-calculator.tsx:59",
+   "file": "modules/calculator/marginal-rate-calculator.tsx",
+   "line": "59",
+   "page": "https://pay-calculator-australia.com/marginal-tax-rates/",
+   "claims": [
+    "\"only the extra income is taxed at the higher rate, so a raise never cuts your take-home pay\""
+   ],
+   "whys": [
+    "raiseOutcome() in lib/constants/marginal-rates.ts includes Medicare levy surcharge cliffs when the 'No private hospital cover' box is ticked. Crossing an MLS tier charges the surcharge on the whole income, so netGain can be negative and the note would then claim the opposite of the figure above it. 'never' is also a brand-forbidden word for tax advice."
+   ],
+   "constants": [
+    "lib/constants/marginal-rates.ts raiseOutcome (netGain < 0 case); the note should branch on r.netGain < 0 or noPhi"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's question. 'a raise never cuts your take-home pay' is wrong when the noPrivateHealth box is ticked. raiseOutcome() passes noPhi into totalDeductions (marginal-rates.ts lines 177-182), so crossing an MLS tier can make netGain negative. 'never' is also a word the brand forbids. The note should branch on r.netGain < 0. This is a code change, so it is not edited here."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/minimum-wage-state-calculator.tsx:100",
+   "file": "modules/calculator/minimum-wage-state-calculator.tsx",
+   "line": "100",
+   "page": "https://pay-calculator-australia.com/minimum-wage/{nsw,vic,qld,wa,sa,tas,act,nt}/",
+   "claims": [
+    "\"Casuals get the 25% loading instead of paid leave, so there is no paid public holiday and no long service leave accrual shown. In {stateName}, check whether your state long service leave law covers casuals\""
+   ],
+   "whys": [
+    "The site's own long service leave hub FAQ (long-service-leave-faqs.ts line 68) says casuals are covered in every state and territory where service is continuous. The 25% loading replaces annual and personal leave, not long service leave, so the casual note suggests the reader is not covered when the site says they are."
+   ],
+   "constants": [
+    "lib/constants/long-service-leave.ts LSL_JURISDICTIONS[code].casualsNote (could feed this note per state)"
+   ],
+   "reviewerNotes": [
+    "Confirmed. The casual note says the 25% loading replaces paid leave and implies long service leave may not cover casuals. long-service-leave-faqs.ts line 68 says casuals are covered in every state and territory where service is continuous."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/monthly-pay-calculator-faqs.ts:39",
+   "file": "modules/calculator/monthly-pay-calculator-faqs.ts",
+   "line": "39",
+   "page": "https://pay-calculator-australia.com/monthly-pay-calculator/",
+   "claims": [
+    "Salary packaging reduces your taxable income ... resulting in less tax withheld and a higher net monthly deposit."
+   ],
+   "whys": [
+    "Salary sacrifice to super or a novated lease reduces tax withheld, but the net deposit in your bank account goes down, not up, because the sacrificed amount leaves your pay before it lands. The gain is in total value (net pay plus the packaged benefit), not in the deposit. This answer also feeds FAQPage JSON-LD."
+   ],
+   "constants": [
+    "Prose only (MONTHLY_PAY_FAQS); check against the salary-sacrifice calculator's own output."
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. Salary packaging lowers the tax withheld, but the net deposit falls, not rises, because the sacrificed amount leaves gross pay first. This answer feeds FAQPage JSON-LD. It was not changed and stays a human decision."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.85,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/novated-lease-calculator.tsx:355",
+   "file": "modules/calculator/novated-lease-calculator.tsx",
+   "line": "355",
+   "page": "https://pay-calculator-australia.com/novated-lease-calculator/",
+   "claims": [
+    "{formatPercent(0.47, 0)} top rate including the Medicare levy"
+   ],
+   "whys": [
+    "The value is correct for 2026-27 (45% plus 2%), but it is a literal in the page code rather than a tax constant. It will go stale without anyone noticing if the rates change."
+   ],
+   "constants": [
+    "lib/constants tax brackets top rate + MEDICARE levy rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.01,
+   "needsOwner": false
+  }
+ ]
+}

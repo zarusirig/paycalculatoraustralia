@@ -63,7 +63,7 @@ export default function CarryForwardConcessionalCalculator() {
             ) : plan.excess > 0 ? (
               <p className={NOTE_WARN}>Your contributions are {formatAUD(plan.excess)} over your cap for the year. Excess amounts are added to your taxable income with a 15% offset. See the cap guide.</p>
             ) : plan.expiringThisYear > 0 ? (
-              <p className={NOTE_OK}>{formatAUD(plan.expiringThisYear)} of your 2021-22 cap expires at 30 June 2027 if you do not use it. The ATO uses the oldest amounts first.</p>
+              <p className={NOTE_OK}>{formatAUD(plan.expiringThisYear)} of your {plan.rows.find((r) => r.expiresAtEndOfTarget)?.year} cap expires at 30 June {Number(plan.targetYear.slice(0, 4)) + 1} if you do not use it. The ATO uses the oldest amounts first.</p>
             ) : (
               <p className={NOTE_OK}>The ATO applies your oldest unused amounts first, once your contributions pass the general cap.</p>
             )}

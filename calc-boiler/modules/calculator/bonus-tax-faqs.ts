@@ -11,10 +11,13 @@ import {
   formatPercent,
   HECS_HELP,
   MEDICARE_LEVY,
+  NON_RESIDENT_TAX_BRACKETS,
   SITE_CONFIG,
   SUPER_GUARANTEE,
   TAX_BRACKETS,
+  TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 import { calculateSchedule5MethodB, PAY_PERIODS, SCHEDULE_5_WITHHOLDING_LIMIT } from "@/lib/constants/payg-withholding";
 
 const SECOND = TAX_BRACKETS[1];
@@ -55,6 +58,19 @@ const FN_PERIODS = PAY_PERIODS.fortnightly;
 const FN_PAY_90K = Math.floor(90_000 / FN_PERIODS);
 const WITHHELD_5K = calculateSchedule5MethodB(FN_PAY_90K, BONUS_5K, "fortnightly");
 
+// $10,000 bonus on the same $90,000 fortnightly salary: Schedule 5 withholding
+// against the tax the bonus adds to the year (engine figures, not typed).
+const BONUS_10K = 10_000;
+const WITHHELD_10K = calculateSchedule5MethodB(FN_PAY_90K, BONUS_10K, "fortnightly");
+const TAX_10K_90K = calculatePayBreakdown({ grossSalary: 90_000, bonus: BONUS_10K }).totalDeductions - AT_90K.totalDeductions;
+
+// Two-bonus example: totals derived so they cannot drift from the inputs.
+const TWO_BASE = 120_000;
+const TWO_BONUS = 10_000;
+
+const SUPER_TAX = formatPercent(CONTRIBUTIONS_TAX_RATE, 0);
+const NR = NON_RESIDENT_TAX_BRACKETS;
+
 export interface BonusTaxFaq {
   q: string;
   a: string;
@@ -75,7 +91,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Will I get the tax on my bonus back at tax time?",
-    a: `Only the difference, if your employer withheld more from the bonus paycheque than the tax the bonus actually added to your year. This calculator shows that actual annual figure. The Schedule 5 withholding method is designed to land close to it, so any refund attributable to a bonus is typically small — usually under ${formatAUD(200)} for a ${formatAUD(10_000)} bonus.`,
+    a: `Only the difference, if your employer withheld more from the bonus paycheque than the tax the bonus actually added to your year. This calculator shows that actual annual figure. For example, on ${formatAUD(FN_PAY_90K)} a fortnight, Schedule 5 withholds ${formatAUD(WITHHELD_10K.withheldFromAdditionalPayment)} from a ${formatAUD(BONUS_10K)} bonus, and the bonus adds ${formatAUD(TAX_10K_90K)} to the tax on a ${formatAUD(90_000)} salary for the year.`,
   },
   {
     q: "Is there a flat tax rate on bonuses in Australia?",
@@ -83,7 +99,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "How can I reduce tax on my bonus?",
-    a: `Salary sacrifice part of your bonus into superannuation as a concessional contribution, taxed at only 15% inside super instead of your marginal rate of up to ${formatPercent(TOP.rate + MEDICARE_LEVY.rate, 0)}. The concessional contributions cap is ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year for FY${SITE_CONFIG.financialYear} (including employer SG). Alternatively, claim all eligible work-related deductions to reduce your total taxable income and potentially lower the marginal rate applied to the bonus.`,
+    a: `Salary sacrifice part of your bonus into superannuation as a concessional contribution, taxed at only ${SUPER_TAX} inside super instead of your marginal rate of up to ${formatPercent(TOP.rate + MEDICARE_LEVY.rate, 0)}. The concessional contributions cap is ${formatAUD(SUPER_GUARANTEE.concessionalCap)} per year for FY${SITE_CONFIG.financialYear} (including employer SG). Alternatively, claim all eligible work-related deductions to reduce your total taxable income and potentially lower the marginal rate applied to the bonus.`,
   },
   {
     q: "Does a bonus affect my HECS-HELP repayment?",
@@ -95,7 +111,7 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Can I salary sacrifice my bonus into super?",
-    a: `Yes, if your employer allows it. Directing your bonus into super as a concessional contribution means it is taxed at only 15% (instead of your marginal rate). However, the contribution counts towards your ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap for FY${SITE_CONFIG.financialYear}, along with your employer's SG. See our salary sacrifice guide for details.`,
+    a: `Yes, if your employer allows it. Directing your bonus into super as a concessional contribution means it is taxed at only ${SUPER_TAX} (instead of your marginal rate). However, the contribution counts towards your ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap for FY${SITE_CONFIG.financialYear}, along with your employer's SG. See our salary sacrifice guide for details.`,
   },
   {
     q: "Does my employer pay super on my bonus?",
@@ -107,11 +123,11 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Are commissions taxed the same as bonuses?",
-    a: "Yes. The ATO treats commissions, bonuses, incentive payments, and profit-share distributions identically for PAYG withholding purposes. All are supplementary payments subject to Schedule 5 withholding at your marginal tax rate.",
+    a: "Yes. Commissions, bonuses and similar payments of salary or wages all use the ATO's Schedule 5 withholding table (working holiday makers use Schedule 15 instead). At tax time, all of them are added to your assessable income and taxed at your marginal rate.",
   },
   {
     q: "What if I receive two bonuses in the same financial year?",
-    a: `Each bonus is taxed using Schedule 5 based on your year-to-date earnings at the time of payment. The second bonus sits on top of your salary plus the first bonus, so it is taxed at a potentially higher marginal rate. A worker on ${formatAUD(120_000)} who receives two ${formatAUD(10_000)} bonuses pays ${MIDDLE_ALL_IN} on the first (income reaches ${formatAUD(130_000)}). The second takes total income to ${formatAUD(140_000)}, so the part up to ${formatAUD(MIDDLE.max)} is taxed at ${MIDDLE_ALL_IN} and the part above it at ${UPPER_ALL_IN}.`,
+    a: `Your employer withholds tax from each bonus under Schedule 5 when it is paid, but your tax for the year is worked out on your total income. The second bonus sits on top of your salary plus the first bonus, so it is taxed at a potentially higher marginal rate. A worker on ${formatAUD(TWO_BASE)} who receives two ${formatAUD(TWO_BONUS)} bonuses pays ${MIDDLE_ALL_IN} on the first (income reaches ${formatAUD(TWO_BASE + TWO_BONUS)}). The second takes total income to ${formatAUD(TWO_BASE + 2 * TWO_BONUS)}, so the part up to ${formatAUD(MIDDLE.max)} is taxed at ${MIDDLE_ALL_IN} and the part above it at ${UPPER_ALL_IN}.`,
   },
   {
     q: "How are bonuses taxed for part-time or casual workers?",
@@ -119,11 +135,11 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "How are bonuses taxed for non-residents?",
-    a: "Non-residents do not receive the $18,200 tax-free threshold and pay tax from the first dollar. The non-resident marginal rate on bonuses starts at 30% for income up to $135,000, then 37% up to $190,000, and 45% above $190,000. Non-residents do not pay the Medicare levy. See our Non-Resident Tax Guide for full rates.",
+    a: `Non-residents do not receive the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold and pay tax from the first dollar. The non-resident marginal rate on bonuses starts at ${formatPercent(NR[0].rate, 0)} for income up to ${formatAUD(NR[0].max)}, then ${formatPercent(NR[1].rate, 0)} up to ${formatAUD(NR[1].max)}, and ${formatPercent(NR[2].rate, 0)} above ${formatAUD(NR[2].min - 1)}. Non-residents do not pay the Medicare levy. See our Non-Resident Tax Guide for full rates.`,
   },
   {
     q: "Does Division 293 apply if my bonus pushes income above $250,000?",
-    a: "Yes. \"Division 293\" imposes an additional 15% tax on concessional super contributions when income (including super contributions) exceeds $250,000. If a bonus pushes your combined income and super above this threshold, any concessional contributions \u2014 including salary-sacrificed bonus amounts \u2014 are taxed at 30% instead of 15% inside super.",
+    a: `Yes, when your income for Division 293 purposes plus your concessional super contributions comes to more than ${formatAUD(DIVISION_293.threshold)}. Division 293 adds ${formatPercent(DIVISION_293.rate, 0)} tax on whichever is less: your concessional contributions or the amount over ${formatAUD(DIVISION_293.threshold)}. That part of your concessional contributions, including salary-sacrificed bonus amounts, is taxed at ${formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} in total instead of ${SUPER_TAX}.`,
   },
   {
     q: "How much tax will I pay on a $5,000 bonus?",

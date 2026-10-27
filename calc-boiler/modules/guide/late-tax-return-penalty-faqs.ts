@@ -1,11 +1,13 @@
 import { formatAUD } from "@/lib/constants";
-import { FTL_MAX_INDIVIDUAL, PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { FTL_MAX_INDIVIDUAL, PENALTY_UNIT, RETURN_DATES_2026, formatIso, weekdayOf } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Sources: ATO "Failure to
 // lodge on time penalty" (QC33410, updated 22 Jun 2026) and "Penalty units"
 // (updated 26 Jun 2026), read 5 October 2026. See lib/constants/late-lodgement.ts.
+
+const DUE = RETURN_DATES_2026.selfLodge;
 
 export const LATE_TAX_RETURN_FAQS: Faq[] = [
   {
@@ -14,7 +16,7 @@ export const LATE_TAX_RETURN_FAQS: Faq[] = [
   },
   {
     q: "What is the deadline to lodge the 2025-26 tax return?",
-    a: `If you lodge it yourself, the due date is ${RETURN_2026.selfLodgeDueDate}. That is a Saturday, and the ATO moves a weekend due date to the next business day, so in practice it is Monday 2 November 2026. If you use a registered tax agent and sign up with them before 31 October, most clients have until ${RETURN_2026.agentDueDateMostPeople}.`,
+    a: `If you lodge it yourself, the due date is ${RETURN_2026.selfLodgeDueDate}. That is a ${weekdayOf(DUE.iso)}, and the ATO moves a weekend due date to the next business day, so in practice it is ${weekdayOf(DUE.effectiveIso)} ${formatIso(DUE.effectiveIso, "long")}. If you use a registered tax agent and sign up with them before ${RETURN_2026.selfLodgeDueDate}, most clients have until ${RETURN_2026.agentDueDateMostPeople}.`,
   },
   {
     q: "Will the ATO fine me if I am owed a refund?",
@@ -30,7 +32,7 @@ export const LATE_TAX_RETURN_FAQS: Faq[] = [
   },
   {
     q: "Can I get a late lodgement penalty removed?",
-    a: "You can ask the ATO to remit all or part of the penalty, and it considers your circumstances. It expects you to lodge your outstanding returns first. Circumstances it would likely accept include severe illness of you, a carer or your agent, a disaster, family violence, or missing information from an employer. It would likely decline a request because you were on holiday, busy at work or had a short-term illness such as a cold.",
+    a: "You can ask the ATO to remit all or part of the penalty, and it considers your circumstances. It expects you to lodge your outstanding returns first. Circumstances it would likely accept include a severe illness affecting you, a person you care for or your registered agent, a disaster, family violence, or missing information from an employer. It would likely decline a request because you were on holiday, busy at work or had a short-term illness such as a cold.",
   },
   {
     q: "Am I protected if my tax agent lodges late?",

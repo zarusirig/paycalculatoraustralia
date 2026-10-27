@@ -1,0 +1,165 @@
+{
+ "name": "ff-071-extra-super-vs-hecs-repa",
+ "files": [
+  "modules/guide/extra-super-vs-hecs-repayment-faqs.ts",
+  "modules/guide/extra-super-vs-hecs-repayment.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment-faqs.ts:37",
+   "file": "modules/guide/extra-super-vs-hecs-repayment-faqs.ts",
+   "line": "37",
+   "page": "/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "Contributions are taxed at CONTRIBUTIONS_TAX_RATE, with a saving of up to (TOP + Medicare - contributions tax) per dollar at the top rate"
+   ],
+   "whys": [
+    "The answer leaves out Division 293 tax. People whose income plus concessional contributions is over $250,000 pay 30% contributions tax, so the top-rate saving shown is too high for most people in the top bracket."
+   ],
+   "constants": [
+    "lib/constants/super-contributions.ts (CONTRIBUTIONS_TAX_RATE; needs a Division 293 threshold and rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.43,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment-faqs.ts:33",
+   "file": "modules/guide/extra-super-vs-hecs-repayment-faqs.ts",
+   "line": "33",
+   "page": "/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "Compulsory repayments stop once the balance is zero (original said this 'immediately' boosts take-home pay); also 'compulsory repayment percentage applied to your income'"
+   ],
+   "whys": [
+    "An employer keeps withholding HELP amounts until you update your withholding declaration, and amounts already withheld come back at tax time, so 'immediately' was wrong. I removed it. Also, since 2025-26 the repayment uses a marginal system on income above the threshold, so 'percentage applied to your income' may need to say 'repayment rate'."
+   ],
+   "constants": [
+    "lib/constants (HECS_HELP repayment thresholds)"
+   ],
+   "reviewerNotes": [
+    "Removing 'immediately' and the trailing '-ing' clause is kept. It narrows an overclaim (employers keep withholding HELP until the withholding declaration is updated) and fixes a trailing -ing pattern. The writer also raised it in factQuestions so the owner can confirm. The first sentence of the answer is unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:77",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "77",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "The return on voluntary HECS repayments equals the indexation rate avoided (typically 3 to 4% under the CPI/WPI cap). The same 3 to 4% range is repeated at lines 95 and 106.",
+    "The page calls 3 to 4% the 'typical' HECS indexation rate (lines 77, 95, 106, 125, 126). Line 125 also models '$60,000 indexed at 4%'."
+   ],
+   "whys": [
+    "The page's own constant puts the 1 June 2026 rate at 2.8%, which is below this range. With the cap in place, 3 to 4% looks stale as a 'typical' rate.",
+    "I confirmed the writer's point. HECS_HELP.indexationRate is 0.028 (lib/constants/australian-tax.ts:466), which is below the stated typical range. The $2,400 and $400 examples at line 125 use 4%, not the current rate."
+   ],
+   "constants": [
+    "HECS_HELP.indexationRate (lib/constants/australian-tax.ts:466)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:126",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "126",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "If CPI or WPI is running above 4%, the known return from avoiding indexation becomes more attractive."
+   ],
+   "whys": [
+    "Indexation is the lower of CPI and WPI, as the page says at line 92. Indexation only goes above 4% when BOTH indices are above 4%, so 'CPI or WPI' should probably be 'both CPI and WPI'."
+   ],
+   "constants": [
+    "HECS_HELP indexation rule (lib/constants/australian-tax.ts ~465)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.1,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:128",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "128",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "About to cross a repayment threshold: if your income is close to a higher HECS repayment band, paying down the debt before 1 June can reduce the indexation amount applied that year.",
+    "'About to cross a repayment threshold ... paying down the debt before 1 June can reduce the indexation amount applied that year.'"
+   ],
+   "whys": [
+    "The condition (income near a higher repayment band) has nothing to do with the effect (lower indexation). Under the marginal system the compulsory repayment depends on repayment income, not on the balance. This bullet looks like a muddled merge of two separate points.",
+    "I confirmed the writer's point. Under the marginal bands in HECS_HELP.bands (australian-tax.ts:467-472), the compulsory repayment depends on repayment income, not the balance. Being near a band has no link to indexation."
+   ],
+   "constants": [
+    "HECS_HELP repayment bands / indexationDate (lib/constants/australian-tax.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:92",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "92",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "'1 June 2026' is typed as literal text at lines 92, 168, 188 and 203."
+   ],
+   "whys": [
+    "HECS_HELP.indexationDate already holds '1 June 2026'. The rate is read from code, but the date next to it is typed by hand, so the two will drift apart at the 2027 indexation."
+   ],
+   "constants": [
+    "HECS_HELP.indexationDate (lib/constants/australian-tax.ts:465)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:203",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "203",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "7.5% gross super return (long-term median from APRA data)"
+   ],
+   "whys": [
+    "The cited APRA fund-level statistics page does not obviously publish a 'long-term median' gross return of 7.5%. The source for this specific figure should be confirmed."
+   ],
+   "constants": [
+    "SUPER_NET assumption (extra-super-vs-hecs-repayment.tsx:17)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/extra-super-vs-hecs-repayment.tsx:114",
+   "file": "modules/guide/extra-super-vs-hecs-repayment.tsx",
+   "line": "114",
+   "page": "https://pay-calculator-australia.com/extra-super-vs-hecs-repayment/",
+   "claims": [
+    "'A $200/month contribution starting at age 25 could grow to over $200,000 by age 60 at 7% gross returns.'"
+   ],
+   "whys": [
+    "This figure is typed by hand and does not come from the SUPER_NET or fv code the table uses. Its basis is unstated: whether it is gross or net of the 15% contributions tax, fees and earnings tax. It should be computed with fv() like the table values."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.25,
+   "needsOwner": false
+  }
+ ]
+}

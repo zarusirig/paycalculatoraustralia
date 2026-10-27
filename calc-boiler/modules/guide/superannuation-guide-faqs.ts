@@ -40,7 +40,7 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do you pay tax on super?",
-    a: `Employer super paid on top of your wages is not deducted from your take-home pay, and no tax on it shows on your payslip. The fund pays ${CONTRIB} contributions tax on concessional contributions, plus Division 293 tax if your income plus concessional contributions exceeds the threshold for that tax. Salary sacrifice into super lowers your taxable pay, so less income tax is withheld on your payslip.`,
+    a: `Employer super paid on top of your wages is not deducted from your take-home pay, and no tax on it shows on your payslip. The fund pays ${CONTRIB} contributions tax on concessional contributions. If your income plus concessional contributions exceeds ${formatAUD(DIVISION_293.threshold)}, the ATO also assesses you for Division 293 tax, which you pay from your own money or by releasing money from your super. Salary sacrifice into super lowers your taxable pay, so less income tax is withheld on your payslip.`,
   },
   {
     q: "Does superannuation come out of my salary?",
@@ -48,7 +48,7 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I choose my own super fund?",
-    a: "Yes. Most Australian employees have the legal right to choose their own superannuation fund by completing a Standard Choice Form. If you do not nominate a fund, your employer checks the ATO for your existing \"stapled fund.\" If no stapled fund exists, the employer opens an account in their default MySuper fund.",
+    a: "Yes, you can choose your own superannuation fund by completing a Standard Choice Form, unless your super is paid under a state award or registered agreement, under certain workplace agreements made before 1 January 2021 that require super contributions, you are a federal or state public sector employee, or you are in a particular type of defined benefit fund or have already reached a certain level of benefit in that fund. If you do not nominate a fund, your employer checks the ATO for your existing \"stapled fund.\" If no stapled fund exists, the employer opens an account in their default MySuper fund.",
   },
   {
     q: "What happens if I exceed the concessional cap?",
@@ -64,7 +64,7 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What do I do if my employer is not paying my super?",
-    a: "First, check your payslips and myGov ATO portal to confirm contributions are missing. Raise the issue with your employer directly. If the employer does not resolve the shortfall, lodge an \"Unpaid super enquiry\" through the ATO website or by calling 13 10 20. The ATO can audit the employer, impose the Superannuation Guarantee Charge (SGC), and direct payment including interest. You can lodge the complaint anonymously.",
+    a: "First, check your payslips and myGov ATO portal to confirm contributions are missing. Raise the issue with your employer directly. If the employer does not resolve the shortfall, report it with the ATO's \"Report unpaid super contributions from my employer\" online tool or by calling 13 10 20. The ATO can audit the employer, impose the Superannuation Guarantee Charge (SGC), and direct payment including interest. The report asks for your personal details, including your TFN, and the ATO asks your permission to use your name when it contacts your employer. To keep your identity confidential, use the ATO tip-off form or call 1800 060 062 instead.",
   },
   {
     q: "How do I find lost super accounts?",

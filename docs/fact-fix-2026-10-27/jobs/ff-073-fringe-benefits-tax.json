@@ -1,0 +1,183 @@
+{
+ "name": "ff-073-fringe-benefits-tax",
+ "files": [
+  "modules/guide/fringe-benefits-tax.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:119",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "119",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Worked example Step 5: the employee's RFBA on the income statement is $10,401, the Type 1 grossed-up amount.",
+    "Step 5 RFBA $10,401 (Type 1 gross-up of $5,000)"
+   ],
+   "whys": [
+    "Reportable fringe benefits amounts are always grossed up at the Type 2 rate. The constants file says the same: 'grossUpType2 ... also used for ALL reportable amounts'. On a $5,000 taxable value the RFBA would be $5,000 x 1.8868 = $9,434, not $10,401.",
+    "Verified: the code computes RFBA as Math.floor(taxableValue * FBT.grossUpType2) at lib/constants/novated-lease.ts:305, so the page should show $9,434. This is the highest-priority fix."
+   ],
+   "constants": [
+    "FBT.grossUpType2 in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's top fact question. The RFBA is grossed up at Type 2 (FBT.grossUpType2 = 1.8868, and lib/constants/novated-lease.ts:305 computes RFBA with grossUpType2). The worked examples show Type 1 amounts ($10,401 at line 119, $20,802 at line 205). These are hard-coded table and number strings, outside this pass."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.11,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:155",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "155",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Rates table: the reportable fringe benefits threshold is '$2,000 grossed-up taxable value'."
+   ],
+   "whys": [
+    "The ATO test is a total taxable value over $2,000 (not grossed up). The grossed-up minimum is $3,773 (FBT.reportableMinimumGrossedUp). Line 43 states it correctly. Line 215 ('$2,000 grossed-up threshold') and the table cells at lines 99-100 ('Yes, if grossed-up value > $2,000') have the same problem."
+   ],
+   "constants": [
+    "FBT.reportableThreshold and FBT.reportableMinimumGrossedUp in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:205",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "205",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "The $20,802 grossed-up amount (Type 1) also appears on the employee's income statement as reportable fringe benefits.",
+    "The $20,802 grossed-up amount also appears on the income statement as RFBA"
+   ],
+   "whys": [
+    "This is the same error: the RFBA uses the Type 2 gross-up, so on a $10,000 taxable value it is $18,868. The FBT payable figure ($9,777, Type 1) is correct.",
+    "Same Type 1/Type 2 error. Per FBT.grossUpType2 the RFBA is $18,868. The FBT payable figure of $9,777 is correct."
+   ],
+   "constants": [
+    "FBT.grossUpType2 in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.75,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:199",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "199",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Car base value is the 'GST-inclusive cost price minus any dealer delivery charges already exempt'."
+   ],
+   "whys": [
+    "Under the ATO statutory formula, base value includes dealer delivery charges and GST. It excludes registration and stamp duty. The text has dealer delivery the wrong way round."
+   ],
+   "constants": [
+    "FBT guide ch 7.8 (statutory formula), referenced in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:106",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "106",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Employer-paid health insurance is a Type 1 benefit."
+   ],
+   "whys": [
+    "Private health insurance premiums are GST-free, so the employer cannot claim a GST credit. The benefit takes the Type 2 gross-up (1.8868)."
+   ],
+   "constants": [
+    "FBT.grossUpType2"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.53,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:208",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "208",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Employees who drive more than 15,000 km a year for business typically pay less FBT under the operating cost method."
+   ],
+   "whys": [
+    "The 15,000 km figure has no source or constant (the statutory rate has been a flat 20% since 2011, whatever the distance). The page cites no source for the population claim, and the employer pays FBT, not the employee."
+   ],
+   "constants": [
+    "none; needs an ATO source or removal"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:186",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "186",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Not-for-profit organisations, public hospitals, and charities receive capped FBT exemptions."
+   ],
+   "whys": [
+    "The claim is too broad. Only PBIs, health promotion charities, public and NFP hospitals and public ambulance services get capped exemptions. Other NFPs and charities are rebatable employers (a rebate, not an exemption), which the same paragraph says later."
+   ],
+   "constants": [
+    "FBT_CAPS in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:79",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "79",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "Loan fringe benefit valuation: 'Difference between RBA benchmark rate and rate charged'."
+   ],
+   "whys": [
+    "The benchmark rate is the ATO statutory (benchmark) interest rate for the FBT year, FBT.benchmarkInterestRate. The ATO sets it from RBA lending data, but it is not an RBA rate."
+   ],
+   "constants": [
+    "FBT.benchmarkInterestRate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax.tsx:130",
+   "file": "modules/guide/fringe-benefits-tax.tsx",
+   "line": "130",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "HECS-HELP repayments: RFBA counts toward the $69,528 marginal-system threshold"
+   ],
+   "whys": [
+    "The figure matches HELP minimumThreshold in lib/constants/australian-tax.ts:462 but is typed into the page by hand. It will go stale at the next indexation unless it reads from the constant."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.52,
+   "needsOwner": false
+  }
+ ]
+}

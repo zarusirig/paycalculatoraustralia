@@ -30,9 +30,11 @@ import {
   FWO_PAY_GUIDES,
   JOB_PAY_VERIFIED_ON,
   awardTextUrl,
+  casualFromHourly,
   jsaSource,
   jsaUrl,
 } from "./common";
+import { annual52, atPercent } from "./j8-common";
 import { NURSE_STATE_PAGES, nursesAwardRows } from "./nurse";
 import type { MedianEarnings, Occupation } from "./types";
 
@@ -59,6 +61,13 @@ const QLD_PAY_POINT_1 = firstMidwifePoint(QLD_NURSING_PAY, "Pay point 1");
 const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const fmt0 = (n: number) => n.toLocaleString("en-AU", { maximumFractionDigits: 0 });
 
+// RN level 1 figures quoted in the FAQs, read from the same award scale as the table.
+const RN1_POINTS = NURSES_AWARD_GENERAL.find((x) => x.classification === "Registered nurse — level 1")?.points ?? [];
+if (RN1_POINTS.length === 0) throw new Error("midwife: no Nurses Award scale named Registered nurse — level 1");
+const RN1_PP1 = RN1_POINTS[0];
+const RN1_TOP = RN1_POINTS[RN1_POINTS.length - 1];
+const RN1_PP1_CASUAL = casualFromHourly(RN1_PP1.hourly);
+
 export const MIDWIFE: Occupation = {
   slug: "midwife",
   name: "Midwife",
@@ -78,7 +87,7 @@ export const MIDWIFE: Occupation = {
   coverage: [
     "Midwives employed by private hospitals, private obstetric and GP practices, agencies and other national-system employers are covered by the Nurses Award 2020 [MA000034]. The award covers \"a nurse/midwife, principally engaged in nursing/midwifery duties\" (cl 4.1(b)) and says nursing care \"includes care provided by midwives\" (Schedule A.2).",
     "There is no separate midwife pay scale in the award. A registered midwife is paid on the registered nurse classifications: level 1 for a midwife in clinical practice, moving up one pay point each year of experience to pay point 8, then level 2 (which the award says \"may also be known as a Clinical nurse\") and level 3 (Clinical nurse consultant, Nurse manager or Nurse educator) under Schedule A.5.2 to A.5.3.",
-    `Most Australian midwives work in state public hospitals, and they are not paid under this award. Each state sets midwives' pay in its own award or enterprise agreement, and those rates are well above the federal floor: a first-year registered nurse/midwife in NSW Health earns $${fmt(NSW_FIRST_YEAR.weekly ?? 0)} a week, and Queensland Health's Nurse Grade 5 pay point 1 is $${fmt0(QLD_PAY_POINT_1.annual ?? 0)} a year. The state pages linked below list every public-sector step.`,
+    `Midwives employed in state public hospitals are not paid under this award. Each state sets midwives' pay in its own award or enterprise agreement, and those rates are well above the federal floor: a first-year registered nurse/midwife in NSW Health earns $${fmt(NSW_FIRST_YEAR.weekly ?? 0)} a week, and Queensland Health's Nurse Grade 5 pay point 1 is $${fmt0(QLD_PAY_POINT_1.annual ?? 0)} a year. The state pages linked below list every public-sector step.`,
     "NSW, Queensland, Western Australia and South Australia pay registered nurses and midwives on one shared scale. Victoria gives midwives their own classification codes (Midwife Grade 2, Year 1 to 8) but pays the same base rate as the equivalent registered nurse grade.",
   ],
   tables: [
@@ -132,7 +141,7 @@ export const MIDWIFE: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a midwife in 2026?",
-      a: "From the first full pay period on or after 1 July 2026, a newly registered midwife under the Nurses Award must be paid at least $32.09 an hour, or $1,219.50 a week. That is the registered nurse level 1, pay point 1 rate, because the award pays midwives on the registered nurse scale. Full-time, it comes to $63,414 a year before tax, and the hourly rate rises to $38.57 at pay point 8.",
+      a: `From the first full pay period on or after 1 July 2026, a newly registered midwife under the Nurses Award must be paid at least $${fmt(RN1_PP1.hourly)} an hour, or $${fmt(RN1_PP1.weekly)} a week. That is the registered nurse level 1, pay point 1 rate, because the award pays midwives on the registered nurse scale. Full-time, it comes to $${fmt0(annual52(RN1_PP1.weekly))} a year before tax, and the hourly rate rises to $${fmt(RN1_TOP.hourly)} at pay point 8.`,
     },
     {
       q: "Is there a separate pay scale for midwives?",
@@ -144,11 +153,11 @@ export const MIDWIFE: Occupation = {
     },
     {
       q: "What is the casual rate for a midwife?",
-      a: "A casual midwife on registered nurse level 1 pay point 1 earns at least $40.11 an hour under the Nurses Award: the $32.09 rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate, $60.17 an hour.",
+      a: `A casual midwife on registered nurse level 1 pay point 1 earns at least $${fmt(RN1_PP1_CASUAL)} an hour under the Nurses Award: the $${fmt(RN1_PP1.hourly)} rate plus the 25% casual loading. On a Saturday a casual gets 150% of that casual rate, $${fmt(atPercent(RN1_PP1_CASUAL, 1.5))} an hour.`,
     },
     {
       q: "What do midwives actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,114 a week for midwives (ABS, May 2025), about $109,928 a year. That reflects state public sector agreements and above-award pay, not the award minimum.",
+      a: `Jobs and Skills Australia reports median full-time earnings of $${fmt0(MEDIAN.medianWeekly)} a week for midwives (ABS, May 2025), about $${fmt0(annual52(MEDIAN.medianWeekly))} a year. That reflects state public sector agreements and above-award pay, not the award minimum.`,
     },
   ],
   sources: [

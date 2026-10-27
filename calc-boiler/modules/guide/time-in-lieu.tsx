@@ -131,7 +131,7 @@ export default function TimeInLieuPage() {
           <section>
             <H2 id="payslip">Time in Lieu on Your Payslip</H2>
             <p>
-              Hours taken as TOIL are paid at your ordinary rate, so a TOIL day looks like a normal day on your payslip, often shown as its own line with a running balance. When untaken TOIL is paid out, it must be paid at the overtime rate that applied when you worked it, not your ordinary rate. Check the balance against your own record of hours. The <Link href="/work-hours-calculator/">work hours calculator</Link> can total a timesheet.
+              Hours taken as TOIL are paid at your ordinary rate, so a TOIL day looks like a normal day on your payslip. When untaken TOIL is paid out, it must be paid at the overtime rate for when you worked it, not your ordinary rate. Under the SCHADS award that overtime rate is worked out on the pay rates in force when the payout is made. Check any TOIL balance your employer gives you against your own record of hours. The <Link href="/work-hours-calculator/">work hours calculator</Link> can total a timesheet.
             </p>
           </section>
 

@@ -5,7 +5,7 @@
 
 import { MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS, formatAUD } from "@/lib/constants";
 import { PRESERVATION_AGE_TABLE } from "@/lib/constants/pension-age";
-import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
@@ -18,11 +18,11 @@ const HIGH_SAVING = MONTHLY * 12 * (HIGH - CONTRIBUTIONS_TAX_RATE);
 export const SALARY_SACRIFICE_VS_MORTGAGE_FAQS: readonly FaqItem[] = [
   {
     q: "Is salary sacrifice into super better than paying off a mortgage?",
-    a: `Salary sacrifice into super generally gives the better long-term outcome when your marginal tax rate is high (${pct(HIGH)} or more) and your mortgage rate is below 5-6%. Extra mortgage repayments win when mortgage rates are high and you need access to the money. The deciding factors are your marginal tax rate, your mortgage rate and your time to retirement.`,
+    a: `Salary sacrifice into super gives the larger long-term balance when your marginal tax rate is high (${pct(HIGH)} or more) and you can leave the money in super until preservation age. The scenario table on this page models a worker on ${pct(MID)}, and super still finishes ahead of extra repayments at every mortgage rate in the table over both 10 and 20 years, assuming a steady super return every year. Extra mortgage repayments win when you need access to the money or want a guaranteed return, because super returns are not guaranteed. The deciding factors are your marginal tax rate, your mortgage rate and your time to retirement.`,
   },
   {
     q: "How much tax do I save by salary sacrificing into super?",
-    a: `Salary sacrifice contributions are taxed at ${pct(CONTRIBUTIONS_TAX_RATE)} inside super, compared to your marginal tax rate (up to ${pct(TOP)}). If your marginal rate is ${pct(MID)}, you save ${cents(MID - CONTRIBUTIONS_TAX_RATE)} per dollar. At ${pct(HIGH)}, you save ${cents(HIGH - CONTRIBUTIONS_TAX_RATE)}. At ${pct(TOP)}, you save ${cents(TOP - CONTRIBUTIONS_TAX_RATE)}. You also save the ${pct(MEDICARE_LEVY.rate)} Medicare levy on every dollar sacrificed. For someone in the ${pct(HIGH)} bracket salary sacrificing ${formatAUD(MONTHLY)}/month, that is ${formatAUD(HIGH_SAVING)} per year in income tax savings before the Medicare levy.`,
+    a: `Salary sacrifice contributions are taxed at ${pct(CONTRIBUTIONS_TAX_RATE)} inside super, compared to your marginal tax rate (up to ${pct(TOP)}). If your marginal rate is ${pct(MID)}, you save ${cents(MID - CONTRIBUTIONS_TAX_RATE)} per dollar. At ${pct(HIGH)}, you save ${cents(HIGH - CONTRIBUTIONS_TAX_RATE)}. At ${pct(TOP)}, you save ${cents(TOP - CONTRIBUTIONS_TAX_RATE)}. You also save the ${pct(MEDICARE_LEVY.rate)} Medicare levy on every dollar sacrificed. For someone in the ${pct(HIGH)} bracket salary sacrificing ${formatAUD(MONTHLY)}/month, that is ${formatAUD(HIGH_SAVING)} per year in income tax savings before the Medicare levy. If your income plus concessional contributions is over ${formatAUD(DIVISION_293.threshold)}, Division 293 tax adds another ${pct(DIVISION_293.rate)} on some or all of your contributions, which cuts the saving.`,
   },
   {
     q: "Can I access salary sacrificed super to pay off my mortgage?",

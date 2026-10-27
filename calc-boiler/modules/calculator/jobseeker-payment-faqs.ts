@@ -34,7 +34,7 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   },
   {
     q: "Is JobSeeker the same as Newstart or the JobSeeker allowance?",
-    a: "Yes. JobSeeker Payment replaced Newstart Allowance in March 2020, and many people still call it the JobSeeker allowance. It is an allowance, so it uses the allowance income test (the $150 free area and 50c/60c tapers), not the pension income test.",
+    a: `Yes. JobSeeker Payment replaced Newstart Allowance in March 2020. "JobSeeker allowance" is not a separate payment: JobSeeker Payment is an allowance, so it uses the allowance income test (the ${formatAUD(T.freeArea)} free area and ${Math.round(T.taper1 * 100)}c/${Math.round(T.taper2 * 100)}c tapers), not the pension income test.`,
   },
   {
     q: "How much can I earn before JobSeeker reduces?",
@@ -42,7 +42,7 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   },
   {
     q: "How much JobSeeker do I get if I work part-time?",
-    a: `If you are single with no children and earn ${formatAUD(600)} a fortnight, your JobSeeker reduces by ${formatAUD(jobseekerReduction(600))} (${formatAUD(53)} on the first band plus ${formatAUD(0.6 * 344)} at 60 cents). On the ${formatAUD(MAR.maxFortnightly.single)} maximum paid to 19 September 2026 you keep ${formatAUD(AT_600_MAR)} of JobSeeker; on the ${formatAUD(SEP.maxFortnightly.single)} maximum from 20 September 2026 you keep ${formatAUD(AT_600_SEP)}. Your ${formatAUD(600)} wages are on top either way.`,
+    a: `If you are single with no children and earn ${formatAUD(600)} a fortnight, your JobSeeker reduces by ${formatAUD(jobseekerReduction(600))} (${formatAUD((T.band1End - T.freeArea) * T.taper1)} on the first band plus ${formatAUD(T.taper2 * (600 - T.band1End))} at ${Math.round(T.taper2 * 100)} cents). On the ${formatAUD(MAR.maxFortnightly.single)} maximum paid to 19 September 2026 you keep ${formatAUD(AT_600_MAR)} of JobSeeker; on the ${formatAUD(SEP.maxFortnightly.single)} maximum from 20 September 2026 you keep ${formatAUD(AT_600_SEP)}. Your ${formatAUD(600)} wages are on top either way.`,
   },
   {
     q: "What is the JobSeeker cut-off point?",

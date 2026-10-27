@@ -10,7 +10,7 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { EMPLOYER_COST_FAQS, MULT_100K, TABLE_WORKCOVER, costRow, type CostRow, MAX_RATE_STATE, MAX_THRESHOLD_STATE, MIN_RATE_STATE, MIN_THRESHOLD_STATE } from "@/modules/guide/employer-cost-calculator-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, EMPLOYMENT, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
 import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -37,6 +37,10 @@ const COST_ROWS = [60_000, 80_000, 100_000, 130_000, 180_000].map((salary) => co
 const MULT_100K_NO_PAYROLL = costRow(100_000, 0).total / 100_000;
 // $50/hour employee: super plus paid annual (4/52) and personal (10/260) leave.
 const HOURLY_ONCOST = 50 * (1 + SUPER_GUARANTEE.rate + 4 / 52 + 10 / 260);
+// Figures rendered from lib/constants so the prose cannot drift from the code.
+const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
+const ANNUAL_LEAVE_PCT = formatPercent(EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear, 2);
+const SGC_NOW = SUPER_GUARANTEE_CHARGE.current;
 
 export default function EmployerCostCalculatorContent() {
 
@@ -63,7 +67,7 @@ export default function EmployerCostCalculatorContent() {
           An employee on a $100,000 base salary costs an Australian employer about <strong>{formatAUD(MULT_100K * 100_000)}</strong> once super, leave provisions, payroll tax and a typical WorkCover premium are included, and more once recruitment, training and equipment are added.
         </p>
         <p>
-          On the assumptions in the table below, the multiplier is about <strong>{MULT_100K.toFixed(2)}x</strong> the base salary (about {MULT_100K_NO_PAYROLL.toFixed(2)}x for a business under the payroll tax threshold). This multiplier includes the Superannuation Guarantee at 12%, annual leave provisions at 7.69%, workers compensation insurance, and payroll tax for businesses above the state threshold. Employers who provide additional benefits such as salary-packaged novated leases, training budgets, or fringe benefits face an even higher true cost of employment.
+          On the assumptions in the table below, the multiplier is about <strong>{MULT_100K.toFixed(2)}x</strong> the base salary (about {MULT_100K_NO_PAYROLL.toFixed(2)}x for a business under the payroll tax threshold). This multiplier includes the Superannuation Guarantee at {SG_PCT}, annual leave provisions at {ANNUAL_LEAVE_PCT}, workers compensation insurance, and payroll tax for businesses above the state threshold. Employers who provide additional benefits such as salary-packaged novated leases, training budgets, or fringe benefits face an even higher true cost of employment.
         </p>
         <p>
           The cost multiplier feeds small business cash flow forecasts, headcount planning and the choice between hiring an employee and engaging a contractor. A take-home pay calculator shows a salary from the employee&apos;s side. The calculator above and this guide show the same salary from the employer&apos;s side of the ledger.
@@ -74,16 +78,16 @@ export default function EmployerCostCalculatorContent() {
       <section id="on-costs-of-employment">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the On-Costs of Employment?</h2>
         <p>
-          On-costs are the mandatory expenses an employer pays <strong>on top of an employee&apos;s base salary</strong>, including superannuation, workers compensation, payroll tax, and leave loading.
+          On-costs are the mandatory expenses an employer pays <strong>on top of an employee&apos;s base salary</strong>, including superannuation, workers compensation, payroll tax, and leave provisions.
         </p>
         <p>
           Federal and state laws set these costs, and an employer cannot legally avoid them. The four main on-cost categories are:
         </p>
         <ul>
-          <li><strong>Superannuation Guarantee (SG):</strong> 12% of qualifying earnings, paid with each pay since Payday Super began on 1 July 2026, and received by the fund within 7 business days</li>
+          <li><strong>Superannuation Guarantee (SG):</strong> {SG_PCT} of qualifying earnings, paid with each pay since Payday Super began on {SUPER_GUARANTEE.paydaySuperStart}, and received by the fund within {SGC_NOW.businessDaysToPay} business days</li>
           <li><strong>Workers compensation insurance:</strong> 0.3% to 10%+ of wages depending on industry risk classification, covering workplace injury and illness</li>
           <li><strong>Payroll tax:</strong> {formatPercent(MIN_RATE_STATE[1].rate, 2)} to {formatPercent(MAX_RATE_STATE[1].rate, 2)} of total wages (including super) for employers exceeding the state-specific threshold</li>
-          <li><strong>Leave provisions:</strong> Annual leave at 7.69% of base salary, personal leave at 3.85%, long service leave accrual at about 1.67% per year of service</li>
+          <li><strong>Leave provisions:</strong> Annual leave at {ANNUAL_LEAVE_PCT} of base salary, personal leave at 3.85%, long service leave accrual at about 1.67% per year of service</li>
         </ul>
         <p>
           Beyond these four legislated costs, employers also absorb recruitment, onboarding and equipment costs such as desk space, hardware and software licences, which vary widely by role.
@@ -91,7 +95,7 @@ export default function EmployerCostCalculatorContent() {
 
         <h3>How Do On-Costs Differ for Casual vs Permanent Employees?</h3>
         <p>
-          Casual employees receive a <strong>25% loading</strong> on their base hourly rate under the Fair Work Act to compensate for no paid leave entitlements. This loading replaces the annual leave provision, personal leave provision, and notice period obligation. Casual workers still attract superannuation at 12%, payroll tax, and workers compensation premiums. The casual loading often makes the per-hour cost higher. With no paid leave and no redundancy obligations, casuals cost less for unpredictable, seasonal or project-based workloads.
+          Casual employees receive a <strong>casual loading</strong> on their base hourly rate, set by their award, registered agreement or contract rather than by the Fair Work Act. For award-free casuals the national minimum wage order sets it at {formatPercent(EMPLOYMENT.casualLoading, 0)}. The loading is paid instead of annual leave, paid personal/carer&apos;s leave, notice of termination and redundancy pay, so it replaces the annual leave provision, personal leave provision, and notice period obligation. Casual workers still attract superannuation at {SG_PCT}, payroll tax, and workers compensation premiums. The casual loading often makes the per-hour cost higher. With no paid leave and no redundancy obligations, casuals cost less for unpredictable, seasonal or project-based workloads.
         </p>
       </section>
 
@@ -102,7 +106,7 @@ export default function EmployerCostCalculatorContent() {
           The total cost of employment scales proportionally with salary, so the multiplier stays flat until salary passes the super maximum contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}, where the SG stops rising.
         </p>
         <p>
-          The table below shows the employer cost breakdown for FY{SITE_CONFIG.financialYear} at five common salary levels, assuming a Victorian business above the payroll tax threshold ({formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}) and a 1.5% workers compensation premium. Pick your own state in the calculator above. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see what the employee receives after income tax and Medicare levy.
+          The table below shows the employer cost breakdown for FY{SITE_CONFIG.financialYear} at five common salary levels, assuming a Victorian business above the payroll tax threshold ({formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}) and a {formatPercent(TABLE_WORKCOVER, 1)} workers compensation premium. Pick your own state in the calculator above. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see what the employee receives after income tax and Medicare levy.
         </p>
         <div className="not-prose overflow-x-auto my-6">
           <table className="w-full text-sm border-collapse border border-sandstone-dark/20 rounded-lg">
@@ -120,7 +124,7 @@ export default function EmployerCostCalculatorContent() {
               {([
                 ["Base Salary", (r: CostRow) => r.salary],
                 [`Super (${formatPercent(SUPER_GUARANTEE.rate, 0)})`, (r: CostRow) => r.superAmt],
-                ["Leave Provision (7.69%)", (r: CostRow) => r.leave],
+                [`Leave Provision (${ANNUAL_LEAVE_PCT})`, (r: CostRow) => r.leave],
                 [`Payroll Tax (VIC ${formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)})`, (r: CostRow) => r.payroll],
                 [`WorkCover (${formatPercent(TABLE_WORKCOVER, 1)})`, (r: CostRow) => r.workcover],
               ] as const).map(([label, pick], i) => (
@@ -141,7 +145,7 @@ export default function EmployerCostCalculatorContent() {
           </table>
         </div>
         <p>
-          Businesses below their state&apos;s payroll tax threshold remove the payroll tax row entirely, which drops the multiplier to approximately <strong>{MULT_100K_NO_PAYROLL.toFixed(2)}x</strong>. From 1 July 2026 the super guarantee has an annual maximum contribution base of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> (it was $62,500 per quarter until 30 June 2026), so employers with staff earning above it pay SG only up to the cap unless contractually obligated otherwise.
+          Businesses below their state&apos;s payroll tax threshold remove the payroll tax row entirely, which drops the multiplier to approximately <strong>{MULT_100K_NO_PAYROLL.toFixed(2)}x</strong>. From 1 July 2026 the super guarantee has an annual maximum contribution base of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> (it was {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter until 30 June 2026), so employers with staff earning above it pay SG only up to the cap unless contractually obligated otherwise.
         </p>
       </section>
 
@@ -149,7 +153,7 @@ export default function EmployerCostCalculatorContent() {
       <section id="super-calculated-for-employers">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Superannuation Calculated for Employers?</h2>
         <p>
-          Employers calculate superannuation at <strong>12% of each employee&apos;s qualifying earnings</strong> for FY{SITE_CONFIG.financialYear}, paid with each pay to the employee&apos;s nominated super fund.
+          Employers calculate superannuation at <strong>{SG_PCT} of each employee&apos;s qualifying earnings</strong> for FY{SITE_CONFIG.financialYear}, paid with each pay to the employee&apos;s nominated super fund.
         </p>
         <p>
           Qualifying earnings are ordinary time earnings plus, from 1 July 2026, commissions for work done entirely outside ordinary hours. Ordinary time earnings include base salary, commissions, shift loadings, and allowances that relate to ordinary hours of work, and exclude overtime payments, reimbursements, and lump sum termination payments. The ATO defines the distinction under Superannuation Guarantee Ruling SGR 2009/2.
@@ -157,7 +161,7 @@ export default function EmployerCostCalculatorContent() {
 
         <h3>Payment Deadlines</h3>
         <p>
-          Since <strong>1 July 2026</strong>, super must reach the employee&rsquo;s fund within <strong>7 business days of each payday</strong>, as quarterly payment has ended. Missing that deadline triggers the Superannuation Guarantee Charge, now made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on a voluntary disclosure within 30 days. The charge is now tax-deductible. The final quarterly deadlines, which applied to earnings paid up to 30 June 2026, were:
+          Since <strong>{SUPER_GUARANTEE.paydaySuperStart}</strong>, super must reach the employee&rsquo;s fund within <strong>{SGC_NOW.businessDaysToPay} business days of each payday</strong>, as quarterly payment has ended. Missing that deadline triggers the Superannuation Guarantee Charge, now made up of the shortfall, notional earnings at the general interest charge rate compounded daily, an administrative uplift, and a choice loading if you did not follow the choice of fund rules. The uplift starts at {formatPercent(SGC_NOW.administrativeUpliftMax, 0)}. It falls to nil when you lodge a voluntary disclosure within 30 days of the payday and the ATO has not assessed you for the charge on its own initiative in the 2 years before that payday. The charge is now tax-deductible. The final quarterly deadlines, which applied to earnings paid up to 30 June 2026, were:
         </p>
         <div className="not-prose overflow-x-auto my-6">
           <table className="w-full text-sm border-collapse border border-sandstone-dark/20 rounded-lg">
@@ -193,7 +197,7 @@ export default function EmployerCostCalculatorContent() {
           </table>
         </div>
         <p>
-          The $450-per-month minimum earnings threshold was removed on 1 July 2022. Every employee now receives superannuation regardless of how little they earn. For a detailed breakdown of SG rate history and contribution caps, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+          The $450-per-month minimum earnings threshold was removed on 1 July 2022. Since then you pay super on an adult employee&apos;s qualifying earnings however little they earn. Employees under 18, and workers paid for work of a private or domestic nature, are still eligible only if they work more than 30 hours in a week. For a detailed breakdown of SG rate history and contribution caps, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
         </p>
       </section>
 
@@ -322,7 +326,7 @@ export default function EmployerCostCalculatorContent() {
         </p>
         <ol>
           <li><strong>Base salary:</strong> {formatAUD(WORKED_SALARY)}</li>
-          <li><strong>Superannuation (12% of qualifying earnings):</strong> {formatAUD(WORKED_SALARY)} x 0.12 = <strong>{formatAUD(WORKED_SUPER)}</strong></li>
+          <li><strong>Superannuation ({SG_PCT} of qualifying earnings):</strong> {formatAUD(WORKED_SALARY)} x {SUPER_GUARANTEE.rate} = <strong>{formatAUD(WORKED_SUPER)}</strong></li>
           <li><strong>Annual leave provision (4 weeks / 52 weeks):</strong> {formatAUD(WORKED_SALARY)} x 0.0769 = <strong>{formatAUD(WORKED_ANNUAL_LEAVE)}</strong></li>
           <li><strong>Personal leave provision (10 days / 260 days):</strong> {formatAUD(WORKED_SALARY)} x 0.0385 = <strong>{formatAUD(WORKED_PERSONAL_LEAVE)}</strong></li>
           <li><strong>Payroll tax (VIC: {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)} on wages + super above {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold):</strong> Assuming the business exceeds the threshold, ({formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)}) x {STATE_PAYROLL_TAX.VIC.rate} = <strong>{formatAUD(WORKED_PAYROLL_TAX)}</strong></li>
@@ -366,7 +370,7 @@ export default function EmployerCostCalculatorContent() {
       <section id="fy2026-27-changes">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed in FY{SITE_CONFIG.financialYear}?</h2>
         <p>
-          The biggest change for employers on 1 July 2026 was <strong>Payday Super</strong>: SG is now due with every pay, must be received by the fund within 7 business days, is calculated on qualifying earnings, and is capped by an annual maximum contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}. Late contributions attract a rebuilt, tax-deductible Superannuation Guarantee Charge. The SG rate itself stayed at <strong>12%</strong>, the legislated ceiling it reached on 1 July 2025.
+          The biggest change for employers on 1 July 2026 was <strong>Payday Super</strong>: SG is now due with every pay, must be received by the fund within 7 business days, is calculated on qualifying earnings, and is capped by an annual maximum contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}. Late contributions attract a rebuilt, tax-deductible Superannuation Guarantee Charge. The SG rate itself stayed at <strong>{SG_PCT}</strong>, the legislated ceiling it reached on {SUPER_GUARANTEE.effectiveDate}.
         </p>
         <p>
           That final step in the SG rate schedule lifted the employer cost of superannuation from 11.5% in FY2024-25 to 12% in FY2025-26. For an employee earning $100,000, the annual super cost rose from $11,500 to <strong>$12,000</strong>, where it stays in FY{SITE_CONFIG.financialYear}.
@@ -481,7 +485,7 @@ export default function EmployerCostCalculatorContent() {
 
       <div className="mt-12 not-prose border-t border-sandstone-dark/20 pt-8">
         <MethodologyDisclosure title="How this calculator works">
-          <p>Employment cost estimates use the current 12% Superannuation Guarantee rate (effective 1 July 2025) capped at the annual maximum contribution base, state payroll tax rates and thresholds for FY{SITE_CONFIG.financialYear} from each state revenue office, and average WorkCover premium ranges by industry classification. Leave provisions assume 4 weeks annual leave under the National Employment Standards.</p>
+          <p>Employment cost estimates use the current {SG_PCT} Superannuation Guarantee rate (effective {SUPER_GUARANTEE.effectiveDate}) capped at the annual maximum contribution base, state payroll tax rates and thresholds for FY{SITE_CONFIG.financialYear} from each state revenue office, and average WorkCover premium ranges by industry classification. Leave provisions assume 4 weeks annual leave under the National Employment Standards.</p>
         </MethodologyDisclosure>
         <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
       {(() => { const a = getGuideAuthorship("employer-cost-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

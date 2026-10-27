@@ -1,0 +1,161 @@
+{
+ "name": "ff-003-page",
+ "files": [
+  "app/payment-in-lieu-of-notice/page.tsx",
+  "app/site-directory/page.tsx",
+  "lib/constants/centrelink-income-test.ts",
+  "lib/constants/junior-rates.ts",
+  "lib/constants/long-service-leave.ts",
+  "lib/constants/marginal-rates.ts"
+ ],
+ "questions": [
+  {
+   "key": "app/payment-in-lieu-of-notice/page.tsx:16",
+   "file": "app/payment-in-lieu-of-notice/page.tsx",
+   "line": "16",
+   "page": "https://pay-calculator-australia.com/payment-in-lieu-of-notice/",
+   "claims": [
+    "NES notice periods (1 to 4 weeks, plus 1 if over 45)"
+   ],
+   "whys": [
+    "Under the NES (Fair Work Act s117(3)(b)), the extra week applies only if the employee is over 45 AND has completed at least 2 years of continuous service with the employer. The meta description drops the 2-year service condition. The string is locked metadata, so I left it alone. Consider rewording within the length limit, for example 'plus 1 if over 45 with 2+ years' service'."
+   ],
+   "constants": [
+    "DESCRIPTION in app/payment-in-lieu-of-notice/page.tsx (the NES notice rule itself should come from the notice table in modules/guide/payment-in-lieu-of-notice)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.84,
+   "needsOwner": false
+  },
+  {
+   "key": "app/site-directory/page.tsx:404",
+   "file": "app/site-directory/page.tsx",
+   "line": "404",
+   "page": "https://pay-calculator-australia.com/site-directory/",
+   "claims": [
+    "Income tax figures on this site use the ATO rates for FY{SITE_CONFIG.financialYear}."
+   ],
+   "whys": [
+    "The writer asked for confirmation that every income tax figure on the site (take-home-pay-on, tax-on, calculators, salary pages) uses the same SITE_CONFIG.financialYear ATO brackets. This unit's code cannot show that. It needs a check that every tax engine reads the shared constant."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The writer asked whether every income tax figure on the site uses the FY{SITE_CONFIG.financialYear} ATO rates. A unit review cannot confirm that site-wide. It needs a separate check that every tax engine reads the same financial-year constant."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.86,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/centrelink-income-test.ts:266",
+   "file": "lib/constants/centrelink-income-test.ts",
+   "line": "266",
+   "page": "https://pay-calculator-australia.com/jobseeker-payment-calculator/",
+   "claims": [
+    "Free areas and tapers index on 1 July, not on 20 September"
+   ],
+   "whys": [
+    "This confirms the writer's question. Taper rates are fixed percentages and cannot index. Whether the $150/$256 allowance thresholds index each 1 July needs checking against Services Australia or the Social Security Guide. The same claim is rendered at jobseeker-payment-calculator-content.tsx line 200 (methodology)."
+   ],
+   "constants": [
+    "JOBSEEKER_INCOME_TEST"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.38,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/junior-rates.ts:394",
+   "file": "lib/constants/junior-rates.ts",
+   "line": "394",
+   "page": "https://pay-calculator-australia.com/junior-pay-rates/",
+   "claims": [
+    "ACT daily caps rise \"from 3 hours under age 3 to 6 hours at ages 12 to 15\""
+   ],
+   "whys": [
+    "An hours cap for children under age 3 reads oddly on a junior pay page. It is probably right, since the ACT rules cover modelling and entertainment work, but it should be re-checked against the cited ACT page before it stays live."
+   ],
+   "constants": [
+    "MINIMUM_WORKING_AGE (ACT detail)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/long-service-leave.ts:346",
+   "file": "lib/constants/long-service-leave.ts",
+   "line": "346",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/sa/",
+   "claims": [
+    "SA: 'Before 10 years the pro-rata payment is not payable if you are dismissed for serious and wilful misconduct ...'"
+   ],
+   "whys": [
+    "The SA data sets proRataUnconditionalFromYears to 7 with empty proRataConditions. The calculator explanation (line 754) would therefore tell a 7-10 year SA worker that the balance is paid 'however the employment ends', which contradicts the summary's misconduct and unlawful-termination exclusion before 10 years."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/long-service-leave.ts:310",
+   "file": "lib/constants/long-service-leave.ts",
+   "line": "310",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/wa/",
+   "claims": [
+    "WA: pro-rata paid after 7 years on any ending; 'The only exception is dismissal for serious misconduct.'"
+   ],
+   "whys": [
+    "proRataUnconditionalFromYears is 7 with empty proRataConditions, so the calculator says it is paid 'however the employment ends' and does not model the serious-misconduct exception the summary states."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/long-service-leave.ts:677",
+   "file": "lib/constants/long-service-leave.ts",
+   "line": "677",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/nt/",
+   "claims": [
+    "CONDITIONAL_QUALIFYING (redundancy, dismissal not misconduct, illness, retirement, death) pays a pro-rata amount between 7 and 10 years in every jurisdiction that has a conditional window"
+   ],
+   "whys": [
+    "The NT proRataConditions (line 471) and the NT summary list retirement age, employer termination other than serious misconduct, and resignation for illness or pressing necessity. Neither lists death. The calculator still pays on death in the NT, so check that the NT Act covers death in the 7 to 10 year window."
+   ],
+   "constants": [
+    "CONDITIONAL_QUALIFYING / LSL_JURISDICTIONS.nt.proRataConditions"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.04,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/marginal-rates.ts:106",
+   "file": "lib/constants/marginal-rates.ts",
+   "line": "106",
+   "page": "/marginal-tax-rates/",
+   "claims": [
+    "bandReason() hard-codes \"$18,200\", \"15c\" and \"$700\" (lines 106-107), plus \"2c\", \"10c\", \"5c\" and \"1.5c\" (lines 110-118)"
+   ],
+   "whys": [
+    "These figures look right for 2026-27, but they are typed into the strings and not read from the TAX_BRACKETS, LITO and MEDICARE_LEVY constants. The band labels will go stale when those constants change (for example, the first scale rate drops again from 1 July 2027)."
+   ],
+   "constants": [
+    "TAX_BRACKETS / LITO / MEDICARE_LEVY in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.5,
+   "needsOwner": false
+  }
+ ]
+}

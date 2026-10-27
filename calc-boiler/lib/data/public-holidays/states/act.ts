@@ -13,7 +13,7 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   name: "Australian Capital Territory",
   inName: "in the ACT",
   standfirst:
-    "The ACT has 15 public holidays in 2026 and 16 in 2027, more than NSW around it. Two are Territory-only: Canberra Day in March and Reconciliation Day in late May or early June. When Anzac Day, Christmas Day or Boxing Day lands on a weekend, the ACT keeps the weekend day and adds a weekday, and both are public holidays for pay.",
+    "The ACT has 15 public holidays in 2026 and 16 in 2027, more than NSW around it. Two are Territory-only: Canberra Day in March and Reconciliation Day in late May or early June. When New Year's Day, Anzac Day, Christmas Day or Boxing Day lands on a weekend, the ACT keeps the weekend day and adds a weekday, and both are public holidays for pay.",
   sources: [
     {
       title: "Public holidays, school terms and daylight saving",
@@ -86,7 +86,7 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       id: "bank-holiday",
       heading: "The August bank holiday",
       paragraphs: [
-        "The Holidays Act 1958 also sets a bank holiday on the first Monday in August. The ACT Government notes that bank holidays do not apply to everyone, so for most employees it is an ordinary working day. Check your award or enterprise agreement if you work in banking or finance.",
+        "The Holidays Act 1958 also sets a bank holiday on the first Monday in August. It is not on the ACT Government's list of public holidays, and the Government notes that bank holidays do not apply to everyone. Your award or enterprise agreement says whether it applies to you.",
       ],
     },
     {
@@ -109,7 +109,7 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
     },
     {
       q: "Is the August bank holiday a public holiday in the ACT?",
-      a: "Not for most employees. The Holidays Act 1958 sets a bank holiday on the first Monday in August, but the ACT Government notes bank holidays do not apply to everyone. Check your award or agreement.",
+      a: "It is not on the ACT Government's list of public holidays. The Holidays Act 1958 sets a bank holiday on the first Monday in August, but the ACT Government notes bank holidays do not apply to everyone. Your award or enterprise agreement says whether it applies to you.",
     },
   ],
 };

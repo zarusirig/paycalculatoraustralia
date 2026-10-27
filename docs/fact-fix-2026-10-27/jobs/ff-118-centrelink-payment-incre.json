@@ -1,0 +1,164 @@
+{
+ "name": "ff-118-centrelink-payment-incre",
+ "files": [
+  "modules/news/articles/centrelink-payment-increase-january-2026.tsx",
+  "modules/news/articles/deeming-rates-change-2026.tsx",
+  "modules/news/articles/federal-budget-2026-27-your-pay.tsx",
+  "modules/news/articles/health-professionals-award-changes-october-2026.tsx",
+  "modules/news/articles/hecs-20-percent-cut-status.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/news/articles/centrelink-payment-increase-january-2026.tsx:49",
+   "file": "modules/news/articles/centrelink-payment-increase-january-2026.tsx",
+   "line": "49",
+   "page": "/news/centrelink-payment-increase-january-2026/",
+   "claims": [
+    "Carer Allowance \"isn't means-tested against the recipient's own income the way most other payments are\""
+   ],
+   "whys": [
+    "The site's own navigation (lib/navigation.ts:398) and /carer-allowance/ page title cite a $250,000 Carer Allowance income limit (CARER_ALLOWANCE.incomeLimit). The article contradicts that."
+   ],
+   "constants": [
+    "CARER_ALLOWANCE.incomeLimit"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/centrelink-payment-increase-january-2026.tsx:66",
+   "file": "modules/news/articles/centrelink-payment-increase-january-2026.tsx",
+   "line": "66",
+   "page": "/news/centrelink-payment-increase-january-2026/",
+   "claims": [
+    "January indexation reflects \"movements in the Consumer Price Index over the preceding six months\""
+   ],
+   "whys": [
+    "Youth Allowance, Austudy, ABSTUDY and Carer Allowance are indexed once a year on 1 January, so the measure should be annual CPI (12 months to the September quarter), not six months. Six-monthly CPI is the pension cycle."
+   ],
+   "constants": [
+    "centrelink indexation notes in lib/constants (no constant found)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/deeming-rates-change-2026.tsx:46",
+   "file": "modules/news/articles/deeming-rates-change-2026.tsx",
+   "line": "46",
+   "page": "/news/deeming-rates-change-2026/",
+   "claims": [
+    "Deeming thresholds \"are reviewed alongside the Age Pension rate each March and September\""
+   ],
+   "whys": [
+    "Deeming thresholds are indexed on 1 July. The site's own constants agree: $64,200/$106,200 in March 2026 became $66,800/$110,600 by 20 September 2026, and the Sep 2026 note says \"Only the rates changed\"."
+   ],
+   "constants": [
+    "DEEMING_SEPTEMBER_2026.thresholds (lib/constants/centrelink-income-test.ts:676)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/deeming-rates-change-2026.tsx:16",
+   "file": "modules/news/articles/deeming-rates-change-2026.tsx",
+   "line": "16",
+   "page": "/news/deeming-rates-change-2026/",
+   "claims": [
+    "Deeming rates before 20 March 2026 were 0.25% and 2.25% (\"ending a multi-year freeze\", frozen since May 2020); same claim at lines 8 and 27 and in lib/news.ts:624"
+   ],
+   "whys": [
+    "My understanding is the freeze ended on 20 September 2025, when rates rose to 0.75% and 2.75%. If so, the March 2026 'before' values and the 'ending a multi-year freeze' framing are wrong. Check against the AGA March 2026 recommendation the page cites."
+   ],
+   "constants": [
+    "no DEEMING_MARCH_2026 constant; values hard-coded in the article and lib/news.ts:609,624"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.02,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/deeming-rates-change-2026.tsx:27",
+   "file": "modules/news/articles/deeming-rates-change-2026.tsx",
+   "line": "27",
+   "page": "https://pay-calculator-australia.com/news/deeming-rates-change-2026/ (linked from /news/age-pension-increase-march-2026/)",
+   "claims": [
+    "The lower deeming rate rose from 0.25% to 1.25% and the upper rate from 2.25% to 3.25%, effective 20 March 2026, after being frozen since May 2020."
+   ],
+   "whys": [
+    "Deeming rates were already lifted to 0.75% and 2.75% from 20 September 2025, so a starting point of 0.25%/2.25% in March 2026 looks stale. The March 2026 Age Pension article links to this page and says deeming changed on the same date."
+   ],
+   "constants": [
+    "lib/constants/centrelink-income-test.ts DEEMING_SEPTEMBER_2026 (previousLowerRate 0.0125). A March 2026 deeming set with its own previous rates should be held there too."
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.93,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/federal-budget-2026-27-your-pay.tsx:54",
+   "file": "modules/news/articles/federal-budget-2026-27-your-pay.tsx",
+   "line": "54",
+   "page": "https://pay-calculator-australia.com/news/federal-budget-2026-27-your-pay/",
+   "claims": [
+    "lifts the point at which a typical worker starts paying net tax to almost $19,985, or up to $24,985"
+   ],
+   "whys": [
+    "At the 2027-28 rate of 14%, $18,200 + $250/0.14 = $19,985.71 and $18,200 + $950/0.14 = $24,985.71. That is just over the stated figures, so 'almost' looks inverted. Check against Treasury's wording."
+   ],
+   "constants": [
+    "WATO amount and effective tax-free threshold in the tax constants for 2027-28"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.75,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/health-professionals-award-changes-october-2026.tsx:48",
+   "file": "modules/news/articles/health-professionals-award-changes-october-2026.tsx",
+   "line": "48",
+   "page": "https://pay-calculator-australia.com/news/health-professionals-award-changes-october-2026/",
+   "claims": [
+    "most health professionals get a rise"
+   ],
+   "whys": [
+    "Population claim with no figure. Clause J.4.3 (no one goes backwards) shows that some, such as the old Level 4 pay point 4, do not get a rise."
+   ],
+   "constants": [
+    "HPSS_OCT_2026 (FWC decision text or a count derived from HPSS translation tables)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/hecs-20-percent-cut-status.tsx:46",
+   "file": "modules/news/articles/hecs-20-percent-cut-status.tsx",
+   "line": "46",
+   "page": "/news/hecs-20-percent-cut-status/",
+   "claims": [
+    "'Most reductions were processed before the end of 2025 ... The ATO has since confirmed processing is complete for all study and training support debts' (key facts line 21: 'Complete as of 2026')."
+   ],
+   "whys": [
+    "None of the page's three sources is an ATO completion notice (they are Study Assist, Department of Education FAQs and a ministerial release). This needs an ATO or Study Assist source with a date."
+   ],
+   "constants": [
+    "lib/news.ts sources for hecs-20-percent-cut-status (around line 335)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.88,
+   "needsOwner": false
+  }
+ ]
+}

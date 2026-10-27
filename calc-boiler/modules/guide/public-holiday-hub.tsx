@@ -140,8 +140,8 @@ export default function PublicHolidayHub() {
               </ul>
               <p>
                 If the request is reasonable and you refuse unreasonably, you can be required to work. Once you do work, the award or
-                agreement rate in the table above applies to every hour, and many awards set a minimum paid shift (for example 4 hours
-                under the Clerks Award).
+                agreement rate in the table above applies to every hour. Some awards also set a minimum payment for public holiday
+                work: the Clerks Award pays at least 4 hours (cl 24.4(d)).
               </p>
             </section>
 

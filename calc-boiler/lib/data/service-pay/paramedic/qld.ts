@@ -34,7 +34,7 @@ export const QLD_PARAMEDIC_PAY: ServicePayJurisdiction = {
   nextIncrease: {
     date: "1 September 2027",
     detail:
-      "A further 2.5% from 1 September 2027 is written into the QAS agreement and printed in the updated schedule: Level 2, Band 1, Increment 1 goes to $89,043 and Level 2, Band 2, Increment 7 to $110,201. A CPI Uplift Adjustment of up to 1% may be added if the March 2027 Brisbane CPI exceeds 2.5%.",
+      "A further 2.5% from 1 September 2027 is written into the QAS agreement and printed in the updated schedule: Level 2, Band 1, Increment 1 goes to $89,043 and Level 2, Band 2, Increment 7 to $110,201. If the March 2027 Brisbane CPI exceeds 2.5%, a CPI Uplift Adjustment equal to the difference (capped at 1%) is paid as part of the 1 September 2026 increase, and the 1 September 2027 rates rise with it (clauses 23.3, 23.5.2 and 23.6.2).",
   },
   verifiedOn: "24 September 2026",
 
@@ -151,7 +151,7 @@ export const QLD_PARAMEDIC_PAY: ServicePayJurisdiction = {
     },
     {
       q: "When is the next QAS pay rise?",
-      a: "The next scheduled QAS pay rise is 2.5% from 1 September 2027, plus up to 1% more if the March 2027 Brisbane CPI exceeds 2.5%.",
+      a: "The next scheduled QAS pay rise is 2.5% from 1 September 2027. If the March 2027 Brisbane CPI exceeds 2.5%, the 1 September 2026 increase is also topped up by the difference, capped at 1%.",
     },
   ],
 };

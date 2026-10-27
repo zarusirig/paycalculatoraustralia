@@ -89,7 +89,7 @@ export const NSW_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       heading: "Additional days when a holiday falls on a weekend",
       paragraphs: [
         "When New Year's Day, Christmas Day or Boxing Day falls on a Saturday or Sunday, NSW adds a public holiday on the following Monday or Tuesday. When Australia Day falls on a weekend the holiday moves to the Monday instead. NSW also gazetted an Additional Day for Anzac Day in both 2026 (Monday 27 April) and 2027 (Monday 26 April), while still observing 25 April itself.",
-        "If you work both the weekend day and the additional day, check your award: most pay the public holiday rate on each day that is a declared public holiday.",
+        "If you work both the weekend day and the additional day, each one is a gazetted public holiday. The NSW Government's guidance is that in most cases an employee who works a gazetted public holiday is entitled to extra pay, as a penalty or loading, and your award, agreement or contract sets the amount.",
       ],
     },
     {

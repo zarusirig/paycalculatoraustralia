@@ -5,9 +5,12 @@
 
 import {
   EMPLOYMENT,
+  HECS_HELP,
   MEDICARE_LEVY,
   SITE_CONFIG,
   SUPER_GUARANTEE,
+  TAX_BRACKETS,
+  TAX_BRACKETS_2025_26,
   TAX_FREE_THRESHOLD,
   calculatePayBreakdown,
   formatAUD,
@@ -17,12 +20,34 @@ import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import type { FaqItem } from "@/lib/faq";
 import { calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
 import { AWE_HEADLINE, AWE_RELEASE } from "@/lib/data/average-salary";
+import { extraPayTriggers, financialYear } from "@/lib/constants/pay-periods";
 
 const FY = SITE_CONFIG.financialYear;
 const EX_SALARY = 80_000;
 const EX = calculatePayBreakdown({ grossSalary: EX_SALARY, includeHECS: false, hasPrivateHealth: true });
 const GROSS_WEEKLY = EX_SALARY / 52;
 const THRESHOLD_WEEKLY = TAX_FREE_THRESHOLD / 52;
+
+// The weekday(s) that give 53 weekly pay days in the current financial year
+// (the weekday of 1 July, plus 2 July in a 366-day year).
+const EXTRA_PAY_WEEKDAYS = extraPayTriggers(financialYear(Number(FY.slice(0, 4)))).weeklyWeekdays.join(" or ");
+
+// "Why did my weekly pay change on 1 July?": state a year-specific change only
+// when the constants show one, so the answer cannot claim a change in a later
+// year that has none. The bracket comparison is only valid while the previous
+// year is 2025-26 (the historical scale held in TAX_BRACKETS_2025_26).
+const PREV_SECOND = SITE_CONFIG.previousFinancialYear === "2025-26" ? TAX_BRACKETS_2025_26[1] : undefined;
+const CUR_SECOND = TAX_BRACKETS[1];
+const HECS_PREV: number = HECS_HELP.previousThreshold;
+const HECS_NOW: number = HECS_HELP.minimumThreshold;
+const JULY_CHANGES = [
+  PREV_SECOND && PREV_SECOND.rate !== CUR_SECOND.rate
+    ? `the tax rate on income from ${formatAUD(CUR_SECOND.min)} to ${formatAUD(CUR_SECOND.max)} ${CUR_SECOND.rate < PREV_SECOND.rate ? "fell" : "rose"} from ${formatPercent(PREV_SECOND.rate, 0)} to ${formatPercent(CUR_SECOND.rate, 0)}`
+    : null,
+  HECS_PREV !== HECS_NOW
+    ? `the HECS-HELP minimum repayment threshold ${HECS_NOW > HECS_PREV ? "rose" : "fell"} from ${formatAUD(HECS_PREV)} to ${formatAUD(HECS_NOW)}`
+    : null,
+].filter(Boolean);
 
 // People Also Ask (Google AU, Sept 2026) for "weekly pay calculator" and
 // "weekly pay after tax calculator": docs/seo/2026-09-24-paa-optimisation.md.
@@ -66,7 +91,7 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why did my weekly pay change on 1 July?",
-    a: `Weekly pay changes at the start of each financial year (1 July) because updated PAYG withholding tables take effect. For FY${FY}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds from each weekly payment.`,
+    a: `Changes to tax rates, HECS-HELP repayment thresholds and the ATO's withholding tables start on 1 July. Award pay rises from the Fair Work Commission's Annual Wage Review start from the first full pay period starting on or after 1 July.${JULY_CHANGES.length ? ` For FY${FY}, ${JULY_CHANGES.join(" and ")}, which changes the amount your employer withholds from each weekly payment.` : ""}`,
   },
   {
     q: "What is the difference between gross weekly pay and net weekly pay?",
@@ -78,12 +103,12 @@ export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Are there 52 or 53 weekly pays in a year?",
-    a: `Usually ${WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a financial year contains ${WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days. Your salary is then spread over one more pay. The ATO's weekly tax table publishes an optional extra amount you can ask your employer to withhold that year so you are not short at tax time. 2026-27 is one of those years if you're paid on a Wednesday: see pay periods in 2026-27.`,
-    links: { "weekly tax table": "/weekly-tax-table/", "pay periods in 2026-27": "/fortnights-in-a-year/" },
+    a: `Usually ${WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a financial year contains ${WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days. Your salary is then spread over one more pay. The ATO's weekly tax table publishes an optional extra amount you can ask your employer to withhold that year so you are not short at tax time. ${FY} is one of those years if you're paid on a ${EXTRA_PAY_WEEKDAYS}: see pay periods in ${FY}.`,
+    links: { "weekly tax table": "/weekly-tax-table/", [`pay periods in ${FY}`]: "/fortnights-in-a-year/" },
   },
   {
     q: "How do casual workers calculate weekly pay?",
-    a: `Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of ${EMPLOYMENT.casualLoading * 100}% is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.`,
+    a: `Casual workers multiply their hourly rate by the number of hours worked in the week. A casual rate under an award already includes the casual loading, which the Fair Work Ombudsman says is generally an extra ${formatPercent(EMPLOYMENT.casualLoading, 0)} of the minimum hourly rate. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.`,
   },
   {
     q: `Do I pay tax if my weekly pay is below ${formatAUD(THRESHOLD_WEEKLY)}?`,

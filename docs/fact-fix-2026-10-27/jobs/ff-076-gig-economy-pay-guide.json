@@ -1,0 +1,139 @@
+{
+ "name": "ff-076-gig-economy-pay-guide",
+ "files": [
+  "modules/guide/gig-economy-pay-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:80",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "80",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "A common approach is to set aside 25-30% of gross income ... This covers income tax, Medicare levy, and GST (if registered)."
+   ],
+   "whys": [
+    "The GIG_ROWS table directly below is computed by the FY engine (LITO and Medicare shading applied). By rough calculation it shows about 4% at $30,000, about 13% at $50,000 and about 23% at $100,000. So the fixed 25-30% rule of thumb contradicts the table at every income level shown. The 25-30% figure is also hard-coded inside a <strong> and does not come from code."
+   ],
+   "constants": [
+    "Derive the set-aside guidance from GIG_ROWS (calculatePayBreakdown), or remove the fixed range"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:207",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "207",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "a gig worker earning $80,000 in the 30% bracket who contributes $10,000 to super saves $1,500 in tax (30% marginal rate minus 15% super tax = 15% x $10,000)"
+   ],
+   "whys": [
+    "The worked example ignores the 2% Medicare levy, which a deductible contribution also reduces. That makes the saving about $1,700, not $1,500. All of these figures are hard-coded."
+   ],
+   "constants": [
+    "lib/constants tax brackets and MEDICARE_LEVY_RATE; contributions tax rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.56,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:204",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "204",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "The annual concessional contributions cap is $30,000."
+   ],
+   "whys": [
+    "Hard-coded in prose and not taken from a constant. The cap is indexed, so it needs checking against the ATO for 2026-27, the year the page's tax table uses."
+   ],
+   "constants": [
+    "lib/constants super caps (CONCESSIONAL_CAP)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:220",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "220",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "Business deductions from gig work can only be offset against your gig income (or total income if you are a sole trader reporting in your individual tax return)."
+   ],
+   "whys": [
+    "This reads as self-contradictory: a gig worker is a sole trader reporting in their individual return. It also leaves out the non-commercial loss rules, which decide whether a business loss can be offset against wage income."
+   ],
+   "constants": [
+    "n/a (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:219",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "219",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "Request additional withholding by lodging a PAYG withholding variation with the ATO, or voluntarily increase your withholding amount with your employer."
+   ],
+   "whys": [
+    "The ATO's PAYG withholding variation application is used to reduce withholding. You increase withholding by making a written upward-variation agreement with your payer, not by applying to the ATO. Check the wording against the ATO."
+   ],
+   "constants": [
+    "n/a (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:47",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "47",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "Most gig platform workers (Uber drivers, Deliveroo riders, Airtasker providers, freelancers) are classified as independent contractors"
+   ],
+   "whys": [
+    "A population claim ('most') with no figure or cited source on the page."
+   ],
+   "constants": [
+    "n/a (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide.tsx:203",
+   "file": "modules/guide/gig-economy-pay-guide.tsx",
+   "line": "203",
+   "page": "https://pay-calculator-australia.com/gig-economy-pay-guide/",
+   "claims": [
+    "Contributions are taxed at 15% in the fund, compared to your marginal rate (which could be 30-45%)."
+   ],
+   "whys": [
+    "Hard-coded rates. The phrase \"could be 30-45%\" leaves out the 16% bracket and the Division 293 extra 15% for high incomes. Both should come from lib/constants tax brackets and the contributions tax rate."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.57,
+   "needsOwner": false
+  }
+ ]
+}

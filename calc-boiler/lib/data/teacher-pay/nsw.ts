@@ -208,7 +208,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How long does it take to reach the top of the NSW teacher scale?",
-      a: "Seven years of full-time service is the fastest realistic path: one year at Step 1, one year at Step 2 plus confirmation of Proficient accreditation, then one year on each of Steps 3 to 6. The award counts 203 days as one year of full-time service, so part-time teachers take proportionately longer.",
+      a: "Six years of full-time service is the fastest path to Step 7: one year at Step 1, one year at Step 2 plus confirmation of Proficient accreditation, then one year on each of Steps 3 to 6. The award counts 203 days as one year of full-time service, so part-time teachers take proportionately longer.",
     },
     {
       q: "How much is a head teacher paid in NSW?",

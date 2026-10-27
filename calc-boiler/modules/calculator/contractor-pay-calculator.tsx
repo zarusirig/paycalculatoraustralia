@@ -191,7 +191,7 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
                       className="block w-full rounded-xl border border-sandstone-dark/30 bg-white px-4 py-3 text-lg font-bold text-navy shadow-sm focus:border-eucalyptus focus:ring-2 focus:ring-eucalyptus/20"
                     />
                     <p className="mt-1 text-xs text-warmgray-light">
-                      Most contractors work 46-48 weeks (allowing for holidays)
+                      The default of 48 weeks allows 4 weeks off for holidays.
                     </p>
                   </div>
 
@@ -252,7 +252,7 @@ export default function ContractorPayCalculator({ children, afterCalculator }: {
                     </tbody>
                   </table>
                   <p className="px-3 py-2 text-xs text-warmgray-light sm:px-4">
-                    Weekly and fortnightly columns use {weeksPerYear}/{Math.floor(weeksPerYear / 2)} periods. Daily uses ({weeksPerYear}×5) workdays.
+                    Weekly and fortnightly columns use {weeksPerYear}/{weeksPerYear / 2} periods. Daily uses ({weeksPerYear}×5) workdays.
                   </p>
                 </div>
               </CardContent>

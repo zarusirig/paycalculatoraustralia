@@ -19,6 +19,7 @@ import {
   PPL_WORK_TEST,
   pplSuperEstimate,
 } from "@/lib/constants/paid-parental-leave";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
 import { W3Faqs, W3Footer, W3Related, W3Section } from "@/modules/calculator/centrelink-w3-shared";
 import { PPL_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 
@@ -128,11 +129,11 @@ export default function ParentalLeavePayContent() {
       </W3Section>
 
       <W3Section title="Who Pays You: Employer or Centrelink">
-        <p className={P}>Your employer pays your Parental Leave Pay through payroll if you&apos;ve worked for them for at least 12 months before the birth or adoption, they&apos;re Australian based, and you take a continuous block of at least {PPL_RULES.employerMinBlockWeeks} weeks of 5-day weeks within a year of the birth, withholding tax at your usual rate. Otherwise Services Australia pays you every 2 weeks and withholds tax at {Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate. If you have other income that year, 15% may not be enough. The <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link> shows your likely bill.</p>
+        <p className={P}>Your employer pays your Parental Leave Pay through payroll if you&apos;ve worked for them for at least 12 months before the birth or adoption, they&apos;re Australian based, and you take a continuous block of at least {PPL_RULES.employerMinBlockWeeks} weeks of 5-day weeks within a year of the birth, withholding tax at your usual rate. Otherwise Services Australia pays you every 2 weeks and withholds tax at {Math.round(PPL_RULES.defaultWithholding * 100)}% unless you ask for a different rate. If you have other income that year, {Math.round(PPL_RULES.defaultWithholding * 100)}% may not be enough. The <Link href="/income-tax-calculator/" className={LINK}>income tax calculator</Link> shows your likely bill.</p>
       </W3Section>
 
       <W3Section title="Super on Paid Parental Leave">
-        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim. Just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. The contribution counts towards your concessional contributions cap and is taxed at 15% in the fund. On {NOW.days} days of Parental Leave Pay at the 2026-27 rate, the contribution is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
+        <p className={P}>For children born or adopted from 1 July 2025, the ATO pays a <strong>Paid Parental Leave Superannuation Contribution</strong> of {Math.round(PPL_RULES.superRate * 100)}% of the Parental Leave Pay you received, plus an interest component, as a lump sum to your super fund after the end of the financial year. The first contributions are paid in 2026-27. There&apos;s nothing to claim. Just make sure your fund has your TFN and that your name and address match at the ATO and Services Australia. The contribution counts towards your concessional contributions cap and is taxed at {Math.round(CONTRIBUTIONS_TAX_RATE * 100)}% in the fund. On {NOW.days} days of Parental Leave Pay at the {PPL_CURRENT_FY} rate, the contribution is about {formatAUD(pplSuperEstimate(NOW.days * RATE.daily), 2)} before interest.</p>
       </W3Section>
 
       <W3Section title="How and When to Claim">

@@ -13,7 +13,16 @@
 // base salaries above them.
 // =============================================================================
 
+import { SUPER_GUARANTEE, formatAUD, formatPercent } from "../../constants";
+import { APS } from "./aps";
 import type { Jurisdiction } from "./types";
+
+// Superannuation comparison with the APS: the APS median employer rate comes
+// from the APSC data in aps.ts and the SG rate from the constants, so the gap
+// on an example VPS 5 salary follows both when either changes.
+const APS_SUPER_RATE = (APS.superannuation.rate ?? 0) / 100;
+const VPS5_EXAMPLE_SALARY = 128_000;
+const APS_SUPER_GAP = Math.round((VPS5_EXAMPLE_SALARY * (APS_SUPER_RATE - SUPER_GUARANTEE.rate)) / 10) * 10;
 
 export const VIC: Jurisdiction = {
   slug: "vic",
@@ -60,7 +69,7 @@ export const VIC: Jurisdiction = {
     "Victorian Public Service Enterprise Agreement 2024. Grades and value ranges are defined in Schedule C, and the classification and value range standard descriptors sit alongside the salary table.",
 
   payRise:
-    "The agreement sets four annual increases of 3% each, operative from 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027, 12% over the life of the agreement. The rates on this page are the 1 May 2026 column, which applies until the 1 May 2027 increase.",
+    "The agreement sets four annual increases of 3% each, operative from 1 May 2024, 1 May 2025, 1 May 2026 and 1 May 2027. Compounded, they lift a salary by about 12.6% over the life of the agreement. The rates on this page are the 1 May 2026 column, which applies until the 1 May 2027 increase.",
 
   schedules: [
     {
@@ -356,13 +365,13 @@ export const VIC: Jurisdiction = {
     "Progression through the steps inside a value range is not automatic. Clause 31 of the agreement ties it to the annual performance cycle: you are eligible to be considered when you have been employed in the VPS continuously for 12 months at the end of the cycle, have been at your current classification and progression step for 12 months, and have a current performance and development plan in place.",
     "If you are already on the top step of your grade or value range and you achieve progression, you receive a top of grade or value range payment instead: a lump sum of 1.5% of your salary as at 30 June of that performance cycle. It replaced a 1% payment from the cycle ending 30 June 2024.",
     "Moving between value ranges (from 3.1 to 3.2, for example) is a different mechanism again. It follows a job resizing review that assesses the work the employer requires and your performance of it against the classification and value range standard descriptors. It is a change in work value, not a time-served increment. The agreement is explicit that progression steps themselves are not points of defined work value.",
-    "Because the value ranges overlap at the top, the last step of one grade can pay more than the first step of the next: VPS 4.1.7 pays $114,476 while VPS 5.1.1 pays $116,413, a gap of under $2,000, so a promotion from the top of grade 4 to the bottom of grade 5 is a smaller pay rise than a single step inside grade 4.",
+    "The grades sit close together at their boundaries: VPS 4.1.7 pays $114,476 while VPS 5.1.1 pays $116,413, a gap of under $2,000, so a promotion from the top of grade 4 to the bottom of grade 5 is a smaller pay rise than a single step inside grade 4.",
   ],
 
   superannuation: {
     rate: null,
     text:
-      "The VPS agreement does not set an above-guarantee employer contribution. Clause 41.2 requires the employer to contribute enough to avoid the superannuation guarantee charge, which means the ordinary Superannuation Guarantee rate applies to VPS salaries. That is a real difference from the APS, where the median employer contribution is 15.4%: on a VPS 5 salary of about $128,000 the gap between the Superannuation Guarantee rate of 12% and 15.4% is worth about $4,350 a year in total remuneration.",
+      `The VPS agreement does not set an above-guarantee employer contribution. Clause 41.2 requires the employer to contribute enough to avoid the superannuation guarantee charge, which means the ordinary Superannuation Guarantee rate applies to VPS salaries. That is a real difference from the APS, where the median employer contribution is ${formatPercent(APS_SUPER_RATE)}: on a VPS 5 salary of about ${formatAUD(VPS5_EXAMPLE_SALARY)} the gap between the Superannuation Guarantee rate of ${formatPercent(SUPER_GUARANTEE.rate, 0)} and ${formatPercent(APS_SUPER_RATE)} is worth about ${formatAUD(APS_SUPER_GAP)} a year in total remuneration.`,
     sourceId: "vps-ea-2024",
   },
 

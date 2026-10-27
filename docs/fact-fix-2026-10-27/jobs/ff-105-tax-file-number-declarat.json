@@ -1,0 +1,139 @@
+{
+ "name": "ff-105-tax-file-number-declarat",
+ "files": [
+  "modules/guide/tax-file-number-declaration.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:62",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "Without a correctly completed TFN declaration, your employer must withhold tax at the highest marginal rate of 47% from every dollar you earn."
+   ],
+   "whys": [
+    "47% is not the highest marginal rate. Line 215 on the same page says it is the 45% top marginal rate plus the 2% Medicare levy. The 47% no-TFN rate is triggered by not quoting a TFN, not by a declaration being filled in wrongly. For foreign residents the no-TFN rate is 45%. The bold text is protected, so I left it as it is."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (top marginal rate + Medicare levy). 47%, 45% and 2% are hard-coded at lines 62, 82, 158, 180 and 215."
+   ],
+   "reviewerNotes": [
+    "I agree with all five of the writer's factQuestions. (1) 47% is called the 'highest marginal rate' (line 62), but line 215 says it is 45% + 2% Medicare. (2) The 28 days applies only after you tick 'I have made a separate application', not to the declaration itself (lines 65, 80, 82, 180). (3) For changes with the same payer the ATO uses a withholding declaration (NAT 3093), not a new TFN declaration. Line 127 already says so, but lines 149, 154, 164, 169, 189, 193 and 194 do not. (4) The employer-group wording at line 192 is too broad. (5) 'likely already claiming' for Centrelink payees at line 111. I made no text changes for them because the claims sit in locked or protected strings."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.67,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:65",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "65",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "You must provide it within 28 days of starting work."
+   ],
+   "whys": [
+    "The ATO's 28-day window is for quoting your TFN after you tick 'I have made a separate application'. The employer's deadline is 14 days: if it has no declaration by then, it lodges one with the details it has. This sentence applies the 28 days to the whole declaration. Line 180 ('If you don't provide your TFN within 28 days') also suggests the 47% rate starts only after 28 days, even when you have made no TFN application."
+   ],
+   "constants": [
+    "none (prose). An ATO deadline constant would help."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:189",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "189",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "Submit a new TFN declaration when you take on or pay off a HECS debt, change your tax-free threshold claim or change residency (also the table 'How to Fix' cells at lines 149, 154, 164 and 169)."
+   ],
+   "whys": [
+    "For changes with the same payer the ATO uses a withholding declaration (NAT 3093), not a new TFN declaration. Line 127 on the same page already says to give a 'withholding declaration' once the debt is repaid, so the page contradicts itself. Table cells and headings are locked."
+   ],
+   "constants": [
+    "none (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.82,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:192",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "192",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "Starting a new job: required for every new job, even if you have worked for the same employer group before."
+   ],
+   "whys": [
+    "Check the ATO rule for a payee who rejoins the same payer. Within an employer group, separate legal entities need their own declaration, but the line is broader than that."
+   ],
+   "constants": [
+    "none (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.52,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:82",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "82",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "Your employer can withhold at normal rates for 28 days while you wait. After 28 days without a TFN, the 47% rate applies."
+   ],
+   "whys": [
+    "This repeats the 28-day issue in the callout box. Under the ATO rule, the 47% (or 45% for foreign residents) rate applies straight away if you neither quote a TFN nor claim an exemption or separate application. The page currently suggests that everyone gets a 28-day grace period."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.92,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:111",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "111",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "If you receive a taxable payment such as JobSeeker, Youth Allowance or Austudy, you are likely already claiming the threshold from that payment."
+   ],
+   "whys": [
+    "This is a population hedge with no source. It should state the ATO rule for Centrelink payees (whether the threshold is claimed from the payment) without 'likely'. I left it because changing it would mean stating a rule the page does not cite."
+   ],
+   "constants": [
+    "none (prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration.tsx:108",
+   "file": "modules/guide/tax-file-number-declaration.tsx",
+   "line": "108",
+   "page": "https://pay-calculator-australia.com/tax-file-number-declaration/",
+   "claims": [
+    "Claim the tax-free threshold at your main job only (usually the highest-paying one)."
+   ],
+   "whys": [
+    "'usually' is an unsourced hedge on a tax rule. The ATO says to claim the threshold from the payer who usually pays the highest salary or wage. Consider wording that follows the ATO's instead of a population hedge."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.75,
+   "needsOwner": false
+  }
+ ]
+}

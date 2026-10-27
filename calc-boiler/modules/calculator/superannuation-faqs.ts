@@ -12,6 +12,11 @@ import {
   SUPER_GUARANTEE,
   SUPER_GUARANTEE_CHARGE,
 } from "@/lib/constants";
+import {
+  CARRY_FORWARD,
+  CONTRIBUTIONS_TAX_RATE,
+  DIVISION_293,
+} from "@/lib/constants/super-contributions";
 
 const RATE = formatPercent(SUPER_GUARANTEE.rate, 0);
 
@@ -31,19 +36,19 @@ export interface SuperannuationFaq {
 export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   {
     q: "Is super included in my salary?",
-    a: `Typically, no. Most contracts quote base salary with super paid on top of it. Check the wording: "plus super" means additional, "including super" means the headline figure already covers it, so your base salary is lower. For a worked example on a $90,000 package, see the pay-package FAQ on the homepage.`,
+    a: `It depends on your contract wording: "plus super" means additional, "including super" means the headline figure already covers it, so your base salary is lower. For a worked example on a $90,000 package, see the pay-package FAQ on the homepage.`,
   },
   {
     q: "Do casual workers get super?",
-    a: `Yes. Since 1 July 2022, all employees, including casuals, are entitled to SG regardless of how much they earn, after the previous ${formatAUD(450)}-a-month minimum earnings threshold was abolished. A casual worker earning ${formatAUD(200)} per week receives ${formatAUD(200 * SUPER_GUARANTEE.rate)} per week in super contributions at the ${RATE} rate.`,
+    a: `Yes. Since 1 July 2022, casual, part-time and full-time employees are entitled to SG whatever they earn, after the previous ${formatAUD(450)}-a-month minimum earnings threshold was abolished. The exception: if you are under 18, or paid for private or domestic work, you get SG only for a week in which you work more than 30 hours. A casual worker earning ${formatAUD(200)} per week receives ${formatAUD(200 * SUPER_GUARANTEE.rate)} per week in super contributions at the ${RATE} rate.`,
   },
   {
     q: "Can my employer pay super less than 12%?",
-    a: `No. ${RATE} SG is the legal minimum. Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart}, the SGC is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}. Unlike the old quarterly charge, the SGC is now tax-deductible.`,
+    a: `No. ${RATE} SG is the legal minimum (${formatPercent(SUPER_GUARANTEE.norfolkIslandRate, 0)} for Norfolk Island employees in FY${SITE_CONFIG.financialYear}). Employers who don't pay in full and on time face the Super Guarantee Charge (SGC). Since Payday Super commenced on ${SUPER_GUARANTEE.paydaySuperStart}, the SGC is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}. Unlike the old quarterly charge, the SGC is now tax-deductible.`,
   },
   {
     q: "How much super should I have at 30?",
-    a: `A common benchmark is 1x your annual salary by age 30. The ABS's Employee earnings survey (reference period August 2025) put median full-time earnings at ${formatAUD(MEDIAN_FULL_TIME_SALARY)} a year (${formatAUD(MEDIAN_FULL_TIME_WEEKLY_EARNINGS)} a week), so that target is roughly ${formatAUD(MEDIAN_FULL_TIME_SALARY)} in super by age 30. If you're behind, salary sacrifice and other concessional contributions can help you catch up. The carry-forward rule lets you use unused concessional cap amounts when your total super balance is under ${formatAUD(500_000)}.`,
+    a: `A common benchmark is 1x your annual salary by age 30. The ABS's Employee earnings survey (reference period August 2025) put median full-time earnings at ${formatAUD(MEDIAN_FULL_TIME_SALARY)} a year (${formatAUD(MEDIAN_FULL_TIME_WEEKLY_EARNINGS)} a week), so that target is roughly ${formatAUD(MEDIAN_FULL_TIME_SALARY)} in super by age 30. If you're behind, salary sacrifice and other concessional contributions can help you catch up. The carry-forward rule lets you use unused concessional cap amounts from up to ${CARRY_FORWARD.years} previous years if your total super balance was under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} at 30 June of the previous financial year. Unused amounts expire after ${CARRY_FORWARD.years} years.`,
   },
   {
     q: "Is super paid on overtime?",
@@ -59,6 +64,6 @@ export const SUPERANNUATION_FAQS: readonly SuperannuationFaq[] = [
   },
   {
     q: "What is Division 293 tax on super?",
-    a: `Division 293 is an additional 15% tax on concessional super contributions for individuals with combined income and contributions above ${formatAUD(250_000)}. This brings the total tax on those concessional contributions to 30%. The ATO issues a Division 293 assessment after you lodge your tax return.`,
+    a: `Division 293 is an extra ${formatPercent(DIVISION_293.rate, 0)} tax on concessional super contributions when your combined income and concessional contributions are more than ${formatAUD(DIVISION_293.threshold)}. It applies to the lesser of your concessional contributions and the amount above ${formatAUD(DIVISION_293.threshold)}. That amount is taxed at ${formatPercent(CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate, 0)} in total: the usual ${formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax plus Division 293. The ATO issues a Division 293 assessment after you lodge your tax return.`,
   },
 ];

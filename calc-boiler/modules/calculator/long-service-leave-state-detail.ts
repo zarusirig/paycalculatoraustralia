@@ -214,7 +214,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       "Private Sector Labour Relations (Wageline) administers the Long Service Leave Act 1958, which covers many state and national system private sector employers in Western Australia. Full-time, part-time, casual and seasonal employees all accrue under it on the same terms.",
     payCalc: [
       "Ordinary pay is your normal weekly number of hours multiplied by your ordinary time rate. Shift premiums, overtime rates, penalty rates and allowances are excluded; casual loading is included, as is the cash value of meals or accommodation normally provided but not taken during the leave.",
-      "WA averages hours separately for each accrual period (the first 10 years, then each 5-year block) rather than over your whole career. Unusually, hours of overtime you regularly worked count towards your normal weekly hours. Wageline's example: 27,040 hours over 10 years ÷ 521.7 weeks = 52 hours a week, so 8.667 weeks is 450.684 hours of leave.",
+      "WA averages hours separately for each accrual period (the first 10 years, then each 5-year block) rather than over your whole career. Unusually, hours of overtime you regularly worked count towards your normal weekly hours. Wageline's example divides 27,040 hours over 10 years by 521.7 weeks, which gives 51.83 hours a week; Wageline rounds this to 52, so 8.667 weeks is 450.684 hours of leave.",
       "Dismissal for serious misconduct changes the payout. Between 7 and 10 years nothing is owed. After 10 years you are paid only the part of your last fully accrued entitlement you have not taken. Wageline's Anastasia, dismissed after 12 years and one month, gets 8.667 weeks but nothing for the two years since.",
     ],
     takingLeave: [
@@ -222,7 +222,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       "You can ask to take WA long service leave at half pay (8 weeks becomes 16) or double pay (8 weeks becomes 4). A public holiday during the leave adds a day for full-time and part-time employees. Leave in advance is by agreement, and if you leave before earning it back the employer may deduct the difference from your final pay.",
     ],
     continuity: [
-      "Cashing out WA long service leave is allowed only once an entitlement has fully accrued, by written agreement signed by both parties, and at no less than the ordinary pay you would have received on leave. It cannot be done in advance: not as a lump sum, a loading on top of base pay or a commission.",
+      "For full-time and part-time employees in WA, paid leave of every kind, paid public holidays and Defence Forces Reserves service count towards continuous employment. Unpaid leave, including unpaid parental leave, does not break continuity but does not count as service either, so it pushes back the date your leave falls due. These rules apply to entitlements that fully accrue on or after 20 June 2022.",
     ],
     portableIntro:
       "WA employees working on site in the construction industry are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 instead of the 1958 Act. MyLeave administers that portable scheme.",
@@ -247,6 +247,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
       { title: "Taking long service leave", url: WA_TAKE, publisher: "Private Sector Labour Relations (WA)" },
       { title: "Payment of long service leave", url: WA_PAY, publisher: "Private Sector Labour Relations (WA)" },
       { title: "Long service leave when employment ends", url: WA_END, publisher: "Private Sector Labour Relations (WA)" },
+      { title: "What is continuous employment?", url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/what-continuous-employment", publisher: "Private Sector Labour Relations (WA)" },
       { title: "Cashing out long service leave", url: WA_CASH, publisher: "Private Sector Labour Relations (WA)" },
     ],
   },
@@ -263,7 +264,7 @@ export const LSL_STATE_DETAIL: Record<JurisdictionCode, LslStateDetail> = {
     ],
     takingLeave: [
       "SA long service leave should be taken in one continuous period as soon as practicable after it falls due. Separate periods, as short as one day, need both sides to agree. An employer can direct you to take leave only with at least 60 days' notice.",
-      "Every day after the leave starts counts as a day of leave, weekends and public holidays included: 13 weeks starting Monday 1 August ends Monday 31 October. Leave at half pay needs the employer's agreement.",
+      "Every day after the leave starts counts as a day of leave, weekends and public holidays included: 13 weeks starting Monday 1 August runs to Sunday 30 October, and you return to work on Monday 31 October. Leave at half pay needs the employer's agreement.",
     ],
     continuity: [
       "Parental leave, employer-funded or government-funded, does not break service but does not count towards it, so it has to be made up before 10 years is reached. Periods of apprenticeship count where you are re-employed by the same employer within 12 months of finishing it.",

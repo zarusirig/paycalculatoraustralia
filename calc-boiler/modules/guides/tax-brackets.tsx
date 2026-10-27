@@ -32,6 +32,7 @@ import {
   taxOnScale,
   thresholdTax,
 } from "@/lib/constants/tax-rates-reference";
+import { WATO } from "@/lib/constants/tax-2027-28";
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import TaxBracketsLookup from "@/modules/calculator/tax-brackets-lookup";
 import { MAX_SAVING_2026_27, MAX_SAVING_2027_28, TAX_BRACKETS_FAQS } from "@/modules/guides/tax-brackets-faqs";
@@ -111,7 +112,7 @@ function BracketTable({ brackets, caption, medicare = true }: { brackets: readon
             <th className={TH}>Taxable income</th>
             <th className={TH}>Tax on this income</th>
             <th className={`${TH} text-right`}>Marginal rate</th>
-            {medicare && <th className={`${TH} text-right`}>Incl. 2% Medicare</th>}
+            {medicare && <th className={`${TH} text-right`}>Incl. {pct(MEDICARE_LEVY.rate)} Medicare</th>}
           </tr>
         </thead>
         <tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -157,7 +158,7 @@ export default function TaxBracketsGuidePage() {
             Tax Brackets Australia {FY}: Income Tax Rates &amp; Thresholds
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Australia has five resident income tax brackets for {FY}: <strong>nil</strong> up to {formatAUD(B[0].max)}, <strong>{pct(B[1].rate)}</strong> to {formatAUD(B[1].max)}, <strong>{pct(B[2].rate)}</strong> to {formatAUD(B[2].max)}, <strong>{pct(B[3].rate)}</strong> to {formatAUD(B[3].max)} and <strong>{pct(TOP.rate)}</strong> above that. The second rate fell from {pct(P[1].rate)} to {pct(B[1].rate)} on 1 July 2026, worth up to {formatAUD(MAX_SAVING_2026_27)} a year, and falls again to {pct(N[1].rate)} on {LEGISLATED_CUT_2027_28.effectiveDate}. The 2% Medicare levy is charged on top.
+            Australia has five resident income tax brackets for {FY}: <strong>nil</strong> up to {formatAUD(B[0].max)}, <strong>{pct(B[1].rate)}</strong> to {formatAUD(B[1].max)}, <strong>{pct(B[2].rate)}</strong> to {formatAUD(B[2].max)}, <strong>{pct(B[3].rate)}</strong> to {formatAUD(B[3].max)} and <strong>{pct(TOP.rate)}</strong> above that. The second rate fell from {pct(P[1].rate)} to {pct(B[1].rate)} on 1 July 2026, worth up to {formatAUD(MAX_SAVING_2026_27)} a year, and falls again to {pct(N[1].rate)} on {LEGISLATED_CUT_2027_28.effectiveDate}. The {pct(MEDICARE_LEVY.rate)} Medicare levy is charged on top.
           </p>
           <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
@@ -395,10 +396,10 @@ export default function TaxBracketsGuidePage() {
 
             <section id="medicare-levy">
               <h2 style={FONT}>Medicare Levy and What the Brackets Don&rsquo;t Include</h2>
-              <p>The ATO&rsquo;s rates do not include the Medicare levy. Most residents pay an extra <strong>2% of their whole taxable income</strong>, which is why the table above shows each rate with 2 points added. Other amounts that sit outside the brackets:</p>
+              <p>The ATO&rsquo;s rates do not include the Medicare levy. Residents pay an extra <strong>{pct(MEDICARE_LEVY.rate)} of their whole taxable income</strong> (less or nil on a low income, as below, or with a Medicare levy exemption), which is why the table above shows each rate with 2 points added. Other amounts that sit outside the brackets:</p>
               <ul>
-                <li><strong><Link href="/medicare-levy/">Medicare levy</Link></strong>: nil for a single person up to {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}, shading in to the full 2% at {formatAUD(MEDICARE_LEVY.shadeInThreshold)} ({PREV} thresholds, the latest the ATO has published).</li>
-                <li><strong><Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link></strong>: 1% to 1.5% more for singles whose income for surcharge purposes is over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} and who have no private hospital cover ({MLS_INCOME_YEAR} tiers). That makes the top rate {formatPercent(TOP.rate + MEDICARE_LEVY.rate + MEDICARE_LEVY.surcharge.tier3.rate)} for someone uninsured.</li>
+                <li><strong><Link href="/medicare-levy/">Medicare levy</Link></strong>: nil for a single person up to {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}, shading in to the full {pct(MEDICARE_LEVY.rate)} at {formatAUD(MEDICARE_LEVY.shadeInThreshold)} ({PREV} thresholds, the latest the ATO has published).</li>
+                <li><strong><Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link></strong>: {pct(MEDICARE_LEVY.surcharge.tier1.rate)} to {formatPercent(MEDICARE_LEVY.surcharge.tier3.rate)} more for singles whose income for surcharge purposes is over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} and who have no private hospital cover ({MLS_INCOME_YEAR} tiers). That makes the top rate {formatPercent(TOP.rate + MEDICARE_LEVY.rate + MEDICARE_LEVY.surcharge.tier3.rate)} for someone uninsured.</li>
                 <li><strong><Link href="/hecs-help-calculator/">HELP and other study loans</Link></strong>: compulsory repayments are collected with your tax but are a separate calculation on repayment income.</li>
                 <li><strong>Tax offsets</strong> such as the <Link href="/low-income-tax-offset/">low income tax offset</Link> and <Link href="/sapto-calculator/">SAPTO</Link> reduce the tax the brackets produce, dollar for dollar.</li>
               </ul>
@@ -421,7 +422,7 @@ export default function TaxBracketsGuidePage() {
               <p>The second cut is already law. The {LEGISLATED_CUT_2027_28.act} ({LEGISLATED_CUT_2027_28.actNumber}, assented {LEGISLATED_CUT_2027_28.assent}) reduces the {pct(B[1].rate)} rate to <strong>{pct(N[1].rate)}</strong> from {LEGISLATED_CUT_2027_28.effectiveDate}. The thresholds stay where they are. The ATO&rsquo;s rate table doesn&rsquo;t show 2027-28 yet, so the base amounts below are worked out from the legislated rate.</p>
               <BracketTable brackets={N} caption="Resident tax brackets 2027-28 (legislated)" />
               <p>Compared with {FY}, anyone earning over {formatAUD(N[1].max)} saves another {formatAUD(MAX_SAVING_2027_28)} a year, and the no-tax point with LITO rises to {formatAUD(NIL_NEXT)}. Tax at the top of each band will be {nextThresholds.slice(1).map((t) => formatAUD(t.tax)).join(", ")}.</p>
-              <p>The same Act adds a new offset on top of the rate cut. The <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> pays $250 against tax from 2027-28, alongside LITO, so the saving for a low or middle earner is larger than the bracket table alone shows. The date it starts, and every other dated change, is on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.</p>
+              <p>A separate law, the Treasury Laws Amendment (Tax Reform No. 1) Act 2026 (assented {WATO.royalAssent}), adds a new offset on top of the rate cut. The <Link href="/working-australians-tax-offset/">Working Australians Tax Offset</Link> takes up to {formatAUD(WATO.maxOffset)} off your tax from {WATO.firstIncomeYear}, alongside LITO, so the saving for a low or middle earner is larger than the bracket table alone shows. It is non-refundable: it can reduce your tax to nil, and any unused amount is not paid to you. The date it starts, and every other dated change, is on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.</p>
             </section>
 
             <section id="faq">

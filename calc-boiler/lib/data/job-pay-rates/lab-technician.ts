@@ -58,6 +58,19 @@ const MEDIAN: MedianEarnings = {
 
 const SCIENCE_TECHNICIANS_MEDIAN_WEEKLY = 1_794;
 
+/** A Manufacturing Award full-time percentage, read from the shared award data by its row label. */
+function mfgPct(rows: readonly { label: string; fullTime: number }[], label: string): string {
+  const row = rows.find((x) => x.label === label);
+  if (!row) throw new Error(`Manufacturing Award row not found: ${label}`);
+  return `${Math.round(row.fullTime * 100)}%`;
+}
+
+const MFG_SAT_ORDINARY = mfgPct(MANUFACTURING_AWARD.penalties, "Day worker — Saturday ordinary hours (only where agreed under cl 17.2(c))");
+const MFG_SUN_ORDINARY = mfgPct(MANUFACTURING_AWARD.penalties, "Day worker — Sunday ordinary hours (only where agreed under cl 17.2(c))");
+const MFG_SAT_OT_FIRST = mfgPct(MANUFACTURING_AWARD.overtime, "Saturday overtime, day worker — first 3 hours (minimum 4 hours)");
+const MFG_SAT_OT_AFTER = mfgPct(MANUFACTURING_AWARD.overtime, "Saturday overtime, day worker — after 3 hours");
+const MFG_SUN_OT = mfgPct(MANUFACTURING_AWARD.overtime, "Sunday overtime (minimum 3 hours)");
+
 /** Schedule B.3 (PR814029): Medical Laboratory Technician, AQF Level 5. */
 const AQF = 5;
 const F = firstYear(AQF);
@@ -112,7 +125,7 @@ export const LAB_TECHNICIAN: Occupation = {
   ],
   tables: TABLES,
   penalties: HPSS_PENALTIES,
-  penaltiesNote: `${HPSS_PENALTIES_NOTE} These are the Health Professionals Award rates. Under the Manufacturing Award, weekend work is overtime unless agreed as ordinary hours (150% Saturday, 200% Sunday), and a casual's penalties are calculated on the casual rate. See the Manufacturing Award page.`,
+  penaltiesNote: `${HPSS_PENALTIES_NOTE} These are the Health Professionals Award rates. Under the Manufacturing Award, a day worker's weekend hours are ordinary hours only by agreement, paid at ${MFG_SAT_ORDINARY} on Saturday and ${MFG_SUN_ORDINARY} on Sunday (cl 33.1(a)). Without that agreement, weekend work is overtime: on Saturday ${MFG_SAT_OT_FIRST} for the first 3 hours, then ${MFG_SAT_OT_AFTER}, and on Sunday ${MFG_SUN_OT} (cl 32.5 and 32.6). A casual's penalties and overtime are calculated on the casual rate. See the Manufacturing Award page.`,
   overtime: HPSS_OVERTIME,
   allowances: [],
   median: MEDIAN,

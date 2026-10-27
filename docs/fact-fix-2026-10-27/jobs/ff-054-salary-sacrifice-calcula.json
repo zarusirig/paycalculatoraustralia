@@ -1,0 +1,164 @@
+{
+ "name": "ff-054-salary-sacrifice-calcula",
+ "files": [
+  "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+  "modules/calculator/second-job-tax-calculator-content.tsx",
+  "modules/calculator/second-job-tax-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-faqs.ts:59",
+   "file": "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "line": "59",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "'Super sacrifice is the most tax-effective option for most Australian employees'"
+   ],
+   "whys": [
+    "A population claim ('most Australian employees') with no figure or source."
+   ],
+   "constants": [
+    "none (cite a source or reword to a condition on the marginal rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.08,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-faqs.ts:92",
+   "file": "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "line": "92",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "Services Australia uses ATI for Family Tax Benefit, childcare subsidies 'and other income-tested payments'",
+    "'Salary sacrifice reduces taxable income but increases those reportable items, so ATI remains similar'"
+   ],
+   "whys": [
+    "Income support payments such as JobSeeker use the social security ordinary income test, not adjusted taxable income. Only FTB and Child Care Subsidy clearly use ATI.",
+    "Novated-lease and other non-super benefits are added back to ATI at the grossed-up reportable fringe benefit amount, so ATI can rise rather than stay similar. The claim holds for sacrificed super only."
+   ],
+   "constants": [
+    "none (wording scope)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.8,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-faqs.ts:88",
+   "file": "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "line": "88",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "A salary sacrifice arrangement cannot reduce cash earnings below the national minimum wage or the award/agreement rate, and the employer must reject or reduce the arrangement"
+   ],
+   "whys": [
+    "No legal basis is cited (Fair Work Act s 324 deductions, or the salary sacrifice clause in the National Minimum Wage Order). The rule about whether sacrificed amounts count toward the minimum is not clear-cut, so this needs checking against the FWO before it is stated as a definite rule."
+   ],
+   "constants": [
+    "Needs a cited FWO source; figures come from EMPLOYMENT.minimumWageHourly/Weekly"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 4.17,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-faqs.ts:80",
+   "file": "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "line": "80",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "'At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the concessional tax rate is lower than the marginal rate'"
+   ],
+   "whys": [
+    "The 6% is hardcoded and has no source. The argument compares a tax-rate gap with a mortgage rate but does not account for the expected super return. It is an opinion presented as a rule, so it needs labelled editorial judgment or a worked figure from code."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.63,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/salary-sacrifice-calculator-faqs.ts:55",
+   "file": "modules/calculator/salary-sacrifice-calculator-faqs.ts",
+   "line": "55",
+   "page": "/salary-sacrifice-calculator/",
+   "claims": [
+    "'Up to ${SECOND.max}, your marginal income tax rate is ${SECOND.rate} ... the same as the ${CONTRIBUTIONS_TAX_RATE} contributions tax'"
+   ],
+   "whys": [
+    "'the same as' is fixed wording. It is true for 2026-27 (15% and 15%) but breaks if either rate changes (in 2025-26 it was 16% against 15%). It also ignores the $0 to $18,200 tax-free band."
+   ],
+   "constants": [
+    "TAX_BRACKETS[1].rate vs CONTRIBUTIONS_TAX_RATE (make the comparison conditional in code)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/second-job-tax-calculator-content.tsx:134",
+   "file": "modules/calculator/second-job-tax-calculator-content.tsx",
+   "line": "134",
+   "page": "https://pay-calculator-australia.com/second-job-tax-calculator/",
+   "claims": [
+    "\"Put 30% of your second job income into a separate savings account.\""
+   ],
+   "whys": [
+    "The 30% is typed into the prose. No constant or source backs it, and it is advice written as a rule. It should either come from the no-TFT scale or be labelled guidance."
+   ],
+   "constants": [
+    "none (could derive from withholdingForPeriod / NO_TFT_START_RATE in lib/constants/payg-withholding)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.4,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/second-job-tax-calculator-content.tsx:84",
+   "file": "modules/calculator/second-job-tax-calculator-content.tsx",
+   "line": "84",
+   "page": "https://pay-calculator-australia.com/second-job-tax-calculator/",
+   "claims": [
+    "\"tax-free threshold of $18,200\" and \"the first $18,200\" (also line 123 \"first $18,200\"; line 141 \"$60,000\" primary job)."
+   ],
+   "whys": [
+    "The figures are correct today but typed into the JSX. Line 78 uses TAX_FREE_THRESHOLD, and the table at lines 156/158 uses a separate 60000 literal, so these figures can drift."
+   ],
+   "constants": [
+    "TAX_FREE_THRESHOLD in lib/constants; a shared PRIMARY_JOB constant for the 60000 table base"
+   ],
+   "reviewerNotes": [
+    "Valid: the answer gives the National Minimum Wage the 4.75% award increase. Per the brief's known-correct facts, the NMW rose 5.97%. The same issue is at line 88. Not changed (no new numbers)."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/second-job-tax-calculator.tsx:227",
+   "file": "modules/calculator/second-job-tax-calculator.tsx",
+   "line": "227",
+   "page": "https://pay-calculator-australia.com/second-job-tax-calculator/",
+   "claims": [
+    "This calculator provides estimates based on current ATO PAYG withholding schedules."
+   ],
+   "whys": [
+    "Job 1 and the combined figures are not withholding. They are year-end liability from calculateIncomeTax minus LITO plus calculateMedicareLevy. Only Job 2 uses the Schedule 1 withholding scale. I fixed the Job 2 sentence, which still said 'approximate rate' after the code moved to the real scale. The first sentence of this legal notice was left alone."
+   ],
+   "constants": [
+    "lib/constants calculateIncomeTax / calculateLITO / calculateMedicareLevy; lib/constants/payg-withholding withholdingForPeriod"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.63,
+   "needsOwner": false
+  }
+ ]
+}

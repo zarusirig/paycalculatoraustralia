@@ -16,7 +16,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { SITE_CONFIG } from "@/lib/constants/australian-tax";
 import { AWE_RELEASE, EE_RELEASE, EEH_RELEASE } from "@/lib/data/average-salary";
-import { NMW_DECISION } from "@/lib/constants/minimum-wage";
+import { NMW_DECISION, NMW_HISTORY, formatIncrease } from "@/lib/constants/minimum-wage";
 import {
   PUBLIC_SECTOR_NOT_COVERED,
   REPORT,
@@ -135,6 +135,7 @@ export default function AustralianPayReport() {
   const hours = hoursToEarn();
   const findings = keyFindings();
   const nmw = bench.find((b) => b.id === "nmw")!;
+  const nmwRise = formatIncrease(NMW_HISTORY[NMW_HISTORY.length - 1].increase!);
   const avg = bench.find((b) => b.id === "average-ft")!;
   const fy = SITE_CONFIG.financialYear;
   const prev = SITE_CONFIG.previousFinancialYear;
@@ -221,7 +222,7 @@ export default function AustralianPayReport() {
             <section id="minimum-median-average">
               <h2 style={HEADING_FONT}>Minimum wage vs median vs average earnings</h2>
               <p>
-                The National Minimum Wage rose 4.75% on 1 July 2026 to {aud(nmw.weekly, 2)} a week. Average full-time earnings (ABS AWOTE) are{" "}
+                The National Minimum Wage rose {nmwRise} on 1 July 2026 to {aud(nmw.weekly, 2)} a week. Average full-time earnings (ABS AWOTE) are{" "}
                 {avg.timesMinimum.toFixed(2)} times that. The median sits between the two because the average is lifted by a small
                 number of very high earners, and the all-employee figures include part-time workers.
               </p>

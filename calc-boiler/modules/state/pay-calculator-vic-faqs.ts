@@ -20,11 +20,11 @@ export const VIC_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Which public holidays are unique to Victoria?",
-    a: "Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November, none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. Working one of these attracts public holiday penalty rates under most awards.",
+    a: "Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November, none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. If you work one of these days you are paid at least your base rate, and your award or registered agreement can add a public holiday rate, an extra day off or extra annual leave.",
   },
   {
     q: "When do I get long service leave in Victoria?",
-    a: "Victorian employees are entitled to long service leave after 7 years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past 7 years the accrued balance is paid out however the employment ends, including resignation.",
+    a: `Victorian employees are entitled to long service leave after ${PROFILE.longServiceLeave.takeAfterYears} years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past ${PROFILE.longServiceLeave.proRataOnEndingYears} years the accrued balance is paid out however the employment ends, including resignation.`,
   },
   {
     q: "Do employees pay VIC payroll tax?",

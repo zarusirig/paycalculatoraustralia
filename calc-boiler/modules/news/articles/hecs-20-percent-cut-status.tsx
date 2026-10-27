@@ -18,7 +18,7 @@ export default function Hecs20PercentCutStatus() {
           { label: "Average debt", after: "$27,600" },
           { label: "Average cut", after: "≈ $5,520" },
           { label: "Legislation", after: "Passed 2 August 2025" },
-          { label: "Processing status", after: "Complete as of 2026" },
+          { label: "Processing status", after: "Complete (ATO)" },
         ]}
       />
 
@@ -44,11 +44,9 @@ export default function Hecs20PercentCutStatus() {
         The reduction was applied automatically by the ATO to every eligible account. There was
         no application form and nothing to opt into. Eligibility was determined entirely by
         whether your loan existed on 1 June 2025: debts fully repaid before that date missed out,
-        and loans first drawn down after it were never in scope. Most reductions were processed
-        before the end of 2025, and a small number of more complex accounts (such as those with
-        recent transfers or multiple loan types) were finalised in early 2026. The ATO has since
-        confirmed processing is complete for all study and training support debts that existed on
-        the qualifying date.
+        and loans first drawn down after it were never in scope. The ATO confirms it has completed
+        processing of the 20% reduction for all study and training support debts that existed on
+        1 June 2025.
       </p>
 
       <h2>How to check it landed on your account</h2>

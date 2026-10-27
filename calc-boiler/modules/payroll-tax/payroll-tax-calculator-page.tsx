@@ -4,8 +4,15 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD } from "@/lib/constants";
-import { PAYROLL_TAX_FY, PAYROLL_TAX_STATES, calculatePayrollTax } from "@/lib/constants/payroll-tax";
+import { formatAUD, formatPercent } from "@/lib/constants";
+import {
+  ACT_PAYROLL_TAX,
+  PAYROLL_TAX_FY,
+  PAYROLL_TAX_STATES,
+  SA_PAYROLL_TAX,
+  TAS_PAYROLL_TAX,
+  calculatePayrollTax,
+} from "@/lib/constants/payroll-tax";
 import PayrollTaxCalculator from "./payroll-tax-calculator";
 import { CALCULATOR_FAQS } from "./content";
 import {
@@ -27,6 +34,8 @@ export default function PayrollTaxCalculatorPage() {
   const vicEx = calculatePayrollTax({ state: "vic", stateWages: 4_000_000 });
   const inter = calculatePayrollTax({ state: "nsw", stateWages: 900_000, australianWages: 3_000_000 });
   const authorship = getGuideAuthorship("payroll-tax-calculator");
+  const actTop = ACT_PAYROLL_TAX.bands[ACT_PAYROLL_TAX.bands.length - 1];
+  const actTopFrom = ACT_PAYROLL_TAX.bands[ACT_PAYROLL_TAX.bands.length - 2].upTo;
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -40,8 +49,10 @@ export default function PayrollTaxCalculatorPage() {
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
               <strong>Direct answer:</strong> payroll tax = (taxable wages in the state − the state&rsquo;s threshold
-              or deduction) × the state&rsquo;s rate. Rates run from 4% (Tasmania&rsquo;s first band) to 8.75%
-              (ACT, above $150 million), and thresholds from {formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)}{" "}
+              or deduction) × the state&rsquo;s rate. General rates run from {formatPercent(TAS_PAYROLL_TAX.lowerRate, 0)}{" "}
+              (Tasmania&rsquo;s first band) to {formatPercent(actTop.rate, 2)} (ACT, above {formatAUD(actTopFrom)}), and
+              South Australia&rsquo;s rate phases in from 0% between {formatAUD(SA_PAYROLL_TAX.threshold)} and{" "}
+              {formatAUD(SA_PAYROLL_TAX.fullRateFrom)} of Australian wages. Thresholds run from {formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)}{" "}
               (VIC, WA) to {formatAUD(PAYROLL_TAX_STATES.nt.annualThreshold)} (NT). A business paying{" "}
               {formatAUD(2_000_000)} of wages only in NSW pays <strong>{formatAUD(nswEx.total)}</strong> a year.
               Employers pay it; employees do not.

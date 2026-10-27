@@ -123,7 +123,7 @@ export const WA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       heading: "Weekend holidays get an extra Monday, including Anzac Day",
       paragraphs: [
         "When New Year's Day, Anzac Day or Christmas Day falls on a weekend, the following Monday is also a public holiday in WA, and both days count. Boxing Day on a Saturday adds the Monday. Boxing Day on a Sunday or Monday adds the Tuesday. Australia Day on a weekend moves to the Monday instead. In 2026 that gives WA Monday 27 April for Anzac Day and Monday 28 December for Boxing Day.",
-        "The WA Government has published proposed changes to the public holiday schedule (its public holiday review) and says the 2028 dates will be published once confirmed.",
+        "The WA Government announced on 21 October 2026 that Parliament has passed laws adding two public holidays from 2028, Easter Saturday and Show Day, and moving Labour Day, the King's Birthday and WA Day (to November). The 2026 and 2027 dates on this page do not change.",
       ],
     },
   ],
@@ -139,7 +139,7 @@ export const WA_PUBLIC_HOLIDAYS: StatePublicHolidays = {
     },
     {
       q: "I work for a sole trader in WA. Do the Fair Work public holiday rules apply to me?",
-      a: "Probably not. Sole traders, partnerships and trusts without a company trustee are generally in the WA state system. There, a full-time or part-time employee absent on a public holiday is paid for their ordinary hours, and the rate for working it comes from the WA award or agreement. Call Wageline on 1300 655 266 if you're unsure which system covers you.",
+      a: "No. Sole traders are in the WA state system, and so are partnerships and trusts where no partner or trustee is a trading or financial corporation. There, a full-time or part-time employee absent on a public holiday is paid for their ordinary hours, and the rate for working it comes from the WA award or agreement. Call Wageline on 1300 655 266 if you're unsure which system covers you.",
     },
   ],
 };

@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import {
+  QUALIFYING_EARNINGS,
+  SUPER_GUARANTEE,
+  SUPER_GUARANTEE_CHARGE,
+  formatPercent,
+} from "@/lib/constants/australian-tax";
+
+const SG_RATE = formatPercent(SUPER_GUARANTEE.rate, 0);
+const DAYS = SUPER_GUARANTEE_CHARGE.current.businessDaysToPay;
+const DAYS_NEW = SUPER_GUARANTEE_CHARGE.current.businessDaysNewEmployee;
 
 export default function PaydaySuperEmployeesPayslip() {
   return (
@@ -23,7 +33,9 @@ export default function PaydaySuperEmployeesPayslip() {
       <h2>What should appear on your payslip now</h2>
       <p>
         Your payslip should still show a super guarantee line for each pay period (the same as
-        before), calculated as 12% of your qualifying earnings (for most people, ordinary time earnings) for that pay run. What&apos;s
+        before), calculated as {SG_RATE} of your qualifying earnings for that pay run. Qualifying
+        earnings are your ordinary time earnings and any {QUALIFYING_EARNINGS.onlyChangeFromOTE},
+        plus any of those amounts you salary sacrifice to super. What&apos;s
         changed is the obligation behind it: employers must now pay that amount to your fund within
         7 business days, rather than bundling several pay periods together and paying once a
         quarter. If you&apos;re unsure what each line on your payslip means, our{" "}
@@ -63,9 +75,10 @@ export default function PaydaySuperEmployeesPayslip() {
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to model how
         regular, on-time contributions affect your balance at retirement, and check the super line
         on each payslip against your fund&apos;s transaction history. If you switch
-        jobs, remember to check that your new employer has your correct fund details from your first
-        payday, since a delay there can flow through to the 7-business-day deadline for your first
-        contribution.
+        jobs, check that your new employer has your correct fund details from your first payday.
+        Your first contribution from a new employer has a longer deadline: it must reach your fund
+        within {DAYS_NEW} business days after that payday. Each contribution after that is due
+        within {DAYS} business days.
       </p>
     </>
   );

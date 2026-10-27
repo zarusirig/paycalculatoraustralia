@@ -15,6 +15,7 @@ import {
   deemedIncomeAnnual,
 } from "@/lib/constants/centrelink-means-test";
 import { Note, W3Faqs, W3Footer, W3Related, W3Section } from "./centrelink-w3-shared";
+import { PARENTING_PAYMENT } from "@/lib/constants/centrelink-family-payments";
 import { CSHC_FAQS } from "./centrelink-h3-faqs";
 
 // Same values as the exports of centrelink-shared.tsx, which is a "use client"
@@ -87,7 +88,7 @@ export default function CommonwealthSeniorsHealthCardContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">If your Age Pension or DSP is suspended because you are working, you keep the Pensioner Concession Card for up to {PCC.keepYearsWhileSuspended} years. Parenting Payment Single recipients keep it for {PCC.keepWeeksAfterPpsEnds} weeks after the payment ends.</p>
+        <p className="mt-2 text-xs text-warmgray-light">If your Age Pension or DSP is suspended because you are working, you keep the Pensioner Concession Card for up to {PCC.keepYearsWhileSuspended} years. Parenting Payment Single ends when your youngest child turns {PARENTING_PAYMENT.singleYoungestChildUnder}, and you keep the card for {PCC.keepWeeksAfterPpsEnds} weeks after it ends.</p>
       </W3Section>
 
       <W3Section title="Related Calculators and Guides">

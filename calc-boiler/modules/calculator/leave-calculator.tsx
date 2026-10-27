@@ -12,6 +12,8 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { LEAVE_LOADING_RATE } from "./leave-calculator-faqs";
+import { TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
+import { LSL_TAX } from "@/lib/constants/long-service-leave";
 
 // NES accrual per ordinary week: 4 weeks x 38 hours / 52 weeks = 2.923 hours.
 const ACCRUAL_HOURS_PER_WEEK = (
@@ -110,7 +112,7 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeLoading} onChange={(e) => setIncludeLoading(e.target.checked)}
                       className="h-4 w-4 rounded border-sandstone-dark/30 text-violet-600" />
-                    <span className="text-navy">Include 17.5% leave loading</span>
+                    <span className="text-navy">Include {LEAD_LOADING_PCT} leave loading</span>
                   </label>
                 </form>
 
@@ -148,7 +150,7 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
                       {includeLoading && (
                         <>
                           <div className="border-t border-sandstone-dark/10 pt-3" />
-                          <Row label="Leave Loading (17.5%)" value={`+${formatAUD(loadingPayout)}`} green />
+                          <Row label={`Leave Loading (${LEAD_LOADING_PCT})`} value={`+${formatAUD(loadingPayout)}`} green />
                         </>
                       )}
                       <div className="border-t border-sandstone-dark/20 pt-3" />
@@ -157,7 +159,7 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
                   </div>
 
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-xs text-navy">
-                    <strong>Tax Note:</strong> Annual leave payouts on termination are taxed at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. Long service leave may qualify for concessional tax treatment.
+                    <strong>Tax Note:</strong> Unused annual leave paid out on a normal termination is taxed at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. If the job ends because of a genuine redundancy, invalidity or an early retirement scheme, or the leave accrued on or before {LSL_TAX.aug1993Cutover}, it is withheld at a flat {formatPercent(TERMINATION_LOADING_WITHHOLDING.flatRate, 0)}. Long service leave may qualify for concessional tax treatment.
                   </div>
                 </div>
               </div>

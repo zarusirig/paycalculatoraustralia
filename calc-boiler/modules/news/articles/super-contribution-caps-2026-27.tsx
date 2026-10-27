@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { SUPER_GUARANTEE, formatAUD } from "@/lib/constants/australian-tax";
+import { TRANSFER_BALANCE_CAP_PREVIOUS } from "@/lib/constants/super-contributions";
+
+const millions = (n: number) => `$${(n / 1_000_000).toFixed(1)} million`;
 
 export default function SuperContributionCaps202627() {
   return (
@@ -27,7 +31,7 @@ export default function SuperContributionCaps202627() {
         non-concessional cap covers after-tax contributions you make from your own savings, which
         aren&apos;t taxed going into your fund but don&apos;t get a tax deduction either. Exceeding
         either cap can trigger extra tax, so it&apos;s worth checking your total contributions
-        before the end of the financial year. Contributions made before 30 June 2026 are still
+        before the end of the financial year. Contributions made up to 30 June 2026 are still
         assessed against the old caps of $30,000 concessional and $120,000 non-concessional. The
         higher 2026-27 limits apply only to contributions made on or after 1 July 2026, so timing
         matters if you&apos;re planning a large one-off contribution near the cut-over.
@@ -47,11 +51,15 @@ export default function SuperContributionCaps202627() {
 
       <h2>Why the caps went up</h2>
       <p>
-        Concessional and non-concessional caps are indexed periodically in line with wage growth,
-        via increments to the general transfer balance cap. The 2026-27 increase follows the{" "}
-        <Link href="/news/transfer-balance-cap-increase-2026/">general transfer balance cap moving from $2.0 million to $2.1 million</Link>,
-        which flows through to lift both contribution caps and the total super balance thresholds
-        used to determine eligibility for non-concessional contributions.
+        The concessional cap is indexed to average weekly ordinary time earnings (AWOTE) and rises
+        only in steps of $2,500, which is how it reached {formatAUD(SUPER_GUARANTEE.concessionalCap)}{" "}
+        this year. The non-concessional cap is set at 4 times the concessional cap, so it moved from{" "}
+        {formatAUD(SUPER_GUARANTEE.nonConcessionalCapPrevious)} to{" "}
+        {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} at the same time. The{" "}
+        <Link href="/news/transfer-balance-cap-increase-2026/">general transfer balance cap moving from {millions(TRANSFER_BALANCE_CAP_PREVIOUS)} to {millions(SUPER_GUARANTEE.transferBalanceCap)}</Link>{" "}
+        is a separate change, indexed to CPI. It does not set either contribution cap. It lifts the
+        total super balance limits that decide whether you can make non-concessional contributions
+        and how much of the bring-forward you can use.
       </p>
 
       <h2>How this compares with employer super guarantee</h2>

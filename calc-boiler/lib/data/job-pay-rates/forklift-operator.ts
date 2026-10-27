@@ -82,7 +82,7 @@ const FORKLIFT_DRIVER_SECTION: OccupationSection = {
   heading: "Forklift driver pay per year and after tax",
   paragraphs: [
     "Forklift driver and forklift operator are the same job as far as the award is concerned: the classification turns on licensed operation of materials handling equipment, not the job title. These are the full-time minimums turned into a yearly figure and an after-tax weekly amount, so you can compare them with what lands in your account.",
-    "Jobs and Skills Australia's median for forklift drivers is $1,340 a week before tax (ABS, May 2025), above every award grade here, because many distribution centres pay under enterprise agreements and drivers often work overtime.",
+    `Jobs and Skills Australia's median for forklift drivers is ${money0(MEDIAN.medianWeekly)} a week before tax (ABS, May 2025), above every award grade here. The median is what employers actually pay full-time, non-managerial adults, including enterprise agreement and above-award rates, so it is a market figure, not a legal minimum.`,
   ],
   table: {
     caption: "Forklift driver minimum pay per year and take-home, 2026–27",
@@ -115,7 +115,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
   coverage: [
     "Forklift operators in warehouses, distribution centres and wholesale businesses are usually covered by the Storage Services and Wholesale Award 2020 [MA000084]. The award covers the receiving, handling, storing, packing, sorting, loading and dispatch of goods in the storage services and wholesale industry.",
     "A licensed forklift or ride-on equipment operator is a Storeworker grade 2 (the award's Schedule A lists forklift operator as an indicative job title for the equivalent Wholesale employee level 2). Grade 3 covers operation of all materials handling equipment under licence and supervision of up to 10 employees; grade 4 covers responsibility for a warehouse or large section.",
-    "Which award applies depends on the employer's industry, not the machine. A forklift driver in a shop is Retail Employee Level 2, in a factory is generally C12 or C11 under the Manufacturing Award, and in a transport business may be a Transport Worker Grade 3 under the Road Transport Award. Those rates are in the second table.",
+    "Which award applies depends on the employer's industry, not the machine. A forklift driver in a shop is Retail Employee Level 2. In a factory, the Manufacturing Award lists operating fork-lifts as a C12 task, and being licensed and certified for fork-lift operations above the C12 level as a C11 task (Schedule A.5.3 and A.5.4). In a road transport business, a driver of a fork-lift with up to 5 tonnes lifting capacity is a Transport Worker Grade 3 under the Road Transport and Distribution Award, and heavier fork-lifts are Grade 4 to 6 (Schedule B). Those rates are in the second table.",
   ],
   tables: [
     {
@@ -164,7 +164,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Employers can pay more than the award, and many large distribution centres pay under enterprise agreements. The Jobs and Skills Australia median shows what forklift drivers actually earn.",
+    "Employers can pay more than the award, and where an enterprise agreement covers you, its rates apply instead of the award (Fair Work Act s 57). The Jobs and Skills Australia median shows what forklift drivers actually earn.",
     "Junior rates under this award apply as a percentage of Storeworker grade 1 or Wholesale employee level 1 (cl 15.2): 40% under 16, 50% at 16, 60% at 17 and 70% at 18, with the adult rate from 19.",
   ],
   notShown: [
@@ -188,15 +188,15 @@ export const FORKLIFT_OPERATOR: Occupation = {
     },
     {
       q: "Is the forklift operator rate the same in retail and manufacturing?",
-      a: `No. The rate depends on the award that covers the employer. A forklift operator in a shop is Retail Employee Level 2 (${money(retailRow("Level 2").hourly)} an hour), in a factory generally Manufacturing C12 or C11, and in a transport business a Transport Worker Grade 3. The second table shows each.`,
+      a: `No. The rate depends on the award that covers the employer. A forklift operator in a shop is Retail Employee Level 2 (${money(retailRow("Level 2").hourly)} an hour), in a factory the Manufacturing Award lists fork-lift work at C12, or C11 if licensed and certified above the C12 level, and in a road transport business a Transport Worker Grade 3 for a fork-lift of up to 5 tonnes lifting capacity. The second table shows each.`,
     },
     {
       q: "How much does a forklift driver earn a year?",
-      a: `On the award minimum, a full-time licensed forklift driver in a warehouse (Storeworker grade 2) earns ${money0(annual52(GRADE_2.weekly))} a year before tax and takes home about ${money0(takeHomeWeekly(annual52(GRADE_2.weekly)))} a week. At grade 4 it is ${money0(annual52(GRADE_4.weekly))} a year. Overtime, shift loadings and enterprise agreements lift what many drivers actually earn.`,
+      a: `On the award minimum, a full-time licensed forklift driver in a warehouse (Storeworker grade 2) earns ${money0(annual52(GRADE_2.weekly))} a year before tax and takes home about ${money0(takeHomeWeekly(annual52(GRADE_2.weekly)))} a week. At grade 4 it is ${money0(annual52(GRADE_4.weekly))} a year. Overtime and shift loadings are paid on top of these minimums, and where an enterprise agreement covers you, its rates apply instead of the award.`,
     },
     {
       q: "What do forklift operators actually earn?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,340 a week for forklift drivers (ABS Survey of Employee Earnings and Hours, May 2025), about $69,680 a year before tax, which includes overtime and agreement rates above the award.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for forklift drivers (ABS Survey of Employee Earnings and Hours, May 2025), about ${money0(MEDIAN.medianWeekly * 52)} a year before tax. It is a market figure that includes enterprise agreement and above-award pay, not a legal minimum.`,
     },
   ],
   sources: [

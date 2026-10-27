@@ -29,6 +29,17 @@ const STANDARD_HOURS = 38;
 const AGE_16 = RETAIL_JUNIOR_SCALE.find((b) => b.age === "16")!;
 const cents = (v: number) => roundCents(v);
 
+// Junior phase-in (PR813655): start rates, step size and the date each age
+// reaches the adult rate, all read from JUNIOR_PHASE_IN.retail.
+const PHASE = JUNIOR_PHASE_IN.retail;
+const PHASE_STEP = PHASE.age18[1] - PHASE.age18[0];
+const MONTHS: Record<string, string> = { Jul: "July", Dec: "December" };
+const adultFrom = (steps: readonly number[]) =>
+  PHASE.periods[steps.indexOf(100)]
+    .replace(/^From /, "")
+    .split(" – ")[0]
+    .replace(/\b(Jul|Dec)\b/, (m) => MONTHS[m]);
+
 // Junior figures derive from the WEEKLY rate then divide by standard hours —
 // the order that reproduces Fair Work's published dollars. Applying the
 // percentage to the hourly rate instead lands a cent out at several bands.
@@ -83,6 +94,6 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   },
   {
     q: "Are retail junior rates changing on 1 December 2026?",
-    a: `Yes, for 18 and 19-year-olds at levels 1 to 3 who have been employed by their employer for more than 6 months, but gradually. Determination ${JUNIOR_PHASE_IN.retail.determination} (${JUNIOR_PHASE_IN.decision}, ${JUNIOR_PHASE_IN.decidedOn}) lifts 18-year-olds from 70% to ${JUNIOR_PHASE_IN.retail.age18[0]}% and 19-year-olds from 80% to ${JUNIOR_PHASE_IN.retail.age19[0]}% from the first full pay period on or after 1 December 2026, then 5 points more each July and December until both reach the adult rate on 1 July 2029 (18) and 1 July 2028 (19). Twenty-year-olds with more than 6 months already receive the adult rate, and under-18 rates do not change.`,
+    a: `Yes, for 18 and 19-year-olds at levels 1 to 3 who have been employed by their employer for more than 6 months, but gradually. Determination ${JUNIOR_PHASE_IN.retail.determination} (${JUNIOR_PHASE_IN.decision}, ${JUNIOR_PHASE_IN.decidedOn}) lifts 18-year-olds from ${PHASE.present.age18}% to ${PHASE.age18[0]}% and 19-year-olds from ${PHASE.present.age19}% to ${PHASE.age19[0]}% from the first full pay period on or after ${JUNIOR_PHASE_IN.commences}, then ${PHASE_STEP} points more each July and December until both reach the adult rate on ${adultFrom(PHASE.age18)} (18) and ${adultFrom(PHASE.age19)} (19). Twenty-year-olds with more than 6 months already receive the adult rate, and under-18 rates do not change.`,
   },
 ];

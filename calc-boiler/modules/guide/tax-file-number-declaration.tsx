@@ -5,7 +5,8 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
-import { TAX_FREE_THRESHOLD } from "@/lib/constants/australian-tax";
+import { TAX_FREE_THRESHOLD, TAX_BRACKETS, MEDICARE_LEVY } from "@/lib/constants/australian-tax";
+import { NO_TFN_RATES } from "@/lib/constants/payg-withholding";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
@@ -17,9 +18,18 @@ const SOURCES_LIST: SourceLink[] = [
   // Q1 TFN, Q2–6 personal details, Q7 basis of pay, Q8 residency, Q9 tax-free threshold, Q10 study and training loans.
   { title: "Paper TFN declaration form for payees (NAT 3092)", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees", publisher: SOURCES.ato.name },
   { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/payg-withholding", publisher: SOURCES.ato.name },
-  { title: "Tax-free threshold", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency/australian-resident-for-tax-purposes", publisher: SOURCES.ato.name },
+  { title: "Tax-free threshold", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/tax-free-threshold/how-to-claim-the-tax-free-threshold", publisher: SOURCES.ato.name },
+  { title: "Withholding declaration (NAT 3093)", url: "https://www.ato.gov.au/forms-and-instructions/withholding-declaration", publisher: SOURCES.ato.name },
+  { title: "TFN declaration: payer information and obligations", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/payer-information-and-obligations", publisher: SOURCES.ato.name },
   { title: "Study and training loan obligations", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans", publisher: SOURCES.ato.name },
 ];
+
+// No-TFN withholding rates (resident = top marginal rate + Medicare levy) rendered from constants.
+const pctOf = (n: number) => `${Math.round(n * 100)}%`;
+const RES = pctOf(NO_TFN_RATES.resident);
+const FOREIGN = pctOf(NO_TFN_RATES.foreignResident);
+const TOP_RATE = pctOf(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate);
+const MEDICARE = pctOf(MEDICARE_LEVY.rate);
 
 export default function TaxFileNumberDeclarationPage() {
   return (
@@ -59,10 +69,10 @@ export default function TaxFileNumberDeclarationPage() {
                 A Tax File Number (TFN) declaration is an official ATO form (NAT 3092) that you must provide to each new employer when you start a job. It tells your employer your TFN, your residency status for tax purposes, whether you claim the tax-free threshold, and whether you have a study or training loan debt such as HECS-HELP or a VET Student Loan.
               </p>
               <p>
-                Your employer uses the information on your TFN declaration to calculate the correct amount of <strong>PAYG tax withholding</strong> from each pay. Without a correctly completed TFN declaration, your employer must withhold tax at the <strong>highest marginal rate of 47%</strong> from every dollar you earn.
+                Your employer uses the information on your TFN declaration to calculate the correct amount of <strong>PAYG tax withholding</strong> from each pay. If you do not quote your TFN, claim an exemption or tell your employer you have applied for one, your employer must withhold tax at <strong>{RES}</strong> from every dollar you earn ({FOREIGN} if you are a foreign resident).
               </p>
               <p>
-                The form can be completed on paper or electronically through your employer&apos;s payroll system. You must provide it within <strong>28 days</strong> of starting work. Your employer then sends the information to the ATO.
+                The form can be completed on paper or electronically through your employer&apos;s payroll system. Give it to your employer after you start work, never with a job application. Your employer then sends the information to the ATO. If your employer has no declaration from you within <strong>14 days</strong> of starting to pay you, it must still tell the ATO.
               </p>
             </section>
 
@@ -72,14 +82,14 @@ export default function TaxFileNumberDeclarationPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 1: Your Tax File Number</h3>
               <p>
-                Enter your 9-digit TFN. If you don&apos;t know your TFN, you can find it on previous tax returns, correspondence from the ATO, or your myGov account. If you are a new Australian resident and don&apos;t yet have a TFN, you can apply for one through the ATO. You have 28 days from starting work to provide your TFN.
+                Enter your 9-digit TFN. If you don&apos;t know your TFN, you can find it on previous tax returns, correspondence from the ATO, or your myGov account. If you are a new Australian resident and don&apos;t yet have a TFN, you can apply for one through the ATO. If you tick the box saying you have applied for a TFN, you have 28 days to give it to your employer.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6">
                 <p className="text-navy text-sm font-medium">
                   <strong>Don&apos;t Have Your TFN Yet?</strong>
                   <br />
-                  If you have applied for a TFN but haven&apos;t received it yet, tick the &ldquo;I have made a separate application&rdquo; box. Your employer can withhold at normal rates for 28 days while you wait. After 28 days without a TFN, the 47% rate applies.
+                  If you have applied for a TFN but haven&apos;t received it yet, tick the &ldquo;I have made a separate application&rdquo; box. Your employer must withhold at the standard rates for 28 days while you wait. If you have not given your TFN after 28 days, the {RES} rate ({FOREIGN} for foreign residents) applies to future payments.
                 </p>
               </div>
 
@@ -107,8 +117,8 @@ export default function TaxFileNumberDeclarationPage() {
               </p>
               <ul>
                 <li><strong>One job:</strong> Claim the tax-free threshold at that job. Answer &ldquo;Yes&rdquo;.</li>
-                <li><strong>Multiple jobs:</strong> Claim the tax-free threshold at your <strong>main job only</strong> (usually the highest-paying one). Answer &ldquo;No&rdquo; at all other jobs, unless your total income from all sources will be less than the threshold.</li>
-                <li><strong>Government payments:</strong> If you receive a taxable payment such as JobSeeker, Youth Allowance or Austudy, you are likely already claiming the threshold from that payment.</li>
+                <li><strong>Multiple jobs:</strong> Claim the tax-free threshold at your <strong>main job only</strong> (the ATO says this is usually the payer who pays you the highest salary or wage). Answer &ldquo;No&rdquo; at all other jobs, unless your total income from all sources will be less than the threshold.</li>
+                <li><strong>Government payments:</strong> If you receive a taxable payment such as JobSeeker, Youth Allowance or Austudy, the ATO says you are likely to be already claiming the threshold from that payment.</li>
                 <li><strong>Foreign residents and working holiday makers:</strong> Answer &ldquo;No&rdquo; (unless you are a foreign resident receiving an Australian Government pension or allowance).</li>
               </ul>
 
@@ -146,27 +156,27 @@ export default function TaxFileNumberDeclarationPage() {
                       <tr>
                         <td className="px-6 py-4 font-medium">Claiming tax-free threshold at 2 jobs</td>
                         <td className="px-6 py-4">Under-withholding. Tax debt at end of year.</td>
-                        <td className="px-6 py-4">Submit new TFN declaration at second job unchecking the threshold</td>
+                        <td className="px-6 py-4">Give your second employer a withholding declaration that stops the threshold claim</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Not declaring HECS-HELP debt</td>
                         <td className="px-6 py-4">No HECS withheld from pay. Lump sum HECS bill at tax time.</td>
-                        <td className="px-6 py-4">Submit new TFN declaration declaring the debt</td>
+                        <td className="px-6 py-4">Give your employer a withholding declaration declaring the debt</td>
                       </tr>
                       <tr>
-                        <td className="px-6 py-4 font-medium">Not providing TFN within 28 days</td>
-                        <td className="px-6 py-4">47% withholding rate on every dollar earned</td>
+                        <td className="px-6 py-4 font-medium">Not quoting your TFN</td>
+                        <td className="px-6 py-4">{RES} withholding rate on every dollar earned ({FOREIGN} for foreign residents)</td>
                         <td className="px-6 py-4">Provide TFN to employer; refund comes via tax return</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Wrong residency status</td>
                         <td className="px-6 py-4">Incorrect tax rates applied; potential debt or penalty</td>
-                        <td className="px-6 py-4">Submit new TFN declaration with correct status</td>
+                        <td className="px-6 py-4">Give your employer a withholding declaration with the correct status</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Not updating after getting HECS debt</td>
                         <td className="px-6 py-4">HECS not withheld from ongoing pay</td>
-                        <td className="px-6 py-4">Submit new TFN declaration to current employer</td>
+                        <td className="px-6 py-4">Give your current employer a withholding declaration</td>
                       </tr>
                     </tbody>
                   </table>
@@ -175,9 +185,9 @@ export default function TaxFileNumberDeclarationPage() {
 
               <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r-xl not-prose my-6">
                 <p className="text-navy text-sm font-medium">
-                  <strong>The 47% Penalty Rate</strong>
+                  <strong>The {RES} Penalty Rate</strong>
                   <br />
-                  If you don&apos;t provide your TFN within 28 days, your employer <strong>must</strong> withhold tax at 47% (the top marginal rate plus Medicare levy) from every dollar you earn. This withholding is a legal obligation on your employer, not a choice. You can recover the excess tax when you lodge your annual tax return, but it means reduced pay in the meantime.
+                  If you don&apos;t quote your TFN or claim an exemption, your employer <strong>must</strong> withhold tax at {RES} (the {TOP_RATE} top marginal rate plus the {MEDICARE} Medicare levy) from every dollar you earn, or {FOREIGN} if you are a foreign resident. If you told your employer you have applied for a TFN, this starts after 28 days. This withholding is a legal obligation on your employer, not a choice. You can recover the excess tax when you lodge your annual tax return, but it means reduced pay in the meantime.
                 </p>
               </div>
             </section>
@@ -186,18 +196,18 @@ export default function TaxFileNumberDeclarationPage() {
             <section id="when-to-submit-new">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When to Submit a New TFN Declaration</h2>
               <p>
-                You need to submit a new TFN declaration to your employer in the following situations:
+                Give a TFN declaration to each new employer. If your circumstances change while you stay with the same employer, give that employer a withholding declaration (NAT 3093) instead. It overrides your earlier declaration:
               </p>
               <ul>
-                <li><strong>Starting a new job</strong>: Required for every new job, even if you have worked for the same employer group before.</li>
-                <li><strong>Acquiring a HECS-HELP debt</strong>: If you start studying and take on a HECS loan while employed.</li>
-                <li><strong>Paying off your HECS debt</strong>: Submit a new declaration to stop the additional withholding.</li>
-                <li><strong>Changing your tax-free threshold claim</strong>: If you get a second job or leave a job and want to move the threshold to a different employer.</li>
-                <li><strong>Changing residency status</strong>: If you become or cease to be an Australian resident for tax purposes.</li>
-                <li><strong>Name change</strong>: After updating your details with the ATO.</li>
+                <li><strong>Starting a new job</strong>: A new TFN declaration for each new payer you start work with.</li>
+                <li><strong>Acquiring a HECS-HELP debt</strong>: A withholding declaration if you start studying and take on a HECS loan while employed.</li>
+                <li><strong>Paying off your HECS debt</strong>: A withholding declaration to stop the additional withholding.</li>
+                <li><strong>Changing your tax-free threshold claim</strong>: A withholding declaration if you get a second job or leave a job and want to move the threshold to a different employer.</li>
+                <li><strong>Changing residency status</strong>: A withholding declaration if you become or cease to be an Australian resident for tax purposes.</li>
+                <li><strong>Name change</strong>: Update your details with the ATO first, then tell your employer.</li>
               </ul>
               <p>
-                You do <strong>not</strong> need to submit a new TFN declaration each financial year or if your salary changes with the same employer. The declaration remains in effect until you submit a replacement or leave the employer.
+                You do <strong>not</strong> need to submit a new TFN declaration each financial year or if your salary changes with the same employer. The declaration stays in effect until you give a new declaration or leave the employer.
               </p>
               <p>
                 For a checklist of the forms and details to sort out when you start a new job, see our <Link href="/new-job-checklist/">New Job Checklist</Link>. If this is your first ever job, our <Link href="/first-job-pay-guide/">First Job Pay Guide</Link> explains tax, super and each line on your first payslip.
@@ -212,7 +222,7 @@ export default function TaxFileNumberDeclarationPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092) and PAYG withholding guidelines. Tax rates and thresholds are for FY{SITE_CONFIG.financialYear}. The 47% penalty withholding rate comprises the 45% top marginal rate plus 2% Medicare levy. For a question about your own TFN declaration, contact the ATO on 13 28 61.</p>
+                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092), withholding declaration (NAT 3093) and PAYG withholding guidelines. Tax rates and thresholds are for FY{SITE_CONFIG.financialYear}. The {RES} penalty withholding rate comprises the {TOP_RATE} top marginal rate plus the {MEDICARE} Medicare levy. For a question about your own TFN declaration, contact the ATO on 13 28 61.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-file-number-declaration"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

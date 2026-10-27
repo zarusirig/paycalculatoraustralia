@@ -4,9 +4,10 @@
 // drift from the page. Award rates come from lib/constants/hospitality-award.ts,
 // brackets/SG/HECS from lib/constants, TOIL rules from lib/constants/time-in-lieu.ts.
 
-import { EMPLOYMENT, formatAUD, HECS_HELP, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { EMPLOYMENT, formatAUD, HECS_HELP, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS, TAX_HISTORY } from "@/lib/constants";
 import { HOSPITALITY_PENALTIES, RETAIL_PENALTIES, RETAIL_RATES } from "@/lib/constants/hospitality-award";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { TOIL_AWARD_RULES } from "@/lib/constants/time-in-lieu";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
@@ -15,9 +16,16 @@ const MID = TAX_BRACKETS[2];
 const HECS_FIRST = HECS_HELP.bands.find((b) => b.marginalRate > 0)!;
 const CASUAL = pct(EMPLOYMENT.casualLoading);
 // Fair Work Act s 539/s 546: 60 penalty units per civil contravention for an
-// individual, five times that for a body corporate.
+// individual, five times that for a body corporate with fewer than 15 employees
+// and 25 times that (1,500 units) for a larger one, which can instead face 3 times
+// the underpayment if greater (Closing Loopholes changes). FWO litigation page,
+// content last updated 6 July 2026: $21,840 / $109,200 / $546,000.
 const FW_UNITS_INDIVIDUAL = 60;
 const FW_UNITS_COMPANY = FW_UNITS_INDIVIDUAL * 5;
+const FW_UNITS_LARGE_COMPANY = FW_UNITS_INDIVIDUAL * 25;
+// TOIL windows from lib/constants/time-in-lieu.ts (SCHADS cl 28.2(d) is shorter).
+const TOIL_SCHADS = TOIL_AWARD_RULES.find((r) => r.shortName === "SCHADS Award")!;
+const TOIL_STANDARD = TOIL_AWARD_RULES.find((r) => r.shortName === "Retail Award")!;
 
 export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   {
@@ -26,7 +34,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is overtime taxed in Australia?",
-    a: `Overtime and penalty rate income is added to your regular income and taxed at your marginal rate. There is no separate tax rate for overtime or penalty rate income, and the ATO treats all employment earnings identically for PAYG withholding. Income between ${formatAUD(MID.min)} and ${formatAUD(MID.max)} is taxed at ${pct(MID.rate)}. The 32.5% bracket many guides still quote has not existed since the Stage 3 changes. Use our Overtime Pay Calculator to see the after-tax amount.`,
+    a: `Overtime and penalty rate income is added to your regular income and taxed at your marginal rate. There is no separate tax rate for overtime or penalty rate income, and the ATO treats all employment earnings identically for PAYG withholding. Income between ${formatAUD(MID.min)} and ${formatAUD(MID.max)} is taxed at ${pct(MID.rate)}. The 32.5% bracket has not existed since the Stage 3 changes took effect on ${TAX_HISTORY.stage3TaxCuts.effectiveDate}. Use our Overtime Pay Calculator to see the after-tax amount.`,
     links: { "Overtime Pay Calculator": "/overtime-pay-calculator/" },
   },
   {
@@ -40,7 +48,7 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is casual loading paid on top of penalty rates?",
-    a: `Casual penalty rates are additive, not compounded. In the retail award, casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate: the ${pct(RETAIL_PENALTIES.sunday)} Sunday rate plus the ${CASUAL} casual loading, not ${pct(RETAIL_PENALTIES.sunday)} multiplied by 1.25, which would give ${pct(RETAIL_PENALTIES.sunday * 1.25)}. The award's casual column already includes the loading, so it is not added again. Compounding is one of the most common payroll errors.`,
+    a: `Casual penalty rates are additive, not compounded. In the retail award, casual Sunday is ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate: the ${pct(RETAIL_PENALTIES.sunday)} Sunday rate plus the ${CASUAL} casual loading, not ${pct(RETAIL_PENALTIES.sunday)} multiplied by 1.25, which would give ${pct(RETAIL_PENALTIES.sunday * 1.25)}. The award's casual column already includes the loading, so it is not added again.`,
   },
   {
     q: "How do hospitality evening and night rates work?",
@@ -56,19 +64,19 @@ export const PENALTY_RATES_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I refuse to work on a public holiday?",
-    a: "Yes. Under section 114 of the Fair Work Act, an employee can refuse a request to work on a public holiday if the refusal is reasonable. Factors include whether the workplace is normally open on public holidays, the employee's personal circumstances, and the notice provided. Employees who do work public holidays receive penalty rates of 2.0x to 2.75x depending on their award.",
+    a: `Yes. Under section 114 of the Fair Work Act, an employee can refuse a request to work on a public holiday if the refusal is reasonable. Factors include whether the workplace is normally open on public holidays, the employee's personal circumstances, and the notice provided. Employees who do work a public holiday receive the award's public holiday rate. Under the General Retail Industry Award that is ${pct(RETAIL_PENALTIES.publicHoliday)} of the ordinary rate, or ${pct(RETAIL_PENALTIES.casualPublicHoliday)} for casuals. Other awards set their own rate.`,
   },
   {
     q: "Do salaried employees get penalty rates?",
-    a: "Award-covered salaried employees must receive penalty rates unless their salary is high enough to \"absorb\" all applicable penalties and overtime (an \"annualised salary\" arrangement). The annualised salary must exceed the total of base pay plus all penalties the employee would otherwise receive. Employers must conduct annual reconciliations to verify this.",
+    a: "Award-covered salaried employees must receive penalty rates unless their salary is high enough to \"absorb\" all applicable penalties and overtime (an \"annualised salary\" arrangement). The annualised salary must be no less than what the employee would have received under the award for the work performed over the year. Employers must conduct annual reconciliations to verify this.",
   },
   {
     q: "What should I do if my employer is not paying penalty rates?",
-    a: `Contact the Fair Work Ombudsman on 13 13 94 or lodge a complaint online at fairwork.gov.au. The FWO investigates underpayment claims and underpaid wages can be recovered for up to 6 years. A standard civil penalty under the Fair Work Act is up to ${FW_UNITS_INDIVIDUAL} penalty units per contravention for individuals and ${FW_UNITS_COMPANY} for companies (${formatAUD(FW_UNITS_INDIVIDUAL * PENALTY_UNIT.amount)} and ${formatAUD(FW_UNITS_COMPANY * PENALTY_UNIT.amount)} at the ${formatAUD(PENALTY_UNIT.amount)} penalty unit from ${PENALTY_UNIT.from}), and serious contraventions attract up to ten times that.`,
+    a: `Contact the Fair Work Ombudsman on 13 13 94 or lodge a complaint online at fairwork.gov.au. The FWO investigates underpayment claims and underpaid wages can be recovered for up to 6 years. A standard civil penalty under the Fair Work Act is up to ${FW_UNITS_INDIVIDUAL} penalty units per contravention for individuals, ${FW_UNITS_COMPANY} for companies with fewer than 15 employees and ${FW_UNITS_LARGE_COMPANY.toLocaleString("en-AU")} for larger companies (${formatAUD(FW_UNITS_INDIVIDUAL * PENALTY_UNIT.amount)}, ${formatAUD(FW_UNITS_COMPANY * PENALTY_UNIT.amount)} and ${formatAUD(FW_UNITS_LARGE_COMPANY * PENALTY_UNIT.amount)} at the ${formatAUD(PENALTY_UNIT.amount)} penalty unit from ${PENALTY_UNIT.from}). For an underpayment, a larger company can instead face 3 times the underpayment if that is more. Serious contraventions attract up to ten times the standard amount.`,
   },
   {
     q: "Can my employer offer time off instead of penalty rates?",
-    a: "Time Off in Lieu (TOIL) replaces overtime pay, not weekend or public holiday penalties, and only where your award, enterprise agreement or contract allows it and you agree. The ratio depends on the award: the Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour, while the General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (1 hour at 1.5x = 1.5 hours off). TOIL not taken within the award's window (usually 6 months) must be paid out at the overtime rate.",
+    a: `Time Off in Lieu (TOIL) replaces overtime pay, not weekend or public holiday penalties, and only where your award, enterprise agreement or contract allows it and you agree. The ratio depends on the award: the Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour, while the General Retail, Fast Food and Pharmacy awards give time equal to the overtime payment (1 hour at 1.5x = 1.5 hours off). TOIL not taken within the award's window (${TOIL_STANDARD.windowMonths} months, or ${TOIL_SCHADS.windowMonths} months under SCHADS) must be paid out at the overtime rate for the hours when worked. SCHADS uses the pay rates applying at the time of payment.`,
   },
   {
     q: "Do penalty rates affect my HECS-HELP repayment?",

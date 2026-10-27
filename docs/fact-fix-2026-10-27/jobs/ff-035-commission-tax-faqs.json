@@ -1,0 +1,64 @@
+{
+ "name": "ff-035-commission-tax-faqs",
+ "files": [
+  "modules/calculator/commission-tax-faqs.ts",
+  "modules/calculator/commonwealth-seniors-health-card-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/commission-tax-faqs.ts:50",
+   "file": "modules/calculator/commission-tax-faqs.ts",
+   "line": "50",
+   "page": "https://pay-calculator-australia.com/commission-tax-calculator/",
+   "claims": [
+    "The ATO treats commissions, bonuses, back pay and similar one-off payments 'identically'."
+   ],
+   "whys": [
+    "This is correct for commissions compared with bonuses. Back pay is different: arrears that relate to earlier income years can be Lump Sum E and get a tax offset, so 'identically' overstates it for back pay."
+   ],
+   "constants": [
+    "n/a (prose; ATO Schedule 5 / Lump Sum E rules)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.5,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/commission-tax-faqs.ts:62",
+   "file": "modules/calculator/commission-tax-faqs.ts",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/commission-tax-calculator/",
+   "claims": [
+    "Contractors 'register for and charge GST once your turnover passes $75,000'."
+   ],
+   "whys": [
+    "The $75,000 figure is typed into the prose instead of coming from a constant. It is correct today, but it should come from a constant (GST registration threshold) so it cannot go stale silently."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.47,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/commonwealth-seniors-health-card-content.tsx:90",
+   "file": "modules/calculator/commonwealth-seniors-health-card-content.tsx",
+   "line": "90",
+   "page": "https://pay-calculator-australia.com/commonwealth-seniors-health-card/",
+   "claims": [
+    "Parenting Payment Single recipients keep the Pensioner Concession Card for 12 weeks after the payment ends."
+   ],
+   "whys": [
+    "The condition seems to be missing. The extension applies when PPS stops because of employment income, not whenever it ends. The sentence before it does state its condition ('suspended because you are working')."
+   ],
+   "constants": [
+    "PCC.keepWeeksAfterPpsEnds (lib/constants/centrelink-means-test.ts line 364)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.82,
+   "needsOwner": false
+  }
+ ]
+}

@@ -4,11 +4,15 @@
 // data cannot drift from the visible page.
 
 import { formatAUD } from "@/lib/constants";
-import { SAPTO_BANDS, SAPTO_INCOME_YEAR, SAPTO_REDUCTION_RATE } from "@/lib/constants/sapto";
+import { SAPTO_BANDS, SAPTO_INCOME_YEAR, SAPTO_REDUCTION_RATE, SAPTO_TRANSFER } from "@/lib/constants/sapto";
 
 const S = SAPTO_BANDS.single;
 const C = SAPTO_BANDS.couple;
 const I = SAPTO_BANDS.illnessSeparated;
+
+// Worked shading-out example for a single person, computed from the bands.
+const EX_INCOME = 39_000;
+const EX_RAW = S.maxOffset - (EX_INCOME - S.shadingOutThreshold) * SAPTO_REDUCTION_RATE;
 
 export interface SaptoFaq {
   q: string;
@@ -46,11 +50,11 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
   },
   {
     q: "How fast does SAPTO reduce?",
-    a: `The offset reduces by ${SAPTO_REDUCTION_RATE * 100} cents for every dollar of rebate income above the shading-out threshold, and the ATO rounds the result up to the nearest whole dollar. A single person on ${formatAUD(39_000)} gets ${formatAUD(2_230)} − ((${formatAUD(39_000)} − ${formatAUD(34_919)}) × 0.125) = $1,719.88, rounded up to $1,720.`,
+    a: `The offset reduces by ${SAPTO_REDUCTION_RATE * 100} cents for every dollar of rebate income above the shading-out threshold, and the ATO rounds the result up to the nearest whole dollar. A single person on ${formatAUD(EX_INCOME)} gets ${formatAUD(S.maxOffset)} − ((${formatAUD(EX_INCOME)} − ${formatAUD(S.shadingOutThreshold)}) × ${SAPTO_REDUCTION_RATE}) = ${formatAUD(EX_RAW, 2)}, rounded up to ${formatAUD(Math.ceil(EX_RAW))}.`,
   },
   {
     q: "Can I transfer unused SAPTO to my spouse?",
-    a: "Yes. If you and your spouse are both eligible and one of you does not use the whole offset, the unused part can transfer. The ATO works this out when you lodge. Where your spouse's taxable income is $6,000 or less the full amount transfers; above that it reduces by 15 cents in the dollar.",
+    a: `Yes. If you and your spouse are both eligible and one of you does not use the whole offset, the unused part can transfer. The ATO works this out when you lodge. Where your spouse's taxable income is ${formatAUD(SAPTO_TRANSFER.taxableIncomeFloor)} or less the full amount transfers; above that it reduces by ${Number((SAPTO_TRANSFER.reductionRate * 100).toFixed(2))} cents in the dollar.`,
   },
   {
     q: "Is SAPTO refundable?",

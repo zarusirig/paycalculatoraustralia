@@ -6,7 +6,8 @@ import { MINING_FIFO_FAQS } from "./mining-fifo-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { FIFO_DAYS_PER_YEAR, FIFO_DEFAULTS, FIFO_SOURCES, calculateFifoPay } from "@/lib/constants/fifo-pay";
 import { AWE_HEADLINE, AWE_BY_INDUSTRY, AWE_RELEASE, annualise } from "@/lib/data/average-salary";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 
@@ -20,6 +21,10 @@ const ABS_AWE_LATEST =
 // $150,000 example from the FY2026-27 engine (old copy: $38,717 tax, which
 // matched neither 2025-26 nor 2026-27 rates).
 const EX = calculatePayBreakdown({ grossSalary: 150_000 });
+// Days on site a year, on the FIFO calculator's 364-day year.
+const daysOnSite = (on: number, off: number) => Math.round((on * FIFO_DAYS_PER_YEAR) / (on + off));
+// Overtime example: the FIFO calculator's default inputs (2/1 roster).
+const OT_EX = calculateFifoPay(FIFO_DEFAULTS);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
@@ -102,12 +107,12 @@ export default function MiningFIFOPayGuidePage() {
                 FIFO rosters determine how many days you spend on-site versus at home, and directly affect your total earnings. The most common roster structures in Australian mining are:
               </p>
               <ul>
-                <li><strong>2 weeks on / 1 week off (2/1):</strong> This is the most common roster: 14 days on-site, then 7 days off. This &quot;even time&quot; roster means you work approximately 243 days per year, the most working days of the rosters listed here.</li>
-                <li><strong>8 days on / 6 days off (8/6):</strong> This roster gives you more days at home for each day on-site than the roster above: 8 days on-site, then 6 days at home, for approximately 209 working days per year.</li>
-                <li><strong>4 days on / 3 days off (4/3):</strong> This roster is common for drive-in, drive-out (DIDO) roles closer to regional centres: 4 days on-site, then 3 days at home, for approximately 208 working days per year.</li>
+                <li><strong>2 weeks on / 1 week off (2/1):</strong> 14 days on-site, then 7 days off, for approximately {daysOnSite(14, 7)} working days per year, the most working days of the rosters listed here.</li>
+                <li><strong>8 days on / 6 days off (8/6):</strong> This roster gives you more days at home for each day on-site than the roster above: 8 days on-site, then 6 days at home, for approximately {daysOnSite(8, 6)} working days per year.</li>
+                <li><strong>4 days on / 3 days off (4/3):</strong> This roster suits drive-in, drive-out (DIDO) roles closer to regional centres: 4 days on-site, then 3 days at home, for approximately {daysOnSite(4, 3)} working days per year.</li>
               </ul>
               <p>
-                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings: a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
+                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings. For example, on a 2/1 roster of {FIFO_DEFAULTS.shiftHours}-hour shifts at {formatAUD(FIFO_DEFAULTS.hourlyRate)} an hour, with {FIFO_DEFAULTS.ordinaryHoursPerWeek} ordinary hours a week and all hours above that paid at {FIFO_DEFAULTS.overtimeMultiplier} times the rate, overtime adds <strong>{formatAUD(OT_EX.annual.overtime)}</strong> a year to <strong>{formatAUD(OT_EX.annual.ordinary)}</strong> of ordinary pay. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
               </p>
             </section>
 
@@ -119,11 +124,11 @@ export default function MiningFIFOPayGuidePage() {
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Living Away From Home Allowance (LAFHA)</h3>
               <p>
-                LAFHA compensates FIFO workers for the additional costs of living away from their usual place of residence. It covers food and accommodation expenses incurred while on-site. LAFHA can be <strong>tax-free</strong> if the worker maintains a home elsewhere and the allowance is paid under a structured arrangement that meets ATO requirements. Typical LAFHA amounts range from <strong>$50 to $100 per day</strong> on-site, adding $7,000 to $14,000 per year in tax-free income on a 2/1 roster.
+                LAFHA compensates FIFO workers for the additional costs of living away from their usual place of residence. It covers food and accommodation expenses incurred while on-site. A LAFHA is a <a href={FIFO_SOURCES.lafha} target="_blank" rel="noopener">fringe benefit</a>, so it is taxed to your employer under fringe benefits tax (FBT) and is not part of your assessable income. If you are a FIFO worker who keeps a home elsewhere and gives your employer the required declaration, the exempt accommodation and food components reduce its taxable value.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Travel Allowance</h3>
               <p>
-                Most FIFO employers cover the cost of flights between the worker&apos;s home city and the mine site. Where flights are not provided directly, a travel allowance of <strong>$200–$500 per swing</strong> may be paid. This allowance is generally taxable unless the employer books and pays for travel directly, in which case it is a fringe benefit to the employer rather than assessable income to the worker.
+                If your employer books and pays for your flights between your home city and the mine site, that is not an allowance and is not paid to you as income. A travel allowance paid to you is different: the ATO treats an allowance for travelling for work as assessable income to you, and it does not attract FBT.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Accommodation Provided</h3>
               <p>
@@ -146,7 +151,7 @@ export default function MiningFIFOPayGuidePage() {
                 <div>
                   <h3 className="text-base font-bold text-navy mb-1">Important: FIFO Workers Generally NOT Eligible</h3>
                   <p className="text-navy text-sm mb-0">
-                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot;. Flying in to work from a home outside the zone does not qualify. Only workers who genuinely relocate to a remote town and maintain their primary residence there can claim the offset.
+                    Since the <strong>2015 legislative change</strong>, FIFO workers who maintain their usual place of residence <em>outside</em> the remote zone are <strong>not eligible</strong> for the zone tax offset. The offset now requires that the zone is your &quot;usual place of residence&quot;. Flying in to work from a home outside the zone does not qualify. Only workers whose usual place of residence is in a zone can claim the offset, including FIFO workers whose home is itself in a zone.
                   </p>
                 </div>
               </div>
@@ -161,10 +166,10 @@ export default function MiningFIFOPayGuidePage() {
             <section id="take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay on a Mining Salary</h2>
               <p>
-                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX.totalDeductions)}</strong> in income tax (including the Medicare levy) for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX.takeHomePay)}</strong> per year, or <strong>{formatAUD(EX.takeHomePay / 26)} per fortnight</strong>. Adding tax-free LAFHA of $10,000 per year brings the effective take-home to approximately <strong>{formatAUD(EX.takeHomePay + 10_000)}</strong>.
+                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX.totalDeductions)}</strong> in income tax (including the Medicare levy) for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX.takeHomePay)}</strong> per year, or <strong>{formatAUD(EX.takeHomePay / 26)} per fortnight</strong>. If you are paid a LAFHA, it is on top of this and is not part of your assessable income, so it adds to your take-home pay in full.
               </p>
               <p>
-                Superannuation at <strong>12%</strong> adds another <strong>{formatAUD(150_000 * SUPER_GUARANTEE.rate)}</strong> on top of the $150,000 gross salary, bringing the total remuneration package to <strong>{formatAUD(150_000 * (1 + SUPER_GUARANTEE.rate))}</strong>. Use the <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your exact mining salary, including overtime and allowances, and see your after-tax position for FY2025-26.
+                Superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> adds another <strong>{formatAUD(150_000 * SUPER_GUARANTEE.rate)}</strong> on top of the $150,000 gross salary, bringing the total remuneration package to <strong>{formatAUD(150_000 * (1 + SUPER_GUARANTEE.rate))}</strong>. Use the <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your exact mining salary, including overtime and allowances, and see your after-tax position for FY{SITE_CONFIG.financialYear}.
               </p>
               <div className="not-prose my-8">
                 <Link href="/take-home-pay-calculator/" className="inline-flex items-center gap-2 px-6 py-3 bg-eucalyptus-dark text-white font-semibold rounded-lg hover:bg-navy transition-colors">

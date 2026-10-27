@@ -1,0 +1,171 @@
+{
+ "name": "ff-061-apprentice-pay-rates-faq",
+ "files": [
+  "modules/guide/apprentice-pay-rates-faqs.ts",
+  "modules/guide/apprentice-pay-rates.tsx",
+  "modules/guide/apprentice-pay-trade-faqs.ts",
+  "modules/guide/aps-grade-page.tsx",
+  "modules/guide/australian-pay-report.tsx",
+  "modules/guide/award-rates-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/apprentice-pay-rates-faqs.ts:40",
+   "file": "modules/guide/apprentice-pay-rates-faqs.ts",
+   "line": "40",
+   "page": "/apprentice-pay-rates/",
+   "claims": [
+    "55% of the $1,119.10 standard rate ... the $41.22 carpenter tool allowance"
+   ],
+   "whys": [
+    "Both figures are typed in rather than taken from code, although both exist in code: STANDARD_WEEKLY_RATE, and toolAllowance 41.22 in spokes.ts:185. The same applies to $2.03 a day / $9.94 a week at line 44 (the cookery note in index.ts:403), and to $18,200, 15% and $45,000 at line 68 (the tax constants)."
+   ],
+   "constants": [
+    "STANDARD_WEEKLY_RATE (lib/data/apprentice-pay/index.ts:77), toolAllowance (lib/data/apprentice-pay/spokes.ts:185), tax brackets in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.17,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/apprentice-pay-rates.tsx:132",
+   "file": "modules/guide/apprentice-pay-rates.tsx",
+   "line": "132",
+   "page": "/apprentice-pay-rates/",
+   "claims": [
+    "usually $1,119.10 a week (for 2026-27) ... less than $26.44 an hour. Many employers pay more, and enterprise agreements often do."
+   ],
+   "whys": [
+    "$1,119.10 is typed into the prose instead of using STANDARD_WEEKLY_RATE, and $26.44 is typed instead of coming from the minimum-wage constant, so both will drift on the next wage review. 'Many employers pay more, and enterprise agreements often do' is a claim about how many employers do this, with no figure or source."
+   ],
+   "constants": [
+    "STANDARD_WEEKLY_RATE (lib/data/apprentice-pay/index.ts:77); the National Minimum Wage constant in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/apprentice-pay-rates.tsx:47",
+   "file": "modules/guide/apprentice-pay-rates.tsx",
+   "line": "47",
+   "page": "/apprentice-pay-rates/",
+   "claims": [
+    "Annual Wage Review 2025-26 decision [2026] FWCFB 3500"
+   ],
+   "whys": [
+    "The site cites the same decision number for two different years: '[2026] FWCFB 3500' 19 times and '[2025] FWCFB 3500' 3 times across lib/modules/app. One of the two years is wrong."
+   ],
+   "constants": [
+    "Annual wage review citation constant (whichever file holds the AWR decision reference)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.11,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/apprentice-pay-trade-faqs.ts:61",
+   "file": "modules/guide/apprentice-pay-trade-faqs.ts",
+   "line": "61",
+   "page": "/apprentice-pay/carpenter/, /apprentice-pay/bricklayer/, /apprentice-pay/painter/ (building trades with payGuide)",
+   "claims": [
+    "First-year FAQ answer says 'the $67.15 industry allowance' as a typed literal."
+   ],
+   "whys": [
+    "The value matches today, but it is hard-coded in prose while the page body and calculator read INDUSTRY_ALLOWANCE.general. It will go stale at the next 1 July update if only the constant changes."
+   ],
+   "constants": [
+    "INDUSTRY_ALLOWANCE.general in calc-boiler/lib/data/apprentice-pay/spokes.ts:166"
+   ],
+   "reviewerNotes": [
+    "Confirmed: '$67.15 industry allowance' is typed into the first-year FAQ answer as a literal. It matches INDUSTRY_ALLOWANCE.general in lib/data/apprentice-pay/spokes.ts:166 today, but the text will go stale if only the constant changes. Source edit needed, so this goes to factQuestions."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.74,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/aps-grade-page.tsx:172",
+   "file": "modules/guide/aps-grade-page.tsx",
+   "line": "172",
+   "page": "https://pay-calculator-australia.com/public-service-pay-scales/aps/aps-6/",
+   "claims": [
+    "On the threshold minimum, {APS_SUPER_RATE}% is {formatSalary(threshold.min * 0.154)} a year"
+   ],
+   "whys": [
+    "The super dollars use a hard-coded 0.154 while the label uses APS_SUPER_RATE (APS.superannuation.rate ?? 15.4). If the rate in aps.ts changes, the dollar figure and the stated percentage will disagree."
+   ],
+   "constants": [
+    "APS_SUPER_RATE in lib/data/public-service-pay/aps-grades.ts (use APS_SUPER_RATE / 100)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's question. The super dollar figures use a hard-coded 0.154, but the label uses APS_SUPER_RATE. The calculation should be APS_SUPER_RATE / 100 so the two cannot disagree. This needs a code change."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/australian-pay-report.tsx:224",
+   "file": "modules/guide/australian-pay-report.tsx",
+   "line": "224",
+   "page": "https://pay-calculator-australia.com/australian-pay-report-2026/",
+   "claims": [
+    "The National Minimum Wage rose 4.75% on 1 July 2026 to {aud(nmw.weekly, 2)} a week."
+   ],
+   "whys": [
+    "4.75% is the modern award increase. The site's own data says the NMW rose about 6.0%: NMW_HISTORY_RAW has 2026-27 published \"6.0%\", and EMPLOYMENT.minimumWageWeekly 1004.90 / minimumWageWeeklyPrevious 948.00 = +6.0%. The brief also gives the NMW rise as 5.97%. The percentage is typed into the prose, not read from code."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts NMW_HISTORY_RAW (2026-27 published) or the computed NMW increase (EMPLOYMENT.minimumWageWeekly / minimumWageWeeklyPrevious - 1); the award figure is NMW_DECISION.awardIncrease"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. The prose says 'The National Minimum Wage rose 4.75% on 1 July 2026', but 4.75% is the modern award increase. The site's NMW_HISTORY_RAW (lib/constants/minimum-wage.ts:129) has 2026-27 published as '6.0%', and the brief gives the NMW rise as 5.97%. The percentage is typed into the source, so this pass did not change it. It needs a human or code fix (read it from the NMW_HISTORY published value or the computed increase)."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/award-rates-faqs.ts:39",
+   "file": "modules/guide/award-rates-faqs.ts",
+   "line": "39",
+   "page": "https://pay-calculator-australia.com/award-rates/",
+   "claims": [
+    "From 1 December 2026 retail, fast food and pharmacy rates for 18 to 20 year olds with more than 6 months' service begin rising towards the adult rate."
+   ],
+   "whys": [
+    "The start date and the 6-month service condition are typed into the text, not taken from a constant. Neither is cited on the page. Check both against the FWC junior rates decision for the Retail, Fast Food and Pharmacy awards."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts (or a junior-rates constant beside RETAIL_RATES)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 4.45,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/award-rates-faqs.ts:51",
+   "file": "modules/guide/award-rates-faqs.ts",
+   "line": "51",
+   "page": "https://pay-calculator-australia.com/award-rates/",
+   "claims": [
+    "The 12% superannuation guarantee is paid by the employer on top of award wages. From 1 July 2026 it must be paid with each pay rather than quarterly."
+   ],
+   "whys": [
+    "The 12% is typed into the text instead of using SUPER_GUARANTEE.rate. 'Paid with each pay' simplifies the Payday Super rule, under which contributions must reach the fund within a set number of days after payday. Confirm this wording is precise enough."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.27,
+   "needsOwner": false
+  }
+ ]
+}

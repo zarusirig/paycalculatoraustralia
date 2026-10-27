@@ -1,0 +1,157 @@
+{
+ "name": "ff-089-novated-lease-guide",
+ "files": [
+  "modules/guide/novated-lease-guide.tsx",
+  "modules/guide/ote-salary-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:57",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "57",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "A smaller post-tax portion covers the employee contribution (also table cell line 147: 'Pre-tax + small post-tax component')"
+   ],
+   "whys": [
+    "Under ECM the post-tax contribution is 20% of the GST-inclusive base value each year (lines 233, 355). On the page's own $40,000 example that is $8,000 of the $12,000 budget, so the post-tax part is the larger share, not the smaller one. The intro was written as 'partly before tax and partly after tax' so it does not repeat the claim."
+   ],
+   "constants": [
+    "FBT.statutoryRate in lib/constants/novated-lease.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer: on the page's own example the post-tax ECM contribution is the larger share, so 'A smaller post-tax portion' at line 57 (and the 'small post-tax component' table cell at line 147) looks wrong. Also, line 59 offers 'return the vehicle to the dealer', which conflicts with line 275. Both are passed through as factQuestions and the source was not changed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:59",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "59",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "At lease end you can ... or return the vehicle to the dealer"
+   ],
+   "whys": [
+    "This conflicts with line 275 on the same page (pay the residual, refinance it, or trade the car in and start a new lease). A novated lease has no hand-back option without paying out the residual."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:266",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "266",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "less beneficial for employees earning under $45,000, those within 2 years of retirement ... most leasing providers offer portability and payout options"
+   ],
+   "whys": [
+    "Editorial judgement stated as fact under a heading about eligibility. The FAQ says there is no legislated income minimum. The 2-year retirement figure and the 'most providers' claim have no source. AUDIT is factual-structured, so this cannot be labelled as opinion in this pass."
+   ],
+   "constants": [
+    "TAX_BRACKETS[1].max (lib/constants/australian-tax.ts) for the $45,000 figure"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.65,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:320",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "320",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "Most leasing companies offer a portability guarantee ... within 60 to 90 days. No early termination fee applies when transferring ... discount for early settlement typically worth 1 to 3 months of interest"
+   ],
+   "whys": [
+    "These are industry claims and figures with no cited source. 'No early termination fee applies' is stated as a universal rule."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.02,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:93",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "93",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "Registration & CTP $400 a year; 'Varies by state, NSW and VIC are highest'"
+   ],
+   "whys": [
+    "$400 a year for registration plus CTP looks low for NSW or VIC, where CTP alone usually costs more. The example table figures (7.5% interest, $1.85/litre fuel, 20 to 30% insurance discount at line 88) are hard-coded and unsourced."
+   ],
+   "constants": [
+    "none; example budget is inline in the page"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:262",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "262",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "someone on 37c in the dollar than to someone on 15c"
+   ],
+   "whys": [
+    "Correct for 2026-27, but the rates are typed into the prose rather than read from TAX_BRACKETS like the FAQ file does. They will go stale on 1 July 2027 when the bottom rate changes."
+   ],
+   "constants": [
+    "TAX_BRACKETS in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide.tsx:119",
+   "file": "modules/guide/novated-lease-guide.tsx",
+   "line": "119",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "The employer is registered for GST and claims credits on the lease payments and packaged running costs."
+   ],
+   "whys": [
+    "This is stated as a universal fact, but not every employer is registered for GST or able to claim input tax credits (for example, entities making input-taxed supplies). The rest of the sentence already hedges how much reaches the budget, and this first sentence should probably be made conditional or sourced."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.24,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/ote-salary-faqs.ts:29",
+   "file": "modules/guide/ote-salary-faqs.ts",
+   "line": "29",
+   "page": "https://pay-calculator-australia.com/ote-salary/",
+   "claims": [
+    "earnings for the $190,100 high income threshold"
+   ],
+   "whys": [
+    "The figure is correct today and matches HIGH_INCOME_THRESHOLD.current. But it is typed into the FAQ by hand, so it will go stale at the 1 July re-index while the page body (which reads the constant) updates. Line 21 hard-codes '12% super guarantee' the same way, instead of using SUPER_GUARANTEE.rate."
+   ],
+   "constants": [
+    "lib/constants/ote-salary.ts HIGH_INCOME_THRESHOLD.current; lib/constants/australian-tax.ts SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.53,
+   "needsOwner": false
+  }
+ ]
+}

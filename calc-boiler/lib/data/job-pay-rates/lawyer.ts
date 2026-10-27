@@ -23,7 +23,7 @@
 // Median: Jobs and Skills Australia, ANZSCO 2713 Solicitors, $2,070 a week /
 // $56 an hour (ABS SEEH May 2025), read 23 September 2026.
 
-import { EMPLOYMENT } from "../../constants/australian-tax";
+import { EMPLOYMENT, formatAUD } from "../../constants/australian-tax";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
@@ -33,7 +33,7 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import { money0, money2 } from "./j8-common";
+import { annual52, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
 const LAW_GRADUATE: RateRow = { label: "Level 5 — Law graduate", weekly: 1291.8, hourly: 33.99, casualHourly: 42.49, note: "Before admission, completing practical legal training" };
@@ -109,7 +109,7 @@ export const LAWYER: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
-    "Admitted lawyers are award-free: the $33.99 an hour law graduate rate stops applying once you are admitted and practising, and the only legal floor becomes the National Minimum Wage ($26.44 an hour).",
+    `Admitted lawyers are award-free: the ${money2(LAW_GRADUATE.hourly)} an hour law graduate rate stops applying once you are admitted and practising, and the only legal floor becomes the National Minimum Wage (${money2(EMPLOYMENT.minimumWageHourly)} an hour).`,
   ],
   notShown: [
     "A graduate-to-partner salary ladder: no primary source publishes one, and we do not estimate salaries.",
@@ -122,19 +122,19 @@ export const LAWYER: Occupation = {
     },
     {
       q: "What is the minimum pay for a law graduate in 2026?",
-      a: "A law graduate in a private law firm is Level 5 under the Legal Services Award and must be paid at least $33.99 an hour, or $1,291.80 a week, from the first full pay period on or after 1 July 2026, or $67,174 a year full-time before tax. A casual law graduate gets at least $42.49 an hour.",
+      a: `A law graduate in a private law firm is Level 5 under the Legal Services Award and must be paid at least ${money2(LAW_GRADUATE.hourly)} an hour, or ${formatAUD(LAW_GRADUATE.weekly, 2)} a week, from the first full pay period on or after 1 July 2026, or ${money0(annual52(LAW_GRADUATE.weekly))} a year full-time before tax. A casual law graduate gets at least ${money2(LAW_GRADUATE.casualHourly!)} an hour.`,
     },
     {
       q: "What is the minimum wage for an admitted lawyer?",
-      a: "Because admitted lawyers are award-free, the legal minimum is the National Minimum Wage: $26.44 an hour or $1,004.90 a week for adults from the first full pay period on or after 1 July 2026, plus the National Employment Standards.",
+      a: `Because admitted lawyers are award-free, the legal minimum is the National Minimum Wage: ${money2(EMPLOYMENT.minimumWageHourly)} an hour or ${formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} a week for adults from the first full pay period on or after 1 July 2026, plus the National Employment Standards.`,
     },
     {
       q: "Do lawyers get paid overtime?",
-      a: "Admitted lawyers have no award overtime entitlement; whether overtime is paid depends on the employment contract. Law graduates covered by the Legal Services Award get 150% for the first 3 hours of overtime and 200% after that.",
+      a: "Admitted lawyers have no award overtime entitlement; whether overtime is paid depends on the employment contract. Law graduates covered by the Legal Services Award get 150% for the first 3 hours of overtime Monday to Saturday until 12 noon, then 200%. Overtime after 12 noon on Saturday and on Sunday is 200% from the first hour, and on a public holiday it is 250% (cl 20.2).",
     },
     {
       q: "How much do lawyers actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,070 a week for solicitors (ABS, May 2025), about $107,640 a year. That is a market figure, not a minimum.",
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(MEDIAN.medianWeekly)} a week for solicitors (ABS, May 2025), about ${money0(annual52(MEDIAN.medianWeekly))} a year. That is a market figure, not a minimum.`,
     },
   ],
   sources: [

@@ -50,6 +50,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Registered agent lodgment program – individuals and trusts", url: TAX_CALENDAR_SOURCES.agentProgram, publisher: SOURCES.ato.name },
   { title: "Lodge your tax return online with myTax", url: TAX_CALENDAR_SOURCES.myTax, publisher: SOURCES.ato.name },
   { title: "End-of-year finalisation through STP", url: TAX_CALENDAR_SOURCES.stp, publisher: SOURCES.ato.name },
+  { title: "STP concessional reporting: closely held payees", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/concessional-reporting", publisher: SOURCES.ato.name },
   { title: "Payment deadlines for Payday Super", url: TAX_CALENDAR_SOURCES.paydaySuper, publisher: SOURCES.ato.name },
   { title: "Lodgment and payment dates on weekends or public holidays", url: TAX_CALENDAR_SOURCES.weekends, publisher: SOURCES.ato.name },
   { title: "Failure to lodge on time penalty", url: TAX_CALENDAR_SOURCES.failureToLodge, publisher: SOURCES.ato.name },
@@ -82,7 +83,7 @@ export default function TaxCalendarPage() {
   return (
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Calendar</span></li></ol></nav>
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H}>Australian Tax Calendar {Y.incomeYear}</h1><p className="text-xl text-warmgray leading-relaxed mb-6">A tax week in Australia is one of the {EMPLOYMENT.weeksPerYear} weeks of the financial year, which for {Y.incomeYear} runs from {Y.start} to {Y.end}. Within that year the {R.incomeYear} tax return is due {R.selfLodgeDueDate}{self.effectiveIso !== self.iso ? `, accepted on ${formatIso(self.effectiveIso, "long")} as the next business day` : ""}, or {R.agentDueDateMostPeople} for most tax agent clients. Under Payday Super, employer super is due within {SGC.current.businessDaysToPay} business days of each payday. Where a due date falls on a weekend or public holiday, we show the next business day the ATO accepts.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H}>Australian Tax Calendar {Y.incomeYear}</h1><p className="text-xl text-warmgray leading-relaxed mb-6">A tax week in Australia is one of the {EMPLOYMENT.weeksPerYear} weeks of the financial year, which for {Y.incomeYear} runs from {Y.start} to {Y.end}. Within that year the {R.incomeYear} tax return is due {R.selfLodgeDueDate}{self.effectiveIso !== self.iso ? `, accepted on ${formatIso(self.effectiveIso, "long")} as the next business day` : ""}, or {R.agentDueDateMostPeople} if you are on a tax agent&rsquo;s client list by {R.selfLodgeDueDate} and the ATO&rsquo;s agent lodgment program sets no earlier date for you. Under Payday Super, employer super is due within {SGC.current.businessDaysToPay} business days of each payday. Where a due date falls on a weekend or public holiday, we show the next business day the ATO accepts.</p><TrustBar className="!max-w-none" /></header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
           <FeaturedImage className="mt-0" />
@@ -94,7 +95,7 @@ export default function TaxCalendarPage() {
             <div className="not-prose my-6 space-y-4">
               <DateCard date={formatIso("2026-07-01")} title="New income year and Payday Super" desc={`${Y.incomeYear} starts. Super is now due within ${SGC.current.businessDaysToPay} business days of each payday. The second tax bracket falls from ${pct(TAX_BRACKETS_2025_26[1].rate)} to ${pct(TAX_BRACKETS_2026_27[1].rate)}.`} colour="green" />
               <DateCard date={formatIso(self.iso)} title={`${R.incomeYear} tax return deadline`} desc={`Deadline if you lodge your own return.${self.effectiveIso !== self.iso ? ` It falls on a weekend, so you can lodge on ${formatIso(self.effectiveIso, "long")}.` : ""} Also the last day to get on a tax agent's client list.`} colour="red" />
-              <DateCard date={formatIso(agent.iso)} title="Tax agent deadline" desc={`Usual due date for ${R.incomeYear} returns lodged by a registered tax agent, if you were on their list by ${R.selfLodgeDueDate}.${agent.effectiveIso !== agent.iso ? ` Next business day: ${formatIso(agent.effectiveIso, "long")}.` : ""}`} colour="amber" />
+              <DateCard date={formatIso(agent.iso)} title="Tax agent deadline" desc={`Due date for ${R.incomeYear} returns lodged by a registered tax agent, if you were on their list by ${R.selfLodgeDueDate} and the ATO's agent lodgment program sets no earlier date for you.${agent.effectiveIso !== agent.iso ? ` Next business day: ${formatIso(agent.effectiveIso, "long")}.` : ""}`} colour="amber" />
               <DateCard date={formatIso("2027-06-30")} title="End of the income year" desc={`Last day for deductible spending, super contributions and donations to count for ${Y.incomeYear}.`} colour="red" />
             </div>
           </section>
@@ -117,14 +118,14 @@ export default function TaxCalendarPage() {
 
           {/* ===== SECTION 3: Individual Tax Return Deadlines ===== */}
           <section><h2 style={H}>What Are the Individual Tax Return Deadlines?</h2>
-            <p>If you lodge your own {R.incomeYear} return, it is due by <strong>{R.selfLodgeDueDate}</strong>. If you use a registered tax agent and are on their client list by then, most people have until <strong>{R.agentDueDateMostPeople}</strong>. Some agent clients are due earlier, so your agent will confirm your date.</p>
+            <p>If you lodge your own {R.incomeYear} return, it is due by <strong>{R.selfLodgeDueDate}</strong>. If you use a registered tax agent and are on their client list by then, you have until <strong>{R.agentDueDateMostPeople}</strong>, unless the ATO&rsquo;s agent lodgment program sets an earlier date for you. Your agent will confirm your date.</p>
             <p>The ATO says most returns lodged through myTax are processed in <strong>{R.onlineProcessingBusinessDays} business days</strong> and most refunds are issued within <strong>{R.onlineRefundTypical}</strong>. For paper returns, most refunds are issued within {R.paperRefundBusinessDays} business days. If you owe tax, the amount is due by the date on your notice of assessment.</p>
             <p>Key dates for the {R.incomeYear} return:</p>
             <ul>
               <li><strong>{R.prefillReady.replace(/^./, (c) => c.toUpperCase())} 2026</strong>: the ATO has pre-filled most employer, bank, health fund and government data</li>
               <li><strong>{R.selfLodgeDueDate}</strong>: self-lodgment deadline{self.effectiveIso !== self.iso && <> (lodge by {formatIso(self.effectiveIso, "long")} because it falls on a weekend)</>}. Also due on this date: agent clients with a prior-year return still outstanding at 30 June 2026</li>
               <li><strong>{R.agentDueDateLargeLiability}</strong>: agent clients whose latest return had a tax liability of $20,000 or more</li>
-              <li><strong>{R.agentDueDateMostPeople}</strong>: most other agent clients{agent.effectiveIso !== agent.iso && <> (next business day {formatIso(agent.effectiveIso, "long")})</>}</li>
+              <li><strong>{R.agentDueDateMostPeople}</strong>: all other agent clients{agent.effectiveIso !== agent.iso && <> (next business day {formatIso(agent.effectiveIso, "long")})</>}</li>
               <li><strong>{R.agentConcessionDate}</strong>: concession date for 15 May agent returns, if any payment is also made by then</li>
             </ul>
             <p>Your {R.incomeYear} return uses the {R.incomeYear} rates, with a {pct(TAX_BRACKETS_2025_26[1].rate)} second bracket. See the <Link href="/tax-return-2026/">2026 tax return guide</Link> for what changed, or check the rates on our <Link href="/tax-brackets/">Income Tax Brackets</Link> page.</p>
@@ -144,7 +145,7 @@ export default function TaxCalendarPage() {
             <p>If you are voluntarily registered for GST and report annually, your annual GST return is due {formatIso(RETURN_DATES_2026.annualGstReturn.iso, "long")}.</p>
 
             <h3 style={H}>Single Touch Payroll (STP) Finalisation</h3>
-            <p>Employers must make their STP finalisation declaration by <strong>14 July</strong> each year: 14 July 2026 for {R.incomeYear} and 14 July 2027 for {Y.incomeYear}. Employers with 20 or more employees have until <strong>30 September</strong> to finalise closely held payees, such as family members. Until you finalise, your employees&rsquo; income statements won&rsquo;t show as &quot;tax ready&quot;.</p>
+            <p>Employers must make their STP finalisation declaration by <strong>14 July</strong> each year: 14 July 2026 for {R.incomeYear} and 14 July 2027 for {Y.incomeYear}. If you have 19 or fewer payees, you can finalise closely held payees, such as family members, by <strong>30 September</strong>, or by the payee&rsquo;s tax return due date if all your payees are closely held. With 20 or more payees, closely held payees follow the 14 July date. Until you finalise, your employees&rsquo; income statements won&rsquo;t show as &quot;tax ready&quot;.</p>
             <p>To estimate the full cost of an employee, including super and payroll tax, use our <Link href="/employer-cost-calculator/">Employer Cost Calculator</Link>.</p>
           </section>
 
@@ -182,12 +183,12 @@ export default function TaxCalendarPage() {
             </ol>
 
             <h3 style={H}>Using a Registered Tax Agent</h3>
-            <p>Most agent clients have until <strong>{R.agentDueDateMostPeople}</strong> to lodge their {R.incomeYear} return, as long as they are on the agent&rsquo;s client list by {R.selfLodgeDueDate}. The agent&rsquo;s fee is deductible in the year you pay it.</p>
+            <p>Agent clients have until <strong>{R.agentDueDateMostPeople}</strong> to lodge their {R.incomeYear} return, as long as they are on the agent&rsquo;s client list by {R.selfLodgeDueDate} and the ATO&rsquo;s agent lodgment program sets no earlier date for them. The agent&rsquo;s fee is deductible in the year you pay it.</p>
           </section>
 
           {/* ===== SECTION 7: PAYG Instalments ===== */}
           <section><h2 style={H}>What Are the Key Dates for PAYG Instalments?</h2>
-            <p>Quarterly PAYG instalments for {Y.incomeYear} are due on <strong>{q.map((row) => formatIso(row.iso)).join(", ")}</strong>. If you pay one annual instalment and a tax agent lodges your return, your annual instalment is due <strong>{formatIso(RETURN_DATES_2026.annualPaygInstalment.iso, "long")}</strong>. If you lodge your own return, you just lodge it by {R.selfLodgeDueDate}.</p>
+            <p>Quarterly PAYG instalments for {Y.incomeYear} are due on <strong>{q.map((row) => formatIso(row.iso)).join(", ")}</strong>. If you pay one annual instalment and a tax agent lodges your return, you must pay your annual instalment by <strong>{formatIso(RETURN_DATES_2026.annualPaygInstalment.iso, "long")}</strong> and before your return is lodged. If you prepare and lodge your own return, you don&rsquo;t need to lodge the instalment notice or pay the annual instalment: you lodge your return by {R.selfLodgeDueDate}.</p>
             <p>The ATO puts you into PAYG instalments if you have business or investment income over its thresholds. It works out your instalment amount or rate from your latest tax return. Primary producers and special professionals may pay two instalments instead: 75% by 28 April and the rest by 28 July.</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Instalment</th><th className="px-5 py-3">Period Covered</th><th className="px-5 py-3 text-right">Due Date</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {q.map((row) => (
@@ -218,7 +219,7 @@ export default function TaxCalendarPage() {
               <li>Keep records for every work-related deduction you plan to claim</li>
               <li>Check your concessional super contributions against the <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)} annual cap</strong>. Employer super counts toward it, and under Payday Super more of it may land in {Y.incomeYear} than usual</li>
               <li>Prepay deductible expenses for up to 12 months ahead, such as income protection insurance or professional subscriptions</li>
-              <li>Check your private hospital cover for the Medicare levy surcharge. For {Y.incomeYear} the thresholds are <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> for singles and <strong>{formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}</strong> for families, with a surcharge of 1% to 1.5% above them</li>
+              <li>Check your private hospital cover for the Medicare levy surcharge. For {Y.incomeYear} the thresholds are <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> for singles and <strong>{formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}</strong> for families, with a surcharge of {pct(MEDICARE_LEVY.surcharge.tier1.rate)} to {pct(MEDICARE_LEVY.surcharge.tier3.rate)} above them</li>
               <li>Consider selling investments that have fallen in value to offset capital gains</li>
               <li>Make donations to deductible gift recipients (DGRs) before 30 June</li>
               <li>Plan salary sacrifice for the new year from 1 July. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link></li>
@@ -229,7 +230,7 @@ export default function TaxCalendarPage() {
           <section><h2 style={H}>What Tax Changes Apply in {Y.incomeYear}?</h2>
             <p>The biggest changes on {Y.start} are a lower second tax rate and Payday Super. The SG rate stays at <strong>{pct(SUPER_GUARANTEE.rate)}</strong> and the Medicare levy at <strong>{pct(MEDICARE_LEVY.rate)}</strong>.</p>
             <ul>
-              <li><strong>Second tax bracket</strong>: {pct(TAX_BRACKETS_2026_27[1].rate)} on income from $18,201 to $45,000, down from {pct(TAX_BRACKETS_2025_26[1].rate)}</li>
+              <li><strong>Second tax bracket</strong>: {pct(TAX_BRACKETS_2026_27[1].rate)} on income from {formatAUD(TAX_BRACKETS_2026_27[1].min)} to {formatAUD(TAX_BRACKETS_2026_27[1].max)}, down from {pct(TAX_BRACKETS_2025_26[1].rate)}</li>
               <li><strong>Payday Super</strong>: super is due within {SGC.current.businessDaysToPay} business days of each payday, on qualifying earnings</li>
               <li><strong>Maximum super contribution base</strong>: {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year (previously a quarterly figure)</li>
               <li><strong>Concessional contributions cap</strong>: {formatAUD(SUPER_GUARANTEE.concessionalCap)}; non-concessional cap {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</li>

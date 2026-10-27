@@ -25,6 +25,14 @@ const BASIC = metalRow("C13 / V2", "C13 — Employee Level II", "Basic soldering
 const SKILLED = metalRow("C12 / V3", "C12 — Employee Level III", "Welding that needs skills above C13");
 const TRADE = metalRow("C10 / V5", "C10 — Tradesperson Level I", "Trade-certificate welder or fabricator");
 const money = (x: number) => `$${x.toFixed(2)}`;
+/** An allowance amount from MANUFACTURING_AWARD.allowances, so the FAQ cannot drift from the constant. */
+function allowanceAmount(name: string): string {
+  const a = MANUFACTURING_AWARD.allowances.find((x) => x.name === name);
+  if (!a) throw new Error(`welder: no allowance ${name}`);
+  return money(a.amount);
+}
+const medianWeekly = METAL_MEDIAN.medianWeekly.toLocaleString("en-AU");
+const medianAnnual = (METAL_MEDIAN.medianWeekly * 52).toLocaleString("en-AU");
 
 export const WELDER: Occupation = {
   slug: "welder",
@@ -45,7 +53,7 @@ export const WELDER: Occupation = {
   coverage: [
     "Welders in manufacturing and metal fabrication workshops are covered by the Manufacturing and Associated Industries and Occupations Award 2020 [MA000010]. The award has no single welder rate. It grades welding by the skill the job needs.",
     "Basic soldering and butt and spot welding skills are an indicative task for C13 (Employee Level II). Welding that needs knowledge and skills above C13 is an indicative C12 task (Employee Level III). A welder who holds a trade certificate in fabrication is an Engineering/Manufacturing Tradesperson Level I at C10, the award's trade rate, with higher trade levels at C9 and C8.",
-    "Which award applies depends on the employer's industry. A welder employed on a building site by a builder, in mining, in shipbuilding or in vehicle manufacturing may be under a different award or an enterprise agreement, and enterprise agreements can pay more than these minimums.",
+    "Which award applies depends on the employer's industry. Shipbuilding and vehicle manufacturing are inside this award (cl 4.8 and 4.9). A welder employed on a building site by a builder or in mining may be under a different award or an enterprise agreement, and enterprise agreements can pay more than these minimums.",
   ],
   tables: [
     {
@@ -68,7 +76,7 @@ export const WELDER: Occupation = {
   allowances: METAL_ALLOWANCES,
   median: METAL_MEDIAN,
   notices: [
-    "Jobs and Skills Australia's profile for first-class welders prints no median earnings (N/A), so the $1,688 a week figure is for the wider group of structural steel and welding trades workers, which includes metal fabricators and pressure welders.",
+    `Jobs and Skills Australia's profile for first-class welders prints no median earnings (N/A), so the $${medianWeekly} a week figure is for the wider group of structural steel and welding trades workers, which includes metal fabricators and pressure welders.`,
     "Welding on construction sites or in mining may be paid under an enterprise agreement or another award, so the Manufacturing Award minimums on this page may not be the rates that apply to you.",
   ],
   notShown: METAL_NOT_SHOWN,
@@ -114,11 +122,11 @@ export const WELDER: Occupation = {
     },
     {
       q: "Do welders get tool and confined space allowances?",
-      a: "Yes, under the award: a $17.90 a week tool allowance for tradespeople who supply their own tools, $1.12 an hour for work in confined spaces, and $0.85 an hour for dirty work. A leading hand in charge of 3 to 10 employees gets $48.98 a week.",
+      a: `Yes, under the award: a ${allowanceAmount("Tool allowance — tradesperson")} a week tool allowance for tradespeople who supply their own tools, ${allowanceAmount("Confined spaces")} an hour for work in confined spaces, and ${allowanceAmount("Dirty work")} an hour for dirty work. A leading hand in charge of 3 to 10 employees gets ${allowanceAmount("Leading hand — in charge of 3 to 10 employees")} a week.`,
     },
     {
       q: "What do welders actually earn?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $1,688 a week for structural steel and welding trades workers (ABS, May 2025), about $87,776 a year before tax. That group includes welders and metal fabricators, and it reflects the many people paid under enterprise agreements and with overtime.",
+      a: `Jobs and Skills Australia reports median full-time earnings of $${medianWeekly} a week for structural steel and welding trades workers (ABS, May 2025), about $${medianAnnual} a year before tax. That group includes welders and metal fabricators. It is a market figure, not an award minimum.`,
     },
   ],
   sources: [

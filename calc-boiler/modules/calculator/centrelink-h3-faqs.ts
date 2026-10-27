@@ -23,6 +23,9 @@ const AT = PENSION_ASSETS_TEST;
 const R = PENSION_RATES_NOW.maxFortnightly;
 const IT = AGE_PENSION_INCOME_TEST;
 const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
+// Assets-test example: a single homeowner $100,000 over the full-pension limit.
+const atExcess = 100_000;
+const atExAssets = AT.fullPensionLimit.single.homeowner + atExcess;
 
 export const ASSETS_TEST_FAQS: readonly W3Faq[] = [
   {
@@ -31,7 +34,7 @@ export const ASSETS_TEST_FAQS: readonly W3Faq[] = [
   },
   {
     q: "How much does the Age Pension reduce for assets over the limit?",
-    a: `The Age Pension drops by $${AT.taperPerThousand.single} a fortnight for every $1,000 of assets over the full-pension limit if you are single, and by $${AT.taperPerThousand.coupleEach.toFixed(2)} a fortnight each for a couple (on your combined assets). For example, a single homeowner with ${formatAUD(433_000)} of assessable assets is ${formatAUD(100_000)} over the limit, so the pension drops by ${formatAUD(300)} to ${formatAUD(assetsTestRate(433_000, "single", "homeowner"), 2)} a fortnight under the assets test.`,
+    a: `The Age Pension drops by $${AT.taperPerThousand.single} a fortnight for every $1,000 of assets over the full-pension limit if you are single, and by $${AT.taperPerThousand.coupleEach.toFixed(2)} a fortnight each for a couple (on your combined assets). For example, a single homeowner with ${formatAUD(atExAssets)} of assessable assets is ${formatAUD(atExcess)} over the limit, so the pension drops by ${formatAUD((atExcess / 1_000) * AT.taperPerThousand.single)} to ${formatAUD(assetsTestRate(atExAssets, "single", "homeowner"), 2)} a fortnight under the assets test.`,
   },
   {
     q: "Does the income test or the assets test apply?",
@@ -101,7 +104,7 @@ export const DSP_FAQS: readonly W3Faq[] = [
   },
   {
     q: "What are the DSP assets limits?",
-    a: `The DSP assets limits are the same as the Age Pension's: a full pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner) or ${formatAUD(AT.fullPensionLimit.single.nonHomeowner)} (single non-homeowner), reducing $3 a fortnight per $1,000 above that; a part pension stops above ${formatAUD(AT.partPensionCutOff.single.homeowner)} and ${formatAUD(AT.partPensionCutOff.single.nonHomeowner)} from ${AT.ratesFrom}. Under 21s with no children have their own cut-offs.`,
+    a: `The DSP assets limits are the same as the Age Pension's: a full pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner) or ${formatAUD(AT.fullPensionLimit.single.nonHomeowner)} (single non-homeowner), reducing $${AT.taperPerThousand.single} a fortnight per $1,000 above that; a part pension stops above ${formatAUD(AT.partPensionCutOff.single.homeowner)} and ${formatAUD(AT.partPensionCutOff.single.nonHomeowner)} from ${AT.ratesFrom}. Under 21s with no children have their own cut-offs.`,
   },
 ];
 
@@ -129,7 +132,7 @@ export const CCS_FAQS: readonly W3Faq[] = [
   },
   {
     q: "Why is 5% of my CCS withheld?",
-    a: `Services Australia withholds ${CCS.defaultWithholding * 100}% of your subsidy each fortnight to reduce the chance of a debt if your income ends up higher than your estimate. The withheld amount is paid to you when your CCS is balanced after the financial year if you were not overpaid. You can change the percentage online twice a financial year.`,
+    a: `Services Australia withholds ${CCS.defaultWithholding * 100}% of your subsidy each fortnight to reduce the chance of a debt if your income ends up higher than your estimate. The withheld amount is paid to you when your CCS is balanced after the financial year if you were not overpaid. You can change the percentage in your Centrelink online account up to twice a year.`,
   },
 ];
 

@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD, formatPercent } from "@/lib/constants";
-import { REDUNDANCY_TAX } from "@/lib/constants/redundancy";
+import { MEDICARE_LEVY, formatAUD, formatPercent } from "@/lib/constants";
+import { ETP_RATES, GENUINE_REDUNDANCY_AGE_LIMIT, PRESERVATION_AGE, REDUNDANCY_TAX } from "@/lib/constants/redundancy";
 import { WHOLE_OF_INCOME_CAP, terminationTax, type TerminationKind } from "@/lib/constants/termination-tax";
 import { CALC_FONT, NOTE_OK, NOTE_WARN, NumberField, RESULT_LIST, ResultRow, SelectField } from "./t3-calc-shared";
 
@@ -15,6 +15,10 @@ const KINDS = [
   { value: "genuine-redundancy", label: "Genuine redundancy payment" },
   { value: "other-etp", label: "Other termination payment (golden handshake, severance, non-genuine redundancy)" },
 ] as const;
+
+// Age is tested at 30 June of the income year, derived from the constant so the
+// label rolls over with REDUNDANCY_TAX.incomeYear ("2026-27" -> 30 June 2027).
+const YEAR_END = `30 June ${Number(REDUNDANCY_TAX.incomeYear.slice(0, 4)) + 1}`;
 
 export default function TerminationPaymentTaxCalculator() {
   const [kind, setKind] = useState<TerminationKind>("genuine-redundancy");
@@ -55,9 +59,9 @@ export default function TerminationPaymentTaxCalculator() {
             {genuineInput ? (
               <NumberField id="tt-years" label="Completed years of service" hint="Part years do not count." value={years} onChange={setYears} max={60} />
             ) : null}
-            <NumberField id="tt-age" label="Your age at 30 June 2027" hint="Turning 60 by 30 June 2027 means the lower tax rate." value={age} onChange={setAge} max={100} />
+            <NumberField id="tt-age" label={`Your age at ${YEAR_END}`} hint={`Turning ${PRESERVATION_AGE} by ${YEAR_END} means the lower tax rate.`} value={age} onChange={setAge} max={100} />
             {genuineInput ? (
-              <NumberField id="tt-age-out" label="Your age when dismissed" hint="A genuine redundancy needs this to be under 67." value={ageOut} onChange={setAgeOut} max={100} />
+              <NumberField id="tt-age-out" label="Your age when dismissed" hint={`A genuine redundancy needs this to be under ${GENUINE_REDUNDANCY_AGE_LIMIT}.`} value={ageOut} onChange={setAgeOut} max={100} />
             ) : null}
             {!genuineInput ? (
               <NumberField id="tt-other" label="Other taxable income this financial year" hint="Salary before you left, accrued leave paid out, interest. Not super or salary sacrifice." value={other} onChange={setOther} step={1000} />
@@ -71,7 +75,7 @@ export default function TerminationPaymentTaxCalculator() {
               <ResultRow label="Tax-free part" value={formatAUD(r.taxFree)} />
               <ResultRow label="Taxable (ETP)" value={formatAUD(r.etpTaxable)} />
               <ResultRow label={`Taxed at ${formatPercent(r.rateWithinCap, 0)} up to`} value={formatAUD(r.capApplied)} muted />
-              {r.aboveCap > 0 ? <ResultRow label={`Above the cap, taxed at 47%`} value={formatAUD(r.aboveCap)} /> : null}
+              {r.aboveCap > 0 ? <ResultRow label={`Above the cap, taxed at ${formatPercent(ETP_RATES.aboveCap, 0)}`} value={formatAUD(r.aboveCap)} /> : null}
               <ResultRow label="Tax withheld" value={formatAUD(r.tax)} bold />
               <ResultRow label="You receive" value={formatAUD(r.net)} bold />
               <ResultRow label="Effective tax rate" value={formatPercent(r.effectiveRate, 1)} muted />
@@ -79,7 +83,7 @@ export default function TerminationPaymentTaxCalculator() {
             {r.downgradedReason ? <p className={NOTE_WARN}>{r.downgradedReason}</p> : null}
             {r.capBinding === "whole-of-income-cap" ? (
               <p className={NOTE_WARN}>
-                Your other income cuts the {formatAUD(WHOLE_OF_INCOME_CAP)} whole-of-income cap to {formatAUD(r.wholeOfIncomeCapRemaining ?? 0)}, so {formatAUD(r.aboveCap)} is taxed at the top rate of 47%.
+                Your other income cuts the {formatAUD(WHOLE_OF_INCOME_CAP)} whole-of-income cap to {formatAUD(r.wholeOfIncomeCapRemaining ?? 0)}, so {formatAUD(r.aboveCap)} is taxed at the top rate of {formatPercent(ETP_RATES.aboveCap, 0)}.
               </p>
             ) : r.tax === 0 && payment > 0 ? (
               <p className={NOTE_OK}>The whole payment is within the genuine redundancy tax-free limit, so no tax is withheld on it.</p>
@@ -91,7 +95,7 @@ export default function TerminationPaymentTaxCalculator() {
               </p>
             )}
             <p className="text-xs text-warmgray-light">
-              Rates include the 2% Medicare levy as the ATO quotes them. Your final tax is set when your return is assessed. Not modelled: tax-free amounts for pre-1983 service, earlier termination payments in the same year, death benefits. General information, not advice.
+              Rates include the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy as the ATO quotes them. Your final tax is set when your return is assessed. Not modelled: tax-free amounts for pre-1983 service, earlier termination payments in the same year, death benefits. General information, not advice.
             </p>
           </div>
         </div>

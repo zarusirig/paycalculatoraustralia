@@ -23,9 +23,10 @@ export default function ThousandDollarInstantTaxDeduction() {
 
       <h2>What the deduction actually is</h2>
       <p>
-        The instant work-related deduction lets eligible employees claim a flat $1,000 against
-        their taxable income for the 2026-27 income year, with no substantiation required. You do
-        not need to keep receipts or itemise each uniform, tool, subscription or work-related
+        The instant work-related deduction (the ATO calls it the standard deduction) takes up to
+        $1,000 off your taxable income for the 2026-27 income year, with no substantiation required.
+        The cap is the lower of $1,000 or your total labour income, such as salary and wages. You do
+        not need to keep receipts or itemise each uniform, tool or other work-related
         purchase. It
         became law under the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which passed
         Parliament and received royal assent on 26 June 2026.
@@ -33,7 +34,7 @@ export default function ThousandDollarInstantTaxDeduction() {
 
       <h2>When you can claim it, and when you can&apos;t</h2>
       <p>
-        The $1,000 deduction applies to the 2026-27 income year, which started on 1 July 2026. You claim it on the tax return you lodge from
+        The $1,000 deduction applies to the 2026-27 income year, which started on 1 July 2026. The ATO applies it automatically to the tax return you lodge from
         1 July 2027. It does not apply to the 2025-26 return most people are lodging right now,
         between July and October 2026. That return still uses the normal substantiation rules;
         see our <Link href="/news/tax-time-2026-whats-new/">tax time 2026 roundup</Link> for
@@ -48,24 +49,26 @@ export default function ThousandDollarInstantTaxDeduction() {
         better outcome when you prepare that return, but you can&apos;t do both for the same expenses.
       </p>
       <p>
-        Treasury estimates the flat $1,000 deduction will benefit 6.2 million workers with an
+        Treasury estimates the $1,000 deduction will benefit 6.2 million workers with an
         average tax saving of $205, and cut overall compliance costs by around $380 million a year.
         The compliance cost cut comes from removing the need to keep receipts for smaller work-related purchases like
-        uniforms, small tools, phone and internet use, or professional subscriptions. If you&apos;re a tradesperson, frequent traveller for work,
-        or someone with genuinely large annual work expenses, itemising is still likely to leave
-        you better off, so run both numbers before you lodge.
+        uniforms, small tools, stationery, and phone and internet use. If your work-related expenses
+        (not counting union fees and association memberships) come to more than $1,000 and you claim them with records, your standard deduction falls to
+        nil and you get the larger itemised deduction instead, so add up your expenses before you lodge.
       </p>
 
       <h2>What else you can still claim</h2>
       <p>
-        The instant deduction only replaces work-related expense substantiation. Non-work
-        deductions (donations to deductible gift recipients, union and professional association
-        fees, income protection insurance premiums and investment-related expenses) aren&apos;t
-        capped by the $1,000 figure and remain fully claimable on top, using your normal records.
+        Union fees and trade, business or professional association memberships are work-related,
+        but they don&apos;t reduce the $1,000 deduction: you claim them on top, with records. Other
+        deductions (donations to deductible gift recipients, income protection insurance premiums,
+        the cost of managing your tax affairs and investment-related expenses) aren&apos;t capped by
+        the $1,000 figure either and remain fully claimable on top, using your normal records.
       </p>
       <p>
-        Sole traders with labour income are also eligible, alongside employees, provided the
-        income qualifies as work-related. The deduction applies on top of the broader tax cuts
+        To be eligible you must be an Australian resident for tax purposes who earns assessable labour
+        income, such as salary and wages, director fees or parental leave pay. Business income
+        doesn&apos;t count, so a sole trader with no labour income gets no standard deduction. The deduction applies on top of the broader tax cuts
         in the 2026-27 income year, including the 16% to 15% rate cut on income between $18,201
         and $45,000. See our{" "}
         <Link href="/news/tax-cut-july-2026/">tax cut from 1 July 2026</Link> explainer for how

@@ -33,7 +33,9 @@ import {
   jsaUrl,
 } from "./common";
 import { HPSS_AWARD, HPSS_OVERTIME, HPSS_PENALTIES, HPSS_PENALTIES_NOTE, HPSS_SOURCE_TITLE } from "./health-professionals-common";
-import type { MedianEarnings, Occupation } from "./types";
+import { formatAUD } from "../../constants/australian-tax";
+import { annual52, atPercent, money0, money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "3112",
@@ -43,6 +45,12 @@ const MEDIAN: MedianEarnings = {
   allOccupationsWeekly: ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   url: jsaUrl("3112-medical-technicians"),
 };
+
+// Clause 16.2(c) rows, kept as constants so the FAQs quote the table, not retyped figures.
+const L5_ENTRY: RateRow = { label: "Level 5 — entry (unqualified)", weekly: 1157.2, hourly: 30.45, casualHourly: 38.06, note: "Under 12 months' experience" };
+const L6_QUALIFIED: RateRow = { label: "Level 6 — qualified (Certificate III)", weekly: 1163.9, hourly: 30.63, casualHourly: 38.29, note: "Cert III under 12 months, or unqualified 12 months–2 years" };
+const L7_UNQUALIFIED: RateRow = { label: "Level 7 — experienced (unqualified, not previously Level 6)", weekly: 1203.5, hourly: 31.67, casualHourly: 39.59, note: "Unqualified, 2 years' or more experience" };
+const L7_QUALIFIED: RateRow = { label: "Level 7 — experienced (qualified or previously Level 6)", weekly: 1241.4, hourly: 32.67, casualHourly: 40.84, note: "Cert III with 12 months' or more experience" };
 
 export const PATHOLOGY_COLLECTOR: Occupation = {
   slug: "pathology-collector",
@@ -67,10 +75,10 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
       intro:
         "Clause 16.2(c) of the award, which the Fair Work Commission headed \"Pathology collectors—until 31 December 2026\", from the first full pay period on or after 1 July 2026. Casual rates are the award's Schedule C.1.9.",
       rows: [
-        { label: "Level 5 — entry (unqualified)", weekly: 1157.2, hourly: 30.45, casualHourly: 38.06, note: "Under 12 months' experience" },
-        { label: "Level 6 — qualified (Certificate III)", weekly: 1163.9, hourly: 30.63, casualHourly: 38.29, note: "Cert III under 12 months, or unqualified 12 months–2 years" },
-        { label: "Level 7 — experienced (unqualified, not previously Level 6)", weekly: 1203.5, hourly: 31.67, casualHourly: 39.59, note: "Unqualified, 2 years' or more experience" },
-        { label: "Level 7 — experienced (qualified or previously Level 6)", weekly: 1241.4, hourly: 32.67, casualHourly: 40.84, note: "Cert III with 12 months' or more experience" },
+        L5_ENTRY,
+        L6_QUALIFIED,
+        L7_UNQUALIFIED,
+        L7_QUALIFIED,
       ],
     },
   ],
@@ -90,23 +98,23 @@ export const PATHOLOGY_COLLECTOR: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a pathology collector in 2026?",
-      a: "A qualified pathology collector with a Certificate III and less than 12 months' experience (Level 6) must be paid at least $30.63 an hour, or $1,163.90 a week, from the first full pay period on or after 1 July 2026. That is $60,523 a year full-time before tax. An unqualified new starter (Level 5) gets $30.45 an hour, and an experienced qualified collector (Level 7) $32.67.",
+      a: `A qualified pathology collector with a Certificate III and less than 12 months' experience (Level 6) must be paid at least ${money2(L6_QUALIFIED.hourly)} an hour, or ${formatAUD(L6_QUALIFIED.weekly, 2)} a week, from the first full pay period on or after 1 July 2026. That is ${money0(annual52(L6_QUALIFIED.weekly))} a year full-time before tax. An unqualified new starter (Level 5) gets ${money2(L5_ENTRY.hourly)} an hour, and an experienced qualified collector (Level 7) ${money2(L7_QUALIFIED.hourly)}.`,
     },
     {
       q: "What is the casual rate for a pathology collector?",
-      a: "A casual Level 6 pathology collector earns at least $38.29 an hour (Schedule C.1.9). On weekends a casual gets 175% of the minimum hourly rate ($53.60) and on public holidays 275% ($84.23).",
+      a: `A casual Level 6 pathology collector earns at least ${money2(L6_QUALIFIED.casualHourly!)} an hour (Schedule C.1.9). On weekends a casual gets 175% of the minimum hourly rate (${money2(atPercent(L6_QUALIFIED.hourly, 1.75))}) and on public holidays 275% (${money2(atPercent(L6_QUALIFIED.hourly, 2.75))}).`,
     },
     {
       q: "Does a Certificate III in pathology collection increase your pay?",
-      a: "Yes, once you have 12 months' experience. A collector with a Certificate III and 12 months' or more experience is Level 7 (qualified) at $32.67 an hour, while an unqualified collector with 2 years' experience is Level 7 (unqualified) at $31.67, unless they were already Support Services Level 6 on 31 March 2026.",
+      a: `Yes, at every stage. With under 12 months' experience as a collector, a Certificate III puts you on Level 6 at ${money2(L6_QUALIFIED.hourly)} an hour instead of Level 5 at ${money2(L5_ENTRY.hourly)}. With 12 months' or more, a Certificate III puts you on Level 7 (qualified) at ${money2(L7_QUALIFIED.hourly)} an hour. An unqualified collector is Level 6 at ${money2(L6_QUALIFIED.hourly)} from 12 months to 2 years, then Level 7 (unqualified) at ${money2(L7_UNQUALIFIED.hourly)}, unless they were already Support Services Level 6 on 31 March 2026.`,
     },
     {
       q: "Do pathology collectors get weekend penalty rates?",
-      a: "Yes. Full-time and part-time collectors get 150% for ordinary hours between midnight Friday and midnight Sunday ($45.95 an hour at Level 6) and 250% on public holidays.",
+      a: `Yes. Full-time and part-time collectors get 150% for ordinary hours between midnight Friday and midnight Sunday (${money2(atPercent(L6_QUALIFIED.hourly, 1.5))} an hour at Level 6) and 250% on public holidays.`,
     },
     {
       q: "What do pathology collectors actually earn?",
-      a: "Jobs and Skills Australia does not publish a separate median for pathology collectors. The median for medical technicians, the group that includes them, is $1,539 a week (ABS, May 2025).",
+      a: `Jobs and Skills Australia does not publish a separate median for pathology collectors. The median for medical technicians, the group that includes them, is ${money0(MEDIAN.medianWeekly)} a week (ABS, May 2025).`,
     },
   ],
   sources: [

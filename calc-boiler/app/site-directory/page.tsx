@@ -403,8 +403,9 @@ function Page() {
             <p className="text-lg leading-relaxed text-warmgray">
               The Pay Calculator Australia site directory links {total} pages by topic: calculators,
               guides, tax tables, salary breakdowns, pay scales by state and pay news. The salary hubs
-              under Salary Tables link the full take-home pay, tax and salary-to-hourly grids. Income tax figures on this
-              site use the ATO rates for FY{SITE_CONFIG.financialYear}.
+              under Salary Tables link the full take-home pay, tax and salary-to-hourly grids. Pay, take-home and salary
+              figures on this site use the ATO income tax rates for FY{SITE_CONFIG.financialYear}. Tax tables for other years,
+              tax return estimates, the tax bracket history and comparisons between years use the rates for the year they cover.
             </p>
             <FeaturedImage className="mb-0 mt-6" />
           </header>

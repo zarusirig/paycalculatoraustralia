@@ -30,7 +30,7 @@ const PENALTY_TYPES = [
   { label: "Time-and-a-half (1.5×)", value: 1.5 },
   { label: "Double time (2.0×)", value: 2.0 },
   { label: "Double-time-and-a-half (2.5×)", value: 2.5 },
-  { label: "Saturday casual (1.25×)", value: 1.25 },
+  { label: "Saturday, full-time or part-time (1.25×)", value: 1.25 },
   { label: "Evening shift (1.15×)", value: 1.15 },
 ] as const;
 
@@ -73,8 +73,8 @@ export default function OvertimePayCalculatorPage({ children, afterCalculator }:
           </h1>
           <p className="text-lg text-warmgray">
             The overtime rate in Australia is a multiple of the ordinary hourly rate set by the award or
-            agreement covering the job, most commonly {PENALTY_TYPES[0].value.toFixed(1)}x for the first two
-            or three hours and {PENALTY_TYPES[1].value.toFixed(1)}x after that; there is no single national
+            agreement covering the job, for example {PENALTY_TYPES[0].value.toFixed(1)}x for the first two
+            or three hours and {PENALTY_TYPES[1].value.toFixed(1)}x after that under the Hospitality and General Retail awards; there is no single national
             overtime rate. Overtime applies beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week for
             full-time staff and is taxed at the {FY} marginal rates. Enter your base hourly rate and the
             penalty multiplier to see gross and net overtime earnings after tax.

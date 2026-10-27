@@ -39,6 +39,13 @@ export function hubFaqs(): { q: string; a: string }[] {
   const retail = getAwardPublicHolidayRate("retail")!;
   const manufacturing = getAwardPublicHolidayRate("manufacturing")!;
   const hair = getAwardPublicHolidayRate("hair-and-beauty")!;
+  const compoundedNames = PUBLIC_HOLIDAY_AWARD_RATES.filter((r) => r.casualCompounded).map((r) =>
+    r.shortName.replace(/ Award$/, ""),
+  );
+  const compoundedList =
+    compoundedNames.length > 1
+      ? `${compoundedNames.slice(0, -1).join(", ")} and ${compoundedNames[compoundedNames.length - 1]}`
+      : compoundedNames.join("");
   return [
     {
       q: "What is the public holiday pay rate in Australia?",
@@ -54,7 +61,7 @@ export function hubFaqs(): { q: string; a: string }[] {
     },
     {
       q: "Are casual public holiday rates added to the casual loading?",
-      a: `In most awards the casual public holiday rate already includes the 25% loading (Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points), so nothing more is added. Two awards on this site work the other way. Manufacturing and Nurses express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
+      a: `In most awards the casual public holiday rate already includes the 25% loading (Retail's ${pctLabel(retail.casual)} is its ${pctLabel(retail.permanent)} plus 25 points), so nothing more is added. On this site, ${compoundedNames.length} awards work the other way. The ${compoundedList} awards express the casual rate as a percentage of the casual hourly rate, so Manufacturing's ${pctLabel(manufacturing.casualAsPrinted)} works out at ${pctLabel(manufacturing.casual)} of the base rate. The Hair and Beauty Award pays casuals ${pctLabel(hair.casual)}, the same as permanent staff.`,
     },
     {
       q: "What happens if a public holiday falls during my annual leave?",

@@ -1,0 +1,86 @@
+{
+ "name": "ff-005-modern-awards",
+ "files": [
+  "lib/constants/modern-awards.ts",
+  "lib/constants/pay-tax-changes-calendar.ts",
+  "lib/constants/schads-award.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/constants/modern-awards.ts:1533",
+   "file": "lib/constants/modern-awards.ts",
+   "line": "1533",
+   "page": "/job-pay-rates/cleaner/",
+   "claims": [
+    "The part-time permanent night shift is 130%, the same as full-time. Every other part-time penalty is the full-time figure plus 15 points."
+   ],
+   "whys": [
+    "The pattern breaks only for this shift. Re-check it against Cleaning Services Award cl 20.2, Table 7."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.85,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/modern-awards.ts:1597",
+   "file": "lib/constants/modern-awards.ts",
+   "line": "1597",
+   "page": "/cleaning-award-rates/",
+   "claims": [
+    "Minimum shift: 1 hour for a lone cleaner at a stand-alone site of up to 300 square metres, 2 hours up to 2,000 square metres, 3 hours from 2,000 to 5,000, and 4 hours at 5,000 square metres or more (cl 13.5(c))."
+   ],
+   "whys": [
+    "The bands overlap at 2,000 and at 5,000 square metres, so a site of exactly 2,000 or 5,000 sqm sits in two bands. Check cl 13.5(c) for the exact boundaries (for example 'less than 2,000' and 'less than 5,000'). Left unchanged."
+   ],
+   "constants": [
+    "CLEANING_AWARD.hoursNotes[0]"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. In CLEANING_AWARD.hoursNotes, the minimum-shift site-size bands overlap at 2,000 and 5,000 square metres ('up to 2,000', 'from 2,000 to 5,000', 'at 5,000 or more'). The exact boundary wording needs checking against cl 13.5(c). The string was not edited."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.56,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/pay-tax-changes-calendar.ts:141",
+   "file": "lib/constants/pay-tax-changes-calendar.ts",
+   "line": "141",
+   "page": "https://pay-calculator-australia.com/pay-and-tax-changes-calendar/",
+   "claims": [
+    "Resident individuals pay a 30% minimum tax on those gains."
+   ],
+   "whys": [
+    "The claim leaves out the exemption that the site states elsewhere: Age Pension and other income support recipients are exempt from the minimum tax (modules/guide/tax-changes-2026-27.tsx:155; capital-gains-tax-faqs.ts:82 'unless they receive a payment such as the Age Pension that year'). The calendar text also hard-codes 50% and 30% instead of using CGT_DISCOUNT_RATES.individual and CGT_REFORM_2027.minimumTaxRate."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "This text was already there before the edit. The calendar says resident individuals pay a 30% minimum tax with no exemption. tax-changes-2026-27.tsx:155 and capital-gains-tax-faqs.ts:82 both say Age Pension and other income support recipients are exempt. This is listed as a fact question and the text was not changed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.67,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/constants/schads-award.ts:55",
+   "file": "lib/constants/schads-award.ts",
+   "line": "55",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "SCHADS_AWARD.decision = \"[2026] FWCFB 3500\" (also in the header comment, line 10: \"Annual Wage Review 2026 [2026] FWCFB 3500\")"
+   ],
+   "whys": [
+    "The repo uses the same decision number for two years: \"[2025] FWCFB 3500\" appears in other files (for example lib/constants/minimum-wage.ts, lib/data/employer-pay/woolworths.ts), and the 2025 Annual Wage Review decision was [2025] FWCFB 3500. It is unlikely that the 2026 decision has the same number, so the [2026] citation needs checking against fwc.gov.au."
+   ],
+   "constants": [
+    "lib/constants/minimum-wage.ts (AWR_2026_FLOORS / Annual Wage Review 2026 citation); every file that cites [2026] FWCFB 3500 should reuse that one constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.17,
+   "needsOwner": false
+  }
+ ]
+}

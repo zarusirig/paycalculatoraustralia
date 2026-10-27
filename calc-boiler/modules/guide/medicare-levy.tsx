@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/medicare-levy-extra";
 import MedicareLevyCalculator from "@/modules/calculator/medicare-levy-calculator";
 import { MEDICARE_LEVY_FAQS } from "@/modules/guide/medicare-levy-faqs";
+import { formatMlsRate } from "@/lib/constants/medicare-levy-surcharge";
 import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_LEVY =
@@ -46,6 +47,10 @@ const SHADE = formatPercent(MEDICARE_LEVY.shadeInRate, 0);
 const LOWER = MEDICARE_LEVY.lowIncomeThreshold;
 const UPPER = MEDICARE_LEVY.shadeInThreshold;
 const FAMILY_UPPER = upperThreshold(MEDICARE_LEVY.familyThreshold);
+/** Where the shade-in meets the full rate, as a multiple of the lower threshold (1.25 at 10% and 2%). */
+const CROSSOVER = Math.round((MEDICARE_LEVY.shadeInRate / (MEDICARE_LEVY.shadeInRate - MEDICARE_LEVY.rate)) * 100) / 100;
+const MLS_LOW = formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate);
+const MLS_HIGH = formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate);
 const SENIOR_UPPER = upperThreshold(MEDICARE_LEVY_SENIORS.singleThreshold);
 const SENIOR_FAMILY_UPPER = upperThreshold(MEDICARE_LEVY_SENIORS.familyThreshold);
 
@@ -102,7 +107,7 @@ export default function MedicareLevyPage() {
               <li><strong>Between {formatAUD(LOWER)} and {formatAUD(UPPER)}</strong>: you pay {SHADE} of the amount over {formatAUD(LOWER)}, which is always less than {RATE} of your income.</li>
               <li><strong>Above {formatAUD(UPPER)}</strong>: the full {RATE}.</li>
             </ul>
-            <p>The upper threshold is the income where the shade-in and the full rate give the same levy. {SHADE} of the excess and {RATE} of total income meet at exactly 1.25 times the lower threshold, which is where the shade-in stops mattering. Every threshold pair the ATO publishes follows that ratio.</p>
+            <p>The upper threshold is the income where the shade-in and the full rate give the same levy. {SHADE} of the excess and {RATE} of total income meet at {CROSSOVER} times the lower threshold, which is where the shade-in stops mattering. The ATO publishes that point rounded down to the whole dollar: {CROSSOVER} times {formatAUD(LOWER)} is {formatAUD(LOWER * CROSSOVER, 2)}, and the published upper threshold is {formatAUD(UPPER)}. The family and seniors upper thresholds on this page are worked out the same way.</p>
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable income</th><th className="px-5 py-3 text-right">Medicare levy</th><th className="px-5 py-3 text-right">Flat {RATE} would be</th><th className="px-5 py-3">Band</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {LEVY_ROWS.map((income, i) => {
@@ -134,7 +139,7 @@ export default function MedicareLevyPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Family Thresholds</h2>
             <p>If you had a spouse on 30 June, or you maintained a dependent child, a second and more generous test applies. It runs on <strong>family taxable income</strong> (your income plus your spouse&rsquo;s, or your own income alone if you are a sole parent) against a family threshold of {formatAUD(MEDICARE_LEVY.familyThreshold)}, which rises by <strong>{formatAUD(MEDICARE_LEVY.additionalChild)} for each dependent child</strong>.</p>
-            <p>Below that threshold no levy is payable at all. Above it the levy is reduced until family income reaches {formatAUD(FAMILY_UPPER)} (again 1.25 times the threshold), after which the full {RATE} applies.</p>
+            <p>Below that threshold no levy is payable at all. Above it the levy is reduced until family income reaches {formatAUD(FAMILY_UPPER)} (again {CROSSOVER} times the threshold, rounded down to the dollar), after which the full {RATE} applies.</p>
 
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Dependent children</th><th className="px-5 py-3 text-right">No levy at or under</th><th className="px-5 py-3 text-right">Full {RATE} above</th><th className="px-5 py-3 text-right">SAPTO threshold</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {[0, 1, 2, 3].map((n, i) => (
@@ -147,7 +152,7 @@ export default function MedicareLevyPage() {
               ))}
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_FAMILY} target="_blank" rel="noopener noreferrer" className="hover:underline">Medicare levy reduction – family income</a>. {MEDICARE_LEVY_INCOME_YEAR} income year.</p></div>
 
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The family reduction is applied on top of the low-income reduction, not instead of it.</strong> Medicare Levy Act 1986 s 8(2) reduces the levy that would be payable <em>after</em> the individual shade-in. Software that applies only one of the two overstates the levy for most families in the band.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The family reduction is applied on top of the low-income reduction, not instead of it.</strong> Medicare Levy Act 1986 s 8(2) reduces the levy that would be payable <em>after</em> the individual shade-in. Software that applies only one of the two overstates the levy for a family that qualifies for both.</p>
 
             <p>Where both partners would be liable for the levy, the reduction is split between them in proportion to their taxable incomes. Where only one partner is liable, because the other is under the individual threshold, that partner takes the whole reduction.</p>
           </section>
@@ -169,7 +174,7 @@ export default function MedicareLevyPage() {
             {/* Intent split (W2, 23 Sep 2026): the surcharge has its own page,
                 /medicare-levy-surcharge-calculator/. This is a summary only. */}
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Medicare Levy Surcharge Is a Different Charge</h2>
-            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The surcharge is not the levy.</strong> The {RATE} levy is paid by almost every resident and cannot be avoided by buying insurance. The surcharge is an extra 1% to 1.5% charged only to higher earners <em>who do not hold private patient hospital cover</em>, and it disappears the moment you do.</p>
+            <p className="not-prose rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-base text-navy"><strong>The surcharge is not the levy.</strong> The {RATE} levy applies whether or not you hold private hospital cover, so buying insurance does not remove it. The surcharge is an extra {MLS_LOW} to {MLS_HIGH} charged only to higher earners <em>who do not hold private patient hospital cover</em>, and you pay it only for the days you are without that cover.</p>
             <p>In {MLS_INCOME_YEAR} it starts above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> of income for surcharge purposes for singles and <strong>{formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)}</strong> for families, plus {formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first. That income is wider than taxable income: it adds reportable fringe benefits, net investment losses and reportable super contributions, which is why salary sacrifice doesn&rsquo;t get you under it.</p>
             <p>Work out your tier, the surcharge for part-year cover, and whether a hospital policy would cost less with the <Link href="/medicare-levy-surcharge-calculator/"><strong>Medicare levy surcharge calculator</strong></Link>.</p>
           </section>

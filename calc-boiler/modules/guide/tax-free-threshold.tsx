@@ -12,6 +12,7 @@ import {
   MEDICARE_LEVY,
   SITE_CONFIG,
   SOURCES,
+  TAX_BRACKETS,
   TAX_FREE_THRESHOLD,
   calculateIncomeTax,
   calculateLITO,
@@ -54,6 +55,9 @@ const FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
 const FY = SITE_CONFIG.financialYear;
 const T = formatAUD(TAX_FREE_THRESHOLD);
 const NIL = effectiveNilTaxIncome();
+// Second resident bracket for SITE_CONFIG.financialYear (15c from 1 July 2026).
+const B2 = TAX_BRACKETS[1];
+const B2_CENTS = Math.round(B2.rate * 100);
 
 const LITO_ROWS = [TAX_FREE_THRESHOLD, 20_000, NIL, 25_000, MEDICARE_LEVY.lowIncomeThreshold, 30_000, 37_500];
 const WEEKLY = [300, 400, 500, 700, 900, 1_200, 1_500, 2_000];
@@ -131,13 +135,13 @@ export default function TaxFreeThresholdPage() {
 
           <section>
             <H2>What the Tax-Free Threshold Is</H2>
-            <p>The tax-free threshold is the first bracket of the resident tax scale: taxable income from $0 to {T} is taxed at nil. Above it you pay 15c for each dollar up to $45,000, then the higher rates set out in our <Link href="/tax-brackets/">Australian tax brackets</Link> guide. It is not a deduction and not a refund. It&rsquo;s a zero-rate band that every resident gets once per income year, however many jobs they have.</p>
+            <p>The tax-free threshold is the first bracket of the resident tax scale: taxable income from $0 to {T} is taxed at nil. Above it you pay {B2_CENTS}c for each dollar up to {formatAUD(B2.max)}, then the higher rates set out in our <Link href="/tax-brackets/">Australian tax brackets</Link> guide. It is not a deduction and not a refund. It&rsquo;s a zero-rate band that every full-year resident gets once per income year, however many jobs they have.</p>
             <p>The tax-free threshold has been {T} since 1 July 2012, when it rose from $6,000.</p>
           </section>
 
           <section>
             <H2 id="effective-threshold">The Effective Tax-Free Threshold with LITO</H2>
-            <p>The <Link href="/low-income-tax-offset/">low income tax offset</Link> gives up to {formatAUD(LITO.maxOffset)} off your tax, and it can reduce tax to nil but not below. At the {FY} rate of 15% above {T}, {formatAUD(LITO.maxOffset)} of offset cancels the tax on the next {formatAUD(LITO.maxOffset / 0.15)} of income. So a resident with no other income or offsets pays <strong>no income tax up to {formatAUD(NIL)}</strong>. You don&rsquo;t claim LITO; the ATO applies it when you lodge.</p>
+            <p>The <Link href="/low-income-tax-offset/">low income tax offset</Link> gives up to {formatAUD(LITO.maxOffset)} off your tax, and it can reduce tax to nil but not below. At the {FY} rate of {B2_CENTS}% above {T}, {formatAUD(LITO.maxOffset)} of offset cancels the tax on the next {formatAUD(NIL - TAX_FREE_THRESHOLD)} of income. So a resident with no other income or offsets pays <strong>no income tax up to {formatAUD(NIL)}</strong>. You don&rsquo;t claim LITO; the ATO applies it when you lodge.</p>
             <div className="not-prose my-6"><div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-4 py-3">Taxable income</th><th className="px-4 py-3 text-right">Tax before LITO</th><th className="px-4 py-3 text-right">LITO</th><th className="px-4 py-3 text-right">Income tax</th><th className="px-4 py-3 text-right">Medicare levy</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {LITO_ROWS.map((inc, i) => (
                 <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}>
@@ -221,7 +225,7 @@ export default function TaxFreeThresholdPage() {
 
           <div className="mt-12 not-prose">
             <MethodologyDisclosure title="How these figures are worked out">
-              <p>Tax is the ATO&rsquo;s {FY} resident scale; LITO is {formatAUD(LITO.maxOffset)} up to $37,500 and tapers after that, and can only reduce tax to nil. The {formatAUD(NIL)} figure is the highest whole-dollar income where tax after LITO is nil, found by testing the calculation, not typed in. Withholding figures use the ATO&rsquo;s Schedule 1 coefficient formulas for payments from 1 July 2026, which reproduce the published tax tables. The claim helper follows the ATO&rsquo;s rules for one payer, multiple payers, changing jobs and total income of {T} or less.</p>
+              <p>Tax is the ATO&rsquo;s {FY} resident scale; LITO is {formatAUD(LITO.maxOffset)} up to {formatAUD(LITO.fullOffsetCeiling)} and tapers after that, and can only reduce tax to nil. The {formatAUD(NIL)} figure is the highest whole-dollar income where tax after LITO is nil, found by testing the calculation, not typed in. Withholding figures use the ATO&rsquo;s Schedule 1 coefficient formulas for payments from 1 July 2026, which reproduce the published tax tables. The claim helper follows the ATO&rsquo;s rules for one payer, multiple payers, changing jobs and total income of {T} or less.</p>
               <p>General information, not tax advice. It assumes a full year of residency unless stated, and no other income, deductions or offsets.</p>
             </MethodologyDisclosure>
             <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />

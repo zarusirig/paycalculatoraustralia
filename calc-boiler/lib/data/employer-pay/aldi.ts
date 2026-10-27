@@ -102,7 +102,7 @@ export const ALDI_PAY: EmployerPay = {
   penaltyNotes: [
     "The agreement prints a dollar rate for each time band rather than a percentage. The rates include all allowances, such as laundry, meal, dairy-room and freezer-room allowances (Schedule 2 cl 10). The table shows the Full-time or Flexible Store Assistant column; the casual column shows the printed junior casual rates, because ALDI stores have no adult casuals.",
     "A Limited Roster Store Assistant gets $36.30 on weekday evenings and on Saturdays to 8pm. Early mornings (6am to 7am) and Sundays from 9am to 8pm pay $42.95. Late Saturdays, overnight hours and Sunday evenings pay $43.41, Sundays before 9am or after 11pm $56.26, and public holidays $62.92.",
-    "A Duty Store Manager gets $40.06 on weekday evenings and Saturdays, and $47.42 overnight and on Sundays from 9am. Sundays before 9am or after 11pm pay $62.10, and public holidays $69.45 (Schedule 1 cl 12.3).",
+    "A Duty Store Manager gets $40.06 on weekday evenings (6pm to 11pm) and on Saturdays from 7am to 11pm, with no separate late-Saturday rate. Overnight hours (11pm to 7am) and Sundays from 9am to 11pm pay $47.42. Sundays before 9am or after 11pm pay $62.10, and public holidays $69.45 (Schedule 1 cl 12.3).",
     "Each rate table also prints a Break Loading equal to the base rate. It is paid on top of your hourly rate for every hour you work after returning with less than a 10-hour break.",
   ],
   overtime: [

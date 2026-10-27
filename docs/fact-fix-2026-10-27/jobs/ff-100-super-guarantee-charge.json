@@ -1,0 +1,123 @@
+{
+ "name": "ff-100-super-guarantee-charge",
+ "files": [
+  "modules/guide/super-guarantee-charge.tsx",
+  "modules/guide/superannuation-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/super-guarantee-charge.tsx:146",
+   "file": "modules/guide/super-guarantee-charge.tsx",
+   "line": "146",
+   "page": "https://pay-calculator-australia.com/super-guarantee-charge/",
+   "claims": [
+    "No ATO-initiated assessment ... removes 20 percentage points ... A voluntary disclosure ... removes up to 40 more (line 147); unpaid for 28 days ... a further 28 days and 'previous 24 months' (line 181)"
+   ],
+   "whys": [
+    "These figures are typed into the JSX, not rendered from constants. They match the comments in SUPER_GUARANTEE_CHARGE.current, but if the schedule changes they will drift from the uplift table."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE_CHARGE.current (add upliftReductionNoPriorAssessment, upliftReductionDisclosureMax, latePayment.daysToNotice, latePayment.daysAfterNotice)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/super-guarantee-charge.tsx:136",
+   "file": "modules/guide/super-guarantee-charge.tsx",
+   "line": "136",
+   "page": "https://pay-calculator-australia.com/super-guarantee-charge/",
+   "claims": [
+    "A public holiday anywhere in Australia removes a day nationally, so a state you do not operate in can still move your deadline."
+   ],
+   "whys": [
+    "Check this against the Payday Super business-day definition in QC105846. The statutory wording may cover only a public holiday for a whole state or territory, so a part-state holiday such as a metro-only one would not count. If so, 'anywhere in Australia' is too wide. Not changed."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE_CHARGE.current (add a businessDayDefinition field sourced from QC105846)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide-faqs.ts:51",
+   "file": "modules/guide/superannuation-guide-faqs.ts",
+   "line": "51",
+   "page": "/superannuation-guide/",
+   "claims": [
+    "Most Australian employees have the legal right to choose their own superannuation fund."
+   ],
+   "whys": [
+    "This is a population claim with no source on the page. Some employees covered by certain enterprise agreements or defined benefit funds have no choice of fund."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.09,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide-faqs.ts:67",
+   "file": "modules/guide/superannuation-guide-faqs.ts",
+   "line": "67",
+   "page": "/superannuation-guide/",
+   "claims": [
+    "You can lodge the [unpaid super] complaint anonymously."
+   ],
+   "whys": [
+    "I believe the ATO unpaid super enquiry asks for your identifying details so it can follow up. The ATO keeps your identity from the employer, but the enquiry itself is not anonymous. Please check this against the ATO page."
+   ],
+   "constants": [
+    "none (ATO process copy)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.46,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide-faqs.ts:79",
+   "file": "modules/guide/superannuation-guide-faqs.ts",
+   "line": "79",
+   "page": "/superannuation-guide/",
+   "claims": [
+    "The ATO lists performance, Christmas, sign-on and referral bonuses as part of qualifying earnings."
+   ],
+   "whys": [
+    "I am not certain the ATO lists sign-on and referral bonuses as ordinary time or qualifying earnings. Please check the ATO OTE/qualifying earnings list before relying on it."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide-faqs.ts:43",
+   "file": "modules/guide/superannuation-guide-faqs.ts",
+   "line": "43",
+   "page": "/superannuation-guide/",
+   "claims": [
+    "The fund pays the contributions tax on concessional contributions, plus Division 293 tax if your income plus concessional contributions exceeds the threshold."
+   ],
+   "whys": [
+    "Division 293 is assessed to the individual by the ATO, not withheld by the fund. The individual can choose to pay it from super through a release authority. The page's own Division 293 FAQ (line 71) says you can pay it from your fund or from personal funds."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "Not changed. 'The fund pays ... contributions tax ..., plus Division 293 tax'. Division 293 is assessed to the individual (who can choose to release the amount from super), not paid automatically by the fund. The page's own Division 293 FAQ (line 71) says you can pay from your fund or from personal funds. Constant: none (prose); DIVISION_293 in lib/constants/super-contributions."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.77,
+   "needsOwner": false
+  }
+ ]
+}

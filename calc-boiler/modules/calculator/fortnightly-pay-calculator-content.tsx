@@ -19,7 +19,12 @@ import {
   SITE_CONFIG,
   TAX_BRACKETS,
   MEDICARE_LEVY,
+  LITO,
+  TAX_FREE_THRESHOLD,
+  SECOND_BRACKET_RATE,
 } from "@/lib/constants";
+import { MEDICARE_LEVY_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE, WATO } from "@/lib/constants/tax-2027-28";
 import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
@@ -72,10 +77,10 @@ export default function FortnightlyPayCalculatorContent() {
             <p className="text-warmgray mb-4">
               26 fortnights cover 364 days (26 &times; 14), one day short of a normal year and two short of a leap year. That gap moves
               your pay day a day or two later each year, and about every 11 to 12 years a {FORTNIGHTLY_EXTRA_PAY.extraPayCount}th pay day
-              falls inside the same financial year. Your salary does not rise that year; it is spread over one more pay. The
-              ATO&apos;s tax tables assume {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays. For that year, the ATO publishes an optional extra amount you can
+              falls inside the same financial year. The ATO&apos;s tax tables assume {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays,
+              so the extra pay can leave too little tax withheld for the year. For that year, the ATO publishes an optional extra amount you can
               ask your employer to withhold, so you do not end up short at tax time. The{" "}
-              <Link href="/fortnightly-tax-table/#27-pays" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts. To check whether your pay cycle has 27 pay days in 2026-27 and see every pay date, use the{" "}
+              <Link href="/fortnightly-tax-table/#27-pays" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts. To check whether your pay cycle has 27 pay days in {SITE_CONFIG.financialYear} and see every pay date, use the{" "}
               <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">fortnights in a year pay date calculator</Link>.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
@@ -115,7 +120,7 @@ export default function FortnightlyPayCalculatorContent() {
               Fortnightly pay is calculated by dividing your gross annual salary by <strong>26</strong>, then subtracting PAYG tax, the Medicare levy, and any HECS-HELP repayments from each fortnightly amount.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian Taxation Office publishes the PAYG withholding <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> that employers use to work out the tax withheld from each pay. The table accounts for the {TAX_BRACKETS.length} income tax brackets for FY2026-27, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy and the Low Income Tax Offset (LITO). Your employer spreads your estimated annual tax across 26 fortnights so the correct amount reaches the ATO through the year.
+              The Australian Taxation Office publishes the PAYG withholding <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> that employers use to work out the tax withheld from each pay. The table accounts for the {TAX_BRACKETS.length} income tax brackets for FY{SITE_CONFIG.financialYear}, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy and the Low Income Tax Offset (LITO). Your employer spreads your estimated annual tax across 26 fortnights so the correct amount reaches the ATO through the year.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Worked Example: $85,000 Salary</h3>
@@ -165,7 +170,7 @@ export default function FortnightlyPayCalculatorContent() {
               The table shows ATO fortnightly tax table amounts for a resident who claims the tax-free threshold and has no HECS-HELP debt. See every $1 step on the <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link>.
             </p>
             <p className="mt-3 text-warmgray">
-              The ATO picks the table from the date the pay is made, not the period it covers. A fortnightly pay dated from 1 July 2026 uses the <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly tax table for 2026-27</Link>. A pay dated between 1 July 2024 and 30 June 2026 uses the <Link href="/fortnightly-tax-table/2025-26/" className="text-eucalyptus-dark hover:underline">2024-25 and 2025-26 fortnightly table</Link>, one ATO edition that covered both years. From 1 July 2027 the fortnightly withholding amounts fall again, when the 15% rate drops to 14% and the <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of $250 starts.
+              The ATO picks the table from the date the pay is made, not the period it covers. A fortnightly pay dated from 1 July 2026 uses the <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly tax table for 2026-27</Link>. A pay dated between 1 July 2024 and 30 June 2026 uses the <Link href="/fortnightly-tax-table/2025-26/" className="text-eucalyptus-dark hover:underline">2024-25 and 2025-26 fortnightly table</Link>, one ATO edition that covered both years. From {RATE_CUT_EFFECTIVE} the {formatPercent(SECOND_BRACKET_RATE, 0)} rate drops to {formatPercent(RATE_2027_28, 0)}, and the <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of up to {formatAUD(WATO.maxOffset)} starts in the {WATO.firstIncomeYear} income year.
             </p>
           </section>
 
@@ -242,7 +247,7 @@ export default function FortnightlyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Who Uses a Fortnightly Pay Calculator?</h2>
             <p className="text-warmgray mb-4">
-              Approximately <strong>45%</strong> of Australian employees are paid fortnightly, which makes fortnightly the most common pay cycle in Australia, ahead of monthly and weekly pay.
+              A fortnightly pay calculator turns an annual salary into the pay you get every two weeks, and a fortnightly pay into its yearly total.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
               <li><strong>Full-time employees</strong> checking their fortnightly net pay against their payslip to verify PAYG withholding accuracy</li>
@@ -315,17 +320,17 @@ export default function FortnightlyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Deductions Apply to Fortnightly Pay?</h2>
             <p className="text-warmgray mb-4">
-              Three mandatory deductions reduce fortnightly take-home pay: PAYG income tax, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments for employees with a study debt above {formatAUD(HECS_HELP.minimumThreshold)}.
+              Three mandatory deductions reduce fortnightly take-home pay: PAYG income tax, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and HECS-HELP repayments if you have a study debt and your repayment income is above {formatAUD(HECS_HELP.minimumThreshold)}.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax Withholding</h3>
             <p className="text-warmgray mb-4">
-              Employers withhold income tax from each fortnightly pay using the ATO&apos;s PAYG fortnightly tax table. The withholding amount reflects the FY{SITE_CONFIG.financialYear} marginal tax rates: {bracketRatesSentence()}. The Low Income Tax Offset (LITO) reduces tax by up to <strong>$700</strong> for incomes below $66,667.
+              Employers withhold income tax from each fortnightly pay using the ATO&apos;s PAYG fortnightly tax table. The withholding amount reflects the FY{SITE_CONFIG.financialYear} marginal tax rates: {bracketRatesSentence()}. The Low Income Tax Offset (LITO) reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below {formatAUD(LITO.nilOffsetIncome)}.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
             <p className="text-warmgray mb-4">
-              The Medicare levy of {formatPercent(MEDICARE_LEVY.rate, 0)} applies to all taxable income above the low-income threshold of {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}. Employees without private hospital cover who earn above {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} also pay the Medicare Levy Surcharge (MLS) of <strong>1% to 1.5%</strong>, depending on income tier.
+              The Medicare levy is {formatPercent(MEDICARE_LEVY.rate, 0)} of your whole taxable income. Using the {MEDICARE_LEVY_INCOME_YEAR} thresholds, you pay no levy on taxable income of {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} or less, and a reduced levy of {Math.round(MEDICARE_LEVY.shadeInRate * 100)}c for each $1 above {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. Employees without private hospital cover who earn above {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} also pay the Medicare Levy Surcharge (MLS) of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier1.rate, 0)} to {formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 1)}</strong>, depending on income tier.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
@@ -347,7 +352,7 @@ export default function FortnightlyPayCalculatorContent() {
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
               <li><strong>Dividing by 24 instead of 26.</strong> A year contains 26 fortnights (52 weeks / 2), not 24. Dividing $85,000 by 24 produces {formatAUD(85_000 / 24, 2)} per fortnight, which is <strong>{formatAUD(85_000 / 24 - 85_000 / 26, 2)} more</strong> than the correct gross of {formatAUD(85_000 / 26, 2)}.</li>
               <li><strong>Treating super as a deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee is paid by the employer on top of gross salary. It does not reduce fortnightly take-home pay unless your contract specifies a &quot;total package inclusive of super.&quot;</li>
-              <li><strong>Ignoring the tax-free threshold.</strong> The first $18,200 of annual income is tax-free. Employees who do not claim this threshold on their Tax File Number Declaration have a higher PAYG withholding rate applied to every fortnightly pay.</li>
+              <li><strong>Ignoring the tax-free threshold.</strong> The first {formatAUD(TAX_FREE_THRESHOLD)} of annual income is tax-free. Employees who do not claim this threshold on their Tax File Number Declaration have a higher PAYG withholding rate applied to every fortnightly pay.</li>
               <li><strong>Forgetting the 27th pay period.</strong> Every 11 to 12 years, the calendar creates 27 fortnightly pay days in a single financial year. This affects PAYG withholding calculations and can cause a small tax shortfall or surplus at year-end.</li>
               <li><strong>Not accounting for salary sacrifice.</strong> Pre-tax salary sacrifice into super or a novated lease reduces assessable income and lowers the fortnightly tax withheld. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model the impact.</li>
             </ol>
@@ -376,7 +381,7 @@ export default function FortnightlyPayCalculatorContent() {
               </Link>
               <Link href="/income-tax-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-eucalyptus-light/40 transition-colors">
                 <span className="font-semibold text-navy block">Income Tax Calculator</span>
-                <span className="text-sm text-warmgray-light">Calculate your exact income tax liability across all 5 tax brackets.</span>
+                <span className="text-sm text-warmgray-light">Calculate your exact income tax liability across all {TAX_BRACKETS.length} tax brackets.</span>
               </Link>
               <Link href="/hourly-to-annual-salary-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-eucalyptus-light/40 transition-colors">
                 <span className="font-semibold text-navy block">Hourly to Annual Salary Calculator</span>

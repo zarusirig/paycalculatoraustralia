@@ -1,0 +1,121 @@
+{
+ "name": "ff-116-index",
+ "files": [
+  "modules/home/templates/index.tsx",
+  "modules/news/articles/1000-dollar-instant-tax-deduction.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/home/templates/index.tsx:386",
+   "file": "modules/home/templates/index.tsx",
+   "line": "386",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "MLS is \"1% to 1.5%\" (also \"(1% to 1.5%)\" at line 244), typed as literals in the prose."
+   ],
+   "whys": [
+    "The figures are not read from MEDICARE_LEVY.surcharge tier rates, even though the tier list just below renders them from code. If the tiers change, the two could disagree."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge.tier1.rate / tier3.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/home/templates/index.tsx:669",
+   "file": "modules/home/templates/index.tsx",
+   "line": "669",
+   "page": "https://pay-calculator-australia.com/",
+   "claims": [
+    "The Medicare Levy Guide card desc says \"2% levy\" as a literal."
+   ],
+   "whys": [
+    "The figure is hardcoded in a locked desc prop, not read from MEDICARE_LEVY.rate. It is the same drift risk as the writer's MLS and 0% to 45% questions."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.51,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx:68",
+   "file": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/news/1000-dollar-instant-tax-deduction/",
+   "claims": [
+    "Sole traders with labour income are also eligible, alongside employees, provided the income qualifies as work-related."
+   ],
+   "whys": [
+    "The instant deduction was announced for employees' work-related expenses on labour income. Sole-trader eligibility is not in the original policy as I know it. Please check the enacted Act and ATO guidance before keeping this."
+   ],
+   "constants": [
+    "No constant; hard-coded prose. Worth a source note in the article or a news fact file."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx:63",
+   "file": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx",
+   "line": "63",
+   "page": "https://pay-calculator-australia.com/news/1000-dollar-instant-tax-deduction/",
+   "claims": [
+    "Union and professional association fees are listed as non-work deductions that sit outside the $1,000 cap and stay fully claimable on top."
+   ],
+   "whys": [
+    "The ATO treats union and professional association fees as work-related deductions. Whether they sit inside or outside the $1,000 instant deduction depends on the enacted rules, so check this against the Act or ATO guidance."
+   ],
+   "constants": [
+    "No constant; hard-coded prose."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.19,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx:10",
+   "file": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx",
+   "line": "10",
+   "page": "https://pay-calculator-australia.com/news/1000-dollar-instant-tax-deduction/",
+   "claims": [
+    "The lead and the key-facts box say workers can deduct \"up to $1,000\", but the body says employees claim \"a flat $1,000\"."
+   ],
+   "whys": [
+    "The two descriptions conflict: a flat amount is not the same as a cap of up to $1,000. One of them is wrong under the enacted rules."
+   ],
+   "constants": [
+    "None. This is hard-coded prose and NewsKeyFacts rows. Hold it in a news fact file."
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.03,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx:54",
+   "file": "modules/news/articles/1000-dollar-instant-tax-deduction.tsx",
+   "line": "54",
+   "page": "https://pay-calculator-australia.com/news/1000-dollar-instant-tax-deduction/",
+   "claims": [
+    "Tradespeople, frequent work travellers or people with large work expenses are still likely to be better off itemising."
+   ],
+   "whys": [
+    "This is an unsourced population or opinion claim on a factual-prose page. The AUDIT does not allow labelled editorial judgment here."
+   ],
+   "constants": [
+    "None"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.09,
+   "needsOwner": true
+  }
+ ]
+}

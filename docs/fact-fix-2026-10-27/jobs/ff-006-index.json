@@ -1,0 +1,162 @@
+{
+ "name": "ff-006-index",
+ "files": [
+  "lib/data/apprentice-pay/index.ts",
+  "lib/data/apprentice-pay/spokes.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/apprentice-pay/index.ts:339",
+   "file": "lib/data/apprentice-pay/index.ts",
+   "line": "339",
+   "page": "/apprentice-pay-rates/ and /apprentice-pay/<automotive spokes>/",
+   "claims": [
+    "Automotive rateIncludes: \"Junior apprentices are under 21 when they start; adult apprentices are over 21 (cl 16.9, 16.10).\""
+   ],
+   "whys": [
+    "Award adult-apprentice definitions are normally \"21 years of age or over\" at commencement. \"Over 21\" leaves out an apprentice who starts at exactly 21. The hub's adult-table label \"(started over 21)\" in modules/guide/apprentice-pay-rates.tsx has the same gap. I did not check this against the award text, so please confirm the wording of MA000089 cl 16.10.",
+    "Award adult-apprentice definitions usually say '21 years of age or over' at commencement. 'Over 21' leaves out an apprentice who starts at exactly 21. The hub label '(started over 21)' in modules/guide/apprentice-pay-rates.tsx has the same gap. Check against the text of MA000089 cl 16.10."
+   ],
+   "constants": [
+    "lib/data/apprentice-pay/index.ts APPRENTICE_TRADES[automotive].rateIncludes (and the label in modules/guide/apprentice-pay-rates.tsx)"
+   ],
+   "reviewerNotes": [
+    "I am passing on the writer's question unchanged. Automotive rateIncludes says adult apprentices are 'over 21' (cl 16.9, 16.10). Award definitions usually read '21 years of age or over' at the start of the apprenticeship. The hub label '(started over 21)' has the same gap. The award text needs checking."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.4,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:384",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "384",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/painter/",
+   "claims": [
+    "The pay rise at the end of an adult painting apprenticeship is small: $28.59 a week in the wage part before allowances, by our arithmetic."
+   ],
+   "whys": [
+    "The adult rate of $1,090.54 includes the $9.89 tool allowance and the $67.15 industry allowance, so its wage part is $1,013.50 (the residential $1,077.11 less $53.72 and $9.89 gives the same). That is $105.60 below the $1,119.10 standard rate, not $28.59. Even comparing the full $1,090.54 with $1,119.10 gives $28.56. The 'close to the standard rate' framing in the same sentence depends on this figure."
+   ],
+   "constants": [
+    "PAINTER_PG adult rate and the CW/ECW 3 standard rate in lib/data/apprentice-pay/spokes.ts; the difference should be derived in code, not typed"
+   ],
+   "reviewerNotes": [
+    "The writer's arithmetic is right. If $28.59 were really 'the wage part before allowances', it would be $1,119.10 minus $1,013.50 ($1,090.54 less the $9.89 tool and $67.15 industry allowances), which is $105.60. The figure actually matches $1,119.10 minus the full $1,090.54 including allowances, give or take 3 cents. The 'close to the standard rate' framing depends on it. I left it unchanged per the brief. It should be derived in code."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:377",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "377",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/painter/",
+   "claims": [
+    "A painting apprentice who has worked unpaid overtime on a push to finish a job..."
+   ],
+   "whys": [
+    "The paragraph before says clause 14.4 applies the normal overtime penalties to apprentices, so 'unpaid overtime' describes an award breach. Clause 14.5(b) credits time worked in excess of ordinary hours, whether paid or not. This example probably should say 'hours beyond ordinary hours'. I left it unchanged."
+   ],
+   "constants": [
+    "Painter spoke sections[0].paragraphs[1]"
+   ],
+   "reviewerNotes": [
+    "'unpaid overtime' contradicts the paragraph before it, which says cl 14.4 applies normal overtime penalties to apprentices. Clause 14.5(b) credits excess hours whether paid or not. Suggested wording: 'hours beyond ordinary hours'. Not changed, because it is a factual wording question."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.06,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:493",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "493",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/mechanic/",
+   "claims": [
+    "A junior apprentice is under 21 (cl 16.9(a)) and an adult apprentice is over 21 when the apprenticeship starts (cl 16.10(a)).",
+    "A motor mechanic apprentice in a workshop, dealership or service centre is usually covered by the Vehicle Repair, Services and Retail Award 2020."
+   ],
+   "whys": [
+    "'Under 21' and 'over 21' leave someone who is exactly 21 uncovered. The painter spoke quotes the building award as '21 or over'. Check the cl 16.10(a) wording in MA000089 (it is probably '21 years of age or over').",
+    "'usually covered' is a population claim with no cited source. Coverage depends on the employer's industry and any enterprise agreement, so it should be confirmed or tied to the award's coverage clause."
+   ],
+   "constants": [
+    "Mechanic spoke facts[0]"
+   ],
+   "reviewerNotes": [
+    "Mechanic facts[0] says 'under 21' for a junior and 'over 21' for an adult, which leaves someone aged exactly 21 uncovered. Confirm the MA000089 cl 16.10(a) wording (probably '21 years of age or over')."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.5,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:318",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "318",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/bricklayer/",
+   "claims": [
+    "The first stage marker is worth $55.95 a week: 5 percentage points of the $1,119.10 standard rate between stages 1 and 2 with Year 12.",
+    "The first stage marker is worth $55.95 a week (5 percentage points between stages 1 and 2 with Year 12)."
+   ],
+   "whys": [
+    "The building pay guide rows in this same file give a stage 1 wage of 55% with Year 12 (723.88 - 108.37 = 615.51) and a stage 2 wage of 65% (835.79 - 108.37 = 727.42). That is a 10 point gap ($111.91). The no-Year-12 track is also 10 points (50% to 60%). $55.95 (5 points) only matches stage 1 with Year 12 to stage 2 without Year 12. The first marker looks like $111.91, not $55.95.",
+    "I confirmed this against BUILDING in lib/data/apprentice-pay/index.ts lines 156-165. Year 12 runs 55% then 65% (10 points, $111.91), and no Year 12 runs 50% then 60% (also 10 points). Neither track has a 5-point step from stage 1 to 2. The source comment on line 155 shows the same percentages (50/60/75/90 and 55/65/75/90)."
+   ],
+   "constants": [
+    "BRICKLAYER_PG / CARPENTER_PG pay guide tables in lib/data/apprentice-pay/spokes.ts lines 186-195; building percentages in lib/data/apprentice-pay/index.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's flag. BUILDING rows in lib/data/apprentice-pay/index.ts lines 156-165 give Year 12 stage 1 at 55% and stage 2 at 65%, a 10-point gap worth $111.91, not 5 points worth $55.95. Stage 2 to 3 with Year 12 is 65 to 75 (10 points). Stage 3 to 4 is 75 to 90 (15 points). The first marker figure and its '5 percentage points' explanation look wrong. Left unchanged per brief."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:232",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "232",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/carpenter/",
+   "claims": [
+    "Carpentry apprentices carry the largest tool allowance in the Building and Construction General On-site Award: $41.22 a week."
+   ],
+   "whys": [
+    "This is a superlative across all of cl 21.1(a). The source comment (lines 14-18) only records three tool-allowance groups, so it does not show that no other cl 21.1(a) trade has a higher amount. Check the full cl 21.1(a) table."
+   ],
+   "constants": [
+    "CARPENTER_PG.toolAllowance and the MA000020 cl 21.1(a) table"
+   ],
+   "reviewerNotes": [
+    "The 'largest tool allowance' superlative is not backed by the source comment, which lists only three cl 21.1(a) groups. Check the full cl 21.1(a) table. Left unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.26,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/apprentice-pay/spokes.ts:510",
+   "file": "lib/data/apprentice-pay/spokes.ts",
+   "line": "510",
+   "page": "https://pay-calculator-australia.com/apprentice-pay/mechanic/",
+   "claims": [
+    "A mechanic who finishes the stage 2 units early can move to the 65% rate before 24 months are up."
+   ],
+   "whys": [
+    "In AUTOMOTIVE_JUNIOR (lib/data/apprentice-pay/index.ts lines 168-177), 65% is the stage 2 rate, and only for Year 12 completers (stage 2 without Year 12 is 60%). Finishing the stage 2 competencies moves an apprentice to stage 3, which is 75%. The sentence should say either 'stage 1 units ... 65% (or 60%) rate before 12 months' or 'stage 2 units ... 75% rate before 24 months'.",
+    "In AUTOMOTIVE_JUNIOR (lib/data/apprentice-pay/index.ts, the rows near line 170), stage 2 is 60% without Year 12 and 65% with Year 12, and stage 3 is 75%. Finishing the stage 2 competencies moves an apprentice to stage 3 (75%), so the stage and the rate in this sentence do not match. I checked the writer's question and confirm it."
+   ],
+   "constants": [
+    "AUTOMOTIVE_JUNIOR in lib/data/apprentice-pay/index.ts (cl 16.8 / 16.9(b) MA000089)"
+   ],
+   "reviewerNotes": [
+    "Confirmed against AUTOMOTIVE_JUNIOR in lib/data/apprentice-pay/index.ts: 65% is the stage 2 rate for Year 12 completers. Finishing the stage 2 units moves an apprentice to stage 3 at 75%. Unchanged text, forwarded as a fact question."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.8,
+   "needsOwner": false
+  }
+ ]
+}

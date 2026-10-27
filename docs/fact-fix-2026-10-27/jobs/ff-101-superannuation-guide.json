@@ -1,0 +1,162 @@
+{
+ "name": "ff-101-superannuation-guide",
+ "files": [
+  "modules/guide/superannuation-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/superannuation-guide.tsx:90",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "90",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "Super contributions directly reduce the income tax you pay today through concessional tax treatment ... compared to marginal rates of 30%, 37%, or 45% outside super."
+   ],
+   "whys": [
+    "Employer SG does not reduce your income tax, and non-concessional contributions get no tax break. Only salary sacrifice and deductible personal contributions do. The list of marginal rates also leaves out the 15% second bracket from 1 July 2026 (line 533), and in that bracket salary sacrifice saves nothing against the 15% contributions tax. The rates are typed in by hand."
+   ],
+   "constants": [
+    "income tax bracket constants in lib/constants/australian-tax.ts; CONTRIBUTIONS_TAX_RATE"
+   ],
+   "reviewerNotes": [
+    "The writer's six factQuestions are valid and should go forward unchanged: lines 90, 150, 607, 533, 583/600 and 109 (typed rates, 'regardless of hours worked', SGC uplift and components, 'most taxpayers', unsourced fund fees)."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:150",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "150",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "Every Australian employer must pay the 12% SG for all employees regardless of earnings level, employment type, or hours worked."
+   ],
+   "whys": [
+    "'Regardless of hours worked' conflicts with the same section's 30-hours-a-week rule for under 18s (line 154) and the exemption for domestic workers under 30 hours (line 160). The 12% is also typed in rather than taken from SUPER_GUARANTEE.rate."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.7,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:607",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "607",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "an administrative uplift of up to 60% that falls to nil on voluntary disclosure within 30 days"
+   ],
+   "whys": [
+    "In SUPER_GUARANTEE_CHARGE.current.upliftSchedule, the uplift is 0 for disclosure within 30 days only when the ATO has made no assessment in the past 2 years. Otherwise it is 20%. The sentence also lists 3 SGC components, but the constant has 4 (choice loading is missing)."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE_CHARGE.current.upliftSchedule / components (lib/constants/australian-tax.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:583",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "583",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "Fund-type table: typical fees (industry fund 0.5% to 1.0%, retail fund 0.8% to 1.5%, SMSF $2,000 to $5,000) and SMSF 'Balances above $500K'; line 600 says 'target under 1% p.a.'"
+   ],
+   "whys": [
+    "None of these figures has a source, and the 1% target is opinion written as a rule. AUDIT is factual-prose, so it cannot be relabelled as editorial judgment in this pass."
+   ],
+   "constants": [
+    "no constant; needs a sourced data file or removal"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:533",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "533",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "the second income tax rate fell from 16% to 15% on 1 July 2026, so most taxpayers pay slightly less tax"
+   ],
+   "whys": [
+    "'Most taxpayers' is a claim about how many people are affected, with no source on the page. The 16% and 15% rates are typed in by hand rather than taken from the tax bracket constants."
+   ],
+   "constants": [
+    "income tax bracket constants (current and previous FY)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.82,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:422",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "422",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "Salary sacrifice $5,000 reduces income tax by approximately $1,500 (the $5,000 at the 30% marginal rate) ... taxed at 15% inside super ($750) ... net tax saving of $750"
+   ],
+   "whys": [
+    "The $1,500, $750 and 30% figures are typed in by hand. The worked-example constants (EX_SALARY and the bracket constants) do not derive them, and the saving leaves out the 2% Medicare levy. They will drift when the bracket rates or the example salary change."
+   ],
+   "constants": [
+    "income tax bracket constants, MEDICARE_LEVY.rate, CONTRIBUTIONS_TAX_RATE, EX_SALARY"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:109",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "109",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "The superannuation guarantee rate is 12% ... Payday Super commenced on 1 July 2026 ... within 7 business days ... (20 business days ...)"
+   ],
+   "whys": [
+    "These figures are typed into the prose but already exist as constants (also lines 150, 328, 437). They will fall out of step with the constants at the next update."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate, SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE_CHARGE.current.businessDaysToPay / businessDaysNewEmployee"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.59,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/superannuation-guide.tsx:427",
+   "file": "modules/guide/superannuation-guide.tsx",
+   "line": "427",
+   "page": "https://pay-calculator-australia.com/superannuation-guide/",
+   "claims": [
+    "The tax saving ranges from $150 per $1,000 sacrificed (at the 30% bracket) to $300 per $1,000 (at the 45% bracket)"
+   ],
+   "whys": [
+    "The figures are typed in by hand and leave out the 15% bracket, where the saving is nil, as well as the Medicare levy. The range should be derived from the bracket constants and CONTRIBUTIONS_TAX_RATE."
+   ],
+   "constants": [
+    "income tax bracket constants, CONTRIBUTIONS_TAX_RATE"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": false
+  }
+ ]
+}

@@ -36,7 +36,7 @@ export const MONTHLY_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How does salary packaging affect my monthly take-home?",
-    a: "Salary packaging reduces your taxable income before PAYG withholding is calculated, resulting in less tax withheld and a higher net monthly deposit. Common packaged items include additional superannuation contributions, novated vehicle leases, and portable electronic devices. Our Salary Sacrifice Calculator gives a side-by-side comparison.",
+    a: "Salary packaging reduces your taxable income before PAYG withholding is calculated, so less tax is withheld. Your net monthly deposit still falls, because the packaged amount comes out of your gross pay first; the tax saving covers part of its cost. Common packaged items include additional superannuation contributions, novated vehicle leases, and portable electronic devices. Our Salary Sacrifice Calculator gives a side-by-side comparison.",
     links: { "Salary Sacrifice Calculator": "/salary-sacrifice-calculator/" },
   },
   {

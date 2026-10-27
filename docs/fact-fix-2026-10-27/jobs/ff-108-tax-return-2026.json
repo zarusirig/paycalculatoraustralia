@@ -1,0 +1,169 @@
+{
+ "name": "ff-108-tax-return-2026",
+ "files": [
+  "modules/guide/tax-return-2026.tsx",
+  "modules/guide/teacher-pay-state.tsx",
+  "modules/guide/tech-salary-guide-australia.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-return-2026.tsx:118",
+   "file": "modules/guide/tax-return-2026.tsx",
+   "line": "118",
+   "page": "https://pay-calculator-australia.com/tax-return-2026/",
+   "claims": [
+    "For most employees the answer is yes."
+   ],
+   "whys": [
+    "This says how many people something applies to, with no figure and no cited source. It is the protected first answer sentence after the heading, so I left it as it is. The ATO lodgment test supports 'if tax was withheld from your pay, yes', but not a claim about 'most employees'.",
+    "An unsourced population claim in the protected first answer sentence. The ATO lodgment test supports the condition 'if tax was withheld from your pay', not a share of employees."
+   ],
+   "constants": [
+    "none (prose); possibly reword to the PAYG-withheld condition in a later pass"
+   ],
+   "reviewerNotes": [
+    "'For most employees the answer is yes.' is a population claim with no figure and no cited source. It is the protected first answer sentence, so it is left as it is. It is passed on as a fact question."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.25,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-return-2026.tsx:166",
+   "file": "modules/guide/tax-return-2026.tsx",
+   "line": "166",
+   "page": "https://pay-calculator-australia.com/tax-return-2026/",
+   "claims": [
+    "A current-year calculator will show up to $268 less tax than your 2026 return."
+   ],
+   "whys": [
+    "The $268 figure is typed into the JSX by hand and does not come from a constant. It is correct (1% of $26,800 on the $18,201 to $45,000 band), but it would go stale if the brackets change."
+   ],
+   "constants": [
+    "derive from TAX_BRACKETS_2025_26[1] vs TAX_BRACKETS[1] in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-return-2026.tsx:181",
+   "file": "modules/guide/tax-return-2026.tsx",
+   "line": "181",
+   "page": "https://pay-calculator-australia.com/tax-return-2026/",
+   "claims": [
+    "A current-year calculator will show up to $268 less tax than your 2026 return."
+   ],
+   "whys": [
+    "Corrects the writer's line reference from 166 to 181. $268 is typed into the JSX by hand. It equals (16% - 15%) x $26,800 on the $18,201 to $45,000 band, so it is correct now but would go stale silently. Derive it from TAX_BRACKETS_2025_26[1] vs TAX_BRACKETS[1] in lib/constants/australian-tax.ts, as oldRate/newRate already are in the same sentence."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The writer cited line 166, but the hand-typed '$268' is on source line 181. The figure is correct today (1% of the $26,800 width of the 18,201 to 45,000 band), but it is not derived from a constant."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.42,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/teacher-pay-state.tsx:520",
+   "file": "modules/guide/teacher-pay-state.tsx",
+   "line": "520",
+   "page": "/teacher-pay-australia/{nsw,vic,qld,wa,sa,tas,act}/",
+   "claims": [
+    "Because the classroom teacher scale runs through the 30% and 37% brackets, the saving is meaningful at the top of the scale and smaller at the graduate step."
+   ],
+   "whys": [
+    "The 37% bracket starts above $135,000 (tax-rates-reference.ts line 145). The top of the classroom scale is below that in 7 of 8 states: NSW 133,422, VIC 118,063, QLD 119,357, WA 127,737, SA 123,236, TAS 122,393, ACT 129,106. Only NT (136,997) reaches 37%. On 7 pages the graduate and top steps sit in the same 30% bracket, so the per-dollar saving is the same at both ends. The 30% and 37% figures are also typed into the template, not taken from constants."
+   ],
+   "constants": [
+    "lib/constants/tax-rates-reference.ts (brackets) with topOfClassroomScale() from lib/data/teacher-pay; the sentence should be generated for each state"
+   ],
+   "reviewerNotes": [
+    "Verified the writer's 37% bracket question with tsx on lib/data/teacher-pay. topOfClassroomScale gives NSW 133422, VIC 118063, QLD 119357, WA 127737, SA 123236, TAS 122393, ACT 129106, NT 136997. The 37% bracket starts above 135,000, so only the NT top step reaches it. On 7 of 8 pages, 'runs through the 30% and 37% brackets' and 'saving is meaningful at the top ... smaller at the graduate step' are wrong, because both ends of the scale are in the 30% bracket. This needs a per-state template fix, not a prose edit."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.14,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/teacher-pay-state.tsx:435",
+   "file": "modules/guide/teacher-pay-state.tsx",
+   "line": "435",
+   "page": "/teacher-pay-australia/{nt,wa,vic}/",
+   "claims": [
+    "Progression in {state} is not simply one step per calendar year."
+   ],
+   "whys": [
+    "This sentence renders on every state page. The state's own progression data partly contradicts it: NT 'One increment every 12 months, and it is hard to withhold', WA 'An annual increment to 2.9', VIC 'Progression happens once a year, on 1 May'. It holds for NSW (accreditation gate) and SA (207 duty days). For NT it reads as wrong."
+   ],
+   "constants": [
+    "lib/data/teacher-pay/{nt,wa,vic}.ts progression; consider a per-state progressionLead field"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/teacher-pay-state.tsx:519",
+   "file": "modules/guide/teacher-pay-state.tsx",
+   "line": "519",
+   "page": "/teacher-pay-australia/{nsw,vic,qld,wa,sa,tas,act}/",
+   "claims": [
+    "Because the classroom teacher scale runs through the 30% and 37% brackets, the saving is meaningful at the top of the scale and smaller at the graduate step."
+   ],
+   "whys": [
+    "Reviewer confirmed this with tsx on the live data. topOfClassroomScale: NSW 133,422, VIC 118,063, QLD 119,357, WA 127,737, SA 123,236, TAS 122,393, ACT 129,106, NT 136,997. Graduate salaries run from 79,589 (VIC) to 96,180 (NT). The 37% resident bracket starts above 135,000, so on 7 of 8 pages the graduate and top steps are both in the 30% bracket, and the per-dollar saving is the same at both ends."
+   ],
+   "constants": [
+    "lib/constants/tax-rates-reference.ts RESIDENT_SCALES, with graduateSalary() and topOfClassroomScale() from lib/data/teacher-pay. Generate the sentence per state."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.03,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/teacher-pay-state.tsx:252",
+   "file": "modules/guide/teacher-pay-state.tsx",
+   "line": "252",
+   "page": "/teacher-pay-australia/wa/",
+   "claims": [
+    "Hero: \"Every figure on this page is read from the {state.agreementName}\"."
+   ],
+   "whys": [
+    "On the WA page every figure comes from the Department of Education's 'Teacher salaries by level as of December 2025' table. The agreement itself could not be read (wa.ts notice at line 128), so the hero contradicts the notice directly under it."
+   ],
+   "constants": [
+    "A per-state source field (for WA, the department's teacher salaries page) used by the hero sentence in place of agreementName"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tech-salary-guide-australia.tsx:171",
+   "file": "modules/guide/tech-salary-guide-australia.tsx",
+   "line": "171",
+   "page": "https://pay-calculator-australia.com/tech-salary-guide-australia/",
+   "claims": [
+    "A Pty Ltd company has its own tax rate, {BASE_RATE_ENTITY_TAX} for a base rate entity in 2025-26 (ATO)"
+   ],
+   "whys": [
+    "The rest of the page (take-home, super cap, brackets) uses FY2026-27, but the company tax rate is labelled 2025-26. Line 230 (methodology), line 45 (source title 'Company tax rates 2025\u201326' and URL) and the FAQ in tech-salary-guide-australia-faqs.ts line 67 say the same. The rate is probably unchanged, but the year label and source link look stale. Confirm against the ATO 2026-27 company tax rates page and update the year and link together."
+   ],
+   "constants": [
+    "COMPANY_TAX.baseRateEntityRate (lib/constants), plus a year label constant for the company-rate source"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestion is valid. The page uses FY{SITE_CONFIG.financialYear} (2026-27) for brackets and super, but the company tax rate is labelled 2025-26 at line 171, in the methodology at line 230, and in the source title and URL at line 45 ('Company tax rates 2025\u201326', .../tax-rates-2025-26). The FAQ file says the same. The owner should confirm the 2026-27 ATO company tax rate page and update the year label and link together."
+   ],
+   "kind": "citation-or-source",
+   "severity": 3.3,
+   "needsOwner": false
+  }
+ ]
+}

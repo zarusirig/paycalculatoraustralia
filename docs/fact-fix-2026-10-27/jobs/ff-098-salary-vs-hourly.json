@@ -1,0 +1,174 @@
+{
+ "name": "ff-098-salary-vs-hourly",
+ "files": [
+  "modules/guide/salary-vs-hourly.tsx",
+  "modules/guide/sapto-faqs.ts",
+  "modules/guide/schads-award-faqs.ts",
+  "modules/guide/schads-award-pay-rates.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/salary-vs-hourly.tsx:269",
+   "file": "modules/guide/salary-vs-hourly.tsx",
+   "line": "269",
+   "page": "https://pay-calculator-australia.com/salary-vs-hourly/",
+   "claims": [
+    "Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets."
+   ],
+   "whys": [
+    "In this example, both $75,000 and $91,091 fall in the same FY2026-27 marginal bracket (30% from $45,001 to $135,000). Neither worker moves into a higher bracket. The effective rate rises only because more income is taxed at 30%. The sentence was left unchanged and should be reworded to say that more of the income is taxed at the marginal rate.",
+    "This confirms the writer's flag. $75,000 and $91,091 both fall in the same 30% FY2026-27 bracket. No bracket changes, and the effective rate rises only because more of the income is taxed at 30%."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (FY2026-27 brackets) via calculatePayBreakdown"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.04,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-vs-hourly.tsx:308",
+   "file": "modules/guide/salary-vs-hourly.tsx",
+   "line": "308",
+   "page": "https://pay-calculator-australia.com/salary-vs-hourly/",
+   "claims": [
+    "Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards."
+   ],
+   "whys": [
+    "This is an unsourced 'most modern awards' claim. Some awards set the first 3 hours at 1.5x (General Retail, for example), and the hourly pros list on line 169 itself says 'first 2-3 hours'. The 12% SG figure is also hard-coded in the prose instead of coming from a constant."
+   ],
+   "constants": [
+    "SG rate constant in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.1,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/sapto-faqs.ts:53",
+   "file": "modules/guide/sapto-faqs.ts",
+   "line": "53",
+   "page": "https://pay-calculator-australia.com/sapto-calculator/",
+   "claims": [
+    "Where your spouse's taxable income is $6,000 or less the full amount transfers; above that it reduces by 15 cents in the dollar.",
+    "Spouse transfer reduces by 15 cents in the dollar above $6,000 (SAPTO_TRANSFER.reductionRate 0.15)"
+   ],
+   "whys": [
+    "The values match SAPTO_TRANSFER, but they are typed into the text instead of read from the constant. The constants file also notes that the ATO's 2025-26 transfer example uses the 16% lowest rate, so check that 0.15 is the right reduction rate for 2025-26.",
+    "lib/constants/sapto.ts labels the year 2025-26, and its own note says the ATO's 2025-26 transfer example uses the 16% lowest rate. 15% applies only from 1 July 2026, so the 2025-26 transfer factor is probably 0.16. This needs an owner decision before the next lodgement season."
+   ],
+   "constants": [
+    "SAPTO_TRANSFER in lib/constants/sapto.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.32,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/schads-award-faqs.ts:93",
+   "file": "modules/guide/schads-award-faqs.ts",
+   "line": "93",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "Being classified in the wrong schedule is one of the more expensive errors in this award.",
+    "Social and community services (Schedule B) rates carry the Equal Remuneration Order, starting at ${formatAUD(L1.weekly, 2)} a week."
+   ],
+   "whys": [
+    "This is an unsourced comparative claim inside an FAQ answer that is also used in the FAQPage JSON-LD. It is opinion written as if it were fact.",
+    "L1 is 'Level 1 pay point 1'. lib/constants/schads-award.ts (lines 21-26, 59, 78) says the ERO tables start at Level 2 and Level 1 receives no uplift, and FAQ line 101 says the same. So the sentence pairs an ERO claim with a non-ERO figure. Either start the ERO claim at Level 2 pay point 1 (L2.weekly) or say that Schedule B rates from Level 2 carry the ERO."
+   ],
+   "constants": [
+    "n/a (prose)",
+    "lib/constants/schads-award.ts SCHADS_SACS (Level 2 pay point 1 row); schads-award-faqs.ts L2"
+   ],
+   "reviewerNotes": [
+    "There is an existing contradiction that the writer did not create. The SACS vs home care answer says 'Social and community services (Schedule B) rates carry the Equal Remuneration Order, starting at ${L1.weekly}'. But L1 is Level 1 pay point 1. The constants header (lib/constants/schads-award.ts lines 21-26) and the FAQ at line 101 both say Level 1 receives no ERO uplift. Raised as a fact question."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/schads-award-faqs.ts:89",
+   "file": "modules/guide/schads-award-faqs.ts",
+   "line": "89",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "set at 4.9% of the standard rate under clause 25.7(d)"
+   ],
+   "whys": [
+    "The figure is correct (62.87 / 1,283.10 = 4.9%), but it is typed as a literal in the FAQ while the dollar amount comes from a constant. If the clause percentage changes, the two will drift apart."
+   ],
+   "constants": [
+    "lib/constants/schads-award.ts SCHADS_ALLOWANCES (line ~179: add a sleepoverPct field)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/schads-award-pay-rates.tsx:73",
+   "file": "modules/guide/schads-award-pay-rates.tsx",
+   "line": "73",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "CLAUSE_15_LEVEL_4 = 1_344.5 (pre-ERO clause 15 Level 4 pay point 1 weekly figure)",
+    "CLAUSE_15_LEVEL_4 = 1_344.5 is hard-coded in the page module"
+   ],
+   "whys": [
+    "Rate is hard-coded in the page module rather than the verified constants file. Every other SCHADS figure comes from lib/constants/schads-award.ts, and this one also drives the ERO uplift % and the annual-difference figures.",
+    "This is the only SCHADS rate that is not in lib/constants/schads-award.ts. It also drives the ERO uplift percentage and the annual-difference figures. This confirms the writer's flag."
+   ],
+   "constants": [
+    "lib/constants/schads-award.ts (e.g. SCHADS_AWARD.clause15Level4Weekly)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/schads-award-pay-rates.tsx:514",
+   "file": "modules/guide/schads-award-pay-rates.tsx",
+   "line": "514",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "See what lands in your account after income tax, Medicare and super."
+   ],
+   "whys": [
+    "The employer pays super guarantee on top of wages, and it is not deducted from take-home pay. Listing super as a deduction from the weekly rate reads as wrong unless the calculator models salary sacrifice.",
+    "Super guarantee is paid by the employer on top of wages and is not taken out of take-home pay. This confirms the writer's flag."
+   ],
+   "constants": [
+    "none (sidebar prose)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/schads-award-pay-rates.tsx:389",
+   "file": "modules/guide/schads-award-pay-rates.tsx",
+   "line": "389",
+   "page": "https://pay-calculator-australia.com/schads-award-pay-rates/",
+   "claims": [
+    "Schedule G translation rates affect home care aged-care employees covered on or before 31 December 2024"
+   ],
+   "whys": [
+    "Date is typed into prose, not taken from a constant. It should come from the same source as the SCHADS_UNVERIFIED notes."
+   ],
+   "constants": [
+    "lib/constants/schads-award.ts (near SCHADS_UNVERIFIED, line ~268)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.86,
+   "needsOwner": false
+  }
+ ]
+}

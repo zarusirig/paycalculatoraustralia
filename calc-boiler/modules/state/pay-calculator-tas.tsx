@@ -5,12 +5,13 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatPercent,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
-import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+import { PAYROLL_TAX_STATES, TAS_PAYROLL_TAX } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
@@ -159,8 +160,10 @@ export default function PayCalculatorTASPage() {
             <H2>Does TAS payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Tasmania&apos;s payroll tax starts at 4% (6.1% once an employer&apos;s Australian wages
-              pass $2 million), and either way it is an employer cost, not a wage effect. What actually leaves your pay is set out in the{" "}
+              Tasmania&apos;s payroll tax is {formatPercent(TAS_PAYROLL_TAX.lowerRate, 0)} on wages between{" "}
+              {formatAUD(TAS_PAYROLL_TAX.threshold)} and {formatAUD(TAS_PAYROLL_TAX.upperThreshold)} and{" "}
+              {formatPercent(TAS_PAYROLL_TAX.upperRate, 1)} on wages above {formatAUD(TAS_PAYROLL_TAX.upperThreshold)}.
+              Either way it is an employer cost, not a wage effect. What actually leaves your pay is set out in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
           </section>

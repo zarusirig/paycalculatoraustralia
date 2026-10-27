@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatPercent, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { HIGH_INCOME_THRESHOLD, oteBreakdown } from "@/lib/constants/ote-salary";
 import { CALC_FONT, NOTE_OK, NOTE_WARN, NumberField, RESULT_LIST, ResultRow } from "./t3-calc-shared";
 
@@ -39,7 +39,7 @@ export default function OteSalaryCalculator() {
               <ResultRow label="Split (base : variable)" value={`${r.basePct}% : ${Math.round((100 - r.basePct) * 10) / 10}%`} muted />
               <ResultRow label={`Commission earned at ${attainment}%`} value={formatAUD(r.variableEarned)} />
               <ResultRow label="Total earned before tax" value={formatAUD(r.totalEarned)} bold />
-              <ResultRow label="Super guarantee on it (12%)" value={formatAUD(r.superGuarantee)} />
+              <ResultRow label={`Super guarantee on it (${formatPercent(SUPER_GUARANTEE.rate, 0)})`} value={formatAUD(r.superGuarantee)} />
               <ResultRow label="Take-home pay a year" value={formatAUD(takeHome)} bold />
               <ResultRow label="Take-home on base alone (a 0% year)" value={formatAUD(baseOnly)} muted />
             </dl>
@@ -49,7 +49,7 @@ export default function OteSalaryCalculator() {
                 : `For the ${formatAUD(HIGH_INCOME_THRESHOLD.current)} high income threshold (unfair dismissal), only your base and other guaranteed pay count, not commission, so your ${formatAUD(r.ote)} OTE is assessed as ${formatAUD(base)}.`}
             </p>
             <p className="text-xs text-warmgray-light">
-              Take-home uses 2026-27 resident tax rates, the Medicare levy and LITO, with no HECS. Commission paid in a lump sum can be withheld at a different rate on the payslip; the year&rsquo;s tax is the same.
+              Take-home uses {SITE_CONFIG.financialYear} resident tax rates, the Medicare levy and LITO, with no HECS. Commission paid in a lump sum can be withheld at a different rate on the payslip; the year&rsquo;s tax is the same.
             </p>
           </div>
         </div>

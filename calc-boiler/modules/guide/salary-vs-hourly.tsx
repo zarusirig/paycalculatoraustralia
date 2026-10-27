@@ -6,7 +6,7 @@ import { SALARY_VS_HOURLY_FAQS } from "./salary-vs-hourly-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
 
 // Tax comparison from the FY2026-27 engine (resident, no HECS). The old copy
 // quoted $13,688 on $75,000 and $18,515 on $91,091, matching neither year.
@@ -97,12 +97,12 @@ export default function SalaryVsHourlyPage() {
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Superannuation</td>
-                        <td className="p-3 text-navy">12% on qualifying earnings (mainly ordinary time earnings)</td>
-                        <td className="p-3 text-navy">12% on qualifying earnings (includes casual loading)</td>
+                        <td className="p-3 text-navy">{formatPercent(SUPER_GUARANTEE.rate, 0)} on qualifying earnings (mainly ordinary time earnings)</td>
+                        <td className="p-3 text-navy">{formatPercent(SUPER_GUARANTEE.rate, 0)} on qualifying earnings (includes casual loading)</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Notice period</td>
-                        <td className="p-3 text-navy">1-4 weeks (based on tenure)</td>
+                        <td className="p-3 text-navy">1 to 5 weeks (based on service and age)</td>
                         <td className="p-3 text-navy">Same for permanent hourly; nil for casual</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
@@ -242,7 +242,7 @@ export default function SalaryVsHourlyPage() {
                         <td className="p-3 text-navy text-right">$5,852 (perm) / $0 (casual)</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super (12% on qualifying earnings)</td>
+                        <td className="p-3 text-navy font-medium">Super ({formatPercent(SUPER_GUARANTEE.rate, 0)} on qualifying earnings)</td>
                         <td className="p-3 text-navy text-right">$9,000</td>
                         <td className="p-3 text-navy text-right">$9,129</td>
                       </tr>
@@ -266,7 +266,7 @@ export default function SalaryVsHourlyPage() {
                 From a pure tax perspective, <strong>there is no difference</strong>. Both salaried and hourly employees pay individual income tax at the same marginal rates. PAYG withholding is calculated on gross earnings regardless of how pay is structured. The ATO does not differentiate between salary and hourly income on your tax return.
               </p>
               <p>
-                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax: the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
+                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, so more of their income is taxed at their marginal rate. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax: the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
               </p>
               <p>
                 Our view: salary sacrifice is easier to arrange on a salary, because employers are more likely to offer packaging arrangements (super, novated leases, devices) to permanent salaried staff. Model the tax effect with our<Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
@@ -305,7 +305,7 @@ export default function SalaryVsHourlyPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Total package calculations use FY{SITE_CONFIG.financialYear} tax rates, 12% SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards. Your own award or enterprise agreement sets your overtime rates and thresholds.</p>
+                <p>Total package calculations use FY{SITE_CONFIG.financialYear} tax rates, a {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for all 5 hours a week, which assumes each day&apos;s overtime falls within the hours your award pays at time and a half. Your own award or enterprise agreement sets your overtime rates and thresholds.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("salary-vs-hourly"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

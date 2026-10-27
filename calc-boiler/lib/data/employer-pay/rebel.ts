@@ -59,7 +59,7 @@ export const REBEL_PAY: EmployerPay = {
     { age: "20 and over", percentage: 1 },
   ],
   juniorNote:
-    "The agreement prints junior dollars for Levels 1 to 3 from age 16; the figures below are its Level 1 rates. A junior acting as a Supervisor at Level 4 gets the adult rate (undertaking, Annexure A).",
+    "The agreement prints junior dollars for Levels 1 to 3 from age 16; the figures below are its Level 1 rates. A junior who temporarily acts in a Second Level Manager role (Higher Duties Level 4, cl 267 and cl 305) gets the adult rate (undertaking, Annexure A).",
   publishedJuniorRates: [
     { age: "16", hourly: 14.1, casualHourly: 17.62 },
     { age: "17", hourly: 16.92, casualHourly: 21.15 },
@@ -84,7 +84,7 @@ export const REBEL_PAY: EmployerPay = {
   ],
   notices: [
     "The same agreement covers Supercheap Auto, BCF and Macpac stores, so their waged team members are paid these rates too.",
-    "From the first full pay period on or after 1 December 2026, the Retail Award pays 18-year-olds with more than 6 months' service 75% of the award rate ($20.86) and 19-year-olds 85% ($23.64). That is more than rebel's printed $19.74 and $22.56, and an agreement cannot pay a base rate below the award, so those staff must get at least the award figures.",
+    "From the first full pay period on or after 1 December 2026, the Retail Award pays Level 1 18-year-olds with more than 6 months' service 75% of the award rate ($20.86) and 19-year-olds 85% ($23.64). That is more than rebel's printed $19.74 and $22.56, and an agreement cannot pay a base rate below the award, so those staff must get at least the award figures.",
     "The agreement prints no rates after July 2026. Its nominal expiry date is 30 June 2027, so the next rise depends on a new agreement.",
   ],
   unverified: [
@@ -109,7 +109,7 @@ export const REBEL_PAY: EmployerPay = {
     },
     {
       q: "How much does Rebel pay a 16 or 17 year old?",
-      a: "The Super Retail Group agreement prints $14.10 an hour for a 16-year-old Level 1 team member at rebel ($17.62 casual) and $16.92 for a 17-year-old ($21.15 casual). At 18 the rate is $19.74 and at 19 it is $22.56; the adult rate starts at 20.",
+      a: "The Super Retail Group agreement prints $14.10 an hour for a 16-year-old Level 1 team member at rebel ($17.62 casual) and $16.92 for a 17-year-old ($21.15 casual). At 18 the rate is $19.74 and at 19 it is $22.56; the adult rate starts at 20. From the first full pay period on or after 1 December 2026, 18 and 19-year-olds with more than 6 months' service must get at least the Retail Award's Level 1 rates of $20.86 and $23.64.",
     },
     {
       q: "What does Rebel pay on Sundays and public holidays?",

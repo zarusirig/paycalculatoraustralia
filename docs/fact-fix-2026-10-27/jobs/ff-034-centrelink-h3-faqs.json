@@ -1,0 +1,162 @@
+{
+ "name": "ff-034-centrelink-h3-faqs",
+ "files": [
+  "modules/calculator/centrelink-h3-faqs.ts",
+  "modules/calculator/centrelink-w3-faqs.ts",
+  "modules/calculator/commission-tax-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/centrelink-h3-faqs.ts:104",
+   "file": "modules/calculator/centrelink-h3-faqs.ts",
+   "line": "104",
+   "page": "https://pay-calculator-australia.com/disability-support-pension-calculator/",
+   "claims": [
+    "reducing $3 a fortnight per $1,000 above that"
+   ],
+   "whys": [
+    "The figure is correct, but it is typed into the text instead of read from PENSION_ASSETS_TEST.taperPerThousand.single, which the assets-test FAQ on line 34 uses. If the constant changes, this answer will drift."
+   ],
+   "constants": [
+    "lib/constants/centrelink-means-test.ts PENSION_ASSETS_TEST.taperPerThousand.single"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.67,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-h3-faqs.ts:151",
+   "file": "modules/calculator/centrelink-h3-faqs.ts",
+   "line": "151",
+   "page": "https://pay-calculator-australia.com/commonwealth-seniors-health-card/",
+   "claims": [
+    "Deeming applies ... or if it belongs to your partner and they are 60 or older."
+   ],
+   "whys": [
+    "This partner condition does not match the usual CSHC grandfathering rule. That rule turns on whether the stream and the card have both been held since before 1 January 2015. Please check it against the DSS Social Security Guide for CSHC deeming of account-based income streams."
+   ],
+   "constants": [
+    "lib/constants/centrelink-means-test.ts CSHC"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-h3-faqs.ts:132",
+   "file": "modules/calculator/centrelink-h3-faqs.ts",
+   "line": "132",
+   "page": "https://pay-calculator-australia.com/child-care-subsidy-calculator/",
+   "claims": [
+    "You can change the percentage online twice a financial year."
+   ],
+   "whys": [
+    "As far as I know, Services Australia lets families change their CCS withholding percentage at any time in their online account, with no twice-a-year limit. Needs checking against the Services Australia CCS withholding page."
+   ],
+   "constants": [
+    "lib/constants/child-care-subsidy.ts (CCS, beside defaultWithholding)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-h3-faqs.ts:34",
+   "file": "modules/calculator/centrelink-h3-faqs.ts",
+   "line": "34",
+   "page": "https://pay-calculator-australia.com/age-pension-assets-test-calculator/",
+   "claims": [
+    "a single homeowner with {formatAUD(433_000)} of assessable assets is {formatAUD(100_000)} over the limit, so the pension drops by {formatAUD(300)}"
+   ],
+   "whys": [
+    "The example's excess ($100,000) and reduction ($300) are typed literals, not calculated from PENSION_ASSETS_TEST.fullPensionLimit.single.homeowner (333,000) and taperPerThousand.single. They match today. When the limit is indexed on 1 July, the text will drift while assetsTestRate() in the same sentence updates, so the example will contradict itself."
+   ],
+   "constants": [
+    "lib/constants/centrelink-means-test.ts PENSION_ASSETS_TEST.fullPensionLimit.single.homeowner and taperPerThousand.single"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-w3-faqs.ts:56",
+   "file": "modules/calculator/centrelink-w3-faqs.ts",
+   "line": "56",
+   "page": "https://pay-calculator-australia.com/carer-payment-calculator/",
+   "claims": [
+    "Work Bonus: the first $300 of employment income each fortnight ... the 100-hour work rule.",
+    "Work Bonus: first $300 of employment income each fortnight; 100-hour work rule."
+   ],
+   "whys": [
+    "$300 and 100 hours are typed literals, while the next answers use CP.workHoursLimit. If the Work Bonus amount or the hours limit changes, this answer will drift from the constant.",
+    "These are literals, while line 36 uses CP.workHoursLimit. They can drift from the constants."
+   ],
+   "constants": [
+    "CARER_PAYMENT.workHoursLimit plus a Work Bonus constant in lib/constants/centrelink-income-test.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.53,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-w3-faqs.ts:132",
+   "file": "modules/calculator/centrelink-w3-faqs.ts",
+   "line": "132",
+   "page": "https://pay-calculator-australia.com/centrelink-debt/",
+   "claims": [
+    "Resolution Scheme tiers: under $200 full debt; $200 to $1,999 gets $200; $2,000 to $4,999 gets $400; $5,000+ gets $600."
+   ],
+   "whys": [
+    "The tier amounts are typed literals, while the max payment comes from RESOLUTION_SCHEME.maxPayment. If the constant changes, the two could drift apart."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/commission-tax-calculator-content.tsx:129",
+   "file": "modules/calculator/commission-tax-calculator-content.tsx",
+   "line": "129",
+   "page": "https://pay-calculator-australia.com/commission-tax-calculator/",
+   "claims": [
+    "SG on commission applies 'up to the quarterly maximum contribution base'."
+   ],
+   "whys": [
+    "Payday Super starts on 1 July 2026. My understanding is that it turns the maximum contribution base into an annual amount, so 'quarterly' may be out of date for the 2026-27 page. The FAQ answer at commission-tax-faqs.ts line 54 only says 'maximum contribution base', so the two places do not match."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (lib/constants): add a maximum contribution base period/value"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/commission-tax-calculator-content.tsx:143",
+   "file": "modules/calculator/commission-tax-calculator-content.tsx",
+   "line": "143",
+   "page": "https://pay-calculator-australia.com/commission-tax-calculator/",
+   "claims": [
+    "Commission can lift a HECS-HELP repayment 'into a higher band' (same wording in commission-tax-faqs.ts line 66: 'higher repayment band')."
+   ],
+   "whys": [
+    "From 2025-26, compulsory HELP repayments use a marginal system on income above the threshold, not the old percentage bands. 'Band' may describe the pre-2025 system."
+   ],
+   "constants": [
+    "HECS_HELP (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.3,
+   "needsOwner": false
+  }
+ ]
+}

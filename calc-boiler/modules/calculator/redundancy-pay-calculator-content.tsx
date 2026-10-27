@@ -9,7 +9,9 @@ import { ShieldAlert } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { NOTICE_PERIODS, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
+import { MEDICARE_LEVY, NOTICE_PERIODS, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
+import { TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
+import { WHOLE_OF_INCOME_CAP } from "@/lib/constants/termination-tax";
 import {
   ETP_RATES,
   GENUINE_REDUNDANCY_AGE_LIMIT,
@@ -278,9 +280,9 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           </table>
         </div>
         <p className="mt-3 text-sm text-warmgray">
-          Rates include the 2% Medicare levy. The excess over the tax-free limit on a genuine redundancy
+          Rates include the {pct(MEDICARE_LEVY.rate)} Medicare levy. The excess over the tax-free limit on a genuine redundancy
           is an &ldquo;excluded&rdquo; ETP, so only the {Y} ETP cap applies to it. A non-genuine payment can
-          also be limited by the $180,000 whole-of-income cap, which depends on your other income. This
+          also be limited by the {formatAUD(WHOLE_OF_INCOME_CAP)} whole-of-income cap, which depends on your other income. This
           calculator does not model that cap, so treat its tax figure for a non-genuine payment as the lowest the
           tax could be.
         </p>
@@ -401,7 +403,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         </div>
         <p className="mt-3 text-sm text-warmgray mb-4">Add 1 week if you are over 45 and have at least 2 years of continuous service.</p>
         <ul className="list-disc pl-5 space-y-2 text-warmgray">
-          <li><strong>Unused annual leave</strong> is paid out with leave loading if your award or agreement provides it. When the reason is a genuine redundancy it is taxed at no more than 32%.</li>
+          <li><strong>Unused annual leave</strong> is paid out with leave loading if your award or agreement provides it. When the reason is a genuine redundancy it is taxed at no more than {pct(TERMINATION_LOADING_WITHHOLDING.flatRate)}.</li>
           <li><strong>Long service leave</strong> depends on your state. See the table above and the <Link href="/long-service-leave-calculator/" className={LINK}>long service leave calculator</Link>.</li>
           <li><strong>Super</strong> is not payable on the redundancy payment or on leave paid out at termination, only on wages to your last day.</li>
         </ul>

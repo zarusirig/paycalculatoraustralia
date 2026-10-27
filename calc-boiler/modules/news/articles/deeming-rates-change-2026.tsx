@@ -1,34 +1,49 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { formatAUD, formatPercent } from "@/lib/constants";
+import { DEEMING, DEEMING_HISTORY } from "@/lib/constants/centrelink-means-test";
+
+const pct = (n: number) => formatPercent(n, 2);
+
+function deemingRow(from: string) {
+  const row = DEEMING_HISTORY.find((r) => r.from === from);
+  if (!row) throw new Error(`No deeming history row from ${from}`);
+  return row;
+}
 
 export default function DeemingRatesChange2026() {
+  const frozen = deemingRow("1 May 2020");
+  const before = deemingRow("20 September 2025");
+  const march = deemingRow("20 March 2026");
   return (
     <>
       <p className="lead">
-        Centrelink deeming rates rose from <strong>20 March 2026</strong>, ending a multi-year
-        freeze. The lower rate lifted to <strong>1.25%</strong> and the upper rate to{" "}
-        <strong>3.25%</strong>, changing how much income Centrelink assumes your savings and
+        Centrelink deeming rates rose from <strong>20 March 2026</strong>, the second step in the
+        gradual reset that followed the end of the deeming freeze on 30 June 2025. The lower rate
+        lifted to <strong>{pct(march.lower)}</strong> and the upper rate to{" "}
+        <strong>{pct(march.upper)}</strong>, changing how much income Centrelink assumes your savings and
         investments earn for the pension income test.
       </p>
 
       <NewsKeyFacts
         rows={[
-          { label: "Lower deeming rate", before: "0.25%", after: "1.25%" },
-          { label: "Upper deeming rate", before: "2.25%", after: "3.25%" },
-          { label: "Lower-rate threshold, single", after: "Up to $64,200" },
-          { label: "Lower-rate threshold, couple (combined)", after: "Up to $106,200" },
+          { label: "Lower deeming rate", before: pct(before.lower), after: pct(march.lower) },
+          { label: "Upper deeming rate", before: pct(before.upper), after: pct(march.upper) },
+          { label: "Lower-rate threshold, single", after: `Up to ${formatAUD(march.single)}` },
+          { label: "Lower-rate threshold, couple (combined)", after: `Up to ${formatAUD(march.pensionerCouple)}` },
           { label: "Effective from", after: "20 March 2026" },
         ]}
       />
 
       <h2>What changed and when</h2>
       <p>
-        On the recommendation of the Australian Government Actuary, the lower deeming rate rose
-        from 0.25% to 1.25% and the upper rate from 2.25% to 3.25%, effective 20 March 2026. The
-        rates had been frozen at their pandemic-era levels since May 2020 to shield pensioners
-        from record-low interest rates. The Actuary&apos;s review found current savings rates
-        justify a partial reset, though the new rates remain well below long-term averages and
-        below the returns available on many at-call savings accounts.
+        On the recommendation of the Australian Government Actuary, the Minister for Social
+        Services set the lower deeming rate at {pct(march.lower)} (up from {pct(before.lower)}) and
+        the upper rate at {pct(march.upper)} (up from {pct(before.upper)}), effective 20 March 2026.
+        The rates were frozen at {pct(frozen.lower)} and {pct(frozen.upper)} from 1 May 2020 to
+        30 June 2025, and the first step up came on 20 September 2025. The Actuary says the new
+        rates reflect investment returns available to most payment recipients and support the
+        government&apos;s plan to reset deeming rates gradually.
       </p>
       <p>
         The Actuary reviews deeming rates regularly against actual returns available on standard,
@@ -40,13 +55,17 @@ export default function DeemingRatesChange2026() {
 
       <h2>Deeming thresholds for singles and couples</h2>
       <p>
-        The 1.25% lower rate applies to financial assets up to $64,200 for a single person, and up
-        to $106,200 combined for a couple where at least one member receives a pension. Anything
-        above those thresholds is deemed to earn income at the higher 3.25% rate, regardless of
-        what the assets actually return. The thresholds themselves are reviewed alongside the{" "}
+        From 20 March 2026, the {pct(march.lower)} lower rate applied to financial assets up to{" "}
+        {formatAUD(march.single)} for a single person, and up to {formatAUD(march.pensionerCouple)}{" "}
+        combined for a couple where at least one member receives a pension. Anything above those
+        thresholds is deemed to earn income at the higher {pct(march.upper)} rate, regardless of
+        what the assets actually return. The thresholds are not reviewed with the{" "}
         <Link href="/news/age-pension-increase-march-2026/">Age Pension rate</Link> each March and
-        September, so they can move even in years when the deeming percentages themselves stay
-        unchanged.
+        September: they are indexed each 1 July. On {DEEMING.thresholdsFrom} they rose to{" "}
+        {formatAUD(DEEMING.thresholds.single)} (single) and{" "}
+        {formatAUD(DEEMING.thresholds.pensionerCouple)} (couple, combined), and from{" "}
+        {DEEMING.ratesFrom} the rates rose again to {pct(DEEMING.lowerRate)} and{" "}
+        {pct(DEEMING.upperRate)}.
       </p>
 
       <h2>What counts as a deemed financial asset</h2>

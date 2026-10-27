@@ -1,0 +1,109 @@
+{
+ "name": "ff-059-work-hours-calculator",
+ "files": [
+  "modules/calculator/work-hours-calculator.tsx",
+  "modules/calculator/ytd-income-calculator-content.tsx",
+  "modules/guide/annual-leave-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/work-hours-calculator.tsx:771",
+   "file": "modules/calculator/work-hours-calculator.tsx",
+   "line": "771",
+   "page": "/work-hours-calculator/",
+   "claims": [
+    "\"many awards also trigger overtime on a daily limit\""
+   ],
+   "whys": [
+    "This is a population claim with no count and no source on the page. Name the awards or cite FWO."
+   ],
+   "constants": [
+    "none (needs source or named awards)"
+   ],
+   "reviewerNotes": [
+    "Verified the writer's fact question. 'many awards also trigger overtime on a daily limit' is a population claim with no count and no source on the page. The tax-withheld line 49 date question is valid too."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.02,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/ytd-income-calculator-content.tsx:101",
+   "file": "modules/calculator/ytd-income-calculator-content.tsx",
+   "line": "101",
+   "page": "https://pay-calculator-australia.com/ytd-income-calculator/",
+   "claims": [
+    "If YTD gross \u00f7 pays received does not equal your contracted per-period pay, something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment.",
+    "...something is off: a missed pay rise, unpaid overtime, or an incorrect tax treatment."
+   ],
+   "whys": [
+    "Tax treatment changes withholding and net pay, not YTD gross, so 'incorrect tax treatment' does not explain a gross mismatch. Unpaid leave or a mid-year rise are better causes here.",
+    "I agree with the writer. Tax treatment affects withholding, not YTD gross, so it cannot explain a gross-per-pay mismatch."
+   ],
+   "constants": [
+    "No constant; prose claim."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.1,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide-faqs.ts:55",
+   "file": "modules/guide/annual-leave-guide-faqs.ts",
+   "line": "55",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "Leave loading ... is subject to PAYG withholding at the employee's marginal tax rate."
+   ],
+   "whys": [
+    "PAYG withholding uses the ATO withholding schedules and tax tables, not the employee's marginal rate. The tax is worked out at marginal rates on assessment. The same string also holds an em dash ('would have worked \u2014 the ATO treats'), and the checker locks that string as a dash key, so this pass cannot remove it."
+   ],
+   "constants": [
+    "FAQ copy (no constant). Fix the wording and the dash by hand in annual-leave-guide-faqs.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.67,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide-faqs.ts:31",
+   "file": "modules/guide/annual-leave-guide-faqs.ts",
+   "line": "31",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "Employers can also direct employees with an excessive balance exceeding 8 weeks to take leave, provided the direction does not reduce the balance below 6 weeks and gives at least 8 weeks' notice."
+   ],
+   "whys": [
+    "The excessive-leave direction rules (8 weeks, 10 for shift workers, the 6-week floor, the notice period) come from modern award clauses, not the NES. The answer states them as if they apply to everyone and does not say 'where your award has an excessive leave clause'. Line 71 has the same issue."
+   ],
+   "constants": [
+    "EMPLOYMENT constants in lib/constants (no excessive-leave thresholds are held there yet)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/annual-leave-guide-faqs.ts:51",
+   "file": "modules/guide/annual-leave-guide-faqs.ts",
+   "line": "51",
+   "page": "/annual-leave-guide/",
+   "claims": [
+    "The deduction must be authorised in writing and cannot reduce the final pay below zero."
+   ],
+   "whys": [
+    "'Below zero' tells the reader nothing. The rule the awards set is that the employer can deduct only up to the amount owed on termination, and only if the written agreement allows it. Please check the intended wording."
+   ],
+   "constants": [
+    "FAQ copy (no constant)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.95,
+   "needsOwner": false
+  }
+ ]
+}

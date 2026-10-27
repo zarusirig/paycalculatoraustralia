@@ -13,6 +13,8 @@ import {
   SUPER_GUARANTEE,
   SUPER_GUARANTEE_CHARGE,
 } from "@/lib/constants";
+import { COMMON_LEAVE_LOADING } from "@/lib/constants/minimum-wage";
+import { LSL_JURISDICTIONS } from "@/lib/constants/long-service-leave";
 import { FBT } from "@/lib/constants/novated-lease";
 import type { FaqItem } from "@/lib/faq";
 
@@ -39,22 +41,38 @@ export const MULT_100K = costRow(100_000).total / 100_000;
 
 const FY = SITE_CONFIG.financialYear;
 const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
-const PRT_RANGE = `${formatPercent(MIN_RATE_STATE[1].rate, 2)}–${formatPercent(MAX_RATE_STATE[1].rate, 2)}`;
+const PRT_RANGE = `${formatPercent(MIN_RATE_STATE[1].rate, 2)} to ${formatPercent(MAX_RATE_STATE[1].rate, 2)}`;
 const LEAVE_PROVISION = formatPercent(EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear, 2);
 const HIGH_EARNER = 300_000;
 const SGC_LATE = SUPER_GUARANTEE_CHARGE.current.latePayment;
 // FBT example: a car benefit with a $15,000 taxable value, GST-creditable (type 1).
 const FBT_EXAMPLE_VALUE = 15_000;
 const FBT_EXAMPLE_TAX = Math.round(FBT_EXAMPLE_VALUE * FBT.grossUpType1 * FBT.rate);
+// Payroll tax example: the most $100,000 employees whose wages plus super stay
+// under the lowest state threshold (super counts as taxable wages).
+const PT_SALARY = 100_000;
+const PT_PER_HEAD = PT_SALARY + calculateSuper(PT_SALARY);
+const PT_HEADCOUNT = Math.floor(MIN_THRESHOLD_STATE[1].threshold / PT_PER_HEAD);
+// Long service leave, from the eight state and territory Acts (lib/constants/long-service-leave.ts).
+const joinAnd = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+const LSL_LIST = Object.values(LSL_JURISDICTIONS);
+const LSL_STD = LSL_LIST.filter((j) => j.weeksPerYear < 1);
+const LSL_HIGH = LSL_LIST.filter((j) => j.weeksPerYear >= 1);
+const LSL_EARLY = LSL_LIST.filter((j) => j.takeAfterYears < 10);
+const LSL_STD_RATE = LSL_JURISDICTIONS.nsw.weeksPerYear;
+const LSL_HIGH_RATE = LSL_JURISDICTIONS.sa.weeksPerYear;
+const lslWeeks10 = (rate: number) => String(Math.round(rate * 10 * 100) / 100);
+const lslCost = (rate: number) => formatAUD((PT_SALARY * rate) / EMPLOYMENT.weeksPerYear);
+const lslPct = (rate: number) => formatPercent(rate / EMPLOYMENT.weeksPerYear, 2);
 
 export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   {
     q: "How much does an employee actually cost an employer?",
-    a: `On this page's assumptions the cost is about ${MULT_100K.toFixed(2)}x the base salary: for a $100,000 salary, about ${formatAUD(MULT_100K * 100_000)} once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (${formatPercent(TABLE_WORKCOVER, 1)} here; 0.3% to 10% by industry), and payroll tax (${PRT_RANGE}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.`,
+    a: `On this page's assumptions the cost is about ${MULT_100K.toFixed(2)}x the base salary: for a $100,000 salary, about ${formatAUD(MULT_100K * 100_000)} once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (${formatPercent(TABLE_WORKCOVER, 1)} here; the rate depends on your industry's risk), and payroll tax (${PRT_RANGE}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.`,
   },
   {
     q: "What is payroll tax and who pays it?",
-    a: `Payroll tax is a state government tax levied on employers when their total wage bill exceeds a state-specific annual threshold. Rates range from ${formatPercent(MIN_RATE_STATE[1].rate, 2)} in ${MIN_RATE_STATE[1].name} to ${formatPercent(MAX_RATE_STATE[1].rate, 2)} in the ${MAX_RATE_STATE[0]}. It is paid by the employer, not deducted from the employee's pay. Sole traders and small businesses below the threshold pay zero payroll tax.`,
+    a: `Payroll tax is a state government tax levied on employers when their total wage bill exceeds a state-specific annual threshold. Base rates range from ${formatPercent(MIN_RATE_STATE[1].rate, 2)} in ${MIN_RATE_STATE[1].name} to ${formatPercent(MAX_RATE_STATE[1].rate, 2)} in the ${MAX_RATE_STATE[0]}. It is paid by the employer, not deducted from the employee's pay. Sole traders and small businesses below the threshold pay zero payroll tax.`,
   },
   {
     q: "What are leave provisions?",
@@ -79,7 +97,7 @@ export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do small businesses pay payroll tax?",
-    a: `Most small businesses do not. Payroll tax only applies when the total wage bill exceeds the state threshold. The lowest threshold is ${formatAUD(MIN_THRESHOLD_STATE[1].threshold)} in ${MIN_THRESHOLD_STATE[1].name}, and the highest is ${formatAUD(MAX_THRESHOLD_STATE[1].threshold)} in the ${MAX_THRESHOLD_STATE[0]}. A business with 8 employees averaging $100,000 each ($800,000 total wages) pays zero payroll tax in every state and territory.`,
+    a: `Only when their taxable wages pass the state or territory threshold. Taxable wages include employer super, not just salaries, and a group of related businesses counts its wages together. The lowest threshold is ${formatAUD(MIN_THRESHOLD_STATE[1].threshold)} in ${MIN_THRESHOLD_STATE[1].name}, and the highest is ${formatAUD(MAX_THRESHOLD_STATE[1].threshold)} in the ${MAX_THRESHOLD_STATE[0]}. A business with ${PT_HEADCOUNT} employees on ${formatAUD(PT_SALARY)} each pays ${formatAUD(PT_HEADCOUNT * PT_SALARY)} in salaries plus ${formatAUD(PT_HEADCOUNT * (PT_PER_HEAD - PT_SALARY))} in super, ${formatAUD(PT_HEADCOUNT * PT_PER_HEAD)} in taxable wages. That is under every threshold, so it pays no payroll tax in any state or territory.`,
   },
   {
     q: "Is workers compensation insurance mandatory for all employers?",
@@ -87,15 +105,15 @@ export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is leave loading and does every employer pay it?",
-    a: "Leave loading is an additional payment of 17.5% on top of the employee's base pay rate during annual leave. It is not a universal entitlement under the National Employment Standards. Leave loading applies only when specified in the relevant modern award, enterprise agreement, or employment contract; most modern awards include it.",
+    a: `Leave loading is an extra ${formatPercent(COMMON_LEAVE_LOADING, 1)} on top of the employee's base pay rate during annual leave. It is not an entitlement under the National Employment Standards, which pay annual leave at the base rate. Leave loading applies only when the relevant modern award, enterprise agreement or employment contract provides for it. The Hospitality Award pays a flat ${formatPercent(COMMON_LEAVE_LOADING, 1)}; the Retail and Clerks awards pay the higher of ${formatPercent(COMMON_LEAVE_LOADING, 1)} or the penalty rates the employee would have earned.`,
   },
   {
     q: "How does long service leave affect employer costs?",
-    a: "Long service leave accrues at approximately 8.67 weeks after 10 years of continuous service in most states, equivalent to an annual provision of about 1.67% of the base salary. Employers must accrue this liability on their balance sheet from the employee's start date. For a $100,000 employee, this adds approximately $1,670 per year to the total employment cost.",
+    a: `Each state and territory sets its own long service leave rules. In ${LSL_STD.length} of the ${LSL_LIST.length} it builds at ${lslWeeks10(LSL_STD_RATE)} weeks for 10 years of continuous service, an annual cost of about ${lslPct(LSL_STD_RATE)} of base salary (${lslCost(LSL_STD_RATE)} a year on a ${formatAUD(PT_SALARY)} salary). ${joinAnd(LSL_HIGH.map((j) => j.abbr))} give ${lslWeeks10(LSL_HIGH_RATE)} weeks for 10 years, about ${lslPct(LSL_HIGH_RATE)} (${lslCost(LSL_HIGH_RATE)}). ${joinAnd(LSL_EARLY.map((j) => j.abbr))} let employees take it after ${LSL_EARLY[0]?.takeAfterYears ?? 7} years. Service counts from the employee's first day, so the cost builds from the start even though the leave is taken years later.`,
   },
   {
     q: "What happens if I misclassify an employee as a contractor?",
-    a: `The ATO can reclassify the worker as an employee and issue back-payment orders for all unpaid superannuation (plus the super guarantee charge), PAYG withholding, payroll tax, and workers compensation premiums for the entire engagement period. The super guarantee charge includes the shortfall, notional earnings and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}, with interest at the general interest charge rate compounded daily. If an assessed charge stays unpaid after a notice to pay, a further late payment penalty of ${formatPercent(SGC_LATE.penalty, 0)} (${formatPercent(SGC_LATE.penaltyRepeatWithin24Months, 0)} for a repeat within 24 months) applies. Use our Contractor vs Employee Calculator to assess classification risk.`,
+    a: `The ATO can treat the worker as an employee, apply a PAYG withholding penalty for the tax you did not withhold, and assess the super guarantee charge on the super you did not pay. Payroll tax is assessed separately by your state or territory revenue office, and workers compensation premiums by your state's workers compensation insurer or regulator. The super guarantee charge includes the shortfall, notional earnings and an administrative uplift of up to ${formatPercent(SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax, 0)}, with interest at the general interest charge rate compounded daily. If an assessed charge stays unpaid after a notice to pay, a further late payment penalty of ${formatPercent(SGC_LATE.penalty, 0)} (${formatPercent(SGC_LATE.penaltyRepeatWithin24Months, 0)} for a repeat within 24 months) applies. Use our Contractor vs Employee Calculator to assess classification risk.`,
     links: { "Contractor vs Employee Calculator": "/contractor-vs-employee-calculator/" },
   },
   {

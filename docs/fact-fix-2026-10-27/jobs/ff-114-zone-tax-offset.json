@@ -1,0 +1,98 @@
+{
+ "name": "ff-114-zone-tax-offset",
+ "files": [
+  "modules/guide/zone-tax-offset.tsx",
+  "modules/guides/tax-brackets-faqs.ts",
+  "modules/guides/tax-brackets.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/zone-tax-offset.tsx:206",
+   "file": "modules/guide/zone-tax-offset.tsx",
+   "line": "206",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "The zone tax offset itself is not assessable income for Centrelink purposes, so claiming it does not affect your payments."
+   ],
+   "whys": [
+    "A tax offset reduces tax payable. It is not a payment received, so calling it 'not assessable income for Centrelink purposes' looks like a mix-up with the ATO rule that the Centrelink/DVA remote area allowance is not taxable. Confirm the source and what the sentence should say.",
+    "The ATO T4 2026 page (the page's cited source) does not say this. It only says a Centrelink/DVA remote area allowance reduces the offset. Needs a source or a rewrite by the owner."
+   ],
+   "constants": [
+    "Hardcoded prose in zone-tax-offset.tsx; source should be the ATO zone tax offset page (QC105018)."
+   ],
+   "reviewerNotes": [
+    "The writer's Centrelink question stands. The ATO T4 2026 page only says the Centrelink/DVA remote area allowance reduces the offset. It does not support 'the zone tax offset itself is not assessable income for Centrelink purposes'. The text was left unchanged for the owner."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guides/tax-brackets-faqs.ts:84",
+   "file": "modules/guides/tax-brackets-faqs.ts",
+   "line": "84",
+   "page": "https://pay-calculator-australia.com/tax-brackets/",
+   "claims": [
+    "Working holiday makers on visa subclass 417 or 462 pay {WHM rate} on the first {WHM max}, then the same rates as foreign residents.",
+    "Foreign residents pay {NON_RESIDENT_TAX_BRACKETS[0].rate} from the first dollar up to {max} ..."
+   ],
+   "whys": [
+    "The figures come from WHM_TAX_BRACKETS_2025_26 (WHM_TABLE_YEAR = \"2025-26\"), but this FAQ sits on the 2026-27 page and does not say which year the rates are for. If the 2026-27 working holiday maker table is not confirmed, the answer should say it is the 2025-26 table, or the constant should be updated.",
+    "FOREIGN_TABLE_YEAR is '2025-26' (the ATO's foreign-resident page stops at 2025-26), but this FAQ sits on the 2026-27 page and does not name the year. The working holiday maker sentence in the same answer has the same gap."
+   ],
+   "constants": [
+    "WHM_TAX_BRACKETS_2025_26 / WHM_TABLE_YEAR (calc-boiler/lib/constants/tax-rates-reference.ts:142-148)",
+    "NON_RESIDENT_TAX_BRACKETS / FOREIGN_TABLE_YEAR (calc-boiler/lib/constants/tax-rates-reference.ts:150)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. The working holiday maker figures come from WHM_TAX_BRACKETS_2025_26 (WHM_TABLE_YEAR = '2025-26', tax-rates-reference.ts:142-148), which the source comment calls the latest table the ATO has published. On the 2026-27 page the answer does not give the year. The foreign-resident figure has the same issue: FOREIGN_TABLE_YEAR is '2025-26' (tax-rates-reference.ts:150). I left the text unchanged."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.72,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guides/tax-brackets-faqs.ts:72",
+   "file": "modules/guides/tax-brackets-faqs.ts",
+   "line": "72",
+   "page": "https://pay-calculator-australia.com/tax-brackets/",
+   "claims": [
+    "You always keep more of a pay rise than you lose in tax."
+   ],
+   "whys": [
+    "The Medicare levy surcharge applies to the whole income once it crosses a tier (calculateMLS uses income * rate). A single person without private hospital cover who goes from just under to just over the tier 1 threshold pays about 1% of their whole income in surcharge, which can be more than the rise itself. The sentence is only true for the income tax brackets on their own. It also uses 'always', a word the brand voice forbids in tax advice. I left the text as it is: the sentence needs to be limited to income tax brackets, or to name the surcharge exception."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge (calc-boiler/lib/constants/australian-tax.ts:115)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. calculateMLS (lib/constants/australian-tax.ts:705-708) returns income * tier rate on the whole income. A single person without private hospital cover who crosses the tier 1 minimum by a small rise pays roughly 1% of their whole income, which is more than the rise. So 'You always keep more of a pay rise than you lose in tax' is false in that case, and it also uses the forbidden word 'always' in tax advice. The brief says not to change facts, so I left the sentence. It needs an owner decision: limit it to the income tax brackets, or name the surcharge exception."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.21,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guides/tax-brackets.tsx:424",
+   "file": "modules/guides/tax-brackets.tsx",
+   "line": "424",
+   "page": "https://pay-calculator-australia.com/tax-brackets/",
+   "claims": [
+    "\"The same Act adds a new offset on top of the rate cut. The Working Australians Tax Offset pays $250 against tax from 2027-28\""
+   ],
+   "whys": [
+    "Here \"the same Act\" means LEGISLATED_CUT_2027_28.act, the Treasury Laws Amendment (More Cost of Living Relief) Act 2025. But lib/constants/tax-2027-28.ts (lines 15-27, 58) says the WATO comes from the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, assented 26 June 2026. The ATO also describes the WATO as a non-refundable maximum benefit of $250, so \"pays $250\" overstates it. It should say \"up to $250\", and only when tax payable is above $250."
+   ],
+   "constants": [
+    "WATO.maxOffset, WATO.royalAssent and WATO.firstIncomeYear in lib/constants/tax-2027-28.ts (the $250 is typed into the JSX, not rendered from the constant)"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. Source line 424 says \"The same Act adds a new offset\", which means LEGISLATED_CUT_2027_28.act. But lib/constants/tax-2027-28.ts (lines 15-27, 58-59) credits the WATO to the Treasury Laws Amendment (Tax Reform No. 1) Act 2026, assented 26 June 2026. The text also has \"$250\" typed in and says \"pays $250\", while the ATO describes a non-refundable maximum benefit of $250. This needs a source fix that uses WATO.maxOffset, and the wording should be \"up to\"."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.78,
+   "needsOwner": false
+  }
+ ]
+}

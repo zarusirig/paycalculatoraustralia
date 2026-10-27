@@ -1,5 +1,5 @@
-import { formatAUD } from "@/lib/constants";
-import { APPRENTICE_TRADES, apprenticeRate, getTrade } from "@/lib/data/apprentice-pay";
+import { EMPLOYMENT, LITO, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { APPRENTICE_TRADES, STANDARD_WEEKLY_RATE, apprenticeRate, getTrade } from "@/lib/data/apprentice-pay";
 import { getSpoke, headlineRate } from "@/lib/data/apprentice-pay/spokes";
 import type { Faq } from "./t3-shared";
 
@@ -19,7 +19,8 @@ const bld = getTrade("building")!;
 const bld1y = apprenticeRate(bld, "junior", 1, "completed")!;
 const bld1n = apprenticeRate(bld, "junior", 1, "not-completed")!;
 // FWO MA000020 pay guide (2 July 2026): carpenter group, general building site, wage + tool + industry allowance.
-const carp1 = headlineRate(getSpoke("carpenter")!, 1, "completed");
+const carpSpoke = getSpoke("carpenter")!;
+const carp1 = headlineRate(carpSpoke, 1, "completed");
 const ckr = getTrade("cookery")!;
 const ckr1 = apprenticeRate(ckr, "junior", 1, "completed")!;
 const elec = getTrade("electrical")!;
@@ -33,11 +34,11 @@ export const APPRENTICE_PAY_FAQS: Faq[] = [
   },
   {
     q: "Do apprentices get paid minimum wage?",
-    a: "No. Apprentice wages are set by the award as a percentage of the qualified tradesperson's rate, which is why a first-year apprentice can lawfully be paid less than the adult National Minimum Wage of $26.44 an hour. The National Minimum Wage order does not bind apprentice rates under a training contract.",
+    a: `No. Apprentice wages are set by the award as a percentage of the qualified tradesperson's rate, which is why a first-year apprentice can lawfully be paid less than the adult National Minimum Wage of ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. The National Minimum Wage order does not bind apprentice rates under a training contract.`,
   },
   {
     q: "What is a first-year apprentice carpenter paid in 2026?",
-    a: `Under the Building and Construction General On-site Award, a first-year carpentry apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the $1,119.10 standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the $41.22 carpenter tool allowance and the industry allowance on top for all purposes, so on a general building site the Fair Work Ombudsman pay guide puts the first-year minimum with Year 12 at ${formatAUD(carp1.hourly, 2)} an hour (${formatAUD(carp1.weekly, 2)} a week).`,
+    a: `Under the Building and Construction General On-site Award, a first-year carpentry apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the ${formatAUD(STANDARD_WEEKLY_RATE, 2)} standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the ${formatAUD(carpSpoke.payGuide!.toolAllowance, 2)} carpenter tool allowance and the industry allowance on top for all purposes, so on a general building site the Fair Work Ombudsman pay guide puts the first-year minimum with Year 12 at ${formatAUD(carp1.hourly, 2)} an hour (${formatAUD(carp1.weekly, 2)} a week).`,
   },
   {
     q: "What is a first-year apprentice chef paid?",
@@ -65,7 +66,7 @@ export const APPRENTICE_PAY_FAQS: Faq[] = [
   },
   {
     q: "How much tax does an apprentice pay?",
-    a: "Apprentices are taxed like other employees. The first $18,200 of income a year is tax-free for residents, then 15% to $45,000, so a first-year apprentice on the award minimum pays little income tax and the low income tax offset can cancel the rest. Use the calculator on this page to see the estimated take-home pay for your trade and year.",
+    a: `Apprentices are taxed like other employees. The first ${formatAUD(TAX_BRACKETS[0].max, 0)} of income a year is tax-free for residents, then ${Math.round(TAX_BRACKETS[1].rate * 100)}% to ${formatAUD(TAX_BRACKETS[1].max, 0)}, and the low income tax offset takes up to ${formatAUD(LITO.maxOffset, 0)} off the tax (the full ${formatAUD(LITO.maxOffset, 0)} on income up to ${formatAUD(LITO.fullOffsetCeiling, 0)}). Use the calculator on this page to see the estimated take-home pay for your trade and year.`,
   },
   {
     q: "Which trades are not on this page?",

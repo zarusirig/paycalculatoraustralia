@@ -40,17 +40,16 @@ export default function MinimumWageIncreaseJuly2026() {
         The national minimum wage rise applies to employees paid the national minimum wage. The
         separate modern award rise applies to award-reliant workers, whose pay is set only by a
         modern award: about 23% of employees, according to the ABS (May 2025). If you&apos;re on
-        an enterprise agreement or an over-award salary, nothing changes automatically, though many
-        agreements index their rates to the review. Check your award classification on our{" "}
+        an enterprise agreement or an over-award salary, nothing changes automatically. Check your award classification on our{" "}
         <Link href="/award-rates/">award rates guide</Link> if you&apos;re not sure which rate
         applies to you.
       </p>
 
       <h2>When it starts</h2>
       <p>
-        The new rates apply from the first full pay period starting on or after 1 July 2026. If your
-        pay cycle runs Wednesday to Tuesday, the new rate begins on the first Wednesday in July:
-        your first full July payslip may still show a few days at the old rate.
+        The new rates apply from the first full pay period starting on or after 1 July 2026. In 2026,
+        1 July fell on a Wednesday. If your pay cycle runs Monday to Sunday, your first full pay period
+        starts on Monday 6 July, so 1 to 5 July is still paid at the old rate.
       </p>
 
       <h2>What this means for your pay</h2>

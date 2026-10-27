@@ -1,0 +1,162 @@
+{
+ "name": "ff-041-final-pay-calculator",
+ "files": [
+  "modules/calculator/final-pay-calculator.tsx",
+  "modules/calculator/fortnightly-pay-calculator-content.tsx",
+  "modules/calculator/gross-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/final-pay-calculator.tsx:127",
+   "file": "modules/calculator/final-pay-calculator.tsx",
+   "line": "127",
+   "page": "/final-pay-calculator/",
+   "claims": [
+    "Final pay adds outstanding wages, unused annual leave, notice in lieu, long service leave and any redundancy pay, taxed at your marginal rate"
+   ],
+   "whys": [
+    "The code (lines 77-87) applies the overall effective rate (income tax less LITO plus Medicare, divided by salary) to the non-redundancy parts and leaves redundancy pay untaxed, so the page does not use the marginal rate. Under ATO rules, payment in lieu of notice and genuine redundancy above the tax-free limit are employment termination payments (ETP), and some unused leave gets concessional rates, so 'everything at your marginal rate' is also wrong as a rule. The disclaimer at line 220 already says 'effective rate'."
+   ],
+   "constants": [
+    "final-pay-calculator.tsx tax logic (lines 77-87); ETP cap and genuine redundancy tax-free limit constants if they exist in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/fortnightly-pay-calculator-content.tsx:318",
+   "file": "modules/calculator/fortnightly-pay-calculator-content.tsx",
+   "line": "318",
+   "page": "https://pay-calculator-australia.com/fortnightly-pay-calculator/",
+   "claims": [
+    "HECS-HELP repayments for employees with a study debt above {HECS_HELP.minimumThreshold}"
+   ],
+   "whys": [
+    "The HELP threshold applies to repayment income, not to the size of the study debt. Line 333 states the rule correctly."
+   ],
+   "constants": [
+    "HECS_HELP.minimumThreshold in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.61,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/fortnightly-pay-calculator-content.tsx:328",
+   "file": "modules/calculator/fortnightly-pay-calculator-content.tsx",
+   "line": "328",
+   "page": "https://pay-calculator-australia.com/fortnightly-pay-calculator/",
+   "claims": [
+    "The Medicare levy of 2% applies to all taxable income above the low-income threshold"
+   ],
+   "whys": [
+    "Read literally, this says the levy is charged only on income above the threshold. In fact there is a shade-in range above the low-income threshold, then 2% of the whole taxable income."
+   ],
+   "constants": [
+    "MEDICARE_LEVY in lib/constants (lowIncomeThreshold, shade-in upper threshold)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/fortnightly-pay-calculator-content.tsx:75",
+   "file": "modules/calculator/fortnightly-pay-calculator-content.tsx",
+   "line": "75",
+   "page": "https://pay-calculator-australia.com/fortnightly-pay-calculator/",
+   "claims": [
+    "Your salary does not rise that year; it is spread over one more pay"
+   ],
+   "whys": [
+    "This is employer-dependent. Many employers pay 27 full fortnightly amounts (annual / 26). That is the case the ATO's optional extra withholding covers. The sentence states one practice as the rule."
+   ],
+   "constants": [
+    "FORTNIGHTLY_EXTRA_PAY in modules/tax-tables/ato-schedules.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/fortnightly-pay-calculator-content.tsx:118",
+   "file": "modules/calculator/fortnightly-pay-calculator-content.tsx",
+   "line": "118",
+   "page": "https://pay-calculator-australia.com/fortnightly-pay-calculator/",
+   "claims": [
+    "the {TAX_BRACKETS.length} income tax brackets for FY2026-27"
+   ],
+   "whys": [
+    "The year is typed in by hand while every other figure uses SITE_CONFIG.financialYear, so it will go stale at the next financial-year rollover. The 1 July 2027 rate change and the $250 Working Australians Tax Offset at line 168 are also typed in by hand."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear; WATO amount and future 15%->14% rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.52,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/gross-pay-calculator-content.tsx:205",
+   "file": "modules/calculator/gross-pay-calculator-content.tsx",
+   "line": "205",
+   "page": "https://pay-calculator-australia.com/gross-pay-calculator/",
+   "claims": [
+    "Overtime is 'paid at penalty rates of 1.5x (time and a half) or 2.0x (double time)'"
+   ],
+   "whys": [
+    "Awards and Fair Work treat overtime rates and penalty rates as separate things, and overtime multipliers depend on the award (often 1.5x for the first 2 or 3 hours, then 2x). The text states them as a universal rule. I could not change 'penalty rates' to 'overtime rates' because a test or script matches the text 'penalty rates'."
+   ],
+   "constants": [
+    "EMPLOYMENT / award overtime data; 'penalty rates' test literal"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.04,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/gross-pay-calculator-content.tsx:208",
+   "file": "modules/calculator/gross-pay-calculator-content.tsx",
+   "line": "208",
+   "page": "https://pay-calculator-australia.com/gross-pay-calculator/",
+   "claims": [
+    "Leave loading of 17.5% is paid 'under many awards and enterprise agreements'"
+   ],
+   "whys": [
+    "Population claim with no count and no source cited on the page (brief lesson: population claims go to factQuestions)."
+   ],
+   "constants": [
+    "award leave-loading data, if any"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/gross-pay-calculator-content.tsx:79",
+   "file": "modules/calculator/gross-pay-calculator-content.tsx",
+   "line": "79",
+   "page": "https://pay-calculator-australia.com/gross-pay-calculator/",
+   "claims": [
+    "Medicare levy written as a literal '2%' at lines 79, 193 and 228, plus 'applies to most Australian residents' at line 79"
+   ],
+   "whys": [
+    "The figure is correct today (MEDICARE_LEVY.rate = 0.02), but it is typed into the copy while the lead paragraph uses MEDICARE_PCT, so it will not change if the constant does. 'Most Australian residents' is a population claim with no source."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate / MEDICARE_PCT"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.61,
+   "needsOwner": false
+  }
+ ]
+}

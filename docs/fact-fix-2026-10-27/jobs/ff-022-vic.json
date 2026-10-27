@@ -1,0 +1,91 @@
+{
+ "name": "ff-022-vic",
+ "files": [
+  "lib/data/public-service-pay/vic.ts",
+  "lib/data/salary-pages/tax-on-thresholds.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/public-service-pay/vic.ts:297",
+   "file": "lib/data/public-service-pay/vic.ts",
+   "line": "297",
+   "page": "/public-service-pay-scales/vic/",
+   "claims": [
+    "VPS 7.3.1 = $240,496, the same as VPS 7.2.5 (line 285); VPS 7.2 max equals VPS 7.3 min (lines 279, 294)"
+   ],
+   "whys": [
+    "Every other value range boundary steps up by at least $1 (6.1.7 $166,938 to 6.2.1 $166,939; 5.1.5 $128,631 to 5.2.1 $128,635). A duplicate figure across two ranges suggests a transcription slip from Schedule C."
+   ],
+   "constants": [
+    "VIC bands VPS 7.2 / VPS 7.3 payPoints"
+   ],
+   "reviewerNotes": [
+    "Confirmed. 7.2.5 (line 285) and 7.3.1 (line 297) are both $240,496, and VPS 7.2 max equals VPS 7.3 min (lines 279 and 294). Every other range boundary steps up. This looks like a possible transcription slip; check it against Schedule C."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.43,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/vic.ts:63",
+   "file": "lib/data/public-service-pay/vic.ts",
+   "line": "63",
+   "page": "/public-service-pay-scales/vic/",
+   "claims": [
+    "four annual increases of 3% each ... 12% over the life of the agreement"
+   ],
+   "whys": [
+    "Four 3% increases compound to about 12.55%, not 12%. '12%' is the simple sum. Either say 'about 12.6% compounded' or present it as the sum of the four increases."
+   ],
+   "constants": [
+    "VIC.payRise"
+   ],
+   "reviewerNotes": [
+    "Confirmed. payRise says '12% over the life of the agreement', but four compounding 3% increases come to about 12.55%. 12% is the simple sum."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.38,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/public-service-pay/vic.ts:365",
+   "file": "lib/data/public-service-pay/vic.ts",
+   "line": "365",
+   "page": "/public-service-pay-scales/vic/",
+   "claims": [
+    "the APS, where the median employer contribution is 15.4%: on a VPS 5 salary of about $128,000 the gap between the Superannuation Guarantee rate of 12% and 15.4% is worth about $4,350 a year"
+   ],
+   "whys": [
+    "15.4% is the standard PSSap employer rate, not a 'median'. The 12% SG rate and the $4,350 gap are typed into prose rather than taken from the SG rate constant, so they will go stale silently."
+   ],
+   "constants": [
+    "Superannuation Guarantee rate constant (lib constants) and APS superannuation data"
+   ],
+   "reviewerNotes": [
+    "Plausible. The superannuation text calls 15.4% the APS 'median' employer contribution, when it is the standard PSSap rate. The 12% SG rate and the $4,350 figure are typed into prose and will go stale; the arithmetic itself checks out (about 3.4% of $128,000)."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/salary-pages/tax-on-thresholds.ts:296",
+   "file": "lib/data/salary-pages/tax-on-thresholds.ts",
+   "line": "296",
+   "page": "/tax-on/[salary]/ (pages near $186,487 and $386,525: the 'Tax Thresholds Near' table)",
+   "claims": [
+    "Parental Leave Pay individual and family income tests use PPL_INCOME_TEST[\"2025-26\"] ($186,487 individual / $386,525 family), labelled income year 2025-26, while every other row in the table is 2026-27."
+   ],
+   "whys": [
+    "The PPL income test is indexed each 1 July. If a 2026-27 figure has been published, the row is a year stale. If 2025-26 is right because it is the income year assessed for current claims, the row is fine as it stands. Needs a check against Services Australia."
+   ],
+   "constants": [
+    "PPL_INCOME_TEST in calc-boiler/lib/constants/paid-parental-leave.ts (line 72, keys only 2024-25 and 2025-26)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.04,
+   "needsOwner": false
+  }
+ ]
+}

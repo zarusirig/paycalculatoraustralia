@@ -20,7 +20,7 @@ export default function PayslipGeneratorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Use This Payslip Generator</h2>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Enter employer details</strong>: the business name and ABN that must appear on every Australian payslip.</li>
+              <li><strong>Enter employer details</strong>: the business name that must appear on every Australian payslip, plus the ABN if the employer has one.</li>
               <li><strong>Add the employee and pay period</strong>: employee name, pay frequency, period start and end dates, and the date of payment.</li>
               <li><strong>Enter earnings</strong>: an hourly rate and hours worked, or an annual salary. Add overtime and allowances if they apply.</li>
               <li><strong>Check tax and super</strong>: the tool estimates PAYG withholding from the ATO tax rates and calculates the {(SUPER_GUARANTEE.rate * 100).toFixed(0)}% Super Guarantee. If you know the exact PAYG amount from your payroll software, type it in to override the estimate.</li>
@@ -36,7 +36,7 @@ export default function PayslipGeneratorContent() {
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Must a Payslip Include in Australia?</h2>
             <p className="mb-4 text-warmgray">
               Under the Fair Work Act 2009 and Fair Work Regulations 2009, an Australian payslip must include the employer&apos;s
-              name and ABN, the employee&apos;s name, the date of payment, the pay period, gross and net pay, and any
+              name and ABN (if it has one), the employee&apos;s name, the date of payment, the pay period, gross and net pay, and any
               superannuation contributions with the fund name. Hourly workers must also see their rate and hours.
             </p>
             <div className="overflow-x-auto mb-4">

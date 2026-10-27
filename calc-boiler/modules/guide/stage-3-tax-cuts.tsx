@@ -153,8 +153,8 @@ export default function Stage3TaxCutsPage() {
                       <tr><th className="px-5 py-3">Date</th><th className="px-5 py-3">Event</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">2018-19 Budget</td><td className="px-5 py-3">Three-stage Personal Income Tax Plan announced by Morrison government</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">1 July 2018</td><td className="px-5 py-3"><strong>Stage 1:</strong> Low and Middle Income Tax Offset (LMITO) introduced, worth up to $530</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">2018-19 Budget</td><td className="px-5 py-3">Three-stage Personal Income Tax Plan announced</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">1 July 2018</td><td className="px-5 py-3"><strong>Stage 1:</strong> Low and Middle Income Tax Offset (LMITO) introduced, worth up to $1,080 a year from 2018-19 to 2020-21 and up to $1,500 in 2021-22</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2020</td><td className="px-5 py-3"><strong>Stage 2:</strong> 19% bracket extended from $37,000 to $45,000; 32.5% bracket extended from $90,000 to $120,000</td></tr>
                       <tr><td className="px-5 py-3 font-medium">June 2022</td><td className="px-5 py-3">LMITO (Stage 1) expired and was not extended by the new Albanese government</td></tr>
                       <tr><td className="px-5 py-3 font-medium">25 January 2024</td><td className="px-5 py-3">Albanese government announces <strong>revised Stage 3</strong>: reduces bottom rate to 16%, retains 37% bracket, extends 30% bracket to $135,000</td></tr>

@@ -4,6 +4,7 @@ import { PILON_FAQS } from "@/modules/guide/payment-in-lieu-of-notice-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
+import { NES_NOTICE_BANDS, OVER_45_MIN_YEARS } from "@/lib/constants/notice-pilon";
 
 // Oct core batch (5 Oct 2026): "payment in lieu of notice" / "notice period
 // australia". The NES notice table and the tax and super treatment of PILON.
@@ -12,8 +13,7 @@ import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "payment-in-lieu-of-notice";
 const TITLE = "Payment in Lieu of Notice Australia: Notice, Tax & Super";
-const DESCRIPTION =
-  "Payment in lieu of notice in Australia: NES notice periods (1 to 4 weeks, plus 1 if over 45), what the payment must include, ETP tax rates and super on top.";
+const DESCRIPTION = `Payment in lieu of notice in Australia: NES notice of ${NES_NOTICE_BANDS[0].weeks} to ${NES_NOTICE_BANDS[NES_NOTICE_BANDS.length - 1].weeks} weeks (plus 1 if over 45 with ${OVER_45_MIN_YEARS}+ years' service), what the payment must include, ETP tax and super.`;
 
 export const metadata: Metadata = withFeaturedImage({
   title: TITLE,

@@ -1,0 +1,176 @@
+{
+ "name": "ff-122-payroll-tax-calculator-p",
+ "files": [
+  "modules/payroll-tax/payroll-tax-calculator-page.tsx",
+  "modules/payroll-tax/state-detail.ts",
+  "modules/state/pay-calculator-act.tsx",
+  "modules/state/pay-calculator-nt-faqs.ts",
+  "modules/state/pay-calculator-nt.tsx",
+  "modules/state/pay-calculator-tas.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/payroll-tax/payroll-tax-calculator-page.tsx:43",
+   "file": "modules/payroll-tax/payroll-tax-calculator-page.tsx",
+   "line": "43",
+   "page": "https://pay-calculator-australia.com/payroll-tax-calculator/",
+   "claims": [
+    "Rates run from 4% (Tasmania's first band) to 8.75% (ACT, above $150 million)"
+   ],
+   "whys": [
+    "SA's variable rate phases in from 0% to 4.95% between $1.5m and $1.7m of Australian wages (lib/constants/payroll-tax.ts lines 139-143, and the SA HOW_NOTE on the state page), so 4% is not the lowest rate any employer pays. Either say 'general rates' or name the SA phase-in, as the hub's direct answer does.",
+    "SA's phase-in rate runs from 0% to 4.95% between $1.5m and $1.7m of Australian wages, so 4% is not the floor. The hub (payroll-tax-hub-page.tsx line 40) already says 'with lower bands in Tasmania and South Australia'. Say 'general rates', or name the SA phase-in."
+   ],
+   "constants": [
+    "lib/constants/payroll-tax.ts (SA saRate / Tasmania lowerRate)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's fact question: 'Rates run from 4% (Tasmania's first band)'. SA's variable rate phases in from 0% to 4.95% between $1.5m and $1.7m (lib/constants/payroll-tax.ts SA rate), so 4% is not the lowest rate any employer pays. The hub direct answer (hub page line 40) already mentions the lower SA bands. This needs an owner or constants decision, so I did not change it."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.68,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/payroll-tax/state-detail.ts:265",
+   "file": "modules/payroll-tax/state-detail.ts",
+   "line": "265",
+   "page": "https://pay-calculator-australia.com/payroll-tax/sa/",
+   "claims": [
+    "Motor vehicle and accommodation allowances are exempt up to 88 cents a kilometre and $328.85 a night in 2026-27."
+   ],
+   "whys": [
+    "88 cents a kilometre is the ATO cents-per-km rate for 2024-25 and 2025-26. The string labels it 2026-27, so check that RevenueSA has confirmed the 2026-27 exempt rate and that this is not the previous year's figure carried forward.",
+    "88 cents/km is the ATO cents-per-km rate for 2024-25 and 2025-26. Confirm RevenueSA's 2026-27 exempt rates and check the figures were not carried forward from the previous year."
+   ],
+   "constants": [
+    "SA payroll tax exempt allowance rates (state-detail.ts sa.levies), or a shared ATO car cents-per-km constant if one exists"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question stands. The string labels the SA exempt motor vehicle allowance of 88 cents/km as 2026-27, but 88c is the ATO rate for 2024-25 and 2025-26. Someone needs to confirm that RevenueSA has published this rate for 2026-27 and that it is not last year's rate carried forward."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-act.tsx:153",
+   "file": "modules/state/pay-calculator-act.tsx",
+   "line": "153",
+   "page": "https://pay-calculator-australia.com/pay-calculator-act/",
+   "claims": [
+    "The ACT reaches the long service leave entitlement faster than anywhere else in Australia: 7 years (also the hero at line 67: 'the shortest wait for long service leave')."
+   ],
+   "whys": [
+    "The site's own data gives Victoria takeAfterYears: 7 as well (lib/data/state-employee/index.ts line 289; Long Service Leave Act 2018 (Vic)). The ACT ties with Victoria. It is only ahead on pro-rata (5 years, the same as NSW). Text was kept as is."
+   ],
+   "constants": [
+    "STATE_PROFILES.ACT.longServiceLeave.takeAfterYears vs STATE_PROFILES.VIC.longServiceLeave.takeAfterYears (lib/data/state-employee/index.ts lines 289, 394)"
+   ],
+   "reviewerNotes": [
+    "The wrong-looking claims were kept word for word: the ACT LSL 'fastest' (it ties with VIC at 7 years) and the ACT 'smallest gender gap' (TAS is smaller in the page's own data). The writer's fact questions are confirmed and should be passed on. The ACT payroll-tax and 12%/$3,400 hard-coded figures are unchanged."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.17,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-act.tsx:171",
+   "file": "modules/state/pay-calculator-act.tsx",
+   "line": "171",
+   "page": "https://pay-calculator-australia.com/pay-calculator-act/",
+   "claims": [
+    "ACT payroll tax '6.75%, rising with payroll size' on employers with 'more than $1.75 million of Australian wages'."
+   ],
+   "whys": [
+    "Matches PAYROLL_TAX_STATES.act today, but the figures are typed into prose instead of coming from the constant, so they will drift on the next threshold change."
+   ],
+   "constants": [
+    "PAYROLL_TAX_STATES.act.headlineRate / annualThreshold (lib/constants/payroll-tax.ts line 610)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-act.tsx:127",
+   "file": "modules/state/pay-calculator-act.tsx",
+   "line": "127",
+   "page": "https://pay-calculator-australia.com/pay-calculator-act/",
+   "claims": [
+    "'compared to the standard SG rate of 12%. This adds $3,400 per year in additional super for an employee on $100,000.'"
+   ],
+   "whys": [
+    "Correct at 12% SG, but 12% and $3,400 are hard-coded and not derived from SUPER_GUARANTEE.rate, while the paragraph below uses the constant."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.5,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-nt-faqs.ts:31",
+   "file": "modules/state/pay-calculator-nt-faqs.ts",
+   "line": "31",
+   "page": "https://pay-calculator-australia.com/pay-calculator-nt/",
+   "claims": [
+    "In the NT, you are entitled to 13 weeks of long service leave after 10 years of continuous service"
+   ],
+   "whys": [
+    "The wording matches the entitlement in the Long Service Leave Act 1981 (NT), and the writer's removal of 'may be eligible' is correct. But the answer feeds FAQPage schema and reads on its own, and its 'you' covers groups the Act does not: NT Government and Australian Government employees and NT Build construction workers, who the page body excludes at source line ~166. The owner should confirm the standalone answer is acceptable without that qualifier. It could be added in a later pass, for example 'employees covered by the NT Act'."
+   ],
+   "constants": [
+    "none (hard-coded prose); exclusions stated in modules/state/pay-calculator-nt.tsx ~line 166"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.35,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/state/pay-calculator-nt.tsx:67",
+   "file": "modules/state/pay-calculator-nt.tsx",
+   "line": "67",
+   "page": "https://pay-calculator-australia.com/pay-calculator-nt/",
+   "claims": [
+    "the zone tax offset, which every NT resident can claim",
+    "the zone tax offset, which NT residents claim in their tax return"
+   ],
+   "whys": [
+    "This contradicted the page's own residency test (more than half the income year in the zone, line 103 and the NT FAQ). FIFO workers are also excluded from the offset. I rewrote it as 'which NT residents claim in their tax return'. A reviewer should confirm that wording is acceptable.",
+    "The writer's replacement for 'every NT resident can claim' is acceptable. It describes how the offset is claimed, not who is eligible, and line 102 states the more-than-half-the-year test. Writer factQuestions on lines 123, 130, 141 and 173 (the hard-coded ABS rankings, the count of 15 public holidays, and 'most NT employers') are endorsed: they are stale-risk or unsourced claims and should be derived from data or sourced."
+   ],
+   "constants": [
+    "none (hard-coded prose)",
+    "STATE_PROFILES.NT (awote, public holidays); STATE_PAYROLL_TAX.NT"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.72,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-tas.tsx:160",
+   "file": "modules/state/pay-calculator-tas.tsx",
+   "line": "160",
+   "page": "/pay-calculator-tas/",
+   "claims": [
+    "Tasmania's payroll tax starts at 4% (6.1% once an employer's Australian wages pass $2 million)"
+   ],
+   "whys": [
+    "The rates and the $2 million tier are typed into prose rather than drawn from the payroll-tax constants. The figures match PAYROLL_TAX_STATES.tas.rateSummary today, but they will drift if the constant changes."
+   ],
+   "constants": [
+    "PAYROLL_TAX_STATES.tas (lib/constants/payroll-tax.ts ~line 587) / TAS_PAYROLL_TAX"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.12,
+   "needsOwner": false
+  }
+ ]
+}

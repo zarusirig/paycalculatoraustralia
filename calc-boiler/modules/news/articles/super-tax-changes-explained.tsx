@@ -6,8 +6,8 @@ export default function SuperTaxChangesExplained() {
     <>
       <p className="lead">
         Several superannuation changes landed together in 2026-27: payday super, Division 296 tax,
-        and higher contribution and transfer balance caps. Most Australians are affected by the
-        first and third. Division 296 tax only hits people with a total super balance above{" "}
+        and higher contribution and transfer balance caps. Payday super applies to every employee
+        paid super guarantee. Division 296 tax only hits people with a total super balance above{" "}
         <strong>$3 million</strong>.
       </p>
 
@@ -27,9 +27,8 @@ export default function SuperTaxChangesExplained() {
         pay super guarantee with every pay run and get it into your fund within 7 business days,
         replacing the old quarterly payment cycle. It doesn&apos;t change your super rate, but it
         does mean your contributions start earning returns sooner, and it gives the ATO much faster
-        visibility into employers who fall behind. For most workers, this is the single biggest
-        practical change of the 2026-27 super reforms, since it affects every payday rather than a
-        small subset of very large balances.
+        visibility into employers who fall behind. It affects every payday, not only very large
+        balances.
       </p>
 
       <h2>Division 296 tax: a small group, a big change</h2>
@@ -38,12 +37,10 @@ export default function SuperTaxChangesExplained() {
         above $3 million, and a further 10% above $10 million. The original proposal was
         controversial because it would have taxed unrealised gains, but the law as passed uses
         realised earnings that each super fund calculates and reports to the ATO. The extra tax
-        applies only if your total super balance exceeds $3 million, which covers a small share of super members,
-        concentrated in large self-managed super funds. See our full{" "}
+        applies only if your total super balance exceeds $3 million. See our full{" "}
         <Link href="/division-293-tax/">Division 293 tax guide</Link> for how it interacts with
         existing high-income super settings. Both the $3 million and $10 million thresholds are
-        indexed to CPI over time, so the number of people affected should grow only gradually rather
-        than jumping sharply as balances rise with contributions and investment growth.
+        indexed in line with CPI.
       </p>
 
       <h2>Why the government made these changes</h2>
@@ -61,7 +58,7 @@ export default function SuperTaxChangesExplained() {
       <p>
         Separately from Division 296, the concessional contributions cap rose to $32,500 and the
         non-concessional cap to $130,000, alongside the general transfer balance cap moving to $2.1
-        million. These increases give most super members more room to grow their balance through
+        million. These increases give super members more room to grow their balance through
         salary sacrifice or after-tax contributions before hitting a cap. The concessional cap
         increase in particular benefits anyone using salary sacrifice to reduce taxable income, since
         it creates extra headroom before the additional-tax rules for excess contributions kick in.
@@ -69,7 +66,7 @@ export default function SuperTaxChangesExplained() {
 
       <h2>What this means for your pay</h2>
       <p>
-        For most people, the practical impact of the 2026-27 super changes is employer super
+        For an employee, the practical impact of the 2026-27 super changes is employer super
         reaching your fund sooner and more reliably under payday super, plus more headroom in the contribution caps if you&apos;re topping
         up your balance. Model your position with our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link>, and only worry

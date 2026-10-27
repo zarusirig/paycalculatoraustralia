@@ -3,7 +3,9 @@
 // app/contractor-vs-employee-calculator/page.tsx, so the structured data
 // cannot drift from the page. Figures come from lib/constants.
 
-import { formatAUD, formatPercent, GENERAL_INTEREST_CHARGE, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { EMPLOYMENT, formatAUD, formatPercent, GENERAL_INTEREST_CHARGE, MEDICARE_LEVY, SITE_CONFIG, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { GST_RATE } from "@/lib/constants/company-tax";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import type { FaqItem } from "@/lib/faq";
 
@@ -11,6 +13,14 @@ const FY = SITE_CONFIG.financialYear;
 const CC_CAP = formatAUD(SUPER_GUARANTEE.concessionalCap);
 const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
 const GIC_PCT = formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2);
+const GST_THRESHOLD = formatAUD(GST_REGISTRATION_THRESHOLD);
+const GST_PCT = formatPercent(GST_RATE, 0);
+// NES leave as a share of a 52-week, 260-weekday year: 4 weeks / 52, 10 days / 260.
+const ANNUAL_LEAVE_PCT = formatPercent(EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear, 1);
+const PERSONAL_LEAVE_PCT = formatPercent(EMPLOYMENT.personalLeaveDays / (EMPLOYMENT.weeksPerYear * 5), 1);
+// No-ABN withholding is the top rate plus Medicare levy (47% from 1 July 2017).
+// https://www.ato.gov.au/forms-and-instructions/statement-by-supplier-not-quoting-an-abn
+const NO_ABN_PCT = formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate, 0);
 
 // Sham contracting maximums, Fair Work Act ss 357–359, 539: 60 penalty units
 // (individual), 300 (business with fewer than 15 employees), 1,500 (15 or
@@ -32,15 +42,15 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need to register for GST as a contractor?",
-    a: "You must register for GST if your annual business turnover is $75,000 or more. If it's below $75,000, registration is optional. When registered, you charge clients an additional 10% GST on your invoices and remit it to the ATO quarterly via your Business Activity Statement (BAS).",
+    a: `You must register for GST if your annual business turnover is ${GST_THRESHOLD} or more. If it's below ${GST_THRESHOLD}, registration is optional. When registered, you charge clients an additional ${GST_PCT} GST on your invoices and remit it to the ATO quarterly via your Business Activity Statement (BAS).`,
   },
   {
     q: "Can I just decide to be a contractor?",
-    a: "No. The ATO uses a strict multi-factor test to determine if you are genuinely a contractor or an employee for tax and super purposes. It depends on the working arrangement (e.g., control over work, providing your own tools, bearing financial risk), not just what your contract says. \"Sham contracting\" penalties apply to employers who get this wrong.",
+    a: "No. For tax and super, the ATO looks at the legal rights and obligations in your contract as a whole (who controls the work, whether you can delegate it, who bears the commercial risk and who supplies the tools), not the label the contract uses (Taxation Ruling TR 2023/4). For Fair Work purposes, from 26 August 2024 companies use the whole of relationship test, which looks at the real substance, practical reality and true nature of the working relationship. Sham contracting penalties apply to a business that tells an employee they are a contractor, unless it proves it reasonably believed they were one.",
   },
   {
     q: "How much more should a contractor charge than an employee salary?",
-    a: `A contractor should charge 30 to 45% above the equivalent employee salary to cover the superannuation guarantee (${SG_PCT}), annual leave (7.6%), personal leave (3.8%), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately $135,000 to $145,000 before GST.`,
+    a: `A contractor should charge 30 to 45% above the equivalent employee salary to cover the superannuation guarantee (${SG_PCT}), annual leave (${ANNUAL_LEAVE_PCT}), personal leave (${PERSONAL_LEAVE_PCT}), insurance ($1,000 to $3,000), and admin costs ($2,000 to $4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately $135,000 to $145,000 before GST.`,
   },
   {
     q: "Do contractors need income protection insurance?",
@@ -52,11 +62,11 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do independent contractors pay their own tax?",
-    a: "Yes, independent contractors are responsible for managing their own tax affairs through their ABN. Clients do not withhold PAYG tax from a contractor's invoices the way an employer withholds it from an employee's pay, unless a voluntary withholding agreement is in place.",
+    a: `Yes, independent contractors are responsible for managing their own tax affairs through their ABN. Clients do not withhold PAYG tax from a contractor's invoices the way an employer withholds it from an employee's pay, unless a voluntary withholding agreement is in place. If you don't quote your ABN and a payment is more than $75 excluding GST, the client must withhold ${NO_ABN_PCT} and send it to the ATO, unless an exception applies.`,
   },
   {
     q: "Do contractors pay PAYG instalments?",
-    a: `Yes. The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs the general interest charge (GIC), which was ${GIC_PCT} a year for ${GENERAL_INTEREST_CHARGE.quarter} and resets every quarter.`,
+    a: `Only once the ATO enters you, or you enter voluntarily. The ATO automatically enters an individual or sole trader whose latest tax return shows instalment income of $4,000 or more, whose latest notice of assessment shows tax payable of $1,000 or more, and whose estimated (notional) tax is $500 or more. Instalments are due quarterly (or once or twice a year if you use the annual or two-instalment option) and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs the general interest charge (GIC), which was ${GIC_PCT} a year for ${GENERAL_INTEREST_CHARGE.quarter} and resets every quarter.`,
   },
   {
     q: "What is the main difference between an employee and a contractor?",
@@ -64,7 +74,7 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does having an ABN automatically make me a contractor?",
-    a: "No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The actual working arrangement, including control, tools, risk, and integration, determines the true classification.",
+    a: "No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The legal rights and obligations of the whole arrangement, including control, tools, risk, and integration, determine the true classification.",
   },
   {
     q: "Are contractors entitled to superannuation?",
@@ -81,11 +91,11 @@ export const CONTRACTOR_VS_EMPLOYEE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do contractors have to charge GST?",
-    a: "GST registration is mandatory once a contractor's annual turnover reaches $75,000. Below that threshold, registration is optional. Registered contractors charge 10% GST on every invoice and can claim GST credits on business purchases. Employees do not charge GST on their wages.",
+    a: `GST registration is mandatory once a contractor's annual turnover reaches ${GST_THRESHOLD}. Below that threshold, registration is optional. Registered contractors charge ${GST_PCT} GST on every invoice and can claim GST credits on business purchases. Employees do not charge GST on their wages.`,
   },
   {
     q: "Do contractors pay more tax than employees?",
-    a: `Contractors and employees earning the same taxable income pay the same income tax: the FY${FY} tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.`,
+    a: `Contractors and employees earning the same taxable income pay the same income tax rates: the FY${FY} tax brackets and Medicare levy apply identically. One exception: a sole trader whose business has an aggregated turnover under $5 million can claim the small business income tax offset, 16% of the tax on their net small business income, up to $1,000 a year. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.`,
   },
   {
     q: "Is it legal to work for only one client as a contractor?",

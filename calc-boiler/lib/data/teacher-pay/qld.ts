@@ -298,7 +298,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is a principal paid in Queensland?",
-      a: "Principal salaries run from $146,776 at Level 1 to $242,573 at Level 10 from 7 September 2026, on the department's salary schedule. Deputy principals are paid $161,746 to $164,605 and heads of department $145,320 to $155,351.",
+      a: "Principal salaries run from $146,776 at Level 1 to $242,573 at Level 10 from 7 September 2026, on the department's salary schedule. Deputy principals are paid $161,746 to $164,605 and heads of department $145,320 to $148,003.",
     },
     {
       q: "What is the supply teacher rate in Queensland?",

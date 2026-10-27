@@ -1,6 +1,31 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
 import { SITE_CONFIG } from "@/lib/constants";
+import {
+  EMPLOYMENT,
+  HECS_HELP,
+  MEDICARE_LEVY,
+  TAX_BRACKETS,
+  calculateIncomeTax,
+  calculateLITO,
+  calculateMedicareLevy,
+  formatAUD,
+  formatPercent,
+} from "@/lib/constants/australian-tax";
+import { calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
+
+// Every figure below comes from the site's FY2026-27 tax and withholding engines.
+const WEEKLY_GROSS = EMPLOYMENT.minimumWageWeekly;
+const ANNUAL_GROSS = WEEKLY_GROSS * EMPLOYMENT.weeksPerYear;
+const WEEKLY = calculatePAYGWithholding(WEEKLY_GROSS, "weekly");
+const FORTNIGHTLY = calculatePAYGWithholding(WEEKLY_GROSS * 2, "fortnightly");
+const ANNUAL_TAX = Math.round(
+  calculateIncomeTax(ANNUAL_GROSS) - calculateLITO(ANNUAL_GROSS) + calculateMedicareLevy(ANNUAL_GROSS)
+);
+const ANNUAL_NET = ANNUAL_GROSS - ANNUAL_TAX;
+const WEEKLY_WITHHELD_FOR_YEAR = WEEKLY.paygWithheld * EMPLOYMENT.weeksPerYear;
+const BRACKET_30 = TAX_BRACKETS[2];
+const SLICE_AT_30 = ANNUAL_GROSS - (BRACKET_30.min - 1);
 
 export default function NewMinimumWageTakeHomePay() {
   return (
@@ -16,17 +41,18 @@ export default function NewMinimumWageTakeHomePay() {
           { label: "Minimum wage (hourly)", after: "$26.44" },
           { label: "Minimum wage (weekly, 38 hrs)", after: "$1,004.90" },
           { label: "Minimum wage (annual, full-time)", after: "$52,254.80" },
-          { label: "Weekly take-home (approx.)", after: "$869.90" },
+          { label: "Weekly take-home (approx.)", after: formatAUD(WEEKLY.netPerPeriod, 2) },
           { label: "Casual rate (25% loading)", after: "$33.05/hr" },
         ]}
       />
 
       <h2>How the take-home figures were worked out</h2>
       <p>
-        The take-home figures on this page come from our FY2026-27 PAYG withholding engine,
-        which follows the Australian Taxation Office&apos;s Statement of Formulas (NAT 1004). It
-        annualises the pay period earnings, applies the FY2026-27 resident tax scale, the Low
-        Income Tax Offset and the shaded Medicare levy, then divides back to the pay period. The figures below assume a single Australian resident who claims the tax-free
+        The weekly and fortnightly figures on this page come from our FY2026-27 PAYG withholding
+        engine, which follows the Australian Taxation Office&apos;s Statement of Formulas (NAT
+        1004). It converts each pay to a weekly amount and applies the ATO&apos;s formula for a
+        payee who claims the tax-free threshold. The annual figure is the tax for the full year:
+        the FY2026-27 resident tax scale, less the Low Income Tax Offset, plus the Medicare levy. The figures below assume a single Australian resident who claims the tax-free
         threshold and has no HECS-HELP or other study loan debt. You can see how the same
         withholding rates apply at other income levels on our{" "}
         <Link href="/weekly-tax-table/">weekly tax table</Link>.
@@ -46,20 +72,20 @@ export default function NewMinimumWageTakeHomePay() {
             <tr>
               <td className="px-4 py-2.5 font-medium">Weekly</td>
               <td className="px-4 py-2.5">$1,004.90</td>
-              <td className="px-4 py-2.5">$135.00</td>
-              <td className="px-4 py-2.5 font-semibold">$869.90</td>
+              <td className="px-4 py-2.5">{formatAUD(WEEKLY.totalWithheld, 2)}</td>
+              <td className="px-4 py-2.5 font-semibold">{formatAUD(WEEKLY.netPerPeriod, 2)}</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5 font-medium">Fortnightly</td>
               <td className="px-4 py-2.5">$2,009.80</td>
-              <td className="px-4 py-2.5">$270.00</td>
-              <td className="px-4 py-2.5 font-semibold">$1,739.80</td>
+              <td className="px-4 py-2.5">{formatAUD(FORTNIGHTLY.totalWithheld, 2)}</td>
+              <td className="px-4 py-2.5 font-semibold">{formatAUD(FORTNIGHTLY.netPerPeriod, 2)}</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5 font-medium">Annual</td>
               <td className="px-4 py-2.5">$52,254.80</td>
-              <td className="px-4 py-2.5">$7,025.00</td>
-              <td className="px-4 py-2.5 font-semibold">$45,229.80</td>
+              <td className="px-4 py-2.5">{formatAUD(ANNUAL_TAX, 2)}</td>
+              <td className="px-4 py-2.5 font-semibold">{formatAUD(ANNUAL_NET, 2)}</td>
             </tr>
           </tbody>
         </table>
@@ -67,23 +93,28 @@ export default function NewMinimumWageTakeHomePay() {
 
       <h2>Why weekly tax isn&apos;t simply annual tax ÷ 52</h2>
       <p>
-        Withholding is worked out by annualising each pay period first, so weekly and fortnightly
-        withholding land on slightly different totals than a straight division of the annual tax
-        figure once you account for rounding. The ATO publishes the exact amounts, and you can
+        Withholding uses the ATO&apos;s formulas, which work on each pay and round to the dollar,
+        so they do not land exactly on the annual tax. A full year of weekly withholding comes to{" "}
+        {formatAUD(WEEKLY_WITHHELD_FOR_YEAR)}, which is{" "}
+        {formatAUD(WEEKLY_WITHHELD_FOR_YEAR - ANNUAL_TAX)} more than the annual tax of{" "}
+        {formatAUD(ANNUAL_TAX)}. You get the difference back when you lodge your tax return. The ATO publishes the exact amounts, and you can
         look them up in our{" "}
         <Link href="/payg-withholding-tables/">weekly tax table {SITE_CONFIG.financialYear}</Link> and{" "}
         <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>. On a $52,254.80 annual income, the Low Income Tax
-        Offset trims about $216 off the tax bill and the Medicare levy is shaded rather than
-        charged in full, because earnings sit close to the low-income threshold. Together these
-        keep the effective tax rate on minimum-wage earnings well under 15%.
+        Offset trims about {formatAUD(calculateLITO(ANNUAL_GROSS))} off the tax bill. The Medicare
+        levy applies in full at {formatPercent(MEDICARE_LEVY.rate, 0)}, because this income is well above the low-income range where
+        the levy is reduced. Together these keep the effective tax rate on minimum-wage earnings
+        under 15%.
       </p>
       <p>
         Under the tax-free threshold, the first $18,200 of annual income isn&apos;t taxed at all,
         and the 15% rate that applies from FY2026-27 covers most of
-        the remaining minimum-wage earnings up to $45,000. Because a full-time minimum-wage income
-        sits only just above that $45,000 mark, very little of it is taxed at the higher 30% rate,
-        which is why the effective average tax rate on the whole $52,254.80 works out closer to
-        13.4%.
+        the remaining minimum-wage earnings up to $45,000. A full-time minimum-wage income sits{" "}
+        {formatAUD(SLICE_AT_30, 2)} above that mark, and that slice is taxed at the higher{" "}
+        {formatPercent(BRACKET_30.rate, 0)} rate, adding about{" "}
+        {formatAUD(SLICE_AT_30 * BRACKET_30.rate)} of tax. After the offset and the Medicare levy,
+        the effective average tax rate on the whole {formatAUD(ANNUAL_GROSS, 2)} works out to about{" "}
+        {formatPercent(ANNUAL_TAX / ANNUAL_GROSS, 1)}.
       </p>
 
       <h2>Casuals and part-timers</h2>
@@ -117,10 +148,12 @@ export default function NewMinimumWageTakeHomePay() {
 
       <h2>What this means for your pay</h2>
       <p>
-        If you&apos;re paid the full-time national minimum wage, expect roughly $870 a week, $1,740 a fortnight or
-        $45,230 a year after tax under the new rate, assuming you claim the tax-free threshold and
-        carry no HECS debt. Your figures will differ if you have a study loan, salary sacrifice
-        arrangements or additional income. Run your exact hours and pay cycle through our{" "}
+        If you&apos;re paid the full-time national minimum wage, expect about{" "}
+        {formatAUD(WEEKLY.netPerPeriod)} a week or {formatAUD(FORTNIGHTLY.netPerPeriod)} a
+        fortnight after withholding, and {formatAUD(ANNUAL_NET)} a year after tax under the new
+        rate, assuming you claim the tax-free threshold. Your figures will differ if you have
+        salary sacrifice arrangements or additional income, and a study loan adds a repayment only
+        once your total repayment income passes {formatAUD(HECS_HELP.minimumThreshold)}. Run your exact hours and pay cycle through our{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to get a precise
         after-tax number for your situation.
       </p>

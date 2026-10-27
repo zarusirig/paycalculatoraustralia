@@ -1,0 +1,179 @@
+{
+ "name": "ff-014-lawyer",
+ "files": [
+  "lib/data/job-pay-rates/lawyer.ts",
+  "lib/data/job-pay-rates/medical-receptionist.ts",
+  "lib/data/job-pay-rates/midwife.ts",
+  "lib/data/job-pay-rates/nurse.ts",
+  "lib/data/job-pay-rates/pathology-collector.ts",
+  "lib/data/job-pay-rates/payroll-officer.ts",
+  "lib/data/job-pay-rates/pharmacist.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/lawyer.ts:133",
+   "file": "lib/data/job-pay-rates/lawyer.ts",
+   "line": "133",
+   "page": "/job-pay-rates/lawyer/",
+   "claims": [
+    "Law graduates covered by the Legal Services Award get 150% for the first 3 hours of overtime and 200% after that."
+   ],
+   "whys": [
+    "The penalties table and overtime list (lines 98-106) attach the 150%/200% split only to Monday to Saturday until 12 noon. Overtime after 12 noon Saturday and on Sunday is 200% from the first hour, and public holidays are 250%. The FAQ answer leaves out that condition, so it overstates the 150% band for weekend overtime. This pass cannot add the time condition because it would add new figures."
+   ],
+   "constants": [
+    "Legal Services Award cl 20.2 (penalties/overtime arrays in lawyer.ts)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's factQuestion. The FAQ attaches the 150%/200% split to all law graduate overtime, but cl 20.2 (the penalties array, lines 98-106) limits it to Monday to Saturday until 12 noon. Overtime from Saturday 12 noon and on Sunday is 200% from the first hour. This pass cannot add the condition."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.74,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/medical-receptionist.ts:90",
+   "file": "lib/data/job-pay-rates/medical-receptionist.ts",
+   "line": "90",
+   "page": "/job-pay-rates/medical-receptionist/",
+   "claims": [
+    "Receptionists in public hospitals are generally paid under state public-sector health agreements rather than this award."
+   ],
+   "whys": [
+    "A hedged coverage claim with no cited source. It is probably right, but the page cites no state agreement and no FWO guidance for it."
+   ],
+   "constants": [
+    "none (a state public-health agreement source would be needed)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.17,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/midwife.ts:81",
+   "file": "lib/data/job-pay-rates/midwife.ts",
+   "line": "81",
+   "page": "/job-pay-rates/midwife/",
+   "claims": [
+    "Most Australian midwives work in state public hospitals, and they are not paid under this award."
+   ],
+   "whys": [
+    "Population claim with no figure and no cited source on the page (JSA/ABS/AIHW workforce share is not quoted). Left unchanged."
+   ],
+   "constants": [
+    "Needs a sourced share (e.g. AIHW/NHWDS midwife workforce by sector) in midwife.ts or a shared nursing-pay constant, or soften to a sourced statement."
+   ],
+   "reviewerNotes": [
+    "The writer's fact question stands: 'Most Australian midwives work in state public hospitals' is a population claim with no source on the page."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/nurse.ts:241",
+   "file": "lib/data/job-pay-rates/nurse.ts",
+   "line": "241",
+   "page": "/job-pay-rates/nurse/",
+   "claims": [
+    "FAQ answers hard-code $32.09, $1,219.50, $63,414, $38.57, $41.36, $40.11, $60.17, $56.16 and $113,984."
+   ],
+   "whys": [
+    "The figures check out against nurses-award-2020.ts today, but they are typed and not derived from the scale data, so they will go stale at the next Annual Wage Review. The enrolled nurse FAQ in the same file already derives its figures."
+   ],
+   "constants": [
+    "NURSES_AWARD_GENERAL / NURSES_AWARD_AGED_CARE in lib/data/nursing-pay/nurses-award-2020.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.84,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/pathology-collector.ts:101",
+   "file": "lib/data/job-pay-rates/pathology-collector.ts",
+   "line": "101",
+   "page": "/job-pay-rates/pathology-collector/",
+   "claims": [
+    "FAQ 'Does a Certificate III in pathology collection increase your pay?' answers 'Yes, once you have 12 months' experience.'",
+    "'Does a Certificate III in pathology collection increase your pay?' answers 'Yes, once you have 12 months' experience.'"
+   ],
+   "whys": [
+    "The page's own table pays more for a Cert III before 12 months too. A qualified collector under 12 months is Level 6 at $30.63, and an unqualified one under 12 months is Level 5 at $30.45. So the 'once you have 12 months' condition looks wrong. The bigger gap ($32.67 vs $31.67/$30.63) only opens after 12 months.",
+    "The page's own table pays a Cert III collector more before 12 months too: Level 6 at $30.63 against Level 5 at $30.45. From 12 months to 2 years the gap is larger: Level 7 qualified at $32.67 against Level 6 unqualified at $30.63. The condition 'once you have 12 months' understates when the Cert III premium starts."
+   ],
+   "constants": [
+    "pathology-collector.ts tables[collectors].rows (cl 16.2(c))"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. The FAQ says a Cert III raises pay 'once you have 12 months' experience', but by the page's own table a Cert III already pays more under 12 months (Level 6 at $30.63 vs Level 5 at $30.45). Between 12 months and 2 years the gap is $32.67 vs $30.63. Passed on as a fact question, text not changed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.52,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/payroll-officer.ts:111",
+   "file": "lib/data/job-pay-rates/payroll-officer.ts",
+   "line": "111",
+   "page": "/job-pay-rates/payroll-officer/",
+   "claims": [
+    "From 1 July 2026 the superannuation guarantee must be paid with each pay run under Payday Super",
+    "The ATO reissued the tables 'to carry the Treasury Laws Amendment (More Cost of Living Relief) Act 2025'"
+   ],
+   "whys": [
+    "Payday Super requires contributions to reach the fund within a set number of days after payday. 'Paid with each pay run' simplifies that rule, so check it against the ATO wording. The same claim appears in the FAQ at line 132.",
+    "The Medicare levy low-income thresholds and the study loan indexation come from separate legislation, not from this Act. The split now reads correctly, but the reviewer should confirm that the Act is cited only for the 16% to 15% rate change."
+   ],
+   "constants": [
+    "Payday Super rule (ATO), lib/constants super constants if held"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.69,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/payroll-officer.ts:113",
+   "file": "lib/data/job-pay-rates/payroll-officer.ts",
+   "line": "113",
+   "page": "/job-pay-rates/payroll-officer/",
+   "claims": [
+    "From the first full pay period on or after 1 December 2026, employees aged 18 to 20 with more than six months' service under the retail, fast food and pharmacy awards move onto a new junior rate schedule"
+   ],
+   "whys": [
+    "This is a specific FWC decision date and scope that is not cited on the page. Confirm the decision reference and that it covers all three awards."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 4.62,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/pharmacist.ts:186",
+   "file": "lib/data/job-pay-rates/pharmacist.ts",
+   "line": "186",
+   "page": "/job-pay-rates/pharmacist/",
+   "claims": [
+    "Victoria's new agreement 'had not been approved as at 19 October 2026'."
+   ],
+   "whys": [
+    "The publicHospital intro (line 234) says 'These are the rates in force on 23 October 2026'. The two dates on one page differ, so the Victorian status needs re-checking and one date needs to be chosen.",
+    "The publicHospital intro (line 234) says the rates are in force on 23 October 2026. Re-check the Victorian approval status and use one as-at date on the page (HOSPITAL_PAGES_MODIFIED / public-health-allied-pay VIC entry)."
+   ],
+   "constants": [
+    "lib/data/public-health-allied-pay (VIC pharmacist entry) / HOSPITAL_PAGES_MODIFIED"
+   ],
+   "reviewerNotes": [
+    "The Victorian agreement status is given 'as at 19 October 2026', while the publicHospital intro (line 234) says the rates are in force on 23 October 2026. These might not contradict each other, but the owner should re-check the status and use one date. Passed on as a fact question."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.46,
+   "needsOwner": false
+  }
+ ]
+}

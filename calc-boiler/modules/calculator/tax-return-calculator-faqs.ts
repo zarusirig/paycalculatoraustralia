@@ -4,7 +4,7 @@
 // engine in tax-return-2025-26.ts, the year switch in tax-return-estimator.ts,
 // and the dates in tax-calendar-2026-27.ts.
 
-import { formatAUD } from "@/lib/constants";
+import { TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
 import { HECS_HELP_2025_26 } from "@/lib/constants/australian-tax";
 import { MLS_2025_26_SINGLE, RETURN_2026, helpRepayment2025_26 } from "@/lib/constants/tax-return-2025-26";
 import { RETURN_YEARS, estimateReturn } from "@/lib/constants/tax-return-estimator";
@@ -63,7 +63,7 @@ export const TAX_RETURN_CALCULATOR_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Why do I owe tax when I have two jobs?",
-    a: "Each employer works out withholding as if its job were your only income. Only one employer should apply the $18,200 tax-free threshold. If you claim it from both, too little tax is withheld and you get a bill at tax time. Claim the threshold from your main job only and tick \"no\" on the tax file number declaration for the others.",
+    a: `Each employer works out withholding as if its job were your only income. Only one employer should apply the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold. If you claim it from both, too little tax is withheld and you get a bill at tax time. Claim the threshold from your main job only and tick "no" on the tax file number declaration for the others.`,
   },
   {
     q: "Is it better to lodge my tax return early or wait?",

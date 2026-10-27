@@ -263,9 +263,12 @@ export const JOBSEEKER_RATES: Record<RateSetKey, JobseekerRateSet> = {
 };
 
 /**
- * The income test itself. Free areas and tapers index on 1 July, not on
- * 20 September, so there is one undated set. Verified 28 August 2026 and
- * unchanged by the 20 September 2026 indexation.
+ * The income test itself. None of these figures index: DSS Social Security
+ * Guide 4.10.2 (Note L) says 1 July indexation of the income free area ceased
+ * when it rose to $150 on 1 April 2021, and the $256 threshold has stayed put
+ * since 1 July 2020. The tapers are fixed rates. So there is one undated set.
+ * Verified 28 August 2026, unchanged by the 20 September 2026 indexation, and
+ * checked against the DSS guide on 27 October 2026.
  */
 export const JOBSEEKER_INCOME_TEST = {
   freeArea: 150,

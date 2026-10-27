@@ -1,0 +1,169 @@
+{
+ "name": "ff-125-monthly-tax-table",
+ "files": [
+  "modules/tax-tables/monthly-tax-table.tsx",
+  "modules/tax-tables/schedule-5-tax-table-faqs.ts",
+  "modules/tax-tables/schedule-5-tax-table.tsx",
+  "modules/tax-tables/table-downloads.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/tax-tables/monthly-tax-table.tsx:114",
+   "file": "modules/tax-tables/monthly-tax-table.tsx",
+   "line": "114",
+   "page": "https://pay-calculator-australia.com/monthly-tax-table/",
+   "claims": [
+    "Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO's published sample amounts exactly.",
+    "Every figure is computed from the ATO Schedule 1 coefficients..."
+   ],
+   "whys": [
+    "The full table includes a study loan total, and the study loan part uses Schedule 8 (NAT 3539), not Schedule 1. So 'every figure' is wider than what the code does. It should say 'each withholding amount', with Schedule 8 named for the study loan component. That needs a new number, so this pass cannot make the change.",
+    "The scope is too wide. The STSL total column uses Schedule 8 (ATO_SCHEDULE_8, already cited at line 207), not Schedule 1. This string is locked or below the editable level in this pass, so I confirm the writer's flag."
+   ],
+   "constants": [
+    "ATO_SCHEDULE_8 in modules/tax-tables/ato-schedules"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/monthly-tax-table.tsx:313",
+   "file": "modules/tax-tables/monthly-tax-table.tsx",
+   "line": "313",
+   "page": "https://pay-calculator-australia.com/monthly-tax-table/",
+   "claims": [
+    "The same update lifted the Medicare levy low-income thresholds and re-indexed the study and training loan repayment thresholds across all 15 withholding schedules."
+   ],
+   "whys": [
+    "No constant backs the hard-coded count of 15 schedules or the claim that all of them were reissued on 1 July 2026. Please check both against the ATO's 2026-27 schedule list."
+   ],
+   "constants": [
+    "PAYG_YEAR_INFO in lib/constants/payg-withholding"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.25,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/monthly-tax-table.tsx:312",
+   "file": "modules/tax-tables/monthly-tax-table.tsx",
+   "line": "312",
+   "page": "https://pay-calculator-australia.com/monthly-tax-table/",
+   "claims": [
+    "...re-indexed the study and training loan repayment thresholds across all 15 withholding schedules."
+   ],
+   "whys": [
+    "The count of 15 is typed into the code and no constant backs it. Check the count and the claim that every schedule was reissued for 2026-27 against the ATO list. The '{formatAUD(268 / 12)}' at line 311 is also a typed annual figure (268) with no constant behind it."
+   ],
+   "constants": [
+    "PAYG_YEAR_INFO in lib/constants/payg-withholding"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.02,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/schedule-5-tax-table-faqs.ts:52",
+   "file": "modules/tax-tables/schedule-5-tax-table-faqs.ts",
+   "line": "52",
+   "page": "https://pay-calculator-australia.com/schedule-5-tax-table/",
+   "claims": [
+    "Every bonus dollar sits in your top bracket: 30%, 37% or 45%, because your salary has already used up the tax-free threshold and the lower brackets."
+   ],
+   "whys": [
+    "The list leaves out the 15% bracket that applies in 2026-27 for income between $18,201 and $45,000. A payee whose salary plus bonus stays under $45,000 has a 15% marginal rate. The rates are also typed into the string rather than taken from the tax-rate constants."
+   ],
+   "constants": [
+    "resident tax brackets in lib/constants (2026-27 rates)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/schedule-5-tax-table.tsx:276",
+   "file": "modules/tax-tables/schedule-5-tax-table.tsx",
+   "line": "276",
+   "page": "https://pay-calculator-australia.com/schedule-5-tax-table/",
+   "claims": [
+    "every bonus dollar sits in your top bracket (30%, 37% or 45%) plus the Medicare levy"
+   ],
+   "whys": [
+    "The rates are typed into the prose and leave out the lowest taxed bracket (15% for 2026-27). An employee under that bracket's upper limit pays the bonus at the lowest rate, not 30%, 37% or 45%. The list should come from the bracket constants, or the sentence should cover every bracket above the tax-free threshold.",
+    "I agree with the writer's question. The rates are typed into the prose, and the list leaves out the lowest taxed bracket for 2026-27. A low earner's bonus is withheld at that lower rate, so the list is incomplete. It should come from the bracket constants."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (or tax-rates-reference.ts) 2026-27 resident brackets",
+    "2026-27 resident brackets in lib/constants (australian-tax.ts / tax-rates-reference.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.2,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/schedule-5-tax-table.tsx:217",
+   "file": "modules/tax-tables/schedule-5-tax-table.tsx",
+   "line": "217",
+   "page": "https://pay-calculator-australia.com/schedule-5-tax-table/",
+   "claims": [
+    "H2 'The 47% Withholding Limit'"
+   ],
+   "whys": [
+    "The heading types 47% but all the body text uses SCHEDULE_5_WITHHOLDING_LIMIT. If the constant changes, the heading goes out of date. The heading is locked in this pass."
+   ],
+   "constants": [
+    "SCHEDULE_5_WITHHOLDING_LIMIT in modules/tax-tables/ato-schedules.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/tax-tables/schedule-5-tax-table.tsx:124",
+   "file": "modules/tax-tables/schedule-5-tax-table.tsx",
+   "line": "124",
+   "page": "https://pay-calculator-australia.com/schedule-5-tax-table/",
+   "claims": [
+    "Table caption 'ATO Schedule 5 (NAT 3348) withholding on additional payments, 2026-27, for an employee earning $2,000 a fortnight'",
+    "Table caption types '2026-27' and '$2,000 a fortnight' while regularGross={2_000} is passed separately"
+   ],
+   "whys": [
+    "The caption types the year and the $2,000 figure, while the table gets regularGross={2_000} from code. If either value changes, the caption and the table will disagree.",
+    "The caption and the prop can drift apart. The caption is a locked attribute, so this is for the owner to decide."
+   ],
+   "constants": [
+    "regularGross prop / SITE_CONFIG.financialYear"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.16,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/tax-tables/table-downloads.tsx:66",
+   "file": "modules/tax-tables/table-downloads.tsx",
+   "line": "66",
+   "page": "https://pay-calculator-australia.com/weekly-tax-table/",
+   "claims": [
+    "The download has every row the ATO prints (3,400 rows weekly, 3,400 fortnightly)."
+   ],
+   "whys": [
+    "Please confirm that the ATO NAT 1005 and NAT 1006 look-up tables stop at the same top earnings as the manifest ($3,400 weekly, $6,800 fortnightly). If the ATO tables go higher, 'every row the ATO prints' is wrong on all 9 tax-table pages."
+   ],
+   "constants": [
+    "modules/tax-tables/downloads-manifest.json files.<frequency>.to"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.39,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "name": "ff-090-overtime-penalty-rates-g",
+ "files": [
+  "modules/guide/overtime-penalty-rates-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide-faqs.ts:71",
+   "file": "modules/guide/overtime-penalty-rates-guide-faqs.ts",
+   "line": "71",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "The Clerks, Hospitality, Manufacturing, Security and SCHADS awards give time off hour for hour ... TOIL not taken within the award's window (usually 6 months) must be paid out at the overtime rate.",
+    "TOIL not taken within the award's window (usually 6 months) must be paid out at the overtime rate."
+   ],
+   "whys": [
+    "lib/constants/time-in-lieu.ts says SCHADS has a 3-month window and pays untaken TOIL at the rates applying when it is paid out, not at the overtime rate. The answer lists SCHADS and then gives a payout rule that does not hold for it.",
+    "Confirmed: lib/constants/time-in-lieu.ts lines 23-25 say SCHADS has a 3-month window (cl 28.2(d)) and pays untaken TOIL at the rates applying when payment is made. The answer lists SCHADS by name, so the payout rule is wrong for it."
+   ],
+   "constants": [
+    "lib/constants/time-in-lieu.ts (SCHADS entry, windowMonths: 3 and its note)",
+    "lib/constants/time-in-lieu.ts (SCHADS entry)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide-faqs.ts:63",
+   "file": "modules/guide/overtime-penalty-rates-guide-faqs.ts",
+   "line": "63",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "The annualised salary must exceed the total of base pay plus all penalties the employee would otherwise receive."
+   ],
+   "whys": [
+    "Award annualised wage clauses require the salary to be at least what the employee would have earned under the award (no less than). They do not require it to exceed that amount. 'Must exceed' overstates the test."
+   ],
+   "constants": [
+    "n/a (prose only)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.97,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide-faqs.ts:59",
+   "file": "modules/guide/overtime-penalty-rates-guide-faqs.ts",
+   "line": "59",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "Employees who do work public holidays receive penalty rates of 2.0x to 2.75x depending on their award."
+   ],
+   "whys": [
+    "The multipliers are typed in prose and not taken from the award constants, so they can go stale and cannot be checked against the code."
+   ],
+   "constants": [
+    "award penalty constants (e.g. RETAIL_PENALTIES / HOSPITALITY_PENALTIES public holiday fields)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.56,
+   "needsOwner": false
+  }
+ ]
+}

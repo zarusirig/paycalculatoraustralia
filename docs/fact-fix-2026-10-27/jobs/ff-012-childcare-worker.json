@@ -1,0 +1,175 @@
+{
+ "name": "ff-012-childcare-worker",
+ "files": [
+  "lib/data/job-pay-rates/childcare-worker.ts",
+  "lib/data/job-pay-rates/cleaner.ts",
+  "lib/data/job-pay-rates/crane-operator.ts",
+  "lib/data/job-pay-rates/cyber-security.ts",
+  "lib/data/job-pay-rates/dental-assistant.ts",
+  "lib/data/job-pay-rates/disability-support-worker.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/childcare-worker.ts:133",
+   "file": "lib/data/job-pay-rates/childcare-worker.ts",
+   "line": "133",
+   "page": "/job-pay-rates/childcare-worker/",
+   "claims": [
+    "Most centres pay more than this award."
+   ],
+   "whys": [
+    "Population claim with no figure. The page cites only the Worker Retention Payment rules, not how many providers take the grant. The FAQ answer at line 199 ('Often, yes.') makes the same claim."
+   ],
+   "constants": [
+    "CHILDCARE_WORKER.coverage[3], faqs[3].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.19,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/childcare-worker.ts:160",
+   "file": "lib/data/job-pay-rates/childcare-worker.ts",
+   "line": "160",
+   "page": "/job-pay-rates/childcare-worker/",
+   "claims": [
+    "Casual shift figures are the pay guide's casual dollar rates"
+   ],
+   "whys": [
+    "The penalties table (lines 151-157) shows casual shift loadings as percentages (135%, 140%, 142.5%, 155%), not dollar rates, so the note does not describe what the table shows."
+   ],
+   "constants": [
+    "CHILDCARE_WORKER.penaltiesNote / penalties"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.5,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/cleaner.ts:110",
+   "file": "lib/data/job-pay-rates/cleaner.ts",
+   "line": "110",
+   "page": "/job-pay-rates/cleaner/",
+   "claims": [
+    "An enterprise agreement \"must still leave you no worse off than this award overall.\"",
+    "\"Many large cleaning contractors pay under an enterprise agreement.\""
+   ],
+   "whys": [
+    "Under the Fair Work Act the test for an enterprise agreement is the better off overall test (BOOT): each employee must be better off overall than under the award. \"No worse off\" is the old no-disadvantage test, so the wording understates the legal rule. I did not change it because it is a legal claim.",
+    "This population claim has no figure and the page cites no source for it.",
+    "Under the Fair Work Act the test for an enterprise agreement is the better off overall test (BOOT). 'No worse off' is the old no-disadvantage test, so the notice understates the legal rule."
+   ],
+   "constants": [
+    "CLEANER.notices[0] (cleaner.ts)",
+    "CLEANER.notices[0]"
+   ],
+   "reviewerNotes": [
+    "The writer's BOOT question holds: under the Fair Work Act an enterprise agreement must pass the better off overall test, but the notice says it 'must still leave you no worse off than this award overall'. Left unchanged because it is a legal claim, and listed in extraFactQuestions."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/cleaner.ts:93",
+   "file": "lib/data/job-pay-rates/cleaner.ts",
+   "line": "93",
+   "page": "/job-pay-rates/cleaner/",
+   "claims": [
+    "Part-time column: 130% for early or late weekday shifts and also 130% for non-rotating night shifts."
+   ],
+   "whys": [
+    "Every other part-time figure is the full-time figure plus 15 points (115 to 130, 150 to 165, 200 to 215, 250 to 265), but the permanent night shift stays at 130%, the same as full-time. Casual keeps the 25-point gap (155%). CLEANING_AWARD in modern-awards.ts has the same value, so it may be what the award prints. Please re-check it against cl 20.2, Table 7."
+   ],
+   "constants": [
+    "CLEANING_AWARD.penalties 'Permanent night' partTime: 1.3 (lib/constants/modern-awards.ts, about lines 1533 and 1541)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.57,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/crane-operator.ts:50",
+   "file": "lib/data/job-pay-rates/crane-operator.ts",
+   "line": "50",
+   "page": "/job-pay-rates/crane-operator/",
+   "claims": [
+    "JSA median for ANZSCO 7121 Crane, Hoist and Lift Operators is $3,411 a week ($83 an hour), about $177,372 a year.",
+    "JSA median for ANZSCO 7121 is $3,411 a week ($83 an hour)."
+   ],
+   "whys": [
+    "This is far above the $1,852 all-occupations median and nearly three times the MCE2 award weekly rate. The number is consistent with itself ($83 x about 41 hours), but it is unusually high, so please confirm it against the JSA 7121 profile.",
+    "This is nearly three times the MCE2 award weekly rate and far above the all-occupations median. Confirm it against the JSA 7121 profile."
+   ],
+   "constants": [
+    "MEDIAN.medianWeekly / medianHourly (crane-operator.ts lines 50-51)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.96,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/cyber-security.ts:141",
+   "file": "lib/data/job-pay-rates/cyber-security.ts",
+   "line": "141",
+   "page": "/job-pay-rates/cyber-security/",
+   "claims": [
+    "\"$147,590 for advice and assessment specialists\" is typed into the FAQ answer.",
+    "$147,590 for advice and assessment specialists is typed into the FAQ answer."
+   ],
+   "whys": [
+    "The value matches the data today, but it is hard-coded while the other three medians in the same sentence come from CYBER_SECURITY_ATO.rows. A future data update would leave it stale. It should read from ROWS[2].medianSalary.",
+    "The figure is hard-coded while the other medians in the same sentence come from CYBER_SECURITY_ATO.rows. It should read from rows[2].medianSalary so a data update cannot leave it stale."
+   ],
+   "constants": [
+    "CYBER_SECURITY_ATO.rows[2].medianSalary"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.34,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/dental-assistant.ts:71",
+   "file": "lib/data/job-pay-rates/dental-assistant.ts",
+   "line": "71",
+   "page": "/job-pay-rates/dental-assistant/",
+   "claims": [
+    "Level 3 $1,106.20 a week ($29.11/hr), Level 5 $1,107.80 a week ($29.15/hr)"
+   ],
+   "whys": [
+    "Two classifications two levels apart differ by only $1.60 a week. That may be correct for the cl 16.2(b) transitional table, but it is worth re-reading against PR799308 to rule out a transcription slip."
+   ],
+   "constants": [
+    "cl 16.2(b) rows in dental-assistant.ts (HPSS award MA000027)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.47,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/disability-support-worker.ts:211",
+   "file": "lib/data/job-pay-rates/disability-support-worker.ts",
+   "line": "211",
+   "page": "/job-pay-rates/disability-support-worker/",
+   "claims": [
+    "Home care \u2014 disability rates run from $27.28 to $35.81 an hour."
+   ],
+   "whys": [
+    "These figures are hard-coded. SCHADS_SCHEDULE_E_INCREASE.operativeFrom is 1 December 2026, so from then this FAQ, the Schedule E table (SCHADS_HOME_CARE_DISABILITY) and the 'about to rise' paragraph (line 110) go stale. The FAQ should read from the constants or switch to SCHADS_HOME_CARE_DISABILITY_DEC_2026."
+   ],
+   "constants": [
+    "lib/constants/schads-award.ts SCHADS_HOME_CARE_DISABILITY / SCHADS_HOME_CARE_DISABILITY_DEC_2026"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.46,
+   "needsOwner": false
+  }
+ ]
+}

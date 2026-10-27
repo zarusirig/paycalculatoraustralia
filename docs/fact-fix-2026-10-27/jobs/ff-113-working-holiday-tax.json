@@ -1,0 +1,169 @@
+{
+ "name": "ff-113-working-holiday-tax",
+ "files": [
+  "modules/guide/working-holiday-tax.tsx",
+  "modules/guide/zone-tax-offset-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/working-holiday-tax.tsx:77",
+   "file": "modules/guide/working-holiday-tax.tsx",
+   "line": "77",
+   "page": "/working-holiday-tax/",
+   "claims": [
+    "The WHM classification overrides residency; a backpacker who passes the 183-day test still pays 15% on the first $45,000. Classification is determined solely by visa subclass."
+   ],
+   "whys": [
+    "Addy v Commissioner of Taxation [2021] HCA 34: WHMs who are Australian tax residents and nationals of countries with a non-discrimination article in their tax treaty with Australia (UK, Chile, Finland, Germany, Japan, Norway, Turkey) are taxed at resident rates, not the WHM schedule. The blanket 'solely by visa subclass' claim needs that exception."
+   ],
+   "constants": [
+    "page text (no constant); ATO 'Working holiday makers' page"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.81,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax.tsx:176",
+   "file": "modules/guide/working-holiday-tax.tsx",
+   "line": "176",
+   "page": "/working-holiday-tax/",
+   "claims": [
+    "Select 'non-resident' as your residency status in myTax (WHMs are treated as non-residents for tax purposes)."
+   ],
+   "whys": [
+    "Contradicts line 77, which says a WHM can pass the 183-day residency test. Residency in myTax is answered on the residency tests, not visa type; WHM rates apply regardless of residency."
+   ],
+   "constants": [
+    "page text"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.07,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax.tsx:98",
+   "file": "modules/guide/working-holiday-tax.tsx",
+   "line": "98",
+   "page": "/working-holiday-tax/",
+   "claims": [
+    "Even backpackers from the 11 reciprocal countries do not pay the Medicare levy; the exemption applies to all WHMs regardless of country of origin."
+   ],
+   "whys": [
+    "Foreign-resident WHMs pay no levy, but a WHM who is an Australian tax resident needs a Medicare levy exemption (not entitled to Medicare benefits). Visitors covered by reciprocal agreements have some Medicare entitlement, so a blanket exemption for them looks questionable. Verify against ATO Medicare levy exemption categories."
+   ],
+   "constants": [
+    "page text"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.28,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/working-holiday-tax.tsx:144",
+   "file": "modules/guide/working-holiday-tax.tsx",
+   "line": "144",
+   "page": "/working-holiday-tax/",
+   "claims": [
+    "The ATO processes DASP claims within 28 business days."
+   ],
+   "whys": [
+    "The ATO service standard is 28 days, not 28 business days."
+   ],
+   "constants": [
+    "page text"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset-faqs.ts:52",
+   "file": "modules/guide/zone-tax-offset-faqs.ts",
+   "line": "52",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "No. Your employer does not factor it into PAYG withholding. (The guide body says the same at modules/guide/zone-tax-offset.tsx:129.)",
+    "No. Your employer does not factor it into PAYG withholding."
+   ],
+   "whys": [
+    "The ATO Withholding declaration (NAT 3093) lets an employee ask the employer to reduce withholding for a zone, overseas forces or invalid carer tax offset. If that option still exists, the employer can apply it during the year when you lodge that declaration, so a flat 'No' would be wrong. Check against the current NAT 3093 and the ATO's tax offsets withholding guidance.",
+    "I agree with the writer. The ATO Withholding declaration (NAT 3093) has carried a question that lets an employee claim a zone, overseas forces or invalid and invalid carer tax offset through reduced withholding. If the current form still has it, the answer should say the employer applies the offset once you lodge that declaration. Fix the FAQ and the guide body at zone-tax-offset.tsx:129 together."
+   ],
+   "constants": [
+    "None. This is hard-coded prose. If it is confirmed, a withholding-declaration note belongs in lib/constants/zone-tax-offset.ts with its source."
+   ],
+   "reviewerNotes": [
+    "The writer's question stands. The ATO Withholding declaration (NAT 3093) has historically let an employee ask the employer to reduce withholding for a zone, overseas forces or invalid carer tax offset. If it still does, the flat 'No' in the FAQ and in the guide body (zone-tax-offset.tsx:129) is wrong. Prose left unchanged."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset-faqs.ts:68",
+   "file": "modules/guide/zone-tax-offset-faqs.ts",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "the return being lodged now, due 31 October 2026"
+   ],
+   "whys": [
+    "The date is hard-coded and goes stale after 31 October 2026, four days from now. The year and the 'lodged now' framing should come from a constant or be reviewed on 1 November."
+   ],
+   "constants": [
+    "lib/constants/zone-tax-offset.ts (ZONE_OFFSET_INCOME_YEAR, plus a new lodgment-due-date constant)"
+   ],
+   "reviewerNotes": [
+    "'Due 31 October 2026' and 'the return being lodged now' are hard-coded and go stale on 1 November 2026. Move them to a constant or review them on 1 November."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset-faqs.ts:60",
+   "file": "modules/guide/zone-tax-offset-faqs.ts",
+   "line": "60",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "The offset itself is not assessable income for Centrelink purposes, so claiming it does not reduce your payments."
+   ],
+   "whys": [
+    "A tax offset is a reduction in tax, not a payment received, so calling it 'not assessable income for Centrelink' is an odd framing. No source is cited, and the constants file does not cover it. Check it against ATO or Services Australia wording, or cut it."
+   ],
+   "constants": [
+    "lib/constants/zone-tax-offset.ts (source header lists ATO QC105018 and QC106871)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/zone-tax-offset-faqs.ts:28",
+   "file": "modules/guide/zone-tax-offset-faqs.ts",
+   "line": "28",
+   "page": "https://pay-calculator-australia.com/zone-tax-offset/",
+   "claims": [
+    "The ATO's Australian zone list was last updated on 1 July 2026. Darwin is Zone A.",
+    "Darwin is Zone A ... The ATO's Australian zone list was last updated on 1 July 2026."
+   ],
+   "whys": [
+    "This hard-coded date and placement do not appear in the constants file. Its source header lists only QC106871, QC105018 and QC106872, all retrieved 28 July 2026. Confirm the zone-list update date and Darwin's zone against the ATO Australian zone list and record the source.",
+    "I agree with the writer. No source in lib/constants/zone-tax-offset.ts supports the 1 July 2026 update date or Darwin's Zone A placement. Verify both against the ATO Australian zone list and record that source."
+   ],
+   "constants": [
+    "lib/constants/zone-tax-offset.ts source header"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.86,
+   "needsOwner": false
+  }
+ ]
+}

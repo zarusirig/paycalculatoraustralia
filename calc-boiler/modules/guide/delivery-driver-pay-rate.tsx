@@ -11,6 +11,7 @@ import {
   deliveryRate,
 } from "@/lib/constants/delivery-minimum-pay";
 import { CENTS_PER_KM_RATES, CURRENT_CPK_YEAR } from "@/lib/constants/cents-per-km";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import DeliveryPayCalculator from "@/modules/calculator/delivery-pay-calculator";
 import { DELIVERY_DRIVER_FAQS } from "./delivery-driver-pay-rate-faqs";
 import {
@@ -166,7 +167,7 @@ export default function DeliveryDriverPayRatePage() {
               <li>Take the earnings statement for one earnings period, with the dates and the total the platform paid.</li>
               <li>Find the hours of engaged time for the same period. The platform has to provide this, along with the gross and net amounts paid, at the end of every earnings period.</li>
               <li>Multiply those hours (to the nearest minute) by the rate for your vehicle in the table above.</li>
-              <li>If your total pay is less, the difference is your top-up. It is due in the next earnings period or within 7 days after it.</li>
+              <li>If your total pay is less, the difference is your top-up. It is due in the next earnings period or within {DELIVERY_MSO.topUpDueDays} days after it.</li>
               <li>If the numbers do not match, ask the platform for its records (it must supply them on request), then use its internal dispute process. The Commission can mediate, conciliate or give a non-binding opinion if that fails.</li>
             </ol>
             <p>The calculator above does steps 3 and 4 for you. For help, the Fair Work Ombudsman&rsquo;s page on the order is linked below, and the Fair Work Infoline is 13 13 94.</p>
@@ -175,7 +176,7 @@ export default function DeliveryDriverPayRatePage() {
           <section>
             <H2 id="tax">Tax, ABN and GST for Delivery Workers</H2>
             <p>
-              Independent delivery workers usually work under an ABN, so no tax is withheld from payments. Everything you receive from the platform is assessable income to report in your tax return, with the expenses above deductible to the extent they relate to the work. You may owe tax at the end of the year, so setting money aside as you go is sensible. GST registration is only compulsory once your GST turnover reaches $75,000, unlike rideshare driving where registration is required from the first trip. The <Link href="/rideshare-delivery-earnings-after-tax/">after-tax guide</Link>, the <Link href="/gig-economy-pay-guide/">gig economy guide</Link> and the <Link href="/contractor-pay-calculator/">contractor pay calculator</Link> explain each step. To turn an hourly rate into an annual figure, use the <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link> and the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
+              As an independent contractor with an ABN, you have no tax withheld from platform payments. Everything you receive from the platform is assessable income to report in your tax return, with the expenses above deductible to the extent they relate to the work. You may owe tax at the end of the year, so setting money aside as you go is sensible. GST registration is only compulsory once your GST turnover reaches {formatAUD(GST_REGISTRATION_THRESHOLD)}, unlike rideshare driving where registration is required from the first trip. The <Link href="/rideshare-delivery-earnings-after-tax/">after-tax guide</Link>, the <Link href="/gig-economy-pay-guide/">gig economy guide</Link> and the <Link href="/contractor-pay-calculator/">contractor pay calculator</Link> explain each step. To turn an hourly rate into an annual figure, use the <Link href="/hourly-to-annual-salary-calculator/">hourly to annual salary calculator</Link> and the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
             </p>
           </section>
 

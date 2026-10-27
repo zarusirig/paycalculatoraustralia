@@ -90,7 +90,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
       id: "band-b-leaders",
       title: "Band B: deputy principals, senior leaders and coordinators",
       intro:
-        "Band B covers school leadership below the principal, and is where most teachers first move off the classroom scale into a leadership role.",
+        "Band B covers school leadership below the principal.",
       stepHeading: "Band",
       steps: [
         { label: "Band B-1", salary: 133_736 },
@@ -210,7 +210,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the top of the SA teacher pay scale?",
-      a: "The top of the SA classroom teacher scale is Step 9, at $123,236 a year. Above that, a Highly Accomplished Teacher is paid $133,736 and a Lead Teacher $141,365, both requiring national certification, and Band B leadership starts at $133,736.",
+      a: "The top of the SA classroom teacher scale is Step 9, at $123,236 a year. Above that, a Highly Accomplished Teacher is paid $133,736 and a Lead Teacher $141,365, both requiring national certification. The department's rate sheet starts Band B leadership at $133,736 (Band B-1).",
     },
     {
       q: "How do SA teachers move up a step?",
@@ -226,7 +226,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is a principal paid in South Australia?",
-      a: "Band A runs from $146,492 at Band A-1 to $222,484 at Band A-9. Deputy principals, senior leaders and coordinators sit in Band B, from $133,736 at Band B-1 to $172,842 at Band B-6.",
+      a: "Band A runs from $146,492 at Band A-1 to $222,484 at Band A-9. Deputy principals, senior leaders and coordinators sit in Band B, which the department's rate sheet pays from $133,736 at Band B-1 to $172,842 at Band B-6.",
     },
   ],
 };

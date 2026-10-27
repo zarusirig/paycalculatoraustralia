@@ -38,6 +38,15 @@ function source(title: string, url: string): SourceLink {
 const PP = PARENTING_PAYMENT;
 const S = PP.single;
 const PT = PP.partnered;
+// The dollar amount reached at the end of the first taper band, derived so it
+// follows the stored free areas when they index.
+const OWN_BAND1_MAX = (PT.band1End - PT.freeArea) * PT.taper1;
+const COMBINED_BAND1_MAX = (PT.combined.band1End - PT.combined.freeArea) * PT.combined.taper1;
+// Rates index on 20 March and 20 September: the next change after a September
+// rate is the following March, and after a March rate it is September.
+const NEXT_INDEXATION = PP.effectiveFrom.slice(5, 7) === "09"
+  ? `20 March ${Number(PP.effectiveFrom.slice(0, 4)) + 1}`
+  : `20 September ${PP.effectiveFrom.slice(0, 4)}`;
 
 const TABLE_INCOMES = [0, 250, 500, 750, 1_000, 1_250, 1_500, 1_750, 2_000, 2_500, 2_900];
 const HOURLY = 30;
@@ -65,7 +74,7 @@ export default function ParentingPaymentCalculatorContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Maximum rates are indexed on {PP.indexedOn}; the next change is 20 March 2027. Energy Supplement is paid on top. Different rates apply to a partnered parent separated by illness, respite care or prison, and to parents over Age Pension age. Check with Services Australia.</p>
+        <p className="mt-2 text-xs text-warmgray-light">Maximum rates are indexed on {PP.indexedOn}; the next change is {NEXT_INDEXATION}. Energy Supplement is paid on top. Different rates apply to a partnered parent separated by illness, respite care or prison, and to parents over Age Pension age. Check with Services Australia.</p>
       </section>
 
       <section>
@@ -83,7 +92,7 @@ export default function ParentingPaymentCalculatorContent() {
         </div>
         <p className={P + " mt-4"}>The single free area indexes on 1 July; the 40-cent taper is set in law. Because the taper is gentler than the 50 and 60 cents on JobSeeker, a single parent past the free area keeps 60 cents of every extra dollar earned until the payment runs out.</p>
         <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Partnered: your income and your partner&apos;s</h3>
-        <p className={P}>Your own income is tested like JobSeeker: nothing up to {formatAUD(PT.freeArea)} a fortnight, 50 cents per dollar to {formatAUD(PT.band1End)}, then {formatAUD(53)} plus 60 cents per dollar above. Your partner&apos;s income is tested separately: 60 cents per dollar over {formatAUD(PT.partnerIncomeFreeArea, 2)} a fortnight. If your partner gets a pension, the two incomes are combined instead: 25 cents per dollar from {formatAUD(PT.combined.freeArea)} to {formatAUD(PT.combined.band1End)}, then {formatAUD(53)} plus 30 cents per dollar.</p>
+        <p className={P}>Your own income is tested like JobSeeker: nothing up to {formatAUD(PT.freeArea)} a fortnight, 50 cents per dollar to {formatAUD(PT.band1End)}, then {formatAUD(OWN_BAND1_MAX)} plus 60 cents per dollar above. Your partner&apos;s income is tested separately: 60 cents per dollar over {formatAUD(PT.partnerIncomeFreeArea, 2)} a fortnight. If your partner gets a pension, the two incomes are combined instead: 25 cents per dollar from {formatAUD(PT.combined.freeArea)} to {formatAUD(PT.combined.band1End)}, then {formatAUD(COMBINED_BAND1_MAX)} plus 30 cents per dollar.</p>
       </section>
 
       <section>
@@ -124,7 +133,7 @@ export default function ParentingPaymentCalculatorContent() {
           <li>You meet the residence rules, and you are under the income limits and the assets test: {formatAUD(PP.assetLimits.singleHomeowner)} for a single homeowner, {formatAUD(PP.assetLimits.singleNonHomeowner)} for a single non-homeowner ({formatAUD(PP.assetLimits.coupleHomeowner)} / {formatAUD(PP.assetLimits.coupleNonHomeowner)} for a couple, combined).</li>
           <li>Only one parent or carer can be paid, and you can&apos;t claim before the child is born.</li>
         </ul>
-        <p className={P}>Parenting Payment is separate from <Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit</Link>, which is paid for each child on your family&apos;s yearly income, and from <Link href="/parental-leave-pay/" className={LINK}>Parental Leave Pay</Link>. If you rent privately, you may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link>. When your youngest turns {PP.singleYoungestChildUnder}, most single parents move to <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>.</p>
+        <p className={P}>Parenting Payment is separate from <Link href="/family-tax-benefit-calculator/" className={LINK}>Family Tax Benefit</Link>, which is paid for each child on your family&apos;s yearly income, and from <Link href="/parental-leave-pay/" className={LINK}>Parental Leave Pay</Link>. If you rent privately, you may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link>. Parenting Payment Single needs a child under {PP.singleYoungestChildUnder}, so it stops when your youngest turns {PP.singleYoungestChildUnder}. To keep getting income support after that, you need to qualify for another payment, such as <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>.</p>
       </section>
 
       <section>

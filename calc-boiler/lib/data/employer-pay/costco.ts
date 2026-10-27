@@ -113,7 +113,7 @@ export const COSTCO_PAY: EmployerPay = {
     },
     {
       q: "What is the Costco casual rate?",
-      a: "Casuals get a 25% loading on the ordinary rate: $37.53 an hour for a Service Assistant on the first step, or $39.09 for a Service Clerk. On Saturdays and weekday evenings the casual rate is 150%, and on Sundays 175%.",
+      a: "Casuals get a 25% loading on the ordinary rate: $37.53 an hour for a Service Assistant on the first step, or $39.09 for a Service Clerk. The casual rate is 150% from 6pm to 11pm on weekdays and 7am to 11pm on Saturdays, 175% from 11pm to 7am Monday to Saturday, and 175% on Sundays.",
     },
     {
       q: "Does Costco pay junior rates?",

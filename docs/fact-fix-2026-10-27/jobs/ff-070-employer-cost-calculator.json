@@ -1,0 +1,142 @@
+{
+ "name": "ff-070-employer-cost-calculator",
+ "files": [
+  "modules/guide/employer-cost-calculator-faqs.ts",
+  "modules/guide/employer-cost-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:98",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "98",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "The ATO can reclassify the worker as an employee and issue back-payment orders for all unpaid superannuation ..., PAYG withholding, payroll tax, and workers compensation premiums"
+   ],
+   "whys": [
+    "The ATO enforces super (SGC) and PAYG withholding only. Payroll tax is collected by state revenue offices and workers compensation premiums by state insurers or regulators. 'Back-payment orders' is not ATO terminology."
+   ],
+   "constants": [
+    "Prose fix: split by regulator (ATO for SGC and PAYG; the state revenue office for payroll tax; the state WorkCover authority for premiums)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.08,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:53",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "53",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "workers compensation (1.5% here; 0.3%-10% by industry)"
+   ],
+   "whys": [
+    "The calculator hint on the same page (employer-cost-calculator.tsx line 147) gives the industry range as 0.5% to 10%. The two lower bounds disagree, and both are typed rather than taken from a constant."
+   ],
+   "constants": [
+    "One WORKCOVER_RANGE constant (min/max) used by both the FAQ and the calculator hint"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:94",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "94",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "Long service leave ... 8.67 weeks after 10 years ... about 1.67% of the base salary ... For a $100,000 employee, this adds approximately $1,670 per year. Employers must accrue this liability on their balance sheet from the employee's start date."
+   ],
+   "whys": [
+    "All the figures are typed, not derived. The 'must accrue from start date' claim comes from an accounting standard (AASB 119 for reporting entities), not an employment law rule for every employer. The VIC and ACT schemes (about 6.07 weeks after 7 years) and the SA and NT schemes (13 weeks after 10 years) differ."
+   ],
+   "constants": [
+    "An LSL constants entry (weeks, years) in lib/constants, plus a wording check on the accrual obligation"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:103",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "103",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "(3) structuring the business to remain below the state payroll tax threshold, (4) using a mix of casual and part-time workers to minimise leave liability"
+   ],
+   "whys": [
+    "Payroll tax grouping provisions and anti-avoidance rules apply to structuring done to stay under the threshold, so this is risky YMYL advice as worded. Part-time employees accrue leave pro rata, so they do not reduce leave liability per hour worked."
+   ],
+   "constants": [
+    "Editorial review of the strategy list (no constant)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.67,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:90",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "90",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "most modern awards include it (leave loading)",
+    "Leave loading is an additional payment of 17.5% on top of the employee's base pay rate during annual leave."
+   ],
+   "whys": [
+    "A population claim with no figure or cited source.",
+    "The 17.5% rate is typed in the prose instead of taken from a constant. The rate also comes from awards, not the NES, so it should sit beside the award data."
+   ],
+   "constants": [
+    "Cite FWO or give a count, or drop 'most'"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.99,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator-faqs.ts:82",
+   "file": "modules/guide/employer-cost-calculator-faqs.ts",
+   "line": "82",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "Most small businesses do not [pay payroll tax] ... A business with 8 employees averaging $100,000 each ($800,000 total wages) pays zero payroll tax in every state and territory."
+   ],
+   "whys": [
+    "'Most small businesses' is a population claim with no source. The $800,000 example is typed rather than checked against MIN_THRESHOLD_STATE. It holds today (the lowest threshold is $1,000,000, and the total with 12% super is $896,000), but it leaves out that super counts as taxable wages, and it would go stale if a threshold fell."
+   ],
+   "constants": [
+    "Derive the example from MIN_THRESHOLD_STATE in lib/constants/payroll-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/employer-cost-calculator.tsx:32",
+   "file": "modules/guide/employer-cost-calculator.tsx",
+   "line": "32",
+   "page": "/employer-cost-calculator/",
+   "claims": [
+    "WorkCover default of 1.5% labelled 'Default average proxy'"
+   ],
+   "whys": [
+    "The 1.5% default is hard-coded in the component, and the FAQ reads it through TABLE_WORKCOVER. Both should come from the same WORKCOVER constant, together with the min/max range the writer asked for."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.89,
+   "needsOwner": false
+  }
+ ]
+}

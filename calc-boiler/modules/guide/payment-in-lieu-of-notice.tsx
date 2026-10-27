@@ -9,6 +9,7 @@ import {
   paymentInLieu,
 } from "@/lib/constants/notice-pilon";
 import { ETP_RATES, REDUNDANCY_TAX_2026_27 } from "@/lib/constants/redundancy";
+import { marginalRateAt } from "@/lib/constants/marginal-rates";
 import PilonCalculator from "@/modules/calculator/pilon-calculator";
 import { PILON_FAQS } from "./payment-in-lieu-of-notice-faqs";
 import {
@@ -133,7 +134,7 @@ export default function PilonPage() {
               caption={<>ATO, <a href={SRC.atoEtpComponents} target="_blank" rel="noopener noreferrer">How ETP components are taxed</a> (last updated 5 June 2026), read {NOTICE_VERIFIED_ON}. The whole-of-income cap applies to non-excluded ETPs like a payment in lieu. Preservation age is 60 for people born after 30 June 1964.</>}
             />
             <p>
-              Your other taxable income for the year sets how much of the payment gets the concessional rate. Someone on {formatAUD(90_000)} gets the 32% rate on a payment in lieu, similar to the 32% marginal rate on salary at that level. Someone already above $180,000 for the year has no concessional cap left, so the whole payment is taxed at the top rate. The <Link href="/termination-payment-tax-calculator/">termination payment tax calculator</Link> covers redundancy, severance and other ETPs in full. The tax your employer withholds is an estimate and the final tax is settled in your return.
+              Your other taxable income for the year sets how much of the payment gets the concessional rate. Someone on {formatAUD(90_000)} who is under preservation age gets the {pct(ETP_RATES.underPreservationAge)} rate on a payment in lieu, similar to the {pct(marginalRateAt(90_000))} marginal rate (including the Medicare levy) on salary at that level. Someone already above {formatAUD(WHOLE_OF_INCOME_CAP)} for the year has no concessional cap left, so the whole payment is taxed at {pct(ETP_RATES.aboveCap)}. The <Link href="/termination-payment-tax-calculator/">termination payment tax calculator</Link> covers redundancy, severance and other ETPs in full. The tax your employer withholds is an estimate and the final tax is settled in your return.
             </p>
           </section>
 
@@ -169,7 +170,7 @@ export default function PilonPage() {
             lastVerified={NOTICE_VERIFIED_ON}
             sources={SOURCES_LIST}
             methodology={<>
-              <p>Notice weeks come from the Fair Work Ombudsman&rsquo;s NES table, using continuous service on the day notice is given, with one extra week for an employee over 45 years old with at least 2 years of continuous service. The payment in lieu is the weeks paid out × normal weekly pay. Tax is estimated on the ATO&rsquo;s ETP treatment for a non-excluded payment: the concessional rate (32%, or 17% from preservation age, both including the Medicare levy) up to the smaller of the ETP cap and ($180,000 less other taxable income), and 47% above it. Super is the super guarantee rate on the payment.</p>
+              <p>Notice weeks come from the Fair Work Ombudsman&rsquo;s NES table, using continuous service on the day notice is given, with one extra week for an employee over 45 years old with at least 2 years of continuous service. The payment in lieu is the weeks paid out × normal weekly pay. Tax is estimated on the ATO&rsquo;s ETP treatment for a non-excluded payment: the concessional rate ({pct(ETP_RATES.underPreservationAge)}, or {pct(ETP_RATES.atOrOverPreservationAge)} from preservation age, both including the Medicare levy) up to the smaller of the ETP cap and ({formatAUD(WHOLE_OF_INCOME_CAP)} less other taxable income), and {pct(ETP_RATES.aboveCap)} above it. Super is the super guarantee rate on the payment.</p>
               <p>Assumes an Australian resident and a payment made in 2026-27. It does not model unused leave, long service leave, redundancy pay, or the 12-month rule. Your award, agreement or contract may give more notice. General information, not legal or tax advice.</p>
             </>}
           />

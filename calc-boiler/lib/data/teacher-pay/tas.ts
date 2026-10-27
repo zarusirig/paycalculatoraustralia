@@ -12,7 +12,10 @@
 // each received a flat structural adjustment BEFORE that 3% was applied
 // (clauses 8.2 to 8.4), so those three rows are not a plain 3% on the old rate.
 //
-// Two traps this page exists to defuse, both real as at 28 August 2026:
+// Two traps this page exists to defuse, both real as at 28 August 2026 and
+// re-checked on 27 October 2026 (DECYP teaching salaries page: Teacher
+// $82,828 to $118,328; TIC award history: Order No 5 of 2026 still the latest
+// consolidation, its salary table ends at 1 March 2025):
 //   - DECYP's own web summary table still shows the 1 March 2025 rates.
 //   - The consolidated Teaching Service Award's salary table also still ends at
 //     1 March 2025. Current rates live in the Agreement's Schedule 2, not the
@@ -179,7 +182,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "Check the date on any Tasmanian salary table you are shown. As at 28 August 2026 the department's own web summary table and the consolidated Teaching Service Award both still end at the 1 March 2025 rates. The current rates are in Schedule 2 of the Teachers Agreement 2025, and those are what is published below.",
+    "Check the date on any Tasmanian salary table you are shown. As at 27 October 2026 the department's own web summary table and the consolidated Teaching Service Award both still end at the 1 March 2025 rates. The current rates are in Schedule 2 of the Teachers Agreement 2025, and those are what is published below.",
     "Before the 3% rise was applied on 1 March 2026, Band 1 Level 13, Advanced Skills Teacher and Assistant Principal each received a flat structural adjustment ($500, $400 and $250). Those three rows are therefore not a straight 3% on the previous year.",
   ],
 
@@ -235,7 +238,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "Why do Tasmanian teacher salary tables disagree?",
-      a: "Tasmanian teacher salary tables disagree because several official ones are out of date. As at August 2026 the department's web summary table and the consolidated Teaching Service Award both still show the 1 March 2025 rates. The current figures are in Schedule 2 of the Teachers Agreement 2025.",
+      a: "Tasmanian teacher salary tables disagree because several official ones are out of date. As at October 2026 the department's web summary table and the consolidated Teaching Service Award both still show the 1 March 2025 rates. The current figures are in Schedule 2 of the Teachers Agreement 2025.",
     },
   ],
 };

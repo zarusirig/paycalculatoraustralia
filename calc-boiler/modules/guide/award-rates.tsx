@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, EMPLOYMENT, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, EMPLOYMENT, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import {
   AWR_2026_FLOORS,
   HOSPITALITY_AWARD,
@@ -18,7 +18,8 @@ import {
 import { SCHADS_SACS } from "@/lib/constants/schads-award";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import { NMW, QLD_STATE_WAGE_CASE_2026, WA_STATE_MINIMUM_WAGE } from "@/lib/constants/minimum-wage";
-import { FAST_FOOD_AWARD, MANUFACTURING_AWARD, PHARMACY_AWARD, SECURITY_AWARD, roundCents } from "@/lib/constants/modern-awards";
+import { CLERKS_AWARD, FAST_FOOD_AWARD, MANUFACTURING_AWARD, PHARMACY_AWARD, SECURITY_AWARD, roundCents } from "@/lib/constants/modern-awards";
+import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
 import { AWARD_HUB_FAQS } from "@/modules/guide/award-rates-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -36,6 +37,11 @@ const SCHADS_TOP = SCHADS_SACS[SCHADS_SACS.length - 1];
 const R1 = RETAIL_RATES[0];
 const cents = (v: number) => formatAUD(roundCents(v), 2);
 const pct = (v: number) => `${Math.round(v * 100)}%`;
+const SECURITY_SUNDAY = SECURITY_AWARD.penalties.find((p) => p.label === "Sunday")!.fullTime;
+const CLERKS_SUNDAY = CLERKS_AWARD.penalties.find((p) => p.label.startsWith("Sunday"))!.fullTime;
+const PHARMACY_SAT_DAY = PHARMACY_AWARD.penalties.find((p) => p.label.startsWith("Saturday — 8.00 am"))!.fullTime;
+const PHARMACY_SAT_EARLY = PHARMACY_AWARD.penalties.find((p) => p.label.startsWith("Saturday — 7.00 am"))!.fullTime;
+const JUNIOR_END = JUNIOR_TRANSITION_SCHEDULES.fastFood.rows[JUNIOR_TRANSITION_SCHEDULES.fastFood.rows.length - 1].effective;
 
 // A worked week for a Level 1 retail casual, computed from the constants.
 const CASUAL_BASE = roundCents(R1.hourly * 1.25);
@@ -72,7 +78,7 @@ export default function AwardRatesGuidePage() {
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> Modern award rates are the legal minimum pay for most Australian employees. Each award sets a rate for every classification level, then penalty rates, overtime and allowances on top. From the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}, adult Level 1 rates in the major awards run from {formatAUD(Math.min(...AWARD_DIRECTORY.map((a) => a.headlineHourly)), 2)} to {formatAUD(Math.max(...AWARD_DIRECTORY.map((a) => a.headlineHourly)), 2)} an hour, and the national minimum wage is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}.
+              <strong>Direct answer:</strong> Modern award rates are the legal minimum pay for employees an award covers. Each award sets a rate for every classification level, then penalty rates, overtime and allowances on top. From the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}, adult Level 1 rates in the major awards run from {formatAUD(Math.min(...AWARD_DIRECTORY.map((a) => a.headlineHourly)), 2)} to {formatAUD(Math.max(...AWARD_DIRECTORY.map((a) => a.headlineHourly)), 2)} an hour, and the national minimum wage is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -204,9 +210,9 @@ export default function AwardRatesGuidePage() {
               </div>
               <h3>The same day pays differently under different awards</h3>
               <ul>
-                <li><strong>Sunday:</strong> {pct(RETAIL_PENALTIES.sunday)} in retail and {pct(HOSPITALITY_PENALTIES.sunday)} in hospitality, but {pct(FAST_FOOD_AWARD.penalties.find((p) => p.label.startsWith("Sunday (Level 1"))!.fullTime)} for a fast food Level 1 employee and 200% for a security officer or clerk.</li>
+                <li><strong>Sunday:</strong> {pct(RETAIL_PENALTIES.sunday)} in retail and {pct(HOSPITALITY_PENALTIES.sunday)} in hospitality, but {pct(FAST_FOOD_AWARD.penalties.find((p) => p.label.startsWith("Sunday (Level 1"))!.fullTime)} for a fast food Level 1 employee, {pct(SECURITY_SUNDAY)} for a security officer and {pct(CLERKS_SUNDAY)} for a clerk.</li>
                 <li><strong>Evenings:</strong> hospitality adds a flat {formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour rather than a percentage; security weeknights between 6pm and 6am are {(SECURITY_AWARD.penalties[0].fullTime * 100).toFixed(1)}%.</li>
-                <li><strong>Pharmacy</strong> penalties change with the time of day: Saturday is 125% between 8am and 6pm but 200% before 8am.</li>
+                <li><strong>Pharmacy</strong> penalties change with the time of day: Saturday is {pct(PHARMACY_SAT_DAY)} between 8am and 6pm but {pct(PHARMACY_SAT_EARLY)} before 8am.</li>
                 <li><strong>Manufacturing</strong> compounds casual penalties: a casual&apos;s 150% is 150% of the casual rate, which is {cents(roundCents(MANUFACTURING_AWARD.rates[0].hourly * 1.25) * 1.5)} at C14.</li>
               </ul>
               <p>
@@ -287,9 +293,9 @@ export default function AwardRatesGuidePage() {
             <section id="what-changed">
               <h2>What Changed for {SITE_CONFIG.financialYear}?</h2>
               <ul>
-                <li><strong>A {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% increase with floors</strong> from the first full pay period on or after 1 July 2026. The national minimum wage rose from {formatAUD(EMPLOYMENT.minimumWageHourlyPrevious, 2)} to {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. See the <Link href="/minimum-wage-history-australia/">minimum wage history</Link>.</li>
-                <li><strong>Junior rates are rising from 1 December 2026</strong> in the retail, fast food and pharmacy awards for employees aged 18 to 20 with more than 6 months&apos; service. The increase is a phase-in to the adult rate by 2029, not an immediate jump. See the <Link href="/fast-food-award-rates/#junior-rates">fast food</Link>, <Link href="/retail-award-rates/#junior-rates">retail</Link> and <Link href="/pharmacy-award-rates/#junior-rates">pharmacy</Link> schedules.</li>
-                <li><strong>Payday Super:</strong> from 1 July 2026 the 12% superannuation guarantee must be paid with each pay rather than quarterly.</li>
+                <li><strong>A {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% increase with floors</strong> from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. The national minimum wage rose from {formatAUD(EMPLOYMENT.minimumWageHourlyPrevious, 2)} to {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. See the <Link href="/minimum-wage-history-australia/">minimum wage history</Link>.</li>
+                <li><strong>Junior rates are rising from the first full pay period on or after {PENDING_JUNIOR_CHANGE.earliestStart}</strong> in the retail, fast food and pharmacy awards for employees aged 18 to 20 with {PENDING_JUNIOR_CHANGE.serviceQualifier} (18 and 19 in retail, where a 20-year-old with that service already gets the adult rate). The increase is a phase-in to the adult rate by {JUNIOR_END}, not an immediate jump. See the <Link href="/fast-food-award-rates/#junior-rates">fast food</Link>, <Link href="/retail-award-rates/#junior-rates">retail</Link> and <Link href="/pharmacy-award-rates/#junior-rates">pharmacy</Link> schedules.</li>
+                <li><strong>Payday Super:</strong> from {SUPER_GUARANTEE.paydaySuperStart} the {pct(SUPER_GUARANTEE.rate)} superannuation guarantee must be paid for each payday rather than quarterly.</li>
               </ul>
             </section>
 

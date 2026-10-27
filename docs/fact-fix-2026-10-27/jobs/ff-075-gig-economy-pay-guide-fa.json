@@ -1,0 +1,49 @@
+{
+ "name": "ff-075-gig-economy-pay-guide-fa",
+ "files": [
+  "modules/guide/gig-economy-pay-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/gig-economy-pay-guide-faqs.ts:20",
+   "file": "modules/guide/gig-economy-pay-guide-faqs.ts",
+   "line": "20",
+   "page": "/gig-economy-pay-guide/",
+   "claims": [
+    "Only if your annual turnover from delivery work exceeds $75,000 (line 16 also says 'exceeds').",
+    "Most part-time delivery riders do not reach the threshold."
+   ],
+   "whys": [
+    "The ATO test is GST turnover of $75,000 or more, not more than $75,000. GST turnover also counts all business income, not only delivery work. GST_THRESHOLD is hard-coded at line 10 and not held in lib/constants.",
+    "This population claim has no figure and no source."
+   ],
+   "constants": [
+    "GST_THRESHOLD at gig-economy-pay-guide-faqs.ts line 10; move it to lib/constants",
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.6,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/gig-economy-pay-guide-faqs.ts:24",
+   "file": "modules/guide/gig-economy-pay-guide-faqs.ts",
+   "line": "24",
+   "page": "/gig-economy-pay-guide/",
+   "claims": [
+    "Setting aside 25-30% of gross income covers income tax, the Medicare levy and GST."
+   ],
+   "whys": [
+    "A GST-registered rideshare driver owes 1/11 of fares (about 9.1%) in GST on top of income tax. At middle or higher incomes, 25-30% in total does not cover both. The range is hard-coded with no source."
+   ],
+   "constants": [
+    "none (editorial rule of thumb); could derive from TAX_BRACKETS and MEDICARE_LEVY"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.42,
+   "needsOwner": true
+  }
+ ]
+}

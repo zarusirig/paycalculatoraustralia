@@ -55,7 +55,7 @@ export default function CentrelinkAdvancePaymentPage({ children, afterCalculator
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         <W3Hero crumb="Centrelink Advance Payment" title="Centrelink Advance Payment Calculator: How Much and What You Repay">
           <p>
-            A Centrelink advance payment is part of your regular Centrelink payment paid early as a lump sum. You repay it automatically: the advance divided by {ADVANCE_RULES.repaymentFortnights} comes out of each of your next {ADVANCE_RULES.repaymentFortnights} payments. On JobSeeker, Parenting Payment, Youth Allowance or Austudy the advance is {formatAUD(250)} to {formatAUD(500)}; on a pension, up to {formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} single.
+            A Centrelink advance payment is part of your regular Centrelink payment paid early as a lump sum. You repay it automatically: the advance divided by {ADVANCE_RULES.repaymentFortnights} comes out of each of your next {ADVANCE_RULES.repaymentFortnights} payments. On JobSeeker, Parenting Payment, Youth Allowance, Austudy or ABSTUDY the advance is {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)}; on a pension, up to {formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} single.
           </p>
         </W3Hero>
 
@@ -89,7 +89,7 @@ export default function CentrelinkAdvancePaymentPage({ children, afterCalculator
                     <Row label={`Repaid over ${ADVANCE_RULES.repaymentFortnights} fortnights (about 6 months)`} value={formatAUD(r.totalRepaid, 2)} />
                   </div>
                   {advance !== r.amount && <Note tone="warn">You entered {formatAUD(advance, 2)}; the advance has been limited to the range for this payment.</Note>}
-                  <p className="text-xs text-warmgray-light">We round each repayment to the cent, so 13 of them can differ from the advance by a few cents. You can ask to repay faster, or repay early.</p>
+                  <p className="text-xs text-warmgray-light">We round each repayment to the cent, so {ADVANCE_RULES.repaymentFortnights} of them can differ from the advance by a few cents. You can ask to repay faster, or repay early.</p>
                 </div>
               </div>
             </CardContent>

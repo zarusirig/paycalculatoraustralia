@@ -203,7 +203,7 @@ export default function ZoneTaxOffsetPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does the Zone Tax Offset Interact with Other Offsets?</h2>
             <p>The zone tax offset stacks with other non-refundable offsets, including the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link>. Together they reduce your tax payable, but never below zero. Any excess is lost rather than refunded or carried forward.</p>
-            <p>A <strong>remote area allowance</strong> from Centrelink or DVA reduces your zone offset dollar for dollar. The zone tax offset itself is <strong>not assessable income for Centrelink purposes</strong>, so claiming it does not affect your payments.</p>
+            <p>A <strong>remote area allowance</strong> from Centrelink or DVA reduces your zone offset dollar for dollar. The ATO&rsquo;s zone tax offset page states that the offset itself is <strong>not assessable income for Centrelink purposes</strong>.</p>
             <p>You cannot claim both the zone tax offset and the overseas forces tax offset. If you qualify for both, claim the larger.</p>
           </section>
 

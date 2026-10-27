@@ -1,0 +1,173 @@
+{
+ "name": "ff-082-medicare-levy",
+ "files": [
+  "modules/guide/medicare-levy.tsx",
+  "modules/guide/minimum-wage-by-age-data.ts",
+  "modules/guide/minimum-wage-by-age.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/medicare-levy.tsx:172",
+   "file": "modules/guide/medicare-levy.tsx",
+   "line": "172",
+   "page": "https://pay-calculator-australia.com/medicare-levy/",
+   "claims": [
+    "The {RATE} levy is paid by almost every resident and cannot be avoided by buying insurance.",
+    "The surcharge is an extra 1% to 1.5%"
+   ],
+   "whys": [
+    "This is a population claim with no source, and the same page shows that no levy is payable at or under the low-income threshold. It also leaves out the exemption categories. 'Almost every resident' overstates who pays. A safer wording would be 'applies to residents whatever hospital cover they hold'. I left it unchanged because the sentence is in the callout's first claim.",
+    "The rates are correct, but they are typed into the prose instead of coming from the constants. They will go stale if the MLS tiers change."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.lowIncomeThreshold / LEVY_EXEMPTION_CATEGORIES (lib/constants/medicare-levy-extra.ts)",
+    "MEDICARE_LEVY.surcharge tiers / formatMlsRate (lib/constants/medicare-levy-surcharge.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/medicare-levy.tsx:105",
+   "file": "modules/guide/medicare-levy.tsx",
+   "line": "105",
+   "page": "https://pay-calculator-australia.com/medicare-levy/",
+   "claims": [
+    "meet at exactly 1.25 times the lower threshold ... Every threshold pair the ATO publishes follows that ratio"
+   ],
+   "whys": [
+    "'1.25' is typed into the prose rather than derived from SHADE and RATE. The ATO also rounds the published upper thresholds, so 'exactly' and 'every' may not hold for every year. The writer did not change this; I am flagging it for a check."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.shadeInRate / MEDICARE_LEVY.rate, upperThreshold()"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.18,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age-data.ts:479",
+   "file": "modules/guide/minimum-wage-by-age-data.ts",
+   "line": "479",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/20/",
+   "claims": [
+    "First FAQ answer (on every age page): \"Most jobs fall under an award that pays more: ...\""
+   ],
+   "whys": [
+    "This is false at 20. Retail Level 1 for the first six months ($25.03) and Fast Food Level 1 ($25.03) are both below the award-free National Minimum Wage at 20 ($25.84, 97.7%). \"Most jobs\" is also a population claim with no cited source. The page's direct answer makes a similar claim (\"Most {age}-year-olds are covered by an award instead\"). The checker locks this string (faqs.push arg), so I did not change it."
+   ],
+   "constants": [
+    "EMPLOYMENT.minimumWageHourly + NMW_SCALE (lib/constants/junior-age-facts.ts) vs RETAIL_RATES Level 1 / FAST_FOOD_LEVEL_1 (lib/constants/hospitality-award.ts, lib/constants/minimum-wage.ts)"
+   ],
+   "reviewerNotes": [
+    "Confirmed writer FQ1: on the /20/ page, 'Most jobs fall under an award that pays more' is false for Retail Level 1 (first 6 months) and Fast Food Level 1 against the 97.7% National Minimum Wage. It is also an unsourced population claim. The string is locked (faqs.push), so it is left for the owner."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.48,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age-data.ts:307",
+   "file": "modules/guide/minimum-wage-by-age-data.ts",
+   "line": "307",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/19/",
+   "claims": [
+    "\"Pharmacy moves in bigger, yearly steps (85%, then 95%)\""
+   ],
+   "whys": [
+    "Under the Pharmacy schedule, the 19-year-old column is 85% from 1 December 2026 and 95% from 1 July 2027. Those two steps are seven months apart, not a year. Only the steps from July 2027 onward are yearly."
+   ],
+   "constants": [
+    "JUNIOR_TRANSITION_SCHEDULES.pharmacy.rows (lib/constants/junior-rates.ts lines 289-294)"
+   ],
+   "reviewerNotes": [
+    "Confirmed writer FQ4 against JUNIOR_TRANSITION_SCHEDULES.pharmacy.rows (junior-rates.ts lines 289-294). For age 19, 85% applies from 1 December 2026 and 95% from 1 July 2027, which are seven months apart, so 'yearly steps' is wrong for the first pair."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.2,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age-data.ts:177",
+   "file": "modules/guide/minimum-wage-by-age-data.ts",
+   "line": "177",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/20/",
+   "claims": [
+    "\"Twenty is where most awards reach the adult rate, but not all of them.\""
+   ],
+   "whys": [
+    "awardsByPercentageAtAge(20) shows only 8 of the 19 JUNIOR_SCALE_AWARDS at 100% (9 if Retail after 6 months counts). That is fewer than half, so \"most\" is not supported by the site's own data."
+   ],
+   "constants": [
+    "JUNIOR_SCALE_AWARDS in lib/constants/junior-age-facts.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.37,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age-data.ts:470",
+   "file": "modules/guide/minimum-wage-by-age-data.ts",
+   "line": "470",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/18/ (also /19/, /20/)",
+   "claims": [
+    "Phase-in FAQ: \"... and nothing [now: no rate] has changed yet.\" The 19 FAQ at line 554 has the same problem: \"Not yet: no award pays a 19-year-old more for length of service today.\""
+   ],
+   "whys": [
+    "Both statements go stale on 1 December 2026 (PHASE_IN.start), about five weeks from now. They need a date condition built from PHASE_IN.start/inForce, or a code switch after that date."
+   ],
+   "constants": [
+    "PHASE_IN.start / PHASE_IN.inForce (lib/constants/junior-age-facts.ts, from PENDING_JUNIOR_CHANGE in lib/constants/junior-rates.ts)"
+   ],
+   "reviewerNotes": [
+    "Confirmed writer FQ3: 'No rate has changed yet' (and the 19 FAQ at line 554) will be false after PHASE_IN.start (1 December 2026). It needs a date-conditional in code."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age-data.ts:304",
+   "file": "modules/guide/minimum-wage-by-age-data.ts",
+   "line": "304",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/18/",
+   "claims": [
+    "\"The July 2027 wage review will also change the adult rate the percentages apply to.\""
+   ],
+   "whys": [
+    "This states the outcome of an Annual Wage Review that has not been decided. It would be accurate to say the 2026-27 review sets a new adult rate from 1 July 2027. Please confirm the intended wording."
+   ],
+   "constants": [
+    "NMW_ORDER / next Annual Wage Review date (lib/constants/junior-rates.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.04,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/minimum-wage-by-age.tsx:111",
+   "file": "modules/guide/minimum-wage-by-age.tsx",
+   "line": "111",
+   "page": "https://pay-calculator-australia.com/minimum-wage-by-age/14/ (and /15/ to /20/)",
+   "claims": [
+    "Most {age}-year-olds are covered by an award instead, which sets its own junior rate"
+   ],
+   "whys": [
+    "This population claim has no figure or source, and it renders on all 7 age pages, including 14. It also sits inside the protected direct-answer box, so I left it as it is. A reviewer should source it or reword it to 'If you are covered by an award, it sets its own junior rate'."
+   ],
+   "constants": [
+    "No constant. It is a hard-typed sentence in the template."
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. 'Most {age}-year-olds are covered by an award instead' is an unsourced population claim. It sits in the protected direct-answer box and renders on all 7 age pages. It was not changed in this pass."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.14,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+ "name": "ff-088-notice-of-assessment",
+ "files": [
+  "modules/guide/notice-of-assessment.tsx",
+  "modules/guide/novated-lease-guide-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/notice-of-assessment.tsx:191",
+   "file": "modules/guide/notice-of-assessment.tsx",
+   "line": "191",
+   "page": "https://pay-calculator-australia.com/notice-of-assessment/",
+   "claims": [
+    "The ATO will review your objection and issue a decision, typically within 60 days.",
+    "Objections must be lodged within 2 years of the assessment date for individuals."
+   ],
+   "whys": [
+    "The ATO's published service standard for finalising objections is 56 days (after it has all the information it needs). 60 days is the period after which a taxpayer can give notice requiring a decision. The two are different things, and the figure is hardcoded.",
+    "The 2-year period covers individuals with simple tax affairs. Others get 4 years, which the amendment paragraph at line 175 already says. The objection sentence reads as if 2 years covers every individual."
+   ],
+   "constants": [
+    "none (hardcoded); would belong in lib/constants/tax-return-2025-26.ts",
+    "none (hardcoded)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.79,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/notice-of-assessment.tsx:141",
+   "file": "modules/guide/notice-of-assessment.tsx",
+   "line": "141",
+   "page": "https://pay-calculator-australia.com/notice-of-assessment/",
+   "claims": [
+    "Result row: Refund (if negative) or Amount Owing (if positive)"
+   ],
+   "whys": [
+    "EX_RESULT = EX_WITHHELD - EX_TOTAL is positive and is shown as 'Refund'. The sign convention in the locked description cell does not match the example beside it."
+   ],
+   "constants": [
+    "EX_RESULT (line 23)"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestions are valid and I am passing them on unchanged: (1) the '60 days' objection figure, against the ATO's 56-day standard; (2) the 2-year objection period, which applies only to simple tax affairs; (3) 'revised payment summary', which looks out of date since STP income statements; (4) the locked 'Refund (if negative)' sign convention, which contradicts the positive EX_RESULT shown as Refund; (5) the hardcoded '2 weeks', which duplicates RETURN_2026.onlineRefundTypical; (6) the table header shows a $90K salary but taxable income of $87,000, and the implied deductions are never stated."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/notice-of-assessment.tsx:74",
+   "file": "modules/guide/notice-of-assessment.tsx",
+   "line": "74",
+   "page": "https://pay-calculator-australia.com/notice-of-assessment/",
+   "claims": [
+    "It is typically available within <strong>2 weeks</strong> of electronic lodgement"
+   ],
+   "whys": [
+    "This duplicates RETURN_2026.onlineRefundTypical as a hardcoded value. It is correct today but will drift if the constant changes."
+   ],
+   "constants": [
+    "RETURN_2026.onlineRefundTypical in lib/constants/tax-return-2025-26.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide-faqs.ts:50",
+   "file": "modules/guide/novated-lease-guide-faqs.ts",
+   "line": "50",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "Any surplus in the running cost account at lease end is refunded to the employee."
+   ],
+   "whys": [
+    "Leasing providers handle an end-of-lease surplus in different ways. It is often paid back through payroll as taxable salary or put towards the residual. As written, the sentence reads like a fixed rule and does not mention the tax treatment."
+   ],
+   "constants": [
+    "lib/constants/novated-lease.ts (none at present; needs a sourced statement)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.02,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/novated-lease-guide-faqs.ts:40",
+   "file": "modules/guide/novated-lease-guide-faqs.ts",
+   "line": "40",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "Used car novated leases deliver smaller GST savings (no GST credit on private-sale used cars)"
+   ],
+   "whys": [
+    "This is unsourced provider and tax detail in the same answer as the age-limit claim the writer already flagged. It should be checked against the ATO GST guidance on novated leases."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.48,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/novated-lease-guide-faqs.ts:32",
+   "file": "modules/guide/novated-lease-guide-faqs.ts",
+   "line": "32",
+   "page": "https://pay-calculator-australia.com/novated-lease-guide/",
+   "claims": [
+    "No. A novated lease does not reduce the super your employer must pay ... your employer must work out your super on your pre-sacrifice salary."
+   ],
+   "whys": [
+    "The answer now states the rule definitively. It depends on the Payday Super qualifying-earnings rule, but the FAQ cites no constant. The owner should confirm the rule against the source in lib/constants/ote-salary.ts or australian-tax.ts, and check that the maximum contribution base needs no mention."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 4.34,
+   "needsOwner": false
+  }
+ ]
+}

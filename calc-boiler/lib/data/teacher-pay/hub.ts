@@ -90,7 +90,7 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
 
   faqs.push({
     q: "Where can I see the full teacher pay scale for my state?",
-    a: `Each state and territory has its own page with every step of its published scale, leadership rates and the date its next increase applies: ${rows
+    a: `Each state and territory has its own page with every step of its published scale, leadership rates and, where the agreement already sets one, the date of its next increase: ${rows
       .map((r) => teacherAnchorText(r.state))
       .join(", ")}. The comparison table above links to each.`,
   });

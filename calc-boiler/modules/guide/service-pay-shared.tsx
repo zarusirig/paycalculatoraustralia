@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Info } from "lucide-react";
 import { formatAUD } from "@/lib/constants";
 import { isExactTakeHome, nearestTakeHome, takeHomeHref } from "@/lib/data/service-pay";
+import { HIGH_SALARY_TAIL, TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import type { ServicePayScale } from "@/lib/data/service-pay/types";
 import { HEADING_FONT, TableShell } from "./job-pay-shared";
 
@@ -135,10 +136,14 @@ export function NoticeList({ notices }: { notices: string[] }) {
 }
 
 export function TakeHomeLinkNote() {
+  const stepped = TAKE_HOME_SALARIES.filter((s) => !HIGH_SALARY_TAIL.includes(s));
+  const tail = HIGH_SALARY_TAIL.map((s) => formatAUD(s));
+  const tailText = tail.length > 1 ? `${tail.slice(0, -1).join(", ")} and ${tail[tail.length - 1]}` : tail.join("");
   return (
     <p className="text-sm text-warmgray">
-      Each salary in the table links to a take-home pay page. Take-home pages exist for every $1,000 up to $150,000 and in wider
-      steps above that, so a salary without a page of its own links to the nearest one.
+      Each salary in the table links to a take-home pay page. Take-home pages exist for every $5,000 from{" "}
+      {formatAUD(stepped[0])} to {formatAUD(stepped[stepped.length - 1])}, then {tailText}, so a salary without a page of
+      its own links to the nearest one.
     </p>
   );
 }

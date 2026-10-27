@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { formatAUD } from "@/lib/constants";
+import { CARER_ALLOWANCE } from "@/lib/constants/centrelink-carer-and-support";
 
 export default function CentrelinkPaymentIncreaseJanuary2026() {
   return (
@@ -45,9 +47,10 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         Around 680,000 people receiving Carer Allowance saw their fortnightly payment rise $3.30
         to $162.60. Because Carer Allowance is a supplementary payment rather than an
         income-support payment, it can be paid on top of Carer Payment, a wage, or another
-        Centrelink payment, and it isn&apos;t means-tested against the recipient&apos;s own income
-        the way most other payments are. Instead it&apos;s tied to the care needs of the person
-        being cared for. Alongside the rate rises, the student and apprentice income-free area
+        Centrelink payment. It has no income taper: you get the set rate if you and your partner
+        have a combined adjusted taxable income under {formatAUD(CARER_ALLOWANCE.incomeLimit)} a
+        year, and nothing at or above that limit. Eligibility also depends on the care needs of the
+        person being cared for. Alongside the rate rises, the student and apprentice income-free area
         increased to $539 a fortnight, and the upper income threshold (the point where the
         taper steps up from 50 cents to 60 cents in the dollar) rose to $646.
       </p>
@@ -62,8 +65,8 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
       <p>
         Age Pension, JobSeeker and other pension-type payments follow their own indexation
         timetable (20 March and 20 September each year), so they weren&apos;t part of this round.
-        January indexation instead targets younger claimants and carers, reflecting movements in
-        the Consumer Price Index over the preceding six months. Family Tax Benefit and related
+        January indexation instead covers younger claimants and carers: these payments are indexed
+        once a year, on 1 January, in line with movements in the Consumer Price Index. Family Tax Benefit and related
         family assistance payments follow a third cycle again, indexed each 1 July to align with
         the financial year. If you&apos;re on a pension-type payment, your next rate change lands
         on <Link href="/news/age-pension-increase-march-2026/">20 March 2026</Link>; if you get

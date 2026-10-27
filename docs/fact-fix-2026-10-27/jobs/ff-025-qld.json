@@ -1,0 +1,128 @@
+{
+ "name": "ff-025-qld",
+ "files": [
+  "lib/data/service-pay/paramedic/qld.ts",
+  "lib/data/service-pay/paramedic/sa.ts",
+  "lib/data/service-pay/paramedic/tas.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/service-pay/paramedic/qld.ts:37",
+   "file": "lib/data/service-pay/paramedic/qld.ts",
+   "line": "37",
+   "page": "/paramedic-salary/qld (QLD paramedic pay)",
+   "claims": [
+    "From 1 September 2027, Level 2, Band 1, Increment 1 goes to $89,043"
+   ],
+   "whys": [
+    "Low priority. $86,877 x 1.025 = $89,049, while Increment 7 ($107,514 to $110,201) matches 2.5% exactly. The gap is probably rounding in the QAS fortnightly schedule, but please check it against the updated Schedule 1."
+   ],
+   "constants": [
+    "QLD_PARAMEDIC_PAY.nextIncrease.detail"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.85,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/paramedic/sa.ts:66",
+   "file": "lib/data/service-pay/paramedic/sa.ts",
+   "line": "66",
+   "page": "/paramedic-salary/sa (SA paramedic pay)",
+   "claims": [
+    "ICP pay points 3.2 and 3.3 were deleted from 1 July 2026.",
+    "ICP pay points 3.2 and 3.3 were deleted from 1 July 2026, yet line 69 lists 'Intensive Care Paramedic Intern - pay point 3.3' as in force from 1 July 2026."
+   ],
+   "whys": [
+    "The same table lists 'Intensive Care Paramedic Intern - pay point 3.3' at $107,878 'From 1 July 2026' (line 69), and the file header names only ICP 3.2 as a pay point ending on 1 July 2026. Either 3.3 was not deleted, or the intern row's pay point number is wrong.",
+    "I confirm the writer's question. The header (line 19) names only ICP 3.2 as a pay point that ends on 1 July 2026. Either the scale intro or the intern row label is wrong, so check both against Schedule 1 Part 2.5."
+   ],
+   "constants": [
+    "SA_PARAMEDIC_PAY.scales[intensive-care].intro / steps[0].label (Schedule 1, Part 2.5 of the SAAS EA 2025)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.56,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/paramedic/sa.ts:98",
+   "file": "lib/data/service-pay/paramedic/sa.ts",
+   "line": "98",
+   "page": "/paramedic-salary/sa (SA paramedic pay)",
+   "claims": [
+    "CTL/RTL >12 reports, ACTL pay point 5.4 ($147,262) 'From 31 December 2025'"
+   ],
+   "whys": [
+    "The SOT/Retrieval ICP, ECP pay point 5.4 at the same $147,262 is marked 'New pay point from 1 July 2026' (line 84). One of the two notes looks wrong."
+   ],
+   "constants": [
+    "SA_PARAMEDIC_PAY.scales[icp-team-leaders].steps[4].note vs scales[sot-ecp].steps[3].note"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.37,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/paramedic/sa.ts:112",
+   "file": "lib/data/service-pay/paramedic/sa.ts",
+   "line": "112",
+   "page": "/paramedic-salary/sa (SA paramedic pay)",
+   "claims": [
+    "Most rostered emergency staff are paid a rolled-in rate (RIR) allowance (also 'Most rostered paramedics' in the FAQ answer at line 137)"
+   ],
+   "whys": [
+    "Population claim with no figure or cited source on the page. Schedule 4 sets the RIR percentage but does not say how many staff are on it."
+   ],
+   "constants": [
+    "SA_PARAMEDIC_PAY.penalties[1], faqs[0].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.07,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/service-pay/paramedic/sa.ts:38",
+   "file": "lib/data/service-pay/paramedic/sa.ts",
+   "line": "38",
+   "page": "/paramedic-salary/sa (SA paramedic pay)",
+   "claims": [
+    "Intern (pay point 1.2) goes to $79,753 from 31 December 2026 (also FAQ line 141)"
+   ],
+   "whys": [
+    "Low priority. $77,059 x 1.035 = $79,756, while pay points 2.1 and 2.7 match 3.5% exactly. Please check against the 31-Dec-26 column of Schedule 1."
+   ],
+   "constants": [
+    "SA_PARAMEDIC_PAY.nextIncrease.detail, faqs[1].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.01,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/service-pay/paramedic/tas.ts:39",
+   "file": "lib/data/service-pay/paramedic/tas.ts",
+   "line": "39",
+   "page": "/paramedic-salary/tas (Tasmania paramedic pay)",
+   "claims": [
+    "ratesEffectiveFrom: \"1 December 2025\" (the page opening reads 'from 1 December 2025, the Paramedic Intern 01 rate is $78,771')",
+    "ratesEffectiveFrom is '1 December 2025', so the opening reads 'from 1 December 2025, the Paramedic Intern 01 rate is $78,771'."
+   ],
+   "whys": [
+    "The file header says the published figures are the Schedule 1 Table 1 column 'Base salary effective ffppcooa date of registration of this Agreement', with registration on 6 August 2026. Notice 2 also says the new classification structure (Paramedic Level 2 etc.) applies from the registration date. The P2 rates are therefore in force from the first full pay period on or after 6 August 2026, not from 1 December 2025.",
+    "I confirm the writer's question. The file header (lines 18-21) says the published figures are the Schedule 1 Table 1 column 'Base salary effective ffppcooa date of registration of this Agreement', and it gives the registration date as 6 August 2026. Notice 2 (line 121) says the Paramedic Level 2 structure applies from that registration date. The opening's effective date therefore looks wrong. It should be the first full pay period on or after 6 August 2026, or the 1 December 2025 column figures should be used instead."
+   ],
+   "constants": [
+    "TAS_PARAMEDIC_PAY.ratesEffectiveFrom"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.77,
+   "needsOwner": false
+  }
+ ]
+}

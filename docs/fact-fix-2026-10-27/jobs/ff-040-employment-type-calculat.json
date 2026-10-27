@@ -1,0 +1,176 @@
+{
+ "name": "ff-040-employment-type-calculat",
+ "files": [
+  "modules/calculator/employment-type-calculator-content.tsx",
+  "modules/calculator/employment-type-calculator.tsx",
+  "modules/calculator/family-tax-benefit-calculator.tsx",
+  "modules/calculator/final-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/employment-type-calculator-content.tsx:70",
+   "file": "modules/calculator/employment-type-calculator-content.tsx",
+   "line": "70",
+   "page": "https://pay-calculator-australia.com/employment-type-calculator/",
+   "claims": [
+    "Leave is worth approximately 14.6% of annual earnings, so the 25% casual loading only provides a ~10% premium over permanent employment.",
+    "The Retail and Hospitality awards are 'the two awards that cover most casuals'.",
+    "Leave is worth about 14.6% of annual earnings, so the 25% casual loading only gives a ~10% premium over permanent employment."
+   ],
+   "whys": [
+    "Subtracting percentages on different bases gives the wrong answer. A permanent employee is paid for 260 days but works about 222, so the casual premium is 1.25 / (260/222) - 1, about 6.7%, not ~10%. The FAQ on the same page (employment-type-calculator-faqs.ts line 19, LEAVE_VALUE) uses the worked-days basis and shows about 17%, which contradicts the 14.6% here. The page states two different leave values.",
+    "This is a population claim with no figure or cited source.",
+    "The page gives two leave values. The content uses 38 paid days off / 260 days (14.6%), while the FAQ LEAVE_VALUE (employment-type-calculator-faqs.ts line 14) uses 38 / 222 (about 17%). The ~10% premium subtracts percentages taken on different bases. On a worked-days basis the premium is about 6.7%."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading / annualLeaveWeeks / personalLeaveDays in lib/constants/australian-tax.ts (lines 502-504). Derive 14.6% and the premium from these, using the same basis as the FAQ.",
+    "none; needs a source (FWC/ABS) or a rewording"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. The content uses PAID_DAYS_OFF/260 = 14.6%, but the FAQ's LEAVE_VALUE uses 38/(260-38) = 17%. The '~10% premium' is 25 - 14.6, which subtracts across different bases. On a worked-days basis it is 1.25 x 222/260 - 1, about 6.7%. The page states two different leave values."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/employment-type-calculator-content.tsx:75",
+   "file": "modules/calculator/employment-type-calculator-content.tsx",
+   "line": "75",
+   "page": "https://pay-calculator-australia.com/employment-type-calculator/",
+   "claims": [
+    "Under casual conversion the employer can only refuse on fair and reasonable operational grounds."
+   ],
+   "whys": [
+    "Under the employee choice pathway (Fair Work Act s 66F) the employer can also refuse when the employee still meets the definition of a casual employee, or when conversion would break a recruitment or selection law. 'Only on operational grounds' is too narrow, and the FAQ on the same page says 'limited grounds' (faqs.ts line 31)."
+   ],
+   "constants": [
+    "lib/constants/casual-conversion.ts"
+   ],
+   "reviewerNotes": [
+    "'Can only refuse on fair and reasonable operational grounds' is narrower than s 66F. The FAQ on the same page says 'limited grounds'. Pre-existing text, outside this pass."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/employment-type-calculator-content.tsx:85",
+   "file": "modules/calculator/employment-type-calculator-content.tsx",
+   "line": "85",
+   "page": "https://pay-calculator-australia.com/employment-type-calculator/",
+   "claims": [
+    "Super = 12% of annual earnings (also hard-coded at line 115 '12% SG contribution', and '25%' at lines 23, 50, 61, 62, 70, '38 hours' at lines 29, 39, 81)."
+   ],
+   "whys": [
+    "The values are correct for 2026, but they are typed into JSX instead of coming from SUPER_GUARANTEE.rate / EMPLOYMENT, so they will go stale when the constants change."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate, EMPLOYMENT.casualLoading, EMPLOYMENT.standardWeeklyHours in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.76,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/employment-type-calculator.tsx:191",
+   "file": "modules/calculator/employment-type-calculator.tsx",
+   "line": "191",
+   "page": "https://pay-calculator-australia.com/employment-type-calculator/",
+   "claims": [
+    "Casuals get the 25% casual loading ... (and table header line 172 'Super Contribution (12%)')"
+   ],
+   "whys": [
+    "Correct today, but these are typed by hand while the calculation uses EMPLOYMENT.casualLoading and SUPER_GUARANTEE.rate. They can drift apart."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading, SUPER_GUARANTEE.rate (lib/constants/australian-tax.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.5,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/family-tax-benefit-calculator.tsx:82",
+   "file": "modules/calculator/family-tax-benefit-calculator.tsx",
+   "line": "82",
+   "page": "https://pay-calculator-australia.com/family-tax-benefit-calculator/",
+   "claims": [
+    "... and {A.maxFortnightly.age13to19} for a teenager"
+   ],
+   "whys": [
+    "Not precise enough. The 13-19 rate applies to a child aged 13 to 15, or 16 to 19 in full-time secondary study. A 16 to 19 year old who is not studying gets nothing. I did not edit this string because the ages would be new numbers in it."
+   ],
+   "constants": [
+    "FTB_A.maxFortnightly.age13to19 (lib/constants/centrelink-family-payments.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/final-pay-calculator-content.tsx:44",
+   "file": "modules/calculator/final-pay-calculator-content.tsx",
+   "line": "44",
+   "page": "https://pay-calculator-australia.com/final-pay-calculator/",
+   "claims": [
+    "For most employees, the leave payout is added to your assessable income ... If the lump sum pushes you into a higher tax bracket, you may be able to request the ATO to assess it separately.",
+    "If the lump sum pushes you into a higher tax bracket, you may be able to request the ATO to assess it separately."
+   ],
+   "whys": [
+    "No ATO process lets you ask for an unused annual leave payout on termination to be assessed separately. The lump sum in arrears tax offset covers back pay, not leave payouts. 'Pushes you into a higher tax bracket' also implies the whole income is taxed at the higher rate. 'For most employees' is a population claim with no source. I left the text unchanged.",
+    "This confirms the writer's question. I know of no ATO process for having an unused annual leave payout assessed separately. The lump sum in arrears offset applies to back pay. The sentence should be checked against the ATO 'unused leave on termination' page and probably removed."
+   ],
+   "constants": [
+    "prose only; check against the ATO 'leaving your job' / unused leave page already in SOURCES_LIST"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/final-pay-calculator-content.tsx:36",
+   "file": "modules/calculator/final-pay-calculator-content.tsx",
+   "line": "36",
+   "page": "https://pay-calculator-australia.com/final-pay-calculator/",
+   "claims": [
+    "Long service leave ... Calculated at 8.67 weeks per 10 years of service on a pro-rata basis. (The methodology at line 73 uses the same formula.)",
+    "Calculated at 8.67 weeks per 10 years of service on a pro-rata basis (also methodology line 73)."
+   ],
+   "whys": [
+    "8.67 weeks per 10 years matches NSW, Vic, Qld, WA and Tas. SA and NT give 13 weeks after 10 years, and the ACT uses a different accrual. The text presents one rate as national.",
+    "This confirms the writer's question with a correction. SA and NT give 13 weeks after 10 years, so one national rate is wrong for them. The ACT is NOT an exception: 6.0667 weeks after 7 years equals 8.67 weeks per 10 years."
+   ],
+   "constants": [
+    "a per-state long service leave constant (for example in lib/constants leave files), not hard-coded prose"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/final-pay-calculator-content.tsx:34",
+   "file": "modules/calculator/final-pay-calculator-content.tsx",
+   "line": "34",
+   "page": "https://pay-calculator-australia.com/final-pay-calculator/",
+   "claims": [
+    "Calculated as (annual salary / 260) x unused leave days. Most awards require 17.5% leave loading on the payout. (Also lines 43 and 71.)"
+   ],
+   "whys": [
+    "Not wrong today, but 17.5% and 260 are typed by hand, while the lead paragraph at line 27 reads them from COMMON_LEAVE_LOADING and WORKING_DAYS_PER_YEAR. These copies can drift apart."
+   ],
+   "constants": [
+    "COMMON_LEAVE_LOADING (lib/constants/leave-loading.ts), EMPLOYMENT.weeksPerYear * 5"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.51,
+   "needsOwner": false
+  }
+ ]
+}

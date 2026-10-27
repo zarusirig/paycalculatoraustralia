@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { NEGATIVE_GEARING_REFORM, SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { HECS_HELP, NEGATIVE_GEARING_REFORM, SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
@@ -13,8 +13,10 @@ import {
   withholdingForPeriod,
   FORTNIGHTLY_TABLE_AMOUNTS,
   MONTHLY_TABLE_AMOUNTS,
+  NO_TFN_RATES,
   PAYG_FINANCIAL_YEAR,
   PAYG_TABLES_UPDATED,
+  SCALE_1_NO_TFT,
   WEEKLY_TABLE_AMOUNTS,
   type PayFrequency,
   type TaxTableRow,
@@ -50,6 +52,10 @@ const GLANCE: { frequency: PayFrequency; label: string; href: string; gross: num
 ];
 
 const example1500 = calculatePAYGWithholding(1_500, "weekly");
+// Weekly gap between Scale 1 (no tax-free threshold) and Scale 2 (claimed) at the same $1,500 example.
+const TFT_GAP_1500 = withholdingForPeriod(1_500, "weekly", "noTft") - withholdingForPeriod(1_500, "weekly", "tft");
+// First Scale 1 band rate: what is withheld from the first dollars when the threshold is not claimed.
+const NO_TFT_FIRST_RATE = SCALE_1_NO_TFT[0].a ?? 0;
 
 // Sample rows for the hub: a short slice of each table's standard earnings
 // steps, computed by the same buildTaxTableRows() the full-table pages use
@@ -213,11 +219,11 @@ export default function PAYGTablesGuidePage() {
               </p>
               <ol>
                 <li><strong>Employee submits a TFN declaration</strong>: The employee completes a Tax File Number declaration form (NAT 3092) providing their TFN, residency status, tax-free threshold claim, and study loan status. This form determines which withholding schedule the employer applies.</li>
-                <li><strong>Employer identifies the correct schedule</strong>: Based on the declaration, the employer selects from Schedule 1 (standard), Schedule 2 (no TFN), Schedule 3 (actors/performers), Schedule 4 (return-to-work), or Schedule 15 (working holiday makers).</li>
+                <li><strong>Employer identifies the correct schedule</strong>: Based on the declaration, the employer selects from Schedule 1 (standard, including the no-TFN rates), Schedule 2 (horticultural or shearing workers), Schedule 3 (actors/performers), Schedule 4 (return-to-work), or Schedule 15 (working holiday makers).</li>
                 <li><strong>Payroll calculates gross earnings</strong>: The employer totals the employee&apos;s ordinary time earnings, overtime, allowances, bonuses, and commissions for that pay period.</li>
                 <li><strong>Withholding amount is looked up or calculated</strong>: The employer uses the ATO coefficient formula or a direct lookup table to determine the exact PAYG withholding for that gross amount. The formula uses two coefficients (a and b) applied to weekly earnings brackets.</li>
-                <li><strong>Net pay is deposited</strong>: The employer pays the employee the gross amount minus PAYG withholding, minus superannuation (paid separately to a super fund at the SG rate of <strong>12%</strong>), and minus any salary sacrifice or other deductions.</li>
-                <li><strong>Employer remits withheld amounts to the ATO</strong>: Withheld tax is reported and paid to the ATO, either monthly (for businesses withholding over $25,000 per year) or quarterly (for smaller withholders), via the Business Activity Statement (BAS).</li>
+                <li><strong>Net pay is deposited</strong>: The employer pays the employee the gross amount minus PAYG withholding and minus any salary sacrifice or other deductions. Super is not taken out of this amount: the employer pays super guarantee of <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> of qualifying earnings on top, into the employee&apos;s super fund each payday, unless the salary was agreed as a package that includes super.</li>
+                <li><strong>Employer remits withheld amounts to the ATO</strong>: Each pay is reported through Single Touch Payroll, and the withheld tax is paid on a cycle set by how much the employer withholds in a year. Small withholders ($25,000 or less) report and pay quarterly, and medium withholders (more than $25,000 up to $1 million) report and pay monthly, both on the activity statement (BAS). Large withholders (more than $1 million) pay electronically within 6 to 8 days of each payday.</li>
                 <li><strong>Annual reconciliation via tax return</strong>: At year-end, the employee lodges a tax return. The ATO compares total PAYG withheld against the actual tax liability. Any overpayment results in a tax refund; any shortfall results in a tax debt.</li>
               </ol>
               <p>
@@ -288,7 +294,7 @@ export default function PAYGTablesGuidePage() {
                       <tr>
                         <td className="px-6 py-4 font-semibold">Schedule 1 (NAT 1004)</td>
                         <td className="px-6 py-4">Regular salary and wages paid weekly, fortnightly or monthly &mdash; the formulas behind the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:text-navy hover:underline">weekly</Link>, <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:text-navy hover:underline">fortnightly</Link> and <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:text-navy hover:underline">monthly</Link> tax tables</td>
-                        <td className="px-6 py-4">Scales for threshold claimed / not claimed, foreign residents, no TFN (<strong>47%</strong> resident, <strong>45%</strong> foreign resident) and Medicare levy exemptions</td>
+                        <td className="px-6 py-4">Scales for threshold claimed / not claimed, foreign residents, no TFN (<strong>{formatPercent(NO_TFN_RATES.resident, 0)}</strong> resident, <strong>{formatPercent(NO_TFN_RATES.foreignResident, 0)}</strong> foreign resident) and Medicare levy exemptions</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">Schedule 2 (NAT 1013)</td>
@@ -386,7 +392,7 @@ export default function PAYGTablesGuidePage() {
                       <tr>
                         <td className="px-6 py-4 font-semibold">Threshold to enter</td>
                         <td className="px-6 py-4">All employees earning $1+ per week</td>
-                        <td className="px-6 py-4">Business/investment income that generates a tax liability of <strong>$1,000+</strong></td>
+                        <td className="px-6 py-4">Individuals and trusts: instalment income of <strong>$4,000+</strong> on the latest tax return, tax payable of <strong>$1,000+</strong> on the latest notice of assessment and notional tax of <strong>$500+</strong></td>
                       </tr>
                     </tbody>
                   </table>
@@ -403,15 +409,15 @@ export default function PAYGTablesGuidePage() {
                 The TFN declaration form is the <strong>single document that controls which withholding rate your employer applies</strong> to your pay. Each answer below changes which withholding scale or rate your employer applies.
               </p>
               <ul>
-                <li><strong>Tax-Free Threshold:</strong> Claiming this threshold (usually on your primary job) instructs your employer to use the standard table where the first <strong>$18,200</strong> of your annual income is untaxed. This reduces your weekly withholding by approximately <strong>$67</strong> compared to not claiming it.</li>
-                <li><strong>No Tax-Free Threshold:</strong> For a second or third job, you do not claim the threshold. Your employer uses a higher withholding table, taxing you from the very first dollar at the <strong>15% marginal rate</strong> (plus 2% Medicare levy).</li>
-                <li><strong>Study/Training Loans:</strong> Ticking &quot;Yes&quot; to having a HECS-HELP, VET Student Loan, or SSL debt triggers a combined table that deducts both PAYG tax and loan repayments simultaneously. Repayment rates range from <strong>1% to 10%</strong> depending on your assessable income bracket.</li>
-                <li><strong>No TFN provided:</strong> Failing to supply a valid TFN within 28 days triggers the top marginal rate of <strong>47%</strong> from dollar one, with no tax-free threshold or offsets applied.</li>
+                <li><strong>Tax-Free Threshold:</strong> Claiming this threshold (usually on your primary job) instructs your employer to use the standard table where the first <strong>$18,200</strong> of your annual income is untaxed. At {formatAUD(1_500)} a week, this reduces your weekly withholding by <strong>{formatAUD(TFT_GAP_1500)}</strong> compared to not claiming it.</li>
+                <li><strong>No Tax-Free Threshold:</strong> For a second or third job, you do not claim the threshold. Your employer uses a higher withholding table, taxing you from the very first dollar, starting at <strong>{formatPercent(NO_TFT_FIRST_RATE, 0)}</strong> of each dollar.</li>
+                <li><strong>Study/Training Loans:</strong> Ticking &quot;Yes&quot; to having a HECS-HELP, VET Student Loan, or SSL debt triggers a combined table that deducts both PAYG tax and loan repayments simultaneously. Since 2025-26 the compulsory repayment is marginal and based on your repayment income: for {PAYG_FINANCIAL_YEAR} nothing is due at or below <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, then {HECS_HELP.bands[1].label}, then {HECS_HELP.bands[2].label}, and above {formatAUD(HECS_HELP.bands[2].max)} it is {HECS_HELP.bands[3].label}.</li>
+                <li><strong>No TFN provided:</strong> If you do not give your employer your TFN, claim an exemption or tell them you have applied for one, your employer withholds <strong>{formatPercent(NO_TFN_RATES.resident, 0)}</strong> from dollar one if you are a resident (<strong>{formatPercent(NO_TFN_RATES.foreignResident, 0)}</strong> if you are a foreign resident), with no tax-free threshold or offsets applied. If you have applied for a TFN, you have 28 days to provide it before that rate applies.</li>
               </ul>
 
               <h3>What Is a Withholding Variation?</h3>
               <p>
-                A &quot;Withholding Variation&quot; (also called a Section 15-15 variation) is a formal ATO approval that allows your employer to withhold a <strong>different amount</strong> than the standard tax tables prescribe. Common reasons for applying include large work-related deductions (such as $5,000+ in tools or uniforms), significant rental property losses creating negative gearing, or salary sacrifice arrangements that reduce assessable income. The employee applies directly to the ATO, which issues a letter specifying the varied withholding rate. The employer then applies that rate instead of the standard tables until the variation expires at the end of the financial year.
+                A &quot;Withholding Variation&quot; (also called a Section 15-15 variation) is a formal ATO approval that allows your employer to withhold a <strong>different amount</strong> than the standard tax tables prescribe. A downward variation stops too much tax being withheld when your tax-deductible expenses are higher than normal, such as large work-related expenses or a loss on a rental property (negative gearing). The employee applies directly to the ATO, which issues a notice specifying the varied withholding rate. The employer can change the rate only once it receives that notice, and then applies it instead of the standard tables until the finishing date on the ATO letter. To keep a variation going after that date, you lodge a new application at least 6 weeks before it expires.
               </p>
               <p>
                 One law change affects a withholding variation that rests on rental losses. Under the {NEGATIVE_GEARING_REFORM.law.name} (assented to on {NEGATIVE_GEARING_REFORM.law.assent}), from {NEGATIVE_GEARING_REFORM.law.quarantiningStarts} losses on a residential dwelling acquired at or after {NEGATIVE_GEARING_REFORM.law.grandfatheredBefore} are quarantined to income and capital gains from residential property investments, so they will no longer reduce the tax withheld from wages. Dwellings acquired before that time keep negative gearing. The exemptions for new dwellings and for specified uses such as affordable housing sit in {NEGATIVE_GEARING_REFORM.bill.schedule} of the <a href={NEGATIVE_GEARING_REFORM.bill.url} target="_blank" rel="noopener noreferrer">{NEGATIVE_GEARING_REFORM.bill.name}</a>, which was {NEGATIVE_GEARING_REFORM.bill.status} and not yet law when checked on {NEGATIVE_GEARING_REFORM.verifiedOn}.
@@ -427,7 +433,7 @@ export default function PAYGTablesGuidePage() {
                 The FY2026-27 PAYG withholding tables reflect the legislated <strong>cost-of-living tax cut</strong> that
                 took effect on 1 July 2026: the marginal rate on income between $18,201 and $45,000 fell from
                 16% to <strong>15%</strong>, worth up to $268 a year. A further cut to <strong>14%</strong> follows on 1 July 2027.
-                The tables also keep the Stage 3 bracket structure, and the 12% superannuation guarantee rate is unchanged.
+                The tables also keep the Stage 3 bracket structure, and the {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee rate is unchanged.
               </p>
               <p>
                 The ATO reissued all 15 withholding schedules and 12 tax tables for 1 July 2026, so a pay dated on or after that day must
@@ -490,7 +496,7 @@ export default function PAYGTablesGuidePage() {
                 the <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
               <p>
-                The 12% superannuation guarantee rate does not change the withholding tables, but it adds to the total employer cost per employee. Your employer contributes <strong>$10,800</strong> in super on a $90,000 salary. Our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> shows the exact SG contribution based on your salary.
+                The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee rate does not change the withholding tables, but it adds to the total employer cost per employee. Your employer contributes <strong>{formatAUD(90_000 * SUPER_GUARANTEE.rate)}</strong> in super on a {formatAUD(90_000)} salary. Our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> shows the exact SG contribution based on your salary.
               </p>
             </section>
 
@@ -502,7 +508,7 @@ export default function PAYGTablesGuidePage() {
                 Reverse-engineering your gross salary from a known take-home figure requires working <strong>backwards through the PAYG withholding tables</strong>, adding back the tax, Medicare levy, and any HECS repayments that were deducted. This conversion lets you compare a take-home figure with a gross salary offer.
               </p>
               <p>
-                A net weekly pay of <strong>{formatAUD(example1500.netPerPeriod)}</strong> corresponds to a gross weekly salary of approximately <strong>$1,500</strong> (or $78,000 per year) for a resident claiming the tax-free threshold with no study loan. The relationship between net and gross is non-linear because of progressive marginal rates &mdash; each additional dollar of gross pay is taxed at a higher marginal rate. Use our <Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> to reverse-engineer the PAYG withholding instantly from any net figure.
+                A net weekly pay of <strong>{formatAUD(example1500.netPerPeriod)}</strong> corresponds to a gross weekly salary of <strong>{formatAUD(example1500.grossPerPeriod)}</strong> (or {formatAUD(example1500.annualEquivalent)} per year) for a resident claiming the tax-free threshold with no study loan. The relationship between net and gross is non-linear because of progressive marginal rates: a higher rate applies only to the part of your income above each bracket threshold, so once you cross a threshold each extra dollar of gross adds less to your net pay. Use our <Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> to reverse-engineer the PAYG withholding instantly from any net figure.
               </p>
             </section>
 

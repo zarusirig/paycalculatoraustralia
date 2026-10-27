@@ -77,8 +77,8 @@ export const RETAIL_WORKER: Occupation = {
   },
   coverage: [
     "Retail workers in shops, supermarkets, department stores and other retail businesses are covered by the General Retail Industry Award 2020 [MA000004], unless the business is covered by a more specific award: pharmacies (Pharmacy Award), fast food outlets (Fast Food Award), and motor vehicle retailing (Vehicle Repair, Services and Retail Award) have their own.",
-    "Most shop assistants, checkout operators, store workers, trolley collectors and merchandisers are Retail Employee Level 1 (Schedule A.1.3). Forklift and ride-on equipment operators are Level 2. Senior salespeople and second-in-charge of a department are Level 3, and a department manager with up to 2 staff, a shift or nightfill supervisor, or a butcher, baker or florist using a trade qualification is Level 4.",
-    "Large supermarket and department store chains usually pay under an enterprise agreement. The employer pages linked on this site set out what Coles, Woolworths, Kmart and Bunnings agreements pay.",
+    "Shop assistant, check-out operator, store worker, trolley collector and merchandiser are among the award's indicative job titles for Retail Employee Level 1 (Schedule A.1.3). Forklift and ride-on equipment operators are Level 2. Senior salespeople and second-in-charge of a department are Level 3, and a department manager with up to 2 staff, a shift or nightfill supervisor, or a butcher, baker or florist using a trade qualification is Level 4.",
+    "Where an enterprise agreement applies, it replaces the award. The employer pages linked on this site set out what Coles, Woolworths, Kmart and Bunnings agreements pay.",
   ],
   tables: [
     {

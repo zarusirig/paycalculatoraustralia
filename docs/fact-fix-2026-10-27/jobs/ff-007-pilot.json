@@ -1,0 +1,177 @@
+{
+ "name": "ff-007-pilot",
+ "files": [
+  "lib/data/aviation-pay/pilot.ts",
+  "lib/data/employer-pay/aldi.ts",
+  "lib/data/employer-pay/australia-post.ts",
+  "lib/data/employer-pay/bakers-delight.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/aviation-pay/pilot.ts:177",
+   "file": "lib/data/aviation-pay/pilot.ts",
+   "line": "177",
+   "page": "/pilot-salary/",
+   "claims": [
+    "Aerial application 0-1000 flying hours: $978.10 a week ($51,001 a year) from 1 July 2026."
+   ],
+   "whys": [
+    "$978.10 a week is below the $1,004.90 a week modern award minimum from 1 July 2026. Award rates are normally lifted to at least that floor in the Annual Wage Review, so this looks like a pre-AWR figure or a misread. The 1001-2000 rate equals $1,004.90 exactly, which suggests the floor was applied there."
+   ],
+   "constants": [
+    "PILOT_PAY.scales[aerial-application].steps[0] (salary 51_001, note $978.10)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's factQuestions. Aerial application 0-1000 hours is $978.10 a week. First Officer single engine at $52,257 works out to about $1,002 a week. Both are below the $1,004.90 a week minimum. The 'lowest minimum salary' trainee claim conflicts with the $51,001 aerial rate. The instrument status date of 1 Jan 2010 may describe the 2010 predecessor award. All 4 are passed through. No source text was changed."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.87,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/aviation-pay/pilot.ts:188",
+   "file": "lib/data/aviation-pay/pilot.ts",
+   "line": "188",
+   "page": "/pilot-salary/",
+   "claims": [
+    "The lowest minimum salary under the award is First Officer/Second Pilot on a single engine aircraft UTBNI 1360 kg at $52,257 a year."
+   ],
+   "whys": [
+    "The same page lists aerial application 0-1000 hours at $51,001 a year, which is lower. Either 'lowest' should say 'lowest general aviation salary' or the aerial figure is wrong (see line 177)."
+   ],
+   "constants": [
+    "PILOT_PAY.traineePay[0]"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.42,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/aviation-pay/pilot.ts:64",
+   "file": "lib/data/aviation-pay/pilot.ts",
+   "line": "64",
+   "page": "/pilot-salary/",
+   "claims": [
+    "First Officer/Second Pilot, single engine UTBNI 1360 kg and 1360-3359 kg: $52,257 a year."
+   ],
+   "whys": [
+    "$52,257 / 52.143 is about $1,002.18 a week. That is slightly below the $1,004.90 a week modern award minimum from 1 July 2026. Please re-check against clause A.1.1 of the consolidated award."
+   ],
+   "constants": [
+    "PILOT_PAY.scales[ga-first-officer].steps[0..1] (52_257)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.91,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/aldi.ts:105",
+   "file": "lib/data/employer-pay/aldi.ts",
+   "line": "105",
+   "page": "https://pay-calculator-australia.com/pay-rates/aldi/",
+   "claims": [
+    "A Duty Store Manager gets $40.06 on weekday evenings and Saturdays, and $47.42 overnight and on Sundays from 9am.",
+    "A Duty Store Manager gets $40.06 on weekday evenings and Saturdays, with no separate late-Saturday band."
+   ],
+   "whys": [
+    "The Full-time table has a separate Saturday 8pm to 11pm band ($43.41). The Duty Store Manager note puts all of Saturday at the evening rate and has no late-Saturday band. That may be correct for Sch 1 cl 12.3, but it should be checked against the PDF.",
+    "The Full-time table has a separate Saturday 8pm to 11pm band at $43.41 (line 96). Check whether Sch 1 cl 12.3 really has no late-Saturday band."
+   ],
+   "constants": [
+    "ALDI_PAY.penaltyNotes[2] (source: AE531722 Sch 1 cl 12.3)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.68,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/aldi.ts:104",
+   "file": "lib/data/employer-pay/aldi.ts",
+   "line": "104",
+   "page": "https://pay-calculator-australia.com/pay-rates/aldi/",
+   "claims": [
+    "A Limited Roster Store Assistant gets $36.30 on weekday evenings and on Saturdays to 8pm. Early mornings (6am to 7am) and Sundays from 9am to 8pm pay $42.95. Late Saturdays, overnight hours and Sunday evenings pay $43.41, Sundays before 9am or after 11pm $56.26, and public holidays $62.92.",
+    "Limited Roster bands: 6am to 7am is grouped with Sunday 9am to 8pm at $42.95. Late Saturdays, overnight hours and Sunday evenings are $43.41."
+   ],
+   "whys": [
+    "The Limited Roster bands do not line up with the Full-time/Flexible table (lines 93-100). In the Full-time table, 6am to 7am sits with overnight hours at $43.78, and Sunday 9am to 11pm is a single band at $43.78. The Limited Roster note puts 6am to 7am with Sundays at $42.95 ($42.95 / $29.64 = 1.449, the same ratio as $43.78 / $30.21), and splits Sunday at 8pm. Its $43.41 band ($43.41 / $29.64 = 1.465) matches no Full-time ratio: Full-time Saturday 8pm to 11pm is 1.437 and overnight is 1.449. Either the band grouping or the $43.41 figure looks mis-transcribed. Please re-check Sch 2 Part D in AE531722.",
+    "These bands do not line up with the Full-time table (lines 96-98), where 6am to 7am sits with overnight hours at $43.78 and Sunday 9am to 11pm is one band. The $43.41 ratio (1.465) matches no Full-time band. Check the band grouping and the $43.41 figure against AE531722 Sch 2 Part D."
+   ],
+   "constants": [
+    "ALDI_PAY.penaltyNotes[1] / ALDI_PAY.penalties in lib/data/employer-pay/aldi.ts (source: AE531722 Sch 2 Part D)"
+   ],
+   "reviewerNotes": [
+    "I checked the writer's two fact questions against the penalties table at source lines 93-100 and agree they need a check against the AE531722 PDF (Sch 2 Part D and Sch 1 cl 12.3). I did not change the text. The $30.21/$27.81 = 8.6% and $29.64/$27.81 = 6.6% figures in the FAQ check out."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.89,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/australia-post.ts:64",
+   "file": "lib/data/employer-pay/australia-post.ts",
+   "line": "64",
+   "page": "/pay-rates/australia-post/",
+   "claims": [
+    "For a junior trainee postie the Booklet prints $28,044 to $51,031 a year (50% to 91%)"
+   ],
+   "whys": [
+    "50% of the adult trainee salary of $56,075 is $28,037.50 and 91% is $51,028.25, not $28,044 and $51,031. The Booklet may set junior salaries on its own basis, but the gap is worth checking against the Booklet's junior trainee table.",
+    "50% of $56,075 is $28,037.50 and 91% is $51,028.25. The printed figures imply an adult base of about $56,088 and $56,078, so the Booklet may derive junior salaries from rounded periodic amounts. Check this against the Booklet's junior trainee table."
+   ],
+   "constants": [
+    "AUSTRALIA_POST_PAY.juniorNote (Rates of Pay Booklet Sept 2026 column)",
+    "AUSTRALIA_POST_PAY.juniorNote"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.97,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/australia-post.ts:94",
+   "file": "lib/data/employer-pay/australia-post.ts",
+   "line": "94",
+   "page": "/pay-rates/australia-post/",
+   "claims": [
+    "Staff at Licensed Post Offices ... are usually paid under the General Retail Industry Award (also FAQ line 112: 'usually under the Retail Award')",
+    "Staff at Licensed Post Offices are usually paid under the General Retail Industry Award (also faqs[1].a line 112)"
+   ],
+   "whys": [
+    "This is a population claim with no figure, and the page cites no source for it. It is listed under the pilot lesson on population claims.",
+    "This is a population claim with no figure, and the page cites no source for it (pilot lesson)."
+   ],
+   "constants": [
+    "AUSTRALIA_POST_PAY.notices[2] and faqs[1].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.73,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/bakers-delight.ts:117",
+   "file": "lib/data/employer-pay/bakers-delight.ts",
+   "line": "117",
+   "page": "/pay-rates/bakers-delight/",
+   "claims": [
+    "From the first full pay period after 1 July 2026, an adult sales assistant at Level 1 must get at least $27.81 an hour"
+   ],
+   "whys": [
+    "Sibling pages (for example the Anaconda FAQ) and the FWO wording say 'first full pay period on or after 1 July 2026'. 'After' leaves out a pay period that starts on 1 July itself.",
+    "iga.ts ratesEffectiveFrom and the Anaconda FAQ both say 'on or after 1 July 2026'. 'After' leaves out a pay period that starts on 1 July itself. The writer raised this and I confirm it."
+   ],
+   "constants": [
+    "Retail Award effective-date wording in lib/data/employer-pay/iga.ts (ratesEffectiveFrom)",
+    "IGA_PAY.ratesEffectiveFrom in lib/data/employer-pay/iga.ts line 48"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.45,
+   "needsOwner": false
+  }
+ ]
+}

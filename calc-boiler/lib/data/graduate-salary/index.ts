@@ -100,6 +100,9 @@ const engineerRow = occupationRow("engineer", (l) => l.includes("pay point 1.1 (
 const lawyerRow = occupationRow("lawyer", (l) => l.startsWith("Level 5"));
 const doctorRow = occupationRow("doctor", (l) => l === "Intern");
 
+/** NSW Health intern salary, IB2026_007 (interim, from the first full pay period on or after 1 July 2025). Still Active on the NSW Health PDS on 27 October 2026. */
+const NSW_INTERN_ANNUAL = 80_638;
+
 export const GRADUATE_PROFESSIONS: readonly GraduateProfession[] = [
   {
     slug: "lawyer",
@@ -138,7 +141,7 @@ export const GRADUATE_PROFESSIONS: readonly GraduateProfession[] = [
     published: {
       label: "Level 1 graduate professional, pay point 1.1 (4 or 5 year degree)",
       annual: engineerRow.annual ?? rowAnnual(engineerRow),
-      basis: "Professional Employees Award 2020 [MA000065] clause 14.1: the minimum annual wage for a graduate engineer with a degree recognised by Engineers Australia. Many employers pay above it.",
+      basis: "Professional Employees Award 2020 [MA000065] clause 14.1: the minimum annual wage for a graduate engineer with a degree recognised by Engineers Australia.",
     },
     howPaid:
       "A graduate engineer with a 4 or 5-year Engineers Australia-recognised degree starts at Level 1, pay point 1.1 of the Professional Employees Award and can progress to pay points 1.2 to 1.4.",
@@ -177,9 +180,9 @@ export const GRADUATE_PROFESSIONS: readonly GraduateProfession[] = [
     qiltMedian: QILT_MEDIANS_2025.medicine,
     published: {
       label: "NSW Health intern (public hospitals)",
-      annual: 80_638,
+      annual: NSW_INTERN_ANNUAL,
       basis:
-        "NSW Health Information Bulletin IB2026_007 (20 January 2026): $80,638 a year from the first full pay period on or after 1 July 2025, an interim increase pending the NSW Industrial Relations Commission's final decision. Check NSW Health for any newer rate.",
+        `NSW Health Information Bulletin IB2026_007 (20 January 2026): $${NSW_INTERN_ANNUAL.toLocaleString("en-AU")} a year from the first full pay period on or after 1 July 2025, an interim increase pending the NSW Industrial Relations Commission's final decision. Check NSW Health for any newer rate.`,
     },
     howPaid:
       "Public-hospital interns are paid under state medical officer awards or agreements. The Medical Practitioners Award sets a lower national-system minimum for private employers.",

@@ -1090,7 +1090,7 @@ export const QLD: Jurisdiction = {
       title: "State Government Entities Certified Agreement, negotiation updates",
       publisher: "Queensland Government (For government)",
       url: "https://www.forgov.qld.gov.au/pay-benefits-and-policy/benefits/state-government-entities-certified-agreement",
-      verifiedOn: "28 August 2026",
+      verifiedOn: "27 October 2026",
       note:
         "Source for the Core Agreement's 30 June 2026 nominal expiry, the lapsed offer of at least 8.5%, and the fact that the 2023 agreement continues to apply until replaced. Page last updated 5 August 2026.",
     },

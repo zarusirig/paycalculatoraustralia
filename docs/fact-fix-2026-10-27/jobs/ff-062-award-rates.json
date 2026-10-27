@@ -1,0 +1,168 @@
+{
+ "name": "ff-062-award-rates",
+ "files": [
+  "modules/guide/award-rates.tsx",
+  "modules/guide/capital-gains-tax-faqs.ts",
+  "modules/guide/capital-gains-tax.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/award-rates.tsx:75",
+   "file": "modules/guide/award-rates.tsx",
+   "line": "75",
+   "page": "/award-rates/",
+   "claims": [
+    "Modern award rates are the legal minimum pay for most Australian employees."
+   ],
+   "whys": [
+    "This is a population claim with no figure or source. ABS Employee Earnings and Hours puts award-only employees at roughly a quarter of all employees. Awards are only the BOOT reference point for agreement employees, so 'most' needs a source or narrower wording. I left it unchanged because it is the protected first sentence of the direct answer."
+   ],
+   "constants": [
+    "No constant exists. It needs an ABS EEH citation or rewording by the owner."
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.31,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/award-rates.tsx:207",
+   "file": "modules/guide/award-rates.tsx",
+   "line": "207",
+   "page": "/award-rates/",
+   "claims": [
+    "200% for a security officer or clerk (Sunday)"
+   ],
+   "whys": [
+    "These percentages are typed into the prose and are not read from constants. SECURITY_AWARD is imported but not used for this figure, and no Clerks award constant is imported. The pharmacy figures at line 209 (125% from 8am to 6pm, 200% before 8am) are also hard-coded, though they match modern-awards.ts:467-468."
+   ],
+   "constants": [
+    "lib/constants/modern-awards.ts (SECURITY_AWARD.penalties, PHARMACY_AWARD.penalties, Clerks award constant if one exists)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.7,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/award-rates.tsx:291",
+   "file": "modules/guide/award-rates.tsx",
+   "line": "291",
+   "page": "/award-rates/",
+   "claims": [
+    "Junior rates are rising from 1 December 2026 ... for employees aged 18 to 20 with more than 6 months' service, a phase-in to the adult rate by 2029"
+   ],
+   "whys": [
+    "The date, ages, service period and end year are all hard-coded in the prose. They should be checked against the junior rates decision and read from the junior-rates constants."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/capital-gains-tax-faqs.ts:94",
+   "file": "modules/guide/capital-gains-tax-faqs.ts",
+   "line": "94",
+   "page": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "claims": [
+    "Your cost base for shares is what you paid plus brokerage and stamp duty on both the purchase and the sale."
+   ],
+   "whys": [
+    "No Australian state or territory charges stamp duty on transfers of listed (ASX) shares, so stamp duty on both the purchase and the sale looks wrong for the usual share sale. It could only apply to some unlisted-share transfers. The same answer also types '12 months' as a literal instead of using CGT_MINIMUM_OWNERSHIP_MONTHS."
+   ],
+   "constants": [
+    "lib/constants/capital-gains-tax.ts (cost base elements / CGT_MINIMUM_OWNERSHIP_MONTHS)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's question: no Australian state charges stamp duty on transfers of listed (ASX) shares, so 'stamp duty on both the purchase and the sale' looks wrong for a typical share sale. The fact was not changed."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.84,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/capital-gains-tax-faqs.ts:90",
+   "file": "modules/guide/capital-gains-tax-faqs.ts",
+   "line": "90",
+   "page": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "claims": [
+    "The ATO's own example: contracts exchanged on 4 June 2026 and settlement on 6 July 2026, gain belongs in the return for the year ending 30 June 2026."
+   ],
+   "whys": [
+    "This is presented as the ATO's own example, but the dates are typed literals. The ATO's published example may use different years, so a re-dated example would be a misquote. Check it against ATO QC104071 / QC69844, or drop the 'ATO's own example' attribution if the dates were changed by the site."
+   ],
+   "constants": [
+    "lib/constants/capital-gains-tax.ts (no constant holds this example; add one if the dates should roll forward)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's question: the 'ATO's own example' uses typed 2026 dates that may not match the ATO's published example. The fact was not changed."
+   ],
+   "kind": "citation-or-source",
+   "severity": 3.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/capital-gains-tax-faqs.ts:54",
+   "file": "modules/guide/capital-gains-tax-faqs.ts",
+   "line": "54",
+   "page": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "claims": [
+    "for 2026-27 means anywhere from 0% to 45% plus the 2% Medicare levy; effective top-bracket rate PCT(0.45 * ... + 0.02 * ...)"
+   ],
+   "whys": [
+    "The figures are correct for 2026-27 but are typed literals in prose and in the expression. The file header says no rate is typed as a literal, so these will go stale if the brackets or Medicare levy change."
+   ],
+   "constants": [
+    "lib/constants/australian-tax.ts (TAX_BRACKETS, Medicare levy rate)"
+   ],
+   "reviewerNotes": [
+    "I endorse the writer's question: '0% to 45% plus the 2% Medicare levy' and the 0.45/0.02 in the PCT() expression are typed literals, which goes against the file header's promise that no rate is typed as a literal. The figures were not changed."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.14,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/capital-gains-tax-faqs.ts:62",
+   "file": "modules/guide/capital-gains-tax-faqs.ts",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "claims": [
+    "There is no partial or pro-rata discount for holding an asset for eleven months."
+   ],
+   "whys": [
+    "'eleven months' is a typed literal. It is tied to CGT_MINIMUM_OWNERSHIP_MONTHS - 1 and goes stale if that constant changes. The question text and the other answers interpolate the constant."
+   ],
+   "constants": [
+    "lib/constants/capital-gains-tax.ts (CGT_MINIMUM_OWNERSHIP_MONTHS)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/capital-gains-tax.tsx:156",
+   "file": "modules/guide/capital-gains-tax.tsx",
+   "line": "156",
+   "page": "https://pay-calculator-australia.com/capital-gains-tax-calculator/",
+   "claims": [
+    "Table caption: \"including the 2% Medicare levy\" (the methodology text at line 334 also says \"the 2% Medicare levy\")"
+   ],
+   "whys": [
+    "The 2% is typed into the JSX, not read from code. It will drift if the levy changes. The prose should render it from the levy constant."
+   ],
+   "constants": [
+    "MEDICARE_LEVY in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.81,
+   "needsOwner": false
+  }
+ ]
+}

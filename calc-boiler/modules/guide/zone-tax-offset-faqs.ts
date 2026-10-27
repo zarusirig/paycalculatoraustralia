@@ -7,6 +7,7 @@
 
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR, ZONE_QUALIFYING_DAYS } from "@/lib/constants/zone-tax-offset";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 
 const A = ZONE_AREA_RATES.zoneA.fixedAmount;
 const B = ZONE_AREA_RATES.zoneB.fixedAmount;
@@ -25,7 +26,7 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Is Darwin in Zone A or Zone B?",
-    a: "Darwin is Zone A. So are Palmerston, Humpty Doo, Alice Springs, Katherine and Jabiru. Tennant Creek and Nhulunbuy are Zone A special areas. The ATO's Australian zone list was last updated on 1 July 2026. Older summaries that place Darwin in Zone B are out of date.",
+    a: "Darwin is Zone A. So are Palmerston, Humpty Doo, Alice Springs, Katherine and Jabiru. Tennant Creek and Nhulunbuy are Zone A special areas. That is how the ATO's Northern Territory zone list, last updated 1 July 2026, lists them. A summary that places Darwin in Zone B does not match the ATO list.",
   },
   {
     q: "Can FIFO workers claim the zone tax offset?",
@@ -49,7 +50,7 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Does my employer apply the zone tax offset to my pay?",
-    a: "No. Your employer does not factor it into PAYG withholding. You claim it at question T4 in your tax return, so it arrives as a reduced assessment or a larger refund when you lodge.",
+    a: "Only if you ask. Give your employer a Withholding declaration (NAT 3093) and answer yes at question 7 (zone or overseas forces tax offset), and they reduce the tax withheld from your pay. If you overestimate the offset, you can end up with a tax debt at the end of the year. Without a declaration, the offset arrives as a reduced assessment or a larger refund when you lodge your tax return. Either way, you claim it at question T4 in your tax return.",
   },
   {
     q: "What if I moved to a zone part-way through the year?",
@@ -57,7 +58,7 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Does a remote area allowance affect the offset?",
-    a: "Yes. Any remote area allowance you receive from Centrelink or the Department of Veterans' Affairs reduces your zone tax offset dollar for dollar. The offset itself is not assessable income for Centrelink purposes, so claiming it does not reduce your payments.",
+    a: "Yes. Any remote area allowance you receive from Centrelink or the Department of Veterans' Affairs reduces your zone tax offset dollar for dollar. The ATO states that the zone tax offset itself is not assessable income for Centrelink purposes.",
   },
   {
     q: "Is the zone tax offset different from the overseas forces tax offset?",
@@ -65,6 +66,6 @@ export const ZONE_FAQS: readonly ZoneFaq[] = [
   },
   {
     q: "Which financial year do these amounts apply to?",
-    a: `These zone tax offset amounts apply to the ${ZONE_OFFSET_INCOME_YEAR} income year, the return being lodged now, due 31 October 2026. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
+    a: `These zone tax offset amounts apply to the ${ZONE_OFFSET_INCOME_YEAR} income year. If you lodge your own ${RETURN_2026.incomeYear} tax return, it is due ${RETURN_2026.selfLodgeDueDate}, or the next business day when that date falls on a weekend. The ATO publishes zone amounts with each year's tax return instructions and has not yet released figures for FY${SITE_CONFIG.financialYear}.`,
   },
 ] as const;

@@ -1,0 +1,159 @@
+{
+ "name": "ff-016-youth-worker",
+ "files": [
+  "lib/data/job-pay-rates/youth-worker.ts",
+  "lib/data/minimum-wage-state/index.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/job-pay-rates/youth-worker.ts:95",
+   "file": "lib/data/job-pay-rates/youth-worker.ts",
+   "line": "95",
+   "page": "/job-pay-rates/youth-worker/",
+   "claims": [
+    "A youth worker who supervises staff or volunteers, including managing the day-to-day operations of a group of residential facilities for persons with a disability, is at Level 3."
+   ],
+   "whys": [
+    "This example on the youth worker page comes from the SCHADS Level 3 disability wording. It may be copied from the disability support worker entry, so check the Schedule B Level 3 youth or community services wording."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.16,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/youth-worker.ts:160",
+   "file": "lib/data/job-pay-rates/youth-worker.ts",
+   "line": "160",
+   "page": "/job-pay-rates/youth-worker/",
+   "claims": [
+    "Generally not. Government youth justice and child protection workers are usually employed under state public sector awards and agreements."
+   ],
+   "whys": [
+    "This is a population hedge with no source ('generally', 'usually'), also on line 97. The writer did not change it. It needs a source, or a rewording that states the coverage rule."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.24,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/job-pay-rates/youth-worker.ts:156",
+   "file": "lib/data/job-pay-rates/youth-worker.ts",
+   "line": "156",
+   "page": "/job-pay-rates/youth-worker/",
+   "claims": [
+    "Casual Saturday work is 175% and casual Sunday work 225% of the minimum hourly rate."
+   ],
+   "whys": [
+    "These FAQ percentages are typed into the text. The penalty table uses SCHADS_PENALTIES.casualSaturday and casualSunday, so the two can drift apart. Derive them from the constant."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.71,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/minimum-wage-state/index.ts:173",
+   "file": "lib/data/minimum-wage-state/index.ts",
+   "line": "173",
+   "page": "https://pay-calculator-australia.com/minimum-wage/wa/",
+   "claims": [
+    "WA_APPRENTICE_ADULT = 828.9 a week for apprentices aged 21 or over, and WA_APPRENTICE_FOUR_YEAR third-year rate is also 828.9"
+   ],
+   "whys": [
+    "The adult apprentice rate is exactly the same as the third-year award-free apprentice rate. That may be correct in the 2026 State Wage order cl 5, but it looks like a possible copy error. A test pins both values, so a human should confirm them against [2026] WAIRC 00400."
+   ],
+   "constants": [
+    "WA_APPRENTICE_ADULT / WA_APPRENTICE_FOUR_YEAR in lib/data/minimum-wage-state/index.ts (better in lib/constants/minimum-wage.ts beside WA_STATE_MINIMUM_WAGE)"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. WA_APPRENTICE_ADULT = 828.9 is the same as WA_APPRENTICE_FOUR_YEAR[2] = 828.9 (line 175). A human should check both against [2026] WAIRC 00400 cl 5."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.81,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/minimum-wage-state/index.ts:362",
+   "file": "lib/data/minimum-wage-state/index.ts",
+   "line": "362",
+   "page": "https://pay-calculator-australia.com/minimum-wage/sa/",
+   "claims": [
+    "SAET 22 June 2026 notice (ET-26-02424): it could adopt $1,004.90 a week and a 4.75% rise unless someone objected by 14 July 2026. 'We have not read the final declaration, so treat those figures as the proposal.'"
+   ],
+   "whys": [
+    "The objection deadline passed more than three months ago, so the final SA State Wage Case declaration has probably been made. The 'proposal' caveat may be stale. $1,004.90 and 4.75% are also typed into the prose rather than read from a constant. The same applies to the FAQ answer at line 381."
+   ],
+   "constants": [
+    "Add an SA state wage constant in lib/constants/minimum-wage.ts, or read NMW.weekly"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.37,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/minimum-wage-state/index.ts:177",
+   "file": "lib/data/minimum-wage-state/index.ts",
+   "line": "177",
+   "page": "https://pay-calculator-australia.com/minimum-wage/tas/",
+   "claims": [
+    "TAS_LAST_MINIMUM = { weekly: 812.6, decided: '22 December 2022', operative: '1 August 2022' }, rendered at lines 408 and 426 as the latest Tasmanian Industrial Commission minimum decision."
+   ],
+   "whys": [
+    "The decision date comes after the operative date. That can happen with retrospective operation, but it is worth checking against the TIC state wage case page. A 2022 figure being the latest one in October 2026 also suggests a newer decision may have been missed."
+   ],
+   "constants": [
+    "TAS_LAST_MINIMUM (lib/data/minimum-wage-state/index.ts line 177)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.84,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/minimum-wage-state/index.ts:469",
+   "file": "lib/data/minimum-wage-state/index.ts",
+   "line": "469",
+   "page": "https://pay-calculator-australia.com/minimum-wage/qld/",
+   "claims": [
+    "FAQ: 'no child can work between 10pm and 6am' (any child). The youngWorkers paragraph at line 453 puts the same 10pm to 6am limit under 'a school-aged child'."
+   ],
+   "whys": [
+    "The two passages give the 10pm to 6am night limit different scopes on the same page (all children or school-aged children only). The Child Employment Act 2006 / QLD_CHILD_RULES source should settle which is right."
+   ],
+   "constants": [
+    "QLD_CHILD_RULES source"
+   ],
+   "reviewerNotes": [
+    "QLD FAQ 'How old do you have to be to work in Queensland?': the fragment 'Generally 13.' became 'The general minimum working age in Queensland is 13.' It still answers the question directly with the figure, Queensland is the subject, and 'general' keeps the original qualifier, so it adds no new hedge. The other sentences, including the scope of the 10pm to 6am limit, are unchanged."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.6,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/minimum-wage-state/index.ts:495",
+   "file": "lib/data/minimum-wage-state/index.ts",
+   "line": "495",
+   "page": "https://pay-calculator-australia.com/minimum-wage/act/",
+   "claims": [
+    "ACT payroll tax threshold 'cut from $2 million to $1.75 million on 1 July 2026'"
+   ],
+   "whys": [
+    "Not wrong: it matches ACT_PAYROLL_TAX.threshold. But it is typed as prose, so it will go stale silently if the constant changes."
+   ],
+   "constants": [
+    "ACT_PAYROLL_TAX.threshold (lib/constants/payroll-tax.ts line 183)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.94,
+   "needsOwner": false
+  }
+ ]
+}

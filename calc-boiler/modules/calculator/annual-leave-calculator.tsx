@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatAUD } from "@/lib/constants";
 import { ANNUAL_LEAVE, annualLeave, leaveHoursPerPayPeriod, leavePayoutTax, type AnnualLeaveEmployment } from "@/lib/constants/annual-leave";
+import { TERMINATION_LOADING_WITHHOLDING } from "@/lib/constants/leave-loading";
 import { CALC_FONT, NOTE_OK, NOTE_WARN, NumberField, RESULT_LIST, ResultRow, SelectField } from "./t3-calc-shared";
 
 // Annual leave accrual, balance and value. All arithmetic is in
@@ -23,6 +24,7 @@ const SCENARIO_OPTIONS = [
 ] as const;
 
 const h = (n: number) => `${n.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1")} hours`;
+const pc = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const d = (n: number) => `${n.toFixed(1).replace(/\.0$/, "")} day${n === 1 ? "" : "s"}`;
 
 export default function AnnualLeaveCalculator() {
@@ -69,7 +71,7 @@ export default function AnnualLeaveCalculator() {
             </label>
             <label className="flex items-center gap-2 text-sm text-navy sm:col-span-2">
               <input type="checkbox" checked={loading} onChange={(e) => setLoading(e.target.checked)} className="h-4 w-4 rounded border-sandstone-dark/30" />
-              My award or agreement pays 17.5% leave loading
+              My award or agreement pays {pc(ANNUAL_LEAVE.loadingRate)} leave loading
             </label>
           </form>
 
@@ -86,7 +88,7 @@ export default function AnnualLeaveCalculator() {
                   <ResultRow label="Taken" value={`−${h(r.takenHours)}`} muted />
                   <ResultRow label="Balance" value={`${h(r.balanceHours)} (${d(r.balanceDays)})`} bold />
                   <ResultRow label="Balance at your base rate" value={formatAUD(r.baseValue, 2)} />
-                  {loading && <ResultRow label="Leave loading (17.5%)" value={`+${formatAUD(r.loadingValue, 2)}`} />}
+                  {loading && <ResultRow label={`Leave loading (${pc(ANNUAL_LEAVE.loadingRate)})`} value={`+${formatAUD(r.loadingValue, 2)}`} />}
                   <ResultRow label="Value before tax" value={formatAUD(r.totalValue, 2)} bold />
                   <ResultRow label="Accrues each fortnight" value={h(leaveHoursPerPayPeriod(hoursPerWeek, 2, r.weeksOfLeavePerYear))} muted />
                 </dl>
@@ -95,7 +97,7 @@ export default function AnnualLeaveCalculator() {
                   <SelectField id="al-scenario" label="If the balance is paid out on leaving" value={scenario} onChange={setScenario} options={SCENARIO_OPTIONS} />
                   <dl className="mt-2 divide-y divide-sandstone-dark/20 text-sm">
                     <ResultRow label="Gross payout" value={formatAUD(payout.gross, 2)} />
-                    <ResultRow label={scenario === "genuine-redundancy" ? "Tax withheld (32%)" : "Tax at marginal rates"} value={`−${formatAUD(payout.tax, 0)}`} muted />
+                    <ResultRow label={scenario === "genuine-redundancy" ? `Tax withheld (${pc(TERMINATION_LOADING_WITHHOLDING.flatRate)})` : "Tax at marginal rates"} value={`−${formatAUD(payout.tax, 0)}`} muted />
                     <ResultRow label="After tax" value={formatAUD(payout.net, 0)} bold />
                   </dl>
                   <p className="mt-2 text-xs text-warmgray-light">{payout.method}. Your salary for the tax estimate is your hourly rate × hours × 52 = {formatAUD(salary)}.</p>
@@ -104,7 +106,7 @@ export default function AnnualLeaveCalculator() {
                 <p className={r.takenHours > r.accruedHours ? NOTE_WARN : NOTE_OK} role="status" aria-live="polite">
                   {r.takenHours > r.accruedHours
                     ? "You have taken more than you have earned. Leave you have not accrued yet is usually unpaid or must be agreed with your employer."
-                    : `Annual leave builds at 1 hour for every 13 ordinary hours you work, or ${h(r.hoursPerYear)} a year at ${hoursPerWeek} hours a week. Unused leave carries over every year and is paid out when you leave.`}
+                    : `Annual leave builds at 1 hour for every ${+(ANNUAL_LEAVE.weeksInYear / r.weeksOfLeavePerYear).toFixed(1)} ordinary hours you work, or ${h(r.hoursPerYear)} a year at ${hoursPerWeek} hours a week. Unused leave carries over every year and is paid out when you leave.`}
                 </p>
               </>
             )}

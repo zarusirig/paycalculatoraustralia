@@ -49,6 +49,6 @@ export const RETAIL_HOSPITALITY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the public holiday pay rate?",
-    a: `Under the retail award, full-time and part-time employees working on a public holiday receive ${pct(RETAIL_PENALTIES.publicHoliday)} of the base rate, so a Level 1 retail worker on ${hr(L1)} receives ${hr(L1 * RETAIL_PENALTIES.publicHoliday)}. Casual employees receive ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. The hospitality award uses the same rates (${pct(HOSPITALITY_PENALTIES.publicHoliday)} full-time and part-time, ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)} casual). Full-time employees who don't work on the public holiday are entitled to their ordinary pay for the day.`,
+    a: `Under the retail award, full-time and part-time employees working on a public holiday receive ${pct(RETAIL_PENALTIES.publicHoliday)} of the base rate, so a Level 1 retail worker on ${hr(L1)} receives ${hr(L1 * RETAIL_PENALTIES.publicHoliday)}. Casual employees receive ${pct(RETAIL_PENALTIES.casualPublicHoliday)}. The hospitality award uses the same rates (${pct(HOSPITALITY_PENALTIES.publicHoliday)} full-time and part-time, ${pct(HOSPITALITY_PENALTIES.casualPublicHoliday)} casual). Full-time and part-time employees who are off on a public holiday that falls on one of their ordinary working days are paid their base rate for the ordinary hours they would have worked.`,
   },
 ];

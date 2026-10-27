@@ -86,11 +86,11 @@ export const SCHADS_FAQS: readonly SchadsFaq[] = [
   },
   {
     q: "How much is the SCHADS sleepover allowance?",
-    a: `The SCHADS sleepover allowance is ${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are woken and required to work, those hours are paid separately at the applicable rate. The allowance does not buy the employer any working time.`,
+    a: `The SCHADS sleepover allowance is ${formatAUD(SCHADS_ALLOWANCES.sleepover, 2)} per sleepover, set at 4.9% of the standard rate under clause 25.7(d). That payment covers the sleepover itself. If you are required to work during the sleepover, that time is paid at the overtime rate, with a minimum of one hour's pay (cl 25.7(e)). The allowance does not buy the employer any working time.`,
   },
   {
     q: "What is the difference between the SACS stream and the home care stream?",
-    a: `The SACS stream and the home care stream are separate schedules with separate rates, and the gap is large. Social and community services (Schedule B) rates carry the Equal Remuneration Order, starting at ${formatAUD(L1.weekly, 2)} a week. Home care aged care (Schedule F) receives no ERO uplift and starts at ${formatAUD(AGED_ENTRY.weekly, 2)} a week at the introductory level. Home care disability care (Schedule E) is a third schedule again. Being classified in the wrong schedule is one of the more expensive errors in this award.`,
+    a: `The SACS stream and the home care stream are separate schedules with separate rates, and the gap is large. Social and community services (Schedule B) rates carry the Equal Remuneration Order from Level ${SCHADS_AWARD.eroLowestLevel}, starting at ${formatAUD(L2.weekly, 2)} a week at Level 2 pay point 1. Home care aged care (Schedule F) receives no ERO uplift and starts at ${formatAUD(AGED_ENTRY.weekly, 2)} a week at the introductory level. Home care disability care (Schedule E) is a third schedule again.`,
   },
   {
     q: "When did the new SCHADS rates start?",

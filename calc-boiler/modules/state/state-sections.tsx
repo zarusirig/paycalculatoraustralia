@@ -5,6 +5,7 @@ import {
   formatAUD,
   formatPercent,
   EMPLOYMENT,
+  MEDICARE_LEVY,
   SUPER_GUARANTEE,
 } from "@/lib/constants";
 import { WA_STATE_MINIMUM_WAGE } from "@/lib/constants/minimum-wage";
@@ -112,7 +113,7 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
               <ExRow label="Low income tax offset" value={`+ ${formatAUD(r.litoOffset)}`} />
             )}
             <ExRow
-              label={`Medicare levy (${formatPercent(0.02, 0)})`}
+              label={`Medicare levy (${formatPercent(MEDICARE_LEVY.rate, 0)})`}
               value={`− ${formatAUD(r.medicareLevy)}`}
               shaded={r.litoOffset > 0}
             />
@@ -135,7 +136,7 @@ export function WorkedExample({ profile }: { profile: StateEmployeeProfile }) {
         <p>
           Effective tax rate <strong>{formatPercent(r.effectiveTaxRate)}</strong>. The next dollar
           you earn is taxed at <strong>{formatPercent(r.marginalTaxRate, 0)}</strong>, which is your
-          tax bracket rate plus the {formatPercent(0.02, 0)} Medicare levy.
+          tax bracket rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy.
         </p>
         <p>
           Superannuation of <strong>{formatAUD(r.superContribution)}</strong> at{" "}
@@ -339,8 +340,10 @@ export function PenaltyRateNote({ profile }: { profile: StateEmployeeProfile }) 
         Under most modern awards, working a public holiday attracts a penalty of{" "}
         <strong>{formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMin, 0)}</strong> to{" "}
         <strong>{formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMax, 0)}</strong> of your base
-        rate, and if you do not work you are still entitled to be absent without losing pay. You
-        are entitled to the public holidays where you are <em>based</em> for work, not where you
+        rate. You have a right to be absent on a public holiday. If you are full-time or part-time
+        and the holiday falls on a day you normally work, you are paid your base rate for the
+        ordinary hours you would have worked; casual employees are not paid for a public holiday
+        they do not work. You are entitled to the public holidays where you are <em>based</em> for work, not where you
         happen to be standing on the day.
       </p>
       <p className="text-sm text-navy">

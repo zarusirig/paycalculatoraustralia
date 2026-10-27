@@ -62,7 +62,7 @@ export const FLIGHT_ATTENDANT: Occupation = {
   },
   coverage: [
     "Flight attendants (cabin crew) are covered by the Aircraft Cabin Crew Award 2020 [MA000047], which covers employers of aircraft cabin crew throughout Australia. It has three classifications: cabin crew member, cabin crew supervisor on narrow-bodied aircraft with 4 or more crew, and cabin crew manager on wide-bodied aircraft.",
-    "Where an enterprise agreement applies to a cabin crew member, its terms apply instead of the award, and the agreement has to leave employees better off overall than the award. Cabin crew at the major airlines are generally employed under enterprise agreements. We could not verify the current Qantas or Virgin Australia agreement rates against the Fair Work Commission's approved text, so we do not publish them here.",
+    "Where an enterprise agreement applies to a cabin crew member, its terms apply instead of the award, and the agreement has to leave employees better off overall than the award. We could not verify the current Qantas or Virgin Australia agreement rates against the Fair Work Commission's approved text, so we do not publish them here.",
     "The award is the minimum for cabin crew whose employer has no agreement, and the benchmark an agreement has to beat overall. Domestic crew also get a flying allowance for each scheduled block hour on top of the weekly rate.",
   ],
   tables: [
@@ -109,11 +109,11 @@ export const FLIGHT_ATTENDANT: Occupation = {
     },
     {
       q: "How much do Qantas and Virgin flight attendants earn?",
-      a: "Cabin crew at the major airlines are generally paid under enterprise agreements, which apply instead of the award. We could not verify the current Qantas or Virgin Australia agreement rates against the Fair Work Commission's approved agreement text, so we do not publish a figure. The award rate on this page is the floor for cabin crew without an agreement.",
+      a: "Where an airline's cabin crew are covered by an enterprise agreement, the agreement's rates apply instead of the award (Fair Work Act s 57). We could not verify the current Qantas or Virgin Australia agreement rates against the Fair Work Commission's approved agreement text, so we do not publish a figure. The award rate on this page is the floor for cabin crew without an agreement.",
     },
     {
       q: "Do flight attendants get paid extra for flying?",
-      a: "Under the award, domestic cabin crew receive a flying allowance of $18.40 for every scheduled block hour, in addition to the weekly rate. It is paid instead of the daily travelling, uniform and several other expense allowances. In the award's own example, about 90 block hours in a roster period adds roughly $1,656 a month.",
+      a: "Under the award, domestic cabin crew receive a flying allowance of $18.40 for every scheduled block hour, in addition to the weekly rate. It is paid instead of the daily travelling, uniform and several other expense allowances. The award's own example (Schedule A.1.7) is about 90 block hours in a roster period, which adds $1,656 ($18.40 x 90), an amount the award states as per month.",
     },
     {
       q: "What is the casual rate for a flight attendant?",

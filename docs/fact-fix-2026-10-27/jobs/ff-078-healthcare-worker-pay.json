@@ -1,0 +1,142 @@
+{
+ "name": "ff-078-healthcare-worker-pay",
+ "files": [
+  "modules/guide/healthcare-worker-pay.tsx",
+  "modules/guide/hospitality-award-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/healthcare-worker-pay.tsx:271",
+   "file": "modules/guide/healthcare-worker-pay.tsx",
+   "line": "271",
+   "page": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "claims": [
+    "state agreements pay well above the floor, in some cases by more than $25,000 a year at the entry step"
+   ],
+   "whys": [
+    "Hard-coded dollar figure in prose. It will go stale when either the award or a state scale changes, and it is not derived from the RN_ENTRY or AWARD_RN1 data rendered elsewhere on the page."
+   ],
+   "constants": [
+    "Derive from RN_ENTRY.high - AWARD_RN1.points[0].weekly * 52 (healthcare-worker-pay-faqs / lib/data/nursing-pay)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.03,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/healthcare-worker-pay.tsx:268",
+   "file": "modules/guide/healthcare-worker-pay.tsx",
+   "line": "268",
+   "page": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "claims": [
+    "The Nurses Award 2020 is the single most searched-for nursing pay document in Australia ... It sets the minimum below which no nurse in the country may lawfully be paid."
+   ],
+   "whys": [
+    "'Single most searched-for' has no cited source. 'No nurse in the country' overreaches: the modern award covers national-system employers, and state public sector nurses in the state industrial systems (NSW, Qld, WA, SA, Tas) are covered by state instruments, not the federal award."
+   ],
+   "constants": [
+    "Editorial; no constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.27,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/healthcare-worker-pay.tsx:316",
+   "file": "modules/guide/healthcare-worker-pay.tsx",
+   "line": "316",
+   "page": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "claims": [
+    "Under the award, ordinary hours on a Saturday pay 150% and on a Sunday 175%; a weekday afternoon shift attracts 12.5% and a weekday night shift 15%."
+   ],
+   "whys": [
+    "Award penalty percentages are hard-coded in prose and in the penalty table row (line 344) rather than read from award data, so they will not update with the award."
+   ],
+   "constants": [
+    "Nurses Award penalty data (lib/data/nursing-pay/nurses-award-2020.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/healthcare-worker-pay.tsx:324",
+   "file": "modules/guide/healthcare-worker-pay.tsx",
+   "line": "324",
+   "page": "https://pay-calculator-australia.com/healthcare-worker-pay/",
+   "claims": [
+    "Night shift is worth 20% in NSW, 20% in Queensland, 20.5% in South Australia, a flat dollar allowance per shift in Victoria and 35% in Western Australia ... wrong in at least four states."
+   ],
+   "whys": [
+    "These state night-shift percentages are typed into the prose and again into the penalty table cells at lines 336-342, instead of being read from each state's nursing-pay data. The 'at least four states' count is also hand-computed. Both will go stale when any state agreement changes."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.84,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/hospitality-award-faqs.ts:79",
+   "file": "modules/guide/hospitality-award-faqs.ts",
+   "line": "79",
+   "page": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "claims": [
+    "Where more than one penalty could apply to the same hours, only the highest is paid."
+   ],
+   "whys": [
+    "lib/constants/hospitality-award.ts line 154 records an exception (highestOnlyException): the clause 16 breaks penalty is paid in addition to the highest penalty (cl 29.3(c)). The FAQ states the rule with no exception."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts HOSPITALITY_PENALTIES.highestOnlyException"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. 'Only the highest is paid' leaves out HOSPITALITY_PENALTIES.highestOnlyException (cl 29.3(c), the breaks penalty paid in addition), recorded at lib/constants/hospitality-award.ts:154."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/hospitality-award-faqs.ts:87",
+   "file": "modules/guide/hospitality-award-faqs.ts",
+   "line": "87",
+   "page": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "claims": [
+    "General Retail Industry Award casual overtime is pct(1.75) against pct(1.5) for permanents."
+   ],
+   "whys": [
+    "The retail overtime multipliers are hard-coded literals in the template, not read from RETAIL_PENALTIES or a retail overtime constant, so they will not update with the data."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts RETAIL_PENALTIES (no overtime field yet)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.58,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/hospitality-award-faqs.ts:95",
+   "file": "modules/guide/hospitality-award-faqs.ts",
+   "line": "95",
+   "page": "https://pay-calculator-australia.com/hospitality-award-rates/",
+   "claims": [
+    "The retail award pays 80% to 19-year-olds."
+   ],
+   "whys": [
+    "The 80% is typed into the prose, not read from the retail junior scale constant. The source comment at hospitality-award.ts:167 agrees with it, but it should come from data."
+   ],
+   "constants": [
+    "lib/constants/junior-rates.ts (retail junior scale)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.42,
+   "needsOwner": false
+  }
+ ]
+}

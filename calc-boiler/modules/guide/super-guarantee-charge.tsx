@@ -21,6 +21,11 @@ import FeaturedImage from "@/components/common/featured-image";
 const C = SUPER_GUARANTEE_CHARGE.current;
 const L = SUPER_GUARANTEE_CHARGE.legacy;
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 2)}%`;
+// The two uplift reductions, read off the ATO schedule so the prose cannot drift from the table.
+const UPLIFT_NOT_LODGED = C.upliftSchedule[C.upliftSchedule.length - 1];
+const UPLIFT_CUT_NO_PRIOR = UPLIFT_NOT_LODGED.priorAssessment - UPLIFT_NOT_LODGED.noPriorAssessment;
+const UPLIFT_CUT_DISCLOSURE_MAX =
+  UPLIFT_NOT_LODGED.noPriorAssessment - Math.min(...C.upliftSchedule.map((r) => r.noPriorAssessment));
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "What happens if you don't pay super correctly (QC105848)", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/missed-or-late-payday-super-payments/what-happens-if-you-dont-pay-super-correctly", publisher: SOURCES.ato.name },
@@ -130,10 +135,10 @@ export default function SuperGuaranteeChargePage() {
             <section id="deadlines">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Is Super Actually Due?</h2>
               <p>
-                Within <strong>{C.businessDaysToPay} business days</strong> of payday, but the test is when the money is <em>received</em> by the employee&rsquo;s fund, not when you send it. Clearing house and fund processing time counts against you, which is the single most common way a compliant-looking payroll still generates a charge.
+                Within <strong>{C.businessDaysToPay} business days</strong> of payday, but the test is when the money is <em>received</em> by the employee&rsquo;s fund, not when you send it. Clearing house and fund processing time counts against you, so allow for it inside the {C.businessDaysToPay} business days.
               </p>
               <p>
-                A longer <strong>{C.businessDaysNewEmployee} business day</strong> deadline covers two situations, not one: a new employee, and a first contribution to a new complying fund for an existing employee after you stopped contributing to another. A business day excludes weekends and public holidays. A public holiday anywhere in Australia removes a day nationally, so a state you do not operate in can still move your deadline.
+                A longer <strong>{C.businessDaysNewEmployee} business day</strong> deadline covers two situations, not one: a new employee, and a first contribution to a new complying fund for an existing employee after you stopped contributing to another. A business day excludes weekends and any public holiday that covers the whole of an Australian state or territory. That holiday removes a day nationally, so a state you do not operate in can still move your deadline. A holiday in only part of a state or territory (such as Royal Hobart Show Day) is still a business day.
               </p>
             </section>
 
@@ -143,8 +148,8 @@ export default function SuperGuaranteeChargePage() {
                 The administrative uplift is the largest lever available once a shortfall has happened, and it is routinely described wrongly as a single all-or-nothing test. There are <strong>two independent reductions and they stack</strong>. The uplift starts at {pct(C.administrativeUpliftMax)}:
               </p>
               <ul>
-                <li><strong>No ATO-initiated assessment</strong> in the two years to that payday removes <strong>20 percentage points</strong>. SGC from before 1 July 2026 is ignored for this test.</li>
-                <li><strong>A voluntary disclosure</strong> made before an assessment removes <strong>up to 40 more</strong>, decaying with time.</li>
+                <li><strong>No ATO-initiated assessment</strong> in the two years to that payday removes <strong>{UPLIFT_CUT_NO_PRIOR} percentage points</strong>. SGC from before {SUPER_GUARANTEE.paydaySuperStart} is ignored for this test.</li>
+                <li><strong>A voluntary disclosure</strong> made before an assessment removes <strong>up to {UPLIFT_CUT_DISCLOSURE_MAX} more</strong>, decaying with time.</li>
               </ul>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -178,7 +183,7 @@ export default function SuperGuaranteeChargePage() {
             <section id="late-payment-penalty">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Late Payment Penalty Is Separate</h2>
               <p>
-                A late payment penalty of <strong>{pct(C.latePayment.penalty)}</strong> of the outstanding charge can be imposed, rising to<strong>{pct(C.latePayment.penaltyRepeatWithin24Months)}</strong> if you were liable for the same penalty in the previous 24 months. It is <em>not</em> part of the SGC, and it does not arrive automatically. The sequence is: the charge is assessed, it goes unpaid for 28 days, a Notice to Pay issues, and it remains unpaid a further 28 days.
+                A late payment penalty of <strong>{pct(C.latePayment.penalty)}</strong> of the outstanding charge can be imposed, rising to <strong>{pct(C.latePayment.penaltyRepeatWithin24Months)}</strong> if you were liable for the same penalty in the previous 24 months. It is <em>not</em> part of the SGC, and it does not arrive automatically. The sequence is: the charge is assessed, it goes unpaid for 28 days, a Notice to Pay issues, and it remains unpaid a further 28 days.
               </p>
               <p>
                 The ATO says the penalty <strong>cannot be remitted</strong>, so unlike the administrative uplift there is no disclosure route out of it. Two qualifications matter, though: it reduces to nil under an exceptional circumstance determination, and if the ATO reduces the underlying charge the penalty reduces with it.

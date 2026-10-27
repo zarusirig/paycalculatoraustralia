@@ -28,7 +28,8 @@
 //
 // Ordinary hours are Monday to Friday, 7 am to 6 pm (cl 16.1), so Saturday and
 // Sunday work is overtime: Saturday 150% for 2 hours then 200% (200% after
-// 12 noon), Sunday 200%, public holidays 250% (cl 29.4, 30.1).
+// 12 noon), Sunday 200%, public holidays 250% (cl 29.12, 30.1; weekday
+// overtime is cl 29.4(a)).
 
 import type { AwardRef, PenaltyRow, RateRow } from "./types";
 import { awardTextUrl, casualFromHourly, hourlyFromWeekly, toCents } from "./common";

@@ -1,0 +1,162 @@
+{
+ "name": "ff-096-salary-packaging-guide-f",
+ "files": [
+  "modules/guide/salary-packaging-guide-faqs.ts",
+  "modules/guide/salary-packaging-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/salary-packaging-guide-faqs.ts:26",
+   "file": "modules/guide/salary-packaging-guide-faqs.ts",
+   "line": "26",
+   "page": "https://pay-calculator-australia.com/salary-packaging-guide/",
+   "claims": [
+    "Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation. All salary sacrifice is salary packaging, but not all salary packaging is salary sacrifice."
+   ],
+   "whys": [
+    "The ATO uses 'salary sacrifice arrangement' for any benefit taken from pre-tax pay (cars, laptops, super), and treats it as the same thing as salary packaging. This super-only definition is the site's own and looks wrong against ATO usage."
+   ],
+   "constants": [
+    "n/a (definition; check against the ATO 'Salary sacrificing for employees' page)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.08,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide-faqs.ts:30",
+   "file": "modules/guide/salary-packaging-guide-faqs.ts",
+   "line": "30",
+   "page": "https://pay-calculator-australia.com/salary-packaging-guide/",
+   "claims": [
+    "Private sector employees ... Their packaging options are limited to super, novated leases, and portable devices."
+   ],
+   "whys": [
+    "This overstates the limit. Private sector employers can also package other FBT-exempt or concessional items, for example work-related items under s58X and minor benefits. The claim reads as an exhaustive rule."
+   ],
+   "constants": [
+    "n/a (FBT exemptions list; check against the ATO FBT guide)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.42,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:190",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "190",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "A $2,000 laptop packaged at the 30% marginal rate saves $600 in income tax."
+   ],
+   "whys": [
+    "The three figures are typed in by hand, not taken from the constants. The saving also leaves out the 2% Medicare levy: at 30% plus the levy the saving is $640, not $600."
+   ],
+   "constants": [
+    "Work it out from MEDICARE_LEVY plus the current tax brackets in @/lib/constants, as the worked example already does with calculatePayBreakdown"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:256",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "256",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "The Child Support Agency includes RFBA in adjusted taxable income"
+   ],
+   "whys": [
+    "The Child Support Agency no longer exists under that name. It is now Child Support, part of Services Australia. The page also does not say whether child support counts RFBA in full or at the reduced Centrelink factor used for s57A employers."
+   ],
+   "constants": [
+    "Agency name text. If the factor is confirmed, it should sit beside CENTRELINK_FACTOR"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.04,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:250",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "250",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "When you salary package benefits (other than super), your employer reports the grossed-up taxable value as a Reportable Fringe Benefits Amount (RFBA)."
+   ],
+   "whys": [
+    "RFBA is reported only when an employee's total taxable value of reportable benefits is over $2,000 in the FBT year (FBT.reportableThreshold). Exempt items such as portable electronic devices (the s58X work-related items) are not reportable at all, so 'any benefit other than super' claims too much."
+   ],
+   "constants": [
+    "FBT.reportableThreshold in lib/constants/novated-lease.ts (line 111)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.55,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:116",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "116",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation."
+   ],
+   "whys": [
+    "The ATO page the guide cites ('Salary sacrificing for employees') uses salary sacrifice for any arrangement that swaps salary for benefits, such as cars and laptops, not only super. So the line between 'salary sacrifice' and 'salary packaging' drawn here does not match the ATO's own use of the terms."
+   ],
+   "constants": [
+    "Prose only (SOURCES_LIST ATO salary sacrificing URL)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:195",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "195",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "Employer-provided education that is sufficiently connected to the employee's current role is an exempt benefit."
+   ],
+   "whys": [
+    "Work-related education is usually brought to nil taxable value through the otherwise deductible rule, not listed as an exempt benefit. Check the label against the ATO FBT guide before it is repeated."
+   ],
+   "constants": [
+    "Prose only (FBT_CAPS_SOURCES.fbtGuideChapter6 or the ATO FBT guide)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/salary-packaging-guide.tsx:132",
+   "file": "modules/guide/salary-packaging-guide.tsx",
+   "line": "132",
+   "page": "/salary-packaging-guide/",
+   "claims": [
+    "Private sector employers: Salary packaging limited to super, novated leases (with FBT unless EV), and portable devices"
+   ],
+   "whys": [
+    "The EV FBT exemption covers only zero or low emission cars under the luxury car tax threshold for fuel-efficient vehicles. 'Unless EV' reads as if every EV is exempt.",
+    "This bullet leaves out work-related education. The self-education section (line 195) describes education as an exempt benefit with no employer-type limit, so the two parts of the page disagree on whether private sector employees can package work-related education."
+   ],
+   "constants": [
+    "LCT fuel-efficient threshold in lib/constants/novated-lease.ts (NOVATED_LEASE_SOURCES.lctThresholds)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.31,
+   "needsOwner": false
+  }
+ ]
+}

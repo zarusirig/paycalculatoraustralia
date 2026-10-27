@@ -1,0 +1,88 @@
+{
+ "name": "ff-023-index",
+ "files": [
+  "lib/data/school-support-pay/index.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/school-support-pay/index.ts:718",
+   "file": "lib/data/school-support-pay/index.ts",
+   "line": "718",
+   "page": "https://pay-calculator-australia.com/school-support-staff-pay/tas/",
+   "claims": [
+    "Most Teacher Assistants are paid for school terms only, so a year's pay is the hourly rate times the hours and weeks actually worked."
+   ],
+   "whys": [
+    "This is a population claim with no source. It also reads softer than the same page's hoursNote (line 650) and headline, which say Appendix 16 pays school support staff for school terms only (clause 4), with a written option to annualise over 52 weeks. Pick one: state the Appendix 16 rule, or cite where 'most' comes from."
+   ],
+   "constants": [
+    "TAS.faqs[0].a, aligned with TAS.hoursNote (Appendix 16 clause 4)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/school-support-pay/index.ts:432",
+   "file": "lib/data/school-support-pay/index.ts",
+   "line": "432",
+   "page": "https://pay-calculator-australia.com/school-support-staff-pay/qld/",
+   "claims": [
+    "Brisbane March 2026 inflation was 4.2%, above the 3% increase, but the rates shown are before any CPI uplift."
+   ],
+   "whys": [
+    "By the note's own logic the capped 0.5% uplift (cl 6.1(b)) has been triggered. The QLD_2025 and QLD_2026 tables, the headline and the FAQ figures may therefore understate current teacher aide pay by up to 0.5%. The department's uplifted table should be checked for."
+   ],
+   "constants": [
+    "QLD_2025 / QLD_2026 rows, source qld-ta-2025 and qld-cpi"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.86,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/school-support-pay/index.ts:1002",
+   "file": "lib/data/school-support-pay/index.ts",
+   "line": "1002",
+   "page": "https://pay-calculator-australia.com/school-support-staff-pay/",
+   "claims": [
+    "Hub FAQ gives the Victorian entry rate as \"$51,622 a year full-time for Victorian ES 1-1\" with no effective date."
+   ],
+   "whys": [
+    "Every other state in this sentence has a date. $51,622 is the VGSA 2022 rate from 1 July 2025. The VIC page headline (line 259) says the 2026 agreement lifts 1-1 to $53,171 from 10 August 2026 and $58,355 from 1 October 2026, and it reports that the agreement was approved. The hub figure is either stale or needs a date."
+   ],
+   "constants": [
+    "VIC ES rows in lib/data/school-support-pay/index.ts line 209 ([\"1-1\", 51_622, 53_171, 58_355]); the hub string should read from that table, not retype the figure"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. The hub gives the Victorian ES 1-1 rate as $51,622 with no effective date, while every other state has one. VIC_ROWS (line 209) and the VIC headline (line 259) show it is the 1 July 2025 VGSA 2022 rate, and the 2026 agreement rates start 10 Aug 2026. I passed the question through unchanged."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.62,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/school-support-pay/index.ts:1014",
+   "file": "lib/data/school-support-pay/index.ts",
+   "line": "1014",
+   "page": "https://pay-calculator-australia.com/school-support-staff-pay/",
+   "claims": [
+    "\"WA Education Assistants and Tasmanian Teacher Assistants are paid for the weeks they work, with recreation leave and public holidays paid on top, unless they choose to annualise.\""
+   ],
+   "whys": [
+    "The WA data (notes line 523, FAQ line 547) mentions only the 25% casual loading. It has no clause on term-only pay or on electing to annualise, so the WA half of this claim has no source on the WA page. Only Tasmania has the annualise election (clause 2, line 650). The hub FAQ at line 1006 also describes WA holiday pay differently: it covers casual EAs only."
+   ],
+   "constants": [
+    "WA Education Assistant notes and FAQs, lib/data/school-support-pay/index.ts lines 479-547 (Education Assistants' (Government) General Agreement 2025)"
+   ],
+   "reviewerNotes": [
+    "The writer's question is valid. Line 1014 says WA EAs are paid for the weeks they work unless they annualise. The WA data (lines 523 and 547) covers only the 25% casual loading and has nothing on annualising. Only Tasmania has the annualise election. I passed the question through unchanged."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.2,
+   "needsOwner": false
+  }
+ ]
+}

@@ -67,7 +67,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     { age: "18 and over", percentage: 1 },
   ],
   juniorNote:
-    "Bunnings pays the full adult rate from 18, three years earlier than most retail and fast food employers. Junior rates apply only to Team Member and Team Member (Expert); Specialists and Supervisors are paid the adult rate at any age (cl 1.4).",
+    "Bunnings pays the full adult rate from 18. The General Retail Industry Award pays it from 21, or from 20 after more than 6 months with the employer (cl 17.2). Junior rates apply only to Team Member and Team Member (Expert); Specialists and Supervisors are paid the adult rate at any age (cl 1.4).",
   publishedJuniorRates: [
     { age: "15 and under", hourly: 15.75, casualHourly: 19.3 },
     { age: "16", hourly: 17.19, casualHourly: 21.05 },
@@ -99,7 +99,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     "The Bunnings rates on this page are minimum base rates. Under the agreement's performance pay system you are paid a Contract Rate that is at least the base rate, so your payslip may show more.",
   ],
   unverified: [
-    "Approval of the 2026 agreement: on 22 October 2026 the Fair Work Commission had not published an application or decision for the Bunnings Retail Enterprise Agreement 2026. The vote result and the proposed terms come from the SDA's published copy of the agreement and its summary.",
+    "Approval of the 2026 agreement: on 27 October 2026 the Fair Work Commission's agreements-in-progress list (applications lodged up to 26 October 2026) did not include the Bunnings Retail Enterprise Agreement 2026, and no approval decision had been published. The vote result and the proposed terms come from the SDA's published copy of the agreement and its summary.",
     "Distribution centre and Tool Kit Depot pay: covered by separate agreements or none, not this one.",
     "Sunday early-morning and late-night incentive rates and outside-span rates: in cl 2.1 of the agreement, summarised here only in part.",
   ],
@@ -129,7 +129,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     },
     {
       q: "What is the Bunnings casual loading?",
-      a: "The Bunnings casual loading is 22.5%, not the 25% most awards use. An adult casual Team Member is paid $35.09 an hour for weekday daytime hours.",
+      a: "The Bunnings casual loading is 22.5%, not the 25% in the General Retail Industry Award. An adult casual Team Member is paid $35.09 an hour for weekday daytime hours.",
     },
     {
       q: "What does Bunnings pay on Sundays and public holidays?",
@@ -137,7 +137,7 @@ export const BUNNINGS_PAY: EmployerPay = {
     },
     {
       q: "Is Bunnings paid above the award?",
-      a: "Yes. An adult Team Member's minimum base rate of $28.64 is 83 cents (about 3%) above the Retail Award Level 1 rate of $27.81 in 2026, and most staff are paid a higher Contract Rate. When the Fair Work Commission approved the 2023 agreement it recorded rates 14.67% to 20.4% above the award for permanent staff; three award rises since have narrowed that gap. The proposed 2026 agreement keeps base rates at least 5% above the award.",
+      a: "Yes. An adult Team Member's minimum base rate of $28.64 is 83 cents (about 3%) above the Retail Award Level 1 rate of $27.81 in 2026, and your Contract Rate under the performance pay system can be higher. When the Fair Work Commission approved the 2023 agreement it recorded rates 14.67% to 20.4% above the award (as it stood on 19 June 2023) for permanent staff; award rises from July 2023 to July 2026 have narrowed that gap. The proposed 2026 agreement keeps base rates at least 5% above the award.",
     },
     {
       q: "When is the next Bunnings pay rise?",
@@ -161,12 +161,12 @@ export const BUNNINGS_PAY: EmployerPay = {
       { date: "First full pay cycle after 1 July 2028", amount: "3.25%", source: "Proposed 2026 agreement cl 1.5(a); subject to approval" },
     ],
     aboveAward:
-      "When it approved the 2023 agreement the Full Bench recorded wage rates \"from 14.67 per cent to 20.4 per cent above the Award rates for permanent employees, and from 12.37 per cent to 18 per cent above the Award for casual employees\", measured against the award as at 19 June 2023 ([2023] FWCFB 125 at [28]). Three award rises since have narrowed that gap: on 2026 rates a Team Member's $28.64 is 83 cents (about 3%) above Retail Award Level 1 ($27.81). The proposed 2026 agreement adds a clause keeping base rates at least 5% above the matching award rate (proposed cl 1.5(c)).",
+      "When it approved the 2023 agreement the Full Bench recorded wage rates \"from 14.67 per cent to 20.4 per cent above the Award rates for permanent employees, and from 12.37 per cent to 18 per cent above the Award for casual employees\", measured against the award as at 19 June 2023 ([2023] FWCFB 125 at [28]). Award rises from July 2023 to July 2026 have narrowed that gap: on 2026 rates a Team Member's $28.64 is 83 cents (about 3%) above Retail Award Level 1 ($27.81). The proposed 2026 agreement adds a clause keeping base rates at least 5% above the matching award rate (proposed cl 1.5(c)).",
     whatItMeans: [
       "Until the Fair Work Commission approves the 2026 agreement, the 2023 agreement sets your legal minimum: $28.64 an hour for an adult Team Member, with a 22.5% casual loading.",
       "Bunnings' summary of the new agreement says the 4.25% rise is paid from the first full pay cycle after 26 October 2026, with back pay to 31 August 2026, so your payslip may show the higher rate before approval.",
       "Once approved, the new agreement locks in 3.25% rises in July 2027 and July 2028 and keeps base rates at least 5% above the award.",
-      "Most staff are paid a Contract Rate above the base rate under the performance pay system, so the figures here are floors, not your exact rate.",
+      "Under the performance pay system you are paid a Contract Rate that is at least the base rate, so the figures here are floors, not your exact rate.",
     ],
     decision: { citation: "[2023] FWCFB 125 (Full Bench), 14 July 2023, approved with undertakings", url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2023fwcfb125.pdf" },
     verifiedOn: "22 October 2026",

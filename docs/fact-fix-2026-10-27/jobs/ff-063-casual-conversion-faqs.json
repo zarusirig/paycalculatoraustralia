@@ -1,0 +1,105 @@
+{
+ "name": "ff-063-casual-conversion-faqs",
+ "files": [
+  "modules/guide/casual-conversion-faqs.ts",
+  "modules/guide/casual-loading-faqs.ts",
+  "modules/guide/centrelink-income-test-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/casual-conversion-faqs.ts:30",
+   "file": "modules/guide/casual-conversion-faqs.ts",
+   "line": "30",
+   "page": "/casual-conversion/",
+   "claims": [
+    "Your casual loading, usually 25% on top of the base rate, stops."
+   ],
+   "whys": [
+    "25% is hard-coded rather than taken from EMPLOYMENT.casualLoading, and the same file has the hard-coded '21 days' and '6 months (12 months ...)' at lines 10-14 instead of EMPLOYEE_CHOICE values."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/casual-conversion-faqs.ts:42",
+   "file": "modules/guide/casual-conversion-faqs.ts",
+   "line": "42",
+   "page": "/casual-conversion/",
+   "claims": [
+    "Different pathways applied to some casuals up to 26 August 2025; the Fair Work Ombudsman explains the transitional rules."
+   ],
+   "whys": [
+    "lib/constants/casual-conversion.ts records something different: eligible casuals employed before 26 August 2024 could first give notice from 26 February 2025 (not a small business) or 26 August 2025 (small business). The FAQ suggests a different pathway applied until that date, which the recorded source does not say. Check the wording against FWO's transitional rules."
+   ],
+   "constants": [
+    "lib/constants/casual-conversion.ts (EMPLOYEE_CHOICE; add the transitional first-notice dates as constants)"
+   ],
+   "reviewerNotes": [
+    "The writer's question stands. casual-conversion-faqs.ts:42 says 'Different pathways applied to some casuals up to 26 August 2025'. lib/constants/casual-conversion.ts:29-32 records first-notice dates instead (26 Feb 2025 for employers that are not small businesses, 26 Aug 2025 for small business). Not changed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/casual-conversion-faqs.ts:38",
+   "file": "modules/guide/casual-conversion-faqs.ts",
+   "line": "38",
+   "page": "/casual-conversion/",
+   "claims": [
+    "With a 25% loading, a full-time casual needs to be paid for about 41.6 weeks of the year ..."
+   ],
+   "whys": [
+    "25% and 41.6 are hard-coded in the FAQ, but the page body works them out from EMPLOYMENT.casualLoading and compareCasualToPermanent (c.breakEvenWeeks). If the constant changes, the FAQ and the JSON-LD would drift."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.44,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/casual-loading-faqs.ts:23",
+   "file": "modules/guide/casual-loading-faqs.ts",
+   "line": "23",
+   "page": "/casual-loading-calculator/",
+   "claims": [
+    "On weekends and public holidays most awards add the loading to the penalty rather than multiplying them"
+   ],
+   "whys": [
+    "This is a population claim ('most awards') with no figure or source on the page. Only the retail example backs it. Also, '1.25' and '187.5%' are hard-coded instead of coming from CASUAL_LOADING and RETAIL_PENALTIES."
+   ],
+   "constants": [
+    "lib/constants/hospitality-award.ts / lib/constants/junior-rates.ts (CASUAL_LOADING)"
+   ],
+   "reviewerNotes": [
+    "The writer's question stands. casual-loading-faqs.ts:23 makes the population claim 'most awards add the loading to the penalty', and '1.25' and '187.5%' are hard-coded rather than taken from CASUAL_LOADING (lib/constants/junior-rates.ts) and RETAIL_PENALTIES. Not changed."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/centrelink-income-test-faqs.ts:63",
+   "file": "modules/guide/centrelink-income-test-faqs.ts",
+   "line": "63",
+   "page": "https://pay-calculator-australia.com/centrelink-income-test/",
+   "claims": [
+    "Centrelink withholds tax at a rate you choose (or a default rate)"
+   ],
+   "whys": [
+    "Services Australia does not withhold tax from JobSeeker, Youth Allowance or Age Pension by default. Tax is withheld only if the recipient asks for a voluntary tax deduction, so '(or a default rate)' looks wrong. 'issues a Centrelink Payment Summary' may also need checking: the statement is now supplied through myGov and pre-filled to the ATO."
+   ],
+   "constants": [
+    "none (hard-coded prose); confirm against Services Australia 'Tax and your payment' guidance"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.78,
+   "needsOwner": false
+  }
+ ]
+}

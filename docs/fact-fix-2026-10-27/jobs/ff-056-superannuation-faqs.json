@@ -1,0 +1,178 @@
+{
+ "name": "ff-056-superannuation-faqs",
+ "files": [
+  "modules/calculator/superannuation-faqs.ts",
+  "modules/calculator/take-home-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/superannuation-faqs.ts:38",
+   "file": "modules/calculator/superannuation-faqs.ts",
+   "line": "38",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Since 1 July 2022, all employees, including casuals, are entitled to SG regardless of how much they earn"
+   ],
+   "whys": [
+    "Removing the $450 threshold did not remove the under-18 rule: employees under 18 who work 30 hours or less a week are still not entitled to SG, and the same 30-hour rule applies to private or domestic workers. As written, 'all employees' overstates who is covered."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (lib/constants) could hold the under-18 / 30-hour eligibility rule"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.29,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/superannuation-faqs.ts:46",
+   "file": "modules/calculator/superannuation-faqs.ts",
+   "line": "46",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "A common benchmark is 1x your annual salary by age 30",
+    "carry-forward ... total super balance is under ${formatAUD(500_000)}",
+    "carry-forward ... when your total super balance is under $500,000"
+   ],
+   "whys": [
+    "The benchmark is unsourced and unattributed. The page's AUDIT does not allow editorial judgment, so it reads as a rule.",
+    "The $500,000 carry-forward threshold is typed as a literal in the FAQ rather than read from a constant.",
+    "The rule omits the timing condition: the total super balance test is measured at 30 June of the previous financial year. Unused cap amounts also expire after 5 years."
+   ],
+   "constants": [
+    "n/a (needs a source, or a labelled editorial view)",
+    "lib/constants/super-contributions.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.93,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/superannuation-faqs.ts:62",
+   "file": "modules/calculator/superannuation-faqs.ts",
+   "line": "62",
+   "page": "/superannuation-calculator/",
+   "claims": [
+    "Division 293 is an additional 15% tax ... above ${formatAUD(250_000)} ... total tax ... 30%"
+   ],
+   "whys": [
+    "The Division 293 threshold and both rates are typed literals, not constants, even though the file header says no figures are literals."
+   ],
+   "constants": [
+    "lib/constants/super-contributions.ts (DIV_293 threshold/rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.62,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/take-home-pay-calculator-content.tsx:320",
+   "file": "modules/calculator/take-home-pay-calculator-content.tsx",
+   "line": "320",
+   "page": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "claims": [
+    "Two strategies legally reduce your taxable income and increase your after-tax pay: salary sacrifice and work-related deductions.",
+    "Two strategies ... increase your after-tax pay: salary sacrifice and work-related deductions"
+   ],
+   "whys": [
+    "Salary sacrifice lowers the amount paid to your bank account. The page's own strategy table (line 346) says 'Increases Bank Deposit? No (funds go to super)'. It saves tax overall but does not increase after-tax pay. The section also has a third strategy (private health insurance), but that one does not reduce taxable income, so the count of two is defensible.",
+    "Salary sacrifice lowers your bank deposit (the page's own table at line 346 says so). It saves tax overall but does not increase after-tax pay."
+   ],
+   "constants": [
+    "copy only (no constant)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/take-home-pay-calculator-content.tsx:143",
+   "file": "modules/calculator/take-home-pay-calculator-content.tsx",
+   "line": "143",
+   "page": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "claims": [
+    "Non-residents ... pay 30% from the first dollar earned; '$18,200' typed in the first sentence",
+    "Non-residents pay 30% from the first dollar; '$18,200' is typed in the first sentence"
+   ],
+   "whys": [
+    "The non-resident rate of 30% is typed into the copy, not read from a constant, so it will not update if non-resident rates change. The first sentence also types $18,200 even though the next sentence uses TAX_FREE_THRESHOLD.",
+    "The 30% and the $18,200 are typed into the copy. The next sentence reads TAX_FREE_THRESHOLD, so these figures will not update when the constants change. Source: lib/constants (non-resident bracket, TAX_FREE_THRESHOLD)."
+   ],
+   "constants": [
+    "lib/constants (non-resident bracket constant, TAX_FREE_THRESHOLD)"
+   ],
+   "reviewerNotes": [
+    "The writer's questions on lines 143, 327, 85, 117 and 320 and on the MLS premium comparison at line 330 are valid and are passed through in extraFactQuestions. I made no copy changes for them."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.27,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/take-home-pay-calculator-content.tsx:327",
+   "file": "modules/calculator/take-home-pay-calculator-content.tsx",
+   "line": "327",
+   "page": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "claims": [
+    "A $2,000 deduction at the 30% marginal rate reduces your tax by $600 (also table line 351: $600)",
+    "A $2,000 deduction at the 30% marginal rate reduces your tax by $600"
+   ],
+   "whys": [
+    "Both the rate and the saving are typed into the copy, not taken from B2.rate. The figure also leaves out the 2% Medicare levy saving (a $2,000 deduction saves $640 including Medicare). Line 309 types '30% marginal rate' and '80_000 * 0.3' in the same way.",
+    "The rate and the saving are typed, not taken from B2.rate. The figure also leaves out the Medicare levy saving ($640 including the levy). Line 309 does the same with '80_000 * 0.3'."
+   ],
+   "constants": [
+    "TAX_BRACKETS[2].rate, MEDICARE_LEVY.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.61,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/take-home-pay-calculator-content.tsx:117",
+   "file": "modules/calculator/take-home-pay-calculator-content.tsx",
+   "line": "117",
+   "page": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "claims": [
+    "Medicare levy low-income threshold labelled '2025-26 threshold, the latest published' on a FY2026-27 page",
+    "Medicare low-income threshold labelled '2025-26 threshold, the latest published' on a FY2026-27 page"
+   ],
+   "whys": [
+    "This is stale-prone. Check whether the 2026-27 low-income threshold has now been legislated or announced.",
+    "This label goes stale. Check whether the 2026-27 threshold has been legislated (MEDICARE_LEVY.lowIncomeThreshold)."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.lowIncomeThreshold"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/take-home-pay-calculator-content.tsx:85",
+   "file": "modules/calculator/take-home-pay-calculator-content.tsx",
+   "line": "85",
+   "page": "https://pay-calculator-australia.com/take-home-pay-calculator/",
+   "claims": [
+    "Medicare levy: 2% of $80,000",
+    "Medicare levy: 2% of $80,000 (2% also typed at lines 115, 140, 202, 313, 323, 385)"
+   ],
+   "whys": [
+    "The 2% is typed into the copy, not formatted from MEDICARE_LEVY.rate. Lines 115, 140, 202, 313, 323 and 385 do the same.",
+    "The levy rate is typed into the copy, not formatted from MEDICARE_LEVY.rate."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.95,
+   "needsOwner": false
+  }
+ ]
+}

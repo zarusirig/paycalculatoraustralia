@@ -21,11 +21,11 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the $300 no-receipt threshold?",
-    a: "If your total work-related expense claims are $300 or less, you do not need to provide written evidence such as receipts or invoices. However, you must still be able to explain to the ATO how you calculated the amount and demonstrate that the expenses were work-related. This threshold applies to the total of all work-related expenses, not $300 per category.",
+    a: "For 2025-26 and earlier income years, if your total work-related expense claims are $300 or less (not counting car, travel and overtime meal allowance expenses), you do not need to provide written evidence such as receipts or invoices. However, you must still be able to explain to the ATO how you calculated the amount and demonstrate that the expenses were work-related. This threshold applies to the total of all work-related expenses, not $300 per category. The exception ends from the 2026-27 income year: if you claim more than your maximum standard deduction (up to $1,000), you need written evidence for every work-related expense you claim.",
   },
   {
     q: "Can I claim deductions without receipts?",
-    a: "Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. You can claim up to $150 for laundering eligible work clothing without written records. The ATO accepts digital records: photos of receipts and accounting apps are valid evidence.",
+    a: "For 2025-26 and earlier income years, written records are not mandatory below the $300 total work-related threshold. Above $300, you need receipts, invoices, or bank/credit card statements. A laundry claim for eligible work clothing of $150 or less needs no written evidence, even when your total work-related claim is over $300. Both exceptions end from the 2026-27 income year. The ATO accepts digital records: photos of receipts and accounting apps are valid evidence.",
   },
   {
     q: "How do I claim deductions?",
@@ -45,14 +45,14 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim a laptop purchased for work?",
-    a: "Yes, if you use it for work. If the laptop costs $300 or less, claim the full work-use percentage as an immediate deduction. If it costs more than $300, depreciate it over its effective life (typically 2-4 years). If you use the laptop 60% for work and 40% personal, only 60% of the cost or depreciation is deductible.",
+    a: "Yes, if you use it for work. If the laptop costs $300 or less, claim the full work-use percentage as an immediate deduction. If it costs more than $300, depreciate it over its effective life. The ATO uses the Commissioner's effective life of 2 years for a laptop. If you use the laptop 60% for work and 40% personal, only 60% of the cost or depreciation is deductible.",
   },
   {
     q: "Are union fees tax deductible?",
-    a: "Yes. Membership fees for trade unions and professional associations related to your current employment are fully deductible. This includes unions such as the CFMEU, NSWNMA, AEU, and professional bodies like CPA Australia, the Law Society, and medical registration boards.",
+    a: "Yes. You can claim union fees and subscriptions to trade, business or professional associations for the industry you work in. This includes unions such as the CFMEU, NSWNMA and AEU, and professional bodies like CPA Australia and the Law Society. A subscription to an association that does not directly relate to your current job is deductible only up to $42 per subscription each income year. Registration fees are a separate deduction: you can claim the cost of renewing a registration or practising certificate you need for your current job (for example nurse, teacher or doctor registration), but not the initial cost of getting it.",
   },
   {
     q: "Can I claim charitable donations as a deduction?",
-    a: "Gifts to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible, and the old $2 minimum no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026). Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.",
+    a: "Gifts to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible, and the old $2 minimum no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026). Not all charities are DGRs, so check the organisation's status on ABN Lookup before you claim. Gifts of $2 or more to registered political parties and independent candidates are deductible up to $1,500 an income year for all political parties combined, plus a separate $1,500 for independent candidates and members. Donations to crowdfunding campaigns and to organisations without DGR status, including overseas organisations, are not deductible. Keep donation receipts as evidence.",
   },
 ];

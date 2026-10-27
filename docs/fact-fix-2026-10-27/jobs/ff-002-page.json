@@ -1,0 +1,128 @@
+{
+ "name": "ff-002-page",
+ "files": [
+  "app/age-pension-assets-test-calculator/page.tsx",
+  "app/child-care-subsidy-calculator/page.tsx",
+  "app/hecs-help-calculator/page.tsx",
+  "app/income-tax-calculator/page.tsx"
+ ],
+ "questions": [
+  {
+   "key": "app/age-pension-assets-test-calculator/page.tsx:14",
+   "file": "app/age-pension-assets-test-calculator/page.tsx",
+   "line": "14",
+   "page": "https://pay-calculator-australia.com/age-pension-assets-test-calculator/",
+   "claims": [
+    "DESCRIPTION hard-codes \"$3 a fortnight less per $1,000 above\" and \"from 20 Sep 2026\"; TITLE (line 13) hard-codes \"Limits From 20 Sep\"."
+   ],
+   "whys": [
+    "Both are correct today, but they are typed literals, not read from constants. They will go stale at the next indexation (March 2027) while the expression-driven limits update. Also, the full-pension limit indexes on 1 July (constants file line 87); only the cut-off changes on 20 Sep, so the title's \"Limits From 20 Sep\" is loose."
+   ],
+   "constants": [
+    "PENSION_ASSETS_TEST.taperPerThousand.single and PENSION_ASSETS_TEST.ratesFrom in calc-boiler/lib/constants/centrelink-means-test.ts (lines 84, 112)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "app/child-care-subsidy-calculator/page.tsx:14",
+   "file": "app/child-care-subsidy-calculator/page.tsx",
+   "line": "14",
+   "page": "https://pay-calculator-australia.com/child-care-subsidy-calculator/",
+   "claims": [
+    "DESCRIPTION: \"1% less per ${formatAUD(CCS.standard.step)} above\""
+   ],
+   "whys": [
+    "The 1% taper is typed into the text. The step amount comes from a constant, but the taper percentage does not. The rule looks correct; this is about where the figure lives, not whether it is right."
+   ],
+   "constants": [
+    "a taper-percentage field on CCS.standard in calc-boiler/lib/constants/child-care-subsidy"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.43,
+   "needsOwner": false
+  },
+  {
+   "key": "app/hecs-help-calculator/page.tsx:125",
+   "file": "app/hecs-help-calculator/page.tsx",
+   "line": "125",
+   "page": "https://pay-calculator-australia.com/hecs-help-calculator/",
+   "claims": [
+    "The indexation applied on 1 June 2026 was 2.8%."
+   ],
+   "whys": [
+    "The figure is correct today (it matches HECS_HELP.indexationRate = 0.028), but it is typed into the text rather than coming from the constant. The sibling FAQ at line 77 uses the expression, so this one will go stale at the next indexation. It cannot be changed in this pass because no new expressions may be added.",
+    "The text is correct today (it matches HECS_HELP.indexationRate = 0.028), but the figure and date are typed in rather than taken from the constants, so they will go stale at the next indexation. This answer also duplicates the expression-driven 'Is HECS interest free?' answer at line 77."
+   ],
+   "constants": [
+    "HECS_HELP.indexationRate and HECS_HELP.indexationDate (calc-boiler/lib/constants/australian-tax.ts:465-466)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. Line 125 types '2.8%' and '1 June 2026' as text. The values match HECS_HELP.indexationRate = 0.028 and indexationDate in lib/constants/australian-tax.ts:465-466 today, but the text will go stale at the next indexation. The sibling answer at line 77 uses the expression. This pass cannot change it."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.37,
+   "needsOwner": false
+  },
+  {
+   "key": "app/income-tax-calculator/page.tsx:126",
+   "file": "app/income-tax-calculator/page.tsx",
+   "line": "126",
+   "page": "https://pay-calculator-australia.com/income-tax-calculator/",
+   "claims": [
+    "a Medicare Levy Surcharge of 1 to 1.5% applies above ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} if you do not hold private hospital cover"
+   ],
+   "whys": [
+    "The 1% and 1.5% rates are typed literals, but the file header says every figure on this page comes from the engine. The threshold shown is the singles tier 1 figure only. Family thresholds are higher, so the sentence states the singles threshold as if it applied to everyone."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.surcharge tier rates (lib/constants, see lib/constants/medicare-levy-extra.ts); add a singles/family qualifier or render the family threshold too"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.3,
+   "needsOwner": false
+  },
+  {
+   "key": "app/income-tax-calculator/page.tsx:122",
+   "file": "app/income-tax-calculator/page.tsx",
+   "line": "122",
+   "page": "https://pay-calculator-australia.com/income-tax-calculator/",
+   "claims": [
+    "Your second employer withholds with no tax-free threshold, starting at roughly ${RATE_2} from the first dollar under the FY schedules"
+   ],
+   "whys": [
+    "The no-tax-free-threshold withholding rate is taken from the second bracket rate (RATE_2), not from the ATO Schedule 1 no-threshold scale coefficients. In past years that scale started slightly above the bracket rate. Check it against the FY2026-27 Schedule 1 'no tax-free threshold' coefficients."
+   ],
+   "constants": [
+    "ATO Schedule 1 withholding coefficients (scale 1) if the site holds them; otherwise keep RATE_2 and confirm 'roughly' is still accurate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.6,
+   "needsOwner": false
+  },
+  {
+   "key": "app/income-tax-calculator/page.tsx:130",
+   "file": "app/income-tax-calculator/page.tsx",
+   "line": "130",
+   "page": "https://pay-calculator-australia.com/income-tax-calculator/",
+   "claims": [
+    "Concessional contributions, including salary sacrifice, are taxed at 15% inside the fund"
+   ],
+   "whys": [
+    "The 15% contributions tax is a typed literal on a page whose header says nothing is typed. It also matches the new FY2026-27 second bracket rate (15%), which makes it easy to confuse with RATE_2 if the bracket changes again."
+   ],
+   "constants": [
+    "a super contributions-tax constant (for example SUPER_GUARANTEE or a SUPER_CONTRIBUTIONS_TAX rate in lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.69,
+   "needsOwner": false
+  }
+ ]
+}

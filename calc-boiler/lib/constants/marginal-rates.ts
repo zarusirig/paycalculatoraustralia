@@ -100,22 +100,28 @@ export function marginalBands(): MarginalBand[] {
   return out;
 }
 
+/** A rate as cents per $1: 0.15 -> "15c", 0.015 -> "1.5c". */
+function cents(rate: number): string {
+  return `${Number((rate * 100).toFixed(1))}c`;
+}
+
 function bandReason(from: number, scale: number, effective: number): string {
+  const levy = cents(MEDICARE_LEVY.rate);
   if (effective === 0) {
     return from === 0
-      ? "Tax-free threshold: nothing is payable on the first $18,200"
-      : "The 15c scale rate is cancelled by the $700 low income tax offset, so the tax stays at nil";
+      ? `Tax-free threshold: nothing is payable on the first $${TAX_FREE_THRESHOLD.toLocaleString("en-AU")}`
+      : `The ${cents(scale)} scale rate is cancelled by the $${LITO.maxOffset.toLocaleString("en-AU")} low income tax offset, so the tax stays at nil`;
   }
   if (from >= MEDICARE_LEVY.lowIncomeThreshold && from < MEDICARE_LEVY.shadeInThreshold) {
-    return "Medicare levy phases in at 10c per $1 instead of 2c, on top of the scale rate";
+    return `Medicare levy phases in at ${cents(MEDICARE_LEVY.shadeInRate)} per $1 instead of ${levy}, on top of the scale rate`;
   }
   if (from >= LITO.fullOffsetCeiling && from < LITO.phaseOut1.end) {
-    return "Scale rate + 2c Medicare + 5c as the low income tax offset is withdrawn";
+    return `Scale rate + ${levy} Medicare + ${cents(LITO.phaseOut1.rate)} as the low income tax offset is withdrawn`;
   }
   if (from >= LITO.phaseOut1.end && from < LITO.nilOffsetIncome) {
-    return "Scale rate + 2c Medicare + 1.5c as the low income tax offset is withdrawn";
+    return `Scale rate + ${levy} Medicare + ${cents(LITO.phaseOut2.rate)} as the low income tax offset is withdrawn`;
   }
-  if (Math.abs(effective - scale - MEDICARE_LEVY.rate) < 0.0006) return "Scale rate + 2c Medicare levy";
+  if (Math.abs(effective - scale - MEDICARE_LEVY.rate) < 0.0006) return `Scale rate + ${levy} Medicare levy`;
   if (Math.abs(effective - scale) < 0.0006) return `Scale rate only: the Medicare levy does not start until $${MEDICARE_LEVY.lowIncomeThreshold.toLocaleString("en-AU")}`;
   return "Scale rate plus levy";
 }

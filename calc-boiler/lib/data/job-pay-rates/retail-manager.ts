@@ -125,8 +125,8 @@ export const RETAIL_MANAGER: Occupation = {
   coverage: [
     "Store managers, shop managers and department managers in shops, supermarkets and department stores are covered by the General Retail Industry Award 2020 [MA000004] unless a more specific award applies (pharmacies, fast food, motor vehicle retailing) or the employer pays under an enterprise agreement.",
     "The award has no level called store manager. It grades managers by what they run. A department or section manager with up to 2 employees (including themselves) is Retail Employee Level 4. A department or section manager with 5 or more employees, or the manager or duty manager of a shop without departments, is Level 6. The shop manager of a shop with departments or sections is Level 8, which may carry a Diploma.",
-    "An assistant, deputy or second-in-charge manager is graded one step below the manager they assist: Level 4 in a shop without departments, Level 6 in a shop with departments.",
-    "Many store managers are paid an annual salary. The figures below are the award's minimum for each level; an employer can pay more, and an enterprise agreement can replace the award as long as employees are better off overall. Large chains such as Coles, Woolworths, Kmart and Bunnings set their store manager salaries themselves, and we do not publish them.",
+    "An assistant, deputy or second-in-charge manager is graded two levels below the manager they assist: Level 4 in a shop without departments (manager Level 6), and Level 6 in a shop with departments (manager Level 8).",
+    "The figures below are the award's minimum for each level; an employer can pay more, and an enterprise agreement can replace the award as long as employees are better off overall. Large chains such as Coles, Woolworths, Kmart and Bunnings set their store manager salaries themselves, and we do not publish them.",
   ],
   tables: [
     {

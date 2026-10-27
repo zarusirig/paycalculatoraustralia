@@ -344,7 +344,7 @@ export const NSW: Jurisdiction = {
 
   progression: [
     "Each Clerk Grade has two rates: the 1st year of service and thereafter. After a year at the grade you move to the thereafter rate (a rise of $2,292 at Grade 1 and $7,528 at Grade 12). Beyond that, pay only moves with the award increases or a move to a higher grade.",
-    "Most NSW public service roles are advertised across two grades, such as Clerk Grade 5/6 or Clerk Grade 9/10. The range in the ad runs from the 1st-year rate of the lower grade to the thereafter rate of the higher one: Clerk Grade 9/10 is $133,348 to $146,945 from 1 July 2026.",
+    "Most NSW public service roles are advertised across two grades, such as Clerk Grade 5/6 or Clerk Grade 9/10. The range in the ad runs from the 1st-year rate of the lower grade to the thereafter rate of the higher one: Clerk Grade 9/10 is $133,348 to $146,945 from the first full pay period on or after 1 July 2026.",
     "NSW Health Administration Officers move through yearly steps within their level — five at Level 1 and two at every other level. Moving to a higher level is an appointment to a position graded at that level.",
   ],
 
@@ -391,7 +391,7 @@ export const NSW: Jurisdiction = {
     },
     {
       q: "What is a Clerk Grade 9/10 salary?",
-      a: "From 1 July 2026, the salary range is $133,348 (Grade 9, 1st year) to $146,945 (Grade 10, thereafter). Grade 9 thereafter is $137,098 and Grade 10 1st year is $142,695.",
+      a: "From the first full pay period on or after 1 July 2026, the salary range is $133,348 (Grade 9, 1st year) to $146,945 (Grade 10, thereafter). Grade 9 thereafter is $137,098 and Grade 10 1st year is $142,695.",
     },
     {
       q: "What are the NSW Health pay rates for administration staff?",

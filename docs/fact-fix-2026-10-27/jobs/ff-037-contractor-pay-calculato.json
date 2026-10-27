@@ -1,0 +1,123 @@
+{
+ "name": "ff-037-contractor-pay-calculato",
+ "files": [
+  "modules/calculator/contractor-pay-calculator-faqs.ts",
+  "modules/calculator/contractor-pay-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/contractor-pay-calculator-faqs.ts:91",
+   "file": "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "line": "91",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "If a business hires you primarily for your labour ... they may be required to pay the SG super guarantee on your behalf."
+   ],
+   "whys": [
+    "The same page states the rule definitively in contractor-pay-calculator-content.tsx line 239 ('that business must pay super on your behalf'). Under the SG Act, a contract wholly or principally for labour makes the business liable for SG. The FAQ answer (also used in the FAQPage JSON-LD) is softer than the page body. I did not change the modality."
+   ],
+   "constants": [
+    "Copy only (SUPER_GUARANTEE.rate is fine)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-faqs.ts:51",
+   "file": "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "line": "51",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "Unbilled time, insurance and sick days are why many contractors charge 1.4 to 1.6 times the employee rate."
+   ],
+   "whys": [
+    "This is a population claim with no source ('many contractors'). The same 1.4 to 1.6 rule of thumb appears at line 95. It is the lead of the 'What Rate Should I Charge?' section and is also in the FAQPage schema."
+   ],
+   "constants": [
+    "Hard-coded prose"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.84,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-faqs.ts:111",
+   "file": "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "line": "111",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "Workers' compensation is compulsory in some states for contractors who employ others."
+   ],
+   "whys": [
+    "Every state and territory makes workers' compensation insurance compulsory for employers, so 'in some states' looks wrong. The answer also opens with a population claim that cites no source ('Most contractors carry 3 types of insurance'). The premium ranges ($300 to $1,200, $400 to $2,000) and 'required for consultants, accountants, and IT professionals' are unsourced too. Professional indemnity is a legal requirement for some professions, such as registered tax agents, but not for all consultants or IT contractors."
+   ],
+   "constants": [
+    "Hard-coded prose; no constants file"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.01,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-faqs.ts:87",
+   "file": "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "line": "87",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "If you're under $75,000, GST registration is optional."
+   ],
+   "whys": [
+    "Taxi and ride-sourcing drivers must register for GST whatever their turnover. The page body says so (contractor-pay-calculator-content.tsx, GST Registration and BAS Lodgement paragraph). The FAQ states the rule with no exception. Separately, the content paragraph says 'turnover exceeding $75,000' while the FAQs say '$75,000 or more' (ATO wording is $75,000 or more)."
+   ],
+   "constants": [
+    "GST registration threshold ($75,000) is hard-coded in prose; it could come from a GST constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-faqs.ts:68",
+   "file": "modules/calculator/contractor-pay-calculator-faqs.ts",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "grosses ${formatAUD(DAY_RATE_GROSS)} over 48 working weeks"
+   ],
+   "whys": [
+    "The figure 48 is typed into the prose and into DAY_RATE_GROSS (line 33: 1_000 * 5 * 48). BILLABLE_WEEKS = 48 already exists in the same file. If BILLABLE_WEEKS changes, the prose and this number will drift apart."
+   ],
+   "constants": [
+    "BILLABLE_WEEKS (contractor-pay-calculator-faqs.ts line 41)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.81,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator.tsx:255",
+   "file": "modules/calculator/contractor-pay-calculator.tsx",
+   "line": "255",
+   "page": "https://pay-calculator-australia.com/contractor-pay-calculator/",
+   "claims": [
+    "Weekly/fortnightly ... use {weeksPerYear}/{Math.floor(weeksPerYear / 2)} periods"
+   ],
+   "whys": [
+    "SummaryRow divides by weeks / 2 without flooring. When weeks per year is odd (for example 47), the footnote says 23 fortnights while the code uses 23.5. The footnote and the calculation disagree."
+   ],
+   "constants": [
+    "Code: use weeksPerYear / 2 in the footnote, or floor it in SummaryRow"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.03,
+   "needsOwner": false
+  }
+ ]
+}

@@ -1594,7 +1594,7 @@ Level 3|1119.10|29.45
   ],
   allowancesClause: "cl 17",
   hoursNotes: [
-    "Minimum shift for part-time and casual cleaners depends on the size of the site: 1 hour for a lone cleaner at a stand-alone site of up to 300 square metres, 2 hours up to 2,000 square metres, 3 hours from 2,000 to 5,000, and 4 hours at 5,000 square metres or more (cl 13.5(c)).",
+    "Minimum shift for part-time and casual cleaners depends on the total cleaning area of the site: 1 hour for a cleaner working alone at a small stand-alone site of not more than 300 square metres, where a longer shift across 2 or more sites is not practicable; 2 consecutive hours at a site of up to 2,000 square metres; 3 consecutive hours at 2,000 square metres or more, up to 5,000; and 4 consecutive hours at 5,000 square metres or more. The cleaner is paid for the minimum even if the work takes less time (cl 13.5(c) and (d)).",
     "Every employee is entitled to 2 consecutive full days off in each 7 days (cl 13.7).",
   ],
   unverified: [

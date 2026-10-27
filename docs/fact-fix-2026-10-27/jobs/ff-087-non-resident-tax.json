@@ -1,0 +1,196 @@
+{
+ "name": "ff-087-non-resident-tax",
+ "files": [
+  "modules/guide/non-resident-tax.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/non-resident-tax.tsx:70",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "70",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "residents benefit from the $0 tax-free threshold"
+   ],
+   "whys": [
+    "The resident tax-free threshold is $18,200 (taxed at 0%), not $0. The intended wording is probably 'the 0% rate on the $18,200 tax-free threshold'. I left it because changing it would change a number."
+   ],
+   "constants": [
+    "TAX_FREE_THRESHOLD"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.87,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:62",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Non-residents also cannot access ... the Medicare levy exemption benefit that residents receive.",
+    "The lowest marginal rate for non-residents is 30% ... 0% for residents earning below $18,200 ... residents earning between $18,201 and $45,000 (hard-coded $18,200, $700, 30%, $45,000)"
+   ],
+   "whys": [
+    "This contradicts line 103, which says non-residents are fully exempt from the Medicare levy. Residents do not receive a levy exemption. The point is probably that non-residents lose Medicare benefits (bulk billing, PBS), as the line 143 bullet explains.",
+    "These figures are typed literals rather than TAX_FREE_THRESHOLD, the LITO constant and NR[0].rate. They will go stale when the constants change. Line 70 has the same problem with the $135,000 boundary, which is NR[0].max."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "I confirmed the flag. 'the Medicare levy exemption benefit that residents receive' contradicts line 103 and the locked heading on line 143 ('No Medicare levy exemption'). The intended meaning is 'no Medicare access'."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:143",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "143",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "No Medicare levy exemption (bullet heading in the list of benefits non-residents lose)"
+   ],
+   "whys": [
+    "Non-residents ARE exempt from the levy. The bullet body actually describes losing access to Medicare services. The bold heading (locked) is misleading and should be something like 'No Medicare access'."
+   ],
+   "constants": [
+    "MEDICARE_LEVY"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:139",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "139",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "No tax-free threshold costs up to {formatAUD(TAX_FREE_THRESHOLD * SECOND_BRACKET_RATE)} in additional tax at the 15% marginal rate",
+    "No tax-free threshold costs up to formatAUD(TAX_FREE_THRESHOLD * SECOND_BRACKET_RATE) in additional tax at the 15% marginal rate"
+   ],
+   "whys": [
+    "A non-resident pays 30% (NR[0].rate) on the first $18,200 where a resident pays 0%. That makes the extra cost TAX_FREE_THRESHOLD * NR[0].rate, not * SECOND_BRACKET_RATE. The current formula understates it by half.",
+    "The writer's flag holds. A non-resident pays NR[0].rate (30%) on the first $18,200, so the 'up to' figure is understated. Confirm the intended formula (TAX_FREE_THRESHOLD * NR[0].rate) in code."
+   ],
+   "constants": [
+    "NON_RESIDENT_TAX_BRACKETS[0].rate"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's flag. The extra cost is computed as TAX_FREE_THRESHOLD * SECOND_BRACKET_RATE, while a non-resident pays NR[0].rate (30%) on that slice. The source must be fixed outside this pass."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:104",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "104",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "This exemption saves a non-resident earning $100,000 a total of $2,000 per year compared to a resident without private health insurance."
+   ],
+   "whys": [
+    "The 2% Medicare levy is payable whether or not a resident has private health insurance (insurance only affects the surcharge), so that qualifier is misleading. The $2,000 is also hard-coded rather than calculateMedicareLevy(100_000)."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.68,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:131",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "131",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Both employees receive superannuation at 12% ($10,800)"
+   ],
+   "whys": [
+    "The figures are hard-coded rather than taken from SUPER_GUARANTEE.rate. Also, line 122 calls the person an 'IT contractor', and a genuine contractor is not automatically owed SG. The example should say employee."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.97,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:170",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "170",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Non-residents can claim a 'Foreign Income Tax Offset' (FITO) in their home country for Australian tax paid, or claim an offset in Australia for tax paid overseas"
+   ],
+   "whys": [
+    "FITO is Australia's own offset; a home country gives its own foreign tax credit. Also, non-residents are not taxed in Australia on foreign income, so they generally have no Australian FITO claim."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.36,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:168",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "168",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "A non-resident receiving dividends from an Australian company typically faces a withholding rate of 15% under most DTAs, reduced from the standard 30% domestic rate."
+   ],
+   "whys": [
+    "Fully franked dividends paid to non-residents are exempt from dividend withholding tax. The 30%/15% rates apply to the unfranked portion only, which the sentence does not say."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.55,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:153",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "153",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "WHMs are not subject to standard non-resident rates, provided their employer registers as an employer of working holiday makers with the ATO."
+   ],
+   "whys": [
+    "WHM rates apply to working holiday taxable income at assessment whether or not the employer registers. Registration only changes the withholding rate (15% vs 30%). As written, the sentence makes the tax rate depend on employer registration."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/non-resident-tax.tsx:184",
+   "file": "modules/guide/non-resident-tax.tsx",
+   "line": "184",
+   "page": "https://pay-calculator-australia.com/non-resident-tax/",
+   "claims": [
+    "Refunds are paid to an Australian bank account or a nominated overseas account"
+   ],
+   "whys": [
+    "The ATO pays refunds into Australian financial institution accounts and does not deposit into foreign bank accounts. This needs checking against ATO guidance."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.46,
+   "needsOwner": false
+  }
+ ]
+}

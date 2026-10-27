@@ -60,7 +60,7 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is my Centrelink payment taxable income?",
-    a: "Yes. Most Centrelink income-support payments (including JobSeeker, Youth Allowance, Austudy, Age Pension, and Parenting Payment) are taxable income and must be included in your annual tax return. Centrelink withholds tax at a rate you choose (or a default rate) and issues a Centrelink Payment Summary at the end of each financial year. Non-taxable payments include Disability Support Pension (if you are under Age Pension age) and Carer Allowance.",
+    a: "Yes. Most Centrelink income-support payments (including JobSeeker, Youth Allowance, Austudy, Age Pension, and Parenting Payment) are taxable income and must be included in your annual tax return. Centrelink deducts tax from your payment only if you ask it to, as a percentage or a set dollar amount, and any tax deducted shows on your Centrelink payment summary for the financial year. Non-taxable payments include Disability Support Pension (if you are under Age Pension age) and Carer Allowance.",
   },
   {
     q: "Do I still need to report if I earned no income this fortnight?",

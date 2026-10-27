@@ -45,8 +45,8 @@ export default function HealthProfessionalsAwardChangesOctober2026() {
       <p className="lead">
         Allied health professionals paid under the {HPSS_AWARD.name} move to a new pay structure from the first
         full pay period starting on or after <strong>{H.operativeFrom}</strong>. Pay now depends on the
-        qualification level of your profession and your years of experience, and most health professionals get a
-        rise: a new graduate in an AQF Level 7 profession who started on the 3-year-degree pay point goes from{" "}
+        qualification level of your profession and your years of experience, and nobody&apos;s pay goes down. A new
+        graduate in an AQF Level 7 profession who started on the 3-year-degree pay point goes from{" "}
         {money(grad.before)} to <strong>{money(grad.after)} a week</strong>.
       </p>
 

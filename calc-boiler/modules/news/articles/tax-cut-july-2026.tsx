@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { formatAUD } from "@/lib/constants/australian-tax";
+import { WATO } from "@/lib/constants/tax-2027-28";
 
 export default function TaxCutJuly2026() {
   return (
@@ -63,10 +65,13 @@ export default function TaxCutJuly2026() {
         combined picture.
       </p>
       <p>
-        Combined with the $1,000 instant work-related deduction that also applies from the
-        2026-27 income year, Treasury estimates a worker on average earnings receiving the
-        average $205 deduction benefit would be about $2,701 better off in 2027-28 compared with
-        2023-24 settings, or up to $2,816 with the maximum deduction benefit. See our{" "}
+        The May 2026 Budget counts five tax cuts in total: the 1 July 2024 cuts, this 1 July 2026
+        cut, the 1 July 2027 cut, the {formatAUD(WATO.maxOffset)} Working Australians Tax Offset
+        from {WATO.firstIncomeYear} and the $1,000 instant tax deduction from 2026-27. With all
+        five, the Budget says a worker on average
+        earnings ($81,245) who gets the average $205 benefit from the instant deduction would be
+        $2,701 better off in 2027-28 than under 2023-24 settings, or $2,816 with the maximum
+        deduction benefit. See our{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">
           $1,000 instant deduction explainer
         </Link>{" "}

@@ -20,7 +20,7 @@ export const CASUAL_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How do you calculate a casual rate?",
-    a: `Multiply the permanent hourly rate by 1.25. A $30.00 permanent rate is ${formatAUD(EXAMPLE_NO_SICK.casualHourly, 2)} casual. On weekends and public holidays most awards add the loading to the penalty rather than multiplying them: a retail casual on Sunday gets ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate (${pct(RETAIL_PENALTIES.sunday)} + 25%), not 187.5%.`,
+    a: `Multiply the permanent hourly rate by ${(1 + CASUAL_LOADING).toFixed(2)}. A $30.00 permanent rate is ${formatAUD(EXAMPLE_NO_SICK.casualHourly, 2)} casual. On weekends and public holidays the retail and hospitality awards add the loading to the penalty rather than multiplying them: a retail casual on Sunday gets ${pct(RETAIL_PENALTIES.casualSunday)} of the base rate (${pct(RETAIL_PENALTIES.sunday)} + ${pct(CASUAL_LOADING)}), not ${pct(RETAIL_PENALTIES.sunday * (1 + CASUAL_LOADING))}.`,
   },
   {
     q: "What does casual loading replace?",

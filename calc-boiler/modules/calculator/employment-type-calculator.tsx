@@ -10,6 +10,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatPercent,
   EMPLOYMENT,
   SUPER_GUARANTEE,
   SITE_CONFIG,
@@ -169,7 +170,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                           {types.map((t) => <td key={t.key} className="px-4 py-3 text-right text-navy">{result[t.key].personalLeave > 0 ? formatAUD(result[t.key].personalLeave) : <span className="text-warmgray-light">$0</span>}</td>)}
                         </tr>
                         <tr className="hover:bg-sandstone">
-                          <td className="px-4 py-3 text-navy">Super Contribution (12%)</td>
+                          <td className="px-4 py-3 text-navy">Super Contribution ({formatPercent(SUPER_GUARANTEE.rate, 0)})</td>
                           {types.map((t) => <td key={t.key} className="px-4 py-3 text-right text-navy">{formatAUD(result[t.key].super)}</td>)}
                         </tr>
                         <tr className="hover:bg-sandstone bg-sandstone/30">
@@ -188,7 +189,7 @@ export default function EmploymentTypeCalculatorPage({ children, afterCalculator
                 <div className="mt-6">
                   <div className="bg-sandstone border-l-4 border-eucalyptus p-4 text-sm text-warmgray">
                     <p className="font-medium mb-1">Disclaimer:</p>
-                    <p>Calculations use the National Employment Standards leave minimums. Your actual entitlements depend on your award, enterprise agreement or employment contract. Casuals get the 25% casual loading instead of paid annual and personal leave. Take-home pay allows for the low income tax offset and the Medicare levy, and tax estimates use ATO FY{SITE_CONFIG.financialYear} rates.</p>
+                    <p>Calculations use the National Employment Standards leave minimums. Your actual entitlements depend on your award, enterprise agreement or employment contract. Casuals get the {formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading instead of paid annual and personal leave. Take-home pay allows for the low income tax offset and the Medicare levy, and tax estimates use ATO FY{SITE_CONFIG.financialYear} rates.</p>
                   </div>
                 </div>
                 <div className="mt-4 text-sm text-warmgray border-t border-sandstone-dark/20 pt-4">

@@ -7,9 +7,9 @@ import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { formatAUD, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, SOURCES, SITE_CONFIG, SUPER_GUARANTEE, TAX_FREE_THRESHOLD } from "@/lib/constants";
 import { HECS_HELP_2025_26, LITO, MEDICARE_LEVY } from "@/lib/constants/australian-tax";
-import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
+import { MLS_2025_26_SINGLE, RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
 import { RETURN_YEARS } from "@/lib/constants/tax-return-estimator";
 import {
   FTL_MAX_INDIVIDUAL,
@@ -91,7 +91,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Deductions Increase Your Tax Refund?</h2>
         <p className="mb-4 text-warmgray">
-          Deductions reduce your taxable income, which lowers your tax and increases your refund. In {THIS.incomeYear}, each <strong>$1</strong> of deductions saves between <strong>{Math.round(THIS.brackets[1].rate * 100)}c and {Math.round(THIS.brackets[4].rate * 100)}c</strong> of income tax depending on your marginal rate, plus up to 2c of Medicare levy.
+          Deductions reduce your taxable income, which lowers your tax and increases your refund. In {THIS.incomeYear}, each <strong>$1</strong> of deductions saves between <strong>{Math.round(THIS.brackets[1].rate * 100)}c and {Math.round(THIS.brackets[4].rate * 100)}c</strong> of income tax depending on your marginal rate, plus up to {Math.round(MEDICARE_LEVY.rate * 100)}c of Medicare levy.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
           <table className="w-full text-sm">
@@ -116,7 +116,7 @@ export default function TaxReturnCalculatorContent() {
           </table>
         </div>
         <p className="mt-3 text-xs text-warmgray-light">
-          Tax saved assumes taxable income between $45,001 and $135,000 ({pct(THIS.brackets[2].rate)} rate plus the Medicare levy). You must have spent the money yourself, it must relate directly to earning your income, and you need records. For {NEXT.incomeYear} the car rate rises to {R.carCentsPerKmNextYear}c per km.
+          Tax saved assumes taxable income between {formatAUD(THIS.brackets[2].min)} and {formatAUD(THIS.brackets[2].max)} ({pct(THIS.brackets[2].rate)} rate plus the Medicare levy). You must have spent the money yourself, it must relate directly to earning your income, and you need records. For {NEXT.incomeYear} the car rate rises to {R.carCentsPerKmNextYear}c per km.
         </p>
         <p className="mt-3 text-warmgray">
           Salary sacrifice reduces your taxable income before tax is withheld. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to compare take-home pay with and without it.
@@ -160,7 +160,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Who Uses This Tax Return Calculator?</h2>
         <p className="mb-4 text-warmgray">
-          Employees, contractors and retirees use this tax return calculator to estimate their refund or amount owing before lodging through myTax or a tax agent.
+          Employees and contractors use this tax return calculator to estimate their refund or amount owing before lodging through myTax or a tax agent.
         </p>
         <ul className="space-y-3 text-warmgray mb-4">
           <li className="flex items-start gap-3">
@@ -189,7 +189,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Is the Difference Between a Tax Return and a Tax Refund?</h2>
         <p className="mb-4 text-warmgray">
-          A &quot;tax return&quot; is the form you lodge with the ATO reporting your income, deductions and offsets. A &quot;tax refund&quot; is the money the ATO pays back when more tax was withheld than you owe.
+          A &quot;tax return&quot; is the form you lodge with the ATO reporting your income, deductions and offsets. A &quot;tax refund&quot; is the money the ATO pays back when the tax withheld from your pay and other credits, such as franking credits, are more than the tax you owe.
         </p>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
           <table className="w-full text-sm">
@@ -204,7 +204,7 @@ export default function TaxReturnCalculatorContent() {
               <tr className="hover:bg-sandstone">
                 <td className="px-4 py-3 font-medium text-navy">Definition</td>
                 <td className="px-4 py-3 text-warmgray">The yearly form lodged with the ATO declaring income and deductions</td>
-                <td className="px-4 py-3 text-warmgray">The money returned when tax withheld is more than the tax you owe</td>
+                <td className="px-4 py-3 text-warmgray">The money returned when tax withheld and other credits, such as franking credits, are more than the tax you owe</td>
               </tr>
               <tr className="hover:bg-sandstone">
                 <td className="px-4 py-3 font-medium text-navy">Who</td>
@@ -273,8 +273,8 @@ export default function TaxReturnCalculatorContent() {
         <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
           <li><strong>Leaving out income</strong>: bank interest, dividends, government payments and second jobs are all reported to the ATO. Missing them triggers an amendment.</li>
           <li><strong>Claiming private expenses</strong>: travel between home and work, personal phone use and everyday clothing are not deductible.</li>
-          <li><strong>Claiming the tax-free threshold twice</strong>: only one employer should apply the <strong>$18,200</strong> tax-free threshold. Claiming it from two causes under-withholding and a bill.</li>
-          <li><strong>Forgetting the Medicare levy surcharge</strong> &mdash; for {THIS.incomeYear}, singles earning above <strong>{formatAUD(THIS.mlsSinglesThreshold)}</strong> without private hospital cover pay 1% to 1.5% extra. Family thresholds are higher.</li>
+          <li><strong>Claiming the tax-free threshold twice</strong>: only one employer should apply the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold. Claiming it from two causes under-withholding and a bill.</li>
+          <li><strong>Forgetting the Medicare levy surcharge</strong>: for {THIS.incomeYear}, singles earning above <strong>{formatAUD(THIS.mlsSinglesThreshold)}</strong> without private hospital cover pay {pct(MLS_2025_26_SINGLE[0].rate)} to {pct(MLS_2025_26_SINGLE[2].rate)} extra. Family thresholds are higher.</li>
           <li><strong>Lodging too early</strong>: lodging before your income statement is &quot;tax ready&quot; risks missing pre-fill data. The ATO has most of it by {R.prefillReady}.</li>
         </ol>
         <p className="text-warmgray">
@@ -304,7 +304,7 @@ export default function TaxReturnCalculatorContent() {
           </Link>
           <Link href="/superannuation-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="font-semibold text-navy mb-1">Superannuation Calculator</h3>
-            <p className="text-sm text-warmgray">Employer super at 12% and your projected balance.</p>
+            <p className="text-sm text-warmgray">Employer super at {pct(SUPER_GUARANTEE.rate)} and your projected balance.</p>
           </Link>
           <Link href="/salary-sacrifice-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="font-semibold text-navy mb-1">Salary Sacrifice Calculator</h3>

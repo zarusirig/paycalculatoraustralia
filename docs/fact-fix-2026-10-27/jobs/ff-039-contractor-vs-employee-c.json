@@ -1,0 +1,160 @@
+{
+ "name": "ff-039-contractor-vs-employee-c",
+ "files": [
+  "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+  "modules/calculator/contractor-vs-employee-calculator.tsx",
+  "modules/calculator/disability-support-pension-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:43",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "43",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "annual leave (7.6%), personal leave (3.8%) ... 30 to 45% above ... $135,000 to $145,000"
+   ],
+   "whys": [
+    "These are hard-coded. 4 weeks / 52 = 7.69%, which rounds to 7.7%, not 7.6%. 10 days / 260 = 3.85%. The 30 to 45% markup and the insurance and admin cost ranges have no source."
+   ],
+   "constants": [
+    "Derive from NES leave entitlements in lib/constants (annual leave weeks, personal leave days); the markup range needs a cited source or labelled editorial judgment."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.06,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:39",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "39",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "The ATO uses a strict multi-factor test ... It depends on the working arrangement (e.g., control over work, providing your own tools, bearing financial risk), not just what your contract says. \"Sham contracting\" penalties apply to employers who get this wrong."
+   ],
+   "whys": [
+    "Since the 2022 High Court decisions (Personnel Contracting, Jamsek), the ATO's TR 2023/4 says that for tax and SG the test looks mainly at the rights and obligations in the written contract. The 'real substance' approach in Fair Work Act s 15AA (from 26 Aug 2024) applies only for Fair Work purposes. Sham contracting under s 357 also has a reasonable-belief defence, so 'apply to employers who get this wrong' oversimplifies it."
+   ],
+   "constants": [
+    "Copy only (no constant). Needs a check against ATO TR 2023/4 and the FWO independent contractor guidance."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:27",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "27",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "If contracting pays 30%+ more than the equivalent employee salary, the financial benefit usually outweighs the loss of entitlements."
+   ],
+   "whys": [
+    "This is an unsourced rule of thumb written like a rule. It also conflicts with the calculator's 'Value Equivalent required approx.' figure, which uses a 1.15 multiplier (contractor-vs-employee-calculator.tsx line 44). The AUDIT does not mark this page for labelled editorial judgment, so I left it as it is."
+   ],
+   "constants": [
+    "contractor-vs-employee-calculator.tsx gapToMatch multiplier (1.15); a shared CONTRACTOR_MARKUP constant would keep the two consistent."
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:88",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "88",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Contractors and employees earning the same taxable income pay the same income tax: the FY tax brackets and Medicare levy apply identically."
+   ],
+   "whys": [
+    "Sole traders with net small business income can claim the small business income tax offset, so the tax is not always identical."
+   ],
+   "constants": [
+    "lib/constants (small business income tax offset), if the site holds it."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:59",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "59",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly."
+   ],
+   "whys": [
+    "The ATO enrols people in PAYG instalments only when their instalment income and tax payable pass set thresholds, and some people pay annually. 'Once they lodge their first tax return' overstates this."
+   ],
+   "constants": [
+    "Copy only; check against ATO PAYG instalments entry criteria."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator-faqs.ts:55",
+   "file": "modules/calculator/contractor-vs-employee-calculator-faqs.ts",
+   "line": "55",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Clients do not withhold PAYG tax from a contractor's invoices ... unless a voluntary withholding agreement is in place."
+   ],
+   "whys": [
+    "Clients must also withhold PAYG (no-ABN withholding at the top marginal rate) when a contractor does not quote an ABN, so the only exception named is incomplete."
+   ],
+   "constants": [],
+   "reviewerNotes": [
+    "The PAYG sentence leaves out no-ABN withholding: a client must withhold at the top rate when a contractor does not quote an ABN. The original had the same gap, so this goes to factQuestions and I made no change."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-vs-employee-calculator.tsx:96",
+   "file": "modules/calculator/contractor-vs-employee-calculator.tsx",
+   "line": "96",
+   "page": "/contractor-vs-employee-calculator/",
+   "claims": [
+    "Self-fund 12% Superannuation (Recommended for contractors)"
+   ],
+   "whys": [
+    "The checkbox label hard-codes 12% instead of deriving it from SUPER_GUARANTEE.rate, so it will go stale if the SG rate changes. It also states a recommendation as a fixed label."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.91,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/disability-support-pension-calculator-content.tsx:65",
+   "file": "modules/calculator/disability-support-pension-calculator-content.tsx",
+   "line": "65",
+   "page": "https://pay-calculator-australia.com/disability-support-pension-calculator/",
+   "claims": [
+    "Services Australia's DSP page shows the couple Pension Supplement as $65.50 each."
+   ],
+   "whys": [
+    "This is a typed figure about a third-party page discrepancy and is not held in a constant. It needs re-checking at each 20 March and 20 September indexation, or removing once Services Australia corrects its page."
+   ],
+   "constants": [
+    "lib/constants/centrelink-means-test.ts (DSP / MEANS_TEST_SOURCES)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.75,
+   "needsOwner": false
+  }
+ ]
+}

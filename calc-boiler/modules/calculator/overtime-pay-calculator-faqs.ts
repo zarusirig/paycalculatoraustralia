@@ -3,7 +3,8 @@
 // so the structured data cannot drift from the page. Rates come from
 // lib/constants; the TOIL ratio rules are in lib/constants/time-in-lieu.ts.
 
-import { EMPLOYMENT, formatAUD, formatPercent, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { EMPLOYMENT, formatAUD, formatPercent, QUALIFYING_EARNINGS, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
+import { HOSPITALITY_OVERTIME, RETAIL_AWARD, RETAIL_OVERTIME, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
@@ -12,11 +13,13 @@ const DAY = WEEK / 5;
 const LOW = TAX_BRACKETS[1];
 const MID = TAX_BRACKETS[2];
 const EXAMPLE_BASE = 30;
+const HO = HOSPITALITY_OVERTIME;
+const RO = RETAIL_OVERTIME;
 
 export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "How is overtime pay calculated?",
-    a: `Overtime pay is your base hourly rate multiplied by the overtime rate set in your award or enterprise agreement. Time-and-a-half on a ${formatAUD(EXAMPLE_BASE)}/hr base rate is ${formatAUD(EXAMPLE_BASE * 1.5)}/hr. Under most awards the first 2-3 overtime hours are paid at 1.5×, and hours beyond that at 2.0×.`,
+    a: `Overtime pay is your base hourly rate multiplied by the overtime rate set in your award or enterprise agreement. Time-and-a-half on a ${formatAUD(EXAMPLE_BASE)}/hr base rate is ${formatAUD(EXAMPLE_BASE * 1.5)}/hr. Your award sets how many hours are paid at the first rate. The Hospitality Award pays ${pct(HO.weekdayFirst2Hours)} for the first 2 overtime hours Monday to Friday and ${pct(HO.weekdayAfter2Hours)} after that. The General Retail Award pays ${pct(RO.weekdayFirst3Hours)} for the first 3 hours Monday to Saturday and ${pct(RO.weekdayAfter3Hours)} after that.`,
   },
   {
     q: "When does overtime start?",
@@ -24,7 +27,7 @@ export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do casual workers get overtime?",
-    a: `Yes. Casual employees are generally entitled to overtime rates when they work more than ${WEEK} hours per week or more than the award's daily maximum. In most awards the overtime multiplier applies to the base rate rather than the casual-loaded rate, and some awards set a separate casual overtime rate. Weekend and public holiday penalties for casuals are usually higher than for permanent staff to compensate for the lack of leave.`,
+    a: `Yes, where your award gives casuals overtime, and the Hospitality and General Retail awards both do. Your award sets when it starts, such as after ${WEEK} hours a week or past a daily maximum. Awards differ on the casual loading. The Hospitality Award pays casual overtime on the ordinary rate without the loading, so casuals get the same overtime dollars as full-time staff except on public holidays. The General Retail Award includes the loading: ${pct(RO.casualWeekdayFirst3Hours)} for the first 3 hours, against ${pct(RO.weekdayFirst3Hours)} for full-time staff. In both awards, casual weekend and public holiday rates are higher for the same reason: a General Retail casual gets ${pct(RETAIL_PENALTIES.casualSaturday)} on Saturday against ${pct(RETAIL_PENALTIES.saturday)} for permanent staff, and the gap is the ${pct(RETAIL_AWARD.casualLoading)} casual loading, which casuals are paid instead of paid leave.`,
   },
   {
     q: "Can I refuse to work overtime?",
@@ -32,7 +35,7 @@ export const OVERTIME_PAY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is superannuation paid on overtime hours?",
-    a: `The ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee does not apply to overtime pay, because overtime falls outside the ATO's definition of "Ordinary Time Earnings" (OTE). Some enterprise agreements override this and include overtime in the super calculation base, so check your agreement or employment contract.`,
+    a: `The ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee is not paid on overtime where your award or agreement clearly sets your ordinary hours. From 1 July 2026, super is worked out on "qualifying earnings", and the ATO excludes ${QUALIFYING_EARNINGS.stillExcluded[0]}, the same as under the old ordinary time earnings rule. An enterprise agreement or employment contract can require your employer to pay super on overtime as well, so check yours.`,
   },
   {
     q: "Does overtime push me into a higher tax bracket?",

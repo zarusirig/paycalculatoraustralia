@@ -1,0 +1,175 @@
+{
+ "name": "ff-084-modern-award-content-oct",
+ "files": [
+  "modules/guide/modern-award-content-oct.ts",
+  "modules/guide/modern-award-content-oct2.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/modern-award-content-oct.ts:78",
+   "file": "modules/guide/modern-award-content-oct.ts",
+   "line": "78",
+   "page": "https://pay-calculator-australia.com/building-and-construction-award-rates/ and /electrical-award-rates/",
+   "claims": [
+    "Allowance and base figures are typed as literals in prose and code: $67.15, $53.72, $41.22, $29.26, $9.89, 1119.1, $29.45 (lines 78, 92, 95, 99, 105, 113-115, 125, 134), and $41.41, $22.31, $40.29, $26.44 to $37.24 (lines 227, 241, 254), $20.75 (line 179)."
+   ],
+   "whys": [
+    "The file header says every figure is interpolated from lib/constants/modern-awards-oct.ts, but these are hard-coded. They match the constants today (CONSTRUCTION_INDUSTRY_ALLOWANCE 67.15, ELECTRICAL_INDUSTRY 41.41) but will drift at the next annual wage review unless they are interpolated."
+   ],
+   "constants": [
+    "lib/constants/modern-awards-oct.ts (CONSTRUCTION_INDUSTRY_ALLOWANCE line 209, ELECTRICAL_INDUSTRY line 457, allowance tables)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid: allowance and base figures are hard-coded as literals ($67.15, $53.72, $41.41, $40.29, $26.44 to $37.24, $20.75, and others) despite the header's claim that every figure is interpolated. They match the constants today but will drift at the next wage review. This is a structure task, not something this pass can fix."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.66,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct.ts:179",
+   "file": "modules/guide/modern-award-content-oct.ts",
+   "line": "179",
+   "page": "https://pay-calculator-australia.com/legal-services-award-rates/",
+   "claims": [
+    "She is also entitled to a meal allowance of $20.75 if the overtime runs 1.5 hours past normal finishing time."
+   ],
+   "whys": [
+    "The constants file names this allowance 'Meal allowance (1 hour or more of weekday overtime)', cl 18.2(a)(i). The prose trigger (1.5 hours) does not match the constant's trigger (1 hour). Mei's 4 hours of overtime qualifies under either, but the stated condition is inconsistent."
+   ],
+   "constants": [
+    "lib/constants/modern-awards-oct.ts line 427 (MA000116 allowances, cl 18.2(a)(i))"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid: the prose says the meal allowance applies when overtime runs 1.5 hours past finishing time, but constant MA000116 cl 18.2(a)(i) (lib/constants/modern-awards-oct.ts:427) says 1 hour or more of weekday overtime. The writer did not edit this, which is correct for this pass. A human must verify it against the award."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.46,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct.ts:416",
+   "file": "modules/guide/modern-award-content-oct.ts",
+   "line": "416",
+   "page": "/local-government-award-rates/",
+   "claims": [
+    "On-call allowance is $29.45 a day Monday to Friday, $44.18 on a Saturday and $58.90 on a Sunday or public holiday (cl 19.2(e)).",
+    "On-call allowance $29.45 a day Mon to Fri, $44.18 Saturday, $58.90 Sunday or public holiday (cl 19.2(e))."
+   ],
+   "whys": [
+    "These allowance amounts are typed into the prose instead of coming from a constant. They are indexed each year, so check that they are the 1 July 2026 figures.",
+    "I agree with the writer. These amounts are typed into the prose, not drawn from a constant, and they are indexed each year. Check them against the 1 July 2026 figures."
+   ],
+   "constants": [
+    "MODERN_AWARDS['local-government'] allowances data"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.64,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct.ts:393",
+   "file": "modules/guide/modern-award-content-oct.ts",
+   "line": "393",
+   "page": "/local-government-award-rates/",
+   "claims": [
+    "Most council employees work Monday to Friday, 6.00 am to 6.00 pm, and anything outside that is overtime."
+   ],
+   "whys": [
+    "Two problems. 'Most council employees' is a population claim with no figure or source. The sentence also conflicts with the weekend FAQ at line 408, which says 'Ordinary hours worked Monday to Friday outside the span for your role are 120% (casuals 145%)', so not everything outside 6.00 am to 6.00 pm is overtime. Check cl 13.1 and restate this as the span-of-hours rule.",
+    "I agree with the writer. 'Most council employees' is a population claim with no figure and no source. It also contradicts the weekend FAQ at line 408, which says ordinary hours outside the span are paid 120% (casuals 145%), not overtime. It should be restated as the cl 13.1 span-of-hours rule."
+   ],
+   "constants": [
+    "MODERN_AWARDS['local-government'] (span of hours / penalty data), or the award clause text"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct.ts:365",
+   "file": "modules/guide/modern-award-content-oct.ts",
+   "line": "365",
+   "page": "/real-estate-award-rates/",
+   "claims": [
+    "Motor vehicle allowance is $1.00 a kilometre up to 400 km a week, motorcycles $0.34 a kilometre, and a mobile phone plan is reimbursed up to $100 a month (cl 17).",
+    "$1.00/km up to 400 km a week, motorcycles $0.34/km, phone up to $100 a month (cl 17)."
+   ],
+   "whys": [
+    "These allowance amounts are typed into the prose instead of coming from a constant. They may not have been updated for 1 July 2026. Also check the wording that $1.00/km is 'an alternative to the standing-charge scale' against cl 17.2.",
+    "I agree with the writer. These amounts are typed into the prose, not drawn from a constant, so they may not have been updated for 1 July 2026. Also check the 'alternative to the standing-charge scale' wording against cl 17.2."
+   ],
+   "constants": [
+    "MODERN_AWARDS['real-estate'] allowances data"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.62,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct2.ts:252",
+   "file": "modules/guide/modern-award-content-oct2.ts",
+   "line": "252",
+   "page": "https://pay-calculator-australia.com/health-professionals-award-rates/",
+   "claims": [
+    "So 4 hours on a Saturday is {satCas*4} before tax, a higher hourly rate than 2 hours of weekday overtime."
+   ],
+   "whys": [
+    "satCas = hp7.hourly x 1.75 and otFirst = casual(hp7.hourly) x 1.5 = hp7.hourly x 1.875, so the casual Saturday hourly rate is LOWER than first-2-hours casual overtime. Only the 4-hour total is higher than the 2-hour total. The comparison is wrong as worded. I left it unchanged.",
+    "Reviewer confirmed: satCas = hp7.hourly x 1.75 (line 229) and otFirst = casual(hp7.hourly) x 1.5 = hp7.hourly x 1.875 (line 230). The Saturday hourly rate is lower; only the 4-hour total is higher than the 2-hour total."
+   ],
+   "constants": [
+    "satCas / otFirst in healthProfessionals() (modern-award-content-oct2.ts lines 229-230)"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's flag. satCas = hourly x 1.75 and otFirst = hourly x 1.25 x 1.5 = hourly x 1.875. So the casual Saturday HOURLY rate is lower than the rate for the first 2 hours of overtime. Only the 4-hour total is higher. The source sentence is wrong, and it is outside the edited strings. Left for the owner."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.16,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct2.ts:546",
+   "file": "modules/guide/modern-award-content-oct2.ts",
+   "line": "546",
+   "page": "https://pay-calculator-australia.com/mining-award-rates/",
+   "claims": [
+    "A meal allowance of $22.04 applies on each occasion an employee is entitled to a rest break during overtime."
+   ],
+   "whys": [
+    "The $22.04 figure is typed into the prose instead of coming from code. The same is true of $1,119.10 (line 521) and the $41.41 industry allowance (lines 534 and 538). If those values change at the next Annual Wage Review, the prose will go stale and stop matching the computed rates."
+   ],
+   "constants": [
+    "MODERN_AWARDS.mining allowances data (meal allowance, industry allowance, Level 3 minimum weekly rate)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/modern-award-content-oct2.ts:550",
+   "file": "modules/guide/modern-award-content-oct2.ts",
+   "line": "550",
+   "page": "https://pay-calculator-australia.com/mining-award-rates/",
+   "claims": [
+    "the loading is part of the all-purpose rate (cl 11.3). Every penalty and overtime percentage is then applied to that casual rate"
+   ],
+   "whys": [
+    "This claim needs checking against the current text of MA000011. After the award reviews, many awards apply penalties to the ordinary rate without the casual loading. The worked figures in the casual FAQ and the trap box (line 517) depend on this reading."
+   ],
+   "constants": [
+    "MODERN_AWARDS.mining casual penalty basis"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestions are valid and use the real source lines (528, 534, 546, 550, 556). They cover: the population claims ('most', 'much of') with no cited source; the hard-coded figures $41.41, $22.04 and $1,119.10 typed into the prose; and the claim that casual loading is all-purpose with penalties applied to the casual rate, which needs checking against MA000011. I added nothing to them."
+   ],
+   "kind": "wrong-fact",
+   "severity": 4.87,
+   "needsOwner": false
+  }
+ ]
+}

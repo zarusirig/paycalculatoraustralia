@@ -1,0 +1,116 @@
+{
+ "name": "ff-047-long-service-leave-conte",
+ "files": [
+  "modules/calculator/long-service-leave-content.tsx",
+  "modules/calculator/long-service-leave-faqs.ts",
+  "modules/calculator/long-service-leave-shared.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/long-service-leave-content.tsx:357",
+   "file": "modules/calculator/long-service-leave-content.tsx",
+   "line": "357",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/",
+   "claims": [
+    "In Victoria, WA and South Australia a plain resignation past 7 years pays out the accrued balance. In NSW, Queensland, Tasmania and the NT a plain resignation pays nothing until you reach 10 years."
+   ],
+   "whys": [
+    "The ACT is in neither list. Its proRataUnconditionalFromYears is 7, so the table directly below shows an ACT resignation at 8 years as paid. The prose should probably list the ACT with Vic, WA and SA.",
+    "The ACT is in neither list. Its proRataUnconditionalFromYears is 7, so the resignation table directly below shows the ACT as paid at 8 years. The ACT probably belongs with Vic, WA and SA."
+   ],
+   "constants": [
+    "lib/constants/long-service-leave.ts line 428 (act.proRataUnconditionalFromYears)"
+   ],
+   "reviewerNotes": [
+    "The writer's ACT question is confirmed. act.proRataUnconditionalFromYears is 7 (lib/constants/long-service-leave.ts line 428), so the table directly below shows an ACT resignation at 8 years as paid. The prose lists only Vic, WA and SA, so it leaves the ACT out. I did not change the prose."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.1,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-content.tsx:554",
+   "file": "modules/calculator/long-service-leave-content.tsx",
+   "line": "554",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/",
+   "claims": [
+    "Ordinary pay excludes overtime everywhere; Tasmania and Victoria include shift penalties and casual loading in it."
+   ],
+   "whys": [
+    "The Victorian payCalc text says penalty rates are left out and only casual loading is kept, so Victoria does not include shift penalties. Casual loading is also included in NSW, WA and SA, so pairing it only with Tas and Vic reads as if it were excluded elsewhere.",
+    "The Victorian detail text (long-service-leave-state-detail.ts line 126) says penalty rates are left out, so Victoria does not include shift penalties. Casual loading is also included in NSW, WA and SA (lines 81, 216, 284)."
+   ],
+   "constants": [
+    "modules/calculator/long-service-leave-state-detail.ts lines 81, 126, 216, 284, 306"
+   ],
+   "reviewerNotes": [
+    "The writer's Victorian shift-penalty question is confirmed. The Victorian detail text in modules/calculator/long-service-leave-state-detail.ts at line 126 says penalty rates are left out, so 'Tasmania and Victoria include shift penalties' is wrong for Victoria. Casual loading is also kept in NSW, WA and SA. I did not change the text."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-content.tsx:249",
+   "file": "modules/calculator/long-service-leave-content.tsx",
+   "line": "249",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/",
+   "claims": [
+    "Everywhere except the ACT (completed years and months) the part year counts down to the day."
+   ],
+   "whys": [
+    "The methodology bullet (line 550) and the spoke basis text (line 642) both say Queensland uses its own years/months/weeks/days table, so 'down to the day' does not quite match Queensland.",
+    "The methodology bullet (line 550) and the spoke basis text (line 642) both say Queensland uses its own years/months/weeks/days table. The sentence just before this one also says SA and the NT drop the part year. So 'everywhere except the ACT' is too wide."
+   ],
+   "constants": [
+    "lib/constants/long-service-leave.ts proRataBasis per jurisdiction"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-faqs.ts:60",
+   "file": "modules/calculator/long-service-leave-faqs.ts",
+   "line": "60",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/",
+   "claims": [
+    "\"For service after 17 August 1993 (which is everyone who started in the last 33 years)\""
+   ],
+   "whys": [
+    "The figure 33 is hard-coded and goes stale on 17 Aug 2027. The ATO rule also turns on the date the service was performed, not the date the person started, so someone who started earlier still has post-1993 service taxed at marginal rates."
+   ],
+   "constants": [
+    "lib/constants/long-service-leave.ts LSL_TAX (derive the year count from the 17 August 1993 cut-off date, or drop the bracket)"
+   ],
+   "reviewerNotes": [
+    "Confirmed. The hard-coded '33 years' (2026 minus 1993) goes stale on 17 Aug 2027. The ATO cut-off also turns on when the service was performed, not on the start date."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.41,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/long-service-leave-shared.tsx:64",
+   "file": "modules/calculator/long-service-leave-shared.tsx",
+   "line": "64",
+   "page": "https://pay-calculator-australia.com/long-service-leave-calculator/ (and all 8 state spokes)",
+   "claims": [
+    "\"Annual leave is federal (four weeks a year for everyone under the National Employment Standards)\""
+   ],
+   "whys": [
+    "The hub FAQ on the same page (long-service-leave-faqs.ts line 76) says 'five for some shift workers', and casuals get no paid annual leave, so 'for everyone' contradicts the site's own copy."
+   ],
+   "constants": [
+    "NES annual leave entitlement (no constant found; the wording should match the hub FAQ)"
+   ],
+   "reviewerNotes": [
+    "Confirmed. 'four weeks a year for everyone under the National Employment Standards' contradicts the hub FAQ at line 76, which says 'five for some shift workers'. Casuals also get no paid annual leave."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.99,
+   "needsOwner": false
+  }
+ ]
+}

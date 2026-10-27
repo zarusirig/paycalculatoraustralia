@@ -6,14 +6,19 @@ import { FIRST_JOB_FAQS } from "./first-job-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, LITO, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
-import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import { SITE_CONFIG, SOURCES, LITO, MEDICARE_LEVY, SUPER_GUARANTEE, TAX_BRACKETS, TAX_FREE_THRESHOLD, calculateIncomeTax, formatAUD, formatPercent } from "@/lib/constants";
+import { NO_TFN_RATES, withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import { JUNIOR_BANDS } from "@/lib/constants/junior-rates";
 
 // Weekly payslip example: 20 hrs @ $25, withholding from the ATO Schedule 1
 // coefficients for the current year (tax-free threshold claimed). The old
 // hardcoded $32 predated the 16% and 15% rate cuts.
 const EX_GROSS = 500;
 const EX_TAX = withholdingForPeriod(EX_GROSS, "weekly");
+const EX_SUPER = EX_GROSS * SUPER_GUARANTEE.rate;
+const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
+const TFT = formatAUD(TAX_FREE_THRESHOLD);
+const JUNIOR_17 = JUNIOR_BANDS.find((b) => b.years === 17)!;
 const FIRST_JOB_ROWS = [
   { income: 10_000, scenario: "~8 hrs/week casual @ $25/hr" },
   { income: 18_200, scenario: "~14 hrs/week casual @ $25/hr" },
@@ -55,20 +60,20 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Tax File Number (TFN)</h3>
               <p>
-                A Tax File Number is your unique identifier with the Australian Taxation Office. You need a TFN before starting work. Without one, your employer is legally required to withhold tax at the <strong>highest marginal rate of 45% plus the 2% Medicare levy</strong>, meaning almost half your pay goes to tax. Apply for a TFN online at the ATO website (processing takes <strong>10-28 business days</strong>) or in person at a post office with 100 points of ID.
+                A Tax File Number is your unique identifier with the Australian Taxation Office. You give it to your employer after you start work, on your TFN Declaration. If you don&apos;t give your TFN and haven&apos;t told your employer you have applied for one, your employer must withhold tax at <strong>{formatPercent(NO_TFN_RATES.resident, 0)}</strong> (the top marginal rate of {formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate, 0)} plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy), meaning almost half your pay goes to tax. If you are an Australian citizen aged 15 or older, apply online with a Strong Digital ID such as myID. Otherwise, fill in the online form and finish your application at a participating Australia Post outlet with your identity documents. Allow up to <strong>28 days</strong> for your TFN to arrive.
               </p>
               <p>
-                If you have already started work without a TFN, you have <strong>28 days</strong> to provide it to your employer. Once provided, your employer adjusts your withholding to the correct rate. Any excess tax withheld is refunded when you lodge your first tax return. Learn more in our <Link href="/tax-file-number-declaration/">TFN Declaration Guide</Link>.
+                If you start work before your TFN arrives, mark on your TFN Declaration that you have applied for one. You then have <strong>28 days</strong> to give your TFN to your employer, who withholds tax at the standard rate during that time. After 28 days without your TFN, your employer withholds at the no-TFN rate until you provide it. Any excess tax withheld is refunded when you lodge your first tax return. Learn more in our <Link href="/tax-file-number-declaration/">TFN Declaration Guide</Link>.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Superannuation Fund</h3>
               <p>
-                Your employer must pay <strong>12% of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages. It does not come out of your pay. You can choose your own super fund or be placed in your employer&apos;s default fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
+                Your employer must pay <strong>{SG} of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages. It does not come out of your pay. You can choose your own super fund. If you don&apos;t, your employer must ask the ATO for your stapled super fund (an existing account that follows you from job to job) and pay into it. Your employer uses its default fund only when the ATO advises you have no stapled fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
               <p>
-                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>$18,200 tax-free threshold</strong>, and whether you have a HECS-HELP debt. If this is your first and only job and you are an Australian resident for tax purposes, you should <strong>claim the tax-free threshold</strong>. This means you pay no tax on the first $18,200 you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
+                Your employer will ask you to complete a <strong>TFN Declaration form</strong> (NAT 3092). This tells your employer your TFN, whether to claim the <strong>{TFT} tax-free threshold</strong>, and whether you have a study or training support loan (HELP, VSL, FS, SSL or AASL) debt. If this is your first and only job and you are an Australian resident for tax purposes, you should <strong>claim the tax-free threshold</strong>. This means you pay no tax on the first {TFT} you earn in the financial year. If this is your <strong>second job</strong>, do not claim the tax-free threshold. It should only be claimed at one employer.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -99,10 +104,10 @@ export default function FirstJobPayGuidePage() {
                       <tr><th className="px-5 py-3">Payslip Line</th><th className="px-5 py-3">What It Means</th><th className="px-5 py-3">Example (20 hrs @ $25/hr)</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Gross pay</td><td className="px-5 py-3">Total pay before any deductions: hours worked multiplied by your rate</td><td className="px-5 py-3">$500.00</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Gross pay</td><td className="px-5 py-3">Total pay before any deductions: hours worked multiplied by your rate</td><td className="px-5 py-3">{formatAUD(EX_GROSS, 2)}</td></tr>
                       <tr><td className="px-5 py-3 font-medium">PAYG tax withheld</td><td className="px-5 py-3">Income tax your employer sends to the ATO on your behalf</td><td className="px-5 py-3">{formatAUD(EX_TAX, 2)}</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Net pay</td><td className="px-5 py-3">The amount deposited into your bank account (gross minus tax)</td><td className="px-5 py-3">{formatAUD(EX_GROSS - EX_TAX, 2)}</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Superannuation</td><td className="px-5 py-3">12% paid by your employer into your super fund, not deducted from your pay</td><td className="px-5 py-3">$60.00</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Superannuation</td><td className="px-5 py-3">{SG} paid by your employer into your super fund, not deducted from your pay</td><td className="px-5 py-3">{formatAUD(EX_SUPER, 2)}</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Year-to-date (YTD)</td><td className="px-5 py-3">Running total of gross pay and tax withheld since 1 July</td><td className="px-5 py-3">Varies</td></tr>
                     </tbody>
                   </table>
@@ -117,7 +122,7 @@ export default function FirstJobPayGuidePage() {
             <section id="how-much-tax">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Tax Will You Pay?</h2>
               <p>
-                If this is your only job and you claim the tax-free threshold, you pay <strong>no tax on the first $18,200</strong> you earn in the financial year (1 July to 30 June). After that, you pay tax at the following rates:
+                If this is your only job and you claim the tax-free threshold, you pay <strong>no tax on the first {TFT}</strong> you earn in the financial year (1 July to 30 June). After that, you pay tax at the following rates:
               </p>
 
               <div className="not-prose my-6">
@@ -127,9 +132,9 @@ export default function FirstJobPayGuidePage() {
                       <tr><th className="px-5 py-3">Taxable Income</th><th className="px-5 py-3">Tax Rate</th><th className="px-5 py-3 text-right">Tax on This Bracket</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">$0 – $18,200</td><td className="px-5 py-3">0% (tax-free threshold)</td><td className="px-5 py-3 text-right">$0</td></tr>
-                      <tr><td className="px-5 py-3">$18,201 – $45,000</td><td className="px-5 py-3">{Math.round(TAX_BRACKETS[1].rate * 100)} cents per dollar</td><td className="px-5 py-3 text-right">Up to {formatAUD(TAX_BRACKETS[2].base)}</td></tr>
-                      <tr><td className="px-5 py-3">$45,001 – $135,000</td><td className="px-5 py-3">30 cents per dollar</td><td className="px-5 py-3 text-right">Up to $27,000</td></tr>
+                      <tr><td className="px-5 py-3">{formatAUD(TAX_BRACKETS[0].min)} to {formatAUD(TAX_BRACKETS[0].max)}</td><td className="px-5 py-3">0% (tax-free threshold)</td><td className="px-5 py-3 text-right">$0</td></tr>
+                      <tr><td className="px-5 py-3">{formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)}</td><td className="px-5 py-3">{Math.round(TAX_BRACKETS[1].rate * 100)} cents per dollar</td><td className="px-5 py-3 text-right">Up to {formatAUD(TAX_BRACKETS[2].base)}</td></tr>
+                      <tr><td className="px-5 py-3">{formatAUD(TAX_BRACKETS[2].min)} to {formatAUD(TAX_BRACKETS[2].max)}</td><td className="px-5 py-3">{Math.round(TAX_BRACKETS[2].rate * 100)} cents per dollar</td><td className="px-5 py-3 text-right">Up to {formatAUD(TAX_BRACKETS[3].base - TAX_BRACKETS[2].base)}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -154,12 +159,12 @@ export default function FirstJobPayGuidePage() {
                 </div>
               </div>
               <p>
-                Note: these figures do not include the Medicare levy (2%) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. If you earn up to about <strong>{formatAUD(LITO.effectiveTaxFreeThreshold - 1, 0)}</strong> a year, LITO reduces your income tax to zero. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
+                Note: these figures do not include the Medicare levy ({formatPercent(MEDICARE_LEVY.rate, 0)}) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. If you earn up to about <strong>{formatAUD(LITO.effectiveTaxFreeThreshold - 1, 0)}</strong> a year, LITO reduces your income tax to zero. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your First Tax Return</h3>
               <p>
-                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. This applies when tax was withheld from each part-time or casual pay but your income for the full financial year ended below $18,200. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July. It is free and takes about 15 minutes.
+                At the end of the financial year (after 30 June), you need to lodge a <strong>tax return</strong> with the ATO. If you earned under the tax-free threshold but had tax withheld from your pay, you will receive a <strong>full refund of all tax paid</strong>. This applies when tax was withheld from each part-time or casual pay but your income for the full financial year ended below {TFT}. Lodge your return through myTax at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> after 1 July. It is free.
               </p>
             </section>
 
@@ -169,17 +174,17 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Is My Pay Less Than Expected?</h3>
               <p>
-                Your employer deducts <strong>PAYG income tax</strong> before paying you. The PAYG withholding tables assume you earn that same amount every pay period for the full year. Even if you only work a few hours, tax is withheld based on that projected annual income. If your total annual income ends up below $18,200, you get all the tax back as a refund when you lodge your tax return.
+                Your employer deducts <strong>PAYG income tax</strong> before paying you. The PAYG withholding tables assume you earn that same amount every pay period for the full year. Even if you only work a few hours, tax is withheld based on that projected annual income. If your total annual income ends up below {TFT}, you get all the tax back as a refund when you lodge your tax return.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do I Get Super if I Am Casual?</h3>
               <p>
-                Yes. Since 1 July 2022, <strong>all employees receive super regardless of how much they earn</strong>. That is the date the old $450/month threshold was removed. Whether you are casual, part-time, or full-time, your employer pays 12% super on your qualifying earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
+                Yes. Since 1 July 2022, <strong>all employees receive super regardless of how much they earn</strong>. That is the date the old $450/month threshold was removed. Whether you are casual, part-time, or full-time, your employer pays {SG} super on your qualifying earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What If I Am Under 18?</h3>
               <p>
-                Workers under 18 have the same tax obligations as adult workers: you still need a TFN and still pay tax on income above $18,200. The key difference is superannuation: employers only need to pay super for under-18 workers if they work <strong>more than 30 hours per week</strong>. Under-18 workers have the same minimum wage entitlements under the applicable award, though some awards include junior rates that are a percentage of the adult rate.
+                Workers under 18 have the same tax obligations as adult workers: you still need a TFN and still pay tax on income above {TFT}. The key difference is superannuation: employers only need to pay super for under-18 workers if they work <strong>more than 30 hours per week</strong>. Your minimum wage depends on your age. If no award or agreement covers you, you are paid a junior rate set as a percentage of the adult minimum wage until you turn 21 ({formatPercent(JUNIOR_17.percentage, 1)} at age 17). If an award covers you, check whether it sets junior rates for your classification.
               </p>
             </section>
 
@@ -189,7 +194,7 @@ export default function FirstJobPayGuidePage() {
               <FaqAccordion faqs={FIRST_JOB_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>First job information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets. Super rates are based on the current Superannuation Guarantee of 12%. Award rates and minimum wages are subject to annual review by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>First job information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets. Super rates are based on the current Superannuation Guarantee of {SG}. Award rates and minimum wages are subject to annual review by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("first-job-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">

@@ -1,0 +1,143 @@
+{
+ "name": "ff-091-overtime-penalty-rates-g",
+ "files": [
+  "modules/guide/overtime-penalty-rates-guide.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:220",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "220",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "Evening / Afternoon Shift 1.15x - 1.25x and Night / Early Morning 1.15x - 1.3x (generic 'When Do Penalty Rates Apply?' table)"
+   ],
+   "whys": [
+    "The callout at line 179 on the same page says hospitality evening and night work is a flat cash amount, not a multiplier, and that guides printing 1.15x are wrong. The generic table prints 1.15x anyway. The table cells are locked, so the contradiction stays."
+   ],
+   "constants": [
+    "HOSPITALITY_PENALTIES.eveningPerHour / nightPerHour and RETAIL_PENALTIES.eveningAfter6pm in lib/constants/hospitality-award.ts"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's fact questions. These are the generic table's 1.15x hospitality multipliers (they contradict the line 179 callout), the abolished 4-yearly award review and 'then renegotiated' at line 262, '12 months' for casual conversion and two old changes listed as FY2026-27 changes (lines 331-332), the 7.6-hour daily trigger at line 146, '5 key factors' versus s62(3) at line 310, and the unsourced population and threshold claims at lines 204, 246 and 319."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:332",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "332",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "Casual conversion pathway changes ... convert to permanent employment after 12 months (listed as a FY2026-27 change)"
+   ],
+   "whys": [
+    "This conflicts with line 304: the employee choice pathway has applied since 26 August 2024, after 6 months (12 months for a small business employer). It is also not a FY2026-27 change. Line 331 (Right to Disconnect, August 2024 and August 2025) is also listed as a FY2026-27 change but is older."
+   ],
+   "constants": [
+    "hard-coded list item; should match the casual conversion text at line 304"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:146",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "146",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "Overtime is triggered when a full-time employee exceeds 38 ordinary hours per week or 7.6 hours per day (for a 5-day week)"
+   ],
+   "whys": [
+    "7.6 hours is the average day of a 38-hour week, not the award trigger. Awards set their own daily ordinary-hours limits, and the General Retail award allows ordinary shifts longer than 7.6 hours, so stating 7.6 hours as the daily trigger looks wrong."
+   ],
+   "constants": [
+    "EMPLOYMENT.standardWeeklyHours plus award-specific daily ordinary hours (not in constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.73,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:310",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "310",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "The Fair Work Act ... requires consideration of 5 key factors to determine reasonableness"
+   ],
+   "whys": [
+    "Fair Work Act s62(3) lists about ten matters (a) to (j), not 5. The bullet list at lines 312-318 shows only five of them."
+   ],
+   "constants": [
+    "hard-coded; source is Fair Work Act s62(3)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.06,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:204",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "204",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "most awards recognise 5 distinct penalty periods"
+   ],
+   "whys": [
+    "This is an unsourced count about 'most awards'. Hospitality uses flat cash amounts for evening and night work, not periods with multipliers."
+   ],
+   "constants": [
+    "hard-coded"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.05,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:238",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "238",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "30% marginal rate for $45,001 to $135,000, 2% Medicare levy, 1.25x Saturday and 1.5x Sunday (lines 238, 240, 247, 330, 334)"
+   ],
+   "whys": [
+    "The figures are correct for FY2026-27 but are typed into the text instead of coming from the tax and award constants, so they will drift at the next change."
+   ],
+   "constants": [
+    "tax bracket and MEDICARE_LEVY constants in lib/constants/australian-tax.ts; RETAIL_PENALTIES.saturday/sunday"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/overtime-penalty-rates-guide.tsx:319",
+   "file": "modules/guide/overtime-penalty-rates-guide.tsx",
+   "line": "319",
+   "page": "/overtime-penalty-rates-guide/",
+   "claims": [
+    "Emergency service workers, healthcare professionals, and essential infrastructure employees face different reasonableness thresholds"
+   ],
+   "whys": [
+    "This is an unsourced claim. s62(3) weighs the nature of the role and the needs of the workplace, but it sets no separate thresholds for named groups."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.28,
+   "needsOwner": false
+  }
+ ]
+}

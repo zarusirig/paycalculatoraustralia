@@ -19,7 +19,10 @@ import {
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  LITO,
 } from "@/lib/constants";
+import { RATE_2027_28, RATE_CUT_EFFECTIVE, WATO } from "@/lib/constants/tax-2027-28";
+import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
 import { BONUS_TAX_FAQS, BONUS_5K, BONUS_5K_ROWS } from "./bonus-tax-faqs";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { JOB_GROUPS, payGlances } from "@/lib/data/job-pay-rates/glance";
@@ -56,7 +59,8 @@ const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
 const allIn = (rate: number) => rate + MEDICARE_LEVY.rate;
 // Salary sacrifice of a $10,000 bonus at $120,000 (stays in the 30% bracket):
 // marginal rate + Medicare levy avoided, less 15% contributions tax.
-const SS_SAVING_120K = Math.round(10_000 * (allIn(TAX_BRACKETS[2].rate) - 0.15));
+const SS_CONTRIB_TAX = Math.round(10_000 * CONTRIBUTIONS_TAX_RATE);
+const SS_SAVING_120K = Math.round(10_000 * allIn(TAX_BRACKETS[2].rate)) - SS_CONTRIB_TAX;
 const SG_ON_120K = Math.round(120_000 * SUPER_GUARANTEE.rate);
 // Deferral example: the same $10,000 bonus taxed in the 30% vs second bracket.
 const DEFER_HIGH = Math.round(10_000 * allIn(TAX_BRACKETS[2].rate));
@@ -202,13 +206,13 @@ export default function BonusTaxCalculatorContent() {
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy font-medium">Tax-free threshold benefit</td>
-                    <td className="px-4 py-3 text-warmgray">Yes &mdash; first $18,200 is tax-free</td>
+                    <td className="px-4 py-3 text-warmgray">Yes &mdash; first {formatAUD(TAX_FREE_THRESHOLD)} is tax-free</td>
                     <td className="px-4 py-3 text-warmgray">No &mdash; already consumed by base salary</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy font-medium">LITO offset</td>
-                    <td className="px-4 py-3 text-warmgray">Applied &mdash; up to $700 reduction</td>
-                    <td className="px-4 py-3 text-warmgray">Usually nil for incomes above $66,667</td>
+                    <td className="px-4 py-3 text-warmgray">Applied &mdash; up to {formatAUD(LITO.maxOffset)} reduction</td>
+                    <td className="px-4 py-3 text-warmgray">Nil for taxable income above {formatAUD(LITO.nilOffsetIncome)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy font-medium">Employer withholding method</td>
@@ -323,7 +327,7 @@ export default function BonusTaxCalculatorContent() {
               An employee on $90,000 receiving a $10,000 bonus pays <strong>{formatAUD(EX_TAX_ON_BONUS)}</strong> in tax on the bonus ({formatPercent(EX_TAX_ON_BONUS / 10_000, 0)}), the same as in FY2025-26, because both figures sit in the unchanged {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket. Their saving shows up in the annual tax bill instead. Check the full impact on your salary using our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
             <p className="mt-4 text-warmgray">
-              The next change is already legislated: from 1 July 2027 the 15% rate falls to 14% and a new <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of $250 starts, so a bonus paid after that date in the second bracket is taxed a point lower again. Every dated change to pay and tax rules, including the 1 December 2026 junior rate step, is on the <Link href="/pay-and-tax-changes-calendar/" className="text-eucalyptus-dark hover:underline">pay and tax changes calendar</Link>. Your employer still works out the regular part of the pay from the ATO table for the pay date: the <Link href="/weekly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">weekly</Link>, <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly</Link> or <Link href="/monthly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">monthly tax table for 2026-27</Link>, before the Schedule 5 amount for the bonus is added.
+              The next change is already legislated: from {RATE_CUT_EFFECTIVE} the {formatPercent(TAX_BRACKETS[1].rate, 0)} rate falls to {formatPercent(RATE_2027_28, 0)} and a new <Link href="/working-australians-tax-offset/" className="text-eucalyptus-dark hover:underline">Working Australians Tax Offset</Link> of up to {formatAUD(WATO.maxOffset)} starts, so a bonus paid after that date in the second bracket is taxed a point lower again. Every dated change to pay and tax rules, including the 1 December 2026 junior rate step, is on the <Link href="/pay-and-tax-changes-calendar/" className="text-eucalyptus-dark hover:underline">pay and tax changes calendar</Link>. Your employer still works out the regular part of the pay from the ATO table for the pay date: the <Link href="/weekly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">weekly</Link>, <Link href="/fortnightly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">fortnightly</Link> or <Link href="/monthly-tax-table/2026-27/" className="text-eucalyptus-dark hover:underline">monthly tax table for 2026-27</Link>, before the Schedule 5 amount for the bonus is added.
             </p>
           </section>
 
@@ -354,7 +358,7 @@ export default function BonusTaxCalculatorContent() {
               <li><strong>Forgetting the Medicare levy:</strong> The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy applies to bonuses on top of the income tax rate. A {formatPercent(TAX_BRACKETS[2].rate, 0)} marginal bracket results in <strong>{formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)} total</strong> tax on the bonus, not {formatPercent(TAX_BRACKETS[2].rate, 0)}.</li>
               <li><strong>Ignoring bracket crossover:</strong> A $5,000 bonus on a $133,000 salary pushes total income from the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket into the {formatPercent(TAX_BRACKETS[3].rate, 0)} bracket. The first $2,000 of the bonus is taxed at {formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)} and the remaining $3,000 at {formatPercent(TAX_BRACKETS[3].rate + MEDICARE_LEVY.rate, 0)}.</li>
               <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt owe a larger compulsory repayment when a bonus lifts their repayment income. A bonus that pushes total income above the {formatAUD(HECS_HELP.minimumThreshold)} HECS threshold triggers a repayment obligation at your return. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
-              <li><strong>Assuming super is never paid on bonuses:</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee applies to bonuses that count as qualifying earnings, which include performance, Christmas, sign-on and referral bonuses. Only a bonus paid solely for work performed entirely outside your ordinary hours is excluded.</li>
+              <li><strong>Assuming super is never paid on bonuses:</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee applies to bonuses that count as qualifying earnings, which include performance, Christmas, sign-on and referral bonuses. The only bonus excluded is one paid solely for work performed entirely outside your ordinary hours. Super guarantee is also not owed on qualifying earnings above the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} annual maximum contribution base, or to an employee under 18 in a week they work 30 hours or less.</li>
             </ol>
             <p className="text-warmgray">
                 Looking for the Age Pension <strong>Work Bonus</strong>? The Work Bonus is an income-test offset for working pensioners, not a bonus payment. See the <Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Age Pension income test calculator</Link>.
@@ -368,7 +372,7 @@ export default function BonusTaxCalculatorContent() {
               &quot;Christmas bonus&quot; means two different things in Australia, and only one of them is real income this page can work out.
             </p>
             <ul className="list-disc pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>A Christmas bonus from your employer.</strong> A year-end or Christmas bonus paid through payroll is treated like any other bonus. The {formatPercent(SUPER_GUARANTEE.rate, 0)} super guarantee generally applies if it counts as qualifying earnings, and tax is withheld using the Schedule 5 method described above. Enter the amount in the calculator at the top of this page to see what lands in your account.</li>
+              <li><strong>A Christmas bonus from your employer.</strong> A year-end or Christmas bonus paid through payroll is treated like any other bonus. The {formatPercent(SUPER_GUARANTEE.rate, 0)} super guarantee applies if it counts as qualifying earnings, and tax is withheld using the Schedule 5 method described above. Enter the amount in the calculator at the top of this page to see what lands in your account.</li>
               <li><strong>A Christmas bonus from Centrelink.</strong> We found no Christmas bonus listed among Services Australia&apos;s payments. Services Australia warns that unofficial websites and social media posts promote one-off and bonus payments that don&apos;t exist, with amounts such as $750, $950, $1,800 and $4,100. If a post promises one, check <a href="https://www.servicesaustralia.gov.au/fake-information-about-centrelink-payments" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Services Australia&apos;s fake information page</a>, and don&apos;t click links or give out personal details. The only genuine Services Australia and myGov websites are servicesaustralia.gov.au and my.gov.au.</li>
             </ul>
             <p className="text-warmgray">
@@ -383,7 +387,7 @@ export default function BonusTaxCalculatorContent() {
               From a tax perspective, <strong>no</strong>. The ATO treats bonuses, commissions, and similar one-off payments identically: all are added to your annual income and taxed at your marginal rate, and on the withholding side all are supplementary payments under Schedule 5. Whether your payment is called a &quot;performance bonus&quot;, &quot;sales commission&quot; or &quot;incentive payment&quot;, the tax calculation is the same.
             </p>
             <p className="text-warmgray">
-              The only practical difference is frequency: commissions are often paid monthly or quarterly, while bonuses tend to be annual or one-off. Frequent commission payments can trigger PAYG instalment obligations if your total income exceeds ATO thresholds. Track your annual earnings using the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link>.
+              The only practical difference is frequency: commissions are often paid monthly or quarterly, while bonuses tend to be annual or one-off. Commission paid to you as an employee has tax withheld under PAYG withholding, the same as your salary, so it is not instalment income and does not put you into PAYG instalments, which cover business and investment income. Track your annual earnings using the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link>.
             </p>
             <p className="text-warmgray">
                 Paid commission rather than a bonus? The <Link href="/commission-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">commission tax calculator</Link> shows the same two figures: the tax it adds to your year and the Schedule 5 withholding on the pay, for retainer-plus-commission, quarterly and commission-only structures.
@@ -402,7 +406,7 @@ export default function BonusTaxCalculatorContent() {
               <ul>
                 <li><strong>Bonus paid early in the financial year</strong>: the employer projects a full year of income, but you change jobs or reduce hours mid-year, lowering your actual taxable income</li>
                 <li><strong>Employer uses flat-rate annualisation</strong> instead of Schedule 5. Some payroll systems annualise the pay period containing the bonus, producing a higher withholding rate</li>
-                <li><strong>Significant tax deductions</strong>: work-related expenses, salary sacrifice contributions, or the &quot;Low Income Tax Offset&quot; reduce your assessable income below the projected amount</li>
+                <li><strong>Significant tax deductions</strong>: work-related expenses and other deductions you claim in your return reduce your taxable income below the income your employer&apos;s withholding was based on</li>
               </ul>
               <p>
                 When you lodge your tax return, the ATO calculates your actual tax liability on total income (salary plus bonus) and compares it to total PAYG withholding throughout the year. The difference is your refund or balance owing. See our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for a full explanation of how refunds are calculated.
@@ -411,24 +415,24 @@ export default function BonusTaxCalculatorContent() {
             <section id="reduce-bonus-tax">
               <h2>How to Reduce Tax on Your Bonus</h2>
               <p>
-                The most effective way to reduce tax on a bonus is to salary sacrifice it into superannuation, converting a marginal rate of up to <strong>47%</strong> into a flat <strong>15%</strong> contributions tax.
+                The most effective way to reduce tax on a bonus is to salary sacrifice it into superannuation, converting a marginal rate of up to <strong>{formatPercent(allIn(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate), 0)}</strong> (including the Medicare levy) into <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> contributions tax.
               </p>
               <h3>Strategy 1: Salary Sacrifice Into Super</h3>
               <p>
-                Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The contribution is taxed at only <strong>15%</strong> inside the super fund, compared to marginal rates of 30% to 47% outside super. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>{formatAUD(SS_SAVING_120K)}</strong> in tax ({formatAUD(DEFER_HIGH)} at the marginal rate plus Medicare levy, minus $1,500 in super contributions tax).
+                Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The arrangement must be in place before you accrue the bonus: the ATO says an effective salary sacrifice arrangement can&apos;t include bonuses you accrue before you enter it. The contribution is taxed at <strong>{formatPercent(CONTRIBUTIONS_TAX_RATE, 0)}</strong> inside the super fund, compared to {formatPercent(allIn(TAX_BRACKETS[2].rate), 0)} to {formatPercent(allIn(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate), 0)} (marginal rate plus Medicare levy) on income over {formatAUD(TAX_BRACKETS[1].max)} outside super. If your income plus concessional contributions is over {formatAUD(DIVISION_293.threshold)}, Division 293 tax adds another {formatPercent(DIVISION_293.rate, 0)} on some or all of the contributions. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>{formatAUD(SS_SAVING_120K)}</strong> in tax ({formatAUD(DEFER_HIGH)} at the marginal rate plus Medicare levy, minus {formatAUD(SS_CONTRIB_TAX)} in super contributions tax).
               </p>
               <p>
-                The concessional contribution cap for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year, including employer SG contributions of {SG_PCT}. A worker earning $120,000 receives {formatAUD(SG_ON_120K)} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SG_ON_120K)}</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their super balance was below $500,000 on 30 June) can carry forward up to 5 years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to compare the tax you pay with and without sacrificing part of your bonus.
+                The concessional contribution cap for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year, including employer SG contributions of {SG_PCT}. A worker earning $120,000 receives {formatAUD(SG_ON_120K)} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SG_ON_120K)}</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their total super balance was below {formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)} on 30 June of the previous financial year) can carry forward up to {CARRY_FORWARD.years} years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to compare the tax you pay with and without sacrificing part of your bonus.
               </p>
 
               <h3>Strategy 2: Time the Bonus Payment</h3>
               <p>
-                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year (due to parental leave, career break, or part-time work), ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if income drops below $45,000) costs about <strong>{formatAUD(DEFER_LOW)}</strong>, a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
+                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year (due to parental leave, career break, or part-time work), ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if your total income including the bonus is {formatAUD(TAX_BRACKETS[1].max)} or less) costs about <strong>{formatAUD(DEFER_LOW)}</strong>, a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
               </p>
 
               <h3>Strategy 3: Maximise Deductions</h3>
               <p>
-                Work-related deductions reduce your taxable income, and a large enough deduction can pull part of your bonus down into a lower tax bracket. Common deductions that offset tax on a bonus include self-education expenses, home office costs, professional memberships, and income protection insurance premiums. Every $1,000 in deductions at the 37% marginal rate reduces tax by <strong>$370</strong>.
+                Work-related deductions reduce your taxable income, and a large enough deduction can pull part of your bonus down into a lower tax bracket. Common deductions that offset tax on a bonus include self-education expenses, home office costs, professional memberships, and income protection insurance premiums. Every $1,000 in deductions at the {formatPercent(TAX_BRACKETS[3].rate, 0)} marginal rate reduces your tax and Medicare levy by <strong>{formatAUD(Math.round(1_000 * allIn(TAX_BRACKETS[3].rate)))}</strong>.
               </p>
             </section>
             <section id="super-on-bonus">

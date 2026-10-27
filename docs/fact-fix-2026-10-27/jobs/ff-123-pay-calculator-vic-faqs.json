@@ -1,0 +1,124 @@
+{
+ "name": "ff-123-pay-calculator-vic-faqs",
+ "files": [
+  "modules/state/pay-calculator-vic-faqs.ts",
+  "modules/state/pay-calculator-wa.tsx",
+  "modules/state/state-sections.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/state/pay-calculator-vic-faqs.ts:23",
+   "file": "modules/state/pay-calculator-vic-faqs.ts",
+   "line": "23",
+   "page": "/pay-calculator-vic/",
+   "claims": [
+    "Working one of these attracts public holiday penalty rates under most awards."
+   ],
+   "whys": [
+    "'most awards' is an unsourced population claim."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.78,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-wa.tsx:100",
+   "file": "modules/state/pay-calculator-wa.tsx",
+   "line": "100",
+   "page": "https://pay-calculator-australia.com/pay-calculator-wa/",
+   "claims": [
+    "If you work in the Pilbara, the Kimberley or the Goldfields, you may also be entitled to the federal zone tax offset"
+   ],
+   "whys": [
+    "Under ATO rules, zone tax offset eligibility depends on your usual place of residence in the zone (183 days). Fly-in fly-out workers whose usual home is outside the zone have been excluded since 2015, so 'if you work in' overstates who qualifies."
+   ],
+   "constants": [
+    "zone tax offset copy / ATO zone tax offset source in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.07,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-wa.tsx:147",
+   "file": "modules/state/pay-calculator-wa.tsx",
+   "line": "147",
+   "page": "https://pay-calculator-australia.com/pay-calculator-wa/",
+   "claims": [
+    "WA is the most generous state at the exit (pro-rata payment after 7 years, including on resignation)"
+   ],
+   "whys": [
+    "Victoria's Long Service Leave Act 2018 also pays pro rata after 7 years on any termination, and it lets the leave be taken from 7 years. The ACT pays pro rata from 5 years in some cases. The 'most generous' comparison looks wrong."
+   ],
+   "constants": [
+    "STATE_PROFILES.*.longServiceLeave.proRataOnEndingYears in lib/data/state-employee/index.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/pay-calculator-wa.tsx:181",
+   "file": "modules/state/pay-calculator-wa.tsx",
+   "line": "181",
+   "page": "https://pay-calculator-australia.com/pay-calculator-wa/",
+   "claims": [
+    "If your employer is a Pty Ltd company, you are in the national system"
+   ],
+   "whys": [
+    "The national system covers constitutional (trading or financial) corporations. A Pty Ltd that is a non-trading corporation sits in the WA state system, and the site's own state-minimum-wage.tsx line 24 lists non-trading corporations as state-system employers."
+   ],
+   "constants": [
+    "STATE_SYSTEM.wa.outside in modules/state/state-minimum-wage.tsx"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/state-sections.tsx:342",
+   "file": "modules/state/state-sections.tsx",
+   "line": "342",
+   "page": "all 8 /pay-calculator-<state>/ pages",
+   "claims": [
+    "if you do not work [a public holiday] you are still entitled to be absent without losing pay"
+   ],
+   "whys": [
+    "Only permanent (full-time and part-time) employees are paid for a public holiday that falls on an ordinary working day. Casuals are not paid when they do not work, so the sentence is too broad."
+   ],
+   "constants": [
+    "PenaltyRateNote copy; FWO public holidays source"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/state/state-sections.tsx:138",
+   "file": "modules/state/state-sections.tsx",
+   "line": "138",
+   "page": "all 8 /pay-calculator-<state>/ pages",
+   "claims": [
+    "The next dollar ... taxed at X, which is your tax bracket rate plus the {formatPercent(0.02, 0)} Medicare levy"
+   ],
+   "whys": [
+    "The Medicare levy rate is hardcoded as 0.02 here instead of being read from MEDICARE_LEVY.rate, so it will not follow a constant change. Also, low earners in the Medicare levy shade-in range pay a different marginal levy."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.51,
+   "needsOwner": false
+  }
+ ]
+}

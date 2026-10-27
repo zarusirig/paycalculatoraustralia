@@ -107,7 +107,7 @@ export const CLEANER: Occupation = {
   ],
   median: MEDIAN,
   notices: [
-    "Many large cleaning contractors pay under an enterprise agreement. It must still leave you no worse off than this award overall.",
+    "If your employer has an enterprise agreement approved by the Fair Work Commission, its rates apply instead of this award. To be approved, the agreement must pass the better off overall test: you must be better off overall under it than under this award (Fair Work Act s 193).",
   ],
   notShown: [
     "Junior rates, which the award sets only for employees of shopping trolley collection contractors (cl 15.2).",

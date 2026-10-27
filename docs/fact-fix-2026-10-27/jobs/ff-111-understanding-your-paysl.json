@@ -1,0 +1,142 @@
+{
+ "name": "ff-111-understanding-your-paysl",
+ "files": [
+  "modules/guide/understanding-your-payslip.tsx",
+  "modules/guide/work-from-home-deductions-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:313",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "313",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "It is common for businesses to list super on a payslip but fail to transfer the cash to the fund (originally 'alarmingly common').",
+    "Your payslip must state the name of your chosen super fund and the dollar amount contributed."
+   ],
+   "whys": [
+    "A population claim with no figure or cited source. I removed only the inflation word 'alarmingly' and kept the claim.",
+    "Fair Work Regulation 3.46 requires the name (or name and number) of the fund the contribution was made to. That can be a default fund, not one the employee chose, so 'chosen' narrows the rule. The word was in the original text, so I left it."
+   ],
+   "constants": [
+    "n/a (needs an ATO SG gap source, or cut)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.51,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:355",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "355",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Four changes from 1 July 2026: Payday Super, the cut to the 15% rate, the indexed HECS-HELP threshold, and the annual maximum super contribution base."
+   ],
+   "whys": [
+    "The list below this intro (lines 358-361) has Payday Super, the tax cut, the HECS threshold and the Income Statement deadline. It has no maximum contribution base item, so the intro and the list name different fourth changes."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.maxContributionBaseAnnual"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.28,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:360",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "360",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Repayments use the marginal model ...: 15 cents per dollar over the threshold rather than a percentage of total income."
+   ],
+   "whys": [
+    "This is incomplete. Under the 2025-26 marginal model, a higher rate applies above the upper band, so '15 cents per dollar over the threshold' is true only for the first band."
+   ],
+   "constants": [
+    "HECS_HELP (marginal bands)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.24,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:260",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "260",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Medicare Levy component is $1,700 per year ($65.38 per fortnight) on $85,000; SG is $10,200 per year / $392.31 per fortnight (line 310); fortnightly gross $3,269.23 (lines 175, 273, 276)."
+   ],
+   "whys": [
+    "These figures are correct now, but they are typed into the text rather than derived from EX85, MEDICARE_LEVY.rate or SUPER_GUARANTEE.rate. They will go stale if a rate changes."
+   ],
+   "constants": [
+    "EX85.medicareLevy, SUPER_GUARANTEE.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.09,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:250",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "250",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "the ATO refunds the excess when you lodge your tax return in July or August."
+   ],
+   "whys": [
+    "Self-lodgers can lodge until 31 October, and later through a tax agent. 'July or August' reads as the only lodgement window."
+   ],
+   "constants": [
+    "n/a (tax-calendar-2026-27.ts lodgement dates)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip.tsx:278",
+   "file": "modules/guide/understanding-your-payslip.tsx",
+   "line": "278",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Full-time employees accrue 4 weeks (152 hours) of annual leave per year, equal to 2.923 hours per week."
+   ],
+   "whys": [
+    "152 hours and 2.923 hours per week assume a 38-hour week. The figures are typed into the text and not derived from a constant. Shift workers under some awards accrue 5 weeks."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/work-from-home-deductions-faqs.ts:20",
+   "file": "modules/guide/work-from-home-deductions-faqs.ts",
+   "line": "20",
+   "page": "https://pay-calculator-australia.com/work-from-home-deductions/",
+   "claims": [
+    "occupancy expenses (rent, mortgage interest), which most employees cannot claim"
+   ],
+   "whys": [
+    "This is a population claim with no figure. The ATO's rule is that employees generally cannot claim occupancy expenses, so the wording could be tied to the ATO if the page cites it."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.12,
+   "needsOwner": false
+  }
+ ]
+}

@@ -17,7 +17,7 @@ export const WFH_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I need a dedicated home office to claim WFH deductions?",
-    a: "No. You do not need a dedicated room or separate office space. Under the fixed rate method, you need only a workspace where you perform your work duties. This can be a kitchen table, spare room, or any area of your home. A dedicated office is only required if you want to claim occupancy expenses (rent, mortgage interest), which most employees cannot claim.",
+    a: "No. You do not need a dedicated room or separate office space. Under the fixed rate method, you need only a workspace where you perform your work duties. This can be a kitchen table, spare room, or any area of your home. A dedicated area matters only for occupancy expenses (rent, mortgage interest). Employees can't claim occupancy expenses if their employer provides a place to work, even when they choose to work from home. To claim them, the area of your home must be used exclusively or almost exclusively for work and not be readily capable of any other use.",
   },
   {
     q: "How do I track my WFH hours?",
@@ -25,7 +25,7 @@ export const WFH_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Should I use the fixed rate or actual cost method?",
-    a: "The fixed rate method suits most employees: it is simpler and requires less record-keeping. The actual cost method may produce a larger deduction if you have high electricity costs (e.g., running air conditioning), an expensive internet plan with high work-use, or other significant running costs. Calculate both methods and choose the higher deduction.",
+    a: "The fixed rate method is simpler and needs fewer records. The actual cost method may produce a larger deduction if you have high electricity costs (e.g., running air conditioning), an expensive internet plan with high work-use, or other significant running costs. Calculate both methods and choose the higher deduction.",
   },
   {
     q: "Can I claim WFH if my employer provides a laptop?",

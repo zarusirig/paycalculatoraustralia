@@ -6,9 +6,10 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD, calculatePayBreakdown } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, formatAUD, calculatePayBreakdown } from "@/lib/constants";
 import { EMPLOYMENT } from "@/lib/constants/australian-tax";
-import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
+import { HOSPITALITY_AWARD, HOSPITALITY_JUNIOR_SCALE, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_JUNIOR_SCALE, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
+import { RESTAURANT_AWARD } from "@/lib/constants/modern-awards";
 
 // Every rate below comes from the award constants (1 July 2026 pay guides).
 // The old copy used a $25.44 Level 1 rate, public holiday +150%/+175% and
@@ -29,6 +30,7 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const HOSP_L1 = HOSPITALITY_RATES.find((r) => r.level === "Level 1")!;
 const RETAIL_L1 = RETAIL_RATES.find((r) => r.level === "Level 1")!;
+const juniorPct = (scale: readonly { age: string; percentage: number }[], age: string) => pct(scale.find((b) => b.age === age)!.percentage);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "General Retail Industry Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
@@ -77,7 +79,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="award-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Retail and Hospitality Workers Are Paid</h2>
               <p>
-                Almost everyone in these two industries is covered by one of two modern awards: the <strong>General Retail Industry Award ({RETAIL_AWARD.code})</strong> for shops and supermarkets, and the <strong>Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code})</strong> for cafes, restaurants, pubs and hotels. Each sets a minimum rate for every classification level, and each has its own penalty rates, overtime rules and junior scales.
+                This guide compares two modern awards: the <strong>General Retail Industry Award ({RETAIL_AWARD.code})</strong> for shops and supermarkets, and the <strong>Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code})</strong> for hotels and pubs, taverns, motels, resorts and casinos, including restaurants run in them. A restaurant, cafe or roadhouse that stands alone is covered by the <Link href={RESTAURANT_AWARD.meta.href}>{RESTAURANT_AWARD.meta.name}</Link> ({RESTAURANT_AWARD.meta.code}), and fast food outlets and registered clubs have their own awards. Each sets a minimum rate for every classification level, and each has its own penalty rates, overtime rules and junior scales.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -110,7 +112,7 @@ export default function RetailHospitalityPayGuidePage() {
                 <p className="text-xs text-warmgray-light mt-2">Adult rates from {HOSPITALITY_AWARD.operativeFrom}. Casual employees add a {(HOSPITALITY_AWARD.casualLoading * 100).toFixed(0)}% loading.</p>
               </div>
               <p>
-                <strong>The two awards are not interchangeable</strong>, and if you work across both (a bistro attached to a bottle shop, say), the differences matter. Hospitality pays evening and night work as a flat cash amount per hour; retail uses a percentage. Retail casuals receive the casual loading on overtime; hospitality casuals do not. And juniors aged 19 get 85% in hospitality against 80% in retail.
+                <strong>The two awards are not interchangeable</strong>, and if you work across both (a bistro attached to a bottle shop, say), the differences matter. Hospitality pays evening and night work as a flat cash amount per hour; retail uses a percentage. Retail casuals receive the casual loading on overtime; hospitality casuals do not. And juniors aged 19 get {juniorPct(HOSPITALITY_JUNIOR_SCALE, "19")} in hospitality against {juniorPct(RETAIL_JUNIOR_SCALE, "19")} in retail.
               </p>
               <p>
                 Full classification tables, penalty rates, overtime and junior scales for each are on the dedicated pages: <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link>. For junior rates across all awards, see <Link href="/junior-pay-rates/">junior pay rates</Link>.
@@ -121,7 +123,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates</h2>
               <p>
-                The retail and hospitality awards both pay penalty rates for work outside standard weekday hours. The table below shows each rate as a percentage of the ordinary (base) hourly rate. Casual percentages already include the 25% casual loading. Hospitality pays weekday evening and night work as a flat amount per hour instead.
+                The retail and hospitality awards both pay penalty rates for work outside standard weekday hours. The table below shows each rate as a percentage of the ordinary (base) hourly rate. Casual percentages already include the {pct(RETAIL_AWARD.casualLoading)} casual loading. Hospitality pays weekday evening and night work as a flat amount per hour instead.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -153,7 +155,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="your-rights">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your Rights</h2>
               <p>
-                Retail and hospitality workers have these rights under the Fair Work Act and the General Retail Industry Award or the Hospitality Industry (General) Award, and employers must comply with them:
+                Retail workers under the General Retail Industry Award and hospitality workers under the Hospitality Industry (General) Award have these rights under the Fair Work Act and their award, and employers must comply with them:
               </p>
               <ul>
                 <li><strong>Minimum engagement:</strong> Casual employees must be engaged and paid for at least <strong>3 hours</strong> per shift under the retail award and <strong>2 consecutive hours</strong> under the hospitality award (cl 11.3), even if there is insufficient work.</li>
@@ -176,7 +178,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Below are take-home pay estimates for common retail and hospitality scenarios at the 1 July 2026 award rates, using FY{SITE_CONFIG.financialYear} tax rates (LITO and Medicare levy applied):
+                Below are take-home pay estimates for common retail and hospitality scenarios at the {RETAIL_AWARD.operativeFrom} award rates, using FY{SITE_CONFIG.financialYear} tax rates (LITO and Medicare levy applied):
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -213,7 +215,7 @@ export default function RetailHospitalityPayGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Award rates are sourced from the Fair Work Commission pay guides for the General Retail Industry Award (MA000004) and the Hospitality Industry (General) Award (MA000009) operative from 1 July 2026. Rates reflect the most recent Annual Wage Review increase. Tax calculations use ATO marginal rates for FY{SITE_CONFIG.financialYear} including the 2% Medicare levy. Take-home pay examples assume no HECS-HELP debt, no private health insurance, and standard tax offsets.</p>
+                <p>Award rates are sourced from the Fair Work Commission pay guides for the General Retail Industry Award ({RETAIL_AWARD.code}) and the Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code}) operative from {RETAIL_AWARD.operativeFrom}. Rates reflect the most recent Annual Wage Review increase. Tax calculations use ATO marginal rates for FY{SITE_CONFIG.financialYear} including the {pct(MEDICARE_LEVY.rate)} Medicare levy. Take-home pay examples assume no HECS-HELP debt, no private health insurance, and standard tax offsets.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("retail-hospitality-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

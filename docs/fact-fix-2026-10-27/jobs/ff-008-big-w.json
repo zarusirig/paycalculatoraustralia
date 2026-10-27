@@ -1,0 +1,161 @@
+{
+ "name": "ff-008-big-w",
+ "files": [
+  "lib/data/employer-pay/big-w.ts",
+  "lib/data/employer-pay/bunnings.ts",
+  "lib/data/employer-pay/costco.ts",
+  "lib/data/employer-pay/iga.ts",
+  "lib/data/employer-pay/kfc.ts",
+  "lib/data/employer-pay/officeworks.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/employer-pay/big-w.ts:130",
+   "file": "lib/data/employer-pay/big-w.ts",
+   "line": "130",
+   "page": "/pay-rates/big-w/",
+   "claims": [
+    "Permanent staff can use the above-award part of each pay rise to buy extra leave"
+   ],
+   "whys": [
+    "Boosted Leave is the part of each rise above the Annual Wage Review percentage (cl 4.2.1, cl 12), not the part above the award. The file header says 'the above-AWR part of the rise'. I left the wording unchanged under the no-fact-change rule. Suggested fix: 'the Boosted Leave part of each pay rise'."
+   ],
+   "constants": [
+    "BIG_W_PAY.faqs[1].a"
+   ],
+   "reviewerNotes": [
+    "The writer's flag is valid. 'above-award part of each pay rise' should be the above-Annual-Wage-Review part (Boosted Leave margin, cl 4.2.1 and cl 12). The file header says 'above-AWR part'. The wording was left unchanged under the no-fact-change rule. Suggested fix: 'the Boosted Leave part of each pay rise'. The new first sentence ('No, Boosted Leave does not lower your BIG W base rate.') is a direct answer and keeps the meaning of the removed 'Your base rate stays the same'."
+   ],
+   "kind": "wrong-fact",
+   "severity": 3.91,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/bunnings.ts:70",
+   "file": "lib/data/employer-pay/bunnings.ts",
+   "line": "70",
+   "page": "https://pay-calculator-australia.com/pay-rates/bunnings/",
+   "claims": [
+    "Bunnings pays the full adult rate from 18, three years earlier than most retail and fast food employers."
+   ],
+   "whys": [
+    "This is a claim about how many employers do something, and no source is given for it. The checkable version compares Bunnings with the awards: the General Retail Industry Award (MA000004) and the Fast Food Industry Award (MA000003) both pay the full adult rate from 21. The page only cites MA000004."
+   ],
+   "constants": [
+    "Junior scale in the award constants (lib/constants/modern-awards*.ts); MA000003 would need to be added to the page's sources"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.38,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/costco.ts:116",
+   "file": "lib/data/employer-pay/costco.ts",
+   "line": "116",
+   "page": "https://pay-calculator-australia.com/pay-rates/costco/",
+   "claims": [
+    "On Saturdays and weekday evenings the casual rate is 150%, and on Sundays 175%."
+   ],
+   "whys": [
+    "The penalties table in the same file has casual 175% for Monday to Friday 11pm to 7am and for Saturday 11pm to 7am. So the 150% covers only weekdays 6pm to 11pm and Saturdays 7am to 11pm, and the FAQ states it too broadly. I could not narrow it because that needs times that are not in the string.",
+    "penalties[] gives casuals 175% for Monday to Friday 11pm to 7am and Saturday 11pm to 7am. So 150% applies only to weekdays 6pm to 11pm and Saturdays 7am to 11pm, and the FAQ states it too broadly. (Confirms the writer's question.)"
+   ],
+   "constants": [
+    "costco.ts penalties[] (the Monday to Friday 6pm to 11pm and Saturday 7am to 11pm rows)"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's fact question. The casual FAQ says 'On Saturdays and weekday evenings the casual rate is 150%', but penalties[] gives casuals 175% for Monday to Friday 11pm to 7am and Saturday 11pm to 7am. Text not changed; forwarded."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.69,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/costco.ts:128",
+   "file": "lib/data/employer-pay/costco.ts",
+   "line": "128",
+   "page": "https://pay-calculator-australia.com/pay-rates/costco/",
+   "claims": [
+    "Current rates are column C (from 15 November 2025); next rise around mid-November 2026; Extra Cheque next paid 19 November 2026",
+    "Column C current, next rise around mid-November 2026, Extra Cheque next paid 19 November 2026"
+   ],
+   "whys": [
+    "These are not wrong, but they go stale in about three weeks (today is 27 Oct 2026). Column D and the Extra Cheque date need updating soon after 15 to 19 November 2026.",
+    "These go stale after 15 to 19 November 2026. ratesEffectiveFrom, rates[] (column D), nextIncrease and notices[1] all need updating then."
+   ],
+   "constants": [
+    "costco.ts ratesEffectiveFrom, rates[], nextIncrease, notices[1]"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.61,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/iga.ts:120",
+   "file": "lib/data/employer-pay/iga.ts",
+   "line": "120",
+   "page": "https://pay-calculator-australia.com/pay-rates/iga/",
+   "claims": [
+    "Each IGA supermarket is owned and run independently, so most IGA staff are paid under the General Retail Industry Award."
+   ],
+   "whys": [
+    "This is a population claim ('most IGA staff') with no figure or cited source. The page's own unverified list says the site cannot check store by store whether an owner has an agreement. The coverage paragraph (line 46) avoids the claim by saying 'unless that owner has its own approved agreement'. Suggest that wording, or a source.",
+    "This population claim ('most IGA staff') has no figure or source, and unverified[0] says the site cannot check store by store. The coverage wording on line 46 ('unless that owner has its own approved agreement') avoids the claim. A human should decide whether to use that wording."
+   ],
+   "constants": [
+    "iga.ts instrument.coverage / unverified[0]",
+    "iga.ts faqs[1].a / instrument.coverage"
+   ],
+   "reviewerNotes": [
+    "The claim 'most IGA staff are paid under the General Retail Industry Award' was already in the original and has no source. The brief says not to change facts in this pass, so I carried the writer's factQuestion forward. The rewritten first sentence 'IGA has no single enterprise agreement covering all its stores' is accepted."
+   ],
+   "kind": "unsourced-population-claim",
+   "severity": 3.18,
+   "needsOwner": true
+  },
+  {
+   "key": "lib/data/employer-pay/kfc.ts:58",
+   "file": "lib/data/employer-pay/kfc.ts",
+   "line": "58",
+   "page": "https://pay-calculator-australia.com/pay-rates/kfc/",
+   "claims": [
+    "Nominal expiry '29 April 2024', also used in statusNote (line 169).",
+    "Nominal expiry is published as 29 April 2024 (decision [131]). The header comment at lines 6-7 notes that the FWC's 2020 agreement list gives 22 April 2024."
+   ],
+   "whys": [
+    "The header comment (lines 6-7) says the FWC's 2020 agreement list gives 22 April 2024, and only decision [131] gives 29 April 2024. The page uses one date without disclosing the conflict. Low priority: please confirm which date to publish.",
+    "Two FWC sources disagree, and the page publishes one date without saying so. The writer already flagged this and I confirm it is valid. The owner should decide which date to publish."
+   ],
+   "constants": [
+    "KFC_PAY.instrument.nominalExpiry and enterpriseAgreement.statusNote"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.02,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/employer-pay/officeworks.ts:108",
+   "file": "lib/data/employer-pay/officeworks.ts",
+   "line": "108",
+   "page": "https://pay-calculator-australia.com/pay-rates/officeworks/",
+   "claims": [
+    "At 18 it is 70% ($19.95)"
+   ],
+   "whys": [
+    "From the first full pay period on or after 1 December 2026, the Retail Award phase-in (PR813655) pays 18-year-olds with more than 6 months' service at least $20.86. The notice at line 84 already says this. The FAQ answer gives $19.95 with no date or service condition, so it will be wrong for those staff in about 5 weeks. It needs a 'until December 2026' qualifier or a second clause with $20.86. I could not add one, because that would move numbers into the string."
+   ],
+   "constants": [
+    "OFFICEWORKS_PAY.faqs[2].a"
+   ],
+   "reviewerNotes": [
+    "The writer's factQuestion is valid. $19.95 at 18 will be below the Retail Award floor ($20.86) for staff with more than 6 months' service from December 2026. The answer has no date qualifier."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.9,
+   "needsOwner": false
+  }
+ ]
+}

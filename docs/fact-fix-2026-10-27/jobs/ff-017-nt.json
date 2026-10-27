@@ -1,0 +1,176 @@
+{
+ "name": "ff-017-nt",
+ "files": [
+  "lib/data/nursing-pay/nt.ts",
+  "lib/data/nursing-pay/qld.ts",
+  "lib/data/nursing-pay/sa.ts",
+  "lib/data/nursing-pay/vic.ts",
+  "lib/data/nursing-pay/wa.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/nursing-pay/nt.ts:192",
+   "file": "lib/data/nursing-pay/nt.ts",
+   "line": "192",
+   "page": "/healthcare-worker-pay/nt/",
+   "claims": [
+    "Enrolled Nurse in Training (75% of Nurse 1) $53,523; Registered Nurse/Midwife in Training (75% of Nurse 2) $60,501."
+   ],
+   "whys": [
+    "75% of Nurse 1.1 ($71,359) is $53,519 and 75% of Nurse 2.1 ($80,665) is $60,499. Both stored figures are $2 to $4 higher. That may be the agreement's own rounding or an earlier base compounded, but the labels claim exact 75%."
+   ],
+   "constants": [
+    "lib/data/nursing-pay/nt.ts in-training points (lines 192-193)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. The in-training rates of $53,523 and $60,501 are labelled as exactly 75% of Nurse 1 and Nurse 2, but 75% of $71,359 is $53,519 and 75% of $80,665 is $60,499."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/nt.ts:213",
+   "file": "lib/data/nursing-pay/nt.ts",
+   "line": "213",
+   "page": "/healthcare-worker-pay/nt/",
+   "claims": [
+    "Bulletin 4 lists the \"current\" Nurse 2.1 rate as $81,479, while Table 1 and the OCPE page show $80,665."
+   ],
+   "whys": [
+    "$81,479 is exactly the Nurse 1.6 rate (line 104), and $80,665 is both Nurse 1.5 (line 103) and Nurse 2.1. The Bulletin 4 figure may be the enrolled nurse 1.6 row read one line off, or Nurse 1.5 and Nurse 2.1 may really be identical. Recheck both rows against Schedule 3 Table 1 and Bulletin 4 before keeping the payslip warning."
+   ],
+   "constants": [
+    "lib/data/nursing-pay/nt.ts scales Nurse 1 points 1.5/1.6 and Nurse 2 point 2.1"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. Bulletin 4's 'current' Nurse 2.1 figure of $81,479 equals Nurse 1.6 (line 104), while $80,665 equals both Nurse 1.5 (line 103) and Nurse 2.1. Both need rechecking against Schedule 3 Table 1."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.32,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/qld.ts:384",
+   "file": "lib/data/nursing-pay/qld.ts",
+   "line": "384",
+   "page": "/healthcare-worker-pay/qld/",
+   "claims": [
+    "An endorsed midwife allowance of $211.80 a fortnight applies from 1 July 2026."
+   ],
+   "whys": [
+    "The 'endorsed midwife' allowance schedule is listed under notReproduced (line 299), yet midwifeNote quotes a figure for it. Its effective date (1 July 2026) also differs from the 1 April 2026 date used for the EB12 rates and the nurse practitioner allowance. The amount and date need checking against the Queensland Health allowance schedule.",
+    "I agree with the writer. The allowance schedule is listed under notReproduced, yet midwifeNote quotes a figure from it, and its date differs from the 1 April 2026 EB12 rates."
+   ],
+   "constants": [
+    "lib/data/nursing-pay/qld.ts midwifeNote / notReproduced"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.27,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/qld.ts:392",
+   "file": "lib/data/nursing-pay/qld.ts",
+   "line": "392",
+   "page": "/healthcare-worker-pay/qld/",
+   "claims": [
+    "The original highlight said 'Pay point 8 is legislated'. The writer changed it to 'set by the agreement'."
+   ],
+   "whys": [
+    "The same file (line 367, clause 27 at line 105) ties the 1 December 2027 pay point 8 to the EB12 certified agreement, so the change looks right. The owner should confirm that pay point 8 does not also come from separate legislation. If it does, the original word was right."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.45,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/sa.ts:122",
+   "file": "lib/data/nursing-pay/sa.ts",
+   "line": "122",
+   "page": "/healthcare-worker-pay/sa/",
+   "claims": [
+    "current pay is at least 4% above these figures, and 6% above them once the further 2% set for October 2026 is paid (also lines 118, 312, 319, 327)",
+    "current pay is at least 4% above these figures, and 6% above them once the further 2% set for October 2026 is paid"
+   ],
+   "whys": [
+    "It is now 27 Oct 2026. The union reports the 2% from the first full pay period on or after 1 October 2026, so the 'once ... is paid' wording and 'SA Health had not published the start date' are likely stale. The data needs a re-check against SA Health before the next deploy.",
+    "I agree with the writer. On 27 Oct 2026 the 2% due from the first full pay period on or after 1 October 2026 has probably been paid, so the 'once ... is paid' wording and 'SA Health had not published the start date' are likely stale."
+   ],
+   "constants": [
+    "lib/data/nursing-pay/sa.ts instruments[0].nextIncrease / note, reportedChange, unverified, highlights"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.02,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/vic.ts:69",
+   "file": "lib/data/nursing-pay/vic.ts",
+   "line": "69",
+   "page": "/healthcare-worker-pay/vic/",
+   "claims": [
+    "nextIncrease: \"first full pay period on or after 30 November 2026 (+1.06%)\", and the upcoming row at line 313 has RN Grade 2 Year 2 at $1,669.60 a week from 30 November 2026"
+   ],
+   "whys": [
+    "Year 8 ($2,067.50 to $2,089.40), EN 2 Year 1 and NUM Level 1 all rise by 1.06%, but Year 2 goes from $1,665.00 to $1,669.60 (about +0.28%), and 1.06% on Year 2 would be about $1,682.60. Either the Year 2 upcoming figure (line 313) is a misread, or the blanket +1.06% label overstates the rise for some steps. Year 1 not moving is already explained on the page."
+   ],
+   "constants": [
+    "VIC_NURSING_PAY.upcoming[0].rows (vic.ts line 313) and instruments[0].nextIncrease (line 69), checked against Appendix 2A Part 1 of the agreement text"
+   ],
+   "reviewerNotes": [
+    "I support the writer's question. In the upcoming row at vic.ts line 313, RN Grade 2 Year 2 goes from $1,665.00 to $1,669.60, about +0.28%. Year 8, EN Level 2 Cert IV Year 1 and NUM Level 1 all rise about 1.06%. Either line 313 is misread, or the blanket '+1.06%' in nextIncrease overstates the rise for some steps."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.57,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/vic.ts:313",
+   "file": "lib/data/nursing-pay/vic.ts",
+   "line": "313",
+   "page": "/healthcare-worker-pay/vic/",
+   "claims": [
+    "RN Grade 2 Year 2 is $1,669.60 a week from 30 November 2026, while nextIncrease (line 69) says +1.06%"
+   ],
+   "whys": [
+    "1.06% on $1,665.00 would be about $1,682.60, but the other upcoming rows do rise about 1.06%. Either this row is misread or the +1.06% label is too broad."
+   ],
+   "constants": [
+    "VIC_NURSING_PAY.upcoming[0].rows and instruments[0].nextIncrease"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.38,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/nursing-pay/wa.ts:258",
+   "file": "lib/data/nursing-pay/wa.ts",
+   "line": "258",
+   "page": "/healthcare-worker-pay/wa/",
+   "claims": [
+    "\"WA pays the highest night shift loading of the six states on this site: 35% on a weekday night shift\" (also line 220: \"The highest night loading of any state on this site\")",
+    "WA pays the highest night shift loading of the six states on this site (also line 220)"
+   ],
+   "whys": [
+    "Victoria pays a flat-dollar night allowance ($114.00 to $196.10 a shift), not a percentage, so the comparison only holds for percentage loadings. The site now also covers ACT and NT, and their nursing files hold no night loading to compare against. The wording is accurate for the six states' percentage loadings but should be checked.",
+    "act.ts and nt.ts now exist in lib/data/nursing-pay, so 'six states' may be stale. Victoria pays a flat-dollar night allowance, so the comparison only holds for percentage loadings."
+   ],
+   "constants": [
+    "wa.ts highlights[0] and penalties[0].rows night shift note",
+    "wa.ts highlights[0], penalties[0].rows[1].note"
+   ],
+   "reviewerNotes": [
+    "I support the writer's question. The WA claims 'highest night shift loading of the six states on this site' (line 258) and 'highest night loading of any state on this site' (line 220) need checking. Victoria pays a flat-dollar night allowance, not a percentage. The nursing-pay folder now also holds act.ts and nt.ts, so 'six states' may be stale."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.38,
+   "needsOwner": false
+  }
+ ]
+}

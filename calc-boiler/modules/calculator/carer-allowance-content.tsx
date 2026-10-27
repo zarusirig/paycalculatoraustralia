@@ -14,7 +14,7 @@ import {
   CARER_SUPPORT_SOURCES as SRC,
   carerAllowanceFortnightly,
 } from "@/lib/constants/centrelink-carer-and-support";
-import { agePensionFortnightly } from "@/lib/constants/centrelink-income-test";
+import { AGE_PENSION_INCOME_TEST, agePensionFortnightly } from "@/lib/constants/centrelink-income-test";
 import { Note, W3Faqs, W3Footer, W3Related, W3Section } from "./centrelink-w3-shared";
 import { CARER_ALLOWANCE_FAQS } from "./centrelink-w3-faqs";
 
@@ -70,7 +70,7 @@ export default function CarerAllowanceContent() {
             <tbody className="divide-y divide-sandstone-dark/10">
               <tr><td className={TD + " font-medium"}>What it is</td><td className={TD}>Supplementary payment for daily care</td><td className={TD}>Income support at the pension rate for constant care</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Amount a fortnight</td><td className={TD}>{formatAUD(CA.fortnightly, 2)} set rate</td><td className={TD}>Up to {formatAUD(CARER_PAYMENT_RATES.maxFortnightly.single.total, 2)} single, {formatAUD(CARER_PAYMENT_RATES.maxFortnightly.coupleEach.total, 2)} each couple</td></tr>
-              <tr><td className={TD + " font-medium"}>Income test</td><td className={TD}>Combined ATI under {formatAUD(CA.incomeLimit)} a year</td><td className={TD}>Pension income test: 50c per $1 over $226 a fortnight (single)</td></tr>
+              <tr><td className={TD + " font-medium"}>Income test</td><td className={TD}>Combined ATI under {formatAUD(CA.incomeLimit)} a year</td><td className={TD}>Pension income test: {Math.round(AGE_PENSION_INCOME_TEST.single.taper * 100)}c per $1 over {formatAUD(AGE_PENSION_INCOME_TEST.single.freeArea)} a fortnight (single)</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Assets test</td><td className={TD}>None</td><td className={TD}>Yes: you and the person you care for</td></tr>
               <tr><td className={TD + " font-medium"}>Work</td><td className={TD}>Wages don&apos;t reduce it</td><td className={TD}>Up to {CARER_PAYMENT.workHoursLimit} hours in 4 weeks, and pay reduces it</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className={TD + " font-medium"}>Care need</td><td className={TD}>Daily care, for at least 12 months or a terminal condition</td><td className={TD}>Constant care, for at least 6 months or end of life</td></tr>

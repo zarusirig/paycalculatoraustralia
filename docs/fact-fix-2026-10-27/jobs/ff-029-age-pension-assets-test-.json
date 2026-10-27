@@ -1,0 +1,167 @@
+{
+ "name": "ff-029-age-pension-assets-test-",
+ "files": [
+  "modules/calculator/age-pension-assets-test-calculator.tsx",
+  "modules/calculator/annual-leave-calculator.tsx",
+  "modules/calculator/annual-pay-calculator-content.tsx",
+  "modules/calculator/annual-pay-calculator.tsx",
+  "modules/calculator/apprentice-pay-calculator.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/age-pension-assets-test-calculator.tsx:128",
+   "file": "modules/calculator/age-pension-assets-test-calculator.tsx",
+   "line": "128",
+   "page": "https://pay-calculator-australia.com/age-pension-assets-test-calculator/",
+   "claims": [
+    "The first $300 is disregarded (Work Bonus); partner balance not modelled."
+   ],
+   "whys": [
+    "The Work Bonus credit is typed into the hint as $300. Everywhere else it comes from WORK_BONUS.fortnightlyCredit, so this hint will go stale if the constant changes."
+   ],
+   "constants": [
+    "lib/constants/centrelink-income-test.ts WORK_BONUS.fortnightlyCredit"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. The partner employment hint types '$300' instead of using WORK_BONUS.fortnightlyCredit (lib/constants/centrelink-income-test.ts), so the hint will go stale if the credit changes. The string is a locked JSX attribute."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.28,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-leave-calculator.tsx:107",
+   "file": "modules/calculator/annual-leave-calculator.tsx",
+   "line": "107",
+   "page": "https://pay-calculator-australia.com/annual-leave-calculator/",
+   "claims": [
+    "Annual leave builds at 1 hour for every 13 ordinary hours you work"
+   ],
+   "whys": [
+    "The 1-in-13 ratio is right only for 4 weeks a year. The same note also shows when the 'Qualifying shiftworker' box is ticked (5 weeks a year, ANNUAL_LEAVE.shiftworkerWeeksPerYear). For a shiftworker the ratio is about 1 hour for every 10.4 hours, so the note contradicts the result row above it."
+   ],
+   "constants": [
+    "lib/constants/annual-leave.ts (ANNUAL_LEAVE.weeksPerYear / shiftworkerWeeksPerYear). Build the ratio from weeksOfLeavePerYear, or show the 1-in-13 sentence only when shiftworker is false."
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's question. Line 107 says leave builds at '1 hour for every 13 ordinary hours' even when the 'Qualifying shiftworker (5 weeks a year under the NES)' box (line 67-68) is ticked, and at 5 weeks the ratio is about 1 in 10.4. Fix: build the ratio from ANNUAL_LEAVE.weeksPerYear / shiftworkerWeeksPerYear, or show the sentence only when shiftworker is false."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-pay-calculator-content.tsx:193",
+   "file": "modules/calculator/annual-pay-calculator-content.tsx",
+   "line": "193",
+   "page": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "claims": [
+    "HECS-HELP repayment thresholds start at {formatAUD(HECS_HELP.minimumThreshold)}, with indexation now capped at the lower of CPI or the Wage Price Index."
+   ],
+   "whys": [
+    "The lower-of-CPI-or-WPI cap applies to indexation of HELP debt balances, not to the repayment thresholds. As written, the sentence says the thresholds' indexation is capped. I left it unchanged.",
+    "I confirm the writer's question. The lower-of-CPI-or-WPI cap applies to indexation of HELP debt balances, not to the repayment thresholds."
+   ],
+   "constants": [
+    "HECS_HELP (lib/constants/australian-tax.ts:462). The wording should say debt indexation."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.19,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-pay-calculator-content.tsx:206",
+   "file": "modules/calculator/annual-pay-calculator-content.tsx",
+   "line": "206",
+   "page": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "claims": [
+    "The 2% Medicare levy adds $1,000 in deductions for every $50,000 of taxable income. This is separate from income tax and is not optional for most Australian residents.",
+    "The 2% Medicare levy adds $1,000 in deductions for every $50,000 of taxable income ... not optional for most Australian residents."
+   ],
+   "whys": [
+    "'most Australian residents' is a population claim with no source. The flat 2% also ignores the low-income reduction and exemptions. And the Medicare levy is a levy, not a deduction.",
+    "I confirm the writer's question. The figures are typed, not taken from constants. The flat 2% ignores the low-income reduction. 'Deductions' is the wrong term for a levy. 'most Australian residents' is an unsourced population claim."
+   ],
+   "constants": [
+    "Medicare levy rate and low-income thresholds in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.82,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-pay-calculator-content.tsx:205",
+   "file": "modules/calculator/annual-pay-calculator-content.tsx",
+   "line": "205",
+   "page": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "claims": [
+    "not the 30% marginal rate that applies only to the portion between $45,001 and $135,000"
+   ],
+   "whys": [
+    "The rate and bracket bounds are typed literals, not taken from TAX_BRACKETS. They are correct for FY2026-27 but will go stale. The same goes for the typed $18,200 (line 56), $18,201 to $45,000 (lines 65 and 164), the $45,000 threshold (line 164) and the flat 2% Medicare levy (lines 67, 193 and 206)."
+   ],
+   "constants": [
+    "TAX_BRACKETS[0..2] and MEDICARE levy rate in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.47,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-pay-calculator-content.tsx:209",
+   "file": "modules/calculator/annual-pay-calculator-content.tsx",
+   "line": "209",
+   "page": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "claims": [
+    "Every extra dollar is taxed at your marginal rate, so a raise never adds its full amount to take-home pay (now: 'your take-home pay rises by less than the gross amount of the raise')."
+   ],
+   "whys": [
+    "This is not true for income below the tax-free threshold (TAX_BRACKETS[0], 0% rate). There, a raise is kept in full, apart from any Medicare levy. The rule needs a condition such as 'above the tax-free threshold'."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.2,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/annual-pay-calculator.tsx:39",
+   "file": "modules/calculator/annual-pay-calculator.tsx",
+   "line": "39",
+   "page": "https://pay-calculator-australia.com/annual-pay-calculator/",
+   "claims": [
+    "The interactive calculator always runs with hasPrivateHealth: true, so it never applies the Medicare Levy Surcharge."
+   ],
+   "whys": [
+    "The hero now says the quick figures assume private hospital cover, which is correct. But users without cover get no MLS in their own results either, and there is no input to change that. The owner should decide whether to add a private cover toggle or to state this assumption for the calculator result too."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.83,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/apprentice-pay-calculator.tsx:143",
+   "file": "modules/calculator/apprentice-pay-calculator.tsx",
+   "line": "143",
+   "page": "https://pay-calculator-australia.com/apprentice-pay-rates/ and 9 /apprentice-pay/<trade>/ pages",
+   "claims": [
+    "Take-home assumes a resident on the tax-free threshold for 2026-27, private hospital cover, and no HELP debt."
+   ],
+   "whys": [
+    "The financial year is hard-coded and will go stale at 1 July 2027, while the tax engine follows SITE_CONFIG.financialYear. Also, calculatePayBreakdown is called without includeHECS here (line 85), so check that it defaults to no HELP."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.22,
+   "needsOwner": false
+  }
+ ]
+}

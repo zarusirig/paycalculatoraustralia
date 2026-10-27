@@ -1,0 +1,147 @@
+{
+ "name": "ff-072-first-job-pay-guide-faqs",
+ "files": [
+  "modules/guide/first-job-pay-guide-faqs.ts",
+  "modules/guide/first-job-pay-guide.tsx",
+  "modules/guide/fringe-benefits-tax-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/first-job-pay-guide-faqs.ts:24",
+   "file": "modules/guide/first-job-pay-guide-faqs.ts",
+   "line": "24",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "In the meantime, your employer withholds tax at the higher no-TFN rate"
+   ],
+   "whys": [
+    "Under ATO rules, an employee who tells the employer they have applied for a TFN has 28 days before the no-TFN rate applies, and withholding stays at normal rates during that time. This also contradicts the FAQ at line 20 (\"If you don't provide a TFN (or tell your employer you have applied for one)\")."
+   ],
+   "constants": [
+    "NO_TFN_RATES (lib/constants/payg-withholding)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.22,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/first-job-pay-guide.tsx:66",
+   "file": "modules/guide/first-job-pay-guide.tsx",
+   "line": "66",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "You can choose your own super fund or be placed in your employer's default fund."
+   ],
+   "whys": [
+    "This is out of date. Since 1 November 2021 (stapling), an employer must ask the ATO for a new employee's existing stapled fund before using the default fund. The 12% is also typed here and again at lines 105, 177 and 192 instead of being read from SUPER_GUARANTEE."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.89,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/first-job-pay-guide.tsx:58",
+   "file": "modules/guide/first-job-pay-guide.tsx",
+   "line": "58",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "You need a TFN before starting work.",
+    "processing takes 10-28 business days ... or in person at a post office with 100 points of ID; withhold at the highest marginal rate of 45% plus the 2% Medicare levy"
+   ],
+   "whys": [
+    "This contradicts the FAQ at first-job-pay-guide-faqs.ts line 24 (\"You can start work before receiving your TFN. You have 28 days to provide it\") and the page's own next paragraph (line 61). One of the two statements has to go.",
+    "The ATO says to allow up to 28 days. It gives no 10-day minimum and does not use the term \"100 points of ID\": you apply online and then confirm your identity at Australia Post or with myID. The 45% + 2% figures are typed here, but the FAQ reads them from NO_TFN_RATES. The same 10-28 range is repeated at first-job-pay-guide-faqs.ts line 24."
+   ],
+   "constants": [
+    "n/a (copy)",
+    "NO_TFN_RATES.resident; TFN processing time belongs in a constant with an ATO source"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/first-job-pay-guide.tsx:71",
+   "file": "modules/guide/first-job-pay-guide.tsx",
+   "line": "71",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "$18,200 tax-free threshold (also typed at lines 120, 130, 162, 172, 182)",
+    "whether you have a HECS-HELP debt"
+   ],
+   "whys": [
+    "$18,200 is typed by hand on this page, but the FAQ file reads TAX_FREE_THRESHOLD. The bracket rows at lines 130-132 ($45,000, $135,000, 30 cents, $27,000) are also typed by hand and could drift from TAX_BRACKETS.",
+    "The TFN Declaration (NAT 3092) asks about any study and training support loan (HELP, VSL, SFSS, SSL, TSL), not only HECS-HELP. The label is narrower than the form."
+   ],
+   "constants": [
+    "TAX_FREE_THRESHOLD, TAX_BRACKETS",
+    "n/a (copy)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.25,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/first-job-pay-guide.tsx:182",
+   "file": "modules/guide/first-job-pay-guide.tsx",
+   "line": "182",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "Under-18 workers have the same minimum wage entitlements under the applicable award, though some awards include junior rates"
+   ],
+   "whys": [
+    "The two halves of the sentence contradict each other. Most awards, and the award-free special national minimum wage, pay juniors a percentage of the adult rate, so their minimum entitlements are not the same. I left the sentence unchanged because the checker locks the phrase \"minimum wage\"."
+   ],
+   "constants": [
+    "JUNIOR_RATES (lib/constants/junior-rates)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.74,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/first-job-pay-guide.tsx:105",
+   "file": "modules/guide/first-job-pay-guide.tsx",
+   "line": "105",
+   "page": "/first-job-pay-guide/",
+   "claims": [
+    "Superannuation ... 12% ... $60.00 (example 20 hrs @ $25/hr)"
+   ],
+   "whys": [
+    "The $60.00 example and the $500.00 gross are typed by hand. EX_GROSS exists in the same file and SUPER_GUARANTEE should drive the 12%, so the example will drift when the rate or the example changes."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.34,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/fringe-benefits-tax-faqs.ts:51",
+   "file": "modules/guide/fringe-benefits-tax-faqs.ts",
+   "line": "51",
+   "page": "/fringe-benefits-tax/",
+   "claims": [
+    "A minor benefit is one with a notional taxable value of less than $300."
+   ],
+   "whys": [
+    "The value is correct, but it is hard-coded in the FAQ and not read from the FBT constants, so it can go stale."
+   ],
+   "constants": [
+    "FBT in lib/constants/novated-lease.ts (add minorBenefitThreshold)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.69,
+   "needsOwner": false
+  }
+ ]
+}

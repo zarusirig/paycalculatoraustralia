@@ -68,12 +68,12 @@ export default function JuryDutyPayCalculator() {
               {employment === "casual"
                 ? "Casuals aren't paid by their employer for jury duty under the NES. Check your award, agreement or contract, and your state's jury law, which may pay more."
                 : evidence === "requested-not-given"
-                  ? "If your employer asks for evidence of the court payment and you don't give it, you aren't entitled to employer pay for the first 10 days."
+                  ? `If your employer asks for evidence of the court payment and you don't give it, you aren't entitled to employer pay for the first ${JURY_DUTY_PAID_DAYS} days.`
                   : missed > JURY_DUTY_PAID_DAYS
                     ? `The NES only requires employer pay for the first ${JURY_DUTY_PAID_DAYS} days you are absent from work. After that, only the court pays, unless your award, agreement, contract or state law says otherwise.`
                     : evidence === "requested-given"
                       ? "Make-up pay tops the court payment up to your base pay for the ordinary hours you would have worked."
-                      : "Your employer didn't ask for proof of the court payment, so it pays your full base pay for up to 10 days."}
+                      : `Your employer didn't ask for proof of the court payment, so it pays your full base pay for up to ${JURY_DUTY_PAID_DAYS} days.`}
             </p>
             <p className="text-xs text-warmgray-light">National Employment Standards (Fair Work Act ss 108 to 112). State and territory jury laws, awards and agreements can be more generous.</p>
           </div>

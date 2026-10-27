@@ -11,6 +11,7 @@ import {
   PUBLIC_SERVICE_PAY_FAQS,
   allBands,
   formatSalary,
+  getJurisdiction,
   type Jurisdiction,
 } from "@/lib/data/public-service-pay";
 import FeaturedImage from "@/components/common/featured-image";
@@ -292,7 +293,8 @@ export default function PublicServicePayScalesPage() {
               <p>
                 Similar salary does not mean similar work, and it does not mean similar total
                 remuneration either: the same gross salary is worth more in the APS than in the VPS
-                once the 15.4% employer superannuation contribution is counted.
+                once the APS median employer superannuation contribution of{" "}
+                {getJurisdiction("aps")?.superannuation.rate}% is counted.
               </p>
             </section>
 

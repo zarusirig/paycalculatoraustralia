@@ -32,8 +32,18 @@
 // agreement's Table 1 and the OCPE rates page show Nurse 2.1 at $80,665, so
 // that is the figure published here, and the difference is flagged on the page.
 //
+// RE-CHECK, 27 OCTOBER 2026
+// --------------------------
+// Every rate below re-read against Schedule 3, Table 1: unchanged. Table 1
+// prints Nurse 1.5 and Nurse 2.1 at the same $80,665, and $81,479 is its
+// Nurse 1.6 figure. The two in-training rows are Table 1's own figures (the
+// 2021 rate raised by the four 3% increases), a few dollars above 75% of the
+// current Nurse 1.1 and Nurse 2.1. OCPE Bulletin 5 (26 October 2026): the
+// 6 August 2026 offer "was not endorsed by the Australian Nursing and Midwifery
+// Federation (ANMF) or the NPAA bargaining representatives"; talks continue.
+//
 // The NT publishes annual salaries only.
-// Read 24 September 2026.
+// Read 24 September 2026; re-checked 27 October 2026.
 // =============================================================================
 
 import type { NursingStateData } from "./types";
@@ -62,7 +72,7 @@ export const NT_NURSING_PAY: NursingStateData = {
       name: "Northern Territory Public Sector Nurses and Midwives' 2022–2026 Enterprise Agreement",
       effectiveFrom: "19 August 2025 (first full pay period on or after 9 August 2025)",
       nextIncrease:
-        "none in force: the agreement passed its nominal expiry on 9 August 2026; an offer of 3% a year from 13 August 2026 depends on a successful ballot and approval of a new agreement",
+        "none in force: the agreement passed its nominal expiry on 9 August 2026; the 6 August 2026 offer of 3% a year from 13 August 2026 was not endorsed by the ANMF or the NPAA bargaining representatives, and bargaining continues (OCPE Bulletin 5, 26 October 2026)",
       tribunal: "Fair Work Commission",
       reference: "AG2023/2310",
       source: EA_SOURCE,
@@ -192,6 +202,8 @@ export const NT_NURSING_PAY: NursingStateData = {
         { label: "Enrolled Nurse in Training (75% of Nurse 1)", annual: 53523 },
         { label: "Registered Nurse/Midwife in Training (75% of Nurse 2)", annual: 60501 },
       ],
+      note:
+        "These are the agreement's own Table 1 figures. Each is the 2021 rate raised by the four 3% increases, so it sits a few dollars above 75% of today's Nurse 1.1 or Nurse 2.1 rate.",
     },
   ],
 
@@ -209,20 +221,20 @@ export const NT_NURSING_PAY: NursingStateData = {
   unverified: [
     "Shift, weekend and public holiday penalty rates, and the income-related allowances in Table 4, are not transcribed for this page.",
     "An hourly rate for any NT classification: the agreement publishes annual salaries only.",
-    "Rates under a replacement agreement. The Commissioner's 6 August 2026 offer (3% a year, first increase from 13 August 2026, and a restructured Nurse 2 scale) depends on a ballot and Fair Work Commission approval, and no new agreement was recorded as approved when this page was checked on 24 September 2026.",
+    "Rates under a replacement agreement. The Commissioner's 6 August 2026 offer (3% a year, first increase from 13 August 2026, and a restructured Nurse 2 scale) was not endorsed by the ANMF or the NPAA bargaining representatives (OCPE Bulletin 5, 26 October 2026). Bargaining continues, and no replacement agreement had been approved when this page was checked on 27 October 2026.",
     "Bulletin 4 lists the \"current\" Nurse 2.1 rate as $81,479, while the agreement's Table 1 and the OCPE rates page both show $80,665. We publish $80,665; check your payslip if you are at Nurse 2.1.",
   ],
 
-  verifiedOn: "24 September 2026",
+  verifiedOn: "27 October 2026",
 
   intro:
-    "Northern Territory public sector nurses and midwives at NT Health are paid under the NT Public Sector Nurses and Midwives' 2022-2026 Enterprise Agreement, approved by the Fair Work Commission. The NT rates below took effect on 19 August 2025, the last of four 3% rises. The NT agreement publishes annual salaries only, with no hourly rate. Registered nurses and midwives share one scale, Nurse 2 to Nurse 8, and enrolled nurses are Nurse 1. The tables below give the annual salary at each NT pay point shown. The NT agreement passed its nominal expiry on 9 August 2026. On 6 August 2026, the NT Government offered 3% a year for four years. That offer only takes effect if employees vote for a new agreement and the Fair Work Commission approves it.",
+    "Northern Territory public sector nurses and midwives at NT Health are paid under the NT Public Sector Nurses and Midwives' 2022-2026 Enterprise Agreement, approved by the Fair Work Commission. The NT rates below took effect on 19 August 2025, the last of four 3% rises. The NT agreement publishes annual salaries only, with no hourly rate. Registered nurses and midwives share one scale, Nurse 2 to Nurse 8, and enrolled nurses are Nurse 1. The tables below give the annual salary at each NT pay point shown. The NT agreement passed its nominal expiry on 9 August 2026. On 6 August 2026, the NT Government offered 3% a year for four years. The nurses' union (ANMF) and the NPAA bargaining representatives did not endorse that offer, so bargaining continues.",
 
   highlights: [
     "Nurse 2 (registered nurse or midwife) starts at $80,665 and reaches $107,800 at pay point 2.8, from 19 August 2025.",
     "Enrolled nurses (Nurse 1) are paid $71,359 to $81,479, and Nurse 1 Advanced Practice up to $83,561.",
     "Nurse practitioners sit in Nurse 6, paid $149,765 to $157,329.",
-    "The agreement's nominal expiry was 9 August 2026. The government's 6 August 2026 offer proposes 3% a year from 13 August 2026 if a new agreement is voted up.",
+    "The agreement's nominal expiry was 9 August 2026. The government's 6 August 2026 offer of 3% a year was not endorsed by the ANMF or the NPAA bargaining representatives, so bargaining continues.",
     "The NT pays nurses and midwives on one combined scale rather than separate ladders.",
   ],
 
@@ -235,6 +247,11 @@ export const NT_NURSING_PAY: NursingStateData = {
     {
       title: "Bulletin 4: Offer for a new Enterprise Agreement (7 August 2026)",
       url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/current-enterprise-agreements/enterprise-agreement-negotiations/ntps-nurses-and-midwives-enterprise-agreement/bulletin-4",
+      publisher: "Office of the Commissioner for Public Employment (NT)",
+    },
+    {
+      title: "Bulletin 5: Negotiations update (26 October 2026)",
+      url: "https://ocpe.nt.gov.au/employment-terms-and-conditions/current-enterprise-agreements/enterprise-agreement-negotiations/ntps-nurses-and-midwives-enterprise-agreement/bulletin-5",
       publisher: "Office of the Commissioner for Public Employment (NT)",
     },
   ],

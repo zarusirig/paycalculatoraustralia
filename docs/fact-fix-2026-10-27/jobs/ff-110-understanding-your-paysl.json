@@ -1,0 +1,84 @@
+{
+ "name": "ff-110-understanding-your-paysl",
+ "files": [
+  "modules/guide/understanding-your-payslip-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/understanding-your-payslip-faqs.ts:74",
+   "file": "modules/guide/understanding-your-payslip-faqs.ts",
+   "line": "74",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Super is payable on casual earnings at the SG rate regardless of hours worked."
+   ],
+   "whys": [
+    "The $450 monthly threshold is gone, but employees under 18 are only owed SG if they work more than 30 hours in a week. So 'regardless of hours worked' is wrong for under-18 casuals."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (an under-18 30-hours rule field) in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.24,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip-faqs.ts:78",
+   "file": "modules/guide/understanding-your-payslip-faqs.ts",
+   "line": "78",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "The ATO recommends keeping payslips for a minimum of 5 years from the date you lodge the relevant tax return."
+   ],
+   "whys": [
+    "The ATO states the 5-year record-keeping period as a requirement, not a recommendation. The wording may understate the rule. Left unchanged per the no-change-to-facts rule."
+   ],
+   "constants": [
+    "Record-keeping period (5 years) is typed in prose, with no constant"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.49,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip-faqs.ts:61",
+   "file": "modules/guide/understanding-your-payslip-faqs.ts",
+   "line": "61",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "The Fair Work Act requires employers to itemise each component of pay separately, including base hours, overtime hours, penalty rate loadings, and any allowances."
+   ],
+   "whys": [
+    "The itemised payslip content comes from Fair Work Regulations 2009 reg 3.46, which the legal-content FAQ on line 40 correctly cites, not the Act. reg 3.46 also does not literally require 'overtime hours' as a separate line. This needs a citation check."
+   ],
+   "constants": [
+    "none (prose citation)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.13,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/understanding-your-payslip-faqs.ts:52",
+   "file": "modules/guide/understanding-your-payslip-faqs.ts",
+   "line": "52",
+   "page": "https://pay-calculator-australia.com/understanding-your-payslip/",
+   "claims": [
+    "Often not. ... many payslips bundle this amount into the PAYG withholding line."
+   ],
+   "whys": [
+    "This is a population claim with no figure or cited source, and it is the opening answer of the FAQ."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.3,
+   "needsOwner": false
+  }
+ ]
+}

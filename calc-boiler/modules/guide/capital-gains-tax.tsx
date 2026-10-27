@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   ABSENCE_RULE,
   CGT_AFFORDABLE_HOUSING,
@@ -32,7 +32,8 @@ import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_CGT = "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax";
-const ATO_DISCOUNT = `${ATO_CGT}/cgt-discount`;
+const ATO_DISCOUNT = `${ATO_CGT}/calculating-your-cgt/cgt-discount`;
+const ATO_REFORM = `${ATO_CGT}/capital-gains-tax-reform`;
 const ATO_CALC = `${ATO_CGT}/calculating-your-cgt/how-to-calculate-your-cgt`;
 const ATO_COST_BASE = `${ATO_CGT}/calculating-your-cgt/cost-base-of-asset`;
 const ATO_LOSSES = `${ATO_CGT}/calculating-your-cgt/using-capital-losses-to-reduce-capital-gains`;
@@ -44,6 +45,7 @@ const ATO_EXEMPTIONS = `${ATO_CGT}/list-of-cgt-assets-and-exemptions`;
 const SOURCES_LIST: SourceLink[] = [
   { title: "What is capital gains tax? (QC69844)", url: ATO_WHAT_IS, publisher: SOURCES.ato.name },
   { title: "CGT discount (QC66019)", url: ATO_DISCOUNT, publisher: SOURCES.ato.name },
+  { title: "Capital gains tax reform (QC108170)", url: ATO_REFORM, publisher: SOURCES.ato.name },
   { title: "How to calculate your CGT (QC104071)", url: ATO_CALC, publisher: SOURCES.ato.name },
   { title: "Cost base of assets (QC66022)", url: ATO_COST_BASE, publisher: SOURCES.ato.name },
   {
@@ -153,7 +155,7 @@ export default function CapitalGainsTaxPage() {
                   <td className="px-5 py-3 tabular-nums">{formatPercent(result.effectiveRateOnGain)}</td>
                 </tr>
               ))}
-            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Identical {formatAUD(100_000)} gain, {CGT_INCOME_YEAR} rates, including the 2% Medicare levy. Effective rate is tax as a share of the full gain before the discount.</p></div>
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Identical {formatAUD(100_000)} gain, {CGT_INCOME_YEAR} rates, including the {PCT(MEDICARE_LEVY.rate)} Medicare levy. Effective rate is tax as a share of the full gain before the discount.</p></div>
 
             <p>The &ldquo;effective rate&rdquo; column is the closest thing to a CGT rate that exists. It is an <em>outcome</em>, not a published figure. It moves with your income, and a gain large enough to push you into a higher bracket is partly taxed at that higher rate.</p>
             <p>This holds for {CGT_INCOME_YEAR}. From {CGT_REFORM_2027.firstAffectedYear} a floor is added: Australian resident individuals pay at least {formatPercent(CGT_REFORM_2027.minimumTaxRate, 0)} on gains that build up from {CGT_REFORM_2027.startDate}, unless they receive a payment such as the Age Pension that year. See the section on the {CGT_REFORM_2027.startDate} changes below.</p>
@@ -301,7 +303,7 @@ export default function CapitalGainsTaxPage() {
             <ul>
               {CGT_PENDING_BILLS.proposals.map((item) => (<li key={item}>{item}</li>))}
             </ul>
-            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} rules into this calculator.</strong> Indexation needs the CPI figure for the quarter you sell, which does not exist yet, and the split needs your asset&rsquo;s value at {CGT_REFORM_2027.startDate}. We do not publish figures we cannot check at source. Use this calculator for {CGT_INCOME_YEAR} sales and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. The ATO&rsquo;s CGT discount page still says these changes were &ldquo;announced in the 2026&ndash;27 Federal Budget&rdquo;, which reads like a proposal. They are law, with a start date of {CGT_REFORM_2027.startDate}.</p>
+            <p><strong>We have not built the post-{CGT_REFORM_2027.startDate} rules into this calculator.</strong> Indexation needs the CPI figure for the quarter you sell, which does not exist yet, and the split needs your asset&rsquo;s value at {CGT_REFORM_2027.startDate}. We do not publish figures we cannot check at source. Use this calculator for {CGT_INCOME_YEAR} sales and read the <a href={CGT_REFORM_2027.actUrl} target="_blank" rel="noopener noreferrer">Act itself</a> or the <a href={CGT_REFORM_2027.billsDigestUrl} target="_blank" rel="noopener noreferrer">Parliamentary Library bills digest</a>. The ATO&rsquo;s <a href={ATO_REFORM} target="_blank" rel="noopener noreferrer">Capital gains tax reform</a> page (published 13 October 2026) says the first stage &ldquo;is now law&rdquo; and that the {CGT_REFORM_2027.firstAffectedYear} tax return is the first one it can affect. It also says the Government is still developing the apportionment method, and that the ATO will publish market valuation guidance before {CGT_REFORM_2027.startDate}.</p>
           </section>
 
           <section>
@@ -331,7 +333,7 @@ export default function CapitalGainsTaxPage() {
             </Accordion>
           </section>
 
-          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>The method, the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, the five cost base elements and the loss rules come from the ATO&rsquo;s <a href={ATO_CALC} target="_blank" rel="noopener noreferrer">How to calculate your CGT</a> (QC104071), <a href={ATO_DISCOUNT} target="_blank" rel="noopener noreferrer">CGT discount</a> (QC66019), <a href={ATO_COST_BASE} target="_blank" rel="noopener noreferrer">Cost base of assets</a> (QC66022) and <a href={ATO_LOSSES} target="_blank" rel="noopener noreferrer">Using capital losses</a> (QC66025), all verified {SITE_CONFIG.lastVerified}. The main residence rules come from QC69710 and <a href={ATO_MAIN_RESIDENCE} target="_blank" rel="noopener noreferrer">QC66030</a>.</p><p>Tax on the gain is computed by adding the net capital gain to your other income and taking the difference in income tax and Medicare levy. It never applies a standalone CGT rate, because no such rate exists. It uses the {CGT_INCOME_YEAR} resident brackets and the 2% Medicare levy. It does not model the Medicare levy surcharge, HECS-HELP repayments, other offsets, the indexation method for pre-{CGT_INDEXATION_CUTOFF} assets, small business CGT concessions, or the post-{CGT_REFORM_2027.startDate} regime. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s published worked examples (Rhi, Justin, Maree, Danuta, Roya and Helen) in automated tests.</p><p>This is general information, not personal tax advice. CGT on property and inherited assets gets complicated quickly; see a registered tax agent for your own position.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <div className="mt-12 not-prose"><MethodologyDisclosure title="How this calculator works"><p>The method, the {formatPercent(CGT_DISCOUNT_RATES.individual, 0)} discount, the five cost base elements and the loss rules come from the ATO&rsquo;s <a href={ATO_CALC} target="_blank" rel="noopener noreferrer">How to calculate your CGT</a> (QC104071), <a href={ATO_DISCOUNT} target="_blank" rel="noopener noreferrer">CGT discount</a> (QC66019), <a href={ATO_COST_BASE} target="_blank" rel="noopener noreferrer">Cost base of assets</a> (QC66022) and <a href={ATO_LOSSES} target="_blank" rel="noopener noreferrer">Using capital losses</a> (QC66025), all verified {SITE_CONFIG.lastVerified}. The main residence rules come from QC69710 and <a href={ATO_MAIN_RESIDENCE} target="_blank" rel="noopener noreferrer">QC66030</a>.</p><p>Tax on the gain is computed by adding the net capital gain to your other income and taking the difference in income tax and Medicare levy. It never applies a standalone CGT rate, because no such rate exists. It uses the {CGT_INCOME_YEAR} resident brackets and the {PCT(MEDICARE_LEVY.rate)} Medicare levy. It does not model the Medicare levy surcharge, HECS-HELP repayments, other offsets, the indexation method for pre-{CGT_INDEXATION_CUTOFF} assets, small business CGT concessions, or the post-{CGT_REFORM_2027.startDate} regime. Every figure on this page is derived from a single constants file and checked against the ATO&rsquo;s published worked examples (Rhi, Justin, Maree, Danuta, Roya and Helen) in automated tests.</p><p>This is general information, not personal tax advice. CGT on property and inherited assets gets complicated quickly; see a registered tax agent for your own position.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
             {(() => { const a = getGuideAuthorship("capital-gains-tax-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 

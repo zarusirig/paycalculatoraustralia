@@ -18,6 +18,8 @@ const RATE = pct(DIVISION_293.rate);
 const BASE_RATE = pct(CONTRIBUTIONS_TAX_RATE);
 const COMBINED = CONTRIBUTIONS_TAX_RATE + DIVISION_293.rate;
 const TOP_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate;
+const NEXT_BRACKET_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 2].rate;
+const NEXT_RATE = NEXT_BRACKET_RATE + MEDICARE_LEVY.rate;
 
 // Worked example: taxable income plus employer contributions just over the line.
 const EX_INCOME = 230_000;
@@ -42,11 +44,11 @@ export const DIVISION_293_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I pay Division 293 from my super fund?",
-    a: "Yes. When you receive your Division 293 notice of assessment, you can elect to release the amount from your super fund by giving the ATO a release authority within 60 days of the notice being issued. You can also choose to pay from personal funds instead. The tax is due 21 days after the notice is issued, and general interest charge applies to unpaid amounts.",
+    a: "Yes. When you receive your Division 293 notice of assessment, you can lodge a Division 293 election with the ATO within 60 days of the date of the assessment. The ATO then sends your nominated super fund a release authority, and the fund pays the amount to the ATO. You can also choose to pay from personal funds instead. The tax is due 21 days after the notice is issued, and the 60-day election period does not change that due date. General interest charge applies to unpaid amounts.",
   },
   {
     q: "Does salary sacrifice into super trigger Division 293?",
-    a: "Salary sacrifice does not lower your Division 293 total, so it does not help you avoid the threshold. It reduces your taxable income, but the sacrificed amount is added back as a concessional super contribution, so your taxable income plus super stays the same. The net tax benefit of salary sacrifice is still positive even with Division 293.",
+    a: `Salary sacrifice does not lower your Division 293 total, so it does not help you avoid the threshold. It reduces your taxable income, but the sacrificed amount is added back as a concessional super contribution, so your taxable income plus super stays the same. The net tax benefit of salary sacrifice is still positive with Division 293 while your marginal tax rate (including Medicare levy) is above ${pct(COMBINED)}.`,
   },
   {
     q: "Is the $250,000 threshold indexed?",
@@ -54,6 +56,6 @@ export const DIVISION_293_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is it still worth contributing to super with Division 293?",
-    a: `Yes, for most people. Even with Division 293, super contributions are taxed at ${pct(COMBINED)} total, compared to a top marginal rate of ${pct(TOP_RATE)} (including Medicare levy). That's still a ${pct(TOP_RATE - COMBINED)} tax saving on each dollar contributed. Investment earnings inside super are also taxed at a maximum of ${BASE_RATE} in accumulation phase, compared to your marginal rate outside super (unless your total super balance exceeds ${formatAUD(DIVISION_296.largeBalanceThreshold)}, where Division 296 tax applies from ${DIVISION_296.start}).`,
+    a: `Yes, when your marginal tax rate (including Medicare levy) is above ${pct(COMBINED)}. Even with Division 293, super contributions are taxed at ${pct(COMBINED)} total. At the top marginal rate of ${pct(TOP_RATE)} (including Medicare levy), that's a ${pct(TOP_RATE - COMBINED)} tax saving on each dollar contributed. At ${pct(NEXT_RATE)} (the ${pct(NEXT_BRACKET_RATE)} bracket plus Medicare levy), the saving is ${pct(NEXT_RATE - COMBINED)}. Investment earnings inside super are also taxed at a maximum of ${BASE_RATE} in accumulation phase, compared to your marginal rate outside super (unless your total super balance exceeds ${formatAUD(DIVISION_296.largeBalanceThreshold)}, where Division 296 tax applies from ${DIVISION_296.start}).`,
   },
 ];

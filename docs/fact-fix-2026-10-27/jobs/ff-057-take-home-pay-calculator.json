@@ -1,0 +1,162 @@
+{
+ "name": "ff-057-take-home-pay-calculator",
+ "files": [
+  "modules/calculator/take-home-pay-calculator-faqs.ts",
+  "modules/calculator/tax-brackets-lookup.tsx",
+  "modules/calculator/tax-free-threshold-helper.tsx",
+  "modules/calculator/tax-return-calculator-content.tsx",
+  "modules/calculator/tax-return-calculator-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/take-home-pay-calculator-faqs.ts:66",
+   "file": "modules/calculator/take-home-pay-calculator-faqs.ts",
+   "line": "66",
+   "page": "/take-home-pay-calculator/",
+   "claims": [
+    "preservation age (${PRESERVATION_AGE} for most Australians)"
+   ],
+   "whys": [
+    "This is a population claim with no figure. Preservation age is 60 for everyone born on or after 1 July 1964, so the scope can be stated exactly."
+   ],
+   "constants": [
+    "lib/constants/pension-age.ts PRESERVATION_AGE_TABLE"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.19,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-brackets-lookup.tsx:47",
+   "file": "modules/calculator/tax-brackets-lookup.tsx",
+   "line": "47",
+   "page": "/tax-brackets/",
+   "claims": [
+    "Includes the low income tax offset and the 2% Medicare levy."
+   ],
+   "whys": [
+    "The 2% Medicare levy rate is typed as a literal rather than formatted from MEDICARE_LEVY.rate."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.rate (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-free-threshold-helper.tsx:29",
+   "file": "modules/calculator/tax-free-threshold-helper.tsx",
+   "line": "29",
+   "page": "/tax-free-threshold/",
+   "claims": [
+    "Working holiday maker income is taxed at 15% from the first dollar"
+   ],
+   "whys": [
+    "The 15% working holiday maker rate is typed as a JSX literal rather than read from the WHM rate constant. The 15% rate also applies only up to the first WHM bracket ceiling."
+   ],
+   "constants": [
+    "lib/constants (working holiday maker rates)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-free-threshold-helper.tsx:191",
+   "file": "modules/calculator/tax-free-threshold-helper.tsx",
+   "line": "191",
+   "page": "/tax-free-threshold/",
+   "claims": [
+    "Resident rates from 1 July 2026"
+   ],
+   "whys": [
+    "The date '1 July 2026' is a typed literal in JSX and does not come from the withholding-schedule constant. It will go stale when the rates roll over."
+   ],
+   "constants": [
+    "lib/constants (withholding schedule effective date)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-return-calculator-content.tsx:163",
+   "file": "modules/calculator/tax-return-calculator-content.tsx",
+   "line": "163",
+   "page": "https://pay-calculator-australia.com/tax-return-calculator/",
+   "claims": [
+    "Employees, contractors and retirees use it to estimate their refund"
+   ],
+   "whys": [
+    "Retirees are named, but none of the five use cases below covers them. The methodology (line 327) also says the estimator leaves out other offsets, so SAPTO and super income streams are not handled. That makes the retiree claim a poor fit."
+   ],
+   "constants": [
+    "methodology list / estimator scope in lib/constants/tax-return-estimator"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-return-calculator-content.tsx:119",
+   "file": "modules/calculator/tax-return-calculator-content.tsx",
+   "line": "119",
+   "page": "https://pay-calculator-australia.com/tax-return-calculator/",
+   "claims": [
+    "Tax saved assumes taxable income between $45,001 and $135,000"
+   ],
+   "whys": [
+    "This is correct for 2025-26, but it is hard-coded while the rate next to it comes from THIS.brackets[2]. It will go stale if the brackets change. The same applies to '$18,200' (line 276), 'Employer super at 12%' (line 307) and '1% to 1.5%' MLS (line 277)."
+   ],
+   "constants": [
+    "RETURN_YEARS['2025-26'].brackets[2].min/max; tax-free threshold and SG rate constants in lib/constants/australian-tax"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.7,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/tax-return-calculator-content.tsx:207",
+   "file": "modules/calculator/tax-return-calculator-content.tsx",
+   "line": "207",
+   "page": "https://pay-calculator-australia.com/tax-return-calculator/",
+   "claims": [
+    "Refund defined as 'The money returned when tax withheld is more than the tax you owe'"
+   ],
+   "whys": [
+    "This definition leaves out other refundable credits, such as refundable franking credits and PAYG instalments. The page's own methodology says franking credits are excluded from the estimate, but this table cell states the definition as a general rule. It is a locked table cell, so it was not edited."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.09,
+   "needsOwner": true
+  },
+  {
+   "key": "modules/calculator/tax-return-calculator-faqs.ts:54",
+   "file": "modules/calculator/tax-return-calculator-faqs.ts",
+   "line": "54",
+   "page": "/tax-return-calculator/",
+   "claims": [
+    "If you owe $200,000 or less, you may be able to set up a payment plan in ATO online services."
+   ],
+   "whys": [
+    "The ATO self-serve payment plan limit is typed as a literal."
+   ],
+   "constants": [
+    "lib/constants/tax-return-2025-26.ts (RETURN_2026)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.66,
+   "needsOwner": false
+  }
+ ]
+}

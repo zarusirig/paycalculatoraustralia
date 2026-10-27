@@ -56,7 +56,11 @@ export default function MarginalRateCalculator() {
                 ? "Enter an amount to see what it is worth after tax."
                 : r.raiseIsTaxFree
                   ? "No extra tax: this extra income sits inside the tax-free threshold (or is absorbed by the low income tax offset)."
-                  : `Of every extra $1 you earn, you keep about ${Math.round((1 - r.marginalRateOnRaise) * 100)}c. Your average rate moves from ${pct(r.averageBefore)} to ${pct(r.averageAfter)}, but only the extra income is taxed at the higher rate, so a raise never cuts your take-home pay.`}
+                  : r.netGain < 0
+                    ? `This extra income takes you into a higher Medicare levy surcharge tier, and the surcharge is charged on your whole income, not just the extra, so you take home ${formatAUD(-r.netGain)} less a year than before.`
+                    : noPhi
+                      ? `Of every extra $1 you earn, you keep about ${Math.round((1 - r.marginalRateOnRaise) * 100)}c. Your average rate moves from ${pct(r.averageBefore)} to ${pct(r.averageAfter)}. If this extra income takes you into a higher Medicare levy surcharge tier, the surcharge rate applies to your whole income, not just the extra, and the figures above include it.`
+                      : `Of every extra $1 you earn, you keep about ${Math.round((1 - r.marginalRateOnRaise) * 100)}c. Your average rate moves from ${pct(r.averageBefore)} to ${pct(r.averageAfter)}, but only the extra income is taxed at the higher rate, so this extra income adds to your take-home pay.`}
             </p>
             <p className="text-xs text-warmgray-light">
               Resident, single, full-year, no other offsets or deductions. HELP uses the marginal repayment system; the Medicare levy surcharge uses the 2026-27 income tiers. Withholding on a one-off bonus or back payment can be more or less than the true annual figure shown here; the difference settles when you lodge your return.

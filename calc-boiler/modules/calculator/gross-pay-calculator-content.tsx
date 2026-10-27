@@ -18,7 +18,10 @@ import {
   SITE_CONFIG,
   HECS_HELP,
   LITO,
+  EMPLOYMENT,
 } from "@/lib/constants";
+import { MEDICARE_LEVY_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
+import { COMMON_LEAVE_LOADING } from "@/lib/constants/minimum-wage";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
 // HEAD_TERM_PRIMARY must come from the plain module: re-exported through the
 // "use client" head-term-ui it reaches this server component as undefined.
@@ -76,7 +79,7 @@ export default function GrossPayCalculatorContent() {
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Annualise your target net pay</strong>: multiply weekly by 52, fortnightly by 26, or monthly by 12. A target of $1,500 per week equals <strong>$78,000</strong> annually.</li>
               <li><strong>Identify the income tax brackets</strong>: the FY{SITE_CONFIG.financialYear} rates are {bracketRatesSentence()}.</li>
-              <li><strong>Add the Medicare levy</strong>: a flat <strong>2%</strong> of taxable income applies to most Australian residents.</li>
+              <li><strong>Add the Medicare levy</strong>: Australian residents pay <strong>{MEDICARE_PCT}</strong> of their whole taxable income. On the {MEDICARE_LEVY_INCOME_YEAR} thresholds the levy is nil at {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} or less and reduced up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}.</li>
               <li><strong>Apply the Low Income Tax Offset</strong>: LITO reduces tax by up to <strong>{formatAUD(LITO.maxOffset)}</strong> for incomes below {formatAUD(LITO.nilOffsetIncome)}, effectively raising the tax-free threshold to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>.</li>
               <li><strong>Iterate to solve</strong>: because Australia uses progressive marginal rates, no single formula converts net to gross. This calculator runs a binary search across the ATO resident income tax rates to find the exact gross salary that produces your target net pay.</li>
             </ol>
@@ -190,7 +193,7 @@ export default function GrossPayCalculatorContent() {
               </table>
             </div>
             <p className="text-xs text-warmgray-light">
-              *Figures are calculated using FY{SITE_CONFIG.financialYear} income tax brackets and the 2% Medicare levy. HECS-HELP repayments, salary sacrifice, and the Medicare Levy Surcharge are excluded.
+              *Figures are calculated using FY{SITE_CONFIG.financialYear} income tax brackets and the {MEDICARE_PCT} Medicare levy. HECS-HELP repayments, salary sacrifice, and the Medicare Levy Surcharge are excluded.
             </p>
           </section>
 
@@ -202,10 +205,10 @@ export default function GrossPayCalculatorContent() {
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Base salary</strong>: the fixed annual amount stated in your employment contract, paid weekly, fortnightly, or monthly</li>
-              <li><strong>Overtime earnings</strong>: hours worked beyond the standard 38-hour week, paid at penalty rates of <strong>1.5x</strong> (time and a half) or <strong>2.0x</strong> (double time)</li>
+              <li><strong>Overtime earnings</strong>: hours worked outside your ordinary hours (a standard full-time week is {EMPLOYMENT.standardWeeklyHours} hours), paid at the overtime rates your award, agreement or contract sets, such as <strong>1.5x</strong> (time and a half) or <strong>2.0x</strong> (double time)</li>
               <li><strong>Bonuses and commissions</strong>: performance-based payments, sign-on bonuses, and sales commissions added to your taxable income in the period received</li>
               <li><strong>Allowances</strong>: travel allowances, tool allowances, uniform allowances, and meal allowances that are not otherwise exempt from tax</li>
-              <li><strong>Leave loading</strong>: an extra <strong>17.5%</strong> paid on annual leave entitlements under many awards and enterprise agreements</li>
+              <li><strong>Leave loading</strong>: an extra payment on annual leave when your award or enterprise agreement provides one; it is not a National Employment Standards entitlement. The Hospitality and Retail awards set it at <strong>{formatPercent(COMMON_LEAVE_LOADING, 1)}</strong> (Retail pays the penalty rates you would have earned instead if they are higher)</li>
               <li><strong>Back pay and arrears</strong>: retrospective pay increases applied to prior periods, taxed in the period of payment</li>
             </ul>
             <p className="text-warmgray mb-4">
@@ -225,7 +228,7 @@ export default function GrossPayCalculatorContent() {
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Treating TRP as base salary</strong>: a $100,000 TRP includes {SG_PCT} super, so the actual base salary is only <strong>{formatAUD(TRP_BASE)}</strong>. Assuming the full $100,000 is your gross pay inflates your expected take-home by <strong>{formatAUD(EX_100K.weekly - EX_TRP.weekly)} per week</strong>.</li>
               <li><strong>Using a flat tax rate</strong>: dividing net by 0.7 to estimate gross assumes a flat 30% tax rate. Australia&apos;s progressive system means a $60,000 net actually requires a gross of <strong>{formatAUD(Math.round(GROSS_FOR_60K_NET))}</strong>, not the {formatAUD(Math.round(60_000 / 0.7))} that a flat-rate formula produces.</li>
-              <li><strong>Forgetting the Medicare levy</strong>: the <strong>2%</strong> Medicare levy applies on top of income tax. On a $90,000 gross salary, the levy adds <strong>{formatAUD(EX_90K.medicareLevy)}</strong> to total deductions, reducing weekly take-home by <strong>{formatAUD(EX_90K.medicareLevy / 52, 2)}</strong>.</li>
+              <li><strong>Forgetting the Medicare levy</strong>: the <strong>{MEDICARE_PCT}</strong> Medicare levy applies on top of income tax. On a $90,000 gross salary, the levy adds <strong>{formatAUD(EX_90K.medicareLevy)}</strong> to total deductions, reducing weekly take-home by <strong>{formatAUD(EX_90K.medicareLevy / 52, 2)}</strong>.</li>
               <li><strong>Ignoring HECS-HELP repayments</strong>: under the marginal repayment system for FY{SITE_CONFIG.financialYear}, a $90,000 income triggers a HECS repayment of <strong>{formatAUD(EX_90K_HECS.hecsRepayment)}</strong>. Workers with study debt need a higher gross salary to achieve the same net pay.</li>
               <li><strong>Comparing pre-tax and post-tax figures</strong>: comparing a $95,000 gross offer against your current $1,400 weekly net pay without converting both to the same basis leads to incorrect conclusions about whether the new role pays more.</li>
             </ol>
@@ -235,7 +238,7 @@ export default function GrossPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Example Gross Salary Calculations</h2>
             <p className="mb-4 text-warmgray">
-              Each card below shows a common net take-home target and the gross annual salary required to hit it under the FY25-26 tax brackets:
+              Each card below shows a common net take-home target and the gross annual salary required to hit it under the FY{SITE_CONFIG.financialYear} tax brackets:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
@@ -276,7 +279,7 @@ export default function GrossPayCalculatorContent() {
               <li><Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">Salary package calculator</Link>: base salary and take-home from a package including super.</li>
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>: enter a gross salary and see the net pay after income tax, Medicare levy, and HECS-HELP deductions</li>
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>: view a full breakdown of income tax brackets, LITO, and marginal rates for FY{SITE_CONFIG.financialYear}</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate your employer&apos;s 12% SG contribution and project your super balance at retirement</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>: calculate your employer&apos;s {SG_PCT} SG contribution and project your super balance at retirement</li>
               <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link>: model the tax savings from pre-tax super contributions or novated lease arrangements</li>
               <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link>: calculate compulsory HECS-HELP repayments under the marginal system introduced in FY2025-26 (threshold {formatAUD(HECS_HELP.minimumThreshold)} in FY{SITE_CONFIG.financialYear})</li>
               <li><Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link>: compare your current and proposed salary to see the actual net pay increase after tax</li>

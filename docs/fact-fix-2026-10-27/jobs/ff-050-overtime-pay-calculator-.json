@@ -1,0 +1,145 @@
+{
+ "name": "ff-050-overtime-pay-calculator-",
+ "files": [
+  "modules/calculator/overtime-pay-calculator-faqs.ts",
+  "modules/calculator/overtime-pay-calculator.tsx",
+  "modules/calculator/parenting-payment-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/overtime-pay-calculator-faqs.ts:27",
+   "file": "modules/calculator/overtime-pay-calculator-faqs.ts",
+   "line": "27",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Weekend and public holiday penalties for casuals are usually higher than for permanent staff to compensate for the lack of leave."
+   ],
+   "whys": [
+    "The casual loading is what compensates for the lack of leave. Casual weekend and public holiday rates are higher mainly because the loading is built in, so the stated reason looks wrong. 'usually' is also an unsourced population claim. The same answer says 'In most awards the overtime multiplier applies to the base rate rather than the casual-loaded rate', which is a population claim with no source."
+   ],
+   "constants": [
+    "Award penalty data (e.g. lib/constants award files) or FWO casual penalty guidance"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.38,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-faqs.ts:35",
+   "file": "modules/calculator/overtime-pay-calculator-faqs.ts",
+   "line": "35",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "The SG does not apply to overtime under the ATO's definition of Ordinary Time Earnings (OTE)."
+   ],
+   "whys": [
+    "Under Payday Super (from 1 July 2026), SG is worked out on qualifying earnings. The sibling novated lease FAQ already uses that term. Overtime is still excluded, but the OTE-only wording may be stale and should be checked against QUALIFYING_EARNINGS."
+   ],
+   "constants": [
+    "QUALIFYING_EARNINGS in lib/constants"
+   ],
+   "reviewerNotes": [
+    "The wording that ties SG to 'Ordinary Time Earnings' may be stale under Payday Super's qualifying earnings. The writer flagged it, and the change itself only restructured the sentence and added 'agreement', which fits the sentence's own subject (enterprise agreements). Accepted."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator-faqs.ts:19",
+   "file": "modules/calculator/overtime-pay-calculator-faqs.ts",
+   "line": "19",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Under most awards the first 2-3 overtime hours are paid at 1.5\u00d7, and hours beyond that at 2.0\u00d7."
+   ],
+   "whys": [
+    "Population claim ('typically' in the original) with no cited source. Kept as written, but it should be sourced or tied to named awards."
+   ],
+   "constants": [
+    "Award overtime constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/overtime-pay-calculator.tsx:33",
+   "file": "modules/calculator/overtime-pay-calculator.tsx",
+   "line": "33",
+   "page": "/overtime-pay-calculator/",
+   "claims": [
+    "Penalty type label 'Saturday casual (1.25\u00d7)'"
+   ],
+   "whys": [
+    "In common awards such as the General Retail Industry Award, 125% is the permanent Saturday rate. Casual Saturday rates are higher once the casual loading is included, so the label looks mismatched."
+   ],
+   "constants": [
+    "Award penalty constants for the General Retail Industry Award"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.58,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/parenting-payment-calculator-content.tsx:68",
+   "file": "modules/calculator/parenting-payment-calculator-content.tsx",
+   "line": "68",
+   "page": "/parenting-payment-calculator/",
+   "claims": [
+    "the next change is 20 March 2027"
+   ],
+   "whys": [
+    "The next indexation date is typed by hand next to the PP.indexedOn constant. It will go stale after March 2027."
+   ],
+   "constants": [
+    "PARENTING_PAYMENT (lib/constants/centrelink-family-payments.ts), e.g. a nextIndexation field"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.31,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/parenting-payment-calculator-content.tsx:86",
+   "file": "modules/calculator/parenting-payment-calculator-content.tsx",
+   "line": "86",
+   "page": "/parenting-payment-calculator/",
+   "claims": [
+    "then {formatAUD(53)} plus 60 cents per dollar above (also used for the combined test)"
+   ],
+   "whys": [
+    "$53 is typed by hand twice. It should be derived from the band amounts (e.g. 0.5 \u00d7 (PT.band1End \u2212 PT.freeArea)), so it stays correct when the free area indexes."
+   ],
+   "constants": [
+    "PARENTING_PAYMENT.partnered in lib/constants/centrelink-family-payments.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/parenting-payment-calculator-content.tsx:127",
+   "file": "modules/calculator/parenting-payment-calculator-content.tsx",
+   "line": "127",
+   "page": "/parenting-payment-calculator/",
+   "claims": [
+    "When your youngest turns {PP.singleYoungestChildUnder}, most single parents move to JobSeeker."
+   ],
+   "whys": [
+    "Population claim ('most single parents') with no figure or cited source."
+   ],
+   "constants": [
+    "FAMILY_PAYMENT_SOURCES / Services Australia"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 3.24,
+   "needsOwner": false
+  }
+ ]
+}

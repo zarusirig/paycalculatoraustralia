@@ -80,7 +80,7 @@ export default function SuperCoContributionPage() {
               <ol>
                 <li><strong>Make a personal super contribution</strong>: deposit after-tax money into your super fund (not salary sacrifice; it must be a non-concessional contribution from your own bank account)</li>
                 <li><strong>Lodge your tax return</strong>: the ATO automatically checks your eligibility after processing your return</li>
-                <li><strong>Receive the co-contribution</strong>: if eligible, the ATO pays the matching amount directly into your super fund, usually within 60 days of your tax return being processed</li>
+                <li><strong>Receive the co-contribution</strong>: if eligible, the ATO pays the matching amount directly into your super fund. The ATO makes most payments between November and January for personal contributions made in the previous financial year</li>
               </ol>
               <p>
                 You do <strong>not</strong> need to apply separately. The process is entirely automatic once your tax return is lodged and your super fund details are up to date with the ATO.
@@ -120,7 +120,7 @@ export default function SuperCoContributionPage() {
                 </div>
               </div>
               <p>
-                The reduction formula is: maximum co-contribution is reduced by <strong>$0.03333</strong> for every $1.00 of total income above {formatAUD(LOWER)}. This produces a linear phase-out from $500 to $0 across the $15,000 income range.
+                The reduction formula is: maximum co-contribution is reduced by <strong>${CO_CONTRIBUTION.reductionPerDollar}</strong> for every $1.00 of total income above {formatAUD(LOWER)}. This produces a linear phase-out from {formatAUD(CO_CONTRIBUTION.maxEntitlement)} to $0 across the {formatAUD(HIGHER - LOWER)} income range.
               </p>
             </section>
 

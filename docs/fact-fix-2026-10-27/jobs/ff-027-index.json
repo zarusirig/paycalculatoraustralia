@@ -1,0 +1,186 @@
+{
+ "name": "ff-027-index",
+ "files": [
+  "lib/data/state-employee/index.ts",
+  "lib/data/teacher-pay/hub.ts",
+  "lib/data/teacher-pay/nsw.ts",
+  "lib/data/teacher-pay/qld.ts",
+  "lib/data/teacher-pay/sa.ts",
+  "lib/data/teacher-pay/tas.ts",
+  "lib/data/teacher-pay/vic.ts"
+ ],
+ "questions": [
+  {
+   "key": "lib/data/state-employee/index.ts:399",
+   "file": "lib/data/state-employee/index.ts",
+   "line": "399",
+   "page": "https://pay-calculator-australia.com/pay-calculator-act/",
+   "claims": [
+    "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years",
+    "The ACT reaches the entitlement fastest of any jurisdiction (duplicate of the LSL_JURISDICTIONS.act.summary claim)"
+   ],
+   "whys": [
+    "Victoria also lets employees take leave after 7 years (STATE_PROFILES.VIC.longServiceLeave.takeAfterYears = 7, line 289, with 6.07 weeks). The ACT ties with Victoria on the qualifying period. Its only clear lead is pro-rata from 5 years, and NSW also starts pro-rata at 5. The ACT page intro (modules/state/pay-calculator-act.tsx:153, 'faster than anywhere else in Australia: 7 years') repeats the claim.",
+    "This copy has the same 'fastest' claim, which Victoria contradicts because it also gives 6.0667 weeks after 7 years. It still says 'just' and 'a further fifth of a month each year'. If the claim is corrected, both copies need the change."
+   ],
+   "constants": [
+    "STATE_PROFILES.ACT.longServiceLeave.summary vs STATE_PROFILES.VIC.longServiceLeave.takeAfterYears"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's question. The ACT summary claims the ACT is the 'fastest of any jurisdiction' (7 years), but VIC takeAfterYears is also 7 (line 289). The ACT page intro (modules/state/pay-calculator-act.tsx:153) repeats the claim."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.2,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/hub.ts:93",
+   "file": "lib/data/teacher-pay/hub.ts",
+   "line": "93",
+   "page": "https://pay-calculator-australia.com/teacher-pay-australia/",
+   "claims": [
+    "Each state and territory has its own page with every step of its published scale, leadership rates and the date its next increase applies"
+   ],
+   "whys": [
+    "Only 3 of 8 states have a nextIncrease (nt, tas, vic). act, nsw, qld, sa and wa have nextIncrease: null, so their pages show no next-increase date. The vic value is a pending status, not a date. The string is locked (faqs.push call arg), so I could not narrow it. Suggested wording: '... leadership rates and, where the agreement already sets one, the date of its next increase'.",
+    "Checked: nextIncrease is null in nsw.ts:41, act.ts:41, qld.ts:69, sa.ts:46 and wa.ts:45. Only tas, nt and vic set one. So 5 of 8 state pages show no next-increase date. Suggested change: 'and, where the agreement already sets one, the date of its next increase'."
+   ],
+   "constants": [
+    "lib/data/teacher-pay/{act,nsw,qld,sa,wa}.ts nextIncrease: null; types.ts:103"
+   ],
+   "reviewerNotes": [
+    "Confirmed the writer's fact question. The locked faqs.push answer says each state page shows 'the date its next increase applies'. But nsw, act, qld, sa and wa all have nextIncrease: null, so their pages show no next-increase date. The string is locked and was left unchanged."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.3,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/nsw.ts:211",
+   "file": "lib/data/teacher-pay/nsw.ts",
+   "line": "211",
+   "page": "/teacher-pay-australia/nsw/",
+   "claims": [
+    "Seven years of full-time service is the fastest realistic path: one year at Step 1, one year at Step 2 plus confirmation of Proficient accreditation, then one year on each of Steps 3 to 6."
+   ],
+   "whys": [
+    "The path the FAQ lists adds up to six years (1 + 1 + 4), after which the teacher is on Step 7. 'Seven years' only works if it means 'in your seventh year'. The answer should say either 'six years' or 'you reach Step 7 at the start of your seventh year'. I did not change it.",
+    "I confirm the writer's question. Under the progression[] rules at nsw.ts lines 135-150, there is one year at each of Steps 1 to 6 before Step 7, so Step 7 is reached after six full-time years, not seven."
+   ],
+   "constants": [
+    "nsw.ts faqs[3].a (the progression rules in nsw.ts progression[] support six years to reach Step 7)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is valid. The listed path (1 + 1 + 4 years) adds up to six years of full-time service to reach Step 7, but the answer says 'Seven years'. The string was correctly left unchanged for the owner to decide."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.65,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/qld.ts:301",
+   "file": "lib/data/teacher-pay/qld.ts",
+   "line": "301",
+   "page": "/teacher-pay-australia/qld/",
+   "claims": [
+    "Deputy principals are paid $161,746 to $164,605 and heads of department $145,320 to $155,351."
+   ],
+   "whys": [
+    "The $145,320 to $155,351 range is the whole Heads of Program (Stream 2) scale. Its top two rows (Level 2, $152,651 and $155,351) are for Senior Guidance Officer and HOSES 3, not Head of Department. Heads of Department alone are Level 1 ($145,320 to $148,003). The label is wider than the figures support. I did not change it.",
+    "$145,320 to $155,351 is the full Heads of Program (Stream 2) range. The Level 2 rows ($152,651 and $155,351) are labelled 'SGO, HOSES 3' (lines 107-108), not Head of Department. HOD/HODC is Level 1 only: $145,320 to $148,003. Either relabel the range as 'Heads of Program' or narrow the figures."
+   ],
+   "constants": [
+    "QLD_TEACHER_PAY.scales[heads-of-program] in lib/data/teacher-pay/qld.ts"
+   ],
+   "reviewerNotes": [
+    "I confirmed the writer's fact question. The FAQ says 'heads of department $145,320 to $155,351', but that range is the whole Heads of Program scale. The Level 2 rows ($152,651 and $155,351) are noted 'SGO, HOSES 3' (qld.ts lines 107-108). Head of Department alone is Level 1, $145,320 to $148,003. The label is wider than the figures support. This needs an owner decision, so it was not changed in this pass."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.07,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/sa.ts:213",
+   "file": "lib/data/teacher-pay/sa.ts",
+   "line": "213",
+   "page": "/teacher-pay-australia/sa/",
+   "claims": [
+    "Band B leadership starts at $133,736 (also line 229: 'from $133,736 at Band B-1')."
+   ],
+   "whys": [
+    "The unverified list (line 169) says Band B-0 sits below B-1 in the agreement schedule. So $133,736 is the lowest Band B point we publish, not the lowest one that exists. It may need to say 'the lowest published Band B point'.",
+    "The unverified list (line 169) says Band B-0 sits below B-1 in the agreement schedule. That makes $133,736 the lowest published Band B point, not the true start of Band B. I agree with the writer's flag. The wording may need to say 'the lowest published Band B point'."
+   ],
+   "constants": [
+    "lib/data/teacher-pay/sa.ts faqs[2].a, faqs[6].a"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.98,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/tas.ts:182",
+   "file": "lib/data/teacher-pay/tas.ts",
+   "line": "182",
+   "page": "/teacher-pay-australia/tas/",
+   "claims": [
+    "As at 28 August 2026 the department's web summary table and the consolidated Teaching Service Award both still end at the 1 March 2025 rates (the FAQ at line 238 says the same)",
+    "As at 28 August 2026 the department's web summary table and the consolidated Teaching Service Award still end at the 1 March 2025 rates (FAQ line 238 says the same with 'As at August 2026')"
+   ],
+   "whys": [
+    "This is a claim about third-party pages that can go stale. It was last checked on 28 August 2026, two months before this pass. Check it again before the page is presented as current.",
+    "This is a claim about third-party pages, last checked two months before this pass. Check it again before the page is presented as current."
+   ],
+   "constants": [
+    "TAS_TEACHER_PAY.notices[0], faqs[5].a, verifiedOn"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.28,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/vic.ts:57",
+   "file": "lib/data/teacher-pay/vic.ts",
+   "line": "57",
+   "page": "/teacher-pay-australia/vic/",
+   "claims": [
+    "verifiedOn \"23 October 2026\"; notices, nextIncrease and FAQs say the FWC decision on AG2026/2746 and the new department salary schedule are unpublished, and the tables stay on VGSA 2022"
+   ],
+   "whys": [
+    "The AEU reports the VGSA 2026 operating from 23 October 2026. It is now 27 October, so the decision or new schedule may be out, which would make the 'not yet published' wording and the 2022 tables stale. Re-check the FWC and the department Salary Rates page."
+   ],
+   "constants": [
+    "lib/data/teacher-pay/vic.ts verifiedOn, nextIncrease, notices[1], faqs[5-6]; lib/data/teacher-pay/vic-2026-agreement.ts"
+   ],
+   "reviewerNotes": [
+    "Writer fact question passed on as is: verifiedOn is 23 Oct 2026, and the FWC decision on AG2026/2746 or the department's new schedule may now be out, which would make the 'not yet published' wording and the VGSA 2022 tables stale. Needs a human re-check."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.72,
+   "needsOwner": false
+  },
+  {
+   "key": "lib/data/teacher-pay/vic.ts:195",
+   "file": "lib/data/teacher-pay/vic.ts",
+   "line": "195",
+   "page": "/teacher-pay-australia/vic/",
+   "claims": [
+    "\"The department has not published a newer schedule, so the rates below are the latest official rates.\""
+   ],
+   "whys": [
+    "This conflicts in tone with notices[1], which says the AEU reports the VGSA 2026 approved and operating from 23 October 2026. If that is confirmed, the VGSA 2022 rates are no longer the current rates."
+   ],
+   "constants": [
+    "lib/data/teacher-pay/vic.ts notices[0]"
+   ],
+   "reviewerNotes": [
+    "Writer fact question passed on: notices[0] 'the rates below are the latest official rates' sits uneasily with the AEU report that the VGSA 2026 operates from 23 October 2026."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.86,
+   "needsOwner": false
+  }
+ ]
+}

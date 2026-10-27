@@ -4,7 +4,9 @@
 // (frv.vic.gov.au/what-you-will-get-return), the official recruitment page,
 // which prints "current gross salary pay rates" as WEEKLY rates for Recruit
 // Firefighter to Qualified Firefighter. Page marked "Updated 15 July 2026".
-// Read on 24 September 2026.
+// Read on 24 September 2026; re-read 27 October 2026 (same rates, still marked
+// "Updated 15 July 2026"). FWC B2023/771 case page re-read 27 October 2026:
+// still "Last updated: 01 May 2026", no workplace determination listed.
 //
 // Why the recruitment page and not the agreement: FRV operational staff are
 // still covered by the Fire Rescue Victoria Operational Employees Interim
@@ -32,9 +34,9 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   agreementName:
     "Fire Rescue Victoria, current gross salary pay rates (What you will get in return); underlying instrument: Fire Rescue Victoria Operational Employees Interim Enterprise Agreement 2020",
   agreementUrl: "https://www.frv.vic.gov.au/what-you-will-get-return",
-  ratesEffectiveFrom: "15 July 2026 (the date FRV published them; FRV does not say when they took effect)",
+  ratesEffectiveFrom: "a date FRV does not state (its page, last updated 15 July 2026, lists them as current)",
   nextIncrease: null,
-  verifiedOn: "24 September 2026",
+  verifiedOn: "27 October 2026",
 
   scales: [
     {
@@ -121,7 +123,7 @@ export const VIC_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     },
     {
       q: "Why haven't Victorian firefighters had a new agreement?",
-      a: "FRV firefighters are still on the Interim Enterprise Agreement 2020, which is past its expiry date. Bargaining for a replacement has gone to the Fair Work Commission as intractable bargaining, and no new determination had been published when we checked on 24 September 2026.",
+      a: "FRV firefighters are still on the Interim Enterprise Agreement 2020, which is past its expiry date. Bargaining for a replacement has gone to the Fair Work Commission as intractable bargaining, and no new determination had been published when we checked on 27 October 2026.",
     },
   ],
 };

@@ -9,6 +9,7 @@ import {
   ppsFreeArea,
   pppFortnightly,
 } from "@/lib/constants/centrelink-family-payments";
+import { JOBSEEKER_INCOME_TEST } from "@/lib/constants/centrelink-income-test";
 
 const PP = PARENTING_PAYMENT;
 const S = PP.single;
@@ -35,7 +36,7 @@ export const PARENTING_FAQS: readonly ParentingFaq[] = [
   },
   {
     q: "How does my partner's income affect Parenting Payment Partnered?",
-    a: `If your partner doesn't get a pension, your payment reduces by 60 cents for each dollar they earn over ${formatAUD(PT.partnerIncomeFreeArea, 2)} a fortnight. For example, if your partner earns ${formatAUD(1_800)} and you earn nothing, you would get ${formatAUD(pppFortnightly(0, 1_800), 2)}. If your partner gets a pension, your incomes are combined instead: 25 cents per dollar over ${formatAUD(PT.combined.freeArea)}, then ${formatAUD(53)} plus 30 cents per dollar over ${formatAUD(PT.combined.band1End)}.`,
+    a: `If your partner doesn't get a pension, your payment reduces by 60 cents for each dollar they earn over ${formatAUD(PT.partnerIncomeFreeArea, 2)} a fortnight. For example, if your partner earns ${formatAUD(1_800)} and you earn nothing, you would get ${formatAUD(pppFortnightly(0, 1_800), 2)}. If your partner gets a pension, your incomes are combined instead: 25 cents per dollar over ${formatAUD(PT.combined.freeArea)}, then ${formatAUD((PT.combined.band1End - PT.combined.freeArea) * PT.combined.taper1)} plus 30 cents per dollar over ${formatAUD(PT.combined.band1End)}.`,
   },
   {
     q: "Who can get Parenting Payment?",
@@ -43,7 +44,7 @@ export const PARENTING_FAQS: readonly ParentingFaq[] = [
   },
   {
     q: "What happens when my youngest child turns 14?",
-    a: `Parenting Payment Single stops when your youngest child turns ${PP.singleYoungestChildUnder}, and Parenting Payment Partnered stops when your youngest child turns ${PP.partneredYoungestChildUnder}. Most parents then move to JobSeeker Payment, which has a lower maximum rate but, for a single principal carer of a child under 16, the same 40-cent taper over ${formatAUD(150)} a fortnight.`,
+    a: `Parenting Payment Single stops when your youngest child turns ${PP.singleYoungestChildUnder}, and Parenting Payment Partnered stops when your youngest child turns ${PP.partneredYoungestChildUnder}. You can then claim JobSeeker Payment if you meet its rules. It has a lower maximum rate but, for a single principal carer of a child under 16, the same ${Math.round(JOBSEEKER_INCOME_TEST.principalCarerTaper * 100)}-cent taper over ${formatAUD(JOBSEEKER_INCOME_TEST.freeArea)} a fortnight.`,
   },
   {
     q: "Is Parenting Payment taxable?",

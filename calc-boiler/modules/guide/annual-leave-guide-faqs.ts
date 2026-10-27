@@ -28,7 +28,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can my employer force me to take annual leave?",
-    a: "Yes, in two circumstances. Employers can direct employees to take leave during a shutdown period (e.g., Christmas closure) where their award or agreement allows it and the employer follows its notice rules, which differ between awards. Employers can also direct employees with an excessive balance exceeding 8 weeks to take leave, provided the direction does not reduce the balance below 6 weeks and gives at least 8 weeks' notice.",
+    a: "Yes, in two circumstances. Employers can direct employees to take leave during a shutdown period (e.g., Christmas closure) where their award or agreement allows it and the employer follows its notice rules, which differ between awards. Where your award has an excessive leave clause, the employer can also direct you to take leave if you have more than 8 weeks accrued (10 weeks for a shift worker) and you could not agree on when to take it. The direction must be in writing, the leave must start at least 8 weeks and no more than 12 months after the direction, and it cannot leave you with less than 6 weeks accrued.",
   },
   {
     q: "Can I cash out annual leave instead of taking it?",
@@ -36,7 +36,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Does annual leave accrue during unpaid leave?",
-    a: "No. Annual leave does not accrue during periods of unpaid leave, including unpaid parental leave and unpaid personal leave. Leave continues to accrue during paid leave (annual, personal, long service), workers' compensation, and jury duty.",
+    a: "No. Annual leave does not accrue during periods of unpaid leave, including unpaid parental leave and unpaid personal leave. Leave continues to accrue during paid leave (annual, personal, long service) and jury duty. Whether it accrues during workers' compensation depends on the workers' compensation law that applies to you.",
   },
   {
     q: "What happens if I get sick while on annual leave?",
@@ -48,11 +48,11 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I take annual leave in advance before it accrues?",
-    a: "Yes, if the employer agrees. Leave taken in advance is deducted from future accruals. If the employee resigns or is terminated before accruing enough leave to cover the advance, the employer can deduct the overpayment from the employee's final pay. The deduction must be authorised in writing and cannot reduce the final pay below zero.",
+    a: "Yes, if the employer agrees. Where your award has an annual leave in advance clause (for example cl 21.5 of the Miscellaneous Award 2020), the agreement must be in writing, state how much leave is taken and when it starts, and be signed by you and your employer (and a parent or guardian if you are under 18). Leave taken in advance is deducted from future accruals. If your employment ends before you accrue enough leave to cover the advance, the employer can deduct the pay for the unaccrued part from the money owed to you on termination.",
   },
   {
     q: "Is leave loading taxed?",
-    a: `Yes. Leave loading is classified as ordinary time earnings and is subject to PAYG withholding at the employee's marginal tax rate. It is included in assessable income for the financial year. The ${SG} superannuation guarantee also applies to leave loading, except where the loading is paid only to compensate for overtime you would have worked — the ATO treats that portion as not ordinary time earnings.`,
+    a: `Yes. Leave loading is included in your assessable income for the financial year and taxed at your marginal rate when your return is assessed. During the year your employer withholds PAYG tax from it using the ATO tax tables; a lump-sum loading uses the ATO tax table for back payments, commissions, bonuses and similar payments. Leave loading is also ordinary time earnings, so the ${SG} superannuation guarantee applies to it, except where the loading is paid only to compensate for overtime you would have worked. The ATO treats that portion as not ordinary time earnings.`,
   },
   {
     q: "How much annual leave does a part-time employee get?",
@@ -68,6 +68,6 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is there a maximum annual leave balance?",
-    a: "No. The NES does not impose a cap on annual leave accumulation. Leave carries over indefinitely from year to year. However, balances exceeding 8 weeks (10 weeks for shift workers) are classified as \"excessive,\" and the employer can take steps to direct the employee to reduce the balance. Some enterprise agreements may include specific cap provisions.",
+    a: "No. The NES does not impose a cap on annual leave accumulation. Leave carries over indefinitely from year to year. However, where your award has an excessive leave clause, a balance over 8 weeks (10 weeks for shift workers) is \"excessive,\" and the employer can direct you to take leave to reduce it. Some enterprise agreements may include specific cap provisions.",
   },
 ];

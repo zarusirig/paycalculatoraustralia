@@ -5,6 +5,7 @@ import { formatAUD } from "@/lib/constants/australian-tax";
 import {
   AGE_PENSION_RATES,
   AUSTUDY,
+  JOBSEEKER_INCOME_TEST,
   JOBSEEKER_RATES,
   SEPTEMBER_2026,
   YOUTH_ALLOWANCE_STUDENT,
@@ -22,7 +23,7 @@ const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 export const CENTRELINK_PAYMENT_RATES_FAQS: Faq[] = [
   {
     q: "How much is JobSeeker Payment a fortnight?",
-    a: `From ${JS.ratesFrom}, the maximum JobSeeker Payment is ${f2(JS.maxFortnightly.single)} a fortnight for a single person with no children. The maximum is ${f2(JS.maxFortnightly.singleWithChildren)} for a single person with a dependent child, and for people 55 or older who have been on the payment for 9 months or more, or who have a partial capacity to work. The maximum for a member of a couple is ${f2(JS.maxFortnightly.partnered)} each. Energy Supplement is paid on top. The payment reduces once your income goes over $150 a fortnight.`,
+    a: `From ${JS.ratesFrom}, the maximum JobSeeker Payment is ${f2(JS.maxFortnightly.single)} a fortnight for a single person with no children. The maximum is ${f2(JS.maxFortnightly.singleWithChildren)} for a single person with a dependent child, a single person 55 or older after 9 continuous months on an income support payment, or a single person assessed as having a partial capacity to work of less than 15 hours a week. The maximum for a member of a couple is ${f2(JS.maxFortnightly.partnered)} each. Energy Supplement is paid on top. The payment reduces once your income goes over ${formatAUD(JOBSEEKER_INCOME_TEST.freeArea)} a fortnight.`,
   },
   {
     q: "What are the Centrelink payment rates from 20 September 2026?",

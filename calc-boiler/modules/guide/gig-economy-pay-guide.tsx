@@ -6,7 +6,9 @@ import { GIG_ECONOMY_FAQS } from "./gig-economy-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, SUPER_GUARANTEE, TAX_BRACKETS, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE, DIVISION_293 } from "@/lib/constants/super-contributions";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 
 // Tax + Medicare on net gig income from the FY2026-27 engine (resident, LITO
 // and Medicare low-income shading applied, no HECS/MLS). The old hardcoded
@@ -15,6 +17,24 @@ const GIG_ROWS = [30_000, 50_000, 75_000, 100_000].map((income) => {
   const tax = calculatePayBreakdown({ grossSalary: income }).totalDeductions;
   return { income, tax, pct: tax / income };
 });
+const pctOf = (n: number) => `${Math.round(n * 100)}%`;
+const GIG_FIRST = GIG_ROWS[0];
+const GIG_LAST = GIG_ROWS[GIG_ROWS.length - 1];
+const GST_THRESHOLD = formatAUD(GST_REGISTRATION_THRESHOLD);
+
+// Personal concessional contribution example, from the same engine: the tax and
+// Medicare levy cut from a deductible contribution, less 15% contributions tax.
+const SUPER_EG_INCOME = 80_000;
+const SUPER_EG_CONTRIB = 10_000;
+const SUPER_EG_RATE = TAX_BRACKETS.find((b) => SUPER_EG_INCOME >= b.min && SUPER_EG_INCOME <= b.max)?.rate ?? 0;
+const SUPER_EG_TAX_CUT =
+  calculatePayBreakdown({ grossSalary: SUPER_EG_INCOME }).totalDeductions -
+  calculatePayBreakdown({ grossSalary: SUPER_EG_INCOME - SUPER_EG_CONTRIB }).totalDeductions;
+const SUPER_EG_FUND_TAX = SUPER_EG_CONTRIB * CONTRIBUTIONS_TAX_RATE;
+const SUPER_EG_SAVING = SUPER_EG_TAX_CUT - SUPER_EG_FUND_TAX;
+const TAXED_BRACKETS = TAX_BRACKETS.filter((b) => b.rate > 0);
+const LOWEST_RATE = TAXED_BRACKETS[0].rate;
+const TOP_RATE = TAXED_BRACKETS[TAXED_BRACKETS.length - 1].rate;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
@@ -44,7 +64,7 @@ export default function GigEconomyPayGuidePage() {
             <section id="employee-or-contractor">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Employee or Contractor?</h2>
               <p>
-                The distinction between employee and independent contractor determines your entire tax structure. Most gig platform workers (Uber drivers, Deliveroo riders, Airtasker providers, freelancers) are classified as <strong>independent contractors</strong>, not employees. This means:
+                The distinction between employee and independent contractor determines your entire tax structure. If a platform such as Uber, Deliveroo or Airtasker, or a freelance client, engages you as an <strong>independent contractor</strong> rather than an employee, this means:
               </p>
               <ul>
                 <li><strong>No PAYG tax withholding</strong>: you receive gross income with no tax deducted. You are responsible for setting aside money for tax.</li>
@@ -69,7 +89,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>GST Registration</h3>
               <p>
-                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. Uber, DiDi, Ola and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches $75,000</strong>.
+                GST registration is <strong>mandatory for all rideshare (taxi/ride-booking) drivers</strong> regardless of income. Uber, DiDi, Ola and other rideshare drivers must register for GST from their very first trip. For all other gig workers (delivery riders, freelancers, Airtasker providers), GST registration is required once your <strong>annual turnover reaches {GST_THRESHOLD}</strong>.
               </p>
               <p>
                 When registered for GST, you charge GST (10%) on your services and remit it to the ATO via quarterly BAS (Business Activity Statements). You can claim GST credits on business expenses.
@@ -77,7 +97,7 @@ export default function GigEconomyPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Setting Aside for Tax</h3>
               <p>
-                No one withholds tax from your gig income. A common approach is to set aside <strong>25-30% of gross income</strong> into a separate bank account for tax. This covers income tax, Medicare levy, and GST (if registered). The percentage you need depends on your total annual income. The table shows resident income tax and Medicare levy only, so add GST on top if you are registered:
+                No one withholds tax from your gig income, so move money for tax into a separate bank account as you are paid. The percentage you need depends on your total annual income: for resident income tax and the Medicare levy, it is about <strong>{pctOf(GIG_FIRST.pct)} at {formatAUD(GIG_FIRST.income)}</strong> and about <strong>{pctOf(GIG_LAST.pct)} at {formatAUD(GIG_LAST.income)}</strong>. The table shows income tax and Medicare levy only, so add GST on top if you are registered:
               </p>
 
               <div className="not-prose my-6">
@@ -201,10 +221,10 @@ export default function GigEconomyPayGuidePage() {
                 As an independent contractor, <strong>no one pays super for you</strong>. Unlike an employer paying wages, a gig platform makes no compulsory SG contribution for you, so any super on your gig income comes from your own contributions.
               </p>
               <p>
-                You can make voluntary super contributions yourself.<strong>Personal concessional contributions</strong> are tax-deductible: you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>15%</strong> in the fund, compared to your marginal rate (which could be 30-45%). The annual concessional contributions cap is <strong>$30,000</strong>.
+                You can make voluntary super contributions yourself. <strong>Personal concessional contributions</strong> are tax-deductible: you claim the deduction in your tax return by submitting a &quot;Notice of Intent to Claim&quot; to your super fund. Contributions are taxed at <strong>{pctOf(CONTRIBUTIONS_TAX_RATE)}</strong> in the fund, compared with your marginal tax rate ({pctOf(LOWEST_RATE)} to {pctOf(TOP_RATE)} in FY{SITE_CONFIG.financialYear}) plus the {pctOf(MEDICARE_LEVY.rate)} Medicare levy. If your income plus concessional contributions is over {formatAUD(DIVISION_293.threshold)}, Division 293 tax adds a further {pctOf(DIVISION_293.rate)} on the contributions or on the amount over {formatAUD(DIVISION_293.threshold)}, whichever is less. The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> in FY{SITE_CONFIG.financialYear}.
               </p>
               <p>
-                For example, a gig worker earning $80,000 in the 30% bracket who contributes $10,000 to super saves <strong>$1,500 in tax</strong> (30% marginal rate minus 15% super tax = 15% x $10,000). See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for detailed contribution strategies.
+                For example, a gig worker with {formatAUD(SUPER_EG_INCOME)} taxable income before the deduction (the {pctOf(SUPER_EG_RATE)} bracket) who contributes {formatAUD(SUPER_EG_CONTRIB)} to super and claims it as a deduction cuts their income tax and Medicare levy by {formatAUD(SUPER_EG_TAX_CUT)}. The fund pays {formatAUD(SUPER_EG_FUND_TAX)} contributions tax ({pctOf(CONTRIBUTIONS_TAX_RATE)}), so the net saving is <strong>{formatAUD(SUPER_EG_SAVING)}</strong>. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for detailed contribution strategies.
               </p>
             </section>
 
@@ -216,9 +236,9 @@ export default function GigEconomyPayGuidePage() {
               </p>
               <ul>
                 <li><strong>Your employer withholds tax based on your employment income only.</strong> Your employer does not know about your gig income, so the tax withheld from your wages may not cover your total tax. Any shortfall becomes a tax debt at year end.</li>
-                <li><strong>Request additional withholding</strong> by lodging a <strong>PAYG withholding variation</strong> with the ATO, or voluntarily increase your withholding amount with your employer.</li>
-                <li><strong>Business deductions from gig work</strong> can only be offset against your gig income (or total income if you are a sole trader reporting in your individual tax return). You cannot salary sacrifice your gig income.</li>
-                <li><strong>GST obligations</strong> are based on your gig/business turnover only. Your employment income is not included in the $75,000 GST threshold calculation.</li>
+                <li><strong>Request additional withholding</strong> by asking your employer in writing (in any format) to increase the amount they withhold from your wages, called an <a href="https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/varying-your-payg-withholding" target="_blank" rel="noopener noreferrer">upward variation</a>, or by completing a withholding declaration through ATO online services.</li>
+                <li><strong>Business deductions from gig work</strong> reduce your gig income first. If they are larger than your gig income (a business loss), you can offset the loss against your wages only if your taxable income, reportable fringe benefits, reportable super contributions and net investment losses total less than $250,000 and your business passes one of the ATO&apos;s four <a href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/losses/non-commercial-losses/offset-or-defer-the-loss-individuals-or-sole-traders" target="_blank" rel="noopener noreferrer">non-commercial loss tests</a>. Otherwise you defer the loss to a later year, unless the Commissioner&apos;s discretion or the professional arts or primary production exception on that ATO page applies. You cannot salary sacrifice your gig income.</li>
+                <li><strong>GST obligations</strong> are based on your gig/business turnover only. Your employment income is not included in the {GST_THRESHOLD} GST threshold calculation.</li>
               </ul>
               <p>
                 Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> with your combined income to estimate total tax liability, then compare against the PAYG already withheld by your employer to see if you need to set extra aside. For a deeper look at structuring, see <Link href="/employee-vs-sole-trader-vs-company/">Employee vs Sole Trader vs Company</Link>.

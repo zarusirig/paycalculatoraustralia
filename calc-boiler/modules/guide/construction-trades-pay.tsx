@@ -8,13 +8,45 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { INDUSTRY_ALLOWANCE, CARPENTER_TOOL_ALLOWANCE, MULTISTOREY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
-import { APPRENTICE_ELECTRICIAN as APPRENTICE_ELECTRICIAN_AWARD } from "@/lib/data/job-pay-rates/apprentice-electrician";
+import { APPRENTICE_ELECTRICIAN as APPRENTICE_ELECTRICIAN_AWARD, ELECTRICAL_APPRENTICE_INPUTS } from "@/lib/data/job-pay-rates/apprentice-electrician";
+import { CARPENTER } from "@/lib/data/job-pay-rates/carpenter";
 
 // Opening paragraph: apprentice minimums under MA000025 Schedule B.4, rendered from the data.
 const listOf = (xs: readonly string[]) => `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 const APPRENTICE_PCTS = listOf(APPRENTICE_ELECTRICIAN.map((r) => `${Math.round(r.pct * 100)}%`));
 const APPRENTICE_HOURLY = listOf(APPRENTICE_ELECTRICIAN.map((r) => formatAUD(r.hourly, 2)));
-const ADULT_APPRENTICE_Y1 = APPRENTICE_ELECTRICIAN_AWARD.tables.find((t) => t.id === "adult")!.rows[0];
+const ADULT_TABLE = APPRENTICE_ELECTRICIAN_AWARD.tables.find((t) => t.id === "adult")!;
+const ADULT_APPRENTICE_Y1 = ADULT_TABLE.rows[0];
+const ADULT_APPRENTICE_Y2 = ADULT_TABLE.rows[1];
+// "Did not complete Year 12" percentages, recovered from each row's weekly rate:
+// weekly = pct x (grade 5 + industry + licence allowances) + tool allowance (cl 16.4(a)(iv)).
+const EI = ELECTRICAL_APPRENTICE_INPUTS;
+const NO_YEAR_12_PCTS = listOf(
+  APPRENTICE_ELECTRICIAN_AWARD.tables
+    .find((t) => t.id === "junior-no-year-12")!
+    .rows.map((r) => `${Math.round(((r.weekly - EI.toolAllowance) / (EI.grade5 + EI.industryAllowance + EI.licenceAllowance)) * 100)}%`),
+);
+
+// Saturday overtime example: a qualified carpenter (CW3, general building) on the
+// MA000020 weekly-hire minimum, which includes the all-purpose industry and tool allowances.
+const CARP_ROW = CARPENTER.tables
+  .find((t) => t.id === CARPENTER.headline!.tableId)!
+  .rows.find((r) => r.label === CARPENTER.headline!.label)!;
+const SAT_150 = Math.round(CARP_ROW.hourly * 1.5 * 100) / 100;
+const SAT_200 = Math.round(CARP_ROW.hourly * 2 * 100) / 100;
+const SAT_TOTAL = Math.round((SAT_150 * 2 + SAT_200 * 3) * 100) / 100;
+
+// Australian Apprenticeships Incentive System, apprentice payments (full-time).
+// Source: apprenticeships.gov.au "Financial support for apprentices" and
+// "Changes to Australian Apprenticeships Incentive System from 1 January 2027"
+// (last updated 27 Aug 2026), read 27 October 2026. Part-time amounts are half.
+// AATSP: Certificate III or above in a Priority List occupation, commenced on or after
+// 1 January 2026 (DEWR "Australian Apprenticeships Incentive System payments overview",
+// effective 1 July 2026), $625 at 6, 12, 18 and 24 months.
+// KAP Apprentice Incentive: housing construction or clean energy, commenced on or after
+// 1 July 2025, $2,000 at 6, 12, 24 and 36 months and on completion.
+const AATSP_FULL_TIME = { total: 2_500, instalment: 625, from: "1 January 2026" } as const;
+const KAP_APPRENTICE_FULL_TIME = { total: 10_000, instalment: 2_000, from: "1 July 2025" } as const;
 
 const TRADE_TAKE_HOME = [
   { role: "Painter", gross: 75_000 },
@@ -29,6 +61,7 @@ import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Building and Construction General On-site Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
   { title: "Construction industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
+  { title: "Financial support for apprentices", url: "https://www.apprenticeships.gov.au/support-and-resources/financial-support-apprentices", publisher: "Australian Apprenticeships (Department of Employment and Workplace Relations)" },
 ];
 
 export default function ConstructionTradesPayPage() {
@@ -66,7 +99,7 @@ export default function ConstructionTradesPayPage() {
             <section id="trade-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Qualified Trade Rates</h2>
               <p>
-                Qualified tradespeople in Australia earn well above the national average. The table below shows typical annual salary ranges for qualified electricians, plumbers, carpenters, bricklayers, painters, concreters and boilermakers, including base salary and common overtime. Your actual earnings depend on your state, your employer, and whether you are paid under an enterprise agreement or the Building and Construction General On-site Award.
+                The table below shows typical annual salary ranges for qualified electricians, plumbers, carpenters, bricklayers, painters, concreters and boilermakers, including base salary and common overtime. Your actual earnings depend on your state, your employer, and whether you are paid under an enterprise agreement or the Building and Construction General On-site Award.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -90,7 +123,7 @@ export default function ConstructionTradesPayPage() {
                 </div>
               </div>
               <p>
-                Boilermakers and electricians command the highest rates due to specialised skills and demand from the mining and heavy industry sectors. Self-employed tradies running their own business can earn significantly more: an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
+                Self-employed tradies running their own business can earn significantly more: an experienced plumber or electrician with their own client base may gross <strong>$150,000–$250,000</strong> per year, though business costs reduce the net figure. See the <Link href="/average-salary-australia/">Average Salary Australia</Link> page for broader comparisons.
               </p>
             </section>
 
@@ -98,7 +131,7 @@ export default function ConstructionTradesPayPage() {
             <section id="apprentice-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Apprentice Pay Rates</h2>
               <p>
-                Apprentice wages in Australia are a percentage of the qualified trade rate, and the percentage rises with each year of the apprenticeship. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums. For plumbing, carpentry, automotive, hairdressing and cookery apprentices by year, with a wages calculator, see <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
+                Apprentice wages in Australia are a percentage of the qualified trade rate, and the percentage rises with each year of the apprenticeship. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 ({NO_YEAR_12_PCTS} if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices. These are minimums: an employer or enterprise agreement can pay more. For plumbing, carpentry, automotive, hairdressing and cookery apprentices by year, with a wages calculator, see <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -121,12 +154,12 @@ export default function ConstructionTradesPayPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Adult Apprentice Rates</h3>
               <p>
-                Adult apprentices (aged 21 and over) receive higher minimum rates than school-leaver apprentices. Under the Electrical award, for example, an adult apprentice gets 80% of the qualified electrician rate in first year ($25.87/hr) and at least the grade 1 rate from second year ($28.90/hr), instead of the junior apprentice percentages. This recognises that adult apprentices have higher living costs and may have family responsibilities.
+                Adult apprentices (aged 21 or over when they sign the training contract) receive higher minimum rates than school-leaver apprentices. Under the Electrical award, for example, an adult apprentice who started on or after 1 January 2014 gets 80% of the qualified electrician rate in first year ({formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)}/hr) and at least the grade 1 rate from second year ({formatAUD(ADULT_APPRENTICE_Y2.hourly, 2)}/hr), instead of the junior apprentice percentages. Both rates include the tool, industry and licence allowances.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Government Incentives</h3>
               <p>
-                The Australian Government pays apprenticeship incentives through the <strong>Australian Apprenticeships Incentive System</strong>, which makes payments to eligible employers and apprentices, including priority payments for trades with skills shortages. Apprentices in priority trades may receive <strong>$5,000–$10,000</strong> in direct payments over the course of their apprenticeship. Tools and equipment purchased for an apprenticeship are <strong>tax-deductible</strong> for the apprentice.
+                The Australian Government pays apprenticeship incentives through the <strong>Australian Apprenticeships Incentive System</strong>, which makes payments to eligible employers and apprentices. A full-time apprentice doing a Certificate III or above in an occupation on the Australian Apprenticeships Priority List who started on or after {AATSP_FULL_TIME.from} can get the Australian Apprentice Training Support Payment of up to <strong>{formatAUD(AATSP_FULL_TIME.total)}</strong> ({formatAUD(AATSP_FULL_TIME.instalment)} at 6, 12, 18 and 24 months). A full-time apprentice in a Priority List qualification for housing construction or clean energy who started on or after {KAP_APPRENTICE_FULL_TIME.from} can claim the Key Apprenticeship Program Apprentice Incentive of up to <strong>{formatAUD(KAP_APPRENTICE_FULL_TIME.total)}</strong> ({formatAUD(KAP_APPRENTICE_FULL_TIME.instalment)} at 6, 12, 24 and 36 months and on completion). Part-time apprentices get half these amounts. Tools and equipment purchased for an apprenticeship are <strong>tax-deductible</strong> for the apprentice.
               </p>
             </section>
 
@@ -169,13 +202,13 @@ export default function ConstructionTradesPayPage() {
                 The Building and Construction General On-site Award sets these overtime provisions (the hourly rate for every CW/ECW level, with the industry allowance built in, is on our <Link href="/building-and-construction-award-rates/">Building and Construction Award rates page</Link>):
               </p>
               <ul>
-                <li><strong>Monday to Friday:</strong> Time-and-a-half for the first 2 hours beyond ordinary hours (7.6 hours/day or 38 hours/week), then double time thereafter.</li>
-                <li><strong>Saturday:</strong> Time-and-a-half for the first 2 hours, then double time for all subsequent hours. A minimum 3-hour engagement applies.</li>
-                <li><strong>Sunday:</strong> Double time for all hours worked. A minimum 3-hour engagement applies.</li>
+                <li><strong>Monday to Friday:</strong> Time-and-a-half for the first 2 hours beyond ordinary hours (8 hours a day between 7am and 6pm, of which 0.4 of an hour accrues towards a rostered day off), then double time thereafter.</li>
+                <li><strong>Saturday:</strong> Time-and-a-half for the first 2 hours, then double time for all subsequent hours, and all Saturday overtime after 12 noon is double time. A minimum 3-hour engagement applies.</li>
+                <li><strong>Sunday:</strong> Double time for all hours worked. A minimum 4-hour engagement applies.</li>
                 <li><strong>Public Holidays:</strong> Double time and a half (2.5x) for all hours worked, with a minimum 4-hour engagement.</li>
               </ul>
               <p>
-                A qualified carpenter earning <strong>$40/hr</strong> base rate who works 5 hours of overtime on a Saturday earns: 2 hours at $60/hr + 3 hours at $80/hr = <strong>$360</strong> for the Saturday shift alone. Enter your own base rate and overtime hours in the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to see your overtime pay.
+                A qualified carpenter (CW3) in general building on the award minimum of <strong>{formatAUD(CARP_ROW.hourly, 2)}/hr</strong>, which includes the industry and tool allowances, who works 5 hours of Saturday overtime from 7am to 12 noon earns: 2 hours at {formatAUD(SAT_150, 2)}/hr + 3 hours at {formatAUD(SAT_200, 2)}/hr = <strong>{formatAUD(SAT_TOTAL, 2)}</strong> for the Saturday shift alone. Any of those hours worked after 12 noon would be paid at double time. Enter your own base rate and overtime hours in the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to see your overtime pay.
               </p>
             </section>
 

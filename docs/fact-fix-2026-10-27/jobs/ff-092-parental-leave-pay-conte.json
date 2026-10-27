@@ -1,0 +1,46 @@
+{
+ "name": "ff-092-parental-leave-pay-conte",
+ "files": [
+  "modules/guide/parental-leave-pay-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/parental-leave-pay-content.tsx:131",
+   "file": "modules/guide/parental-leave-pay-content.tsx",
+   "line": "131",
+   "page": "/parental-leave-pay/",
+   "claims": [
+    "If you have other income that year, 15% may not be enough."
+   ],
+   "whys": [
+    "The 15% is typed by hand, but the same paragraph renders it from PPL_RULES.defaultWithholding. If the constant changes, this sentence will go stale."
+   ],
+   "constants": [
+    "PPL_RULES.defaultWithholding (lib/constants/paid-parental-leave.ts:110)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.23,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/parental-leave-pay-content.tsx:135",
+   "file": "modules/guide/parental-leave-pay-content.tsx",
+   "line": "135",
+   "page": "/parental-leave-pay/",
+   "claims": [
+    "On {NOW.days} days at the 2026-27 rate ..."
+   ],
+   "whys": [
+    "'2026-27' is hard-coded, but the figure uses RATE = PPL_RATES[PPL_CURRENT_FY]. The label will be wrong when PPL_CURRENT_FY rolls over."
+   ],
+   "constants": [
+    "PPL_CURRENT_FY (lib/constants/paid-parental-leave.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.32,
+   "needsOwner": false
+  }
+ ]
+}

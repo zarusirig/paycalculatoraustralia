@@ -1,0 +1,166 @@
+{
+ "name": "ff-058-tax-withheld-calculator",
+ "files": [
+  "modules/calculator/tax-withheld-calculator.tsx",
+  "modules/calculator/termination-payment-tax-calculator.tsx",
+  "modules/calculator/weekly-pay-calculator-content.tsx",
+  "modules/calculator/weekly-pay-calculator-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/tax-withheld-calculator.tsx:49",
+   "file": "modules/calculator/tax-withheld-calculator.tsx",
+   "line": "49",
+   "page": "/tax-withheld-calculator/",
+   "claims": [
+    "\"withholding formulas for payments made from 1 July 2026\""
+   ],
+   "whys": [
+    "The date is typed into the text, while the heading uses {FY}. It will go stale at the next financial year."
+   ],
+   "constants": [
+    "FY / SITE_CONFIG.financialYearStart"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.27,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/termination-payment-tax-calculator.tsx:58",
+   "file": "modules/calculator/termination-payment-tax-calculator.tsx",
+   "line": "58",
+   "page": "/termination-payment-tax-calculator/",
+   "claims": [
+    "Field label \"Your age at 30 June 2027\" and hint \"Turning 60 by 30 June 2027 means the lower tax rate.\""
+   ],
+   "whys": [
+    "The year is typed into the code. It matches REDUNDANCY_TAX.incomeYear 2026-27 today but goes stale when the income year rolls over, while the intro text (line 46) uses the constant."
+   ],
+   "constants": [
+    "lib/constants/redundancy.ts REDUNDANCY_TAX.incomeYear (derive the end-of-year date)"
+   ],
+   "reviewerNotes": [
+    "Verified the writer's fact question. The label and hint 'Your age at 30 June 2027' type in the year, while line 46 uses {REDUNDANCY_TAX.incomeYear} ('2026-27' at lib/constants/redundancy.ts:52). The year will go stale at rollover. The line references for 47% (lines 74 and 82) are also correct."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.63,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-content.tsx:62",
+   "file": "modules/calculator/weekly-pay-calculator-content.tsx",
+   "line": "62",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "tax-free threshold of $18,200, LITO of up to $700 (also line 217: up to $700 for incomes below $66,667)"
+   ],
+   "whys": [
+    "The values are correct, but they are typed into the prose and not taken from constants, so they will not roll over with the FY constants as the other figures on this page do."
+   ],
+   "constants": [
+    "TAX_FREE_THRESHOLD and the LITO constants in lib/constants/australian-tax.ts"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.22,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-content.tsx:68",
+   "file": "modules/calculator/weekly-pay-calculator-content.tsx",
+   "line": "68",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "$80,000 salary produces gross weekly pay of $1,538.46 (line 70: Medicare levy $30.77 per week)"
+   ],
+   "whys": [
+    "Correct today, but these are hard-coded while the step 2 figure next to them is computed from EX. A change to the levy rate would leave them stale."
+   ],
+   "constants": [
+    "EX (calculatePayBreakdown) / MEDICARE_LEVY.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-content.tsx:222",
+   "file": "modules/calculator/weekly-pay-calculator-content.tsx",
+   "line": "222",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "Under the 2025-26 thresholds (the latest the ATO has published) ..."
+   ],
+   "whys": [
+    "The page runs on FY2026-27 rates and still quotes 2025-26 Medicare low-income thresholds. Check whether the 2026-27 thresholds are out yet.",
+    "The page runs on FY2026-27 rates. Check whether the 2026-27 Medicare low-income thresholds have been published (MEDICARE_LEVY.lowIncomeThreshold / shadeInThreshold)."
+   ],
+   "constants": [
+    "MEDICARE_LEVY.lowIncomeThreshold / shadeInThreshold"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.24,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-faqs.ts:69",
+   "file": "modules/calculator/weekly-pay-calculator-faqs.ts",
+   "line": "69",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "For FY${FY}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds from each weekly payment.",
+    "For FY${FY}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds"
+   ],
+   "whys": [
+    "Bracket changes are hard-coded as prose but the year comes from SITE_CONFIG.financialYear. It is true for 2026-27 (the 16% rate falls to 15%), but the sentence will still claim a bracket change in any later year that has none. The 1 July Annual Wage Review rise to award pay is not mentioned.",
+    "I confirm the writer's question. The claim of a bracket change is unconditional prose tied to a year that changes automatically."
+   ],
+   "constants": [
+    "SITE_CONFIG.financialYear and the tax bracket constants in lib/constants (the sentence could be gated on a real bracket diff)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.11,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-faqs.ts:86",
+   "file": "modules/calculator/weekly-pay-calculator-faqs.ts",
+   "line": "86",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "A casual loading of ${EMPLOYMENT.casualLoading * 100}% is already included in the hourly rate under most Modern Awards."
+   ],
+   "whys": [
+    "This is a population claim ('most Modern Awards') with no source cited on the page. 'Modern Awards' should also be lower case ('modern awards') to match FWO style."
+   ],
+   "constants": [
+    "EMPLOYMENT.casualLoading in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.15,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/weekly-pay-calculator-faqs.ts:81",
+   "file": "modules/calculator/weekly-pay-calculator-faqs.ts",
+   "line": "81",
+   "page": "https://pay-calculator-australia.com/weekly-pay-calculator/",
+   "claims": [
+    "2026-27 is one of those years if you're paid on a Wednesday: see pay periods in 2026-27."
+   ],
+   "whys": [
+    "The year and the weekday are typed into the prose, and the link label is also typed. FY elsewhere comes from SITE_CONFIG.financialYear, so after 1 July 2027 this sentence will name a past year as the current 53-pay year. The year should come from WEEKLY_EXTRA_PAY data."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.2,
+   "needsOwner": false
+  }
+ ]
+}

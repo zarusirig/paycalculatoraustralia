@@ -4,7 +4,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { FWO_PAY_GUIDES, JOB_PAY_RATES_FROM, JOB_PAY_VERIFIED_ON } from "@/lib/data/job-pay-rates/common";
 import { OCCUPATIONS, headlineRow, type Occupation } from "@/lib/data/job-pay-rates";
 import { JOB_SECTORS, OCCUPATION_SECTOR } from "@/lib/data/job-pay-rates/sectors";
@@ -28,7 +28,7 @@ export const JOB_PAY_HUB_FAQS = [
   },
   {
     q: "What if my job is not covered by an award?",
-    a: "Award-free employees are still entitled to the National Minimum Wage ($26.44 an hour or $1,004.90 a week for adults from 1 July 2026) and the National Employment Standards. Accountants are one example: see the accountant page.",
+    a: `Award-free employees are still entitled to the National Minimum Wage (${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour or ${formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} a week for adults from 1 July 2026) and the National Employment Standards. Accountants are one example: see the accountant page.`,
   },
   {
     q: "Why can the same job fall under different awards?",
@@ -96,7 +96,7 @@ export default function JobPayRatesHubPage() {
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             The award minimum hourly, casual and weekly pay for {OCCUPATIONS.length} common Australian jobs is listed
-            below. Each rate is read from the job&rsquo;s modern award and applies from {JOB_PAY_RATES_FROM}. The tables group
+            below. Each rate is read from the job&rsquo;s modern award (jobs with no award show the National Minimum Wage) and applies from {JOB_PAY_RATES_FROM}. The tables group
             the jobs by sector and give each job&rsquo;s award and classification (or award-free status), minimum hourly
             rate, casual hourly rate and median full-time weekly earnings. Each job page adds penalty rates, overtime,
             take-home pay and what people in the job actually earn. Below the tables are doctor and dentist taxable

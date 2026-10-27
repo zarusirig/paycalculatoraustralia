@@ -2,30 +2,37 @@
 // accordion and turned into FAQPage JSON-LD in the page file, so the structured
 // data cannot drift from the page. Rates come from lib/constants.
 
-import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { CPK_KM_CAP, CURRENT_CPK_RATE, CURRENT_CPK_YEAR, PREVIOUS_CPK_RATE, centsPerKmDeduction } from "@/lib/constants/cents-per-km";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import type { FaqItem } from "@/lib/faq";
 
-/** GST registration turnover threshold (ATO); not modelled elsewhere in lib/constants. */
-const GST_THRESHOLD = formatAUD(75_000);
+/** GST registration turnover threshold (ATO "Registering for GST"), from lib/constants/gig-tax. */
+const GST_THRESHOLD = formatAUD(GST_REGISTRATION_THRESHOLD);
+
+/** Resident income tax + Medicare levy (LITO applied, no HECS) from the current-year engine. */
+const taxShare = (income: number) => {
+  const tax = calculatePayBreakdown({ grossSalary: income }).totalDeductions;
+  return `${formatAUD(tax)} (about ${Math.round((tax / income) * 100)}%)`;
+};
 const KM = CPK_KM_CAP.toLocaleString("en-AU");
 
 export const GIG_ECONOMY_FAQS: readonly FaqItem[] = [
   {
     q: "Do Uber drivers need to register for GST?",
-    a: `Yes. All rideshare drivers must register for GST regardless of income level. This special GST rule applies to taxi and ride-booking services. You must register from your first trip. Delivery-only drivers (Uber Eats, DoorDash) do not need to register until their turnover exceeds ${GST_THRESHOLD}.`,
+    a: `Yes. All rideshare drivers must register for GST regardless of income level. This special GST rule applies to taxi and ride-booking services. You must register from your first trip. Delivery-only drivers (Uber Eats, DoorDash) do not need to register until their GST turnover reaches ${GST_THRESHOLD}.`,
   },
   {
     q: "Do food delivery riders need to register for GST?",
-    a: `Only if your annual turnover from delivery work exceeds ${GST_THRESHOLD}. Delivery services are not classified as taxi or ride-booking services, so the special mandatory GST rule does not apply. Most part-time delivery riders do not reach the threshold.`,
+    a: `Only once your GST turnover reaches ${GST_THRESHOLD}. GST turnover is your gross income from all your business activities (less GST), not only delivery work. Delivery services are not classified as taxi or ride-booking services, so the special mandatory GST rule does not apply.`,
   },
   {
     q: "How much should I set aside for tax?",
-    a: "As a general rule, set aside 25-30% of your gross gig income. That amount covers income tax, the Medicare levy and GST if you are GST-registered. The exact amount depends on your total annual income, deductions, and whether you have other income sources. Use a separate bank account specifically for tax savings.",
+    a: `Set aside two amounts. Income tax and the Medicare levy rise with your taxable income: in ${SITE_CONFIG.financialYear} a resident pays ${taxShare(50_000)} on ${formatAUD(50_000)} and ${taxShare(100_000)} on ${formatAUD(100_000)}. If you are registered for GST, one-eleventh of every GST-inclusive fare is GST you owe the ATO, so set that aside on top. Other income, deductions and a study loan change your figure. Use a separate bank account for tax savings.`,
   },
   {
     q: "Can I use the cents-per-km method for rideshare?",
-    a: `Yes, but it is limited to ${KM} business kilometres: a maximum deduction of ${formatAUD(centsPerKmDeduction(CPK_KM_CAP, "2025-26"))} at ${Math.round(PREVIOUS_CPK_RATE * 100)}c/km on a 2025-26 return, and ${formatAUD(centsPerKmDeduction(CPK_KM_CAP))} at ${Math.round(CURRENT_CPK_RATE * 100)}c/km for ${CURRENT_CPK_YEAR}. Most rideshare drivers exceed ${KM} km quickly, so the logbook method suits them better. Keep a 12-week logbook to establish your business-use percentage, then apply it to all actual car expenses for the year.`,
+    a: `Yes, but it is limited to ${KM} business kilometres: a maximum deduction of ${formatAUD(centsPerKmDeduction(CPK_KM_CAP, "2025-26"))} at ${Math.round(PREVIOUS_CPK_RATE * 100)}c/km on a 2025-26 return, and ${formatAUD(centsPerKmDeduction(CPK_KM_CAP))} at ${Math.round(CURRENT_CPK_RATE * 100)}c/km for ${CURRENT_CPK_YEAR}. Kilometres above ${KM} count only under the logbook method. Keep a 12-week logbook to establish your business-use percentage, then apply it to all actual car expenses for the year.`,
   },
   {
     q: "Do I need an accountant for gig work?",

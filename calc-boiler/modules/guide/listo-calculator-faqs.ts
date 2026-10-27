@@ -1,5 +1,5 @@
-import { formatAUD } from "@/lib/constants";
-import { LISTO_2027_28, LISTO_CURRENT } from "@/lib/constants/listo";
+import { SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import { LISTO_2027_28, LISTO_CURRENT, salaryForFullListo } from "@/lib/constants/listo";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Sources: ATO "Low income
@@ -9,6 +9,9 @@ import type { Faq } from "./t3-shared";
 
 const NOW = LISTO_CURRENT;
 const NEXT = LISTO_2027_28;
+const SG_PCT = Math.round(SUPER_GUARANTEE.rate * 100);
+/** Worked example: super guarantee on a $28,000 salary. */
+const EXAMPLE_SG = 3_360;
 
 export const LISTO_FAQS: Faq[] = [
   {
@@ -21,7 +24,7 @@ export const LISTO_FAQS: Faq[] = [
   },
   {
     q: "How much is the LISTO payment?",
-    a: `${Math.round(NOW.rate * 100)}% of your concessional contributions for the year, to a maximum of ${formatAUD(NOW.maxPayment)}. If you are eligible for less than ${formatAUD(NOW.minPayment)}, the ATO rounds it up to ${formatAUD(NOW.minPayment)}. For example, $3,360 of super guarantee gives 15% = $504, so the payment is capped at ${formatAUD(NOW.maxPayment)}.`,
+    a: `${Math.round(NOW.rate * 100)}% of your concessional contributions for the year, to a maximum of ${formatAUD(NOW.maxPayment)}. If you are eligible for less than ${formatAUD(NOW.minPayment)}, the ATO rounds it up to ${formatAUD(NOW.minPayment)}. For example, ${formatAUD(EXAMPLE_SG)} of super guarantee gives ${Math.round(NOW.rate * 100)}% = ${formatAUD(EXAMPLE_SG * NOW.rate)}, so the payment is capped at ${formatAUD(NOW.maxPayment)}.`,
   },
   {
     q: "How is LISTO changing from 1 July 2027?",
@@ -45,6 +48,6 @@ export const LISTO_FAQS: Faq[] = [
   },
   {
     q: "What is the lowest salary that gets the full LISTO?",
-    a: `At a 12% super guarantee rate the full ${formatAUD(NOW.maxPayment)} needs about $27,778 of salary today. Under the 2027-28 rules the full ${formatAUD(NEXT.maxPayment)} needs a salary of ${formatAUD(NEXT.incomeThreshold)}, the top of the new income limit.`,
+    a: `At a ${SG_PCT}% super guarantee rate the full ${formatAUD(NOW.maxPayment)} needs about ${formatAUD(salaryForFullListo(NOW))} of salary today. Under the 2027-28 rules the full ${formatAUD(NEXT.maxPayment)} needs a salary of ${formatAUD(NEXT.incomeThreshold)}, the top of the new income limit.`,
   },
 ];

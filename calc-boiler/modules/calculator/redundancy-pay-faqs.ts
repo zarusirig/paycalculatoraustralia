@@ -6,10 +6,12 @@
 // a Server Component importing an array across that boundary gets a client
 // reference, not the data.
 
-import { formatAUD } from "@/lib/constants";
+import { NOTICE_PERIODS, formatAUD } from "@/lib/constants";
+import { LSL_JURISDICTIONS } from "@/lib/constants/long-service-leave";
 import {
   ETP_RATES,
   GENUINE_REDUNDANCY_AGE_LIMIT,
+  NES_REDUNDANCY_SCALE,
   PRESERVATION_AGE,
   REDUNDANCY_TAX,
   REDUNDANCY_TAX_2025_26,
@@ -36,10 +38,20 @@ const TAX_50K = (years: number) =>
 const T50_5 = TAX_50K(5);
 const T50_2 = TAX_50K(2);
 
+// The NES scale in words, read from the tested table so the prose cannot drift.
+const SCALE_PAID = NES_REDUNDANCY_SCALE.filter((b) => b.weeks > 0 && b.toYears !== null);
+const SCALE_TOP = NES_REDUNDANCY_SCALE[NES_REDUNDANCY_SCALE.length - 1];
+const SCALE_TEXT =
+  `${SCALE_PAID[0].weeks} weeks' pay at ${SCALE_PAID[0].fromYears} year, ` +
+  SCALE_PAID.slice(1).map((b) => `${b.weeks} at ${b.fromYears}`).join(", ") +
+  `, and ${SCALE_TOP.weeks} weeks from ${SCALE_TOP.fromYears} years`;
+const NOTICE_MIN = NOTICE_PERIODS[0].weeks;
+const NOTICE_MAX = NOTICE_PERIODS[NOTICE_PERIODS.length - 1].weeks;
+
 export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   {
     q: "How much redundancy pay am I entitled to?",
-    a: `Under the National Employment Standards, your redundancy pay is set by your completed years of continuous service: 4 weeks' pay at 1 year, 6 at 2, 7 at 3, 8 at 4, 10 at 5, 11 at 6, 13 at 7, 14 at 8, 16 at 9, and 12 weeks from 10 years. With less than 1 year of service, you get no NES redundancy pay. An award, enterprise agreement or contract can give you more, never less.`,
+    a: `Under the National Employment Standards, your redundancy pay is set by your completed years of continuous service: ${SCALE_TEXT}. With less than 1 year of service, you get no NES redundancy pay. An award, enterprise agreement or contract can give you more, never less.`,
   },
   {
     q: "How is redundancy pay calculated?",
@@ -67,11 +79,11 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "How much redundancy pay do you get in NSW?",
-    a: "NSW redundancy pay is the same as in every other state: the National Employment Standards scale, from 4 weeks at 1 year to 16 weeks at 9 years and 12 weeks from 10 years, for national system employees. NSW adds long service leave under its 1955 Act, with a pro-rata payment from 5 years when the employer ends the job for a reason other than serious and wilful misconduct.",
+    a: `NSW redundancy pay is the same as in every other state: the National Employment Standards scale, from ${nesRedundancyWeeks(1)} weeks at 1 year to ${nesRedundancyWeeks(9)} weeks at 9 years and ${nesRedundancyWeeks(10)} weeks from 10 years, for national system employees. NSW adds long service leave under its 1955 Act, with a pro-rata payment from ${LSL_JURISDICTIONS.nsw.proRataFromYears} years when the employer ends the job for a reason other than serious and wilful misconduct.`,
   },
   {
     q: "What are redundancy entitlements in Victoria?",
-    a: "Victorian redundancy pay follows the National Employment Standards scale, the same as every state, for national system employees. On top of that, you are paid notice or pay in lieu, unused annual leave and long service leave. Under Victoria's 2018 Act, long service leave is payable from 7 years of continuous service, however the employment ends.",
+    a: `Victorian redundancy pay follows the National Employment Standards scale, the same as every state, for national system employees. On top of that, you are paid notice or pay in lieu, unused annual leave and long service leave. Under Victoria's 2018 Act, long service leave is payable from ${LSL_JURISDICTIONS.vic.takeAfterYears} years of continuous service, however the employment ends.`,
   },
   {
     q: "Do small businesses have to pay redundancy?",
@@ -83,7 +95,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "Is notice pay part of redundancy pay?",
-    a: "No. Notice pay and redundancy pay are separate entitlements and you get both. Notice is 1 to 4 weeks depending on service, plus 1 week if you are over 45 with at least 2 years' service. Payment in lieu of notice is an employment termination payment under the ATO's rules, not ordinary salary. How much of a package falls inside the genuine redundancy tax-free limit depends on how it is structured, so check the income statement your employer reports.",
+    a: `No. Notice pay and redundancy pay are separate entitlements and you get both. Notice is ${NOTICE_MIN} to ${NOTICE_MAX} weeks depending on service, plus 1 week if you are over 45 with at least 2 years' service. Payment in lieu of notice is an employment termination payment under the ATO's rules, not ordinary salary. How much of a package falls inside the genuine redundancy tax-free limit depends on how it is structured, so check the income statement your employer reports.`,
   },
   {
     q: "Is superannuation paid on redundancy pay?",
@@ -95,7 +107,7 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "Why does redundancy pay drop from 16 to 12 weeks at 10 years?",
-    a: "The usual explanation is long service leave: by 10 years most employees also qualify for it under their state or territory Act, and it is paid out on top of redundancy pay. The 12 weeks is the NES minimum; many agreements keep paying more after 10 years.",
+    a: `The usual explanation is long service leave: the long service leave law of every state and territory gives full long service leave by 10 years of continuous service, and it is paid out on top of redundancy pay. The ${nesRedundancyWeeks(10)} weeks is the NES minimum, and an award, agreement or contract can pay more.`,
   },
   // People Also Ask (Google AU, Sept 2026) for "redundancy pay calculator" and
   // "redundancy payment": docs/seo/2026-09-24-paa-optimisation.md.
@@ -109,6 +121,6 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   },
   {
     q: "Is it better to take redundancy or resign?",
-    a: "If your job really is being made redundant, taking the redundancy is usually worth more. Redundancy brings NES redundancy pay, notice or pay in lieu, and a tax-free amount for a genuine redundancy. If you resign you get your unused annual leave and any long service leave your state's rules pay out, but no redundancy pay. Get the offer in writing before you decide.",
+    a: "If your job really is being made redundant, resigning gives up your NES redundancy pay and the tax-free amount for a genuine redundancy. Redundancy also brings notice or pay in lieu. If you resign you still get your unused annual leave and any long service leave your state's rules pay out. Get the offer in writing before you decide.",
   },
 ];

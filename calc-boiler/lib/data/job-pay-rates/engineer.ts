@@ -73,7 +73,7 @@ export const ENGINEER: Occupation = {
     "Employees doing professional engineering work are covered by the Professional Employees Award 2020 [MA000065], whichever industry their employer is in. The award covers graduate and experienced engineers, as well as scientists, IT professionals and quality auditors.",
     "A graduate engineer (someone with a 4 or 5-year degree recognised by Engineers Australia) starts at Level 1 pay point 1.1 and moves through pay points 1.2 to 1.4. An experienced engineer (a member of Engineers Australia, or 4 years' professional experience after qualifying) is Level 2, and Levels 3 and 4 cover engineers with greater independence, responsibility and seniority (Schedule A).",
     "The award sets annual salaries. It does not cover engineers in industries with their own award that excludes it, for example electricity, water, rail, black coal mining or state government agencies (cl 4.2), nor engineers in state or local government covered by another award.",
-    "Engineering technicians and draftspersons are not professional engineers and are usually covered by the Manufacturing Award or an industry award instead.",
+    "Engineering technicians and draftspersons are not professional engineers, so this award does not cover them. In manufacturing they sit in the Manufacturing Award's technical stream, from Engineering/Laboratory Technician Level I (C9) to Principal Technical Officer (C2(b)), whose definitions cover draughting, planning and technical work (Schedule A.4.8 to A.4.16). In other industries, the award for that industry applies.",
   ],
   tables: [
     {
@@ -133,7 +133,7 @@ export const ENGINEER: Occupation = {
     },
     {
       q: "What do engineers actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,217 a week for civil engineering professionals (ABS, May 2025), about $115,284 a year, far above the award, because most engineers are paid market salaries. Other engineering disciplines have their own medians: the civil, electrical and mechanical engineer pages show each one, with ATO tax-return figures.",
+      a: `Jobs and Skills Australia reports median full-time earnings of $${MEDIAN.medianWeekly.toLocaleString("en-AU")} a week for civil engineering professionals (ANZSCO ${MEDIAN.anzscoCode}, ABS, May 2025), about $${(MEDIAN.medianWeekly * 52).toLocaleString("en-AU")} a year, above every engineer level in the award. That median is for civil engineering professionals only. Other engineering disciplines have their own medians: the civil, electrical and mechanical engineer pages show each one, with ATO tax-return figures.`,
     },
   ],
   spokes: [

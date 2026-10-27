@@ -10,7 +10,9 @@ import {
   WEEKDAY_PUBLIC_HOLIDAYS_2026,
   WORKING_DAYS_PER_YEAR,
   contractorRateToEquivalentSalary,
+  salaryToContractorDayRate,
 } from "@/lib/constants/contractor-rate";
+import { GST_REGISTRATION_THRESHOLD } from "@/lib/constants/gig-tax";
 import Link from "next/link";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
@@ -19,6 +21,8 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
+  calculateSuper,
+  LITO,
   formatAUD,
   formatNegAUD,
   formatPercent,
@@ -27,7 +31,7 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { CALENDAR_YEAR, PENALTY_UNIT, QUARTERS_2026_27, formatIso } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
 
@@ -39,6 +43,27 @@ const CC_CAP = SUPER_GUARANTEE.concessionalCap;
 // Medicare levy avoided, less 15% contributions tax (taxable income stays in
 // the 30% bracket after the contribution).
 const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
+
+// Worked example and comparison table: $50/hr × 38 hrs × 48 weeks, rate
+// entered GST-inclusive, super not included (the calculator's defaults).
+const EXAMPLE_GROSS = 50 * 38 * 48;
+const EXAMPLE_EX_GST = Math.round(EXAMPLE_GROSS / 1.1);
+const EXAMPLE_SUPER = calculateSuper(EXAMPLE_EX_GST);
+// Employee side of the comparison table, on a salary of EXAMPLE_GROSS.
+const EMPLOYEE_LEAVE = Math.round((EXAMPLE_GROSS / EMPLOYMENT.weeksPerYear) * EMPLOYMENT.annualLeaveWeeks);
+const EMPLOYEE_SICK = Math.round((EXAMPLE_GROSS / (EMPLOYMENT.weeksPerYear * 5)) * EMPLOYMENT.personalLeaveDays);
+const EMPLOYEE_SG = calculateSuper(EXAMPLE_GROSS);
+const WORKERS_COMP_LOW = 800;
+const EMPLOYEE_BENEFITS = EMPLOYEE_LEAVE + EMPLOYEE_SICK + EMPLOYEE_SG + WORKERS_COMP_LOW;
+// Hourly rate (ex GST) a contractor must bill to match a salary, under the
+// rate-to-salary assumptions (salaryToContractorDayRate, per billable hour).
+const matchHourly = (salary: number) => {
+  const r = salaryToContractorDayRate(salary);
+  return r.billedIncomeNeeded / (r.billableDays * CA.hoursPerDay);
+};
+const MATCH_EXAMPLE_HOURLY = matchHourly(EXAMPLE_GROSS);
+const MATCH_40_HOURLY = matchHourly(40 * EMPLOYMENT.hoursPerYear);
+const BAS_QUARTER_DATES = QUARTERS_2026_27.map((q) => formatIso(q.iso, "long")).join(", ");
 
 /** Contract hourly rates shown in the rate-to-salary table. */
 const SALARY_TABLE_RATES = [30, 40, 50, 60, 75, 100, 125, 150] as const;
@@ -101,16 +126,16 @@ export default function ContractorPayCalculatorContent() {
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
             <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
             <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income. You remit it to the ATO." />
-            <ResultCard title="Superannuation" desc={`Voluntary or employer-provided super shown separately. The default rate is ${formatPercent(SUPER_GUARANTEE.rate, 0)} from July 2025.`} />
+            <ResultCard title="Superannuation" desc={`Voluntary or employer-provided super shown separately. The default rate is ${formatPercent(SUPER_GUARANTEE.rate, 0)} from ${SUPER_GUARANTEE.effectiveDate}.`} />
             <ResultCard title="Net Pay" desc="Final contractor take-home pay after tax, Medicare, and contributions. This is what you actually keep." />
-            <ResultCard title="Working Weeks" desc="Contractors typically work 46-48 weeks per year (52 minus holidays). Adjust this to match your situation." />
+            <ResultCard title="Working Weeks" desc="The weeks you bill in a year: 52 less your leave, public holidays and time between contracts. Adjust this to match your situation." />
           </div>
 
           <MethodologyDisclosure className="mt-4">
             <ol className="list-decimal space-y-1 pl-4">
               <li>Gross annual income = hourly rate × hours/week × weeks/year</li>
               <li>If GST is included, strip 10% (÷ 1.1) to find income before GST</li>
-              <li>If super is included, strip {formatPercent(SUPER_GUARANTEE.rate, 0)} (÷ 1.12) to find base salary</li>
+              <li>If super is included, strip {formatPercent(SUPER_GUARANTEE.rate, 0)} (÷ {(1 + SUPER_GUARANTEE.rate).toFixed(2)}) to find base salary</li>
               <li>Apply ATO resident tax brackets to taxable income</li>
               <li>Apply LITO offset where eligible</li>
               <li>Add 2% Medicare levy</li>
@@ -126,20 +151,20 @@ export default function ContractorPayCalculatorContent() {
             Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>2% Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Employees have PAYG withholding taken out of each pay. ABN contractors invoice clients for the gross amount and pay their own income tax through PAYG instalments.
           </p>
           <p className="mb-4 text-warmgray">
-            The Australian Taxation Office (ATO) requires every contractor operating under an ABN to lodge a tax return. Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST and remit <strong>10%</strong> of invoiced amounts quarterly via a Business Activity Statement (BAS). Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
+            The Australian Taxation Office (ATO) requires every contractor operating under an ABN to lodge a tax return. Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more</strong> must register for GST within 21 days. Once registered, you add <strong>10%</strong> GST to your price (1/11 of the GST-inclusive invoice total) and pay it to the ATO with your Business Activity Statement (BAS), lodged monthly or quarterly. Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Step-by-Step Contractor Pay Calculation</h3>
           <ol className="list-decimal space-y-2 pl-6 text-warmgray">
-            <li><strong>Calculate gross annual income:</strong> Hourly rate ($50) × hours per week (38) × working weeks per year (48) = <strong>$91,200</strong></li>
-            <li><strong>Strip GST if included:</strong> $91,200 ÷ 1.1 = <strong>$82,909</strong> (the remaining $8,291 is GST you owe the ATO)</li>
-            <li><strong>Set aside superannuation:</strong> $82,909 × {formatPercent(SUPER_GUARANTEE.rate, 0)} = <strong>$9,949</strong> contributed to your super fund</li>
-            <li><strong>Calculate income tax:</strong> Apply ATO progressive marginal tax brackets to your taxable income of $82,909</li>
-            <li><strong>Apply LITO:</strong> Subtract the Low Income Tax Offset if your taxable income falls below $66,667</li>
-            <li><strong>Add Medicare levy:</strong> $82,909 × 2% = <strong>$1,658</strong></li>
+            <li><strong>Calculate gross annual income:</strong> Hourly rate ($50) × hours per week (38) × working weeks per year (48) = <strong>{formatAUD(EXAMPLE_GROSS)}</strong></li>
+            <li><strong>Strip GST if included:</strong> {formatAUD(EXAMPLE_GROSS)} ÷ 1.1 = <strong>{formatAUD(EXAMPLE_EX_GST)}</strong> (the remaining {formatAUD(EXAMPLE_GROSS - EXAMPLE_EX_GST)} is GST you owe the ATO)</li>
+            <li><strong>Work out super:</strong> {formatAUD(EXAMPLE_EX_GST)} × {formatPercent(SUPER_GUARANTEE.rate, 0)} = <strong>{formatAUD(EXAMPLE_SUPER)}</strong>, the super you would fund yourself at the Super Guarantee rate. It is shown separately, and this example does not claim it as a tax deduction. If your rate already includes super, tick &quot;Includes Superannuation&quot; and the calculator takes it out first (÷ {(1 + SUPER_GUARANTEE.rate).toFixed(2)}).</li>
+            <li><strong>Calculate income tax:</strong> Apply ATO progressive marginal tax brackets to your taxable income of {formatAUD(EXAMPLE_EX_GST)}</li>
+            <li><strong>Apply LITO:</strong> Subtract the Low Income Tax Offset if your taxable income falls below {formatAUD(LITO.nilOffsetIncome)}</li>
+            <li><strong>Add Medicare levy:</strong> {formatAUD(EXAMPLE_EX_GST)} × 2% = <strong>{formatAUD(calculateMedicareLevy(EXAMPLE_EX_GST))}</strong></li>
             <li><strong>Determine take-home pay:</strong> Gross income minus income tax minus Medicare levy equals your net contractor earnings</li>
           </ol>
           <p className="mt-3 text-sm text-warmgray-light">
-            BAS lodgement deadlines fall on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July. Late BAS lodgements can attract a failure-to-lodge penalty of one penalty unit &mdash; <strong>{formatAUD(PENALTY_UNIT.amount)} from {PENALTY_UNIT.from}</strong> &mdash; for each {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units for a small business.
+            Quarterly BAS is due on the 28th of the month after each quarter ends, except the October to December quarter, which is due on 28 February. For {CALENDAR_YEAR.incomeYear} the dates are {BAS_QUARTER_DATES}. Late BAS lodgements can attract a failure-to-lodge penalty of one penalty unit &mdash; <strong>{formatAUD(PENALTY_UNIT.amount)} from {PENALTY_UNIT.from}</strong> &mdash; for each {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units for a small business.
           </p>
         </section>
 
@@ -167,12 +192,12 @@ export default function ContractorPayCalculatorContent() {
                 <tr>
                   <td className="px-4 py-3 text-navy">Paid Leave (4 weeks)</td>
                   <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$7,015 (included)</td>
+                  <td className="px-4 py-3 text-right text-eucalyptus-dark">{formatAUD(EMPLOYEE_LEAVE)} (included)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-navy">Superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)})</td>
                   <td className="px-4 py-3 text-right text-ochre">Self-funded</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$10,944 (employer-paid)</td>
+                  <td className="px-4 py-3 text-right text-eucalyptus-dark">{formatAUD(EMPLOYEE_SG)} (employer-paid)</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 text-navy">Workers&apos; Comp Insurance</td>
@@ -187,18 +212,18 @@ export default function ContractorPayCalculatorContent() {
                 <tr>
                   <td className="px-4 py-3 text-navy">Sick Leave (10 days)</td>
                   <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$3,508 (included)</td>
+                  <td className="px-4 py-3 text-right text-eucalyptus-dark">{formatAUD(EMPLOYEE_SICK)} (included)</td>
                 </tr>
                 <tr className="bg-eucalyptus-light/30">
                   <td className="px-4 py-3 font-bold text-navy">True Cost Difference</td>
                   <td className="px-4 py-3 text-right font-bold text-navy">—</td>
-                  <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">+$22,267 in benefits</td>
+                  <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">+{formatAUD(EMPLOYEE_BENEFITS)} in benefits</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p className="mt-3 text-sm text-warmgray-light">
-            To match an employee on $91,200, a contractor needs to charge approximately <strong>$65–$70/hour</strong> (not $50/hour) to cover lost entitlements. Use our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a personalised side-by-side comparison.
+            To match an employee on a {formatAUD(EXAMPLE_GROSS)} salary, a contractor needs to bill about <strong>{formatAUD(MATCH_EXAMPLE_HOURLY, 2)} an hour</strong> excluding GST (not $50 an hour) to cover super, leave, insurance and admin, using the assumptions in the rate-to-salary section below. Use our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a personalised side-by-side comparison.
           </p>
         </section>
 
@@ -224,11 +249,11 @@ export default function ContractorPayCalculatorContent() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Tax Obligations Do Contractors Have?</h2>
           <p className="mb-4 text-warmgray">
-            Australian contractors have <strong>3 core tax obligations</strong>: income tax through PAYG instalments, GST registration and lodgement above the $75,000 threshold, and optional (but recommended) superannuation contributions at {formatPercent(SUPER_GUARANTEE.rate, 0)} of assessable income.
+            Australian contractors have <strong>2 core tax obligations</strong>: income tax through PAYG instalments, and GST registration and lodgement once your GST turnover reaches the {formatAUD(GST_REGISTRATION_THRESHOLD)} threshold. Super is not a tax obligation for a sole trader: you choose whether to contribute to your own fund (see Superannuation for Contractors below).
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">GST Registration and BAS Lodgement</h3>
           <p className="mb-3 text-warmgray">
-            Contractors with annual turnover exceeding <strong>$75,000</strong> must register for GST. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and remit it to the ATO on your quarterly BAS. Taxi drivers and rideshare drivers (including Uber drivers) must register for GST regardless of turnover. Voluntary GST registration below $75,000 allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
+            Contractors with a GST turnover of <strong>{formatAUD(GST_REGISTRATION_THRESHOLD)} or more</strong> must register for GST within 21 days. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and pay it to the ATO with your BAS. Taxi drivers and rideshare drivers (including Uber drivers) must register for GST regardless of turnover. Voluntary GST registration below {formatAUD(GST_REGISTRATION_THRESHOLD)} allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">PAYG Instalments and Income Tax</h3>
           <p className="mb-3 text-warmgray">
@@ -357,7 +382,7 @@ export default function ContractorPayCalculatorContent() {
               <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong>, a difficult amount to pay at once.
             </li>
             <li>
-              <strong>Setting the hourly rate too low:</strong> Pricing contractor rates at the same level as employee hourly rates ignores the <strong>30–40%</strong> loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately <strong>$56–$64/hr</strong> as a contractor.
+              <strong>Setting the hourly rate too low:</strong> Pricing contractor rates at the same level as employee hourly rates leaves out super, leave, insurance and admin costs. Under the assumptions in the rate-to-salary section above, matching a $40/hr employee rate needs about <strong>{formatAUD(MATCH_40_HOURLY, 2)}/hr</strong> as a contractor, <strong>{formatPercent(MATCH_40_HOURLY / 40 - 1, 0)} more</strong>.
             </li>
             <li>
               <strong>Missing legitimate deductions:</strong> Contractors overlook deductible expenses including home office costs ({RETURN_2026.wfhFixedRateCents} cents per work hour under the fixed-rate method for {RETURN_2026.incomeYear}), vehicle logbook expenses, professional development courses, accounting software subscriptions, and professional indemnity insurance premiums.

@@ -42,12 +42,13 @@ import { getGuideAuthorship } from "@/lib/authors";
 import {
   NURSING_PAY_STATES_NOT_BUILT,
   annualFor,
+  getNursingPay,
   registeredNurseRange,
   takeHomeHref,
   type NursingStateData,
   type ScaleFamily,
 } from "@/lib/data/nursing-pay";
-import { NURSES_AWARD } from "@/lib/data/nursing-pay/nurses-award-2020";
+import { NURSES_AWARD, NURSES_AWARD_PENALTIES } from "@/lib/data/nursing-pay/nurses-award-2020";
 import { annualFromWeekly, headlineRow, rowAnnual } from "@/lib/data/job-pay-rates";
 import { DOCTOR } from "@/lib/data/job-pay-rates/doctor";
 import { PHYSIOTHERAPIST } from "@/lib/data/job-pay-rates/physiotherapist";
@@ -92,6 +93,42 @@ function rangeCell(range: { low: number; high: number } | null) {
   if (!range) return "Not published";
   return range.low === range.high ? formatAUD(range.low) : `${formatAUD(range.low)} – ${formatAUD(range.high)}`;
 }
+
+/** One published penalty row from a state's nursing data, by exact row label. Throws if the row is missing. */
+function statePenalty(slug: string, label: string): { value: string; note?: string } {
+  const row = getNursingPay(slug)?.penalties.flatMap((p) => p.rows).find((r) => r.label === label);
+  if (!row) throw new Error(`healthcare hub: ${slug} penalty "${label}" not found`);
+  return row;
+}
+
+/** One Nurses Award 2020 penalty value (clauses 20 and 21), by exact row label. */
+function awardPenalty(label: string): string {
+  const row = NURSES_AWARD_PENALTIES.find((r) => r.label === label);
+  if (!row) throw new Error(`healthcare hub: Nurses Award penalty "${label}" not found`);
+  return row.value;
+}
+
+/** "+20%" reads as "20%" inside a sentence. */
+const bare = (value: string) => value.replace(/^\+/, "");
+
+const AWARD_SAT = awardPenalty("Saturday ordinary hours");
+const AWARD_SUN = awardPenalty("Sunday ordinary hours");
+const AWARD_AFTERNOON = awardPenalty("Afternoon shift, Monday to Friday");
+const AWARD_NIGHT = awardPenalty("Night shift, Monday to Friday");
+const NSW_NIGHT = statePenalty("nsw", "Night shift starting 4pm to before 4am");
+const NSW_SAT = statePenalty("nsw", "Saturday ordinary hours");
+const NSW_SUN = statePenalty("nsw", "Sunday ordinary hours");
+const VIC_NIGHT = statePenalty("vic", "Night shift allowance, Monday to Thursday");
+const VIC_WEEKEND = statePenalty("vic", "All ordinary hours, midnight Friday to midnight Sunday");
+const QLD_NIGHT = statePenalty("qld", "Night shift");
+const QLD_SAT = statePenalty("qld", "Saturday ordinary hours");
+const QLD_SUN = statePenalty("qld", "Sunday ordinary hours");
+const WA_NIGHT = statePenalty("wa", "Night shift");
+const WA_SAT = statePenalty("wa", "Saturday ordinary hours");
+const WA_SUN = statePenalty("wa", "Sunday ordinary hours");
+const SA_NIGHT = statePenalty("sa", "Rostered night shift, Monday to Friday");
+/** Gap between the highest state entry step and the award's RN level 1 pay point 1, both weekly x 52 or published annual. */
+const ENTRY_GAP_OVER_AWARD = RN_ENTRY.high - AWARD_RN1.points[0].weekly * 52;
 
 function afterTax(gross: number): number {
   return calculatePayBreakdown({ grossSalary: gross }).takeHomePay;
@@ -265,10 +302,10 @@ export default function HealthcareWorkerPayPage() {
             <section id="nurses-award-2020">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Nurses Award 2020: What It Is and Who It Actually Covers</h2>
               <p>
-                The <strong>Nurses Award 2020</strong> (award code MA000034) is the federal modern award for nurses. It is the single most searched-for nursing pay document in Australia, and it is also the most misread: it is a <strong>safety net</strong>, not a pay scale. It sets the minimum below which no nurse in the country may lawfully be paid. It does not describe what most nurses are paid.
+                The <strong>Nurses Award 2020</strong> (award code MA000034) is the federal modern award for nurses. It is a <strong>safety net</strong>, not a pay scale: it sets the legal minimum for nurses in the national workplace relations system. State public sector employees in NSW, Queensland, South Australia, Tasmania and Western Australia are outside that system and are covered by their state&apos;s instruments instead. The award is not the rate an enterprise agreement or state award pays.
               </p>
               <p>
-                If you work in a state public hospital, the award is almost certainly not your rate. Every state public health system has an enterprise agreement, certified agreement or state award that pays well above the floor, in some cases by more than $25,000 a year at the entry step. The award matters where no agreement applies: private hospitals, GP and specialist clinics, aged care, and some agency work.
+                If you work in a state public hospital, the award is almost certainly not your rate. Every state public health system has an enterprise agreement, certified agreement or state award that pays above the floor. The highest entry step, in {RN_ENTRY.highState}, is {formatAUD(ENTRY_GAP_OVER_AWARD)} a year above the award&apos;s registered nurse level 1 entry rate. The award matters where no agreement applies: private hospitals, GP and specialist clinics, aged care, and some agency work.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -313,7 +350,7 @@ export default function HealthcareWorkerPayPage() {
                 Yes. &ldquo;Nurses Award 2020&rdquo; is the award&apos;s formal name, made in 2020 as part of the modern award review; it is the same instrument people mean when they search for the &ldquo;nurses award&rdquo;. Its rates change most years. The general stream was last varied for 1 July 2026 and the aged care stream for 1 August 2026, so any figure you find without an operative date attached is worthless.
               </p>
               <p>
-                Under the award, ordinary hours on a Saturday pay 150% and on a Sunday 175%; a weekday afternoon shift attracts 12.5% and a weekday night shift 15%. State agreements generally pay more than that, which is a second reason not to use award penalties to check a public hospital payslip. See the state pages above for the loadings that actually apply to you, and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings stack.
+                Under the award, ordinary hours on a Saturday pay {AWARD_SAT} and on a Sunday {AWARD_SUN}; a weekday afternoon shift attracts {bare(AWARD_AFTERNOON)} and a weekday night shift {bare(AWARD_NIGHT)}. State public health instruments set their own loadings, and the table below shows where they differ from the award. That is a second reason not to use award penalties to check a public hospital payslip. See the state pages above for the loadings that actually apply to you, and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings stack.
               </p>
             </section>
 
@@ -321,7 +358,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates &amp; Shift Allowances</h2>
               <p>
-                Healthcare workers, nurses and midwives in particular, are paid loadings for working outside standard business hours. Each state sets these loadings in its own instrument, and they do <strong>not</strong> follow a common national structure, as the table below shows. Night shift is worth 20% in NSW, 20% in Queensland, 20.5% in South Australia, a flat dollar allowance per shift in Victoria and 35% in Western Australia. Anyone quoting one national set of nursing penalty rates is quoting a number that is wrong in at least four states.
+                Healthcare workers, nurses and midwives in particular, are paid loadings for working outside standard business hours. Each state sets these loadings in its own instrument, and they do <strong>not</strong> follow a common national structure, as the table below shows. Night shift is worth {bare(NSW_NIGHT.value)} in NSW, {bare(QLD_NIGHT.value)} in Queensland, {bare(SA_NIGHT.value)} in South Australia, a flat dollar allowance per shift in Victoria ({VIC_NIGHT.value} Monday to Thursday) and {bare(WA_NIGHT.value)} in Western Australia. No single national set of nursing penalty rates matches all of them.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -335,19 +372,19 @@ export default function HealthcareWorkerPayPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/nsw/" className="font-medium text-eucalyptus-dark hover:underline">NSW</Link></td><td className="px-5 py-3">+20% (shift starting 4pm–4am)</td><td className="px-5 py-3">Time and a half</td><td className="px-5 py-3">Time and three quarters</td></tr>
-                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/vic/" className="font-medium text-eucalyptus-dark hover:underline">VIC</Link></td><td className="px-5 py-3">$114.00 a shift (Mon–Thu)</td><td className="px-5 py-3">Time and a half</td><td className="px-5 py-3">Time and a half</td></tr>
-                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/qld/" className="font-medium text-eucalyptus-dark hover:underline">QLD</Link></td><td className="px-5 py-3">+20% (Grade 1: 17.5%)</td><td className="px-5 py-3">Time and a half</td><td className="px-5 py-3">Time and three quarters</td></tr>
-                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/wa/" className="font-medium text-eucalyptus-dark hover:underline">WA</Link></td><td className="px-5 py-3">+35%</td><td className="px-5 py-3">+50%</td><td className="px-5 py-3">+75%</td></tr>
-                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/sa/" className="font-medium text-eucalyptus-dark hover:underline">SA</Link></td><td className="px-5 py-3">+20.5%</td><td className="px-5 py-3">Set by the parent award, not published here</td><td className="px-5 py-3">Set by the parent award, not published here</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/nsw/" className="font-medium text-eucalyptus-dark hover:underline">NSW</Link></td><td className="px-5 py-3">{NSW_NIGHT.value} (shift starting 4pm to before 4am)</td><td className="px-5 py-3">{NSW_SAT.value}</td><td className="px-5 py-3">{NSW_SUN.value}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/vic/" className="font-medium text-eucalyptus-dark hover:underline">VIC</Link></td><td className="px-5 py-3">{VIC_NIGHT.value} (Monday to Thursday)</td><td className="px-5 py-3">{VIC_WEEKEND.value}</td><td className="px-5 py-3">{VIC_WEEKEND.value}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/qld/" className="font-medium text-eucalyptus-dark hover:underline">QLD</Link></td><td className="px-5 py-3">{QLD_NIGHT.value}<span className="block text-xs text-warmgray-light">{QLD_NIGHT.note}</span></td><td className="px-5 py-3">{QLD_SAT.value}</td><td className="px-5 py-3">{QLD_SUN.value}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/wa/" className="font-medium text-eucalyptus-dark hover:underline">WA</Link></td><td className="px-5 py-3">{WA_NIGHT.value}</td><td className="px-5 py-3">{WA_SAT.value}</td><td className="px-5 py-3">{WA_SUN.value}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/sa/" className="font-medium text-eucalyptus-dark hover:underline">SA</Link></td><td className="px-5 py-3">{SA_NIGHT.value}</td><td className="px-5 py-3">Set by the parent award, not published here</td><td className="px-5 py-3">Set by the parent award, not published here</td></tr>
                       <tr><td className="px-5 py-3"><Link href="/healthcare-worker-pay/tas/" className="font-medium text-eucalyptus-dark hover:underline">TAS</Link></td><td className="px-5 py-3">Not published by the Department</td><td className="px-5 py-3">Not published by the Department</td><td className="px-5 py-3">Not published by the Department</td></tr>
-                      <tr className="bg-sandstone/40"><td className="px-5 py-3 font-medium text-navy">Nurses Award 2020 (the floor)</td><td className="px-5 py-3">+15%</td><td className="px-5 py-3">150%</td><td className="px-5 py-3">175%</td></tr>
+                      <tr className="bg-sandstone/40"><td className="px-5 py-3 font-medium text-navy">Nurses Award 2020 (the floor)</td><td className="px-5 py-3">{AWARD_NIGHT}</td><td className="px-5 py-3">{AWARD_SAT}</td><td className="px-5 py-3">{AWARD_SUN}</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                Every cell above is quoted from a named clause of the instrument that sets it. The clause numbers are on the state pages. Cells marked not published are gaps in the sources quoted here, not zeroes. Weekend rates generally <em>replace</em> the shift loading rather than stacking on top of it, which is the single most common payslip misunderstanding in nursing. See the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model a specific roster and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings interact.
+                Every cell above is quoted from a named clause of the instrument that sets it. The clause numbers are on the state pages. Cells marked not published are gaps in the sources quoted here, not zeroes. In NSW, Queensland and Western Australia, weekend rates <em>replace</em> the shift loading rather than stacking on top of it. See the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model a specific roster and the <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link> for how loadings interact.
               </p>
             </section>
 

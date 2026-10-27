@@ -9,9 +9,12 @@ import {
   formatAUD,
   formatPercent,
 } from "@/lib/constants";
+import { MLS_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
 import {
   LEGISLATED_CUT_2027_28,
   TAX_BRACKETS_2027_28,
+  FOREIGN_TABLE_YEAR,
+  WHM_TABLE_YEAR,
   WHM_TAX_BRACKETS_2025_26,
   analyseIncome,
   nilTaxIncomeOnScale,
@@ -41,7 +44,7 @@ const thresholds = B.slice(0, -1).map((b) => money(b.max)).join(", ");
 export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   {
     q: `What are the Australian tax brackets for ${FY}?`,
-    a: `For ${FY} (1 July 2026 to 30 June 2027) Australian residents pay: nil on the first ${money(B[0].max)}; ${pct(B[1].rate)} on income from ${money(B[1].min)} to ${money(B[1].max)}; ${pct(B[2].rate)} from ${money(B[2].min)} to ${money(B[2].max)}; ${pct(B[3].rate)} from ${money(B[3].min)} to ${money(B[3].max)}; and ${pct(top.rate)} on income over ${money(top.min - 1)}. The 2% Medicare levy is charged on top.`,
+    a: `For ${FY} (1 July 2026 to 30 June 2027) Australian residents pay: nil on the first ${money(B[0].max)}; ${pct(B[1].rate)} on income from ${money(B[1].min)} to ${money(B[1].max)}; ${pct(B[2].rate)} from ${money(B[2].min)} to ${money(B[2].max)}; ${pct(B[3].rate)} from ${money(B[3].min)} to ${money(B[3].max)}; and ${pct(top.rate)} on income over ${money(top.min - 1)}. The ${pct(MEDICARE_LEVY.rate)} Medicare levy is charged on top.`,
   },
   {
     q: `What are the tax thresholds for 2026?`,
@@ -65,11 +68,11 @@ export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "What is the highest tax rate in Australia?",
-    a: `The highest Australian resident tax rate is ${pct(top.rate)} on taxable income over ${money(top.min - 1)}. With the 2% Medicare levy the top marginal rate is ${pct(top.rate + MEDICARE_LEVY.rate)}. A single person over ${money(MEDICARE_LEVY.surcharge.tier3.min - 1)} without private hospital cover also pays the Medicare levy surcharge at ${formatPercent(MEDICARE_LEVY.surcharge.tier3.rate)} (${FY} tiers).`,
+    a: `The highest Australian resident tax rate is ${pct(top.rate)} on taxable income over ${money(top.min - 1)}. With the ${pct(MEDICARE_LEVY.rate)} Medicare levy the top marginal rate is ${pct(top.rate + MEDICARE_LEVY.rate)}. A single person over ${money(MEDICARE_LEVY.surcharge.tier3.min - 1)} without private hospital cover also pays the Medicare levy surcharge at ${formatPercent(MEDICARE_LEVY.surcharge.tier3.rate)} (${FY} tiers).`,
   },
   {
     q: "Will a pay rise push me into a higher tax bracket and leave me worse off?",
-    a: `No. Only the dollars above a threshold are taxed at the higher rate; everything below it is taxed exactly as before. A rise that takes you from ${money(B[2].max - 1_000)} to ${money(B[2].max + 1_000)} means $1,000 is taxed at ${pct(B[2].rate)} and $1,000 at ${pct(B[3].rate)}. You always keep more of a pay rise than you lose in tax.`,
+    a: `Not through the brackets. Only the dollars above a threshold are taxed at the higher rate; everything below it is taxed exactly as before. A rise that takes you from ${money(B[2].max - 1_000)} to ${money(B[2].max + 1_000)} means $1,000 is taxed at ${pct(B[2].rate)} and $1,000 at ${pct(B[3].rate)}, so the brackets and the Medicare levy never take more than the rise. The exception is the Medicare levy surcharge. If you have no private hospital cover and a rise takes a single person's income for surcharge purposes over ${money(MEDICARE_LEVY.surcharge.tier1.min - 1)}, the ${pct(MEDICARE_LEVY.surcharge.tier1.rate)} surcharge applies to your whole income, not just the rise (${MLS_INCOME_YEAR} tiers). A rise smaller than that surcharge leaves you worse off.`,
   },
   {
     q: "Are the tax brackets changing in 2027?",
@@ -77,10 +80,10 @@ export const TAX_BRACKETS_FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Do the tax brackets include the Medicare levy?",
-    a: `No. The ATO's rates do not include the 2% Medicare levy, which is worked out separately on your whole taxable income. Low-income earners pay a reduced levy or none: for a single person the levy starts above ${money(MEDICARE_LEVY.lowIncomeThreshold)} (the ATO's latest published threshold, for ${PREV}).`,
+    a: `No. The ATO's rates do not include the ${pct(MEDICARE_LEVY.rate)} Medicare levy, which is worked out separately on your whole taxable income. Low-income earners pay a reduced levy or none: for a single person the levy starts above ${money(MEDICARE_LEVY.lowIncomeThreshold)} (the ATO's latest published threshold, for ${PREV}).`,
   },
   {
     q: "Do non-residents and working holiday makers use these brackets?",
-    a: `No. Foreign residents pay ${pct(NON_RESIDENT_TAX_BRACKETS[0].rate)} from the first dollar up to ${money(NON_RESIDENT_TAX_BRACKETS[0].max)} with no tax-free threshold, no low income tax offset and no Medicare levy. Working holiday makers on visa subclass 417 or 462 pay ${pct(WHM_TAX_BRACKETS_2025_26[0].rate)} on the first ${money(WHM_TAX_BRACKETS_2025_26[0].max)}, then the same rates as foreign residents.`,
+    a: `No. Foreign residents pay ${pct(NON_RESIDENT_TAX_BRACKETS[0].rate)} from the first dollar up to ${money(NON_RESIDENT_TAX_BRACKETS[0].max)} with no tax-free threshold, no low income tax offset and no Medicare levy. Working holiday makers on visa subclass 417 or 462 pay ${pct(WHM_TAX_BRACKETS_2025_26[0].rate)} on the first ${money(WHM_TAX_BRACKETS_2025_26[0].max)}, then the same rates as foreign residents. These figures come from the ATO's foreign resident table for ${FOREIGN_TABLE_YEAR} and working holiday maker table for ${WHM_TABLE_YEAR}, the latest it has published.`,
   },
 ];

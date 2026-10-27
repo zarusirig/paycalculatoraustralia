@@ -30,12 +30,14 @@ import {
   BUILDING_PENALTIES,
   BUILDING_PENALTIES_NOTE,
   BUILDING_SOURCE_TITLE,
+  CARPENTER_TOOL_ALLOWANCE,
   INDUSTRY_ALLOWANCE,
   MULTISTOREY_ALLOWANCE,
   buildingRow,
   dailyHireHourly,
 } from "./building-construction-common";
 import { ALL_OCCUPATIONS_MEDIAN_WEEKLY, ANNUAL_WAGE_REVIEW_2026, FWO_PAY_GUIDES, jsaSource, jsaUrl, toCents } from "./common";
+import { formatAUD } from "../../constants/australian-tax";
 import { annual52, money0, money2 } from "./j8-common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
@@ -83,7 +85,7 @@ export const BRICKLAYER: Occupation = {
   },
   coverage: [
     "Bricklayers employed by builders and bricklaying contractors are covered by the Building and Construction General On-site Award 2020 [MA000020]. Schedule A lists bricklayer as one of the broadbanded trades at Construction Worker Level 3 (CW3); a refractory bricklayer is graded higher, at CW5.",
-    `A bricklayer's minimum is the CW3 rate of ${money2(CW3)} a week plus two allowances the award pays for all purposes: the industry allowance (${money2(general)} a week on general building and civil work, ${money2(residential)} on single and dual occupancy homes) and the bricklayer's tool allowance of ${money2(tool)} a week (cl 21.1(a)). The bricklayer tool allowance is lower than a carpenter's, so a bricklayer's minimum is ${money2(toCents(41.22 - tool))} a week below a carpenter's on the same site.`,
+    `A bricklayer's minimum is the CW3 rate of ${formatAUD(CW3, 2)} a week plus two allowances the award pays for all purposes: the industry allowance (${money2(general)} a week on general building and civil work, ${money2(residential)} on single and dual occupancy homes) and the bricklayer's tool allowance of ${money2(tool)} a week (cl 21.1(a)). The bricklayer tool allowance is lower than a carpenter's (${money2(CARPENTER_TOOL_ALLOWANCE)}), so a CW3 bricklayer's minimum is ${money2(toCents(CARPENTER_TOOL_ALLOWANCE - tool))} a week below a carpenter's on the same site.`,
     "Most of the rates below are for weekly hire employees. A daily hire bricklayer, who is engaged to follow the work from job to job, is paid a higher hourly rate because the award loads the weekly amount by 52/50.4 to cover time between jobs (cl 19.3(a)).",
     "A bricklayer who is genuinely self-employed and subcontracts on an ABN has no award minimum. An enterprise agreement, where one applies, replaces these rates.",
   ],
@@ -125,7 +127,7 @@ export const BRICKLAYER: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a bricklayer in 2026?",
-      a: `A qualified bricklayer (CW3) on a general building or civil site must be paid at least ${money2(BRICK_GENERAL.hourly)} an hour, or ${money2(BRICK_GENERAL.weekly)} a week, under the Building and Construction General On-site Award from the first full pay period on or after 1 July 2026, or ${money0(annual52(BRICK_GENERAL.weekly))} a year full-time before tax. On single or dual occupancy homes the minimum is ${money2(BRICK_RESIDENTIAL.hourly)} an hour.`,
+      a: `A qualified bricklayer (CW3) on a general building or civil site must be paid at least ${money2(BRICK_GENERAL.hourly)} an hour, or ${formatAUD(BRICK_GENERAL.weekly, 2)} a week, under the Building and Construction General On-site Award from the first full pay period on or after 1 July 2026, or ${money0(annual52(BRICK_GENERAL.weekly))} a year full-time before tax. On single or dual occupancy homes the minimum is ${money2(BRICK_RESIDENTIAL.hourly)} an hour.`,
     },
     {
       q: "What is the casual rate for a bricklayer?",
@@ -141,7 +143,7 @@ export const BRICKLAYER: Occupation = {
     },
     {
       q: "What do bricklayers actually earn?",
-      a: `Jobs and Skills Australia reports median full-time earnings of $2,317 a week for bricklayers and stonemasons (ABS, May 2025), about ${money0(annual52(2_317))} a year before tax. The median includes overtime, above-award pay and enterprise agreement rates, so it sits well above the award minimum.`,
+      a: `Jobs and Skills Australia reports median full-time earnings of ${money0(BRICKLAYER_MEDIAN.medianWeekly)} a week for bricklayers and stonemasons (ABS, May 2025), about ${money0(annual52(BRICKLAYER_MEDIAN.medianWeekly))} a year before tax. The median includes overtime, above-award pay and enterprise agreement rates, so it sits well above the award minimum.`,
     },
   ],
   sources: [

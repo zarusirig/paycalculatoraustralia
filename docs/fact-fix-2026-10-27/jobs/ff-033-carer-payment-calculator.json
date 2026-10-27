@@ -1,0 +1,129 @@
+{
+ "name": "ff-033-carer-payment-calculator",
+ "files": [
+  "modules/calculator/carer-payment-calculator-content.tsx",
+  "modules/calculator/carry-forward-concessional-calculator.tsx",
+  "modules/calculator/centrelink-advance-payment-content.tsx",
+  "modules/calculator/centrelink-advance-payment.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/carer-payment-calculator-content.tsx:37",
+   "file": "modules/calculator/carer-payment-calculator-content.tsx",
+   "line": "37",
+   "page": "/carer-payment-calculator/",
+   "claims": [
+    "TABLE_INCOMES starts [0, 226, ...] so the worked table shows a $226 row as the free-area boundary"
+   ],
+   "whys": [
+    "The free-area row is a hard-coded 226, not IT.single.freeArea. After the next indexation the table row will no longer sit on the boundary."
+   ],
+   "constants": [
+    "AGE_PENSION_INCOME_TEST.single.freeArea (lib/constants/centrelink-income-test.ts line 542)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. TABLE_INCOMES has 226 typed in by hand instead of IT.single.freeArea."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 4.42,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/carry-forward-concessional-calculator.tsx:66",
+   "file": "modules/calculator/carry-forward-concessional-calculator.tsx",
+   "line": "66",
+   "page": "/carry-forward-concessional-contributions-calculator/",
+   "claims": [
+    "'... of your 2021-22 cap expires at 30 June 2027 if you do not use it.'"
+   ],
+   "whys": [
+    "This is correct for 2026-27 (unused amounts carry forward for 5 years). But the year and expiry date are typed in the note, not taken from plan.rows / CARRY_FORWARD, so the note goes stale on 1 July 2027."
+   ],
+   "constants": [
+    "lib/constants/carry-forward.ts (oldest year / usableUntil)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact question is confirmed. The note has '2021-22 cap expires at 30 June 2027' typed in by hand instead of taking it from the carry-forward constants, so it goes stale on 1 July 2027."
+   ],
+   "kind": "stale-or-changing",
+   "severity": 3.45,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-advance-payment-content.tsx:56",
+   "file": "modules/calculator/centrelink-advance-payment-content.tsx",
+   "line": "56",
+   "page": "/centrelink-advance-payment/",
+   "claims": [
+    "Farm Household Allowance advance is {formatAUD(250)} to {formatAUD(500)}"
+   ],
+   "whys": [
+    "Hard-coded literals. There is no ADVANCE_LIMITS entry for Farm Household Allowance, so this range would not update if the allowance range changes."
+   ],
+   "constants": [
+    "ADVANCE_LIMITS.allowance (or a new farmHousehold entry)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-advance-payment-content.tsx:63",
+   "file": "modules/calculator/centrelink-advance-payment-content.tsx",
+   "line": "63",
+   "page": "/centrelink-advance-payment/",
+   "claims": [
+    "Pensions: in any 6 months or 13 fortnights, one advance at the highest amount, up to two smaller advances, or three at the lowest amount."
+   ],
+   "whys": [
+    "Counts and periods are typed in a locked list item rather than taken from ADVANCE_RULES, and '6 months or 13 fortnights' should be checked against Services Australia's current wording."
+   ],
+   "constants": [
+    "ADVANCE_RULES (lib/constants/centrelink-carer-and-support.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.26,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-advance-payment.tsx:58",
+   "file": "modules/calculator/centrelink-advance-payment.tsx",
+   "line": "58",
+   "page": "/centrelink-advance-payment/",
+   "claims": [
+    "On JobSeeker, Parenting Payment, Youth Allowance or Austudy it is {formatAUD(250)} to {formatAUD(500)}"
+   ],
+   "whys": [
+    "The range is hard-coded instead of read from the constant. Also, ADVANCE_LIMITS.allowance.label includes ABSTUDY, but this hero sentence leaves ABSTUDY out."
+   ],
+   "constants": [
+    "ADVANCE_LIMITS.allowance.min / .max (lib/constants/centrelink-carer-and-support.ts)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/centrelink-advance-payment.tsx:92",
+   "file": "modules/calculator/centrelink-advance-payment.tsx",
+   "line": "92",
+   "page": "/centrelink-advance-payment/ and /centrelink-crisis-payment/",
+   "claims": [
+    "so 13 of them can differ from the advance by a few cents (also centrelink-crisis-payment.tsx line 109: 'It is repaid over 13 fortnights')"
+   ],
+   "whys": [
+    "'13' is typed in prose, while the calculator uses ADVANCE_RULES.repaymentFortnights. The two would drift apart if the rule changed."
+   ],
+   "constants": [
+    "ADVANCE_RULES.repaymentFortnights"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.37,
+   "needsOwner": false
+  }
+ ]
+}

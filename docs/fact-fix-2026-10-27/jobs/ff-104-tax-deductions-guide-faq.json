@@ -1,0 +1,152 @@
+{
+ "name": "ff-104-tax-deductions-guide-faq",
+ "files": [
+  "modules/guide/tax-deductions-guide-faqs.ts",
+  "modules/guide/tax-deductions-guide.tsx",
+  "modules/guide/tax-file-number-declaration-faqs.ts"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-deductions-guide-faqs.ts:56",
+   "file": "modules/guide/tax-deductions-guide-faqs.ts",
+   "line": "56",
+   "page": "/tax-deductions-guide/",
+   "claims": [
+    "the old $2 minimum no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026)",
+    "Most major Australian charities hold DGR status.",
+    "Donations to ... political parties (above $1,500) ... are not deductible"
+   ],
+   "whys": [
+    "As far as I know, the ATO still requires a DGR gift to be $2 or more. I don't know of any change from 1 July 2024. Check this against the cited ATO page before it stays live.",
+    "This is a population claim with no figure and no source.",
+    "Gifts to political parties and independent candidates are deductible up to $1,500 per income year. The bracket wording can be read as 'donations above $1,500 are not deductible at all', not 'the part above $1,500'. The $1,500 is also a typed literal."
+   ],
+   "constants": [
+    "none (typed literal); belongs in a deductions constants file with its ATO source",
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.94,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-deductions-guide-faqs.ts:48",
+   "file": "modules/guide/tax-deductions-guide-faqs.ts",
+   "line": "48",
+   "page": "/tax-deductions-guide/",
+   "claims": [
+    "depreciate it over its effective life (typically 2-4 years)"
+   ],
+   "whys": [
+    "The ATO effective-life ruling sets laptops at 2 years, so a hedged range of 2-4 years looks wrong for a laptop."
+   ],
+   "constants": [
+    "none (typed literal); effective life should come from a constant citing the ATO effective life ruling"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-deductions-guide-faqs.ts:52",
+   "file": "modules/guide/tax-deductions-guide-faqs.ts",
+   "line": "52",
+   "page": "/tax-deductions-guide/",
+   "claims": [
+    "union and professional association fees are fully deductible, including ... medical registration boards"
+   ],
+   "whys": [
+    "Practitioner registration fees (for example AHPRA) are deductible, but they are not membership fees for a union or association. 'Fully deductible' also ignores any part of a fee that is not work-related."
+   ],
+   "constants": [
+    "none"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 3.84,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-deductions-guide-faqs.ts:28",
+   "file": "modules/guide/tax-deductions-guide-faqs.ts",
+   "line": "28",
+   "page": "/tax-deductions-guide/",
+   "claims": [
+    "Below the $300 total work-related threshold ... claim up to $150 for laundering eligible work clothing without written records"
+   ],
+   "whys": [
+    "$300 and $150 are typed literals. They belong in a deductions constants file with their ATO source so they cannot drift from the $300 threshold used elsewhere on the site."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.21,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-deductions-guide.tsx:89",
+   "file": "modules/guide/tax-deductions-guide.tsx",
+   "line": "89",
+   "page": "https://pay-calculator-australia.com/tax-deductions-guide/",
+   "claims": [
+    "Laundry of eligible work clothing can be claimed at $1 per load (if washed with other items) or $2 per load (exclusive wash), up to $150 without written records.",
+    "Laundry at $1 per load (mixed) or $2 per load (exclusive wash), up to $150 without written records."
+   ],
+   "whys": [
+    "The ATO laundry rate is $1 per load when the load holds only work clothing and 50c per load when other laundry is included. The page's $1 (mixed) and $2 (work-only) rates look wrong. The $150 limit also only removes the need for written evidence when total work-related claims stay at or under $300.",
+    "I confirmed the writer's flag. The ATO rate is $1 per load for work-only clothing and 50c per load when other laundry is included. Claims under $150 need no written evidence only when total work-related expenses are $300 or less. No constant holds these values."
+   ],
+   "constants": [
+    "No constant holds this. It should live in lib/constants/tax-return-2025-26.ts (for example laundryPerLoadWorkOnly, laundryPerLoadMixed, laundryNoEvidenceCap) and be rendered from there."
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.54,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-deductions-guide.tsx:141",
+   "file": "modules/guide/tax-deductions-guide.tsx",
+   "line": "141",
+   "page": "https://pay-calculator-australia.com/tax-deductions-guide/",
+   "claims": [
+    "For employees with HECS-HELP debt, deductions can also reduce your compulsory repayment amount by lowering your repayment income below a threshold.",
+    "Deductions can reduce your compulsory HELP repayment 'by lowering your repayment income below a threshold'."
+   ],
+   "whys": [
+    "The site's own helpRepayment2025_26 (lib/constants/tax-return-2025-26.ts line 158, using HECS_HELP_2025_26 in lib/constants/australian-tax.ts line 476) uses the new marginal system, where repayments are charged on income above the threshold. Under that system any deduction above the threshold lowers the repayment. It does not need to push income below a threshold, so the sentence describes the old whole-of-income system.",
+    "I confirmed the writer's flag against HECS_HELP_2025_26 (lib/constants/australian-tax.ts:476). It uses marginal bands (15c per $1 over $67,000, $8,700 + 17c over $125,000), so any deduction that lowers repayment income above $67,000 lowers the repayment. The sentence describes the old whole-of-income system. There is also an inconsistency inside the constant: its top band (179,286+) charges 10% of total repayment income, which also needs checking against the ATO 2025-26 HELP schedule."
+   ],
+   "constants": [
+    "HECS_HELP_2025_26 (lib/constants/australian-tax.ts:476)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.49,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-file-number-declaration-faqs.ts:16",
+   "file": "modules/guide/tax-file-number-declaration-faqs.ts",
+   "line": "16",
+   "page": "/tax-file-number-declaration/",
+   "claims": [
+    "The {RES} is the 45% top tax rate plus the 2% Medicare levy",
+    "you have 28 days to provide it before that rate applies"
+   ],
+   "whys": [
+    "45% and 2% are typed, while the 47% is computed from NO_TFN_RATES. If the constants change, these figures can drift apart.",
+    "28 days is a typed literal and should come from a PAYG/TFN constant that cites the ATO. If the ATO period changes, this sentence would not update."
+   ],
+   "constants": [
+    "TAX_BRACKETS top rate and MEDICARE_LEVY.rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.34,
+   "needsOwner": false
+  }
+ ]
+}

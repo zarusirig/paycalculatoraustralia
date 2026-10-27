@@ -28,6 +28,13 @@ const MLS_BASE_SINGLE = MEDICARE_LEVY.surcharge.tier1.min - 1;
 const MLS_BASE_FAMILY = MEDICARE_LEVY.surcharge.familyTier1.min - 1;
 const PHI_REBATE_NIL_ABOVE = MEDICARE_LEVY.surcharge.tier3.min - 1;
 const [, helpB1, helpB2, helpB3] = HECS_HELP_2025_26.bands;
+// Record-keeping exceptions for 2025-26 and earlier income years, and the
+// standard deduction that replaces them from 2026-27. ATO "Clothing, laundry and
+// dry-cleaning expenses" (last updated 15 September 2026) and "Standard deduction
+// for work-related expenses" (last updated 14 September 2026), read 27 October 2026.
+const WRE_NO_RECEIPTS_LIMIT_2025_26 = 300;
+const LAUNDRY_NO_EVIDENCE_LIMIT_2025_26 = 150;
+const STANDARD_DEDUCTION_MAX = 1_000;
 
 export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   {
@@ -41,7 +48,7 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What happens if I don't lodge a tax return?",
-    a: `Individuals who earn above the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold are generally required to lodge. Failure to lodge can attract a penalty of ${formatAUD(PENALTY_UNIT.amount)} per ${PENALTY_UNIT.ftlDaysPerUnit}-day period (up to ${formatAUD(FTL_MAX_INDIVIDUAL)}). Even if you earned less than ${formatAUD(TAX_FREE_THRESHOLD)}, lodge if tax was withheld from your pay: lodging is how you get a full refund of the PAYG tax withheld.`,
+    a: `You must lodge a ${RY} return if any of the ATO's reasons apply to you. Two of them: you were an Australian resident and had tax withheld from your pay, or you were a resident for the full year, weren't eligible for the seniors and pensioners tax offset, got no Australian Government allowance or pension, and your taxable income was more than the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold. Failure to lodge can attract a penalty of ${formatAUD(PENALTY_UNIT.amount)} per ${PENALTY_UNIT.ftlDaysPerUnit}-day period (up to ${formatAUD(FTL_MAX_INDIVIDUAL)}). If you were a resident for the full year and your taxable income was ${formatAUD(TAX_FREE_THRESHOLD)} or less, lodging gets you back all the PAYG tax withheld. Part-year residents, foreign residents and people under 18 with income that isn't salary or wages have lower thresholds, so some tax can remain.`,
   },
   {
     q: "What if I owe the ATO money?",
@@ -57,7 +64,7 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim deductions without receipts?",
-    a: "The ATO requires records for all deduction claims. For work-related expenses under $300 in total, you are not required to provide written evidence, but you must be able to show how you calculated the amount. You can claim up to $150 for laundry of eligible work clothing without written records. All claims above these thresholds require receipts, invoices, or bank/credit card statements.",
+    a: `For 2025-26 and earlier income years, yes, within two limits. If your total claim for work-related expenses (excluding car, travel and overtime meal allowance expenses) is ${formatAUD(WRE_NO_RECEIPTS_LIMIT_2025_26)} or less, you don't need receipts, but you must be able to show how you worked out the amount. Laundry of ${formatAUD(LAUNDRY_NO_EVIDENCE_LIMIT_2025_26)} or less needs no written evidence, even if your total claim is over ${formatAUD(WRE_NO_RECEIPTS_LIMIT_2025_26)}. Above these limits you need receipts, invoices or other written evidence. From the 2026-27 income year both exceptions end. If you're an Australian resident with salary or wages, you either take the ATO's standard deduction of up to ${formatAUD(STANDARD_DEDUCTION_MAX)}, which needs no records, or claim your actual work-related expenses with written evidence for all of them.`,
   },
   {
     q: "How do I claim working from home expenses?",

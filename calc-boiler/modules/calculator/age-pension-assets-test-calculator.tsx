@@ -125,7 +125,7 @@ export default function AgePensionAssetsTestCalculatorPage({ children, afterCalc
                   <MoneyInput id="otherAssets" label={`Other assets${couple ? " (combined)" : ""}`} value={otherAssets} onChange={setOtherAssets} max={5_000_000} step={1_000} hint="Cars, caravan, boat, home contents, investment property (less its loan). Not your home." />
                   <MoneyInput id="employment" label="Your employment income this fortnight" value={employment} onChange={setEmployment} max={10_000} />
                   <MoneyInput id="balance" label="Your Work Bonus balance" value={balance} onChange={setBalance} max={WORK_BONUS.maxBalance} step={100} hint={`Up to ${formatAUD(WORK_BONUS.maxBalance)}, shown in your Centrelink online account.`} />
-                  {couple && <MoneyInput id="partnerEmployment" label="Partner's employment income this fortnight" value={partnerEmployment} onChange={setPartnerEmployment} max={10_000} hint="The first $300 is disregarded (Work Bonus); partner balance not modelled." />}
+                  {couple && <MoneyInput id="partnerEmployment" label="Partner's employment income this fortnight" value={partnerEmployment} onChange={setPartnerEmployment} max={10_000} hint={`The first ${formatAUD(WORK_BONUS.fortnightlyCredit)} is disregarded (Work Bonus); partner balance not modelled.`} />}
                   <MoneyInput id="otherIncome" label={`Other income this fortnight${couple ? " (combined)" : ""}`} value={otherIncome} onChange={setOtherIncome} max={10_000} hint="Rent, overseas pensions. Do not include interest. The calculator deems your financial assets." />
                 </form>
 

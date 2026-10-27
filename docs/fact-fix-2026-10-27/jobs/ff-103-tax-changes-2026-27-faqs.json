@@ -1,0 +1,106 @@
+{
+ "name": "ff-103-tax-changes-2026-27-faqs",
+ "files": [
+  "modules/guide/tax-changes-2026-27-faqs.ts",
+  "modules/guide/tax-changes-2026-27.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/tax-changes-2026-27-faqs.ts:50",
+   "file": "modules/guide/tax-changes-2026-27-faqs.ts",
+   "line": "50",
+   "page": "/tax-changes-2026-27/",
+   "claims": [
+    "2026-27 budget delivered 12 May 2026; CGT and negative gearing reforms from 1 July 2027 passed Parliament in June 2026; proposed 30% minimum tax on discretionary trusts still a bill"
+   ],
+   "whys": [
+    "These are typed news claims with no constant or cited source. They need checking against Treasury and Parliament records and a dated source."
+   ],
+   "constants": [
+    "none (typed literal)"
+   ],
+   "reviewerNotes": [],
+   "kind": "citation-or-source",
+   "severity": 3.12,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-changes-2026-27-faqs.ts:38",
+   "file": "modules/guide/tax-changes-2026-27-faqs.ts",
+   "line": "38",
+   "page": "/tax-changes-2026-27/",
+   "claims": [
+    "with a further cut to 14% on 1 July 2027"
+   ],
+   "whys": [
+    "This is a typed rate, not taken from a constant. It should come from a TAX_BRACKETS_2027_28 constant."
+   ],
+   "constants": [
+    "TAX_BRACKETS (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.4,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-changes-2026-27.tsx:142",
+   "file": "modules/guide/tax-changes-2026-27.tsx",
+   "line": "142",
+   "page": "https://pay-calculator-australia.com/tax-changes-2026-27/",
+   "claims": [
+    "Under this marginal system ... you only pay the repayment percentage on income above each threshold, not on your entire income."
+   ],
+   "whys": [
+    "Contradicts the paragraph above it (line 139), which says the top band is a percentage of total repayment income from HECS_HELP.bands[3].min. The 'not on your entire income' rule is only true below the top band."
+   ],
+   "constants": [
+    "HECS_HELP.bands (lib/constants)"
+   ],
+   "reviewerNotes": [
+    "The writer's fact questions are valid and stay as written. Line 142 ('not on your entire income') contradicts the top HECS band, which charges a percentage of total repayment income. Line 105 ('settings are now confirmed') sits beside pending Medicare thresholds and the pending Payday Super cap relief. Line 123 ('decade-long increase') is loose. Lines 160, 205 and 252 have figures typed into the prose instead of drawn from constants."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 4.33,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-changes-2026-27.tsx:105",
+   "file": "modules/guide/tax-changes-2026-27.tsx",
+   "line": "105",
+   "page": "https://pay-calculator-australia.com/tax-changes-2026-27/",
+   "claims": [
+    "The year's settings are now confirmed."
+   ],
+   "whys": [
+    "The Medicare section on the same page (line 147) says no 2026-27 Medicare levy low-income thresholds have been legislated yet, and the Payday Super cap relief is still pending. 'Settings are now confirmed' overstates it."
+   ],
+   "constants": [
+    "MEDICARE_LEVY, PAYDAY_SUPER_CAP_RELIEF (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 3.75,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/tax-changes-2026-27.tsx:252",
+   "file": "modules/guide/tax-changes-2026-27.tsx",
+   "line": "252",
+   "page": "https://pay-calculator-australia.com/tax-changes-2026-27/",
+   "claims": [
+    "Carry-forward of unused concessional cap amounts from the previous 5 years if total super balance is under $500,000; LITO up to $700 phasing out $37,500 to $66,667 (line 160); $268 / $5.15 rate-cut figures; NMW $24.95 to $26.44."
+   ],
+   "whys": [
+    "These figures are not wrong as far as I can tell, but they are typed into the prose instead of coming from constants. That makes them likely to go stale. Note that the $500,000 test applies to the balance at 30 June of the previous year."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE / LITO / NATIONAL_MINIMUM_WAGE constants in lib/constants"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.2,
+   "needsOwner": false
+  }
+ ]
+}

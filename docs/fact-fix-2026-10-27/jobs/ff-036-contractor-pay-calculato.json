@@ -1,0 +1,167 @@
+{
+ "name": "ff-036-contractor-pay-calculato",
+ "files": [
+  "modules/calculator/contractor-pay-calculator-content.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:142",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "142",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "BAS lodgement deadlines fall on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July."
+   ],
+   "whys": [
+    "The October to December quarter is due 28 February, not the 28th of the month after the quarter (28 January). The rule as worded contradicts the list that follows it."
+   ],
+   "constants": [
+    "lib/constants/tax-calendar-2026-27 (BAS due dates)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's factQuestion. The rule says BAS is due on the 28th of the month after each quarter, but 28 February does not fit that rule. The em dashes around the PENALTY_UNIT expression are left as they are."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.71,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:360",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "360",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "Pricing contractor rates ... ignores the 30\u201340% loading ... A $40/hr employee rate requires approximately $56\u2013$64/hr as a contractor."
+   ],
+   "whys": [
+    "A 30-40% loading on $40/hr gives $52-$56/hr. $56-$64/hr is a 40-60% loading. Both ranges are hand-typed, and neither comes from contractorRateToEquivalentSalary(), which already drives the rate-to-salary table on the same page."
+   ],
+   "constants": [
+    "lib/constants/contractor-rate (contractorRateToEquivalentSalary ratio)"
+   ],
+   "reviewerNotes": [
+    "I agree with the writer's factQuestion. A 30-40% loading on $40/hr gives $52-$56/hr, not $56-$64/hr. Both ranges are hand-typed."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.72,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:201",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "201",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "To match an employee on $91,200, a contractor needs to charge approximately $65\u2013$70/hour"
+   ],
+   "whys": [
+    "This is a hand-typed estimate that is not derived from contractorRateToEquivalentSalary(). It may not agree with the rate-to-salary table further down the page."
+   ],
+   "constants": [
+    "lib/constants/contractor-rate"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.17,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:135",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "135",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "Step 3 sets aside $82,909 \u00d7 12% = $9,949 super, then step 4 applies tax to the full $82,909",
+    "$82,909 \u00d7 {SG rate} = $9,949 contributed to your super fund"
+   ],
+   "whys": [
+    "The methodology at line 113 strips super first (\u00f7 1.12), and a deductible personal contribution would lower taxable income. The worked steps contradict the method. $9,949 is also hand-typed next to a formatPercent(SUPER_GUARANTEE.rate) expression, so it will drift if the SG rate changes.",
+    "$9,949 is hand-typed next to a formatPercent(SUPER_GUARANTEE.rate) expression, so it goes wrong if the SG rate changes. Separately, step 4 still taxes the full $82,909 after the super is set aside. This duplicates the writer's line-135 question but should be kept with it."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE.rate (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.65,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:227",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "227",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "3 core tax obligations: ... and optional (but recommended) superannuation contributions at 12% of assessable income",
+    "optional (but recommended) superannuation contributions at 12% of assessable income"
+   ],
+   "whys": [
+    "Optional super is not a tax obligation. 'Recommended' is an unlabelled opinion. The SG is calculated on ordinary time earnings, not on assessable income.",
+    "This unlabelled advice was removed from the FAQ but is still in the body. Contractors have no 12% rate for their own super, because SG applies only to labour contracts. The body and the FAQ now differ, and the body still frames super as a 'tax obligation'."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE",
+    "Copy only"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.66,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:129",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "129",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "Contractors earning above $75,000 per year in gross business turnover must register for GST and remit 10% of invoiced amounts quarterly"
+   ],
+   "whys": [
+    "The ATO threshold is a GST turnover of $75,000 or more, not 'above'. GST is 1/11 of a GST-inclusive invoice, not 10% of it. BAS can also be lodged monthly or annually. The same 'exceeding $75,000' wording appears at line 231."
+   ],
+   "constants": [
+    "GST threshold constant (lib/constants)"
+   ],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.86,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:104",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "104",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "The default rate is {SG rate} from July 2025."
+   ],
+   "whys": [
+    "'July 2025' is hand-typed next to the SG rate expression, so it goes stale if the rate constant changes. The string is locked because it is a JSX attribute."
+   ],
+   "constants": [
+    "SUPER_GUARANTEE (effective date field)"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.39,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/calculator/contractor-pay-calculator-content.tsx:163",
+   "file": "modules/calculator/contractor-pay-calculator-content.tsx",
+   "line": "163",
+   "page": "/contractor-pay-calculator/",
+   "claims": [
+    "Superannuation row: Employee $10,944 (employer-paid), on $91,200"
+   ],
+   "whys": [
+    "The figure is hand-typed in a table cell beside a formatPercent(SUPER_GUARANTEE.rate) header. 12% of $91,200 is $10,944, so it is correct today but goes stale if the rate changes. It should be derived from SUPER_GUARANTEE.rate."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 4.25,
+   "needsOwner": false
+  }
+ ]
+}

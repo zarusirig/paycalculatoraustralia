@@ -1,0 +1,122 @@
+{
+ "name": "ff-066-construction-trades-pay",
+ "files": [
+  "modules/guide/construction-trades-pay.tsx"
+ ],
+ "questions": [
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:124",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "124",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "Adult apprentice gets $25.87/hr in first year and $28.90/hr from second year. 'This recognises that adult apprentices have higher living costs and may have family responsibilities.'"
+   ],
+   "whys": [
+    "The rates are hard-coded, although the data holds them (adult table rows, hourly 25.87 and 28.9). The data also limits them to apprentices who started on or after 1 January 2014, and the prose leaves that condition out. The stated reason is unsourced."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/apprentice-electrician.ts adult table (ADULT_APPRENTICE_Y1 is already imported in this file)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.35,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:129",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "129",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "Apprentices in priority trades 'may receive $5,000\u2013$10,000 in direct payments' under the Australian Apprenticeships Incentive System"
+   ],
+   "whys": [
+    "This is a government program amount with no source, no date and no constant. The program changed from 1 July 2024 and 1 July 2025 (Key Apprenticeship Program), so it needs checking against the current DEWR settings."
+   ],
+   "constants": [
+    "New constant for the incentive amounts, with a DEWR source and an effective date"
+   ],
+   "reviewerNotes": [],
+   "kind": "stale-or-changing",
+   "severity": 3.83,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:69",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "69",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "The salary table shows ranges 'including base salary and common overtime'"
+   ],
+   "whys": [
+    "This contradicts the methodology note at line 225, which says the ranges include base rate and typical allowances 'but excluding overtime'. One of the two is wrong. The 'well above the national average' claim on the same line also cites no source."
+   ],
+   "constants": [
+    "The hard-coded salary ranges (lines 81-87) need a data file with a source and a stated basis (with or without overtime)."
+   ],
+   "reviewerNotes": [
+    "Two problems remain. The line 69 'including common overtime' contradicts the methodology note at line 225 ('excluding overtime'). 'Well above the national average' cites no source. Both were already in the original; the writer listed them in factQuestions."
+   ],
+   "kind": "internal-mismatch",
+   "severity": 3.88,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:101",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "101",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "'(50%, 60%, 70% and 82% if they did not)' and 'many employers and enterprise agreements pay above these minimums'"
+   ],
+   "whys": [
+    "The percentages match apprentice-electrician.ts but are typed into the prose rather than rendered from it, so they will drift. The 'many employers' population claim has no source."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/apprentice-electrician.ts (the 'did not complete Year 12' table)"
+   ],
+   "reviewerNotes": [],
+   "kind": "unsourced-population-claim",
+   "severity": 4.3,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:173",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "173",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "Saturday: time-and-a-half for the first 2 hours, then double time; minimum 3-hour engagement. Sunday minimum 3 hours. Public holiday minimum 4 hours."
+   ],
+   "whys": [
+    "building-construction-common.ts lines 30, 84 and 93 (cl 30.1) say all Saturday work after 12 noon is 200%. This list leaves that out, while construction-trades-pay-faqs.ts line 34 includes it. The 3-hour and 4-hour minimum engagement figures are not in the data file."
+   ],
+   "constants": [
+    "lib/data/job-pay-rates/building-construction-common.ts overtime rows (lines 83-93)"
+   ],
+   "reviewerNotes": [],
+   "kind": "internal-mismatch",
+   "severity": 4.95,
+   "needsOwner": false
+  },
+  {
+   "key": "modules/guide/construction-trades-pay.tsx:178",
+   "file": "modules/guide/construction-trades-pay.tsx",
+   "line": "178",
+   "page": "/construction-trades-pay/",
+   "claims": [
+    "The worked example: a $40/hr carpenter working 5 Saturday overtime hours earns 2 hrs at $60 + 3 hrs at $80 = $360."
+   ],
+   "whys": [
+    "The $40 base and the $360 result are typed into the prose. The example also ignores the cl 30.1 rule that all Saturday work after 12 noon is paid at 200%, and it uses no industry-allowance-inclusive CW rate from building-construction-common.ts. It needs a figure derived from the data, or a stated assumption that the shift ends before noon."
+   ],
+   "constants": [],
+   "reviewerNotes": [],
+   "kind": "wrong-fact",
+   "severity": 4.58,
+   "needsOwner": false
+  }
+ ]
+}

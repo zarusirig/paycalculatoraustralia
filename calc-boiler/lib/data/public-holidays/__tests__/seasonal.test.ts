@@ -84,9 +84,11 @@ test("a Christmas or Boxing Day on a weekend is always matched by an additional 
 
 // ---------------------------------------------------------------------------
 // The holiday-by-holiday views agree with the Fair Work 2026 and 2027 pages
-// (read 5 Oct 2026). Tasmania's Saturday 25 December 2027 is the one date the
-// Fair Work list shows that the WorkSafe Tasmania table does not (noted on the
-// page), so it is expected as absent here.
+// (read 5 Oct 2026). Tasmania's Saturday 25 December 2027 is on the Fair Work
+// list but not the WorkSafe Tasmania table; the Statutory Holidays Act 2000 s 4(i)
+// makes it a holiday, so it is expected here (checked 27 Oct 2026). Tasmania's
+// Easter Sunday 2027 comes from s 4(da), added by the Statutory Holidays
+// Amendment Act 2026 (in force 9 Oct 2026), after the Fair Work list was read.
 // ---------------------------------------------------------------------------
 
 test("Christmas rows match the Fair Work lists, state by state", () => {
@@ -96,7 +98,7 @@ test("Christmas rows match the Fair Work lists, state by state", () => {
     qld: ["2026-12-24", "2026-12-25", "2027-12-24", "2027-12-25", "2027-12-27"],
     wa: ["2026-12-25", "2027-12-25", "2027-12-27"],
     sa: ["2026-12-24", "2026-12-25", "2027-12-24", "2027-12-25", "2027-12-27"],
-    tas: ["2026-12-25", "2027-12-27"],
+    tas: ["2026-12-25", "2027-12-25", "2027-12-27"],
     act: ["2026-12-25", "2027-12-25", "2027-12-27"],
     nt: ["2026-12-24", "2026-12-25", "2027-12-24", "2027-12-25", "2027-12-27"],
   });
@@ -134,7 +136,7 @@ test("Easter 2027 rows match the Fair Work lists", () => {
     qld: four,
     wa: ["2027-03-26", "2027-03-28", "2027-03-29"], // no Easter Saturday in WA
     sa: four,
-    tas: ["2027-03-26", "2027-03-29"], // Easter Tuesday is "limited" and excluded
+    tas: ["2027-03-26", "2027-03-28", "2027-03-29"], // Easter Sunday from 2027; Easter Tuesday is "limited" and excluded
     act: four,
     nt: four,
   });

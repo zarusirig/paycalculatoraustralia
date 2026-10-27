@@ -53,7 +53,7 @@ export default function CentrelinkAdvancePaymentContent() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; the table shows the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. A Farm Household Allowance advance is {formatAUD(250)} to {formatAUD(500)}. On FTB Part A, a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
+        <p className="mt-2 text-xs text-warmgray-light">Pension amounts change with pension rates each March and September; the table shows the figures published after the 20 September 2026 change. If you get a part-rate pension, or you are under 21 on Disability Support Pension, the advance is worked out from the pension you actually get. A Farm Household Allowance advance has the same {formatAUD(ADVANCE_LIMITS.allowance.min ?? 0)} to {formatAUD(ADVANCE_LIMITS.allowance.max)} range as JobSeeker, paid all at once. On FTB Part A, a regular advance is {ADVANCE_RULES.ftbRegularAdvancePercent}% of the standard rate for one child under 13, paid every 26 weeks; a one-off advance is up to {ADVANCE_RULES.ftbOneOffPercent}% of your annual rate.</p>
       </W3Section>
 
       <W3Section title="Who Can Get an Advance Payment?">

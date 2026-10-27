@@ -1,7 +1,7 @@
 // FAQ copy for /novated-lease-calculator/. Every figure comes from
 // lib/constants/novated-lease.ts (verified at ato.gov.au) or from the shared
 // tax engine — nothing is typed in by hand here.
-import { formatAUD, formatPercent, HECS_HELP, QUALIFYING_EARNINGS } from "@/lib/constants";
+import { formatAUD, formatPercent, HECS_HELP, MEDICARE_LEVY, QUALIFYING_EARNINGS, SITE_CONFIG, TAX_BRACKETS } from "@/lib/constants";
 import {
   EV_EXEMPTION,
   FBT,
@@ -22,6 +22,9 @@ export interface NovatedLeaseFaq {
 // A single worked case reused across the answers so the FAQ, the page body and
 // the calculator can never disagree: $100,000 salary, $60,000 electric car,
 // 5-year term, $5,000 a year of running costs.
+// Top marginal rate including the Medicare levy, from the current-year brackets.
+const TOP_RATE_WITH_MEDICARE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate;
+
 const EV = calculateNovatedLease({
   salary: 100_000,
   vehiclePrice: 60_000,
@@ -71,7 +74,7 @@ export const NOVATED_LEASE_FAQS: readonly NovatedLeaseFaq[] = [
   },
   {
     q: "What is the Employee Contribution Method (ECM)?",
-    a: `ECM means paying part of the car's cost from post-tax salary. Every dollar of employee contribution reduces the FBT taxable value by a dollar, and a dollar of taxable value costs ${formatAUD(FBT.grossUpType1 * FBT.rate, 2)} in FBT, so contributing the full statutory value wipes out the FBT entirely. It pays until your marginal rate reaches ${formatPercent(ecmBreakEvenMarginalRate(), 1)}, which is above the ${formatPercent(0.47, 0)} top rate including the Medicare levy, so in ${LUXURY_CAR_TAX.financialYear} ECM is the cheaper method at every marginal rate.`,
+    a: `ECM means paying part of the car's cost from post-tax salary. Every dollar of employee contribution reduces the FBT taxable value by a dollar, and a dollar of taxable value costs ${formatAUD(FBT.grossUpType1 * FBT.rate, 2)} in FBT, so contributing the full statutory value wipes out the FBT entirely. It pays until your marginal rate reaches ${formatPercent(ecmBreakEvenMarginalRate(), 1)}, which is above the ${formatPercent(TOP_RATE_WITH_MEDICARE, 0)} top rate including the Medicare levy, so in ${SITE_CONFIG.financialYear} ECM is the cheaper method at every marginal rate.`,
   },
   {
     q: "Are electric cars exempt from FBT on a novated lease?",

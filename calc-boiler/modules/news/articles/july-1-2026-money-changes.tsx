@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { formatAUD, formatPercent } from "@/lib/constants/australian-tax";
+import { DIVISION_296 } from "@/lib/constants/super-contributions";
+import { RATE_SET_LABELS, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 
 export default function July12026MoneyChanges() {
   return (
@@ -41,8 +44,11 @@ export default function July12026MoneyChanges() {
         changed for employers and employees. The super guarantee rate itself stays at 12%, now
         calculated on qualifying earnings; use the{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to project your
-        balance. Higher balances are also affected: Division 296 tax, an extra 15% on earnings
-        from balances above $3 million, applies from the same date.
+        balance. Higher balances are also affected: from {DIVISION_296.start}, Division 296 tax
+        adds an extra {formatPercent(DIVISION_296.rate, 0)} on earnings from the part of a balance
+        above {formatAUD(DIVISION_296.largeBalanceThreshold / 1_000_000)} million, and a further{" "}
+        {formatPercent(DIVISION_296.additionalRate, 0)} on the part above{" "}
+        {formatAUD(DIVISION_296.veryLargeBalanceThreshold / 1_000_000)} million.
       </p>
 
       <h2>Tax: the 16% rate drops to 15%</h2>
@@ -78,8 +84,8 @@ export default function July12026MoneyChanges() {
         which runs on the financial year rather than the calendar dates used for pensions. Part A
         rose to $235.48 a fortnight per child under 13, and the Part B primary earner income limit
         lifted to $124,327. Pension-type payments like Age Pension, JobSeeker and Carer Payment
-        instead index every 20 March and 20 September. The Age Pension&apos;s last rise was 20 March
-        2026. See{" "}
+        instead index every 20 March and 20 September. The Age Pension&apos;s latest rise was on{" "}
+        {RATE_SET_LABELS[SEPTEMBER_2026]}. See{" "}
         <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from July 2026</Link>{" "}
         for the updated family payment rates and thresholds, and use the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to check how
